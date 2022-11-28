@@ -1,10 +1,9 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
-    ->render(
-    $filterService,
-    // Columns
-    [
+{!! $datagrid
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         // Avatar
         [
             'type' => 'avatar',
@@ -12,14 +11,14 @@
             'parent_route' => 'dice_rolls',
         ],
         [
-            'label' => __('crud.fields.dice_roll'),
+            'label' => __('entities.dice_roll'),
             'field' => 'diceRoll.name',
             'render' => function($model) {
                 return '<a href="' . route('dice_rolls.show', $model->dice_roll_id) . '">' . e($model->diceRoll->name) . '</a>';
             }
         ],
         [
-            'label' => __('crud.fields.character'),
+            'label' => __('entities.character'),
             'field' => 'diceRoll.character.name',
             'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
@@ -45,11 +44,8 @@
                 return $model->updated_at->diffForHumans();
             }
         ],
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options([
         'route' => 'dice_roll_results.index',
         'baseRoute' => 'dice_roll_results',
         'trans' => 'dice_rolls.fields.',

@@ -404,6 +404,22 @@ body.map-drawing-mode {
     padding-left: 45px;
 }
 
+.marker-preset-list .preset {
+    padding: 0.8rem;
+    border: 1px solid #eee;
+    background-color: #eee;
+    border-radius: 5px;
+    &:hover {
+        border: 1px solid #aaa;
+    }
+
+    .preset-use {
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
 
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";

@@ -171,6 +171,7 @@ return [
         'replace_mentions'      => 'Zameniť referencie atribútov v zázname za tie nového objektu.',
         'tag'                   => 'Kategória',
         'tags'                  => 'Kategórie',
+        'template'              => 'Šablóna',
         'timeline'              => 'Časová os',
         'tooltip'               => 'Bublina',
         'type'                  => 'Typ',
@@ -219,8 +220,10 @@ return [
         'options'                   => [
             'children'  => 'S podradenými',
             'exclude'   => 'Vylúčiť',
+            'hide'      => 'Skryť',
             'include'   => 'Zahrnúť',
             'none'      => 'Žiadne',
+            'show'      => 'Zobraziť',
         ],
         'show'                      => 'Zobraziť filtre',
         'sorting'                   => [
@@ -239,6 +242,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Kopírovať nasledujúce prepojené prvky zo zdroja do nového objektu.',
+        'learn_more'    => 'Zisti viac o tejto funkcii v našej :documentation.',
         'linking'       => 'Prepojenia s inými objektami',
         'nested_parent' => 'Zobrazenie podobjektov :parent.',
     ],
@@ -332,6 +336,7 @@ return [
         'ability'       => 'Vybrať schopnosť',
         'calendar'      => 'Vybrať kalendár',
         'character'     => 'Vybrať postavu',
+        'creature'      => 'Vybrať bytosť',
         'entity'        => 'Objekt',
         'event'         => 'Vybrať udalosť',
         'family'        => 'Vybrať rod',

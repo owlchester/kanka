@@ -1,4 +1,4 @@
 <div class="form-group required">
-    <label>{{ __('crud.fields.colour') }}</label>
+    <label>{{ __('crud.fields.colour') }}</label><br />
     {!! Form::select('colour', FormCopy::colours(), FormCopy::field('colour')->string(), ['class' => 'form-control select2-colour']) !!}
 </div>

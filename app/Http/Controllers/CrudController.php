@@ -13,7 +13,7 @@ use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\MenuLink;
 use App\Models\MiscModel;
-use App\Services\Entity\MultiEditingService;
+use App\Services\MultiEditingService;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\GuestAuthTrait;
@@ -381,7 +381,7 @@ class CrudController extends Controller
         if ($campaign->hasEditingWarning() && $model->entity) {
             /** @var MultiEditingService $editingService */
             $editingService = app()->make(MultiEditingService::class);
-            $editingUsers = $editingService->entity($model->entity)->user(auth()->user())->users();
+            $editingUsers = $editingService->model($model->entity)->user(auth()->user())->users();
             // If no one is editing the entity, we are now editing it
             if (empty($editingUsers)) {
                 $editingService->edit();
@@ -446,7 +446,7 @@ class CrudController extends Controller
             if ($model->entity) {
                 /** @var MultiEditingService $editingService */
                 $editingService = app()->make(MultiEditingService::class);
-                $editingService->entity($model->entity)
+                $editingService->model($model->entity)
                     ->user($request->user())
                     ->finish();
             }

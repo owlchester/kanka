@@ -40,7 +40,6 @@ return [
         'base'                      => 'Adj térképjelzőket a térképhez, a kiválasztott helyre kattintva.',
         'copy_elements'             => 'Csoportok, rétegek és jelölők másolása',
         'copy_elements_to_campaign' => 'A térképek csoportjainak, rétegeinek és jelölőinek másolása. A valamilyen entitáshoz kapcsolt jelölők sztenderd jelölőkké lesznek átalakítva.',
-        'custom_icon'               => 'Másold ki a HTML-jét egy ikonnak a :fontawesome-ról vagy :rpgawesome-ról, vagy egy egyedi SVG ikonnak.',
         'custom_radius'             => 'Válasz egyéni méretet a legördülőből a méret definiálásához.',
         'draggable'                 => 'Pipáld ki, hogy felfedezés módban szabadon mozgatni tudd a térképjelzőt a térképen.',
         'label'                     => 'Egy címke szövegblokként jelenik meg a térképen. A tartalma az entitás és a jelölő neve lesz.',

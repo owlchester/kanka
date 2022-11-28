@@ -4,8 +4,14 @@ return [
     'actions'       => [
         'entry'             => 'Pre túto značku zapíš vlastné vstupné políčko.',
         'remove'            => 'Odstrániť značku',
+        'reset-polygon'     => 'Resetovať umiestnenie',
         'save_and_explore'  => 'Uložiť a otvoriť',
+        'start-drawing'     => 'Zapnúť kreslenie',
         'update'            => 'Upraviť značku',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} Odstránená :count značka.|[2,4] Odstránené :count značky.|[5,*] Odstránených :count značiek.',
+        'patch'     => '{1} Aktualizovaná :count značka.|[2,4] Aktualizované :count značky.|[5,*] Aktualizovaných :count značiek.',
     ],
     'create'        => [
         'success'   => 'Značka :name vytvorená.',
@@ -25,6 +31,7 @@ return [
         'custom_shape'  => 'Vlastný tvar',
         'font_colour'   => 'Farba symbolu',
         'group'         => 'Skupina značky',
+        'icon'          => 'Symbol',
         'is_draggable'  => 'Premiestniteľná',
         'latitude'      => 'Zemepisná šírka',
         'longitude'     => 'Zemepisná dĺžka',
@@ -40,7 +47,6 @@ return [
         'base'                      => 'Pridaj značky na mapu kliknutím na hociktorý bod na nej.',
         'copy_elements'             => 'Kopírovať skupiny, vrstvy a značky.',
         'copy_elements_to_campaign' => 'Kopírovať skupiny, vrstvy a značky na mapách. Značky prepojené s objektami budú konverované na štandardné značky.',
-        'custom_icon'               => 'Skopíruj HTML symbolu z :fontawesome alebo :rpgawesome, alebo vlastného SVG symbolu.',
         'custom_radius'             => 'Vyber si vlastnú veľkosť z možností v menu, ak chceš definovať veľkosť.',
         'draggable'                 => 'Aktivovaním umožníš premiestnenie značky v Prieskumníkovi.',
         'label'                     => 'Popis sa zobrazuje ako odsek textu na mape. Jeho obsah bude názov značky daného objektu.',
@@ -54,6 +60,9 @@ return [
         'exclamation'   => 'Výkričník',
         'marker'        => 'Značka',
         'question'      => 'Otáznik',
+    ],
+    'index'         => [
+        'title' => 'Značky :name',
     ],
     'pitches'       => [
         'poly'  => 'Nakresli vlastné mnohouholníkové tvary, ktoré stvárňujú hranice alebo nepravidelné objekty.',

@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'entity_note'       => ':name (Note d\'entité)',
     'fields'            => [
-        'entity'    => 'Entité',
+        'element'   => 'Elément',
+        'type'      => 'Type',
     ],
     'helper'            => 'Cette liste affiche les entités qui mentionnent cette entité dans leur description.',
     'mentioned_in'      => 'Mentionné dans :count entité(s).',

@@ -6,9 +6,9 @@ return [
     'required'      => 'Обязательно',
     'select_all'    => 'Выбрать все',
     'success'       => [
-        'created'   => 'Элемент ":name" создан.',
-        'deleted'   => 'Элемент ":name" удален.',
-        'updated'   => 'Элемент ":name" обновлен.',
+        'created'   => 'Объект ":name" создан.',
+        'deleted'   => 'Объект ":name" удален.',
+        'updated'   => 'Объект ":name" обновлен.',
     ],
     'yes'           => 'Да',
 ];

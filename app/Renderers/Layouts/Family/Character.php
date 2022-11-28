@@ -31,7 +31,7 @@ class Character extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'characters.fields.location',
+                'label' => 'entities.location',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;

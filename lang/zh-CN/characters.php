@@ -26,7 +26,6 @@ return [
         'life'                      => '生活状况',
         'physical'                  => '躯体特征',
         'pronouns'                  => '人称代词',
-        'races'                     => '种族',
         'sex'                       => '性别',
         'title'                     => '头衔/称号',
         'traits'                    => '特质',

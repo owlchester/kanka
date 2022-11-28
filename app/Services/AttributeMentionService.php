@@ -76,7 +76,7 @@ class AttributeMentionService
      * @param string $value
      * @return bool
      */
-    protected function validField(string $value): bool
+    protected function validField(string $value = null): bool
     {
         if (!Str::contains($value, ['{', '}'])) {
             return false;

@@ -4,7 +4,7 @@
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        __('crud.fields.attribute_template')
+        __('entities.attribute_template')
     ]
 ])
 

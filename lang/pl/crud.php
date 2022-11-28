@@ -171,6 +171,7 @@ return [
         'replace_mentions'      => 'Zamień wzmianki o cechach tego elementu wzmiankami nowego elementu',
         'tag'                   => 'Etykieta',
         'tags'                  => 'Etykiety',
+        'template'              => 'Szablon',
         'timeline'              => 'Historia',
         'tooltip'               => 'Dymek',
         'type'                  => 'Rodzaj',
@@ -219,8 +220,10 @@ return [
         'options'                   => [
             'children'  => 'Z pochodnymi',
             'exclude'   => 'Nie zawiera',
+            'hide'      => 'Ukryj',
             'include'   => 'Zawiera',
             'none'      => 'Brak',
+            'show'      => 'Pokaż',
         ],
         'show'                      => 'Pokaż filtry',
         'sorting'                   => [
@@ -239,6 +242,7 @@ return [
     ],
     'helpers'                   => [
         'copy_options'  => 'Skopiuj następujące elementy elementu źródłowego do nowego elementu.',
+        'learn_more'    => 'Więc informacji o tej funkcji zawiera :documentation.',
         'linking'       => 'Łącza do innych elementów',
         'nested_parent' => 'Wyświetl pochodne :parent',
     ],
@@ -332,6 +336,7 @@ return [
         'ability'       => 'Wybierz zdolność',
         'calendar'      => 'Wybierz kalendarz',
         'character'     => 'Wybierz postać',
+        'creature'      => 'Wybierz istotę',
         'entity'        => 'Element',
         'event'         => 'Wybierz wydarzenie',
         'family'        => 'Wybierz rodzinę',

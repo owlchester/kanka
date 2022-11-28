@@ -79,7 +79,7 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
 
     </div>
 
-    @if ($widget->entity->typeId() == config('entities.ids.location'))
+    @if ($widget->entity->isLocation())
         @if (!empty($widget->entity->child->map))
             <div class="panel-footer text-right">
                 <a href="{{ $widget->entity->url('map') }}">

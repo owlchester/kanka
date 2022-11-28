@@ -14,9 +14,9 @@
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('journals.fields.name') }}</th>
-                <th class="visible-sm">{{ trans('journals.fields.type') }}</th>
+                <th class="visible-sm">{{ trans('crud.fields.type') }}</th>
                 <th class="visible-sm">{{ trans('journals.fields.date') }}</th>
-                <th>{{ trans('crud.fields.calendar_date') }}</th>
+                <th>{{ trans('entities.calendar_date') }}</th>
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $journal)

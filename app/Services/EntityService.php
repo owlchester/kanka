@@ -690,7 +690,7 @@ class EntityService
         $model->forceSavedObserver = true;
         $model->is_private = $defaultPrivate;
         $model->save();
-        if ($model->entity->type_id !== config('entities.ids.tag')) {
+        if (!$model->entity->isTag()) {
             $allTags = $this->getAutoApplyTags();
             $model->entity->tags()->attach($allTags);
         }

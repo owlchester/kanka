@@ -7,7 +7,10 @@ use App\Models\Location;
 
 class LocationPolicy extends MiscPolicy
 {
-    protected $model = 'location';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.location');
+    }
 
     /**
      * Determine if a user can interact with the location's map

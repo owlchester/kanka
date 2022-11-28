@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property User $user
  * @property Campaign $campaign
  * @property CampaignRole $campaignRole
+ * @property Carbon $created_at
  */
 class CampaignRoleUser extends Model
 {
@@ -33,5 +35,10 @@ class CampaignRoleUser extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function recentlyCreated(): bool
+    {
+        return $this->created_at->diffInMinutes() <= 15;
     }
 }

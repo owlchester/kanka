@@ -1,10 +1,9 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
-    ->render(
-    $filterService,
-    // Columns
-    [
+{!! $datagrid
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         // Avatar
         [
             'type' => 'avatar'
@@ -22,11 +21,8 @@
         [
             'type' => 'is_private',
         ]
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options([
         'route' => 'calendars.index',
         'baseRoute' => 'calendars',
         'trans' => 'calendars.fields.',

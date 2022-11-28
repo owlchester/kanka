@@ -6,7 +6,6 @@ use App\Models\Campaign;
 use App\Models\Tag;
 use App\Http\Requests\StoreTag as Request;
 use App\Http\Resources\TagResource as Resource;
-use App\Http\Resources\TagCollection as Collection;
 
 class TagApiController extends ApiController
 {

@@ -54,7 +54,7 @@ return [
     ],
     'starting'          => 'Starting at USD :amount per month',
     'superboost'        => [
-        'description'   => 'Unlock the ultimiate Kanka experience by superboosting a campaign. This asigns three boosters, but we\'ve made these features worth it.',
+        'description'   => 'Unlock the ultimate Kanka experience by superboosting a campaign. This assigns three boosters, enabling not only the normal boosted features, but a few extra spicy ones as well!',
         'title'         => 'Want even more? Don\'t just boost a campaign, superboost it!',
     ],
     'superboosted'      => [

@@ -272,6 +272,7 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'Le rôle Public a des permissions mais la campagne est privée. La campagne peut être rendue publique sous l\'onglet Partager en modifiant la campagne.',
             'empty_role'            => 'Ce rôle n\'a pas encore de membre.',
+            'role_admin'            => 'Le rôle :name automatiquement donne accès à tous ses membres à tout le contenu de la campagne.',
             'role_permissions'      => 'Permettre au rôle \':name\' les actions suivantes sur toutes les entités.',
         ],
         'members'       => 'Membres',
@@ -309,7 +310,6 @@ TEXT
                 'permission'    => 'Permettre la gestion des permissions d\'une entités de ce type qu\'ils peuvent modifier.',
                 'read'          => 'Permettre la lecture des entités de ce type qui ne sont pas privées.',
             ],
-            'hint'      => 'Ce rôle a automatiquement accès à tout.',
         ],
         'placeholders'  => [
             'name'  => 'Nom du rôle',
@@ -335,6 +335,10 @@ TEXT
             ],
             'destroy'   => [
                 'success'   => 'Utilisateur supprimé du rôle.',
+            ],
+            'errors'    => [
+                'cant_kick_admins'  => 'Pour éviter des abus, il n\'est pas possible de supprimer des membres du rôle :admin de la campagne. En cas de problème, contactes-nous sur :discord ou a :email.',
+                'needs_more_roles'  => 'Tu dois d\'ajouter à un autre rôle de la campagne avant de pouvoir de retirer du rôle :admin.',
             ],
             'fields'    => [
                 'name'  => 'Nom',
@@ -455,5 +459,10 @@ TEXT
         'private'   => 'Privée',
         'public'    => 'Publique',
         'review'    => 'En attente de revue',
+    ],
+    'warning'                           => [
+        'editing'   => [
+            'description'   => 'Quelqu\'un d\'autre est en train de modifier la campagne! Souhaites-tu revenir en arrière ou ignorer cet avertissement, au risque de perdre des données? Les membres éditant actuellement cette campagne sont:',
+        ],
     ],
 ];

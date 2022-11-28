@@ -46,7 +46,7 @@ class StoreJournal extends FormRequest
         }
         $self = request()->segment(5);
         if (!empty($self)) {
-            $rules['journal_id'] = 'integer|not_in:' . ((int) $self) . '|exists:journals,id';
+            $rules['journal_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:journals,id';
         }
 
         return $this->clean($rules);

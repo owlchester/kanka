@@ -1,3 +1,5 @@
+
+@include('cruds.fields.type', ['base' => \App\Models\Timeline::class, 'trans' => 'families'])
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">

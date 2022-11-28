@@ -9,7 +9,6 @@ use App\Models\MiscModel;
 use App\Models\EntityNote;
 use App\Models\Entity;
 use App\Services\EntityService;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -37,45 +36,23 @@ class EntityCreatorController extends Controller
      */
     public function selection()
     {
-        $entities = $this->availableEntities();
+        $entities = $this->creatableEntities();
         return view('entities.creator.selection', [
             'entities' => $entities
         ]);
     }
 
     /**
+     * @param Request $request
      * @param string $type
      */
-    public function form($type)
+    public function form(Request $request, $type)
     {
-        // Make sure the user is allowed to create this kind of entity
-        if ($type == 'posts') {
-            $campaign = CampaignLocalization::getCampaign();
-            $this->authorize('recover', $campaign);
-        } else {
-            $model = $this->entityService->getClass($type);
-            $this->authorize('create', $model);
-        }
-        $origin = request()->get('origin');
-        $target = request()->get('target');
-        $multi = request()->get('multi');
-        $singularType = Str::singular($type);
-
-        $entityType = __('entities.' . $singularType);
-        $campaign = CampaignLocalization::getCampaign();
-
-        return view('entities.creator.form', [
-            'type' => $type,
-            'singularType' => $singularType,
-            'entityType' => $entityType,
-            'source' => null,
-            'origin' => $origin,
-            'target' => $target,
-            'multi' => $multi
-        ]);
+        return $this->renderForm($request, $type);
     }
 
     /**
+     *
      */
     public function store(Request $request, $type)
     {
@@ -89,9 +66,8 @@ class EntityCreatorController extends Controller
             $this->authorize('create', $class);
         }
 
-        $names = $request->get('names');
+        $names = explode(PHP_EOL, str_replace("\r", '', $request->get('name')));
         $values = $request->all();
-        $campaign = CampaignLocalization::getCampaign();
 
         // Prepare the data
         unset($values['names']);
@@ -105,7 +81,7 @@ class EntityCreatorController extends Controller
         }
 
         // Prepare the validator
-        $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::singular($type));
+        $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::camel(Str::singular($type)));
         /** @var StoreCharacter $validator */
         $validator = new $requestValidator();
 
@@ -149,7 +125,7 @@ class EntityCreatorController extends Controller
         }
 
         // Content for the selector
-        $entities = $this->availableEntities();
+        $entities = $this->creatableEntities();
 
         // Have a target? Return json for the js to handle it instead
         if ($request->has('_target')) {
@@ -162,27 +138,45 @@ class EntityCreatorController extends Controller
             ]);
         }
 
+        // Redirect the user to the edit form
+        if ($request->get('action') === 'edit') {
+            return response()->json([
+                'redirect' => $createdEntities[0]->getLink('edit')
+            ]);
+        }
+
+        $success = trans_choice(
+            'entities.creator.success_multiple',
+            count($links),
+            ['link' => implode(', ', $links)]
+        );
+
+        // Continue creating more of the same kind
+        if ($request->get('action') === 'more') {
+            return $this->renderForm(new Request(), $type, $success);
+        }
+
         return view('entities.creator.selection', [
             'entities' => $entities,
-            'new' => trans_choice('entities.creator.success_multiple', count($links), ['link' => implode(', ', $links)])
+            'new' => $success
         ]);
     }
 
     /**
-     * Build a list of available entities for the quick creator
+     * Build a list of entities the user has permission to create
      * @return array
      */
-    protected function availableEntities(): array
+    protected function creatableEntities(): array
     {
         $entities = [];
         /** @var Campaign $campaign */
         $campaign = CampaignLocalization::getCampaign();
 
         // Loop through the entities, check those enabled in the campaign, and where the user has create access.
-        $types = [
-            'calendars', 'conversations', 'tags', 'dice_rolls', 'menu_links'
+        $ignoredTypes = [
+            'menu_links'
         ];
-        foreach ($this->entityService->entities($types) as $name => $class) {
+        foreach ($this->entityService->entities($ignoredTypes) as $name => $class) {
             if ($campaign->enabled($name)) {
                 if (auth()->user()->can('create', $class)) {
                     $entities[$name] = $class;
@@ -210,5 +204,76 @@ class EntityCreatorController extends Controller
             $messages,
             $customAttributes
         )->validate();
+    }
+
+    /**
+     * @param Request $request
+     * @param string $type
+     * @param string|null $success
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    protected function renderForm(Request $request, string $type, string $success = null)
+    {
+        // Make sure the user is allowed to create this kind of entity
+        if ($type == 'posts') {
+            $campaign = CampaignLocalization::getCampaign();
+            $this->authorize('recover', $campaign);
+        } else {
+            $model = $this->entityService->getClass($type);
+            $this->authorize('create', $model);
+        }
+
+        $origin = $request->get('origin');
+        $target = $request->get('target');
+        $multi = $request->get('multi');
+        $mode = $request->get('mode');
+        $singularType = Str::singular($type);
+        $source = $templates = null;
+        $view = 'form';
+
+        if ($mode === 'templates' && $type !== 'posts') {
+            /** @var MiscModel $modelClass */
+            $modelClass = new $model();
+            $templates = Entity::select('id', 'name', 'entity_id')
+                ->templates($modelClass->entityTypeID())
+                ->get();
+            $view = 'templates';
+        }
+
+        $entityType = __('entities.' . $singularType);
+        $entities = $this->creatableEntities();
+
+        $entityTypes = [
+            'characters' => 'character',
+            'locations' => 'location',
+            'maps' => 'map',
+            'organisations' => 'organisation',
+            'families' => 'family',
+            'calendars' => 'calendar',
+            'timelines' => 'timeline',
+            'items' => 'item',
+            'notes' => 'note',
+            'events' => 'event',
+            'creatures' => 'creature',
+            'races' => 'race',
+            'quests' => 'quest',
+            'journals' => 'journal',
+            'abilities' => 'ability',
+            'tags' => 'tag',
+            'posts' => 'post',
+            'attribute_templates' => 'attribute_template',
+            'dice_rolls' => 'dice_roll',
+            'conversations' => 'conversation',
+        ];
+
+        return view('entities.creator.' . $view, compact(
+            'type', 'singularType',
+            'entityType', 'origin', 'target',
+            'multi', 'mode', 'source', 'templates',
+            'entities',
+            'entityTypes',
+            'success',
+        ));
     }
 }

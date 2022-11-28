@@ -171,8 +171,25 @@ Route::patch('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryCont
 Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
 Route::get('/entities/{entity}/relations/table', 'Entity\RelationController@table')->name('entities.relations_table');
 
-Route::post('/entities/{entity}/confirm-editing', 'Entity\EditingController@confirm')->name('entities.confirm-editing');
-Route::post('/entities/{entity}/keep-alive', 'Entity\EditingController@keepAlive')->name('entities.keep-alive');
+// Entity
+Route::post('/entities/{entity}/confirm-editing', 'EditingController@confirm')->name('entities.confirm-editing');
+Route::post('/entities/{entity}/keep-alive', 'EditingController@keepAlive')->name('entities.keep-alive');
+
+// Campaign
+Route::post('/editing/campaigns/{campaign}/confirm-editing', 'EditingController@confirmCampaign')->name('campaigns.confirm-editing');
+Route::post('/editing/campaigns/{campaign}/keep-alive', 'EditingController@keepAliveCampaign')->name('campaigns.keep-alive');
+
+// Posts
+Route::post('/editing/posts/{entity}/{entity_note}/confirm-editing', 'EditingController@confirmPost')->name('posts.confirm-editing');
+Route::post('/editing/posts/{entity}/{entity_note}/keep-alive', 'EditingController@keepAlivePost')->name('posts.keep-alive');
+
+// Quest Elements
+Route::post('/editing/quest-elements/{quest_element}/confirm-editing', 'EditingController@confirmQuestElement')->name('quest-elements.confirm-editing');
+Route::post('/editing/quest-elements/{quest_element}/keep-alive', 'EditingController@keepAliveQuestElement')->name('quest-elements.keep-alive');
+
+// Timeline Elements
+Route::post('/editing/timeline-elements/{timeline_element}/confirm-editing', 'EditingController@confirmTimelineElement')->name('timeline-elements.confirm-editing');
+Route::post('/editing/timeline-elements/{timeline_element}/keep-alive', 'EditingController@keepAliveTimelineElement')->name('timeline-elements.keep-alive');
 
 // Permission save
 Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');
@@ -292,6 +309,7 @@ Route::resources([
     'entities.relations' => 'Entity\RelationController',
 
     'attribute_templates' => 'AttributeTemplateController',
+    //'presets' => 'PresetController',
 
     // Permission manager
     'campaign_roles' => 'CampaignRoleController',
@@ -301,6 +319,8 @@ Route::resources([
 
     'campaign_dashboards' => 'Campaign\DashboardController',
     'campaign_dashboard_widgets' => 'Campaign\DashboardWidgetController',
+
+    'preset_types.presets' => 'PresetController',
 
     'images' => 'Campaign\GalleryController',
 ]);
@@ -367,7 +387,7 @@ Route::get('/search/attributes/{entity}', 'Search\AttributeSearchController@inde
 
 // Global Entity Search
 Route::get('/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
-Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations'); //use this one.
+Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations');
 Route::get('/search/tag-children', 'Search\LiveController@tagChildren')->name('search.tag-children');
 Route::get('/search/ability-entities', 'Search\LiveController@abilityEntities')->name('search.ability-entities');
 Route::get('/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
@@ -448,6 +468,12 @@ Route::get('/sidebar-setup', 'Campaign\SidebarController@index')->name('campaign
 Route::post('/sidebar-setup', 'Campaign\SidebarController@save')->name('campaign-sidebar-save');
 Route::delete('/sidebar-setup/reset', 'Campaign\SidebarController@reset')->name('campaign-sidebar-reset');
 
+Route::get('/presets/type/{preset_type}/list', [\App\Http\Controllers\PresetController::class, 'presets'])->name('presets.list');
+Route::get('/presets/type/{preset_type}/create', [\App\Http\Controllers\PresetController::class, 'create'])->name('presets.create');
+Route::post('/presets/type/{preset_type}/store', [\App\Http\Controllers\PresetController::class, 'store'])->name('presets.store');
+Route::post('/presets/{preset}/load', [\App\Http\Controllers\PresetController::class, 'load'])->name('presets.show');
+
+Route::model('preset_type', \App\Models\PresetType::class);
 
 // Entity quick creator
 Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');

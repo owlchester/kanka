@@ -45,6 +45,7 @@ use App\Models\MapLayer;
 use App\Models\MapMarker;
 use App\Models\MapPoint;
 use App\Models\MenuLink;
+use App\Models\Preset;
 use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Models\Note;
@@ -169,6 +170,7 @@ class AppServiceProvider extends ServiceProvider
         Journal::observe(JournalObserver::class);
         Organisation::observe(OrganisationObserver::class);
         OrganisationMember::observe(OrganisationMemberObserver::class);
+        Preset::observe('App\Observers\PresetObserver');
         Tag::observe('App\Observers\TagObserver');
         Timeline::observe('App\Observers\TimelineObserver');
         TimelineEra::observe('App\Observers\TimelineEraObserver');

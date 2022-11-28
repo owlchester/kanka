@@ -33,7 +33,11 @@ class LiveController extends Controller
         $term = trim($request->get('q'));
         $type = $request->get('type', null);
         if (!empty($type)) {
-            $type = (int) trim($type);
+            $type = trim($type);
+            if (!is_numeric($type)) {
+                $type = config('entities.ids.' . $type);
+            }
+            $type = (int) $type;
         }
         $exclude = trim($request->get('exclude'));
         $campaign = CampaignLocalization::getCampaign();
@@ -84,12 +88,18 @@ class LiveController extends Controller
     {
         $term = trim($request->q);
         $campaign = CampaignLocalization::getCampaign();
+        $exclude = [];
+
+        if ($request->has('exclude')) {
+            $exclude = $request['exclude'];
+        }
 
         return response()->json(
             $this->search
                 ->term($term)
                 ->campaign($campaign)
                 ->exclude([config('entities.ids.menu_link')])
+                ->excludeIds($exclude)
                 ->find()
         );
     }
@@ -190,7 +200,6 @@ class LiveController extends Controller
                 ];
             }
         }
-
 
         return response()->json(
             $data

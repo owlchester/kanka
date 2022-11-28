@@ -28,7 +28,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                         @endif
                         @php $existingRaces[$race->id] = true; @endphp
                     <p class="entity-race" data-foreign="{{ $race->id }}">
-                        <b>{{ __('characters.fields.race') }}</b><br />
+                        <b>{{ __('entities.race') }}</b><br />
                         {!! $race->tooltipedLink() !!}
                     </p>
                     @endforeach

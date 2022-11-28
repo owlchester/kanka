@@ -17,7 +17,7 @@ class EventFilter extends DatagridFilter
             ->add('date')
             ->add([
                 'field' => 'event_id',
-                'label' => __('crud.fields.event'),
+                'label' => __('entities.event'),
                 'type' => 'select2',
                 'route' => route('events.find'),
                 'placeholder' =>  __('crud.placeholders.event'),

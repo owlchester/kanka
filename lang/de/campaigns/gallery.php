@@ -14,7 +14,7 @@ return [
         'created_by'    => 'hochgeladen von',
         'ext'           => 'äußerlich',
         'folder'        => 'Ordner',
-        'image_used_in' => '{1} Wird als Bild eines Objekts verwendet. | [2,*] Wird als Bild von :count entities verwendet.',
+        'image_used_in' => '{0} Wird als Bild in keines Object verwendet.|{1} Wird als Bild eines Objekts verwendet.|[2,*] Wird als Bild von :count entities verwendet.',
         'name'          => 'Name',
         'size'          => 'Größe',
     ],

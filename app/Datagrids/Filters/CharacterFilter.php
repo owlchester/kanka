@@ -18,7 +18,7 @@ class CharacterFilter extends DatagridFilter
             ->add('title')
             ->add([
                 'field' => 'family_id',
-                'label' => __('crud.fields.family'),
+                'label' => __('entities.family'),
                 'type' => 'select2',
                 'route' => route('families.find'),
                 'placeholder' =>  __('crud.placeholders.family'),
@@ -28,7 +28,7 @@ class CharacterFilter extends DatagridFilter
             ->location()
             ->add([
                 'field' => 'race_id',
-                'label' => __('crud.fields.race'),
+                'label' => __('entities.race'),
                 'type' => 'select2',
                 'route' => route('races.find'),
                 'placeholder' =>  __('crud.placeholders.race'),
@@ -37,7 +37,7 @@ class CharacterFilter extends DatagridFilter
             ])
             ->add([
                 'field' => 'member_id',
-                'label' => __('crud.fields.organisation'),
+                'label' => __('entities.organisation'),
                 'type' => 'select2',
                 'route' => route('organisations.find'),
                 'placeholder' =>  __('crud.placeholders.organisation'),

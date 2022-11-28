@@ -7,7 +7,8 @@
         false,
         'entities/relations.fields.target',
         'search.entities-with-relations',
-        'entities/relations.placeholders.target'
+        'entities/relations.placeholders.target',
+        $entity
     ) !!}
 </div>
 <div class="form-group required">
@@ -65,6 +66,14 @@
         <p>{!! __('entities/relations.hints.mirrored.text', [
         'link' => '<a href="' . $relation->target->url() . '" data-toggle="tooltip-ajax" data-id="' . $relation->target_id . '" data-url="' . route('entities.tooltip', $relation->target->id) . "\">" . $relation->target->name . '</a>'
         ]) !!}</p>
+        <p>
+            <div class="form-group">
+                {!! Form::hidden('unmirror', 0) !!}
+                <label>{!! Form::checkbox('unmirror', 1)!!}
+                    {{ __('entities/relations.fields.unmirror') }}
+                </label>
+            </div>
+        </p>
     </div>
 @endif
 

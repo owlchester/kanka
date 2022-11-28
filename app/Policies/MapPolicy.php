@@ -4,5 +4,8 @@ namespace App\Policies;
 
 class MapPolicy extends MiscPolicy
 {
-    protected $model = 'map';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.map');
+    }
 }

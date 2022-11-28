@@ -28,7 +28,7 @@
                 <i class="fa-solid fa-layer-group"></i> {{ __('entities/attributes.types.section') }}
             </a>
         </li>
-        @if(request()->is('*/attribute_templates/*') || (isset($entity) && $entity->typeId() == config('entities.ids.attribute_template')))
+        @if(request()->is('*/attribute_templates/*') || (isset($entity) && $entity->isAttributeTemplate()))
         <li>
             <a  href="#" class="add_attribute" data-template="#random_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
                 <i class="fa-solid fa-question"></i> {{ __('entities/attributes.types.random') }}

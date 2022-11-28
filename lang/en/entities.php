@@ -16,11 +16,18 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Create :type',
+            'more'      => 'Add more details',
         ],
         'back'              => 'Back to selection',
+        'bulk_names'        => 'Add one name per line',
         'duplicate'         => 'Heads up! There are other entities of this type with a similar name.',
         'helper_v2'         => 'Quickly create the foundation of a new entity without interrupting your current flow.',
         'missing'           => 'Not seeing all entity types? It might be disabled, your permissions might not allow it, or it isn\'t supported for quick creation.',
+        'modes'             => [
+            'bulk'      => 'Bulk add',
+            'default'   => 'Quick add',
+            'templates' => 'Template select',
+        ],
         'name'              => [
             'new'       => 'New name',
             'remove'    => 'Remove',
@@ -51,6 +58,7 @@ return [
     'new'                   => [
         'ability'       => 'New ability',
         'character'     => 'New character',
+        'creature'      => 'New creature',
         'event'         => 'New event',
         'family'        => 'New family',
         'item'          => 'New item',
@@ -68,6 +76,7 @@ return [
     'organisations'         => 'Organisations',
     'post'                  => 'Post',
     'quest'                 => 'Quest',
+    'quest_element'         => 'Quest element',
     'quests'                => 'Quests',
     'race'                  => 'Race',
     'races'                 => 'Races',
@@ -76,5 +85,6 @@ return [
     'tag'                   => 'Tag',
     'tags'                  => 'Tags',
     'timeline'              => 'Timeline',
+    'timeline_element'      => 'Timeline element',
     'timelines'             => 'Timelines',
 ];

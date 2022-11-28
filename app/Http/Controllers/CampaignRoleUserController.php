@@ -2,29 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignCache;
+use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
-use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRoleUser;
 use App\Models\CampaignRoleUser;
+use App\Services\Campaign\MemberService;
+use App\Services\Campaign\RoleUserService;
 
 class CampaignRoleUserController extends Controller
 {
-    /**
-     * @var string
-     */
     protected string $view = 'campaigns.roles.users';
+
+    protected MemberService $service;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(MemberService $service)
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
+
+        $this->service = $service;
     }
 
     public function index()
@@ -90,7 +92,16 @@ class CampaignRoleUserController extends Controller
         $this->authorize('roles', $campaign);
         $this->authorize('delete', [$campaignRoleUser, $campaignRole]);
 
-        $campaignRoleUser->delete();
+        try {
+            $this->service
+                ->user(auth()->user())
+                ->element($campaignRoleUser)
+                ->delete();
+        } catch (TranslatableException $e) {
+            return redirect()->route('campaign_roles.show', $campaignRole)
+                ->with('error_raw', $e->getTranslatedMessage());
+        }
+
         return redirect()->route('campaign_roles.show', $campaignRole)
             ->with('success', __($this->view . '.destroy.success', [
                 'user' => $campaignRoleUser->user->name,

@@ -1,12 +1,10 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
-    ->filters($filters)
     ->nested()
-    ->render(
-    $filterService,
-    // Columns
-    [
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         // Avatar
         [
             'type' => 'avatar'
@@ -15,7 +13,7 @@
         'name',
         'type',
         /*[
-            'label' => __('characters.fields.race'),
+            'label' => __('entities.races'),
             'field' => 'race.name',
             'visible' => $campaignService->enabled('races'),
             'render' => function($model) {
@@ -42,11 +40,8 @@
         [
             'type' => 'is_private',
         ]
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options(    [
         'route' => 'races.tree',
         'baseRoute' => 'races',
         'trans' => 'races.fields.',

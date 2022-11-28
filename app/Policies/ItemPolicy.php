@@ -8,5 +8,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ItemPolicy extends MiscPolicy
 {
-    protected $model = 'item';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.item');
+    }
 }

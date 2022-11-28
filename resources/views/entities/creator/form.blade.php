@@ -2,71 +2,105 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 <form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', ['type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }}">
+    @csrf
 
 <div class="modal-body entity-creator-body-{{ $type }}">
-    <div class="text-center">
-        @include('partials.modals.close')
-        <h4 class="modal-title" id="myModalLabel">
-            {{ __($type . '.create.title') }}
-        </h4>
-    </div>
-    <div class="form-group required">
-        <label>{{ __('crud.fields.name') }}</label>
+    @include('partials.modals.close')
 
-        <div class="input-group">
-            {!! Form::text('names[]', null, [
-                'placeholder' => __($type . '.placeholders.name'),
+    @include('entities.creator.header.header')
+    <div class="quick-creator-body">
+
+        @includeWhen(!empty($success), 'entities.creator._created')
+
+        <div class="form-group required">
+            <label>{{ __('crud.fields.name') }}</label>
+
+            @if ($mode === 'bulk')
+            {!! Form::textarea('name', null, [
+                'placeholder' => __('entities.creator.bulk_names'),
                 'autocomplete' => 'off',
                 'class' => 'form-control',
-                'maxlength' => 191,
+                'rows' => 4,
                 'data-live' => route('search.live'),
-                'data-type' => $singularType
+                'data-type' => $singularType,
+                'id' => 'qq-name-field'
             ]) !!}
-            <div class="input-group-btn">
-                <a class="btn btn-extra-name" style="" data-toggle="tooltip" title="{{ __('entities.creator.name.new') }}">
-                    <span class="fa-solid fa-plus"></span>
-                </a>
+            @else
+                {!! Form::text('name', null, [
+                    'placeholder' => __($type . '.placeholders.name'),
+                    'autocomplete' => 'off',
+                    'class' => 'form-control',
+                    'maxlength' => 191,
+                    'data-live' => route('search.live'),
+                    'data-type' => $singularType,
+                    'data-bulk' => true,
+                    'id' => 'qq-name-field'
+                ]) !!}
+            @endif
+            <p class=" my-1 alert alert-warning duplicate-entity-warning" style="display: none">
+                {{ __('entities.creator.duplicate') }}<br />
+                <span class="duplicate-entities"></span>
+            </p>
+        </div>
+
+        <a href="#" class="qq-action-more">
+            <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
+            {{ __('entities.creator.actions.more') }}
+        </a>
+        <div class="qq-more-fields" style="display: none">
+        @include('entities.creator.forms.' . $singularType)
+
+        @if (!in_array($type, ['tags', 'posts', 'attribute_templates']))
+            <div id="quick-creator-tags-field">
+                @include('cruds.fields.tags', ['dropdownParent' => '#quick-creator-tags-field'])
             </div>
+        @endif
+
+        @if ($type !== 'posts' && auth()->user()->isAdmin())
+            @include('cruds.fields.privacy_callout')
+        @endif
         </div>
-        <p class="text-yellow duplicate-entity-warning" style="display: none">
-            {{ __('entities.creator.duplicate') }}<br />
-            <span class="duplicate-entities"></span>
-        </p>
     </div>
-    <div class="extra-name-fields"></div>
+    <div class="quick-creator-footer">
 
-    @include('entities.creator.forms.' . $singularType)
-
-    @if (!in_array($type, ['tags', 'posts']))
-        <div id="quick-creator-tags-field">
-    @include('cruds.fields.tags', ['dropdownParent' => '#quick-creator-tags-field'])
-        </div>
-    @endif
-
-    @if ($type !== 'posts' && auth()->user()->isAdmin())
-        @include('cruds.fields.privacy_callout')
-    @endif
-
-    <div class="row my-5">
         @if (empty($origin))
-        <div class="col-md-6 text-right">
-            <a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-target="#entity-modal" class="btn btn-default rounded-full px-8">
-                <i class="fa-solid fa-chevron-left"></i>
-                {{ __('entities.creator.back') }}
-            </a>
-        </div>
-        <div class="col-md-6">
 
-            <button class="btn btn-success rounded-full px-8 quick-creator-submit" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}" data-entity-type="{{ $singularType }}">
-                <span>
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
-                </span>
-                <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
-            </button>
-        </div>
+            <div class="btn-group mr-4">
+                <button type="submit" class="btn btn-success quick-creator-submit px-5" data-entity-type="{{ $singularType }}">
+                    <span>
+                        {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
+                    </span>
+                    <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
+                </button>
+                <button type="submit" class="btn btn-success quick-creator-submit" data-entity-type="{{ $singularType }}" data-action="more">
+                    <span>
+                        <i class="fa-solid fa-plus-square" aria-hidden="true"></i>
+                    </span>
+                    <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
+                </button>
+            </div>
+
+            @if ($mode !== 'bulk')
+                <button type="submit" class="btn btn-default quick-creator-submit mr-4 px-5" data-entity-type="{{ $singularType }}" data-action="edit">
+                    <span>
+                        {{ __('crud.edit') }}
+                    </span>
+                    <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
+                </button>
+            @endif
+
+            <!--<a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-target="#entity-modal" class="btn btn-default">
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                {{ __('entities.creator.back') }}
+            </a>-->
+
+            <a role="button" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
+                {{ __('crud.cancel') }}
+            </a>
+
         @else
             <div class="text-center">
-            <button class="btn btn-success rounded-full px-8 quick-creator-submit" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}" data-entity-type="{{ $singularType }}">
+            <button class="btn btn-success px-5 quick-creator-submit" data-entity-type="{{ $singularType }}">
                 <span>
                     <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
                 </span>
@@ -74,6 +108,9 @@
             </button>
             </div>
         @endif
+    </div>
+    <div class="quick-creator-loading" style="display: none">
+        <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
     </div>
 </div>
 
@@ -84,29 +121,6 @@
 @if (!empty($multi))
     <input type="hidden" name="_multi" value="1" />
 @endif
+    <input type="hidden" name="action" value="" />
+    <input type="hidden" name="quick-creator" value="1" />
 </form>
-
-<div class="hidden">
-    <div class="name-block-template form-group">
-
-        <div class="input-group">
-            {!! Form::text('names[]', null, [
-                'placeholder' => __($type . '.placeholders.name'),
-                'autocomplete' => 'off',
-                'class' => 'form-control',
-                'maxlength' => 191,
-                'data-live' => route('search.live'),
-                'data-type' => $singularType
-            ]) !!}
-            <div class="input-group-btn">
-                <a class="btn btn-extra-name-remove" style="" data-toggle="toggle-tooltip" title="{{ __('entities.creator.name.remove') }}">
-                    <span class="fa-solid fa-times"></span>
-                </a>
-            </div>
-        </div>
-        <p class="text-yellow duplicate-entity-warning" style="display: none">
-            {{ __('entities.creator.duplicate') }}<br />
-            <span class="duplicate-entities"></span>
-        </p>
-    </div>
-</div>

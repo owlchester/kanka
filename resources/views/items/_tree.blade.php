@@ -1,12 +1,10 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
-    ->filters($filters)
     ->nested()
-    ->render(
-    $filterService,
-    // Columns
-    [
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         // Avatar
         [
             'type' => 'avatar'
@@ -29,11 +27,8 @@
         [
             'type' => 'is_private',
         ]
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options(    [
         'route' => 'items.tree',
         'baseRoute' => 'items',
         'trans' => 'items.fields.',
@@ -43,6 +38,6 @@
                     return $model->items->count();
                 }
                 ]
-            ]        
+            ]
     ]
 ) !!}

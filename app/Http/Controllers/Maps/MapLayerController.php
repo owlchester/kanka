@@ -45,6 +45,11 @@ class MapLayerController extends Controller
         return view('maps.layers.index', compact('campaign', 'rows', 'model'));
     }
 
+    public function show(Map $map)
+    {
+        return redirect()->route('maps.show', $map);
+    }
+
     /**
      * @param Map $map
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View

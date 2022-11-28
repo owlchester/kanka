@@ -1,7 +1,6 @@
 
 @include('cruds.fields.type', ['base' => \App\Models\Organisation::class, 'trans' => 'organisations'])
 
-
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">

@@ -17,12 +17,10 @@
             'exclude' => __('crud.filters.options.exclude'),
             'none' => __('crud.filters.options.none'),
         ];
+        if (isset($field['withChildren']) && $field['withChildren'] === true ) {
+            array_splice($options, 1, 0, ['children' => __('crud.filters.options.children')]);
+        }
         @endphp
-        @if (isset($field['withChildren']) && $field['withChildren'] === true )
-        @php
-            $options['children'] = __('crud.filters.options.children')
-        @endphp
-        @endif
             {!! Form::select(
                 $field['field'] . '_option',
                 $options,

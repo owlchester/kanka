@@ -187,7 +187,7 @@ class SearchService
             if ($this->campaign->boosted()) {
                 $query
                     ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
-                    ->distinct()
+                    ->groupBy('ea.entity_id')
                     ->leftJoin('entity_assets as ea', function ($join) use ($cleanTerm) {
                         $join->on('ea.entity_id', '=', 'entities.id');
                         if (Str::startsWith($this->term, '=')) {
@@ -259,6 +259,21 @@ class SearchService
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
             ];
+
+            //If the result is a map, also add its explore page as a result.
+            if (!request()->new && $model->isMap() && $model->child->explorable()) {
+                $searchResults[] = [
+                    'id' => $model->id,
+                    'fullname' => $parsedName,
+                    'image' => $img,
+                    'name' => $parsedName,
+                    'type' => __('maps.actions.explore'),
+                    'model_type' => $model->type(),
+                    'url' => $model->url('explore'),
+                    'alias_id' => $model->alias_id, // @phpstan-ignore-line
+                    'advanced_mention' => Mentions::advancedMentionHelper($model->name),
+                ];
+            }
         }
         if (!$this->new) {
             return $searchResults;

@@ -10,7 +10,9 @@ return [
         'limitation'    => 'Um auf diese Funktion zugreifen zu können, muss die Kampagne geboostet werden.',
         'multiple'      => 'Um auf diese Funktionen zugreifen zu können, muss die Kampagne geboostet werden.',
         'pitches'       => [
-            'icon'  => 'Schalte mit einer :boosted-Kampagne Millionen von benutzerdefinierten Symbolen von FontAwesome frei.',
+            'element-class' => 'Gib diesem Element eine benutzerdefinierte CSS-Klasse mit einer :boosted-campaign.',
+            'icon'          => 'Schalte mit einer :boosted-Kampagne Millionen von benutzerdefinierten Symbolen von FontAwesome frei.',
+            'link-parent'   => 'Platziere mit einer :boosted-Kampagne einen Quicklink genau an der gewünschten Stelle in der Seitenleiste.',
         ],
         'titles'        => [
             'boosted'       => 'geboostete Funktion',
@@ -18,6 +20,7 @@ return [
         ],
     ],
     'subscribe' => [
+        'pitch-2fa'     => 'Melde dich an, um sichere Anmeldungen mit Zwei-Faktor-Authentifizierung und vielen weiteren :more freizuschalten.',
         'pitch-image'   => 'Abonniere, um bis zu :max MB Datei-Upload-Größen freizuschalten.',
         'share-booster' => 'Boost :campaign, um die Größe des Datei-Uploads für alle Mitglieder der Kampagne zu erhöhen.',
     ],

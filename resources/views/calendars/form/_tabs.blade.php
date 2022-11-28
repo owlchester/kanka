@@ -1,6 +1,6 @@
 <li class="{{ (request()->get('tab') == 'form-calendar' ? ' active' : '') }}">
-    <a href="#form-calendar" title="{{ trans('crud.fields.calendar') }}">
-        <i class="ra ra-moon-sun"></i> <span class="hidden-xs hidden-sm">{{ trans('crud.fields.calendar') }}</span>
+    <a href="#form-calendar" title="{{ trans('entities.calendar') }}">
+        <i class="ra ra-moon-sun"></i> <span class="hidden-xs hidden-sm">{{ trans('entities.calendar') }}</span>
     </a>
 </li>
 <li class="{{ (request()->get('tab') == 'form-months' ? ' active' : '') }}">

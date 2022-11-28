@@ -28,7 +28,6 @@ return [
         'life'                      => 'Życie',
         'physical'                  => 'Powierzchowność',
         'pronouns'                  => 'Rodzaj gramatyczny',
-        'races'                     => 'Rasy',
         'sex'                       => 'Płeć',
         'title'                     => 'Tytuł',
         'traits'                    => 'Opis',

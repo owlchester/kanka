@@ -8,6 +8,7 @@ return [
     'section_11'        => 'Twórz swój świat,',
     'section_2'         => 'Najważniejszą pomocą posłuży ci :discord, gdzie znajdziesz wielu zaangażowanych użytkowników, zespół wprowadzający oraz twórcę Kanki - wszyscy chętnie odpowiedzą na pytania.',
     'section_4'         => 'Na naszym :youtube znajdziesz filmy przedstawiające podstawy. Nie odejmują jeszcze wszystkich tematów, ale regularnie dodajemy nowe!',
+    'section_4_v2'      => 'Nasza :knowledge-base zawiera odpowiedzi na najpopularniejsze pytania. Dokładniejsze i bardziej kompletne objaśnienia prezentuje natomiast :documentation!',
     'section_6'         => 'kontakt',
     'section_7'         => 'Jeżeli nie ma tam odpowiedzi na twoje pytania, albo chcesz po prostu pogadać, szukaj nasz w serwisie :facebook albo napisz na nasz :email. Jesteśmy wprawdzie maleńkim zespołem dwóch kumpli, ale staramy się odpowiadać na każdy otrzymany email, więc nie wahaj się pisać!',
     'section_8'         => 'Jeszcze jedno',

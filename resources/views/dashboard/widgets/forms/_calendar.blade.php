@@ -23,7 +23,7 @@
                     !empty($model) && $model->entity ? $model->entity : null,
                     App\Models\Entity::class,
                     false,
-                    'crud.fields.calendar',
+                    'entities.calendar',
                     'search.calendars'
                 ) !!}
             </div>

@@ -74,9 +74,9 @@
 
                                     <button class='btn btn-block btn-role-update'>
                                     @if($relation->user->hasCampaignRole($role->id))
-                                        <span class='text-danger'><i class='fa-solid fa-times'></i> {{ $role->name }}</span>
+                                        <span class='text-danger'><i class='fa-solid fa-times' aria-hidden='true'></i> {{ $role->name }}</span>
                                     @else
-                                        <i class='fa-solid fa-plus'></i> {{ $role->name }}
+                                        <i class='fa-solid fa-plus' aria-hidden='true'></i> {{ $role->name }}
                                     @endif
                                     </button>
                                 </form>
@@ -87,12 +87,12 @@
                         </td>
                         <td class="hidden-xs hidden-md">
                             @if (!empty($relation->created_at))
-                                <span title="{{ $relation->created_at }}+00:00">{{ $relation->created_at->diffForHumans() }}</span>
+                                <span title="{{ $relation->created_at }} UTC" data-toggle="tooltip">{{ $relation->created_at->diffForHumans() }}</span>
                             @endif
                         </td>
                         <td class="hidden-xs hidden-md">
                             @if ($relation->user->has_last_login_sharing && !empty($relation->user->last_login_at))
-                                <span title="{{ $relation->user->last_login_at }}+00:00">{{ $relation->user->last_login_at->diffForHumans() }}</span>
+                                <span title="{{ $relation->user->last_login_at }} UTC" data-toggle="tooltip">{{ $relation->user->last_login_at->diffForHumans() }}</span>
                             @endif
                         </td>
                         <td class="text-right">

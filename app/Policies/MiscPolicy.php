@@ -18,13 +18,12 @@ class MiscPolicy
 {
     use HandlesAuthorization;
 
-    protected static $cached = [];
-
-    protected static $roles = false;
-
-    protected $boosted = false;
-
-    protected $model = '';
+    /**
+     * If a whole model requires a boosted campaign, for example if it's early access, set the child policy's
+     * $boosted property to true.
+     * @var bool
+     */
+    protected bool $boosted = false;
 
     /**
      * @param User $user
@@ -40,7 +39,7 @@ class MiscPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Models\MiscModel $entity
-     * @return mixed
+     * @return bool
      */
     public function view(User $user, $entity)
     {
@@ -85,7 +84,7 @@ class MiscPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Models\MiscModel $entity
-     * @return mixed
+     * @return bool
      */
     public function update(User $user, $entity)
     {
@@ -98,7 +97,7 @@ class MiscPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Models\MiscModel $entity
-     * @return mixed
+     * @return bool
      */
     public function delete(User $user, $entity)
     {
@@ -136,7 +135,7 @@ class MiscPolicy
      * @param User $user
      * @param MiscModel $entity
      * @param string $subAction
-     * @return mixed
+     * @return bool
      */
     public function relation(User $user, $entity, string $subAction = 'browse')
     {
@@ -160,25 +159,25 @@ class MiscPolicy
     }
 
     /**
-     * Determine whether the user can update the entity.
+     * Determine whether the user can manage the permissions of the entity
      *
      * @param  \App\User  $user
      * @param  \App\Models\MiscModel $entity
-     * @return mixed
+     * @return bool
      */
     public function permission(User $user, $entity)
     {
         if ($entity->exists === false) {
             return $this->checkPermission(CampaignPermission::ACTION_PERMS, $user, null);
         }
-        return $user->campaign->id == $entity->campaign_id &&
-            (UserCache::roles()->count() > 1 || $user->campaign->members()->count() > 1) &&
-            $this->checkPermission(CampaignPermission::ACTION_PERMS, $user, $entity);
+        // This previously checked if the campaign had multiple members, but it made it unclear for new
+        // users that permissions were possible, obfuscating part of Kanka's strength
+        return $this->checkPermission(CampaignPermission::ACTION_PERMS, $user, $entity);
     }
 
     /**
      * @param User $user
-     * @return mixed
+     * @return bool
      */
     public function move(User $user, $entity)
     {
@@ -187,7 +186,7 @@ class MiscPolicy
 
     /**
      * @param User $user
-     * @return mixed
+     * @return bool
      */
     public function events(User $user, $entity)
     {
@@ -196,7 +195,7 @@ class MiscPolicy
 
     /**
      * @param User $user
-     * @return mixed
+     * @return bool
      */
     public function inventory(User $user, $entity)
     {
@@ -210,11 +209,9 @@ class MiscPolicy
      * @param Campaign|null $campaign
      * @return bool
      */
-    protected function checkPermission(int $action, User $user, $entity = null, Campaign $campaign = null)
+    protected function checkPermission(int $action, User $user, $entity = null, Campaign $campaign = null): bool
     {
-        $ids = config('entities.ids');
-        $entityTypeID = $ids[$this->model];
-        return EntityPermission::hasPermission($entityTypeID, $action, $user, $entity, $campaign);
+        return EntityPermission::hasPermission($this->entityTypeID(), $action, $user, $entity, $campaign);
     }
 
     /**

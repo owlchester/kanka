@@ -4,7 +4,7 @@
             <th class="avatar"><br /></th>
             <th>{{ trans('quests.fields.name') }}</th>
             @if ($role)<th class="hidden-sm">{{ trans('quests.fields.role') }}</th>@endif
-            <th class="visible-sm">{{ trans('quests.fields.type') }}</th>
+            <th class="visible-sm">{{ trans('crud.fields.type') }}</th>
             <th class="visible-sm">{{ trans('quests.fields.quest') }}</th>
             @if ($campaignService->enabled('locations'))
                 <th class="visible-sm">{{ trans('quests.fields.locations') }}</th>

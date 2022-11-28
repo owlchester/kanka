@@ -135,7 +135,7 @@ class MapMarkerController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Map $map, MapMarker $mapMarker)
+    public function edit(Map $map, MapMarker $mapMarker, string $from = '' )
     {
         $this->authorize('update', $map);
         if ($mapMarker->map_id !== $map->id) {
@@ -143,13 +143,14 @@ class MapMarkerController extends Controller
         }
 
         $ajax = request()->ajax();
+        $from = request()->get('from');
         $model = $mapMarker;
         $includeMap = true;
         $activeTab = $mapMarker->shape_id;
 
         return view(
             'maps.markers.edit',
-            compact('map', 'ajax', 'model', 'includeMap', 'activeTab')
+            compact('map', 'ajax', 'model', 'includeMap', 'activeTab', 'from')
         );
     }
 

@@ -17,7 +17,7 @@
                 <i class="fa-solid fa-redo"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>
                 <span class="visible-xs visible-sm">{{ __('crud.actions.reset') }}</span>
             </a>
-            @if ($entity->typeId() == config('entities.ids.character'))
+            @if ($entity->isCharacter())
                 <a href="{{ route('entities.entity_abilities.import', [$entity, 'from' => 'race']) }}" class="btn btn-sm btn-default">
                     <i class="ra ra-wyvern"></i>
                     <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.import_from_race') }}</span>

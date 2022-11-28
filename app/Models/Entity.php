@@ -13,6 +13,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SortableTrait;
+use App\Models\Concerns\EntityType;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
@@ -59,6 +60,7 @@ class Entity extends Model
         EntityRelations,
         BlameableTrait,
         EntityScopes,
+        EntityType,
         Searchable,
         TooltipTrait,
         Picture,
@@ -121,9 +123,9 @@ class Entity extends Model
      */
     public function child()
     {
-        if ($this->type_id == config('entities.ids.attribute_template')) {
+        if ($this->isAttributeTemplate()) {
             return $this->attributeTemplate();
-        } elseif ($this->type_id == config('entities.ids.dice_roll')) {
+        } elseif ($this->isDiceRoll()) {
             return $this->diceRoll();
         }
         return $this->{$this->type()}();
@@ -143,9 +145,9 @@ class Entity extends Model
      */
     public function reloadChild()
     {
-        if ($this->type_id == config('entities.ids.attribute_template')) {
+        if ($this->isAttributeTemplate()) {
             return $this->load('attributeTemplate');
-        } elseif ($this->type_id == config('entities.ids.dice_roll')) {
+        } elseif ($this->isDiceRoll()) {
             return $this->load('diceRoll');
         }
 
@@ -415,26 +417,13 @@ class Entity extends Model
     }
 
     /**
-     * Count the number of mentions this entity has. The AclTrait on entities and posts
-     * makes sure only visible things get added to the query.
+     * Count the number of mentions this entity has
      * @return int
      */
     public function mentionsCount(): int
     {
-        return $this->targetMentions()->where(function ($sub) {
-            return $sub
-                ->where(function ($subEnt) {
-                    return $subEnt->entity()
-                        ->has('entity');
-                })
-                ->orWhere(function ($subPost) {
-                    return $subPost->entityNote()
-                        ->has('entityNote.entity');
-                })
-                ->orWhere(function ($subCam) {
-                    return $subCam->campaign();
-                });
-        })
+        return $this->targetMentions()
+            ->prepareCount()
             ->count();
     }
 

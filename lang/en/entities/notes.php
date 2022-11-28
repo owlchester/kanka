@@ -61,4 +61,9 @@ return [
         'collapsed' => 'Collapsed',
         'expanded'  => 'Expanded',
     ],
+    'warning'       => [
+        'editing'   => [
+            'description'   => 'Looks like someone else is currently editing this post! Do you want to go back or ignore this warning, at the risk of losing data? Members currently editing this post:',
+        ],
+    ],
 ];

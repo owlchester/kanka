@@ -34,7 +34,10 @@ class MentionController extends Controller
         }
 
         $ajax = request()->ajax();
-        $mentions = $entity->targetMentions()->paginate();
+        $mentions = $entity
+            ->targetMentions()
+            ->with(['campaign', 'entityNote', 'entityNote.entity', 'entity'])
+            ->paginate();
         return view('entities.pages.mentions.mentions', compact(
             'ajax',
             'entity',

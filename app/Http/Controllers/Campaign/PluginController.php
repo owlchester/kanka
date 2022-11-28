@@ -41,6 +41,7 @@ class PluginController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Campaign\Plugin::class);
 
         $plugins = $campaign->plugins()
+            ->preparedSelect()
             ->sort(request()->only(['o', 'k']))
             ->highlighted($highlight)
             ->has('user')

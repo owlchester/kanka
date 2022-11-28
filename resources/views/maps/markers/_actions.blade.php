@@ -1,8 +1,10 @@
 <div class="submit-group">
     <input id="submit-mode" type="hidden" value="true"/>
     <div class="btn-group">
-        <button class="btn btn-success" id="form-submit-main"
-            data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
+        <button class="btn btn-success form-submit-actions" id="form-submit-main"
+            data-action="{{ request()->from == 'explore' ? 'submit-explore' : null }}"
+            data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}
+        </button>
         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
             aria-expanded="false">
             <span class="caret"></span>

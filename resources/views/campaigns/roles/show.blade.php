@@ -36,8 +36,11 @@
                     </div>
                 </div>
                 <div class="box-body" style="overflow-y: auto">
-                    <p class="help-block">{{ __('campaigns.roles.hints.role_permissions', ['name' => $role->name]) }}</p>
-
+                    @if (!$role->isAdmin())
+                        <p class="help-block">{!! __('campaigns.roles.hints.role_permissions', ['name' => '<strong>' . $role->name . '</strong>']) !!}</p>
+                    @else
+                        <p class="help-block">{!! __('campaigns.roles.hints.role_admin', ['name' => '<strong>' . $role->name . '</strong>']) !!} </p>
+                    @endif
                     @can('permission', $role)
                     {{ Form::open(['route' => ['campaign_roles.savePermissions', 'campaign_role' => $role], 'data-shortcut' => '1']) }}
 
@@ -51,8 +54,7 @@
                             {{ __('crud.save') }}
                         </button>
                         {{ Form::close() }}
-                    @else
-                        <p>{{ __('campaigns.roles.permissions.hint') }}</p>
+
                     @endif
                 </div>
             </div>

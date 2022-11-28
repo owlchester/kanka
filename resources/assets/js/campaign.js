@@ -8,6 +8,7 @@ $(document).ready(function() {
     registerSidebarSetup();
     registerCampaignExport();
     registerRoles();
+    registerCampaignThemes();
 });
 
 /**
@@ -167,5 +168,31 @@ function registerCampaignExport() {
         }).fail (function (res) {
             console.error('campaign export call', res);
         });
+    });
+}
+
+/**
+ * Register events for campaign themes, notably the max size of a css field
+ */
+function registerCampaignThemes() {
+    let forms = $('form#campaign-style');
+    if (forms.length === 0) {
+        return;
+    }
+
+    forms.on('submit', function (e) {
+        let error = $($(this).data('error'));
+        let length = $('textarea[name="content"]').val().length;
+        if (length < $(this).data('max-content')) {
+            error.hide();
+            return true;
+        }
+
+        // Show a custom error message to the user
+        error.show();
+
+        $('form .submit-group .btn').prop('disabled', false);
+
+        return false;
     });
 }

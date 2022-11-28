@@ -7,12 +7,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserAltSubscribeStore;
 use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Models\Pledge;
+use App\Models\SubscriptionCancellation;
+use Carbon\Carbon;
 use App\Services\SubscriptionService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Cashier\Exceptions\IncompletePayment;
+use Laravel\Cashier\Subscription;
 
 class SubscriptionController extends Controller
 {
@@ -121,6 +124,13 @@ class SubscriptionController extends Controller
             if ($this->subscription->cancelled()) {
                 $flash = 'cancel';
                 $routeOptions = ['cancelled' => 1];
+                SubscriptionCancellation::create([
+                    'user_id' => $request->user()->id,
+                    'reason' => $request->reason,
+                    'custom' => $request->reason_custom,
+                    'tier'  => $request->user()->pledge,
+                    'duration' => $request->user()->subscription('kanka')->created_at->diffInDays(Carbon::now()),
+                ]);
             }
 
             return redirect()

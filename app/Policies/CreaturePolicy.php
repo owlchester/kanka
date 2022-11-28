@@ -4,5 +4,8 @@ namespace App\Policies;
 
 class CreaturePolicy extends MiscPolicy
 {
-    protected $model = 'creature';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.creature');
+    }
 }

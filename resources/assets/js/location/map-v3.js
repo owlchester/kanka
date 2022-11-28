@@ -25,18 +25,25 @@ $(document).ready(function() {
     $('a[href="#marker-pin"]').click(function (e) {
         $('input[name="shape_id"]').val(1);
         $('#map-marker-bg-colour').show();
+        showMainFields();
     });
     $('a[href="#marker-label"]').click(function (e) {
         $('input[name="shape_id"]').val(2);
         $('#map-marker-bg-colour').hide();
+        showMainFields();
     });
     $('a[href="#marker-circle"]').click(function (e) {
         $('input[name="shape_id"]').val(3);
         $('#map-marker-bg-colour').show();
+        showMainFields();
     });
     $('a[href="#marker-poly"]').click(function (e) {
         $('input[name="shape_id"]').val(5);
         $('#map-marker-bg-colour').show();
+        showMainFields();
+    });
+    $('a[href="#presets"]').click(function (e) {
+        loadPresets($(this).data('presets'));
     });
     $('a[href="#form-markers"]').click(function (e) {
         window.map.invalidateSize();
@@ -293,4 +300,60 @@ function getPolygonStyle() {
     if (isNaN(polygonStrokeWeight) || !polygonStrokeWeight) {
         polygonStrokeWeight = 1;
     }
+}
+
+function showMainFields() {
+    $('#marker-main-fields').show();
+    $('#marker-footer').show();
+}
+
+function loadPresets(url) {
+    $('#marker-main-fields').hide();
+    $('#marker-footer').hide();
+
+    // If presets have already been loaded, skip loading/rendering of the list
+    if ($('.marker-preset-list .fa-spinner').length === 0) {
+        return;
+    }
+
+    console.log('load from', url);
+    $.ajax({
+        url: url
+    }).done(function (data) {
+        $('.marker-preset-list').html(data);
+        handlePresetClick();
+    });
+}
+
+function handlePresetClick() {
+    $('.preset-use').on('click', function (e) {
+        e.preventDefault();
+
+        let url = $(this).data('url');
+        $(this).find('.fa-spin').show();
+
+        $.ajax({
+            url: url,
+            context: this,
+        }).done(function (result) {
+            // Switch stuff around
+            $(this).find('.fa-spin').hide();
+
+            Object.keys(result.preset).forEach(key => {
+                let val = result.preset[key];
+
+                let field = $('[name="' + key + '"]');
+                if (field.length === 0) {
+                    console.info('markerPreset', 'unknown field', key);
+                    return;
+                }
+                if (key.endsWith('colour')) {
+                    field.spectrum("set", val);
+                } else {
+                    field.val(val);
+                }
+            });
+            $('a[href="#marker-pin"]').click();
+        });
+    });
 }

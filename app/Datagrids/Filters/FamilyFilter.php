@@ -17,7 +17,7 @@ class FamilyFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'family_id',
-                'label' => __('crud.fields.family'),
+                'label' => __('entities.family'),
                 'type' => 'select2',
                 'route' => route('families.find'),
                 'placeholder' =>  __('crud.placeholders.family'),
@@ -26,7 +26,7 @@ class FamilyFilter extends DatagridFilter
             ->location()
             ->add([
                 'field' => 'member_id',
-                'label' => __('crud.fields.character'),
+                'label' => __('entities.character'),
                 'type' => 'select2',
                 'route' => route('characters.find'),
                 'placeholder' =>  __('crud.placeholders.character'),

@@ -9,7 +9,7 @@
                 (!empty($inventory) && $inventory->item ? $inventory->item: null),
                 App\Models\Item::class,
                 false,
-                'crud.fields.item',
+                'entities.item',
                 'items.find',
                 'crud.placeholders.item'
             ) !!}

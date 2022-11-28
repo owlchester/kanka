@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Pechada',
         'messages'      => 'Mensaxes',
         'participants'  => 'Participantes',
-        'target'        => 'Obxectivo',
     ],
     'hints'         => [
         'participants'  => 'Engade participantes á conversa presionando a icona :icon arriba á dereita.',

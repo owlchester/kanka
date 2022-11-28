@@ -268,7 +268,8 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
             'empty_role'            => 'The role doesn\'t have any members in it yet.',
-            'role_permissions'      => 'Enable the \':name\' role to do the following actions on all entities.',
+            'role_admin'            => 'The :name role automatically grants access to everything in the campaign to its members.',
+            'role_permissions'      => 'Enable the :name role to do the following actions on all entities',
         ],
         'members'       => 'Members',
         'modals'        => [
@@ -305,7 +306,6 @@ TEXT
                 'permission'    => 'Allow setting permissions on entities of this type they can edit.',
                 'read'          => 'Allow viewing all entities of this type that aren\'t private.',
             ],
-            'hint'      => 'This role automatically has access to everything.',
         ],
         'placeholders'  => [
             'name'  => 'Name of the role',
@@ -331,6 +331,10 @@ TEXT
             ],
             'destroy'   => [
                 'success'   => ':user removed from the role :role.',
+            ],
+            'errors'    => [
+                'cant_kick_admins'  => 'To avoid abuse, it is not possible to remove other members from the campaign\'s :admin role. In case of issues, contact us on :discord or at :email.',
+                'needs_more_roles'  => 'You need to add yourself to another role in the campaign before being able to remove yourself from the :admin role.',
             ],
             'fields'    => [
                 'name'  => 'Name',
@@ -450,5 +454,10 @@ TEXT
         'private'   => 'Private',
         'public'    => 'Public',
         'review'    => 'Awaiting Review',
+    ],
+    'warning'                           => [
+        'editing'   => [
+            'description'   => 'Looks like someone else is currently editing this campaign! Do you want to go back or ignore this warning, at the risk of losing data? Members currently editing this campaign:',
+        ],
     ],
 ];

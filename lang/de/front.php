@@ -143,8 +143,10 @@ return [
             'title'         => 'Logbücher',
         ],
         'patreon'           => [
+            '2fa'               => 'Zugang zur Zwei-Faktor-Authentifizierung',
             'api_calls'         => 'Erhöhte API-Aufrufe (90)',
             'boosts'            => 'Kampagnen Booster',
+            'click-me'          => 'Erfahre mehr über diese Funktion.',
             'curation'          => 'Helfen Sie mit, die Community-Abstimmungselemente zu verwalten',
             'default_image'     => 'Schöne Standardbilder für Objekte',
             'description'       => 'Durch die Unterstützung von Kanka mit einer geringen monatlichen Gebühr können wir weiter an Kanka arbeiten und die folgenden Vorteile für ein Konto freischalten.',

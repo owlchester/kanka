@@ -1,12 +1,10 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
-    ->filters($filters)
     ->nested()
-    ->render(
-    $filterService,
-    // Columns
-    [
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         [
             'type' => 'avatar'
         ],
@@ -28,11 +26,8 @@
         [
             'type' => 'is_private',
         ]
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options([
         'route' => 'events.tree',
         'baseRoute' => 'events',
         'trans' => 'events.fields.',

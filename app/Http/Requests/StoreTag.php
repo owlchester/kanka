@@ -43,7 +43,7 @@ class StoreTag extends FormRequest
 
         $self = request()->segment(5);
         if (!empty($self)) {
-            $rules['tag_id'] = 'integer|not_in:' . ((int) $self) . '|exists:tags,id';
+            $rules['tag_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:tags,id';
         }
 
         return $this->clean($rules);

@@ -8,5 +8,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class LocationMapPointPolicy extends MiscPolicy
 {
-    protected $model = 'location';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.location');
+    }
 }

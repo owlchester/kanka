@@ -232,7 +232,6 @@ TEXT
             'helpers'   => [
                 'entity_note'   => 'Ovo omogućava korisnicima koji nemaju dopuštenja uređivanja entiteta da dodaju Bilješke entiteta.',
             ],
-            'hint'      => 'Ova uloga automatski ima pristup svemu.',
         ],
         'placeholders'  => [
             'name'  => 'Naziv uloge',

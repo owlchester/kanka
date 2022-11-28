@@ -8,5 +8,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CalendarPolicy extends MiscPolicy
 {
-    protected $model = 'calendar';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.calendar');
+    }
 }

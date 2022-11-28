@@ -315,14 +315,6 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function campaign()
-    {
-        return $this->belongsTo('App\Models\Campaign', 'campaign_id');
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function widgets()
@@ -437,7 +429,7 @@ trait EntityRelations
 
     /**
      * List of entities that mention this entity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return EntityMention|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function targetMentions()
     {
@@ -529,7 +521,7 @@ trait EntityRelations
     /**
      * @return mixed
      */
-    public function users()
+    public function editingUsers()
     {
         return $this->belongsToMany(User::class)
             ->using(EntityUser::class)

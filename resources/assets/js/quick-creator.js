@@ -26,15 +26,26 @@ $(document).ready(function () {
 function quickCreatorUI() {
     $('[data-toggle="entity-creator"]').unbind('click').click(function(e) {
         e.preventDefault();
-        quickCreatorLoadingModal();
+
+        let type = $(this).data('type');
+        if (type === 'inline') {
+            $('.quick-creator-body').hide();
+            $('.quick-creator-footer').hide();
+            $('.quick-creator-loading').show();
+        } else {
+            quickCreatorLoadingModal();
+        }
 
         $.ajax({
-            url: $(this).data('url')
+            url: $(this).data('url'),
+            context: this
         }).done(function (data) {
+
             $(quickCreatorModalID).find('.modal-content').show().html(data);
             $(quickCreatorModalID).find('.modal-spinner').hide();
 
             quickCreatorSubformHandler();
+            quickCreatorToggles();
         });
 
         return false;
@@ -42,7 +53,7 @@ function quickCreatorUI() {
 }
 
 function quickCreatorDuplicateName() {
-    $('#entity-creator-form input[name="names[]"]').unbind('focusout').focusout(function() {
+    $('#qq-name-field').unbind('focusout').focusout(function() {
         // Don't bother if the user didn't set any value
         if (!$(this).val()) {
             return;
@@ -77,7 +88,7 @@ function quickCreatorLoadingModal() {
  */
 function quickCreatorSubformHandler() {
 
-    quickCreatorSubmitBtn = $('#quick-creator-submit-btn');
+    quickCreatorSubmitBtn = $('.quick-creator-submit');
 
     window.initForeignSelect();
     window.initTags();
@@ -85,7 +96,19 @@ function quickCreatorSubformHandler() {
 
     // Back button
     quickCreatorBackButton();
-    quickCreatorExtraName();
+    quickCreatorToggles();
+
+    // If we click on edit, we want to be redirected afterwards
+    quickCreatorSubmitBtn.on('click', function (e) {
+        let action = $(this).data('action');
+        if (!action) {
+            return true;
+        }
+
+        $('#entity-creator-form [name="action"]').val(action);
+
+        return true;
+    });
 
     $('#entity-creator-form').submit(function(e) {
 
@@ -93,7 +116,9 @@ function quickCreatorSubformHandler() {
         quickCreatorSubmitBtn
             .prop('disabled', true)
             .find('span').hide()
-            .parent().find('i').show();
+            .parent().find('i.fa-spin').show();
+
+        $('div.text-danger').remove();
 
         $.post({
             url: $(this).attr('action'),
@@ -101,7 +126,12 @@ function quickCreatorSubformHandler() {
             context: this
         }).done(function (result) {
             // New entity was created, let's follow that redirect
+            console.log('result', result);
             if (typeof result === 'object') {
+                if (result.redirect) {
+                    window.location.replace(result.redirect);
+                    return;
+                }
                 let option = new Option(result._name, result._id);
                 let field = $('#' + result._target);
                 if (result._multi) {
@@ -132,13 +162,9 @@ function quickCreatorSubformHandler() {
                 let errorKeys = Object.keys(errors);
                 let foundAllErrors = true;
                 errorKeys.forEach(function (i) {
-                    let name = i;
-                    if (name === 'name') {
-                        name = 'names[]';
-                    }
-                    let errorSelector = $('#entity-creator-form :input[name="' + name + '"]');
+                    let errorSelector = $('#entity-creator-form [name="' + i + '"]');
                     if (errorSelector.length > 0) {
-                        errorSelector.addClass('input-error').parent().parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+                        errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
                     } else {
                         foundAllErrors = false;
                     }
@@ -161,8 +187,10 @@ function quickCreatorSubformHandler() {
             }
             quickCreatorSubmitBtn
                 .prop('disabled', false)
-                .find('i').hide()
+                .find('i.fa-spin').hide()
                 .parent().find('span').show();
+
+            $('#entity-creator-form [name="action"]').val('');
         });
     });
 }
@@ -184,30 +212,42 @@ function quickCreatorBackButton() {
     });
 }
 
-function quickCreatorExtraName() {
-
-    $('.btn-extra-name').click(function (e) {
+function quickCreatorToggles() {
+    $('.qq-mode-toggle').unbind('click').on('click', function (e) {
         e.preventDefault();
 
-        let block = $('.name-block-template').clone().removeClass('name-block-template');
-        let html = block.html().replace('toggle-tooltip', 'tooltip');
+        if ($(this).hasClass('active')) {
+            return;
+        }
 
-        $('.extra-name-fields').append(block.html(html));
+        $('.qq-mode-toggle').removeClass('active');
+        $(this).addClass('active');
 
-        quickCreatorNameHandler();
-        quickCreatorDuplicateName();
+        $('.quick-creator-body').hide();
+        $('.quick-creator-footer').hide();
+        $('.quick-creator-loading').show();
+
+        $.ajax({
+            url: $(this).data('url')
+        })
+            .done(function (result) {
+                $('#entity-modal').find('.modal-content').html(result).show();
+
+                quickCreatorToggles();
+                quickCreatorDuplicateName();
+                quickCreatorBackButton();
+                quickCreatorSubformHandler();
+                window.initForeignSelect();
+                window.initTags();
+            })
+        ;
     });
-}
 
-/**
- * Removing a name
- */
-function quickCreatorNameHandler() {
-    $('[data-toggle="tooltip"]').tooltip();
-
-    $('.btn-extra-name-remove').unbind('click').click(function (e) {
+    $('.qq-action-more').unbind('click').on('click', function (e) {
         e.preventDefault();
-
-        $(this).parent().parent().parent().remove();
+        $(this).hide();
+        $('.qq-more-fields').show();
     });
+
+    quickCreatorUI();
 }

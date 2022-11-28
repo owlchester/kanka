@@ -7,7 +7,10 @@ use App\Models\Character;
 
 class CharacterPolicy extends MiscPolicy
 {
-    protected $model = 'character';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.character');
+    }
 
     /**
      * @param User $user

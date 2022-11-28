@@ -1,10 +1,9 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
-    ->render(
-    $filterService,
-    // Columns
-    [
+{!! $datagrid
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         // Avatar
         [
             'type' => 'avatar'
@@ -13,7 +12,7 @@
         'name',
         'type',
         [
-            'label' => __('crud.fields.ability'),
+            'label' => __('entities.ability'),
             'field' => 'ability.name',
             'render' => function($model) {
                 if ($model->ability) {
@@ -38,14 +37,11 @@
         [
             'type' => 'is_private',
         ]
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options([
         'route' => 'abilities.index',
         'baseRoute' => 'abilities',
         'trans' => 'abilities.fields.',
         'campaignService' => $campaignService
-    ]
-) !!}
+    ])
+; !!}

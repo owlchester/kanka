@@ -4,6 +4,9 @@ return [
     'actions'       => [
         'add'   => 'neue Gruppe hinzufügen',
     ],
+    'bulks'         => [
+        'patch' => '{1} aktualisiere :count group.|[2,*] aktualisiere :count groups.',
+    ],
     'create'        => [
         'success'   => 'Gruppe :name erzeugen',
         'title'     => 'neue Gruppe',
@@ -19,16 +22,27 @@ return [
         'is_shown'  => 'Zeige Gruppenmarker',
         'position'  => 'Position',
     ],
-    'helper'        => [],
+    'helper'        => [
+        'amount_v3' => 'Markierungen können mithilfe von Kartengruppen gruppiert werden. Jede Gruppe kann dann beim Erkunden einer Karte angeklickt werden, um schnell alle Markierungen darin ein- oder auszublenden.',
+    ],
     'hints'         => [
         'is_shown'  => 'Wenn diese Option aktiviert ist, werden die Gruppenmarker standardmäßig auf der Karte angezeigt.',
+    ],
+    'index'         => [
+        'title' => 'Gruppe von :name',
     ],
     'pitch'         => [
         'error' => 'Maximale Anzahl an Gruppen erreicht.',
         'until' => 'Erstelle bis zu :max-Gruppen für jede Karte.',
     ],
     'placeholders'  => [
-        'name'      => 'Geschäfte, Schatz, NSC,',
-        'position'  => 'Optionales Feld zum Festlegen der Reihenfolge, in der die Gruppen angezeigt werden.',
+        'name'          => 'Geschäfte, Schatz, NSC,',
+        'position'      => 'Optionales Feld zum Festlegen der Reihenfolge, in der die Gruppen angezeigt werden.',
+        'position_list' => 'nach :name',
+    ],
+    'reorder'       => [
+        'save'      => 'neue Reihenfolge speichern',
+        'success'   => '{1} ordne neu :count group.|[2,*] ordne neu :count groups.',
+        'title'     => 'Gruppe neu ordnen',
     ],
 ];

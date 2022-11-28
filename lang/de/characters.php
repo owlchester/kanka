@@ -28,7 +28,6 @@ return [
         'life'                      => 'Leben',
         'physical'                  => 'Körper',
         'pronouns'                  => 'Pronomen',
-        'races'                     => 'Spezies',
         'sex'                       => 'Geschlecht',
         'title'                     => 'Titel',
         'traits'                    => 'Eigenschaften',

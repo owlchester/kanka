@@ -32,4 +32,9 @@ return [
         'name'      => 'Required if no entity selected',
         'position'  => 'Position in the list of elements for the era. Leave blank to add to the end.',
     ],
+    'warning'       => [
+        'editing'   => [
+            'description'   => 'Looks like someone else is currently editing this timeline element! Do you want to go back or ignore this warning, at the risk of losing data? Members currently editing this timeline element:',
+        ],
+    ],
 ];

@@ -30,8 +30,13 @@ return [
         'name'  => 'Nome da linha do tempo',
         'type'  => 'Primária, crônica Mundial, legado de um Reino',
     ],
+    'reorder'       => [
+        'success'   => 'Linha do tempo reordenada com sucesso.',
+        'title'     => 'Reordenar a linha do tempo',
+    ],
     'show'          => [
         'tabs'  => [
+            'reorder'   => 'Reordenar linha do tempo',
             'timelines' => 'Linhas do tempo',
         ],
     ],

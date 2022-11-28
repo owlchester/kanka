@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Zatvoreno',
         'messages'      => 'Poruke',
         'participants'  => 'Sudionici',
-        'target'        => 'Otvaranje poveznice',
     ],
     'hints'         => [
         'participants'  => 'Dodaj sudionike u razgovor pritiskom na ikonu :icon u gornjem desnom kutu.',

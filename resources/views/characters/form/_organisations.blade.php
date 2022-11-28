@@ -21,7 +21,7 @@ $statuses = [
 ];
 ?>
 <div class="row hidden-xs">
-    <div class="col-sm-3">{{ __('crud.fields.organisation') }}</div>
+    <div class="col-sm-3">{{ __('entities.organisation') }}</div>
     <div class="col-sm-3">{{ __('organisations.members.fields.role') }}</div>
     <div class="col-sm-2">{{ __('organisations.members.fields.status') }}</div>
     <div class="col-sm-2">

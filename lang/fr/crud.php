@@ -171,6 +171,7 @@ return [
         'replace_mentions'      => 'Remplace les mentions d\'attributs avec ceux de la nouvelle entité.',
         'tag'                   => 'Etiquette',
         'tags'                  => 'Etiquettes',
+        'template'              => 'Modèle',
         'timeline'              => 'Chronologie',
         'tooltip'               => 'Infobulle',
         'type'                  => 'Type',
@@ -217,10 +218,12 @@ return [
             'copy'  => 'Presse-papier',
         ],
         'options'                   => [
-            'children'  => 'Avec enfants',
-            'exclude'   => 'Exclure',
-            'include'   => 'Inclure',
+            'children'  => 'Correspond à ceci ou ses descendants',
+            'exclude'   => 'Ne correspond pas à',
+            'hide'      => 'Cacher',
+            'include'   => 'Correspond à',
             'none'      => 'Aucun(e)',
+            'show'      => 'Afficher',
         ],
         'show'                      => 'Afficher les filtres',
         'sorting'                   => [
@@ -371,7 +374,7 @@ return [
     'superboosted_campaigns'    => 'Campagnes Superboostées',
     'tabs'                      => [
         'abilities'     => 'Pouvoirs',
-        'assets'        => 'Biens',
+        'assets'        => 'Ressources',
         'attributes'    => 'Attributs',
         'boost'         => 'Boost',
         'calendars'     => 'Calendriers',

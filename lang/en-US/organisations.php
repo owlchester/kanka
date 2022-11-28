@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title' => 'Create a new organization',
+        'title' => 'New Organization',
     ],
     'destroy'       => [],
     'edit'          => [],

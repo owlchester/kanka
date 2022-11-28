@@ -9,5 +9,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class QuestPolicy extends MiscPolicy
 {
-    protected $model = 'quest';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.quest');
+    }
 }

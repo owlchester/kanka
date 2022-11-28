@@ -223,7 +223,6 @@ TEXT
             'helpers'   => [
                 'entity_note'   => 'Hierdoor kunnen gebruikers die geen Wijzig rechten voor een Entiteit hebben, er Entiteit Notities aan toevoegen.',
             ],
-            'hint'      => 'Deze rol heeft automatisch toegang tot alles.',
         ],
         'placeholders'  => [
             'name'  => 'Naam van de rol',

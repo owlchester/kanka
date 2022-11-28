@@ -8,5 +8,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class JournalPolicy extends MiscPolicy
 {
-    protected $model = 'journal';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.journal');
+    }
 }

@@ -123,6 +123,9 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     @if ($model instanceof \App\Models\Quest && $model->is_completed)
                         <i role="button" tabindex="0" class="fa-solid fa-check-circle entity-icons btn-popover" title="{{ __('quests.fields.is_completed') }}"></i>
                     @endif
+                    @if ($model instanceof \App\Models\Organisation && $model->is_defunct)
+                        <i role="button" tabindex="0" class="fa-solid fa-shop-slash entity-icons btn-popover" title="{{ __('organisations.hints.is_defunct') }}"></i>
+                    @endif
 
                     @if (auth()->check() && auth()->user()->isAdmin())
                         <span role="button" tabindex="0" class="entity-icons entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy">

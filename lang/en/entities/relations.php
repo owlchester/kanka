@@ -44,6 +44,7 @@ return [
         'target'            => 'Target',
         'target_relation'   => 'Target Relation',
         'two_way'           => 'Create mirror relation',
+        'unmirror'          => 'Unmirror this relation.',
     ],
     'helper'            => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entity\'s menu.',
     'helpers'           => [

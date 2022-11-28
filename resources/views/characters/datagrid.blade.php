@@ -1,10 +1,10 @@
 <?php /** @var \App\Models\Character $model */?>
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
-    ->render(
-    $filterService,
-    [
+{!! $datagrid
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         [
             'type' => 'avatar'
         ],
@@ -27,7 +27,7 @@
             'visible' => $campaignService->enabled('locations'),
         ],
         [
-            'label' => __('characters.fields.races'),
+            'label' => __('entities.races'),
             'visible' => $campaignService->enabled('races'),
             'disableSort' => true,
             'render' => function($model) {
@@ -57,11 +57,8 @@
         [
             'type' => 'is_private',
         ]
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options([
         'route' => 'characters.index',
         'baseRoute' => 'characters',
         'trans' => 'characters.fields.',

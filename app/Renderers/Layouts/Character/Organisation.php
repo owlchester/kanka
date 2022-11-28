@@ -22,7 +22,11 @@ class Organisation extends Layout
                 'key' => 'name',
                 'label' => 'entities.organisation',
                 'render' => function ($model) {
-                    return $model->organisation->tooltipedLink() . '<br />' . $model->organisation->type;
+                    $defunctIcon = null;
+                    if ($model->organisation->is_defunct) {
+                        $defunctIcon = ' <i class="fa-solid fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>';
+                    }
+                    return $model->organisation->tooltipedLink() . $defunctIcon . '<br />' . $model->organisation->type;
                 },
             ],
             'role' => [
@@ -42,7 +46,7 @@ class Organisation extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'organisations.fields.location',
+                'label' => 'entities.location',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;

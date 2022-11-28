@@ -1,10 +1,9 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
-    ->render(
-    $filterService,
-    // Columns
-    [
+{!! $datagrid
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         // Avatar
         [
             'type' => 'avatar'
@@ -13,7 +12,7 @@
         'name',
         'type',
         [
-            'label' => __('conversations.fields.target'),
+            'label' => __('conversations.fields.participants'),
             'field' => 'target_id',
             'render' => function($model) {
                 return __('conversations.targets.' . ($model->forCharacters() ? 'characters' : 'members'));
@@ -36,11 +35,8 @@
         [
             'type' => 'is_private',
         ],
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options([
         'route' => 'conversations.index',
         'baseRoute' => 'conversations',
         'trans' => 'conversations.fields.',

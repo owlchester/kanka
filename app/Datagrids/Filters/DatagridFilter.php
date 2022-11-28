@@ -46,7 +46,7 @@ abstract class DatagridFilter
     {
         $this->filters[] = [
             'field' => 'location_id',
-            'label' => __('crud.fields.location'),
+            'label' => __('entities.location'),
             'type' => 'select2',
             'route' => route('locations.find'),
             'placeholder' =>  __('crud.placeholders.location'),
@@ -64,7 +64,7 @@ abstract class DatagridFilter
     {
         $this->filters[] = [
             'field' => 'character_id',
-            'label' => __('crud.fields.character'),
+            'label' => __('entities.character'),
             'type' => 'select2',
             'route' => route('characters.find'),
             'placeholder' =>  __('crud.placeholders.character'),
@@ -98,7 +98,7 @@ abstract class DatagridFilter
     {
         $this->filters[] = [
             'field' => 'tags',
-            'label' => __('crud.fields.tag'),
+            'label' => __('entities.tag'),
             'type' => 'tag',
             'route' => route('tags.find'),
             'placeholder' =>  __('crud.placeholders.tag'),

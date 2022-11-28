@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Lezárva',
         'messages'      => 'Üzenetek',
         'participants'  => 'Résztvevők',
-        'target'        => 'Célpont',
     ],
     'hints'         => [
         'participants'  => 'Kérjük, adj résztvevőket a beszélgetésedhez az :icon ikonra kattintva a jobb felső részen.',

@@ -28,7 +28,6 @@ return [
         'life'                      => 'Život',
         'physical'                  => 'Telesné črty',
         'pronouns'                  => 'Zámená',
-        'races'                     => 'Rasy',
         'sex'                       => 'Pohlavie',
         'title'                     => 'Titul',
         'traits'                    => 'Vlastnosti',

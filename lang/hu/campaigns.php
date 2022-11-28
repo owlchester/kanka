@@ -261,7 +261,6 @@ TEXT
                 'permission'    => 'Állítgathatják az engedélyeit az ilyen típusú entitásokból azokét, amit szerkeszthetnek.',
                 'read'          => 'Megnézhetik mindegyik entitást ebből a típusból, ami nem privát.',
             ],
-            'hint'      => 'Ez a szerep automatikusan hozzáférst biztosít mindenhez.',
         ],
         'placeholders'  => [
             'name'  => 'A szerep neve.',

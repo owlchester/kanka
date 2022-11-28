@@ -39,7 +39,7 @@ class StoreLocation extends FormRequest
 
         $self = request()->segment(5);
         if (!empty($self)) {
-            $rules['parent_location_id'] = 'integer|not_in:' . ((int) $self) . '|exists:locations,id';
+            $rules['parent_location_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:locations,id';
         }
 
         return $this->clean($rules);

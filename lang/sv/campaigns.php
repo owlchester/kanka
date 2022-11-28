@@ -214,7 +214,6 @@ TEXT
             'helpers'   => [
                 'entity_note'   => 'Detta tillåter användare som inte har Redigera behörigheter för en entitet att lägga till Entitetsanteckningar till den.',
             ],
-            'hint'      => 'Denna roll har automatiskt tillgång till allt.',
         ],
         'placeholders'  => [
             'name'  => 'Rollens namn',

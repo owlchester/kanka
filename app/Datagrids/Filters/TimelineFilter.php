@@ -16,7 +16,7 @@ class TimelineFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'timeline_id',
-                'label' => __('crud.fields.timeline'),
+                'label' => __('entities.timeline'),
                 'type' => 'select2',
                 'route' => route('timelines.find'),
                 'placeholder' =>  __('crud.placeholders.timeline'),

@@ -59,7 +59,7 @@ class MapObserver extends MiscObserver
 
             /** @var Entity $source */
             $source = Entity::findOrFail($sourceId);
-            if ($source->typeId() == config('entities.ids.map')) {
+            if ($source->isMap()) {
                 $source->child->copyRelatedToTarget($model);
             }
         }

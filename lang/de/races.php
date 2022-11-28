@@ -15,6 +15,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Charaktere',
+        'locations'     => 'Standorte',
         'race'          => 'Übergeordnete Spezies',
         'races'         => 'Unterspezies',
     ],

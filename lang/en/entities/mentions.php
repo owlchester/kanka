@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'entity_note'       => ':name (Post)',
     'fields'            => [
-        'entity'    => 'Entity',
+        'element'   => 'Element',
+        'type'      => 'Type',
     ],
-    'helper'            => 'This entity is mentioned in the following entities, posts, or campaign description.',
+    'helper'            => 'This entity is mentioned in the following other entities, posts, or campaign description.',
     'mentioned_in'      => 'Mentioned in :count Entities.',
-    'mentioned_in_v2'   => 'This entity is mentioned in :count entities, posts or campaigns. :more.',
+    'mentioned_in_v2'   => 'This entity is mentioned in :count elements. :more.',
     'see_more'          => 'View details',
     'show'              => [
         'title' => 'Entity :name Mentions',

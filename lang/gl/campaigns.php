@@ -309,7 +309,6 @@ TEXT
                 'permission'    => 'Permite establecer permisos en entidades deste tipo que poidan editar.',
                 'read'          => 'Permite ver todas as entidades deste tipo que non sexan privadas.',
             ],
-            'hint'      => 'Este rol ten automáticamente acceso a todo.',
         ],
         'placeholders'  => [
             'name'  => 'Nome do rol',
@@ -342,20 +341,25 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'   => [
+        'actions'       => [
             'enable'    => 'Activar',
         ],
-        'boosted'   => 'Esta función está en acceso anticipado e actualmente só dispoñible para :boosted.',
-        'disabled'  => 'O módulo :module está deshabilitado.',
-        'enabled'   => 'O módulo :module está habilitado',
-        'errors'    => [
+        'boosted'       => 'Esta función está en acceso anticipado e actualmente só dispoñible para :boosted.',
+        'deprecated'    => [
+            'help'  => 'Este módulo está deprecado. Non será mantido nin se asegura o seu correcto funcionamento con cada nova actualización. Usa este módulo sabendo que nalgún momento será eliminado de Kanka.',
+            'title' => 'Deprecado',
+        ],
+        'disabled'      => 'O módulo :module está deshabilitado.',
+        'enabled'       => 'O módulo :module está habilitado',
+        'errors'        => [
             'module-disabled'   => 'O módulo solicitado está actualmente deshabilitado na configuración da campaña. :fix.',
         ],
-        'helpers'   => [
+        'helpers'       => [
             'abilities'     => 'Crea habilidades (talentos, feitizos, poderes...) que poden ser asignados a entidades.',
             'calendars'     => 'Un lugar para definir os calendarios do teu mundo.',
             'characters'    => 'A xente que habita no teu mundo.',
             'conversations' => 'Conversas ficticias entre personaxes ou entre integrantes da campaña. Este módulo está obsoleto.',
+            'creatures'     => 'Cataloga as criaturas, animais, e monstros do teu mundo co módulo de criaturas.',
             'dice_rolls'    => 'Un xeito de tirar dados para quen usa Kanka nas súas partidas de rol. Este módulo está obsoleto.',
             'events'        => 'Celebracións, festivais, desastres, aniversarios, guerras...',
             'families'      => 'Clans ou familias, as súas relacións e as persoas que as forman.',

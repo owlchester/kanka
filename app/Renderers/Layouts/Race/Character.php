@@ -31,7 +31,7 @@ class Character extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'crud.fields.location',
+                'label' => 'entities.location',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;
@@ -40,7 +40,7 @@ class Character extends Layout
                 },
             ],
             'races' => [
-                'label' => 'characters.fields.races',
+                'label' => 'entities.races',
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     $models = [];

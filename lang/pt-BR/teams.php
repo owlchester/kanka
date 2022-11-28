@@ -39,6 +39,12 @@ TEXT
         'joseph'    => [
             'title' => 'QA e integração',
         ],
+        'kaz'       => [
+            'title' => 'Destruidor de Bugs',
+        ],
+        'laura'     => [
+            'title' => 'Mídia Social',
+        ],
         'ryan'      => [
             'title' => 'Gerente da Comunidade e líder de QA',
         ],

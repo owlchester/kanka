@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
 use App\Http\Requests\API\UpdateUserRole;
 use App\Models\Campaign;
@@ -34,6 +35,18 @@ class MemberService
         return $this;
     }
 
+    public function element(CampaignRoleUser $campaignRoleUser): self
+    {
+        $this->userCampaignRole = $campaignRoleUser;
+        return $this;
+    }
+
+    public function user(User $user): self
+    {
+        $this->user = $user;
+        return $this;
+    }
+
     /**
      * @param UpdateUserRole $request
      * @return $this
@@ -63,8 +76,18 @@ class MemberService
         if ($campaignRole->isAdmin()) {
             CampaignCache::campaign($campaignRole->campaign)->clearAdmins();
         }
-        // Delete existing role if not admin
+
+        // Deleting an existing role
         if ($role) {
+            if ($role->campaignRole->isAdmin() && !$role->recentlyCreated()) {
+                throw (new TranslatableException(
+                    'campaigns.roles.users.errors.cant_kick_admins'
+                ))->setOptions([
+                    'admin' => $role->campaignRole->name,
+                    'discord' => link_to(config('social.discord'), 'Discord'),
+                    'email' => link_to('mailto:' . config('app.email'), config('app.email'))
+                ]);
+            }
             $role->delete();
             return false;
         }
@@ -116,6 +139,44 @@ class MemberService
         $this->userCampaignRole->delete();
 
         return true;
+    }
+
+
+    /**
+     * @return bool
+     * @throws TranslatableException
+     */
+    public function delete(): bool
+    {
+        // If the role isn't an admin, we can safely delete
+        if (!$this->userCampaignRole->campaignRole->isAdmin()) {
+            return $this->userCampaignRole->delete();
+        }
+
+        // It's the admin role. If we're deleting ourselves, make sure we have
+        if ($this->userCampaignRole->user_id === $this->user->id) {
+            $roleCount = $this
+                ->user
+                ->campaignRoles
+                ->where('campaign_id', $this->userCampaignRole->campaignRole->campaign_id)
+                ->count();
+            if ($roleCount === 1) {
+                throw (new TranslatableException(
+                    'campaigns.roles.users.errors.needs_more_roles'
+                ))->setOptions(['admin' => $this->userCampaignRole->campaignRole->name]);
+            }
+        } elseif (!$this->userCampaignRole->recentlyCreated()) {
+            // If the user wasn't added to the admin role recently (ex by mistake), allow removing them
+            throw (new TranslatableException(
+                'campaigns.roles.users.errors.cant_kick_admins'
+            ))->setOptions([
+                'admin' => $this->userCampaignRole->campaignRole->name,
+                'discord' => link_to(config('social.discord'), 'Discord'),
+                'email' => link_to('mailto:' . config('app.email'), config('app.email'))
+            ]);
+        }
+
+        return $this->userCampaignRole->delete();
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Campaign;
 
+use App\Exceptions\TranslatableException;
 use App\Facades\Identity;
 use App\Http\Controllers\Controller;
 use App\Models\CampaignRole;
@@ -74,7 +75,13 @@ class MemberController extends Controller
     {
         $this->authorize('update', $campaignUser);
 
-        $added = $this->service->update($campaignUser, $campaignRole);
+        try {
+            $added = $this->service->update($campaignUser, $campaignRole);
+        } catch (TranslatableException $e) {
+            return redirect()
+                ->route('campaign_users.index')
+                ->with('error_raw', $e->getTranslatedMessage());
+        }
 
         return redirect()
             ->route('campaign_users.index')

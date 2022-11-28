@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Timelines;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTimelineElement;
+use App\Facades\CampaignLocalization;
+use App\Services\MultiEditingService;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Services\TimelineService;
@@ -105,12 +107,26 @@ class TimelineElementController extends Controller
     {
         $this->authorize('update', $timeline);
 
-        $ajax = request()->ajax();
+        /** @var MiscModel $model */
+        $campaign = CampaignLocalization::getCampaign();
+        $editingUsers = null;
         $model = $timelineElement;
+
+        if ($campaign->hasEditingWarning()) {
+            /** @var MultiEditingService $editingService */
+            $editingService = app()->make(MultiEditingService::class);
+            $editingUsers = $editingService->model($model)->user(auth()->user())->users();
+            // If no one is editing the model, we are now editing it
+            if (empty($editingUsers)) {
+                $editingService->edit();
+            }
+        }
+
+        $ajax = request()->ajax();
 
         return view(
             'timelines.elements.edit',
-            compact('timeline', 'ajax', 'model')
+            compact('timeline', 'ajax', 'model', 'editingUsers')
         );
     }
 
@@ -124,6 +140,12 @@ class TimelineElementController extends Controller
     public function update(StoreTimelineElement $request, Timeline $timeline, TimelineElement $timelineElement)
     {
         $this->authorize('update', $timeline);
+
+        /** @var MultiEditingService $editingService */
+        $editingService = app()->make(MultiEditingService::class);
+        $editingService->model($timelineElement)
+            ->user($request->user())
+            ->finish();
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {

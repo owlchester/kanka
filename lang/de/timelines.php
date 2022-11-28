@@ -30,8 +30,13 @@ return [
         'name'  => 'Name des Zeitstrahls',
         'type'  => 'Grundschule, Weltchronik, Königreichserbe',
     ],
+    'reorder'       => [
+        'success'   => 'Zeitstrahl erfolgreich neu geordnet.',
+        'title'     => 'Ordne den Zeitstrahl neu',
+    ],
     'show'          => [
         'tabs'  => [
+            'reorder'   => 'Zeitstrahl neu anordnen',
             'timelines' => 'Zeitstrahlen',
         ],
     ],

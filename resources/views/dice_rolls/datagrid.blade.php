@@ -1,10 +1,9 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
-    ->render(
-    $filterService,
-    // Columns
-    [
+{!! $datagrid
+    ->service($filterService)
+    ->models($models)
+    ->columns([
         // Avatar
         [
             'type' => 'avatar'
@@ -13,7 +12,7 @@
         'name',
         'parameters',
         [
-            'label' => __('crud.fields.character'),
+            'label' => __('entities.character'),
             'field' => 'character.name',
             'render' => function($model) {
                 if ($model->character) {
@@ -31,11 +30,8 @@
         [
             'type' => 'is_private',
         ],
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->options([
         'route' => 'dice_rolls.index',
         'baseRoute' => 'dice_rolls',
         'trans' => 'dice_rolls.fields.',

@@ -14,7 +14,7 @@ return [
     ],
     'helpers'       => [
         'journals'          => 'Wyświetla wszystkie dzienniki pochodne, albo tylko pochodzące bezpośrednio od tego.',
-        'nested_without'    => 'Wyświetlono wszystkie dzienniki nie posiadające źródła. Kliknij na rząd, by wyświetlić dzienniki pochodne.',
+        'nested_without'    => 'Wyświetlono wszystkie dzienniki nieposiadające źródła. Kliknij na rząd, by wyświetlić dzienniki pochodne.',
     ],
     'index'         => [],
     'journals'      => [

@@ -7,10 +7,10 @@ use App\User;
 
 class DiceRollResultPolicy extends MiscPolicy
 {
-    /**
-     * @var string
-     */
-    protected $model = 'dice_roll';
+    public function entityTypeID(): int
+    {
+        return config('entities.ids.dice_roll');
+    }
 
     public function update(User $user, $entity)
     {

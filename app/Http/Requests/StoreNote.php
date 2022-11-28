@@ -35,7 +35,7 @@ class StoreNote extends FormRequest
         ];
         $self = request()->segment(5);
         if (!empty($self)) {
-            $rules['note_id'] = 'integer|not_in:' . ((int) $self) . '|exists:notes,id';
+            $rules['note_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:notes,id';
         }
 
         return $this->clean($rules);

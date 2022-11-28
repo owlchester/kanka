@@ -1,10 +1,8 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 <?php /** @var \App\Models\Timeline $model */?>
-{!! $datagrid->filters($filters)
-    ->render(
-    $filterService,
-    // Columns
-    [
+{!! $datagrid
+    ->service($filterService)
+    ->columns([
         // Avatar
         [
             'type' => 'avatar'
@@ -31,14 +29,12 @@
         [
             'type' => 'is_private',
         ]
-    ],
-    // Data
-    $models,
-    // Options
-    [
+    ])
+    ->models($models)
+    ->options([
         'route' => 'timelines.index',
         'baseRoute' => 'timelines',
         'trans' => 'timelines.fields.',
         'campaignService' => $campaignService
-    ]
-) !!}
+    ])
+; !!}

@@ -23,6 +23,7 @@ return [
     ],
     'fields'        => [
         'application'   => 'Bewerbung',
+        'approval'      => 'Genehmigungsgrund',
         'rejection'     => 'Ablehnungsgrund',
     ],
     'helpers'       => [

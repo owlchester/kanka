@@ -22,8 +22,7 @@ class TimelineObserver extends MiscObserver
             $sourceId = request()->post('copy_source_id');
             /** @var Entity $source */
             $source = Entity::findOrFail($sourceId);
-            if ($source->typeId() == config('entities.ids.timeline')) {
-
+            if ($source->isTimeline()) {
                 foreach ($source->timeline->eras as $era) {
                     $newEra = $era->replicate();
                     $newEra->timeline_id = $timeline->id;

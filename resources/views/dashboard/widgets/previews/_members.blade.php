@@ -16,7 +16,7 @@ if (isset($model)) {
 } else {
     $child = $entity->child;
 }
-$members = $entity->typeId() == config('entities.ids.family')
+$members = $entity->isFamily()
     ? $child->members()->orderBy('name')->get()
     : $child->members()->with(['character', 'character.entity'])->get()
 ;
@@ -24,7 +24,7 @@ $members = $entity->typeId() == config('entities.ids.family')
 
 <div class="widget-advanced-members">
 
-@if($entity->typeId() == config('entities.ids.family'))
+@if($entity->isFamily())
     <ul class="list-group">
         @foreach ($members as $member)
         <li class="list-group-item">{!! $member->tooltipedLink() !!}
