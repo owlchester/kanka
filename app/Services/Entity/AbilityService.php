@@ -51,16 +51,26 @@ class AbilityService
                 // entity
                 'ability.entity', 'ability.entity.image', 'ability.entity.attributes',
                 // parent
-                'ability.ability', 'ability.ability.entity'
+                'ability.ability', 'ability.ability.entity', 'ability.ability.tags',
             ])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->defaultOrder()
             ->get();
         /** @var EntityAbility $ability */
-        foreach ($abilities as $ability) {
+        foreach ($abilities as $key => $ability) {
             // Can't read the ability? skip
             if (empty($ability->ability) || empty($ability->ability->entity)) {
                 continue;
+            }
+            $class = '';
+            foreach ($ability->ability->entity->tagsWithEntity() as $tag) {
+                $class .= ' kanka-tag-' . $tag->id;
+                $class .= ' kanka-tag-' . $tag->slug;
+
+                if ($tag->tag_id) {
+                    $class .= ' kanka-tag-' . $tag->tag_id;
+                }
+                $abilities[$key]['class'] = $class;
             }
             // If this ability has a parent ability, save it there
             $this->add($ability);
@@ -77,7 +87,6 @@ class AbilityService
             'user_id' => auth()->check() ? auth()->user()->id : 0,
             'is_admin' => auth()->check() && auth()->user()->isAdmin(),
         ];
-
         return $this->abilities;
     }
 
@@ -165,6 +174,7 @@ class AbilityService
             'type' => $entityAbility->ability->type,
             'charges' => $this->parseCharges($entityAbility->ability),
             'used_charges' => $entityAbility->charges,
+            'class' => $entityAbility->class,
             'note' => nl2br((string) $this->mapAttributes(
                 Mentions::mapAny($entityAbility, 'note'),
                 false
