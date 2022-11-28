@@ -7,6 +7,7 @@ use App\Models\Entity;
 use App\Models\Family;
 use App\Models\Item;
 use App\Models\Journal;
+use App\Models\Location;
 use App\Models\Map;
 use App\Models\Organisation;
 use App\Models\Race;
@@ -321,7 +322,7 @@ class ConnectionService
 
     protected function loadRaceLocations(): self
     {
-        /** @var Race $parent */
+        /** @var Location $parent */
         $parent = $this->entity->child;
         $elements = $parent->locations()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {

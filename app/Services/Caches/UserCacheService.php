@@ -94,7 +94,10 @@ class UserCacheService extends BaseCache
     {
         $key = $this->rolesKey();
         if ($this->has($key)) {
-            return $this->get($key);
+            $roles = $this->get($key);
+            if ($roles !== null) {
+                return $roles;
+            }
         }
 
         $data = $this->user->campaignRoles;
