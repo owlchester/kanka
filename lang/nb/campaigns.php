@@ -205,7 +205,6 @@ TEXT
             'helpers'   => [
                 'entity_note'   => 'Dette gjør at brukere som ikke har Rediger tillatelsen til et Objekt kan legge til Objekt Notater til det.',
             ],
-            'hint'      => 'Denne rollenhar automatisk tilgang til alt.',
         ],
         'placeholders'  => [
             'name'  => 'Rollens navn',

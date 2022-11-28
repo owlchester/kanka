@@ -309,7 +309,6 @@ TEXT
                 'permission'    => 'Permitir a configuração de permissões em entidades desse tipo que eles podem editar.',
                 'read'          => 'Permitir a visualização de todas as entidades deste tipo que não sejam privadas.',
             ],
-            'hint'      => 'Esse cargo tem automaticamente acesso a tudo.',
         ],
         'placeholders'  => [
             'name'  => 'Nome do cargo',

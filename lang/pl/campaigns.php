@@ -309,7 +309,6 @@ TEXT
                 'permission'    => 'Pozwala zarządzać uprawnieniami tych elementów danego typu, które uczestnik może też edytować.',
                 'read'          => 'Pozwala widzieć wszystkie elementy danego typu, które nie są tajne.',
             ],
-            'hint'      => 'Ta rola ma automatyczny dostęp do wszystkiego.',
         ],
         'placeholders'  => [
             'name'  => 'Nazwa roli',

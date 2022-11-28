@@ -207,7 +207,6 @@ TEXT
             'helpers'   => [
                 'entity_note'   => 'Bu, bir Varlık için Düzenle yetkisine sahip olmayan kullanıcıların da Varlıklara Varlık Notu eklemelerine izin verir.',
             ],
-            'hint'      => 'Bu rol otomatik olarak her şeye erişim sahibidir.',
         ],
         'placeholders'  => [
             'name'  => 'Rolün adı',

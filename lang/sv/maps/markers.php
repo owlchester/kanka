@@ -28,9 +28,8 @@ return [
         'pin_size'      => 'Nål Storlek',
     ],
     'helpers'       => [
-        'base'          => 'Lägg till markörer på kartan genom att klicka var som helst på den.',
-        'custom_icon'   => 'Kopiera HTML:en för en ikon från :fontawesome eller :rpgawesome, eller en egen SVG ikon.',
-        'draggable'     => 'Aktivera för att tillåta flyttning av markörer i utforsknings läget.',
+        'base'      => 'Lägg till markörer på kartan genom att klicka var som helst på den.',
+        'draggable' => 'Aktivera för att tillåta flyttning av markörer i utforsknings läget.',
     ],
     'icons'         => [
         'custom'        => 'Anpassad',

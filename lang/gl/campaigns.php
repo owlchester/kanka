@@ -309,7 +309,6 @@ TEXT
                 'permission'    => 'Permite establecer permisos en entidades deste tipo que poidan editar.',
                 'read'          => 'Permite ver todas as entidades deste tipo que non sexan privadas.',
             ],
-            'hint'      => 'Este rol ten automáticamente acceso a todo.',
         ],
         'placeholders'  => [
             'name'  => 'Nome do rol',

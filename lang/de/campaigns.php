@@ -313,7 +313,6 @@ TEXT
                 'permission'    => 'Erlaube Einstellungsberechtigungen für Objekte dieses Typs, die sie bearbeiten können.',
                 'read'          => 'Erlauben Sie die Anzeige aller Objekte dieses Typs, die nicht privat sind.',
             ],
-            'hint'      => 'Diese Rolle hat automatisch Zugriff auf alles.',
         ],
         'placeholders'  => [
             'name'  => 'Name der Rolle',

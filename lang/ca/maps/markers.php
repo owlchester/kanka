@@ -40,7 +40,6 @@ return [
         'base'                      => 'Afegiu marcadors al mapa fent clic a qualsevol lloc.',
         'copy_elements'             => 'Copia grups, capes i marcadors.',
         'copy_elements_to_campaign' => 'Copia grups, capes i marcadors dels mapes. Els marcadors vinculats a una entitat es convertiran en marcadors estàndard.',
-        'custom_icon'               => 'Copieu l\'HTML d\'una icona de :fontawesome o :rpgawesome, o una icona SVG personalitzada.',
         'custom_radius'             => 'Seleccioneu l\'opció de tamany personalitzat al desplegable per a definir un tamany.',
         'draggable'                 => 'Permet moure els marcadors al mode d\'exploració.',
         'label'                     => 'Una etiqueta es mostra com un bloc de text al mapa. El seu contingut serà el nom del marcador.',

@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Uzavretá',
         'messages'      => 'Správy',
         'participants'  => 'Účastníci',
-        'target'        => 'Cieľ',
     ],
     'hints'         => [
         'participants'  => 'Prosím, pridaj do diskusiu účastníkov tým, že klikneš na symbol :icon hore vpravo.',

@@ -219,7 +219,6 @@ TEXT
             'helpers'   => [
                 'entity_note'   => 'Questo permette ad utenti che non hanno il permesso di modificare un\'entità di aggiungere note ad essa.',
             ],
-            'hint'      => 'Questo ruolo ha automaticamente accesso a tutto.',
         ],
         'placeholders'  => [
             'name'  => 'Nome del ruolo',

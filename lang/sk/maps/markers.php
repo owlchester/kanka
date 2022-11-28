@@ -47,7 +47,6 @@ return [
         'base'                      => 'Pridaj značky na mapu kliknutím na hociktorý bod na nej.',
         'copy_elements'             => 'Kopírovať skupiny, vrstvy a značky.',
         'copy_elements_to_campaign' => 'Kopírovať skupiny, vrstvy a značky na mapách. Značky prepojené s objektami budú konverované na štandardné značky.',
-        'custom_icon'               => 'Skopíruj HTML symbolu z :fontawesome alebo :rpgawesome, alebo vlastného SVG symbolu.',
         'custom_radius'             => 'Vyber si vlastnú veľkosť z možností v menu, ak chceš definovať veľkosť.',
         'draggable'                 => 'Aktivovaním umožníš premiestnenie značky v Prieskumníkovi.',
         'label'                     => 'Popis sa zobrazuje ako odsek textu na mape. Jeho obsah bude názov značky daného objektu.',

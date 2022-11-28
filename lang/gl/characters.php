@@ -28,7 +28,6 @@ return [
         'life'                      => 'Biografía',
         'physical'                  => 'Físico',
         'pronouns'                  => 'Terminacións/pronomes',
-        'races'                     => 'Razas',
         'sex'                       => 'Xénero',
         'title'                     => 'Título',
         'traits'                    => 'Trazos de personalidade',

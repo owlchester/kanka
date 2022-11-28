@@ -24,9 +24,8 @@ return [
         'opacity'       => 'Opacità',
     ],
     'helpers'       => [
-        'base'          => 'Aggiungi marcatori alla mappa cliccando su un qualsiasi punto della stessa.',
-        'custom_icon'   => 'Copia il codice HTML di un\'icona da :fontawesome o da :rpgawesome, o un\'icona SVG personalizzata.',
-        'draggable'     => 'Attivalo per permettere lo spostamento di un marcatore in modalità Esplora.',
+        'base'      => 'Aggiungi marcatori alla mappa cliccando su un qualsiasi punto della stessa.',
+        'draggable' => 'Attivalo per permettere lo spostamento di un marcatore in modalità Esplora.',
     ],
     'icons'         => [
         'custom'        => 'Personalizzato',

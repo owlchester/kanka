@@ -11,7 +11,6 @@ return [
     'fields'        => [
         'messages'      => 'Meddelanden',
         'participants'  => 'Deltagare',
-        'target'        => 'Mål',
     ],
     'hints'         => [
         'participants'  => 'Vänligen lägg till deltagare till din konversation genom att trycka på :icon ikonen uppe till höger.',

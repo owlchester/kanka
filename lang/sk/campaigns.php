@@ -309,7 +309,6 @@ TEXT
                 'permission'    => 'Povolí nastaviť oprávnenia na objektoch typu, ktoré môže upravovať.',
                 'read'          => 'Povolí zobrazenie všetkých objektov tohto typu, ktoré nie sú súkromné.',
             ],
-            'hint'      => 'Táto rola má automaticky prístup ku všetkému.',
         ],
         'placeholders'  => [
             'name'  => 'Názov role',
