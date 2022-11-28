@@ -343,7 +343,7 @@ class PluginVersion extends Model
     protected function loadTranslations(): void
     {
         // Always add the user's locale + en as a fallback
-        $userLocale = auth()->user()->locale;
+        $userLocale = app()->getLocale();
         $locales = [$userLocale, 'en'];
 
         foreach ($this->getTranslationsAttribute() as $translation) {
