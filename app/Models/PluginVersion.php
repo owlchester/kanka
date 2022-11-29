@@ -404,7 +404,7 @@ class PluginVersion extends Model
 
         $tags = [];
         foreach ($entity->tags as $tag) {
-            $tags[] = $tag->slug;
+            $tags[$tag->slug] = $tag->name;
         }
         $data['_tags'] = $tags;
 
