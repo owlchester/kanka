@@ -406,11 +406,11 @@ body.map-drawing-mode {
 
 .marker-preset-list .preset {
     padding: 0.8rem;
-    border: 1px solid #eee;
-    background-color: #eee;
+    border: 1px solid var(--tab-background);
+    background-color: var(--tab-background);
     border-radius: 5px;
     &:hover {
-        border: 1px solid #aaa;
+        border: 1px solid var(--tab-hover-background);
     }
 
     .preset-use {
