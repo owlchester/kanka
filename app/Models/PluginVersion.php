@@ -165,8 +165,8 @@ class PluginVersion extends Model
         $html = preg_replace('`config\((.*?)\)`i', '', $html);
 
         // Replace translation calls with blade echoes
-        $html = preg_replace_callback('`\@i18n\(\'(.*?[^)])\'\)`i', function ($matches) {
-            return '{{ trans("' . $matches[1] . '") }}';
+        $html = preg_replace_callback('`\@i18n\((.*?[^)])\)`i', function ($matches) {
+            return '{{ trans(' . $matches[1] . ') }}';
         }, $html);
 
         $this->loadTranslations();
