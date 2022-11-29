@@ -8,7 +8,7 @@
         <i class="ra ra-tower" title="{{ __('entities.location') }}"></i>
 
         @if ($model->location->parentLocation)
-            {!! __('entities.locations', [
+            {!! __('crud.fields.locations', [
                 'first' => $model->location->tooltipedLink(),
                 'second' => $model->location->parentLocation->tooltipedLink(),
             ]) !!}
