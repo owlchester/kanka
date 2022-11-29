@@ -401,7 +401,6 @@ class PluginVersion extends Model
         $data['_locale'] = app()->getLocale();
         $data['_entity_name'] = $entity->name;
         $data['_entity_entity_type'] = $entity->type();
-        $data['_locale'] = app()->getLocale();
 
         $campaign = CampaignLocalization::getCampaign();
         $data['_superboosted'] = $campaign->superboosted();
