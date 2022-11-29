@@ -164,10 +164,18 @@ class PluginVersion extends Model
         $html = preg_replace('`dd\((.*?)\)`i', '', $html);
         $html = preg_replace('`config\((.*?)\)`i', '', $html);
 
-        // Replace translation calls with blade echoes
-        $html = preg_replace_callback('`\@i18n\((.*?[^)])\)`i', function ($matches) {
+        // First loop to replace i18n with ()) in the texts
+        $regexp = '`\@i18n(\((?:[^)(]++|(?1))*\))`i';
+        $html = preg_replace_callback($regexp, function ($matches) {
             return '{{ trans(' . $matches[1] . ') }}';
         }, $html);
+
+        // Next loop on the easy non complicated i18n calls without ()
+        $regexp = '`\@i18n\((.*?)\)`i';
+        $html = preg_replace_callback($regexp, function ($matches) {
+            return '{{ trans(' . $matches[1] . ') }}';
+        }, $html);
+        dd($html);
 
         $this->loadTranslations();
 
