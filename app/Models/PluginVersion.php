@@ -402,6 +402,12 @@ class PluginVersion extends Model
         $data['_entity_name'] = $entity->name;
         $data['_entity_entity_type'] = $entity->type();
 
+        $tags = [];
+        foreach ($entity->tags as $tag) {
+            $tags[] = $tag->slug;
+        }
+        $data['_tags'] = $tags;
+
         $campaign = CampaignLocalization::getCampaign();
         $data['_superboosted'] = $campaign->superboosted();
 
