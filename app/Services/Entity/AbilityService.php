@@ -62,16 +62,6 @@ class AbilityService
             if (empty($ability->ability) || empty($ability->ability->entity)) {
                 continue;
             }
-            $class = '';
-            foreach ($ability->ability->entity->tagsWithEntity() as $tag) {
-                $class .= ' kanka-tag-' . $tag->id;
-                $class .= ' kanka-tag-' . $tag->slug;
-
-                if ($tag->tag_id) {
-                    $class .= ' kanka-tag-' . $tag->tag_id;
-                }
-                $abilities[$key]['class'] = $class;
-            }
             // If this ability has a parent ability, save it there
             $this->add($ability);
         }
@@ -167,6 +157,17 @@ class AbilityService
      */
     protected function format(EntityAbility $entityAbility): array
     {
+        $classes = [];
+        foreach ($entityAbility->ability->entity->tagsWithEntity() as $tag) {
+            $classes[] = ' kanka-tag-' . $tag->id;
+            $classes[] = ' kanka-tag-' . $tag->slug;
+
+            if ($tag->tag_id) {
+                $classes[] = ' kanka-tag-' . $tag->tag_id;
+            }
+        }
+        implode(' ', $classes);
+
         $data = [
             'ability_id' => $entityAbility->ability_id,
             'name' => $entityAbility->ability->name,
@@ -174,7 +175,7 @@ class AbilityService
             'type' => $entityAbility->ability->type,
             'charges' => $this->parseCharges($entityAbility->ability),
             'used_charges' => $entityAbility->charges,
-            'class' => $entityAbility->class,
+            'class' => $classes,
             'note' => nl2br((string) $this->mapAttributes(
                 Mentions::mapAny($entityAbility, 'note'),
                 false
