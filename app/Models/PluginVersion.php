@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Translation\Translator;
-use Illuminate\Contracts\Translation\Loader;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
@@ -397,6 +396,15 @@ class PluginVersion extends Model
         // We need this for some blade directives like foreach
         $data['__env'] = app(\Illuminate\View\Factory::class);
         $data['attributes'] = $allAttributes;
+
+        // Share some attributes to plugin developers
+        $data['_locale'] = app()->getLocale();
+        $data['_entity_name'] = $entity->name;
+        $data['_entity_entity_type'] = $entity->type();
+        $data['_locale'] = app()->getLocale();
+
+        $campaign = CampaignLocalization::getCampaign();
+        $data['_superboosted'] = $campaign->superboosted();
 
         // Add any missing attributes to be accessible in blade
         foreach ($this->templateAttributes as $name) {
