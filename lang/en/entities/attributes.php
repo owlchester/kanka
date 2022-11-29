@@ -55,6 +55,9 @@ return [
         'template'  => 'Select a template',
         'value'     => 'Value of the attribute',
     ],
+    'ranges'        => [
+        'text'     => 'Available options: :options'
+    ],
     'show'          => [
         'title' => ':name Attributes',
     ],
