@@ -65,8 +65,11 @@ if ($firstNote && $firstNote->position >= 0) {
     }
 
     // If it's a visibility self & admin and we're not the creator, we can't change this
-    if ($note->visibility === \App\Models\Visibility::VISIBILITY_ADMIN_SELF_STR && $note->created_by !== auth()->user()->id) {
+    if ($note->visibility_id === \App\Models\Visibility::VISIBILITY_ADMIN_SELF && $note->created_by !== auth()->user()->id) {
         $options = [\App\Models\Visibility::VISIBILITY_ADMIN_SELF => __('crud.visibilities.admin-self')];
+    }
+    elseif ($note->visibility_id === \App\Models\Visibility::VISIBILITY_SELF && $note->created_by !== auth()->user()->id) {
+        $options = [\App\Models\Visibility::VISIBILITY_SELF => __('crud.visibilities.self')];
     }
 @endphp
                         <select name="posts[{{ $note->id }}][visibility_id]" class="form-control">
