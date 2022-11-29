@@ -175,7 +175,6 @@ class PluginVersion extends Model
         $html = preg_replace_callback($regexp, function ($matches) {
             return '{{ trans(' . $matches[1] . ') }}';
         }, $html);
-        dd($html);
 
         $this->loadTranslations();
 
