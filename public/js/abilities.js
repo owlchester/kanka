@@ -879,338 +879,334 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "ability", attrs: { "data-tags": _vm.ability.class } },
-    [
-      _c("div", { staticClass: "box box-solid" }, [
-        _c("div", { staticClass: "box-header with-border" }, [
-          _c(
-            "span",
-            { staticClass: "box-title" },
-            [
-              _vm.permission
-                ? _c(
-                    "dropdown",
-                    {
-                      staticClass: "message-options",
-                      attrs: { tag: "a", "menu-left": "" },
-                    },
-                    [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "dropdown-toggle",
-                          attrs: { role: "button" },
-                        },
-                        [
-                          _vm.ability.visibility_id === 2
-                            ? _c("i", {
-                                staticClass: "fa-solid fa-lock",
-                                attrs: { title: _vm.translate("admin") },
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.ability.visibility_id === 3
-                            ? _c("i", {
-                                staticClass: "fa-solid fa-user-lock",
-                                attrs: { title: _vm.translate("admin-self") },
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.ability.visibility_id === 5
-                            ? _c("i", {
-                                staticClass: "fa-solid fa-users",
-                                attrs: { title: _vm.translate("members") },
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.ability.visibility_id === 4
-                            ? _c("i", {
-                                staticClass: "fa-solid fa-user-secret",
-                                attrs: { title: _vm.translate("self") },
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.ability.visibility_id === 1
-                            ? _c("i", {
-                                staticClass: "fa-solid fa-eye",
-                                attrs: { title: _vm.translate("all") },
-                              })
-                            : _vm._e(),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("template", { slot: "dropdown" }, [
-                        _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: { role: "button" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.setVisibility(1)
-                                },
+  return _c("div", { staticClass: "ability" }, [
+    _c("div", { staticClass: "box box-solid" }, [
+      _c("div", { staticClass: "box-header with-border" }, [
+        _c(
+          "span",
+          { staticClass: "box-title" },
+          [
+            _vm.permission
+              ? _c(
+                  "dropdown",
+                  {
+                    staticClass: "message-options",
+                    attrs: { tag: "a", "menu-left": "" },
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-toggle",
+                        attrs: { role: "button" },
+                      },
+                      [
+                        _vm.ability.visibility_id === 2
+                          ? _c("i", {
+                              staticClass: "fa-solid fa-lock",
+                              attrs: { title: _vm.translate("admin") },
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.ability.visibility_id === 3
+                          ? _c("i", {
+                              staticClass: "fa-solid fa-user-lock",
+                              attrs: { title: _vm.translate("admin-self") },
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.ability.visibility_id === 5
+                          ? _c("i", {
+                              staticClass: "fa-solid fa-users",
+                              attrs: { title: _vm.translate("members") },
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.ability.visibility_id === 4
+                          ? _c("i", {
+                              staticClass: "fa-solid fa-user-secret",
+                              attrs: { title: _vm.translate("self") },
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.ability.visibility_id === 1
+                          ? _c("i", {
+                              staticClass: "fa-solid fa-eye",
+                              attrs: { title: _vm.translate("all") },
+                            })
+                          : _vm._e(),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("template", { slot: "dropdown" }, [
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { role: "button" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.setVisibility(1)
                               },
                             },
-                            [_vm._v(_vm._s(_vm.translate("all")))]
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _vm.meta.is_admin
-                          ? _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { role: "button" },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.setVisibility(2)
-                                    },
-                                  },
-                                },
-                                [_vm._v(_vm._s(_vm.translate("admin")))]
-                              ),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        this.isSelf
-                          ? _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { role: "button" },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.setVisibility(4)
-                                    },
-                                  },
-                                },
-                                [_vm._v(_vm._s(_vm.translate("self")))]
-                              ),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        this.isSelf
-                          ? _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { role: "button" },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.setVisibility(5)
-                                    },
-                                  },
-                                },
-                                [_vm._v(_vm._s(_vm.translate("members")))]
-                              ),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        this.isSelf
-                          ? _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { role: "button" },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.setVisibility(3)
-                                    },
-                                  },
-                                },
-                                [_vm._v(_vm._s(_vm.translate("admin-self")))]
-                              ),
-                            ])
-                          : _vm._e(),
+                          },
+                          [_vm._v(_vm._s(_vm.translate("all")))]
+                        ),
                       ]),
-                    ],
-                    2
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  attrs: {
-                    role: "button",
-                    "data-toggle": "tooltip-ajax",
-                    "data-id": _vm.ability.entity.id,
-                    "data-url": _vm.ability.entity.tooltip,
-                  },
-                  on: {
-                    click: function ($event) {
-                      return _vm.showAbility(_vm.ability)
-                    },
-                  },
-                },
-                [
-                  _vm._v(
-                    "\n                  " +
-                      _vm._s(_vm.ability.name) +
-                      "\n                "
-                  ),
-                ]
-              ),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "box-tools" }, [
-            this.canDelete
-              ? _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-box-tool",
-                    attrs: { role: "button", title: _vm.translate("update") },
-                    on: {
-                      click: function ($event) {
-                        return _vm.updateAbility(_vm.ability)
-                      },
-                    },
-                  },
-                  [_c("i", { staticClass: "fa-solid fa-pencil" })]
+                      _vm._v(" "),
+                      _vm.meta.is_admin
+                        ? _c("li", [
+                            _c(
+                              "a",
+                              {
+                                attrs: { role: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.setVisibility(2)
+                                  },
+                                },
+                              },
+                              [_vm._v(_vm._s(_vm.translate("admin")))]
+                            ),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      this.isSelf
+                        ? _c("li", [
+                            _c(
+                              "a",
+                              {
+                                attrs: { role: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.setVisibility(4)
+                                  },
+                                },
+                              },
+                              [_vm._v(_vm._s(_vm.translate("self")))]
+                            ),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      this.isSelf
+                        ? _c("li", [
+                            _c(
+                              "a",
+                              {
+                                attrs: { role: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.setVisibility(5)
+                                  },
+                                },
+                              },
+                              [_vm._v(_vm._s(_vm.translate("members")))]
+                            ),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      this.isSelf
+                        ? _c("li", [
+                            _c(
+                              "a",
+                              {
+                                attrs: { role: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.setVisibility(3)
+                                  },
+                                },
+                              },
+                              [_vm._v(_vm._s(_vm.translate("admin-self")))]
+                            ),
+                          ])
+                        : _vm._e(),
+                    ]),
+                  ],
+                  2
                 )
               : _vm._e(),
             _vm._v(" "),
-            this.canDelete
-              ? _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-box-tool",
-                    attrs: { role: "button", title: _vm.translate("remove") },
-                    on: {
-                      click: function ($event) {
-                        return _vm.deleteAbility(_vm.ability)
-                      },
-                    },
+            _c(
+              "a",
+              {
+                attrs: {
+                  role: "button",
+                  "data-toggle": "tooltip-ajax",
+                  "data-id": _vm.ability.entity.id,
+                  "data-url": _vm.ability.entity.tooltip,
+                },
+                on: {
+                  click: function ($event) {
+                    return _vm.showAbility(_vm.ability)
                   },
-                  [_c("i", { staticClass: "fa-solid fa-trash" })]
-                )
-              : _vm._e(),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "box-body" }, [
-          _vm.ability.images.has
-            ? _c("a", {
-                staticClass: "ability-image cover-background",
-                style: _vm.backgroundImage,
-                attrs: { target: "_blank", href: _vm.ability.images.url },
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _c("span", { staticClass: "help-block" }, [
-            _vm._v(_vm._s(_vm.ability.type)),
-          ]),
-          _vm._v(" "),
-          _c("div", { domProps: { innerHTML: _vm._s(_vm.ability.entry) } }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "help-block",
-            domProps: { innerHTML: _vm._s(_vm.ability.note) },
-          }),
-          _vm._v(" "),
-          _vm.ability.charges
-            ? _c("div", [
-                _c(
-                  "div",
-                  { staticClass: "charges" },
-                  _vm._l(_vm.ability.charges, function (n) {
-                    return _c("div", {
-                      staticClass: "charge",
-                      class: { used: _vm.ability.used_charges >= n },
-                      on: {
-                        click: function ($event) {
-                          return _vm.useCharge(_vm.ability, n)
-                        },
-                      },
-                    })
-                  }),
-                  0
+                },
+              },
+              [
+                _vm._v(
+                  "\n                  " +
+                    _vm._s(_vm.ability.name) +
+                    "\n                "
                 ),
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.hasAttribute
+              ]
+            ),
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "box-tools" }, [
+          this.canDelete
             ? _c(
-                "div",
+                "a",
                 {
-                  staticClass: "text-center more-available",
+                  staticClass: "btn btn-box-tool",
+                  attrs: { role: "button", title: _vm.translate("update") },
                   on: {
                     click: function ($event) {
-                      return _vm.click(_vm.ability)
+                      return _vm.updateAbility(_vm.ability)
                     },
                   },
                 },
-                [
-                  !_vm.details
-                    ? _c("i", { staticClass: "fa-solid fa-chevron-down" })
-                    : _vm._e(),
-                ]
+                [_c("i", { staticClass: "fa-solid fa-pencil" })]
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.details && _vm.hasAttribute
-            ? _c("div", [
-                _c(
-                  "dl",
-                  { staticClass: "dl-horizontal" },
-                  _vm._l(_vm.ability.attributes, function (att) {
-                    return _c("div", [
-                      att.type == "section"
-                        ? _c("div", { staticClass: "panel panel-default" }, [
-                            _c("div", { staticClass: "panel-heading" }, [
-                              _c("h4", { staticClass: "panel-title" }, [
-                                _vm._v(_vm._s(att.name)),
-                              ]),
-                            ]),
-                          ])
-                        : _c("div", [
-                            _c("dt", [_vm._v(_vm._s(att.name))]),
-                            _vm._v(" "),
-                            att.type == "checkbox"
-                              ? _c("dd", [
-                                  att.value == 1
-                                    ? _c("i", {
-                                        staticClass: "fa-solid fa-check",
-                                      })
-                                    : _vm._e(),
-                                ])
-                              : _c("dd", {
-                                  domProps: { innerHTML: _vm._s(att.value) },
-                                }),
-                          ]),
-                    ])
-                  }),
-                  0
-                ),
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.hasAttribute
+          this.canDelete
             ? _c(
-                "div",
+                "a",
                 {
-                  staticClass: "text-center more-available",
+                  staticClass: "btn btn-box-tool",
+                  attrs: { role: "button", title: _vm.translate("remove") },
                   on: {
                     click: function ($event) {
-                      return _vm.click(_vm.ability)
+                      return _vm.deleteAbility(_vm.ability)
                     },
                   },
                 },
-                [
-                  _vm.details
-                    ? _c("i", { staticClass: "fa-solid fa-chevron-up" })
-                    : _vm._e(),
-                ]
+                [_c("i", { staticClass: "fa-solid fa-trash" })]
               )
             : _vm._e(),
         ]),
       ]),
-    ]
-  )
+      _vm._v(" "),
+      _c("div", { staticClass: "box-body" }, [
+        _vm.ability.images.has
+          ? _c("a", {
+              staticClass: "ability-image cover-background",
+              style: _vm.backgroundImage,
+              attrs: { target: "_blank", href: _vm.ability.images.url },
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c("span", { staticClass: "help-block" }, [
+          _vm._v(_vm._s(_vm.ability.type)),
+        ]),
+        _vm._v(" "),
+        _c("div", { domProps: { innerHTML: _vm._s(_vm.ability.entry) } }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "help-block",
+          domProps: { innerHTML: _vm._s(_vm.ability.note) },
+        }),
+        _vm._v(" "),
+        _vm.ability.charges
+          ? _c("div", [
+              _c(
+                "div",
+                { staticClass: "charges" },
+                _vm._l(_vm.ability.charges, function (n) {
+                  return _c("div", {
+                    staticClass: "charge",
+                    class: { used: _vm.ability.used_charges >= n },
+                    on: {
+                      click: function ($event) {
+                        return _vm.useCharge(_vm.ability, n)
+                      },
+                    },
+                  })
+                }),
+                0
+              ),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.hasAttribute
+          ? _c(
+              "div",
+              {
+                staticClass: "text-center more-available",
+                on: {
+                  click: function ($event) {
+                    return _vm.click(_vm.ability)
+                  },
+                },
+              },
+              [
+                !_vm.details
+                  ? _c("i", { staticClass: "fa-solid fa-chevron-down" })
+                  : _vm._e(),
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.details && _vm.hasAttribute
+          ? _c("div", [
+              _c(
+                "dl",
+                { staticClass: "dl-horizontal" },
+                _vm._l(_vm.ability.attributes, function (att) {
+                  return _c("div", [
+                    att.type == "section"
+                      ? _c("div", { staticClass: "panel panel-default" }, [
+                          _c("div", { staticClass: "panel-heading" }, [
+                            _c("h4", { staticClass: "panel-title" }, [
+                              _vm._v(_vm._s(att.name)),
+                            ]),
+                          ]),
+                        ])
+                      : _c("div", [
+                          _c("dt", [_vm._v(_vm._s(att.name))]),
+                          _vm._v(" "),
+                          att.type == "checkbox"
+                            ? _c("dd", [
+                                att.value == 1
+                                  ? _c("i", {
+                                      staticClass: "fa-solid fa-check",
+                                    })
+                                  : _vm._e(),
+                              ])
+                            : _c("dd", {
+                                domProps: { innerHTML: _vm._s(att.value) },
+                              }),
+                        ]),
+                  ])
+                }),
+                0
+              ),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.hasAttribute
+          ? _c(
+              "div",
+              {
+                staticClass: "text-center more-available",
+                on: {
+                  click: function ($event) {
+                    return _vm.click(_vm.ability)
+                  },
+                },
+              },
+              [
+                _vm.details
+                  ? _c("i", { staticClass: "fa-solid fa-chevron-up" })
+                  : _vm._e(),
+              ]
+            )
+          : _vm._e(),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
