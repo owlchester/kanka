@@ -268,7 +268,6 @@ TEXT
                 'permission'    => 'Umožní nastavovat oprávnění k objektům, které může tato role sama upravovat',
                 'read'          => 'Umožní zobrazení objektů tohoto typu, které nejsou označeny jako soukromé',
             ],
-            'hint'      => 'Tato role umožní automaticky přístup ke všemu.',
         ],
         'placeholders'  => [
             'name'  => 'Název role',

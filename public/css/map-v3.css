@@ -405,12 +405,12 @@ body.map-drawing-mode .map-actions .btn-mode-drawing {
 
 .marker-preset-list .preset {
   padding: 0.8rem;
-  border: 1px solid #eee;
-  background-color: #eee;
+  border: 1px solid var(--tab-background);
+  background-color: var(--tab-background);
   border-radius: 5px;
 }
 .marker-preset-list .preset:hover {
-  border: 1px solid #aaa;
+  border: 1px solid var(--tab-hover-background);
 }
 .marker-preset-list .preset .preset-use {
   cursor: pointer;

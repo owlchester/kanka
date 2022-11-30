@@ -1,10 +1,7 @@
 <?php
 
 return [
-    'entity_note'   => ':name (פתק אובייקט)',
-    'fields'        => [
-        'entity'    => 'אובייקט',
-    ],
+    'fields'        => [],
     'helper'        => 'רשימה של כל האובייקטים המאזכרים את אובייקט זה.',
     'mentioned_in'  => 'מאוזכר ב:count אובייקטים.',
     'show'          => [

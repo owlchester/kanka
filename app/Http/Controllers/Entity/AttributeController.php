@@ -136,7 +136,7 @@ class AttributeController extends Controller
         }
 
         $attribute = $entity->attributes()->where('id', $id)->first();
-        if (!$id) {
+        if (!$id || !$attribute) {
             return abort(421);
         }
 

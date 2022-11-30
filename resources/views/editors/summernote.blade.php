@@ -39,6 +39,8 @@
         data-gallery-deselect-all="{{ __('general.deselect_all') }}"
         data-gallery-error="generic.gallery.error"
         data-filesize="{{ auth()->user()->maxUploadSize() }}"
+        data-placeholder="{{ __('crud.placeholders.entry') }}"
+        data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
 @if(isset($campaignService) && $campaignService->campaign() !== null)
         data-gallery="{{ $campaignService->campaign()->superboosted() ? route('campaign.gallery.summernote') : null }}"
     @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif

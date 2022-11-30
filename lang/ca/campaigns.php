@@ -283,7 +283,6 @@ TEXT
                 'permission'    => 'Permet configurar els permisos a les entitats d\'aquest tipus que puguin editar.',
                 'read'          => 'Permet veure totes les entitats d\'aquest tipus que no siguin privades.',
             ],
-            'hint'      => 'Aquest rol té accés automàtic a tot.',
         ],
         'placeholders'  => [
             'name'  => 'Nom del rol',

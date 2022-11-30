@@ -40,7 +40,6 @@ return [
         'base'                      => 'Dodaj markere na kartu klikom na bilo koje mjesto.',
         'copy_elements'             => 'Kopiraj grupe, slojeve i markere.',
         'copy_elements_to_campaign' => 'Kopiraj grupe, slojeve i markere na kartama. Markeri povezane s entitetom pretvorit će se u standardne markere.',
-        'custom_icon'               => 'Kopiraj HTML ikone iz :fontawesome ili :rpgawesome ili proizvoljne SVG ikone.',
         'custom_radius'             => 'Za samostalno definiranje veličine odaberi opciju proizvoljne veličine iz padajućeg izbornika.',
         'draggable'                 => 'Omogući za omogućavanje pomicanja markera u načinu istraživanja.',
         'label'                     => 'Oznaka se prikazuje kao blok teksta na karti. Sadržaj će biti ime markera imena entiteta.',

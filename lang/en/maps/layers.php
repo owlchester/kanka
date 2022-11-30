@@ -25,7 +25,7 @@ return [
         'type'      => 'Layer type',
     ],
     'helper'        => [
-        'amount_v2' => 'Upload layers to a map to switch the background image displayed below the markers.',
+        'amount_v2' => 'Upload layers to a map to switch the background image displayed below the markers, or as overlays above the map but beneath the markers.',
         'is_real'   => 'Layers aren\'t available when using OpenStreetMaps.',
     ],
     'index'         => [

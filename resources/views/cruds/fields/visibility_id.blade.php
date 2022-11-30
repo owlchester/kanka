@@ -28,7 +28,7 @@ if (isset($model) && $model->visibility_id === Visibility::VISIBILITY_ADMIN_SELF
 
 // The visibility is set to admin but we're not an admin, don't allow changing
 // as it's a custom permission for the user to be able to edit this model.
-if (isset($model) && in_array($model->visibility_id, [Visibility::VISIBILITY_ADMIN, Visibility::VISIBILITY_MEMBERS]) && !auth()->user()->isAdmin()) {
+if (isset($model) && in_array($model->visibility_id, [Visibility::VISIBILITY_ADMIN, Visibility::VISIBILITY_MEMBERS, Visibility::VISIBILITY_SELF]) && !auth()->user()->isAdmin()) {
     ?><input type="hidden" name="visibility_id" value="{{ $model->visibility_id }}" /><?php
     return;
 }

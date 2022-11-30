@@ -1,6 +1,7 @@
 import Sortable from 'sortablejs';
 
 window.initSortable = function() {
+
     var dragndropArea = document.querySelectorAll('.sortable-elements'), i;
     if (dragndropArea.length === 0) {
         return;

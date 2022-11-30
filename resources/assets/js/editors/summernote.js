@@ -12,12 +12,13 @@ $(document).ready(function () {
  * Initialize summernote when available
  */
 window.initSummernote = function() {
-
     const $summernote = $('.html-editor').summernote({
         height: '300px',
         maximumImageFileSize: parseInt(summernoteConfig.data('filesize')) * 1024,
         lang: editorLang(summernoteConfig.data('locale')),
         hintSelect: 'next',
+        placeholder: summernoteConfig.data('placeholder'),
+        dialogsInBody: summernoteConfig.data('dialogs') === 1,
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],

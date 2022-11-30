@@ -21,6 +21,7 @@ use Illuminate\Support\Str;
  * @property int $status_id
  * @property int $created_by
  * @property string $name
+ * @property bool $is_obsolete
  *
  * @property PluginVersion[]|Collection $versions
  * @property PluginVersion $version
@@ -100,6 +101,7 @@ class Plugin extends Model
                     WHERE upd.plugin_id = ' . $this->getTable() . '.id AND
                     (upd.status_id = 3 OR (upd.status_id in (1,3) AND ' . $this->getTable() . '.created_by = ' . auth()->user()->id . ')) AND
                     upd.id > campaign_plugins.plugin_version_id
+                    LIMIT 1
                 ) IS NOT NULL THEN 1 ELSE 0 END AS has_update';
         }
 
@@ -173,5 +175,14 @@ class Plugin extends Model
     public function url(string $sub): string
     {
         return 'campaign_plugins.' . $sub;
+    }
+
+    /**
+     * Determine if the plugin is obsolete
+     * @return bool
+     */
+    public function obsolete(): bool
+    {
+        return $this->is_obsolete;
     }
 }

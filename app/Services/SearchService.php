@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\MiscModel;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class SearchService
@@ -187,7 +188,7 @@ class SearchService
             if ($this->campaign->boosted()) {
                 $query
                     ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
-                    ->groupBy('ea.entity_id')
+                    ->distinct()
                     ->leftJoin('entity_assets as ea', function ($join) use ($cleanTerm) {
                         $join->on('ea.entity_id', '=', 'entities.id');
                         if (Str::startsWith($this->term, '=')) {
@@ -224,13 +225,13 @@ class SearchService
         $query
             ->limit($this->limit);
 
-        $searchResults = [];
+        $searchResults = $foundEntityIds = [];
         /** @var Entity $model */
         foreach ($query->get() as $model) {
             /** @var MiscModel|null $child */
             // Force having a child for "ghost" entities.
             $child = $model->child;
-            if ($child === null) {
+            if ($child === null || in_array($model->id, $foundEntityIds)) {
                 continue;
             }
             $img = '';
@@ -259,6 +260,7 @@ class SearchService
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
             ];
+            $foundEntityIds[] = $model->id;
 
             //If the result is a map, also add its explore page as a result.
             if (!request()->new && $model->isMap() && $model->child->explorable()) {

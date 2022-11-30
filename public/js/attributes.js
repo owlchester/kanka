@@ -4120,6 +4120,13 @@ function initLiveAttributes() {
           var target = $('[data-uid="' + result.uid + '"]'); //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
 
           target.html(result.value);
+
+          if (result.value) {
+            target.removeClass('empty-value');
+          } else {
+            target.addClass('empty-value');
+          }
+
           window.showToast(result.success);
         }).fail(function (result) {
           //alert('error! check console logs');

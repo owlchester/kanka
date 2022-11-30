@@ -20,6 +20,7 @@ return [
         ],
     ],
     'subscribe' => [
+        'pitch-2fa'     => 'Inscreva-se para desbloquear logins seguros com autenticação de dois fatores e muito :more.',
         'pitch-image'   => 'Inscreva-se para desbloquear até :max MB tamanhos de upload de arquivo.',
         'share-booster' => 'Impulsione :campaign para aumentar o tamanho do upload do arquivo para todos os membros da campanha.',
     ],

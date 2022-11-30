@@ -24,7 +24,7 @@ class AttributeMentionService
      */
     public function map(Attribute $attribute, string $field = 'name'): string
     {
-        if (!$this->validField($attribute->$field)) {
+        if (!$this->validField((string) $attribute->$field)) {
             return (string) $attribute->$field;
         }
 
@@ -54,7 +54,7 @@ class AttributeMentionService
      */
     public function parse(Attribute $attribute, string $field = 'value'): string
     {
-        if (!$this->validField($attribute->$field)) {
+        if (!$this->validField((string) $attribute->$field)) {
             return (string) $attribute->$field;
         }
 

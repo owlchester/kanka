@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Uzavřený',
         'messages'      => 'Zprávy',
         'participants'  => 'Účastníci',
-        'target'        => 'Cíl',
     ],
     'hints'         => [
         'participants'  => 'Účastníky rozhovoru přidáš klepnutím na ikonu :icon vpravo nahoře.',

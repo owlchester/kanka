@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Fechado',
         'messages'      => 'Mensagens',
         'participants'  => 'Participantes',
-        'target'        => 'Alvo',
     ],
     'hints'         => [
         'participants'  => 'Por favor, adicione participantes à sua conversa pressionando o ícone :icon no canto superior direito.',

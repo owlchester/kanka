@@ -8,6 +8,7 @@ return [
     'section_11'        => 'Erschaffe deine Welt,',
     'section_2'         => 'Die wichtigste Ressource ist: :discord, wo Sie viele unserer engagierten Benutzer, ein Onboarding-Team sowie den Gründer von Kanka finden, die alle Ihre Fragen beantworten können.',
     'section_4'         => 'Unser :youtube bietet Videos zu den Grundlagen von Kanka. Obwohl noch nicht alle Themen behandelt werden, fügen wir regelmäßig neue Videos hinzu.',
+    'section_4_v2'      => 'Unsere :knowledge-base deckt die grundlegendsten Fragen ab, die du möglicherweise hast, und für eine umfassendere Hilfe kannst du zu unserer :documentation wechseln!',
     'section_6'         => 'Kontaktiere uns',
     'section_7'         => 'Wenn Sie keine Antwort auf Ihre Fragen gefunden haben oder einfach nur Kontakt aufnehmen möchten, finden Sie uns auf: :facebook oder per E-Mail unter :email. Wir sind ein kleines Team von 2 Freunden, aber wir beantworten jede E-Mail, die wir erhalten. Bitte zögern Sie nicht!',
     'section_8'         => 'Eine letzte Sache',

@@ -373,4 +373,9 @@ class Attribute extends Model
     {
         return $this->listRange;
     }
+
+    public function listRangeText(): string
+    {
+        return implode(', ', $this->listRange);
+    }
 }

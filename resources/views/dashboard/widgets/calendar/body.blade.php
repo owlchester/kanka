@@ -7,6 +7,9 @@
  * @var \App\Models\EntityEvent $reminder
  */
 $entity = $widget->entity;
+if (empty($entity)) {
+    return;
+}
 $calendar = $entity->child;
 
 $upcomingEvents = $calendar->upcomingReminders();

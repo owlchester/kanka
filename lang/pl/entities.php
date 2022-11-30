@@ -29,6 +29,8 @@ return [
         'title'             => 'Nowy element',
         'tooltip'           => 'Stwórz nowy element bez opuszczania obecnej strony',
     ],
+    'creature'              => 'Istota',
+    'creatures'             => 'Istoty',
     'dice_roll'             => 'Rzut kośćmi',
     'dice_rolls'            => 'Rzuty kośćmi',
     'event'                 => 'Wydarzenie',

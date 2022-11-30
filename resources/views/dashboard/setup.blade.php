@@ -198,7 +198,7 @@
 
     {{ csrf_field() }}
 
-    @include('editors.editor')
+    @include('editors.editor', ['dialogsInBody' => true])
 @endsection
 
 @section('scripts')

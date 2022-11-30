@@ -17,7 +17,7 @@ return [
     ],
     'helpers'       => [
         'date'              => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce "Ważne daty" wydarzenia.',
-        'nested_without'    => 'Wyświetlono wszystkie wydarzenia nie posiadające źródła. Kliknij na rząd, by wyświetlić wydarzenia pochodne.',
+        'nested_without'    => 'Wyświetlono wszystkie wydarzenia nieposiadające źródła. Kliknij na rząd, by wyświetlić wydarzenia pochodne.',
     ],
     'index'         => [],
     'placeholders'  => [

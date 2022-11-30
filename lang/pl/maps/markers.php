@@ -4,8 +4,14 @@ return [
     'actions'       => [
         'entry'             => 'Dodaj opis do tego znacznika.',
         'remove'            => 'Usuń znacznik',
+        'reset-polygon'     => 'Resetuj pozycje',
         'save_and_explore'  => 'Zapisz i eksploruj',
+        'start-drawing'     => 'Zacznij rysować',
         'update'            => 'Edytuj znacznik',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} Usunięto :count znacznik.|[2,3,4] Usunięto :count znaczniki.|[5,*] Usunięto :count znaczników.',
+        'patch'     => '{1} Zmieniono :count znacznik.|[2,3,4] Zmieniono :count znaczniki.|[5,*] Zmieniono :count znaczników.',
     ],
     'create'        => [
         'success'   => 'Stworzono znacznik :name.',
@@ -25,6 +31,7 @@ return [
         'custom_shape'  => 'Własny kształt',
         'font_colour'   => 'Kolor ikony',
         'group'         => 'Kategoria znaczników',
+        'icon'          => 'Ikona',
         'is_draggable'  => 'Można przesuwać',
         'latitude'      => 'Szerokość',
         'longitude'     => 'Długość',
@@ -40,7 +47,6 @@ return [
         'base'                      => 'Dodaj znacznik, klikając w dowolnym miejscu mapy.',
         'copy_elements'             => 'Kopiuj kategorie, warstwy i znaczniki.',
         'copy_elements_to_campaign' => 'Kopiuje kategorie, warstwy i znaczniki na mapach. Znaczniki prowadzące do elementów zostaną zamienione na standardowe.',
-        'custom_icon'               => 'Skopiuj HTML ikony z :fontawesome lub :rpgawesome, albo własnej ikony SVG.',
         'custom_radius'             => 'Wybierz opcję z rozwijanej listy by określić wielkość.',
         'draggable'                 => 'Pozwala przeciągać znacznik po mapie w trybie eksploracji.',
         'label'                     => '"Podpis" wyświetla na mapie nazwę tego znacznika albo elementu z którym jest związany.',
@@ -54,6 +60,9 @@ return [
         'exclamation'   => 'Wykrzyknik',
         'marker'        => 'Znacznik',
         'question'      => 'Pytajnik',
+    ],
+    'index'         => [
+        'title' => 'Znaczniki mapy :name',
     ],
     'pitches'       => [
         'poly'  => 'Rysuj własne wielokąty, reprezentujące granice albo nieregularne obszary.',

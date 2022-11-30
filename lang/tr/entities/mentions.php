@@ -1,10 +1,7 @@
 <?php
 
 return [
-    'entity_note'   => ':name (Varlık Notu)',
-    'fields'        => [
-        'entity'    => 'Varlık',
-    ],
+    'fields'        => [],
     'helper'        => 'Aşağıdaki "Girdi" kutucuğunda bu varlığı içeren varlıkların bir listesidir.',
     'mentioned_in'  => ':count tane Varlıkta bahsedilmiş.',
     'show'          => [

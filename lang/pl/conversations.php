@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Zamknięta',
         'messages'      => 'Wiadomości',
         'participants'  => 'Uczestnicy',
-        'target'        => 'Rozmówcy',
     ],
     'hints'         => [
         'participants'  => 'Dodawaj uczestników konwersacji naciskając ikonę :icon w prawym górnym rogu.',

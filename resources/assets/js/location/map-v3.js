@@ -120,28 +120,6 @@ function initMapForms()
         }
     });
 
-    /**
-     * Strip HTML from fontAwesome or RPGAwesome and just keep the class to make people's lives
-     * easier.
-     */
-    $('input[name="custom_icon"]').on('paste', function(e) {
-        e.preventDefault();
-        let text;
-        if (e.clipboardData || e.originalEvent.clipboardData) {
-            text = (e.originalEvent || e).clipboardData.getData('text/plain');
-        } else if (window.clipboardData) {
-            text = window.clipboardData.getData('Text');
-        }
-        if (text.startsWith('<i class="fa') || text.startsWith('<i class="ra')) {
-            let className = $(text).attr('class');
-            if (className) {
-                $(this).val(className);
-                return;
-            }
-        }
-        $(this).val(text);
-    });
-
     //console.info('mapsv3', 'initMapForms');
     let markerForm = $('#map-marker-form');
     if ($('#entity-form').length === 0 && $('.map-marker-edit-form').length === 0) {

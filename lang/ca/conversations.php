@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Tancada',
         'messages'      => 'Missatges',
         'participants'  => 'Participants',
-        'target'        => 'Objectiu',
     ],
     'hints'         => [
         'participants'  => 'Afegiu participants a la conversa clicant a la icona :icon adalt a la dreta.',

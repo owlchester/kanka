@@ -40,7 +40,6 @@ return [
         'base'                      => 'Engade marcadores ao mapa facendo clic en calquer punto.',
         'copy_elements'             => 'Copiar grupos, capas, e marcadores.',
         'copy_elements_to_campaign' => 'Copiar grupos, capas, e marcadores dos mapas. Os marcadores ligados a unha entidade serán convertidos a marcadores estándar.',
-        'custom_icon'               => 'Copia o HTML dunha icona de :fontawesome ou de :rpgawesome, ou unha icona SVG personalizada.',
         'custom_radius'             => 'Seleccionar a opción de tamaño personalizado no menú despregábel para definir un tamaño.',
         'draggable'                 => 'Actívao para poder mover un marcador no modo de exploración.',
         'label'                     => 'Un rótulo é mostrado como un bloque de texto no mapa. O contido será o nome do marcador.',

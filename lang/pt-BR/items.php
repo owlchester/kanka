@@ -8,6 +8,8 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Criador',
+        'item'      => 'Item-pai',
+        'items'     => 'Sub-itens',
         'price'     => 'Preço',
         'size'      => 'Tamanho',
     ],
