@@ -1,7 +1,7 @@
 
 
 <template>
-    <div class="ability">
+    <div class="ability" v-bind:data-tags="ability.class">
         <div class="box box-solid">
             <div class="box-header with-border">
                 <span class="box-title">
