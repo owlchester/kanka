@@ -223,6 +223,10 @@ hr {
   background: var(--tab-content-background);
 }
 
+.nav-tabs {
+  border-bottom-color: var(--btn-default-border);
+}
+
 .nav-stacked > li > a, .nav-stacked > li.active > a, .nav-stacked > li.active > a:hover {
   color: var(--submenu-link);
 }

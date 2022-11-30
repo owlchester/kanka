@@ -22,6 +22,8 @@ window.initSummernote = function () {
     maximumImageFileSize: parseInt(summernoteConfig.data('filesize')) * 1024,
     lang: editorLang(summernoteConfig.data('locale')),
     hintSelect: 'next',
+    placeholder: summernoteConfig.data('placeholder'),
+    dialogsInBody: summernoteConfig.data('dialogs') === 1,
     toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['aroba', ['aroba']], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table', 'spoiler', 'tableofcontent']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
     ['view', ['fullscreen', 'codeview', 'help']], summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null],
     popover: {
