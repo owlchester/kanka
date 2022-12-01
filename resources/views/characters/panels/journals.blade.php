@@ -2,7 +2,7 @@
 <div class="box box-solid">
     <div class="box-header">
         <h3 class="box-title">
-            {{ trans('characters.show.tabs.journals') }}
+            {{ __('characters.show.tabs.journals') }}
         </h3>
     </div>
     <div class="box-body">
@@ -13,10 +13,10 @@
         <table id="character-journals" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('journals.fields.name') }}</th>
-                <th class="visible-sm">{{ trans('crud.fields.type') }}</th>
-                <th class="visible-sm">{{ trans('journals.fields.date') }}</th>
-                <th>{{ trans('entities.calendar_date') }}</th>
+                <th>{{ __('journals.fields.name') }}</th>
+                <th class="visible-sm">{{ __('crud.fields.type') }}</th>
+                <th class="visible-sm">{{ __('journals.fields.date') }}</th>
+                <th>{{ __('crud.fields.calendar_date') }}</th>
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $journal)
@@ -32,7 +32,7 @@
                     <td>{{ $dateRenderer->render($journal->getDate()) }}</td>
                     <td class="text-right">
                         <a href="{{ route('journals.show', [$journal]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa-solid fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ __('crud.view') }}</span>
                         </a>
                     </td>
                 </tr>
