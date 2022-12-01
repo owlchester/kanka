@@ -374,9 +374,10 @@ function editorLang(locale) {
  * @param file
  */
 function uploadImage($summernote, file) {
+    let modal = $('#campaign-imageupload-modal');
     // Check if the campaign is superboosted
     if (!summernoteConfig.data('gallery-upload')) {
-        $('#campaign-imageupload-error').modal();
+        modal.modal();
         console.warn('Campaign isn\'t superboosted');
         return;
     }
@@ -396,12 +397,28 @@ function uploadImage($summernote, file) {
             $summernote.summernote('insertImage', result, function ($image) {
                 $image.attr('src', result);
             });
-
         },
         error: function (jqXHR, textStatus, errorThrown) {
+            // Depending on the error, we need to handle the user differently
             //console.log(textStatus + " " + errorThrown);
-            $('#superboosted-error').text(buildErrors(jqXHR.responseJSON.errors));
-            $('#campaign-imageupload-error').modal();
+            //console.log(jqXHR);
+            let error = $('#campaign-imageupload-error');
+            let boosted = $('#campaign-imageupload-boosted');
+            let permission = $('#campaign-imageupload-permission');
+
+            error.hide();
+            boosted.hide();
+            permission.hide();
+
+            if (jqXHR.status === 422) {
+                error.text(buildErrors(jqXHR.responseJSON.errors)).show();
+            } else if (jqXHR.status === 403) {
+                permission.show();
+            } else {
+                boosted.show();
+            }
+            //$('#superboosted-error').text(buildErrors(jqXHR.responseJSON.errors));
+            modal.modal();
         }
     });
 }
