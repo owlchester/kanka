@@ -27,7 +27,7 @@
     </tr>
     </thead>
     <tbody>
-    <?php $eras = $model->eras()->ordered($model->revert_order)->paginate(); ?>
+    <?php $eras = $model->eras()->ordered()->paginate(); ?>
     @foreach ($eras as $era)
         <tr>
             <td>{{ $era->name }}</td>

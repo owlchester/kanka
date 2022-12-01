@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -27,12 +28,23 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class TimelineEra extends Model
 {
+    use SortableTrait;
+
     /** @var string[]  */
     protected $fillable = [
         'timeline_id',
         'name',
         'abbreviation',
         'entry',
+        'start_year',
+        'end_year',
+        'is_collapsed',
+    ];
+
+    protected $sortable = [
+        'name',
+        'position',
+        'abbreviation',
         'start_year',
         'end_year',
         'is_collapsed',
@@ -67,12 +79,12 @@ class TimelineEra extends Model
      * @param Builder $query
      * @return Builder
      */
-    public function scopeOrdered(Builder $query, bool $revertOrder = false)
+    public function scopeOrdered(Builder $query)
     {
         return $query
-            ->orderBy('position', ($revertOrder ? 'desc' : 'asc'))
-            ->orderBy('start_year', ($revertOrder ? 'asc' : 'desc'))
-            ->orderBy('end_year', ($revertOrder ? 'desc' : 'asc'))
+            ->orderBy('position')
+            ->orderBy('start_year')
+            ->orderBy('end_year')
             ->orderBy('name');
     }
 
@@ -113,5 +125,39 @@ class TimelineEra extends Model
     public function hasEntity(): bool
     {
         return false;
+    }
+
+    /**
+     * Functions for the datagrid2
+     * @return string
+     */
+    public function url(string $where): string
+    {
+        return 'timelines.timeline_eras.' . $where;
+    }
+    public function routeParams(array $options = []): array
+    {
+        return [$this->timeline_id, $this->id];
+    }
+
+    /**
+     * Override the get link
+     * @return string
+     */
+    public function getLink(): string
+    {
+        return route('timelines.timeline_eras.edit', ['timeline' => $this->timeline_id, $this->id]);
+    }
+
+    /**
+     * Override the tooltiped link for the datagrid
+     * @param string|null $displayName
+     * @return string
+     */
+    public function tooltipedLink(string $displayName = null): string
+    {
+        return '<a href="' . $this->getLink() . '">' .
+            (!empty($displayName) ? $displayName : e($this->name)) .
+            '</a>';
     }
 }

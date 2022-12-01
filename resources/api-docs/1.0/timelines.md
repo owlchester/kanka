@@ -47,7 +47,6 @@ The list of returned timelines can be filtered. The available filters are availa
             "updated_at": "2020-01-30T17:30:52.000000Z",
             "updated_by": 1,
             "type": "Primary",
-            "revert_order": false,
             "eras": [
               {
                 "name": "Anno Domani",
@@ -115,7 +114,6 @@ To get the details of a single timeline, use the following endpoint.
         "updated_at": "2020-01-30T17:30:52.000000Z",
         "updated_by": 1,
         "type": "Primary",
-        "revert_order": false,
         "eras": [
           {
             "name": "Anno Domani",
@@ -158,7 +156,6 @@ To create a timeline, use the following endpoint.
 | `name` | `string` (Required) | Name of the timeline |
 | `entry` | `string` | The html description of the timeline |
 | `type` | `string` | The timeline's type |
-| `revert_order` | `boolean` | Revert era rendering order (older first) |
 | `tags` | `array` | Array of tag ids |
 | `image_url` | `string` | URL to a picture to be used for the timeline |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |

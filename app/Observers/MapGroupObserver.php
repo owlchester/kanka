@@ -27,9 +27,9 @@ class MapGroupObserver
         if (!empty($mapGroup->position)) {
             $mapGroup->position = (int) $mapGroup->position;
         } else {
-            $lastGroup = $mapGroup->map->groups()->orderByDesc('position')->first();
+            $lastGroup = $mapGroup->map->groups()->max('position');
             if ($lastGroup) {
-                $mapGroup->position = (int)$lastGroup->position + 1;
+                $mapGroup->position = (int)$lastGroup + 1;
             } else {
                 $mapGroup->position = 1;
             }
