@@ -37,7 +37,12 @@
         @endif
     </ul>
 </div>
-
+@if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#hidden-attributes">
+        <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
+        {{ __('entities/attributes.actions.show_hidden') }}
+    </button>
+@endif 
 <div class="alert alert-warning alert-too-many-fields margin-top" style="display:none">
     {!! __('entities/attributes.errors.too_many', [
     'max' => number_format(ini_get('max_input_vars'))
@@ -50,7 +55,6 @@
 <a href="#" class="btn btn-danger pull-right" data-toggle="modal" data-target="#attributes-delete-all-confirm">
     <i class="fa-solid fa-trash"></i> <span class="hidden-xs">{{ __('entities/attributes.actions.remove_all') }}</span>
 </a>
-
 
 <!-- Modal -->
 <div class="modal fade" id="attributes-delete-all-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
@@ -67,6 +71,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                <input type="hidden" name="delete-all-attributes" value="" />
                 <button type="button" class="btn btn-danger" id="attributes-delete-all-confirm-submit"><span class="fa-solid fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
             </div>
         </div>
@@ -88,3 +93,26 @@
     ]) !!}</p>
     </div>
 @endif
+
+@section('modals')
+    @parent
+    @if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
+    <div class="modal fade" id="hidden-attributes" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-2xl text-center">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title md-5" id="clickModalLabel">{{ __('entities/attributes.show.hidden') }}</h4>
+                        <p class="mt-5">
+                            @foreach ($entity->attributes()->ordered()->get() as $attribute)
+                                @if ($attribute->is_hidden)
+                                    @include('cruds.forms.attributes._hidden_attribute')
+                                @endif
+                            @endforeach
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+@endsection

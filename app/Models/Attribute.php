@@ -24,6 +24,7 @@ use Illuminate\Support\Str;
  * @property integer $origin_attribute_id
  * @property integer $default_order
  * @property boolean $is_private
+ * @property boolean $is_hidden
  * @property boolean $is_star
  * @property string $api_key
  * @property Entity|null $entity
@@ -58,6 +59,7 @@ class Attribute extends Model
         'origin_attribute_id',
         'api_key',
         'is_star',
+        'is_hidden',
     ];
 
     /**
@@ -198,6 +200,16 @@ class Attribute extends Model
     public function scopeOrdered(Builder $query, string $order = 'asc'): Builder
     {
         return $query->orderBy('default_order', $order);
+    }
+
+    /**
+     * @param Builder $query
+     * @param bool $hidden
+     * @return Builder
+     */
+    public function scopeHidden(Builder $query, bool $hidden = false): Builder
+    {
+        return $query->where(['is_hidden' => $hidden]);
     }
 
     /**
