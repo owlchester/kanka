@@ -66,6 +66,7 @@ function initAttributeUI()
         if (maxFieldAlert) {
             maxFieldAlert.hide();
         }
+        document.cookie = "deleteAllAttributes=1; path=/";
         return false;
     });
 

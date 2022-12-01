@@ -4022,6 +4022,7 @@ function initAttributeUI() {
       maxFieldAlert.hide();
     }
 
+    document.cookie = "deleteAllAttributes=1; path=/";
     return false;
   });
   $.each($('[data-toggle="private"]'), function () {

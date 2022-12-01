@@ -75,11 +75,19 @@ class AttributeService
     {
         // First, let's get all the stuff for this entity
         $existing = [];
-        //Dont load hidden attributes for deletion, unless deleting all.
         $existingAttributes = $entity->attributes()->where('is_hidden', '0')->get();
-        if (empty($request)) {
+
+        //Dont load hidden attributes for deletion, unless deleting all.
+        if (empty($request) || isset($_COOKIE['deleteAllAttributes'])) {
             $existingAttributes = $entity->attributes()->get();
+
+            //Delete Cookie
+            if (isset($_COOKIE['deleteAllAttributes'])) {
+                unset($_COOKIE['deleteAllAttributes']);
+                setcookie('deleteAllAttributes', '', time() - 3600, '/');
+            }
         }
+
         foreach ($existingAttributes as $att) {
             $existing[$att->id] = $att;
         }
