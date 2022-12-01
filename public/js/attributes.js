@@ -4015,6 +4015,7 @@ function initAttributeUI() {
 
   $('#attributes-delete-all-confirm-submit').click(function (e) {
     e.preventDefault();
+    $(this).siblings('input[name="delete-all-attributes"]').val(1);
     $('#entity-attributes-all .attribute_delete').click();
     $('#attributes-delete-all-confirm').modal('hide');
 
