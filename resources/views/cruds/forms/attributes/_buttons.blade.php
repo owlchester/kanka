@@ -37,7 +37,7 @@
         @endif
     </ul>
 </div>
-@if (isset($entity) && $entity->attributes()->where('is_hidden', '0')->get()->has('0'))
+@if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#hidden-attributes">
         <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
         {{ __('entities/attributes.actions.show_hidden') }}
@@ -71,6 +71,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                <input type="hidden" name="delete-all-attributes" value="" />
                 <button type="button" class="btn btn-danger" id="attributes-delete-all-confirm-submit"><span class="fa-solid fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
             </div>
         </div>
@@ -95,8 +96,8 @@
 
 @section('modals')
     @parent
-    @if (isset($entity) && $entity->attributes()->where('is_hidden', '0')->get()->has('0'))
-        <div class="modal fade" id="hidden-attributes" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
+    @if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
+    <div class="modal fade" id="hidden-attributes" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-2xl text-center">
                     <div class="modal-body">

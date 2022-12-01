@@ -4015,6 +4015,7 @@ function initAttributeUI() {
 
   $('#attributes-delete-all-confirm-submit').click(function (e) {
     e.preventDefault();
+    $(this).siblings('input[name="delete-all-attributes"]').val(1);
     $('#entity-attributes-all .attribute_delete').click();
     $('#attributes-delete-all-confirm').modal('hide');
 
@@ -4022,7 +4023,6 @@ function initAttributeUI() {
       maxFieldAlert.hide();
     }
 
-    document.cookie = "deleteAllAttributes=1; path=/";
     return false;
   });
   $.each($('[data-toggle="private"]'), function () {
