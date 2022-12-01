@@ -19,7 +19,7 @@ class Organisation extends Layout
                 'with' => ['target' => 'organisation']
             ],
             'organisation' => [
-                'key' => 'name',
+                'key' => 'organisation.name',
                 'label' => 'entities.organisation',
                 'render' => function ($model) {
                     $defunctIcon = null;
