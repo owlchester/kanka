@@ -291,7 +291,10 @@ trait HasFilters
             ->where('att.name', $this->filterValue);
 
         $attributeValue = Arr::get($this->filterParams, 'attribute_value');
-        if ($attributeValue !== '' && $attributeValue !== null) {
+        if ($attributeValue === '!') {
+            $query
+                ->whereRaw('att.value <> ""');
+        } elseif ($attributeValue !== '' && $attributeValue !== null) {
             $query
                 ->where('att.value', $attributeValue);
         }
