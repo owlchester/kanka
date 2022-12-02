@@ -1,25 +1,22 @@
 <?php /** @var \App\Models\TimelineEra[] $abilities */?>
 {!! Form::open([
-        'route' => ['abilities.reorder-save', $entity],
+        'route' => ['entities.entity_abilities.reorder-save', $entity],
         'method' => 'POST',
     ]) !!}
 <div class="box box-solid box-entity-story-reorder">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('abilities.reorder.title') }}
+            {{ __('entities/abilities.reorder.title') }}
         </h3>
     </div>
     <div class="box-body">
 
     @foreach($parents as $key => $parent)
-
-        <h3 class="box-title">
-            @if ($key === "")
-                {{ __('abilities.reorder.parentless') }}
-            @else
-                {{ $parent[0]->ability->ability->name }}
-            @endif
-        </h3>
+        @if ($key === "")
+            {{ __('entities/abilities.reorder.parentless') }}
+        @else
+            {{ $parent[0]->ability->ability->name }}
+        @endif
         <div class="element-live-reorder sortable-elements">
             @foreach($parent as $ability)
                 <div class="element" data-id="{{ $ability->id }}">

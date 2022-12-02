@@ -24,10 +24,11 @@ Route::get('/abilities/{ability}/entity-add', 'AbilityController@entityAdd')->na
 Route::post('/abilities/{ability}/entity-add', 'AbilityController@entityStore')->name('abilities.entity-add.save');
 
 //Ability reorder
-Route::get('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Abilities\AbilityReorderController::class, 'index'])
-    ->name('abilities.reorder');
-Route::post('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Abilities\AbilityReorderController::class, 'save'])
-    ->name('abilities.reorder-save');
+Route::get('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Entity\AbilityReorderController::class, 'index'])
+    ->name('entities.entity_abilities.reorder');
+Route::post('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Entity\AbilityReorderController::class, 'save'])
+    ->name('entities.entity_abilities.reorder-save');
+
 // Maps
 Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
 Route::get('/maps/{map}/explore', 'Maps\MapController@explore')->name('maps.explore');

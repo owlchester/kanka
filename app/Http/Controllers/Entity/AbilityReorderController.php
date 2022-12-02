@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Abilities;
+namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderAbility;
@@ -66,6 +66,6 @@ class AbilityReorderController extends Controller
             ->reorder($request);
         return redirect()
             ->route('entities.entity_abilities.index', [$entity])
-            ->withSuccess(__('abilities.reorder.success'));
+            ->withSuccess(__('entities/abilities.reorder.success'));
     }
 }

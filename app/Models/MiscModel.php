@@ -333,13 +333,6 @@ abstract class MiscModel extends Model
                 'entity' => true,
                 'icon' => 'ra ra-fire-symbol',
             ];
-            if (auth()->check() && auth()->user()->can('update', $this)) {
-                $items['third']['reorder'] = [
-                    'name' => 'abilities.show.tabs.reorder',
-                    'entity' => true,
-                    'route' => 'abilities.reorder',
-                ];
-            }
         }
 
         if ($campaign->enabled('calendars')) {
