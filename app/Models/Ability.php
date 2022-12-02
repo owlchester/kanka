@@ -22,7 +22,10 @@ use Illuminate\Support\Arr;
  * @property Ability|null $ability
  * @property Collection|Ability[] $descendants
  * @property Collection|Ability[] $abilities
+ * @property Ability[] $orderedAbilities
  * @property Collection|Entity[] $entities
+ *
+ * @method static self|Builder ordered()
  */
 class Ability extends MiscModel
 {
@@ -238,7 +241,6 @@ class Ability extends MiscModel
         }
         return false;
     }
-
 
     /**
      * Define the fields unique to this model that can be used on filters

@@ -17,6 +17,12 @@
                 <i class="fa-solid fa-redo"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>
                 <span class="visible-xs visible-sm">{{ __('crud.actions.reset') }}</span>
             </a>
+            <a href="{{ route('abilities.reorder', $entity) }}" class="btn btn-sm btn-default">
+                <i class="fa-solid fa-sort"></i> 
+                <span class="visible-xs visible-sm">
+                    {{ __('abilities.show.tabs.reorder') }}
+                </span>
+            </a>
             @if ($entity->isCharacter())
                 <a href="{{ route('entities.entity_abilities.import', [$entity, 'from' => 'race']) }}" class="btn btn-sm btn-default">
                     <i class="ra ra-wyvern"></i>

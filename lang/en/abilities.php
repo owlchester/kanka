@@ -39,6 +39,12 @@ return [
         'tabs'  => [
             'abilities' => 'Sub abilities',
             'entities'  => 'Entities',
+            'reorder'   => 'Reorder Abilities',
         ],
+    ],
+    'reorder'       => [
+        'title' => 'Reorder the abilities',
+        'parentless' => 'No Parent',
+        'success' => 'Abilities succesfully reordered',
     ],
 ];

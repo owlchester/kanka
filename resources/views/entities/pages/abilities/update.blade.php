@@ -35,11 +35,6 @@
             </div>
 
             <div class="form-group">
-                <label>{{ __('entities/abilities.fields.position') }}</label>
-                {!! Form::number('position', null, ['class' => 'form-control', 'min' => 0, 'max' => '100']) !!}
-            </div>
-
-            <div class="form-group">
                 <div class="pull-right hidden-xs">
                     <i class="fa-solid fa-question-circle" title="{!! __('entities/abilities.helpers.note', [
     'code' => '<code>[character:4096]</code>',

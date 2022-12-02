@@ -166,7 +166,7 @@ class AbilityController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['ability_id', 'visibility_id', 'note', 'position']);
+        $data = $request->only(['ability_id', 'visibility_id', 'note']);
 
         $entityAbility->update($data);
 

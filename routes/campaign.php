@@ -23,6 +23,11 @@ Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 Route::get('/abilities/{ability}/entity-add', 'AbilityController@entityAdd')->name('abilities.entity-add');
 Route::post('/abilities/{ability}/entity-add', 'AbilityController@entityStore')->name('abilities.entity-add.save');
 
+//Ability reorder
+Route::get('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Abilities\AbilityReorderController::class, 'index'])
+    ->name('abilities.reorder');
+Route::post('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Abilities\AbilityReorderController::class, 'save'])
+    ->name('abilities.reorder-save');
 // Maps
 Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
 Route::get('/maps/{map}/explore', 'Maps\MapController@explore')->name('maps.explore');
