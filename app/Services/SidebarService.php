@@ -199,6 +199,7 @@ class SidebarService
         'events' => [
             'icon' => 'fa-solid fa-bolt',
             'label' => 'entities.events',
+            'tree' => true,
         ],
         'abilities' => [
             'icon' => 'ra ra-fire-symbol',
