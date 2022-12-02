@@ -309,7 +309,6 @@ TEXT
                 'permission'    => 'Povolí nastaviť oprávnenia na objektoch typu, ktoré môže upravovať.',
                 'read'          => 'Povolí zobrazenie všetkých objektov tohto typu, ktoré nie sú súkromné.',
             ],
-            'hint'      => 'Táto rola má automaticky prístup ku všetkému.',
         ],
         'placeholders'  => [
             'name'  => 'Názov role',
@@ -342,20 +341,25 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'   => [
+        'actions'       => [
             'enable'    => 'Aktivovať',
         ],
-        'boosted'   => 'Táto funkcia je aktuálne v beta verzii a dostupná iba pre :boosted.',
-        'disabled'  => 'Modul :module je deaktivovaný.',
-        'enabled'   => 'Modul :module je aktivovaný.',
-        'errors'    => [
+        'boosted'       => 'Táto funkcia je aktuálne v beta verzii a dostupná iba pre :boosted.',
+        'deprecated'    => [
+            'help'  => 'Tento modul je zastaralý, znamená to, že už nie je aktualizovaný a chyby, ktoré sa môžu vyskytnúť s novými aktualizáciami, nie sú opravované. Môžeš ho používať, ale v budúcnosti bude z Kanky odstránený.',
+            'title' => 'Zastaralé',
+        ],
+        'disabled'      => 'Modul :module je deaktivovaný.',
+        'enabled'       => 'Modul :module je aktivovaný.',
+        'errors'        => [
             'module-disabled'   => 'Požadovaný modul je aktuálne v nastaveniach kampane deaktivovaný. :fix.',
         ],
-        'helpers'   => [
+        'helpers'       => [
             'abilities'     => 'Vytvor schopnosti ako kúzla alebo sily, ktoré priradíš iným objektom.',
             'calendars'     => 'Miesto, na ktorom vieš vytvoriť kalendáre tvojho sveta.',
             'characters'    => 'Postavy, ktoré obývajú svoj svet.',
             'conversations' => 'Fiktívne diskusie medzi postavami v tvojom svete alebo užívateľmi kampane.',
+            'creatures'     => 'Obsaď tvoj svet zvermi, bytosťami a príšerami s pomocou modulu pre bytosti.',
             'dice_rolls'    => 'Ak používaš Kanku na hranie, môžeš tu spravovať tvoje hody kockami.',
             'events'        => 'Sviatky, festivaly, katastrofy, narodeniny, vojny.',
             'families'      => 'Klany a rody, ich vzťahy a členovia.',

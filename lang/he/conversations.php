@@ -11,7 +11,6 @@ return [
     'fields'        => [
         'messages'      => 'הודעות',
         'participants'  => 'משתתפים',
-        'target'        => 'קטגוריה',
     ],
     'hints'         => [
         'participants'  => 'הוסף משתתפים בלחיצה על האייקון :icon בצד שמאל למעלה.',

@@ -56,7 +56,7 @@
 
     @include('partials.errors')
 
-    @includeWhen(isset($filter), 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index'])
+    @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index'])
     @include('partials.ads.top')
 
     <div class="box no-border">

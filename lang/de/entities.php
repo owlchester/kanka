@@ -29,6 +29,8 @@ return [
         'title'             => 'Neues Objekt',
         'tooltip'           => 'Erstellen Sie ein neues Objekt, ohne die aktuelle Seite zu verlassen',
     ],
+    'creature'              => 'Kreatur',
+    'creatures'             => 'Kreaturen',
     'dice_roll'             => 'Würfelwurf',
     'dice_rolls'            => 'Würfelwürfe',
     'event'                 => 'Ereignis',

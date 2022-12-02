@@ -2,6 +2,25 @@
 
 return [
     'account'       => [
+        '2fa'               => [
+            'actions'               => [
+                'disable'   => 'Desactivar a autenticación en dous factores',
+                'finish'    => 'Rematar a configuración e iniciar sesión',
+            ],
+            'activation_helper'     => 'Para rematar de configurar a autenticación en dous factores, sigue as seguintes instrucións.',
+            'disable'               => [
+                'helper'    => 'Se queres desactivar a autenticación en dous factores, fai clic no botón de abaixo. Lembra que isto deixará a túa conta vulnerable a calquera persoa que saiba a túa información de inicio de sesión.',
+                'title'     => 'Desactivar a autenticación en dous factores',
+            ],
+            'enable_instructions'   => 'Para iniciar o proceso de activación, xera o teu código QR de autenticación, e logo escanéao na aplicación de Google Authenticator (:ios, :andoid) ou noutra aplicación de autenticación similar.',
+            'enabled'               => 'A autenticación en dous factores está actualmente activada na túa conta.',
+            'error_enable'          => 'Código non válido, inténtao de novo',
+            'fields'                => [
+                'otp'       => 'Introduce o contrasinal único (OTP) dado pola túa aplicación autenticadora.',
+                'qrcode'    => 'Escanea o seguinte código QR coa túa aplicación autenticadora para xerar un contrasinal único (OTP).',
+            ],
+            'generate_qr'           => 'Xerar código QR',
+        ],
         'actions'           => [
             'social'            => 'Cambiar a inicio de sesión con Kanka',
             'update_email'      => 'Actualizar enderezo de correo electrónico',
@@ -138,6 +157,7 @@ return [
                 'missing_features'  => 'Faltan funcionalidades',
                 'not_for'           => 'A subscripción non é para min',
                 'not_using'         => 'Non estou usando Kanka',
+                'other'             => 'Outros',
             ],
             'text'      => 'Lamentamos verte marchar! Cancelar a túa subscripción manteraa activa ata o próximio ciclo de facturación, tras o cal perderás todas as túas potenciacións de campaña e outros beneficios ligados a apoiar a Kanka. Podes cubrir o seguinte formulario para informarnos de como podemos mellorar, ou do que causou a túa decisión.',
         ],

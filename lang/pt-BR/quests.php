@@ -30,6 +30,7 @@ return [
         'character'     => 'Quem deu a missão',
         'copy_elements' => 'Copiar elementos anexados na missão',
         'date'          => 'Data',
+        'element_role'  => 'Função',
         'is_completed'  => 'Completa',
         'quest'         => 'Missão Primária',
         'quests'        => 'Missões Secundárias',
@@ -44,11 +45,12 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'date'  => 'Data (mundo real) para a missão',
-        'name'  => 'Nome da missão',
-        'quest' => 'Missão Principal',
-        'role'  => 'A função desta entidade na missão',
-        'type'  => 'Arco de Personagem, Missão Secundária, Missão Principal',
+        'date'      => 'Data (mundo real) para a missão',
+        'entity'    => 'Nome de um elemento da missão',
+        'name'      => 'Nome da missão',
+        'quest'     => 'Missão Principal',
+        'role'      => 'A função desta entidade na missão',
+        'type'      => 'Arco de Personagem, Missão Secundária, Missão Principal',
     ],
     'show'          => [
         'actions'   => [

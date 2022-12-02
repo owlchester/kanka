@@ -337,6 +337,7 @@ return [
         'character'     => 'Choose a character',
         'creature'      => 'Choose a creature',
         'entity'        => 'Entity',
+        'entry'         => 'Use @ followed by three letters to mention other entities of the campaign.',
         'event'         => 'Choose an event',
         'family'        => 'Choose a family',
         'gallery_image' => 'Choose an image from the campaign gallery',

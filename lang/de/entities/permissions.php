@@ -1,7 +1,11 @@
 <?php
 
 return [
-    'quick' => [
+    'privacy'   => [
+        'text'      => 'Dieses Objekt ist auf privat gesetzt. Benutzerdefinierte Berechtigungen können weiterhin definiert werden, aber solange das Objekt privat ist, werden diese ignoriert, und nur Mitglieder der :admin-Rolle der Kampagne können das Objekt sehen.',
+        'warning'   => 'Warning',
+    ],
+    'quick'     => [
         'empty-permissions' => 'Keine Rolle oder Benutzer außerhalb der Kampagnenadministratoren haben Zugriff auf dieses Objekt.',
         'field'             => 'Schnelle Bearbeitung',
         'options'           => [

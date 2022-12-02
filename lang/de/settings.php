@@ -2,6 +2,32 @@
 
 return [
     'account'       => [
+        '2fa'               => [
+            'actions'               => [
+                'disable'   => 'Zwei-Faktor authentifizierung deaktivieren',
+                'finish'    => 'Beende die Einrichtung und melde dich an',
+            ],
+            'activation_helper'     => 'Um die Einrichtung der Zwei-Faktor-Authentifizierung deines Kontos abzuschließen, befolge bitte diese Anweisungen.',
+            'disable'               => [
+                'helper'    => 'Wenn du die Zwei-Faktor-Authentifizierung deaktivieren möchtest, klicke auf die Schaltfläche unten. Denke daran, dass dein Konto dadurch für jeden angreifbar wird, der deine Anmeldeinformationen kennt.',
+                'title'     => 'Zwei-Faktor-Authentifizierung deaktivieren',
+            ],
+            'enable_instructions'   => 'Um den Aktivierungsprozess zu starten, generiere deinen Authentifizierungs-QR-Code und scanne ihn dann in die Google Authenticator-App (:ios, :android) oder eine andere ähnliche Authentifizierungs-App.',
+            'enabled'               => 'Die Zwei-Faktor-Authentifizierung ist derzeit für dein Konto aktiviert.',
+            'error_enable'          => 'Ungültiger Code, versuche es erneut',
+            'fields'                => [
+                'otp'       => 'Gib das One Time Password (OTP) ein, das von der Authentifizierungs-App bereitgestellt wird',
+                'qrcode'    => 'Scanne den folgenden QR-Code mit deiner Authentifizierungs-App, um ein One Time Password (OTP) zu generieren.',
+            ],
+            'generate_qr'           => 'QR Code generieren',
+            'helper'                => 'Die Zwei-Faktor-Authentifizierung (2FA) stärkt die Zugriffssicherheit, indem zwei Methoden (auch als Faktoren bezeichnet) erforderlich sind, um deine Identität bei jeder Anmeldung zu überprüfen.',
+            'learn_more'            => 'Erfahre mehr über die Zwei-Faktor-Authentifizierung.',
+            'social'                => 'Die Kanka-Zwei-Faktor-Authentifizierung ist nur für Benutzer aktiviert, die sich mit ihrer E-Mail-Adresse und ihrem Passwort anmelden. Ändere deine Anmeldemethode in deinen Kontoeinstellungen, bevor du diese Option aktivieren kannst.',
+            'success_disable'       => 'Zwei-Faktor-Authentifizierung erfolgreich deaktiviert',
+            'success_enable'        => 'Zwei-Faktor-Authentifizierung erfolgreich aktiviert. Bitte melde dich erneut an, um die Einrichtung abzuschließen.',
+            'success_key'           => 'Dein sicherer QR-Code wurde erfolgreich generiert. Bitte schließe deine Einrichtung ab, um die Zwei-Faktor-Authentifizierung zu aktivieren.',
+            'title'                 => 'Zwei-Faktor-Authentifizierung',
+        ],
         'actions'           => [
             'social'            => 'Zu Kanka Login wechseln',
             'update_email'      => 'Email aktualisieren',
@@ -136,7 +162,9 @@ return [
                 'competitor'        => 'Wechsel zu einem Wettbewerber',
                 'financial'         => 'Finanzielle Situation verändert',
                 'missing_features'  => 'Fehlende Funktionen',
+                'not_for'           => 'Abo ist nichts für mich',
                 'not_using'         => 'Kanka wird derzeit nicht verwendet',
+                'other'             => 'Andere',
             ],
             'text'      => 'Es tut uns leid dich gehen zu sehen! Wenn Sie Ihr Abonnement kündigen, bleibt es bis zu Ihrem nächsten Abrechnungszyklus aktiv. Danach verlieren Sie Ihre Kampagnen-Boosts und andere Vorteile im Zusammenhang mit der Unterstützung von Kanka. Füllen Sie das folgende Formular aus, um uns mitzuteilen, was wir besser machen können oder was zu Ihrer Entscheidung geführt hat.',
         ],

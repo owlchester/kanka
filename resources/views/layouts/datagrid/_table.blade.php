@@ -18,6 +18,9 @@
         </thead>
         <tbody>
         @forelse ($rows as $row)
+            @if ($row instanceof \App\Models\MiscModel && empty($row->entity))
+                @continue
+            @endif
             <tr class="{{ method_exists($row, 'rowClasses') ? $row->rowClasses() : null }}">
                 @foreach (Datagrid::columns($row) as $column)
                     @include('layouts.datagrid._column')

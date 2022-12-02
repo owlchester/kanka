@@ -78,6 +78,9 @@ return [
             'back_to_dashboard' => 'Zurück zum Dashboard.',
             'edit'              => 'Widget bearbeiten.',
         ],
+        'reorder'   => [
+            'success'   => 'Widgets neu geordnet.',
+        ],
         'title'     => 'Kampagnen Dashboard Einrichtung',
         'tutorial'  => [
             'blog'  => 'unser Tutorial',
@@ -123,6 +126,7 @@ return [
             'name'              => 'Benutzerdefinierter Widget-Name',
             'optional-entity'   => 'Link zum Objekt',
             'order'             => 'Bestellung',
+            'size'              => 'Größe',
             'text'              => 'Text',
             'width'             => 'Breite',
         ],

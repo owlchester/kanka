@@ -30,6 +30,7 @@ return [
         'character'     => 'Auslöser',
         'copy_elements' => 'Kopiere Elemente, die an die Queste angehängt sind',
         'date'          => 'Datum',
+        'element_role'  => 'Rolle',
         'is_completed'  => 'Abgeschlossen',
         'quest'         => 'Übergeordnete Queste',
         'quests'        => 'Untergeornete Queste',
@@ -47,11 +48,12 @@ return [
     'locations'     => [],
     'organisations' => [],
     'placeholders'  => [
-        'date'  => 'Reales Datum der Quest',
-        'name'  => 'Name des Quests',
-        'quest' => 'Elternquest',
-        'role'  => 'Die Rolle des Objekts in der Quest',
-        'type'  => 'Charakterentwicklung, Sidequest, Hauptquest',
+        'date'      => 'Reales Datum der Quest',
+        'entity'    => 'Name eines Elements aus der Quest',
+        'name'      => 'Name des Quests',
+        'quest'     => 'Elternquest',
+        'role'      => 'Die Rolle des Objekts in der Quest',
+        'type'      => 'Charakterentwicklung, Sidequest, Hauptquest',
     ],
     'show'          => [
         'actions'   => [

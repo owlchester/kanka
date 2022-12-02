@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Chiusa',
         'messages'      => 'Messaggi',
         'participants'  => 'Partecipanti',
-        'target'        => 'Bersaglio',
     ],
     'hints'         => [
         'participants'  => 'Per favore aggiungi partecipanti alla tua conversazione premendo l\'icona :icon in altro a destra.',

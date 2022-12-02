@@ -6,6 +6,7 @@ $(document).ready(function() {
         }
     });
     initKeyboardShortcuts();
+    initPasting();
 });
 
 function initKeyboardShortcuts() {
@@ -70,5 +71,29 @@ function initSaveKeyboardShortcut(form) {
             $(form).submit();
             return false;
         }
+    });
+}
+
+/**
+ * Strip HTML from fontAwesome or RPGAwesome and just keep the class to make people's lives
+ * easier.
+ */
+function initPasting() {
+    $('input[data-paste="fontawesome"]').on('paste', function(e) {
+        e.preventDefault();
+        let text;
+        if (e.clipboardData || e.originalEvent.clipboardData) {
+            text = (e.originalEvent || e).clipboardData.getData('text/plain');
+        } else if (window.clipboardData) {
+            text = window.clipboardData.getData('Text');
+        }
+        if (text.startsWith('<i class="fa') || text.startsWith('<i class="ra')) {
+            let className = $(text).attr('class');
+            if (className) {
+                $(this).val(className);
+                return;
+            }
+        }
+        $(this).val(text);
     });
 }

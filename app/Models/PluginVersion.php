@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -60,6 +61,15 @@ class PluginVersion extends Model
     public function getCssAttribute(): string
     {
         return Arr::get($this->json, 'css', '');
+    }
+
+    /**
+     * Get the translations (stored in the json)
+     * @return array
+     */
+    public function getTranslationsAttribute(): array
+    {
+        return Arr::get($this->json, 'translations', []);
     }
 
     /**
@@ -141,55 +151,35 @@ class PluginVersion extends Model
             return '{{ $' . $name . ' }}';
         }, $html);
 
+        // Blacklisted commands
         $html = str_replace([
             '@php', '@dd', '@inject', '@yield', '@section', '@auth', '@guest', '@env', '@once', '@push', '@csrf',
-            '@include', '\Illuminate\\',
+            '@include', '\Illuminate\\'
         ], [
-            '', '', '', '', '', '', '', '', '', '', ''
+            '', '', '', '', '', '', '', '', '', '', '', '', ''
         ], $html);
+
+        // Remove more blacklisted stuff than can go unnoticed
         $html = preg_replace('`dd\((.*?)\)`i', '', $html);
         $html = preg_replace('`config\((.*?)\)`i', '', $html);
 
+        // First loop to replace i18n with ()) in the texts
+        $regexp = '`\@i18n(\((?:[^)(]++|(?1))*\))`i';
+        $html = preg_replace_callback($regexp, function ($matches) {
+            return '{{ trans' . $matches[1] . ' }}';
+        }, $html);
+
+        // Next loop on the easy non complicated i18n calls without ()
+        $regexp = '`\@i18n\((.*?)\)`i';
+        $html = preg_replace_callback($regexp, function ($matches) {
+            return '{{ trans' . $matches[1] . ' }}';
+        }, $html);
+
+        $this->loadTranslations();
 
         $html = Blade::compileString($html);
 
-        // Prepare attributes
-        $data = [];
-        $ids = [];
-        $checkboxes = [];
-        $this->entityAttributes = $entity->allAttributes;
-        $allAttributes = [];
-        foreach ($this->entityAttributes as $attr) {
-            $name = str_replace(' ', '', $attr->name);
-            if (Str::contains($name, '[range:')) {
-                $name = Str::before($name, '[range:');
-            }
-            $data[$name] = $attr->mappedValue();
-            $ids[$name] = $attr->id;
-            if ($attr->isText()) {
-                $data[$name] = nl2br($data[$name]);
-            } elseif ($attr->isCheckbox()) {
-                $checkboxes[] = $name;
-            }
-            //dump('mapping ' . $name . ' to ' . $attr->mappedValue());
-
-            // Cleanup the name for ranged values
-            $allAttributes[$name] = $data[$name];
-            unset($this->templateAttributes[$name]);
-        }
-
-        // We need this for some blade directives like foreach
-        $data['__env'] = app(\Illuminate\View\Factory::class);
-        $data['attributes'] = $allAttributes;
-
-        //dump($data);
-        ///dump($this->templateAttributes);
-
-        // Add any variables missing
-        //dd($this->templateAttributes);
-        foreach ($this->templateAttributes as $name) {
-            $data[$name] = null;
-        }
+        list($data, $ids, $checkboxes) = $this->prepareBladeData($entity);
 
         $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids, $checkboxes) {
             $attr = trim((string) $matches[1]);
@@ -350,6 +340,83 @@ class PluginVersion extends Model
             return false;
         }
         return true;
+    }
+
+    /**
+     * Add the plugin's translations to memory
+     * @return void
+     */
+    protected function loadTranslations(): void
+    {
+        // Always add the user's locale + en as a fallback
+        $userLocale = app()->getLocale();
+        $locales = [$userLocale, 'en'];
+
+        foreach ($this->getTranslationsAttribute() as $translation) {
+            if (!in_array($translation['locale'], $locales)) {
+                continue;
+            }
+            $lines['*.' . $translation['base']] = $translation['translation'];
+
+            app('translator')->addLines($lines, $userLocale);
+        }
+    }
+
+    /**
+     * Prepare all the attributes of the entity to be accessible in blade
+     * @param Entity $entity
+     * @return array
+     */
+    protected function prepareBladeData(Entity $entity): array
+    {
+        $data = [];
+        $ids = [];
+        $checkboxes = [];
+        $this->entityAttributes = $entity->allAttributes;
+        $allAttributes = [];
+        foreach ($this->entityAttributes as $attr) {
+            $name = str_replace(' ', '', $attr->name);
+            if (Str::contains($name, '[range:')) {
+                $name = Str::before($name, '[range:');
+            }
+            $data[$name] = $attr->mappedValue();
+            $ids[$name] = $attr->id;
+            if ($attr->isText()) {
+                $data[$name] = nl2br($data[$name]);
+            } elseif ($attr->isCheckbox()) {
+                $checkboxes[] = $name;
+            }
+            //dump('mapping ' . $name . ' to ' . $attr->mappedValue());
+
+            // Cleanup the name for ranged values
+            $allAttributes[$name] = $data[$name];
+            unset($this->templateAttributes[$name]);
+        }
+
+        // We need this for some blade directives like foreach
+        $data['__env'] = app(\Illuminate\View\Factory::class);
+        $data['attributes'] = $allAttributes;
+
+        // Share some attributes to plugin developers
+        $data['_locale'] = app()->getLocale();
+        $data['_entity_name'] = $entity->name;
+        $data['_entity_entity_type'] = $entity->type();
+
+        $tags = [];
+        foreach ($entity->tags as $tag) {
+            $tags[$tag->slug] = $tag->name;
+        }
+        $data['_tags'] = $tags;
+
+        $campaign = CampaignLocalization::getCampaign();
+        $data['_superboosted'] = $campaign->superboosted();
+
+        // Add any missing attributes to be accessible in blade
+        foreach ($this->templateAttributes as $name) {
+            $data[$name] = null;
+        }
+
+        return [$data, $ids, $checkboxes];
     }
 
     /**

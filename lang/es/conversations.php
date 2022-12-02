@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'Cerrada',
         'messages'      => 'Mensajes',
         'participants'  => 'Participantes',
-        'target'        => 'Objetivo',
     ],
     'hints'         => [
         'participants'  => 'Añade participantes a la conversación mediante el icono :icon arriba a la derecha.',

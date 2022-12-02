@@ -3,9 +3,11 @@
 return [
     'campaign'          => [
         'application'           => [
-            'approved'  => 'Ihre Bewerbung für die Kampagne :campaign wurde genehmigt.',
-            'new'       => 'Neue Bewerbung für :campaign',
-            'rejected'  => 'Ihr Bewerbung für die :campaign Kampagne wurde abgelehnt. Grund dafür ist :reason',
+            'approved'              => 'Ihre Bewerbung für die Kampagne :campaign wurde genehmigt.',
+            'approved_message'      => 'Deiner Bewerbung für die :campaign Kampagne wurde zugestimmt. Nachricht bereitgestellt: :reason',
+            'new'                   => 'Neue Bewerbung für :campaign',
+            'rejected'              => 'Ihr Bewerbung für die :campaign Kampagne wurde abgelehnt. Grund dafür ist :reason',
+            'rejected_no_message'   => 'Deiner Bewerbung für die Kampagne :campaign wurde widersprochen.',
         ],
         'asset_export'          => 'Ein Export eines Kampagnen-Assets ist verfügbar. Der Link ist verfügbar für :time Minuten.',
         'asset_export_error'    => 'Beim Exportieren der Kampagnenassets ist ein Fehler aufgetreten. Dies geschieht bei großen Kampagnen.',
@@ -17,6 +19,7 @@ return [
         'deleted'               => 'Die Kampagne :campaign wurde gelöscht.',
         'export'                => 'Ein Export der Kampagne steht zur Verfügung. Der Link ist :time Minuten gültig.',
         'export_error'          => 'Beim Export deiner Kampagne ist ein Fehler aufgetreten. Bitte kontaktiere uns, wenn das Problem weiterhin besteht.',
+        'hidden'                => 'Die Kampagne :campaign ist jetzt auf der Seite „Öffentliche Kampagnen“ ausgeblendet.',
         'join'                  => ':user ist der Kampagne :campaign beigetreten.',
         'leave'                 => ':user hat die Kampagne :campaign verlassen.',
         'plugin'                => [
@@ -26,6 +29,7 @@ return [
             'add'       => 'Du wurdest zur Rolle :role in der Kampagne :campaign hinzugefügt.',
             'remove'    => 'Du wurdest aus der Rolle :role in der Kampagne :campaign entfernt.',
         ],
+        'shown'                 => 'Die Kampagne :campaign ist jetzt auf der Seite „Öffentliche Kampagnen“ sichtbar.',
         'troubleshooting'       => [
             'joined'    => 'Das Kanka Teammitglied :user ist der Kampagne :campaign beigetreten.',
         ],

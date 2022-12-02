@@ -309,7 +309,6 @@ TEXT
                 'permission'    => 'Pozwala zarządzać uprawnieniami tych elementów danego typu, które uczestnik może też edytować.',
                 'read'          => 'Pozwala widzieć wszystkie elementy danego typu, które nie są tajne.',
             ],
-            'hint'      => 'Ta rola ma automatyczny dostęp do wszystkiego.',
         ],
         'placeholders'  => [
             'name'  => 'Nazwa roli',
@@ -342,20 +341,25 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'   => [
+        'actions'       => [
             'enable'    => 'Aktywny',
         ],
-        'boosted'   => 'Opcja we wczesnym dostępie, na razie dostępna wyłącznie w :boosted.',
-        'disabled'  => 'Moduł :module został wyłączony.',
-        'enabled'   => 'Moduł :module został aktywowany.',
-        'errors'    => [
+        'boosted'       => 'Opcja we wczesnym dostępie, na razie dostępna wyłącznie w :boosted.',
+        'deprecated'    => [
+            'help'  => 'Ten moduł jest przestarzały - to znaczy, że ani go nie rozwijamy, ani nie sprawdzamy pod kątem błędów po aktualizacjach. Możesz go używać, ale ze świadomością, że ostatecznie zostanie z Kanki usunięty',
+            'title' => 'Przestarzałe',
+        ],
+        'disabled'      => 'Moduł :module został wyłączony.',
+        'enabled'       => 'Moduł :module został aktywowany.',
+        'errors'        => [
             'module-disabled'   => 'Ten moduł jest obecnie wyłączony w ustawieniach kampanii. :fix',
         ],
-        'helpers'   => [
+        'helpers'       => [
             'abilities'     => 'Twórz zdolności specjalne, na przykład czary, moce czy techniki, i przypisuj je innym elementom.',
             'calendars'     => 'Wyposaż swój świat w systemy liczenia czasu.',
             'characters'    => 'Mieszkańcy tego świata.',
             'conversations' => 'Rozmowy które odbywają fikcyjne postaci albo prawdziwi uczestnicy kampanii. Ten moduł bywa niedoceniany.',
+            'creatures'     => 'Moduł istot pozwala tworzyć zwierzęta, potwory i rozmaite inne stworzenia.',
             'dice_rolls'    => 'Jeżeli używasz Kanki do prowadzenia kampanii, tu możesz zarządzać wykonywaniem rzutów kośćmi. Ten moduł bywa niedoceniany.',
             'events'        => 'Święta, festyny, katastrofy, urodziny i wojny.',
             'families'      => 'Klany lub rodziny, ich członkowie i wzajemne relacje.',

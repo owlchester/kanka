@@ -27,13 +27,19 @@ class Plugin extends Layout
                 'key' => 'has_update',
                 'label' => 'Has update',
                 'render' => function ($model) {
+                    $base = '';
+                    if ($model->obsolete()) {
+                        $base = '<i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" title="'
+                            . __('campaigns/plugins.fields.obsolete')
+                            . '"></i>';
+                    }
                     if (!$model->has_update) {
-                        return '';
+                        return $base;
                     }
 
                     $campaign = CampaignLocalization::getCampaign();
                     if (!auth()->check() || !auth()->user()->can('recover', $campaign)) {
-                        return '';
+                        return $base;
                     }
 
                     return '<a href="' . route('campaign_plugins.update-info', $model)
@@ -41,7 +47,7 @@ class Plugin extends Layout
                             . 'data-target="#entity-modal" data-url="'
                             . route('campaign_plugins.update-info', $model) . '">'
                             . __('campaigns/plugins.actions.update_available')
-                            . '</a>'
+                            . '</a> ' . $base
                     ;
                 }
             ],

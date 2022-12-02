@@ -6,11 +6,9 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Item;
-use App\Models\Location;
 use App\Models\MiscModel;
-use App\Services\Api\ApiService;
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 class EntityResource extends JsonResource
@@ -131,6 +129,7 @@ class EntityResource extends JsonResource
         $url = $misc->getLink();
         $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
         $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
+        $apiViewUrl = 'campaigns.' . $misc->entity->pluralType() . '.show';
 
         $merged = [
             'id' => $misc->id,
@@ -166,7 +165,7 @@ class EntityResource extends JsonResource
 
             'urls' => [
                 'view' => $url,
-                'api' => route('campaigns.' . $misc->entity->pluralType() . '.show', [$misc->campaign_id, $misc->id]),
+                'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$misc->campaign_id, $misc->id]) : null,
             ]
         ];
 

@@ -223,6 +223,10 @@ hr {
   background: var(--tab-content-background);
 }
 
+.nav-tabs {
+  border-bottom-color: var(--btn-default-border);
+}
+
 .nav-stacked > li > a, .nav-stacked > li.active > a, .nav-stacked > li.active > a:hover {
   color: var(--submenu-link);
 }
@@ -2653,7 +2657,9 @@ ul.sidebar-sortable, ul.sidebar-sortable ul {
 }
 ul.sidebar-sortable li, ul.sidebar-sortable ul li {
   padding: 6px 6px;
-  cursor: pointer;
+}
+ul.sidebar-sortable li .dnd-handle, ul.sidebar-sortable ul li .dnd-handle {
+  cursor: move;
 }
 ul.sidebar-sortable li i, ul.sidebar-sortable ul li i {
   width: 20px;

@@ -4,7 +4,10 @@ ul.sidebar-sortable, ul.sidebar-sortable ul {
   padding-inline-start: 12px;
   li {
     padding: 6px 6px;
-    cursor: pointer;
+
+      .dnd-handle {
+          cursor: move;
+      }
 
     i {
       width: 20px;

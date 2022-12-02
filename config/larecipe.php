@@ -136,6 +136,7 @@ return [
     'ui'                 => [
         'fav'            => '/favicon.ico', // e.g.: /fav.png
         'code_theme'     => 'dark',
+        'show_side_bar'  => true,
         'colors'         => [
             'primary'    => '#787AF6',
             'secondary'  => '#2b9cf2',

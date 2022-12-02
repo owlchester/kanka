@@ -22,6 +22,8 @@ window.initSummernote = function () {
     maximumImageFileSize: parseInt(summernoteConfig.data('filesize')) * 1024,
     lang: editorLang(summernoteConfig.data('locale')),
     hintSelect: 'next',
+    placeholder: summernoteConfig.data('placeholder'),
+    dialogsInBody: summernoteConfig.data('dialogs') === 1,
     toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['aroba', ['aroba']], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table', 'spoiler', 'tableofcontent']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
     ['view', ['fullscreen', 'codeview', 'help']], summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null],
     popover: {
@@ -361,9 +363,10 @@ function editorLang(locale) {
 
 
 function uploadImage($summernote, file) {
-  // Check if the campaign is superboosted
+  var modal = $('#campaign-imageupload-modal'); // Check if the campaign is superboosted
+
   if (!summernoteConfig.data('gallery-upload')) {
-    $('#campaign-imageupload-error').modal();
+    modal.modal();
     console.warn('Campaign isn\'t superboosted');
     return;
   }
@@ -385,9 +388,26 @@ function uploadImage($summernote, file) {
       });
     },
     error: function error(jqXHR, textStatus, errorThrown) {
+      // Depending on the error, we need to handle the user differently
       //console.log(textStatus + " " + errorThrown);
-      $('#superboosted-error').text(buildErrors(jqXHR.responseJSON.errors));
-      $('#campaign-imageupload-error').modal();
+      //console.log(jqXHR);
+      var error = $('#campaign-imageupload-error');
+      var boosted = $('#campaign-imageupload-boosted');
+      var permission = $('#campaign-imageupload-permission');
+      error.hide();
+      boosted.hide();
+      permission.hide();
+
+      if (jqXHR.status === 422) {
+        error.text(buildErrors(jqXHR.responseJSON.errors)).show();
+      } else if (jqXHR.status === 403) {
+        permission.show();
+      } else {
+        boosted.show();
+      } //$('#superboosted-error').text(buildErrors(jqXHR.responseJSON.errors));
+
+
+      modal.modal();
     }
   });
 }

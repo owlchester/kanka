@@ -7,6 +7,7 @@
         'placeholder' => __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-aura"']),
         'list' => 'map-marker-icon-list',
         'autocomplete' => 'off',
+        'data-paste' => 'fontawesome',
         ($campaignService->campaign()->boosted() ? null : 'disabled')])
     !!}
     <p class="help-block">{!! __('maps/markers.helpers.custom_icon_v2', [

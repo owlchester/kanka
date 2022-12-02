@@ -236,32 +236,6 @@ function initMapForms() {
       $('.map-marker-circle-radius').hide();
       $('.map-marker-circle-helper').show();
     }
-  });
-  /**
-   * Strip HTML from fontAwesome or RPGAwesome and just keep the class to make people's lives
-   * easier.
-   */
-
-  $('input[name="custom_icon"]').on('paste', function (e) {
-    e.preventDefault();
-    var text;
-
-    if (e.clipboardData || e.originalEvent.clipboardData) {
-      text = (e.originalEvent || e).clipboardData.getData('text/plain');
-    } else if (window.clipboardData) {
-      text = window.clipboardData.getData('Text');
-    }
-
-    if (text.startsWith('<i class="fa') || text.startsWith('<i class="ra')) {
-      var className = $(text).attr('class');
-
-      if (className) {
-        $(this).val(className);
-        return;
-      }
-    }
-
-    $(this).val(text);
   }); //console.info('mapsv3', 'initMapForms');
 
   var markerForm = $('#map-marker-form');

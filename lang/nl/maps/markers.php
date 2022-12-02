@@ -39,7 +39,6 @@ return [
         'base'                      => 'Voeg markeringen toe aan de kaart door op een willekeurige plek te klikken.',
         'copy_elements'             => 'Kopieer groepen, lagen en markeringen.',
         'copy_elements_to_campaign' => 'Kopieer groepen, lagen en markeringen van de kaarten. Markeringen die aan een entiteit zijn gekoppeld, worden geconverteerd naar een standaard markering.',
-        'custom_icon'               => 'Kopieer de HTML van een pictogram van :fontawesome of :rpgawesome, of een aangepast SVG pictogram.',
         'custom_radius'             => 'Selecteer de optie voor custom formaat in de vervolgkeuzelijst om een formaat te definiëren.',
         'draggable'                 => 'Schakel in om het verplaatsen van een markering in de verkenning modus toe te staan.',
         'label'                     => 'Een label wordt als een tekstblok op de kaart weergegeven. De inhoud is de naam van de markering van de entiteit.',

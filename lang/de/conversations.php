@@ -12,7 +12,6 @@ return [
         'is_closed'     => 'geschlossen',
         'messages'      => 'Nachrichten',
         'participants'  => 'Teilnehmer',
-        'target'        => 'Ziel',
     ],
     'hints'         => [
         'participants'  => 'Bitte füge Teilnehmer zu deiner Unterhaltung hinzu, indem du das :icon Symbol oben rechts drückst.',

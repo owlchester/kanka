@@ -11,7 +11,6 @@ return [
     'fields'        => [
         'messages'      => 'Mesajlar',
         'participants'  => 'Katılımcılar',
-        'target'        => 'Hedef',
     ],
     'hints'         => [
         'participants'  => 'Lütfen sağ-üstteki :icon ikonuna tıklayarak muhabbetinize katılımcılar ekleyin.',

@@ -11,7 +11,6 @@ return [
     'fields'        => [
         'messages'      => 'Berichten',
         'participants'  => 'Deelnemers',
-        'target'        => 'Doel',
     ],
     'hints'         => [
         'participants'  => 'Voeg deelnemers aan je conversatie toe door op het :icon pictogram in de rechterbovenhoek te drukken.',

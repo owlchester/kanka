@@ -8,6 +8,7 @@ return [
     'section_11'        => 'Crie seu mundo,',
     'section_2'         => 'O recurso mais importante é o :discord, onde você encontrará muitos dos nossos usuários, um time de plantão, assim como o fundador do Kanka, que poderá responder tantas dúvidas quanto você as tiver.',
     'section_4'         => 'Nosso :youtube tem vídeos cobrindo os conceitos mais básicos do Kanka. Nem todos os tópicos estão explicados ainda, mas adicionamos novos vídeos regularmente.',
+    'section_4_v2'      => 'Nossa :knowledge-base cobre as perguntas mais básicas que você possa ter, e para uma ajuda mais completa, você pode acessar nossa :documentation!',
     'section_6'         => 'Entre em contato',
     'section_7'         => 'Se você não achou uma resposta para a sua pergunta, ou quer simplesmente falar conosco, você pode nos achar no :facebook, ou você pode nos enviar um email através do :email. Nos somos um time pequeno de dois amigos, mas tentamos sempre responder todos os emails que recebemos, então por favor, não hesite em nos contatar.',
     'section_8'         => 'Uma última coisa',

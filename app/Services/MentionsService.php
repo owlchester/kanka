@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Facades\Attributes;
-use App\Facades\Mentions;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityNote;
@@ -11,6 +10,7 @@ use App\Models\MiscModel;
 use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class MentionsService
@@ -184,8 +184,33 @@ class MentionsService
             $text
         );
 
+        // Parse all links and transform them into advanced mentions [] if needed
+        $links = '`<a\s[^>]*>(.*?)<\/a>`i';
+        $text = preg_replace_callback($links, function ($matches) {
+            $mentionName = $matches[1];
+            $attributes = $this->linkAttributes($matches[0]);
+            $advancedMention = Arr::get($attributes, 'data-mention');
+            $advancedAttribute = Arr::get($attributes, 'data-attribute');
+            // It's not a mention or attribute, keep it as is
+            if (empty($advancedMention) && empty($advancedAttribute)) {
+                return $matches[0];
+            }
+
+            // Advanced attribute [attribute:123], use that
+            if (!empty($advancedAttribute)) {
+                return $advancedAttribute;
+            }
+
+            // If the name isn't the target name, transform it into an advanced mention
+            $originalName = Arr::get($attributes, 'data-name');
+            if (!empty($originalName) && $originalName != $mentionName) {
+                return str_replace(']', '|' . $mentionName . ']', $advancedMention);
+            }
+            return $advancedMention;
+        }, $text);
+
         // TinyMCE mentions
-        $text = preg_replace(
+        /*$text = preg_replace(
             '`<a class="mention" href="#" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
             '$2',
             $text
@@ -194,14 +219,15 @@ class MentionsService
             '`<a class="mention" href="#" data-mention="([^"]*)">(.*?)</a>`',
             '$1',
             $text
-        );
+        );*/
 
         // Summernote will inject the link differently.
         //dump($text);
-        $text = preg_replace_callback(
+        /*$text = preg_replace_callback(
             '`<a href="([^"]*)" class="mention" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
             function ($data) {
                 //dump($data);
+                dd($data);
                 if (count($data) !== 5) {
                     return $data[0];
                 }
@@ -212,11 +238,10 @@ class MentionsService
                 return $data[3];
             },
             $text
-        );
-        //dd($text);
+        );*/
 
         // Attributes
-        $text = preg_replace(
+        /*$text = preg_replace(
             '`<a href="#" class="attribute attribute-mention" data-attribute="([^"]*)">(.*?)</a>`',
             '$1',
             $text
@@ -225,7 +250,7 @@ class MentionsService
             '`<a class="attribute attribute-mention" href="#" data-attribute="([^"]*)">(.*?)</a>`',
             '$1',
             $text
-        );
+        );*/
 
         // Remove advanced mention name blocks
         //dump($text);
@@ -722,5 +747,38 @@ class MentionsService
     protected function unlockEntryRendering(): void
     {
         $this->enableEntryField = true;
+    }
+
+    /**
+     * Extract html attributes from a link if it's a Kanka "mention" from the text editor
+     * @param string $html
+     * @return array
+     */
+    protected function linkAttributes(string $html): array
+    {
+        // Don't waste time on the expensive DOMDocument call if there is no mention
+        if (!Str::contains($html, ['"mention"', '"attribute attribute-mention"'])) {
+            return [];
+        }
+        $attributes = [];
+        $dom = new \DOMDocument();
+        try {
+            $dom->loadHTML($html);
+
+            $links = $dom->getElementsByTagName('a');
+            $link = $links[0];
+
+            $validAttributes = ['class', 'data-name', 'data-mention', 'data-attribute'];
+            foreach ($validAttributes as $attribute) {
+                if (!$link->hasAttribute($attribute)) {
+                    continue;
+                }
+                $attributes[$attribute] = $link->getAttribute($attribute);
+            }
+        } catch (\Exception $e) {
+            Log::warning('The following html link triggered an issue', ['link' => $html]);
+        }
+
+        return $attributes;
     }
 }

@@ -23,7 +23,7 @@ return [
         'tags'              => 'Etykiety pochodne',
     ],
     'helpers'       => [
-        'nested_without'    => 'Wyświetlono wszystkie etykiety nie posiadające źródła. Kliknij na rząd, by wyświetlić etykiety pochodne.',
+        'nested_without'    => 'Wyświetlono wszystkie etykiety nieposiadające źródła. Kliknij na rząd, by wyświetlić etykiety pochodne.',
         'no_children'       => 'Obecnie nie oznaczono tą etykietą żadnych elementów.',
     ],
     'hints'         => [

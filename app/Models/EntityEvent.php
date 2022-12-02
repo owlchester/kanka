@@ -424,7 +424,7 @@ class EntityEvent extends MiscModel
         if ($month != $reminderMonth) {
             //dump('month diff ' . $month . ' (current) vs ' . $reminderMonth . '(reminder)');
             //dump('amount of months ' . count($months));
-            $totalMounts = count($months);
+            $totalMonths = count($months);
 
             // If the reminder a month in the future, meaning it was another year
             if ($reminderMonth > $month) {
@@ -435,12 +435,14 @@ class EntityEvent extends MiscModel
                 for ($m = 1; $m < $month; $m++) {
                     //dump('beginning of the year');
                     // Month status
-                    $monthData = $months[$m - 1];
+                    $previousMonth = $this->previousMonth($m, $totalMonths);
+                    $monthData = $months[$previousMonth];
                     $days += $monthData['length'];
                 }
-                for ($m = $reminderMonth; $m <= $totalMounts; $m++) {
+                for ($m = $reminderMonth; $m <= $totalMonths; $m++) {
                     //dump('end of previous year');
-                    $monthData = $months[$m - 1];
+                    $previousMonth = $this->previousMonth($m, $totalMonths);
+                    $monthData = $months[$previousMonth];
                     $days += $monthData['length'];
                     //dump('days increase by ' . $monthData['length']);
                 }
@@ -448,7 +450,8 @@ class EntityEvent extends MiscModel
                 // The event happened earlier this year
                 for ($m = $reminderMonth; $m < $month; $m++) {
                     //dump('previous month');
-                    $monthData = $months[$m - 1];
+                    $previousMonth = $this->previousMonth($m, $totalMonths);
+                    $monthData = $months[$previousMonth];
                     $days += $monthData['length'];
                 }
             }
@@ -533,23 +536,25 @@ class EntityEvent extends MiscModel
         // Now we need to loop on the remaining months.
         $monthStart = $calendarMonth; // ex August
         $monthEnd = $reminderMonth; // ex September
+        $totalMonths = count($months);
         //dump("Comparing $reminderMonth < $calendarMonth");
         if ($reminderMonth < $calendarMonth) {
             // The reminder's month is before the current calendar month, so we jumped a year.
             // ex reminder is in April and calendar is currently in August
             $monthStart = 1;
-            $totalMonths = count($months);
             // We still need to add days to the end of the current year before switching to the next one
             //dump("Backfilling $calendarMonth to $totalMonths");
             for ($m = $calendarMonth; $m <= $totalMonths; $m++) {
-                $monthData = $months[$m - 1];
+                $previousMonth = $this->previousMonth($m, $totalMonths);
+                $monthData = $months[$previousMonth];
                 $days += $monthData['length'];
             }
             //$monthEnd = $reminderMonth;
         }
         //dump("Month start $monthStart and $monthEnd");
         for ($m = $monthStart; $m < $monthEnd; $m++) {
-            $monthData = $months[$m - 1];
+            $previousMonth = $this->previousMonth($m, $totalMonths);
+            $monthData = $months[$previousMonth];
             $days += $monthData['length'];
         }
 
@@ -627,5 +632,19 @@ class EntityEvent extends MiscModel
     public function isCalendarDate(): bool
     {
         return $this->type_id === EntityEventType::CALENDAR_DATE;
+    }
+
+    /**
+     * Reduce the month by one, making sure it's still in the bounds of a valid month
+     * @param int $month
+     * @param int $min
+     * @return int
+     */
+    protected function previousMonth(int $month, int $min): int
+    {
+        if ($month >= $min) {
+            return $min-1;
+        }
+        return $month--;
     }
 }

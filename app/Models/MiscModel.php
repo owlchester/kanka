@@ -256,6 +256,9 @@ abstract class MiscModel extends Model
      */
     public function getLink(string $route = 'show'): string
     {
+        if (empty($this->entity)) {
+            return '#';
+        }
         try {
             return route($this->entity->pluralType() . '.' . $route, $this->id);
         } catch (Exception $e) {
