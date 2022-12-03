@@ -13,26 +13,23 @@
 @section('entity-header-actions')
     @can('update', $entity->child)
         <div class="header-buttons">
-            <a href="{{ route('entities.entity_abilities.reset', $entity) }}" class="btn btn-sm btn-default">
-                <i class="fa-solid fa-redo"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>
-                <span class="visible-xs visible-sm">{{ __('crud.actions.reset') }}</span>
-            </a>
             <a href="{{ route('entities.entity_abilities.reorder', $entity) }}" class="btn btn-sm btn-default">
-                <i class="fa-solid fa-sort"></i> 
-                <span class="visible-xs visible-sm">
-                    {{ __('entities/abilities.show.reorder') }}
-                </span>
+                <i class="fa-solid fa-sort" aria-hidden="true"></i> {{ __('entities/abilities.show.reorder') }}
+            </a>
+            <a href="{{ route('entities.entity_abilities.reset', $entity) }}" class="btn btn-sm btn-default">
+                <i class="fa-solid fa-redo" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>
+                <span class="visible-xs visible-sm">{{ __('crud.actions.reset') }}</span>
             </a>
             @if ($entity->isCharacter())
                 <a href="{{ route('entities.entity_abilities.import', [$entity, 'from' => 'race']) }}" class="btn btn-sm btn-default">
-                    <i class="ra ra-wyvern"></i>
+                    <i class="ra ra-wyvern" aria-hidden="true"></i>
                     <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.import_from_race') }}</span>
                     <span class="visible-xs visible-sm">{{ __('entities/abilities.actions.import_from_race_mobile') }}</span>
                 </a>
             @endif
             <a href="{{ route('entities.entity_abilities.create', $entity) }}" class="btn btn-sm btn-warning"
                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_abilities.create', $entity) }}">
-                <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>
                 <span class="visible-xs visible-sm">{{ __('crud.add') }}</span>
             </a>
         </div>

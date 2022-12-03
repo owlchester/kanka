@@ -12,26 +12,32 @@
     <div class="box-body">
 
     @foreach($parents as $key => $parent)
-        @if ($key === "")
-            {{ __('entities/abilities.reorder.parentless') }}
-        @else
-            {{ $parent[0]->ability->ability->name }}
-        @endif
-        <div class="element-live-reorder sortable-elements">
-            @foreach($parent as $ability)
-                <div class="element" data-id="{{ $ability->id }}">
-                    {!! Form::hidden('ability[]', $ability->id) !!}
-                    <div class="dragger">
-                        <span class="fa-solid fa-sort"></span>
-                    </div>
-                    <div class="name">
-                        {!! $ability->ability->name !!}
-                        <span class="text-sm">
-                            {!! $ability->ability->type!!}
-                        </span>
-                    </div>
+        <div class="element-live-reorder">
+            <div class="element">
+                <div class="name">
+                    @if ($key === "")
+                        {{ __('entities/abilities.reorder.parentless') }}
+                    @else
+                        {{ $parent[0]->ability->ability->name }}
+                    @endif
                 </div>
-            @endforeach
+                <div class="children sortable-elements">
+                    @foreach($parent as $ability)
+                        <div class="element" data-id="{{ $ability->id }}">
+                            {!! Form::hidden('ability[]', $ability->id) !!}
+                            <div class="dragger">
+                                <span class="fa-solid fa-sort"></span>
+                            </div>
+                            <div class="name">
+                                {!! $ability->ability->name !!}
+                                <span class="text-sm">
+                                    {!! $ability->ability->type!!}
+                                </span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     @endforeach
 
