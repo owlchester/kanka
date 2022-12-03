@@ -10,6 +10,8 @@ use App\Models\Entity;
 use App\Models\EntityAbility;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Collection;
+use App\Http\Requests\ReorderAbility;
+use Illuminate\Support\Arr;
 use Exception;
 
 class AbilityService
@@ -51,7 +53,7 @@ class AbilityService
                 // entity
                 'ability.entity', 'ability.entity.image', 'ability.entity.attributes',
                 // parent
-                'ability.ability', 'ability.ability.entity', 'ability.ability.tags',
+                'ability.ability', 'ability.ability.entity', 'ability.ability.entity.tags',
             ])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->defaultOrder()
@@ -351,5 +353,32 @@ class AbilityService
         }
 
         return $count;
+    }
+
+    /**
+     * @param ReorderAbility $request
+     * @return bool
+     */
+    public function reorder(ReorderAbility $request): bool
+    {
+        $ids = $request->get('ability');
+
+        if (empty($ids)) {
+            return false;
+        }
+
+        $position = 1;
+        foreach ($ids as $id) {
+            /** @var EntityAbility|null $ability */
+            $ability = EntityAbility::find($id);
+            if ($ability === null || $ability->entity_id !== $this->entity->id) {
+                continue;
+            }
+
+            $ability->position = $position;
+            $ability->save();
+            $position++;
+        }
+        return true;
     }
 }
