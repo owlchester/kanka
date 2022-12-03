@@ -4,6 +4,7 @@
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @inject('campaignService', 'App\Services\CampaignService')

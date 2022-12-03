@@ -47,7 +47,7 @@
 
 
 
-@include('editors.editor')
+@include('editors.editor', ($ajax ? ['dialogsInBody' => true] : []))
 
 @if ($ajax)
     <script type="text/javascript">

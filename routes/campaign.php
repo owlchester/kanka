@@ -243,6 +243,7 @@ Route::get('/timelines/{timeline}/reorder', [\App\Http\Controllers\Timelines\Tim
     ->name('timelines.reorder');
 Route::post('/timelines/{timeline}/reorder', [\App\Http\Controllers\Timelines\TimelineReorderController::class, 'save'])
     ->name('timelines.reorder-save');
+Route::post('/timelines/{timeline}/eras/bulk', 'Timelines\TimelineEraController@bulk')->name('timelines.eras.bulk');
 
 Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'reorder'])
     ->name('quick-links.reorder');

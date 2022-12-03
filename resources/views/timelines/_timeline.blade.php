@@ -78,7 +78,7 @@ $loadedElements = [];
     </ul>
 @empty
     <div class="alert alert-warning">
-        <div class = "mb-2" >{{ __('timelines.helpers.no_era') }} </div>
+        <div class = "mb-2" >{{ __('timelines.helpers.no_era_v2') }} </div>
         @can('update', $timeline)
         <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-warning btn-sm">
             <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}

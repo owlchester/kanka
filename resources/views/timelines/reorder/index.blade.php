@@ -18,7 +18,6 @@
             'model' => $timeline,
             'breadcrumb' => [
         ['url' => Breadcrumb::index('timelines'), 'label' => __('entities.timelines')],
-        ['url' => route('timelines.show', $timeline->id), 'label' => $timeline->name],
         __('timelines.reorder.title')
             ]
         ])
