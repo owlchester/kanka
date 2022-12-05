@@ -49,6 +49,11 @@ class EntityResource extends JsonResource
         /** @var \App\Models\Entity $entity */
         $entity = $this->resource;
 
+        $url = $entity->url();
+        $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
+        $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
+        $apiViewUrl = 'campaigns.' . $entity->pluralType() . '.show';
+
         $data = [
             'id' => $entity->id,
             'name' => $entity->name,
@@ -68,7 +73,15 @@ class EntityResource extends JsonResource
             'created_by' => $entity->created_by,
             'updated_at' => $entity->updated_at,
             'updated_by' => $entity->updated_by,
+
+
+            'urls' => [
+                'view' => $url,
+                'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$entity->campaign_id, $entity->entity_id]) : null,
+            ]
         ];
+
+
 
         if (request()->get('related', false)) {
             $data['attributes'] = AttributeResource::collection($entity->attributes);
