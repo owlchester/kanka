@@ -24,7 +24,7 @@
         ])
 
         @include($entity->pluralType() . '._menu', [
-            'active' => 'reorder',
+            'active' => 'abilities',
             'model' => $entity->child,
             'name' => $entity->pluralType()
         ])

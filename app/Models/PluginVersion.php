@@ -140,7 +140,8 @@ class PluginVersion extends Model
             $name = trim((string) $matches[1]);
             // If it's a {{ }} case, nothing more to do
             if (Str::startsWith($name, '{')) {
-                return '{' . $name . ' }';
+                $spaceAtEnd = Str::endsWith($name, '--') ? null : ' ';
+                return '{' . $name . $spaceAtEnd . '}';
             }
 
             // However, if it's an attribute being generated à la ${"member$i"}, we need to skip it
