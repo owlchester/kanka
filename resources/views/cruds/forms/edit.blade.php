@@ -56,7 +56,7 @@
             @endif
             @if ($tabPermissions)
             <li role="presentation"  class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
-                <a href="#form-permission" title="{{ __('crud.tabs.permissions') }}" role="tab" aria-controls="form-permission">
+                <a href="#form-permissions" title="{{ __('crud.tabs.permissions') }}" role="tab" aria-controls="form-permissions">
                     <i class="fa-solid fa-cog" title="{{ __('crud.tabs.permissions') }}"></i>
                     <span class="hidden-xs hidden-sm">{{ __('crud.tabs.permissions') }}</span>
                 </a>
@@ -81,7 +81,7 @@
                 </div>
             @endif
             @if ($tabPermissions)
-            <div class="tab-pane {{ (request()->get('tab') == 'permission' ? ' active' : '') }}" id="form-permission">
+            <div class="tab-pane {{ (request()->get('tab') == 'permission' ? ' active' : '') }}" id="form-permissions">
                 @include('cruds.forms._permission', ['source' => null])
             </div>
             @endif
