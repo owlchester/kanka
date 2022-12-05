@@ -34,7 +34,7 @@
     <div class="col-md-6">
         <div class="form-group required">
             <label>{{ __('entities/inventories.fields.amount') }}</label>
-            {!! Form::text('amount', (empty($inventory) ? 1 : null), ['placeholder' => __('entities/inventories.placeholders.amount'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::number('amount', (empty($inventory) ? 1 : null), ['class' => 'form-control', 'max' => 1000000000, 'min' => 0]) !!}
         </div>
     </div>
     <div class="col-md-6">
