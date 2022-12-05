@@ -4,7 +4,7 @@
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('locations'), 'label' => __('entities.locations')],
         ['url' => route('locations.show', $model), 'label' => $model->name],
-        __('locations.show.tabs.quests')
+        __('entities.quests')
     ],
     'mainTitle' => false,
     'miscModel' => $model,

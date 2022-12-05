@@ -2,27 +2,27 @@
 
 $tabs = [
         //'' => __('crud.tabs.story'),
-        'notes' => __('crud.tabs.notes'),
-        'calendars' => __('crud.tabs.calendars'),
+        'notes' => __('entities.notes'),
+        'calendars' => __('entities.calendars'),
         'attribute' => __('crud.tabs.attributes'),
 ];
 $menus = [
         'abilities' => __('crud.tabs.abilities'),
         'assets' => __('crud.tabs.assets'),
         'reminders' => __('crud.tabs.reminders'),
-        'organisations' => __('characters.show.tabs.organisations')  . ' (' . __('entities.characters') . ', ' . __('entities.organisations') . ')',
+        'organisations' => __('entities.organisations')  . ' (' . __('entities.characters') . ', ' . __('entities.organisations') . ')',
         __('entities.maps') => [
             'explore' => __('maps.actions.explore'),
-            'maps' => __('maps.show.tabs.maps'),
+            'maps' => __('entities.maps'),
         ],
         __('entities.tags') => [
             //'children' => __('tags.show.tabs.children'),
-            'tags' => __('tags.show.tabs.tags'),
+            'tags' => __('entities.tags'),
         ],
         __('entities.locations') => [
-            'map' => __('locations.show.tabs.map') . ' (' . __('crud.legacy') . ')',
-            'characters' => __('locations.show.tabs.characters'),
-            'locations' => __('locations.show.tabs.locations'),
+            'map' => __('entities.map') . ' (' . __('crud.legacy') . ')',
+            'characters' => __('entities.characters'),
+            'locations' => __('entities.locations'),
         ],
         __('entities.families') => [
             'families' => __('families.show.tabs.families')
@@ -31,28 +31,18 @@ $menus = [
             'inventories' => __('items.show.tabs.inventories')
         ],
         __('entities.organisations') => [
-            'organisations' => __('organisations.show.tabs.organisations')
+            'organisations' => __('entities.organisations')
         ],
         __('entities.races') => [
-            'races' => __('races.show.tabs.races')
+            'races' => __('entities.races')
         ],
         __('entities.journals') => [
-            'journals' => __('journals.show.tabs.journals')
+            'journals' => __('entities.journals')
         ],
         __('entities.quests') => [
             'quest_elements' => __('quests.show.tabs.elements')
         ],
 
-        //'tags' => __('tags.show.tabs.tags') . ' (' . __('entities.tags') . ')',
-        //'explore' => __('maps.actions.explore') . ' (' . __('entities.maps') . ')',
-        //'children' => __('tags.show.tabs.children') . ' (' . __('entities.tags') . ')',
-        //'quests' => __('characters.show.tabs.quests'),
-        //'members' => __('families.show.tabs.members') . ' (' . __('entities.families') . ')',
-        //'map_points' => __('crud.tabs.map-points'),
-        //'map' => __('locations.show.tabs.map') . ' (' . __('entities.locations') . ')',
-        //'inventories' => __('items.show.tabs.inventories'),
-        //'characters' => __('locations.show.tabs.characters') . ' (' . __('entities.locations') . ')',
-        //'items' => __('locations.show.tabs.items') . ' (' . __('entities.locations') . ')',
         'inventory' => __('crud.tabs.inventory'),
         'relations' => __('crud.tabs.connections'),
 ];

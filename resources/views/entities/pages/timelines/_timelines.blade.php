@@ -7,7 +7,7 @@
 <div class="box box-solid box-entity-timelines" id="entity-timelines">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('crud.tabs.timelines') }}
+            {{ __('entities.timelines') }}
         </h3>
     </div>
     <div class="box-body">

@@ -19,8 +19,8 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
     </div>
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="#form-entry" title="{{ __('crud.panels.entry') }}">
-                {{ __('crud.panels.entry') }}
+            <a href="#form-entry" title="{{ __('crud.fields.entry') }}">
+                {{ __('crud.fields.entry') }}
             </a>
         </li>
        @can('permission', $entity->child)
@@ -41,7 +41,7 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
                 {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
                 <div class="text-right">
                     <a href="//docs.kanka.io/en/latest/features/mentions.html" target="_blank" title="{{ __('helpers.link.description') }}">
-                        {{ __('crud.linking_help') }} <i class="fa-solid fa-question-circle"></i>
+                        {{ __('crud.helpers.linking') }} <i class="fa-solid fa-question-circle"></i>
                     </a>
                 </div>
             </div>

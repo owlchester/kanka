@@ -2,7 +2,7 @@
 <div class="box box-solid">
     <div class="box-header">
         <h3 class="box-title">
-            {{ trans('items.show.tabs.quests') }}
+            {{ trans('entities.quests') }}
         </h3>
     </div>
     <div class="box-body">

@@ -491,7 +491,7 @@ class Calendar extends MiscModel
         $count = $this->calendarEvents()->has('entity')->count();
         if ($count > 0) {
             $items['second']['events'] = [
-                'name' => 'calendars.show.tabs.events',
+                'name' => 'crud.tabs.reminders',
                 'route' => 'calendars.events',
                 'count' => $count
             ];

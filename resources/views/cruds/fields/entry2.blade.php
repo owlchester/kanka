@@ -4,7 +4,7 @@ $old = old('entry');
 
 <div class="form-group">
     <label style="width: 100%">
-        {{ __('crud.panels.entry') }}
+        {{ __('crud.fields.entry') }}
 
         <a href="//docs.kanka.io/en/latest/features/mentions.html" class="pull-right btn btn-default btn-sm"
            target="_blank" title="{{ __('helpers.link.description') }}">

@@ -9,7 +9,7 @@
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        __('crud.tabs.quests')
+        __('entities.quests')
     ],
     'mainTitle' => false,
     'canonical' => true,
@@ -31,7 +31,7 @@
             'entity' => $entity,
             'breadcrumb' => [
                 ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
-                __('crud.tabs.quests')
+                __('entities.quests')
             ]
         ])
 

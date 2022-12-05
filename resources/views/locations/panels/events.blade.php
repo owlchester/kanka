@@ -1,7 +1,7 @@
 <div class="box box-solid">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('locations.show.tabs.events') }}
+            {{ __('lentities.events') }}
         </h3>
     </div>
     <div class="box-body">

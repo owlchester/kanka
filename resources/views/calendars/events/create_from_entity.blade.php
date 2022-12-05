@@ -4,7 +4,6 @@
     'breadcrumbs' => [
         ['url' => route('calendars.index'), 'label' => __('entities.calendars')],
         ['url' => $entity->url(), 'label' => $entity->name],
-        ['url' => $entity->url() . '#calendars', 'label' => __('crud.tabs.events')],
         __('crud.tabs.reminders'),
     ],
     'canonical' => true,
