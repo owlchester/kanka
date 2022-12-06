@@ -57,11 +57,11 @@
             @endif
             @if ($reminders->count() > 0)
                 <div class="box box-solid box-entity-reminders">
-                    <div class="box-body">
+                    <div class="box-body no-padding">
                         @include('entities.pages.reminders._table')
                     </div>
                 </div>
-            @endif    
+            @endif
         </div>
     </div>
 

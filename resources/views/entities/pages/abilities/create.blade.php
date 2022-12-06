@@ -15,24 +15,35 @@
         'data-shortcut' => 1
     ]) !!}
 
-    <div class="panel panel-default">
-        @if (request()->ajax())
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
-                    {{ __('entities/abilities.create.title', ['name' => $entity->name]) }}
-                </h4>
-        </div>
-        @endif
-        <div class="panel-body">
-            @include('partials.errors')
 
+    @if (request()->ajax())
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+            <h4>
+                {{ __('entities/abilities.create.title', ['name' => $entity->name]) }}
+            </h4>
+        </div>
+        <div class="modal-body">
+            @include('partials.errors')
             @include('entities.pages.abilities._form')
         </div>
-        <div class="panel-footer">
-            <button class="btn btn-success pull-right">{{ __('crud.save') }}</button>
-            @include('partials.footer_cancel')
+        <div class="modal-footer">
+            <button class="btn btn-success">{{ __('crud.save') }}</button>
+            <div class="pull-left">
+                @include('partials.footer_cancel')
+            </div>
         </div>
-    </div>
+    @else
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @include('partials.errors')
+                @include('entities.pages.abilities._form')
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-success pull-right">{{ __('crud.save') }}</button>
+                @include('partials.footer_cancel')
+            </div>
+        </div>
+    @endif
     {!! Form::close() !!}
 @endsection
