@@ -395,7 +395,7 @@ class Calendar extends MiscModel
      * Get a list of months for select fields
      * @return array
      */
-    public function monthList()
+    public function monthList(): array
     {
         $months = [];
         $i = 1;
@@ -404,6 +404,41 @@ class Calendar extends MiscModel
             $i++;
         }
         return $months;
+    }
+
+    /**
+     * Get the length as a data-property for each of the calendar's months
+     * @return array
+     */
+    public function monthDataProperties(): array
+    {
+        $monthData = [];
+        $i = 1;
+        foreach ($this->months() as $month) {
+            $monthData[$i] = ['data-length' => $month['length']];
+            $i++;
+        }
+        return $monthData;
+    }
+
+    /**
+     * Build the list of days for a month
+     * @param int|null $month
+     * @return array
+     */
+    public function dayList(int $month = null): array
+    {
+        if (empty($month)) {
+            $month = $this->currentMonth();
+        }
+        $month = $month - ($month > 0 ? 1 : 0);
+        $days = [];
+        $currentMonth = $this->months()[$month];
+        for ($i = 1; $i <= $currentMonth['length']; $i++) {
+            $days[$i] = $i;
+        }
+
+        return $days;
     }
 
     /**
