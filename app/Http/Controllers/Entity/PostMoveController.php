@@ -32,7 +32,7 @@ class PostMoveController extends Controller
         $this->authorize('view', $entity->child);
         $campaign = CampaignLocalization::getCampaign()->entities()->get();
 
-        return view('entities.pages.entity-notes.move.index', compact(
+        return view('entities.pages.posts.move.index', compact(
             'entity',
             'entityNote',
             'campaign',
@@ -43,7 +43,8 @@ class PostMoveController extends Controller
      */
     public function move(MovePostRequest $request, Entity $entity, EntityNote $entityNote)
     {
-
+        $this->authorize('update', $entity->child);
+        /** @var Entity|null $newEntity */
         $newEntity = Entity::where(['id' => $request['entity']])->first();
         $this->authorize('update', $newEntity->child);
         try {

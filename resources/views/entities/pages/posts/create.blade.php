@@ -15,7 +15,7 @@
 @endsection
 
 @section('content')
-    @include('entities.pages.entity-notes._form')
+    @include('entities.pages.posts._form')
 
 
 @endsection
