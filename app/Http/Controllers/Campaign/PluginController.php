@@ -35,10 +35,15 @@ class PluginController extends Controller
     public function index()
     {
         $campaign = CampaignLocalization::getCampaign();
+        Datagrid::layout(\App\Renderers\Layouts\Campaign\Plugin::class);
+
 
         $highlight = request()->get('highlight');
-
-        Datagrid::layout(\App\Renderers\Layouts\Campaign\Plugin::class);
+        if (!empty($highlight)) {
+            Datagrid::highlight(function () use ($highlight) {
+                return $this->uuid === $highlight;
+            });
+        }
 
         $plugins = $campaign->plugins()
             ->preparedSelect()
