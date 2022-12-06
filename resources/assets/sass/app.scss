@@ -825,7 +825,10 @@ button.dropdown-item {
     content: "\f110";
 }
 
-// Other stylings
+.mention-field-entry {
+    display: block;
+}
+
 @import "calendar";
 @import "tooltip";
 @import "timeline";

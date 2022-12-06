@@ -1201,6 +1201,10 @@ button.dropdown-item:hover {
   content: "\f110";
 }
 
+.mention-field-entry {
+  display: block;
+}
+
 :root {
   --calendar-today: #FFFDE2;
   --calendar-week: #FFFDE2;

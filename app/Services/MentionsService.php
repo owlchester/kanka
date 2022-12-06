@@ -413,14 +413,14 @@ class MentionsService
                             . Arr::get($data, 'text', $entity->name)
                             . '</a>';
                         ;
-                        return '<div class="' . implode(' ', $cssClasses) . '"'
+                        return '<span class="' . implode(' ', $cssClasses) . '"'
                             . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
                             . '>'
                             . $entityName
                             . '<div class="mention-entry-content">'
                             . $parsedTargetEntry
                             . '</div>'
-                            . '</div>';
+                            . '</span>';
                     } elseif (isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
