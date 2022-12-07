@@ -168,10 +168,9 @@ class MenuLink extends MiscModel
             if ($this->menu == 'all-members') {
                 $parameters['all_members'] = 1;
             }
-        }
-
-        if ($this->menu && isset($this->options['subview_filter'])) {
-            $parameters[] = $this->options['subview_filter'];
+            if (isset($this->options['subview_filter'])) {
+                $parameters[] = $this->options['subview_filter'];
+            }
         }
 
         return $parameters;
