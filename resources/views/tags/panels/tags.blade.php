@@ -12,7 +12,7 @@ if (request()->has('tag_id')) {
             {{ __('tags.show.tabs.tags') }}
         </h3>
         <div class="box-tools">
-            <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#help-modal">
+            <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
                 <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('tag_id'))
@@ -35,21 +35,11 @@ if (request()->has('tag_id')) {
 
 @section('modals')
     @parent
-    <div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        {{ __('crud.actions.help') }}
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {{ __('tags.hints.tag') }}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('partials.helper-modal', [
+        'id' => 'help-modal',
+        'title' => __('crud.actions.help'),
+        'textes' => [
+            __('tags.hints.tag')
+        ]
+    ])
 @endsection
