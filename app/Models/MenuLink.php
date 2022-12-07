@@ -80,7 +80,7 @@ class MenuLink extends MiscModel
      *
      * @var array
      */
-    public array $optionsAllowedKeys = ['is_nested', 'default_dashboard'];
+    public array $optionsAllowedKeys = ['is_nested', 'default_dashboard', 'subview_filter'];
 
     /**
      * Searchable fields
@@ -168,7 +168,11 @@ class MenuLink extends MiscModel
             if ($this->menu == 'all-members') {
                 $parameters['all_members'] = 1;
             }
+            if (isset($this->options['subview_filter'])) {
+                $parameters[] = $this->options['subview_filter'];
+            }
         }
+
         return $parameters;
     }
 
@@ -219,6 +223,7 @@ class MenuLink extends MiscModel
                 $route = $menuRoute;
             }
         }
+
         return route($route, $this->getRouteParams());
     }
 
