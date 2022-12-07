@@ -56,49 +56,7 @@
     </div>
     {!! Form::hidden('permissions', true) !!}
 
-    <div class="hidden row mb-5" id="entity-note-perm-user-template">
-        <div class="col-sm-6">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
-                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control" />
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="input-group">
-                {!! Form::select('perm_user_perm[]', $permissions, null, [
-                    'class' => 'form-control'
-                ]) !!}
-                <span class="input-group-btn">
-                    <button class="btn btn-danger btn-flat entity-note-delete-perm">
-                        <i class='fa-solid fa-trash'></i>
-                    </button>
-                </span>
-            </div>
-        </div>
-        <input type="hidden" name="perm_user[]" value="$SELECTEDID$" />
-    </div>
-    <div class="hidden row mb-5" id="entity-note-perm-role-template">
-        <div class="col-sm-6">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa-solid fa-users"></i></span>
-                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control" />
-            </div>        </div>
-        <div class="col-sm-6">
-            <div class="input-group">
-                {!! Form::select('perm_role_perm[]', $permissions, null, [
-                    'class' => 'form-control'
-                ]) !!}
-                <span class="input-group-btn">
-                <button class="btn btn-danger btn-flat entity-note-delete-perm">
-                    <i class='fa-solid fa-trash'></i>
-                </button>
-            </span>
-            </div>
-        </div>
-        <input type="hidden" name="perm_role[]" value="$SELECTEDID$" />
-    </div>
-
-    <div class="modal fade" id="entity-note-new-user" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal fade" id="entity-note-new-user" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -145,3 +103,48 @@
         </div>
     </div>
 </div>
+
+@section('modals')
+    @parent
+    <div class="hidden row mb-5" id="entity-note-perm-user-template">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
+                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control" />
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="input-group">
+                {!! Form::select('perm_user_perm[]', $permissions, null, [
+                    'class' => 'form-control'
+                ]) !!}
+                <span class="input-group-btn">
+                    <button class="btn btn-danger btn-flat entity-note-delete-perm">
+                        <i class='fa-solid fa-trash'></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <input type="hidden" name="perm_user[]" value="$SELECTEDID$" />
+    </div>
+    <div class="hidden row mb-5" id="entity-note-perm-role-template">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa-solid fa-users"></i></span>
+                <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control" />
+            </div>        </div>
+        <div class="col-sm-6">
+            <div class="input-group">
+                {!! Form::select('perm_role_perm[]', $permissions, null, [
+                    'class' => 'form-control'
+                ]) !!}
+                <span class="input-group-btn">
+                <button class="btn btn-danger btn-flat entity-note-delete-perm">
+                    <i class='fa-solid fa-trash'></i>
+                </button>
+            </span>
+            </div>
+        </div>
+        <input type="hidden" name="perm_role[]" value="$SELECTEDID$" />
+    </div>
+@endsection

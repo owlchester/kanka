@@ -15,7 +15,7 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
 ?>
 <div class="nav-tabs-custom">
     <div class="pull-right">
-        @include('entities.pages.entity-notes._save-options')
+        @include('entities.pages.posts._save-options')
     </div>
     <ul class="nav nav-tabs">
         <li class="active">
@@ -72,7 +72,7 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
             </div>
         </div>
 
-        @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.entity-notes._permissions')
+        @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.posts._permissions')
     </div>
 </div>
 

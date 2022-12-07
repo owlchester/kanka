@@ -188,7 +188,7 @@ class DatagridRenderer
                 $class = 'icon';
             } elseif ($type == 'calendar_date') {
                 $class .= ' hidden-xs hidden-sm';
-                $html = $this->route('calendar_date', __('entities.calendar_date'));
+                $html = $this->route('calendar_date', __('crud.fields.calendar_date'));
             } else {
                 // No idea what is expected
                 $html = null;

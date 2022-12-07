@@ -23,14 +23,6 @@ $role = \App\Facades\CampaignCache::adminRole();
 
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['privacyToggle' => true])
 
-<p class="help-block mt-5 mb-5">
-    {!! __('crud.permissions.helpers.setup', [
-        'allow' => '<code>' . __('crud.permissions.actions.bulk_entity.allow') . '</code>',
-        'deny' => '<code>' . __('crud.permissions.actions.bulk_entity.deny') . '</code>',
-        'inherit' => '<code>' . __('crud.permissions.actions.bulk_entity.inherit') . '</code>',
-    ]) !!}
-</p>
-
 @php
 $hidden = false;
 if (!empty($source) && $source->is_private) {

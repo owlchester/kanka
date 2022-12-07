@@ -43,7 +43,7 @@ class EntityNoteController extends Controller
         $route = 'entities.' . $this->route;
         $parentRoute = $entity->pluralType();
 
-        return view('entities.pages.entity-notes.create', compact(
+        return view('entities.pages.posts.create', compact(
             'entityNote',
             'name',
             'route',
@@ -118,7 +118,7 @@ class EntityNoteController extends Controller
         $parentRoute = $entity->pluralType();
         $from = request()->get('from');
 
-        return view('entities.pages.entity-notes.edit', compact(
+        return view('entities.pages.posts.edit', compact(
             'entity',
             'model',
             'name',

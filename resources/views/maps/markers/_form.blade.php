@@ -38,7 +38,7 @@ $sizeOptions = [
             </a>
         </li>
         <li role="presentation">
-            <a href="#presets" data-nohash="true" class="text-center" data-presets="{{ route('preset_types.presets.index', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from]) }}">
+            <a href="#presets" data-nohash="true" class="text-center" data-presets="{{ route('preset_types.presets.index', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}">
                 <i class="fa-solid fa-2x fa-wand-magic-sparkles"></i><br />
                 {{ __('maps/markers.tabs.preset') }}
             </a>
@@ -172,7 +172,7 @@ $sizeOptions = [
             </div>
 
             @can('mapPresets', $campaignService->campaign())
-                <a href="{{ route('preset_types.presets.create', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from]) }}" class="btn btn-success">
+                <a href="{{ route('preset_types.presets.create', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}" class="btn btn-success">
                     {{ __('presets.actions.create') }}
                 </a>
             @endcan

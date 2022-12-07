@@ -91,19 +91,15 @@ class MacroServiceProvider extends ServiceProvider
                 return false;
             }
 
-            // Always show ads to unlogged users
-            if (!auth()->check()) {
-                return true;
-            }
-
-            // Subscribed users don't have ads
-            if (auth()->user()->isSubscriber()) {
-                return false;
-            }
-
-            // User has been created less than 24 hours ago
-            if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
-                return false;
+            if (auth()->check()) {
+                // Subscribed users don't have ads
+                if (auth()->user()->isSubscriber()) {
+                    return false;
+                }
+                // User has been created less than 24 hours ago
+                if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
+                    return false;
+                }
             }
 
             // Boosted campaigns don't either have ads displayed to their members
@@ -122,23 +118,19 @@ class MacroServiceProvider extends ServiceProvider
             if (!AdCache::has($section)) {
                 return false;
             }
-            // Always show ads to unlogged users
-            if (!auth()->check()) {
-                return true;
-            }
-
             if (request()->get('_boost') === '0') {
                 return true;
             }
 
-            // Subscribed users don't have ads
-            if (auth()->user()->isSubscriber()) {
-                return false;
-            }
-
-            // User has been created less than 24 hours ago
-            if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
-                return false;
+            if (auth()->check()) {
+                // Subscribed users don't have ads
+                if (auth()->user()->isSubscriber()) {
+                    return false;
+                }
+                // User has been created less than 24 hours ago
+                if (auth()->user()->created_at->diffInHours(Carbon::now()) < 24) {
+                    return false;
+                }
             }
 
             // Boosted campaigns don't either have ads displayed to their members

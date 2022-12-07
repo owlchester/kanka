@@ -13,6 +13,14 @@ $actions = [
 $permissionService->campaign($campaignService->campaign());
 ?>
 
+<p class="help-block">
+    {!! __('crud.permissions.helpers.setup', [
+        'allow' => '<code>' . __('crud.permissions.actions.bulk_entity.allow') . '</code>',
+        'deny' => '<code>' . __('crud.permissions.actions.bulk_entity.deny') . '</code>',
+        'inherit' => '<code>' . __('crud.permissions.actions.bulk_entity.inherit') . '</code>',
+    ]) !!}
+</p>
+
 <div id="crud_permissions">
     <div class="row mb-5">
         <div class="col-sm-4">
@@ -41,32 +49,56 @@ $permissionService->campaign($campaignService->campaign());
             <div class="col-sm-4">{{ $role->name }}</div>
             <div class="text-center col-sm-2">
                 <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</span>
-                {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_READ . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_READ)) !!}
-                @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_READ, $role->id))
-                    <i class="text-green fa-solid fa-check-circle" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip"></i>
-                @endif
+                    @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_READ, $role->id))
+                        <div class="input-group">
+                            {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_READ . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_READ), ['class' => 'form-control']) !!}
+                            <span class="input-group-addon" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip">
+                                <i class="text-green fa-solid fa-check-circle" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    @else
+                        {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_READ . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_READ), ['class' => 'form-control']) !!}
+                    @endif
             </div>
             @if (!$role->is_public)
                 <div class="col-sm-2 text-center">
                     <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.edit') }}</span>
-                    {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_EDIT)) !!}
-                    @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_EDIT, $role->id))
-                        <i class="text-green fa-solid fa-check-circle" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip"></i>
-                    @endif
+                        @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_EDIT, $role->id))
+                            <div class="input-group">
+                                {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_EDIT), ['class' => 'form-control']) !!}
+                                <span class="input-group-addon" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip">
+                                    <i class="text-green fa-solid fa-check-circle" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        @else
+                            {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_EDIT), ['class' => 'form-control']) !!}
+                        @endif
                 </div>
                 <div class="col-sm-2 text-center">
                     <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.delete') }}</span>
-                    {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_DELETE ."]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_DELETE)) !!}
-                    @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_DELETE, $role->id))
-                        <i class="text-green fa-solid fa-check-circle" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip"></i>
-                    @endif
+                        @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_DELETE, $role->id))
+                            <div class="input-group">
+                                {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_DELETE ."]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_DELETE), ['class' => 'form-control']) !!}
+                                <span class="input-group-addon" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip">
+                                    <i class="text-green fa-solid fa-check-circle" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        @else
+                            {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_DELETE ."]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_DELETE), ['class' => 'form-control']) !!}
+                        @endif
                 </div>
                 <div class="col-sm-2 text-center">
                     <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.entity_note') }}</span>
-                    {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_POSTS)) !!}
-                    @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_POSTS, $role->id))
-                        <i class="text-green fa-solid fa-check-circle" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip"></i>
-                    @endif
+                        @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_POSTS, $role->id))
+                            <div class="input-group">
+                                {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_POSTS), ['class' => 'form-control']) !!}
+                                <span class="input-group-addon" title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip">
+                                    <i class="text-green fa-solid fa-check-circle" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        @else
+                            {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_POSTS), ['class' => 'form-control']) !!}
+                        @endif
                 </div>
             @endif
         </div>
@@ -120,38 +152,62 @@ $permissionService->campaign($campaignService->campaign());
                 </div>
                 <div class="col-sm-2 text-center">
                     <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</span>
-                    {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_READ ."]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_READ)) !!}
-                    @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_READ, 0, $member->user_id))
-                        <i class="text-{{ $permissionService->inheritedRoleAccess(\App\Models\CampaignPermission::ACTION_READ, $member->user_id) ? 'green' : 'red' }} fa-solid fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
-                       'role' => e($permissionService->inheritedRoleName(\App\Models\CampaignPermission::ACTION_READ, $member->user_id))
-                   ]) }}" data-toggle="tooltip"></i>
-                    @endif
+                        @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_READ, 0, $member->user_id))
+                            <div class="input-group">
+                                {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_READ ."]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_READ), ['class' => 'form-control']) !!}
+                                <span class="input-group-addon" title="{{ __('crud.permissions.inherited_by', [
+                               'role' => e($permissionService->inheritedRoleName(\App\Models\CampaignPermission::ACTION_READ, $member->user_id))
+                               ]) }}" data-toggle="tooltip">
+                                    <i class="text-{{ $permissionService->inheritedRoleAccess(\App\Models\CampaignPermission::ACTION_READ, $member->user_id) ? 'green' : 'red' }} fa-solid fa-check-circle" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        @else
+                            {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_READ ."]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_READ), ['class' => 'form-control']) !!}
+                        @endif
                 </div>
                 <div class="col-sm-2 text-center">
                     <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.edit') }}</span>
-                    {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_EDIT)) !!}
-                    @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_EDIT, 0, $member->user_id))
-                        <i class="text-{{ $permissionService->inheritedRoleAccess(\App\Models\CampaignPermission::ACTION_EDIT, $member->user_id) ? 'green' : 'red' }} fa-solid fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
-                       'role' => e($permissionService->inheritedRoleName(\App\Models\CampaignPermission::ACTION_EDIT, $member->user_id))
-                   ]) }}" data-toggle="tooltip"></i>
-                    @endif
+                        @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_EDIT, 0, $member->user_id))
+                            <div class="input-group">
+                                {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_EDIT), ['class' => 'form-control']) !!}
+                                <span class="input-group-addon" title="{{ __('crud.permissions.inherited_by', [
+                               'role' => e($permissionService->inheritedRoleName(\App\Models\CampaignPermission::ACTION_EDIT, $member->user_id))
+                               ]) }}" data-toggle="tooltip">
+                                    <i class="text-{{ $permissionService->inheritedRoleAccess(\App\Models\CampaignPermission::ACTION_EDIT, $member->user_id) ? 'green' : 'red' }} fa-solid fa-check-circle" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        @else
+                            {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_EDIT . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_EDIT), ['class' => 'form-control']) !!}
+                        @endif
                 </div>
                 <div class="col-sm-2 text-center">
                     <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.delete') }}</span>
-                    {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_DELETE . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_DELETE)) !!}
-                    @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_DELETE, 0, $member->user_id))
-                        <i class="text-{{ $permissionService->inheritedRoleAccess(\App\Models\CampaignPermission::ACTION_DELETE, $member->user_id) ? 'green' : 'red' }} fa-solid fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
-                       'role' => e($permissionService->inheritedRoleName(\App\Models\CampaignPermission::ACTION_DELETE, $member->user_id))
-                   ]) }}" data-toggle="tooltip"></i>
-                    @endif
+                        @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_DELETE, 0, $member->user_id))
+                            <div class="input-group">
+                                {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_DELETE . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_DELETE), ['class' => 'form-control']) !!}
+                                <span class="input-group-addon" title="{{ __('crud.permissions.inherited_by', [
+                               'role' => e($permissionService->inheritedRoleName(\App\Models\CampaignPermission::ACTION_DELETE, $member->user_id))
+                               ]) }}" data-toggle="tooltip">
+                                    <i class="text-{{ $permissionService->inheritedRoleAccess(\App\Models\CampaignPermission::ACTION_DELETE, $member->user_id) ? 'green' : 'red' }} fa-solid fa-check-circle" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        @else
+                            {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_DELETE . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_DELETE), ['class' => 'form-control']) !!}
+                        @endif
                 </div>
                 <div class="col-sm-2 text-center">
                     <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.entity_note') }}</span>
-                    {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_POSTS)) !!}
                     @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_POSTS, 0, $member->user_id))
-                        <i class="text-{{ $permissionService->inheritedRoleAccess(\App\Models\CampaignPermission::ACTION_POSTS, $member->user_id) ? 'green' : 'red' }} fa-solid fa-check-circle" title="{{ __('crud.permissions.inherited_by', [
-                       'role' => e($permissionService->inheritedRoleName(\App\Models\CampaignPermission::ACTION_POSTS, $member->user_id))
-                   ]) }}" data-toggle="tooltip"></i>
+                        <div class="input-group">
+                            {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_POSTS), ['class' => 'form-control']) !!}
+                            <span class="input-group-addon" title="{{ __('crud.permissions.inherited_by', [
+                           'role' => e($permissionService->inheritedRoleName(\App\Models\CampaignPermission::ACTION_POSTS, $member->user_id))
+                           ]) }}" data-toggle="tooltip">
+                                <i class="text-{{ $permissionService->inheritedRoleAccess(\App\Models\CampaignPermission::ACTION_POSTS, $member->user_id) ? 'green' : 'red' }} fa-solid fa-check-circle" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    @else
+                        {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_POSTS), ['class' => 'form-control']) !!}
                     @endif
                 </div>
             </div>

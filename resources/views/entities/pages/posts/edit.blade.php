@@ -15,7 +15,7 @@
 
 @section('content')
 
-    @include('entities.pages.entity-notes._form')
+    @include('entities.pages.posts._form')
 
     <div class="mt-5 text-right">
         <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"

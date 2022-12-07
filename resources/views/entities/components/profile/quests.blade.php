@@ -25,14 +25,7 @@
                 {{ $model->date }}
             </div>
         @endif
-        @if ($model->calendarReminder())
-            <div class="element profile-date">
-                <div class="title">{{ __('entities.calendar_date') }}</div>
-                <a href="{{ route('calendars.show', [$model->calendar_id, 'year' => $model->calendarReminder()->year, 'month' => $model->calendarReminder()->month]) }}">
-                    {{ $model->getDate() }}
-                </a>
-            </div>
-        @endif
+        @include('entities.components.profile._reminder')
 
         @include('entities.components.profile._type')
     </div>

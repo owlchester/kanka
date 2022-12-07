@@ -12,22 +12,10 @@
     {!! Form::model($inventory, ['route' => ['entities.inventories.update', $entity->id, $inventory], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
 
     @if (request()->ajax())
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-            <h4>
-                {{ __('entities/inventories.update.title', ['name' => $entity->name]) }}
-            </h4>
-        </div>
-        <div class="modal-body">
-            @include('partials.errors')
-            @include('entities.pages.abilities._form')
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-success">{{ __('crud.save') }}</button>
-            <div class="pull-left">
-                @include('partials.footer_cancel')
-            </div>
-        </div>
+        @include('modals.modal', [
+            'title' => __('entities/inventories.update.title', ['name' => $entity->name]),
+            'content' => 'entities.pages.inventory._form',
+        ])
     @else
         <div class="box box-solid">
             <div class="box-body">

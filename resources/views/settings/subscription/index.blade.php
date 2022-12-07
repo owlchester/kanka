@@ -297,11 +297,15 @@
     <div class="modal fade" id="change-information" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ __('settings.subscription.upgrade_downgrade.button') }}</h4>
-                </div>
                 <div class="modal-body">
+                    @include('partials.modals.close')
+                    <div class="quick-creator-header">
+                        <div>
+                            <div class="qq-entity-type">
+                                {{ __('settings.subscription.upgrade_downgrade.button') }}
+                            </div>
+                        </div>
+                    </div>
                     <h4>{{ __('settings.subscription.upgrade_downgrade.upgrade.title') }}</h4>
                     <ul>
                         @foreach(__('settings.subscription.upgrade_downgrade.upgrade.bullets') as $key => $text)
@@ -333,23 +337,14 @@
     <div class="modal fade" id="change-currency" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ __('settings.subscription.currency.title') }}</h4>
-                </div>
-                <div class="modal-body">
-                    {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing.save']]) !!}
-                    <div class="form-group">
-                        <label>{{ __('settings.subscription.fields.currency') }}</label>
-                        {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], null, ['class' => 'form-control']) !!}
-                    </div>
-
-                    <button class="btn btn-primary mb-5">
-                        {{ __('settings.subscription.actions.update_currency') }}
-                    </button>
-                    <input type="hidden" name="from" value="{{ 'settings.subscription' }}" />
-                    {!! Form::close() !!}
-                </div>
+                {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing.save']]) !!}
+                @include('partials.forms._modal', [
+                    'title' => __('settings.subscription.currency.title'),
+                    'content' => 'settings.subscription.currency._form',
+                    'submit' => __('settings.subscription.actions.update_currency')
+                ])
+                <input type="hidden" name="from" value="{{ 'settings.subscription' }}" />
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

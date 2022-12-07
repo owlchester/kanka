@@ -26,6 +26,7 @@
                 {!! $model->author->tooltipedLink() !!}
             </div>
         @endif
+        @include('entities.components.profile._reminder')
 
         @include('entities.components.profile._type')
     </div>

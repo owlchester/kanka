@@ -15,12 +15,12 @@
     <tbody>
     <?php $previousPosition = null; ?>
     @foreach ($inventory as $item)
-        @if(!empty($item->item_id) && empty($item->item))
+        @if (!empty($item->item_id) && empty($item->item))
             @continue
         @endif
         @if ($previousPosition != $item->position)
             <tr class="active cursor" data-toggle="collapse" data-target=".inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }}">
-                <th colspan="@if(Auth::check())5 @else 4 @endif" class="text-muted">
+                <th colspan="@if (auth()->check())5 @else 4 @endif" class="text-muted">
                     {!! $item->position ?: '<i>' . __('entities/inventories.show.unsorted') . '</i>' !!}
                 </th>
             </tr>
@@ -28,12 +28,12 @@
         @endif
         <tr class="collapse inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }} in">
             <td style="width: 50px">
-                @if($item->is_equipped)
+                @if ($item->is_equipped)
                     <i class="fa-solid fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip"></i>
                 @endif
             </td>
             <td>
-                @if($item->item)
+                @if ($item->item)
                     {!! $item->item->tooltipedLink($item->name) !!}
                 @else
                     {!! $item->name !!}
@@ -47,7 +47,7 @@
                 </small>
             </td>
             <td>
-                {{ $item->amount }}
+                {{ number_format($item->amount) }}
             </td>
             @if (auth()->check())
                 <td>

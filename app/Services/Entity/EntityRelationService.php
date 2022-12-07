@@ -200,7 +200,7 @@ class EntityRelationService
         /** @var Relation[] $relations */
         $relations = $entity->relationships()
             ->select('relations.*')
-            ->with('target')
+            ->with(['target', 'mirror'])
             ->has('target')
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
             ->get();
@@ -243,7 +243,7 @@ class EntityRelationService
                 ])
             ];
 
-            if ($relation->isMirrored()) {
+            if ($relation->isMirrored() && $relation->relation == $relation->mirror->relation) {
                 $this->mirrors[$relation->id . '-' . $relation->mirror_id] = true;
             }
             $this->relationIds[] = $relation->id;

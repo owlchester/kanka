@@ -344,7 +344,9 @@ function heighestValue(numbers)
 require('./helpers');
 require('./keyboard');
 require('./crud');
+require('./post');
 require('./calendar');
+require('./keep-alive');
 require('./search');
 require('./notification');
 require('./quick-creator');
