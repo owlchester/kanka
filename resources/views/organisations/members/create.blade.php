@@ -13,6 +13,7 @@
     @include('partials.forms.form', [
         'title' => __('organisations.members.create.title', ['name' => $model->name]),
         'content' => 'organisations.members._form',
+        'submit' => __('organisations.members.actions.submit')
     ])
     {!! Form::hidden('organisation_id', $model->id) !!}
     {!! Form::close() !!}
