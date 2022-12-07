@@ -219,7 +219,12 @@ class MenuLink extends MiscModel
                 $route = $menuRoute;
             }
         }
-        return route($route, $this->getRouteParams());
+        $filter = '';
+        if ($this->menu && isset($this->options['subview_filter'])) {
+            $filter = '&' . $this->options['subview_filter'];
+        }
+
+        return route($route, $this->getRouteParams()) . $filter;
     }
 
     /**

@@ -23,8 +23,10 @@ function initQuickLinksForm() {
 }
 
 function showFilterField() {
-    selector = $('#entity-selector');
-    if (selector.val() != '') {
+    let selector = $('#entity-selector');
+    if (selector.length === 0) {
+        return false;
+    } else if (selector.val() != '') {
         $('#filter-subform').show();
     }
     selector.change(function () {

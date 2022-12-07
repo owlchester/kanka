@@ -8,7 +8,7 @@
     </li>
 @elseif ($menuLink->target)
     <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($currentCampaign) }}">
-        <a href="{{ $menuLink->getRoute() }}@if ($menuLink->menu && isset($menuLink->options['subview_filter']))&{{$menuLink->options['subview_filter']}}@endif">
+        <a href="{{ $menuLink->getRoute() }}">
             <i class="{{ $menuLink->icon() }}"></i>
             {{ $menuLink->name }}
         </a>
