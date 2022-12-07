@@ -3264,8 +3264,8 @@ function registerEntityCalendarForm() {
 
 
       entityCalendarYearField = $('input[name="calendar_year"]');
-      entityCalendarDayField = $('input[name="calendar_day"]');
       entityCalendarMonthField = $('select[name="calendar_month"]');
+      entityCalendarDayField = $('select[name="calendar_day"]');
 
       if (entityCalendarYearField.length === 0 && $('input[name="year"]').length === 1) {
         entityCalendarYearField = $('input[name="year"]');
@@ -3327,21 +3327,23 @@ function loadCalendarDates(calendarID) {
     entityCalendarDayField.html('');
     var id = 1;
     var monthLength = 1;
-    $.each(data.months, function (i) {
-      var month = data.months[i];
-      var selected = id == data.current.month ? ' selected="selected"' : '';
-      entityCalendarMonthField.append('<option value="' + id + '" data-length="' + month.length + '" ' + selected + '>' + this.name + '</option>');
-
-      if (id === data.current.month) {
-        monthLength = data.current.month.length;
-      }
-
-      id++;
-    });
 
     if (!selectedDay) {
       selectedDay = data.current.day;
     }
+
+    var currentMonth = parseInt(data.current.month);
+    $.each(data.months, function (i) {
+      var month = data.months[i];
+      var selected = id === currentMonth ? ' selected="selected"' : '';
+      entityCalendarMonthField.append('<option value="' + id + '" data-length="' + month.length + '" ' + selected + '>' + this.name + '</option>');
+
+      if (id === currentMonth) {
+        monthLength = month.length;
+      }
+
+      id++;
+    });
 
     for (var d = 1; d < monthLength; d++) {
       var selected = d == selectedDay ? ' selected="selected"' : '';
@@ -3795,6 +3797,10 @@ function registerPrivacyToggle() {
     }
   });
 }
+/**
+ * Fire an event whenever the month field is changed
+ */
+
 
 function registerMonthChange() {
   $('select[name="calendar_month"]').change(function () {
@@ -3802,6 +3808,11 @@ function registerMonthChange() {
     rebuildCalendarDayList(length);
   });
 }
+/**
+ * Rebuild the calendar day select, and select the current date
+ * @param max
+ */
+
 
 function rebuildCalendarDayList(max) {
   var selectedDay = entityCalendarDayField.val();

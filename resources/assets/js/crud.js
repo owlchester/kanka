@@ -201,8 +201,8 @@ function registerEntityCalendarForm() {
             }
             // Load month list
             entityCalendarYearField = $('input[name="calendar_year"]');
-            entityCalendarDayField = $('input[name="calendar_day"]');
             entityCalendarMonthField = $('select[name="calendar_month"]');
+            entityCalendarDayField = $('select[name="calendar_day"]');
 
             if (entityCalendarYearField.length === 0 && $('input[name="year"]').length === 1) {
                 entityCalendarYearField = $('input[name="year"]');
@@ -264,20 +264,21 @@ function loadCalendarDates(calendarID) {
             entityCalendarDayField.html('');
             let id = 1;
             let monthLength = 1;
+            if (!selectedDay) {
+                selectedDay = data.current.day;
+            }
+            let currentMonth = parseInt(data.current.month);
             $.each(data.months, function (i) {
                 let month = data.months[i];
-                let selected = id == data.current.month ? ' selected="selected"' : '';
+                let selected = id === currentMonth ? ' selected="selected"' : '';
                 entityCalendarMonthField.append('<option value="' + id + '" data-length="' + month.length + '" ' + selected + '>' + this.name + '</option>');
 
-                if (id === data.current.month) {
-                    monthLength = data.current.month.length;
+                if (id === currentMonth) {
+                    monthLength = month.length;
                 }
                 id++;
             });
 
-            if (!selectedDay) {
-                selectedDay = data.current.day;
-            }
             for (let d = 1; d < monthLength; d++) {
                 let selected = d == selectedDay ? ' selected="selected"' : '';
                 entityCalendarDayField.append('<option value="' + d + '" ' + selected + '>' + d + '</option>');
@@ -720,6 +721,9 @@ function registerPrivacyToggle() {
     });
 }
 
+/**
+ * Fire an event whenever the month field is changed
+ */
 function registerMonthChange() {
     $('select[name="calendar_month"]').change(function () {
         let length = $(this).find(':selected').data('length');
@@ -727,6 +731,10 @@ function registerMonthChange() {
     });
 }
 
+/**
+ * Rebuild the calendar day select, and select the current date
+ * @param max
+ */
 function rebuildCalendarDayList(max) {
     let selectedDay = entityCalendarDayField.val();
     if (selectedDay > max) {
