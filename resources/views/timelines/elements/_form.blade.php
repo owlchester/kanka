@@ -47,6 +47,14 @@
             <label>{{ __('timelines/elements.fields.date') }}</label>
             {!! Form::text('date', null, ['placeholder' => __('timelines/elements.placeholders.date'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
+        <div class="form-group">
+            {!! Form::hidden('use_event_date', 0) !!}
+            <label>
+                {!! Form::checkbox('use_event_date') !!}
+                {{ __('timelines/elements.fields.use_event_date') }}
+                <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('timelines/elements.helpers.date') }}"></i>
+            </label>
+        </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">

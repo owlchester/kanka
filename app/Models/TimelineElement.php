@@ -28,6 +28,7 @@ use Illuminate\Support\Str;
  * @property string $icon
  * @property boolean $use_entity_entry
  * @property boolean $is_collapsed
+ * @property boolean $use_event_date
  *
  * @property Timeline $timeline
  * @property TimelineEra $era
@@ -55,6 +56,7 @@ class TimelineElement extends Model
         'date',
         'is_collapsed',
         'use_entity_entry',
+        'use_event_date',
     ];
 
     /**
