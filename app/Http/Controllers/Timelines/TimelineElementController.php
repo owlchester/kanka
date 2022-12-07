@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Timelines;
-
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTimelineElement;
@@ -31,6 +29,7 @@ class TimelineElementController extends Controller
         'icon',
         'is_collapsed',
         'use_entity_entry',
+        'use_event_date'
     ];
 
     /**
@@ -94,7 +93,6 @@ class TimelineElementController extends Controller
         return redirect()
             ->route('timelines.show', [$timeline->id, '#timeline-element-' . $new->id])
             ->withSuccess(__('timelines/elements.create.success', ['name' => $new->name]));
-
     }
 
     /**
@@ -162,7 +160,6 @@ class TimelineElementController extends Controller
         return redirect()
             ->route('timelines.show', [$timeline->id, '#timeline-element-' . $timelineElement->id])
             ->withSuccess(__('timelines/elements.edit.success', ['name' => $timelineElement->name]));
-
     }
 
     /**
