@@ -169,6 +169,11 @@ class MenuLink extends MiscModel
                 $parameters['all_members'] = 1;
             }
         }
+
+        if ($this->menu && isset($this->options['subview_filter'])) {
+            $parameters[] = $this->options['subview_filter'];
+        }
+
         return $parameters;
     }
 
@@ -219,12 +224,8 @@ class MenuLink extends MiscModel
                 $route = $menuRoute;
             }
         }
-        $filter = '';
-        if ($this->menu && isset($this->options['subview_filter'])) {
-            $filter = '&' . $this->options['subview_filter'];
-        }
 
-        return route($route, $this->getRouteParams()) . $filter;
+        return route($route, $this->getRouteParams());
     }
 
     /**
