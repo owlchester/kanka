@@ -71,7 +71,13 @@ $menus = array_merge(['' => __('crud.tabs.story')], $menus);
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ trans('menu_links.fields.menu') }}</label>
-            {!! Form::select('menu', $menus, null, ['class' => 'form-control']) !!}
+            {!! Form::select('menu', $menus, null, ['class' => 'form-control', 'id' => 'entity-selector']) !!}
+        </div>
+    </div>
+    <div class="col-md-6" id="filter-subform" style="display: none">
+        <div class="form-group">
+            <label>{{ __('menu_links.fields.filters') }}</label>
+            {!! Form::text('options[subview_filter]', !isset($model->options['subview_filter']) ? '' : $model->options['subview_filter'], ['placeholder' => 'k=name&s=desc', 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
     </div>
 </div>

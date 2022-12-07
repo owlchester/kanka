@@ -80,7 +80,7 @@ class MenuLink extends MiscModel
      *
      * @var array
      */
-    public array $optionsAllowedKeys = ['is_nested', 'default_dashboard'];
+    public array $optionsAllowedKeys = ['is_nested', 'default_dashboard', 'subview_filter'];
 
     /**
      * Searchable fields

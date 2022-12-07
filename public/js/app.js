@@ -4748,6 +4748,7 @@ function quickCreatorToggles() {
 
 $(document).ready(function () {
   initQuickLinksForm();
+  showFilterField();
 });
 
 function initQuickLinksForm() {
@@ -4766,6 +4767,23 @@ function initQuickLinksForm() {
       $(this).addClass('btn-active');
       $('#quick-link-' + target).show();
     });
+  });
+}
+
+function showFilterField() {
+  selector = $('#entity-selector');
+
+  if (selector.val() != '') {
+    $('#filter-subform').show();
+  }
+
+  selector.change(function () {
+    if (selector.val() == '') {
+      $('#filter-subform').hide();
+      console.log(selector.val());
+    } else {
+      $('#filter-subform').show();
+    }
   });
 }
 
