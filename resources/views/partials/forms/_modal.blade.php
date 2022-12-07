@@ -22,7 +22,9 @@
     </button>
     @endif
     <div class="pull-left">
-        @include('partials.footer_cancel')
+        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
+            {{ __('crud.cancel') }}
+        </button>
         @if (isset($deleteID) && !empty($deleteID))
             <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
                title="{{ __('crud.delete_modal.title') }}"
