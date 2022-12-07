@@ -20,7 +20,7 @@
         </div>
         <div class="modal-body">
             @include('partials.errors')
-            @include('entities.pages.abilities._form')
+            @include('entities.pages.inventory._form')
         </div>
         <div class="modal-footer">
             <button class="btn btn-success">{{ __('crud.save') }}</button>
