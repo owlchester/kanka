@@ -13,7 +13,7 @@
 </div>
 <div class="form-group required">
     <label>{{ __('entities/relations.fields.relation') }}</label>
-    {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+    {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191, 'required']) !!}
 </div>
 
 <div class="row">

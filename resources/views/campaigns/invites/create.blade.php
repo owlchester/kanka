@@ -8,25 +8,11 @@
 
 @section('content')
     {!! Form::open(['route' => ['campaign_invites.store'], 'method' => 'POST']) !!}
-    <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title mb-5">
-            {!! __('campaigns.invites.actions.link') !!}
-        </h4>
 
-        @include('campaigns.invites._form')
-    </div>
-    <div class="modal-footer">
-        <a href="#" type="button" class="btn btn-default pull-left" data-dismiss="modal">
-            {{ __('crud.cancel') }}
-        </a>
-
-        <button class="btn btn-success">
-            <i class="fa-solid fa-link mr-2" aria-hidden="true"></i>
-            {{ __('campaigns.invites.create.buttons.create') }}
-        </button>
-    </div>
+    @include('partials.forms.form', [
+        'title' => __('campaigns.invites.actions.link'),
+        'content' => 'campaigns.invites._form',
+        'submit' => __('campaigns.invites.create.buttons.create')
+    ])
     {!! Form::close() !!}
 @endsection

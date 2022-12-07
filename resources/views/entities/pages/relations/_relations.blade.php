@@ -16,9 +16,9 @@
     <div class="box-body">
 
         @if ($rows->count() === 0)
-        <p class="help-block">
-            {{ __('entities/relations.helpers.no_relations') }}
-        </p>
+            <p class="help-block">
+                {{ __('entities/relations.helpers.no_relations') }}
+            </p>
             @can('relation', [$entity->child, 'add'])
                 <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
                     <i class="fa-solid fa-plus"></i>
@@ -29,11 +29,11 @@
             @endcan
         @else
 
-        <div id="datagrid-parent" class="table-responsive">
-            @include('layouts.datagrid._table')
-        </div>
+            <div id="datagrid-parent" class="table-responsive">
+                @include('layouts.datagrid._table')
+            </div>
 
-        @includeWhen(false, 'entities.pages.relations._table')
+            @includeWhen(false, 'entities.pages.relations._table')
         @endif
     </div>
 </div>

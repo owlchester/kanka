@@ -10,21 +10,12 @@
 
 @section('content')
     {!! Form::open(['route' => $formOptions, 'method' => 'POST']) !!}
-    @if ($ajax)
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <h4>{{ trans('tags.children.create.title', ['name' => $model->name]) }}</h4>
-        </div>
-    @endif
-    <div class="modal-body">
-        @include('partials.errors')
-        @include('tags.entities._form')
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-success">{{ __('tags.children.actions.add') }}</button>
-    </div>
+
+    @include('partials.forms.form', [
+        'title' => __('tags.children.create.title', ['name' => $model->name]),
+        'content' => 'tags.entities._form',
+        'submit' =>  __('tags.children.actions.add')
+    ])
     {!! Form::hidden('tag_id', $model->entity->id) !!}
     {!! Form::close() !!}
 @endsection

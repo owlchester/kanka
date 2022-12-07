@@ -197,6 +197,9 @@ class AbilityController extends Controller
                 'success' => true
             ]);
         }
+
+        return redirect()
+            ->route('entities.entity_abilities.index', $entity);
     }
 
     /**

@@ -17,15 +17,11 @@
     <div class="tab-content">
         <div id="setup" class="tab-pane fade in active">
 
+            @include('dashboard.widgets.forms._name')
             <div class="row">
-                <div class="col-sm-6">
-                    @include('dashboard.widgets.forms._name')
-                </div>
                 <div class="col-sm-6">
                     @include('dashboard.widgets.forms._width')
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-sm-6">
                     @include('dashboard.widgets.forms._size')
                 </div>
