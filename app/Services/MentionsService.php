@@ -7,11 +7,13 @@ use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\MiscModel;
+use App\Services\TOC\TocSlugify;
 use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use TOC\MarkupFixer;
 
 class MentionsService
 {
@@ -52,6 +54,8 @@ class MentionsService
 
     /** @var bool When false, parsing field:entry won't render mentions */
     protected bool $enableEntryField = true;
+
+    protected MarkupFixer $markupFixer;
 
     /**
      * Mentions Service constructor
@@ -679,20 +683,32 @@ class MentionsService
         }, $this->text);
     }
 
+    /**
+     * Replace any table-of-content blocks with a real HTML table of content, adding unique ids to each heading
+     * so that links can work.
+     * @return void
+     */
     protected function mapCodes()
     {
-        if (Str::contains($this->text, '{table-of-contents}')) {
-            $markupFixer  = new \TOC\MarkupFixer();
-            $tocGenerator = new \TOC\TocGenerator();
-
-            $this->text = $markupFixer->fix($this->text);
-            $toc = $tocGenerator->getHtmlMenu($this->text);
-            $this->text = Str::replaceFirst(
-                '{table-of-contents}',
-                '<div class="toc">' . $toc .  "</div>\n",
-                $this->text
-            );
+        if (!Str::contains($this->text, '{table-of-contents}')) {
+            return;
         }
+
+        // Re-use the same markupFixer to keep references of previously generated slugs on this page
+        /*if (!isset($this->markupFixer)) {
+            $this->markupFixer = new MarkupFixer(null, new TocSlugify());
+        }*/
+        $markupFixer = new MarkupFixer(null, new TocSlugify());
+        $tocGenerator = new \TOC\TocGenerator();
+
+        $this->text = $markupFixer->fix($this->text);
+        //$this->text = $this->markupFixer->fix($this->text);
+        $toc = $tocGenerator->getHtmlMenu($this->text);
+        $this->text = Str::replaceFirst(
+            '{table-of-contents}',
+            '<div class="toc">' . $toc .  "</div>\n",
+            $this->text
+        );
     }
 
     /**
