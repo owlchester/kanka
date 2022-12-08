@@ -1,10 +1,9 @@
 <div class="submit-group">
     <input id="submit-mode" type="hidden" value="true"/>
     <div class="btn-group">
-        <button class="btn btn-success ml-5 rounded-full px-8 form-submit-actions" id="form-submit-main"
-        data-action="{{ request()->from == 'explore' ? 'submit-explore' : null }}"
+        <button class="btn btn-success ml-5 rounded-full px-8" id="form-submit-main"
     >{{ __('crud.actions.apply') }}</button>
-        
+
         <button type="button" class="btn btn-success rounded-full dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <span class="caret"></span>
         </button>

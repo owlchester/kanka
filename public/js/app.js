@@ -3092,13 +3092,8 @@ var validEntityForm = false,
 $(document).ready(function () {
   registerDynamicRows();
   (0,_components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  entityFormActions = $('.form-submit-actions');
-
-  if (entityFormActions.length > 0) {
-    registerEntityFormActions();
-    registerUnsavedChanges();
-  }
-
+  registerEntityFormActions();
+  registerUnsavedChanges();
   entityName = $('#form-entry input[name="name"]');
 
   if (entityName.length === 1) {
@@ -3126,6 +3121,7 @@ function registerModalLoad() {
   $(document).on('shown.bs.modal shown.bs.popover', function () {
     registerRelationFormSubmit();
     registerEntityCalendarModal();
+    registerEntityFormActions();
   });
 }
 
@@ -3170,6 +3166,13 @@ function registerEntityNameCheck() {
 
 
 function registerEntityFormActions() {
+  entityFormActions = $('.form-submit-actions');
+
+  if (entityFormActions.length === 0) {
+    return;
+  } //console.log('RegisterEntityFormActions', entityFormActions);
+
+
   var entityFormMainButton = $('#form-submit-main');
   var entityFormSubmitMode = $('#submit-mode');
 
@@ -3179,7 +3182,7 @@ function registerEntityFormActions() {
 
 
   $.each(entityFormActions, function () {
-    $(this).on('click', function () {
+    $(this).unbind('click').on('click', function () {
       //console.log('setting the submit name to ' + $(this).data('action'));
       entityFormSubmitMode.attr('name', $(this).data('action'));
       entityFormMainButton.trigger("click");
@@ -3386,6 +3389,12 @@ function calendarHideSubform() {
 
 
 function registerUnsavedChanges() {
+  entityFormActions = $('.form-submit-actions');
+
+  if (entityFormActions.length === 0) {
+    return;
+  }
+
   var save = $('#form-submit-main'); // Save every input change
 
   $(document).on('change', ':input', function () {
