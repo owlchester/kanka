@@ -19858,6 +19858,11 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_3__.createApp)({});
+app.component('passport-clients', (__webpack_require__(/*! ./components/passport/Clients.vue */ "./resources/assets/js/components/passport/Clients.vue")["default"]));
+app.component('passport-authorized-clients', (__webpack_require__(/*! ./components/passport/AuthorizedClients.vue */ "./resources/assets/js/components/passport/AuthorizedClients.vue")["default"]));
+app.component('passport-personal-access-tokens', (__webpack_require__(/*! ./components/passport/PersonalAccessTokens.vue */ "./resources/assets/js/components/passport/PersonalAccessTokens.vue")["default"]));
+app.mount('#api');
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -19865,12 +19870,25 @@ __webpack_require__.r(__webpack_exports__);
  */
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('passport-clients', _components_passport_Clients_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('passport-authorized-clients', _components_passport_AuthorizedClients_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('passport-personal-access-tokens', _components_passport_PersonalAccessTokens_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
-var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
-  el: '#app'
-});
+/*
+Vue.component(
+    'passport-clients',
+    Clients
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    AuthorizedClients
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    PersonalAccessTokens
+);
+
+const app = new Vue({
+    el: '#app'
+});*/
 })();
 
 /******/ })()

@@ -14,9 +14,8 @@
             {{ __('front.features.api.link') }}
         </a>
     </div>
-    <div class="row">
+    <div class="row" id="api">
         <div class="col-md-6">
-
             <div class="box box-solid">
                 <div class="box-body">
 
