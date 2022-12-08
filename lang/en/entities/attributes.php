@@ -6,7 +6,9 @@ return [
         'manage'            => 'Manage',
         'more'              => 'More options',
         'remove_all'        => 'Delete All',
-        'show_hidden'       => 'Show Hidden Attributes'
+        'show_hidden'       => 'Show Hidden Attributes',
+        'save_and_edit'     => 'Apply and Edit',
+        'save_and_story'    => 'Apply and View',
     ],
     'errors'        => [
         'loop'      => 'There is an endless loop in this attribute calculation!',

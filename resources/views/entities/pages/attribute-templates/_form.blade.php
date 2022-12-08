@@ -1,6 +1,5 @@
 
     <div class="modal-body">
-
         @if (request()->ajax())
             <div class="text-center mb-5">
                 <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
@@ -27,10 +26,7 @@
             <button type="button" class="btn btn-default mr-5 rounded-full px-8" data-dismiss="modal">
                 {{ __('crud.cancel') }}
             </button>
-
-            <button class="btn btn-success ml-5 rounded-full px-8">
-                {{ __('crud.actions.apply') }}
-            </button>
+            @include('entities.pages.attribute-templates._actions')
         </div>
         {!! Form::close() !!}
     </div>

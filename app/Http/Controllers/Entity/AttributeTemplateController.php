@@ -55,11 +55,27 @@ class AttributeTemplateController extends Controller
      */
     public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
     {
+        dd($request);
         $this->authorize('update', $entity->child);
         $templateName = $this->service->apply($entity, $request->get('template_id'));
 
         if (!$templateName) {
             return redirect()->back()->with('error', __('entities/attributes.template.error'));
+        }
+
+
+        if ($request->has('submit-story')) {
+            return redirect()
+                ->route('entities.show', $entity)
+                ->with('success', __('entities/attributes.template.success', [
+                    'name' => $templateName, 'entity' => $entity->child->name
+                ]));
+        } elseif ($request->has('submit-update')) {
+            return redirect()
+                ->route('entities.attributes.edit', $entity)
+                ->with('success', __('entities/attributes.template.success', [
+                    'name' => $templateName, 'entity' => $entity->child->name
+                ]));
         }
 
         return redirect()
