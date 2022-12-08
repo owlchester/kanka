@@ -18,7 +18,7 @@ $actions = [
             <th>{{ __('crud.permissions.actions.read') }}</th>
             <th>{{ __('crud.permissions.actions.edit') }}</th>
             <th>{{ __('crud.permissions.actions.delete') }}</th>
-            <th>{{ __('crud.permissions.actions.entity_note') }}</th>
+            <th>{{ __('entities.posts') }}</th>
         </tr>
         <?php /** @var \App\Models\CampaignRole $role */ ?>
         @foreach ($campaign->roles()->withoutAdmin()->get() as $role)
@@ -67,7 +67,7 @@ $actions = [
             <th>{{ __('crud.permissions.actions.read') }}</th>
             <th>{{ __('crud.permissions.actions.edit') }}</th>
             <th>{{ __('crud.permissions.actions.delete') }}</th>
-            <th>{{ __('crud.permissions.actions.entity_note') }}</th>
+            <th>{{ __('entities.posts') }}</th>
         </tr>
         <?php /** @var \App\Models\CampaignUser $member */ ?>
         @foreach ($campaign->members()->with('user')->withoutAdmins()->paginate(20) as $member)

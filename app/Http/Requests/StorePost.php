@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePost extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,10 +26,13 @@ class StorePost extends FormRequest
      */
     public function rules()
     {
-        return [
+        return $this->clean([
+            'entity_id' => 'required|exists:entities,id',
             'name' => 'required|max:191',
-            'entity_id' => 'required|numeric|exists:entities,id',
             'visibility_id' => 'nullable|exists:visibilities,id',
-        ];
+            'is_pinned' => 'boolean',
+            'position' => 'nullable|integer|min:0|max:128',
+            'entry' => '',
+        ]);
     }
 }

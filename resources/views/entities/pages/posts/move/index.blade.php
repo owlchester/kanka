@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('entities/move.title', ['name' => $entityNote->name]),
+    'title' => __('entities/move.title', ['name' => $post->name]),
     'breadcrumbs' => [
         ['url' => route($entity->pluralType() . '.index'), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => route($entity->pluralType() . '.show', [$entity->entity_id]), 'label' => $entity->name],
@@ -9,7 +9,7 @@
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['entity_notes.move', $entity->id, $entityNote->id], 'method' => 'POST']) !!}
+    {!! Form::open(['route' => ['posts.move', $entity->id, $post->id], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
     <div class="row">

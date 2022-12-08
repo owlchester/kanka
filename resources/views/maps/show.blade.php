@@ -12,7 +12,7 @@
     @include($name . '._menu', ['active' => 'story'])
 
     <div class="entity-story-block">
-        @include('entities.components.notes', ['withEntry' => true])
+        @include('entities.components.posts', ['withEntry' => true])
 
         @if (!empty($model->image) || $model->isReal())
             <div class="row">

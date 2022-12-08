@@ -197,28 +197,28 @@ class PermissionService
         }
         $this->loadedPosts = true;
 
-        $perms = EntityNotePermission::select(['entity_note_id', 'permission'])
+        $perms = EntityNotePermission::select(['post_id', 'permission'])
             ->where('user_id', $this->user->id)
             ->get();
         /** @var EntityNotePermission $perm */
         foreach ($perms as $perm) {
             if ($perm->permission === 2) {
-                $this->deniedPostIDs[] = $perm->entity_note_id;
+                $this->deniedPostIDs[] = $perm->post_id;
             } else {
-                $this->allowedPostIDs[] = $perm->entity_note_id;
+                $this->allowedPostIDs[] = $perm->post_id;
             }
         }
 
         // User roles
         $roles = $this->user->campaignRoleIDs($this->campaign->id);
-        $perms = EntityNotePermission::select(['entity_note_id', 'permission'])
+        $perms = EntityNotePermission::select(['post_id', 'permission'])
             ->whereIn('role_id', $roles)
             ->get();
         foreach ($perms as $perm) {
             if ($perm->permission === 2) {
-                $this->deniedPostIDs[] = $perm->entity_note_id;
+                $this->deniedPostIDs[] = $perm->post_id;
             } else {
-                $this->allowedPostIDs[] = $perm->entity_note_id;
+                $this->allowedPostIDs[] = $perm->post_id;
             }
         }
 

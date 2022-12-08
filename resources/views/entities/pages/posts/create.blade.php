@@ -9,19 +9,15 @@
 ])
 @inject('campaignService', 'App\Services\CampaignService')
 
-
 @section('fullpage-form')
-    {!! Form::open(['route' => ['entities.entity_notes.store', $entity->id], 'method'=>'POST', 'data-shortcut' => '1', 'id' => 'entity-form', 'class' => 'entity-form entity-note-form']) !!}
+    {!! Form::open(['route' => ['entities.posts.store', $entity->id], 'method'=>'POST', 'data-shortcut' => '1', 'id' => 'entity-form', 'class' => 'entity-form entity-note-form']) !!}
 @endsection
 
 @section('content')
     @include('entities.pages.posts._form')
-
-
 @endsection
 
 @include('editors.editor')
-
 
 @section('fullpage-form-end')
     {!! Form::close() !!}

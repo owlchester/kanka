@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\EntityNote;
+use App\Models\Post;
 
-class EntityNoteResource extends EntityChild
+class PostResource extends EntityChild
 {
     /**
      * Transform the resource into an array.
@@ -14,7 +14,7 @@ class EntityNoteResource extends EntityChild
      */
     public function toArray($request)
     {
-        /** @var EntityNote $model */
+        /** @var Post $model */
         $model = $this->resource;
         return $this->entity([
             'name' => $model->name,

@@ -26,7 +26,7 @@ class MapFilter extends DatagridFilter
             ->isPrivate()
             ->template()
             ->hasImage()
-            ->hasEntityNotes()
+            ->hasPosts()
             ->hasEntityFiles()
             ->hasAttributes()
             ->tags()

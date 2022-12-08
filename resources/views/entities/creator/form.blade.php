@@ -43,22 +43,22 @@
             </p>
         </div>
 
-        <a href="#" class="qq-action-more">
+        <a href="#" class="qq-action-more" style="{{ $singularType === 'post' ? 'display: none' : null }}">
             <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
             {{ __('entities.creator.actions.more') }}
         </a>
-        <div class="qq-more-fields" style="display: none">
-        @include('entities.creator.forms.' . $singularType)
+        <div class="qq-more-fields" style="{{ $singularType !== 'post' ? 'display: none' : null }}">
+            @include('entities.creator.forms.' . $singularType)
 
-        @if (!in_array($type, ['tags', 'posts', 'attribute_templates']))
-            <div id="quick-creator-tags-field">
-                @include('cruds.fields.tags', ['dropdownParent' => '#quick-creator-tags-field'])
-            </div>
-        @endif
+            @if (!in_array($type, ['tags', 'posts', 'attribute_templates']))
+                <div id="quick-creator-tags-field">
+                    @include('cruds.fields.tags', ['dropdownParent' => '#quick-creator-tags-field'])
+                </div>
+            @endif
 
-        @if ($type !== 'posts' && auth()->user()->isAdmin())
-            @include('cruds.fields.privacy_callout')
-        @endif
+            @if ($type !== 'posts' && auth()->user()->isAdmin())
+                @include('cruds.fields.privacy_callout')
+            @endif
         </div>
     </div>
     <div class="quick-creator-footer">

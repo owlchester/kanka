@@ -16,8 +16,8 @@
                 <i class="fa-solid fa-pencil"></i> {{ __('crud.edit') }}
             </a>
         @endcan
-        @can('entity-note', [$model, 'add'])
-            <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-entity"
+        @can('post', [$model, 'add'])
+            <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-entity"
                data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
                 <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}
             </a>
@@ -38,7 +38,7 @@
     @include($name . '._menu', ['active' => 'story'])
 
     <div class="entity-story-block">
-        @include('entities.components.notes', ['withEntry' => true])
+        @include('entities.components.posts', ['withEntry' => true])
         @include('timelines._timeline', ['timeline' => $model])
 
         @include('cruds.partials.mentions')

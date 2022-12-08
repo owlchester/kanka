@@ -5,8 +5,8 @@ namespace App\Services;
 use App\Facades\Attributes;
 use App\Models\Attribute;
 use App\Models\Entity;
-use App\Models\EntityNote;
 use App\Models\MiscModel;
+use App\Models\Post;
 use App\Services\TOC\TocSlugify;
 use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -91,13 +91,13 @@ class MentionsService
     }
 
     /**
-     * Map the mentions in an entity note
-     * @param EntityNote $entityNote
+     * Map the mentions in a post
+     * @param Post $post
      * @return string|string[]|null
      */
-    public function mapEntityNote(EntityNote $entityNote)
+    public function mapPost(Post $post)
     {
-        $this->text = (string) $entityNote->entry;
+        $this->text = (string) $post->entry;
         return $this->extractAndReplace();
     }
 

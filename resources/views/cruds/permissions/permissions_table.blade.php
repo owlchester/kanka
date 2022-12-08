@@ -39,8 +39,8 @@ $permissionService->campaign($campaignService->campaign());
             <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
         </div>
         <div class="col-sm-2 hidden-xs hidden-xm text-center">
-            <i class="fa-solid fa-sticky-note visible-xs visible-sm" title="{{ __('crud.permissions.actions.entity_note') }}"></i>
-            <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.entity_note') }}</strong></span>
+            <i class="fa-solid fa-sticky-note visible-xs visible-sm" title="{{ __('entities.posts') }}"></i>
+            <span class="hidden-xs hidden-sm"><strong>{{ __('entities.posts') }}</strong></span>
             <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
         </div>
     </div>
@@ -88,7 +88,7 @@ $permissionService->campaign($campaignService->campaign());
                         @endif
                 </div>
                 <div class="col-sm-2 text-center">
-                    <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.entity_note') }}</span>
+                    <span class="visible-xs-inline visible-sm-inline">{{ __('entities.posts') }}</span>
                         @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_POSTS, $role->id))
                             <div class="input-group">
                                 {!! Form::select("role[$role->id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('role', $role->id, \App\Models\CampaignPermission::ACTION_POSTS), ['class' => 'form-control']) !!}
@@ -129,8 +129,8 @@ $permissionService->campaign($campaignService->campaign());
                 <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
             </div>
             <div class="col-sm-2 hidden-xs hidden-xm text-center">
-                <i class="fa-solid fa-sticky-note visible-xs visible-sm" title="{{ __('crud.permissions.actions.entity_note') }}"></i>
-                <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.entity_note') }}</strong></span>
+                <i class="fa-solid fa-sticky-note visible-xs visible-sm" title="{{ __('entities.posts') }}"></i>
+                <span class="hidden-xs hidden-sm"><strong>{{ __('entities.posts') }}</strong></span>
                 <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
             </div>
         </div>
@@ -196,7 +196,7 @@ $permissionService->campaign($campaignService->campaign());
                         @endif
                 </div>
                 <div class="col-sm-2 text-center">
-                    <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.entity_note') }}</span>
+                    <span class="visible-xs-inline visible-sm-inline">{{ __('entities.posts') }}</span>
                     @if ($permissionService->inherited(\App\Models\CampaignPermission::ACTION_POSTS, 0, $member->user_id))
                         <div class="input-group">
                             {!! Form::select("user[$member->user_id][" . \App\Models\CampaignPermission::ACTION_POSTS . "]", $actions, $permissionService->selected('user', $member->user_id, \App\Models\CampaignPermission::ACTION_POSTS), ['class' => 'form-control']) !!}

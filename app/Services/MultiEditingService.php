@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Services;
 
-
 use App\Models\Entity;
-use App\Models\EntityNote;
 use App\Models\Campaign;
+use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
 use App\Models\EntityUser;
@@ -78,7 +76,7 @@ class MultiEditingService
     public function edit(): self
     {
         $model = new EntityUser();
-        if ($this->model instanceof EntityNote) {
+        if ($this->model instanceof Post) {
             $model->post_id = $this->model->id;
         } elseif ($this->model instanceof Campaign) {
             $model->campaign_id = $this->model->id;
@@ -101,7 +99,7 @@ class MultiEditingService
      */
     public function finish(): self
     {
-        if ($this->model instanceof EntityNote) {
+        if ($this->model instanceof Post) {
             $id = 'post_id';
         } elseif ($this->model instanceof Campaign) {
             $id = 'campaign_id';

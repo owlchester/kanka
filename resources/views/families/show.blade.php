@@ -12,7 +12,7 @@
 
     <div class="entity-story-block">
 
-        @include('entities.components.notes', ['withEntry' => true])
+        @include('entities.components.posts', ['withEntry' => true])
         @include('families.panels._members')
 
         @include('cruds.partials.mentions')

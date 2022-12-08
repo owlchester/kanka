@@ -1,15 +1,7 @@
 <?php
 
-
 namespace App\Facades;
 
-
-use App\Models\Attribute;
-use App\Models\Campaign;
-use App\Models\Entity;
-use App\Models\EntityNote;
-use App\Models\MiscModel;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Facade;
 
 /**

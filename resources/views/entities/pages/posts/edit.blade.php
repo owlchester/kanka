@@ -10,7 +10,7 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
-    {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.entity_notes.update', $entity->id, $model->id], 'data-shortcut' => '1', 'class' => 'entity-note-form entity-form', 'id' => 'entity-form']) !!}
+    {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.posts.update', $entity->id, $model->id], 'data-shortcut' => '1', 'class' => 'entity-note-form entity-form', 'id' => 'entity-form']) !!}
 @endsection
 
 @section('content')
@@ -27,7 +27,7 @@
     </div>
 
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('posts.keep-alive', ['entity_note' => $model, 'entity' => $entity]) }}" />
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('posts.keep-alive', ['post' => $model, 'entity' => $entity]) }}" />
     @endif
 @endsection
 
@@ -42,7 +42,7 @@
 
 @section('modals')
     @parent
-    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_notes.destroy', 'entity' => $entity, 'entity_note' => $model], 'style' => 'display:inline', 'id' => 'delete-form-note-' . $model->id]) !!}
+    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.posts.destroy', 'entity' => $entity, 'post' => $model], 'style' => 'display:inline', 'id' => 'delete-form-note-' . $model->id]) !!}
     {!! Form::close() !!}
 
     @includeWhen(!empty($editingUsers) && !empty($model), 'cruds.forms.edit_warning', ['model' => $model, 'entity' => $entity])

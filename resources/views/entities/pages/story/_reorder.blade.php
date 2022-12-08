@@ -1,16 +1,16 @@
 <?php /**
  * @var \App\Models\Entity $entity
- * @var \App\Models\EntityNote[]|\Illuminate\Support\Collection $notes
- * @var \App\Models\EntityNote $first
+ * @var \App\Models\Post[]|\Illuminate\Support\Collection $posts
+ * @var \App\Models\Post $first
  */
 $hasEntry = false;
 
-$notes = $entity->notes()->ordered()->get();
+$posts = $entity->posts()->ordered()->get();
 
 $startWithStory = false;
-$firstNote = $notes->first();
+$firstPost = $posts->first();
 // If the first note has a positive position, it's after the entry field
-if ($firstNote && $firstNote->position >= 0) {
+if ($firstPost && $firstPost->position >= 0) {
     $startWithStory = true;
     $hasEntry = true;
 }
@@ -29,7 +29,7 @@ if ($firstNote && $firstNote->position >= 0) {
         <div class="element-live-reorder sortable-elements">
             @includeWhen($startWithStory, 'entities.pages.story.reorder._story')
 
-            @foreach($notes as $note)
+            @foreach($posts as $note)
                 @if (!$hasEntry && $note->position >= 0)
                     @php $hasEntry = true @endphp
                     @include('entities.pages.story.reorder._story')

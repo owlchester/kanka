@@ -21,6 +21,7 @@ use App\Models\Inventory;
 use App\Models\Journal;
 use App\Models\Map;
 use App\Models\MiscModel;
+use App\Models\Post;
 use App\Models\Quest;
 use App\Models\Relation;
 use App\Models\Tag;
@@ -37,6 +38,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Tag[]|Collection $tags
  * @property EntityTag[]|Collection $entityTags
  * @property EntityNote[]|Collection $notes
+ * @property Post[]|Collection $posts
  * @property EntityMention[]|Collection $mentions
  * @property Inventory[]|Collection $inventories
  * @property EntityMention[]|Collection $targetMentions
@@ -359,6 +361,14 @@ trait EntityRelations
     public function notes()
     {
         return $this->hasMany('App\Models\EntityNote', 'entity_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post', 'entity_id', 'id');
     }
 
     /**

@@ -73,7 +73,7 @@ trait HasFilters
             'tag_id',
             'tags',
             'has_image',
-            'has_entity_notes',
+            'has_posts',
             'has_entity_files',
             'has_attributes',
             'created_by',
@@ -151,7 +151,7 @@ trait HasFilters
                     $this->filterHasImage($query, $value);
                 } elseif ($key == 'template') {
                     $this->filterTemplate($query, $value);
-                } elseif ($key == 'has_entity_notes') {
+                } elseif ($key == 'has_posts') {
                     $this->filterHasPosts($query, $value);
                 } elseif ($key == 'has_attributes') {
                     $this->filterHasAttributes($query, $value);

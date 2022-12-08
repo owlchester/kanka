@@ -29,7 +29,7 @@ class ItemFilter extends DatagridFilter
             ->isPrivate()
             ->template()
             ->hasImage()
-            ->hasEntityNotes()
+            ->hasPosts()
             ->hasEntityFiles()
             ->hasAttributes()
             ->tags()

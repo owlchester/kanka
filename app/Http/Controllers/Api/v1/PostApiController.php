@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Http\Requests\StoreEntityAsset as Request;
-use App\Http\Resources\AssetResource as Resource;
-use App\Models\EntityAsset;
+use App\Http\Requests\StorePost as Request;
+use App\Http\Resources\PostResource as Resource;
+use App\Models\Post;
 
-class EntityAssetApiController extends ApiController
+class PostApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
@@ -19,20 +19,20 @@ class EntityAssetApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return Resource::collection($entity->assets);
+        return Resource::collection($entity->notes);
     }
 
     /**
      * @param Campaign $campaign
      * @param Entity $entity
-     * @param EntityAsset $entityAsset
+     * @param Post $post
      * @return Resource
      */
-    public function show(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
+    public function show(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return new Resource($entityAsset);
+        return new Resource($post);
     }
 
     /**
@@ -45,9 +45,7 @@ class EntityAssetApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $data = $request->all();
-        $data['entity_id'] = $entity->id;
-        $model = EntityAsset::create($data);
+        $model = Post::create($request->all());
         return new Resource($model);
     }
 
@@ -55,23 +53,23 @@ class EntityAssetApiController extends ApiController
      * @param Request $request
      * @param Campaign $campaign
      * @param Entity $entity
-     * @param EntityAsset $entityAsset
+     * @param Post $post
      * @return Resource
      */
-    public function update(Request $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
+    public function update(Request $request, Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $entityAsset->update($request->all());
+        $post->update($request->all());
 
-        return new Resource($entityAsset);
+        return new Resource($post);
     }
 
     /**
      * @param Request $request
      * @param Campaign $campaign
      * @param Entity $entity
-     * @param EntityAsset $entityAsset
+     * @param Post $post
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -79,11 +77,11 @@ class EntityAssetApiController extends ApiController
         \Illuminate\Http\Request $request,
         Campaign $campaign,
         Entity $entity,
-        EntityAsset $entityAsset
+        Post $post
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $entityAsset->delete();
+        $post->delete();
 
         return response()->json(null, 204);
     }

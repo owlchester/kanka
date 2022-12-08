@@ -18,6 +18,7 @@ use Illuminate\Support\Collection;
  * Class Attribute
  * @package App\Models
  *
+ * @property integer $id
  * @property integer $entity_id
  * @property string $name
  * @property string $value
@@ -95,7 +96,7 @@ class EntityNote extends Model
      */
     public function permissions()
     {
-        return $this->hasMany(EntityNotePermission::class);
+        return $this->hasMany(EntityNotePermission::class, 'post_id', 'id');
     }
 
     /**
@@ -119,8 +120,8 @@ class EntityNote extends Model
 
         // Also replicate permissions
         foreach ($this->permissions as $perm) {
-            $newPerm = $perm->replicate(['entity_note_id']);
-            $newPerm->entity_note_id = $new->id;
+            $newPerm = $perm->replicate(['post_id']);
+            $newPerm->post_id = $new->id;
             $newPerm->save();
         }
 
@@ -132,7 +133,7 @@ class EntityNote extends Model
      */
     public function entry()
     {
-        return Mentions::mapEntityNote($this);
+        return Mentions::mapPost($this);
     }
 
     /**

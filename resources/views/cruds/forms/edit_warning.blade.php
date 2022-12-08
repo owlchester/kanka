@@ -1,6 +1,6 @@
 <?php
     if ($model instanceof \App\Models\EntityNote) {
-        $url = route('posts.confirm-editing', ['entity_note' => $model, 'entity' => $entity]);
+        $url = route('posts.confirm-editing', ['post' => $model, 'entity' => $entity]);
         $key = 'entities/notes.warning.editing.description';
     } elseif ($model instanceof \App\Models\Campaign) {
         $url = route('campaigns.confirm-editing', $model);

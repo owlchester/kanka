@@ -49,7 +49,7 @@ $translations = json_encode([
             </div>
         </div>
 
-        @include('entities.components.notes')
+        @include('entities.components.posts')
         @include('cruds.partials.mentions')
         @include('entities.pages.logs.history')
     </div>

@@ -29,8 +29,8 @@ if (!empty($redirect)) {
                 <i class="fa-solid fa-pencil"></i> {{ __('crud.edit') }}
             </a>
         @endcan
-        @can('entity-note', [$model, 'add'])
-            <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-post"
+        @can('post', [$model, 'add'])
+            <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-post"
                data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
                 <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}
             </a>
@@ -54,7 +54,7 @@ if (!empty($redirect)) {
 
         @include('entities.components.entry')
         @include('calendars._calendar')
-        @include('entities.components.notes')
+        @include('entities.components.posts')
 
         @include('cruds.partials.mentions')
         @include('entities.pages.logs.history')

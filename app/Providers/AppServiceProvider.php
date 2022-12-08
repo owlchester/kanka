@@ -45,6 +45,7 @@ use App\Models\MapLayer;
 use App\Models\MapMarker;
 use App\Models\MapPoint;
 use App\Models\MenuLink;
+use App\Models\Post;
 use App\Models\Preset;
 use App\Models\Quest;
 use App\Models\QuestElement;
@@ -154,7 +155,7 @@ class AppServiceProvider extends ServiceProvider
         Entity::observe('App\Observers\EntityObserver');
         EntityAbility::observe('App\Observers\EntityAbilityObserver');
         EntityAsset::observe('App\Observers\EntityAssetObserver');
-        EntityNote::observe('App\Observers\EntityNoteObserver');
+        Post::observe('App\Observers\PostObserver');
         EntityEvent::observe('App\Observers\EntityEventObserver');
         Location::observe(LocationObserver::class);
         Family::observe(FamilyObserver::class);

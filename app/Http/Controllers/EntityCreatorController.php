@@ -6,8 +6,8 @@ use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreCharacter;
 use App\Models\Campaign;
 use App\Models\MiscModel;
-use App\Models\EntityNote;
 use App\Models\Entity;
+use App\Models\Post;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -106,12 +106,12 @@ class EntityCreatorController extends Controller
                 //If position = 0 the post's position is last, else the post's position is first.
                 $this->validateEntity($values, $validator->rules());
                 if ($values['position'] == 0) {
-                    $new = EntityNote::create($values);
+                    $new = Post::create($values);
                 } else {
                     $entity = Entity::find($values['entity_id']);
-                    $entity->notes()->increment('position');
+                    $entity->posts()->increment('position');
                     $values['position'] = 1;
-                    $new = EntityNote::create($values);
+                    $new = Post::create($values);
                 }
             }
             $createdEntities[] = $new;
@@ -140,8 +140,13 @@ class EntityCreatorController extends Controller
 
         // Redirect the user to the edit form
         if ($request->get('action') === 'edit') {
+            if ($new instanceof Post) {
+                $editUrl = route('entities.posts.edit', [$new->entity_id, $new->id]);
+            } else {
+                $editUrl = $createdEntities[0]->getLink('edit');
+            }
             return response()->json([
-                'redirect' => $createdEntities[0]->getLink('edit')
+                'redirect' => $editUrl
             ]);
         }
 

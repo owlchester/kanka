@@ -3,13 +3,14 @@
 namespace App\Observers;
 
 use App\Facades\Mentions;
-use App\Models\EntityNote;
 use App\Models\EntityNotePermission;
+use App\Models\Post;
+use App\Models\PostPermission;
 use App\Services\EntityMappingService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
-class EntityNoteObserver
+class PostObserver
 {
     /**
      * Purify trait
@@ -32,22 +33,22 @@ class EntityNoteObserver
     }
 
     /**
-     * @param EntityNote $entityNote
+     * @param Post $post
      */
-    public function saving(EntityNote $entityNote)
+    public function saving(Post $post)
     {
-        if (!$entityNote->savingObserver) {
+        if (!$post->savingObserver) {
             return;
         }
 
-        $entityNote->entry = $this->purify(Mentions::codify($entityNote->entry));
+        $post->entry = $this->purify(Mentions::codify($post->entry));
 
         // Is private hook for non-admin (who can't set is_private)
-        if (!isset($entityNote->is_private)) {
-            $entityNote->is_private = false;
+        if (!isset($post->is_private)) {
+            $post->is_private = false;
         }
 
-        $settings = $entityNote->settings;
+        $settings = $post->settings;
         if (request()->has('settings[collapse]')) {
             if ((bool) request()->get('settings[collapse]')) {
                 $settings['collapse'] = true;
@@ -55,71 +56,71 @@ class EntityNoteObserver
                 unset($settings['collapse']);
             }
         }
-        $entityNote->settings = $settings;
+        $post->settings = $settings;
     }
 
     /**
-     * @param EntityNote $entityNote
+     * @param Post $post
      */
-    public function creating(EntityNote $entityNote)
+    public function creating(Post $post)
     {
-        if (!$entityNote->position == 1) {
-            // Make sure we're adding this note at the end of other notes
-            $last = $entityNote->entity->notes()
-                ->where('id', '!=', $entityNote->id)
+        if (!$post->position == 1) {
+            // Make sure we're adding this note at the end of other posts
+            $last = $post->entity->posts()
+                ->where('id', '!=', $post->id)
                 ->orderBy('position', 'desc')
                 ->first();
-            $entityNote->position = $last ? ($last->position + 1) : 1;
+            $post->position = $last ? ($last->position + 1) : 1;
         }
     }
 
     /**
-     * @param EntityNote $entityNote
+     * @param Post $post
      */
-    public function saved(EntityNote $entityNote)
+    public function saved(Post $post)
     {
-        if (!$entityNote->savedObserver) {
+        if (!$post->savedObserver) {
             return;
         }
 
-        $this->savePermissions($entityNote);
+        $this->savePermissions($post);
 
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
-        $entityNote->entity->child->savingObserver = false;
-        $entityNote->entity->child->touch();
+        $post->entity->child->savingObserver = false;
+        $post->entity->child->touch();
 
         // If the entity note's entry has changed, we need to re-build it's map.
-        if ($entityNote->isDirty('entry')) {
-            $this->entityMappingService->mapEntityNote($entityNote);
+        if ($post->isDirty('entry')) {
+            $this->entityMappingService->mapPost($post);
         }
     }
 
     /**
-     * @param EntityNote $entityNote
+     * @param Post $post
      */
-    public function deleted(EntityNote $entityNote)
+    public function deleted(Post $post)
     {
         // When deleting an entity note, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
-        if ($entityNote->entity) {
-            $entityNote->entity->child->touch();
+        if ($post->entity) {
+            $post->entity->child->touch();
         }
     }
 
     /**
-     * @param EntityNote $entityNote
+     * @param Post $post
      * @return bool
      */
-    public function savePermissions(EntityNote $entityNote): bool
+    public function savePermissions(Post $post): bool
     {
-        if (!request()->has('permissions') || !auth()->user()->can('permission', $entityNote->entity->child)) {
+        if (!request()->has('permissions') || !auth()->user()->can('permission', $post->entity->child)) {
             return false;
         }
 
         $existing = $parsed = [];
-        foreach ($entityNote->permissions as $perm) {
+        foreach ($post->permissions as $perm) {
             $key = $perm->isUser() ? 'u_' : 'r_';
             $existing[$key . $perm->user_id] = $perm;
         }
@@ -142,7 +143,7 @@ class EntityNoteObserver
             }
             elseif (!in_array($existingKey, $parsed)) {
                 EntityNotePermission::create([
-                    'entity_note_id' => $entityNote->id,
+                    'post_id' => $post->id,
                     'user_id' => $user,
                     'permission' => $perms[$key]
                 ]);
@@ -168,7 +169,7 @@ class EntityNoteObserver
             }
             elseif (!in_array($existingKey, $parsed)) {
                 EntityNotePermission::create([
-                    'entity_note_id' => $entityNote->id,
+                    'post_id' => $post->id,
                     'role_id' => $user,
                     'permission' => $perms[$key]
                 ]);
