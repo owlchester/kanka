@@ -6,12 +6,12 @@
 * @var \Illuminate\Database\Eloquent\Collection $pinnedNotes
 */
 ?>
-<div class="entity-note-{{ $post->id }} entity-note-position-{{ $post->position }}" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
-    <div class="box box-solid entity-note" id="post-{{ $post->id }}">
+<div class="post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
+    <div class="box box-solid post entity-note" id="post-{{ $post->id }}">
         <div class="box-header with-border">
-            <h3 class="box-title cursor entity-note-toggle" data-toggle="collapse" data-target="#entity-note-body-{{ $post->id }}" data-short="entity-note-toggle-{{ $post->id }}">
-                <i class="fa-solid fa-chevron-up" id="entity-note-toggle-{{ $post->id }}-show" @if ($post->collapsed()) style="display: none;" @endif></i>
-                <i class="fa-solid fa-chevron-down" id="entity-note-toggle-{{ $post->id }}-hide" @if (!$post->collapsed()) style="display: none;" @endif></i>
+            <h3 class="box-title cursor post-toggle element-toggle" data-toggle="collapse" data-target="#post-body-{{ $post->id }}" data-short="post-toggle-{{ $post->id }}">
+                <i class="fa-solid fa-chevron-up" id="post-toggle-{{ $post->id }}-show" @if ($post->collapsed()) style="display: none;" @endif></i>
+                <i class="fa-solid fa-chevron-down" id="post-toggle-{{ $post->id }}-hide" @if (!$post->collapsed()) style="display: none;" @endif></i>
                 {{ $post->name  }}
                 @if (app()->environment('local'))
                     <sup>({{ $post->position }})</sup>
@@ -62,28 +62,28 @@
                 @endif
             </div>
         </div>
-        <div class="entity-content box-body collapse @if(!$post->collapsed()) in @endif" id="entity-note-body-{{ $post->id }}">
-            <div class="entity-note-details">
+        <div class="entity-content box-body collapse @if(!$post->collapsed()) in @endif" id="post-body-{{ $post->id }}">
+            <div class="post-details entity-note-details">
 
                 @if ($post->location)
-                <span class="entity-note-detail-element entity-note-location">
+                <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
                     <i class="ra ra-tower"></i> {!! $post->location->tooltipedLink() !!}
                 </span>
                 @endif
             </div>
-            <div class="entity-note-body">
+            <div class="entity-note-body post-body">
                 {!! $post->entry() !!}
             </div>
 
 
-            <div class="entity-note-footer text-right text-muted">
-            <span class="entity-note-footer-element entity-note-created" title="{{ __('entities/notes.footer.created', [
+            <div class="post-footer entity-note-footer text-right text-muted">
+            <span class="post-footer-element post-created entity-note-footer-element entity-note-created" title="{{ __('entities/notes.footer.created', [
 'user' => $post->created_by ? e(\App\Facades\UserCache::name($post->created_by)) : __('crud.users.unknown'),
 'date' => $post->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
                 {{ $post->created_at->isoFormat('MMMM Do, Y') }}
             </span>
                 @if ($post->updated_at->greaterThan($post->created_at))
-                    <span class="entity-note-footer-element entity-note-updated" title="{{ __('entities/notes.footer.updated', [
+                    <span class="post-footer-element post-updated entity-note-footer-element entity-note-updated" title="{{ __('entities/notes.footer.updated', [
 'user' => $post->updated_by ? e(\App\Facades\UserCache::name($post->updated_by)) : __('crud.users.unknown'),
 'date' => $post->updated_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
                 {{ $post->updated_at->isoFormat('MMMM Do, Y') }}

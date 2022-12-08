@@ -11,7 +11,7 @@
     <div class="timeline-item">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title cursor entity-note-toggle" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}" data-short="timeline-element-body-toggle-{{ $element->id }}">
+                <h3 class="box-title cursor element-toggle timeline-element-toggle" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}" data-short="timeline-element-body-toggle-{{ $element->id }}">
                     <i class="fa-solid fa-chevron-up" id="timeline-element-body-toggle-{{ $element->id }}-show" @if($element->collapsed()) style="display: none;" @endif></i>
                     <i class="fa-solid fa-chevron-down" id="timeline-element-body-toggle-{{ $element->id }}-hide" @if(!$element->collapsed()) style="display: none;" @endif></i>
                     {!! $element->htmlName() !!}

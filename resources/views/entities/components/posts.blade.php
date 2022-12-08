@@ -25,7 +25,7 @@ $first = $pinnedPosts->first();
 
 
 @if($wrapper)
-<div class="entity-notes entity-posts">
+<div class="entity-posts entity-notes">
 @endif
     @foreach ($pinnedPosts as $post)
         @if (isset($withEntry) && !$entryShown && $post->position >= 0)

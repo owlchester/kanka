@@ -567,7 +567,7 @@ function initSpectrum() {
  * Expand/Collapse all posts on the overview of an entity
  */
 function registerStoryActions() {
-    let posts = $('.entity-notes > div');
+    let posts = $('.entity-posts > div');
     $('.btn-post-collapse').unbind('click').click(function () {
         posts.each(function () {
             let body = $(this).find('.entity-content');
@@ -576,7 +576,7 @@ function registerStoryActions() {
                 body.prev().find('.fa-chevron-up').hide();
                 body.prev().find('.fa-chevron-down').show();
             }
-            let header = $(this).find('.entity-note-toggle');
+            let header = $(this).find('.post-toggle');
             if (!header.hasClass('collapsed')) {
                 header.addClass('collapsed');
             }
@@ -593,7 +593,7 @@ function registerStoryActions() {
                 body.prev().find('.fa-chevron-down').hide();
                 body.css('height', '');
             }
-            let header = $(this).find('.entity-note-toggle');
+            let header = $(this).find('.post-toggle');
             if (header.hasClass('collapsed')) {
                 header.removeClass('collapsed');
             }
@@ -634,7 +634,7 @@ function registerStoryLoadMore() {
         }).done(function (result) {
             btn.parent().remove();
             if (result) {
-                $('.entity-notes').append(result);
+                $('.entity-posts').append(result);
                 registerStoryLoadMore();
                 registerStoryActions();
             }

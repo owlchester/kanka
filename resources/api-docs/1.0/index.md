@@ -35,11 +35,11 @@
     - [Dice Rolls](/api-docs/{{version}}/dice-rolls)
 
 - ## Entities
+    - [Posts](/api-docs/{{version}}/posts)
     - [Attributes](/api-docs/{{version}}/attributes)
     - [Entity Events](/api-docs/{{version}}/entity-events)
     - [Entity Inventory](/api-docs/{{version}}/inventory)
     - [Entity Mentions](/api-docs/{{version}}/entity-mentions)
-    - [Entity Notes](/api-docs/{{version}}/entity-notes)
     - [Entity Tags](/api-docs/{{version}}/entity-tags)
     - [Entity Permissions](/api-docs/{{version}}/entity-permissions)
     - [Relations](/api-docs/{{version}}/relations)

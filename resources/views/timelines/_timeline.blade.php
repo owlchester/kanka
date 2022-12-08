@@ -12,9 +12,9 @@ $loadedElements = [];
     $position = 1;
     @endphp
 
-    <div class="box box-solid entity-note box-widget" id="era{{ $era->id }}">
+    <div class="box box-solid post entity-note box-widget" id="era{{ $era->id }}">
         <div class="box-header with-border">
-            <h3 class="box-title cursor entity-note-toggle" data-toggle="collapse" data-target="#era-items-{{ $era->id }}" data-short="timeline-era-toggle-{{ $era->id }}">
+            <h3 class="box-title cursor element-toggle timeline-era-toggle" data-toggle="collapse" data-target="#era-items-{{ $era->id }}" data-short="timeline-era-toggle-{{ $era->id }}">
 
                 <i class="fa-solid fa-chevron-up" id="timeline-era-toggle-{{ $era->id }}-show" @if($era->collapsed()) style="display: none;" @endif></i>
                 <i class="fa-solid fa-chevron-down" id="timeline-era-toggle-{{ $era->id }}-hide" @if(!$era->collapsed()) style="display: none;" @endif></i>
