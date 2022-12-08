@@ -8,8 +8,6 @@
 </template>
 
 <script>
-    import Event from '../event.js';
-
     export default {
         props: [
         ],
@@ -35,7 +33,7 @@
         },
 
         mounted() {
-            Event.$on('add_ability', (url) => {
+            this.emitter.on('add_ability', (url) => {
                 this.showModal(url);
             });
         }
