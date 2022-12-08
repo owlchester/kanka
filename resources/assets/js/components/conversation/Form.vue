@@ -26,8 +26,6 @@
 </template>
 
 <script>
-    import Event from '../event.js';
-
     /**
      * The form to send messages to a conversation.
      * Messy party: we can have a list of characters that the user can edit, or send as the current user.
@@ -81,7 +79,7 @@
                     return;
                 }
                 this.sending = true;
-                Event.$emit('sending_message');
+                this.emitter.emit('sending_message');
 
                 var url = this.api;
                 var data = {
@@ -94,7 +92,7 @@
                     url += '/' + this.message_id;
 
                     axios.put(url, data).then((res) => {
-                        Event.$emit('edited_message', res.data.data);
+                        this.emitter.emit('edited_message', res.data.data);
                         this.messageHandler();
                     }).catch(() => {
                         this.sending = false;
@@ -111,7 +109,7 @@
                 this.sending = false;
                 this.body = null;
                 this.message_id = null;
-                Event.$emit('sent_message');
+                this.emitter.emit('sent_message');
             },
 
             translate(key) {
@@ -138,7 +136,7 @@
         },
 
         mounted() {
-            Event.$on('edit_message', (message, body) => {
+            this.emitter.on('edit_message', (message, body) => {
                 this.editMessage(message, body);
             });
         }
