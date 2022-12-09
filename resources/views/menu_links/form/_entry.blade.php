@@ -113,10 +113,14 @@ if (isset($model)) {
     <div class="col-md-6">
         {!! Form::hidden('is_active', 0) !!}
         <label>
-            {!! Form::checkbox('is_active', 1, $model->is_active) !!}
+            {!! Form::checkbox('is_active', 1, isset($model) ? $model->is_active : 1) !!}
             {!! __('menu_links.fields.active') !!}
-            <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('menu_links.helpers.active') }}"></i>
+            <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-html="true" title="{{ __('menu_links.helpers.active') }}"></i>
         </label>
+        <div class="help-block visible-xs visible-sm">
+            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fa-solid fa-cog"></i>']) !!}
+        </div>
+
     </div>
 </div>
 
