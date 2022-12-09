@@ -13,7 +13,7 @@
                     {!! Form::select('perm_role_perm[]', $permissions, $perm->permission, ['class' => 'form-control']) !!}
 
                     <span class="input-group-btn">
-                        <button class="btn btn-danger btn-flat entity-note-delete-perm">
+                        <button class="btn btn-danger btn-flat post-delete-perm">
                             <i class='fa-solid fa-trash'></i>
                         </button>
                     </span>
@@ -35,7 +35,7 @@
                         {!! Form::select('perm_user_perm[]', $permissions, $perm->permission, ['class' => 'form-control']) !!}
 
                         <span class="input-group-btn">
-                            <button class="btn btn-danger btn-flat entity-note-delete-perm">
+                            <button class="btn btn-danger btn-flat post-delete-perm">
                                 <i class='fa-solid fa-trash'></i>
                             </button>
                         </span>
@@ -45,18 +45,18 @@
             </div>
         @endforeach
     @endif
-    <div id="entity-note-perm-target" class="mb-5"></div>
+    <div id="post-perm-target" class="mb-5"></div>
     <div class="btn-group">
-        <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#entity-note-new-user">
+        <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#post-new-user">
             <i class="fa-solid fa-user"></i> {{ __('entities/notes.actions.add_user') }}
         </a>
-        <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#entity-note-new-role">
+        <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#post-new-role">
             <i class="fa-solid fa-users"></i> {{ __('entities/notes.actions.add_role') }}
         </a>
     </div>
     {!! Form::hidden('permissions', true) !!}
 
-        <div class="modal fade" id="entity-note-new-user" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal fade" id="post-new-user" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -66,19 +66,19 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="user">{{ __('crud.permissions.fields.member') }}</label>
-                        @include('components.form.user', ['options' => ['dropdownParent' => '#entity-note-new-user']])
+                        @include('components.form.user', ['options' => ['dropdownParent' => '#post-new-user']])
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button class="btn btn-primary entity-note-perm-add" id="entity-note-perm-user-add" data-type="user">
+                    <button class="btn btn-primary post-perm-add" id="post-perm-user-add" data-type="user">
                         <i class="fa-solid fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="entity-note-new-role" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal fade" id="post-new-role" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -89,13 +89,13 @@
                     <div class="form-group">
                         <label for="user">{{ __('crud.permissions.fields.role') }}</label>
                         @include('components.form.role', ['options' => [
-                            'dropdownParent' => '#entity-note-new-role'
+                            'dropdownParent' => '#post-new-role'
                         ]])
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button class="btn btn-primary entity-note-perm-add" id="entity-note-perm-role-add" data-type="role">
+                    <button class="btn btn-primary post-perm-add" id="post-perm-role-add" data-type="role">
                         <i class="fa-solid fa-plus"></i> {{ __('entities/notes.actions.add_role') }}
                     </button>
                 </div>
@@ -106,7 +106,7 @@
 
 @section('modals')
     @parent
-    <div class="hidden row mb-5" id="entity-note-perm-user-template">
+    <div class="hidden row mb-5" id="post-perm-user-template">
         <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
@@ -119,7 +119,7 @@
                     'class' => 'form-control'
                 ]) !!}
                 <span class="input-group-btn">
-                    <button class="btn btn-danger btn-flat entity-note-delete-perm">
+                    <button class="btn btn-danger btn-flat post-delete-perm">
                         <i class='fa-solid fa-trash'></i>
                     </button>
                 </span>
@@ -127,7 +127,7 @@
         </div>
         <input type="hidden" name="perm_user[]" value="$SELECTEDID$" />
     </div>
-    <div class="hidden row mb-5" id="entity-note-perm-role-template">
+    <div class="hidden row mb-5" id="post-perm-role-template">
         <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa-solid fa-users"></i></span>
@@ -139,7 +139,7 @@
                     'class' => 'form-control'
                 ]) !!}
                 <span class="input-group-btn">
-                <button class="btn btn-danger btn-flat entity-note-delete-perm">
+                <button class="btn btn-danger btn-flat post-delete-perm">
                     <i class='fa-solid fa-trash'></i>
                 </button>
             </span>

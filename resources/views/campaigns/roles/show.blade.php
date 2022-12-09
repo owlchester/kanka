@@ -97,7 +97,7 @@
                             {{ __('campaigns.roles.permissions.helpers.delete') }}
                         </li>
                         <li>
-                            <code>{{ __('campaigns.roles.permissions.actions.entity-note') }}</code>:
+                            <code>{{ __('entities.posts') }}</code>:
                             {{ __('campaigns.roles.permissions.helpers.entity_note') }}
                         </li>
                         <li>

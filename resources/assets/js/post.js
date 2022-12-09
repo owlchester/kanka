@@ -1,6 +1,6 @@
 var addPermBtn;
 $(document).ready(function () {
-    addPermBtn = $('.entity-note-perm-add');
+    addPermBtn = $('.post-perm-add');
     if (addPermBtn.length === 0) {
         return;
     }
@@ -25,13 +25,13 @@ function registerAdvancedPermissions() {
         //console.log('selected name for ', type, selectedName.text);
 
         // Add a block
-        let body = $('#entity-note-perm-' + type + '-template').clone().removeClass('hidden').removeAttr('id');
+        let body = $('#post-perm-' + type + '-template').clone().removeClass('hidden').removeAttr('id');
         let html = body.html()
             .replace(/\$SELECTEDID\$/g, selected.val())
             .replace(/\$SELECTEDNAME\$/g, selectedName.text);
-        body.html(html).insertBefore($('#entity-note-perm-target'));
+        body.html(html).insertBefore($('#post-perm-target'));
 
-        $('#entity-note-new-' + type).modal('toggle');
+        $('#post-new-' + type).modal('toggle');
 
         registerPermissionDeleteEvents();
 
@@ -45,7 +45,7 @@ function registerAdvancedPermissions() {
  * Remove an advanced permission from a post
  */
 function registerPermissionDeleteEvents() {
-    $.each($('.entity-note-delete-perm'), function () {
+    $.each($('.post-delete-perm'), function () {
         $(this).unbind('click');
         $(this).on('click', function () {
             $(this).parent().parent().parent().parent().remove();

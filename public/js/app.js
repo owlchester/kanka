@@ -2286,7 +2286,7 @@ function initSubmenuSwitcher() {
 
 
 function initEntityNoteToggle() {
-  $('.entity-note-toggle').on('click', function () {
+  $('.element-toggle').on('click', function () {
     var id = $(this).data('short');
     $('#' + id + "-show").toggle();
     $('#' + id + "-hide").toggle();
@@ -3650,7 +3650,7 @@ function initSpectrum() {
 
 
 function registerStoryActions() {
-  var posts = $('.entity-notes > div');
+  var posts = $('.entity-posts > div');
   $('.btn-post-collapse').unbind('click').click(function () {
     posts.each(function () {
       var body = $(this).find('.entity-content');
@@ -3661,7 +3661,7 @@ function registerStoryActions() {
         body.prev().find('.fa-chevron-down').show();
       }
 
-      var header = $(this).find('.entity-note-toggle');
+      var header = $(this).find('.post-toggle');
 
       if (!header.hasClass('collapsed')) {
         header.addClass('collapsed');
@@ -3680,7 +3680,7 @@ function registerStoryActions() {
         body.css('height', '');
       }
 
-      var header = $(this).find('.entity-note-toggle');
+      var header = $(this).find('.post-toggle');
 
       if (header.hasClass('collapsed')) {
         header.removeClass('collapsed');
@@ -3722,7 +3722,7 @@ function registerStoryLoadMore() {
       btn.parent().remove();
 
       if (result) {
-        $('.entity-notes').append(result);
+        $('.entity-posts').append(result);
         registerStoryLoadMore();
         registerStoryActions();
       }
@@ -4546,7 +4546,7 @@ function handleReadAll() {
 
 var addPermBtn;
 $(document).ready(function () {
-  addPermBtn = $('.entity-note-perm-add');
+  addPermBtn = $('.post-perm-add');
 
   if (addPermBtn.length === 0) {
     return;
@@ -4572,10 +4572,10 @@ function registerAdvancedPermissions() {
     var selectedName = selected.find(':selected')[0]; //console.log('selected name for ', type, selectedName.text);
     // Add a block
 
-    var body = $('#entity-note-perm-' + type + '-template').clone().removeClass('hidden').removeAttr('id');
+    var body = $('#post-perm-' + type + '-template').clone().removeClass('hidden').removeAttr('id');
     var html = body.html().replace(/\$SELECTEDID\$/g, selected.val()).replace(/\$SELECTEDNAME\$/g, selectedName.text);
-    body.html(html).insertBefore($('#entity-note-perm-target'));
-    $('#entity-note-new-' + type).modal('toggle');
+    body.html(html).insertBefore($('#post-perm-target'));
+    $('#post-new-' + type).modal('toggle');
     registerPermissionDeleteEvents(); // Reset the value
 
     selected.val('').trigger('change');
@@ -4588,7 +4588,7 @@ function registerAdvancedPermissions() {
 
 
 function registerPermissionDeleteEvents() {
-  $.each($('.entity-note-delete-perm'), function () {
+  $.each($('.post-delete-perm'), function () {
     $(this).unbind('click');
     $(this).on('click', function () {
       $(this).parent().parent().parent().parent().remove();
