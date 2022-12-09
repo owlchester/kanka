@@ -118,7 +118,7 @@ if (isset($model)) {
             <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-html="true" title="{{ __('menu_links.helpers.active') }}"></i>
         </label>
         <div class="help-block visible-xs visible-sm">
-            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fa-solid fa-cog"></i>']) !!}
+            {{ __('menu_links.helpers.active') }}
         </div>
 
     </div>
