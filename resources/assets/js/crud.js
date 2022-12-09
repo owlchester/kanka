@@ -16,18 +16,14 @@ var entityName;
 
 var validEntityForm = false, validRelationForm = false;
 
-
 $(document).ready(function () {
 
     registerDynamicRows();
 
     ajaxModal();
 
-    entityFormActions = $('.form-submit-actions');
-    if (entityFormActions.length > 0) {
-        registerEntityFormActions();
-        registerUnsavedChanges();
-    }
+    registerEntityFormActions();
+    registerUnsavedChanges();
 
     entityName = $('#form-entry input[name="name"]');
     if (entityName.length === 1) {
@@ -55,6 +51,7 @@ function registerModalLoad() {
     $(document).on('shown.bs.modal shown.bs.popover', function () {
         registerRelationFormSubmit();
         registerEntityCalendarModal();
+        registerEntityFormActions();
     });
 }
 
@@ -100,20 +97,23 @@ function registerEntityNameCheck() {
  *
  */
 function registerEntityFormActions() {
+    // Return early if there are no elements in the page to be handled
+    entityFormActions = $('.form-submit-actions');
+    if (entityFormActions.length === 0) {
+        return;
+    }
+    //console.log('RegisterEntityFormActions', entityFormActions);
     let entityFormMainButton = $('#form-submit-main');
     let entityFormSubmitMode = $('#submit-mode');
-    if (entityFormSubmitMode == undefined) {
+    if (entityFormSubmitMode === undefined) {
         throw new Error("No submit mode hidden input found");
     }
 
     // Register click on each sub action
     $.each(entityFormActions, function () {
-        $(this).on('click', function () {
-
+        $(this).unbind('click').on('click', function () {
             //console.log('setting the submit name to ' + $(this).data('action'));
-
             entityFormSubmitMode.attr('name', $(this).data('action'));
-
             entityFormMainButton.trigger("click");
 
             return false;
@@ -321,6 +321,11 @@ function calendarHideSubform() {
  * If we change something on a form, avoid losing data when going away.
  */
 function registerUnsavedChanges() {
+    // Return early if we have no elements to handle
+    entityFormActions = $('.form-submit-actions');
+    if (entityFormActions.length === 0) {
+        return;
+    }
     let save = $('#form-submit-main');
 
     // Save every input change
