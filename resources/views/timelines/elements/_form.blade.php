@@ -75,7 +75,23 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('timelines/elements.fields.icon') }}</label>
-            {!! Form::text('icon', null, ['class' => 'form-control', 'placeholder' => 'fa-solid fa-gem, ra ra-sword', ($campaignService->campaign()->boosted() ? null : 'disabled')]) !!}
+            {!! Form::text(
+                'icon',
+                null, 
+                ['class' => 'form-control',
+                    'placeholder' => 'fa-solid fa-gem, ra ra-sword',
+                    ($campaignService->campaign()->boosted() ? null : 'disabled'),
+                    'list' => 'timeline-element-icon-list',
+                    'autocomplete' => 'off', 
+                ]) 
+            !!}
+            <div class="hidden">
+                <datalist id="timeline-element-icon-list">
+                    @foreach (\App\Facades\TimelineElementCache::iconSuggestion() as $icon)
+                        <option value="{{ $icon }}">{{ $icon }}</option>
+                    @endforeach
+                </datalist>
+            </div>
                 <p class="help-block">{!! __('timelines/elements.helpers.icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
 
             @if (!$campaignService->campaign()->boosted())

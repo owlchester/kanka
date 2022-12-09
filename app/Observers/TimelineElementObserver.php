@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Facades\Mentions;
 use App\Models\TimelineElement;
 use App\Services\EntityMappingService;
+use App\Facades\TimelineElementCache;
 
 class TimelineElementObserver
 {
@@ -52,9 +53,18 @@ class TimelineElementObserver
      */
     public function saved(TimelineElement $timelineElement)
     {
+        TimelineElementCache::clearSuggestion();
         // If the quest element's entry has changed, we need to re-build it's map.
         if ($timelineElement->isDirty('entry')) {
             $this->entityMappingService->mapTimelineElement($timelineElement);
         }
+    }
+
+    /**
+     * @param TimelineElement $timelineElement
+     */
+    public function deleted(TimelineElement $timelineElement)
+    {
+        TimelineElementCache::clearSuggestion();
     }
 }
