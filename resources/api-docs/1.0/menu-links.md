@@ -39,6 +39,7 @@ You can get a list of all the menu links of a campaign by using the following en
            "filters": null,
            "icon": null,
            "is_private": 0,
+           "is_active": 1,
            "menu": null,
            "random_entity_type": "character",
            "type": null,
@@ -73,6 +74,7 @@ To get the details of a single menu link, use the following endpoint.
         "filters": null,
         "icon": null,
         "is_private": 0,
+        "is_active": 1,
         "menu": null,
         "random_entity_type": "character",
         "type": null,
@@ -112,6 +114,7 @@ To create a menu link, use the following endpoint.
 | `menu` | `string` | Menu options for the link |
 | `position` | `int` | Position of the link |
 | `is_private` | `boolean` | If the menu link is only visible to admin members of the campaign |
+| `is_active` | `boolean` | If the menu link is visible |
 | `options`| `object` | Key/Value pairs for optional parameters, currently allowed Keys : `is_nested:boolean` |
 
 ### Results

@@ -110,6 +110,14 @@ if (isset($model)) {
             @endif
         </div>
     </div>
+    <div class="col-md-6">
+        {!! Form::hidden('is_active', 0) !!}
+        <label>
+            {!! Form::checkbox('is_active', 1, $model->is_active) !!}
+            {!! __('menu_links.fields.active') !!}
+            <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('menu_links.helpers.active') }}"></i>
+        </label>
+    </div>
 </div>
 
 <h4>{{ __('menu_links.fields.selector') }}</h4>

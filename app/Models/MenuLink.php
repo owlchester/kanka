@@ -33,6 +33,7 @@ use Illuminate\Support\Str;
  * @property CampaignDashboard|null $dashboard
  * @property Entity|null $target
  * @property boolean $is_private
+ * @property boolean $is_active
  * @property array $optionsAllowedKeys
  *
  * @method self ordered()
@@ -64,6 +65,7 @@ class MenuLink extends MiscModel
         'css',
         'parent',
         'options',
+        'is_active',
     ];
 
     /**
@@ -111,6 +113,7 @@ class MenuLink extends MiscModel
         'position',
         'menu',
         'tab',
+        'is_active'
     ];
 
     /** @var string Default order for lists */
@@ -128,6 +131,16 @@ class MenuLink extends MiscModel
             'target',
             'dashboard',
         ]);
+    }
+
+    /**
+     * Scope for Active menu links
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_active', true);
     }
 
     /**
