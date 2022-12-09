@@ -24,6 +24,7 @@ class MenuLinkResource extends EntityResource
             'filters' => $model->filters,
             'icon' => $model->icon,
             'is_private' => $model->is_private,
+            'is_active' => $model->is_active,
             'menu' => $model->menu,
             'random_entity_type' => $model->random_entity_type,
             'type' => $model->type,

@@ -45,6 +45,16 @@
             'disableSort' => true,
         ],
         [
+            'label' => __('menu_links.fields.active'),
+            'render' => function ($model) {
+                if ($model->is_active) {
+                    return '<i class="fa-solid fa-check-circle" aria-hidden="true"></i>';
+                }
+                return '';
+            },
+            'field' => 'is_active',
+        ],
+        [
             'type' => 'is_private',
         ]
     ])
