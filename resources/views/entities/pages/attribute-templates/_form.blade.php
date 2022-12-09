@@ -21,11 +21,11 @@
     'marketplace' => link_to(config('marketplace.url') . '/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
     ]) !!}
         </p>
-        <div class="pull-right">
+        <div class="my-5 text-center">
+            <button type="button" class="btn btn-default mr-5 rounded-full px-8" data-dismiss="modal">
+                {{ __('crud.cancel') }}
+            </button> 
             @include('entities.pages.attribute-templates._actions')
         </div>
-        <button type="button" class="btn btn-default mr-5 rounded-full px-8" data-dismiss="modal">
-            {{ __('crud.cancel') }}
-        </button> 
         {!! Form::close() !!}
     </div>
