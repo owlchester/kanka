@@ -77,13 +77,14 @@
             <label>{{ __('timelines/elements.fields.icon') }}</label>
             {!! Form::text(
                 'icon',
-                null, 
+                null,
                 ['class' => 'form-control',
                     'placeholder' => 'fa-solid fa-gem, ra ra-sword',
                     ($campaignService->campaign()->boosted() ? null : 'disabled'),
                     'list' => 'timeline-element-icon-list',
-                    'autocomplete' => 'off', 
-                ]) 
+                    'autocomplete' => 'off',
+                    'data-paste' => 'fontawesome',
+                ])
             !!}
             <div class="hidden">
                 <datalist id="timeline-element-icon-list">
@@ -97,11 +98,11 @@
             @if (!$campaignService->campaign()->boosted())
                 @subscriber()
                     <p class="help-block">
-                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('crud.boosted_campaigns'), ['campaign' => $campaignService->campaign()])]) !!}
                     </p>
                 @else
                     <p class="help-block">
-                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.boosters', __('crud.boosted_campaigns'))]) !!}
                     </p>
                 @endsubscriber
             @endif
