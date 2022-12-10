@@ -75,17 +75,34 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('timelines/elements.fields.icon') }}</label>
-            {!! Form::text('icon', null, ['class' => 'form-control', 'placeholder' => 'fa-solid fa-gem, ra ra-sword', ($campaignService->campaign()->boosted() ? null : 'disabled')]) !!}
+            {!! Form::text(
+                'icon',
+                null,
+                ['class' => 'form-control',
+                    'placeholder' => 'fa-solid fa-gem, ra ra-sword',
+                    ($campaignService->campaign()->boosted() ? null : 'disabled'),
+                    'list' => 'timeline-element-icon-list',
+                    'autocomplete' => 'off',
+                    'data-paste' => 'fontawesome',
+                ])
+            !!}
+            <div class="hidden">
+                <datalist id="timeline-element-icon-list">
+                    @foreach (\App\Facades\TimelineElementCache::iconSuggestion() as $icon)
+                        <option value="{{ $icon }}">{{ $icon }}</option>
+                    @endforeach
+                </datalist>
+            </div>
                 <p class="help-block">{!! __('timelines/elements.helpers.icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
 
             @if (!$campaignService->campaign()->boosted())
                 @subscriber()
                     <p class="help-block">
-                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('crud.boosted_campaigns'), ['campaign' => $campaignService->campaign()])]) !!}
                     </p>
                 @else
                     <p class="help-block">
-                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.boosters', __('crud.boosted_campaigns'))]) !!}
                     </p>
                 @endsubscriber
             @endif
