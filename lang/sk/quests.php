@@ -25,6 +25,11 @@ return [
             'quest'             => 'Úloha',
         ],
         'title'     => 'Prvky úlohy :name',
+        'warning'   => [
+            'editing'   => [
+                'description'   => 'Zdá sa, že iná osoba upravuje súčasne tento prvok úlohy! Chceš sa vrátiť a ignorovať toto varovanie aj s rizikom straty dát? Členstvo súčasne editujúce tento prvok:',
+            ],
+        ],
     ],
     'fields'        => [
         'character'     => 'Zadávateľ/ka',

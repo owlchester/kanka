@@ -22,7 +22,6 @@ return [
     ],
     'helpers'       => [
         'nested_without'    => 'Anzeigen aller Zeitleisten ohne übergeordnete Zeitleiste. Klicken Sie auf eine Zeile, um die untergeordneten Zeitleisten anzuzeigen.',
-        'no_era'            => 'Diese Zeitachse hat derzeit keine Epochen. Epochen können im Bearbeitungsbildschirm der Zeitstrahlen hinzugefügt werden, danach können Sie hier Elemente hinzufügen.',
         'reverse_order'     => 'Aktivieren Sie diese Option, um Epochen in umgekehrter chronologischer Reihenfolge anzuzeigen (ältere Epoche zuerst).',
     ],
     'index'         => [],

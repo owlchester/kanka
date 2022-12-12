@@ -14,6 +14,7 @@ return [
         'add_year'          => 'Aggiungi un nome dell\'anno',
         'set_today'         => 'Imposta come giorno corrente',
         'today'             => 'Oggi',
+        'update_weather'    => 'Aggiorna il meteo',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Accade ogni anno',
@@ -51,7 +52,12 @@ return [
         'success'   => 'Evento \':event\' aggiunto al calendario.',
     ],
     'events'        => [
-        'title' => 'Eventi del Calendario :name',
+        'filters'   => [
+            'show_after'    => 'Mostra oggi e dopo',
+            'show_all'      => 'Mostra tutto',
+            'show_before'   => 'Mostra fino a oggi',
+        ],
+        'title'     => 'Eventi del Calendario :name',
     ],
     'fields'        => [
         'calendar'              => 'Calendario sovraordinato',
@@ -63,6 +69,7 @@ return [
         'current_year'          => 'Anno corrente',
         'date'                  => 'Data corrente',
         'day'                   => 'Giorno',
+        'default_layout'        => 'Layout predefinito',
         'has_leap_year'         => 'Ha anni bisestili',
         'intercalary'           => 'Giorni intercalari',
         'is_incrementing'       => 'Data di Avanzamento',
@@ -88,6 +95,7 @@ return [
         'year'                  => 'Anno',
     ],
     'helpers'       => [
+        'default_layout'    => 'Seleziona il layout che il calendario usa in modo predefinito quando visualizzato.',
         'month_type'        => 'I mesi intercalari non utilizzano i giorni della settimana, ma influenzano comunque le fasi lunari e le stagioni.',
         'moon_offset'       => 'Per impostazione predefinita, la prima luna piena appare il primo giorno dell\'anno 0. Cambiando il ritardo si modifica il momento in cui viene visualizzata la prima luna piena. Questo valore può essere negativo (fino alla lunghezza del primo mese) o positivo (fino alla lunghezza del primo mese).',
         'nested_without'    => 'Visualizzazione dei calendari che non hanno un calendario sovraordinato. Clicca su un file per vedere i sottocalendari.',
@@ -109,8 +117,10 @@ return [
     ],
     'index'         => [],
     'layouts'       => [
-        'month' => 'Mese',
-        'year'  => 'Anno',
+        'month'     => 'Mese',
+        'monthly'   => 'Mensile in modo predefinito',
+        'year'      => 'Anno',
+        'yearly'    => 'Annuale in modo predefinito',
     ],
     'modals'        => [
         'switcher'  => [
@@ -196,8 +206,12 @@ return [
         'weekdays'          => 'Numero di giorni in una settimana',
     ],
     'show'          => [
-        'missing_details'   => 'Questo calendario non può essere visualizzato. I Calendari necessitano almeno di 2 mesi e 2 giorni della settimana per essere visualizzati correttamente.',
-        'tabs'              => [
+        'missing_details'       => 'Questo calendario non può essere visualizzato. I Calendari necessitano almeno di 2 mesi e 2 giorni della settimana per essere visualizzati correttamente.',
+        'moon_1first_quarter'   => ':primo quarto di luna',
+        'moon_full'             => ':luna piena',
+        'moon_last_quarter'     => ':ultimo quarto di luna',
+        'moon_new'              => ':luna nuova',
+        'tabs'                  => [
             'events'    => 'Eventi del Calendario',
             'weather'   => 'Tempo Atmosferico',
         ],

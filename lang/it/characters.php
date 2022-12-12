@@ -83,6 +83,7 @@ return [
         'age'               => 'Età',
         'appearance_entry'  => 'Descrizione',
         'appearance_name'   => 'Capelli, Occhi, Pelle, Altezza',
+        'name'              => 'Nome del personaggio',
         'personality_entry' => 'Dettagli',
         'personality_name'  => 'Obbiettivi, Vezzi, Paure, Vincoli',
         'physical'          => 'Caratteristiche Fisiche',

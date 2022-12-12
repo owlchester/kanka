@@ -272,6 +272,7 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'Ustawiono uprawnienia roli Publiczność, ale kampania jest prywatna. Możesz to zmienić z pomocą zakładki Udostępnij w menu edycji kampanii.',
             'empty_role'            => 'Tej roli nie posiada żaden z uczestników kampanii.',
+            'role_admin'            => 'Rola :admin zapewnia posiadaczom automatyczny dostęp do wszystkiego w kampanii.',
             'role_permissions'      => 'Zezwól roli :name na następujące działania na elementach',
         ],
         'members'       => 'Uczestnicy',
@@ -334,6 +335,10 @@ TEXT
             ],
             'destroy'   => [
                 'success'   => 'Uczestnikowi odebrano rolę.',
+            ],
+            'errors'    => [
+                'cant_kick_admins'  => 'By uniknąć nadużyć, nie można usunąć roli :admin posiadanej przez innego użytkownika. W wypadku nadużyć prosimy o kontakt przez :discord albo :email.',
+                'needs_more_roles'  => 'Zanim zrezygnujesz z roli :admin musisz nadać sobie jakąś inną rolę w kampanii.',
             ],
             'fields'    => [
                 'name'  => 'Nazwa',
@@ -454,5 +459,10 @@ TEXT
         'private'   => 'Prywatna',
         'public'    => 'Publiczna',
         'review'    => 'Oczekuje na recenzję',
+    ],
+    'warning'                           => [
+        'editing'   => [
+            'description'   => 'Najwyraźniej ktoś inny edytuje właśnie tę kampanię! Chcesz się wycofać czy zignorować to ostrzeżenie, ryzykując utratę danych? Członkowie obecnie edytujący kampanię:',
+        ],
     ],
 ];

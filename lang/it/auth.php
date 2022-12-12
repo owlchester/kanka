@@ -11,6 +11,10 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'banned'    => [
+        'permanent' => 'Sei stato bannato permanentemente.',
+        'temporary' => '{1} Sei stato bannato per :days giorno|[2,*] Sei stato bannato per :days giorni',
+    ],
     'confirm'   => [
         'confirm'   => 'Conferma',
         'error'     => 'Password non valida, riprova.',
@@ -23,6 +27,7 @@ return [
     ],
     'login'     => [
         'fields'                => [
+            '2fa'       => 'Password Monouso',
             'email'     => 'Email',
             'password'  => 'Password',
         ],
@@ -63,6 +68,10 @@ return [
         'send'      => 'Invia il Link di Reset Password',
         'submit'    => 'Resetta la password',
         'title'     => 'Resetta la password',
+    ],
+    'tfa'       => [
+        'helper'    => 'L\'Autenticazione a Due Fattori è abilitata. Inserisci la Password Monouso fornita dall\'app di autenticazione.',
+        'title'     => 'Autenticazione a Due Fattori',
     ],
     'throttle'  => 'Troppi tentativi di accesso. Riprova tra :seconds secondi.',
 ];

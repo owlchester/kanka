@@ -32,4 +32,9 @@ return [
         'name'      => 'Vyžadované, ak nie je vybraný žiaden objekt',
         'position'  => 'Pozícia v zozname prvkov pre daný vek. Ponechaj prázdnu, ak ju chceš pridať nakoniec.',
     ],
+    'warning'       => [
+        'editing'   => [
+            'description'   => 'Zdá sa, že iná osoba upravuje súčasne tento prvok časovej osi! Chceš sa vrátiť a ignorovať toto varovanie aj s rizikom straty dát? Členstvo súčasne editujúce tento prvok:',
+        ],
+    ],
 ];

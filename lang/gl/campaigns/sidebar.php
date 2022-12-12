@@ -6,10 +6,9 @@ return [
     ],
     'call-to-action'    => 'Personaliza a orde, iconas, e nomes dos elementos da barra lateral da campaña.',
     'helpers'           => [
-        'here'              => 'na nosa documentación',
-        'icons'             => 'Usa a clase de iconas en :link.',
-        'mobile_reordering' => 'Reordenar os elementos da barra lateral só é posible en dispositivos de escritorio.',
-        'setup'             => 'Personaliza a orde, icona, e nomes dos elementos da barra lateral desta campaña. Sempre podes restablecer a configuración por defecto usando o botón ":reset" ao final da páxina.',
+        'here'  => 'na nosa documentación',
+        'icons' => 'Usa a clase de iconas en :link.',
+        'setup' => 'Personaliza a orde, icona, e nomes dos elementos da barra lateral desta campaña. Sempre podes restablecer a configuración por defecto usando o botón ":reset" ao final da páxina.',
     ],
     'reset'             => [
         'success'   => 'A configuración da barra lateral foi restablecida.',

@@ -44,6 +44,7 @@ return [
         'target'            => 'Cieľ',
         'target_relation'   => 'Vzťah cieľa',
         'two_way'           => 'Vytvoriť zrkadlenie vzťahu',
+        'unmirror'          => 'Zrušiť zrkadlenie tohto vzťahu.',
     ],
     'helper'            => 'Vytvor vzťahy medzi objektami s postojom a viditeľnosťou. Vzťahy môžu byť tiež pripnuté k menu objektu.',
     'helpers'           => [

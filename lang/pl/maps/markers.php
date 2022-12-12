@@ -47,6 +47,7 @@ return [
         'base'                      => 'Dodaj znacznik, klikając w dowolnym miejscu mapy.',
         'copy_elements'             => 'Kopiuj kategorie, warstwy i znaczniki.',
         'copy_elements_to_campaign' => 'Kopiuje kategorie, warstwy i znaczniki na mapach. Znaczniki prowadzące do elementów zostaną zamienione na standardowe.',
+        'custom_icon_v2'            => 'Używaj ikon z :fontawesome, :rpgawesome, albo własnych plików SVG. Więcej instrukcji znajdziesz tutaj: :docs.',
         'custom_radius'             => 'Wybierz opcję z rozwijanej listy by określić wielkość.',
         'draggable'                 => 'Pozwala przeciągać znacznik po mapie w trybie eksploracji.',
         'label'                     => '"Podpis" wyświetla na mapie nazwę tego znacznika albo elementu z którym jest związany.',
@@ -72,6 +73,9 @@ return [
         'custom_shape'  => '100,100 200,240 340,110',
         'name'          => 'Wymagana, jeżeli nie powiązano z żadnym elementem',
     ],
+    'presets'       => [
+        'helper'    => 'Kliknij na przygotowany wzór znacznika by go załadować, albo zaprojektuj nowy.',
+    ],
     'shapes'        => [
         '0' => 'Okrąg',
         '1' => 'Kwadrat',
@@ -90,5 +94,6 @@ return [
         'label'     => 'Podpis',
         'marker'    => 'Znacznik',
         'polygon'   => 'Wielokąt',
+        'preset'    => 'Wzór',
     ],
 ];

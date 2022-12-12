@@ -61,4 +61,9 @@ return [
         'collapsed' => 'Zbalené',
         'expanded'  => 'Rozbalené',
     ],
+    'warning'       => [
+        'editing'   => [
+            'description'   => 'Zdá sa, že iná osoba upravuje súčasne túto poznámku! Chceš sa vrátiť a ignorovať toto varovanie aj s rizikom straty dát? Členstvo súčasne editujúce túto poznámku:',
+        ],
+    ],
 ];

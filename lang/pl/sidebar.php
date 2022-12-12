@@ -16,6 +16,7 @@ return [
     'manage_links'      => 'Zarządzaj skrótami',
     'new-entity'        => 'Stwórz nowy element',
     'other'             => 'Pozostałe',
+    'presets'           => 'Wzory',
     'relations'         => 'Relacje',
     'search'            => 'Szukaj...',
     'world'             => 'Świat',

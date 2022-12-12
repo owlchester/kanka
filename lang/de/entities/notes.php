@@ -61,4 +61,9 @@ return [
         'collapsed' => 'verkleinern',
         'expanded'  => 'vergrößern',
     ],
+    'warning'       => [
+        'editing'   => [
+            'description'   => 'Es sieht so aus, als ob gerade jemand anderes diesen Post bearbeitet! Möchtest du zurückgehen oder diese Warnung ignorieren, auf die Gefahr hin, dass Daten verloren gehen? Mitglieder, die diesen Post derzeit bearbeiten:',
+        ],
+    ],
 ];

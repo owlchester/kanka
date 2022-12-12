@@ -16,11 +16,18 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Erstellen :type',
+            'more'      => 'Füge weitere Details hinzu',
         ],
         'back'              => 'Zurück zur Auswahl',
+        'bulk_names'        => 'Füge einen Namen pro Zeile hinzu',
         'duplicate'         => 'Es gibt andere Objekte dieses Typs mit demselben Namen.',
         'helper_v2'         => 'Erstelle schnell die Grundlage für ein neues Objekt, ohne deinen aktuellen Fluss zu unterbrechen.',
         'missing'           => 'Du siehst nicht alle Objektstypen? Möglicherweise ist die Option deaktiviert, deine Berechtigungen lassen es möglicherweise nicht zu oder es wird nicht für die schnelle Erstellung unterstützt.',
+        'modes'             => [
+            'bulk'      => 'Bulk hinzufügen',
+            'default'   => 'Schnell hinzufügen',
+            'templates' => 'Vorlage ausgewählt',
+        ],
         'name'              => [
             'new'       => 'Neuer Name',
             'remove'    => 'entfernen',
@@ -51,6 +58,7 @@ return [
     'new'                   => [
         'ability'       => 'Neue Fähigkeit',
         'character'     => 'neuer Charakter',
+        'creature'      => 'Neue Kreatur',
         'event'         => 'neues Event',
         'family'        => 'neue Familie',
         'item'          => 'Neuer Gegenstand',
@@ -68,6 +76,7 @@ return [
     'organisations'         => 'Organisationen',
     'post'                  => 'Post',
     'quest'                 => 'Quest',
+    'quest_element'         => 'Quest Element',
     'quests'                => 'Quests',
     'race'                  => 'Spezies',
     'races'                 => 'Spezies',
@@ -76,5 +85,6 @@ return [
     'tag'                   => 'Tag',
     'tags'                  => 'Tags',
     'timeline'              => 'Zeitstrahl',
+    'timeline_element'      => 'Zeitstrahl Element',
     'timelines'             => 'Zeitstrahlen',
 ];

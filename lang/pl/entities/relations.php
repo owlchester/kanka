@@ -44,6 +44,7 @@ return [
         'target'            => 'Obiekt',
         'target_relation'   => 'Relacje obiektu',
         'two_way'           => 'Stwórz relację obustronną',
+        'unmirror'          => 'Zmień w relację jednostronną',
     ],
     'helper'            => 'Ustalaj relacje między elementami, określając ich rodzaj i widoczność. Relacje można przypinać do opisu elementów.',
     'helpers'           => [

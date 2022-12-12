@@ -47,6 +47,7 @@ return [
         'base'                      => 'Fügen Sie der Karte Markierungen hinzu, indem Sie auf eine beliebige Stelle klicken.',
         'copy_elements'             => 'kopiere Gruppen, Layers, und Marker',
         'copy_elements_to_campaign' => 'Kopiere Gruppen, Ebenen und Markierungen der Karten. Mit einem Objekt verknüpfte Marker werden in einen Standardmarker konvertiert.',
+        'custom_icon_v2'            => 'Verwende Symbole von :fontawesome, :rpgawesome oder ein benutzerdefiniertes SVG-Symbol. Wie das geht, erfährst du in den :docs.',
         'custom_radius'             => 'Wählen Sie die benutzerdefinierte Größenoption aus der Dropdown-Liste aus, um eine Größe zu definieren.',
         'draggable'                 => 'Aktivieren Sie diese Option, um das Verschieben eines Markers im Erkundungsmodus zu ermöglichen.',
         'label'                     => 'Eine Beschriftung wird als Textblock auf der Karte angezeigt. Der Inhalt ist der Markername des Objektnamens.',
@@ -72,6 +73,9 @@ return [
         'custom_shape'  => '100,100 200,240 340,110',
         'name'          => 'Name des Markers',
     ],
+    'presets'       => [
+        'helper'    => 'Klicke auf eine Voreinstellung, um sie zu laden, oder erstelle eine neue.',
+    ],
     'shapes'        => [
         '0' => 'Kreis',
         '1' => 'Quadrat',
@@ -90,5 +94,6 @@ return [
         'label'     => 'Etikette',
         'marker'    => 'Marker',
         'polygon'   => 'Polygon',
+        'preset'    => 'Vorlage',
     ],
 ];

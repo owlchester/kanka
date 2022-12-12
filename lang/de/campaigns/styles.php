@@ -20,6 +20,7 @@ return [
         'success'   => 'Design :name gelöscht.',
     ],
     'errors'    => [
+        'max_content'   => 'Die CSS-Regel darf nicht länger als :amount Zeichen sein.',
         'max_reached'   => 'Maximale Anzahl an Stilen (:max) erreicht.',
     ],
     'fields'    => [

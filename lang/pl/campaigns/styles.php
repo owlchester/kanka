@@ -20,6 +20,7 @@ return [
         'success'   => 'Usunięto styl :name',
     ],
     'errors'    => [
+        'max_content'   => 'Regułą CSS nie może być dłuższa niż :amount znaków.',
         'max_reached'   => 'Osiągniętą maksymalną liczne (:max) stylów.',
     ],
     'fields'    => [

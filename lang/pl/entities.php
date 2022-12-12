@@ -16,11 +16,18 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Stwórz :type',
+            'more'      => 'Szczegóły',
         ],
         'back'              => 'Powrót do menu wyboru',
+        'bulk_names'        => 'Jedna nazwa na wiersz',
         'duplicate'         => 'Istnieje inny element tego typu o tej samej nazwie.',
         'helper_v2'         => 'Szybko stwórz szkic nowego elementu nie przerywając obecnej pracy.',
         'missing'           => 'Nie widzisz wszystkich rodzajów elementów? Mogą być wyłączone, być może nie masz uprawnień albo nie posiadają opcji szybkiego tworzenia.',
+        'modes'             => [
+            'bulk'      => 'Stwórz wiele',
+            'default'   => 'Stwórz szybko',
+            'templates' => 'Wybór szablon',
+        ],
         'name'              => [
             'new'       => 'Nowa nazwa',
             'remove'    => 'Usuń',
@@ -51,6 +58,7 @@ return [
     'new'                   => [
         'ability'       => 'Nowa zdolność',
         'character'     => 'Nowa postać',
+        'creature'      => 'Nowa istota',
         'event'         => 'Nowe wydarzenie',
         'family'        => 'Nowa rodzina',
         'item'          => 'Nowy przedmiot',
@@ -68,6 +76,7 @@ return [
     'organisations'         => 'Organizacje',
     'post'                  => 'Komentarz',
     'quest'                 => 'Zadanie',
+    'quest_element'         => 'Element zadania',
     'quests'                => 'Zadania',
     'race'                  => 'Rasa',
     'races'                 => 'Rasy',
@@ -76,5 +85,6 @@ return [
     'tag'                   => 'Etykieta',
     'tags'                  => 'Etykiety',
     'timeline'              => 'Historia',
+    'timeline_element'      => 'Element historii',
     'timelines'             => 'Historie',
 ];

@@ -272,6 +272,7 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'Verejná rola má oprávnenia, ale kampaň je súkromná. Tieto nastavenia počas úpravy kampane nájdeš na karte Zdieľanie.',
             'empty_role'            => 'Táto rola nemá zatiaľ žiadnych členov.',
+            'role_admin'            => 'Rola :name poskytne automaticky prístup ku všetkému v kampani pre jej členstvo.',
             'role_permissions'      => 'Umožniť role :name nasledujúce akcie pre všetky objekty.',
         ],
         'members'       => 'Členovia',
@@ -334,6 +335,10 @@ TEXT
             ],
             'destroy'   => [
                 'success'   => 'Užívateľ bol odstránený z role.',
+            ],
+            'errors'    => [
+                'cant_kick_admins'  => 'Aby sme predišli zneužitiu, nie je možné odstrániť iných členov kampane s rolou :admin. V prípade zmien nás kontaktuj na :discord alebo cez :email.',
+                'needs_more_roles'  => 'Predtým, ako odstrániš svoju rolu :admin z kampane, musíš si prideliť inú rolu v kampani.',
             ],
             'fields'    => [
                 'name'  => 'Meno',
@@ -454,5 +459,10 @@ TEXT
         'private'   => 'Súkromný',
         'public'    => 'Verejný',
         'review'    => 'Čaká na schválenie',
+    ],
+    'warning'                           => [
+        'editing'   => [
+            'description'   => 'Zdá sa, že iná osoba upravuje súčasne túto kampaň! Chceš sa vrátiť a ignorovať toto varovanie aj s rizikom straty dát? Členstvo súčasne editujúce túto kampaň:',
+        ],
     ],
 ];

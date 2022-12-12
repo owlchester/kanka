@@ -10,7 +10,7 @@ return [
     'current'   => 'Tvoje aktuálne predplatné',
     'features'  => [
         'api_requests'      => ':amount API požiadavok/min',
-        'boosters'          => 'Kampaň na vyššej úrovni',
+        'boosters'          => 'x Boost pre kampaň',
         'community_vote'    => 'Hlasovanie komunity',
         'discord'           => 'Roly v Discorde',
         'feature_influence' => 'Vplyv na nové funkcie',

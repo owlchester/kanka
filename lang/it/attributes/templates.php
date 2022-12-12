@@ -13,4 +13,5 @@ return [
         'kanka'         => 'Template di Kanka',
         'marketplace'   => 'Template del Marketplace',
     ],
+    'pitch'     => 'Trova e aggiungi schede del personaggio dal :marketplace in una :boosted-campaign',
 ];
