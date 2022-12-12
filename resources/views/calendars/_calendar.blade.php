@@ -2,6 +2,8 @@
 /** @var \App\Renderers\CalendarRenderer $renderer
  * @var \App\Models\Calendar $model
  */
+$counter = [];
+
 if ($model->missingDetails()): ?>
     <div class="alert alert-warning">
         {{ __('calendars.show.missing_details') }}
@@ -81,8 +83,18 @@ $weekNumber = 1;
                     @endif
                 @endif
             @endif
-
-            @include('calendars._day', ['showMonth' => true])
+            @if (!empty($day['events']))
+                @foreach ($day['events'] as $event)
+                    @if ($event->length > 1 && $day['date'] == $event->year . '-' . $event->month . '-' . $event->day
+                        || $event->length > 1 && $event->is_recurring && $day['day'] == $event->day)
+                        @php $counter[$event->id] = $event->length; @endphp
+                    @endif
+                    @if(isset($counter[$event->id]))
+                        @php $counter[$event->id] = $counter[$event->id] - 1; @endphp
+                    @endif
+                @endforeach
+            @endif
+            @include('calendars._day', ['showMonth' => true, 'counter' => $counter])
         @endforeach
         </tr>
     @else
@@ -96,7 +108,18 @@ $weekNumber = 1;
             @endif
             <tr>
             @foreach ($days as $day)
-                @include('calendars._day')
+                @if (!empty($day['events']))
+                    @foreach ($day['events'] as $event)
+                    @if ($event->length > 1 && $day['date'] == $event->year . '-' . $event->month . '-' . $event->day
+                        || $event->length > 1 && $event->is_recurring && $day['day'] == $event->day)
+                            @php $counter[$event->id] = $event->length; @endphp
+                        @endif
+                        @if(isset($counter[$event->id]))
+                            @php $counter[$event->id] = $counter[$event->id] - 1; @endphp
+                        @endif
+                    @endforeach
+                @endif
+                @include('calendars._day', ['counter' => $counter])
             @endforeach
             </tr>
         @endforeach
