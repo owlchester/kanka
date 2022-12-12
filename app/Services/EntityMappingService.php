@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityMention;
 use App\Models\EntityNote;
+use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
 use App\Models\MiscModel;
@@ -55,12 +56,12 @@ class EntityMappingService
     }
 
     /**
-     * @param EntityNote $entityNote
+     * @param Post $post
      * @throws Exception
      */
-    public function mapEntityNote(EntityNote $entityNote)
+    public function mapPost(Post $post)
     {
-        return $this->map($entityNote);
+        return $this->map($post);
     }
 
     /**

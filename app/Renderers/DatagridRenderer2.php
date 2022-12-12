@@ -12,6 +12,7 @@ use App\Renderers\Layouts\Layout;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
+use Closure;
 
 class DatagridRenderer2
 {
@@ -35,6 +36,8 @@ class DatagridRenderer2
 
     /** @var \App\Models\Campaign */
     protected $campaign;
+
+    protected Closure $highlight;
 
     public function __construct()
     {
@@ -73,6 +76,17 @@ class DatagridRenderer2
     public function actionParams(array $options = null): self
     {
         $this->actionParams = $options;
+        return $this;
+    }
+
+    /**
+     * Set which element needs to be highlighted
+     * @param callable $highlight
+     * @return $this
+     */
+    public function highlight(Closure $highlight): self
+    {
+        $this->highlight = $highlight;
         return $this;
     }
 
@@ -269,5 +283,18 @@ class DatagridRenderer2
             $config['k'] = request()->get('k');
         }
         return $config;
+    }
+
+    /**
+     * Highlight a row if it matches the highlight closure
+     * @param mixed $row
+     * @return bool
+     */
+    public function isHighlighted(mixed $row): bool
+    {
+        if (!isset($this->highlight) || !$this->highlight instanceof Closure) {
+            return false;
+        }
+        return $this->highlight->call($row);
     }
 }

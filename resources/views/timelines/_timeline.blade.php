@@ -4,7 +4,7 @@
  * @var \App\Models\TimelineEra $era
  * @var \App\Models\TimelineElement $element
  */
-$eras = $timeline->eras()->with(['orderedElements', 'orderedElements.entity'])->ordered()->get();
+$eras = $timeline->eras()->with(['orderedElements', 'orderedElements.entity', 'orderedElements.entity.event'])->ordered()->get();
 $loadedElements = [];
 ?>
 @forelse ($eras as $era)
@@ -12,9 +12,9 @@ $loadedElements = [];
     $position = 1;
     @endphp
 
-    <div class="box box-solid entity-note box-widget" id="era{{ $era->id }}">
+    <div class="box box-solid post entity-note box-widget" id="era{{ $era->id }}">
         <div class="box-header with-border">
-            <h3 class="box-title cursor entity-note-toggle" data-toggle="collapse" data-target="#era-items-{{ $era->id }}" data-short="timeline-era-toggle-{{ $era->id }}">
+            <h3 class="box-title cursor element-toggle timeline-era-toggle" data-toggle="collapse" data-target="#era-items-{{ $era->id }}" data-short="timeline-era-toggle-{{ $era->id }}">
 
                 <i class="fa-solid fa-chevron-up" id="timeline-era-toggle-{{ $era->id }}-show" @if($era->collapsed()) style="display: none;" @endif></i>
                 <i class="fa-solid fa-chevron-down" id="timeline-era-toggle-{{ $era->id }}-hide" @if(!$era->collapsed()) style="display: none;" @endif></i>
@@ -78,7 +78,7 @@ $loadedElements = [];
     </ul>
 @empty
     <div class="alert alert-warning">
-        <div class = "mb-2" >{{ __('timelines.helpers.no_era') }} </div>
+        <div class = "mb-2" >{{ __('timelines.helpers.no_era_v2') }} </div>
         @can('update', $timeline)
         <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-warning btn-sm">
             <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}

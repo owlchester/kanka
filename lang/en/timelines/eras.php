@@ -4,6 +4,9 @@ return [
     'actions'       => [
         'add'   => 'Add a new era',
     ],
+    'bulks'         => [
+        'delete'    => '{0} Removed :count era.|{1} Removed :count era.|[2,*] Removed :count eras.',
+    ],
     'create'        => [
         'success'   => 'Era :name created.',
         'title'     => 'New Era',
@@ -25,6 +28,9 @@ return [
         'eras'          => 'The timeline needs to be created before eras can be added to it.',
         'is_collapsed'  => 'Era is collapsed (minimised) by default.',
         'primary'       => 'Separate your timeline into eras. A timeline needs at least one era to properly work.',
+    ],
+    'index'         => [
+        'title' => 'Eras of :name',
     ],
     'placeholders'  => [
         'abbreviation'  => 'AD, BC, BCE',

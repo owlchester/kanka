@@ -44,6 +44,7 @@ return [
         'target'            => 'Ziel',
         'target_relation'   => 'Zielbeziehung',
         'two_way'           => 'Gespiegelte Beziehung erstellen',
+        'unmirror'          => 'Hebe die Spiegelung dieser Beziehung auf.',
     ],
     'helper'            => 'Richten Sie Beziehungen zwischen Objekten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
     'helpers'           => [

@@ -33,8 +33,8 @@
         </div>
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                <a href="#form-entry" title="{{ __('crud.panels.entry') }}" role="tab" aria-controls="form-entry">
-                    {{ __('crud.panels.entry') }}
+                <a href="#form-entry" title="{{ __('crud.fields.entry') }}" role="tab" aria-controls="form-entry">
+                    {{ __('crud.fields.entry') }}
                 </a>
             </li>
             @includeIf($name . '.form._tabs', ['source' => null])

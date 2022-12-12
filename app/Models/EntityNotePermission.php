@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models
  *
  * @property int $id
- * @property int $entity_note_id
+ * @property int $post_id
  * @property int $user_id
  * @property int $role_id
  * @property int $permission
@@ -24,7 +24,7 @@ class EntityNotePermission extends Model
     public $fillable = [
         'user_id',
         'role_id',
-        'entity_note_id',
+        'post_id',
         'permission'
     ];
 
@@ -49,7 +49,7 @@ class EntityNotePermission extends Model
      */
     public function note()
     {
-        return $this->belongsTo(EntityNote::class);
+        return $this->belongsTo(EntityNote::class, 'post_id', 'id');
     }
 
     /**

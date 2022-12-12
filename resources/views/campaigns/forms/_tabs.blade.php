@@ -8,8 +8,8 @@
 
 <ul class="nav nav-tabs">
     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-        <a href="#form-entry" title="{{ __('crud.panels.entry') }}" data-toggle="tooltip">
-            {{ __('crud.panels.entry') }}
+        <a href="#form-entry" title="{{ __('crud.fields.entry') }}" data-toggle="tooltip">
+            {{ __('crud.fields.entry') }}
         </a>
     </li>
     <li>

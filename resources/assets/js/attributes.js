@@ -61,6 +61,7 @@ function initAttributeUI()
     $('#attributes-delete-all-confirm-submit').click(function(e) {
         e.preventDefault();
 
+        $(this).siblings('input[name="delete-all-attributes"]').val(1);
         $('#entity-attributes-all .attribute_delete').click();
         $('#attributes-delete-all-confirm').modal('hide');
         if (maxFieldAlert) {
@@ -175,6 +176,11 @@ function initLiveAttributes() {
                     let target = $('[data-uid="' + result.uid + '"]');
                     //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
                     target.html(result.value);
+                    if (result.value) {
+                        target.removeClass('empty-value');
+                    } else {
+                        target.addClass('empty-value');
+                    }
 
                     window.showToast(result.success);
 

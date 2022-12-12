@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreEntityNote;
+use App\Http\Requests\StorePost;
 use App\Facades\CampaignLocalization;
 use App\Services\MultiEditingService;
 use App\Models\EntityNote;
@@ -14,21 +14,6 @@ class EntityNoteController extends Controller
 {
     use GuestAuthTrait;
 
-    /** @var string */
-    protected string $view = '';
-
-    /** @var string */
-    protected string $route = 'entity_notes';
-
-    /**
-     * Crud view path
-     * @var string
-     */
-    protected $crudView = 'notes';
-
-    /** @var string */
-    protected $model = \App\Models\EntityNote::class;
-
     public function index(Entity $entity)
     {
         $this->authorize('browse', [$entity->child]);
@@ -39,14 +24,10 @@ class EntityNoteController extends Controller
     {
         $this->authorize('entity-note', [$entity->child, 'add']);
 
-        $name = $entity->pluralType() . '.notes' . $this->view;
-        $route = 'entities.' . $this->route;
         $parentRoute = $entity->pluralType();
 
-        return view('entities.pages.entity-notes.create', compact(
+        return view('entities.pages.posts.create', compact(
             'entityNote',
-            'name',
-            'route',
             'entity',
             'parentRoute',
         ));
@@ -66,7 +47,7 @@ class EntityNoteController extends Controller
         return redirect()->to($entity->url());
     }
 
-    public function store(StoreEntityNote $request, Entity $entity)
+    public function store(StorePost $request, Entity $entity)
     {
         $this->authorize('entity-note', [$entity->child, 'add']);
 
@@ -113,23 +94,19 @@ class EntityNoteController extends Controller
             }
         }
 
-        $name = $entity->pluralType() . '.notes' . $this->view;
-        $route = 'entities.' . $this->route;
         $parentRoute = $entity->pluralType();
         $from = request()->get('from');
 
-        return view('entities.pages.entity-notes.edit', compact(
+        return view('entities.pages.posts.edit', compact(
             'entity',
             'model',
-            'name',
-            'route',
             'parentRoute',
             'from',
             'editingUsers'
         ));
     }
 
-    public function update(StoreEntityNote $request, Entity $entity, EntityNote $entityNote)
+    public function update(StorePost $request, Entity $entity, EntityNote $entityNote)
     {
         $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
 

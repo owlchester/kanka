@@ -17,6 +17,9 @@ __('timelines/elements.edit.title', ['name' => $model->name])
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
+    @include('partials.errors')
+
+    {!! Form::model($model, ['route' => ['timelines.timeline_elements.update', 'timeline' => $timeline, 'timeline_element' => $model], 'method' => 'PATCH', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1]) !!}
     <div class="panel panel-default">
         @if ($ajax)
             <div class="panel-heading">
@@ -28,24 +31,24 @@ __('timelines/elements.edit.title', ['name' => $model->name])
             </div>
         @endif
         <div class="panel-body">
-            @include('partials.errors')
-
-            {!! Form::model($model, ['route' => ['timelines.timeline_elements.update', 'timeline' => $timeline, 'timeline_element' => $model], 'method' => 'PATCH', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1]) !!}
             @include('timelines.elements._form')
+        </div>
+        <div class="panel-footer">
+            <a href="{{ route('timelines.show', $timeline) }}" class="btn btn-default">
+                {{ __('crud.cancel') }}
+            </a>
 
-            <div class="form-element">
+            <div class="form-element pull-right">
                 <div class="submit-group">
                     <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                    @includeWhen(!request()->ajax(), 'partials.or_cancel')
                 </div>
                 <div class="submit-animation" style="display: none;">
                     <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
-
-            {!! Form::close() !!}
         </div>
     </div>
+    {!! Form::close() !!}
 
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
         <input type="hidden" id="editing-keep-alive" data-url="{{ route('timeline-elements.keep-alive', $model->id) }}" />

@@ -1,9 +1,15 @@
-<?php /** @var App\Models\Campaign $campaign */
-
-
+<?php 
+/** @var App\Models\Campaign $campaign 
+ * @var \App\Models\Campaign $campaign
+ * @var \App\Models\CampaignBoost $boost
+ */
+$boost = isset($boost) ? $boost : $campaign->boosts->first();
 $buttons = [];
 if (auth()->check()) {
-
+    if (!$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost)) {
+        $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn btn-block bg-maroon btn-boost">
+            <i class="fa-solid fa-rocket"></i> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
+    }
     if (!$campaign->boosted()) {
         $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-maroon btn-boost">
             <i class="fa-solid fa-rocket"></i> ' . __('campaigns.show.actions.boost') . '</a>';
@@ -15,8 +21,6 @@ if (auth()->check()) {
     $buttons[] = '<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#leave-confirm">
             <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i> ' . __('campaigns.show.actions.leave') . '
         </button>';
-
-
     if (auth()->user()->can('roles', $campaign)) {
         $buttons[] = '<button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#campaign-delete-confirm">
             <i class="fa-solid fa-trash" aria-hidden="true"></i> ' . __('campaigns.destroy.action') . '

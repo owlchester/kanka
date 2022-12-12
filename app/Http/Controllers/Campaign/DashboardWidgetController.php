@@ -110,7 +110,7 @@ class DashboardWidgetController extends Controller
             'model' => $campaignDashboardWidget,
             'widget' => $campaignDashboardWidget->widget,
             'entities' => $entities,
-            'dashboards' => $dashboards
+            'dashboards' => $dashboards,
         ]);
     }
 

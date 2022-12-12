@@ -10,6 +10,9 @@ return [
     'destroy'       => [
         'success'   => 'Image :name deleted.',
     ],
+    'errors'        => [
+        'permissions'   => 'Your campaign roles are missing the :permission permission to be allowed to upload images to the campaign gallery.',
+    ],
     'fields'        => [
         'created_by'    => 'Uploaded by',
         'ext'           => 'Ext',

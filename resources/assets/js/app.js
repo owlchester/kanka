@@ -223,7 +223,7 @@ function initSubmenuSwitcher() {
  * Entity Note toggle support
  */
 function initEntityNoteToggle() {
-    $('.entity-note-toggle').on('click', function() {
+    $('.element-toggle').on('click', function() {
         let id = $(this).data('short');
         $('#' + id + "-show").toggle();
         $('#' + id + "-hide").toggle();
@@ -344,7 +344,9 @@ function heighestValue(numbers)
 require('./helpers');
 require('./keyboard');
 require('./crud');
+require('./post');
 require('./calendar');
+require('./keep-alive');
 require('./search');
 require('./notification');
 require('./quick-creator');

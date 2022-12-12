@@ -199,6 +199,7 @@ class SidebarService
         'events' => [
             'icon' => 'fa-solid fa-bolt',
             'label' => 'entities.events',
+            'tree' => true,
         ],
         'abilities' => [
             'icon' => 'ra ra-fire-symbol',
@@ -646,7 +647,7 @@ class SidebarService
         if (!$campaign->enabled('menu_links')) {
             return;
         }
-        $quickLinks = $campaign->menuLinks()->ordered()->with(['target'])->get();
+        $quickLinks = $campaign->menuLinks()->active()->ordered()->with(['target'])->get();
         foreach ($quickLinks as $quickLink) {
             $parent = 'menu_links';
             if (!empty($quickLink->parent) && $campaign->boosted()) {

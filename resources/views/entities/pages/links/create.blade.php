@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => trans('entities/links.create.title', ['name' => $entity->name]),
+    'title' => __('entities/links.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
@@ -11,24 +11,9 @@
 @section('content')
     {!! Form::open(['route' => ['entities.entity_assets.store', $entity], 'method'=>'POST', 'data-shortcut' => 1]) !!}
 
-    <div class="panel panel-default">
-        @if (request()->ajax())
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
-                    {{ __('entities/links.create.title', ['name' => $entity->name]) }}
-                </h4>
-        </div>
-        @endif
-        <div class="panel-body">
-            @include('partials.errors')
-
-            @include('entities.pages.links._form')
-        </div>
-        <div class="panel-footer text-right">
-            <button class="btn btn-success">{{ trans('crud.save') }}</button>
-            @includeWhen(!request()->ajax(), 'partials.or_cancel')
-        </div>
-    </div>
+    @include('partials.forms.form', [
+            'title' => __('entities/links.create.title', ['name' => $entity->name]),
+            'content' => 'entities.pages.links._form',
+        ])
     {!! Form::close() !!}
 @endsection

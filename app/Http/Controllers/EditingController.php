@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\Campaign;
+use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
 use App\Services\MultiEditingService;
@@ -57,11 +58,11 @@ class EditingController extends Controller
         return $this->confirmHandle($campaign);
     }
 
-    public function confirmPost(Entity $entity, EntityNote $entityNote)
+    public function confirmPost(Entity $entity, Post $post)
     {
-        $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
+        $this->authorize('entity-note', [$entity->child, 'edit', $post]);
 
-        return $this->confirmHandle($entityNote);
+        return $this->confirmHandle($post);
     }
 
     public function confirmQuestElement(QuestElement $questElement)
@@ -92,11 +93,11 @@ class EditingController extends Controller
         return $this->keepAliveHandle($campaign);
     }
 
-    public function keepAlivePost(Entity $entity, EntityNote $entityNote)
+    public function keepAlivePost(Entity $entity, Post $post)
     {
-        $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
+        $this->authorize('entity-note', [$entity->child, 'edit', $post]);
 
-        return $this->keepAliveHandle($entityNote);
+        return $this->keepAliveHandle($post);
     }
 
     public function keepAliveTimelineElement(TimelineElement $timelineElement)

@@ -7,7 +7,8 @@ return [
     'fields'        => [],
     'organisations' => [
         'actions'       => [
-            'add'   => 'Add organization',
+            'add'       => 'Add an organization',
+            'submit'    => 'Add organization',
         ],
         'create'        => [
             'success'   => 'Character added to organization.',

@@ -38,10 +38,16 @@ return [
         'name'      => 'Jet de feu, Alert, Résistance',
         'type'      => 'Sort, Compétence, Attaque',
     ],
+    'reorder'       => [
+        'parentless'    => 'Aucun parent',
+        'success'       => 'Pouvoirs réordonnés.',
+        'title'         => 'Réorganiser les pouvoirs',
+    ],
     'show'          => [
         'tabs'  => [
             'abilities' => 'Pouvoirs',
             'entities'  => 'Entités',
+            'reorder'   => 'Réorganiser les pouvoirs',
         ],
     ],
 ];

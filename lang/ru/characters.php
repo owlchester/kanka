@@ -83,6 +83,7 @@ return [
         'age'               => 'Возраст',
         'appearance_entry'  => 'Описание',
         'appearance_name'   => 'Глаза, волосы, кожа, рост',
+        'name'              => 'Полное имя персонажа',
         'personality_entry' => 'Описание',
         'personality_name'  => 'Тип  (цели, поведение, страхи, принципы)',
         'physical'          => 'Физиология',

@@ -18,7 +18,7 @@
         </thead>
         <tbody>
         @foreach ($rows as $row)
-            <tr>
+            <tr class="@if (Datagrid::isHighlighted($row)) warning row-highlighted @endif">
                 @foreach (Datagrid::columns($row) as $column)
                     @include('layouts.datagrid._column')
                 @endforeach

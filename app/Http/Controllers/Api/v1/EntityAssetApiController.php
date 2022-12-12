@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\StoreEntityAsset as Request;
-use App\Http\Resources\EntityAssetResource as Resource;
+use App\Http\Resources\AssetResource as Resource;
 use App\Models\EntityAsset;
 
 class EntityAssetApiController extends ApiController

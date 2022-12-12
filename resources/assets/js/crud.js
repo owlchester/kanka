@@ -6,9 +6,6 @@ import ajaxModal from "./components/ajax-modal";
 
 var entityFormActions;
 
-
-var multiEditingModal;
-
 // Entity Calendar
 var entityCalendarAdd, entityCalendarForm, entityCalendarField;
 var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
@@ -19,22 +16,14 @@ var entityName;
 
 var validEntityForm = false, validRelationForm = false;
 
-// Keep alive when editing
-var keepAliveTimer = 300 * 1000; // 5 minutes
-var keepAliveUrl;
-var keepAliveEnabled = true;
-
 $(document).ready(function () {
 
     registerDynamicRows();
 
     ajaxModal();
 
-    entityFormActions = $('.form-submit-actions');
-    if (entityFormActions.length > 0) {
-        registerEntityFormActions();
-        registerUnsavedChanges();
-    }
+    registerEntityFormActions();
+    registerUnsavedChanges();
 
     entityName = $('#form-entry input[name="name"]');
     if (entityName.length === 1) {
@@ -48,12 +37,9 @@ $(document).ready(function () {
     registerModalLoad();
     registerDatagridSorter();
     registerPermissionToggler();
-    registerEntityNotePerms();
     registerStoryActions();
     registerStoryLoadMore();
     registerSidebarActions();
-    registerEditWarning();
-    registerEditKeepAlive();
     registerTrustDomain();
     registerPrivacyToggle();
 });
@@ -65,6 +51,7 @@ function registerModalLoad() {
     $(document).on('shown.bs.modal shown.bs.popover', function () {
         registerRelationFormSubmit();
         registerEntityCalendarModal();
+        registerEntityFormActions();
     });
 }
 
@@ -110,20 +97,23 @@ function registerEntityNameCheck() {
  *
  */
 function registerEntityFormActions() {
+    // Return early if there are no elements in the page to be handled
+    entityFormActions = $('.form-submit-actions');
+    if (entityFormActions.length === 0) {
+        return;
+    }
+    //console.log('RegisterEntityFormActions', entityFormActions);
     let entityFormMainButton = $('#form-submit-main');
     let entityFormSubmitMode = $('#submit-mode');
-    if (entityFormSubmitMode == undefined) {
+    if (entityFormSubmitMode === undefined) {
         throw new Error("No submit mode hidden input found");
     }
 
     // Register click on each sub action
     $.each(entityFormActions, function () {
-        $(this).on('click', function () {
-
+        $(this).unbind('click').on('click', function () {
             //console.log('setting the submit name to ' + $(this).data('action'));
-
             entityFormSubmitMode.attr('name', $(this).data('action'));
-
             entityFormMainButton.trigger("click");
 
             return false;
@@ -173,7 +163,7 @@ function registerEntityCalendarForm() {
     entityCalendarForm = $('.entity-calendar-form');
     entityCalendarYearField = $('input[name="calendar_year"]');
     entityCalendarMonthField = $('select[name="calendar_month"]');
-    entityCalendarDayField = $('input[name="calendar_day"]');
+    entityCalendarDayField = $('select[name="calendar_day"]');
     entityCalendarLoading = $('.entity-calendar-loading');
 
     if (entityCalendarAdd.length === 1) {
@@ -211,8 +201,8 @@ function registerEntityCalendarForm() {
             }
             // Load month list
             entityCalendarYearField = $('input[name="calendar_year"]');
-            entityCalendarDayField = $('input[name="calendar_day"]');
             entityCalendarMonthField = $('select[name="calendar_month"]');
+            entityCalendarDayField = $('select[name="calendar_day"]');
 
             if (entityCalendarYearField.length === 0 && $('input[name="year"]').length === 1) {
                 entityCalendarYearField = $('input[name="year"]');
@@ -222,6 +212,8 @@ function registerEntityCalendarForm() {
             loadCalendarDates(entityCalendarField.val());
         });
     }
+
+    registerMonthChange();
 }
 
 function registerEntityCalendarModal() {
@@ -266,19 +258,35 @@ function loadCalendarDates(calendarID) {
     var url = $('input[name="calendar-data-url"]').data('url').replace('/0/', '/' + calendarID + '/');
     $.ajax(url)
         .done(function (data) {
+            let selectedDay = entityCalendarDayField.val();
             entityCalendarYearField.html('');
             entityCalendarMonthField.html('');
             entityCalendarDayField.html('');
             let id = 1;
-            $.each(data.months, function () {
-                var selected = id == data.current.month ? ' selected="selected"' : '';
-                entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
+            let monthLength = 1;
+            if (!selectedDay) {
+                selectedDay = data.current.day;
+            }
+            let currentMonth = parseInt(data.current.month);
+            $.each(data.months, function (i) {
+                let month = data.months[i];
+                let selected = id === currentMonth ? ' selected="selected"' : '';
+                entityCalendarMonthField.append('<option value="' + id + '" data-length="' + month.length + '" ' + selected + '>' + this.name + '</option>');
+
+                if (id === currentMonth) {
+                    monthLength = month.length;
+                }
                 id++;
             });
+
+            for (let d = 1; d < monthLength; d++) {
+                let selected = d == selectedDay ? ' selected="selected"' : '';
+                entityCalendarDayField.append('<option value="' + d + '" ' + selected + '>' + d + '</option>');
+            }
             entityCalendarLoading.hide();
             entityCalendarSubForm.show();
 
-            entityCalendarDayField.val(data.current.day);
+            //entityCalendarDayField.val(data.current.day);
             entityCalendarYearField.val(data.current.year);
 
             $('select[name="calendar_recurring_periodicity"] option').remove();
@@ -313,6 +321,11 @@ function calendarHideSubform() {
  * If we change something on a form, avoid losing data when going away.
  */
 function registerUnsavedChanges() {
+    // Return early if we have no elements to handle
+    entityFormActions = $('.form-submit-actions');
+    if (entityFormActions.length === 0) {
+        return;
+    }
     let save = $('#form-submit-main');
 
     // Save every input change
@@ -543,55 +556,6 @@ function registerPermissionToggler() {
     });
 }
 
-/**
- *
- */
-function registerEntityNotePerms() {
-    let btn = $('.entity-note-perm-add');
-    if (btn.length === 0) {
-        return;
-    }
-    registerEntityNoteDeleteEvents();
-
-    btn.on('click', function (ev) {
-        ev.preventDefault();
-        let type = $(this).data('type');
-        let selected = $('select[name="' + type + '"]');
-
-        if (!selected || !selected.val()) {
-            return false;
-        }
-
-        let selectedName = selected.find(':selected')[0];
-        //console.log('selected name for ', type, selectedName.text);
-
-        // Add a block
-        let body = $('#entity-note-perm-' + type + '-template').clone().removeClass('hidden').removeAttr('id');
-        let html = body.html()
-            .replace(/\$SELECTEDID\$/g, selected.val())
-            .replace(/\$SELECTEDNAME\$/g, selectedName.text);
-        body.html(html).insertBefore($('#entity-note-perm-target'));
-
-        $('#entity-note-new-' + type).modal('toggle');
-
-        registerEntityNoteDeleteEvents();
-
-        // Reset the value
-        selected.val('').trigger('change');
-        return false;
-    });
-}
-
-function registerEntityNoteDeleteEvents() {
-    $.each($('.entity-note-delete-perm'), function () {
-        $(this).unbind('click');
-        $(this).on('click', function () {
-            $(this).parent().parent().parent().parent().remove();
-        });
-    });
-}
-
-
 function initSpectrum() {
     if (!$.isFunction($.fn.spectrum)) {
         return;
@@ -604,11 +568,11 @@ function initSpectrum() {
     });
 }
 
-/*
- *
+/**
+ * Expand/Collapse all posts on the overview of an entity
  */
 function registerStoryActions() {
-    let posts = $('.entity-notes > div');
+    let posts = $('.entity-posts > div');
     $('.btn-post-collapse').unbind('click').click(function () {
         posts.each(function () {
             let body = $(this).find('.entity-content');
@@ -617,7 +581,7 @@ function registerStoryActions() {
                 body.prev().find('.fa-chevron-up').hide();
                 body.prev().find('.fa-chevron-down').show();
             }
-            let header = $(this).find('.entity-note-toggle');
+            let header = $(this).find('.post-toggle');
             if (!header.hasClass('collapsed')) {
                 header.addClass('collapsed');
             }
@@ -634,7 +598,7 @@ function registerStoryActions() {
                 body.prev().find('.fa-chevron-down').hide();
                 body.css('height', '');
             }
-            let header = $(this).find('.entity-note-toggle');
+            let header = $(this).find('.post-toggle');
             if (header.hasClass('collapsed')) {
                 header.removeClass('collapsed');
             }
@@ -644,7 +608,7 @@ function registerStoryActions() {
 }
 
 /**
- * Sidebars elements can be collapsed after the page has been loaded
+ * Sidebars (right-side profile) elements can be collapsed after the page has been loaded
  */
 function registerSidebarActions() {
     $('.sidebar-section-title').click(function () {
@@ -675,7 +639,7 @@ function registerStoryLoadMore() {
         }).done(function (result) {
             btn.parent().remove();
             if (result) {
-                $('.entity-notes').append(result);
+                $('.entity-posts').append(result);
                 registerStoryLoadMore();
                 registerStoryActions();
             }
@@ -689,82 +653,7 @@ function registerStoryLoadMore() {
     });
 }
 
-/**
- *
- */
-function registerEditWarning() {
-    multiEditingModal = $('#entity-edit-warning');
-    if (multiEditingModal.length === 0) {
-        return;
-    }
 
-    // Don't enable keep alive until the user has confirmed
-    keepAliveEnabled = false;
-    multiEditingModal.modal({
-        backdrop: false
-    });
-
-    // Handle clicks
-    $('#entity-edit-warning-ignore').click(function (e) {
-        e.preventDefault();
-        confirmEditWarningModal();
-        keepAliveEnabled = true;
-
-        $.ajax({
-            url: $(this).data('url'),
-            type: 'POST',
-            context: this
-        }).done(function () {
-            multiEditingModal.modal('hide');
-        });
-    });
-
-    $('#entity-edit-warning-back').click(function (e) {
-        e.preventDefault();
-        confirmEditWarningModal();
-        window.location.href = $(this).data('url');
-    });
-}
-
-function confirmEditWarningModal() {
-    multiEditingModal.find('.modal-ajax-body').hide();
-    multiEditingModal.find('.modal-spinner-body').show();
-    multiEditingModal.find('.modal-footer').hide();
-}
-
-/**
- * Set up the keep alive pulse configuration
- */
-function registerEditKeepAlive() {
-    let field = $('#editing-keep-alive');
-    if (field.length === 0) {
-        return;
-    }
-    keepAliveUrl = field.data('url');
-
-    //console.log('keeping alive set up');
-
-    setTimeout(keepAlivePulse, keepAliveTimer);
-}
-
-/**
- * Send a pulse to the backend that the user is still editing the entity
- */
-function keepAlivePulse() {
-    if (!keepAliveEnabled) {
-        setTimeout(keepAlivePulse, keepAliveTimer);
-        return;
-    }
-
-    $.ajax({
-        url: keepAliveUrl,
-        type: 'POST'
-    })
-    .done(function() {
-        //console.log('kept alive');
-        setTimeout(keepAlivePulse, keepAliveTimer);
-    });
-}
 
 function registerTrustDomain() {
     $('.domain-trust').click(function () {
@@ -790,6 +679,7 @@ function registerTrustDomain() {
 
 /**
  * Register a listened to add dynamic rows in the forms
+ * Used in the calendar forms extensivly
  */
 function registerDynamicRows() {
     $('.dynamic-row-add').on('click', function(e) {
@@ -822,6 +712,9 @@ function registerDynamicRowDelete() {
     });
 }
 
+/**
+ * Show a warning when the entity is set to private
+ */
 function registerPrivacyToggle() {
     $('input[data-toggle="entity-privacy"]').change(function () {
         let selector = $('#entity-is-private');
@@ -831,4 +724,31 @@ function registerPrivacyToggle() {
             selector.hide();
         }
     });
+}
+
+/**
+ * Fire an event whenever the month field is changed
+ */
+function registerMonthChange() {
+    $('select[name="calendar_month"]').change(function () {
+        let length = $(this).find(':selected').data('length');
+        rebuildCalendarDayList(length);
+    });
+}
+
+/**
+ * Rebuild the calendar day select, and select the current date
+ * @param max
+ */
+function rebuildCalendarDayList(max) {
+    let selectedDay = entityCalendarDayField.val();
+    if (selectedDay > max) {
+        selectedDay = max;
+    }
+
+    entityCalendarDayField.html('');
+    for (let d = 1; d <= max; d++) {
+        let selected = d == selectedDay ? ' selected="selected"' : '';
+        entityCalendarDayField.append('<option value="' + d + '" ' + selected + '>' + d + '</option>');
+    }
 }

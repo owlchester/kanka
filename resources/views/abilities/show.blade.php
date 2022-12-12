@@ -15,7 +15,7 @@
 
     <div class="entity-story-block">
 
-        @include('entities.components.notes', ['withEntry' => true])
+        @include('entities.components.posts', ['withEntry' => true])
         @includeWhen($model->entity->entityAttributes->count() > 0, 'entities.pages.attributes._story', ['entity' => $model->entity])
 
         @include('cruds.partials.mentions')

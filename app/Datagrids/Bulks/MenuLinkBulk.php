@@ -9,5 +9,6 @@ class MenuLinkBulk extends Bulk
         'icon',
         //'position',
         'private_choice',
+        'is_active',
     ];
 }

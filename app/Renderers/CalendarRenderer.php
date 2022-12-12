@@ -889,7 +889,15 @@ class CalendarRenderer
 
         // Day longer than month?
         $months = $this->calendar->months();
-        $currentMonth = $months[max($month - 1, 0)];
+        $monthKey = max($month - 1, 0);
+        // If we're showing a reminder from the parent calendar, but the month doesn't exist in this calendar,
+        // we need to do this dirty hack where we fake the previous month as being the last month of the previous year
+        if (!isset($months[$monthKey])) {
+            $monthKey = count($months) - 1;
+            $year;
+            $day = 999999; // Force it to the last day of the previous month so that it can be incremented by one
+        }
+        $currentMonth = $months[$monthKey];
         //$previousMonth = $month > 1 ? $months[$month-1] : last($months);
         if ($day > $currentMonth['length']) {
             $day = 1;

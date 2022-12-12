@@ -19,7 +19,7 @@ class Organisation extends Layout
                 'with' => ['target' => 'organisation']
             ],
             'organisation' => [
-                'key' => 'name',
+                'key' => 'organisation.name',
                 'label' => 'entities.organisation',
                 'render' => function ($model) {
                     $defunctIcon = null;
@@ -79,7 +79,7 @@ class Organisation extends Layout
     public function actions(): array
     {
         return [
-            self::ACTION_EDIT,
+            self::ACTION_EDIT_AJAX,
             self::ACTION_DELETE
         ];
     }

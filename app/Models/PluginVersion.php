@@ -140,7 +140,8 @@ class PluginVersion extends Model
             $name = trim((string) $matches[1]);
             // If it's a {{ }} case, nothing more to do
             if (Str::startsWith($name, '{')) {
-                return '{' . $name . ' }';
+                $spaceAtEnd = Str::endsWith($name, '--') ? null : ' ';
+                return '{' . $name . $spaceAtEnd . '}';
             }
 
             // However, if it's an attribute being generated à la ${"member$i"}, we need to skip it
@@ -400,7 +401,22 @@ class PluginVersion extends Model
         // Share some attributes to plugin developers
         $data['_locale'] = app()->getLocale();
         $data['_entity_name'] = $entity->name;
+        $data['_entity_type'] = $entity->child->type;
         $data['_entity_entity_type'] = $entity->type();
+
+        if ($entity->isCharacter()) {
+            /** @var Character $character */
+            $character = $entity->child;
+            $data['_character_title'] = $character->title;
+            $data['_character_gender'] = $character->sex;
+            $data['_character_age'] = $character->age;
+            $data['_character_pronouns'] = $character->pronouns;
+
+            $appearances = $character->characterTraits()->appearance()->orderBy('default_order')->get();
+            $data['_character_appearances'] = $appearances->pluck('entry', 'name')->toArray();
+            $traits = $character->characterTraits()->personality()->orderBy('default_order')->get();
+            $data['_character_traits'] = $traits->pluck('entry', 'name')->toArray();
+        }
 
         $tags = [];
         foreach ($entity->tags as $tag) {

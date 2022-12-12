@@ -1,7 +1,7 @@
 <div class="box box-solid">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('locations.show.tabs.events') }}
+            {{ __('lentities.events') }}
         </h3>
     </div>
     <div class="box-body">
@@ -11,7 +11,7 @@
         <table id="events" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ __('events.fields.name') }}</th>
+                <th>{{ __('crud.fields.name') }}</th>
                 <th>{{ __('events.fields.type') }}</th>
                 <th>{{ __('events.fields.date') }}</th>
             </tr>

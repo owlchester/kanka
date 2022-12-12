@@ -5,7 +5,7 @@
 <div class="box box-solid" id="calendar-events">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('calendars.show.tabs.events') }}
+            {{ __('entities.events') }}
         </h3>
         <div class="box-tools">
             @if (!request()->has('before_id'))

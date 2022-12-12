@@ -83,6 +83,7 @@ return [
         'age'               => 'Wiek',
         'appearance_entry'  => 'Opis',
         'appearance_name'   => 'Włosy, oczy, kolor skóry, wzrost',
+        'name'              => 'Imię postaci',
         'personality_entry' => 'Szczegóły',
         'personality_name'  => 'Pragnienia, manieryzmy, obawy, więzi',
         'physical'          => 'Fizyczne',

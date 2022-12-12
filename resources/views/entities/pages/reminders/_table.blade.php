@@ -3,29 +3,18 @@
 /** @var \App\Models\EntityEvent $relation */
 ?>
 
-@if ($reminders->count() === 0)
-    <p class="help-block">
-        {!! __('entities/events.helpers.no_events') !!}
-    </p>
-    <a href="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}"
-       class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal"
-       data-url="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}">
-        <i class="fa-solid fa-plus"></i> {{ __('entities/events.show.actions.add') }}
-    </a>
-@else
-
 <table id="entity-event-list" class="table table-hover">
     <thead>
     <tr>
         <th class="avatar"></th>
         @if (auth()->check())
-            <th><a href="{{ route('entities.entity_events.index', [$entity, 'order' => 'events/calendar.name', '#calendars']) }}">{{ __('calendars.fields.name') }}@if (request()->get('order') == 'events/calendar.name') <i class="fa-solid fa-long-arrow-down"></i>@endif</a></th>
+            <th><a href="{{ route('entities.entity_events.index', [$entity, 'order' => 'events/calendar.name', '#calendars']) }}">{{ __('entities.calendar') }}@if (request()->get('order') == 'events/calendar.name') <i class="fa-solid fa-long-arrow-down"></i>@endif</a></th>
             <th><a href="{{ route('entities.entity_events.index', [$entity, 'order' => 'events/date', '#calendars']) }}">{{ __('events.fields.date') }}@if (request()->get('order') == 'events/date') <i class="fa-solid fa-long-arrow-down"></i>@endif</a></th>
             <th><a href="{{ route('entities.entity_events.index', [$entity, 'order' => 'events/length', '#calendars']) }}">{{ __('calendars.fields.length') }}@if (request()->get('order') == 'events/length') <i class="fa-solid fa-long-arrow-down"></i>@endif</a></th>
             <th><a href="{{ route('entities.entity_events.index', [$entity, 'order' => 'events/comment', '#calendars']) }}">{{ __('calendars.fields.comment') }}@if (request()->get('order') == 'events/comment') <i class="fa-solid fa-long-arrow-down"></i>@endif</a></th>
             <th><br /></th>
         @else
-            <th>{{ __('calendars.fields.name') }}</th>
+            <th>{{ __('entitites.calendar') }}</th>
             <th>{{ __('calendars.fields.date') }}</th>
             <th>{{ __('calendars.fields.length') }}</th>
             <th>{{ __('calendars.fields.comment') }}</th>
@@ -74,6 +63,4 @@
         @endforeach
     </tbody>
 </table>
-
 {{ $reminders->fragment('tab_calendars')->links() }}
-@endif

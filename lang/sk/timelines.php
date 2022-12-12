@@ -22,7 +22,6 @@ return [
     ],
     'helpers'       => [
         'nested_without'    => 'Zobrazujú sa všetky časové osy, ktoré nemajú nadradenú časovú os. Kliknutím na riadok zobrazíš podradené časové osy.',
-        'no_era'            => 'Táto časová os nemá žiadne veky. Veky môžu byť pridané na časovú os v režime úprav a následne do nich vložené prvky na osi.',
         'reverse_order'     => 'Aktivovaním zobrazíš veky v spätnom chronologickom poradí (najstarší vek ako prvý).',
     ],
     'index'         => [],

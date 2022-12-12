@@ -67,11 +67,11 @@ class StoryController extends Controller
     {
         $this->authorize('view', $entity->child);
 
-        $notes = $entity->notes()->ordered()->paginate(15);
+        $posts = $entity->posts()->ordered()->paginate(15);
 
-        return view('entities.components.notes')
+        return view('entities.components.posts')
             ->with('entity', $entity)
             ->with('model', $entity->child)
-            ->with('pinnedNotes', $notes);
+            ->with('pinnedPosts', $posts);
     }
 }

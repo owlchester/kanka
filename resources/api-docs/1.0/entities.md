@@ -105,12 +105,12 @@ There are several models in Kanka which represent objects attached to `entities`
 * [Entity Events](/api-docs/{{version}}/entity-events)
 * [Entity Files](/api-docs/{{version}}/entity-files)
 * [Entity Mentions](/api-docs/{{version}}/entity-mentions)
-* [Entity Notes](/api-docs/{{version}}/entity-notes)
 * [Entity Tags](/api-docs/{{version}}/entity-tags)
 * [Entity Relations](/api-docs/{{version}}/entity-relations)
 * [Entity Inventory](/api-docs/{{version}}/entity-inventory)
 * [Entity Abilities](/api-docs/{{version}}/entity-abilities)
 * [Entity Links](/api-docs/{{version}}/entity-links)
+* [Posts](/api-docs/{{version}}/posts)
 
 With each request to an object (ie. `character`, `location`, etc), you can include the following parameter to get those related objects directly.
 
@@ -148,7 +148,7 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
             "updated_by": null,
             "location_id": 2,
             "attributes": [],
-            "entity_notes": [],
+            "posts": [],
             "entity_events": [
                 {
                     "created_at":  "2019-01-30T00:01:44.000000Z",
@@ -181,4 +181,4 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
 }
 ```
 
-Notice the new array objects `attributes`, `entity_files`, `entity_events`, `entity_notes`, `entity_abilities` and `relations`.
+Notice the new array objects `attributes`, `entity_files`, `entity_events`, `posts`, `entity_abilities` and `relations`.

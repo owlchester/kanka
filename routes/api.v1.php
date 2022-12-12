@@ -51,6 +51,7 @@ Route::apiResources([
     // Entity elements
     'campaigns.entities.attributes' => 'EntityAttributeApiController',
     'campaigns.entities.entity_notes' => 'EntityNoteApiController',
+    'campaigns.entities.posts' => 'PostApiController',
     'campaigns.entities.entity_events' => 'EntityEventApiController',
     'campaigns.entities.relations' => 'EntityRelationApiController',
     'campaigns.entities.entity_tags' => 'EntityTagApiController',

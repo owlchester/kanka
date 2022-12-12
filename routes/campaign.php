@@ -23,6 +23,12 @@ Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 Route::get('/abilities/{ability}/entity-add', 'AbilityController@entityAdd')->name('abilities.entity-add');
 Route::post('/abilities/{ability}/entity-add', 'AbilityController@entityStore')->name('abilities.entity-add.save');
 
+//Ability reorder
+Route::get('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Entity\AbilityReorderController::class, 'index'])
+    ->name('entities.entity_abilities.reorder');
+Route::post('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Entity\AbilityReorderController::class, 'save'])
+    ->name('entities.entity_abilities.reorder-save');
+
 // Maps
 Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
 Route::get('/maps/{map}/explore', 'Maps\MapController@explore')->name('maps.explore');
@@ -180,8 +186,8 @@ Route::post('/editing/campaigns/{campaign}/confirm-editing', 'EditingController@
 Route::post('/editing/campaigns/{campaign}/keep-alive', 'EditingController@keepAliveCampaign')->name('campaigns.keep-alive');
 
 // Posts
-Route::post('/editing/posts/{entity}/{entity_note}/confirm-editing', 'EditingController@confirmPost')->name('posts.confirm-editing');
-Route::post('/editing/posts/{entity}/{entity_note}/keep-alive', 'EditingController@keepAlivePost')->name('posts.keep-alive');
+Route::post('/editing/posts/{entity}/{post}/confirm-editing', 'EditingController@confirmPost')->name('posts.confirm-editing');
+Route::post('/editing/posts/{entity}/{post}/keep-alive', 'EditingController@keepAlivePost')->name('posts.keep-alive');
 
 // Quest Elements
 Route::post('/editing/quest-elements/{quest_element}/confirm-editing', 'EditingController@confirmQuestElement')->name('quest-elements.confirm-editing');
@@ -237,6 +243,7 @@ Route::get('/timelines/{timeline}/reorder', [\App\Http\Controllers\Timelines\Tim
     ->name('timelines.reorder');
 Route::post('/timelines/{timeline}/reorder', [\App\Http\Controllers\Timelines\TimelineReorderController::class, 'save'])
     ->name('timelines.reorder-save');
+Route::post('/timelines/{timeline}/eras/bulk', 'Timelines\TimelineEraController@bulk')->name('timelines.eras.bulk');
 
 Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'reorder'])
     ->name('quick-links.reorder');
@@ -300,6 +307,7 @@ Route::resources([
     //'entities.attributes' => 'AttributeController',
     'entities.entity_abilities' => 'Entity\AbilityController',
     'entities.entity_notes' => 'EntityNoteController',
+    'entities.posts' => 'Entity\PostController',
     'entities.entity_events' => 'EntityEventController',
     //'entities.entity_files' => 'EntityFileController',
     //'entities.entity_links' => 'Entity\LinkController',
@@ -409,8 +417,8 @@ Route::get('/dashboard/widgets/{campaignDashboardWidget}/render', [\App\Http\Con
 // Move
 Route::get('/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
 Route::post('/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move');
-Route::get('/entities/{entity}/entity_notes/{entity_note}/move', 'Entity\PostMoveController@index')->name('entity_notes.move');
-Route::post('/entities/{entity}/entity_notes/{entity_note}/move', 'Entity\PostMoveController@move')->name('entity_notes.move');
+Route::get('/entities/{entity}/posts/{post}/move', 'Entity\PostMoveController@index')->name('posts.move');
+Route::post('/entities/{entity}/posts/{post}/move', 'Entity\PostMoveController@move')->name('posts.move');
 
 // Transform
 Route::get('/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');

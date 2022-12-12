@@ -15,7 +15,7 @@
             'model' => $model,
             'breadcrumb' => [
                 ['url' => Breadcrumb::index('events'), 'label' => __('entities.events')],
-                __('events.show.tabs.events')
+                __('entities.events')
             ]
         ])
 

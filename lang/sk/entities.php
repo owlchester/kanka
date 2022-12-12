@@ -16,11 +16,18 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Vytvoriť :type',
+            'more'      => 'Pridať viac detailov',
         ],
         'back'              => 'Späť na výber',
+        'bulk_names'        => 'Pridaj jedno meno na riadok',
         'duplicate'         => 'Existujú iné objekty tohto typu s rovnakým menom.',
         'helper_v2'         => 'Zrýchlene vytvor základ nového objektu bez prerušenia práce.',
         'missing'           => 'Nevidíš všetky typy objektov? Možno sú neaktívne, tvoje oprávnenia nepostačujúce alebo tento objekt sa nedá vytvoriť zrýchlene.',
+        'modes'             => [
+            'bulk'      => 'Masové pridanie',
+            'default'   => 'Rýchle pridanie',
+            'templates' => 'Výber šablóny',
+        ],
         'name'              => [
             'new'       => 'Nový názov',
             'remove'    => 'Odstrániť',
@@ -51,6 +58,7 @@ return [
     'new'                   => [
         'ability'       => 'Nová schopnosť',
         'character'     => 'Nová postava',
+        'creature'      => 'Nová bytosť',
         'event'         => 'Nová udalosť',
         'family'        => 'Nový rod',
         'item'          => 'Nový predmet',
@@ -68,6 +76,7 @@ return [
     'organisations'         => 'Organizácie',
     'post'                  => 'Komentár',
     'quest'                 => 'Úloha',
+    'quest_element'         => 'Prvok úlohy',
     'quests'                => 'Úlohy',
     'race'                  => 'Rasa',
     'races'                 => 'Rasy',
@@ -76,5 +85,6 @@ return [
     'tag'                   => 'Kategória',
     'tags'                  => 'Kategórie',
     'timeline'              => 'Časová os',
+    'timeline_element'      => 'Prvok časovej osi',
     'timelines'             => 'Časové osi',
 ];

@@ -6,6 +6,9 @@ return [
         'manage'            => 'Gérer',
         'more'              => 'Plus d\'options',
         'remove_all'        => 'Tout supprimer',
+        'save_and_edit'     => 'Appliquer et modifier',
+        'save_and_story'    => 'Appliquer et voir',
+        'show_hidden'       => 'Afficher les attributs cachés',
     ],
     'errors'        => [
         'loop'      => 'Il y a une boucle sur la calculation de cet attribut!',
@@ -55,8 +58,12 @@ return [
         'template'  => 'Sélectionner un modèle',
         'value'     => 'Valeur de l\'attribut',
     ],
+    'ranges'        => [
+        'text'  => 'Options disponibles: :options',
+    ],
     'show'          => [
-        'title' => 'Attributs de :name',
+        'hidden'    => 'Attributs cachés',
+        'title'     => 'Attributs de :name',
     ],
     'template'      => [
         'success'   => 'Modèle d\'attribut :name appliqué pour :entity.',

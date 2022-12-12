@@ -135,9 +135,9 @@ abstract class DatagridFilter
      * Add the entity has posts
      * @return $this
      */
-    protected function hasEntityNotes(): self
+    protected function hasPosts(): self
     {
-        $this->filters[] = 'has_entity_notes';
+        $this->filters[] = 'has_posts';
         return $this;
     }
 

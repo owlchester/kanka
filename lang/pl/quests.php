@@ -25,6 +25,11 @@ return [
             'quest'             => 'zadanie',
         ],
         'title'     => 'Elementy zadania :name',
+        'warning'   => [
+            'editing'   => [
+                'description'   => 'Najwyraźniej ktoś inny edytuje właśnie to zadanie! Chcesz się wycofać czy zignorować to ostrzeżenie, ryzykując utratę danych? Członkowie obecnie edytujący zadanie:',
+            ],
+        ],
     ],
     'fields'        => [
         'character'     => 'Donator',

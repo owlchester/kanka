@@ -26,8 +26,14 @@ return [
         ],
         'success'   => '{1} :count ability imported.|[2,*] :count abilities imported.',
     ],
+    'reorder'   => [
+        'parentless'    => 'No Parent',
+        'success'       => 'Abilities succesfully reordered',
+        'title'         => 'Reorder the abilities',
+    ],
     'show'      => [
         'helper'    => 'Attach abilities to this entity. You can always edit the visibility or remove an ability. Abilities belonging to the same parent ability will display as filter boxes.',
+        'reorder'   => 'Reorder Abilities',
         'title'     => ':name Abilities',
     ],
     'update'    => [

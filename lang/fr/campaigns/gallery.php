@@ -10,6 +10,9 @@ return [
     'destroy'       => [
         'success'   => 'Image :name supprimée.',
     ],
+    'errors'        => [
+        'permissions'   => 'Tes rôles de campagne n\'ont pas la permission :permission pour pouvoir télécharger des images à la galerie de la campagne.',
+    ],
     'fields'        => [
         'created_by'    => 'Téléchargé par',
         'ext'           => 'Ext',

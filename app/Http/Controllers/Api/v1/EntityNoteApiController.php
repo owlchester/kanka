@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Http\Requests\StoreEntityNote as Request;
-use App\Http\Resources\EntityNoteResource as Resource;
+use App\Http\Requests\StorePost as Request;
+use App\Http\Resources\PostResource as Resource;
 use App\Models\EntityNote;
 
 class EntityNoteApiController extends ApiController

@@ -10,6 +10,7 @@ use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\MiscModel;
+use App\Models\Post;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
@@ -146,15 +147,15 @@ class MiscPolicy
      * @param User $user
      * @param MiscModel $entity
      * @param string|null $action
-     * @param EntityNote|null $entityNote
+     * @param Post|null $post
      * @return bool
      */
-    public function entityNote(User $user, $entity, string $action = null, EntityNote $entityNote = null)
+    public function post(User $user, $entity, string $action = null, Post $post = null)
     {
         return Auth::check() && (
             $this->update($user, $entity) ||
             $this->checkPermission(CampaignPermission::ACTION_POSTS, $user, $entity) ||
-            ($action == 'edit' ? $this->checkEntityNotePermission($user, $entityNote) : false)
+            ($action == 'edit' ? $this->checkPostPermission($user, $post) : false)
         ) ;
     }
 
@@ -216,13 +217,13 @@ class MiscPolicy
 
     /**
      * @param User $user
-     * @param EntityNote $entityNote
+     * @param Post $post
      * @return bool
      */
-    protected function checkEntityNotePermission(User $user, EntityNote $entityNote): bool
+    protected function checkPostPermission(User $user, Post $post): bool
     {
         $roleIds = UserCache::roles()->pluck('id')->toArray();
-        $perms = $entityNote->permissions->where('permission', 1);
+        $perms = $post->permissions->where('permission', 1);
         return $perms->where('user_id', $user->id)->count() == 1
             ||
             $perms->whereIn('role_id', $roleIds)->count() == 1

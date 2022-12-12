@@ -9,13 +9,13 @@
         <div class="load more text-center" v-if="initializing">
             <i class="fa-solid fa-spin fa-spinner fa-4x"></i>
         </div>
-        <conversation-message
+        <Message
             v-for="message in messages"
             :key="message.id"
             :message="message"
             :trans="trans"
             >
-        </conversation-message>
+        </Message>
 
         <div v-if="sending" class="text-center">
             <i class="fa-solid fa-spin fa-spinner"></i>
@@ -24,8 +24,7 @@
 </template>
 
 <script>
-    import Event from '../event.js';
-
+import Message from './Message.vue';
     /**
      * The core of the convo module. This is where the magic happens.
      * Events are fired from Message (delete) and Form (sending)
@@ -35,6 +34,9 @@
             'api',
             'trans'
         ],
+        components: {
+            Message,
+        },
         data() {
             return {
                 // Our messages to be displayed
@@ -115,20 +117,20 @@
 
             this.getMessages();
 
-            Event.$on('sending_message', () => {
+            this.emitter.on('sending_message', () => {
                 this.sending = true;
             });
 
-            Event.$on('sent_message', () => {
+            this.emitter.on('sent_message', () => {
                 this.getMessages();
             });
 
-            Event.$on('edited_message', (message) => {
+            this.emitter.on('edited_message', (message) => {
                 let index = this.messages.findIndex(msg => msg.id === message.id);
                 this.messages[index] = message;
             });
 
-            Event.$on('delete_message', (message, body) => {
+            this.emitter.on('delete_message', (message, body) => {
                 this.deleteMessage(message, body);
             });
 

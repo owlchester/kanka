@@ -1,5 +1,6 @@
 $(document).ready(function () {
     initQuickLinksForm();
+    showFilterField();
 });
 
 function initQuickLinksForm() {
@@ -18,5 +19,22 @@ function initQuickLinksForm() {
             $(this).addClass('btn-active');
             $('#quick-link-' + target).show();
         });
+    });
+}
+
+function showFilterField() {
+    let selector = $('#entity-selector');
+    if (selector.length === 0) {
+        return false;
+    } else if (selector.val() != '') {
+        $('#filter-subform').show();
+    }
+    selector.change(function () {
+        if (selector.val() == '') {
+            $('#filter-subform').hide();
+            console.log(selector.val());
+        } else {
+            $('#filter-subform').show();
+        }
     });
 }

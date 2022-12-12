@@ -56,7 +56,8 @@ return [
     ],
     'organisations' => [
         'actions'       => [
-            'add'   => 'Nouvelle organisation',
+            'add'       => 'Nouvelle organisation',
+            'submit'    => 'Ajouter une organisation',
         ],
         'create'        => [
             'success'   => 'Personne ajoutée à l\'organisation.',
@@ -83,6 +84,7 @@ return [
         'age'               => 'Âge',
         'appearance_entry'  => 'Description',
         'appearance_name'   => 'Cheveux, Yeux, Peau, Taille',
+        'name'              => 'Nom du personnage',
         'personality_entry' => 'Détails',
         'personality_name'  => 'Trait de personnalité: objectifs, maniérismes, peurs, liens',
         'physical'          => 'Physique',

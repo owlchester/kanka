@@ -6,6 +6,9 @@ return [
         'manage'            => 'Manage',
         'more'              => 'More options',
         'remove_all'        => 'Delete All',
+        'save_and_edit'     => 'Apply and Edit',
+        'save_and_story'    => 'Apply and View',
+        'show_hidden'       => 'Show hidden attributes',
     ],
     'errors'        => [
         'loop'      => 'There is an endless loop in this attribute calculation!',
@@ -55,8 +58,12 @@ return [
         'template'  => 'Select a template',
         'value'     => 'Value of the attribute',
     ],
+    'ranges'        => [
+        'text'  => 'Available options: :options',
+    ],
     'show'          => [
-        'title' => ':name Attributes',
+        'hidden'    => 'Hidden Attributes',
+        'title'     => ':name Attributes',
     ],
     'template'      => [
         'success'   => 'Attribute template :name applied to :entity',

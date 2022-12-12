@@ -131,8 +131,6 @@ class Character extends MiscModel
         'is_personality_visible', // checkbox
     ];
 
-    protected $showAppearanceCache = null;
-
     /**
      * Performance with for datagrids
      * @param Builder $query

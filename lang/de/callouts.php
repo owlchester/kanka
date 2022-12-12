@@ -11,8 +11,8 @@ return [
         'multiple'      => 'Um auf diese Funktionen zugreifen zu können, muss die Kampagne geboostet werden.',
         'pitches'       => [
             'element-class' => 'Gib diesem Element eine benutzerdefinierte CSS-Klasse mit einer :boosted-campaign.',
-            'icon'          => 'Schalte mit einer :boosted-Kampagne Millionen von benutzerdefinierten Symbolen von FontAwesome frei.',
-            'link-parent'   => 'Platziere mit einer :boosted-Kampagne einen Quicklink genau an der gewünschten Stelle in der Seitenleiste.',
+            'icon'          => 'Schalte mit einer :boosted-campaign Millionen von benutzerdefinierten Symbolen von FontAwesome frei.',
+            'link-parent'   => 'Platziere mit einer :boosted-campaign einen Quicklink genau an der gewünschten Stelle in der Seitenleiste.',
         ],
         'titles'        => [
             'boosted'       => 'geboostete Funktion',

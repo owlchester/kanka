@@ -1,16 +1,16 @@
 <?php /**
  * @var \App\Models\Entity $entity
- * @var \App\Models\EntityNote[]|\Illuminate\Support\Collection $notes
- * @var \App\Models\EntityNote $first
+ * @var \App\Models\Post[]|\Illuminate\Support\Collection $posts
+ * @var \App\Models\Post $first
  */
 $hasEntry = false;
 
-$notes = $entity->notes()->ordered()->get();
+$posts = $entity->posts()->ordered()->get();
 
 $startWithStory = false;
-$firstNote = $notes->first();
+$firstPost = $posts->first();
 // If the first note has a positive position, it's after the entry field
-if ($firstNote && $firstNote->position >= 0) {
+if ($firstPost && $firstPost->position >= 0) {
     $startWithStory = true;
     $hasEntry = true;
 }
@@ -29,7 +29,7 @@ if ($firstNote && $firstNote->position >= 0) {
         <div class="element-live-reorder sortable-elements">
             @includeWhen($startWithStory, 'entities.pages.story.reorder._story')
 
-            @foreach($notes as $note)
+            @foreach($posts as $note)
                 @if (!$hasEntry && $note->position >= 0)
                     @php $hasEntry = true @endphp
                     @include('entities.pages.story.reorder._story')
@@ -65,8 +65,11 @@ if ($firstNote && $firstNote->position >= 0) {
     }
 
     // If it's a visibility self & admin and we're not the creator, we can't change this
-    if ($note->visibility === \App\Models\Visibility::VISIBILITY_ADMIN_SELF_STR && $note->created_by !== auth()->user()->id) {
+    if ($note->visibility_id === \App\Models\Visibility::VISIBILITY_ADMIN_SELF && $note->created_by !== auth()->user()->id) {
         $options = [\App\Models\Visibility::VISIBILITY_ADMIN_SELF => __('crud.visibilities.admin-self')];
+    }
+    elseif ($note->visibility_id === \App\Models\Visibility::VISIBILITY_SELF && $note->created_by !== auth()->user()->id) {
+        $options = [\App\Models\Visibility::VISIBILITY_SELF => __('crud.visibilities.self')];
     }
 @endphp
                         <select name="posts[{{ $note->id }}][visibility_id]" class="form-control">

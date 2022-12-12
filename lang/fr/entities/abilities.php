@@ -26,8 +26,14 @@ return [
         ],
         'success'   => '{1} :count pouvoir ajouté.|[2,*] :count pouvoirs ajoutés.',
     ],
+    'reorder'   => [
+        'parentless'    => 'Aucun parent',
+        'success'       => 'Pouvoirs réordonnés.',
+        'title'         => 'Réordonner les pouvoirs',
+    ],
     'show'      => [
         'helper'    => 'Attache des pouvoirs à cette entité. Il est toujours possible de modifier ou de supprimer un pouvoir. Les pouvoirs qui appartiennent au même parent sont groupés ensemble et agissent comme filtres.',
+        'reorder'   => 'Réordonner',
         'title'     => 'Pouvoirs de l\'entité :name',
     ],
     'update'    => [

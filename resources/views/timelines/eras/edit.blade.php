@@ -15,39 +15,36 @@
 ])
 @inject('campaignService', 'App\Services\CampaignService')
 @section('content')
+    @include('partials.errors')
+    {!! Form::model($model, [
+        'route' => ['timelines.timeline_eras.update', 'timeline' => $timeline, 'timeline_era' => $model],
+        'method' => 'PATCH',
+        'id' => 'timeline-era-form',
+        'class' => 'ajax-subform',
+        'data-shortcut' => 1
+    ]) !!}
     <div class="panel panel-default">
-        @if ($ajax)
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
-                    {{ __('timelines/eras.edit.title', ['name' => $model->name]) }}
-                </h4>
-            </div>
-        @endif
         <div class="panel-body">
-            @include('partials.errors')
-
-            {!! Form::model($model, ['route' => ['timelines.timeline_eras.update', 'timeline' => $timeline, 'timeline_era' => $model], 'method' => 'PATCH', 'id' => 'timeline-era-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1]) !!}
             @include('timelines.eras._form')
+        </div>
+        <div class="panel-footer">
 
-            <div class="form-era">
+            @include('partials.footer_cancel', ['ajax' => null])
+            <div class="form-era pull-right">
                 <div class="submit-group">
-                    <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                    @includeWhen(!request()->ajax(), 'partials.or_cancel')
+                    <button class="btn btn-success">{{ __('crud.save') }}</button>
                 </div>
                 <div class="submit-animation" style="display: none;">
                     <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
 
-            @if (!empty($from))
-                <input type="hidden" name="from" value="{{ $from }}">
-            @endif
-
-            {!! Form::close() !!}
         </div>
     </div>
+    @if (!empty($from))
+        <input type="hidden" name="from" value="{{ $from }}">
+    @endif
+    {!! Form::close() !!}
 @endsection
 
 @section('scripts')

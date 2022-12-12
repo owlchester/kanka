@@ -276,6 +276,7 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'Die öffentliche Rolle hat Berechtigungen, aber die Kampagne ist privat. Sie können diese Einstellung auf der Registerkarte Freigabe ändern, wenn Sie die Kampagne bearbeiten.',
             'empty_role'            => 'Die Rolle hat noch keine Mitglieder.',
+            'role_admin'            => 'Die Rolle :name gewährt deinen Mitgliedern automatisch Zugriff vollen Kampagnen Zugriff.',
             'role_permissions'      => 'Erlaube der Rolle \':name\' die folgenden Aktionen auf allen Objekten.',
         ],
         'members'       => 'Mitglieder',
@@ -338,6 +339,10 @@ TEXT
             ],
             'destroy'   => [
                 'success'   => 'Benutzer aus Rolle entfernt',
+            ],
+            'errors'    => [
+                'cant_kick_admins'  => 'Um Missbrauch zu vermeiden, ist es nicht möglich, andere Mitglieder aus der :admin-Rolle der Kampagne zu entfernen. Bei Problemen kontaktiere uns unter :discord oder unter :email.',
+                'needs_more_roles'  => 'Du musst dich zu einer anderen Rolle in der Kampagne hinzufügen, bevor du dich selbst aus der :admin-Rolle entfernen kannst.',
             ],
             'fields'    => [
                 'name'  => 'Name',
@@ -458,5 +463,10 @@ TEXT
         'private'   => 'Privat',
         'public'    => 'Öffentlich',
         'review'    => 'Wartet auf Überprüfung',
+    ],
+    'warning'                           => [
+        'editing'   => [
+            'description'   => 'Anscheinend bearbeitet gerade jemand anderes diese Kampagne! Möchtest du zurückgehen oder diese Warnung ignorieren, auf die Gefahr hin, dass Daten verloren gehen? Mitglieder, die diese Kampagne derzeit bearbeiten:',
+        ],
     ],
 ];

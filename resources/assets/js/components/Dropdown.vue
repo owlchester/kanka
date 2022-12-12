@@ -1,5 +1,5 @@
 <template>
-    <on-click-outside :do="handleClickOutside">
+    <div :do="handleClickOutside">
       <div class="relative mx-auto">
         <div role="button" class="inline-block select-none" @click="open = !open">
           <slot name="link"></slot>
@@ -8,17 +8,12 @@
           <slot name="dropdown"></slot>
         </div>
       </div>
-    </on-click-outside>
+    </div>
 </template>
 
 <script>
-    import OnClickOutside from "./OnClickOutside.vue";
 
     export default {
-        components: {
-            OnClickOutside
-        },
-
         /*
          * The component's data.
          */

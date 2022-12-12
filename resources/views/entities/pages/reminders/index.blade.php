@@ -22,7 +22,6 @@
             </a>
         </div>
     @endcan
-
 @endsection
 
 
@@ -47,11 +46,22 @@
         ])
 
         <div class="entity-main-block">
-            <div class="box box-solid box-entity-reminders">
-                <div class="box-body">
-                    @include('entities.pages.reminders._table')
+            @if (auth()->check() && !auth()->user()->settings()->get('tutorial_events'))
+                <div class="alert alert-info tutorial">
+                    <span>
+                        <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'events', 'type' => 'tutorial']) }}">×</button>
+                        <p>{{ __('entities/events.helpers.no_events_v2') }}</p>
+                        <p>{!!  __('crud.helpers.learn_more', ['documentation' => link_to('https://docs.kanka.io/en/latest/features/reminders.html', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front.menu.documentation'), ['target' => '_blank'], null, false)])!!}</p>
+                    </span>
                 </div>
-            </div>
+            @endif
+            @if ($reminders->count() > 0)
+                <div class="box box-solid box-entity-reminders">
+                    <div class="box-body no-padding">
+                        @include('entities.pages.reminders._table')
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 

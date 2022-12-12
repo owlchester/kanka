@@ -5,7 +5,8 @@ return [
         'add'   => 'neue Gruppe hinzufügen',
     ],
     'bulks'         => [
-        'patch' => '{1} aktualisiere :count group.|[2,*] aktualisiere :count groups.',
+        'delete'    => '{1} entfernt :count Gruppe .|[2,*] entfernt :count Gruppen.',
+        'patch'     => '{1} aktualisiere :count group.|[2,*] aktualisiere :count groups.',
     ],
     'create'        => [
         'success'   => 'Gruppe :name erzeugen',

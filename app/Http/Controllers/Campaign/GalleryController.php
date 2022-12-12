@@ -83,6 +83,12 @@ class GalleryController extends Controller
         ]);
     }
 
+    /**
+     * Called when adding an image from the text editor
+     * @param GalleryImageStore $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function ajaxUpload(GalleryImageStore $request)
     {
         $campaign = CampaignLocalization::getCampaign();

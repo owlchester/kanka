@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-8 calendar-new-event-field">
                 <div class="form-group">
-                    <label>{{ __('events.fields.name') }}</label>
+                    <label>{{ __('crud.fields.name') }}</label>
                     {!! Form::text('name', null, ['placeholder' => __('events.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
             </div>

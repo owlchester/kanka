@@ -13,7 +13,6 @@ use Illuminate\Support\Collection;
 
 /**
  * @property TimelineEra[]|Collection $eras
- * @property bool $revert_order
  * @property int|null $timeline_id
  * @property Timeline|null $timeline
  * @property Timeline[]|Collection $timelines
@@ -37,7 +36,6 @@ class Timeline extends MiscModel
         'entry',
         'is_private',
         'image',
-        'revert_order',
         'timeline_id',
     ];
 
@@ -186,6 +184,12 @@ class Timeline extends MiscModel
             'count' => $this->descendants()->count()
         ];
         if (auth()->check() && auth()->user()->can('update', $this)) {
+
+            $items['second']['eras'] = [
+                'name' => 'timelines.fields.eras',
+                'route' => 'timelines.timeline_eras.index',
+                'count' => $this->eras->count()
+            ];
             $items['second']['reorder'] = [
                 'name' => 'timelines.show.tabs.reorder',
                 'route' => 'timelines.reorder',

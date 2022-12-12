@@ -83,6 +83,7 @@ return [
         'age'               => 'Alter',
         'appearance_entry'  => 'Beschreibung',
         'appearance_name'   => 'Haare, Augen, Haut, Größe',
+        'name'              => 'Name des Charakters',
         'personality_entry' => 'Details',
         'personality_name'  => 'Persönlichkeitsmerkmal: Ziele, Gewohnheiten, Ängste, Bindungen',
         'physical'          => 'Körper',

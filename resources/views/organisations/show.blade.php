@@ -10,7 +10,7 @@
     @include($name . '._menu', ['active' => 'story'])
 
     <div class="entity-story-block">
-        @include('entities.components.notes', ['withEntry' => true])
+        @include('entities.components.posts', ['withEntry' => true])
         @include('organisations.panels.members')
 
         @include('cruds.partials.mentions')

@@ -47,18 +47,18 @@
                                     {{ __('entities.campaign') }}
                                 </td>
                             </tr>
-                        @elseif ($mention->isEntityNote() && $mention->entityNote)
-                            @if($mention->entityNote->entity)
+                        @elseif ($mention->isPost() && $mention->post)
+                            @if($mention->post->entity)
                             <tr>
                                 <td>
-                                    @if ($mention->entityNote->entity->is_private)
+                                    @if ($mention->post->entity->is_private)
                                         <i class="fa-solid fa-lock" data-toggle="tooltip" title="{{ __('crud.is_private') }}"></i>
                                     @endif
-                                    <a href="{{ $mention->entityNote->entity->url() }}">{{ $mention->entityNote->entity->name }}</a>
+                                    <a href="{{ $mention->post->entity->url() }}">{{ $mention->post->entity->name }}</a>
                                         -
-                                    {!! $mention->entityNote->visibilityIcon(null, true) !!}
-                                    <a href="{{ $mention->entityNote->entity->url('show', ['#post-' . $mention->entityNote->id]) }}">
-                                        {{ $mention->entityNote->name }}
+                                    {!! $mention->post->visibilityIcon(null, true) !!}
+                                    <a href="{{ $mention->post->entity->url('show', ['#post-' . $mention->post->id]) }}">
+                                        {{ $mention->post->name }}
                                     </a>
                                 </td>
                                 <td>

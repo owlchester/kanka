@@ -3,15 +3,17 @@
 namespace App\Services;
 
 use App\Facades\Attributes;
-use App\Facades\Mentions;
 use App\Models\Attribute;
 use App\Models\Entity;
-use App\Models\EntityNote;
 use App\Models\MiscModel;
+use App\Models\Post;
+use App\Services\TOC\TocSlugify;
 use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use TOC\MarkupFixer;
 
 class MentionsService
 {
@@ -53,6 +55,8 @@ class MentionsService
     /** @var bool When false, parsing field:entry won't render mentions */
     protected bool $enableEntryField = true;
 
+    protected MarkupFixer $markupFixer;
+
     /**
      * Mentions Service constructor
      * @param EntityService $entityService
@@ -87,13 +91,13 @@ class MentionsService
     }
 
     /**
-     * Map the mentions in an entity note
-     * @param EntityNote $entityNote
+     * Map the mentions in a post
+     * @param Post $post
      * @return string|string[]|null
      */
-    public function mapEntityNote(EntityNote $entityNote)
+    public function mapPost(Post $post)
     {
-        $this->text = (string) $entityNote->entry;
+        $this->text = (string) $post->entry;
         return $this->extractAndReplace();
     }
 
@@ -184,8 +188,33 @@ class MentionsService
             $text
         );
 
+        // Parse all links and transform them into advanced mentions [] if needed
+        $links = '`<a\s[^>]*>(.*?)<\/a>`i';
+        $text = preg_replace_callback($links, function ($matches) {
+            $mentionName = $matches[1];
+            $attributes = $this->linkAttributes($matches[0]);
+            $advancedMention = Arr::get($attributes, 'data-mention');
+            $advancedAttribute = Arr::get($attributes, 'data-attribute');
+            // It's not a mention or attribute, keep it as is
+            if (empty($advancedMention) && empty($advancedAttribute)) {
+                return $matches[0];
+            }
+
+            // Advanced attribute [attribute:123], use that
+            if (!empty($advancedAttribute)) {
+                return $advancedAttribute;
+            }
+
+            // If the name isn't the target name, transform it into an advanced mention
+            $originalName = Arr::get($attributes, 'data-name');
+            if (!empty($originalName) && $originalName != $mentionName) {
+                return str_replace(']', '|' . $mentionName . ']', $advancedMention);
+            }
+            return $advancedMention;
+        }, $text);
+
         // TinyMCE mentions
-        $text = preg_replace(
+        /*$text = preg_replace(
             '`<a class="mention" href="#" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
             '$2',
             $text
@@ -194,14 +223,15 @@ class MentionsService
             '`<a class="mention" href="#" data-mention="([^"]*)">(.*?)</a>`',
             '$1',
             $text
-        );
+        );*/
 
         // Summernote will inject the link differently.
         //dump($text);
-        $text = preg_replace_callback(
+        /*$text = preg_replace_callback(
             '`<a href="([^"]*)" class="mention" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
             function ($data) {
                 //dump($data);
+                dd($data);
                 if (count($data) !== 5) {
                     return $data[0];
                 }
@@ -212,11 +242,10 @@ class MentionsService
                 return $data[3];
             },
             $text
-        );
-        //dd($text);
+        );*/
 
         // Attributes
-        $text = preg_replace(
+        /*$text = preg_replace(
             '`<a href="#" class="attribute attribute-mention" data-attribute="([^"]*)">(.*?)</a>`',
             '$1',
             $text
@@ -225,7 +254,7 @@ class MentionsService
             '`<a class="attribute attribute-mention" href="#" data-attribute="([^"]*)">(.*?)</a>`',
             '$1',
             $text
-        );
+        );*/
 
         // Remove advanced mention name blocks
         //dump($text);
@@ -388,14 +417,14 @@ class MentionsService
                             . Arr::get($data, 'text', $entity->name)
                             . '</a>';
                         ;
-                        return '<div class="' . implode(' ', $cssClasses) . '"'
+                        return '<span class="' . implode(' ', $cssClasses) . '"'
                             . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
                             . '>'
                             . $entityName
                             . '<div class="mention-entry-content">'
                             . $parsedTargetEntry
                             . '</div>'
-                            . '</div>';
+                            . '</span>';
                     } elseif (isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
@@ -654,20 +683,32 @@ class MentionsService
         }, $this->text);
     }
 
+    /**
+     * Replace any table-of-content blocks with a real HTML table of content, adding unique ids to each heading
+     * so that links can work.
+     * @return void
+     */
     protected function mapCodes()
     {
-        if (Str::contains($this->text, '{table-of-contents}')) {
-            $markupFixer  = new \TOC\MarkupFixer();
-            $tocGenerator = new \TOC\TocGenerator();
-
-            $this->text = $markupFixer->fix($this->text);
-            $toc = $tocGenerator->getHtmlMenu($this->text);
-            $this->text = Str::replaceFirst(
-                '{table-of-contents}',
-                '<div class="toc">' . $toc .  "</div>\n",
-                $this->text
-            );
+        if (!Str::contains($this->text, '{table-of-contents}')) {
+            return;
         }
+
+        // Re-use the same markupFixer to keep references of previously generated slugs on this page
+        /*if (!isset($this->markupFixer)) {
+            $this->markupFixer = new MarkupFixer(null, new TocSlugify());
+        }*/
+        $markupFixer = new MarkupFixer(null, new TocSlugify());
+        $tocGenerator = new \TOC\TocGenerator();
+
+        $this->text = $markupFixer->fix($this->text);
+        //$this->text = $this->markupFixer->fix($this->text);
+        $toc = $tocGenerator->getHtmlMenu($this->text);
+        $this->text = Str::replaceFirst(
+            '{table-of-contents}',
+            '<div class="toc">' . $toc .  "</div>\n",
+            $this->text
+        );
     }
 
     /**
@@ -722,5 +763,38 @@ class MentionsService
     protected function unlockEntryRendering(): void
     {
         $this->enableEntryField = true;
+    }
+
+    /**
+     * Extract html attributes from a link if it's a Kanka "mention" from the text editor
+     * @param string $html
+     * @return array
+     */
+    protected function linkAttributes(string $html): array
+    {
+        // Don't waste time on the expensive DOMDocument call if there is no mention
+        if (!Str::contains($html, ['"mention"', '"attribute attribute-mention"'])) {
+            return [];
+        }
+        $attributes = [];
+        $dom = new \DOMDocument();
+        try {
+            $dom->loadHTML($html);
+
+            $links = $dom->getElementsByTagName('a');
+            $link = $links[0];
+
+            $validAttributes = ['class', 'data-name', 'data-mention', 'data-attribute'];
+            foreach ($validAttributes as $attribute) {
+                if (!$link->hasAttribute($attribute)) {
+                    continue;
+                }
+                $attributes[$attribute] = $link->getAttribute($attribute);
+            }
+        } catch (\Exception $e) {
+            Log::warning('The following html link triggered an issue', ['link' => $html]);
+        }
+
+        return $attributes;
     }
 }

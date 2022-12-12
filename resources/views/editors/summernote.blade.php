@@ -39,6 +39,8 @@
         data-gallery-deselect-all="{{ __('general.deselect_all') }}"
         data-gallery-error="generic.gallery.error"
         data-filesize="{{ auth()->user()->maxUploadSize() }}"
+        data-placeholder="{{ __('crud.placeholders.entry') }}"
+        data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
 @if(isset($campaignService) && $campaignService->campaign() !== null)
         data-gallery="{{ $campaignService->campaign()->superboosted() ? route('campaign.gallery.summernote') : null }}"
     @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
@@ -50,13 +52,21 @@
         data-locale="{{ app()->getLocale() }}"></div>
 
 @if(isset($campaignService) && $campaignService instanceof \App\Services\CampaignService && $campaignService->campaign() !== null)
-    <div class="modal fade" id="campaign-imageupload-error" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal fade" id="campaign-imageupload-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl">
                 <div class="modal-body  text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <div id="campaign-imageupload-boosted">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
 
-                    @include('layouts.callouts.boost-modal', ['texts' => [__('campaigns/gallery.pitch')], 'superboost' => true, 'campaign' => $campaignService->campaign()])
+                        @include('layouts.callouts.boost-modal', ['texts' => [__('campaigns/gallery.pitch')], 'superboost' => true, 'campaign' => $campaignService->campaign()])
+                    </div>
+                    <p class="alert alert-danger" id="campaign-imageupload-error" style="display:none"></p>
+                    <p class="alert alert-danger" id="campaign-imageupload-permission" style="display:none">
+                        {!! __('campaigns/gallery.errors.permissions', [
+    'permission' => '<code>' . __('campaigns.roles.permissions.actions.gallery') . '</code>']
+    ) !!}
+                    </p>
                 </div>
             </div>
         </div>

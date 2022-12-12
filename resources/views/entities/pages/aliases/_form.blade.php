@@ -1,4 +1,11 @@
 {{ csrf_field() }}
+
+@if (!isset($entityAsset))
+
+    <p class="help-block">
+        {{ __('entities/aliases.helpers.primary') }}
+    </p>
+@endif
 <div class="form-group required">
     <label>{{ __('entities/links.fields.name') }}</label>
     {!! Form::text(

@@ -16,6 +16,7 @@ return [
     'manage_links'      => 'Spravovať linky',
     'new-entity'        => 'Vytvoriť nový objekt',
     'other'             => 'Ostatné',
+    'presets'           => 'Prednastavenia',
     'relations'         => 'Vzťahy',
     'search'            => 'Hľadať...',
     'world'             => 'Svet',

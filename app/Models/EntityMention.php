@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $campaign_id
  * @property integer $target_id
  * @property Entity $entity
- * @property EntityNote $entityNote
+ * @property Post $post
  * @property QuestElement $questElement
  * @property TimelineElement $timelineElement
  * @property Entity $target
@@ -54,9 +54,9 @@ class EntityMention extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function entityNote()
+    public function post()
     {
-        return $this->belongsTo('App\Models\EntityNote', 'entity_note_id', 'id');
+        return $this->belongsTo('App\Models\Post', 'entity_note_id', 'id');
     }
 
     /**
@@ -87,7 +87,7 @@ class EntityMention extends Model
      * Determine if the mention goes to a post
      * @return bool
      */
-    public function isEntityNote(): bool
+    public function isPost(): bool
     {
         return !empty($this->entity_note_id);
     }
@@ -145,8 +145,8 @@ class EntityMention extends Model
                 })
                 ->orWhere(function ($subPost) {
                     return $subPost
-                        ->entityNote()
-                        ->has('entityNote.entity');
+                        ->post()
+                        ->has('post.entity');
                 })
                 ->orWhere(function ($subQuestElement) {
                     return $subQuestElement
@@ -177,7 +177,7 @@ class EntityMention extends Model
      * @param Builder $query
      * @return Builder
      */
-    public function scopeEntityNote(Builder $query): Builder
+    public function scopePost(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.entity_note_id');
     }

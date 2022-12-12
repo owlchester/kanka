@@ -28,7 +28,7 @@ class Relation extends Layout
             ],
             'target' => [
                 'key' => 'target.name',
-                'label' => 'crud.relations.fields.name',
+                'label' => 'crud.fields.name',
                 'render' => function ($relation) {
                     $icon = '';
                     if ($relation->target->is_private) {

@@ -7,7 +7,6 @@ return [
     'helpers'   => [
         'characters'    => 'Definir o tipo como data de nascimento ou morte para este personagem irá calcular automaticamente sua idade. more.',
         'founding'      => 'Definir o tipo como :type calculará automaticamente a idade da entidade desde a fundação.',
-        'no_events'     => 'Essa interface mostra todos os calendários que essa entidade está ligada ao usar lembretes.',
     ],
     'show'      => [
         'actions'   => [

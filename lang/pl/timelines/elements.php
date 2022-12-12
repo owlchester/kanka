@@ -32,4 +32,9 @@ return [
         'name'      => 'Wymagana, jeżeli nie wskazano elementu',
         'position'  => 'Kolejność na liście elementów tej epoki. Zostaw puste, by dodać na końcu.',
     ],
+    'warning'       => [
+        'editing'   => [
+            'description'   => 'Najwyraźniej ktoś inny edytuje właśnie ten element historii! Chcesz się wycofać czy zignorować to ostrzeżenie, ryzykując utratę danych? Członkowie obecnie edytujący historię:',
+        ],
+    ],
 ];

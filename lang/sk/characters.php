@@ -83,6 +83,7 @@ return [
         'age'               => 'Vek',
         'appearance_entry'  => 'Popis',
         'appearance_name'   => 'Vlasy, oči, pokožka, výška',
+        'name'              => 'Meno postavy',
         'personality_entry' => 'Detaily',
         'personality_name'  => 'Ciele, maniere, slabosti, vzťahy,...',
         'physical'          => 'Telesné črty',

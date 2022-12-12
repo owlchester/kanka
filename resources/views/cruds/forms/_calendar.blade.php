@@ -33,13 +33,17 @@ if (!empty($oldCalendarID)) {
         @if (count($calendars) == 1)
             {!! Form::hidden('calendar_id', isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : FormCopy::field('calendar_id')->string(), ['id' => 'calendar_id']) !!}
         @else
-            <div class="form-group entity-calendar-selector">
-                {!! Form::select2(
-                    'calendar_id',
-                    (isset($model) && $model->calendarReminder() && $model->calendarReminder()->calendar ? $model->calendarReminder()->calendar : FormCopy::field('calendar')->select()),
-                    App\Models\Calendar::class,
-                    false
-                ) !!}
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="form-group entity-calendar-selector">
+                        {!! Form::select2(
+                            'calendar_id',
+                            (isset($model) && $model->calendarReminder() && $model->calendarReminder()->calendar ? $model->calendarReminder()->calendar : FormCopy::field('calendar')->select()),
+                            App\Models\Calendar::class,
+                            false
+                        ) !!}
+                    </div>
+                </div>
             </div>
         @endif
 
@@ -55,13 +59,24 @@ if (!empty($oldCalendarID)) {
 
                     <div class="form-group">
                         <label>{{ __('calendars.fields.month') }}</label>
-                        {!! Form::select('calendar_month', (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])), FormCopy::field('calendar_month')->string(), ['class' => 'form-control']) !!}
+                        {!! Form::select(
+                            'calendar_month',
+                            (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])),
+                            FormCopy::field('calendar_month')->string(),
+                            ['class' => 'form-control'],
+                            (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->monthDataProperties(): (!empty($calendar) ? $calendar->monthDataProperties() : []))
+                            ) !!}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>{{ __('calendars.fields.day') }}</label>
-                        {!! Form::number('calendar_day', FormCopy::field('calendar_day')->string(), ['class' => 'form-control']) !!}
+                        {!! Form::select(
+                                'calendar_day',
+                                (!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->dayList($model->calendarReminder()->month) : (!empty($calendar) ? $calendar->dayList() : [])),
+                                FormCopy::field('calendar_day')->string(),
+                                ['class' => 'form-control']
+                            ) !!}
                     </div>
                 </div>
             </div>

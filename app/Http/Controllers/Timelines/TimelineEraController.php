@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers\Timelines;
 
+use App\Facades\CampaignLocalization;
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Http\Requests\StoreTimelineEra;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
+use Illuminate\Http\Request;
 
 class TimelineEraController extends Controller
 {
+    use BulkControllerTrait;
+
     /** @var string[] Form fields passed on to the model */
     protected $fields = [
         'name',
@@ -21,7 +27,24 @@ class TimelineEraController extends Controller
 
     public function index(Timeline $timeline)
     {
-        return redirect()->route('timelines.show', $timeline);
+        $this->authorize('update', $timeline);
+
+        $campaign = CampaignLocalization::getCampaign();
+        $options = ['timeline' => $timeline->id];
+        $model = $timeline;
+
+        Datagrid::layout(\App\Renderers\Layouts\Timeline\Era::class)
+            ->route('timelines.timeline_eras.index', $options);
+        $rows = $timeline
+            ->eras()
+            ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
+            ->with(['timeline'])
+            ->paginate(15);
+        if (request()->ajax()) {
+            return $this->datagridAjax($rows);
+        }
+
+        return view('timelines.eras.index', compact('campaign', 'rows', 'model'));
     }
     public function show(Timeline $timeline, TimelineEra $timelineEra)
     {
@@ -67,11 +90,11 @@ class TimelineEraController extends Controller
 
         if (request()->post('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$timeline, '#' . $new->id])
+                ->route('timelines.show', [$timeline, '#era' . $new->id])
                 ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
         }
         return redirect()
-            ->route('timelines.edit', [$timeline, '#tab_form-eras'])
+            ->route('timelines.timeline_eras.index', [$timeline])
             ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
     }
 
@@ -115,12 +138,12 @@ class TimelineEraController extends Controller
 
         if (request()->post('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$timeline, '#' . $timelineEra->id])
+                ->route('timelines.show', [$timeline, '#era' . $timelineEra->id])
                 ->withSuccess(__('timelines/eras.edit.success', ['name' => $timelineEra->name]));
         }
 
         return redirect()
-            ->route('timelines.edit', [$timeline, '#tab_form-eras'])
+            ->route('timelines.timeline_eras.index', [$timeline])
             ->withSuccess(__('timelines/eras.edit.success', ['name' => $timelineEra->name]));
     }
 
@@ -144,7 +167,56 @@ class TimelineEraController extends Controller
         }
 
         return redirect()
-            ->route('timelines.edit', [$timeline, '#tab_form-eras'])
+            ->route('timelines.timeline_eras.index', [$timeline])
             ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
+    }
+
+
+    /**
+     * @param Request $request
+     * @param Timeline $timeline
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function bulk(Request $request, Timeline $timeline)
+    {
+        $this->authorize('update', $timeline);
+        $action = $request->get('action');
+        $models = $request->get('model');
+        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
+            return redirect()->back();
+        }
+
+        /*if ($action === 'edit') {
+            return $this->bulkBatch(route('timelines.eras.bulk', ['timeline' => $timeline]), '_timeline-era', $models);
+        }*/
+
+        $count = $this->bulkProcess($request, TimelineEra::class);
+
+        return redirect()
+            ->route('timelines.timeline_eras.index', ['timeline' => $timeline])
+            ->with('success', trans_choice('timelines/eras.bulks.' . $action, $count, ['count' => $count]))
+            ;
+    }
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function datagridAjax($rows)
+    {
+        $html = view('layouts.datagrid._table')
+            ->with('rows', $rows)
+            ->render();
+        $deletes = view('layouts.datagrid.delete-forms')
+            ->with('models', Datagrid::deleteForms())
+            ->with('params', Datagrid::getActionParams())
+            ->render();
+
+        $data = [
+            'success' => true,
+            'html' => $html,
+            'deletes' => $deletes,
+        ];
+
+        return response()->json($data);
     }
 }

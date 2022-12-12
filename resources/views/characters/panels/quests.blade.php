@@ -2,7 +2,7 @@
 <div class="box box-solid" id="character-quests">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('characters.show.tabs.quests') }}
+            {{ __('entities.quests') }}
         </h3>
     </div>
     <div class="box-body">

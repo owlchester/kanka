@@ -1,19 +1,19 @@
 
 
 <template>
-    <div class="ability">
+    <div class="ability" v-bind:data-tags="ability.class">
         <div class="box box-solid">
             <div class="box-header with-border">
                 <span class="box-title">
-                    <dropdown tag="a" menu-left class="message-options" v-if="permission">
-                        <a class="dropdown-toggle" role="button">
+                    <span v-bind:class="dropdownClass()" v-click-outside="onClickOutside" v-if="permission">
+                        <a v-on:click="openDropdown()" class="dropdown-toggle mr-2" role="button">
                             <i class="fa-solid fa-lock" v-if="ability.visibility_id === 2" v-bind:title="translate('admin')"></i>
                             <i class="fa-solid fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="translate('admin-self')"></i>
                             <i class="fa-solid fa-users" v-if="ability.visibility_id === 5" v-bind:title="translate('members')"></i>
                             <i class="fa-solid fa-user-secret" v-if="ability.visibility_id === 4" v-bind:title="translate('self')"></i>
                             <i class="fa-solid fa-eye" v-if="ability.visibility_id === 1" v-bind:title="translate('all')"></i>
                         </a>
-                        <template slot="dropdown">
+                        <ul class="dropdown-menu" role="menu">
                             <li>
                                 <a role="button" v-on:click="setVisibility(1)">{{ translate('all') }}</a>
                             </li>
@@ -29,8 +29,8 @@
                             <li v-if="this.isSelf">
                                 <a role="button" v-on:click="setVisibility(3)">{{ translate('admin-self') }}</a>
                             </li>
-                        </template>
-                    </dropdown>
+                        </ul>
+                    </span>
                     <a role="button" v-on:click="showAbility(ability)" data-toggle="tooltip-ajax"
                        v-bind:data-id="ability.entity.id" v-bind:data-url="ability.entity.tooltip">
                       {{ ability.name }}
@@ -99,7 +99,7 @@
 </template>
 
 <script>
-    import Event from '../event.js';
+    import vClickOutside from "click-outside-vue3";
 
     export default {
         props: [
@@ -108,10 +108,14 @@
             'meta',
             'trans',
         ],
+        directives: {
+            clickOutside: vClickOutside.directive
+        },
 
         data() {
             return {
                 details: false,
+                openedDropdown: false
             }
         },
 
@@ -140,7 +144,7 @@
                 this.details = !this.details;
             },
             deleteAbility: function(ability) {
-                Event.$emit('delete_ability', ability);
+                this.emitter.emit('delete_ability', ability);
             },
             updateAbility: function(ability) {
                 axios.get(ability.actions.edit).then(response => {
@@ -158,7 +162,7 @@
                 };
                 axios.patch(this.ability.actions.update, data).then(response => {
                     this.ability.visibility_id = visibility_id;
-                    Event.$emit('edited_ability', ability);
+                    this.emitter.emit('edited_ability', ability);
                 })
                 .catch(() => {
 
@@ -183,7 +187,17 @@
             },
             translate(key) {
                 return this.trans[key] ?? 'unknown';
-            }
+            },
+            dropdownClass() {
+                return this.openedDropdown ? 'open dropdown' : 'dropdown';
+            },
+            openDropdown() {
+                return this.openedDropdown = true;
+            },
+            onClickOutside (event) {
+                //console.log('Clicked outside. Event: ', event)
+                this.openedDropdown = false;
+            },
         },
     }
 </script>

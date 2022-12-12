@@ -15,6 +15,15 @@ __('timelines/eras.create.title')
 ])
 @inject('campaignService', 'App\Services\CampaignService')
 @section('content')
+    @include('partials.errors')
+
+    {!! Form::open([
+        'route' => ['timelines.timeline_eras.store', $timeline],
+        'method' => 'POST',
+        'id' => 'timeline-era-form',
+        'class' => 'ajax-subform',
+        'data-shortcut' => 1
+    ]) !!}
     <div class="panel panel-default">
         @if ($ajax)
             <div class="panel-heading">
@@ -26,24 +35,24 @@ __('timelines/eras.create.title')
             </div>
         @endif
         <div class="panel-body">
-            @include('partials.errors')
-
-            {!! Form::open(['route' => ['timelines.timeline_eras.store', $timeline], 'method' => 'POST', 'id' => 'timeline-era-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform']) !!}
             @include('timelines.eras._form', ['model' => null])
+        </div>
+        <div class="panel-footer">
 
-            <div class="form-era">
+            @include('partials.footer_cancel', ['ajax' => null])
+
+            <div class="form-era pull-right">
                 <div class="submit-group">
-                    <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                    @includeWhen(!request()->ajax(), 'partials.or_cancel')
+                    <button class="btn btn-success">{{ __('crud.save') }}</button>
                 </div>
                 <div class="submit-animation" style="display: none;">
                     <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
-            @if (!empty($from))
-                <input type="hidden" name="from" value="{{ $from }}">
-            @endif
-            {!! Form::close() !!}
         </div>
     </div>
+    @if (!empty($from))
+        <input type="hidden" name="from" value="{{ $from }}">
+    @endif
+    {!! Form::close() !!}
 @endsection

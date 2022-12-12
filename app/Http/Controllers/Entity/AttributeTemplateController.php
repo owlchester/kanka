@@ -61,7 +61,19 @@ class AttributeTemplateController extends Controller
         if (!$templateName) {
             return redirect()->back()->with('error', __('entities/attributes.template.error'));
         }
-
+        if ($request->has('submit-story')) {
+            return redirect()
+                ->route($entity->pluralType() . '.show', $entity->child)
+                ->with('success', __('entities/attributes.template.success', [
+                    'name' => $templateName, 'entity' => $entity->child->name
+                ]));
+        } elseif ($request->has('submit-update')) {
+            return redirect()
+                ->route('entities.attributes.edit', $entity)
+                ->with('success', __('entities/attributes.template.success', [
+                    'name' => $templateName, 'entity' => $entity->child->name
+                ]));
+        }
         return redirect()
             ->route('entities.attributes', $entity)
             ->with('success', __('entities/attributes.template.success', [

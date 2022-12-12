@@ -3,7 +3,7 @@
 {!! Form::open(['route' => ['entities.attributes.live.save', $entity, $attribute]]) !!}
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel">{{ __('entities/attributes.live.title', ['attribute' => $attribute->name]) }}</h4>
+    <h4 class="modal-title" id="myModalLabel">{!! __('entities/attributes.live.title', ['attribute' => $attribute->name()]) !!}</h4>
 </div>
 <div class="modal-header">
     <div class="form-group">
@@ -16,12 +16,13 @@
     @elseif ($attribute->isNumber())
         <input type="number" name="value" class="form-control" maxlength="20" value="{{ $attribute->value }}"
         @if ($attribute->validConstraints()) max="{{ $attribute->numberMax() }}" min="{{ $attribute->numberMin() }}" @endif />
-    @elseif (false && $attribute->validConstraints())
+    @elseif ($attribute->validConstraints())
         <select name="value" class="form-control">
             @foreach ($attribute->listRange() as $option)
                 <option value="{{ $option }}" @if ($option == $attribute->value) selected="selected" @endif>{{ $option }}</option>
             @endforeach
         </select>
+        <p class="help-block">{{ __('entities/attributes.ranges.text', ['options' => $attribute->listRangeText()]) }}</p>
     @else
         <input type="text" name="value" class="form-control" maxlength="191" value="{{ $attribute->value }}" />
     @endif

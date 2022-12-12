@@ -251,6 +251,11 @@ class BulkService
             $filledFields['is_private'] = $fields['is_private'] === "0";
         }
 
+        // Active
+        if (isset($fields['is_active']) && $fields['is_active'] !== null) {
+            $filledFields['is_active'] = $fields['is_active'] === "1";
+        }
+
         // List of fields that can have +/- math operations, like a character's age
         $maths = $bulk->maths();
 

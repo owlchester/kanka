@@ -13,7 +13,7 @@
 
     <div class="entity-story-block">
 
-        @include('entities.components.notes')
+        @include('entities.components.posts')
 
         <div class="box box-solid">
                 @include('dice_rolls._results')

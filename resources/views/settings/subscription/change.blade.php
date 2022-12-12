@@ -1,13 +1,13 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <h4 class="modal-title" id="newEntityModalLabel">
-        {{ __('settings.subscription.change.title') }}
-    </h4>
-</div>
+
 
 <div class="modal-body">
+    @include('partials.modals.close')
+    <div class="quick-creator-header">
+        <div class="qq-entity-type">
+            {{ __('settings.subscription.change.title') }}
+        </div>
+    </div>
+
     @if (!$cancel)
         <h4>{!! __('settings.subscription.change.text.' . $period, ['tier' => "<strong>$tier</strong>", 'amount' => "<strong>$amount</strong>"]) !!}</h4>
     @else

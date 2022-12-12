@@ -4,7 +4,7 @@
     'breadcrumbs' => [
         ['url' => route('characters.index'), 'label' => __('entities.characters')],
         ['url' => route('characters.show', $model), 'label' => $model->name],
-        trans('characters.show.tabs.quests')
+        trans('entities.quests')
     ],
     'mainTitle' => false,
     'miscModel' => $model,

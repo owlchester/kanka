@@ -2,8 +2,8 @@
 
 return [
     'actions'       => [
-        'enter-edit-mode'   => 'Редактирование',
-        'exit-edit-mode'    => 'Исследование',
+        'enter-edit-mode'   => 'Редактировать',
+        'exit-edit-mode'    => 'Исследовать',
         'finish-drawing'    => 'Закончить рисовать фигуру',
     ],
     'notifications' => [

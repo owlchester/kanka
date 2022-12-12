@@ -20,6 +20,7 @@ return [
         'success'   => 'Štýl :name odstránený.',
     ],
     'errors'    => [
+        'max_content'   => 'CSS pravidlo nemôže mať viac ako :amount znakov.',
         'max_reached'   => 'Dosiahnutý max. počet štýlov (:max).',
     ],
     'fields'    => [

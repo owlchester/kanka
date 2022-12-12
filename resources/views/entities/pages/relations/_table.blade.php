@@ -11,7 +11,7 @@
         </th>
         <th class="avatar"><br></th>
         <th>
-            {{ __('crud.relations.fields.name') }}
+            {{ __('crud.fields.name') }}
         </th>
         <th class="hidden-xs hidden-sm">
             {{ __('entities.location') }}

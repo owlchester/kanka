@@ -39,22 +39,25 @@ $statuses = [
     {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
 </div>
 
-
-<div class="form-group">
-    <label>
-        {{ __('organisations.members.fields.status') }}
-    </label>
-    {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>
+                {{ __('organisations.members.fields.status') }}
+            </label>
+            {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>
+                {{ __('organisations.members.fields.pinned') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
+            </label>
+            {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
 </div>
-
-<div class="form-group">
-    <label>
-        {{ __('organisations.members.fields.pinned') }}
-        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
-    </label>
-    {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
-</div>
-
 
 
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])
