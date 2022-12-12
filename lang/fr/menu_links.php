@@ -9,6 +9,7 @@ return [
         'title' => 'Lien de menu :name',
     ],
     'fields'            => [
+        'active'            => 'Actif',
         'dashboard'         => 'Tableau de bord',
         'default_dashboard' => 'Tableau de bord par défaut',
         'entity'            => 'Entité',
@@ -22,6 +23,7 @@ return [
         'type'              => 'Entité Type',
     ],
     'helpers'           => [
+        'active'            => 'Les liens rapides inactifs ne s\'affichent pas dans la navigation.',
         'dashboard'         => 'Mettre en place le lien de menu pour aller à un tableau de bord de la campagne. Cette fonctionnalité n\'est que disponible pour les :boosted.',
         'default_dashboard' => 'Lien vers le tableau de bord par défaut de la campagne. Un tableau de bord personnalisé doit encore être sélectionné.',
         'entity'            => 'Mettre en place ce lien de menu pour aller directement sur une entité. Le champ :tab contrôle quel onglet est ouvert. Le champ :menu contrôle quel sous-menu est affiché.',

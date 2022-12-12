@@ -19,8 +19,8 @@ return [
     ],
     'members'       => [
         'actions'       => [
-            'add'   => 'Add a member',
-            'submit' => 'Add member',
+            'add'       => 'Add a member',
+            'submit'    => 'Add member',
         ],
         'create'        => [
             'success'   => 'Member added to the organisation.',

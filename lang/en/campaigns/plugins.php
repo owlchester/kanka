@@ -36,8 +36,8 @@ return [
         'invalid_plugin'    => 'Invalid plugin.',
     ],
     'fields'        => [
-        'obsolete'  => 'This plugin has been marked as obsolete by the Kanka team, meaning it no longer works as originally intended by its creator.',
         'name'      => 'Plugin name',
+        'obsolete'  => 'This plugin has been marked as obsolete by the Kanka team, meaning it no longer works as originally intended by its creator.',
         'status'    => 'Status',
         'type'      => 'Plugin type',
     ],

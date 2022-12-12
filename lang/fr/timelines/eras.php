@@ -4,6 +4,9 @@ return [
     'actions'       => [
         'add'   => 'Ajouter une ère',
     ],
+    'bulks'         => [
+        'delete'    => '{0} :count ère supprimée.|{1} :count ère supprimée.|[2,*] :count ères supprimées.',
+    ],
     'create'        => [
         'success'   => 'L\'ère :name a été créée.',
         'title'     => 'Nouvelle ère',

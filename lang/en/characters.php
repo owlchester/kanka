@@ -53,8 +53,8 @@ return [
     ],
     'organisations' => [
         'actions'       => [
-            'add'   => 'Add an organisation',
-            'submit' => 'Add organisation',
+            'add'       => 'Add an organisation',
+            'submit'    => 'Add organisation',
         ],
         'create'        => [
             'success'   => 'Character added to organisation.',

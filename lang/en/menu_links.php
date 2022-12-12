@@ -22,7 +22,7 @@ return [
         'type'              => 'Entity List',
     ],
     'helpers'           => [
-        'active'            => 'Inactive quick links wont appear in the sidebar.',
+        'active'            => 'Inactive quick links won\'t appear in the sidebar.',
         'dashboard'         => 'Have the quick link target one of the campaign\'s custom dashboards.',
         'default_dashboard' => 'Link to the campaign\'s default dashboard instead. A custom dashboard still needs to be selected.',
         'entity'            => 'Set up this quick link to go directly to an entity. The :menu field controls which subpage of the entity is opened.',

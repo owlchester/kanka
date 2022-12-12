@@ -75,9 +75,9 @@ return [
     'setup'         => [
         'actions'   => [
             'add'               => 'Add a widget',
-            'new'               => 'New :type widget',
             'back_to_dashboard' => 'Back to dashboard',
             'edit'              => 'Edit a widget',
+            'new'               => 'New :type widget',
         ],
         'reorder'   => [
             'success'   => 'Widgets reordered.',

@@ -29,7 +29,7 @@ return [
         'is_collapsed'  => 'Era is collapsed (minimised) by default.',
         'primary'       => 'Separate your timeline into eras. A timeline needs at least one era to properly work.',
     ],
-    'index' => [
+    'index'         => [
         'title' => 'Eras of :name',
     ],
     'placeholders'  => [

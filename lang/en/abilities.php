@@ -35,16 +35,16 @@ return [
         'name'      => 'Fireball, Alert, Cunning Strike',
         'type'      => 'Spell, Feat, Attack',
     ],
+    'reorder'       => [
+        'parentless'    => 'No Parent',
+        'success'       => 'Abilities successfully reordered.',
+        'title'         => 'Reorder the abilities',
+    ],
     'show'          => [
         'tabs'  => [
             'abilities' => 'Sub abilities',
             'entities'  => 'Entities',
             'reorder'   => 'Reorder Abilities',
         ],
-    ],
-    'reorder'       => [
-        'title' => 'Reorder the abilities',
-        'parentless' => 'No Parent',
-        'success' => 'Abilities succesfully reordered',
     ],
 ];
