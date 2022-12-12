@@ -6,40 +6,46 @@
  * Conversations
  */
 .box-conversation {
-  .box-comments {
-    max-height: 65vh;
-    overflow: auto;
-    background-color: unset;
-    .box-comment {
-      padding: 3px 8px;
-      background-color: var(--conversation-comment-background);
-      border-bottom: none;
+    .box-comments {
+        max-height: 65vh;
+        overflow: auto;
+        background-color: unset;
 
-      .message-options {
-        display: none;
-      }
-      .comment-text {
-        margin-left: 0;
-      }
+        .box-comment {
+            padding: 3px 8px;
+            background-color: var(--conversation-comment-background);
+            border-bottom: none;
 
-      &:hover {
-        .message-options {
-          display: inline-block;
+            .message-options {
+                display: none;
+
+                .dropdown {
+                    position: relative;
+                }
+            }
+
+            .comment-text {
+                margin-left: 0;
+            }
+
+            &:hover {
+                .message-options {
+                    display: inline-block;
+                }
+            }
         }
-      }
+
+        .message-first {
+            margin-top: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
     }
 
-    .message-first {
-      margin-top: 5px;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
+    .load-more {
+        margin: 10px 55px;
+        cursor: pointer;
+        text-align: center;
     }
-  }
-
-  .load-more {
-    margin: 10px 55px;
-    cursor: pointer;
-    text-align: center;
-  }
 }
 

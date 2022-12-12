@@ -39,8 +39,8 @@
                  :trans="json_trans">
         </ability>
 
-        <ability_form :trans="json_trans">
-        </ability_form>
+        <AbilityForm :trans="json_trans">
+        </AbilityForm>
 
         <div v-if="waiting" class="box-waiting">
             <i class="fa-solid fa-spin fa-spinner fa-4x"></i>
@@ -50,7 +50,9 @@
 
 
 <script>
-    import Event from '../event.js';
+    import Ability from "./Ability";
+    import Parent from "./Parent";
+    import AbilityForm from "./AbilityForm";
 
     export default {
         props: [
@@ -59,6 +61,11 @@
             'permission',
             'trans',
         ],
+        components: {
+            Ability,
+            AbilityForm,
+            Parent
+        },
 
         data() {
             return {
@@ -100,7 +107,7 @@
              * Add an ability
              */
             addAbility: function() {
-                Event.$emit('add_ability', this.meta.add_url);
+                this.emitter.emit('add_ability', this.meta.add_url);
             },
 
             /**
@@ -128,12 +135,12 @@
         mounted() {
             this.getAbilities();
 
-            Event.$on('click_parent', (parent) => {
+            this.emitter.on('click_parent', (parent) => {
                 this.parent = parent;
                 this.showParent(parent);
             });
 
-            Event.$on('delete_ability', (ability) => {
+            this.emitter.on('delete_ability', (ability) => {
                 this.deleteAbility(ability);
             });
             this.json_trans = JSON.parse(this.trans);

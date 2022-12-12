@@ -2435,6 +2435,9 @@ img.note-float-left {
 .box-conversation .box-comments .box-comment .message-options {
   display: none;
 }
+.box-conversation .box-comments .box-comment .message-options .dropdown {
+  position: relative;
+}
 .box-conversation .box-comments .box-comment .comment-text {
   margin-left: 0;
 }

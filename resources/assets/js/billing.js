@@ -1,7 +1,5 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
+const app = createApp({})
 
-Vue.component('billing-management', require('./components/subscription/BillingManagement.vue').default);
-
-const app = new Vue({
-    el: '#billing',
-});
+app.component('billing-management', require('./components/subscription/BillingManagement.vue').default)
+app.mount('#billing');

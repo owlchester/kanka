@@ -1,14 +1,18 @@
 <template>
     <div v-bind:class="boxClasses(message)">
-        <span class="message-time text-right pull-right">
-            <dropdown tag="a" menu-right class="message-options" v-if="message.can_delete">
-                <a class="dropdown-toggle" role="button"><span class="caret"></span></a>
-                <template slot="dropdown">
-                  <li><a role="button" v-on:click="editMessage(message)">{{ translate('edit') }}</a></li>
-                  <li><a role="button" v-on:click="deleteMessage(message)">{{ translate('remove') }}</a></li>
-                </template>
-            </dropdown><br />
-        </span>
+        <div class="message-time text-right pull-right">
+            <div class="message-options" v-if="message.can_delete">
+                <div v-bind:class="dropdownClass()" v-click-outside="onClickOutside">
+                    <a v-on:click="openDropdown()" role="button">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li><a role="button" v-on:click="editMessage(message)">{{ translate('edit') }}</a></li>
+                        <li><a role="button" v-on:click="deleteMessage(message)">{{ translate('remove') }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <div class="message-author" v-if="!message.group">
           <strong class="user" v-if="isUser">{{ message.user }}</strong>
@@ -29,17 +33,23 @@
 </template>
 
 <script>
-    import Event from '../event.js';
-
+    import vClickOutside from "click-outside-vue3"
     /**
      * Don't do any of the heavy lifting here, just send some events to Messages for figuring stuff out
      */
     export default {
+        directives: {
+            clickOutside: vClickOutside.directive
+        },
         props: [
             'message',
             'trans',
         ],
-
+        data() {
+            return {
+                openedDropdown: false
+            }
+        },
         computed: {
             isUser: function() {
                 return this.message.user !== null;
@@ -51,13 +61,19 @@
 
         methods: {
             deleteMessage: function(message) {
-                Event.$emit('delete_message', message);
+                this.emitter.emit('delete_message', message);
             },
             editMessage: function(message) {
-                Event.$emit('edit_message', message);
+                this.emitter.emit('edit_message', message);
             },
             translate(key) {
                 return this.trans[key] ?? 'unknown';
+            },
+            dropdownClass() {
+                return this.openedDropdown ? 'open dropdown' : 'dropdown';
+            },
+            openDropdown() {
+                return this.openedDropdown = true;
             },
             boxClasses: function (message) {
                 let classes = 'box-comment';
@@ -70,7 +86,11 @@
                     classes += ' message-first'
                 }
                 return classes;
-            }
+            },
+            onClickOutside (event) {
+                //console.log('Clicked outside. Event: ', event)
+                this.openedDropdown = false;
+            },
         },
     }
 </script>

@@ -17,8 +17,6 @@
 </template>
 
 <script>
-    import Event from '../event.js';
-
     export default {
         props: [
             'ability'
@@ -43,12 +41,12 @@
 
         methods: {
             click: function(ability) {
-                Event.$emit('click_parent', this.active ? null : ability);
+                this.emitter.emit('click_parent', this.active ? null : ability);
             },
         },
 
         mounted() {
-            Event.$on('click_parent', (ab) => {
+            this.emitter.on('click_parent', (ab) => {
                 this.active = ab && ab.id === this.ability.id;
             });
         }

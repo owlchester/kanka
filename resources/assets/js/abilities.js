@@ -1,10 +1,8 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
+import mitt from 'mitt'
 
-Vue.component('abilities', require('./components/abilities/Abilities.vue').default);
-Vue.component('ability', require('./components/abilities/Ability.vue').default);
-Vue.component('ability_form', require('./components/abilities/AbilityForm.vue').default);
-Vue.component('parent', require('./components/abilities/Parent.vue').default);
-
-const app = new Vue({
-    el: '#abilities',
-});
+const emitter = mitt()
+const app = createApp({})
+app.config.globalProperties.emitter = emitter
+app.component('abilities', require('./components/abilities/Abilities.vue').default)
+app.mount('#abilities');

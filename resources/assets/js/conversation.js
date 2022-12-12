@@ -1,11 +1,8 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
+import mitt from 'mitt'
 
-Vue.component('conversation', require('./components/conversation/Conversation.vue').default);
-Vue.component('conversation-messages', require('./components/conversation/Messages.vue').default);
-Vue.component('conversation-message', require('./components/conversation/Message.vue').default);
-Vue.component('conversation-form', require('./components/conversation/Form.vue').default);
-
-// Translations
-const app = new Vue({
-    el: '#conversation',
-});
+const emitter = mitt()
+const app = createApp({})
+app.config.globalProperties.emitter = emitter
+app.component('conversation', require('./components/conversation/Conversation.vue').default)
+app.mount('#conversation');

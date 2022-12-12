@@ -54,21 +54,17 @@
                             <div id="card-element">
 
                             </div>
-                        </div>
-                        <div class="box-footer">
-                            <div class="pull-right">
-                                <button class="btn btn-primary mt-3" id="add-card-button" v-on:click="submitPaymentMethod()" v-show="savePaymentMethodStatus == 0">
-                                    {{ translate('actions.save') }}
-                                </button>
-                                <button class="btn btn-primary" v-show="savePaymentMethodStatus != 0" disabled="disabled">
-                                    <i class="fa-solid fa-spin fa-spinner"></i>
-                                </button>
-                            </div>
-
-
                             <p class="help-block">
                                 {{ translate('helper') }}
                             </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" id="add-card-button" v-on:click="submitPaymentMethod()" v-show="savePaymentMethodStatus == 0">
+                                {{ translate('actions.save') }}
+                            </button>
+                            <button class="btn btn-primary" v-show="savePaymentMethodStatus != 0" disabled="disabled">
+                                <i class="fa-solid fa-spin fa-spinner"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
