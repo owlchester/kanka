@@ -57,6 +57,7 @@
   --code-text: #c7254e;
   --pre-background: #f9f9f9;
   --pre-text: #333;
+  --boosted: #D81B60;
 }
 
 body {
@@ -4998,6 +4999,16 @@ body.ab-testing-second .ab-testing-a {
 .form-floating > .form-control:-webkit-autofill ~ label {
   opacity: 0.65;
   transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .list-none {

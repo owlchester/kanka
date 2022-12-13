@@ -10,9 +10,7 @@ use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Models\Pledge;
 use App\Notifications\Header;
-use App\Services\CampaignLocalization;
 use App\User;
-use Illuminate\Support\Str;
 
 class NavigationService
 {
@@ -61,13 +59,20 @@ class NavigationService
                 'tier' => $this->user->pledge,
                 'created' => __('users/profile.fields.subscriber_since', ['date' => $this->user->subscription('kanka')->created_at->format('M d, Y')]),
                 'image' => 'https://kanka-app-assets.s3.amazonaws.com/images/tiers/' . strtolower($this->user->pledge) . '-325.png',
-                'boosters' => __('settings/boosters.available', ['amount' => $this->user->availableBoosts()]),
+                'boosters' => __('settings/boosters.available', [
+                    'amount' => $this->user->availableBoosts(),
+                    'total' => $this->user->maxBoosts()
+                ]),
             ];
         } else {
             $data['subscription'] = [
                 'tier' => Pledge::KOBOLD,
                 'image' => 'https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png',
-                'call_to_action' => __('Subscriptions start at USD 5.00 per month')
+                //'call_to_action' => __('Subscriptions start at USD 5.00 per month')
+                'call_to_action' => __('settings/boosters.available', [
+                    'amount' => 0,
+                    'total' => 0
+                ]),
             ];
         }
         $data['subscription']['title'] = __('settings.menu.subscription');
@@ -119,13 +124,14 @@ class NavigationService
 
         $data['urls'] = [
             'new' => route('start'),
-            'reorganise' => route('settings.appearance', ['focus' => 'campaign-switcher']),
+            'reorder' => route('settings.appearance', ['highlight' => 'campaign-switcher']),
         ];
         $data['texts'] = [
             'new' => __('sidebar.campaign_switcher.new_campaign'),
             'campaigns' => __('sidebar.campaign_switcher.created_campaigns'),
-            'followed' => __('sidebar.campaign_switcher.public_campaigns'),
-            'reorganise' => __('sidebar.campaign_switcher.reorganise'),
+            'followed' => __('sidebar.campaign_switcher.followed_campaigns'),
+            'featured' => __('front.campaigns.featured.title'),
+            'reorder' => __('sidebar.campaign_switcher.reorder'),
             'count' => __('sidebar.campaign_switcher.count', [
                 'member' => $member
             ]),
@@ -158,9 +164,12 @@ class NavigationService
                 }
             }
             $messages[] = [
+                'id' => $not->id,
                 'icon' => $not->data['icon'],
                 'text' => __('notifications.' . $not->data['key'], $not->data['params']),
                 'url' => $url,
+                'dismiss' => route('notifications.read', $not->id),
+                'dismiss_text' => __('header.notifications.dismiss'),
                 'is_read' => $not->read(),
             ];
         }
@@ -222,7 +231,8 @@ class NavigationService
                     'url' => $release->link,
                     'title' => $release->name,
                     'text' => $release->excerpt,
-                    'dismiss' => route('settings.release', $release)
+                    'dismiss' => route('settings.release', $release->id),
+                    'dismiss_text' => __('header.notifications.dismiss'),
                 ];
             }
         }

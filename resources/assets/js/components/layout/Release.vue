@@ -1,16 +1,17 @@
 <template>
-    <a :class="backgroundClass(release)" v-bind:href="release.link" v-if="!is_dismissed">
+    <div :class="backgroundClass(release)" v-if="!is_dismissed" :data-id="release.id">
         <div class="flex-grow p-2">
-            <strong>{{ release.title }}</strong>
-            <p>{{ release.text }}</p>
+            <a v-html="release.title" class="title cursor block w-full" v-bind:href="release.url" target="_blank"></a>
+            <p v-html="release.text"></p>
         </div>
-        <div class="flex-none p-2">
-            <a v-on:click="dismiss(release)" class="cursor" aria-label="Dismiss" v-if="!this.is_loading">
-                <i class="fa-solid fa-times" aria-hidden="true"></i>
-            </a>
-            <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" v-else></i>
+        <div class="flex-none p-2 cursor dismissable" v-on:click="dismiss(release)" v-if="!this.is_loading" :title="release.dismiss_text">
+            <i class="fa-solid fa-times" aria-hidden="true"></i>
         </div>
-    </a>
+        <div class="flex-none p-2" v-else>
+            <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+        </div>
+
+    </div>
 </template>
 
 
@@ -27,7 +28,7 @@ export default {
     },
     methods: {
         backgroundClass: function(release) {
-            let css = 'release flex justify-center items-center mb-2 px-2 py-2';
+            let css = 'release background-accent flex justify-center items-center mb-2 px-2 py-2 ';
             return css;
         },
         dismiss: function(release) {

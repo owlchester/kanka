@@ -114,6 +114,9 @@
   --tinymce-input-background: var(--theme-background);
   --tinymce-input-border: var(--theme-border);
   --tinymce-input-text: var(--theme-main-text);
+  --notification-accent: var(--conversation-comment-background);
+  --header-mode-inactive: var(--notification-accent);
+  --campaign-switcher-text: var(--theme-input-text);
 }
 
 /*# sourceMappingURL=dark.css.map*/

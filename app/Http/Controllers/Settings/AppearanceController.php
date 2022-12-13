@@ -27,8 +27,10 @@ class AppearanceController extends Controller
      */
     public function index()
     {
+        $highlight = request()->get('highlight');
         return view('settings.layout')
-            ->with('pagination', $this->service);
+            ->with('pagination', $this->service)
+            ->with('highlight', $highlight);
     }
 
     /**

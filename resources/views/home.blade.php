@@ -97,9 +97,6 @@
 
 
 @section('content')
-
-    @includeWhen(!empty($releases), 'partials.releases')
-
     @if (empty($dashboard))
         @include('dashboard.widgets._campaign')
     @endif

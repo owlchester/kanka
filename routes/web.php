@@ -41,6 +41,7 @@ Route::group([
     // Notification
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
     Route::get('/notifications/refresh', 'NotificationController@refresh')->name('notifications.refresh');
+    Route::post('/notifications/read/{id}', 'NotificationController@read')->name('notifications.read');
     Route::post('/notifications/clear-all', 'NotificationController@clearAll')->name('notifications.clear-all');
 
     // 3rd party

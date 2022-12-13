@@ -98,21 +98,21 @@
                                 <i class="fa-solid fa-palette" aria-hidden="true"></i>
                             </div>
                             <div class="title">{{ marketplace.themes.title }}</div>
-                            <div class="text-sm">{{ marketplace.themes.number }}</div>
+                            <div class="text-muted text-xs">{{ marketplace.themes.number }}</div>
                         </a>
                         <a v-bind:href="marketplace.sheets.url" class="bordered px-5 py-2 text-center  justify-center" target="_blank">
                             <div class="icon rounded-full p-2 mb-1">
                             <i class="fa-solid fa-columns" aria-hidden="true"></i>
                             </div>
                             <div class="title">{{ marketplace.sheets.title }}</div>
-                            <div class="text-sm">{{ marketplace.sheets.number }}</div>
+                            <div class="text-muted text-xs">{{ marketplace.sheets.number }}</div>
                         </a>
                         <a v-bind:href="marketplace.content.url" class="bordered px-5 py-2 text-center  justify-center" target="_blank">
                             <div class="icon rounded-full p-2 mb-1">
                                 <i class="fa-solid fa-dice-d20" aria-hidden="true"></i>
                             </div>
                             <div class="title">{{ marketplace.content.title }}</div>
-                            <div class="text-sm">{{ marketplace.content.number }}</div>
+                            <div class="text-muted text-xs">{{ marketplace.content.number }}</div>
                         </a>
                     </div>
                 </div>
@@ -180,8 +180,8 @@
                         <div class="flex-grow text-uppercase ">{{campaigns.texts.campaigns }}
                         </div>
                         <div class="flex-grow text-right">
-                            <a v-bind:href="campaigns.urls.reorganise">
-                                {{ campaigns.texts.reorganise}}
+                            <a v-bind:href="campaigns.urls.reorder">
+                                {{ campaigns.texts.reorder}}
                             </a>
                         </div>
                     </div>
@@ -192,20 +192,22 @@
                         </Campaign>
 
                         <a v-bind:href="campaigns.urls.new" class="new-campaign text-center bordered">
-                            <span>
+                            <span class="text-xs">
                                 <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                                {{campaigns.texts.new }}
+                                {{ campaigns.texts.new }}
                             </span>
                         </a>
                     </div>
 
                     <div class="following" v-if="!profile.is_impersonating && campaigns.following.length > 0">
                         <hr />
-                        <p class="text-uppercase">{{campaigns.texts.following }}</p>
+                        <p class="text-uppercase">{{campaigns.texts.followed }}</p>
 
-                        <Campaign v-for="campaign in campaigns.following"
-                                  :campaign="campaign">
-                        </Campaign>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+                            <Campaign v-for="campaign in campaigns.following"
+                                      :campaign="campaign">
+                            </Campaign>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -300,12 +302,19 @@ export default {
         },
         readRelease: function(release) {
             let index = this.releases.releases.findIndex(msg => msg.id === release.id);
-            this.releases.releases.splice(index, 1);
+            this.releases.releases.slice(index, 1);
+        },
+        readNotification: function(notification) {
+            let index = this.notifications.messages.findIndex(msg => msg.id == notification.id);
+            this.notifications.messages.slice(index, 1);
         },
     },
     mounted() {
         this.emitter.on('read_release', (release) => {
             this.readRelease(release);
+        });
+        this.emitter.on('read_notification', (notification) => {
+            this.readNotification(notification);
         });
     }
 };

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Notifications\Header;
 use App\User;
 
@@ -31,6 +32,17 @@ class NotificationController extends Controller
         $user->unreadNotifications->markAsRead();
 
         return view('notifications.index', compact('notifications'));
+    }
+
+    public function read($id)
+    {
+        $notification = auth()->user()->notifications()->where('id', $id)->first();
+        if (empty($notification)) {
+            abort(403);
+        }
+
+        $notification->markAsRead();
+        return response()->json(['success' => true]);
     }
 
     /**

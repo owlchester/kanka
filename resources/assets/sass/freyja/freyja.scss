@@ -4,10 +4,15 @@
 //@import "buttons";
 
 :root {
-  --sidebar-background: #333;
-  --sidebar-text: #eee;
-  --sidebar-link: #fff;
-  --campaign-switcher-background: #1F1F1F;
+    --sidebar-background: #333;
+    --sidebar-text: #eee;
+    --sidebar-link: #fff;
+    --campaign-switcher-background: #1F1F1F;
+
+    /** New profile / notification / campaign switcher options **/
+    --notification-accent: var(--conversation-comment-background);
+    --header-mode-inactive: #ececec;
+    --campaign-switcher-text: #1b1b1b;
 }
 
 body, a, h1, h2, h3, h4, h5, h6 {

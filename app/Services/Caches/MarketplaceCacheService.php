@@ -24,13 +24,14 @@ class MarketplaceCacheService extends BaseCache
             2 => 0,
             3 => 0,
         ];
+        $bonus = app()->environment('local') ? 22 : 1;
         $counts = Plugin::where('status_id', 3)
             ->groupBy('type_id')
             ->select('type_id', DB::raw('count(*) as tot'))
             ->get()
             ->toArray();
         foreach ($counts as $type) {
-            $data[$type['type_id']] = $type['tot'];
+            $data[$type['type_id']] = $type['tot'] * $bonus;
         }
 
         Cache::put($key, $data, 24 * 3600);

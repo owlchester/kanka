@@ -70,7 +70,7 @@ body .main-header.main-header-start {
             }
         }
         .inactive {
-            background-color: #ececec;
+            background-color: var(--header-mode-inactive);
             flex: none;
             min-width: 72px;
             text-align: center;
@@ -110,16 +110,15 @@ body .main-header.main-header-start {
             position: relative;
 
             .name {
-                background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 100) 100%);
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--main-navbar-background) 100%);
                 padding: 0.5rem;
-                font-size: 0.8rem;
                 width: 100%;
                 text-align: center;
                 min-height: 50px;
                 align-items: self-end;
                 justify-content: center;
                 display: flex;
-                color: black;
+                color: var(--campaign-switcher-text);
             }
         }
 
@@ -131,13 +130,11 @@ body .main-header.main-header-start {
                 display: block;
                 border-radius: 9999px;
                 --tw-bg-opacity: 1;
-                background-color: #D81B60;
+                background-color: var(--boosted);
                 width: 15px;
                 height: 15px;
                 top: 15px;
                 right: 15px;
-                box-shadow: 0 0 0 2px hsl(42, 48, 60, 0);
-
             }
         }
         .new-campaign {
@@ -166,33 +163,36 @@ body .main-header.main-header-start {
 
         .notification {
             border-radius: 5px;
-            background-color: #f2f2f2;
         }
-        .notification.unread {
-            background-color: #CCE5FF;
+        .background-accent {
+            background-color: var(--notification-accent);
         }
         .release {
             border-radius: 5px;
-            background-color: #CCE5FF;
+
+            .title {
+                font-weight: 700;
+            }
         }
+
 
         .marketplace {
             .icon {
-                color: #004085;
-                background-color: #DEE3F5;
+                color: var(--link-text);
+                background-color: var(--input-border-color);
                 font-size: 1.2rem;
                 aspect-ratio: 1;
                 display: inline-block;
-            }
-            .text-sm {
-                font-size: 0.7rem;
             }
         }
     }
 
     .bordered {
-        border: 1px solid #ccc;
+        border: 1px solid var(--input-border-color);
         border-radius: 5px;
+    }
+    a.bordered:hover {
+        border-color: var(--link-hover);
     }
 }
 .nav-switcher {

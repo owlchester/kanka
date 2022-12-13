@@ -16,7 +16,6 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
             <div class="campaign-block">
                 <div class="campaign-head">
                     <div class="campaign-name">
-                        @if(auth()->check())<i class="fa-solid fa-caret-down pull-right"></i>@endif
                         {!! $currentCampaign->name !!}
                     </div>
 
@@ -26,8 +25,6 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                 </div>
             </div>
         </section>
-
-        @includeWhen(auth()->check(), 'layouts.sidebars.campaign-switcher')
 
         <section class="sidebar" style="height: auto">
             <ul class="sidebar-menu">

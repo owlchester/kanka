@@ -1,6 +1,6 @@
 <template>
     <a :class="campaignClass(campaign)" v-bind:href="campaign.url" v-bind:style="{backgroundImage: backgroundImage(campaign)}">
-        <div class="name">
+        <div class="name text-xs">
         {{ campaign.name }}
         </div>
     </a>

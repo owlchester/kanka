@@ -59,7 +59,7 @@
                     </p>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {{ $highlight === 'campaign-switcher' ? 'alert alert-info' : '' }}">
                     <label>
                         {{ __('profiles.settings.fields.campaign_switcher_order_by') }}
                         <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.appearance.helpers.campaign-order')}}"></i></label>

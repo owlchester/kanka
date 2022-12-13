@@ -5,8 +5,9 @@ return [
     'campaign_switcher' => [
         'created_campaigns' => 'Your Campaigns',
         'new_campaign'      => 'New Campaign',
+        'followed_campaigns'  => 'Followed Campaigns',
         'public_campaigns'  => 'Public Campaigns',
-        'reorganise'        => 'Reorganise',
+        'reorder'           => 'Reorder',
         'count'             => 'Member of :member',
         'updated'           => 'Updated',
     ],

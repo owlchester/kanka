@@ -7,6 +7,7 @@ return [
     'notifications'     => [
         'header'    => 'Notifications',
         'mark_read' => 'Mark all as read',
+        'dismiss' => 'Dismiss',
         'read_all'  => 'View all',
         'no-unread' => 'No unread notifications',
     ],

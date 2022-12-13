@@ -4,14 +4,12 @@
     <section class="sidebar-campaign">
         <div class="campaign-block">
             <div class="campaign-head">
-                <div class="campaign-name" data-toggle="collapse" data-target="#campaign-switcher">
-                    <i class="fa-solid fa-caret-down pull-right"></i>
+                <div class="campaign-name">
                     {{ auth()->user()->name }}
                 </div>
             </div>
         </div>
     </section>
-    @include('layouts.sidebars.campaign-switcher', ['fromSettings' => true])
     <section class="sidebar" style="height: auto">
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="{{ $sidebar->settings('profile') }}">
