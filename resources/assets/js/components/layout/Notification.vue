@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         backgroundClass: function(notification) {
-            let css = 'notification background-accent flex justify-center items-center mb-2 px-2 py-2';
+            let css = 'notification background-accent flex justify-center items-center mb-2 px-2 py-2 rounded-md';
             if (notification.is_read) {
                 return css;
             }

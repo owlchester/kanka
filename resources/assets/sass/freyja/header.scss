@@ -1,124 +1,75 @@
 body .main-header {
-  box-shadow: unset;
+    box-shadow: unset;
 
-  .sidebar-toggle {
-    display: block;
-    text-align: center;
-    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
-  }
-  .navbar {
-    margin-left: $sidebarWidth;
-
-    .dropdown-toggle {
-      height: 50px;
-      img {
-        width: 25px;
-        height: 25px;
-      }
+    .sidebar-toggle {
+        display: block;
+        text-align: center;
+        transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
     }
 
-    .dropdown {
-      .avatar {
-        width: 150px;
-        height: 150px;
-      }
-      .profile-avatar-link {
-        padding: 0;
-      }
+    .navbar {
+        margin-left: $sidebarWidth;
+
+        .dropdown-toggle {
+            height: 50px;
+
+            img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        .dropdown {
+            .avatar {
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-avatar-link {
+                padding: 0;
+            }
+        }
     }
-  }
-  .navbar .navbar-custom-menu .navbar-nav > li > a, .navbar .navbar-right > li > a {
-    border: unset;
-    font-size: 18px;
-  }
-  .navbar .sidebar-toggle {
-    border: unset;
-  }
+
+    .navbar .navbar-custom-menu .navbar-nav > li > a, .navbar .navbar-right > li > a {
+        border: unset;
+        font-size: 18px;
+    }
+
+    .navbar .sidebar-toggle {
+        border: unset;
+    }
 }
 body .main-header.main-header-start {
-  background-color: #fff;
+    background-color: #fff;
 }
+
 .navigation-drawer {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: calc(100% - 50px);
-    height: 100%;
-    overflow-y: auto;
+    width: 82%;
     background-color: var(--main-navbar-background);
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
-    font-size: 0.9rem;
 
-    .content {
-        padding: 0;
-    }
     .header {
-        display: flex;
-        > div {
-            display: inline-block;
-        }
-        .block {
-            flex-grow: 1;
-            padding: 1rem;
-            height: 72px;
-            align-items: center;
-
-            .fa-solid {
-                font-size: 1.2rem;
-            }
-        }
         .inactive {
-            background-color: var(--header-mode-inactive);
-            flex: none;
+            background-color: var(--header-mode-inactive, #ececec);
             min-width: 72px;
-            text-align: center;
-            justify-content: center;
-            cursor: pointer;
         }
 
         .profile-box {
             background-color: #333;
             color: white;
-            border-radius: 5px;
-            padding: 0.6rem 0.8rem;
-            font-weight: 700;
-            font-size: 0.8rem;
-        }
-
-        .username {
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .campaign-icon {
-            height: 3rem;
         }
     }
 
     .campaigns {
-        .campaign, .new-campaign {
-            height: 100px;
-            display: flex;
-            justify-content: center;
-            background-position: center;
-            background-size: cover;
-            align-items: self-end;
-        }
         .campaign {
             background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
-            position: relative;
 
             .name {
                 background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--main-navbar-background) 100%);
-                padding: 0.5rem;
-                width: 100%;
-                text-align: center;
-                min-height: 50px;
-                align-items: self-end;
-                justify-content: center;
-                display: flex;
-                color: var(--campaign-switcher-text);
+                color: var(--campaign-switcher-text, #1b1b1b);
             }
         }
 
@@ -137,84 +88,30 @@ body .main-header.main-header-start {
                 right: 15px;
             }
         }
-        .new-campaign {
-            padding: 0.5rem;
-        }
     }
     .profile {
-        ul {
-            list-style: none;
-            li {
-                a {
-                    width: 100%;
-                    display: block;
-                }
-            }
-        }
-
-        img.tier {
-            width: 60px;
-            height: 60px;
-        }
-        div.tier {
-            font-size: 1.0rem;
-            font-weight: 700;
-        }
-
-        .notification {
-            border-radius: 5px;
-        }
         .background-accent {
             background-color: var(--notification-accent);
         }
-        .release {
-            border-radius: 5px;
-
-            .title {
-                font-weight: 700;
-            }
-        }
-
-
         .marketplace {
             .icon {
                 color: var(--link-text);
                 background-color: var(--input-border-color);
-                font-size: 1.2rem;
                 aspect-ratio: 1;
-                display: inline-block;
             }
         }
     }
-
     .bordered {
         border: 1px solid var(--input-border-color);
-        border-radius: 5px;
     }
     a.bordered:hover {
         border-color: var(--link-hover);
     }
 }
 .nav-switcher {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-
-    .campaigns {
-        font-size: 1.2rem;
-    }
-
-    .campaigns, .profile {
-        display: inline-block;
-        cursor: pointer;
-        padding-top: 14px;
-        padding-bottom: 14px;
-        text-align: center;
-    }
     .profile .profile-box {
-        background-color: #333;
-        color: white;
-        border-radius: 5px;
+        background-color: var(--nav-drawer-profile-background, #333);
+        color: var(--nav-drawer-profile-text, white);
     }
 }
 
@@ -233,20 +130,10 @@ body .main-header.main-header-start {
 }
 
 @media (min-width: 768px) {
-  .sidebar-collapse .main-header .navbar {
-    margin-left: 0;
-  }
-
+    .sidebar-collapse .main-header .navbar {
+        margin-left: 0;
+    }
     .navigation-drawer {
         width: 380px;
-
-        .profile {
-            .marketplace {
-                .icon {
-                    font-size: 1.8rem;
-                    padding: 1.25rem;
-                }
-            }
-        }
     }
 }

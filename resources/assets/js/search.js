@@ -82,14 +82,14 @@ function initLiveSearch() {
     $('.mobile-search').on('click', function(e) {
         e.preventDefault();
         liveSearchForm.removeClass('visible-md').removeClass('visible-lg');
-        $('.navbar-custom-menu').hide();
+        $('.navbar-actions').hide();
         $('#live-search').focus();
     });
 
     liveSearchClose.on('click', function(e) {
         e.preventDefault();
         liveSearchForm.addClass('visible-md').addClass('visible-lg');
-        $('.navbar-custom-menu').show();
+        $('.navbar-actions').show();
     });
 }
 

@@ -2,89 +2,92 @@
  * Paddings
  */
 @for $i from 0 through 20 {
-  $rem: ($i * 0.25) ;
-  .p-#{$i} {
-    padding: $rem + rem;
-  }
-  .py-#{$i} {
-    padding-top: $rem + rem;
-    padding-bottom: $rem + rem;
-  }
-  .px-#{$i} {
-    padding-left: $rem + rem;
-    padding-right: $rem + rem;
-  }
-  .pt-#{$i} {
-    padding-top: $rem + rem;
-  }
-  .pr-#{$i} {
-    padding-right: $rem + rem;
-  }
-  .pb-#{$i} {
-    padding-bottom: $rem + rem;
-  }
-  .pl-#{$i} {
-    padding-left: $rem + rem;
-  }
+    $rem: ($i * 0.25) ;
+    .p-#{$i} {
+        padding: $rem + rem;
+    }
+    .py-#{$i} {
+        padding-top: $rem + rem;
+        padding-bottom: $rem + rem;
+    }
+    .px-#{$i} {
+        padding-left: $rem + rem;
+        padding-right: $rem + rem;
+    }
+    .pt-#{$i} {
+        padding-top: $rem + rem;
+    }
+    .pr-#{$i} {
+        padding-right: $rem + rem;
+    }
+    .pb-#{$i} {
+        padding-bottom: $rem + rem;
+    }
+    .pl-#{$i} {
+        padding-left: $rem + rem;
+    }
 }
 
 /**
  * Margins
  */
 .m-auto {
-  margin: auto;
+    margin: auto;
 }
 .my-auto {
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 .mx-auto {
-  margin-top: auto;
-  margin-bottom: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 @for $i from 0 through 20 {
-  $rem: ($i * 0.25) ;
-  .m-#{$i} {
-    margin: $rem + rem;
-  }
-  .my-#{$i} {
-    margin-top: $rem + rem;
-    margin-bottom: $rem + rem;
-  }
-  .mx-#{$i} {
-    margin-left: $rem + rem;
-    margin-right: $rem + rem;
-  }
-  .mt-#{$i} {
-    margin-top: $rem + rem;
-  }
-  .mr-#{$i} {
-    margin-right: $rem + rem;
-  }
-  .mb-#{$i} {
-    margin-bottom: $rem + rem;
-  }
-  .ml-#{$i} {
-    margin-left: $rem + rem;
-  }
+    $rem: ($i * 0.25) ;
+    .m-#{$i} {
+        margin: $rem + rem;
+    }
+    .my-#{$i} {
+        margin-top: $rem + rem;
+        margin-bottom: $rem + rem;
+    }
+    .mx-#{$i} {
+        margin-left: $rem + rem;
+        margin-right: $rem + rem;
+    }
+    .mt-#{$i} {
+        margin-top: $rem + rem;
+    }
+    .mr-#{$i} {
+        margin-right: $rem + rem;
+    }
+    .mb-#{$i} {
+        margin-bottom: $rem + rem;
+    }
+    .ml-#{$i} {
+        margin-left: $rem + rem;
+    }
 }
 
 .text-vertical {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 /* rounded */
 .rounded-full {
-  border-radius: 9999px;
+    border-radius: 9999px;
+}
+.rounded-md {
+    border-radius: 0.375rem;
 }
 .rounded-lg {
-  border-radius: 0.5rem;
+    border-radius: 0.5rem;
 }
 .rounded-xl {
-  border-radius: 0.75rem;
+    border-radius: 0.75rem;
 }
 .rounded-2xl {
-  border-radius: 1rem;
+    border-radius: 1rem;
 }
 
 

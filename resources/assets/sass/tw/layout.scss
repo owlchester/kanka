@@ -1,0 +1,34 @@
+.relative {
+    position: relative;
+}
+.fixed {
+    position: fixed;
+}
+
+/* Top left bottom right */
+.top-0 {
+    top: 0;
+}
+.right-0 {
+    right: 0;
+}
+.bottom-0 {
+    bottom: 0;
+}
+.left-0 {
+    left: 0;
+}
+
+/** Overflow **/
+.overflow-auto {
+    overflow: auto;
+}
+.overflow-y {
+    overflow-y: auto;
+}
+.overflow-x {
+    overflow-x: auto;
+}
+.overflow-hidden {
+    overflow: hidden;
+}

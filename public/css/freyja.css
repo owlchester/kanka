@@ -394,81 +394,26 @@ body .main-header.main-header-start {
 }
 
 .navigation-drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: calc(100% - 50px);
-  height: 100%;
-  overflow-y: auto;
+  width: 82%;
   background-color: var(--main-navbar-background);
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
   box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
-  font-size: 0.9rem;
-}
-.navigation-drawer .content {
-  padding: 0;
-}
-.navigation-drawer .header {
-  display: flex;
-}
-.navigation-drawer .header > div {
-  display: inline-block;
-}
-.navigation-drawer .header .block {
-  flex-grow: 1;
-  padding: 1rem;
-  height: 72px;
-  align-items: center;
-}
-.navigation-drawer .header .block .fa-solid {
-  font-size: 1.2rem;
 }
 .navigation-drawer .header .inactive {
-  background-color: var(--header-mode-inactive);
-  flex: none;
+  background-color: var(--header-mode-inactive, #ececec);
   min-width: 72px;
-  text-align: center;
-  justify-content: center;
-  cursor: pointer;
 }
 .navigation-drawer .header .profile-box {
   background-color: #333;
   color: white;
-  border-radius: 5px;
-  padding: 0.6rem 0.8rem;
-  font-weight: 700;
-  font-size: 0.8rem;
-}
-.navigation-drawer .header .username {
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-.navigation-drawer .header .campaign-icon {
-  height: 3rem;
-}
-.navigation-drawer .campaigns .campaign, .navigation-drawer .campaigns .new-campaign {
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  background-position: center;
-  background-size: cover;
-  align-items: self-end;
 }
 .navigation-drawer .campaigns .campaign {
   background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
-  position: relative;
 }
 .navigation-drawer .campaigns .campaign .name {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--main-navbar-background) 100%);
-  padding: 0.5rem;
-  width: 100%;
-  text-align: center;
-  min-height: 50px;
-  align-items: self-end;
-  justify-content: center;
-  display: flex;
-  color: var(--campaign-switcher-text);
+  color: var(--campaign-switcher-text, #1b1b1b);
 }
 .navigation-drawer .campaigns .campaign.boosted:before {
   content: "";
@@ -483,70 +428,24 @@ body .main-header.main-header-start {
   top: 15px;
   right: 15px;
 }
-.navigation-drawer .campaigns .new-campaign {
-  padding: 0.5rem;
-}
-.navigation-drawer .profile ul {
-  list-style: none;
-}
-.navigation-drawer .profile ul li a {
-  width: 100%;
-  display: block;
-}
-.navigation-drawer .profile img.tier {
-  width: 60px;
-  height: 60px;
-}
-.navigation-drawer .profile div.tier {
-  font-size: 1rem;
-  font-weight: 700;
-}
-.navigation-drawer .profile .notification {
-  border-radius: 5px;
-}
 .navigation-drawer .profile .background-accent {
   background-color: var(--notification-accent);
-}
-.navigation-drawer .profile .release {
-  border-radius: 5px;
-}
-.navigation-drawer .profile .release .title {
-  font-weight: 700;
 }
 .navigation-drawer .profile .marketplace .icon {
   color: var(--link-text);
   background-color: var(--input-border-color);
-  font-size: 1.2rem;
   aspect-ratio: 1;
-  display: inline-block;
 }
 .navigation-drawer .bordered {
   border: 1px solid var(--input-border-color);
-  border-radius: 5px;
 }
 .navigation-drawer a.bordered:hover {
   border-color: var(--link-hover);
 }
 
-.nav-switcher {
-  display: flex;
-  align-items: center;
-  justify-items: center;
-}
-.nav-switcher .campaigns {
-  font-size: 1.2rem;
-}
-.nav-switcher .campaigns, .nav-switcher .profile {
-  display: inline-block;
-  cursor: pointer;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  text-align: center;
-}
 .nav-switcher .profile .profile-box {
-  background-color: #333;
-  color: white;
-  border-radius: 5px;
+  background-color: var(--nav-drawer-profile-background, #333);
+  color: var(--nav-drawer-profile-text, white);
 }
 
 /** Mobile **/
@@ -568,10 +467,6 @@ body .main-header.main-header-start {
   .navigation-drawer {
     width: 380px;
   }
-  .navigation-drawer .profile .marketplace .icon {
-    font-size: 1.8rem;
-    padding: 1.25rem;
-  }
 }
 :root {
   --sidebar-background: #333;
@@ -580,8 +475,6 @@ body .main-header.main-header-start {
   --campaign-switcher-background: #1F1F1F;
   /** New profile / notification / campaign switcher options **/
   --notification-accent: var(--conversation-comment-background);
-  --header-mode-inactive: #ececec;
-  --campaign-switcher-text: #1b1b1b;
 }
 
 body, a, h1, h2, h3, h4, h5, h6 {

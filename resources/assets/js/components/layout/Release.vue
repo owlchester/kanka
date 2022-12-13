@@ -1,7 +1,7 @@
 <template>
     <div :class="backgroundClass(release)" v-if="!is_dismissed" :data-id="release.id">
         <div class="flex-grow p-2">
-            <a v-html="release.title" class="title cursor block w-full" v-bind:href="release.url" target="_blank"></a>
+            <a v-html="release.title" class="font-bold cursor block w-full" v-bind:href="release.url" target="_blank"></a>
             <p v-html="release.text"></p>
         </div>
         <div class="flex-none p-2 cursor dismissable" v-on:click="dismiss(release)" v-if="!this.is_loading" :title="release.dismiss_text">
@@ -28,7 +28,7 @@ export default {
     },
     methods: {
         backgroundClass: function(release) {
-            let css = 'release background-accent flex justify-center items-center mb-2 px-2 py-2 ';
+            let css = 'release background-accent flex justify-center items-center mb-2 px-2 py-2  rounded-md';
             return css;
         },
         dismiss: function(release) {
