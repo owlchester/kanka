@@ -17,7 +17,7 @@ export default {
             return campaign.image ? 'url(' + campaign.image + ')' : '';
         },
         campaignClass: function(campaign) {
-            return 'campaign bordered' + (campaign.is_boosted ? ' boosted' : null)
+            return 'campaign bordered' + (campaign.is_boosted ? ' boosted' : '')
         }
     },
 }

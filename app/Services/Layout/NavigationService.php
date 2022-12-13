@@ -118,12 +118,14 @@ class NavigationService
         }
 
         $data['urls'] = [
-            'new' => route('start')
+            'new' => route('start'),
+            'reorganise' => route('settings.appearance', ['focus' => 'campaign-switcher']),
         ];
         $data['texts'] = [
             'new' => __('sidebar.campaign_switcher.new_campaign'),
             'campaigns' => __('sidebar.campaign_switcher.created_campaigns'),
             'followed' => __('sidebar.campaign_switcher.public_campaigns'),
+            'reorganise' => __('sidebar.campaign_switcher.reorganise'),
             'count' => __('sidebar.campaign_switcher.count', [
                 'member' => $member
             ]),

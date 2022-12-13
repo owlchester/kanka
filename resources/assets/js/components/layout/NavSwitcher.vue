@@ -175,9 +175,18 @@
             </div>
             <div class="campaigns p-5" v-else>
                 <div v-if="!profile.is_impersonating">
-                    <p class="text-uppercase">{{campaigns.texts.campaigns }}</p>
 
-                    <div class="grid grid-cols-3 gap-5">
+                    <div class="flex w-full py-2">
+                        <div class="flex-grow text-uppercase ">{{campaigns.texts.campaigns }}
+                        </div>
+                        <div class="flex-grow text-right">
+                            <a v-bind:href="campaigns.urls.reorganise">
+                                {{ campaigns.texts.reorganise}}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
                         <Campaign v-for="campaign in campaigns.member"
                                   :campaign="campaign">
                         </Campaign>

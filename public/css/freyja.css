@@ -392,7 +392,7 @@ body .main-header.main-header-start {
   position: fixed;
   top: 0;
   right: 0;
-  width: 380px;
+  width: calc(100% - 50px);
   height: 100%;
   overflow-y: auto;
   background-color: var(--main-navbar-background);
@@ -447,6 +447,7 @@ body .main-header.main-header-start {
   display: flex;
   justify-content: center;
   background-position: center;
+  background-size: cover;
   align-items: self-end;
 }
 .navigation-drawer .campaigns .campaign {
@@ -473,10 +474,10 @@ body .main-header.main-header-start {
   border-radius: 9999px;
   --tw-bg-opacity: 1;
   background-color: #D81B60;
-  width: 15%;
-  height: 15%;
-  top: 7%;
-  right: 7%;
+  width: 15px;
+  height: 15px;
+  top: 15px;
+  right: 15px;
   box-shadow: 0 0 0 2px hsla(42deg, 48%, 60%, 0);
 }
 .navigation-drawer .campaigns .new-campaign {
@@ -511,9 +512,9 @@ body .main-header.main-header-start {
 .navigation-drawer .profile .marketplace .icon {
   color: #004085;
   background-color: #DEE3F5;
-  font-size: 1.8rem;
-  padding: 1.25rem;
+  font-size: 1.2rem;
   aspect-ratio: 1;
+  display: inline-block;
 }
 .navigation-drawer .profile .marketplace .text-sm {
   font-size: 0.7rem;
@@ -559,6 +560,13 @@ body .main-header.main-header-start {
 @media (min-width: 768px) {
   .sidebar-collapse .main-header .navbar {
     margin-left: 0;
+  }
+  .navigation-drawer {
+    width: 380px;
+  }
+  .navigation-drawer .profile .marketplace .icon {
+    font-size: 1.8rem;
+    padding: 1.25rem;
   }
 }
 :root {
