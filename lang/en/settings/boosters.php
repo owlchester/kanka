@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'boost_name'    => 'Boost :name',
     ],
+    'available'     => 'Available boosters :amount',
     'benefits'      => [
         'boosted'       => 'Boosting a campaign with :one booster will unlock access to the :marketplace, theming options, larger uploads for all members, recovering deleted entities, and :more.',
         'more'          => 'more amazing features',

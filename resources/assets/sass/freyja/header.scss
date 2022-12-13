@@ -38,6 +38,184 @@ body .main-header {
 body .main-header.main-header-start {
   background-color: #fff;
 }
+.navigation-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;
+    height: 100%;
+    overflow-y: auto;
+    background-color: var(--main-navbar-background);
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+    font-size: 0.9rem;
+
+    .content {
+        padding: 0;
+    }
+    .header {
+        display: flex;
+        > div {
+            display: inline-block;
+        }
+        .block {
+            flex-grow: 1;
+            padding: 1rem;
+            height: 72px;
+            align-items: center;
+
+            .fa-solid {
+                font-size: 1.2rem;
+            }
+        }
+        .inactive {
+            background-color: #ececec;
+            flex: none;
+            min-width: 72px;
+            text-align: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .profile-box {
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            padding: 0.6rem 0.8rem;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .username {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .campaign-icon {
+            height: 3rem;
+        }
+    }
+
+    .campaigns {
+        .campaign, .new-campaign {
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            background-position: center;
+            align-items: self-end;
+        }
+        .campaign {
+            background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
+            position: relative;
+
+            .name {
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 100) 100%);
+                padding: 0.5rem;
+                font-size: 0.8rem;
+                width: 100%;
+                text-align: center;
+                min-height: 50px;
+                align-items: self-end;
+                justify-content: center;
+                display: flex;
+                color: black;
+            }
+        }
+
+        .campaign.boosted {
+            &:before {
+                content: "";
+                position: absolute;
+                z-index: 10;
+                display: block;
+                border-radius: 9999px;
+                --tw-bg-opacity: 1;
+                background-color: #D81B60;
+                width: 15%;
+                height: 15%;
+                top: 7%;
+                right: 7%;
+                box-shadow: 0 0 0 2px hsl(42, 48, 60, 0);
+
+            }
+        }
+        .new-campaign {
+            padding: 0.5rem;
+        }
+    }
+    .profile {
+        ul {
+            list-style: none;
+            li {
+                a {
+                    width: 100%;
+                    display: block;
+                }
+            }
+        }
+
+        img.tier {
+            width: 60px;
+            height: 60px;
+        }
+        div.tier {
+            font-size: 1.0rem;
+            font-weight: 700;
+        }
+
+        .notification {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+        }
+        .notification.unread {
+            background-color: #CCE5FF;
+        }
+        .release {
+            border-radius: 5px;
+            background-color: #CCE5FF;
+        }
+
+        .marketplace {
+            .icon {
+                color: #004085;
+                background-color: #DEE3F5;
+                font-size: 1.8rem;
+                padding: 1.25rem;
+                aspect-ratio: 1;
+            }
+            .text-sm {
+                font-size: 0.7rem;
+            }
+        }
+    }
+
+    .bordered {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+}
+.nav-switcher {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
+    .campaigns {
+        font-size: 1.2rem;
+    }
+
+    .campaigns, .profile {
+        display: inline-block;
+        cursor: pointer;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        text-align: center;
+    }
+    .profile .profile-box {
+        background-color: #333;
+        color: white;
+        border-radius: 5px;
+    }
+}
 
 /** Mobile **/
 @media (max-width: 767px) {

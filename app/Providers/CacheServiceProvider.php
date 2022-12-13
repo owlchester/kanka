@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Services\Caches\AdCacheService;
 use App\Services\Caches\CampaignCacheService;
 use App\Services\Caches\CharacterCacheService;
+use App\Services\Caches\MarketplaceCacheService;
 use App\Services\Caches\QuestCacheService;
 use App\Services\Caches\MapMarkerCacheService;
 use App\Services\Caches\TimelineElementCacheService;
@@ -51,6 +52,9 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->singleton(TimelineElementCacheService::class, function ($app) {
             return new TimelineElementCacheService();
         });
+        $this->app->singleton(MarketplaceCacheService::class, function ($app) {
+            return new MarketplaceCacheService();
+        });
 
         $this->app->alias(EntityCacheService::class, 'entitycache');
         $this->app->alias(CampaignCacheService::class, 'campaigncache');
@@ -63,5 +67,6 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->alias(AdCacheService::class, 'adcache');
         $this->app->alias(MapMarkerCacheService::class, 'mapmarkercache');
         $this->app->alias(TimelineElementCacheService::class, 'timelineelementcache');
+        $this->app->alias(MarketplaceCacheService::class, 'marketplacecache');
     }
 }

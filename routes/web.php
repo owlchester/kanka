@@ -60,6 +60,9 @@ Route::group([
         Route::get('/', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@index')->name('index');
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
+
+
+    Route::get('/layout/navigation', 'Layout\NavigationController@index')->name('layout.navigation');
 });
 
 if (app()->environment('local')) {

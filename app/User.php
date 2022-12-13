@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
 
@@ -566,5 +567,14 @@ class User extends \Illuminate\Foundation\Auth\User
     public function passwordSecurity()
     {
         return $this->hasOne('App\Models\PasswordSecurity');
+    }
+
+    public function initials(): string
+    {
+        if (!Str::contains(' ', $this->name)) {
+            return Str::limit($this->name, 2, '');
+        }
+        $explode = explode(' ', $this->name);
+        return $explode[0] . $explode[1];
     }
 }

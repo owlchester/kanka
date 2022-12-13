@@ -59,9 +59,4 @@ class Header extends Notification
             'params' => $this->params,
         ];
     }
-
-    public function hasLink(): bool
-    {
-        dd($this);
-    }
 }

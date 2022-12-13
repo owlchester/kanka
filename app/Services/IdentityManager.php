@@ -60,7 +60,7 @@ class IdentityManager
         }
 
         try {
-            $impersonated = $this->app['auth']->user();
+            //$impersonated = $this->app['auth']->user();
             $impersonator = $this->findUserById($this->getImpersonatorId());
 
             session()->put('kanka.userLog', UserLog::TYPE_USER_REVERT);

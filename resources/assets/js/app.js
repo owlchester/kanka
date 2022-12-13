@@ -361,4 +361,7 @@ require('./sidebar');
 require('./banner');
 require('./timeline');
 require('./utility/sortable');
+
+// VueJS elements
+require('./navigation');
 //require('./ads');

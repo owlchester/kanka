@@ -6,6 +6,7 @@ return [
         'created_campaigns' => 'Your Campaigns',
         'new_campaign'      => 'New Campaign',
         'public_campaigns'  => 'Public Campaigns',
+        'count'             => 'Member of :member',
         'updated'           => 'Updated',
     ],
     'campaigns'         => 'Campaigns',

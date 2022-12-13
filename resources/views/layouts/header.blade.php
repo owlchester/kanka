@@ -36,7 +36,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                 @endif
                 <!-- Only logged in users can have this dropdown, Also only show this if the user has campaigns -->
                 @if (auth()->check() && !\App\Facades\Identity::isImpersonating())
-                    <li class="dropdown notifications-menu" data-user-id="{{ auth()->user()->id }}">
+                    <li class="dropdown notifications-menu" data-user-id="{{ auth()->user()->id }}" style="display: none">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <i class="far fa-bell"></i>
                             <span id="header-notification-count" class="label label-warning" style="display:none"></span>
@@ -70,7 +70,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
 
                 @auth()
 
-                <li class="dropdown">
+                <li class="dropdown" style="display: none;">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ auth()->user()->name }}">
                         <img src="{{ auth()->user()->getAvatarUrl() }}" class="user-image h-16 w-16 rounded-full" alt="{{ __('header.avatar') }}"/>
                     </a>
@@ -125,6 +125,17 @@ $currentCampaign = CampaignLocalization::getCampaign();
                 </li>
                 @endauth
             </ul>
+
+
+            @auth()
+                <div id="nav-switcher">
+                    <nav-switcher
+                        api="{{ route('layout.navigation') }}"
+                        initials="{{ auth()->user()->initials() }}"
+                        campaign_id="{{ !empty($currentCampaign) ? $currentCampaign->id : null }}"
+                    ></nav-switcher>
+                </div>
+            @endauth
         </div>
     </nav>
 </header>
