@@ -1,0 +1,22 @@
+/** border radius **/
+
+/* rounded */
+.rounded-full {
+    border-radius: 9999px;
+}
+.rounded-md {
+    border-radius: 0.375rem;
+}
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+.rounded-2xl {
+    border-radius: 1rem;
+}
+.rounded-l-2xl {
+    border-top-left-radius: 1rem; /* 16px */
+    border-bottom-left-radius: 1rem; /* 16px */
+}

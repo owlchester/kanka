@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-    <div class="navigation-drawer h-full overflow-y fixed top-0 right-0" v-if="is_expanded" v-click-outside="onClickOutside">
+    <div class="navigation-drawer h-full overflow-y fixed top-0 right-0 rounded-l-2xl shadow-lg" v-if="is_expanded" v-click-outside="onClickOutside">
         <div class="temporary p-8 text-center" v-if="is_loading">
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
         </div>

@@ -396,17 +396,14 @@ body .main-header.main-header-start {
 .navigation-drawer {
   width: 82%;
   background-color: var(--main-navbar-background);
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
-  box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 .navigation-drawer .header .inactive {
   background-color: var(--header-mode-inactive, #ececec);
   min-width: 72px;
 }
 .navigation-drawer .header .profile-box {
-  background-color: #333;
-  color: white;
+  background-color: var(--nav-drawer-profile-background, #333);
+  color: var(--nav-drawer-profile-text, white);
 }
 .navigation-drawer .campaigns .campaign {
   background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);

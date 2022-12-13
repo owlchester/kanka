@@ -19918,7 +19918,7 @@ var _hoisted_4 = {
 };
 var _hoisted_5 = {
   key: 0,
-  "class": "navigation-drawer h-full overflow-y fixed top-0 right-0"
+  "class": "navigation-drawer h-full overflow-y fixed top-0 right-0 rounded-l-2xl shadow-lg"
 };
 var _hoisted_6 = {
   key: 0,
