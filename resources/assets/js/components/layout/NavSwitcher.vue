@@ -94,21 +94,21 @@
 
                     <div class="grid grid-cols-3 gap-2">
                         <a v-bind:href="marketplace.themes.url" class="bordered py-2 text-center justify-center rounded-md" target="_blank">
-                            <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block">
+                            <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                                 <i class="fa-solid fa-palette mt-3" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.themes.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.themes.number }}</div>
                         </a>
                         <a v-bind:href="marketplace.sheets.url" class="bordered py-2 text-center  justify-center rounded-md" target="_blank">
-                            <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block">
+                            <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                             <i class="fa-solid fa-columns mt-3" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.sheets.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.sheets.number }}</div>
                         </a>
                         <a v-bind:href="marketplace.content.url" class="bordered py-2 text-center  justify-center rounded-md" target="_blank">
-                            <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block">
+                            <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                                 <i class="fa-solid fa-dice-d20 mt-3" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.content.title }}</div>
@@ -179,7 +179,7 @@
                     <div class="flex w-full py-2">
                         <div class="flex-grow text-uppercase font-bold">{{campaigns.texts.campaigns }}
                         </div>
-                        <div class="flex-grow text-right">
+                        <div class="flex-grow text-right" v-if="campaigns.member.length > 0">
                             <a v-bind:href="campaigns.urls.reorder">
                                 {{ campaigns.texts.reorder}}
                             </a>
@@ -199,7 +199,7 @@
                         </a>
                     </div>
 
-                    <div class="following" v-if="!profile.is_impersonating && campaigns.following.length > 0">
+                    <div class="following" v-if="!profile.is_impersonating">
                         <hr />
                         <p class="text-uppercase">{{ campaigns.texts.followed }}</p>
 
@@ -207,6 +207,13 @@
                             <Campaign v-for="campaign in campaigns.following"
                                       :campaign="campaign">
                             </Campaign>
+
+
+                            <a v-bind:href="campaigns.urls.follow" class="new-campaign flex items-center text-center bordered rounded-lg h-24 p-2">
+                            <span class="text-xs">
+                                {{ campaigns.texts.follow }}
+                            </span>
+                            </a>
                         </div>
                     </div>
                 </div>

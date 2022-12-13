@@ -5041,6 +5041,11 @@ body.ab-testing-second .ab-testing-a {
   font-weight: 900;
 }
 
+/** aspect ratio **/
+.aspect-square {
+  aspect-ratio: 1/1;
+}
+
 .relative {
   position: relative;
 }

@@ -124,6 +124,7 @@ class NavigationService
 
         $data['urls'] = [
             'new' => route('start'),
+            'follow' => route('front.public_campaigns'),
             'reorder' => route('settings.appearance', ['highlight' => 'campaign-switcher']),
         ];
         $data['texts'] = [
@@ -135,6 +136,7 @@ class NavigationService
             'count' => __('sidebar.campaign_switcher.count', [
                 'member' => $member
             ]),
+            'follow' => __('sidebar.campaign_switcher.follow_more')
         ];
         return $data;
     }

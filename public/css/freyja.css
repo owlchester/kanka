@@ -431,7 +431,6 @@ body .main-header.main-header-start {
 .navigation-drawer .profile .marketplace .icon {
   color: var(--link-text);
   background-color: var(--input-border-color);
-  aspect-ratio: 1;
 }
 .navigation-drawer .bordered {
   border: 1px solid var(--input-border-color);

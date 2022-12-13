@@ -6,6 +6,7 @@ return [
         'created_campaigns' => 'Your Campaigns',
         'new_campaign'      => 'New Campaign',
         'followed_campaigns'  => 'Followed Campaigns',
+        'follow_more'  => 'Find campaigns',
         'public_campaigns'  => 'Public Campaigns',
         'reorder'           => 'Reorder',
         'count'             => 'Member of :member',
