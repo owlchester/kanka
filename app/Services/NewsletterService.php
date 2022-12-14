@@ -11,18 +11,16 @@ use Exception;
 class NewsletterService
 {
     /** @var string interest-ids */
-    public $newsletterID = '2d44264f87';
-    public $releaseID = '3cbff83812';
-    public $voteID = 'ba589a486e';
+    public string $releaseID = '3cbff83812';
 
     /** @var string List name */
-    public $listName = 'subscribers';
+    public string $listName = 'subscribers';
 
     /** @var User|null */
     protected $user;
 
     /** @var string */
-    public $email;
+    public string $email;
 
     /**
      * @param User $user
@@ -72,12 +70,6 @@ class NewsletterService
             $interests = [];
             if (Arr::has($options, 'releases')) {
                 $interests[$this->releaseID] = Arr::get($options, 'releases');
-            }
-            if (Arr::has($options, 'newsletters')) {
-                $interests[$this->newsletterID] = Arr::get($options, 'newsletters');
-            }
-            if (Arr::has($options, 'votes')) {
-                $interests[$this->voteID] = Arr::get($options, 'votes');
             }
 
             $res = Newsletter::subscribeOrUpdate(

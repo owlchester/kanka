@@ -1,6 +1,6 @@
 <?php /** @var \App\User $user */?>
 @extends('layouts.app', [
-    'title' => __('settings.newsletter.title'),
+    'title' => __('profiles.newsletter.title'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
     'noads' => true,
@@ -19,32 +19,13 @@
             <p class="help-block">
              {{ __('profiles.newsletter.helpers.header') }}
             </p>
-            <div class="form-group checkbox mb-5">
-                <label>
-                    {!! Form::checkbox('mail_newsletter', 1, $user->mail_newsletter) !!}
-                    {{ __('profiles.newsletter.options.monthly') }}
-                </label>
-                <p class="help-block">
-                    {{ __('profiles.newsletter.helpers.monthly') }}
-                </p>
-            </div>
-            <div class="form-group checkbox mb-5">
-                <label>
-                    {!! Form::checkbox('mail_vote', 1, $user->mail_vote) !!}
-                    {!! __('front/community-votes.title') !!}
-                </label>
-
-                <p class="help-block">
-                    {!! __('profiles.newsletter.helpers.community-vote', ['community-vote' => link_to_route('community-votes.index', __('profiles.newsletter.links.community-vote'))]) !!}
-                </p>
-            </div>
             <div class="form-group checkbox">
                 <label>
                     {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
-                    {!! __('profiles.newsletter.options.release') !!}
+                    {!! __('profiles.newsletter.options.monthly') !!}
                 </label>
                 <p class="help-block">
-                    {{ __('profiles.newsletter.helpers.release') }}
+                    {{ __('front/newsletter.groups.all') }}
                 </p>
             </div>
 
