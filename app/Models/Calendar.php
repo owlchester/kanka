@@ -515,7 +515,7 @@ class Calendar extends MiscModel
      */
     public function missingDetails()
     {
-        return count($this->months()) < 2 || count($this->weekdays()) < 2;
+        return count($this->months()) < 1 || count($this->weekdays()) < 2;
     }
 
     /**
