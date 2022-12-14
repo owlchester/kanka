@@ -89,7 +89,7 @@
                             {{ marketplace.title }}
                         </div>
                         <div class="flex-grow text-right">
-                            <a v-bind:href="marketplace.explore.url">
+                            <a v-bind:href="marketplace.explore.url" target="_blank">
                                 {{ marketplace.explore.text}}
                             </a>
                         </div>
@@ -161,7 +161,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" v-on:click="logout()" class="p-2 mb-2">
+                        <a href="#" v-on:click="logout()" class="p-2 mb-2 block">
                             <i class="fa-solid fa-sign-out mr-3" aria-hidden="true"></i>
                             {{ profile.urls.logout.name }}
                         </a>
@@ -194,9 +194,9 @@
                                   :campaign="campaign">
                         </Campaign>
 
-                        <a v-bind:href="campaigns.urls.new" class="new-campaign flex items-center text-center bordered rounded-lg h-24 p-2">
-                            <span class="text-xs">
-                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        <a v-bind:href="campaigns.urls.new" class="new-campaign flex items-center text-center bordered rounded-lg h-24 p-2 overflow-hidden">
+                            <span class="text-xs text-break text-uppercase">
+                                <i class="fa-solid fa-plus" aria-hidden="true" style="display: none"></i>
                                 {{ campaigns.texts.new }}
                             </span>
                         </a>
@@ -212,8 +212,8 @@
                             </Campaign>
 
 
-                            <a v-bind:href="campaigns.urls.follow" class="new-campaign flex items-center text-center bordered rounded-lg h-24 p-2">
-                            <span class="text-xs">
+                            <a v-bind:href="campaigns.urls.follow" class="new-campaign flex items-center text-center bordered rounded-lg h-24 p-2 overflow-hidden">
+                            <span class="text-xs text-uppercase text-break">
                                 {{ campaigns.texts.follow }}
                             </span>
                             </a>
@@ -316,6 +316,7 @@ export default {
             return 'block p-4  items-center inactive cursor flex-none';
         },
         logout: function() {
+            console.info('loging out');
             document.getElementById('logout-form').submit();
         },
         onClickOutside (event) {

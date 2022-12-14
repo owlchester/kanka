@@ -58,6 +58,9 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
                         ></nav-switcher>
                     </div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        {{ csrf_field() }}
+                    </form>
                 @endauth
             </div>
         </div>

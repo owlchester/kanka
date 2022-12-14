@@ -445,7 +445,7 @@ body .main-header.main-header-start {
 .navigation-drawer a.bordered:hover {
   border-color: var(--link-hover);
 }
-.navigation-drawer .bordered, .navigation-drawer li a {
+.navigation-drawer .bordered {
   color: var(--header-link-colours);
 }
 
