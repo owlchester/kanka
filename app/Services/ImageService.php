@@ -48,7 +48,7 @@ class ImageService
 
             // Download the file locally to check it out
             if ($url) {
-                $externalUrl = request()->post($field . '_url');
+                $externalUrl = request()->input($field . '_url');
                 $externalFile = basename($externalUrl);
 
                 $tempImage = tempnam(sys_get_temp_dir(), $externalFile);
