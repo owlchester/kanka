@@ -2,8 +2,6 @@
 /** @var \App\Renderers\CalendarRenderer $renderer
  * @var \App\Models\Calendar $model
  */
-$counter = [];
-
 if ($model->missingDetails()): ?>
     <div class="alert alert-warning">
         {{ __('calendars.show.missing_details') }}
@@ -71,30 +69,17 @@ $weekNumber = 1;
         @foreach ($renderer->buildForYear() as $key => $day)
             @if($key % count($model->weekdays()) == 0)
                 </tr><tr>
-
                 @if (!empty($day) && !empty($day['week']))
-
                     @if ($renderer->isNamedWeek($day['week']))
-                    <tr class="named_week week-nr-{{ $day['week'] }}">
-                        <td colspan="{{ count($model->weekdays()) }}">
-                            {{ $renderer->namedWeek($day['week']) }}
-                        </td>
-                    </tr>
+                        <tr class="named_week week-nr-{{ $day['week'] }}">
+                            <td colspan="{{ count($model->weekdays()) }}">
+                                {{ $renderer->namedWeek($day['week']) }}
+                            </td>
+                        </tr>
                     @endif
                 @endif
             @endif
-            @if (!empty($day['events']))
-                @foreach ($day['events'] as $event)
-                    @if ($event->length > 1 && $day['date'] == $event->year . '-' . $event->month . '-' . $event->day
-                        || $event->length > 1 && $event->is_recurring && $day['day'] == $event->day)
-                        @php $counter[$event->id] = $event->length; @endphp
-                    @endif
-                    @if(isset($counter[$event->id]))
-                        @php $counter[$event->id] = $counter[$event->id] - 1; @endphp
-                    @endif
-                @endforeach
-            @endif
-            @include('calendars._day', ['showMonth' => true, 'counter' => $counter])
+            @include('calendars._day', ['showMonth' => true])
         @endforeach
         </tr>
     @else
@@ -107,20 +92,9 @@ $weekNumber = 1;
                 </tr>
             @endif
             <tr>
-            @foreach ($days as $day)
-                @if (!empty($day['events']))
-                    @foreach ($day['events'] as $event)
-                    @if ($event->length > 1 && $day['date'] == $event->year . '-' . $event->month . '-' . $event->day
-                        || $event->length > 1 && $event->is_recurring && $day['day'] == $event->day)
-                            @php $counter[$event->id] = $event->length; @endphp
-                        @endif
-                        @if(isset($counter[$event->id]))
-                            @php $counter[$event->id] = $counter[$event->id] - 1; @endphp
-                        @endif
-                    @endforeach
-                @endif
-                @include('calendars._day', ['counter' => $counter])
-            @endforeach
+                @foreach ($days as $day)
+                    @include('calendars._day')
+                @endforeach
             </tr>
         @endforeach
     @endif

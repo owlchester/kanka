@@ -77,6 +77,18 @@ class CalendarRenderer
     protected array $events = [];
 
     /**
+     * Start date of events displayed on the calendar view
+     * @var array
+     */
+    protected array $eventStart = [];
+
+    /**
+     * End date of events displayed on the calendar view
+     * @var array
+     */
+    protected array $eventEnd = [];
+
+    /**
      * Initializer
      * @param Calendar $calendar
      */
@@ -856,6 +868,24 @@ class CalendarRenderer
                 $this->addMultidayEvent($event, $date);
             }
         }
+
+        $start = [];
+        $end = [];
+        foreach ($this->events as $date => $events) {
+            foreach ($events as $position => $event) {
+
+                if ($event->length > 1 && $date == $event->year . '-' . $event->month . '-' . $event->day || $event->length > 1 && $event->is_recurring && substr($date, -1) == $event->day) {
+                    $start[$event->id][] = $date;
+                    if (isset($start[$event->id])) {
+                        $positionOfStartDate = array_search($date, array_keys($this->events));
+                        $end[$event->id][] = key(array_slice($this->events, $positionOfStartDate + $event->length - 1, 1, true));
+                    }
+                }
+            }
+        }
+        $this->eventEnd = $end;
+        $this->eventStart = $start;
+        //should end the first day of the month
     }
 
     /**
@@ -1281,5 +1311,23 @@ class CalendarRenderer
         }
 
         return $days;
+    }
+
+    /**
+     * Returns array with start dates for each event
+     * @return array
+     */
+    public function getEventStartDates(): array
+    {
+        return $this->eventStart;
+    }
+
+    /**
+     * Returns array with end dates for each event
+     * @return array
+     */
+    public function getEventEndDates(): array
+    {
+        return $this->eventEnd;
     }
 }

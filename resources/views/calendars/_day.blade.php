@@ -86,9 +86,9 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                             @endif
                             <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', $event->entity->id) }}" class="reminder-entity">
                                 {{ $event->entity->name }}
-                                @if (isset($counter[$event->id]) && $event->length == $counter[$event->id] + 1)
+                                @if (isset($renderer->getEventStartDates()[$event->id]) && in_array($day['date'], $renderer->getEventStartDates()[$event->id]))
                                     {{ __('calendars.events.start')}}
-                                @elseif (isset($counter[$event->id]) && $counter[$event->id] < 1)
+                                @elseif (isset($renderer->getEventEndDates()[$event->id]) && in_array($day['date'], $renderer->getEventEndDates()[$event->id]))
                                     {{ __('calendars.events.end')}}
                                 @endif
                             </span>
