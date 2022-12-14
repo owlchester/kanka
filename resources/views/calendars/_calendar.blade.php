@@ -2,6 +2,12 @@
 /** @var \App\Renderers\CalendarRenderer $renderer
  * @var \App\Models\Calendar $model
  */
+if ($model->missingDetails()): ?>
+    <div class="alert alert-warning">
+        {{ __('calendars.show.missing_details') }}
+    </div>
+<?php return;
+endif;
 $weekNumber = 1;
 ?>
 @inject('renderer', 'App\Renderers\CalendarRenderer')
