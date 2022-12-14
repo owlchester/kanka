@@ -22,7 +22,7 @@
         @endif
     </div>
 
-    <div class="quick-creator-loading" style="display: none">
+    <div class="quick-creator-loading p-8 text-center" style="display: none">
         <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
     </div>
 </div>

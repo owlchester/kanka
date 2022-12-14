@@ -1,69 +1,11 @@
-// Entity creator model buttons
-.entity-creator {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    a {
-        padding: 20px 10px;
-        //text-align: center;
-        color: var(--quick-creator-button-text);
-        line-height: 0.9rem;
-        font-size: 0.85rem;
-        background-color: var(--quick-creator-button-background);
-        text-transform: uppercase;
-        overflow: hidden;
-        //height: 94px;
-        word-break: break-word;
-        text-align: center;
-
-        display: flex;
-        flex-flow: row wrap;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        &:hover {
-            background-color: var(--quick-creator-button-hover-background);
-            box-shadow: $box-shadow-hover;
-            transition: all 0.3s ease-in-out;
-            color: var(--quick-creator-button-hover-text);
-        }
-    }
-
-    i {
-        display: block;
-        margin-bottom: 0.85rem;
-    }
-}
-
 .quick-creator-header {
-    margin-top: 2rem;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
     border-bottom: 1px solid var(--input-border-color);
-    .qq-entity-type {
-        font-size: 1.5rem;
-    }
-    .qq-mode {
-        font-size: 0.9rem;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-    }
     .qq-toggles {
-        display: flex;
-        justify-content: flex-end;
-        align-content: center;
-        align-items: center;
-
         .qq-mode-toggle {
-            display: inline-block;
             background-color: var(--btn-default-background);
-            cursor: pointer;
             margin-left: 0.3rem;
             width: 38px;
             padding: 6px;
-            text-align: center;
-            border-radius: 5px;
             border: 1px solid #eee;
             align-self: flex-end;
 
@@ -91,32 +33,21 @@
 
 .quick-creator-body {
     .qq-action-more {
-        text-transform: uppercase;
         color: #aaa;
-        font-size: 0.8rem;
-        cursor: pointer;
-
         &:focus, &:hover {
             border-bottom: 1px dotted #aaa;
         }
     }
 
-    .title {
-        text-transform: uppercase;
-        font-size: 0.6rem;
-    }
-
     .selection {
         .option {
-            display: flex;
             align-items: center;
 
             a {
-                display: flex;
-                align-items: center;
-                i {
-                    margin-right: 0.4rem;
-                    font-size: 0.8rem;
+                span {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    max-height: 2rem;
                 }
             }
         }
@@ -124,13 +55,7 @@
 }
 
 .quick-creator-loading {
-    text-align: center;
     font-size: 3rem;
-    padding: 2rem;
-}
-
-.quick-creator-footer {
-    margin-top: 1rem;
 }
 
 @media (min-width: 768px) {

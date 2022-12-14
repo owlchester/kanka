@@ -43,7 +43,7 @@
             </p>
         </div>
 
-        <a href="#" class="qq-action-more" style="{{ $singularType === 'post' ? 'display: none' : null }}">
+        <a href="#" class="qq-action-more text-uppercase pointer text-sm" style="{{ $singularType === 'post' ? 'display: none' : null }}">
             <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
             {{ __('entities.creator.actions.more') }}
         </a>
@@ -61,7 +61,7 @@
             @endif
         </div>
     </div>
-    <div class="quick-creator-footer">
+    <div class="quick-creator-footer mt-4">
 
         @if (empty($origin))
 
@@ -94,7 +94,7 @@
                 {{ __('entities.creator.back') }}
             </a>-->
 
-            <a role="button" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
+            <a role="button" class="text-uppercase" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
                 {{ __('crud.cancel') }}
             </a>
 
@@ -109,7 +109,7 @@
             </div>
         @endif
     </div>
-    <div class="quick-creator-loading" style="display: none">
+    <div class="quick-creator-loading p-8 text-center" style="display: none">
         <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
     </div>
 </div>

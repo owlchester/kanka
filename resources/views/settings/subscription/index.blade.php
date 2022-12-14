@@ -299,9 +299,9 @@
             <div class="modal-content">
                 <div class="modal-body">
                     @include('partials.modals.close')
-                    <div class="quick-creator-header">
+                    <div class="quick-creator-header mt-8 pb-4 mb-4">
                         <div>
-                            <div class="qq-entity-type">
+                            <div class="text-2xl">
                                 {{ __('settings.subscription.upgrade_downgrade.button') }}
                             </div>
                         </div>

@@ -81,7 +81,8 @@ function initDashboardAdminUI() {
     modalContentTarget = $('#modal-content-target');
     modalContentSpinner = $('#modal-content-spinner');
 
-    $('.entity-creator > a').click(function() {
+    $('.widget-list > a').click(function(e) {
+        e.preventDefault();
         loadModalForm($(this).data('url'));
     });
 

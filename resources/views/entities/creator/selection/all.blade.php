@@ -2,7 +2,7 @@
 $half = ceil(count($types) / 2);
 $i = 0;
 @endphp
-<div class="title">
+<div class="text-uppercase text-xs font-bold mb-2">
     {{ __('entities.creator.titles.everything') }}
 </div>
 <div class="grid grid-cols-2 selection">
