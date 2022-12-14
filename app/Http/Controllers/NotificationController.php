@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notification;
-use App\Notifications\Header;
+use App\Services\Layout\NavigationService;
 use App\User;
 
 class NotificationController extends Controller
 {
+    protected NavigationService $navigationService;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(NavigationService $navigationService)
     {
         $this->middleware(['auth', 'identity']);
+        $this->navigationService = $navigationService;
     }
 
     /**
@@ -52,25 +53,17 @@ class NotificationController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
-        // @phpstan-ignore-next-line
-        $unreadNotifications = count($user->unreadNotifications);
 
         // User is requesting to mark all notifications as read
-        if (request()->has('read-all')) {
+        /*if (request()->has('read-all')) {
             // @phpstan-ignore-next-line
             $user->unreadNotifications->markAsRead();
             $unreadNotifications = 0;
-        }
+        }*/
 
-        $notifications = $user->notifications()->take(5)->get();
-        $body = view('notifications.list', compact(
-            'notifications'
-        ))->render();
-
-        return response()->json([
-            'body' => $body,
-            'count' => $unreadNotifications
-        ]);
+        return response()->json(
+            $this->navigationService->user($user)->pull()
+        );
     }
 
     /**

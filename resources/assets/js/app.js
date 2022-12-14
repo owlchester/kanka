@@ -348,7 +348,7 @@ require('./post');
 require('./calendar');
 require('./keep-alive');
 require('./search');
-require('./notification');
+//require('./notification');
 require('./quick-creator');
 //require('./tutorial')
 require('./datagrids');
@@ -357,7 +357,7 @@ require('./members');
 require('./campaign');
 require('./clipboard');
 require('./toast');
-require('./sidebar');
+//require('./sidebar');
 require('./banner');
 require('./timeline');
 require('./utility/sortable');

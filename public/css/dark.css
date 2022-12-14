@@ -117,6 +117,7 @@
   --notification-accent: var(--conversation-comment-background);
   --header-mode-inactive: var(--notification-accent);
   --campaign-switcher-text: var(--theme-input-text);
+  --header-profile-background: var(--table-highlight);
 }
 
 /*# sourceMappingURL=dark.css.map*/

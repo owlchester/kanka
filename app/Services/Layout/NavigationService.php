@@ -27,9 +27,10 @@ class NavigationService
         return [
             'profile' => $this->profile(),
             'campaigns' => $this->campaigns(),
-            'notifications' => $this->notifications(),
+            'notifications' => $this->notificationsData(),
             'marketplace' => $this->marketplace(),
-            'releases' => $this->releases(),
+            'releases' => $this->releasesData(),
+            'has_unread' => $this->user->hasUnread(),
         ];
     }
 
@@ -39,6 +40,7 @@ class NavigationService
             'name' => $this->user->name,
             'created' => __('users/profile.fields.member_since', ['date' => $this->user->created_at->format('M d, Y')]),
             'is_impersonating' => false,
+            'your_profile' => __('header.user.your-profile')
         ];
 
         if (Identity::isImpersonating()) {
@@ -141,7 +143,7 @@ class NavigationService
         return $data;
     }
 
-    protected function notifications(): array
+    protected function notificationsData(): array
     {
         if (Identity::isImpersonating()) {
             return [];
@@ -155,7 +157,13 @@ class NavigationService
             'none' => __('header.notifications.no-unread')
         ];
 
-        $messages = [];
+                $data['messages'] = $this->notifications();
+        return $data;
+    }
+
+    protected function notifications(): array
+    {
+        $notifications = [];
         /** @var Header $not */
         foreach ($this->user->notifications()->unread()->take(5)->get() as $not) {
             $url = '';
@@ -165,7 +173,7 @@ class NavigationService
                     $url = url(app()->getLocale() . '/' . $url);
                 }
             }
-            $messages[] = [
+            $notifications[] = [
                 'id' => $not->id,
                 'icon' => $not->data['icon'],
                 'text' => __('notifications.' . $not->data['key'], $not->data['params']),
@@ -175,9 +183,7 @@ class NavigationService
                 'is_read' => $not->read(),
             ];
         }
-
-        $data['messages'] = $messages;
-        return $data;
+        return $notifications;
     }
 
     protected function marketplace(): array
@@ -212,7 +218,7 @@ class NavigationService
         return $data;
     }
 
-    protected function releases(): array
+    protected function releasesData(): array
     {
         if (Identity::isImpersonating()) {
             return [];
@@ -223,6 +229,13 @@ class NavigationService
             'news' => []
         ];
 
+        $data['releases'] = $this->releases();
+
+        return $data;
+    }
+
+    protected function releases(): array
+    {
         $releases = PostCache::latest();
         $unreadReleases = [];
         /** @var AppRelease $release */
@@ -238,8 +251,22 @@ class NavigationService
                 ];
             }
         }
-        $data['releases'] = $unreadReleases;
+        return $unreadReleases;
+    }
 
-        return $data;
+    public function pull(): array
+    {
+        if (Identity::isImpersonating()) {
+            return [
+                'has_alerts' => false,
+                /*'releases' => [],
+                'notifications' => [],*/
+            ];
+        }
+        return [
+            'has_alerts' => $this->user->hasUnread(),
+            /*'releases' => $this->releases(),
+            'notifications' => $this->notifications(),*/
+        ];
     }
 }

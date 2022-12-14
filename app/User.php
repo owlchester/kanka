@@ -2,9 +2,12 @@
 
 namespace App;
 
+use App\Facades\Identity;
 use App\Facades\Img;
+use App\Facades\PostCache;
 use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
+use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
@@ -576,5 +579,27 @@ class User extends \Illuminate\Foundation\Auth\User
         }
         $explode = explode(' ', $this->name);
         return $explode[0] . $explode[1];
+    }
+
+    /**
+     * Determine if the user has unread notifications or kanka alerts
+     * @return bool
+     */
+    public function hasUnread(): bool
+    {
+        if (Identity::isImpersonating()) {
+            return false;
+        }
+
+        // Unread notifications
+        $releases = PostCache::latest();
+        /** @var AppRelease $release */
+        foreach ($releases as $release) {
+            if (!$release->alreadyRead()) {
+                return true;
+            }
+        }
+
+        return $this->unreadNotifications()->count() > 0;
     }
 }

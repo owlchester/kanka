@@ -50,9 +50,12 @@ $currentCampaign = CampaignLocalization::getCampaign();
                 @auth()
                     <div id="nav-switcher">
                         <nav-switcher
+                            user_id="{{ auth()->user()->id }}"
                             api="{{ route('layout.navigation') }}"
+                            fetch="{{ route('notifications.refresh') }}"
                             initials="{{ auth()->user()->initials() }}"
                             campaign_id="{{ !empty($currentCampaign) ? $currentCampaign->id : null }}"
+                            :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
                         ></nav-switcher>
                     </div>
                 @endauth

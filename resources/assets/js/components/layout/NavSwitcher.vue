@@ -1,11 +1,14 @@
 <template>
     <div class="nav-switcher flex items-center justify-center">
-        <div class="campaigns inline poiner text-center px-5 text-lg py-2" v-on:click="openCampaigns()" aria-label="Switch campaigns">
+        <div class="campaigns inline cursor text-center px-5 text-lg py-2" v-on:click="openCampaigns()" aria-label="Switch campaigns">
             <i class="fa-solid fa-grip " aria-hidden="true"></i>
         </div>
-        <div class="profile inline poiner text-center text-uppercase py-2" v-on:click="openProfile()" aria-label="Profile settings">
-            <div class="profile-box rounded-lg p-2 text-center font-bold">
-                {{ initials }}
+        <div class="profile inline cursor text-center text-uppercase py-2" v-on:click="openProfile()" aria-label="Profile settings">
+            <div class="indicator">
+                <span class="notification-badge" v-if="show_alerts"></span>
+                <div class="profile-box rounded-lg p-2 text-center font-bold ">
+                    {{ initials }}
+                </div>
             </div>
         </div>
     </div>
@@ -25,7 +28,7 @@
                             <div>{{campaigns.texts.count }}</div>
                         </div>
                     </div>
-                    <div class="flex items-center justify-center h-full text-lg" v-else>
+                    <div class="flex items-center justify-center h-full text-lg" :title="campaigns.texts.campaigns" v-else>
                         <i class="fa-solid fa-grip" aria-hidden="true"></i>
                     </div>
                 </div>
@@ -39,7 +42,7 @@
                             <div>{{ profile.created }}</div>
                         </div>
                     </div>
-                    <div class="" v-else>
+                    <div class="" v-else :title="profile.your_profile">
                         <div class="flex-none profile-box rounded-lg p-2 text-center text-uppercase font-bold">
                             {{ initials}}
                         </div>
@@ -234,9 +237,22 @@ export default {
         clickOutside: vClickOutside.directive
     },
     props: {
-        api: undefined,
-        initials: undefined,
+        user_id: {
+            type: String,
+        },
+        api: {
+            type: String,
+        },
+        fetch: {
+            type: String,
+        },
+        initials: {
+            type: String,
+        },
         campaign_id: undefined,
+        has_alerts: {
+            type: Boolean,
+        },
     },
 
     components: {
@@ -247,6 +263,8 @@ export default {
 
     data() {
         return {
+            // Check for updates in the localstorage every minute for new alerts
+            alert_delta: 60 * 1000,
             is_loading: false,
             is_expanded: false,
             has_data: false,
@@ -256,7 +274,9 @@ export default {
             campaigns: {},
             notifications: {},
             marketplace: {},
-            releases: {}
+            releases: {},
+            show_alerts: false,
+            is_loaded: false,
         }
     },
 
@@ -283,8 +303,10 @@ export default {
                 this.notifications = response.data.notifications;
                 this.marketplace = response.data.marketplace;
                 this.releases = response.data.releases;
+                this.show_alerts = response.data.has_unread;
                 this.has_data = true;
                 this.is_loading = false;
+                this.is_loaded = true;
             });
         },
         blockClass: function(active) {
@@ -302,12 +324,73 @@ export default {
         },
         readRelease: function(release) {
             let index = this.releases.releases.findIndex(msg => msg.id === release.id);
-            this.releases.releases.slice(index, 1);
+            this.releases.releases = this.releases.releases.slice(index + 1, 1);
+            this.updateUnread();
         },
         readNotification: function(notification) {
             let index = this.notifications.messages.findIndex(msg => msg.id == notification.id);
-            this.notifications.messages.slice(index, 1);
+            this.notifications.messages = this.notifications.messages.slice(index + 1, 1);
+            this.updateUnread();
         },
+        // Figure out if the unread notification is removed
+        updateUnread: function() {
+            //console.log('test', this.notifications.messages.length, this.releases.releases.length);
+            if (this.notifications.messages.length === 0 && this.releases.releases.length === 0) {
+                this.show_alerts = false;
+            }
+        },
+        updateAlerts: function() {
+            //console.log('updateAlerts');
+            // Only do an ajax call if we haven't done one in a while  by looking at the local storage
+            let last = localStorage.getItem('last_notification-' + this.user_id);
+            let now = new Date().getTime();
+            let delay = now - (60 * 5000); // Wait 5 minutes between each request on the db
+
+            if (!last || last < delay) {
+                this.fetchAlerts();
+            } else {
+                //console.log('updating alerts', this.user_id);
+                // If we have up to date info, show it to the user
+                this.show_alerts = localStorage.getItem('notification-has-alerts-' + this.user_id) === 'true';
+                this.queueFetch();
+
+                // If the user hasn't opened the menu, don't bother with more details
+                if (!this.is_loaded) {
+                    //console.log('hasnt loaded yet');
+                    return;
+                }
+                /*let releases = localStorage.getItem('notification-releases-' + this.user_id);
+                if (releases && releases.length != this.releases.releases.length) {
+                    console.log('new releases', releases);
+                    this.releases.releases = releases;
+                    console.log('now', this.releases.releases);
+                }
+                let notifications = localStorage.getItem('notification-notifications-' + this.user_id);;
+                if (notifications && notifications.length != this.notifications.messages.length) {
+                    console.log('new notifications', notifications);
+                    this.notifications.messages = notifications;
+                }*/
+            }
+        },
+        fetchAlerts: function() {
+            //console.log('fetchAlerts');
+            let now = new Date().getTime();
+            localStorage.setItem('last_notification-' + this.user_id, now);
+
+            //console.log('fetch', this.fetch);
+            axios.get(this.fetch).then(response => {
+                //console.log('responses', response);
+                /*localStorage.setItem('notification-notifications-' + this.user_id, response.data.notifications);
+                localStorage.setItem('notification-releases-' + this.user_id, response.data.releases);*/
+                localStorage.setItem('notification-has-alerts-' + this.user_id, response.data.has_alerts);
+                this.updateAlerts();
+            });
+        },
+        queueFetch: function() {
+            //console.log('queue fetch');
+            let vm = this;
+            setTimeout(function () { vm.updateAlerts() }.bind(this), this.alert_delta);
+        }
     },
     mounted() {
         this.emitter.on('read_release', (release) => {
@@ -316,6 +399,8 @@ export default {
         this.emitter.on('read_notification', (notification) => {
             this.readNotification(notification);
         });
+        this.show_alerts = this.has_alerts;
+        this.queueFetch();
     }
 };
 </script>
