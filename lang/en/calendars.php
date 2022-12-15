@@ -57,6 +57,8 @@ return [
             'show_before'   => 'Show before today',
         ],
         'title'     => 'Calendar :name Events',
+        'start'     => '(start)',
+        'end'       => '(end)',
     ],
     'fields'        => [
         'calendar'              => 'Parent Calendar',

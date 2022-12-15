@@ -69,19 +69,16 @@ $weekNumber = 1;
         @foreach ($renderer->buildForYear() as $key => $day)
             @if($key % count($model->weekdays()) == 0)
                 </tr><tr>
-
                 @if (!empty($day) && !empty($day['week']))
-
                     @if ($renderer->isNamedWeek($day['week']))
-                    <tr class="named_week week-nr-{{ $day['week'] }}">
-                        <td colspan="{{ count($model->weekdays()) }}">
-                            {{ $renderer->namedWeek($day['week']) }}
-                        </td>
-                    </tr>
+                        <tr class="named_week week-nr-{{ $day['week'] }}">
+                            <td colspan="{{ count($model->weekdays()) }}">
+                                {{ $renderer->namedWeek($day['week']) }}
+                            </td>
+                        </tr>
                     @endif
                 @endif
             @endif
-
             @include('calendars._day', ['showMonth' => true])
         @endforeach
         </tr>
@@ -95,9 +92,9 @@ $weekNumber = 1;
                 </tr>
             @endif
             <tr>
-            @foreach ($days as $day)
-                @include('calendars._day')
-            @endforeach
+                @foreach ($days as $day)
+                    @include('calendars._day')
+                @endforeach
             </tr>
         @endforeach
     @endif
