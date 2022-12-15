@@ -30,6 +30,6 @@ $types = [
         @include('maps.markers.fields.opacity', ['fieldname' => 'config[opacity]'])
         @include('maps.markers.fields.background_colour', ['fieldname' => 'config[colour]'])
 
-        @include('cruds.fields.visibility_id', ['model' => $preset])
+        @include('cruds.fields.visibility_id', ['model' => $preset ?? null])
     </div>
 </div>
