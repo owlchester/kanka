@@ -880,6 +880,7 @@ class CalendarRenderer
     }
 
     /**
+     * For multi-day event, add it to each day the event lasts
      * @param EntityEvent $event
      * @param string $date
      */
@@ -897,21 +898,13 @@ class CalendarRenderer
             }
             $this->events[$extraDate][] = $event;
         }
-        $start = [];
-        $end = [];
-        foreach ($this->events as $date => $events) {
-            foreach ($events as $position => $event) {
-                if ($event->length > 1 && $date == $event->year . '-' . $event->month . '-' . $event->day || $event->length > 1 && $event->is_recurring && substr($date, -1) == $event->day) {
-                    $start[$event->id][] = $date;
-                    if (isset($start[$event->id])) {
-                        $positionOfStartDate = array_search($date, array_keys($this->events));
-                        $end[$event->id][] = key(array_slice($this->events, $positionOfStartDate + $event->length - 1, 1, true));
-                    }
-                }
+        if ($date == $event->year . '-' . $event->month . '-' . $event->day || $event->length > 1 && $event->is_recurring && substr($date, -1) == $event->day) {
+            $this->eventStart[$event->id][] = $date;
+            if (isset($this->eventStart[$event->id])) {
+                $positionOfStartDate = array_search($date, array_keys($this->events));
+                $this->eventEnd[$event->id][] = key(array_slice($this->events, $positionOfStartDate + $event->length - 1, 1, true));
             }
         }
-        $this->eventEnd = $end;
-        $this->eventStart = $start;
     }
 
     /**
