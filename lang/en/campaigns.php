@@ -445,7 +445,7 @@ TEXT
             'visible'   => 'Visible to members',
         ],
         'nested'            => [
-            'default'   => 'Flat',
+            'user'   => 'User\'s default',
             'nested'    => 'Nested',
         ],
         'other'             => 'Other',
