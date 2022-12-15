@@ -37,6 +37,7 @@ return [
     ],
     'fields'        => [
         'name'      => 'Názov pluginu',
+        'obsolete'  => 'Tento plugin bol tímom Kanky označený ako zastaralý, t.z. že nefunguje, ako bolo pôvodne plánované.',
         'status'    => 'Stav',
         'type'      => 'Typ pluginu',
     ],

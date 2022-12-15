@@ -6,6 +6,9 @@ return [
         'manage'            => 'Zarządzaj',
         'more'              => 'Więcej opcji',
         'remove_all'        => 'Usuń wszystko',
+        'save_and_edit'     => 'Zastosuj i edytuj',
+        'save_and_story'    => 'Zastosuj i zobacz',
+        'show_hidden'       => 'Pokaż ukryte cechy',
     ],
     'errors'        => [
         'loop'      => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
@@ -55,8 +58,12 @@ return [
         'template'  => 'Wybierz szablon',
         'value'     => 'Wartość cechy',
     ],
+    'ranges'        => [
+        'text'  => 'Dostępne opcje: :options',
+    ],
     'show'          => [
-        'title' => 'Cechy elementu :name',
+        'hidden'    => 'Ukryte cechy',
+        'title'     => 'Cechy elementu :name',
     ],
     'template'      => [
         'success'   => 'Zastosowano szablon cech :name dla :entity',

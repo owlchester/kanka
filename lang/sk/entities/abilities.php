@@ -26,8 +26,14 @@ return [
         ],
         'success'   => '{1} :count schopnosť importovaná.|[2,4] :count schopnosti importované.|[5,*] :count schopností importovaných.',
     ],
+    'reorder'   => [
+        'parentless'    => 'Bez nadradenej',
+        'success'       => 'Schopnosti úspešne preskupené.',
+        'title'         => 'Preskupenie schopností',
+    ],
     'show'      => [
         'helper'    => 'Pridaj schopnosti k tomuto objektu. Môžeš upraviť ich viditeľnosť alebo ich odstrániť. Schopnosti patriace pod nadradenú schopnosť sa zobrazia pod spoločným tlačidlom.',
+        'reorder'   => 'Preskupiť schopnosti',
         'title'     => 'Schopnosti objektu :name',
     ],
     'update'    => [

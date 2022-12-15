@@ -18,11 +18,13 @@ return [
     ],
     'fields'        => [
         'date'              => 'Dátum',
-        'era'               => 'Vek',
+        'era'               => 'Obdobie',
         'icon'              => 'Symbol',
         'use_entity_entry'  => 'Zobraziť záznam priradeného objektu nižšie. Text tohto prvku bude zobrazený ako prvý, ak nejaký existuje.',
+        'use_event_date'    => 'Použiť dátum prepojenej udalosti',
     ],
     'helpers'       => [
+        'date'              => 'Ak je prvok prepojený s objektom udalosti, zobrazí sa dátum tejto udalosti.',
         'entity_is_private' => 'Objekt tohto prvku je súkromný.',
         'icon'              => 'Skopíruj HTML kód nejakého symbolu z :fontawesome alebo :rpgawesome.',
         'is_collapsed'      => 'Prvok sa zobrazuje štandardne zbalený.',
@@ -30,7 +32,7 @@ return [
     'placeholders'  => [
         'date'      => 'napr. 42. marec alebo 1332-1337',
         'name'      => 'Vyžadované, ak nie je vybraný žiaden objekt',
-        'position'  => 'Pozícia v zozname prvkov pre daný vek. Ponechaj prázdnu, ak ju chceš pridať nakoniec.',
+        'position'  => 'Pozícia v zozname prvkov pre dané obdobie. Ponechaj prázdnu, ak ju chceš pridať nakoniec.',
     ],
     'warning'       => [
         'editing'   => [

@@ -21,8 +21,10 @@ return [
         'era'               => 'Epoka',
         'icon'              => 'Ikona',
         'use_entity_entry'  => 'Wyświetlaj dołączony element. Po zaznaczeniu, ewentualny opis elementu będzie wyświetlany jako pierwszy.',
+        'use_event_date'    => 'Użyj daty wydarzenia',
     ],
     'helpers'       => [
+        'date'              => 'Jeżeli ta część historii związana jest z istniejącym już wydarzeniem, używa daty tego wydarzenia.',
         'entity_is_private' => 'Element powiązany z tym wpisem jest tajny.',
         'icon'              => 'Skopiuj kod HTML ikony z :fontawesome lub :rpgawesome.',
         'is_collapsed'      => 'Szczegóły elementu są domyślnie zwinięte.',

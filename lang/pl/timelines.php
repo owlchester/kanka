@@ -22,6 +22,7 @@ return [
     ],
     'helpers'       => [
         'nested_without'    => 'Wyświetlono wszystkie historie nieposiadające źródła. Kliknij na rząd, by wyświetlić historie pochodne.',
+        'no_era_v2'         => 'Ta historia nie ma obecnie żadnych epok. Stwórz jedną lub więcej epok, do których możesz potem dodawać elementy.',
         'reverse_order'     => 'Zaznacz by wyświetlać epoki w odwróconym porządku chronologicznym (od najdawniejszej)',
     ],
     'index'         => [],

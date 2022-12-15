@@ -22,7 +22,8 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'   => 'Pridať člena',
+            'add'       => 'Pridať člena',
+            'submit'    => 'Pridať člena',
         ],
         'create'        => [
             'success'   => 'Člen pridaný do organizácie.',

@@ -301,7 +301,7 @@ TEXT
                 'edit'          => 'Allow editing all entities of this type.',
                 'entity_note'   => 'Allows adding and editing posts even if the member can\'t edit the entity.',
                 'gallery'       => 'Allow managing the superboosted campaign\'s gallery.',
-                'manage'        => 'Allow editing the campaign as a campaign admin would, without allowing the membres to delete the campaign.',
+                'manage'        => 'Allow editing the campaign as a campaign admin would, without allowing the members to delete the campaign.',
                 'members'       => 'Allow inviting new members to the campaign.',
                 'permission'    => 'Allow setting permissions on entities of this type they can edit.',
                 'read'          => 'Allow viewing all entities of this type that aren\'t private.',

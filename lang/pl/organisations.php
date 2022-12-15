@@ -22,7 +22,8 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'   => 'Dodaj członka',
+            'add'       => 'Dodaj członka',
+            'submit'    => 'Dodaj członka',
         ],
         'create'        => [
             'success'   => 'Dodano członka organizacji.',

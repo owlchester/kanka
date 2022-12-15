@@ -37,6 +37,7 @@ return [
     ],
     'fields'        => [
         'name'      => 'Nazwa dodatku',
+        'obsolete'  => 'Dodatek oznaczono jako przestarzały ponieważ przestał działać w sposób zamierzony przez twórców.',
         'status'    => 'Status',
         'type'      => 'Rodzaj dodatku',
     ],

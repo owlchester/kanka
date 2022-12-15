@@ -2,18 +2,21 @@
 
 return [
     'actions'       => [
-        'add'   => 'Pridať nový vek',
+        'add'   => 'Pridať nové obdobie',
+    ],
+    'bulks'         => [
+        'delete'    => '{0} Odstránených :count období.|{1} Odstránené :count obdobie.|[2,4] Odstránené :count obdobia.|[5,*] Odstránených :count období.',
     ],
     'create'        => [
-        'success'   => 'Vek :name vytvorený.',
-        'title'     => 'Nový vek',
+        'success'   => 'Obdobie :name vytvorené.',
+        'title'     => 'Nové obdobie',
     ],
     'delete'        => [
-        'success'   => 'Vek :name odstránený.',
+        'success'   => 'Obdobie :name odstránené.',
     ],
     'edit'          => [
-        'success'   => 'Vek :name aktualizovaný.',
-        'title'     => 'Upraviť vek :name',
+        'success'   => 'Obdobie :name aktualizované.',
+        'title'     => 'Upraviť obdobie :name',
     ],
     'fields'        => [
         'abbreviation'  => 'Skratka',
@@ -22,12 +25,15 @@ return [
         'start_year'    => 'Začiatok (rok)',
     ],
     'helpers'       => [
-        'eras'          => 'Pred pridávaním vekov musíš vytvoriť časovú os.',
-        'is_collapsed'  => 'Veky sú štandardne zbalené (minimalizované).',
-        'primary'       => 'Rozdeľ svoju časovú os na veky. Časová os vyžaduje min. jeden vek, aby správne fungovala.',
+        'eras'          => 'Pred pridávaním období musíš vytvoriť časovú os.',
+        'is_collapsed'  => 'Obdobia sú štandardne zbalené (minimalizované).',
+        'primary'       => 'Rozdeľ svoju časovú os na obdobia. Časová os vyžaduje min. jedno obdobie, aby správne fungovala.',
+    ],
+    'index'         => [
+        'title' => 'Obdobia časovej osi :name',
     ],
     'placeholders'  => [
-        'abbreviation'  => 'PNL, NL, AD',
+        'abbreviation'  => 'pred n.l., po Kr., AD',
         'end_year'      => 'Rok, kedy končí daný vek. Ponechaj prázdny, ak je to aktuálny vek.',
         'name'          => 'Novovek, Doba bronzová, Galaktické vojny',
         'start_year'    => 'Rok, kedy začína daný vek. Ponechaj prázdny, ak je to prvý vek.',

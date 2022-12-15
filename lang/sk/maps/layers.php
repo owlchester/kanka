@@ -42,8 +42,8 @@ return [
     ],
     'reorder'       => [
         'save'      => 'Uložiť nové poradie',
-        'success'   => '{1} Preusporiadaná :count vrstva.|[2,4] Preusporiadané :count vrstvy.|[5,*] Preusporiadaných :count vrstiev.',
-        'title'     => 'Usporiadať vrstvy',
+        'success'   => '{1} Preskupená :count vrstva.|[2,4] Preskupené :count vrstvy.|[5,*] Preskupených :count vrstiev.',
+        'title'     => 'Preskupiť vrstvy',
     ],
     'short_types'   => [
         'overlay'       => 'Overlay',

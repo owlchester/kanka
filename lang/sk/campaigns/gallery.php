@@ -10,6 +10,9 @@ return [
     'destroy'       => [
         'success'   => 'Obrázok :name zmazaný.',
     ],
+    'errors'        => [
+        'permissions'   => 'Role v tvojej kampani nemajú oprávnenie :permission, aby mohli nahrávať obrázky do galérie kampane.',
+    ],
     'fields'        => [
         'created_by'    => 'Nahrané od',
         'ext'           => 'Ext',

@@ -10,6 +10,9 @@ return [
     'destroy'       => [
         'success'   => 'Immagine :name eliminata',
     ],
+    'errors'        => [
+        'permissions'   => 'Il tuo ruolo non ha l\'autorizzazione :permission per caricare immagini nella galleria della campagna.',
+    ],
     'fields'        => [
         'created_by'    => 'Caricata da',
         'ext'           => 'Estensione',

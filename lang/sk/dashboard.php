@@ -77,9 +77,10 @@ return [
             'add'               => 'Pridať widget',
             'back_to_dashboard' => 'Naspäť na nástenku',
             'edit'              => 'Upraviť widget',
+            'new'               => 'Nový :type widget',
         ],
         'reorder'   => [
-            'success'   => 'Widgety presunuté.',
+            'success'   => 'Widgety preskupené.',
         ],
         'title'     => 'Nastavenie nástenky kampane',
         'tutorial'  => [

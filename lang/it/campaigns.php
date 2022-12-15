@@ -61,6 +61,7 @@ TEXT
         'locale'                            => 'Lingua',
         'name'                              => 'Nome',
         'nested'                            => 'Liste dell\'entità annidate in modo predefinito, quando possibile',
+        'open'                              => 'Aperto a candidature',
         'past_featured'                     => 'Campagna precedentemente in Primo Piano',
         'post_collapsed'                    => 'I nuovi post sulle entità sono ripiegati in modo predefinito.',
         'public'                            => 'Visibilità della campagna',
@@ -85,9 +86,14 @@ TEXT
         'entity_privacy'                    => 'Quando crei una nuova entità come amministratore, seleziona l\'impostazione predefinita della privacy per la nuova entità.',
         'excerpt'                           => 'L\'estratto della campagna sarà mostrato sulla dashboard, quindi scrivi una breve introduzione al tuo mondo. Mantienila breve per un miglior risultato. Se questo campo rimane vuoto, verranno utilizzati i primi 1000 caratteri della descrizione della campagna.',
         'header_image'                      => 'Immagine visualizzata come sfondo nel widget dell\'intestazione della campagna.',
+        'hide_history'                      => 'Se abilitato, solo i membri con il ruolo :admin della campagna avranno accesso alla cronologia (registro delle modifiche) di un\'entità.',
+        'hide_members'                      => 'Se abilitato, solo i membri del ruolo :admin della campagna avranno accesso alla lista dei membri della campagna.',
         'locale'                            => 'La lingua in cui la tua campagna è scritta. Questa specificazione è sfruttata per generare contenuti e raggruppare le campagne pubbliche.',
         'name'                              => 'La tua campagna/mondo può avere qualsiasi nome, a patto che che contenga almeno 4 lettere o numeri.',
+        'permissions_tab'                   => 'Controlla le impostazioni predefinite di privacy e visibilità dei nuovi elementi con le seguenti opzioni.',
         'public_campaign_filters'           => 'Aiuta altre persone a trovare la campagna tra altre campagne pubbliche fornendo le seguenti informazioni.',
+        'public_no_visibility'              => 'Attenzione! La campagna è pubblica, ma il ruolo pubblico della campagna non può accedere a nulla. :fix.',
+        'related_visibility'                => 'Valore predefinito di Visibilità quando si crea un nuovo elemento con questo campo (post, relazioni, abilità, ecc.)',
         'system'                            => 'Se la tua campagna è visibile pubblicamente, il sistema sarà visualizzato nella pagina :link.',
         'systems'                           => 'Per evitare di confondere gli utenti con una sovrabbondanza di opzioni, alcune di esse sono disponibili solamente per specifici sistemi RPG (per esempio il blocco delle statistiche dei mostri di D&D 5e). Aggiungere un sistema supportato qui abiliterà queste funzionalità.',
         'theme'                             => 'Forza il tema della campagna, sovrascrivendo le preferenze delle utenze.',
@@ -104,8 +110,12 @@ TEXT
     'invites'                           => [
         'actions'               => [
             'copy'  => 'Copia il collegamento nei tuoi appunti',
+            'link'  => 'Invita persone',
         ],
         'create'                => [
+            'buttons'       => [
+                'create'    => 'Genera link',
+            ],
             'success_link'  => 'Link creato: :link',
             'title'         => 'Invita qualcuno nella tua campagna',
         ],
@@ -121,17 +131,26 @@ TEXT
         'fields'                => [
             'created'   => 'Inviato',
             'role'      => 'Ruolo',
+            'token'     => 'Token',
             'type'      => 'Tipo',
+            'usage'     => 'Scade dopo',
         ],
         'unlimited_validity'    => 'Nessun Limite',
         'usages'                => [
+            'five'      => '5 usi',
             'no_limit'  => 'Nessun limite',
+            'once'      => '1 uso',
+            'ten'       => '10 usi',
         ],
     ],
     'leave'                             => [
-        'confirm'   => 'Sei sicuro di voler abbandonare la campagna :name? Non potrai più accedere, a meno che un proprietario della campagna non ti inviti nuovamente.',
-        'error'     => 'Non puoi abbandonare la campagna.',
-        'success'   => 'Hai abbandonato la campagna.',
+        'confirm'           => 'Sei sicuro di voler abbandonare la campagna :name? Non potrai più accedere, a meno che un proprietario della campagna non ti inviti nuovamente.',
+        'confirm-button'    => 'Si, abbandona la campagna.',
+        'error'             => 'Non puoi abbandonare la campagna.',
+        'fix'               => 'Vai ai membri della campagna',
+        'no-admin-left'     => 'Lasciare la campagna non è possibile perché la lascerebbe senza admin. Assegna il ruolo di admin prima a un altro membro.',
+        'success'           => 'Hai abbandonato la campagna.',
+        'title'             => 'Lasciare la campagna',
     ],
     'members'                           => [
         'actions'               => [
@@ -139,6 +158,7 @@ TEXT
             'remove'        => 'Rimuovi dalla campagna',
             'switch'        => 'Passa a',
             'switch-back'   => 'Torna al mio utente',
+            'switch-entity' => 'Visualizza come',
         ],
         'create'                => [
             'title' => 'Aggiungi un membro alla tua campagna',
@@ -147,6 +167,7 @@ TEXT
             'title' => 'Modifica il membro :name',
         ],
         'fields'                => [
+            'banned'        => 'L\'utente è bannato',
             'joined'        => 'Unito',
             'last_login'    => 'Ultimo Login',
             'name'          => 'Utente',
@@ -169,6 +190,7 @@ TEXT
             'title'         => 'Invita',
         ],
         'manage_roles'          => 'Gestisci i ruoli degli utenti',
+        'removal'               => 'Stai rimuovendo ":membro" dalla campagna.',
         'roles'                 => [
             'member'    => 'Membro',
             'owner'     => 'Proprietario',
@@ -188,6 +210,7 @@ TEXT
         'boosted'   => 'Potenziata',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permessi',
+        'setup'     => 'Configurazione',
         'sharing'   => 'Condivisione',
         'systems'   => 'Sistema',
         'ui'        => 'Interfaccia',
@@ -198,9 +221,27 @@ TEXT
         'name'          => 'Il nome della tua campagna',
         'system'        => 'D&D 5e, 3.5, Pathfinder, Gurps, DSA',
     ],
+    'privacy'                           => [
+        'hidden'    => 'Nascosto',
+        'private'   => 'Privato',
+        'visible'   => 'Visibile',
+    ],
+    'public'                            => [
+        'helpers'   => [
+            'introduction'  => 'Le campagne sono private per impostazione predefinita e possono essere rese pubbliche. Questo permette a chiunque di accedervi e le rende disponibili nella pagina :public-campaigns se hanno entità visibili al ruolo :public-role. Una campagna pubblica è visibile a tutti, ma affinché il suo contenuto sia visibile, il ruolo :public-role ha bisogno di permessi adeguati.',
+        ],
+    ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Aggiungi un ruolo',
+            'add'           => 'Aggiungi un ruolo',
+            'permissions'   => 'Gestire le autorizzazioni',
+            'rename'        => 'Rinomina ruolo',
+            'save'          => 'Salva ruolo',
+        ],
+        'admin_role'    => 'Ruolo di amministratore',
+        'bulks'         => [
+            'delete'    => '{1} Rimosso :count ruolo.|[2,*] Rimossi :count ruoli.',
+            'edit'      => '{1} Aggiornato :count ruolo.|[2,*] Aggiornati :count ruoli.',
         ],
         'create'        => [
             'success'   => 'Ruolo creato.',
@@ -223,12 +264,23 @@ TEXT
             '1' => 'Una campagna può avere tanti ruoli quanti ne desideri. Il ruolo "Proprietario" ti dà automaticamente accesso a tutto nella campagna, ma ogni altro ruolo può avere permessi specifici su diversi tipi di entità (personaggio, luogo, ecc).',
             '2' => 'I permessi delle entità possono essere perfezionati utilizzando la tabella "Permessi" di unl\'entità. Questa tabella appare quando la tua campagna ha più ruoli o membri.',
             '3' => 'Puoi usare un sistema "opt-out", dove ai ruoli è dato il permesso di vedere tutte le entità, e usare la spunta "Privato" sull\'entità per nasconderla. Oppure puoi dare ai ruoli pochi permessi, ma impostare ogni entità come visibile.',
+            '4' => 'Campagne Potenziate possono avere un numero illimitato di ruoli',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Il ruolo pubblico ha dei permessi, ma la campagna è privata. Puoi cambiare questa impostazione sulla tabella Condivisione mentre modifichi la campagna.',
+            'empty_role'            => 'Il ruolo non ha ancora nessun membro all\'interno.',
+            'role_admin'            => 'Il ruolo :name garantisce automaticamente ai suoi membri l\'accesso a tutto ciò che è presente nella campagna.',
             'role_permissions'      => 'Abilita il ruolo \':name\' per le seguenti funzioni su tutte le entità.',
         ],
         'members'       => 'Membri',
+        'modals'        => [
+            'details'   => [
+                'campaign'  => 'Le autorizzazioni della campagna consentono quanto segue.',
+                'entities'  => 'Ecco un breve riepilogo di ciò che i membri di questo ruolo ottengono quando viene impostata un\'autorizzazione.',
+                'more'      => 'Per maggiori dettagli, guarda il nostro video tutorial su Youtube',
+                'title'     => 'Dettagli di autorizzazione',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Crea',
@@ -237,13 +289,23 @@ TEXT
                 'edit'          => 'Modifica',
                 'entity-note'   => 'Note dell\'Entità',
                 'gallery'       => 'Galleria',
+                'manage'        => 'Gestisci',
                 'members'       => 'Membri',
                 'permission'    => 'Gestisci Permessi',
                 'read'          => 'Visualizza',
                 'toggle'        => 'Cambia per tutte',
             ],
             'helpers'   => [
+                'add'           => 'Consente la creazione di entità di questo tipo. Gli utenti saranno automaticamente autorizzati a visualizzare e modificare le entità che creano, se non hanno l\'autorizzazione di visualizzazione o modifica.',
+                'dashboard'     => 'Consente la modifica della dashboard e dei widget della dashboard.',
+                'delete'        => 'Consente la rimozione di tutte le entità di questo tipo.',
+                'edit'          => 'Consente la modifica di tutte le entità di questo tipo.',
                 'entity_note'   => 'Questo permette ad utenti che non hanno il permesso di modificare un\'entità di aggiungere note ad essa.',
+                'gallery'       => 'Consente di gestire la galleria della campagna Superpotenziata',
+                'manage'        => 'Consente la modifica della campagna come farebbe l\'amministratore di una campagna, senza permettere ai membri di cancellare la campagna.',
+                'members'       => 'Consente di invitare nuovi membri alla campagna.',
+                'permission'    => 'Consente di impostare le autorizzazioni sulle entità di questo tipo che possono modificare.',
+                'read'          => 'Consente di visualizzare tutte le entità di questo tipo che non sono private.',
             ],
         ],
         'placeholders'  => [
@@ -260,15 +322,20 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Aggiungi membro',
-                'remove'    => ':user dal ruolo :role',
+                'add'           => 'Aggiungi membro',
+                'remove'        => ':user dal ruolo :role',
+                'remove_user'   => 'Rimuovi l\'utente dal ruolo',
             ],
             'create'    => [
                 'success'   => 'Utente aggiunto al ruolo.',
                 'title'     => 'Aggiungi un membro al ruolo :name',
             ],
             'destroy'   => [
-                'success'   => 'Utente rimosso da ruolo.',
+                'success'   => 'Utente rimosso dal ruolo.',
+            ],
+            'errors'    => [
+                'cant_kick_admins'  => 'Per evitare eventuali abusi, non è possibile rimuovere altri membri dal ruolo di :admin della campagna. In caso di problemi, contattataci su :discord o all\'indirizzo :email.',
+                'needs_more_roles'  => 'È necessario aggiungersi a un altro ruolo nella campagna prima di potersi rimuovere dal ruolo :admin.',
             ],
             'fields'    => [
                 'name'  => 'Nome',
@@ -276,18 +343,29 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'   => [
+        'actions'       => [
             'enable'    => 'Abilita',
         ],
-        'boosted'   => 'Questa funzionalità è in beta e al momento è disponibile solo per :boosted.',
-        'helpers'   => [
+        'boosted'       => 'Questa funzionalità è in beta e al momento è disponibile solo per :boosted.',
+        'deprecated'    => [
+            'help'  => 'Questo modulo è obsoleto, il che significa che non viene più mantenuto e che i bug non vengono risolti a ogni nuovo aggiornamento. Utilizza questo modulo sapendo che alla fine verrà rimosso da Kanka.',
+            'title' => 'Obsoleto',
+        ],
+        'disabled'      => 'Il modulo :module è disabilitato.',
+        'enabled'       => 'Il modulo :module è abilitato.',
+        'errors'        => [
+            'module-disabled'   => 'Il modulo richiesto è attualmente disabilitato nelle impostazioni della campagna. :fix.',
+        ],
+        'helpers'       => [
             'abilities'     => 'Crea abilità, siano esse talenti, incantesimi o poteri che possono essere assegnati alle entità.',
             'calendars'     => 'Un\'area dove definire i calendari del tuo mondo.',
             'characters'    => 'Le persone che abitano il tuo mondo.',
             'conversations' => 'Conversazioni fittizie tra i personaggi o gli utenti della campagna.',
+            'creatures'     => 'Crea le creature, gli animali e i mostri del tuo mondo con il modulo delle creature.',
             'dice_rolls'    => 'Per quelli che utilizzano Kanka per una campagna RPG, un modo per gestire i tiri di dado.',
             'events'        => 'Vacanze, festival, disastri, compleanni, guerre.',
             'families'      => 'Clan o famiglie, le loro relazioni e i loro membri.',
+            'inventories'   => 'Gestisci gli inventari delle tue entità',
             'items'         => 'Armi, veicoli, reliquie, pozioni.',
             'journals'      => 'Osservazioni scritte dai personaggi, o preparazione per le sessioni del dungeon master.',
             'locations'     => 'Pianeti, piani, continenti, fiumi, stati, insediamenti, templi, taverne.',
@@ -298,18 +376,24 @@ TEXT
             'quests'        => 'Per tener traccia di varie missioni con personaggi e luoghi.',
             'races'         => 'Se la tua campagna ha più di una razza, questo ti aiuterà a tenerne traccia facilmente.',
             'tags'          => 'Ogni entità può avere diversi tag. I tag possono appartenere ad altri tag e le entità possono essere filtrate per tag.',
+            'timelines'     => 'Narra la storia del tuo mondo con le linee temporali',
         ],
     ],
     'show'                              => [
         'actions'   => [
             'boost' => 'Potenzia campagna',
-            'leave' => 'Abbandona campagna',
+            'edit'  => 'Modifica Campagna',
+            'leave' => 'Abbandona Campagna',
         ],
         'menus'     => [
             'configuration'     => 'Configurazione',
+            'overview'          => 'Panoramica',
             'user_management'   => 'Gestione utente',
         ],
         'tabs'      => [
+            'achievements'      => 'Obbiettivi',
+            'applications'      => 'Candidature',
+            'campaign'          => 'Campagna',
             'default-images'    => 'Immagini predefinite',
             'export'            => 'Esporta',
             'information'       => 'Informazioni',
@@ -318,26 +402,63 @@ TEXT
             'recovery'          => 'Recupero',
             'roles'             => 'Ruoli',
             'settings'          => 'Moduli',
+            'sidebar'           => 'Configurazione della barra laterale',
+            'styles'            => 'Tema',
         ],
         'title'     => 'Campagna :name',
     ],
+    'themes'                            => [
+        'none'  => 'Nessuno (predefinito alle impostazioni utente)',
+    ],
     'ui'                                => [
-        'fields'    => [
-            'entity_image'  => 'Immagine dell\'entità',
-            'family_toolip' => 'Famiglia del personaggio',
+        'boosted'           => 'Potenziata',
+        'collapsed'         => [
+            'collapsed' => 'Ripiegato',
+            'default'   => 'Predefinito',
         ],
-        'members'   => [
+        'connections'       => [
+            'explorer'  => 'Esploratore di Relazioni (se disponibile, per campagne Potenziate)',
+            'list'      => 'Elenco Interfaccia',
+        ],
+        'entity_history'    => [
             'hidden'    => 'Visibile solo agli amministratori della campagna',
             'visible'   => 'Visibile ai membri',
         ],
-        'nested'    => [
-            'default'   => 'Predefinito',
+        'fields'            => [
+            'connections'       => 'Interfaccia connessioni dell\'entità predefinita',
+            'connections_mode'  => 'Modalità Esploratore di Relazioni predefinita',
+            'entity_history'    => 'Cronologia dell\'entità',
+            'entity_image'      => 'Immagine dell\'entità',
+            'family_toolip'     => 'Famiglia del personaggio',
+            'member_list'       => 'Lista dei membri della campagna',
+            'nested'            => 'Disposizione predefinita degli elenchi',
+            'post_collapsed'    => 'Valore predefinito del nuovo post ripiegato',
         ],
-        'other'     => 'Altro',
+        'helpers'           => [
+            'connections'       => 'Quando fai clic sulla sottopagina delle connessioni di un\'entità, seleziona l\'interfaccia predefinita mostrata.',
+            'connections_mode'  => 'Quando visualizzi l\'esploratore di relazioni di un\'entità, seleziona l\'interfaccia predefinita mostrata.',
+            'other'             => 'Altre opzioni grafiche per la campagna',
+            'post_collapsed'    => 'Quando crei un nuovo post in un\'entità, seleziona il valore predefinito del campo ripiegato.',
+            'tooltip'           => 'Controlla quale informazione è visibile passando il mouse sul nome di un\'entità nella sua descrizione popup.',
+        ],
+        'members'           => [
+            'hidden'    => 'Visibile solo agli amministratori della campagna',
+            'visible'   => 'Visibile ai membri',
+        ],
+        'nested'            => [
+            'default'   => 'Predefinito',
+            'nested'    => 'Annidato',
+        ],
+        'other'             => 'Altro',
     ],
     'visibilities'                      => [
         'private'   => 'Privata',
         'public'    => 'Pubblica',
         'review'    => 'In attesa di revisione',
+    ],
+    'warning'                           => [
+        'editing'   => [
+            'description'   => 'Sembra che qualcun altro stia modificando questa campagna! Vuoi tornare indietro o ignorare questo avviso, con il rischio di perdere i dati? Membri che stanno modificando attualmente questa campagna:',
+        ],
     ],
 ];

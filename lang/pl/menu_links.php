@@ -9,6 +9,7 @@ return [
         'title' => 'Skrót :name',
     ],
     'fields'            => [
+        'active'            => 'Aktywne',
         'dashboard'         => 'Pulpit',
         'default_dashboard' => 'Pulpit domyślny',
         'entity'            => 'Element',
@@ -22,6 +23,7 @@ return [
         'type'              => 'Typ elementu',
     ],
     'helpers'           => [
+        'active'            => 'Nieaktywne skróty nie pojawią się w menu bocznym',
         'dashboard'         => 'Skrót prowadzący do jednego z własnych pulpitów kampanii. Ta opcja dostępna jest tylko w :boosted kampanii.',
         'default_dashboard' => 'Odnośnik prowadzi do pulpitu domyślnego. Pulpity własne należy dopiero wybrać.',
         'entity'            => 'Stwórz skrót prowadzący wprost do jakiegoś elementu. Pole :tab pozwala decydować, która zakładka się wyświetli. Pole :menu pozwala określić, która podstrona zostanie otwarta.',

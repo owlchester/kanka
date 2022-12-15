@@ -56,7 +56,8 @@ return [
     ],
     'organisations' => [
         'actions'       => [
-            'add'   => 'Pridať organizáciu',
+            'add'       => 'Pridať organizáciu',
+            'submit'    => 'Pridať organizáciu',
         ],
         'create'        => [
             'success'   => 'Postava priradená organizácii.',

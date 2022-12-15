@@ -43,7 +43,7 @@ return [
     ],
     'reorder'       => [
         'save'      => 'Uložiť nové poradie',
-        'success'   => '{1} Preusporiadaná :count skupina.|[2,4] Preusporiadané :count skupiny.|[5,*] Preusporiadaných :count skupín.',
-        'title'     => 'Usporiadať skupiny',
+        'success'   => '{1} Preuskupená :count skupina.|[2,4] Preskupené :count skupiny.|[5,*] Preskupených :count skupín.',
+        'title'     => 'Preskupiť skupiny',
     ],
 ];

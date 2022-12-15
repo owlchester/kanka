@@ -26,8 +26,14 @@ return [
         ],
         'success'   => 'Importowano {1} :count zdolność.|Importowano [2,*] :count zdolności.',
     ],
+    'reorder'   => [
+        'parentless'    => 'Bez źródła',
+        'success'       => 'Zmieniono kolejność zdolności.',
+        'title'         => 'Zmień kolejność zdolności',
+    ],
     'show'      => [
         'helper'    => 'Dodaj zdolności, które posiada ten element. Możesz w każdej chwili zmienić ich widoczność albo je usunąć. Zdolności wywodzące się z tego samego źródła wyświetlane są jako kafelki.',
+        'reorder'   => 'Zmień kolejność',
         'title'     => 'Zdolności elementu :name',
     ],
     'update'    => [
