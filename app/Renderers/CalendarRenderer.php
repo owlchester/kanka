@@ -881,26 +881,26 @@ class CalendarRenderer
 
     /**
      * For multi-day event, add it to each day the event lasts
-     * @param EntityEvent $event
+     * @param EntityEvent $reminder
      * @param string $date
      */
-    protected function addMultidayEvent(EntityEvent $event, string $date)
+    protected function addMultidayEvent(EntityEvent $reminder, string $date)
     {
         // Does the day go over a few days?
-        if ($event->length == 1) {
+        if ($reminder->length == 1) {
             return;
         }
         // Flag this reminder's start date to show (start) in the UI
-        $this->eventStart[$event->id][] = $date;
+        $this->eventStart[$reminder->id][] = $date;
 
         // For each length of the reminder, add it to the UI
         $extraDate = $date;
-        for ($extra = 1; $extra < $event->length; $extra++) {
+        for ($extra = 1; $extra < $reminder->length; $extra++) {
             $extraDate = $this->addDay($extraDate);
-            $this->events[$extraDate][] = $event;
+            $this->events[$extraDate][] = $reminder;
         }
         // Finished adding all the reminder's days, flag it to show (end) in the UI
-        $this->eventEnd[$event->id][] = $extraDate;
+        $this->eventEnd[$reminder->id][] = $extraDate;
     }
 
     /**
