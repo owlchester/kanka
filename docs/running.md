@@ -51,7 +51,7 @@ docker run --rm \
 
 #### Easier life
 
-To make your life easier, we recommend setting an aslias to the `sail` command.
+To make your life easier, we recommend setting an alias to the `sail` command.
 ```bash
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 ```
