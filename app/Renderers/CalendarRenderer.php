@@ -375,6 +375,9 @@ class CalendarRenderer
                 // Add recurring events that span multiple days from the previous call
                 $newRemaining = [];
                 foreach ($remainingRecurring as $recurring) {
+                    if ($recurring['remaining'] == 1) {
+                        $this->eventEnd[$recurring['event']->id][] = $dayData['date'];
+                    }
                     $dayData['events'][] = $recurring['event'];
                     if ($recurring['remaining'] > 1) {
                         $newRemaining[] = ['remaining' => $recurring['remaining'] - 1, 'event' => $recurring['event']];
@@ -399,6 +402,7 @@ class CalendarRenderer
                             $dayData['events'][] = $event;
 
                             if ($event->length > 1) {
+                                $this->eventStart[$event->id][] = $dayData['date'];
                                 $remainingRecurring[] = ['remaining' => $event->length - 1, 'event' => $event];
                             }
                         }
@@ -545,6 +549,9 @@ class CalendarRenderer
                 // Add recurring events that span multiple days from the previous call
                 $newRemaining = [];
                 foreach ($remainingRecurring as $recurring) {
+                    if ($recurring['remaining'] == 1) {
+                        $this->eventEnd[$recurring['event']->id][] = $dayData['date'];
+                    }
                     $dayData['events'][] = $recurring['event'];
                     if ($recurring['remaining'] > 1) {
                         $newRemaining[] = ['remaining' => $recurring['remaining'] - 1, 'event' => $recurring['event']];
@@ -568,6 +575,7 @@ class CalendarRenderer
                             $dayData['events'][] = $event;
 
                             if ($event->length > 1) {
+                                $this->eventStart[$event->id][] = $dayData['date'];
                                 $remainingRecurring[] = ['remaining' => $event->length - 1, 'event' => $event];
                             }
                         }
@@ -868,23 +876,6 @@ class CalendarRenderer
                 $this->addMultidayEvent($event, $date);
             }
         }
-
-        $start = [];
-        $end = [];
-        foreach ($this->events as $date => $events) {
-            foreach ($events as $position => $event) {
-
-                if ($event->length > 1 && $date == $event->year . '-' . $event->month . '-' . $event->day || $event->length > 1 && $event->is_recurring && substr($date, -1) == $event->day) {
-                    $start[$event->id][] = $date;
-                    if (isset($start[$event->id])) {
-                        $positionOfStartDate = array_search($date, array_keys($this->events));
-                        $end[$event->id][] = key(array_slice($this->events, $positionOfStartDate + $event->length - 1, 1, true));
-                    }
-                }
-            }
-        }
-        $this->eventEnd = $end;
-        $this->eventStart = $start;
         //should end the first day of the month
     }
 
@@ -906,6 +897,21 @@ class CalendarRenderer
             }
             $this->events[$extraDate][] = $event;
         }
+        $start = [];
+        $end = [];
+        foreach ($this->events as $date => $events) {
+            foreach ($events as $position => $event) {
+                if ($event->length > 1 && $date == $event->year . '-' . $event->month . '-' . $event->day || $event->length > 1 && $event->is_recurring && substr($date, -1) == $event->day) {
+                    $start[$event->id][] = $date;
+                    if (isset($start[$event->id])) {
+                        $positionOfStartDate = array_search($date, array_keys($this->events));
+                        $end[$event->id][] = key(array_slice($this->events, $positionOfStartDate + $event->length - 1, 1, true));
+                    }
+                }
+            }
+        }
+        $this->eventEnd = $end;
+        $this->eventStart = $start;
     }
 
     /**
@@ -1314,20 +1320,24 @@ class CalendarRenderer
     }
 
     /**
-     * Returns array with start dates for each event
-     * @return array
+     * Checks if date is the start of an event
+     * @param EntityEvent $event
+     * @param string $date
+     * @return bool
      */
-    public function getEventStartDates(): array
+    public function isEventStartDate(EntityEvent $event, string $date): bool
     {
-        return $this->eventStart;
+        return isset($this->eventStart[$event->id]) && in_array($date, $this->eventStart[$event->id]);
     }
 
     /**
-     * Returns array with end dates for each event
-     * @return array
+     * Checks if date is the end of an event
+     * @param EntityEvent $event
+     * @param string $date
+     * @return bool
      */
-    public function getEventEndDates(): array
+    public function isEventEndDate(EntityEvent $event, string $date): bool
     {
-        return $this->eventEnd;
+        return isset($this->eventEnd[$event->id]) && in_array($date, $this->eventEnd[$event->id]);
     }
 }
