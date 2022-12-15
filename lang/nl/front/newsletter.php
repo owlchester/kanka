@@ -11,9 +11,7 @@ return [
         'notifications' => 'Notificaties',
     ],
     'groups'    => [
-        'community-votes'   => 'Community Stemmingen',
-        'news'              => 'Nieuws',
-        'newsletter'        => 'Nieuwsbrief',
+        'newsletter'    => 'Nieuwsbrief',
     ],
     'headline'  => 'Abonneer je op een of al onze nieuwsbrieven om op de hoogte te blijven van Kanka.',
     'title'     => 'E-mailupdates',

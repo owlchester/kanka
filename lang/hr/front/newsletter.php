@@ -11,10 +11,7 @@ return [
         'notifications' => 'Obavijesti',
     ],
     'groups'    => [
-        'community-votes'   => 'Glasanje zajednice',
-        'news'              => 'Vijesti',
-        'newsletter'        => 'Bilten',
-        'updates'           => 'Ažuriranja',
+        'newsletter'    => 'Bilten',
     ],
     'headline'  => 'Pretplati se na jedan ili sve naše biltene kako bi bio/la u toku s Kankom.',
     'title'     => 'Obavijesti email porukama',

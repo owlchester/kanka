@@ -47,22 +47,10 @@ return [
     ],
     'newsletter'                    => [
         'helpers'   => [
-            'community-vote'    => 'Recibe unha notificación cada vez que haxa unha nova :community-vote.',
-            'header'            => 'Subscríbete aos seguintes boletíns de información para recibir notificacións do que está pasando en Kanka.',
-            'monthly'           => 'O noso resumo mensual de todo o relacionado con Kanka.',
-            'release'           => 'Recibe unha notificación cada vez que Kanka sexa actualizada, cun resumo dos novos cambios.',
-        ],
-        'links'     => [
-            'community-vote'    => 'Votación da comunidade',
-            'news'              => 'Novas',
-            'updates'           => 'Actualizacións de Kanka',
+            'header'    => 'Subscríbete aos seguintes boletíns de información para recibir notificacións do que está pasando en Kanka.',
         ],
         'options'   => [
             'monthly'   => 'Boletín de información de Kanka',
-            'release'   => 'Nova actualización',
-        ],
-        'settings'  => [
-            'news'  => 'Novas - Notificarme cando houber :news.',
         ],
         'title'     => 'Boletíns de información',
     ],

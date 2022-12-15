@@ -47,13 +47,13 @@ return [
     ],
     'newsletter'                    => [
         'helpers'   => [
-            'header'            => 'Subscribe to the following email newsletters to be notified of what\'s going on with Kanka.',
+            'header'    => 'Subscribe to the following email newsletters to be notified of what\'s going on with Kanka.',
         ],
         'options'   => [
             'monthly'   => 'Kanka newsletter',
         ],
-        'updated' => 'Newsletter preferences updated.',
         'title'     => 'Newsletters',
+        'updated'   => 'Newsletter preferences updated.',
     ],
     'password'                      => [
         'success'   => 'Password updated',

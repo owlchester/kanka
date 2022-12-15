@@ -24,14 +24,7 @@ return [
         'theme'                     => 'Tema',
     ],
     'newsletter'    => [
-        'links'     => [
-            'community-vote'    => 'Community Röstning',
-            'news'              => 'Nyheter',
-        ],
-        'settings'  => [
-            'news'  => 'Nyheter - bli underrättad när det finns :news.',
-        ],
-        'title'     => 'Nyhetsbrev',
+        'title' => 'Nyhetsbrev',
     ],
     'password'      => [
         'success'   => 'Lösenord uppdaterat',

@@ -47,22 +47,10 @@ return [
     ],
     'newsletter'                    => [
         'helpers'   => [
-            'community-vote'    => 'Être notifié à chaque fois qu\'un :community-vote commence.',
-            'header'            => 'Souscrire aux newsletters par email pour être notifié des changements dans Kanka.',
-            'monthly'           => 'Notre récapitulatif mensuel sur les grands changements et événements liés à Kanka.',
-            'release'           => 'Être notifié à chaque fois qu\'une nouvelle version de Kanka est disponible avec un aperçu des changements.',
-        ],
-        'links'     => [
-            'community-vote'    => 'Vote Communautaire',
-            'news'              => 'News',
-            'updates'           => 'Mises à jour Kanka',
+            'header'    => 'Souscrire aux newsletters par email pour être notifié des changements dans Kanka.',
         ],
         'options'   => [
             'monthly'   => 'Newsletter Kanka',
-            'release'   => 'Nouvelle version',
-        ],
-        'settings'  => [
-            'news'  => 'News - être notifié lors de nouvelles :news.',
         ],
         'title'     => 'Newsletter',
     ],

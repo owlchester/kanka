@@ -25,15 +25,7 @@ return [
         'theme'                     => 'Teme',
     ],
     'newsletter'    => [
-        'links'     => [
-            'community-vote'    => 'Glasanje zajednice',
-            'news'              => 'Vijesti',
-            'updates'           => 'Kanka ažuriranja',
-        ],
-        'settings'  => [
-            'news'  => 'Vijesti - budi obaviješten kada ima :news.',
-        ],
-        'title'     => 'Bilteni',
+        'title' => 'Bilteni',
     ],
     'password'      => [
         'success'   => 'Lozinka ažurirana',

@@ -11,10 +11,7 @@ return [
         'notifications' => 'Notifiche',
     ],
     'groups'    => [
-        'community-votes'   => 'Voti della COmmunity',
-        'news'              => 'News',
-        'newsletter'        => 'Newsletter',
-        'updates'           => 'Aggiornamenti dal team',
+        'newsletter'    => 'Newsletter',
     ],
     'headline'  => 'Iscriviti ad una o a tutte le nostre newsletter per rimanere aggiornato con Kanka.',
     'title'     => 'Aggiornamenti Email',

@@ -11,10 +11,7 @@ return [
         'notifications' => 'Értesítések',
     ],
     'groups'    => [
-        'community-votes'   => 'Közösségi szavazások',
-        'news'              => 'Hírek',
-        'newsletter'        => 'Hírlevél',
-        'updates'           => 'Frissítések',
+        'newsletter'    => 'Hírlevél',
     ],
     'headline'  => 'Iratkozz fel egy, vagy több hírlevelünkre, hogy képben maradj a Kanka újdonságaival kapcsolatban.',
     'title'     => 'Email értesítések',

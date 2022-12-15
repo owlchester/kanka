@@ -11,10 +11,7 @@ return [
         'notifications' => 'Powiadomienia',
     ],
     'groups'    => [
-        'community-votes'   => 'Głosowania społeczności',
-        'news'              => 'Aktualności',
-        'newsletter'        => 'Newsletter',
-        'updates'           => 'Aktualizacje',
+        'newsletter'    => 'Newsletter',
     ],
     'headline'  => 'Zasubskrybuj jeden albo wszystkie newslettery, by pozostać na bieżąco.',
     'title'     => 'Powiadomienia E-mail',

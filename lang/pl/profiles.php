@@ -47,22 +47,10 @@ return [
     ],
     'newsletter'                    => [
         'helpers'   => [
-            'community-vote'    => 'Otrzymuj powiadomie, kiedy rozpoczyna się nowe :community-vote.',
-            'header'            => 'Zasubskrybuj następujące powiadomienia e-mailem, by być na bieżąco z Kanką.',
-            'monthly'           => 'Podsumowanie zmian i wydarzeń z ostatniego miesiąca.',
-            'release'           => 'Otrzymuj powiadomienie po każdej aktualizacji, z opisem przeprowadzonych zmian.',
-        ],
-        'links'     => [
-            'community-vote'    => 'Głosowanie społeczności',
-            'news'              => 'Aktualności',
-            'updates'           => 'Aktualizacje Kanki',
+            'header'    => 'Zasubskrybuj następujące powiadomienia e-mailem, by być na bieżąco z Kanką.',
         ],
         'options'   => [
             'monthly'   => 'Newsletter Kanki',
-            'release'   => 'Nowe wydanie',
-        ],
-        'settings'  => [
-            'news'  => 'Aktualności - otrzymuj powiadomienia, gdy mamy :news.',
         ],
         'title'     => 'Newslettery',
     ],
