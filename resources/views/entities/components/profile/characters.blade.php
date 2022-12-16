@@ -19,7 +19,7 @@
     <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
         @if ($campaignService->enabled('families') && !$model->families->isEmpty())
             <div class="element profile-family">
-                <div class="title">{{ __('characters.fields.families') }}</div>
+                <div class="title">{{ __('entities.families') }}</div>
                 @php $existingFamilies = []; @endphp
                 @foreach ($model->families as $family)
                     @if(!empty($existingFamilies[$family->id]))

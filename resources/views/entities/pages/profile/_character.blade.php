@@ -4,8 +4,8 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
 ?>
 <div class="box box-solid box-entity-profile">
     <div class="box-body">
-        <div class="row">
-            <div class="col-sm-4">
+        <div class="flex w-full gap-5">
+            <div class="flex-1">
                 @if ($model->title)
                     <p class="entity-character-title">
                         <b>{{ __('characters.fields.title') }}</b><br />
@@ -41,7 +41,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                         @endif
                         @php $existingFamilies[$family->id] = true; @endphp
                         <p class="entity-family" data-foreign="{{ $family->id }}">
-                            <b>{{ __('characters.fields.family') }}</b><br />
+                            <b>{{ __('entities.families') }}</b><br />
                             {!! $family->tooltipedLink() !!}
                         </p>
                     @endforeach
@@ -70,7 +70,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             </div>
 
             @if (count($appearances) > 0)
-                <div class="col-md-3 character-appearances">
+                <div class="character-appearances flex-1">
                     @foreach ($appearances as $trait)
                         <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}">
                             <b>{{ $trait->name }}</b><br />
@@ -81,7 +81,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             @endif
 
             @if (((auth()->check() && auth()->user()->can('personality', $model)) || $model->is_personality_visible) && count($traits) > 0)
-                <div class="col-md-5 character-personalities">
+                <div class="character-personalities flex-1">
 
                     @if(auth()->check() && auth()->user()->can('personality', $model))
                         <span class="pull-right">

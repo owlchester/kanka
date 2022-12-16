@@ -67,7 +67,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/themes/midnight.scss', 'public/css')
     .sass('resources/assets/sass/tinymce.scss', 'public/css')
     .sass('resources/assets/sass/freyja/freyja.scss', 'public/css')
-    .sass('resources/assets/sass/print.scss', 'public/css')
+    .sass('resources/assets/sass/print/print.scss', 'public/css')
     /*.sass('resources/assets/sass/tailwind.scss', 'public/css')
     .options({
         processCssUrls: false,
