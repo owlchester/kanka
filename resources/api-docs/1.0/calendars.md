@@ -104,7 +104,8 @@ The list of returned calendars can be filtered. The available filters are availa
             "leap_year_amount": 4,
             "leap_year_month": 2,
             "leap_year_offset": 3,
-            "leap_year_start": 233
+            "leap_year_start": 233,
+            "skip_year_zero": true
         }
     ],
     "links": {
@@ -212,7 +213,8 @@ To get the details of a single calendar, use the following endpoint.
         "leap_year_amount": 4,
         "leap_year_month": 2,
         "leap_year_offset": 3,
-        "leap_year_start": 233
+        "leap_year_start": 233,
+        "skip_year_zero": true
     }
 
 }
@@ -256,6 +258,7 @@ To create a calendar, use the following endpoint.
 | `leap_year_offset` | `integer` | Every how many years the leap days occur |
 | `leap_year_start` | `integer` | The year from which the leap days start occurring  |
 | `tags` | `array` | Array of tag ids |
+| `skip_year_zero` | `boolean` | Whether the calendar skips year zero to start in year one |
 | `image_url` | `string` | URL to a picture to be used for the calendar |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
