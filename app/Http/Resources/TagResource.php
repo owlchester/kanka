@@ -23,6 +23,7 @@ class TagResource extends EntityResource
             'colour' => $model->colour,
             'entities' => $model->entities()->distinct()->pluck('entities.id')->toArray(),
             'is_auto_applied' => (bool) $model->is_auto_applied,
+            'is_hidden' => (bool) $model->is_hidden,
         ]);
     }
 }

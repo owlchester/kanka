@@ -51,7 +51,8 @@ The list of returned tags can be filtered. The available filters are available h
               352,
               440
             ],
-            "is_auto_applied": false
+            "is_auto_applied": false,
+            "is_hidden": false
 
         }
     ]
@@ -91,7 +92,8 @@ To get the details of a single tag, use the following endpoint.
         "entities": [
           352, 440
         ],
-        "is_auto_applied": false
+        "is_auto_applied": false,
+        "is_hidden": false
 
     }
 
@@ -122,6 +124,7 @@ To create a tag, use the following endpoint.
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
 | `is_private` | `boolean` | If the tag is only visible to `admin` members of the campaign |
 | `is_auto_applied` | `boolean` | If the tag is automatically applied to new entities in the campaign |
+| `is_hidden` | `boolean` | If the tag won't be displayed in an entity's header or tooltip |
 ### Results
 
 > {success} Code 200 with JSON body of the new tag.

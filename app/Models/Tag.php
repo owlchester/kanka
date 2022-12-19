@@ -25,6 +25,7 @@ use Illuminate\Support\Collection;
  * @property Tag|null $tag
  * @property Tag[]|Collection $tags
  * @property bool $is_auto_applied
+ * @property bool $is_hidden
  *
  * @property Entity[]|Collection $entities
  */
@@ -53,6 +54,7 @@ class Tag extends MiscModel
         'type',
         'colour',
         'is_auto_applied',
+        'is_hidden',
     ];
 
     /**
@@ -63,6 +65,7 @@ class Tag extends MiscModel
         'tag.name',
         'colour',
         'is_auto_applied',
+        'is_hidden',
     ];
 
     /** @var string[]  */
@@ -77,6 +80,7 @@ class Tag extends MiscModel
         'campaign_id',
         'is_private',
         'is_auto_applied',
+        'is_hidden',
     ];
 
     /**
@@ -160,7 +164,7 @@ class Tag extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['tag_id', 'colour', 'is_auto_applied'];
+        return ['tag_id', 'colour', 'is_auto_applied','is_hidden'];
     }
 
     /**
@@ -348,6 +352,15 @@ class Tag extends MiscModel
     }
 
     /**
+     * Determine if the model is a tag that is hidden
+     * @return bool
+     */
+    public function isHidden(): bool
+    {
+        return (bool) $this->is_hidden;
+    }
+
+    /**
      * Define the fields unique to this model that can be used on filters
      * @return string[]
      */
@@ -356,6 +369,7 @@ class Tag extends MiscModel
         return [
             'colour',
             'is_auto_applied',
+            'is_hidden',
         ];
     }
 }
