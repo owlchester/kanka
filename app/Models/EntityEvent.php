@@ -419,7 +419,13 @@ class EntityEvent extends MiscModel
             }
         }
         // Diff in years between current year and reminder's year
-        $days = ($year - $reminderYear) * $daysInYear;
+
+        if (!$this->calendar->hasYearZero() && $year > 0 && $reminderYear < 0) {
+            $days = ($year - 1 - $reminderYear) * $daysInYear;
+        } else {
+            $days = ($year - $reminderYear) * $daysInYear;
+        }
+
         // Not the same month? We need to do some math
         if ($month != $reminderMonth) {
             //dump('month diff ' . $month . ' (current) vs ' . $reminderMonth . '(reminder)');
@@ -525,7 +531,9 @@ class EntityEvent extends MiscModel
             $days += $daysInYear;
             //dump("Add a year");
         }
-
+        if (!$this->calendar->hasYearZero() && $calendarYear < 0 && $reminderYear > 0) {
+            $days -= $daysInYear;
+        }
         // If the reminder happens "before" the same month / same date, we need to reduce the days by one year
         // current: 2004-05-01 and reminder is 2005-03-15
         if ($days > 0 && ($reminderMonth < $calendarMonth)) {
