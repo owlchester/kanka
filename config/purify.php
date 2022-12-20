@@ -181,6 +181,8 @@ return [
             . "p3d\.in/e/|"
             . "api\.mapbox\.com/|"
             . "app.box.com/embed/"
+            . "discord\.com/|"
+            . "discord\.gg/|"
             . ")%",
     ],
 
