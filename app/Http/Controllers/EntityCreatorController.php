@@ -19,6 +19,29 @@ class EntityCreatorController extends Controller
      */
     protected EntityService $entityService;
 
+    protected array $entityTypes = [
+        'characters' => 'character',
+        'locations' => 'location',
+        'maps' => 'map',
+        'organisations' => 'organisation',
+        'families' => 'family',
+        'calendars' => 'calendar',
+        'timelines' => 'timeline',
+        'items' => 'item',
+        'notes' => 'note',
+        'events' => 'event',
+        'creatures' => 'creature',
+        'races' => 'race',
+        'quests' => 'quest',
+        'journals' => 'journal',
+        'abilities' => 'ability',
+        'tags' => 'tag',
+        'posts' => 'post',
+        'attribute_templates' => 'attribute_template',
+        'dice_rolls' => 'dice_roll',
+        'conversations' => 'conversation',
+    ];
+
     /**
      * Create a new controller instance.
      *
@@ -37,8 +60,19 @@ class EntityCreatorController extends Controller
     public function selection()
     {
         $entities = $this->creatableEntities();
+        $popular = [
+            'characters',
+            'locations',
+            'races',
+            'items',
+            'organisations',
+        ];
+
+        $orderedEntityTypes = $this->orderedEntityTypes($this->entityTypes);
         return view('entities.creator.selection', [
-            'entities' => $entities
+            'entities' => $entities,
+            'types' => $orderedEntityTypes,
+            'popular' => $popular
         ]);
     }
 
@@ -189,6 +223,10 @@ class EntityCreatorController extends Controller
             }
         }
 
+        if (auth()->user()->can('recover', $campaign)) {
+            $entities['posts'] = 'App\Models\Post';
+        }
+
         return $entities;
     }
 
@@ -249,30 +287,7 @@ class EntityCreatorController extends Controller
         $entityType = __('entities.' . $singularType);
         $entities = $this->creatableEntities();
 
-        $entityTypes = [
-            'characters' => 'character',
-            'locations' => 'location',
-            'maps' => 'map',
-            'organisations' => 'organisation',
-            'families' => 'family',
-            'calendars' => 'calendar',
-            'timelines' => 'timeline',
-            'items' => 'item',
-            'notes' => 'note',
-            'events' => 'event',
-            'creatures' => 'creature',
-            'races' => 'race',
-            'quests' => 'quest',
-            'journals' => 'journal',
-            'abilities' => 'ability',
-            'tags' => 'tag',
-            'posts' => 'post',
-            'attribute_templates' => 'attribute_template',
-            'dice_rolls' => 'dice_roll',
-            'conversations' => 'conversation',
-        ];
-
-        $orderedEntityTypes = $this->orderedEntityTypes($entityTypes);
+        $orderedEntityTypes = $this->orderedEntityTypes($this->entityTypes);
 
         return view('entities.creator.' . $view, compact(
             'type', 'singularType',
