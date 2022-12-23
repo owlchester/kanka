@@ -1,33 +1,37 @@
-.live-edit-parsed {
-  cursor: pointer;
-
-  &:after {
-    -webkit-font-smoothing: antialiased;
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-style: normal;
-    font-variant: normal;
-    line-height: 1;
-    text-rendering: auto;
-  }
-
-  &:hover {
-    &:after {
-      content: " \f303";
-    }
-  }
+.live-edit {
+    min-width: 1rem;
+    min-height: 1rem;
+    display: inline-block;
 }
+.live-edit-parsed {
+    cursor: pointer;
 
+    &:after {
+        -webkit-font-smoothing: antialiased;
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-style: normal;
+        font-variant: normal;
+        line-height: 1;
+        text-rendering: auto;
+        color: var(--link-hover);
+    }
+
+    &:hover {
+        &:after {
+            content: " \f303";
+        }
+    }
+}
 .live-edit.empty-value {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  border-bottom: 1px dotted var(--search-border);
+    width: 24px;
+    display: inline-block;
+    border-bottom: 1px dotted var(--search-border);
 }
 
 /** Mobile support **/
 @media(max-width: 767px) {
-  .live-edit-parsed:after {
-    content: " \f303";
-  }
+    .live-edit-parsed:after {
+        content: " \f303";
+    }
 }
