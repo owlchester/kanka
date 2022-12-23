@@ -233,7 +233,7 @@ class EntityRelationService
                 'attitude' => $relation->attitude,
                 'type' => 'entity-relation',
                 'is_mirrored' => $relation->isMirrored(),
-                'shape' => $relation->isMirrored() ? 'none' : 'triangle',
+                'shape' => $relation->isMirrored() && $relation->mirror && $relation->relation == $relation->mirror->relation ? 'none' : 'triangle',
                 'edit_url' => route('entities.relations.edit', [
                     'entity' => $relation->owner_id,
                     'relation' => $relation,

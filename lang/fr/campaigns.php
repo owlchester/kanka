@@ -450,7 +450,7 @@ TEXT
             'visible'   => 'Visible aux membres',
         ],
         'nested'            => [
-            'default'   => 'Défaut',
+            'user'   => 'Défaut de l\'utilisateur',
             'nested'    => 'Vue imbriquée',
         ],
         'other'             => 'Autre',

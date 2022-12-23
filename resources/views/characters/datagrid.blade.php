@@ -11,7 +11,7 @@
         'name',
         'title',
         [
-            'label' => __('characters.fields.families'),
+            'label' => __('entities.families'),
             'visible' => $campaignService->enabled('families'),
             'disableSort' => true,
             'render' => function($model) {
