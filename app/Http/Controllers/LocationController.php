@@ -6,10 +6,7 @@ use App\Datagrids\Filters\LocationFilter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreLocation;
 use App\Models\Location;
-use App\Services\LocationService;
 use App\Traits\TreeControllerTrait;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class LocationController extends CrudController
 {
@@ -30,61 +27,8 @@ class LocationController extends CrudController
     /** @var string Model */
     protected $model = \App\Models\Location::class;
 
-    /** @var LocationService */
-    protected $locationService;
-
     /** @var string Filter */
     protected $filter = LocationFilter::class;
-
-    /**
-     * LocationController constructor.
-     */
-    public function __construct(LocationService $locationService)
-    {
-        parent::__construct();
-
-        $this->locationService = $locationService;
-    }
-
-    /**
-     * @param Location $location
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
-     */
-    public function map(Location $location, Request $request)
-    {
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('map', $location);
-        } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $location);
-            // Extra check for private maps
-            if ($location->is_map_private) {
-                abort(403);
-            }
-        }
-
-        return view('locations.map', compact('location'));
-    }
-
-    /**
-     * @param Location $location
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
-     */
-    public function mapAdmin(Location $location, Request $request)
-    {
-        $this->authorize('update', $location);
-
-        if ($request->isMethod('post')) {
-            $this->locationService->managePoints($location, $request->only('map_point'));
-
-            return redirect()->route('locations.show', [$location, '#map'])
-                ->with('success', trans('locations.map.success'));
-        }
-        return view('locations.map.edit', compact('location'));
-    }
-
 
     /**
      * Store a newly created resource in storage.
@@ -128,16 +72,6 @@ class LocationController extends CrudController
 
     /**
      * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function events(Location $location)
-    {
-        return $this->menuView($location, 'events');
-    }
-
-    /**
-     * @param Location $location
      */
     public function characters(Location $location)
     {
@@ -168,15 +102,6 @@ class LocationController extends CrudController
 
         return $this
             ->menuView($location, 'characters');
-    }
-
-
-    /**
-     * @param Location $location
-     */
-    public function items(Location $location)
-    {
-        return $this->menuView($location, 'items');
     }
 
     /**
@@ -212,44 +137,5 @@ class LocationController extends CrudController
 
         return $this
             ->menuView($location, 'locations');
-    }
-
-
-    /**
-     * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function organisations(Location $location)
-    {
-        return $this->menuView($location, 'organisations');
-    }
-
-    /**
-     * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function journals(Location $location)
-    {
-        return $this->menuView($location, 'journals');
-    }
-
-    /**
-     * @param Location $location
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function maps(Location $location)
-    {
-        return $this->menuView($location, 'maps');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function mapPoints(Location $location)
-    {
-        return $this->menuView($location, 'map-points', true);
     }
 }

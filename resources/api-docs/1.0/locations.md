@@ -5,7 +5,6 @@
 - [All Locations](#all-locations)
 
 - [Single Location](#location)
-- [Location Map Points](#location-map-points)
 - [Create a Location](#create-location)
 - [Update a Location](#update-location)
 - [Delete a Location](#delete-location)
@@ -47,8 +46,6 @@ The list of returned locations can be filtered. The available filters are availa
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
             "parent_location_id": 4,
-            "map": "{url}",
-            "is_map_private": 0,
             "type": "Kingdom"
         }
     ]
@@ -85,71 +82,11 @@ To get the details of a single location, use the following endpoint.
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "parent_location_id": 4,
-        "map": "{url}",
-        "is_map_private": 0,
         "type": "Kingdom"
     }
 
 }
 ```
-
-
-<a name="location-map-points"></a>
-## Location Map Points
-
-To get the map points of a location, use the following endpoint.
-
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| GET/HEAD | `locations/{location.id}/map_points` | Default |
-
-### Results
-```json
-{
-    "data": {
-        "target_entity_id": 58,
-        "axis_x": 1356,
-        "axis_y": 788,
-        "colour": "red",
-        "size": "small",
-        "icon": "skull",
-        "shape": "circle",
-        "name": null,
-        "created_at":  "2019-01-30T00:01:44.000000Z",
-        "updated_at":  "2019-08-29T13:48:54.000000Z"
-    }
-}
-```
-
-> {info} Additional note: `target_entity_id` represents an `entities`.`id`.
-
-#### Creating a Map Point
-
-To create a map point on a location, use the following endpoint. This feature is deprecated and usage of the maps entity is recommended.
-
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| POST | `locations/{location.id}/map_points` | Default |
-
-
-### Body
-
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `location_id` | `integer` | The location id (where this map point is located)|
-| `target_entity_id` | `string` (Required, unless `name` is specified) | Target Entity's `entity_id` |
-| `name` | `string` (Required, unless `target_entity_id` is specified) | Name of the map point |
-| `location_id` | `integer` | Location the entity note was written at |
-| `axis_x` | `integer` (Required) | X Axis of the Map Point |
-| `axis_y` | `integer` (Required) | Y Axis of the Map Point |
-| `colour` | `string` (Required) | `none`, `grey`, `red`, `blue`, `green`, `yellow`, `black` or `white` |
-| `shape` | `string` (Required) | `circle` or `square` |
-| `size` | `string` (Required) | `standard`, `small` or `large` |
-| `icon` | `string` (Required) | `pin`, `entity` or many options. |
-
-
-#### Other endpoints
-> {info} Adding (`POST`), Updating (`PUT`, `PATCH`) and Deleting (`DELETE`) a map point from a location can also be done using the same patterns as for other endpoints.
 
 
 <a name="create-location"></a>

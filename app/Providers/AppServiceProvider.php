@@ -43,7 +43,6 @@ use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\MapMarker;
-use App\Models\MapPoint;
 use App\Models\MenuLink;
 use App\Models\Post;
 use App\Models\Preset;
@@ -163,7 +162,6 @@ class AppServiceProvider extends ServiceProvider
         Item::observe(ItemObserver::class);
         Inventory::observe('App\Observers\InventoryObserver');
         Map::observe('App\Observers\MapObserver');
-        MapPoint::observe('App\Observers\MapPointObserver');
         MapLayer::observe('App\Observers\MapLayerObserver');
         MapGroup::observe('App\Observers\MapGroupObserver');
         MapMarker::observe('App\Observers\MapMarkerObserver');

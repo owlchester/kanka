@@ -27,7 +27,6 @@ Route::apiResources([
     'campaigns.items' => 'ItemApiController',
     'campaigns.journals' => 'JournalApiController',
     'campaigns.locations' => 'LocationApiController',
-    'campaigns.locations.map_points' => 'LocationMapPointApiController',
     'campaigns.maps' => 'MapApiController',
     'campaigns.maps.map_layers' => 'MapLayerApiController',
     'campaigns.maps.map_groups' => 'MapGroupApiController',

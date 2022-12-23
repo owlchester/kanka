@@ -149,15 +149,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Model present on maps
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function locationMaps()
-    {
-        return $this->hasMany('App\Models\MapPoint', 'target_id');
-    }
-
-    /**
      * Get the thumbnail (or default image) of an entity
      * @param int $width If 0, get the full-sized version
      * @param int|null $height

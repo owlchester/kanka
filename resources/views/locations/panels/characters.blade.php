@@ -1,7 +1,7 @@
 <div class="box box-solid" id="location-characters">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('locations.show.tabs.characters') }}
+            {{ __('entities.characters') }}
         </h3>
 
         <div class="box-tools">
