@@ -45,7 +45,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('calendars.fields.suffix') }}</label>
-            {!! Form::text('suffix', FormCopy::field('suffix')->string(), ['placeholder' => __('calendars.placeholders.suffix'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('suffix', FormCopy::field('suffix')->string(), ['placeholder' => __('calendars.placeholders.suffix'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
     </div>
 </div>

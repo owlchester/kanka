@@ -928,9 +928,6 @@ class CalendarRenderer
         for ($extra = 1; $extra < $reminder->length; $extra++) {
             $extraDate = $this->addDay($extraDate);
 
-            if ($recurring) {
-                continue;
-            }
             list($y, $m, $d) = $this->splitDate($extraDate);
             if (!$this->calendar->hasYearZero() && $y == 0) {
                 $extraDate = '1-' . $m . '-' . $d;
