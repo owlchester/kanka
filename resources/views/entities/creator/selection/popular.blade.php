@@ -1,4 +1,4 @@
-<div class="title">
+<div class="text-uppercase text-xs font-bold mb-2">
     {{ __('entities.creator.titles.quick-access') }}
 </div>
 <div class="selection">

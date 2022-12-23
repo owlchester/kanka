@@ -83,12 +83,12 @@ return [
     ],
     'settings'                      => [
         'fields'    => [
-            'advanced_mentions'             => 'Advanced Mentions',
-            'campaign_switcher_order_by'    => 'Campaign Switcher Sorting Order',
-            'date_format'                   => 'Date Formatting',
-            'default_nested'                => 'Nested Views as Default',
-            'editor'                        => 'Text Editor',
-            'new_entity_workflow'           => 'New Entity Workflow',
+            'advanced_mentions'             => 'Advanced mentions',
+            'campaign_switcher_order_by'    => 'Campaign list sorting order',
+            'date_format'                   => 'Date formatting',
+            'default_nested'                => 'Nested views as default',
+            'editor'                        => 'Text editor',
+            'new_entity_workflow'           => 'New entity workflow',
             'pagination'                    => 'Pagination',
         ],
         'helpers'   => [

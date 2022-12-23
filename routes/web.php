@@ -41,6 +41,7 @@ Route::group([
     // Notification
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
     Route::get('/notifications/refresh', 'NotificationController@refresh')->name('notifications.refresh');
+    Route::post('/notifications/read/{id}', 'NotificationController@read')->name('notifications.read');
     Route::post('/notifications/clear-all', 'NotificationController@clearAll')->name('notifications.clear-all');
 
     // 3rd party
@@ -60,6 +61,9 @@ Route::group([
         Route::get('/', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@index')->name('index');
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
+
+
+    Route::get('/layout/navigation', 'Layout\NavigationController@index')->name('layout.navigation');
 });
 
 if (app()->environment('local')) {

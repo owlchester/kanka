@@ -152,8 +152,8 @@
                         {{ __('dashboard.setup.actions.add') }}
                     </h4>
 
-                    <div class="entity-creator">
-                        <a href="#" class="rounded-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
+                    <div class="widget-list grid grid-cols-1 gap-5">
+                        <a href="#" class="rounded-lg " id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
                             <i class="fa-solid fa-list fa-2x"></i> {{ __('dashboard.setup.widgets.recent') }}
                         </a>
                         <a href="#" class="rounded-lg" id="btn-widget-preview" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'preview', 'dashboard' => $dashboard]) }}">

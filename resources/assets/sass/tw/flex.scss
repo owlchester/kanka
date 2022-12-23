@@ -1,27 +1,33 @@
 .flex-none {
-  flex: none;
+    flex: none;
 }
 .flex-auto {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 .flex-1 {
-  flex: 1 1 0%;
+    flex: 1 1 0%;
 }
 .flex-col {
-  flex-direction: column;
+    flex-direction: column;
 }
 .flex-wrap {
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 .flex-grow {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 
 .items-center {
-  align-items: center;
+    align-items: center;
+}
+.content-center {
+    align-content: center;
 }
 .justify-center {
-  justify-content: center;
+    justify-content: center;
+}
+.justify-end {
+    justify-content: flex-end;
 }
 
 .basis-1\/3 {
@@ -29,4 +35,8 @@
 }
 .basis-2\/3 {
     flex-basis: 66.666666%;
+}
+
+.items-end {
+    align-items: flex-end;
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Facades\DataLayer;
-use App\Facades\PostCache;
 use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,20 +37,6 @@ class DashboardController extends Controller
 
         $widgets = CampaignDashboardWidget::onDashboard($dashboard)->positioned()->get();
 
-        // Prepare unread releases
-        $releases = PostCache::latest();
-        if (!auth()->check() || \App\Facades\Identity::isImpersonating()) {
-            $releases = [];
-        } else {
-            $unreadReleases = [];
-            foreach ($releases as $release) {
-                if (!$release->alreadyRead()) {
-                    $unreadReleases[] = $release;
-                }
-            }
-            $releases = $unreadReleases;
-        }
-
         // A user with campaigns doesn't need this process.
         $gaTrackingEvent = null;
         $welcome = false;
@@ -65,7 +50,6 @@ class DashboardController extends Controller
         return view('home', compact(
             'campaign',
             'settings',
-            'releases',
             'widgets',
             'dashboard',
             'dashboards',

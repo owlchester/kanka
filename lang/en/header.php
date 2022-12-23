@@ -7,7 +7,9 @@ return [
     'notifications'     => [
         'header'    => 'Notifications',
         'mark_read' => 'Mark all as read',
+        'dismiss' => 'Dismiss',
         'read_all'  => 'View all',
+        'no-unread' => 'No unread notifications',
     ],
     'profile'           => 'Profile',
     'toggle_navigation' => 'Toggle navigation',
@@ -18,4 +20,8 @@ return [
         'signed-in'     => 'Signed in as :user',
         'your-profile'  => 'Your profile',
     ],
+
+    'news' => [
+        'title' => 'Kanka news',
+    ]
 ];

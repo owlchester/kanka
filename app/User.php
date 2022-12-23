@@ -2,9 +2,12 @@
 
 namespace App;
 
+use App\Facades\Identity;
 use App\Facades\Img;
+use App\Facades\PostCache;
 use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
+use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
@@ -18,6 +21,7 @@ use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
 
@@ -566,5 +570,36 @@ class User extends \Illuminate\Foundation\Auth\User
     public function passwordSecurity()
     {
         return $this->hasOne('App\Models\PasswordSecurity');
+    }
+
+    public function initials(): string
+    {
+        if (!Str::contains(' ', $this->name)) {
+            return Str::limit($this->name, 2, '');
+        }
+        $explode = explode(' ', $this->name);
+        return $explode[0] . $explode[1];
+    }
+
+    /**
+     * Determine if the user has unread notifications or kanka alerts
+     * @return bool
+     */
+    public function hasUnread(): bool
+    {
+        if (Identity::isImpersonating()) {
+            return false;
+        }
+
+        // Unread notifications
+        $releases = PostCache::latest();
+        /** @var AppRelease $release */
+        foreach ($releases as $release) {
+            if (!$release->alreadyRead()) {
+                return true;
+            }
+        }
+
+        return $this->unreadNotifications()->count() > 0;
     }
 }

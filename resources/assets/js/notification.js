@@ -7,6 +7,7 @@
 var notificationList, notificationCount, userID, notificationRefreshTimeout = 60 * 1000;
 
 $(document).ready(function () {
+    return;
     // Setup
     notificationList = $('#header-notification-list');
     notificationCount = $('#header-notification-count');

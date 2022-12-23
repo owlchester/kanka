@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="quick-creator-footer text-center">
+    <div class="quick-creator-footer mt-4 text-center">
 
         <p class="help-block my-5">{!! __('entities.creator.missing_v2', [
     'learn-more' => link_to(
