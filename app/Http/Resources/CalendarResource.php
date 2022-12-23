@@ -30,6 +30,7 @@ class CalendarResource extends EntityResource
             'start_offset' => $calendar->start_offset, // X year is a leap year
             'suffix' => $calendar->suffix,
             'has_leap_year' => $calendar->has_leap_year,
+            'skip_year_zero' => $calendar->skip_year_zero,
             'leap_year_amount' => $calendar->leap_year_amount, // Add X number of days
             'leap_year_month' => $calendar->leap_year_month, // At the end of month X
             'leap_year_offset' => $calendar->leap_year_offset, // every X years

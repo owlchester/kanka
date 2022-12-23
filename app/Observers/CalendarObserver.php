@@ -167,8 +167,8 @@ class CalendarObserver extends MiscObserver
         $month = ltrim(request()->post('current_month', '1'), '0');
         $day = ltrim(request()->post('current_day', '1'), '0');
 
-        // Empty values
-        if ($year === null) {
+        // Empty values and skipping year 0
+        if ($year === null || $model->skip_year_zero && $model->current_year == 0) {
             $year = 1;
         }
         if (empty($month)) {

@@ -57,6 +57,7 @@ class Calendar extends MiscModel
         'moons',
         'date',
         'suffix',
+        'skip_year_zero',
         'epochs',
         'month_aliases',
         'week_names',
@@ -483,6 +484,9 @@ class Calendar extends MiscModel
             $year++;
         }
 
+        if (!$this->hasYearZero() && $year == 0) {
+            $year++;
+        }
         $this->date = $year . '-' . $month . ($day !== false ? '-' . $day : null);
         return $this->save();
     }
@@ -506,6 +510,9 @@ class Calendar extends MiscModel
             $day = $months[$month - 1]['length'];
         }
 
+        if (!$this->hasYearZero() && $year == 0) {
+            $year--;
+        }
         $this->date = $year . '-' . $month . '-' . $day;
         return $this->save();
     }
@@ -867,5 +874,14 @@ class Calendar extends MiscModel
         return [
             'calendar_id',
         ];
+    }
+
+    /**
+     * Determine if the calendar skips year zero.
+     * @return bool
+     */
+    public function hasYearZero(): bool
+    {
+        return !$this->skip_year_zero;
     }
 }

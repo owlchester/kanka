@@ -111,6 +111,9 @@ class CalendarRenderer
         // Yearly navigation
         if ($this->isYearlyLayout()) {
             $year--;
+            if (!$this->calendar->hasYearZero() && $year == 0) {
+                $year--;
+            }
             if ($title) {
                 return (string) $year;
             } else {
@@ -123,6 +126,9 @@ class CalendarRenderer
 
         if ($month <= 0) {
             $year--;
+            if (!$this->calendar->hasYearZero() && $year == 0) {
+                $year--;
+            }
             $month = count($months);
         }
 
@@ -150,6 +156,13 @@ class CalendarRenderer
     {
         $month = $this->getMonth();
         $year = $this->getYear($next ? 1 : -1);
+        if (!$this->calendar->hasYearZero() && $year == 0) {
+            if ($next) {
+                $year++;
+            } else {
+                $year--;
+            }
+        }
 
         $options = [
             'calendar' => $this->calendar,
@@ -180,6 +193,13 @@ class CalendarRenderer
     {
         $month = $this->getMonth();
         $year = $this->getYear($next ? 1 : -1);
+        if (!$this->calendar->hasYearZero() && $year == 0) {
+            if ($next) {
+                $year++;
+            } else {
+                $year--;
+            }
+        }
 
         if ($this->isYearlyLayout()) {
             return (string) $year;
@@ -246,6 +266,9 @@ class CalendarRenderer
         // Yearly navigation
         if ($this->isYearlyLayout()) {
             $year++;
+            if (!$this->calendar->hasYearZero() && $year == 0) {
+                $year++;
+            }
             if ($title) {
                 return (string) $year;
             } else {
@@ -258,6 +281,9 @@ class CalendarRenderer
 
         if ($month > count($months)) {
             $year++;
+            if (!$this->calendar->hasYearZero() && $year == 0) {
+                $year++;
+            }
             $month = 1;
         }
 
@@ -363,6 +389,7 @@ class CalendarRenderer
                 if (isset($this->moons[$day])) {
                     $dayData['moons'] = $this->moons[$day];
                 }
+
                 if (isset($this->weather[$exact])) {
                     $dayData['weather'] = $this->weather[$exact];
                 }
@@ -805,6 +832,9 @@ class CalendarRenderer
                     // Events from previous year or month that spill over
                     ->orWhere(function ($sub) {
                         $previousYear = $this->getYear(-1);
+                        if (!$this->calendar->hasYearZero() && $previousYear == 0) {
+                            $previousYear--;
+                        }
                         $sub->whereIn('year', [$previousYear, $this->getYear()])
                             ->where('length', '>', 1);
                     })
@@ -897,6 +927,14 @@ class CalendarRenderer
         $extraDate = $date;
         for ($extra = 1; $extra < $reminder->length; $extra++) {
             $extraDate = $this->addDay($extraDate);
+
+            if ($recurring) {
+                continue;
+            }
+            list($y, $m, $d) = $this->splitDate($extraDate);
+            if (!$this->calendar->hasYearZero() && $y == 0) {
+                $extraDate = '1-' . $m . '-' . $d;
+            }
             $this->events[$extraDate][] = $reminder;
         }
         // Finished adding all the reminder's days, flag it to show (end) in the UI
@@ -961,6 +999,9 @@ class CalendarRenderer
      */
     protected function getYear($add = 0): int
     {
+        if (!$this->calendar->hasYearZero() && $this->year == 0) {
+            return (int) $this->year + 1 + (int) $add;
+        }
         return (int) $this->year + (int) $add;
     }
 
@@ -1167,6 +1208,9 @@ class CalendarRenderer
         }
 
         // Amount of days since the beginning of the year
+        if (!$this->calendar->hasYearZero() && $this->getYear() > 0) {
+            return ($daysInAYear * ($this->getYear() - 1)) + $days + $leapDays;
+        }
         return ($daysInAYear * $this->getYear()) + $days + $leapDays;
     }
 
