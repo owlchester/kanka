@@ -39,16 +39,6 @@
             'disableSort' => true,
         ],
         [
-            'label' => null,
-            'field' => 'map',
-            'render' => function($model) {
-                if (!empty($model->map)) {
-                    return '<a href="' . route('locations.map', $model) . '"><i class="fa-solid fa-map"></i></a>';
-                }
-                return null;
-            },
-        ],
-        [
             'type' => 'is_private',
         ]
     ])
