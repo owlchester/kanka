@@ -39,6 +39,10 @@ class AbilityReorderController extends Controller
 
         $parents = [];
         foreach ($abilities as $ability) {
+            // Missing permission to view the ability
+            if (empty($ability->ability)) {
+                continue;
+            }
             if (array_key_exists($ability->ability->ability_id, $parents)) {
                 $parents[$ability->ability->ability_id][] = $ability;
             } else {
