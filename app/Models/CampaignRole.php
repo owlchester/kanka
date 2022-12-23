@@ -22,6 +22,7 @@ use Illuminate\Support\Str;
  * @property boolean $is_public
  * @property Campaign $campaign
  * @property Collection|CampaignPermission[] $permissions
+ * @property Collection|CampaignPermission[] $rolePermissions
  * @property Collection|CampaignDashboardRole[] $dashboardRoles
  * @property Collection|CampaignRoleUser[] $users
  *
@@ -132,13 +133,22 @@ class CampaignRole extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rolePermissions()
+    {
+        return $this->permissions()
+            ->whereNull('entity_id');
+    }
+
+    /**
      * @param array $permissions
      */
     public function savePermissions(array $permissions = [])
     {
         // Load existing
         $existing = [];
-        foreach ($this->permissions as $permission) {
+        foreach ($this->rolePermissions as $permission) {
             if (empty($permission->entity_type_id)) {
                 $existing['campaign_' . $permission->action] = $permission;
                 continue;

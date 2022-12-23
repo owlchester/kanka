@@ -11,10 +11,8 @@ return [
         'notifications' => 'Notifications',
     ],
     'groups'    => [
-        'community-votes'   => 'Community Votes',
-        'news'              => 'New updates and improvements to Kanka',
         'newsletter'        => 'Newsletter',
-        'updates'           => 'Updates from the team',
+        'all'               => 'Receive occasional updates about new features, community votes and events, etc',
     ],
     'headline'  => 'Subscribe to one or all of our newsletters to stay up to date with :kanka.',
     'title'     => 'Email Updates',

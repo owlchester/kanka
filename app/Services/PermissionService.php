@@ -67,7 +67,7 @@ class PermissionService
         $permissions = [];
 
         $campaignRolePermissions = [];
-        foreach ($role->permissions as $perm) {
+        foreach ($role->rolePermissions as $perm) {
             $campaignRolePermissions[$perm->entity_type_id . '_' . $perm->action] = 1;
         }
 

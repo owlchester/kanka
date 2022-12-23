@@ -310,7 +310,7 @@ class AttributeService
                 'is_private' => false,
                 'type_id' => $type,
                 'is_star' => false,
-                'is_hidden' => $attribute['is_hidden']
+                'is_hidden' => Arr::get($attribute, 'is_hidden', false)
             ]);
         }
 

@@ -26,11 +26,11 @@ class NewsletterApiController extends Controller
     public function update(NewsletterStore $request)
     {
         $request->user()
-            ->updateSettings($request->only(['mail_newsletter', 'mail_release', 'mail_vote']))
+            ->updateSettings($request->only(['mail_release']))
             ->save();
 
         MailSettingsChangeJob::dispatch($request->user());
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true, 'message' => __('profiles.newsletter.updated')]);
     }
 }

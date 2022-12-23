@@ -223,7 +223,7 @@ trait UserSetting
      */
     public function updateSettings($data): self
     {
-        $fields = ['mail_newsletter', 'mail_vote', 'mail_release'];
+        $fields = ['mail_release'];
         foreach ($fields as $field) {
             if (!Arr::has($data, $field)) {
                 continue;
