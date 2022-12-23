@@ -5401,5 +5401,13 @@ html:has(dialog[open]) {
     right: 10px;
   }
 }
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+  }
+  .main-footer {
+    display: none !important;
+  }
+}
 
 /*# sourceMappingURL=app.css.map*/

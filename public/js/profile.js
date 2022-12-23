@@ -13,8 +13,6 @@ $(document).ready(function () {
 function init() {
   api = $('#newsletter-api').val();
   handle($('input[name="mail_release"]'));
-  handle($('input[name="mail_newsletter"]'));
-  handle($('input[name="mail_vote"]'));
 }
 
 function handle(element) {
@@ -22,7 +20,9 @@ function handle(element) {
     var name = this.name;
     var data = {};
     data[name] = this.checked ? 1 : 0;
-    $.post(api, data);
+    $.post(api, data).done(function (res) {
+      window.showToast(res.message);
+    });
   });
 }
 /******/ })()

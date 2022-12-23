@@ -60264,10 +60264,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/sass/print.scss":
-/*!******************************************!*\
-  !*** ./resources/assets/sass/print.scss ***!
-  \******************************************/
+/***/ "./resources/assets/sass/print/print.scss":
+/*!************************************************!*\
+  !*** ./resources/assets/sass/print/print.scss ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -75752,7 +75752,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/story","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription","css/map","css/export","css/assets"], () => (__webpack_require__("./resources/assets/sass/themes/midnight.scss")))
 /******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/story","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription","css/map","css/export","css/assets"], () => (__webpack_require__("./resources/assets/sass/tinymce.scss")))
 /******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/story","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription","css/map","css/export","css/assets"], () => (__webpack_require__("./resources/assets/sass/freyja/freyja.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/story","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription","css/map","css/export","css/assets"], () => (__webpack_require__("./resources/assets/sass/print.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/story","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription","css/map","css/export","css/assets"], () => (__webpack_require__("./resources/assets/sass/print/print.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
