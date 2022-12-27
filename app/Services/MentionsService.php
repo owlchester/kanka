@@ -259,6 +259,12 @@ class MentionsService
         // Remove advanced mention name blocks
         //dump($text);
         $text = preg_replace(
+            '`<ins class="' . self::ADVANCED_MENTION_CLASS . '" data-name="([^"]*)"></ins>`',
+            '',
+            $text
+        );
+        // Legacy support for during the go-live migration
+        $text = preg_replace(
             '`<span class="' . self::ADVANCED_MENTION_CLASS . '" data-name="([^"]*)"></span>`',
             '',
             $text
@@ -276,8 +282,8 @@ class MentionsService
     public function advancedMentionHelper(string $name): string
     {
         $cleanEntityName = Str::replace(['"'], ['\''], $name);
-        return '<span class="' . self::ADVANCED_MENTION_CLASS . '" data-name="'
-            . $cleanEntityName . '"></span>';
+        return '<ins class="' . self::ADVANCED_MENTION_CLASS . '" data-name="'
+            . $cleanEntityName . '"></ins>';
     }
 
     /**
