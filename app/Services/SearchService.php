@@ -259,6 +259,7 @@ class SearchService
                 'url' => $model->url(),
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
+                'advanced_mention_alias' => Mentions::advancedMentionHelper($model->alias_name),
             ];
             $foundEntityIds[] = $model->id;
 
@@ -274,6 +275,7 @@ class SearchService
                     'url' => $model->url('explore'),
                     'alias_id' => $model->alias_id, // @phpstan-ignore-line
                     'advanced_mention' => Mentions::advancedMentionHelper($model->name),
+                    'advanced_mention_alias' => Mentions::advancedMentionHelper($model->alias_name),
                 ];
             }
         }

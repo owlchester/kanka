@@ -272,7 +272,7 @@ function hintContent(item) {
     var advancedMention = '[' + item.model_type + ':' + item.id + item.advanced_mention + ']';
 
     if (item.alias_id) {
-      mention = '[' + item.model_type + ':' + item.id + '|alias:' + item.alias_id + item.advanced_mention + ']';
+      mention = '[' + item.model_type + ':' + item.id + item.advanced_mention + '|alias:' + item.alias_id + item.advanced_mention_alias + ']';
       return $('<span>' + mention + '</span>')[0];
     }
 

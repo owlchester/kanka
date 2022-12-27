@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Facades\Attributes;
 use App\Models\Attribute;
 use App\Models\Entity;
+use App\Models\EntityAlias;
+use App\Models\EntityAsset;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Services\TOC\TocSlugify;
@@ -24,6 +26,9 @@ class MentionsService
 
     /** @var array|Entity[] List of entities */
     protected array $entities = [];
+
+    /** @var array|EntityAsset[] List of entity aliases */
+    protected array $aliases = [];
 
     /** @var array|Attribute[] List of attributes */
     protected array $attributes = [];
@@ -506,7 +511,20 @@ class MentionsService
                 }
 
                 $advancedName = $this->advancedMentionHelper($entity->name);
-                return Str::replaceLast(']', $advancedName . ']', $matches[0]);
+                if (!Arr::has($data, 'alias')) {
+                    return Str::replaceLast(']', $advancedName . ']', $matches[0]);
+                }
+
+                // An alias was attached, try loading that too
+                $alias = $this->alias($data['alias']);
+                if (empty($alias) || empty($alias->entity)) {
+                    return Str::replaceLast(']', $advancedName . ']', $matches[0]);
+                }
+                $aliasName = $this->advancedMentionHelper($alias->name);
+
+                $mention = Str::replaceLast(']', $aliasName . ']', $matches[0]);
+                $replaceId = ':' . $data['id'] . '|';
+                return Str::replaceFirst($replaceId, ':' . $data['id'] . $advancedName . '|', $mention);
             }
 
             // This was matched on an attribute
@@ -570,6 +588,19 @@ class MentionsService
         }
 
         return Arr::get($this->entities, $id);
+    }
+
+    /**
+     * @param int $id
+     * @return Entity|null
+     */
+    protected function alias(int $id): EntityAsset|null
+    {
+        if (!Arr::has($this->aliases, (string) $id)) {
+            $this->aliases[$id] = EntityAsset::alias()->where(['id' => $id])->first();
+        }
+
+        return Arr::get($this->aliases, $id);
     }
 
     /**

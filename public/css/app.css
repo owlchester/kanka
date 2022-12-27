@@ -2354,6 +2354,7 @@ img.note-float-left {
 .advanced-mention-name {
   --advanced-mention-background: #383898;
   --advanced-mention-text: white;
+  text-decoration: none;
 }
 .advanced-mention-name:after {
   margin-left: 0.1rem;
