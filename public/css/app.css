@@ -800,6 +800,10 @@ td.breakable {
   padding: 10px 14px;
 }
 
+.form-submit-actions.flex {
+  display: flex;
+}
+
 .menu-link-tabs {
   margin: 10px 10px;
   box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -1400,6 +1404,12 @@ button.dropdown-item:hover {
   height: 30px;
   width: 30px;
   margin-top: 3px;
+}
+
+.dropdown-menu .keyboard-shortcut {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin-right: 0;
 }
 
 :root {

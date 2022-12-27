@@ -139,8 +139,10 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
                             @can('update', $model)
                                 <li>
-                                    <a href="{{ route($entity->pluralType() . '.edit', $model->id) }}">
+                                    <a href="{{ route($entity->pluralType() . '.edit', $model->id) }}" data-keyboard="edit">
                                         <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.edit') }}
+
+                                        <span class="keyboard-shortcut pull-right" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>E</code>']) !!}" data-html="true">E</span>
                                     </a>
                                 </li>
                             @endcan

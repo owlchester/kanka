@@ -14,6 +14,7 @@ function initKeyboardShortcuts() {
         let target = $(e.target);
         let entityModal = $('#entity-modal');
         let quickCreatorButton = $('.quick-creator-button');
+        let kbEditTarget = $('[data-keyboard="edit"]');
         //console.log('which', e.which);
         if (e.key === ']') {
             // ] to toggle sidebar
@@ -28,12 +29,15 @@ function initKeyboardShortcuts() {
             }
             $('#live-search').focus();
             return false; // don't add the k to the search field
-        } else if (e.key === 'n' && quickCreatorButton.length > 0) {
+        } else if (e.key === 'n' && !(e.ctrlKey || e.metaKey) && !e.altKey && quickCreatorButton.length > 0) {
             // n for quick creator. Don't re-open if already opened
             if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
                 return;
             }
             quickCreatorButton[0].click();
+        } else if (e.key === 'e' && kbEditTarget.length === 1) {
+            //console.log('click edit link', kbEditTarget.first());
+            kbEditTarget[0].click();
         } else if (e.key === 'Escape') {
             // ESC to close quick creator selection modal
             if (entityModal.has('.entity-creator').length === 1) {
@@ -57,21 +61,38 @@ function isInputField(ele) {
  */
 function initSaveKeyboardShortcut(form) {
     $(document).bind('keydown', function(e) {
-        if ((e.ctrlKey || e.metaKey) && e.which === 83) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
             window.entityFormHasUnsavedChanges = false;
 
-            // Shift? save and update
             if (e.shiftKey) {
-                let entityFormDefaultAction = $('#form-submit-main');
-                if (entityFormDefaultAction) {
-                    entityFormDefaultAction
-                        .attr('name', 'submit-update');
-                }
+                setFormAction('submit-update');
+            } else if (e.altKey) {
+                setFormAction('submit-new');
             }
             $(form).submit();
             return false;
         }
+        // Save & Copy
+        if ((e.ctrlKey || e.metaKey) && e.altKey && e.key === 'c') {
+            window.entityFormHasUnsavedChanges = false;
+            setFormAction('submit-copy');
+            $(form).submit();
+            return false;
+        }
     });
+}
+
+/**
+ * Change the default action to follow after the form submission
+ * @param action
+ */
+function setFormAction(action) {
+    let entityFormDefaultAction = $('#form-submit-main');
+    if (!entityFormDefaultAction) {
+        return;
+    }
+    entityFormDefaultAction
+        .attr('name', action);
 }
 
 /**
