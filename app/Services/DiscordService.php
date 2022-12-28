@@ -214,7 +214,6 @@ class DiscordService
 
         $me = $this->me();
 
-
         $headers = [
             'Authorization' => 'Bot ' . config('discord.bot_token'),
             'Content-Type' => 'application/json',
