@@ -238,7 +238,7 @@ trait EntityRelations
     public function tagsWithEntity()
     {
         if ($this->tagsWithEntity === false) {
-            $this->tagsWithEntity = $this->tags()->with('entity')->get();
+            $this->tagsWithEntity = $this->tags()->with('entity')->where('is_hidden', '=', '0')->get();
         }
         return $this->tagsWithEntity;
     }

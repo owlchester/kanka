@@ -50,6 +50,17 @@
             'class' => 'icon'
         ],
         [
+            'label' => '<i class="fa-solid fa-eye" title="' . __('tags.fields.is_hidden') . '" data-toggle="tooltip"></i>',
+            'field' => 'is_hidden',
+            'render' => function($model) {
+                if ($model->isHidden()) {
+                    return '<i class="fa-solid fa-eye-slash" title="' . __('tags.fields.is_hidden') . '" data-toggle="tooltip"></i>';
+                }
+                return '';
+            },
+            'class' => 'icon'
+        ],
+        [
             'type' => 'is_private',
         ]
     ])

@@ -26,6 +26,13 @@
             </label>
             <p class="help-block">{{ __('tags.hints.is_auto_applied') }}</p>
         </div>
+        <div class="form-group">
+            {!! Form::hidden('is_hidden', 0) !!}
+            <label>{!! Form::checkbox('is_hidden', 1, $model->is_hidden ?? '' )!!}
+                {{ __('tags.fields.is_hidden') }}
+            </label>
+            <p class="help-block">{{ __('tags.hints.is_hidden') }}</p>
+        </div>
     </div>
     <div class="col-md-6">
         @include('cruds.fields.image')
