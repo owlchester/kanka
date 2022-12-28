@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('tags', function (Blueprint $table) {
             $table->boolean('is_hidden')->defaultValue(false);
+            $table->index('is_hidden');
         });
     }
 
@@ -26,6 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('tags', function (Blueprint $table) {
+            $table->dropIndex(['is_hidden']);
             $table->dropColumn('is_hidden');
         });
     }
