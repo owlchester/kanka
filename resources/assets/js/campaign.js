@@ -130,8 +130,8 @@ function registerSidebarSetup() {
                 let self = evt.dragged;
                 let target = evt.related;
                 // Couldn't figure out how to do this in pure js, so falling back on jQuery
-                let targetParentIsFixed = $(target).parents('.fixed').length > 0;
-                if (self.classList.contains('fixed') && targetParentIsFixed) {
+                let targetParentIsFixed = $(target).parents('.fixed-position').length > 0;
+                if (self.classList.contains('fixed-position') && targetParentIsFixed) {
                     return false;
                 }
                 return true;

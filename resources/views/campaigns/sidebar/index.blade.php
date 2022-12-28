@@ -48,7 +48,7 @@
 
                     <ul class="sidebar-sortable nested-sortable">
                     @foreach ($layout as $name => $setup)
-                        <li class="@if (isset($setup['fixed'])) fixed @endif" id="{{ $name }}">
+                        <li class="@if (isset($setup['fixed'])) fixed-position @endif" id="{{ $name }}">
                             <p class="text-muted text-sm hidden-md hidden-lg">({{ $setup['label'] }})</p>
                             <div class="input-group">
                                 <span class="input-group-addon dnd-handle">
