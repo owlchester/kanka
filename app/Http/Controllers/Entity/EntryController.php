@@ -21,18 +21,18 @@ class EntryController extends Controller
 
         return view('entities.pages.entry.edit')
             ->with('entity', $entity);
-
     }
 
     /**
-     * @param UpdateEntityEntry $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * Update the entity's entry
      */
     public function update(UpdateEntityEntry $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $fields = $request->only('entry');
         $entity->child->update($fields);
