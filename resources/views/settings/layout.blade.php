@@ -91,18 +91,20 @@
                     <p class="help-block visible-xs visible-sm">{{ __('profiles.settings.hints.new_entity_workflow') }}</p>
                 </div>
 
-                <div class="form-group">
-                    <label>
-                        {{ __('profiles.settings.fields.editor') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.helpers.editor_v2') }}"></i>
-                    </label>
-                    {!! Form::select('editor', [
-                        '' => __('profiles.campaign_switcher_order_by.default') . ' (Summernote)',
-                        'legacy' => __('profiles.editors.legacy'),
-                    ], null, ['class' => 'form-control']) !!}
+                @if ($textEditorSelect)
+                    <div class="form-group">
+                        <label>
+                            {{ __('profiles.settings.fields.editor') }}
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.helpers.editor_v2') }}"></i>
+                        </label>
+                        {!! Form::select('editor', [
+                            '' => __('profiles.campaign_switcher_order_by.default') . ' (Summernote)',
+                            'legacy' => __('profiles.editors.legacy'),
+                        ], null, ['class' => 'form-control']) !!}
 
-                    <p class="help-block visible-xs visible-sm">{{ __('profiles.settings.helpers.editor_v2') }}</p>
-                </div>
+                        <p class="help-block visible-xs visible-sm">{{ __('profiles.settings.helpers.editor_v2') }}</p>
+                    </div>
+                @endif
             </div>
 
 

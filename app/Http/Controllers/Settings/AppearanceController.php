@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsLayout;
 use App\Services\PaginationService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class AppearanceController extends Controller
@@ -28,9 +29,14 @@ class AppearanceController extends Controller
     public function index()
     {
         $highlight = request()->get('highlight');
+        $date = Carbon::parse('2022-12-28 15:08:50');
+        $created = Carbon::parse(auth()->user()->created_at);
+        $textEditorSelect = $created->lessThan($date);
+
         return view('settings.layout')
             ->with('pagination', $this->service)
-            ->with('highlight', $highlight);
+            ->with('highlight', $highlight)
+            ->with('textEditorSelect', $textEditorSelect);
     }
 
     /**
