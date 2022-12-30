@@ -420,15 +420,20 @@ body .main-header.main-header-start {
   color: var(--campaign-switcher-text, #1b1b1b);
 }
 .navigation-drawer .campaigns .campaign.boosted:before {
-  content: "";
+  content: "\f135";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+  font-size: 14px;
   position: absolute;
   z-index: 10;
   display: block;
   border-radius: 9999px;
   --tw-bg-opacity: 1;
-  background-color: var(--boosted);
-  width: 15px;
-  height: 15px;
+  color: var(--boosted);
   top: 15px;
   right: 15px;
 }
