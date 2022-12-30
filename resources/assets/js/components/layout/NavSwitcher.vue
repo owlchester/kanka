@@ -9,7 +9,7 @@
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
                     {{ initials }}
                 </div>
-                <div class="w-9 h-9 rounded-lg cover" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
+                <div class="w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                         <div class="flex-none mr-4 profile-box rounded-lg p-2 text-center text-uppercase font-bold" v-if="showInitials()">
                             {{ initials }}
                         </div>
-                        <div class="flex-none mr-4 w-9 h-9 rounded-lg cover" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
+                        <div class="flex-none mr-4 w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
 
                         <div class="flex-grow">
                             <div class="font-bold">{{ profile.name }}</div>
@@ -49,7 +49,7 @@
                         <div class="flex-none profile-box rounded-lg p-2 text-center text-uppercase font-bold" v-if="showInitials()">
                             {{ initials }}
                         </div>
-                        <div class="flex-none w-9 h-9 rounded-lg cover" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
+                        <div class="flex-none w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
                     </div>
                 </div>
             </div>
