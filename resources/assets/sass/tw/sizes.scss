@@ -1,51 +1,16 @@
-
-.h-5 {
-  height: 1.0rem;
-}
-.h-8 {
-  height: 1.75rem;
-}
-.h-12 {
-  height: 3.0rem;
-}
-.h-14 {
-  height: 3.5rem;
-}
-.h-16 {
-  height: 4rem;
-}
-.h-24 {
-  height: 6rem;
-}
-.h-32 {
-  height: 8rem;
-}
-.h-52 {
-  height: 13rem;
+@for $i from 1 through 52 {
+    $rem: ($i * 0.25) ;
+    .h-#{$i} {
+        height: $rem + rem;
+    }
+    .w-#{$i} {
+        width: $rem + rem;
+    }
 }
 .h-full {
     height: 100%;
 }
+.w-full {
+    width: 100%;
+}
 
-
-.w-10 {
-  width: 2.5rem;
-}
-.w-12 {
-  width: 3.0rem;
-}
-.w-14 {
-  width: 3.5rem;
-}
-.w-16 {
-  width: 4rem;
-}
-.w-24 {
-  width: 6rem;
-}
-.w-32 {
-  width: 8rem;
-}
-.w-52 {
-  width: 13rem;
-}

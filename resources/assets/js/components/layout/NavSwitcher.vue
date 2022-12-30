@@ -6,9 +6,10 @@
         <div class="profile inline cursor text-center text-uppercase py-2" v-on:click="openProfile()" aria-label="Profile settings">
             <div class="indicator">
                 <span class="notification-badge" v-if="show_alerts"></span>
-                <div class="profile-box rounded-lg p-2 text-center font-bold ">
+                <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
                     {{ initials }}
                 </div>
+                <div class="w-9 h-9 rounded-lg cover" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
             </div>
         </div>
     </div>
@@ -34,18 +35,21 @@
                 </div>
                 <div :class="blockClass(view_profile)" v-on:click="openProfile()">
                     <div class="full flex items-center" v-if="view_profile">
-                        <div class="flex-none mr-4 profile-box rounded-lg p-2 text-center text-uppercase font-bold">
-                            {{ initials}}
+                        <div class="flex-none mr-4 profile-box rounded-lg p-2 text-center text-uppercase font-bold" v-if="showInitials()">
+                            {{ initials }}
                         </div>
+                        <div class="flex-none mr-4 w-9 h-9 rounded-lg cover" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
+
                         <div class="flex-grow">
                             <div class="font-bold">{{ profile.name }}</div>
                             <div>{{ profile.created }}</div>
                         </div>
                     </div>
                     <div class="" v-else :title="profile.your_profile">
-                        <div class="flex-none profile-box rounded-lg p-2 text-center text-uppercase font-bold">
-                            {{ initials}}
+                        <div class="flex-none profile-box rounded-lg p-2 text-center text-uppercase font-bold" v-if="showInitials()">
+                            {{ initials }}
                         </div>
+                        <div class="flex-none w-9 h-9 rounded-lg cover" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
                     </div>
                 </div>
             </div>
@@ -249,6 +253,9 @@ export default {
         initials: {
             type: String,
         },
+        avatar: {
+            type: String,
+        },
         campaign_id: undefined,
         has_alerts: {
             type: Boolean,
@@ -391,6 +398,12 @@ export default {
             //console.log('queue fetch');
             let vm = this;
             setTimeout(function () { vm.updateAlerts() }.bind(this), this.alert_delta);
+        },
+        showInitials: function() {
+            return this.avatar.startsWith('/images/');
+        },
+        profilePictureUrl: function() {
+            return 'url(' + this.avatar + ')'
         }
     },
     mounted() {

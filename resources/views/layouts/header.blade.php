@@ -54,6 +54,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             api="{{ route('layout.navigation') }}"
                             fetch="{{ route('notifications.refresh') }}"
                             initials="{{ auth()->user()->initials() }}"
+                            avatar="{{ auth()->user()->getAvatarUrl(36) }}"
                             campaign_id="{{ !empty($currentCampaign) ? $currentCampaign->id : null }}"
                             :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
                         ></nav-switcher>
