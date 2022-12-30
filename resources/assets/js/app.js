@@ -357,7 +357,7 @@ require('./members');
 require('./campaign');
 require('./clipboard');
 require('./toast');
-//require('./sidebar');
+require('./sidebar');
 require('./banner');
 require('./timeline');
 require('./utility/sortable');
