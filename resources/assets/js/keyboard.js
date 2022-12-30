@@ -35,8 +35,11 @@ function initKeyboardShortcuts() {
                 return;
             }
             quickCreatorButton[0].click();
-        } else if (e.key === 'e' && kbEditTarget.length === 1) {
+        } else if (e.key === 'e' && !(e.ctrlKey || e.metaKey) && kbEditTarget.length === 1) {
             //console.log('click edit link', kbEditTarget.first());
+            if (isInputField(target) || (entityModal.data('bs.modal') || {}).isShown) {
+                return;
+            }
             kbEditTarget[0].click();
         } else if (e.key === 'Escape') {
             // ESC to close quick creator selection modal
