@@ -337,9 +337,7 @@ function registerUnsavedChanges() {
         // Another way to bind the event
         $(window).bind('beforeunload', function (e) {
             if (window.entityFormHasUnsavedChanges) {
-                var message = save.data('unsaved');
-                e.returnValue = message;
-                return message;
+                return "Unsaved data warning";
             }
         });
     }
