@@ -1,7 +1,6 @@
 <template>
     <a :class="campaignClass(campaign)" v-bind:href="campaign.url" v-bind:style="{backgroundImage: backgroundImage(campaign)}" :title="campaign.name">
-        <div class="flex items-end justify-center name w-full text-xs p-2 pt-6 text-center">
-        {{ campaign.name }}
+        <div class="flex items-end justify-center name w-full text-xs p-2 pt-6 text-center" v-html="campaign.name">
         </div>
     </a>
 </template>

@@ -19966,9 +19966,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = ["href", "title"];
-var _hoisted_2 = {
-  "class": "flex items-end justify-center name w-full text-xs p-2 pt-6 text-center"
-};
+var _hoisted_2 = ["innerHTML"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.campaignClass($props.campaign)),
@@ -19977,9 +19975,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       backgroundImage: $options.backgroundImage($props.campaign)
     }),
     title: $props.campaign.name
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.campaign.name), 1
-  /* TEXT */
-  )], 14
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "flex items-end justify-center name w-full text-xs p-2 pt-6 text-center",
+    innerHTML: $props.campaign.name
+  }, null, 8
+  /* PROPS */
+  , _hoisted_2)], 14
   /* CLASS, STYLE, PROPS */
   , _hoisted_1);
 }
