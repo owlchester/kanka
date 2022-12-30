@@ -3,6 +3,7 @@
  * @var \App\Services\PermissionService $permission
  * @var \App\Services\EntityService $entity
  * @var \App\Models\CampaignRole $role
+ * @var \App\Models\Campaign $campaign
  */
 $permission->role($role);
 ?>
@@ -23,9 +24,16 @@ $permission->role($role);
 
 <div class="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
     @foreach ($permission->entityTypes() as $name => $id)
-        <div class="public-permission cursor px-2 py-5 {{ $permission->type($id)->can() ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$role, 'entity' => $id, 'action' => \App\Models\CampaignPermission::ACTION_READ]) }}">
-            <i class="{{ EntitySetup::icon($id) }} mb-2" aria-hidden="true"></i>
-            {{ EntitySetup::plural($id) }}
+        <div class="public-permission rounded cursor px-2 py-5 {{ $permission->type($id)->can() ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$role, 'entity' => $id, 'action' => \App\Models\CampaignPermission::ACTION_READ]) }}">
+            <i class="entity-type-icon {{ EntitySetup::icon($id) }} mb-2" aria-hidden="true"></i>
+
+                {{ EntitySetup::plural($id) }}
+            @if (!$campaign->enabled(\Illuminate\Support\Str::plural($name)))
+                <div class="mt-2 w-full rounded bg-warning text-danger" data-toggle="tooltip" title="{{ __('campaigns.modules.permission-disabled') }}">
+                    <i class="fa-solid fa-exclamation-triangle"  aria-hidden="true"></i>
+                    <span class="visible-xs visible-sm text-sm inline">{{ __('campaigns.modules.permission-disabled') }}</span>
+                </div>
+            @endif
         </div>
     @endforeach
 </div>

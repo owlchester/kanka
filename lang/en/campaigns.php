@@ -378,6 +378,9 @@ TEXT
             'timelines'     => 'Represent the history of your world with timelines.',
         ],
     ],
+    'modules' => [
+        'permission-disabled' => 'This module is disabled.',
+    ],
     'show'                              => [
         'actions'   => [
             'boost' => 'Boost campaign',

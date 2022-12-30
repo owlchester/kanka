@@ -2666,7 +2666,6 @@ ul.sidebar-sortable li ul, ul.sidebar-sortable ul li ul {
 }
 
 .public-permission {
-  border-radius: 5px;
   font-size: 1.3rem;
   line-height: 1.3;
   border: 1px solid var(--box-border);
@@ -2684,7 +2683,7 @@ ul.sidebar-sortable li ul, ul.sidebar-sortable ul li ul {
   background-color: var(--quick-creator-button-hover-background);
   color: var(--quick-creator-button-hover-text);
 }
-.public-permission i, .public-permission span {
+.public-permission i.entity-type-icon {
   display: block;
 }
 

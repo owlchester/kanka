@@ -26,6 +26,8 @@ class PermissionService
     /** @var CampaignRole */
     private $role;
 
+    private null|array $idsToCode = null;
+
     /**
      * Permissions setup on the campaign
      * @var bool|array
@@ -591,5 +593,18 @@ class PermissionService
     {
         $flip = array_flip(config('entities.ids'));
         return 'entities.' . Str::plural($flip[$entityType]);
+    }
+
+    public function entityTypePlural(int $entityType): string
+    {
+        return Str::plural($this->code($entityType));
+    }
+
+    protected function code(int $entityType): string
+    {
+        if ($this->idsToCode === null) {
+            $this->idsToCode = array_flip(config('entities.ids'));
+        }
+        return $this->idsToCode[$entityType];
     }
 }

@@ -53,6 +53,8 @@ class SetupService
                 return 'fa-solid fa-hourglass-half';
             case 19: // menu link
                 return 'fa-solid fa-star';
+            case 20: // creature
+                return 'ra ra-raven';
             default: // fallback, visual cue that we're doing something wrong
                 return 'fa-solid fa-question-circle';
         }
