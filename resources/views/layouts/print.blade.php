@@ -4,7 +4,7 @@
  * @var \App\Models\MiscModel $miscModel
  */
 $campaign = CampaignLocalization::getCampaign();
-$themeOverride = request()->get('_theme');
+$themeOverride = request()->get('_theme') ? : "base";
 $specificTheme = null;
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
@@ -40,7 +40,7 @@ $specificTheme = null;
 
 @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
     @php $specificTheme = $themeOverride; @endphp
-    @if(request()->get('_theme') != 'base')
+    @if($themeOverride != 'base')
     <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
     @endif
 @else
