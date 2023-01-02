@@ -22678,6 +22678,15 @@ function toggleCrudMultiDelete() {
 
 
 function registerDatagrids2() {
+  initDatagrid2Bulk();
+  initDatagrid2Ajax();
+  initDatagrid2OnLoad();
+  toggleCrudMultiDelete();
+  initDatagrid2Bulk();
+}
+
+function initDatagrid2Bulk() {
+  // Bulk edit multiple models at the same time
   $('.datagrid-bulk').click(function (e) {
     e.preventDefault();
     datagrid2Form = $(this).closest('form');
@@ -22686,8 +22695,8 @@ function registerDatagrids2() {
       if ($(this).prop('checked')) {
         models.push($(this).val());
       }
-    });
-    console.log('models', models);
+    }); //console.log('models', models);
+
     $.ajax({
       url: datagrid2Form.attr('action') + '?action=edit',
       method: 'POST',
@@ -22698,11 +22707,11 @@ function registerDatagrids2() {
       $('#entity-modal').find('.modal-content').html(response);
       $('#entity-modal').modal();
     });
-  });
+  }); // Other bulk actions
+
   $('.datagrid-submit').click(function (e) {
     e.preventDefault();
-    datagrid2Form = $(this).closest('form'); //console.log('form', form);
-
+    datagrid2Form = $(this).closest('form');
     var action = datagrid2Form.find('input[name="action"]');
     action.val($(this).data('action'));
 
@@ -22722,8 +22731,6 @@ function registerDatagrids2() {
     $('#datagrid-bulk-delete').modal('hide');
     datagrid2Form.submit();
   });
-  initDatagrid2Ajax();
-  initDatagrid2OnLoad();
 }
 /**
  *
@@ -22744,6 +22751,7 @@ function initDatagrid2Ajax() {
   });
   registerBulkDelete();
   registerBulkActions();
+  initDatagrid2Bulk();
 }
 /**
  *
