@@ -429,7 +429,6 @@ abstract class MiscModel extends Model
      */
     public function entry()
     {
-        //changes here? 
         return Mentions::map($this);
     }
 
