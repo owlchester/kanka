@@ -19,7 +19,7 @@ class EntityRelationApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return Resource::collection($entity->relationships);
+        return Resource::collection($entity->relationships()->has('target')->paginate());
     }
 
     /**
