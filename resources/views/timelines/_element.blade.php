@@ -11,9 +11,10 @@
     <div class="timeline-item">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title cursor element-toggle timeline-element-toggle" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}" data-short="timeline-element-body-toggle-{{ $element->id }}">
-                    <i class="fa-solid fa-chevron-up" id="timeline-element-body-toggle-{{ $element->id }}-show" @if($element->collapsed()) style="display: none;" @endif></i>
-                    <i class="fa-solid fa-chevron-down" id="timeline-element-body-toggle-{{ $element->id }}-hide" @if(!$element->collapsed()) style="display: none;" @endif></i>
+                <h3 class="box-title cursor element-toggle {{ $element->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
+
+                    <i class="fa-solid fa-chevron-up icon-show"></i>
+                    <i class="fa-solid fa-chevron-down icon-hide"></i>
                     {!! $element->htmlName() !!}
                     @if (isset($element->date) || $element->use_event_date && isset($element->entity->event->date))
                         <span class="text-muted">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>

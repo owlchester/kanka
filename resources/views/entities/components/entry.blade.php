@@ -1,7 +1,9 @@
 
 <div class="box box-solid box-entity-entry">
     <div class="box-header with-border">
-        <h3 class="box-title">{{ __('crud.fields.entry') }}</h3>
+        <h3 class="box-title">
+            {{ __('crud.fields.entry') }}
+        </h3>
 
         <div class="box-tools">
             @if (auth()->check())

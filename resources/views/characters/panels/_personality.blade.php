@@ -5,9 +5,9 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
 @if (((auth()->check() && auth()->user()->can('personality', $model)) || $model->is_personality_visible) && count($traits) > 0)
     <div class="box box-solid character-personalities">
         <div class="box-header with-border">
-            <h3 class="box-title cursor post-toggle entity-note-toggle" data-toggle="collapse" data-target="#character-personality-body" data-short="character-personality-toggle">
-                <i class="fa-solid fa-chevron-up" id="character-personality-toggle-show"></i>
-                <i class="fa-solid fa-chevron-down" id="character-personality-toggle-hide" style="display: none;"></i>
+            <h3 class="box-title cursor element-toggle" data-toggle="collapse" data-target="#character-personality-body" data-short="character-personality-toggle">
+                <i class="fa-solid fa-chevron-up icon-show"></i>
+                <i class="fa-solid fa-chevron-down icon-hide"></i>
                 {{ __('characters.sections.personality') }}
             </h3>
             @if(auth()->check() && auth()->user()->can('personality', $model))

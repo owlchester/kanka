@@ -9,9 +9,9 @@
 <div class="post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
     <div class="box box-solid post entity-note" id="post-{{ $post->id }}">
         <div class="box-header with-border">
-            <h3 class="box-title cursor post-toggle element-toggle" data-toggle="collapse" data-target="#post-body-{{ $post->id }}" data-short="post-toggle-{{ $post->id }}">
-                <i class="fa-solid fa-chevron-up" id="post-toggle-{{ $post->id }}-show" @if ($post->collapsed()) style="display: none;" @endif></i>
-                <i class="fa-solid fa-chevron-down" id="post-toggle-{{ $post->id }}-hide" @if (!$post->collapsed()) style="display: none;" @endif></i>
+            <h3 class="box-title cursor element-toggle {{ $post->collapsed() ? "collapsed" : null }}" data-toggle="collapse" data-target="#post-body-{{ $post->id }}" data-short="post-toggle-{{ $post->id }}" >
+                <i class="fa-solid fa-chevron-up icon-show"></i>
+                <i class="fa-solid fa-chevron-down icon-hide"></i>
                 {{ $post->name  }}
                 @if (app()->environment('local'))
                     <sup>({{ $post->position }})</sup>

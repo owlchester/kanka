@@ -2074,6 +2074,18 @@ body[class*=kanka-entity] .content-wrapper > .content {
   content: ", ";
 }
 
+/** Collapsed / Expanded elements **/
+.element-toggle .icon-hide {
+  display: none;
+}
+
+.element-toggle.collapsed .icon-hide {
+  display: unset;
+}
+.element-toggle.collapsed .icon-show {
+  display: none;
+}
+
 :root {
   --footer-links-background: rgba(255, 255, 255, 0.3);
   --footer-text: #636b6f;

@@ -14,10 +14,10 @@ $loadedElements = [];
 
     <div class="box box-solid post entity-note box-widget" id="era{{ $era->id }}">
         <div class="box-header with-border">
-            <h3 class="box-title cursor element-toggle timeline-era-toggle" data-toggle="collapse" data-target="#era-items-{{ $era->id }}" data-short="timeline-era-toggle-{{ $era->id }}">
+            <h3 class="box-title cursor element-toggle {{ $era->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}">
 
-                <i class="fa-solid fa-chevron-up" id="timeline-era-toggle-{{ $era->id }}-show" @if($era->collapsed()) style="display: none;" @endif></i>
-                <i class="fa-solid fa-chevron-down" id="timeline-era-toggle-{{ $era->id }}-hide" @if(!$era->collapsed()) style="display: none;" @endif></i>
+                <i class="fa-solid fa-chevron-up icon-show"></i>
+                <i class="fa-solid fa-chevron-down icon-hide"></i>
 
                 {!! $era->name !!} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif
 

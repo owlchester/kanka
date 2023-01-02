@@ -40,7 +40,6 @@ $(document).ready(function() {
     deleteConfirm();
     dynamicMentions();
     initAjaxPagination();
-    initEntityNoteToggle();
     initDynamicDelete();
     initImageRemoval();
     initDialogs();
@@ -218,17 +217,6 @@ function initSubmenuSwitcher() {
     });
 }
 
-
-/**
- * Entity Note toggle support
- */
-function initEntityNoteToggle() {
-    $('.element-toggle').on('click', function() {
-        let id = $(this).data('short');
-        $('#' + id + "-show").toggle();
-        $('#' + id + "-hide").toggle();
-    });
-}
 
 function initDialogs() {
     $('[data-toggle="dialog"]').click(function (e) {

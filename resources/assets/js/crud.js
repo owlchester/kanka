@@ -570,25 +570,18 @@ function initSpectrum() {
  * Expand/Collapse all posts on the overview of an entity
  */
 function registerStoryActions() {
-    let posts = $('.entity-posts > div');
+    let posts = $('.entity-story-block .collapse');
+    let togglers = $('.entity-story-block .element-toggle');
     $('.btn-post-collapse').unbind('click').click(function () {
-        posts.each(function () {
-            let body = $(this).find('.entity-content');
-            if (body.hasClass('in')) {
-                body.removeClass('in');
-                body.prev().find('.fa-chevron-up').hide();
-                body.prev().find('.fa-chevron-down').show();
-            }
-            let header = $(this).find('.post-toggle');
-            if (!header.hasClass('collapsed')) {
-                header.addClass('collapsed');
-            }
-        });
+        posts.collapse('hide');
+        togglers.addClass('collapsed');
         return false;
     });
 
     $('.btn-post-expand').unbind('click').click(function () {
-        posts.each(function () {
+        posts.collapse('show');
+        togglers.removeClass('collapsed');
+        /*posts.each(function () {
             let body = $(this).find('.entity-content');
             if (!body.hasClass('in')) {
                 body.addClass('in');
@@ -600,7 +593,7 @@ function registerStoryActions() {
             if (header.hasClass('collapsed')) {
                 header.removeClass('collapsed');
             }
-        });
+        });*/
         return false;
     });
 }

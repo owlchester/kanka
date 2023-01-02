@@ -87,3 +87,18 @@
         }
     }
 }
+
+/** Collapsed / Expanded elements **/
+.element-toggle {
+    .icon-hide {
+        display: none;
+    }
+}
+.element-toggle.collapsed {
+    .icon-hide {
+        display: unset;
+    }
+    .icon-show {
+        display: none;
+    }
+}
