@@ -75,6 +75,7 @@ return [
     'organisation'          => 'Organizacja',
     'organisations'         => 'Organizacje',
     'post'                  => 'Komentarz',
+    'posts'                 => 'Komentarze',
     'quest'                 => 'Zadanie',
     'quest_element'         => 'Element zadania',
     'quests'                => 'Zadania',

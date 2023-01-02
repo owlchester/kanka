@@ -25,16 +25,8 @@ return [
         'theme'                     => 'Tema',
     ],
     'newsletter'                    => [
-        'links'     => [
-            'community-vote'    => 'Voto della Community',
-            'news'              => 'News',
-            'updates'           => 'Aggiornamenti di Kanka',
-        ],
         'options'   => [
             'monthly'   => 'Newsletter di Kanka',
-        ],
-        'settings'  => [
-            'news'  => 'News - ricevi una notifica quando ci sono :news.',
         ],
         'title'     => 'Newsletters',
     ],

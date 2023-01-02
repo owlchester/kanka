@@ -11,9 +11,7 @@ return [
         'notifications' => 'Varsler',
     ],
     'groups'    => [
-        'community-votes'   => 'Avstemninger',
-        'news'              => 'Nyheter',
-        'newsletter'        => 'Nyhetsbrev',
+        'newsletter'    => 'Nyhetsbrev',
     ],
     'headline'  => 'Abonner til en eller alle våre nyhetsbrev for å holde deg oppdatert med Kanka.',
     'title'     => 'Epost Oppdateringer',

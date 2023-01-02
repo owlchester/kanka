@@ -77,6 +77,7 @@ return [
             'add'               => 'Dodaj widżet',
             'back_to_dashboard' => 'Powrót do pulpitu',
             'edit'              => 'Edytuj widżet',
+            'new'               => 'Nowy widżet :type',
         ],
         'reorder'   => [
             'success'   => 'Zmieniono kolejność widżetów',

@@ -11,10 +11,7 @@ return [
         'notifications' => 'Notifications',
     ],
     'groups'    => [
-        'community-votes'   => 'Votes communtaires',
-        'news'              => 'News',
-        'newsletter'        => 'Newsletter',
-        'updates'           => 'Mises à jours',
+        'newsletter'    => 'Newsletter',
     ],
     'headline'  => 'S\'abonner à une ou toutes nos newsletters pour rester à jour avec Kanka.',
     'title'     => 'Mises à jour mail',

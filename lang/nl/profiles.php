@@ -25,14 +25,7 @@ return [
         'theme'                     => 'Thema',
     ],
     'newsletter'    => [
-        'links'     => [
-            'community-vote'    => 'Community Stemming',
-            'news'              => 'Nieuws',
-        ],
-        'settings'  => [
-            'news'  => 'Nieuws - ontvang een melding wanneer er :news is.',
-        ],
-        'title'     => 'Nieuwsbrieven',
+        'title' => 'Nieuwsbrieven',
     ],
     'password'      => [
         'success'   => 'Wachtwoord bijgewerkt',

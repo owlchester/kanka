@@ -11,9 +11,7 @@ return [
         'notifications' => 'Notifikationer',
     ],
     'groups'    => [
-        'community-votes'   => 'Community Röstningar',
-        'news'              => 'Nyheter',
-        'newsletter'        => 'Nyhetsbrev',
+        'newsletter'    => 'Nyhetsbrev',
     ],
     'headline'  => 'Prenumerera på ett eller alla våra nyhetsbrev för att hålla dig uppdaterad om Kanka.',
     'title'     => 'Epost Uppdateringar',

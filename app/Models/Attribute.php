@@ -80,7 +80,7 @@ class Attribute extends Model
     protected mixed $numberMax = null;
     protected mixed $numberMin = null;
 
-    protected string $listRegexp = '`\[range:(.*)\]`i';
+    protected string $listRegexp = '`\[range:(.+)\]`i';
     protected mixed $listRange = null;
 
     protected $mappedName = false;
@@ -324,7 +324,6 @@ class Attribute extends Model
         //dump('check regexp');
         preg_match($this->numberRange, $this->mappedName(), $constraints);
         if (count($constraints) !== 3) {
-            //dd('no range');
             return $this;
         }
 
@@ -350,13 +349,13 @@ class Attribute extends Model
         $this->listRange = false;
 
         if (!Str::contains($this->mappedName(), '[range:')) {
-            //dd('nope a');
+            //dd('Missing range syntax');
             return $this;
         }
 
         preg_match($this->listRegexp, $this->mappedName(), $constraints);
         if (count($constraints) !== 2) {
-            //dd('nope b');
+            //dd('Missing constraints');
             return $this;
         }
         $this->listRange = explode(',', $constraints[1]);

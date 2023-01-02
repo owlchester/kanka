@@ -221,6 +221,8 @@ class AbilityController extends Controller
      */
     public function useCharge(Request $request, Entity $entity, EntityAbility $entityAbility)
     {
+        $this->authorize('update', $entity->child);
+
         return response()->json([
             'success' => $this->service
                 ->entity($entity)
@@ -234,6 +236,8 @@ class AbilityController extends Controller
      */
     public function resetCharges(Entity $entity)
     {
+        $this->authorize('update', $entity->child);
+
         $this->service
             ->entity($entity)
             ->resetCharges();

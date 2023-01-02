@@ -9,6 +9,7 @@ return [
         'title' => 'Menu link :name',
     ],
     'fields'            => [
+        'active'            => 'Aktívny',
         'dashboard'         => 'Nástenka',
         'default_dashboard' => 'Štandardná nástenka',
         'entity'            => 'Objekt',
@@ -22,6 +23,7 @@ return [
         'type'              => 'Typ objektu',
     ],
     'helpers'           => [
+        'active'            => 'Neaktívne rýchle linky sa v bočnom menu nezobrazia.',
         'dashboard'         => 'Cieľ s rýchlym linkom na jednu z vlastných násteniek kampane.',
         'default_dashboard' => 'Prelinkuj namiesto toho k štandardnej nástenke kampane. Ešte stále musíš ale zvoliť aj vlastnú nástenku.',
         'entity'            => 'Nastav tento menu link, aby smeroval priamo na daný objekt. Pole :tab kontroluje, ktorá z kariet objektu bude zobrazená automaticky. Pole :menu kontroluje, ktorá podstránka objektu bude zobrazená.',
@@ -43,8 +45,8 @@ return [
         'any'   => 'Hociktorý objekt',
     ],
     'reorder'           => [
-        'success'   => 'Menu linky zoradené.',
-        'title'     => 'Zmeniť poradie menu liniek',
+        'success'   => 'Menu linky preskupené.',
+        'title'     => 'Preskupiť menu linky',
     ],
     'show'              => [],
 ];

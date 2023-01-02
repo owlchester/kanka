@@ -38,10 +38,16 @@ return [
         'name'      => 'Kula ognia, alarm, podstępny atak',
         'type'      => 'Czar, umiejętność, technika bojowa',
     ],
+    'reorder'       => [
+        'parentless'    => 'Bez źródła',
+        'success'       => 'Zmieniono kolejność zdolności.',
+        'title'         => 'Zmień kolejność zdolności',
+    ],
     'show'          => [
         'tabs'  => [
             'abilities' => 'Zdolności',
             'entities'  => 'Elementy',
+            'reorder'   => 'Zmień kolejność',
         ],
     ],
 ];

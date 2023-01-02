@@ -26,22 +26,10 @@ return [
     ],
     'newsletter'    => [
         'helpers'   => [
-            'community-vote'    => 'Értesítst mindig, amikor új : community-vote van.',
-            'header'            => 'Íratkozz fel a következő email-hírlevélre, hogy képben legyél, mi történik a Kanka háza táján.',
-            'monthly'           => 'Havi összesítő a Kanka eseményeiről.',
-            'release'           => 'Légy képben, amikor a Kankát frissítjük, hogy mi változott.',
-        ],
-        'links'     => [
-            'community-vote'    => 'Közösségi szavazás',
-            'news'              => 'Hírek',
-            'updates'           => 'Kanka frissítések',
+            'header'    => 'Íratkozz fel a következő email-hírlevélre, hogy képben legyél, mi történik a Kanka háza táján.',
         ],
         'options'   => [
             'monthly'   => 'Kanka hírlevél',
-            'release'   => 'Új frissítés',
-        ],
-        'settings'  => [
-            'news'  => 'Hírek - értesíts, amikor vannak :news.',
         ],
         'title'     => 'Hírlevelek',
     ],

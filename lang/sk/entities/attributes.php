@@ -6,6 +6,9 @@ return [
         'manage'            => 'Spravovať',
         'more'              => 'Ďalšie možnosti',
         'remove_all'        => 'Odstrániť všetko',
+        'save_and_edit'     => 'Použiť a Upraviť',
+        'save_and_story'    => 'Použiť a Zobraziť',
+        'show_hidden'       => 'Zobraziť skryté atribúty',
     ],
     'errors'        => [
         'loop'      => 'Vo výpočte atribútu sa vyskytuje nekonečná slučka!',
@@ -55,8 +58,12 @@ return [
         'template'  => 'Vybrať šablónu',
         'value'     => 'Hodnota atribútu',
     ],
+    'ranges'        => [
+        'text'  => 'Dostupné možnosti :options',
+    ],
     'show'          => [
-        'title' => 'Atribúty :name',
+        'hidden'    => 'Skryté atribúty',
+        'title'     => 'Atribúty :name',
     ],
     'template'      => [
         'success'   => 'Šablóna atribútov :name použitá na :entity',

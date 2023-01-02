@@ -107,7 +107,7 @@ class PresetController extends Controller
     protected function parseFrom(Request $request)
     {
         $from = $request->get('from');
-        if (empty($from)) {
+        if (empty($from) || $from === 'dashboard') {
             return ['dashboard', null];
         }
         $from = base64_decode($from);

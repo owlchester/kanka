@@ -35,22 +35,10 @@ return [
     ],
     'newsletter'                    => [
         'helpers'   => [
-            'community-vote'    => 'Notifica\'m cada cop que hi hagi una :community-vote.',
-            'header'            => 'Subscriu-me a les següents newsletters per a assabentar-me del que passa a Kanka.',
-            'monthly'           => 'El nostre resum mensual d\'esdeveniments relacionats amb Kanka.',
-            'release'           => 'Notifica\'m sempre que Kanka rebi una actualització amb un resum del que ha canviat.',
-        ],
-        'links'     => [
-            'community-vote'    => 'Votació comunitària',
-            'news'              => 'Novetats',
-            'updates'           => 'Actualitzacions de Kanka',
+            'header'    => 'Subscriu-me a les següents newsletters per a assabentar-me del que passa a Kanka.',
         ],
         'options'   => [
             'monthly'   => 'Newsletter de Kanka',
-            'release'   => 'Nou llançament',
-        ],
-        'settings'  => [
-            'news'  => 'Novetats - Notifica\'m quan hi hagi :news',
         ],
         'title'     => 'Newsletters',
     ],

@@ -38,10 +38,16 @@ return [
         'name'      => 'Palla di Fuoco, Allerta, Colpo Scaltro',
         'type'      => 'Incantesimo, Talento, Attacco',
     ],
+    'reorder'       => [
+        'parentless'    => 'Nessuno Genitore',
+        'success'       => 'Abilità riordinate con successo.',
+        'title'         => 'Riordina le abilità',
+    ],
     'show'          => [
         'tabs'  => [
             'abilities' => 'Abilità',
             'entities'  => 'Entità',
+            'reorder'   => 'Riordina le abilità',
         ],
     ],
 ];

@@ -38,6 +38,11 @@ return [
         'name'      => 'Ohnivá guľa, Stále v strehu, Zákerný výpad',
         'type'      => 'Kúzlo, schopnosť, útočný manéver',
     ],
+    'reorder'       => [
+        'parentless'    => 'Bez nadradenej',
+        'success'       => 'Schopnosti úspešne preskupené.',
+        'title'         => 'Preskupenie schopností',
+    ],
     'show'          => [
         'tabs'  => [
             'abilities' => 'Schopnosti',

@@ -40,7 +40,7 @@ return [
     'reorder'   => [
         'save'      => 'Uložiť nové poradie',
         'success'   => '{1} Zmena poradia :count štýlu.|[2,4] Zmena poradia :count štýlov.|[5,*] Zmena poriadia :count štýlov.',
-        'title'     => 'Zmeniť poradie štýlov',
+        'title'     => 'Preskupiť štýly',
     ],
     'theme'     => [
         'success'   => 'Téma kampane aktualizovaná.',

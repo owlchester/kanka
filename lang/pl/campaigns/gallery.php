@@ -10,6 +10,9 @@ return [
     'destroy'       => [
         'success'   => 'Usunięto obraz :name',
     ],
+    'errors'        => [
+        'permissions'   => 'Role w kampanii nie mają uprawnienia :permission więc nie mogą dodawać ilustracji do galerii.',
+    ],
     'fields'        => [
         'created_by'    => 'Dodane przez',
         'ext'           => 'Typ',

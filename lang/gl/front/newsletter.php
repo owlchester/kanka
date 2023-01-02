@@ -11,10 +11,7 @@ return [
         'notifications' => 'Notificacións',
     ],
     'groups'    => [
-        'community-votes'   => 'Votacións da Comunidade',
-        'news'              => 'Novas',
-        'newsletter'        => 'Boletín de información',
-        'updates'           => 'Actualizacións',
+        'newsletter'    => 'Boletín de información',
     ],
     'headline'  => 'Subscríbete a un ou a todos os nosos boletíns informativos para manterte ao día.',
     'title'     => 'Novidades por correo electrónico',

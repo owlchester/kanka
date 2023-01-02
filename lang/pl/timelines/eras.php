@@ -4,6 +4,9 @@ return [
     'actions'       => [
         'add'   => 'Dodaj nową epokę',
     ],
+    'bulks'         => [
+        'delete'    => '{0} Usunięto :count epok.|{1} Usunięto :count epokę.|[2,3,4] Usunięto :count epoki.|[5,*] Usunięto :count epok.',
+    ],
     'create'        => [
         'success'   => 'Stworzono epokę \':name\'.',
         'title'     => 'Nowa epoka',
@@ -25,6 +28,9 @@ return [
         'eras'          => 'Przed dodaniem epok należy stworzyć historię.',
         'is_collapsed'  => 'Epoka domyślnie wyświetlana jest zwinięta (zminimalizowana).',
         'primary'       => 'Podziel historię na epoki. By historia działała poprawnie, musi posiadać przynajmniej jedną epokę.',
+    ],
+    'index'         => [
+        'title' => 'Epoki historii :name',
     ],
     'placeholders'  => [
         'abbreviation'  => 'AD, PNE, 3E',
