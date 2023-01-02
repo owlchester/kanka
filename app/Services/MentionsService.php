@@ -727,18 +727,18 @@ class MentionsService
      */
     protected function mapCodes()
     {
+        // Re-use the same markupFixer to keep references of previously generated slugs on this page
+        if (!isset($this->markupFixer)) {
+            $this->markupFixer = new MarkupFixer(null, new TocSlugify());
+        }
+        //$markupFixer = new MarkupFixer(null, new TocSlugify());
+        $tocGenerator = new \TOC\TocGenerator();
+        $this->text = $this->markupFixer->fix($this->text);
+
         if (!Str::contains($this->text, '{table-of-contents}')) {
             return;
         }
 
-        // Re-use the same markupFixer to keep references of previously generated slugs on this page
-        /*if (!isset($this->markupFixer)) {
-            $this->markupFixer = new MarkupFixer(null, new TocSlugify());
-        }*/
-        $markupFixer = new MarkupFixer(null, new TocSlugify());
-        $tocGenerator = new \TOC\TocGenerator();
-
-        $this->text = $markupFixer->fix($this->text);
         //$this->text = $this->markupFixer->fix($this->text);
         $toc = $tocGenerator->getHtmlMenu($this->text);
         $this->text = Str::replaceFirst(
