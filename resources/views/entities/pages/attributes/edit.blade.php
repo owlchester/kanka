@@ -22,7 +22,8 @@ $isAdmin = Auth::user()->isAdmin();
     'method' => 'POST',
     'data-shortcut' => 1,
     'data-max-fields' => ini_get('max_input_vars'),
-    'class' => 'entity-form'
+    'class' => 'entity-form',
+    'data-unload' => 1,
 ]) !!}
 @endsection
 
@@ -44,7 +45,7 @@ $isAdmin = Auth::user()->isAdmin();
 
             @include('cruds.forms.attributes._blocks', ['existing' => $r->count()])
             @include('cruds.forms.attributes._buttons', ['model' => $entity->child, 'existing' => $r->count()])
-  
+
         <div class="box-footer">
             <div class="pull-right">
                 <button class="btn btn-success">

@@ -16,6 +16,7 @@
         'route' => ['campaigns.update', $model->id],
         'data-shortcut' => '1',
         'class' => 'entity-form',
+        'data-unload' => 1,
     ]) !!}
 @endsection
 

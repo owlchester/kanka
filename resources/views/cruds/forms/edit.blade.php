@@ -20,7 +20,8 @@
     'data-shortcut' => '1',
     'data-max-fields' => ini_get('max_input_vars'),
     'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null),
-    'id' => 'entity-form'
+    'id' => 'entity-form',
+    'data-unload' => 1,
 ]) !!}
 @endsection
 

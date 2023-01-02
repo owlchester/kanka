@@ -12,6 +12,7 @@
         'method' => 'POST',
         'data-shortcut' => '1',
         'class' => 'entity-form',
+        'data-unload' => 1,
     ]) !!}
 @endsection
 

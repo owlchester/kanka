@@ -10,7 +10,14 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
-    {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.posts.update', $entity->id, $model->id], 'data-shortcut' => '1', 'class' => 'entity-note-form post-form entity-form', 'id' => 'entity-form']) !!}
+    {!! Form::model($model, [
+    'method' => 'PATCH',
+    'route' => ['entities.posts.update', $entity->id, $model->id],
+    'data-shortcut' => '1',
+    'class' => 'entity-note-form post-form entity-form',
+    'id' => 'entity-form',
+    'data-unload' => 1,
+    ]) !!}
 @endsection
 
 @section('content')

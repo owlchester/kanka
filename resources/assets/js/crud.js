@@ -322,7 +322,7 @@ function calendarHideSubform() {
  */
 function registerUnsavedChanges() {
     // Return early if we have no elements to handle
-    entityFormActions = $('.form-submit-actions');
+    entityFormActions = $('form[data-unload="1"]');
     if (entityFormActions.length === 0) {
         return;
     }
