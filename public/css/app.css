@@ -1397,6 +1397,7 @@ button.dropdown-item:hover {
   border: 1px solid var(--input-border-color);
   border-radius: 5px;
   margin-right: 5px;
+  pointer-events: unset;
 }
 
 .keyboard-shortcut.form-control-feedback {
@@ -2713,6 +2714,12 @@ ul.sidebar-sortable li ul, ul.sidebar-sortable ul li ul {
     width: auto;
   }
 }
+.live-edit {
+  min-width: 1rem;
+  min-height: 1rem;
+  display: inline-block;
+}
+
 .live-edit-parsed {
   cursor: pointer;
 }
@@ -2724,6 +2731,7 @@ ul.sidebar-sortable li ul, ul.sidebar-sortable ul li ul {
   font-variant: normal;
   line-height: 1;
   text-rendering: auto;
+  color: var(--link-hover);
 }
 .live-edit-parsed:hover:after {
   content: " \f303";
@@ -2731,7 +2739,6 @@ ul.sidebar-sortable li ul, ul.sidebar-sortable ul li ul {
 
 .live-edit.empty-value {
   width: 24px;
-  height: 24px;
   display: inline-block;
   border-bottom: 1px dotted var(--search-border);
 }

@@ -17,7 +17,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                            placeholder="{{ __('sidebar.search') }}" data-url="{{ route('search.live') }}"
                            data-empty="{{ __('search.no_results') }}"
                            tabindex="2">
-                    <span class="keyboard-shortcut form-control-feedback hidden-xs hidden-sm">K</span>
+                    <span class="keyboard-shortcut form-control-feedback hidden-xs hidden-sm" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) !!}" data-html="true" data-placement="bottom">K</span>
 
                     <a href="#" role="button" class="live-search-close visible-xs visible-sm self-end" aria-label="Close search">
                         <i class="fa-solid fa-close" aria-hidden="true"></i>
