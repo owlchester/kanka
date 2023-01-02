@@ -6,16 +6,12 @@
                 <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
             </div>
 
-            @if (isset($superboost))
-                <h4>{{ __('callouts.booster.titles.superboosted') }}</h4>
-            @else
-                <h4>{{ __('callouts.booster.titles.boosted') }}</h4>
-            @endif
+            <h4>{{ __('callouts.booster.titles.' . (isset($superboost) ? 'superboosted' : 'boosted')) }}</h4>
             @foreach ($texts as $text)
                 <p>{!! $text !!}</p>
             @endforeach
 
-            <p>{{ __('callouts.booster.limitation') }}</p>
+            <p>{{ __('callouts.booster.limitations.' . (isset($superboost) ? 'superboosted' : 'boosted')) }}</p>
             @subscriber()
                 @if (isset($superboost))
                     <a href="{{ route('settings.boost', ['campaign' => $currentCampaign, 'superboost' => true]) }}" class="btn bg-maroon btn-lg">

@@ -4549,6 +4549,10 @@ body.ab-testing-second .ab-testing-a {
   flex-grow: 1;
 }
 
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
 .items-center {
   align-items: center;
 }
@@ -5455,6 +5459,10 @@ body.ab-testing-second .ab-testing-a {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
+.blur {
+  filter: blur(8px);
+}
+
 .list-none {
   list-style-type: none;
 }
@@ -5475,6 +5483,10 @@ body.ab-testing-second .ab-testing-a {
 
 .line-through {
   text-decoration-line: line-through;
+}
+
+.pointer-events-none {
+  pointer-events: none;
 }
 
 dialog {

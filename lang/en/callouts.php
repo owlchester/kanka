@@ -8,6 +8,10 @@ return [
         ],
         'learn-more'    => 'What are boosters?',
         'limitation'    => 'To access this feature, the campaign needs to be boosted.',
+        'limitations'    => [
+            'boosted' => 'To access this feature, the campaign needs to be boosted.',
+            'superboosted' => 'To access this feature, the campaign needs to be superboosted.',
+        ],
         'multiple'      => 'To access these features, the campaign needs to be boosted.',
         'pitches'       => [
             'element-class' => 'Give this element a custom CSS class with a :boosted-campaign.',

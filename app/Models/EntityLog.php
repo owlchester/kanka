@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+use App\Http\Requests\HistoryRequest;
+use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Orderable;
+use App\Models\Concerns\Searchable;
+use App\Models\Concerns\Sortable;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
@@ -79,7 +84,7 @@ class EntityLog extends Model
     /**
      * @return string
      */
-    public function actionCode()
+    public function actionCode(): string
     {
         if ($this->action == self::ACTION_CREATE) {
             return 'create';
@@ -91,6 +96,33 @@ class EntityLog extends Model
             return 'restore';
         }
         return 'unknown';
+    }
+
+    public function actionIcon(): string
+    {
+        if ($this->action == self::ACTION_CREATE) {
+            return 'fa-plus';
+        } elseif ($this->action == self::ACTION_UPDATE) {
+            return 'fa-pencil';
+        } elseif ($this->action == self::ACTION_DELETE) {
+            return 'fa-trash';
+        } elseif ($this->action == self::ACTION_RESTORE) {
+            return 'fa-history';
+        }
+        return 'fa-question-circle';
+    }
+    public function actionBackground(): string
+    {
+        if ($this->action == self::ACTION_CREATE) {
+            return 'bg-green';
+        } elseif ($this->action == self::ACTION_UPDATE) {
+            return 'bg-blue';
+        } elseif ($this->action == self::ACTION_DELETE) {
+            return 'bg-red';
+        } elseif ($this->action == self::ACTION_RESTORE) {
+            return 'bg-orange';
+        }
+        return 'bg-gray';
     }
 
     /**
@@ -128,7 +160,12 @@ class EntityLog extends Model
             return $translation;
         }
 
-        return __($transKey . '.fields.' . $name);
+        $key = $transKey . '.fields.' . $name;
+        $translation = __($key);
+        if ($key !== $translation) {
+            return $translation;
+        }
+        return '<i>' . __('crud.users.unknown') . '</i>';
     }
 
     /**
@@ -139,5 +176,43 @@ class EntityLog extends Model
     {
         $delay = config('entities.logs_delete');
         return static::where('updated_at', '<=', now()->subDays($delay));
+    }
+
+    public function day(): int
+    {
+        return $this->created_at->format('Ymd');
+    }
+
+    public function userLink(): string
+    {
+        if (!$this->user) {
+            return '<i>' . __('crud.users.unknown') . '</i>';
+        }
+        return '<strong>' . $this->user->name . '</strong>';
+    }
+
+    public function entityLink(): string
+    {
+        if (!$this->entity) {
+            return link_to_route('recovery', __('history.unknown.entity'));
+
+        }
+        return $this->entity->tooltipedLink();
+    }
+
+    /**
+     * @param Builder $builder
+     * @param HistoryRequest $request
+     * @return Builder
+     */
+    public function scopeFilter(Builder $builder, HistoryRequest $request): Builder
+    {
+        if ($request->filled('user')) {
+            $builder->where('created_by', (int) $request->get('user'));
+        }
+        if ($request->filled('action')) {
+            $builder->where('action', (int) $request->get('action'));
+        }
+        return $builder;
     }
 }
