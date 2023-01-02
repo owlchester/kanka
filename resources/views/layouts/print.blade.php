@@ -4,7 +4,7 @@
  * @var \App\Models\MiscModel $miscModel
  */
 $campaign = CampaignLocalization::getCampaign();
-$themeOverride = request()->get('_theme') ? : "base";
+$themeOverride = request()->get('_theme', 'base');
 $specificTheme = null;
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
