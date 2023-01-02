@@ -19,7 +19,7 @@ class PostApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return Resource::collection($entity->notes);
+        return Resource::collection($entity->posts()->paginate());
     }
 
     /**

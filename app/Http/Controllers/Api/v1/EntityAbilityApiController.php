@@ -19,7 +19,7 @@ class EntityAbilityApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return Resource::collection($entity->abilities);
+        return Resource::collection($entity->abilities()->paginate());
     }
 
     /**

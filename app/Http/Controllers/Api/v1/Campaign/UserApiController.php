@@ -26,7 +26,7 @@ class UserApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
 
-        return UserResource::collection($campaign->users);
+        return UserResource::collection($campaign->users()->paginate());
     }
 
     /**
