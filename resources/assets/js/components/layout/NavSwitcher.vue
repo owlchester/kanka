@@ -3,7 +3,7 @@
         <div class="campaigns inline cursor text-center px-5 text-lg py-2" v-on:click="openCampaigns()" aria-label="Switch campaigns">
             <i class="fa-solid fa-grip " aria-hidden="true"></i>
         </div>
-        <div class="profile inline cursor text-center text-uppercase py-2" v-on:click="openProfile()" aria-label="Profile settings">
+        <div class="profile inline cursor text-center text-uppercase pt-2" v-on:click="openProfile()" aria-label="Profile settings">
             <div class="indicator">
                 <span class="notification-badge" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">

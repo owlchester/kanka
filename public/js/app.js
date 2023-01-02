@@ -20340,7 +20340,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "aria-label": "Switch campaigns"
   }, _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "profile inline cursor text-center text-uppercase py-2",
+    "class": "profile inline cursor text-center text-uppercase pt-2",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.openProfile();
     }),
