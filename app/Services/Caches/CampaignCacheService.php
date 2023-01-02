@@ -219,7 +219,7 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
-     * List of themes the campaign has activated
+     * List of theme plugins the campaign has activated
      * @return string|bool
      */
     public function themes(): string|bool

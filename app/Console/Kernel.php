@@ -8,6 +8,7 @@ use App\Console\Commands\CleanupEntityLogs;
 use App\Console\Commands\CleanupTrashed;
 use App\Console\Commands\Subscriptions\ExpiringCardCommand;
 use App\Console\Commands\Subscriptions\UpcomingYearlyCommand;
+use App\Services\Subscription\SubscriptionEndService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -33,6 +34,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(CalendarAdvancer::class)->dailyAt('00:00');
         $schedule->command(CampaignVisibileEntityCount::class)->dailyAt('01:00');
         $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
+        $schedule->command(SubscriptionEndService::class)->dailyAt('00:05');
         $schedule->command(ExpiringCardCommand::class)->monthlyOn(1, '02:00');
 
         $schedule->command('backup:clean')->daily()->at('01:00');
