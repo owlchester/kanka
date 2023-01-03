@@ -51,7 +51,7 @@ class RegenerateDiscordToken extends Command
         $tokens = UserApp::select(['id', 'user_id', 'access_token', 'refresh_token', 'expires_at', 'updated_at'])
             ->with('user')
             ->where('app', '=', 'discord')
-            ->where('expires_at', '<=', Carbon::now()->toDateString())
+            //->where('expires_at', '<=', Carbon::now()->toDateString())
             ->get();
 
         if ($tokens->count() === 0) {
@@ -64,6 +64,7 @@ class RegenerateDiscordToken extends Command
         }
 
         $logs = $this->service->logs();
+        $this->service->log();
 
         foreach ($logs as $log) {
             $this->info($log);

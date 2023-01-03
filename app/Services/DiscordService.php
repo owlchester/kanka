@@ -159,13 +159,9 @@ class DiscordService
         ];
         $content = $this->post('oauth2/token', $body);
         $this->saveUserApp($content);
+
         $log = 'Renewed user #' . $this->user->id . ' Discord auth token.';
         $this->logs[] = $log;
-
-        JobLog::create([
-            'name' => 'discord:renewed',
-            'result' => $log,
-        ]);
 
         return $this;
     }
@@ -317,5 +313,21 @@ class DiscordService
     public function logs(): array
     {
         return $this->logs;
+    }
+
+    /**
+     * Save an job log for the admin interface
+     * @return void
+     */
+    public function log()
+    {
+        if (!config('app.log_jobs')) {
+            return;
+        }
+
+        JobLog::create([
+            'name' => 'subscriptions:end',
+            'result' => implode('<br />', $this->logs)
+        ]);
     }
 }
