@@ -36,6 +36,11 @@
                     @endforeach
                 </select>
             </div>
+            @if (count($filters) > 0)
+                <div class="flex-none mr-2">
+                    <a href="{{ route('history.index') }}" role="button" class="btn btn-default">{{ __('crud.actions.reset') }}</a>
+                </div>
+            @endif
             <div class="flex-none filters-loading mr-2" style="display: none">
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
             </div>
@@ -62,10 +67,10 @@
                     'entity' => $log->entityLink(),
                 ]) !!}
                             @if ($log->impersonator)
-                                (
+                                <span class="ml-5 text-warning">
                                 <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
                                 {{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }}
-                                )
+                                    </span>
                             @endif
                         @else
                         {{ \Illuminate\Support\Str::random(30) }} <a href="#" class="pointer-events-none">changes</a>

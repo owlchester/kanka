@@ -17,7 +17,7 @@ return [
     'cta' => 'Display a log of all the recent changes to the campaign.',
     'helpers' => [
         'base' => 'This interface contains recent changes to entities of the campaign for up to :amount months, showing the most recent changes first.',
-        'changes' => 'Showing the fields as they were before the changes were saved.',
+        'changes' => 'The following fields previously had these values.',
     ],
     'filters' => [
         'all-users' => 'All members',
