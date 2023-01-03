@@ -246,7 +246,11 @@ class DiscordService
         }
 
         // Remove any roles the user might have had
-        $this->removeRoles();
+        try {
+            $this->removeRoles();
+        } catch (Exception $e) {
+            $this->app->delete();
+        }
 
         // Delete the discord app
         $this->app->delete();
