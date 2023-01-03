@@ -6,6 +6,7 @@ use App\Models\UserApp;
 use App\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use App\Models\JobLog;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -158,6 +159,13 @@ class DiscordService
         ];
         $content = $this->post('oauth2/token', $body);
         $this->saveUserApp($content);
+        $log = 'Renewed user #' . $this->user->id . ' Discord auth token.';
+        $this->logs[] = $log;
+
+        JobLog::create([
+            'name' => 'discord:renewed',
+            'result' => $log,
+        ]);
 
         return $this;
     }
