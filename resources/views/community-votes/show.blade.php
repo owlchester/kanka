@@ -29,11 +29,20 @@
                             <div class="text-muted mb-2">{{ $model->visible_at->isoFormat('MMMM D, Y') }}</div>
 
                             <div class="card-text">
-                                @if ($model->isVoting() && (auth()->guest() || !auth()->user()->can('show', $model)))
-                                    @include('community-votes._support')
-                                @else
-                                    {!! $model->content !!}
+                                {!! $model->content !!}
 
+
+                                @if ($model->isVoting() && (auth()->guest() || !auth()->user()->can('show', $model)))
+                                    @if (auth()->check())
+                                        <a href="{{ route('settings.subscription') }}" class="btn btn-primary">
+                                            {{ __('front/community-votes.actions.subscribe')}}
+                                        </a>
+                                    @else
+                                        <a href="{{ route('front.pricing') }}" class="btn btn-primary">
+                                            {{ __('front/community-votes.actions.subscribe')}}
+                                        </a>
+                                    @endif
+                                @else
                                     <div class="vote-options mt-3 @if ($model->isVoting()) vote-ongoing @endif">
                                         @foreach ($model->options() as $key => $text)
                                             <div class="vote-option">
@@ -52,19 +61,19 @@
                                     <p class="text-muted mt-3">
                                         {!! trans_choice('front/community-votes.show.vote_count', $model->ballots->count(), ['number' => $model->ballots->count()]) !!}
                                     </p>
-                                    <p class="text-muted mt-3">
-                                        @if ($model->isVoting())
-                                            {!! __('front/community-votes.show.voting_until', [
-                                                'until' => $model->published_at->isoFormat('MMMM D, Y')
-                                            ]) !!}
-                                        @else
-                                            {!! __('front/community-votes.show.voted_lasted', [
-                                                'from' => $model->visible_at->isoFormat('MMMM D, Y'),
-                                                'until' => $model->published_at->isoFormat('MMMM D, Y')
-                                            ]) !!}
-                                        @endif
-                                    </p>
                                 @endif
+                                <p class="text-muted mt-3">
+                                    @if ($model->isVoting())
+                                        {!! __('front/community-votes.show.voting_until', [
+                                            'until' => $model->published_at->isoFormat('MMMM D, Y')
+                                        ]) !!}
+                                    @else
+                                        {!! __('front/community-votes.show.voted_lasted', [
+                                            'from' => $model->visible_at->isoFormat('MMMM D, Y'),
+                                            'until' => $model->published_at->isoFormat('MMMM D, Y')
+                                        ]) !!}
+                                    @endif
+                                </p>
 
                             </div>
                         </div>

@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Support Kanka to take part in Community Votes',
+        'subscribe' => 'Subscribe to Kanka to vote',
         'return'        => 'Return to all community votes.',
         'show'          => 'Show vote results',
         'vote'          => 'Vote',
