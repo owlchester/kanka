@@ -23,3 +23,24 @@
     border-top-left-radius: 1rem; /* 16px */
     border-bottom-left-radius: 1rem; /* 16px */
 }
+
+
+/* border style */
+.border-solid {
+    border-style: solid;
+}
+.border-dashed {
+    border-style: dashed;
+}
+.border-dotted {
+    border-style: dotted;
+}
+.border-double {
+    border-style: double;
+}
+.border-hidden {
+    border-style: hidden;
+}
+.border-none {
+    border-style: none;
+}

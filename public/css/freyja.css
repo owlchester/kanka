@@ -445,7 +445,8 @@ body .main-header.main-header-start {
   background-color: var(--input-border-color);
 }
 .navigation-drawer .bordered {
-  border: 1px solid var(--input-border-color);
+  border-width: 1px;
+  border-color: var(--input-border-color);
 }
 .navigation-drawer a.bordered:hover {
   border-color: var(--link-hover);

@@ -19642,7 +19642,7 @@ __webpack_require__.r(__webpack_exports__);
       return campaign.image ? 'url(' + campaign.image + ')' : '';
     },
     campaignClass: function campaignClass(campaign) {
-      return 'campaign flex items-end bordered rounded-lg cover-background relative h-24 overflow-hidden text-break' + (campaign.is_boosted ? ' boosted' : '');
+      return 'campaign flex items-end bordered border-solid rounded-lg cover-background relative h-24 overflow-hidden text-break' + (campaign.is_boosted ? ' boosted' : '');
     }
   }
 });
@@ -20258,7 +20258,7 @@ var _hoisted_68 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_69 = {
   key: 5,
-  "class": "m-0 p-0"
+  "class": "m-0 p-0 list-none"
 };
 var _hoisted_70 = ["href"];
 
@@ -20444,7 +20444,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT, PROPS */
   , _hoisted_40)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $data.marketplace.themes.url,
-    "class": "bordered py-2 text-center justify-center rounded-md",
+    "class": "bordered border-solid py-2 text-center justify-center rounded-md",
     target: "_blank"
   }, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.marketplace.themes.title), 1
   /* TEXT */
@@ -20454,7 +20454,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_42), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $data.marketplace.sheets.url,
-    "class": "bordered py-2 text-center justify-center rounded-md",
+    "class": "bordered border-solid py-2 text-center justify-center rounded-md",
     target: "_blank"
   }, [_hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.marketplace.sheets.title), 1
   /* TEXT */
@@ -20464,7 +20464,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_45), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $data.marketplace.content.url,
-    "class": "bordered py-2 text-center justify-center rounded-md",
+    "class": "bordered border-solid py-2 text-center justify-center rounded-md",
     target: "_blank"
   }, [_hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.marketplace.content.title), 1
   /* TEXT */
@@ -20475,7 +20475,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , _hoisted_48)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.profile.is_impersonating ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.profile.subscription.title), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    "class": "bordered rounded-lg flex justify-center items-center",
+    "class": "bordered border-solid rounded-lg flex justify-center items-center",
     href: $data.profile.urls.subscription
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     "class": "w-16 h-16",
@@ -20546,7 +20546,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* UNKEYED_FRAGMENT */
   )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $data.campaigns.urls["new"],
-    "class": "new-campaign flex items-center text-center bordered rounded-lg h-24 p-2 overflow-hidden"
+    "class": "new-campaign flex items-center text-center border-dashed bordered rounded-lg h-24 p-2 overflow-hidden"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_80, [_hoisted_81, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.campaigns.texts["new"]), 1
   /* TEXT */
   )])], 8
@@ -20563,7 +20563,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* UNKEYED_FRAGMENT */
   )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $data.campaigns.urls.follow,
-    "class": "new-campaign flex items-center text-center bordered rounded-lg h-24 p-2 overflow-hidden"
+    "class": "new-campaign flex items-center text-center border-dashed bordered rounded-lg h-24 p-2 overflow-hidden"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_87, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.campaigns.texts.follow), 1
   /* TEXT */
   )], 8

@@ -16,7 +16,7 @@ export default {
             return campaign.image ? 'url(' + campaign.image + ')' : '';
         },
         campaignClass: function(campaign) {
-            return 'campaign flex items-end bordered rounded-lg cover-background relative h-24 overflow-hidden text-break' + (campaign.is_boosted ? ' boosted' : '')
+            return 'campaign flex items-end bordered border-solid rounded-lg cover-background relative h-24 overflow-hidden text-break' + (campaign.is_boosted ? ' boosted' : '')
         }
     },
 }

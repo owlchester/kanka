@@ -100,21 +100,21 @@
                     </div>
 
                     <div class="grid grid-cols-3 gap-2">
-                        <a v-bind:href="marketplace.themes.url" class="bordered py-2 text-center justify-center rounded-md" target="_blank">
+                        <a v-bind:href="marketplace.themes.url" class="bordered border-solid py-2 text-center justify-center rounded-md" target="_blank">
                             <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                                 <i class="fa-solid fa-palette mt-3" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.themes.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.themes.number }}</div>
                         </a>
-                        <a v-bind:href="marketplace.sheets.url" class="bordered py-2 text-center  justify-center rounded-md" target="_blank">
+                        <a v-bind:href="marketplace.sheets.url" class="bordered border-solid py-2 text-center  justify-center rounded-md" target="_blank">
                             <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                             <i class="fa-solid fa-columns mt-3" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.sheets.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.sheets.number }}</div>
                         </a>
-                        <a v-bind:href="marketplace.content.url" class="bordered py-2 text-center  justify-center rounded-md" target="_blank">
+                        <a v-bind:href="marketplace.content.url" class="bordered border-solid py-2 text-center  justify-center rounded-md" target="_blank">
                             <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                                 <i class="fa-solid fa-dice-d20 mt-3" aria-hidden="true"></i>
                             </div>
@@ -126,7 +126,7 @@
 
                 <div class="subscription mb-5" v-if="!profile.is_impersonating">
                     <div class="text-uppercase font-bold py-2">{{ profile.subscription.title }}</div>
-                    <a class="bordered rounded-lg flex justify-center items-center" v-bind:href="profile.urls.subscription">
+                    <a class="bordered border-solid rounded-lg flex justify-center items-center" v-bind:href="profile.urls.subscription">
                         <div class="flex-none p-2">
                             <img class="w-16 h-16" v-bind:src="profile.subscription.image" v-bind:alt="profile.subscription.tier">
                         </div>
@@ -171,7 +171,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="m-0 p-0" v-else>
+                <ul class="m-0 p-0 list-none" v-else>
                     <li>
                         <a v-bind:href="profile.return.url" class="p-2 mb-2">
                             <i class="fa-solid fa-sign-out-alt mr-3" aria-hidden="true"></i>
@@ -198,7 +198,7 @@
                                   :campaign="campaign">
                         </Campaign>
 
-                        <a v-bind:href="campaigns.urls.new" class="new-campaign flex items-center text-center bordered rounded-lg h-24 p-2 overflow-hidden">
+                        <a v-bind:href="campaigns.urls.new" class="new-campaign flex items-center text-center border-dashed bordered rounded-lg h-24 p-2 overflow-hidden">
                             <span class="text-xs text-break text-uppercase">
                                 <i class="fa-solid fa-plus" aria-hidden="true" style="display: none"></i>
                                 {{ campaigns.texts.new }}
@@ -216,7 +216,7 @@
                             </Campaign>
 
 
-                            <a v-bind:href="campaigns.urls.follow" class="new-campaign flex items-center text-center bordered rounded-lg h-24 p-2 overflow-hidden">
+                            <a v-bind:href="campaigns.urls.follow" class="new-campaign flex items-center text-center border-dashed bordered rounded-lg h-24 p-2 overflow-hidden">
                             <span class="text-xs text-uppercase text-break">
                                 {{ campaigns.texts.follow }}
                             </span>

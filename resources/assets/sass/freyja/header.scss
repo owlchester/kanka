@@ -112,7 +112,8 @@ body .main-header.main-header-start {
         }
     }
     .bordered {
-        border: 1px solid var(--input-border-color);
+        border-width: 1px;
+        border-color: var(--input-border-color);
     }
     a.bordered:hover {
         border-color: var(--link-hover);
