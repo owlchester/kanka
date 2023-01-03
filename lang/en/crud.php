@@ -332,6 +332,7 @@ return [
         'race'          => 'Choose a race',
         'tag'           => 'Choose a tag',
         'timeline'      => 'Choose a timeline',
+        'user'          => 'Choose a user',
     ],
     'remove'                    => 'Remove',
     'rename'                    => 'Rename',

@@ -117,6 +117,9 @@ class SidebarService
         'relations' => [
             'relations',
         ],
+        'history' => [
+            'history',
+        ],
     ];
 
     protected array $elements = [
@@ -263,6 +266,12 @@ class SidebarService
             'module' => false,
             'route' => 'search',
         ],*/
+        'history' => [
+            'icon' => 'fa-solid fa-clock-rotate-left',
+            'label' => 'history.title',
+            'perm' => true,
+            'module' => false,
+        ],
     ];
 
     protected $layout = [
@@ -294,6 +303,7 @@ class SidebarService
             'relations',
             'gallery',
             'attribute_templates',
+            'history',
         ],
         //'search' => null,
     ];

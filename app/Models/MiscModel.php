@@ -521,6 +521,7 @@ abstract class MiscModel extends Model
             'slug',
             'campaign_id',
             'updated_at',
+            'deleted_at',
             '_lft',
             '_rgt',
         ];

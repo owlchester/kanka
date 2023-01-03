@@ -137,6 +137,16 @@ class CampaignPolicy
      * @param Campaign $campaign
      * @return bool
      */
+    public function history(User $user, Campaign $campaign): bool
+    {
+        return $this->recover($user, $campaign);
+    }
+
+    /**
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
     public function dashboard(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id && (

@@ -487,3 +487,5 @@ Route::model('preset_type', \App\Models\PresetType::class);
 Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');
 Route::get('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
 Route::post('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
+
+Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'index'])->name('history.index');

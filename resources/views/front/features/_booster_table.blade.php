@@ -180,6 +180,9 @@
         <tr>
             <td class="text">
                 {{ __('front.features.superboosts.logs', ['amount' => config('entities.logs')]) }}
+                <a href="https://docs.kanka.io/en/latest/features/history.html" target="_blank">
+                    <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                </a>
             </td>
             <td></td>
             <td></td>
