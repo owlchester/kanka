@@ -19,11 +19,12 @@ class HistoryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
+        $pagnation = $campaign->superboosted() ? 25 : 10;
         $models = EntityLog::with(['user', 'entity' => fn($q) => $q->withTrashed(), 'impersonator'])
             ->filter($request)
             ->select(['*'])
             ->orderBy('created_at', 'desc')
-            ->paginate();
+            ->paginate($pagnation);
 
         $previous = null;
         $superboosted = $campaign->superboosted();
@@ -39,6 +40,14 @@ class HistoryController extends Controller
             EntityLog::ACTION_RESTORE => __('entities/logs.actions.restore'),
         ];
 
+        $filters = [];
+        if (!empty($user)) {
+            $filters['user'] = (int) $user;
+        }
+        if (!empty($action)) {
+            $filters['action'] = (int) $action;
+        }
+
         return view('history.index', compact(
             'models',
             'previous',
@@ -48,6 +57,7 @@ class HistoryController extends Controller
             'user',
             'action',
             'actions',
+            'filters',
         ));
     }
 }

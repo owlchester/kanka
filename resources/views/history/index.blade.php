@@ -120,7 +120,7 @@
 
     @if ($superboosted)
     <div class="text-right">
-        {!! $models->links() !!}
+        {!! $models->appends($filters)->links() !!}
     </div>
     @endif
 @endsection
