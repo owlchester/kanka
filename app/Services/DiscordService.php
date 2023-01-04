@@ -6,6 +6,7 @@ use App\Models\UserApp;
 use App\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use App\Models\JobLog;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -158,6 +159,9 @@ class DiscordService
         ];
         $content = $this->post('oauth2/token', $body);
         $this->saveUserApp($content);
+
+        $log = 'Renewed user #' . $this->user->id . ' Discord auth token.';
+        $this->logs[] = $log;
 
         return $this;
     }
@@ -312,5 +316,21 @@ class DiscordService
     public function logs(): array
     {
         return $this->logs;
+    }
+
+    /**
+     * Save an job log for the admin interface
+     * @return void
+     */
+    public function log()
+    {
+        if (!config('app.log_jobs')) {
+            return;
+        }
+
+        JobLog::create([
+            'name' => 'users:renew-discord-tokens',
+            'result' => implode('<br />', $this->logs)
+        ]);
     }
 }
