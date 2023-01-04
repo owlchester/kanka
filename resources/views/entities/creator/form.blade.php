@@ -1,4 +1,4 @@
-<?php $enableNew = false; ?>
+<?php $enableNew = true; ?>
 @inject('campaignService', 'App\Services\CampaignService')
 
 <form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', ['type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }}">

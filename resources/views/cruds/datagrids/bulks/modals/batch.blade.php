@@ -15,7 +15,7 @@
                         <div class="col-md-6">
                     @include('cruds.fields.' . $trimmed, [
     'trans' => $name,
-    'enableNew' => false,
+    'enableNew' => true,
     'base' => $model,
     'bulk' => true,
     'parent' => \Illuminate\Support\Str::plural($trimmed) == $name,
