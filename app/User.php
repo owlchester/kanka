@@ -12,6 +12,7 @@ use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\Concerns\Tutorial;
+use App\Models\Concerns\UserTokens;
 use App\Models\Pledge;
 use App\Models\Scopes\UserScope;
 use App\Models\UserLog;
@@ -65,7 +66,8 @@ class User extends \Illuminate\Foundation\Auth\User
         UserRelations,
         UserSetting,
         Billable,
-        Tutorial
+        Tutorial,
+        UserTokens
     ;
 
     protected static $currentCampaign = false;

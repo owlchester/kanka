@@ -2,12 +2,21 @@
 
 namespace App\Services\Bragi;
 
+use App\Http\Requests\BragiRequest;
+use App\Models\BragiLog;
 use App\Traits\UserAware;
 use Illuminate\Support\Str;
 
 class BragiService
 {
     use UserAware;
+
+    protected $openAI;
+
+    /*public function __construct(OpenAIService $service)
+    {
+        $this->openAI = $service;
+    }*/
 
     public function prepare(): array
     {
@@ -22,11 +31,9 @@ class BragiService
         ];
         if (!$this->user->isElemental() && !$this->user->isWyvern() && !$this->user->isAdmin()) {
             return $this->renderError($data, 'invalid-sub');
+        } elseif ($this->user->availableTokens() === 0) {
+            return $this->renderError($data, 'out-of-tokens', ['date' => $this->user->tokenRenewalDate()]);
         }
-        /** elseif ($this->user->bragiTokens() === 0) {
-        return $this->renderError($data, 'out-of-tokens');
-         * return $this->renderError($data, 'out-of-tokens', ['date' => $this->user->bragiNextTokenDate()]);
-        }*/
 
         $data['texts'] = [
             'placeholder' => __('bragi.placeholders.prompt'),
@@ -38,17 +45,50 @@ class BragiService
         $data['limits'] = [
             'prompt' => 180
         ];
-        $data['tokens'] = mt_rand(5, 15);
+        $data['tokens'] = $this->user->availableTokens();
         return $data;
     }
 
-    public function generate(string $prompt): array
+    /**
+     * Call the API and generate a result for the user.
+     * @param BragiRequest $request
+     * @return array
+     */
+    public function generate(BragiRequest $request): array
     {
         $data = [];
-        $data['tokens'] = mt_rand(5, 15);
+        $promt = $request->get('prompt');
+        $name = $request->get('name');
+
+        // Call the service
+        //$openAI = $this->openAI->input($prompt, $name)->generate();
+        // $data['result'] = Arr::get($openAI, 'result');
+        $logs = [];
+        // $logs = Arr::get($openAI, 'logs');
+
+        $data['tokens'] = $this->user->availableTokens();
         $data['result'] = Str::random(512);
 
+        // Log the result into the db for admins
+        $this->log($promt, $data['result'], $logs);
+
         return $data;
+    }
+
+    /**
+     * Log what was generated into the db
+     * @param string $prompt
+     * @param string $result
+     * @return void
+     */
+    protected function log(string $prompt, string $result, array $data = [])
+    {
+        $log = new BragiLog();
+        $log->user_id = $this->user->id;
+        $log->prompt = $prompt;
+        $log->result = $result;
+        $log->data = $data;
+        $log->save();
     }
 
     /**
