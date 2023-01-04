@@ -6,7 +6,10 @@ use Carbon\Carbon;
 
 trait UserTokens
 {
-
+    public function hasTokens(): bool
+    {
+        return $this->isElemental() || $this->isWyvern() || $this->hasRole('admin');
+    }
 
     public function availableTokens(): int
     {
