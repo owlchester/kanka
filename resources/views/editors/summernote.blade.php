@@ -1,7 +1,7 @@
 @section('scripts')
     @parent
     <script src="/vendor/summernote/summernote.min.js?v={{ config('app.version') }}" defer></script>
-    <script src="{{ mix('js/editors/summernote.js') }}" defer></script>
+ Mentions   <script src="{{ mix('js/editors/summernote.js') }}" defer></script>
     <script src="/vendor/summernote/plugin/embed/summernote-embed-plugin.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-gallery-kanka.min.js" defer></script>
@@ -10,6 +10,7 @@
     <script src="/vendor/summernote/plugin/summernote-table-ext.js" defer></script>
     <script src="/vendor/summernote/plugin/spoiler/summernote-spoiler.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-image-attribute.js" defer></script>
+    <script src="/vendor/summernote/plugin/kanka/summernote-bragi-kanka.min.js" defer></script>
 {{--    <script src="/vendor/summernote/plugin/rtl/summernote-ext-rtl.js" defer></script>--}}
 
     @if (app()->getLocale() == 'ca')
@@ -41,6 +42,7 @@
         data-filesize="{{ auth()->user()->maxUploadSize() }}"
         data-placeholder="{{ __('crud.placeholders.entry') }}"
         data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
+        data-bragi="{{ route('bragi') }}"
 @if(isset($campaignService) && $campaignService->campaign() !== null)
         data-gallery="{{ $campaignService->campaign()->superboosted() ? route('campaign.gallery.summernote') : null }}"
     @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif

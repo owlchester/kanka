@@ -30,6 +30,7 @@ window.initSummernote = function() {
             //['dir', ['ltr', 'rtl']],
             ['view', ['fullscreen', 'codeview', 'help']],
             summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null,
+            ['bragi', ['bragi']]
         ],
 
         popover: {
@@ -76,6 +77,11 @@ window.initSummernote = function() {
                 selectAll_text: summernoteConfig.data('gallery-select-all'),
                 deselectAll_text: summernoteConfig.data('gallery-deselect-all'),
                 noImageSelected_msg: summernoteConfig.data('gallery-error'),
+            }
+        },
+        bragi: {
+            source: {
+                url: summernoteConfig.data('bragi'),
             }
         },
         hint: [
