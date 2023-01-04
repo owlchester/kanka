@@ -326,7 +326,7 @@ class DiscordService
         }
 
         JobLog::create([
-            'name' => 'subscriptions:end',
+            'name' => 'users:renew-discord-tokens',
             'result' => implode('<br />', $this->logs)
         ]);
     }
