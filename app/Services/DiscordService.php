@@ -249,7 +249,6 @@ class DiscordService
         try {
             $this->removeRoles();
         } catch (Exception $e) {
-            $this->app->delete();
         }
 
         // Delete the discord app
