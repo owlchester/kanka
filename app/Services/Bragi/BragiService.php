@@ -45,7 +45,7 @@ class BragiService
         ];
 
         $data['limits'] = [
-            'prompt' => 180
+            'prompt' => config('bragi.limit.prompt')
         ];
         $data['tokens'] = $this->user->availableTokens();
         return $data;
@@ -71,11 +71,16 @@ class BragiService
         $logs = [];
         // $logs = Arr::get($openAI, 'logs');
 
-        $data['tokens'] = $this->user->availableTokens();
         $data['result'] = Str::random(512);
 
         // Log the result into the db for admins
         $this->log($promt, $data['result'], $logs);
+
+
+        $data['tokens'] = $this->user->availableTokens();
+        if ($data['tokens'] === 0) {
+            $data['message'] = __('bragi.errors.out-of-tokens', ['date' => $this->user->tokenRenewalDate()]);
+        }
 
         return $data;
     }

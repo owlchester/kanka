@@ -24,8 +24,8 @@ window.initSummernote = function () {
     hintSelect: 'next',
     placeholder: summernoteConfig.data('placeholder'),
     dialogsInBody: summernoteConfig.data('dialogs') === 1,
-    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['aroba', ['aroba']], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table', 'spoiler', 'tableofcontent']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
-    ['view', ['fullscreen', 'codeview', 'help']], summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null, ['bragi', ['bragi']]],
+    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['kanka', ['aroba', summernoteConfig.data('bragi') !== undefined ? 'bragi' : null]], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table', 'spoiler', 'tableofcontent']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
+    ['view', ['fullscreen', 'codeview', 'help']], summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null],
     popover: {
       table: [['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']], ['delete', ['deleteRow', 'deleteCol', 'deleteTable']], ['custom', ['tableHeaders']], ['custom', ['tableStyles']]],
       image: [['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']], ['float', ['floatLeft', 'floatRight', 'floatNone']], ['remove', ['removeMedia']], ['custom', ['imageAttributes']]]
@@ -66,7 +66,8 @@ window.initSummernote = function () {
     bragi: {
       source: {
         url: summernoteConfig.data('bragi')
-      }
+      },
+      buttonLabel: '<i class="fa-brands fa-pied-piper-hat"></i>'
     },
     hint: [{
       match: /\B@(\S*)$/,

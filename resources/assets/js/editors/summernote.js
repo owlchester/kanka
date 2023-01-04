@@ -23,14 +23,13 @@ window.initSummernote = function() {
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
             ['color', ['color']],
-            ['aroba', ['aroba']],
+            ['kanka', ['aroba', (summernoteConfig.data('bragi') !== undefined ? 'bragi' : null)]],
             ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']],
             ['table', ['table', 'spoiler', 'tableofcontent']],
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
             ['view', ['fullscreen', 'codeview', 'help']],
-            summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null,
-            ['bragi', ['bragi']]
+            (summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null),
         ],
 
         popover: {
@@ -82,7 +81,8 @@ window.initSummernote = function() {
         bragi: {
             source: {
                 url: summernoteConfig.data('bragi'),
-            }
+            },
+            buttonLabel: '<i class="fa-brands fa-pied-piper-hat"></i>',
         },
         hint: [
             {

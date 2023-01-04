@@ -42,7 +42,7 @@
         data-filesize="{{ auth()->user()->maxUploadSize() }}"
         data-placeholder="{{ __('crud.placeholders.entry') }}"
         data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
-        data-bragi="{{ route('bragi') }}"
+@if (isset($name) && $name == 'characters')        data-bragi="{{ route('bragi') }}"@endif
 @if(isset($campaignService) && $campaignService->campaign() !== null)
         data-gallery="{{ $campaignService->campaign()->superboosted() ? route('campaign.gallery.summernote') : null }}"
     @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif

@@ -52,6 +52,20 @@ img.note-float-left {
     float: right;
 }
 
+.note-btn i.fa, .note-btn i.fas, .note-btn i.fa-brands, .note-btn i.far, .note-btn i.fa-solid {
+    min-height: 15px;
+    line-height: 18px;
+    &:before {
+        height: 20px;
+        display: inline-block;
+        font-style: normal;
+        font-size: inherit;
+        text-decoration: inherit;
+        text-rendering: auto;
+        text-transform: none;
+        vertical-align: middle;
+    }
+}
 .note-hint-item {
   .entity-hint {
     display: grid;
