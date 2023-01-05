@@ -39,8 +39,7 @@ trait UserTokens
      */
     public function usedTokens(): int
     {
-        $data = $this->subscription('kanka');
-        $subDay = $data->created_at->format('d');
+        $subDay = $this->tokenRenewalDay();
         $currentDay = date('d');
 
         $date = new Carbon();
@@ -59,8 +58,7 @@ trait UserTokens
      */
     public function tokenRenewalDate(): string
     {
-        $data = $this->subscription('kanka');
-        $subDay = $data->created_at->format('d');
+        $subDay = $this->tokenRenewalDay();
         $currentDay = date('d');
 
         $date = new Carbon();
@@ -72,5 +70,19 @@ trait UserTokens
         }
 
         return $date->format('M d, Y');
+    }
+
+    /**
+     * Get the day the renewal of tokens is based on
+     * @return int
+     */
+    protected function tokenRenewalDay(): int
+    {
+        // Admins aren't subbed, take their creation date for debugging
+        if ($this->hasRole('admin')) {
+            return $this->created_at->format('d');
+        }
+        $data = $this->subscription('kanka');
+        return $data->created_at->format('d');
     }
 }
