@@ -89,6 +89,11 @@ class CampaignBoostController extends Controller
         }
     }
 
+    public function show(CampaignBoost $campaignBoost)
+    {
+        return redirect()->route('settings.boost');
+    }
+
     /**
      * @param CampaignBoost $campaignBoost
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
