@@ -351,7 +351,13 @@ class EntityEvent extends MiscModel
             $day = (int) $this->calendar->currentDate('date');
         }
 
-        $years = $year - $this->year;
+        // Current reminder is pre 0, calendar is > 0
+        $baseYear = $this->year;
+        if ($this->year < 0 && $year > 0 && !$this->calendar->hasYearZero()) {
+            $baseYear++;
+        }
+        $years = $year - $baseYear;
+
         if ($month < $this->month) {
             return $years - 1;
         }
