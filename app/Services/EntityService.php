@@ -50,6 +50,15 @@ class EntityService
     /** @var bool|array */
     protected bool|array $cachedTags = false;
 
+    /** @var array|string[] Popular entity types */
+    protected array $popularEntityTypes = [
+        'characters',
+        'locations',
+        'races',
+        'items',
+        'organisations',
+    ];
+
     /**
      * EntityService constructor.
      */
@@ -723,5 +732,10 @@ class EntityService
             $new->locations()->attach($loc->id);
         }
         $old->locations()->sync([]);
+    }
+
+    public function popularEntityTypes(): array
+    {
+        return $this->popularEntityTypes;
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCharacter;
 use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Models\Entity;
+use App\Models\Tag;
 use App\Models\Post;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
@@ -60,19 +61,11 @@ class EntityCreatorController extends Controller
     public function selection()
     {
         $entities = $this->creatableEntities();
-        $popular = [
-            'characters',
-            'locations',
-            'races',
-            'items',
-            'organisations',
-        ];
-
         $orderedEntityTypes = $this->orderedEntityTypes($this->entityTypes);
         return view('entities.creator.selection', [
             'entities' => $entities,
             'types' => $orderedEntityTypes,
-            'popular' => $popular
+            'popular' => $this->entityService->popularEntityTypes()
         ]);
     }
 
@@ -121,6 +114,33 @@ class EntityCreatorController extends Controller
 
         // Now loop on each name and create entities
         $createdEntities = $links = [];
+
+        //Prepare tags
+        if (request()->has('tags') && request()->has('save-tags')) {
+            $canCreateTags = auth()->user()->can('create', Tag::class);
+
+            // Exclude existing tags to avoid adding a tag several times
+            $tags = $values['tags'];
+            foreach ($tags as $number => $id) {
+                /** @var Tag|null $tag */
+                $tag = Tag::find($id);
+                // Create the tag if the user has permission to do so
+                if (empty($tag) && $canCreateTags) {
+                    $tag = new Tag([
+                        'name' => $id
+                    ]);
+                    $tag->saveImageObserver = false;
+                    $tag->save();
+                    $tags[$number] = strval($tag->id);
+                } elseif (empty($tag) && !$canCreateTags) {
+                    unset($tags[$number]);
+                }
+            }
+            $request->merge([
+                'tags' => $tags,
+            ]);
+        }
+
         foreach ($names as $name) {
             if (empty($name)) {
                 continue;
@@ -158,9 +178,6 @@ class EntityCreatorController extends Controller
             $this->validateEntity($values, $rules);
         }
 
-        // Content for the selector
-        $entities = $this->creatableEntities();
-
         // Have a target? Return json for the js to handle it instead
         if ($request->has('_target')) {
             $first = $createdEntities[0];
@@ -190,14 +207,20 @@ class EntityCreatorController extends Controller
             ['link' => implode(', ', $links)]
         );
 
+
         // Continue creating more of the same kind
         if ($request->get('action') === 'more') {
             return $this->renderForm(new Request(), $type, $success);
         }
+        // Content for the selector
+        $entities = $this->creatableEntities();
+        $orderedEntityTypes = $this->orderedEntityTypes($this->entityTypes);
 
         return view('entities.creator.selection', [
             'entities' => $entities,
-            'new' => $success
+            'types' => $orderedEntityTypes,
+            'new' => $success,
+            'popular' => $this->entityService->popularEntityTypes()
         ]);
     }
 

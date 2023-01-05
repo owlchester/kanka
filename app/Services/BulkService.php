@@ -327,13 +327,26 @@ class BulkService
                 $entity->entity->tags()->detach($tagIds);
             } else {
                 $existingTags = $entity->entity->tags->pluck('id')->toArray();
-                $addTagIds = $tagIds;
+                $canCreateTags = auth()->user()->can('create', Tag::class);
+
                 // Exclude existing tags to avoid adding a tag several times
-                if (!empty($existingTags)) {
-                    $addTagIds = [];
-                    foreach ($tagIds as $tag) {
-                        if (!in_array($tag, $existingTags)) {
-                            $addTagIds[] = $tag;
+                $addTagIds = [];
+                foreach ($tagIds as $number => $id) {
+                    if (!in_array($id, $existingTags)) {
+                        /** @var Tag|null $tag */
+                        $tag = Tag::find($id);
+                        // Create the tag if the user has permission to do so
+                        if (empty($tag) && $canCreateTags) {
+                            $tag = new Tag([
+                                'name' => $id
+                            ]);
+                            $tag->saveImageObserver = false;
+                            $tag->save();
+                            $tagIds[$number] = $tag->id;
+                        }
+
+                        if (!empty($tag)) {
+                            $addTagIds[] = $tag->id;
                         }
                     }
                 }
