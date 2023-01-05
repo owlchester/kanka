@@ -20049,7 +20049,7 @@ var _hoisted_11 = {
   "class": "full flex items-center"
 };
 var _hoisted_12 = {
-  "class": "flex-none mr-4 text-lg"
+  "class": "flex-none mr-4 text-2xl"
 };
 var _hoisted_13 = {
   "class": "flex-grow"
@@ -20315,7 +20315,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _directive_click_outside = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("click-outside");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "campaigns inline cursor text-center px-5 text-lg py-2",
+    "class": "campaigns inline cursor text-center px-5 text-2xl py-2",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.openCampaigns();
     }),
@@ -20357,7 +20357,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 1,
-    "class": "flex items-center justify-center h-full text-lg",
+    "class": "flex items-center justify-center h-full text-2xl",
     title: $data.campaigns.texts.campaigns
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.campaignIcon()),

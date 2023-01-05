@@ -421,7 +421,7 @@ body .main-header.main-header-start {
 }
 .navigation-drawer .campaigns .campaign.boosted:before {
   content: "\f135";
-  font-family: "Font Awesome 6 Free";
+  font-family: "Font Awesome 6 Pro";
   font-weight: 900;
   font-style: normal;
   font-variant: normal;
