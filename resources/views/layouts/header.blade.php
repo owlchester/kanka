@@ -46,7 +46,6 @@ $currentCampaign = CampaignLocalization::getCampaign();
                     @endif
                 @endguest
 
-
                 @auth()
                     <div id="nav-switcher">
                         <nav-switcher
@@ -57,6 +56,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             avatar="{{ auth()->user()->getAvatarUrl(36) }}"
                             campaign_id="{{ !empty($currentCampaign) ? $currentCampaign->id : null }}"
                             :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
+                            :pro="{{ config('fontawesome.kit') !== false ? 'true' : 'false' }}"
                         ></nav-switcher>
                     </div>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">

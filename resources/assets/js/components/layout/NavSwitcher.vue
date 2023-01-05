@@ -1,7 +1,7 @@
 <template>
     <div class="nav-switcher flex items-center justify-center">
         <div class="campaigns inline cursor text-center px-5 text-lg py-2" v-on:click="openCampaigns()" aria-label="Switch campaigns">
-            <i class="fa-solid fa-grip " aria-hidden="true"></i>
+            <i v-bind:class="campaignIcon()" aria-hidden="true"></i>
         </div>
         <div class="profile inline cursor text-center text-uppercase pt-2" v-on:click="openProfile()" aria-label="Profile settings">
             <div class="indicator">
@@ -22,7 +22,7 @@
                 <div :class="blockClass(view_campaigns)" v-on:click="openCampaigns()">
                     <div class="full flex items-center" v-if="view_campaigns">
                         <div class="flex-none mr-4 text-lg">
-                            <i class="fa-solid fa-grip" aria-hidden="true"></i>
+                            <i  v-bind:class="campaignIcon()" aria-hidden="true"></i>
                         </div>
                         <div class="flex-grow">
                             <div class="font-bold">{{ campaigns.texts.campaigns }}</div>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-center h-full text-lg" :title="campaigns.texts.campaigns" v-else>
-                        <i class="fa-solid fa-grip" aria-hidden="true"></i>
+                        <i  v-bind:class="campaignIcon()" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div :class="blockClass(view_profile)" v-on:click="openProfile()">
@@ -260,6 +260,9 @@ export default {
         has_alerts: {
             type: Boolean,
         },
+        pro: {
+            type: Boolean,
+        }
     },
 
     components: {
@@ -404,6 +407,10 @@ export default {
         },
         profilePictureUrl: function() {
             return 'url(' + this.avatar + ')'
+        },
+        campaignIcon: function() {
+            console.log('pro?', this.pro);
+            return this.pro ? 'fa-solid fa-grid' : 'fa-solid fa-grip';
         }
     },
     mounted() {
