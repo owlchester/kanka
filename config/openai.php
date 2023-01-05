@@ -2,12 +2,12 @@
 
 return [
 
-    /*
+    /**
      * API Key
      */
     'secret' => env('OPEN_AI_SECRET', 0),
 
-    /*
+    /**
      * AI model to use.
      *
      * Available models:
@@ -18,15 +18,37 @@ return [
      */
     'engine' => env('OPEN_AI_ENGINE', 'text-davinci-003'),
 
-    /*
+    /**
      * Number of tokens to use for prompt generation.
      */
     'tokens' => 400,
 
-    'prompt' =>  "Write and format with html three paragraphs for a character's backstory, 
-                the first one should provide details about their apearance, 
-                the second one should be about their origins 
-                and the third one should be about their routine, all of them written as a short story inspired by the following prompt: '",
-
-    'prompt2' =>  ".' the character's name is: '",
+    /**
+     * English keywords to use for various generations
+     */
+    'prompts' => [
+        'first' => [
+            'appearance',
+            'clothing',
+            'fashion style',
+            'popularity',
+        ],
+        'second' => [
+            'origins',
+            'upbringing',
+            'education',
+            'childhood',
+            'childhood home',
+            'craft',
+        ],
+        'third' => [
+            'routine',
+            'goals',
+            'fears',
+            'business',
+            'travels',
+            'successes',
+            'failures',
+        ],
+    ],
 ];

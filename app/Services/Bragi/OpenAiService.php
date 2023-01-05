@@ -12,6 +12,8 @@ class OpenAiService
     /** @var string */
     protected $name;
 
+    protected $output;
+
     /**
      * @param string $prompt
      * @param string $name
@@ -33,7 +35,7 @@ class OpenAiService
         $open_ai = new OpenAi($token);
 
         //Creating prompt
-        $prompt = config('openai.prompt') . $this->prompt . config('openai.prompt2') . $this->name . "'";
+        $prompt = $this->preparePrompt();
 
         //Choosing model
         $engine = config('openai.engine');
@@ -52,8 +54,49 @@ class OpenAiService
             'presence_penalty' => 0.6,
         ]);
 
-        $output = json_decode($complete, true);
+        $this->output = json_decode($complete, true);
 
-        return $output;
+        return $this->output;
+    }
+
+    /**
+     * Generate the prompt to send to ChatGTP
+     * @return string
+     */
+    protected function preparePrompt(): string
+    {
+        $prompt = __('openai.intro');
+
+        if (!empty($this->name)) {
+            $prompt = __('openai.intro-named', ['name' => $this->name]);
+        }
+
+        $prompt .= ' ';
+        $option = mt_rand(0, count(config('openai.prompts.first')) - 1);
+        $prompt .= __('openai.paragraphs.first', ['option' => config('openai.prompts.first')[$option]]);
+
+        $prompt .= ' ';
+        $option = mt_rand(0, count(config('openai.prompts.second')) - 1);
+        $prompt .= __('openai.paragraphs.second', ['option' => config('openai.prompts.second')[$option]]);
+
+        $prompt .= ' ';
+        $option = mt_rand(0, count(config('openai.prompts.third')) - 1);
+        $prompt .= __('openai.paragraphs.third', ['option' => config('openai.prompts.third')[$option]]);
+
+        $prompt .= __('openai.closing', ['prompt' => $this->prompt]);
+        return $prompt;
+    }
+
+    public function result(): string
+    {
+        $return = '';
+        $textes = explode("\n", $this->output["choices"][0]["text"]);
+        foreach ($textes as $text) {
+            if (empty(trim($text))) {
+                continue;
+            }
+            $return .= '<p>' . $text . '</p>';
+        }
+        return $return;
     }
 }

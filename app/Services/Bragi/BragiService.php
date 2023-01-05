@@ -14,7 +14,7 @@ class BragiService
     use UserAware;
     use CampaignAware;
 
-    protected $openAI;
+    protected OpenAiService $openAI;
 
     public function __construct(OpenAiService $service)
     {
@@ -67,9 +67,11 @@ class BragiService
         $name = $request->get('name');
 
         // Call the service
-        $openAI = $this->openAI->input($prompt, $name)->generate();
+        $openAI = $this->openAI
+            ->input($prompt, $name)
+            ->generate();
 
-        $data['result'] = $openAI["choices"][0]["text"];
+        $data['result'] = $this->openAI->result();
 
         $logs = [];
         $logs = $openAI["usage"];
