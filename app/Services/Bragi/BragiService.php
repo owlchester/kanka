@@ -6,6 +6,7 @@ use App\Http\Requests\BragiRequest;
 use App\Models\BragiLog;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class BragiService
@@ -15,10 +16,10 @@ class BragiService
 
     protected $openAI;
 
-    /*public function __construct(OpenAIService $service)
+    public function __construct(OpenAiService $service)
     {
         $this->openAI = $service;
-    }*/
+    }
 
     public function prepare(): array
     {
@@ -62,19 +63,19 @@ class BragiService
             return $this->renderError([], 'invalid-sub');
         }
         $data = [];
-        $promt = $request->get('prompt');
+        $prompt = $request->get('prompt');
         $name = $request->get('name');
 
         // Call the service
-        //$openAI = $this->openAI->input($prompt, $name)->generate();
-        // $data['result'] = Arr::get($openAI, 'result');
-        $logs = [];
-        // $logs = Arr::get($openAI, 'logs');
+        $openAI = $this->openAI->input($prompt, $name)->generate();
 
-        $data['result'] = Str::random(512);
+        $data['result'] = $openAI["choices"][0]["text"];
+
+        $logs = [];
+        $logs = $openAI["usage"];
 
         // Log the result into the db for admins
-        $this->log($promt, $data['result'], $logs);
+        $this->log($prompt, $data['result'], $logs);
 
 
         $data['tokens'] = $this->user->availableTokens();
