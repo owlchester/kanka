@@ -20,10 +20,12 @@ class HistoryController extends Controller
         $this->authorize('recover', $campaign);
 
         $pagnation = $campaign->superboosted() ? 25 : 10;
-        $models = EntityLog::with(['user', 'entity' => fn($q) => $q->withTrashed(), 'impersonator'])
+        $models = EntityLog::select(['entity_logs.*'])
+            ->with(['user', 'entity' => fn($q) => $q->withTrashed(), 'impersonator'])
+            ->leftJoin('entities as e', 'e.id', 'entity_logs.entity_id')
             ->filter($request)
-            ->select(['*'])
-            ->orderBy('created_at', 'desc')
+            ->orderBy('entity_logs.created_at', 'desc')
+            ->where('e.campaign_id', '=', $campaign->id)
             ->paginate($pagnation);
 
         $previous = null;
