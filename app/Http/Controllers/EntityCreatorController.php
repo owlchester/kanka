@@ -61,19 +61,11 @@ class EntityCreatorController extends Controller
     public function selection()
     {
         $entities = $this->creatableEntities();
-        $popular = [
-            'characters',
-            'locations',
-            'races',
-            'items',
-            'organisations',
-        ];
-
         $orderedEntityTypes = $this->orderedEntityTypes($this->entityTypes);
         return view('entities.creator.selection', [
             'entities' => $entities,
             'types' => $orderedEntityTypes,
-            'popular' => $popular
+            'popular' => $this->entityService->popularEntityTypes()
         ]);
     }
 
@@ -215,12 +207,21 @@ class EntityCreatorController extends Controller
             ['link' => implode(', ', $links)]
         );
 
+
         // Continue creating more of the same kind
         if ($request->get('action') === 'more') {
             return $this->renderForm(new Request(), $type, $success);
         }
+        // Content for the selector
+        $entities = $this->creatableEntities();
+        $orderedEntityTypes = $this->orderedEntityTypes($this->entityTypes);
 
-        return $this->selection();
+        return view('entities.creator.selection', [
+            'entities' => $entities,
+            'types' => $orderedEntityTypes,
+            'new' => $success,
+            'popular' => $this->entityService->popularEntityTypes()
+        ]);
     }
 
     /**
