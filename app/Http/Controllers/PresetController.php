@@ -113,6 +113,9 @@ class PresetController extends Controller
         $from = base64_decode($from);
         $from = explode(':', $from);
 
+        if (count($from) !== 2) {
+            return ['dashboard', null];
+        }
         return [$from[0], $from[1]];
     }
 }
