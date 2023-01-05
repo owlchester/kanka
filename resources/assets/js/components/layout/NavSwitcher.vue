@@ -409,7 +409,6 @@ export default {
             return 'url(' + this.avatar + ')'
         },
         campaignIcon: function() {
-            console.log('pro?', this.pro);
             return this.pro ? 'fa-solid fa-grid' : 'fa-solid fa-grip';
         }
     },

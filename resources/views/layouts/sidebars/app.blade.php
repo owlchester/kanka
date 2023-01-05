@@ -13,8 +13,8 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
     @php $sidebar->prepareQuickLinks($currentCampaign)@endphp
     <aside class="main-sidebar main-sidebar-placeholder @if(auth()->check() && $currentCampaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($currentCampaign->image) style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
         <section class="sidebar-campaign">
-            <div class="campaign-block">
-                <div class="campaign-head">
+            <div class="campaign-block cursor">
+                <div class="campaign-head" data-toggle="popover" title="New design" data-content="Looking for your campaigns? They are now on the top-right under the <i class='fa-solid fa-grid fa-2x' aria-hidden='true'></i> icon!" data-html="true" data-container="body">
                     <div class="campaign-name">
                         {!! $currentCampaign->name !!}
                     </div>

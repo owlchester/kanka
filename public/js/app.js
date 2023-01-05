@@ -19853,7 +19853,6 @@ __webpack_require__.r(__webpack_exports__);
       return 'url(' + this.avatar + ')';
     },
     campaignIcon: function campaignIcon() {
-      console.log('pro?', this.pro);
       return this.pro ? 'fa-solid fa-grid' : 'fa-solid fa-grip';
     }
   },
@@ -20826,6 +20825,7 @@ $(document).ready(function () {
   initDynamicDelete();
   initImageRemoval();
   initDialogs();
+  initSidebarHelper();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -21093,6 +21093,10 @@ function heighestValue(numbers) {
     }
   });
   return max;
+}
+
+function initSidebarHelper() {
+  $('.campaign-head[data-toggle="popover"]').popover();
 } // Splitting off the js files into logical blocks
 
 

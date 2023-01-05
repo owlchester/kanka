@@ -43,6 +43,7 @@ $(document).ready(function() {
     initDynamicDelete();
     initImageRemoval();
     initDialogs();
+    initSidebarHelper();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -289,8 +290,7 @@ function initDialogs() {
  * AdminLTE legacy. The CSS is a bit weird, for small pages we need to force a min-height
  * So that the footer is at the bottom, and so that the sidebar can be fully scrolled
  */
-function initPageHeight()
-{
+function initPageHeight() {
     let controlSidebar = 0;
 
     const heights = {
@@ -313,8 +313,7 @@ function initPageHeight()
     }
 }
 
-function heighestValue(numbers)
-{
+function heighestValue(numbers) {
     // Calculate the maximum number in a list
     let max = 0;
 
@@ -327,6 +326,9 @@ function heighestValue(numbers)
     return max;
 }
 
+function initSidebarHelper() {
+    $('.campaign-head[data-toggle="popover"]').popover();
+}
 
 // Splitting off the js files into logical blocks
 require('./helpers');
