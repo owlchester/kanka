@@ -30,6 +30,11 @@ class CalendarWeatherController extends Controller
         $this->calendarService = $calendarService;
     }
 
+    public function index(Calendar $calendar)
+    {
+        return redirect()->route('calendars.show', $calendar);
+    }
+
     /**
      * @param Calendar $calendar
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
