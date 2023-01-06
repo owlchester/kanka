@@ -173,6 +173,18 @@ class TimelineElement extends Model
     }
 
     /**
+     * Check if the element has an entity, but it's not accessible (permission issue for non-admins)
+     * @return bool
+     */
+    public function invisibleEntity(): bool
+    {
+        if (empty($this->entity_id)) {
+            return false;
+        }
+        return empty($this->entity);
+    }
+
+    /**
      * @return mixed
      */
     public function editingUsers()
