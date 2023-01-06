@@ -27,6 +27,9 @@
                     @if (!$era->orderedElements->isEmpty())
                     <div class="sortable-elements children">
                         @foreach ($era->orderedElements as $element)
+                            @if ($element->invisibleEntity())
+                                @continue
+                            @endif
                             <div class="element" data-id="element-{{ $element->id }}">
                                 {!! Form::hidden('timeline_element[' . $era->id . '][]', $element->id) !!}
                                 <div class="dragger rounded-icon">
