@@ -25,9 +25,10 @@ class BragiService
     {
         $data = [
             'header' => __('bragi.intro', [
-                'docs' => link_to(
+                'name' => '<strong>Bragi</strong>',
+                'here' => link_to(
                     '//docs.kanka.io/en/latest/features/bragi.html',
-                    __('front.menu.documentation'),
+                    __('bragi.here'),
                     ['target' => '_blank']
                 )
             ]),
@@ -43,6 +44,7 @@ class BragiService
             'submit' => __('bragi.actions.generate'),
             'insert' => __('bragi.actions.insert'),
             'tokens' => __('bragi.token-limit', ['amount' => '<span class="token-amount font-bold"></span>']),
+            'loading' => __('bragi.loading'),
         ];
 
         $data['limits'] = [
