@@ -20,9 +20,6 @@ class LocationObserver extends MiscObserver
         if ($model->savingObserver === false) {
             return;
         }
-
-        // Handle map. Let's use a service for this.
-        ImageService::handle($model, $model->getTable(), 0, 'map');
     }
 
     /**
@@ -54,7 +51,5 @@ class LocationObserver extends MiscObserver
         if ($model->trashed()) {
             return;
         }
-
-        ImageService::cleanup($model, 'map');
     }
 }

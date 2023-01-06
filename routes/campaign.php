@@ -52,16 +52,9 @@ Route::get('/characters/{character}/organisations', 'CharacterSubController@orga
 
 Route::get('/dice_rolls/{dice_roll}/roll', 'DiceRollController@roll')->name('dice_rolls.roll');
 Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
-//Route::get('/dice_rolls/{dice_roll}/map-points', 'DiceRollController@mapPoints')->name('dice_rolls.map-points');
 
 // Locations
 Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
-Route::any('/locations/{location}/map', 'LocationController@map')->name('locations.map');
-Route::any('/locations/{location}/maps', 'LocationController@maps')->name('locations.maps');
-Route::get('/locations/{location}/map-points', 'LocationController@mapPoints')->name('locations.map-points');
-Route::any('/locations/{location}/map/admin', 'LocationController@mapAdmin')->name('locations.map.admin');
-Route::post('/locations/{location}/map_points/{map_point}/move', 'LocationMapPointController@move')->name('locations.map_points.move');
-
 Route::get('/locations/{location}/characters', 'LocationController@characters')->name('locations.characters');
 Route::get('/locations/{location}/locations', 'LocationController@locations')->name('locations.locations');
 
@@ -69,7 +62,6 @@ Route::get('/locations/{location}/locations', 'LocationController@locations')->n
 Route::get('/organisations/{organisation}/members', 'OrganisationController@members')->name('organisations.members');
 Route::get('/organisations/{organisation}/organisations', 'OrganisationController@organisations')->name('organisations.organisations');
 Route::get('/organisations/tree', 'OrganisationController@tree')->name('organisations.tree');
-//Route::get('/organisations/{organisation}/map-points', 'OrganisationController@mapPoints')->name('organisations.map-points');
 
 // Families menu
 Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
@@ -107,7 +99,6 @@ Route::get('/timelines/{timeline}/timelines', 'Timelines\TimelineController@time
 Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
 Route::get('/tags/{tag}/tags', 'TagController@tags')->name('tags.tags');
 Route::get('/tags/{tag}/children', 'TagController@children')->name('tags.children');
-//Route::get('/tags/{tag}/map-points', 'TagController@mapPoints')->name('tags.map-points');
 
 // Tags Quick Add
 Route::get('/tags/{tag}/entity-add', 'TagController@entityAdd')->name('tags.entity-add');
@@ -117,14 +108,9 @@ Route::post('/tags/{tag}/entity-add', 'TagController@entityStore')->name('tags.e
 Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
 Route::get('/bulk/modal', 'BulkController@modal')->name('bulk.modal');
 
-// Notes
-//Route::get('/notes/{note}/map-points', 'NoteController@mapPoints')->name('notes.map-points');
 Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
-
 Route::get('/journals/tree', 'JournalController@tree')->name('journals.tree');
 
-// Events
-//Route::get('/events/{event}/map-points', 'EventController@mapPoints')->name('events.map-points');
 
 // Calendar
 Route::get('/calendars/tree', 'CalendarController@tree')->name('calendars.tree');
@@ -133,13 +119,9 @@ Route::post('/calendars/{calendar}/event', 'CalendarController@eventStore')->nam
 Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');
 Route::get('/calendars/{calendar}/events', 'CalendarController@events')->name('calendars.events');
 Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('calendars.today');
-//Route::get('/calendars/{calendar}/map-points', 'CalendarController@mapPoints')->name('calendars.map-points');
 
 //        Route::get('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
 //        Route::post('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
-
-// Conversations
-//Route::get('/conversations/{conversation}/map-points', 'ConversationController@mapPoints')->name('conversations.map-points');
 
 // Attribute multi-save
 Route::get('/entities/{entity}/attributes', [\App\Http\Controllers\Entity\AttributeController::class, 'index'])->name('entities.attributes');

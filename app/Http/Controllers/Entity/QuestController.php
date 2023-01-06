@@ -37,18 +37,10 @@ class QuestController extends Controller
             ->has('quest')
             ->paginate();
 
-        $data = $entity
-            ->targetMapPoints()
-            ->orderBy('name', 'ASC')
-            ->with(['location'])
-            ->has('location')
-            ->get();
-
         return view('entities.pages.quests.index', compact(
             'ajax',
             'entity',
             'quests',
-            'data'
         ));
     }
 }

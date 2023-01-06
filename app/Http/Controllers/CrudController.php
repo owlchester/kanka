@@ -528,24 +528,6 @@ class CrudController extends Controller
         $data = $markers = [];
         $datagridSorter = $this->datagridSorter;
 
-        if ($view == 'map-points') {
-            $data = $model
-                ->entity
-                ->targetMapPoints()
-                ->orderBy('name', 'ASC')
-                ->with(['location'])
-                ->has('location')
-                ->get();
-
-            $markers = $model
-                ->entity
-                ->mapMarkers()
-                ->orderBy('map_id', 'DESC')
-                ->with('map')
-                ->has('map')
-                ->paginate();
-        }
-
         $rows = $this->rows;
 
         return view('cruds.subview', compact(
@@ -554,7 +536,6 @@ class CrudController extends Controller
             'name',
             'datagridSorter',
             'data',
-            'markers',
             'view',
             'rows'
         ));

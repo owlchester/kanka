@@ -33,7 +33,6 @@ use Exception;
  * @property Organisation[]|Collection $organisations
  * @property Family[]|Collection $families
  * @property Item[]|Collection $items
- * @property MapPoint[]|Collection $mapPoints
  */
 class Location extends MiscModel
 {
@@ -52,12 +51,10 @@ class Location extends MiscModel
         'slug',
         'type',
         'image',
-        'map',
         'entry',
         'parent_location_id',
         'campaign_id',
         'is_private',
-        'is_map_private',
     ];
 
     /**
@@ -65,7 +62,6 @@ class Location extends MiscModel
      * @var array
      */
     protected $sortableColumns = [
-        'map',
         'parentLocation.name',
     ];
 
@@ -88,8 +84,6 @@ class Location extends MiscModel
     public $nullableForeignKeys = [
         'parent_location_id',
     ];
-
-    public $cachedImageFields = ['map'];
 
     /**
      * @return string
@@ -199,6 +193,7 @@ class Location extends MiscModel
         return $this->hasMany('App\Models\Map', 'location_id', 'id')
             ->select(['id', 'name']);
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -281,14 +276,6 @@ class Location extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function mapPoints()
-    {
-        return $this->hasMany('App\Models\MapPoint', 'location_id', 'id');
-    }
-
-    /**
      * Specify parent id attribute mutator
      * @param int $value
      */
@@ -327,41 +314,7 @@ class Location extends MiscModel
             $child->save();
         }
 
-        // Remove all the map points as they wouldn't make any sense in the new campaign
-        foreach ($this->mapPoints as $child) {
-            $child->delete();
-        }
-
         return parent::detach();
-    }
-
-    /**
-     * Quick check to see if the image might be an svg
-     * @return bool
-     */
-    public function isMapSvg(): bool
-    {
-        return (substr(strtolower($this->map), -4) == '.svg');
-    }
-
-    /**
-     * Get the size of the svg image
-     * @return int
-     */
-    public function mapWidth(): int
-    {
-        if (empty($this->map) || !$this->isMapSvg()) {
-            return 0;
-        }
-        try {
-            $content = Storage::get($this->map);
-            $xml = simplexml_load_string($content);
-
-            return (int) $xml->attributes()->width;
-        } catch (Exception $e) {
-            return 100;
-        }
-
     }
 
 
@@ -372,19 +325,10 @@ class Location extends MiscModel
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        if (!empty($this->map)) {
-            if (!$this->is_map_private || (auth()->check() && auth()->user()->can('map', $this))) {
-                $items['second']['map'] = [
-                    'name' => 'locations.show.tabs.map',
-                    'route' => 'locations.map',
-                ];
-            }
-        }
-
         $count = $this->descendants()->has('location')->count();
         if ($count > 0) {
             $items['second']['locations'] = [
-                'name' => 'locations.show.tabs.locations',
+                'name' => 'entities.locations',
                 'route' => 'locations.locations',
                 'count' => $count
             ];
@@ -393,7 +337,7 @@ class Location extends MiscModel
         $count = $this->allCharacters()->count();
         if ($campaign->enabled('characters') && $count > 0) {
             $items['second']['characters'] = [
-                'name' => 'locations.show.tabs.characters',
+                'name' => 'entities.characters',
                 'route' => 'locations.characters',
                 'count' => $count
             ];
@@ -407,25 +351,6 @@ class Location extends MiscModel
             ];
         }*/
         return parent::menuItems($items);
-    }
-
-    /**
-     * @return array
-     */
-    public function legend(): array
-    {
-        $sortedPoints = [];
-        $points = $this->mapPoints()->with(['targetEntity', 'location'])->get();
-        /** @var MapPoint $point */
-        foreach ($points as $point) {
-            if ($point->visible()) {
-                $sortedPoints[] = $point;
-            }
-        }
-        usort($sortedPoints, function($a, $b) {
-            return strcmp($a->label(), $b->label());
-        });
-        return $sortedPoints;
     }
 
     /**
