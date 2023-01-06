@@ -50,14 +50,19 @@
               </div>
             </div>
             <div class="box-body">
-                <a class="ability-image cover-background" v-if="ability.images.has" target="_blank" v-bind:href="ability.images.url"
-                     v-bind:style="backgroundImage">
-                </a>
-                <span class="help-block">{{ ability.type }}</span>
+                <div class="flex">
+                    <div class="flex-1">
+                        <span class="help-block">{{ ability.type }}</span>
+                        <div v-html="ability.entry"></div>
+                        <div v-html="ability.note" class="help-block"></div>
+                    </div>
+                    <div class="flex-0 text-right ml-2 mb-2" v-if="ability.images.has" >
+                        <a class="ability-image block w-32 h-32 cover-background" target="_blank" v-bind:href="ability.images.url"
+                           v-bind:style="backgroundImage">
+                        </a>
+                    </div>
+                </div>
 
-                <div v-html="ability.entry"></div>
-
-                <div v-html="ability.note" class="help-block"></div>
 
                 <div v-if="ability.charges && permission">
                     <div class="charges">
