@@ -241,6 +241,12 @@ class SearchService
             }
 
             $parsedName = str_replace('&#039;', '\'', e($model->name));
+            $parsedNameAlias = $parsedName;
+
+            if ($model->alias_name) {
+                $parsedNameAlias = $parsedName . ' - ' . str_replace('&#039;', '\'', e($model->alias_name));
+            }
+
             if (!$this->full) {
                 $searchResults[] = [
                     'id' => $model->id,
@@ -251,7 +257,7 @@ class SearchService
 
             $searchResults[] = [
                 'id' => $model->id,
-                'fullname' => $parsedName,
+                'fullname' => $parsedNameAlias,
                 'image' => $img,
                 'name' => $parsedName,
                 'type' => __('entities.' . $model->type()),
