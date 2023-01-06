@@ -16,4 +16,5 @@ return [
     ],
     'token-limit' => 'You currently have :amount tokens. Each time I generate a backstory, that uses a token, so use them wisely!',
     'loading' => 'Please hang tight, I\'m thinking hard and it can take up to a minute!',
+    'kankappy' => 'They are secretly a disciple of Kankappy.',
 ];

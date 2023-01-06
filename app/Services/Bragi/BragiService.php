@@ -35,7 +35,7 @@ class BragiService
         ];
         if (!$this->user->hasTokens()) {
             return $this->renderError($data, 'invalid-sub');
-        } elseif ($this->user->availableTokens() === 0) {
+        } elseif ($this->user->availableTokens() <= 0) {
             return $this->renderError($data, 'out-of-tokens', ['date' => $this->user->tokenRenewalDate()]);
         }
 
@@ -63,6 +63,9 @@ class BragiService
     {
         if (!$this->user->hasTokens()) {
             return $this->renderError([], 'invalid-sub');
+        } elseif ($this->user->availableTokens() <= 0) {
+            return $this->renderError([], 'out-of-tokens', ['date' => $this->user->tokenRenewalDate()]);
+
         }
         $data = [];
         $prompt = $request->get('prompt');
@@ -83,7 +86,7 @@ class BragiService
 
 
         $data['tokens'] = $this->user->availableTokens();
-        if ($data['tokens'] === 0) {
+        if ($data['tokens'] <= 0) {
             $data['message'] = __('bragi.errors.out-of-tokens', ['date' => $this->user->tokenRenewalDate()]);
         }
 

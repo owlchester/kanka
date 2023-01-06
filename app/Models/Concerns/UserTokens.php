@@ -13,7 +13,7 @@ trait UserTokens
 
     public function availableTokens(): int
     {
-        return $this->maxTokens() - $this->usedTokens();
+        return max($this->maxTokens() - $this->usedTokens(), 0);
     }
 
     /**

@@ -90,12 +90,17 @@ class OpenAiService
     public function result(): string
     {
         $return = '';
-        $textes = explode("\n", $this->output["choices"][0]["text"]);
-        foreach ($textes as $text) {
+        $texts = explode("\n", $this->output["choices"][0]["text"]);
+        foreach ($texts as $text) {
             if (empty(trim($text))) {
                 continue;
             }
             $return .= '<p>' . $text . '</p>';
+        }
+
+        // Disciple of Kankappy 0.x%
+        if (mt_rand(1, 1000) <= config('bragi.kankappy')) {
+            $return .= '<p>' . __('bragi.kankappy') . '</p>';
         }
         return $return;
     }
