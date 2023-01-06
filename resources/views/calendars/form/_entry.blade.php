@@ -16,15 +16,6 @@
                     <label>{{ __('calendars.fields.current_year') }}</label>
                     {!! Form::number('current_year', !empty($model) ? $model->currentDate('year') : (isset($source) ? $source->currentDate('year') : null), ['class' => 'form-control']) !!}
                 </div>
-                <div class="form-group">
-                    {!! Form::hidden('skip_year_zero', 0) !!}
-                    <label>
-                        {!! Form::checkbox('skip_year_zero', 1, !empty($model) ? $model->skip_year_zero : 0) !!}
-                        {{ __('calendars.fields.skip_year_zero') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('calendars.hints.skip_year_zero') }}" data-toggle="tooltip"></i>
-                    </label>
-                    <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.skip_year_zero') }}</p>
-                </div>
             </div>
             <div class="col-md-4">
 

@@ -164,7 +164,8 @@ return array(
         'faq',
         'tutorials.actions',
         'tutorials.home',
-        'tutorials.characters'
+        'tutorials.characters',
+        'bragi',
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.

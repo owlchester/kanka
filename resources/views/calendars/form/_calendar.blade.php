@@ -1,6 +1,15 @@
 <?php /** @var \App\Models\Calendar $model */?>
 <div class="row">
     <div class="col-md-6">
+        <div class="form-group checkbox">
+            {!! Form::hidden('skip_year_zero', 0) !!}
+            <label>
+                {!! Form::checkbox('skip_year_zero', 1, !empty($model) ? $model->skip_year_zero : 0) !!}
+                {{ __('calendars.fields.skip_year_zero') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('calendars.hints.skip_year_zero') }}" data-toggle="tooltip"></i>
+            </label>
+            <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.skip_year_zero') }}</p>
+        </div>
 
         <div class="form-group">
             <label>
