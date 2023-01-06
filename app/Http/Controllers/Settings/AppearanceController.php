@@ -29,7 +29,7 @@ class AppearanceController extends Controller
     public function index()
     {
         $highlight = request()->get('highlight');
-        $date = Carbon::parse('2022-12-28 15:08:50');
+        $date = Carbon::parse('2023-01-09 12:00:00');
         $created = Carbon::parse(auth()->user()->created_at);
         $textEditorSelect = $created->lessThan($date);
 

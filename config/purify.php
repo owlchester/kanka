@@ -183,6 +183,7 @@ return [
             . "app.box.com/embed/"
             . "discord\.com/|"
             . "discord\.gg/|"
+            . "bardly\.io/|"
             . ")%",
     ],
 
