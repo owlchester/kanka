@@ -335,6 +335,7 @@ return [
         'race'          => 'Choix d\'une race',
         'tag'           => 'Choix d\'une étiquette',
         'timeline'      => 'Choix d\'une chronologie',
+        'user'          => 'Choix d\'un utilisateur',
     ],
     'relations'                 => [],
     'remove'                    => 'Supprimer',

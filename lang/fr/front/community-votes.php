@@ -2,10 +2,10 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Soutiens Kanka pour participer aux votes communautaires.',
-        'return'        => 'Retour aux votes communautaires.',
-        'show'          => 'Afficher les résultats',
-        'vote'          => 'Voter',
+        'return'    => 'Retour aux votes communautaires.',
+        'show'      => 'Afficher les résultats',
+        'subscribe' => 'Souscrire à Kanka pour voter',
+        'vote'      => 'Voter',
     ],
     'description'   => 'Les utilisateurs qui soutiennent Kanka aident à façonner l\'évolution de l\'application en participant fréquemment à des votes communautaires.',
     'index'         => [

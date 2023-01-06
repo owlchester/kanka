@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'   => [
         'boost_name'    => 'Boost :name',
     ],
-    'available'     => 'Available boosters :amount/:total',
-    'benefits'      => [
+    'available' => 'Available boosters :amount/:total',
+    'benefits'  => [
         'boosted'       => 'Boosting a campaign with :one booster will unlock access to the :marketplace, theming options, larger uploads for all members, recovering deleted entities, and :more.',
         'more'          => 'more amazing features',
         'superboosted'  => 'Superboosting a campaign with :amount boosters will unlock all the benefits of a boosted campaign, as well as a campaign gallery, full logs changes are made to entities, and :more.',
     ],
-    'boost'         => [
+    'boost'     => [
         'actions'   => [
             'confirm'   => 'Boost it!',
             'remove'    => 'Stop boosting :campaign',
@@ -28,17 +28,17 @@ return [
         'title'     => 'Boost :campaign',
         'upgrade'   => 'upgrade your subscription',
     ],
-    'campaign'      => [
+    'campaign'  => [
         'boosted'       => 'Boosted by :user since :time',
         'superboosted'  => 'Superboosted by :user since :time',
         'unboosted'     => 'Unboosted',
     ],
-    'intro'         => [
+    'intro'     => [
         'anyone'    => 'You aren\'t limited to only boosting campaigns you\'ve created. You can boost any campaign you are a part of or can see. This includes campaigns where you are a player, or :public you enjoy.',
         'data'      => 'When a campaign is no longer boosted, access to boosted features is removed. However, no content is deleted, so boosting the campaign again in the future restores access to it.',
         'first'     => 'Advanced features are unlocked by assigning your boosters to boost or superboost to a campaign. The amount of boosters you have is determined by your :subscription. This number is available to you at all time while you are a subscriber. Boosting a campaign will assign one of your boosters to it, while superboosting a campaign assigns three of them.',
     ],
-    'pitch'         => [
+    'pitch'     => [
         'benefits'      => [
             'backup'        => 'Recover a previously deleted entity for up to :amount days',
             'customisable'  => 'Full customisation of the look of a campaign',
@@ -52,13 +52,13 @@ return [
         'more'          => 'Check out the full list of perks on our :boosters page.',
         'title'         => 'Take a campaign to the next level with customisation and perks for all of it\'s members',
     ],
-    'ready'         => [
+    'ready'     => [
         'available'         => 'Your available campaign boosters.',
         'pricing'           => 'All of our subscription levels include at least one campaign boosters and start :amount per month.',
         'pricing-amount'    => ':currency:amount',
         'title'             => 'Boost a campaign',
     ],
-    'superboost'    => [
+    'superboost'=> [
         'actions'   => [
             'confirm'   => 'Superboost it!',
             'remove'    => 'Stop superboosting :campaign',
@@ -71,8 +71,8 @@ return [
         'title'     => 'Superboost :campaign',
         'upgrade'   => 'Ready for the ultimate Kanka experience? Superboosting :campaign will assign :cost additional campaign boosters.',
     ],
-    'title'         => 'Campaign Boosters',
-    'unboost'       => [
+    'title'     => 'Campaign Boosters',
+    'unboost'   => [
         'confirm'   => 'Yes, I\'m sure',
         'status'    => [
             'boosting'      => 'boosting',

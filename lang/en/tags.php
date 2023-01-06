@@ -17,7 +17,7 @@ return [
     'fields'        => [
         'children'          => 'Children',
         'is_auto_applied'   => 'Automatically apply to new entities',
-        'is_hidden'         => 'Hide from header and tooltip',
+        'is_hidden'         => 'Hidden from header and tooltip',
         'tag'               => 'Parent Tag',
         'tags'              => 'Subtags',
     ],

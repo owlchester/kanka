@@ -205,6 +205,9 @@ TEXT
         ],
         'your_role'             => 'Your role: <i>:role</i>',
     ],
+    'modules'                           => [
+        'permission-disabled'   => 'This module is disabled.',
+    ],
     'panels'                            => [
         'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
@@ -378,9 +381,6 @@ TEXT
             'timelines'     => 'Represent the history of your world with timelines.',
         ],
     ],
-    'modules' => [
-        'permission-disabled' => 'This module is disabled.',
-    ],
     'show'                              => [
         'actions'   => [
             'boost' => 'Boost campaign',
@@ -448,8 +448,8 @@ TEXT
             'visible'   => 'Visible to members',
         ],
         'nested'            => [
-            'user'   => 'User\'s default',
             'nested'    => 'Nested',
+            'user'      => 'User\'s default',
         ],
         'other'             => 'Other',
     ],

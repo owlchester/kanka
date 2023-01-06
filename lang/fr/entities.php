@@ -16,13 +16,14 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Créer :type',
+            'full'      => 'Aller au formulaire complet',
             'more'      => 'Ajouter plus de détails',
         ],
         'back'              => 'Retour à la sélection',
         'bulk_names'        => 'Ajouter un nom par ligne',
         'duplicate'         => 'Il y a d\'autres entités de ce type avec le même nom.',
         'helper_v2'         => 'Créés rapidement les fondations d\'une nouvelle entité sans interrompre ton flow.',
-        'missing'           => 'Tu ne vois pas tous les types d\'entités ? Il est peut-être désactivé, tes autorisations ne le permettent peut-être pas, ou il n\'est pas disponible pour la création rapide.',
+        'missing_v2'        => 'Seuls les modules activés et auxquels tu as la permission de créer des entités sont visibles dans cette interface. :learn-more.',
         'modes'             => [
             'bulk'      => 'Ajout en bloc',
             'default'   => 'Ajout rapide',
@@ -34,6 +35,10 @@ return [
         ],
         'success_multiple'  => '{1} Nouvelle entité \':link\' créée.|[2,*] Nouvelles entités \':link\' créées.',
         'title'             => 'Nouvelle Entité',
+        'titles'            => [
+            'everything'    => 'Tout',
+            'quick-access'  => 'Accès rapide',
+        ],
         'tooltip'           => 'Créer une nouvelle entité sans quitter la page actuelle',
     ],
     'creature'              => 'Créature',

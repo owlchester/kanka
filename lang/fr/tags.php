@@ -19,6 +19,7 @@ return [
     'fields'        => [
         'children'          => 'Enfants',
         'is_auto_applied'   => 'Appliquer automatiquement aux nouvelles entités',
+        'is_hidden'         => 'Caché de l\'entête et des infobulles',
         'tag'               => 'Étiquette Parentale',
         'tags'              => 'Étiquettes',
     ],
@@ -29,6 +30,7 @@ return [
     'hints'         => [
         'children'          => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',
         'is_auto_applied'   => 'Si cette option est activée, les nouvelles entités auront automatiquement cette étiquette.',
+        'is_hidden'         => 'Si activé, cette étiquette ne s\'affichera pas dans l\'entête d\'entité, ni dans les infobulles.',
         'tag'               => 'Affichées ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
     'index'         => [],

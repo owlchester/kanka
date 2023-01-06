@@ -3,13 +3,13 @@
 return [
     'campaign'          => 'Campaign',
     'campaign_switcher' => [
+        'count'             => 'Member of :member',
         'created_campaigns' => 'Your Campaigns',
+        'follow_more'       => 'Find campaigns',
+        'followed_campaigns'=> 'Followed Campaigns',
         'new_campaign'      => 'New Campaign',
-        'followed_campaigns'  => 'Followed Campaigns',
-        'follow_more'  => 'Find campaigns',
         'public_campaigns'  => 'Public Campaigns',
         'reorder'           => 'Reorder',
-        'count'             => 'Member of :member',
         'updated'           => 'Updated',
     ],
     'campaigns'         => 'Campaigns',

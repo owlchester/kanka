@@ -207,6 +207,9 @@ TEXT
         ],
         'your_role'             => 'Rôle: \'<i>:rôle</i>\'',
     ],
+    'modules'                           => [
+        'permission-disabled'   => 'Ce module est désactivé',
+    ],
     'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
@@ -450,8 +453,8 @@ TEXT
             'visible'   => 'Visible aux membres',
         ],
         'nested'            => [
-            'user'   => 'Défaut de l\'utilisateur',
             'nested'    => 'Vue imbriquée',
+            'user'      => 'Défaut de l\'utilisateur',
         ],
         'other'             => 'Autre',
     ],

@@ -1,27 +1,27 @@
 <?php
 
 return [
-    'actions' => [
-        'show-old' => 'Changes',
+    'actions'   => [
+        'show-old'  => 'Changes',
     ],
-    'title' => 'History',
-    'log' => [
-        'update' => ':user updated :entity',
-        'create' => ':user created :entity',
-        'delete' => ':user deleted :entity',
-        'restore' => ':user restored :entity',
+    'cta'       => 'Display a log of all the recent changes to the campaign.',
+    'filters'   => [
+        'all-actions'   => 'All actions',
+        'all-users'     => 'All members',
+        'no-results'    => 'No results to display. Try with other filters, or come back after making changes to the campaign\'s entities.',
     ],
-    'unknown' => [
-        'entity' => 'an unknown entity',
+    'helpers'   => [
+        'base'      => 'This interface contains recent changes to entities of the campaign for up to :amount months, showing the most recent changes first.',
+        'changes'   => 'The following fields previously had these values.',
     ],
-    'cta' => 'Display a log of all the recent changes to the campaign.',
-    'helpers' => [
-        'base' => 'This interface contains recent changes to entities of the campaign for up to :amount months, showing the most recent changes first.',
-        'changes' => 'The following fields previously had these values.',
+    'log'       => [
+        'create'    => ':user created :entity',
+        'delete'    => ':user deleted :entity',
+        'restore'   => ':user restored :entity',
+        'update'    => ':user updated :entity',
     ],
-    'filters' => [
-        'all-users' => 'All members',
-        'all-actions' => 'All actions',
-        'no-results' => 'No results to display. Try with other filters, or come back after making changes to the campaign\'s entities.',
+    'title'     => 'History',
+    'unknown'   => [
+        'entity'    => 'an unknown entity',
     ],
 ];

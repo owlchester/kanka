@@ -29,6 +29,9 @@ return [
         'is_collapsed'  => 'L\'ère est réduite (minimisée) par défaut.',
         'primary'       => 'Séparer la chronologie en plusieurs ères. Une chronologie a besoin au moins d\'une ère pour fonctionner correctement.',
     ],
+    'index'         => [
+        'title' => 'Ères de :name',
+    ],
     'placeholders'  => [
         'abbreviation'  => 'AD, BC, BCE',
         'end_year'      => 'L\'année durant laquelle l\'ère prend fin. Laisser vide si c\'est l\'ère en cours.',

@@ -16,14 +16,14 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Create :type',
+            'full'      => 'Go to the full form',
             'more'      => 'Add more details',
-            'full'  => 'Go to the full form',
         ],
         'back'              => 'Back to selection',
         'bulk_names'        => 'Add one name per line',
         'duplicate'         => 'Heads up! There are other entities of this type with a similar name.',
         'helper_v2'         => 'Quickly create the foundation of a new entity without interrupting your current flow.',
-        'missing_v2'           => 'Only modules that are enabled and that you have permission to create are available in this interface. :learn-more.',
+        'missing_v2'        => 'Only modules that are enabled and that you have permission to create are available in this interface. :learn-more.',
         'modes'             => [
             'bulk'      => 'Bulk add',
             'default'   => 'Quick add',
@@ -35,9 +35,9 @@ return [
         ],
         'success_multiple'  => '{1} New entity :link created.|[2,*] New entities :link created.',
         'title'             => 'New Entity',
-        'titles' => [
-            'quick-access' => 'Quick access',
-            'everything' => 'Everything',
+        'titles'            => [
+            'everything'    => 'Everything',
+            'quick-access'  => 'Quick access',
         ],
         'tooltip'           => 'Create a new entity without leaving the current page.',
     ],

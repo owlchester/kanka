@@ -14,9 +14,9 @@ return [
         'title' => 'Location :name Families',
     ],
     'fields'        => [
-        'characters'        => 'Characters',
-        'location'          => 'Parent Location',
-        'locations'         => 'Locations',
+        'characters'    => 'Characters',
+        'location'      => 'Parent Location',
+        'locations'     => 'Locations',
     ],
     'helpers'       => [
         'characters'        => 'View all characters in this location and its children locations, or just those directly located here.',

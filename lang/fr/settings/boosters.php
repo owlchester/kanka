@@ -1,15 +1,16 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'   => [
         'boost_name'    => 'Booster :name',
     ],
-    'benefits'      => [
+    'available' => 'Boosters disponibles :amount/:total',
+    'benefits'  => [
         'boosted'       => 'Booster une campagne avec :one booster débloque l\'accès au :marketplace, les options de thèmages, des téléchargements plus grand pour tous les membres de la campagne, récupérer des entités supprimées, et :more.',
         'more'          => 'd\'autres fonctionnalités incroyables.',
         'superboosted'  => 'Superbooster une campagne avec :amount boosters débloque tous les bénéfices d\'une campagne boostée, en plus de la galerie de campagne, des logs complètes de changements aux entités, et :more.',
     ],
-    'boost'         => [
+    'boost'     => [
         'actions'   => [
             'confirm'   => 'Booste-la!',
             'remove'    => 'Ne plus booster :campaign',
@@ -27,17 +28,17 @@ return [
         'title'     => 'Booster :campaign',
         'upgrade'   => 'souscris à un tier plus élevé',
     ],
-    'campaign'      => [
+    'campaign'  => [
         'boosted'       => 'Boosté par :user depuis :time',
         'superboosted'  => 'Superboosté par :user depuis :time',
         'unboosted'     => 'Non-boostée',
     ],
-    'intro'         => [
+    'intro'     => [
         'anyone'    => 'Tu n\'es pas limité à seulement booster des campagnes que tu as créé. Tu peux booster n\'importe quelle campagne dont tu es membre ou que tu peux voir. Cela inclus les campagnes où tu es un joueur, ou une :public que tu apprécies.',
         'data'      => 'Quand une campagne n\'est plus boostée, l\'accès aux fonctionalités boostées est retiré. Par contre, aucune information est supprimée, du coups booster la campagne à nouveau dans le future restaure l\'accès aux données.',
         'first'     => 'Les fonctionnalités avancées sont déverrouillées en affectant tes boosters pour booster ou superbooster une campagne. Le nombre de boosters dont tu disposes est déterminé par ton abonnement. Ce numéro est à votre disposition à tout moment tant que tu es et restes abonné. Booster une campagne assignera l\'un de tes boosters, tandis que superbooster une campagne en assignera trois.',
     ],
-    'pitch'         => [
+    'pitch'     => [
         'benefits'      => [
             'backup'        => 'Récupérer des entités supprimées pendant :amount jours',
             'customisable'  => 'Contrôle créatif complet de la campagne',
@@ -51,13 +52,13 @@ return [
         'more'          => 'Jettes un coup d\'oeil sur la liste complète des fonctionnalités sur la page :boosters.',
         'title'         => 'Accèdes au niveau supérieur avec la personnalisation et des avantages pour tous les membres de la campagne.',
     ],
-    'ready'         => [
+    'ready'     => [
         'available'         => 'Tes boosters disponibles.',
         'pricing'           => 'Tous les niveaux d\'abonnement contiennent au moins un booster de campagne et commencent à :amount par mois.',
         'pricing-amount'    => ':currency:amount',
         'title'             => 'Booster une campagne',
     ],
-    'superboost'    => [
+    'superboost'=> [
         'actions'   => [
             'confirm'   => 'Superbooste-la!',
             'remove'    => 'Ne plus superbooster :campaign',
@@ -70,8 +71,8 @@ return [
         'title'     => 'Superbooster :campaign',
         'upgrade'   => 'Prêts pour l\'ultime expérience Kanka? Superbooster :campaign assignera :cost boosters de campagne supplémentaires.',
     ],
-    'title'         => 'Boosters de campagne',
-    'unboost'       => [
+    'title'     => 'Boosters de campagne',
+    'unboost'   => [
         'confirm'   => 'Oui, je suis sûr',
         'status'    => [
             'boosting'      => 'booster',

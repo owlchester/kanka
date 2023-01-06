@@ -2,10 +2,10 @@
 
 return [
     'actions'       => [
+        'return'    => 'Return to all community votes.',
+        'show'      => 'Show vote results',
         'subscribe' => 'Subscribe to Kanka to vote',
-        'return'        => 'Return to all community votes.',
-        'show'          => 'Show vote results',
-        'vote'          => 'Vote',
+        'vote'      => 'Vote',
     ],
     'description'   => 'Users who support Kanka help shape the evolution of the app by participating in frequent community votes.',
     'index'         => [

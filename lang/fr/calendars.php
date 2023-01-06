@@ -52,11 +52,13 @@ return [
         'success'   => 'Evénement \':event\' ajouté au calendrier.',
     ],
     'events'        => [
+        'end'       => '(fin)',
         'filters'   => [
             'show_after'    => 'Afficher aujourd\'hui et après',
             'show_all'      => 'Afficher tout',
             'show_before'   => 'Afficher avant aujourd\'hui',
         ],
+        'start'     => '(début)',
         'title'     => 'Evénements du calendrier :name',
     ],
     'fields'        => [
@@ -88,6 +90,7 @@ return [
         'recurring_until'       => 'Récurrent jusqu\'à l\'année',
         'reset'                 => 'Réinitialisation de semaine',
         'seasons'               => 'Saisons',
+        'skip_year_zero'        => 'Ignorer l\'année zéro',
         'start_offset'          => 'Décalage de début',
         'suffix'                => 'Suffix',
         'week_names'            => 'Nom de semaine',
@@ -111,6 +114,7 @@ return [
         'parent_calendar'   => 'Définir un calendrier parent inclura les événements et la météo du celui-ci.',
         'reset'             => 'Toujours commencer le début du mois sur le premier jour de la semaine.',
         'seasons'           => 'Les saisons seront affichées dans le calendrier lorsqu\'elles commencent.',
+        'skip_year_zero'    => 'Par défaut, la première année du calendrier est l\'année zéro. Activer cette option pour ignorer l\'année zéro.',
         'weekdays'          => 'Un calendrier doit posséder au moins 2 jours dans la semaine.',
         'weeks'             => 'Les semaines importantes du calendrier peuvent avoir un nom.',
         'years'             => 'Certaines années sont tellement importantes qu\'elles ont leur propre nom.',
