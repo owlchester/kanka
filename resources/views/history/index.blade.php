@@ -48,7 +48,7 @@
         {!! Form::close() !!}
     @endif
 
-    @if (false && $models->count() > 0)
+    @if ($models->count() > 0)
         @foreach ($models as $log)
             @if ($log->day() !== $previous)
                 @if ($previous !== null) </ul> @endif

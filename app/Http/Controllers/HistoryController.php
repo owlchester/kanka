@@ -50,6 +50,8 @@ class HistoryController extends Controller
             $filters['action'] = (int) $action;
         }
 
+        abort(500);
+
         return view('history.index', compact(
             'models',
             'previous',
