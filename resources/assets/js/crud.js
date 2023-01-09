@@ -330,6 +330,9 @@ function registerUnsavedChanges() {
 
     // Save every input change
     $(document).on('change', ':input', function () {
+        if ($(this).data('skip-unsaved')) {
+            return;
+        }
         window.entityFormHasUnsavedChanges = true;
     });
 

@@ -2,6 +2,7 @@
 
 namespace App\Models\Relations;
 
+use App\Models\BragiLog;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Models\CampaignPermission;
@@ -159,5 +160,10 @@ trait UserRelations
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'user_roles');
+    }
+
+    public function bragiLogs()
+    {
+        return $this->hasMany(BragiLog::class);
     }
 }

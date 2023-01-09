@@ -44,6 +44,11 @@
     </div>
 
     {!! Form::close() !!}
+
+    {{-- For bragi --}}
+    @if ($entity->isCharacter())
+        <input type="hidden" name="name" value="{{ $entity->name }}" />
+    @endif
 @endsection
 
-@include('editors.editor')
+@include('editors.editor', $entity->isCharacter() ? ['name' => 'characters'] : [])
