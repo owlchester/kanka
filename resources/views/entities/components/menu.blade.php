@@ -2,15 +2,6 @@
 @php $modelMenuItems = $model->menuItems(); @endphp
 <div class="hidden-xs">
 @foreach ($modelMenuItems as $section => $menuItems)
-    @if($section == 2)
-        @php
-            $items = array_column($menuItems, 'name');
-            foreach ($items as $key => $item) {
-                $items[$key] = __($item);
-            }
-            array_multisort($items, SORT_ASC, $menuItems);
-        @endphp
-    @endif
     <div class="box box-solid entity-menu-{{ $section }}">
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked entity-menu">
