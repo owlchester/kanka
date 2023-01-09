@@ -98,6 +98,7 @@
                 <div id="log-{{ $log->id }}" class="collapse my-5">
                     <p class="text-muted">{{ __('history.helpers.changes') }}</p>
                     @foreach ($log->changes as $attribute => $value)
+                        @if (is_array($value)) @continue @endif
                         <div class="flex mb-2">
                             <div class="flex-initial w-32 font-bold" data-attribute="{{ $attribute }}">
                                 {!! $log->attributeKey($log->entity->pluralType(), $attribute) !!}
@@ -106,6 +107,7 @@
                                 @if (\Illuminate\Support\Str::contains($attribute, ['has_', 'is_']))
                                     @if ($value) {{ __('general.yes') }} @else {{ __('general.no') }} @endif
                                 @elseif (is_array($value))
+                                    @dump($value)
                                     <span class="text-warning">Error; contact the team on Discord while providing #{{ $log->id }}</span>
                                 @elseif (empty($value))
                                     <i>{{ __('history.empty') }}</i>

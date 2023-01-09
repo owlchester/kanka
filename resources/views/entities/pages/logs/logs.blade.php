@@ -73,6 +73,7 @@
                             <td colspan="4">
                                 <dl class="dl-horizontal">
                                     @foreach ($log->changes as $attribute => $value)
+                                        @if (is_array($value)) @continue @endif
                                         <dt>{!! $log->attributeKey($transKey, $attribute) !!}</dt>
                                         <dd class="text-break">{{ $value }}</dd>
                                     @endforeach

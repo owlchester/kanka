@@ -228,7 +228,18 @@ abstract class MiscObserver
                         $value = $this->getForeignOriginal($model, $attribute, $value);
                     }
 
-                    $logs[$attribute] = $value;
+                    // If it's not an array, easy work
+                    if (!is_array($value)) {
+                        $logs[$attribute] = $value;
+                        continue;
+                    }
+
+                    // An array (config[, moons[) we need to store it differently
+                    foreach ($value as $k => $v) {
+                        $logs[$k] = $v;
+                    }
+
+
                 }
                 $log->changes = $logs;
             }
