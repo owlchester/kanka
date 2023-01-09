@@ -48,7 +48,7 @@
         {!! Form::close() !!}
     @endif
 
-    @if ($models->count() > 0)
+    @if (false && $models->count() > 0)
         @foreach ($models as $log)
             @if ($log->day() !== $previous)
                 @if ($previous !== null) </ul> @endif
@@ -97,7 +97,6 @@
                 @if (!empty($log->changes) && $superboosted)
                 <div id="log-{{ $log->id }}" class="collapse my-5">
                     <p class="text-muted">{{ __('history.helpers.changes') }}</p>
-                    @if (false)
                     @foreach ($log->changes as $attribute => $value)
                         <div class="flex mb-2">
                             <div class="flex-initial w-32 font-bold" data-attribute="{{ $attribute }}">
@@ -112,7 +111,6 @@
                             </div>
                         </div>
                     @endforeach
-                    @endif
                 </div>
                 @endif
             </li>
