@@ -100,7 +100,7 @@
                     @foreach ($log->changes as $attribute => $value)
                         <div class="flex mb-2">
                             <div class="flex-initial w-32 font-bold" data-attribute="{{ $attribute }}">
-                                {!! $log->attributeKey($log->entity->pluralType(), $attribute) !!}
+                                {{-- $log->attributeKey($log->entity->pluralType(), $attribute) --}}
                             </div>
                             <div class="flex-1 text-break">
                                 @if (\Illuminate\Support\Str::contains($attribute, ['has_', 'is_']))
