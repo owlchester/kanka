@@ -105,8 +105,12 @@
                             <div class="flex-1 text-break">
                                 @if (\Illuminate\Support\Str::contains($attribute, ['has_', 'is_']))
                                     @if ($value) {{ __('general.yes') }} @else {{ __('general.no') }} @endif
+                                @elseif (is_array($value))
+                                    <span class="text-warning">Error; contact the team on Discord while providing #{{ $log->id }}</span>
+                                @elseif (empty($value))
+                                    <i>{{ __('history.empty') }}</i>
                                 @else
-                                {!! $value !!}
+                                    {!! $value !!}
                                 @endif
                             </div>
                         </div>
