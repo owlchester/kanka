@@ -93,7 +93,10 @@
                     @endforeach
                 </datalist>
             </div>
-                <p class="help-block">{!! __('timelines/elements.helpers.icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/search?m=free&s=solid" target="_blank">Font Awesome</a>']) !!}</p>
+                <p class="help-block">{!! __('timelines/elements.helpers.icon', [
+            'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>',
+            'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>'
+            ]) !!}</p>
 
             @if (!$campaignService->campaign()->boosted())
                 @subscriber()
