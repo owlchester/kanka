@@ -402,7 +402,6 @@ TEXT
             'visible'   => 'Visible para miembros',
         ],
         'nested'            => [
-            'default'   => 'Por defecto',
             'nested'    => 'Anidada',
         ],
         'other'             => 'Otros',

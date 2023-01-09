@@ -402,7 +402,6 @@ TEXT
             'visible'   => 'Visible per a membres',
         ],
         'nested'            => [
-            'default'   => 'Per defecte',
             'nested'    => 'Niuada',
         ],
         'other'             => 'Altres',

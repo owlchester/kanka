@@ -2,10 +2,9 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Podrži Kanka da sudjeluješ u glasanju zajednice',
-        'return'        => 'Vrati se na sva glasanja zajednice.',
-        'show'          => 'Prikaži rezultate glasanja',
-        'vote'          => 'Glasaj',
+        'return'    => 'Vrati se na sva glasanja zajednice.',
+        'show'      => 'Prikaži rezultate glasanja',
+        'vote'      => 'Glasaj',
     ],
     'description'   => 'Korisnici koji podržavaju Kanku pomažu oblikovati evoluciju aplikacije sudjelujući u čestim glasanjima zajednice.',
     'index'         => [

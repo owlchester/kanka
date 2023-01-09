@@ -81,8 +81,6 @@ TEXT
         'character_personality_visibility'  => 'Quando crei un nuovo personaggio come amministratore, seleziona l\'impostazione predefinita della privacy per i tratti della personalità.',
         'css'                               => 'Scrivi i tuoi CSS che saranno caricati all\'interno della pagina della tua campagna. Considera che qualsiasi abuso di questa funzionalità può portare alla rimozione dei tuoi CSS personalizzati.',
         'dashboard'                         => 'Per personalizzare la visualizzazione del widget della dashboard della campagna, compila i seguenti campi.',
-        'entity_count_infinity'             => 'Questa campagna non ha limiti al numero delle entità.',
-        'entity_count_v2'                   => 'Questo numero è ricalcolato ogni sei ore e ignora i tags.',
         'entity_privacy'                    => 'Quando crei una nuova entità come amministratore, seleziona l\'impostazione predefinita della privacy per la nuova entità.',
         'excerpt'                           => 'L\'estratto della campagna sarà mostrato sulla dashboard, quindi scrivi una breve introduzione al tuo mondo. Mantienila breve per un miglior risultato. Se questo campo rimane vuoto, verranno utilizzati i primi 1000 caratteri della descrizione della campagna.',
         'header_image'                      => 'Immagine visualizzata come sfondo nel widget dell\'intestazione della campagna.',
@@ -446,7 +444,6 @@ TEXT
             'visible'   => 'Visibile ai membri',
         ],
         'nested'            => [
-            'default'   => 'Predefinito',
             'nested'    => 'Annidato',
         ],
         'other'             => 'Altro',

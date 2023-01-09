@@ -2,10 +2,9 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Stöd Kanka för att delta i Community Röstningar',
-        'return'        => 'Tillbaka till alla Community Röstningar.',
-        'show'          => 'Visa röst resultat',
-        'vote'          => 'Rösta',
+        'return'    => 'Tillbaka till alla Community Röstningar.',
+        'show'      => 'Visa röst resultat',
+        'vote'      => 'Rösta',
     ],
     'description'   => 'Användare som stöder Kanka hjälper till att utforma evolutionen av appen genom att delta i frekventa Community Röstningar.',
     'index'         => [

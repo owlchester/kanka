@@ -82,7 +82,6 @@ TEXT
         'character_personality_visibility'  => 'Lors de la création d\'un nouveau personnage en tant qu\'admin, sélectionner la visibilité par défaut des traits de personnalités.',
         'css'                               => 'Définir du code CSS pour la campagne qui sera chargé sur chaque page. Abuser de cette fonctionnalité peut mener à une suppression du CSS. Les abus répétés peuvent mener à une suppression de la campagne.',
         'dashboard'                         => 'Contrôler la manière dont l\'en-tête de campagne s\'affiche sur le tableau de bord.',
-        'entity_count_infinity'             => 'Cette campagne n\'a pas de limite sur le nombre d\'entité.',
         'entity_count_v3'                   => 'Ce chiffre est recalculé toutes les :amount heures.',
         'entity_privacy'                    => 'Lors de la création d\'une nouvelle entité en tant qu\'admin, sélectionner la visibilité par défaut de la nouvelle entité.',
         'excerpt'                           => 'Le contenu de ce champ sera affiché sur le tableau de bord dans le widget d\'en-tête de campagne. Si ce champ est vide, les 1000 premiers caractères de la description de la campagne seront utilisés à la place.',

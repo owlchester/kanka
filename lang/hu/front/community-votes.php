@@ -2,10 +2,9 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Támogasd a Kankát, hogy részt vehess a Közösségi Szavazásban!',
-        'return'        => 'Vissza az összes közösségi szavazáshoz.',
-        'show'          => 'Mutasd a szavazások eredményeit',
-        'vote'          => 'Szavazás',
+        'return'    => 'Vissza az összes közösségi szavazáshoz.',
+        'show'      => 'Mutasd a szavazások eredményeit',
+        'vote'      => 'Szavazás',
     ],
     'description'   => 'Azok a felhasználók, akik támogatják a Kankát, segíthetnek a fejlődésének irányát befolyásolni rendszeres közösségi szavazásokon keresztül.',
     'index'         => [
