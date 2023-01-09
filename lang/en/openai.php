@@ -2,7 +2,7 @@
 
 return [
     /** Without "fantasy", the bias is more towards the modern world. The setting might need to be user controlled */
-    'intro' => 'Write a short story in three paragraphs about a fantasy character.',
+    'intro' => 'Write three paragraphs about a fantasy character.',
     'intro-named' => 'Write three paragraphs about a fantasy character named :name.',
     'paragraphs' => [
         'first' => 'The first one is about their :option,',

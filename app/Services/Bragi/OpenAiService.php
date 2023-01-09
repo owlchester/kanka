@@ -92,7 +92,8 @@ class OpenAiService
         $return = '';
         $texts = explode("\n", $this->output["choices"][0]["text"]);
         foreach ($texts as $text) {
-            if (empty(trim($text))) {
+            $striped = trim(htmlentities($text));
+            if (empty($striped) || $striped == '.') {
                 continue;
             }
             $return .= '<p>' . $text . '</p>';
