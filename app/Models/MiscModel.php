@@ -389,7 +389,19 @@ abstract class MiscModel extends Model
             $menuItems[] = $items['second'];
         }
         if (Arr::has($items, 'third')) {
-            $menuItems[] = $items['third'];
+            $sortedItems = array_combine(array_keys($items['third']), array_column($items['third'], 'name'));
+            foreach ($sortedItems as $key => $item) {
+                $sortedItems[$key] = __($item);
+            }
+
+            $collator = new \Collator(app()->getLocale());
+            $collator->asort($sortedItems);
+
+            foreach ($sortedItems as $key => $item) {
+                $sortedMenuItems[$key] = $items['third'][$key];
+            }
+
+            $menuItems[] = $sortedMenuItems;
         }
         if (Arr::has($items, 'fourth')) {
             $menuItems[] = $items['fourth'];
