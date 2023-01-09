@@ -406,7 +406,7 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * API throttling is increased for patrons
+     * API throttling is increased for subscribers
      * @return int
      */
     public function getRateLimitAttribute(): int
