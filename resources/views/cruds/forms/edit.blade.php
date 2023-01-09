@@ -21,6 +21,7 @@
     'data-max-fields' => ini_get('max_input_vars'),
     'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null),
     'id' => 'entity-form',
+    'data-maintenance' => 1,
     'data-unload' => 1,
 ]) !!}
 @endsection

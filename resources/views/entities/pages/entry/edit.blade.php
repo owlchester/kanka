@@ -14,7 +14,7 @@
 
 @section('content')
 
-    {!! Form::model($entity->child, ['route' => ['entities.entry.update', $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form', 'id' => 'entity-form']) !!}
+    {!! Form::model($entity->child, ['route' => ['entities.entry.update', $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form', 'data-maintenance' => 1]) !!}
 
     <div class="box box-solid">
         @if (request()->ajax())

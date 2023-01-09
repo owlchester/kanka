@@ -17,6 +17,7 @@
                 'route' => ['quests.quest_elements.store', $quest->id],
                 'method'=>'POST',
                 'data-shortcut' => 1,
+                'data-maintenance' => 1,
             ]) !!}
             <div class="panel panel-default">
                 <div class="panel-body">

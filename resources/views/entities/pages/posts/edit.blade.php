@@ -16,6 +16,7 @@
     'data-shortcut' => '1',
     'class' => 'entity-note-form post-form entity-form',
     'id' => 'entity-form',
+    'data-maintenance' => 1,
     'data-unload' => 1,
     ]) !!}
 @endsection
