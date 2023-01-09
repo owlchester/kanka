@@ -419,6 +419,9 @@ body .main-header.main-header-start {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--main-navbar-background) 100%);
   color: var(--campaign-switcher-text, #1b1b1b);
 }
+.navigation-drawer .campaigns .campaign:hover {
+  box-shadow: var(--input-border-color) 0 1px 5px;
+}
 .navigation-drawer .campaigns .campaign.boosted:before {
   content: "\f135";
   font-family: "Font Awesome 6 Pro";
@@ -447,9 +450,6 @@ body .main-header.main-header-start {
 .navigation-drawer .bordered {
   border-width: 1px;
   border-color: var(--input-border-color);
-}
-.navigation-drawer a.bordered:hover {
-  border-color: var(--link-hover);
 }
 .navigation-drawer .bordered {
   color: var(--header-link-colours);
