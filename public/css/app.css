@@ -1199,7 +1199,7 @@ button.dropdown-item:hover {
 .loading:before {
   margin-right: 0.5rem;
   display: inline-block;
-  font-family: "Font Awesome 6 Free";
+  font-family: "Font Awesome 6 Pro";
   font-weight: 900;
   border-width: 2px;
   animation: fa-spin 2s linear infinite;
@@ -2752,7 +2752,7 @@ ul.sidebar-sortable li ul, ul.sidebar-sortable ul li ul {
 }
 .live-edit-parsed:after {
   -webkit-font-smoothing: antialiased;
-  font-family: "Font Awesome 6 Free";
+  font-family: "Font Awesome 6 Pro";
   font-weight: 900;
   font-style: normal;
   font-variant: normal;
