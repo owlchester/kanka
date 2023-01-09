@@ -28,10 +28,16 @@ class HistoryController extends Controller
             ->where('e.campaign_id', '=', $campaign->id)
             ->paginate($pagnation);
 
+
         $previous = null;
         $superboosted = $campaign->superboosted();
 
-        $users = User::select(['id', 'name'])->orderBy('name')->get();
+        $users = $campaign
+            ->members()
+            ->leftJoin('users as u', 'u.id', 'campaign_user.user_id')
+            ->with(['user'])
+            ->orderBy('u.name')
+            ->get();
         $user = $request->get('user');
         $action = $request->get('action');
         $actions = [
