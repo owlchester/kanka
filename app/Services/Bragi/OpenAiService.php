@@ -19,7 +19,7 @@ class OpenAiService
      * @param string $name
      * @return string
      */
-    public function input(string $prompt, string $name): self
+    public function input(string $prompt, string $name = null): self
     {
         $this->prompt = $prompt;
         $this->name = $name;
