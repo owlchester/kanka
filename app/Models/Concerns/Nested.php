@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models\Concerns;
 
 use Exception;
