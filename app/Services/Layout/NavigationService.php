@@ -72,8 +72,8 @@ class NavigationService
                 'image' => 'https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png',
                 //'call_to_action' => __('Subscriptions start at USD 5.00 per month')
                 'call_to_action' => __('settings/boosters.available', [
-                    'amount' => 0,
-                    'total' => 0
+                    'amount' => $this->user->availableBoosts(),
+                    'total' => $this->user->maxBoosts()
                 ]),
             ];
         }
