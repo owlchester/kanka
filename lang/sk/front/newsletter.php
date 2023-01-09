@@ -11,6 +11,7 @@ return [
         'notifications' => 'Notifikácie',
     ],
     'groups'    => [
+        'all'           => 'Obdrž občas oznámenia o nových funkcionalitách, komunitných hlasovaniach, udalostiach, atď.',
         'newsletter'    => 'Newsletter',
     ],
     'headline'  => 'Prihlás sa k odberu jedného alebo viacerých našich newsletterov k obdržaniu aktuálnych informácií o Kanke.',

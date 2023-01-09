@@ -13,6 +13,12 @@ return [
         'price'     => 'Preço',
         'size'      => 'Tamanho',
     ],
+    'helpers'       => [
+        'nested_without'    => 'Exibindo todos os itens que não possuem um item pai. Clique em uma linha para ver os itens filhos.',
+    ],
+    'hints'         => [
+        'items' => 'Organize os itens usando o campo de item pai.',
+    ],
     'index'         => [],
     'inventories'   => [
         'title' => 'Item :name inventários',

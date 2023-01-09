@@ -6,6 +6,9 @@ return [
         'manage'            => 'Gerenciar',
         'more'              => 'Mais opções',
         'remove_all'        => 'Deletar tudo',
+        'save_and_edit'     => 'Aplicar e Editar',
+        'save_and_story'    => 'Aplicar e Visualizar',
+        'show_hidden'       => 'Mostrar atributos ocultos',
     ],
     'errors'        => [
         'loop'      => 'Existe um loop infinito no cálculo desse atributo!',
@@ -55,8 +58,12 @@ return [
         'template'  => 'Selecione um modelo',
         'value'     => 'Valor do atributo',
     ],
+    'ranges'        => [
+        'text'  => 'Opções disponíveis :options',
+    ],
     'show'          => [
-        'title' => ':name Atributos',
+        'hidden'    => 'Atributos Ocultos',
+        'title'     => ':name Atributos',
     ],
     'template'      => [
         'success'   => 'Modelo de Atributo :name aplicado em :entity',

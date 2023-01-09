@@ -77,6 +77,7 @@ return [
             'add'               => 'Engadir complemento',
             'back_to_dashboard' => 'Voltar ao taboleiro',
             'edit'              => 'Editar complemento',
+            'new'               => 'Novo complemento :type',
         ],
         'reorder'   => [
             'success'   => 'Complementos reordenados.',

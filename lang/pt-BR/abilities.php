@@ -38,10 +38,16 @@ return [
         'name'      => 'Bola de fogo, alerta, ataque astuto',
         'type'      => 'Feitiço, Talento, Ataque',
     ],
+    'reorder'       => [
+        'parentless'    => 'Sem Pai',
+        'success'       => 'Habilidades reordenadas com sucesso.',
+        'title'         => 'Reordenar as habilidades',
+    ],
     'show'          => [
         'tabs'  => [
             'abilities' => 'Habilidades',
             'entities'  => 'Entidades',
+            'reorder'   => 'Reordenar Habilidades',
         ],
     ],
 ];

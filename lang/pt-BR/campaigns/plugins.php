@@ -37,6 +37,7 @@ return [
     ],
     'fields'        => [
         'name'      => 'Nome do plug-in',
+        'obsolete'  => 'Este plug-in foi marcado como obsoleto pela equipe Kanka, o que significa que não funciona mais como planejado originalmente por seu criador.',
         'status'    => 'Status',
         'type'      => 'Tipo de plug-in',
     ],

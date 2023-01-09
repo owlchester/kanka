@@ -11,6 +11,7 @@ return [
         'notifications' => 'Powiadomienia',
     ],
     'groups'    => [
+        'all'           => 'Chcę otrzymywać co jakiś czas powiadomienia o nowych funkcjach, głosowaniach społeczności, wydarzeniach itd.',
         'newsletter'    => 'Newsletter',
     ],
     'headline'  => 'Zasubskrybuj jeden albo wszystkie newslettery, by pozostać na bieżąco.',

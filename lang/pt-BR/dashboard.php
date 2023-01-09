@@ -77,6 +77,7 @@ return [
             'add'               => 'Adicionar um widget',
             'back_to_dashboard' => 'Voltar para o dashboard',
             'edit'              => 'Editar um widget',
+            'new'               => 'Novo widget :type',
         ],
         'reorder'   => [
             'success'   => 'Widgets reordenados.',

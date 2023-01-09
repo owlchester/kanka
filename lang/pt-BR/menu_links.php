@@ -9,6 +9,7 @@ return [
         'title' => 'Link rápido :name',
     ],
     'fields'            => [
+        'active'            => 'Ativo',
         'dashboard'         => 'Dashboard',
         'default_dashboard' => 'Dashboard padrão',
         'entity'            => 'Entidade',
@@ -22,6 +23,7 @@ return [
         'type'              => 'Tipo de entidade',
     ],
     'helpers'           => [
+        'active'            => 'Links rápidos inativos não aparecerão na barra lateral.',
         'dashboard'         => 'Faça com que o link rápido seja direcionado a um dos dashboards personalizados da campanha.',
         'default_dashboard' => 'Em vez disso, crie um link para o dashboard padrão da campanha. Um dashboard personalizado ainda precisa ser selecionado.',
         'entity'            => 'Configure este link rápido para ir diretamente a uma entidade. O campo :tab controla qual das abas está focada. O campo :menu controla qual subpágina da entidade é aberta.',

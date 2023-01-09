@@ -26,8 +26,14 @@ return [
         ],
         'success'   => '{1} :count Fähigkeit importiert. | [2, *] :count Fähigkeiten importieren.',
     ],
+    'reorder'   => [
+        'parentless'    => 'kein übergepordnetes Objekt',
+        'success'       => 'Fähigkeiten erfolgreich neu geordnet.',
+        'title'         => 'Ordne die Fähigkeiten neu',
+    ],
     'show'      => [
         'helper'    => 'Fügen Sie diesem Objekt Fähigkeiten hinzu. Sie können die Sichtbarkeit jederzeit bearbeiten oder eine Fähigkeit entfernen. Fähigkeiten, die zu derselben übergeordneten Fähigkeit gehören, werden als Filterfelder angezeigt.',
+        'reorder'   => 'Fähigkeiten neu anordnen',
         'title'     => 'Objektfähigkeiten für :name',
     ],
     'update'    => [

@@ -2,10 +2,9 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Wspieraj Kankę, by brać udział w głosowaniach społeczności',
-        'return'        => 'Powrót do listy głosowań.',
-        'show'          => 'Pokaż wyniki głosowania',
-        'vote'          => 'Głosuj',
+        'return'    => 'Powrót do listy głosowań.',
+        'show'      => 'Pokaż wyniki głosowania',
+        'vote'      => 'Głosuj',
     ],
     'description'   => 'Wspierający Kankę pomagają kształtować jej rozwój biorąc udział w częstych głosowaniach społeczności.',
     'index'         => [

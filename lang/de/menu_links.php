@@ -9,6 +9,7 @@ return [
         'title' => 'Menü Link :name',
     ],
     'fields'            => [
+        'active'            => 'Aktiv',
         'dashboard'         => 'Dashboard',
         'default_dashboard' => 'Standard-Dashboard',
         'entity'            => 'Objekt',
@@ -22,6 +23,7 @@ return [
         'type'              => 'Objekttyp',
     ],
     'helpers'           => [
+        'active'            => 'Inaktive Quicklinks werden nicht in der Seitenleiste angezeigt.',
         'dashboard'         => 'Lassen Sie den Quick Link auf eines der benutzerdefinierten Dashboards der Kampagne abzielen. Diese Funktion ist nur verfügbar für :boosted.',
         'default_dashboard' => 'Verknüpfen Sie stattdessen mit dem Standard-Dashboard der Kampagne. Es muss noch ein benutzerdefiniertes Dashboard ausgewählt werden.',
         'entity'            => 'Richten Sie diesen Menülink ein, um direkt zu einem Objekt zu gelangen. Das Feld :tab steuert, welche der Registerkarten fokussiert ist. Das :menu Feld steuert, welche Unterseite des Objekts geöffnet wird.',

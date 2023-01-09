@@ -21,8 +21,10 @@ return [
         'era'               => 'Epoche',
         'icon'              => 'Icon',
         'use_entity_entry'  => 'Zeigen Sie den Eintrag des angehängten Objekts unten an. Der Text dieses Elements wird zuerst angezeigt, falls vorhanden.',
+        'use_event_date'    => 'Verwende das Datum des verknüpften Ereignisses.',
     ],
     'helpers'       => [
+        'date'              => 'Wenn das Element mit einem Ereignisobjekt verknüpft ist, zeige das Datum des Ereignisses an.',
         'entity_is_private' => 'Das Element des Objekts ist privat.',
         'icon'              => 'Kopieren Sie den HTML-Code eines Symbols von :fontawesome oder :rpgawesome.',
         'is_collapsed'      => 'Das Element wird standardmäßig reduziert angezeigt.',

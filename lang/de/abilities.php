@@ -38,10 +38,16 @@ return [
         'name'      => 'Feuerball, Alarm, listiger Schlag',
         'type'      => 'Zauber, Kraftakt, Attacke',
     ],
+    'reorder'       => [
+        'parentless'    => 'kein übergepordnetes Objekt',
+        'success'       => 'Fähigkeiten erfolgreich neu geordnet.',
+        'title'         => 'Ordne die Fähigkeiten neu',
+    ],
     'show'          => [
         'tabs'  => [
             'abilities' => 'Fähigkeiten',
             'entities'  => 'Objekte',
+            'reorder'   => 'Fähigkeiten neu anordnen',
         ],
     ],
 ];
