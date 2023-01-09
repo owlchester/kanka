@@ -36,11 +36,11 @@ $currentCampaign = CampaignLocalization::getCampaign();
                 @endif
 
                 @guest
-                        <a href="{{ route('login') }}" class="hidden-xs">
+                        <a href="{{ route('login') }}" class="hidden-xs btn mt-1">
                             {{ __('front.menu.login') }}
                         </a>
                     @if(config('auth.register_enabled'))
-                        <a href="{{ route('register') }}" class="hidden-xs">
+                        <a href="{{ route('register') }}" class="hidden-xs btn btn-primary mt-1">
                             {{ __('front.menu.register') }}
                         </a>
                     @endif
