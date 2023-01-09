@@ -558,13 +558,13 @@ trait Nested
     }
 
     /**
-     * @param int $lft
-     * @param int $rgt
-     * @param int $parentId
+     * @param mixed $lft
+     * @param mixed $rgt
+     * @param mixed $parentId
      *
      * @return $this
      */
-    public function rawNode(int $lft, int $rgt, int $parentId)
+    public function rawNode(mixed $lft, mixed $rgt, mixed $parentId)
     {
         $this->setLft($lft)->setRgt($rgt)->setParentId($parentId);
 
