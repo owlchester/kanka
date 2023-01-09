@@ -3,8 +3,8 @@
 return [
     'tokens' => [
         'admin' => env('BRAGI_ADMIN_LIMIT', 99),
-        'elemental' => 30,
-        'wyvern' => 15,
+        'elemental' => env('BRAGI_ELEMENTAL_LIMIT', 30),
+        'wyvern' => env('BRAGI_WYVERN_LIMIT', 15),
         'all' => 0
     ],
     'limit' => [
