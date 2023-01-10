@@ -166,4 +166,13 @@ trait UserRelations
     {
         return $this->hasMany(BragiLog::class);
     }
+
+    /**
+     * List of subscription cancellations for the user
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function cancellations()
+    {
+        return $this->hasMany('App\Models\SubscriptionCancellation', 'user_id', 'id');
+    }
 }
