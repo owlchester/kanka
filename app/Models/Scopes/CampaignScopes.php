@@ -144,6 +144,13 @@ trait CampaignScopes
             $query->open(false);
         }
 
+        $featured = Arr::get($options, 'featured_until');
+        if ($featured === '1') {
+            $query->where('featured_until');
+        } elseif ($featured === '0') {
+            $query->whereNot('featured_until');
+        }
+
         return $query;
     }
 

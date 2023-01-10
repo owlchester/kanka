@@ -15,6 +15,7 @@ return [
                 'all'       => 'Open status',
                 'closed'    => 'Closed campaigns',
                 'open'      => 'Open campaigns',
+                'featured'  => 'Prompt winners',
             ],
         ],
         'public'            => [
