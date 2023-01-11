@@ -9,6 +9,6 @@
     $iconOptions = $default + $iconOptions;
 @endphp
 <div class="form-group">
-    <label for="icon">{{ __('locations.map.points.fields.icon') }}</label>
+    <label for="icon">{{ __('maps/markers.fields.icon') }}</label>
     {!! Form::select($fieldname ?? 'icon', $iconOptions, \App\Facades\FormCopy::field('icon')->string(), ['class' => 'form-control', 'id' => 'icon']) !!}
 </div>

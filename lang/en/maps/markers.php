@@ -26,6 +26,7 @@ return [
     ],
     'fields'        => [
         'circle_radius' => 'Circle radius',
+        'bg_colour'        => 'Background colour',
         'copy_elements' => 'Copy elements',
         'custom_icon'   => 'Custom Icon',
         'custom_shape'  => 'Custom Shape',
@@ -42,6 +43,7 @@ return [
             'stroke-opacity'    => 'Stroke opacity',
             'stroke-width'      => 'Stroke width',
         ],
+        'size'          => 'Size',
     ],
     'helpers'       => [
         'base'                      => 'Add markers to the map by clicking on any spot.',
@@ -61,6 +63,14 @@ return [
         'exclamation'   => 'Exclamation icon',
         'marker'        => 'Marker icon',
         'question'      => 'Question icon',
+    ],
+    'circle_sizes'         => [
+        'custom'    => 'Custom',
+        'huge'      => 'Huge',
+        'large'     => 'Large',
+        'small'     => 'Small',
+        'standard'  => 'Standard',
+        'tiny'      => 'Tiny',
     ],
     'index'         => [
         'title' => 'Markers of :name',
