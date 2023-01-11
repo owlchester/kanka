@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Visibility;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +30,11 @@ class VisibilityIDScope implements Scope
 
         // If we aren't authenticated, just see what is set to all
         if (!auth()->check()) {
+            $builder->where($model->getTable() . '.visibility_id', Visibility::VISIBILITY_ALL);
+            return;
+        }
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->userIsMember()) {
             $builder->where($model->getTable() . '.visibility_id', Visibility::VISIBILITY_ALL);
             return;
         }
