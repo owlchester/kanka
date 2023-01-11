@@ -21,7 +21,8 @@
         'method' => 'PATCH',
         'id' => 'timeline-era-form',
         'class' => 'ajax-subform',
-        'data-shortcut' => 1
+        'data-shortcut' => 1,
+        'data-maintenance' => 1,
     ]) !!}
     <div class="panel panel-default">
         <div class="panel-body">

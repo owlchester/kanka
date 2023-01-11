@@ -82,6 +82,10 @@ class QuestElementController extends Controller
     {
         $this->authorize('update', $quest);
 
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $data = $request->only([
             'entity_id', 'name', 'role', 'description', 'colour', 'visibility_id'
         ]);
@@ -163,6 +167,10 @@ class QuestElementController extends Controller
     public function update(StoreQuestElement $request, Quest $quest, QuestElement $questElement)
     {
         $this->authorize('update', $quest);
+
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only(['entity_id', 'name', 'role', 'description', 'colour', 'visibility_id']);
 

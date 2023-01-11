@@ -16,6 +16,7 @@
                 'method' => 'PATCH',
                 'route' => ['quests.quest_elements.update', $quest, $model->id],
                 'data-shortcut' => 1,
+                'data-maintenance' => 1,
             ]) !!}
             <div class="panel panel-default">
                 <div class="panel-body">

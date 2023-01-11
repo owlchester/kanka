@@ -5,13 +5,13 @@
 */
 ?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-'title' => __('timelines/eras.create.title', ['name' => $timeline->name]),
-'description' => '',
-'breadcrumbs' => [
-['url' => route('timelines.index'), 'label' => __('entities.timelines')],
-['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
-__('timelines/eras.create.title')
-]
+    'title' => __('timelines/eras.create.title', ['name' => $timeline->name]),
+    'description' => '',
+    'breadcrumbs' => [
+    ['url' => route('timelines.index'), 'label' => __('entities.timelines')],
+    ['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
+    __('timelines/eras.create.title')
+    ]
 ])
 @inject('campaignService', 'App\Services\CampaignService')
 @section('content')
@@ -22,7 +22,8 @@ __('timelines/eras.create.title')
         'method' => 'POST',
         'id' => 'timeline-era-form',
         'class' => 'ajax-subform',
-        'data-shortcut' => 1
+        'data-shortcut' => 1,
+        'data-maintenance' => 1,
     ]) !!}
     <div class="panel panel-default">
         @if ($ajax)

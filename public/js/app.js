@@ -22133,7 +22133,7 @@ function registerUnsavedChanges() {
 
 
 function registerEntityFormSubmit() {
-  $('#entity-form').submit(function (e) {
+  $('form[data-maintenance="1"]').submit(function (e) {
     if (validEntityForm) {
       return true;
     }
@@ -22147,7 +22147,7 @@ function registerEntityFormSubmit() {
       //console.log('good?');
       // If the validation succeeded, we can really submit the form
       validEntityForm = true;
-      $('#entity-form').submit();
+      $('form[data-maintenance="1"]').submit();
       return true;
     }).fail(function (err) {
       //console.log('error', err);
@@ -22220,7 +22220,7 @@ function registerEntityFormSubmit() {
 
 
 function resetEntityFormSubmitAnimation() {
-  var submit = $('#entity-form').find('.btn-success');
+  var submit = $('form[data-maintenance="1"]').find('.btn-success');
 
   if (submit.length > 0) {
     $.each(submit, function () {

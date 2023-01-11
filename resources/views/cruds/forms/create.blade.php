@@ -17,6 +17,7 @@
     'id' => 'entity-form',
     'data-max-fields' => ini_get('max_input_vars'),
     'data-unload' => 1,
+    'data-maintenance' => 1,
 ]) !!}
 @endsection
 
