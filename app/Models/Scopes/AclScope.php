@@ -199,7 +199,7 @@ class AclScope implements Scope
             return $query->where($table . '.visibility_id', Visibility::VISIBILITY_ALL);
         }
 
-        Permissions::campaign(CampaignLocalization::getCampaign());
+        Permissions::campaign($campaign);
 
         // Either mine (self && created_by = me) or (if admin: !self, else: all)
         return $query
