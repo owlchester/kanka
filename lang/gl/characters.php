@@ -56,7 +56,8 @@ return [
     ],
     'organisations' => [
         'actions'       => [
-            'add'   => 'Engadir organización',
+            'add'       => 'Engadir organización',
+            'submit'    => 'Engadir organización',
         ],
         'create'        => [
             'success'   => 'Personaxe engadida á organización.',
@@ -83,6 +84,7 @@ return [
         'age'               => 'Idade',
         'appearance_entry'  => 'Descrición',
         'appearance_name'   => 'Cabelo, ollos, pel, altura...',
+        'name'              => 'Nome da personaxe',
         'personality_entry' => 'Detalles',
         'personality_name'  => 'Obxectivos, manerismos, medos, vínculos...',
         'physical'          => 'Físico',

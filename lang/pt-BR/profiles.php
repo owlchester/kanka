@@ -53,6 +53,7 @@ return [
             'monthly'   => 'Newsletter do Kanka',
         ],
         'title'     => 'Boletim de Notícias',
+        'updated'   => 'Preferências do boletim de notícias atualizadas.',
     ],
     'password'                      => [
         'success'   => 'Senha atualizada',

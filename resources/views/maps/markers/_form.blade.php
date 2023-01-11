@@ -2,12 +2,12 @@
 /** @var \App\Models\MapMarker $model */
 
 $sizeOptions = [
-    1 => __('locations.map.points.sizes.tiny'),
-    2 => __('locations.map.points.sizes.small'),
-    3 => __('locations.map.points.sizes.standard'),
-    4 => __('locations.map.points.sizes.large'),
-    5 => __('locations.map.points.sizes.huge'),
-    6 => __('locations.map.points.sizes.custom'),
+    1 => __('maps/markers.circle_sizes.tiny'),
+    2 => __('maps/markers.circle_sizes.small'),
+    3 => __('maps/markers.circle_sizes.standard'),
+    4 => __('maps/markers.circle_sizes.large'),
+    5 => __('maps/markers.circle_sizes.huge'),
+    6 => __('maps/markers.circle_sizes.custom'),
 ];
 ?>
 
@@ -85,7 +85,7 @@ $sizeOptions = [
             <div class="row">
                 <div class="col-xs-6">
                     <div class="form-group">
-                        <label for="size_id">{{ __('locations.map.points.fields.size') }}</label>
+                        <label for="size_id">{{ __('maps/markers.fields.size') }}</label>
                         {!! Form::select('size_id', $sizeOptions, \App\Facades\FormCopy::field('size_id')->string(), ['class' => 'form-control', 'id' => 'size_id']) !!}
                     </div>
                 </div>

@@ -53,6 +53,7 @@ return [
             'monthly'   => 'Kanka newsletter',
         ],
         'title'     => 'Newsletter',
+        'updated'   => 'Nastavenia newsletteru aktualizované.',
     ],
     'password'                      => [
         'success'   => 'Heslo zmenené',

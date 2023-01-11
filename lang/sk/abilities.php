@@ -47,6 +47,7 @@ return [
         'tabs'  => [
             'abilities' => 'Schopnosti',
             'entities'  => 'Objekty',
+            'reorder'   => 'Preskúpiť schopnosti',
         ],
     ],
 ];

@@ -8,4 +8,6 @@ return [
      *
      */
     'kit' => getenv('FONTAWESOME_KIT'),
+
+    'search' => 'https://fontawesome.com/search',
 ];

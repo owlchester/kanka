@@ -22,7 +22,6 @@ return [
         'bulk_names'        => 'Füge einen Namen pro Zeile hinzu',
         'duplicate'         => 'Es gibt andere Objekte dieses Typs mit demselben Namen.',
         'helper_v2'         => 'Erstelle schnell die Grundlage für ein neues Objekt, ohne deinen aktuellen Fluss zu unterbrechen.',
-        'missing'           => 'Du siehst nicht alle Objektstypen? Möglicherweise ist die Option deaktiviert, deine Berechtigungen lassen es möglicherweise nicht zu oder es wird nicht für die schnelle Erstellung unterstützt.',
         'modes'             => [
             'bulk'      => 'Bulk hinzufügen',
             'default'   => 'Schnell hinzufügen',
@@ -75,6 +74,7 @@ return [
     'organisation'          => 'Organisation',
     'organisations'         => 'Organisationen',
     'post'                  => 'Post',
+    'posts'                 => 'Beiträge',
     'quest'                 => 'Quest',
     'quest_element'         => 'Quest Element',
     'quests'                => 'Quests',

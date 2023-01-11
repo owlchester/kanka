@@ -11,6 +11,7 @@ return [
         'notifications' => 'Notifications',
     ],
     'groups'    => [
+        'all'           => 'Recevoir des mises à jour occasionnelles sur les nouvelles fonctionnalités, les votes et les événements communautaires, etc.',
         'newsletter'    => 'Newsletter',
     ],
     'headline'  => 'S\'abonner à une ou toutes nos newsletters pour rester à jour avec Kanka.',

@@ -82,8 +82,6 @@ TEXT
         'character_personality_visibility'  => 'Ao criar um novo personagem como administrador, selecione a configuração de privacidade padrão para seus traços de personalidade.',
         'css'                               => 'Escreva seu próprio CSS que será carregado nas páginas de sua campanha. Observe que qualquer abuso desse recurso pode levar à remoção do seu CSS personalizado. Ofensas repetidas ou graves podem levar à remoção de sua campanha.',
         'dashboard'                         => 'Personalize a forma como o widget do dashboard da campanha é exibido preenchendo os campos a seguir.',
-        'entity_count_infinity'             => 'Esta campanha não tem limite de número de entidades.',
-        'entity_count_v2'                   => 'Esse número é recalculado a cada seis horas e ignora as tags.',
         'entity_privacy'                    => 'Ao criar uma nova entidade como administrador, selecione a configuração de privacidade padrão da nova entidade.',
         'excerpt'                           => 'O resumo da campanha será exibido no painel, então escreva algumas frases apresentando o seu mundo. Mantenha-o curto para obter os melhores resultados.',
         'header_image'                      => 'Imagem exibida como plano de fundo no widget cabeçalho da campanha do dashboard.',
@@ -272,6 +270,7 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'A função pública tem permissões, mas a campanha é privada. Você pode alterar essa configuração na guia Compartilhamento ao editar a campanha.',
             'empty_role'            => 'A função ainda não tem membros.',
+            'role_admin'            => 'A função :name concede automaticamente acesso a tudo na campanha para seus membros.',
             'role_permissions'      => 'Habilitar o cargo \':name\' a fazer as seguintes ações em todas as entidades.',
         ],
         'members'       => 'Membros',
@@ -334,6 +333,10 @@ TEXT
             ],
             'destroy'   => [
                 'success'   => 'Usuário removido do cargo.',
+            ],
+            'errors'    => [
+                'cant_kick_admins'  => 'Para evitar abusos, não é possível remover outros membros da função :admin da campanha. Em caso de problemas, entre em contato conosco no :discord ou no :email.',
+                'needs_more_roles'  => 'Você precisa se adicionar a outra função na campanha antes de poder se remover da função :admin.',
             ],
             'fields'    => [
                 'name'  => 'Nome',
@@ -445,7 +448,6 @@ TEXT
             'visible'   => 'Visível aos membros',
         ],
         'nested'            => [
-            'default'   => 'Padrão',
             'nested'    => 'Aninhado',
         ],
         'other'             => 'Outro',
@@ -454,5 +456,10 @@ TEXT
         'private'   => 'Privado',
         'public'    => 'Público',
         'review'    => 'Aguardando revisão',
+    ],
+    'warning'                           => [
+        'editing'   => [
+            'description'   => 'Parece que outra pessoa está editando esta campanha no momento! Deseja voltar atrás ou ignorar este aviso, correndo o risco de perder dados? Membros atualmente editando esta campanha:',
+        ],
     ],
 ];

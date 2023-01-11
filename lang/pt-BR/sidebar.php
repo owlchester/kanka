@@ -16,6 +16,7 @@ return [
     'manage_links'      => 'Gerenciar Links',
     'new-entity'        => 'Criar nova entidade',
     'other'             => 'Outros',
+    'presets'           => 'Predefinições',
     'relations'         => 'Relações',
     'search'            => 'Buscar...',
     'world'             => 'Mundo',

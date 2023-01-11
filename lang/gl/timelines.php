@@ -22,6 +22,7 @@ return [
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas as liñas temporais que non teñen unha liña temporal nai. Fai clic nunha liña para ver as súas descendentes.',
+        'no_era_v2'         => 'Esta campaña non ten ningunha era. Engade algunha, e despois poderás engadir elementos ás eras dende aquí.',
         'reverse_order'     => 'Activa isto para mostrar as eras en orde cronolóxica inversa (as eras máis antigas primeiro)',
     ],
     'index'         => [],

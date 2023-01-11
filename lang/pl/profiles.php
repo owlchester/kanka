@@ -53,6 +53,7 @@ return [
             'monthly'   => 'Newsletter Kanki',
         ],
         'title'     => 'Newslettery',
+        'updated'   => 'Zmieniono ustawienia newslettera.',
     ],
     'password'                      => [
         'success'   => 'Zmieniono hasło',

@@ -2,10 +2,9 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Apoia a Kanka para participar nas Votacións da Comunidade',
-        'return'        => 'Voltar á lista de votacións',
-        'show'          => 'Mostrar resultados',
-        'vote'          => 'Votar',
+        'return'    => 'Voltar á lista de votacións',
+        'show'      => 'Mostrar resultados',
+        'vote'      => 'Votar',
     ],
     'description'   => 'As usuarias que apoian a Kanka axudan a moldar a evolución da aplicación participando en votacións da comunidade frecuentes.',
     'index'         => [

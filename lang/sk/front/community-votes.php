@@ -2,10 +2,9 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Podpor Kanku účasťou na komunitnom hlasovaní',
-        'return'        => 'Späť na prehľad všetkých komunitných hlasovaní.',
-        'show'          => 'Zobraziť výsledky hlasovania',
-        'vote'          => 'Hlasovanie',
+        'return'    => 'Späť na prehľad všetkých komunitných hlasovaní.',
+        'show'      => 'Zobraziť výsledky hlasovania',
+        'vote'      => 'Hlasovanie',
     ],
     'description'   => 'Používatelia, ktorí podporujú Kanku, sa podieľajú na vývine tejto aplikácie tým, že sa účastnia častých komunitných hlasovaní.',
     'index'         => [

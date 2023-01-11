@@ -22,7 +22,8 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'   => 'Engadir integrante',
+            'add'       => 'Engadir integrante',
+            'submit'    => 'Engadir integrante',
         ],
         'create'        => [
             'success'   => 'Integrante engadida á organización.',

@@ -38,10 +38,16 @@ return [
         'name'      => 'Bóla de lume, Alerta, Ataque astuto...',
         'type'      => 'Feitizo, Talento, Ataque...',
     ],
+    'reorder'       => [
+        'parentless'    => 'Sen habilidade nai',
+        'success'       => 'Habilidades reordenadas exitosamente.',
+        'title'         => 'Reordenar as habilidades',
+    ],
     'show'          => [
         'tabs'  => [
             'abilities' => 'Habilidades',
             'entities'  => 'Entidades',
+            'reorder'   => 'Reordenar habilidades',
         ],
     ],
 ];

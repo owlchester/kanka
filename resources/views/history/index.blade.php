@@ -32,7 +32,7 @@
                 <select class="form-control" name="user">
                     <option value="">{{ __('history.filters.all-users') }}</option>
                     @foreach ($users as $member)
-                        <option value="{{ $member->id }}" @if (isset($user) && $user == $member->id) selected="selected" @endif>{!! $member->name !!}</option>
+                        <option value="{{ $member->user_id }}" @if (isset($user) && $user == $member->user_id) selected="selected" @endif>{!! $member->user->name !!}</option>
                     @endforeach
                 </select>
             </div>

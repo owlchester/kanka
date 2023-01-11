@@ -37,7 +37,7 @@
     ) !!}
     <p class="help-block">
         {!! __('entities/links.helpers.icon', [
-            'fontawesome' => link_to('https://fontawesome.com/search?m=free&s=solid', 'FontAwesome', ['target' => '_blank'])
+            'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank'])
         ]) !!}
     </p>
 </div>

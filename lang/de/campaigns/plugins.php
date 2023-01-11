@@ -37,6 +37,7 @@ return [
     ],
     'fields'        => [
         'name'      => 'Plugin Name',
+        'obsolete'  => 'Dieses Plugin wurde vom Kanka-Team als veraltet markiert, was bedeutet, dass es nicht mehr so funktioniert, wie es ursprünglich von seinem Ersteller beabsichtigt war.',
         'status'    => 'Status',
         'type'      => 'Plugin Typ',
     ],

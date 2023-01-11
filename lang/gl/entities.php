@@ -20,7 +20,6 @@ return [
         'back'              => 'Voltar á selección',
         'duplicate'         => 'Hai outras entidades deste tipo co mesmo nome.',
         'helper_v2'         => 'Crea rapidamente a base dunha nova entidade sen interrumpir o teu fluxo de traballo.',
-        'missing'           => 'Non ves todos os tipos de entidade? Pode que algún estea deshabilitado, que os teus permisos non che permita velo, ou que non estea dispoñible para creación rápida.',
         'name'              => [
             'new'       => 'Novo nome',
             'remove'    => 'Eliminar',

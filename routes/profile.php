@@ -72,6 +72,9 @@ Route::get('/invoices', 'Settings\InvoiceController@index')
 Route::get('/invoices/download/{invoice}', 'Settings\InvoiceController@download')
     ->name('settings.invoices.download');
 
+Route::get('/bragi', 'Settings\BragiController@index')
+    ->name('settings.bragi');
+
 Route::get('/apps', 'Settings\AppsController@index')
     ->name('settings.apps');
 Route::get('/discord-me', 'Settings\Apps\DiscordController@me');

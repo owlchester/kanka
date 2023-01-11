@@ -10,6 +10,9 @@ return [
     'destroy'       => [
         'success'   => 'Bild :name gelöscht',
     ],
+    'errors'        => [
+        'permissions'   => 'Deinen Kampagnenrollen fehlen die Berechtigungen :permission, um Bilder in die Kampagnengalerie hochladen zu dürfen.',
+    ],
     'fields'        => [
         'created_by'    => 'hochgeladen von',
         'ext'           => 'äußerlich',

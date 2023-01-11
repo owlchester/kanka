@@ -16,11 +16,17 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Criar :type',
+            'more'      => 'Adicionar mais detalhes',
         ],
         'back'              => 'Voltar para seleção',
+        'bulk_names'        => 'Adicionar um nome por linha',
         'duplicate'         => 'Já existem outras entidades deste tipo com o mesmo nome.',
         'helper_v2'         => 'Crie rapidamente a base de uma nova entidade sem interromper seu fluxo atual.',
-        'missing'           => 'Não está vendo todos os tipos de entidade? Ele pode estar desabilitado, suas permissões podem não permitir ou não há suporte para criação rápida.',
+        'modes'             => [
+            'bulk'      => 'Adicionar em massa',
+            'default'   => 'Adicionar rápido',
+            'templates' => 'Selecionar modelo',
+        ],
         'name'              => [
             'new'       => 'Novo nome',
             'remove'    => 'Remover',
@@ -51,6 +57,7 @@ return [
     'new'                   => [
         'ability'       => 'Nova habilidade',
         'character'     => 'Novo personagem',
+        'creature'      => 'Nova criatura',
         'event'         => 'Novo evento',
         'family'        => 'Nova família',
         'item'          => 'Novo item',
@@ -67,7 +74,9 @@ return [
     'organisation'          => 'Organização',
     'organisations'         => 'Organizações',
     'post'                  => 'Post',
+    'posts'                 => 'Posts',
     'quest'                 => 'Missão',
+    'quest_element'         => 'Elemento de missão',
     'quests'                => 'Missões',
     'race'                  => 'Raça',
     'races'                 => 'Raças',
@@ -76,5 +85,6 @@ return [
     'tag'                   => 'Tag',
     'tags'                  => 'Tags',
     'timeline'              => 'Linha do Tempo',
+    'timeline_element'      => 'Elemento da linha do tempo',
     'timelines'             => 'Linhas do Tempo',
 ];

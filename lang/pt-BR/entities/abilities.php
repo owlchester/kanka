@@ -26,8 +26,14 @@ return [
         ],
         'success'   => '{1} :count habilidade importada.|[2,*] :count habilidades importadas.',
     ],
+    'reorder'   => [
+        'parentless'    => 'Sem Pai',
+        'success'       => 'Habilidades reordenadas com sucesso',
+        'title'         => 'Reordenar as habilidades',
+    ],
     'show'      => [
         'helper'    => 'Adicione habilidades a esta entidade. Você sempre pode editar a visibilidade ou remover uma habilidade. Habilidades pertencentes à mesma habilidade principal serão exibidas como caixas de filtro.',
+        'reorder'   => 'Reordenar Habilidades',
         'title'     => 'Habilidades de :name',
     ],
     'update'    => [

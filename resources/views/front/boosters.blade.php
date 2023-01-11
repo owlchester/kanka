@@ -108,7 +108,7 @@
                         <h5>{{ __('front/boosters.blocks.icons.title') }}</h5>
                         <p>
                             {!! __('front/boosters.blocks.icons.description', [
-    'fontawesome' => link_to('https://fontawesome.com/search?m=free&s=solid', 'FontAwesome', ['target' => '_blank']),
+    'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
     'rpgawesome' => link_to('https://nagoshiashumari.github.io/Rpg-Awesome/', 'RPGAwesome', ['target' => '_blank'])
 ]) !!}
                         </p>

@@ -44,6 +44,7 @@ return [
         'target'            => 'Alvo',
         'target_relation'   => 'Relação Alvo',
         'two_way'           => 'Criar relação mútua',
+        'unmirror'          => 'Desespelhe esta relação.',
     ],
     'helper'            => 'Estabeleça relações entre entidades com atitudes e visibilidade. Relações também podem ser fixadas no menu da entidade.',
     'helpers'           => [

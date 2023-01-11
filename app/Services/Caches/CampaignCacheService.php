@@ -74,18 +74,17 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
-     * Count the number of entities in a campaign. Cache if for 6 hours
-     * @param string|null $type
+     * Count the number of entities in a campaign, skipping the permission engine.
      * @return int
      */
-    public function entityCount(string $type = null): int
+    public function entityCount(): int
     {
-        $key = 'campaign_' . $this->campaign->id . '_entity_count' . (!empty($type) ? "_$type" : null);
+        $key = 'campaign_' . $this->campaign->id . '_entity_count';
         if ($this->has($key)) {
             return $this->get($key);
         }
 
-        $data = $this->campaign->entities()->count();
+        $data = $this->campaign->entities()->withInvisible()->count();
 
         $this->put($key, $data, 6 * 3600);
         return $data;

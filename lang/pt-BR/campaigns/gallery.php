@@ -10,6 +10,9 @@ return [
     'destroy'       => [
         'success'   => 'Imagem :name apagada.',
     ],
+    'errors'        => [
+        'permissions'   => 'Suas funções de campanha não possuem a permissão :permission para fazer upload de imagens para a galeria da campanha.',
+    ],
     'fields'        => [
         'created_by'    => 'Imagem subida por',
         'ext'           => 'Sair',

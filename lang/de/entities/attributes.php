@@ -6,6 +6,9 @@ return [
         'manage'            => 'Verwalten',
         'more'              => 'Mehr Optionen',
         'remove_all'        => 'Alles löschen',
+        'save_and_edit'     => 'Bestätigen und Bearbeiten',
+        'save_and_story'    => 'Bestätigen und Ansehen',
+        'show_hidden'       => 'Ausgeblendete Attribute anzeigen',
     ],
     'create'        => [],
     'destroy'       => [],
@@ -58,8 +61,12 @@ return [
         'template'  => 'Wähle eine Vorlage',
         'value'     => 'Wert des Attributs',
     ],
+    'ranges'        => [
+        'text'  => 'Verfügbare Optionen: :options',
+    ],
     'show'          => [
-        'title' => ':name Attribut',
+        'hidden'    => 'Ausgeblendete Attribute',
+        'title'     => ':name Attribut',
     ],
     'template'      => [
         'success'   => 'Attributvorlage :name wird auf :entity angewendet',

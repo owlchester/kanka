@@ -2,10 +2,9 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Steun Kanka om deel te nemen aan Community Stemmingen',
-        'return'        => 'Terug naar alle stemmingen van de community.',
-        'show'          => 'Toon stemresultaten',
-        'vote'          => 'Stem',
+        'return'    => 'Terug naar alle stemmingen van de community.',
+        'show'      => 'Toon stemresultaten',
+        'vote'      => 'Stem',
     ],
     'description'   => 'Gebruikers die Kanka steunen, helpen de ontwikkeling van de app vorm te geven door deel te nemen aan frequente community stemmingen.',
     'index'         => [

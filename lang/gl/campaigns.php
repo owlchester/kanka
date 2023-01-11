@@ -82,8 +82,6 @@ TEXT
         'character_personality_visibility'  => 'Selecciona a privacidade por defecto dos trazos de personalidade ao crear novas personaxes.',
         'css'                               => 'Escrebe o teu propio CSS para as páxinas da túa campaña. Ten en conta que calquer abuso desta ferramenta pode levar á eliminación do teu CSS personalizado. Ofensas repetidas ou graves poden levar á eliminación da túa campaña.',
         'dashboard'                         => 'Personaliza a forma na que se mostra o taboleiro da campaña completando os seguintes campos.',
-        'entity_count_infinity'             => 'Esta campaña non ten límite no número de entidades.',
-        'entity_count_v2'                   => 'Este número é recalculado cada seis horas e ignora as etiquetas.',
         'entity_privacy'                    => 'Selecciona a privacidade por defecto das novas entidades.',
         'excerpt'                           => 'O limiar da campaña mostrarase no taboleiro principal. Escrebe unhas poucas liñas introducindo o teu mundo. Se este campo está baleiro, os primeiros 1000 caracteres da descrición da campaña serán usados.',
         'header_image'                      => 'Imaxe mostrada como fondo no taboleiro da campaña.',
@@ -272,6 +270,7 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'O rol "Público" ten permisos pero a campaña é privada. Podes cambiar esta configuración na lapela "Compartir" ao editar a campaña.',
             'empty_role'            => 'O rol aínda non ten ningunha integrante.',
+            'role_admin'            => 'O rol ":name" otorga acceso automaticamente a toda campaña.',
             'role_permissions'      => 'Activa o rol ":name" para que poida facer as seguintes accións en todas as entidades.',
         ],
         'members'       => 'Integrantes',
@@ -334,6 +333,10 @@ TEXT
             ],
             'destroy'   => [
                 'success'   => 'Persoa eliminada do rol.',
+            ],
+            'errors'    => [
+                'cant_kick_admins'  => 'Para evitar abusos, non é posible eliminar integrantes do rol ":admin". En caso de problemas, contacta connosco en :discord ou en :email.',
+                'needs_more_roles'  => 'Precisas engadirte a outro rol da campaña antes de poder eliminarte do rol ":admin".',
             ],
             'fields'    => [
                 'name'  => 'Nome',
@@ -445,7 +448,6 @@ TEXT
             'visible'   => 'Visible a integrantes da campaña',
         ],
         'nested'            => [
-            'default'   => 'Por defecto',
             'nested'    => 'En árbore',
         ],
         'other'             => 'Miscelánea',
@@ -454,5 +456,10 @@ TEXT
         'private'   => 'Privada',
         'public'    => 'Pública',
         'review'    => 'Esperando revisión',
+    ],
+    'warning'                           => [
+        'editing'   => [
+            'description'   => 'Parece que alguén está editando a campaña nestes intres! Queres voltar ou ignorar este aviso, arriscando perder datos? Integrantes actualmente editando esta campaña:',
+        ],
     ],
 ];

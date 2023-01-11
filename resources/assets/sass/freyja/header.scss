@@ -77,6 +77,10 @@ body .main-header.main-header-start {
                 background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--main-navbar-background) 100%);
                 color: var(--campaign-switcher-text, #1b1b1b);
             }
+
+            &:hover {
+                box-shadow: var(--input-border-color) 0 1px 5px;
+            }
         }
 
         .campaign.boosted {
@@ -114,9 +118,6 @@ body .main-header.main-header-start {
     .bordered {
         border-width: 1px;
         border-color: var(--input-border-color);
-    }
-    a.bordered:hover {
-        border-color: var(--link-hover);
     }
     .bordered {
         color: var(--header-link-colours);

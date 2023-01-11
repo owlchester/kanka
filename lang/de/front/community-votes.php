@@ -2,10 +2,9 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Unterstützen Sie Kanka bei der Teilnahme an Community Votes',
-        'return'        => 'Kehre zu allen Community Votes zurück.',
-        'show'          => 'Abstimmungsergebnisse anzeigen',
-        'vote'          => 'Abstimmung',
+        'return'    => 'Kehre zu allen Community Votes zurück.',
+        'show'      => 'Abstimmungsergebnisse anzeigen',
+        'vote'      => 'Abstimmung',
     ],
     'description'   => 'Benutzer, die Kanka unterstützen, gestalten die Entwicklung der App mit, indem sie an häufigen Community Votes teilnehmen.',
     'index'         => [

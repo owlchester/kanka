@@ -10,6 +10,9 @@ return [
     'destroy'       => [
         'success'   => 'Imaxe ":name" eliminada.',
     ],
+    'errors'        => [
+        'permissions'   => 'Os teus roles de campaña non teñen o permiso ":permission" para permitirlles subir imaxes á galería de campaña.',
+    ],
     'fields'        => [
         'created_by'    => 'Subida por',
         'ext'           => 'Ext',

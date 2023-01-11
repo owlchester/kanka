@@ -22,7 +22,6 @@ return [
         'bulk_names'        => 'Pridaj jedno meno na riadok',
         'duplicate'         => 'Existujú iné objekty tohto typu s rovnakým menom.',
         'helper_v2'         => 'Zrýchlene vytvor základ nového objektu bez prerušenia práce.',
-        'missing'           => 'Nevidíš všetky typy objektov? Možno sú neaktívne, tvoje oprávnenia nepostačujúce alebo tento objekt sa nedá vytvoriť zrýchlene.',
         'modes'             => [
             'bulk'      => 'Masové pridanie',
             'default'   => 'Rýchle pridanie',
