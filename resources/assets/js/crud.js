@@ -347,9 +347,6 @@ function registerUnsavedChanges() {
  * When the entity form is submitted, we want to ajax validate the request first
  */
 function registerEntityFormSubmit() {
-    entityFormActions =$('form[data-unload="1"]');
-
-    //$('#entity-form').submit(function (e) {
     $('form[data-maintenance="1"]').submit(function (e) {
         if (validEntityForm) {
             return true;

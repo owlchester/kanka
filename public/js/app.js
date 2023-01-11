@@ -22129,8 +22129,6 @@ function registerUnsavedChanges() {
 
 
 function registerEntityFormSubmit() {
-  entityFormActions = $('form[data-unload="1"]'); //$('#entity-form').submit(function (e) {
-
   $('form[data-maintenance="1"]').submit(function (e) {
     if (validEntityForm) {
       return true;
