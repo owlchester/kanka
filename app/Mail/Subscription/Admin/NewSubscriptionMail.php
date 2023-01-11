@@ -44,12 +44,10 @@ class NewSubscriptionMail extends Mailable
     public function build()
     {
         $action = $this->new ? 'New' : 'Changed';
-        $lastCancel = 0;
+        $lastCancel = $this->user->cancellations->sortByDesc('id')->first();
         // If new, check if user was previously subbed
         if ($this->new) {
-            $cancelled = Subscription::where('user_id', $this->user->id)->cancelled()->count();
-            if ($cancelled > 0) {
-                $lastCancel = $this->user->cancellations->sortByDesc('id')->first();
+            if ($lastCancel > 0) {
                 $action = 'Renewed';
             }
         }
