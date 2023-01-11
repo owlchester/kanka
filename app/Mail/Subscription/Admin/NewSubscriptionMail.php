@@ -44,10 +44,10 @@ class NewSubscriptionMail extends Mailable
     public function build()
     {
         $action = $this->new ? 'New' : 'Changed';
+        $lastCancel = $this->user->cancellations->sortByDesc('id')->first();
         // If new, check if user was previously subbed
         if ($this->new) {
-            $cancelled = Subscription::where('user_id', $this->user->id)->cancelled()->count();
-            if ($cancelled > 0) {
+            if ($lastCancel > 0) {
                 $action = 'Renewed';
             }
         }
@@ -56,6 +56,6 @@ class NewSubscriptionMail extends Mailable
         return $this
             ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Admin'])
             ->subject($subject)
-            ->view('emails.subscriptions.' . ($this->new ? 'new' : 'changed') . '.html');
+            ->view('emails.subscriptions.' . ($this->new ? 'new' : 'changed') . '.html', ["lastCancel" => $lastCancel]);
     }
 }

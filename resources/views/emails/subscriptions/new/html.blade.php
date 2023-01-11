@@ -12,6 +12,11 @@
         Account created {{ $user->created_at->diffForHumans() }} ({{ $user->created_at->format('d.m.Y') }}).
     </p>
 
+    @if ($lastCancel)
+        <p>
+            Previously cancelled {{ $lastCancel->tier }} subscription {{ $lastCancel->created_at->diffForHumans() }} ({{ $lastCancel->created_at->format('d.m.Y') }}).
+        </p>
+    @endif
     @if ($discord = $user->apps->where('app', 'discord')->first())
         <p>
             Discord: {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }}
