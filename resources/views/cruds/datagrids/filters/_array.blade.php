@@ -14,13 +14,12 @@
         @php
             $options = [
                 '' => __('crud.filters.options.include'),
+                'children' => __('crud.filters.options.children'),
                 'exclude' => __('crud.filters.options.exclude'),
                 'none' => __('crud.filters.options.none'),
             ];
-            if (isset($field['withChildren']) && $field['withChildren'] === true ) {
-                $options = array_slice($options, 0, 1, true) +
-                array('children' => __('crud.filters.options.children')) +
-                array_slice($options, 1, NULL, true);
+            if (!isset($field['withChildren']) || $field['withChildren'] !== true) {
+                unset($options['children']);
             }
         @endphp
         {!! Form::select(
