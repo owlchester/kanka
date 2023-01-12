@@ -16,6 +16,9 @@ mix.webpackConfig({
     stats: {
         children: true,
     },
+    experiments: {
+        topLevelAwait: true
+    }
 });
 
 mix.js('resources/assets/js/app.js', 'public/js')
@@ -40,6 +43,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/gallery', 'public/js')
     .js('resources/assets/js/history', 'public/js')
     .js('resources/assets/js/editors/summernote', 'public/js/editors')
+    .js('resources/assets/js/family-tree', 'public/js')
     .sourceMaps(true, 'source-map')
     .vue()
     //.js('resources/assets/js/front', 'public/js')
