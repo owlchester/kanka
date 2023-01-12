@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
-use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -15,7 +14,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class DiceRoll extends MiscModel
 {
     use CampaignTrait,
-        ExportableTrait,
         SoftDeletes,
         Acl
     ;
@@ -59,14 +57,6 @@ class DiceRoll extends MiscModel
      * @var string
      */
     protected $entityType = 'dice_roll';
-
-    /**
-     * Foreign relations to add to export
-     * @var array
-     */
-    protected $foreignExport = [
-        'diceRollResults'
-    ];
 
     /**
      * Who created this entry

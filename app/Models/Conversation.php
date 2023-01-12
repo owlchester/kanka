@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
-use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -21,7 +20,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Conversation extends MiscModel
 {
     use CampaignTrait,
-        ExportableTrait,
         SoftDeletes,
         Acl
     ;
@@ -67,14 +65,6 @@ class Conversation extends MiscModel
      * @var bool
      */
     public $hasRelations = false;
-
-    /**
-     * Foreign relations to add to export
-     * @var array
-     */
-    protected $foreignExport = [
-        'participants', 'messages'
-    ];
 
     /**
      * @var string[] Extra relations loaded for the API endpoint

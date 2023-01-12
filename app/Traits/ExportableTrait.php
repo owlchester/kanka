@@ -32,19 +32,19 @@ trait ExportableTrait
         // Entity values
         if (!empty($this->entity)) {
             // Todo: put these in with()
-            $foreigns = ['notes', 'relationships', 'abilities', 'events', 'tags', 'assets'];
+            $foreigns = ['notes', 'relationships', 'abilities', 'events', 'tags', 'assets', 'entityAttributes'];
             foreach ($foreigns as $foreign) {
                 foreach ($this->entity->$foreign as $model) {
                     $json[$foreign][] = $model->toArray();
                 }
             }
-            $foreigns = ['attributes'];
+            /*$foreigns = ['attributes'];
             foreach ($foreigns as $foreign) {
                 // Have to do the ()->get because of attributes being otherwise something else
                 foreach ($this->entity->$foreign()->get() as $model) {
                     $json[$foreign][] = $model->toArray();
                 }
-            }
+            }*/
         }
 
         return json_encode($json);
