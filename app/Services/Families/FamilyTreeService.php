@@ -28,8 +28,8 @@ class FamilyTreeService
     {
         $campaign = $this->family->campaign;
 
-        // Take 6 random characters
-        $take = 6;
+        // Take 7 random characters
+        $take = 7;
         $characters = Character::with('entity')->has('entity')->take($take)->get();
 
         if (count($characters) != $take) {
@@ -59,7 +59,8 @@ class FamilyTreeService
         $data['entities'][2]['name'] = 'Martha Evergreen';
         $data['entities'][3]['name'] = 'Sofie Morley';
         $data['entities'][4]['name'] = 'Boris Morley';
-        $data['entities'][5]['name'] = 'Francis Morley';
+        $data['entities'][5]['name'] = 'Francis-Pedro Morley';
+        $data['entities'][6]['name'] = 'Frederico Morley';
 
         /**
          * Build nodes
@@ -72,7 +73,7 @@ class FamilyTreeService
                     [
                         'entity_id' => 1,
                         'role' => 'Wife',
-                        'nodes' => [
+                        'children' => [
                             // First child, with husband
                             [
                                 'entity_id' => 3,
@@ -80,9 +81,12 @@ class FamilyTreeService
                                     [
                                         'entity_id' => 4,
                                         'role' => 'Husband',
-                                        'nodes' => [
+                                        'children' => [
                                             [
                                                 'entity_id' => 5,
+                                            ],
+                                            [
+                                                'entity_id' => 6,
                                             ]
                                         ]
                                     ]
@@ -94,7 +98,7 @@ class FamilyTreeService
                     [
                         'entity_id' => 2,
                         'role' => 'Ex-wife',
-                        'nodes' => [
+                        'children' => [
                             // Child
                             [
                                 'entity_id' => 4,

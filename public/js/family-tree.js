@@ -2109,7 +2109,7 @@ var entities = null;
 var nodes = null;
 var offsetX = 0;
 var offsetY = 0;
-var offetIncrement = 200;
+var offsetIncrement = 200;
 var nodeX = 0;
 var nodeY = 0;
 var entityWidth = 160;
@@ -2120,8 +2120,8 @@ var entityHeight = 80;
  */
 
 var drawEntity = function drawEntity(entity) {
-  //console.log('Draw entity', entity);
-  // This creates a texture from a background image
+  console.log('Draw entity', entity.name, '>', offsetX, 'v', offsetY); // This creates a texture from a background image
+
   var entityPanel = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(texture);
   entityPanel.x = offsetX;
   entityPanel.y = offsetY;
@@ -2141,19 +2141,21 @@ var drawEntity = function drawEntity(entity) {
  */
 
 
-var drawRelation = function drawRelation(relation) {
+var drawRelation = function drawRelation(relation, fromX, fromY) {
   console.log('Draw relation', relation);
   var entity = entities[relation.entity_id];
   drawEntity(entity); // Draw the lines between the original and this relations
 
-  drawRelationLine(relation); // Draw next node?
+  drawRelationLine(relation, fromX, fromY); // Draw next node?
 
-  if (relation.nodes !== undefined) {
-    offsetY += offetIncrement;
-    relation.nodes.forEach(function (node) {
+  if (relation.children !== undefined) {
+    offsetY += offsetIncrement;
+    relation.children.forEach(function (node) {
       drawNode(node);
+      offsetX += offsetIncrement;
     });
-    offsetY -= offetIncrement;
+    offsetX -= relation.children.length * offsetIncrement;
+    offsetY -= offsetIncrement;
   }
 };
 /**
@@ -2163,9 +2165,15 @@ var drawRelation = function drawRelation(relation) {
  */
 
 
-var drawRelationLine = function drawRelationLine(relation) {
-  console.log('nodeY x nodeX', nodeY, nodeX);
-  var path = [nodeX + entityWidth / 2, nodeY, nodeX + entityWidth / 2, nodeY + (entityHeight + 40), offsetX + entityWidth / 2, offsetY + (entityHeight + 40), offsetX + entityWidth / 2, offsetY, offsetX + entityWidth / 2, offsetY + (entityHeight + 40), nodeX + entityWidth / 2, nodeY + (entityHeight + 40)];
+var drawRelationLine = function drawRelationLine(relation, fromX, fromY) {
+  console.log('Draw', relation.role, fromX, fromY);
+  var path = [// Origin top left
+  fromX + entityWidth / 2, fromY, // Origin bottom left
+  fromX + entityWidth / 2, fromY + (entityHeight + 40), // Current bottom right
+  offsetX + entityWidth / 2, offsetY + (entityHeight + 40), // Current top right
+  offsetX + entityWidth / 2, offsetY, // Current bottom right
+  offsetX + entityWidth / 2, offsetY + (entityHeight + 40), // Origin bottom left
+  fromX + entityWidth / 2, fromY + (entityHeight + 40)];
   console.log('path', path);
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
@@ -2174,38 +2182,37 @@ var drawRelationLine = function drawRelationLine(relation) {
   app.stage.addChild(graphics); // Draw relation name
 
   var relationName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(relation.role);
-  relationName.x = nodeX + entityWidth;
-  relationName.y = nodeY + (entityHeight + 10);
+  relationName.x = offsetX - 40;
+  relationName.y = fromY + (entityHeight + 10);
   app.stage.addChild(relationName);
 };
 
 var drawNode = function drawNode(node) {
   console.log('Draw node', node);
   var entity = entities[node.entity_id];
-  drawEntity(entity); // Loop the relations to draw them on the same line
+  drawEntity(entity); // Save first entity of the node's position
+
+  var fromX = offsetX,
+      fromY = offsetY; // Loop the relations to draw them on the same line
 
   if (node.relations) {
     node.relations.forEach(function (rel) {
-      offsetX += offetIncrement;
-      drawRelation(rel);
-      nodeX = offsetX;
-      nodeY = offsetY;
+      offsetX += offsetIncrement;
+      drawRelation(rel, fromX, fromY);
     });
   }
-};
-
-var drawTree = function drawTree() {
-  console.log('Draw tree', entities, nodes);
-  nodes.forEach(function (node) {
-    drawNode(node);
-  });
 };
 
 var renderPage = function renderPage() {
   axios__WEBPACK_IMPORTED_MODULE_1___default().get(container.dataset.api).then(function (resp) {
     entities = resp.data['entities'];
     nodes = resp.data['nodes'];
-    drawTree();
+    console.info('Draw tree');
+    console.log(entities);
+    console.log(nodes);
+    nodes.forEach(function (node) {
+      drawNode(node);
+    });
   });
 };
 
