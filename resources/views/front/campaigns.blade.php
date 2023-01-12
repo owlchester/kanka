@@ -59,6 +59,9 @@
  1 => __('front.campaigns.open.filters.open'), 0 => __('front.campaigns.open.filters.closed')], request()->get('is_open'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="col-sm mb-1">
+                        {!! Form::select('featured_until', ['' => __('front.campaigns.open.filters.featured'), 0 => __('general.yes'), 1 => __('general.no')], request()->get('featured_until'), ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col-sm mb-1">
                         {!! Form::select('sort_field_name', ['0' => __('front.campaigns.public.filters.entities'), '1' => __('front.campaigns.public.filters.followers')], request()->get('sort_field_name'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="col-sm mb-1">
