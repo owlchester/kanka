@@ -47,7 +47,7 @@ class GenerateTrees extends Command
 
         foreach ($models as $model) {
             $class = $this->service->getClass($model);
-            if ($class === false || !method_exists($model, 'fixTree')) {
+            if ($class === false || !method_exists($class, 'getParentIdName')) {
                 $this->warn('Skipping ' . $model);
                 continue;
             }

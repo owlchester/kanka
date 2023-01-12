@@ -208,10 +208,10 @@ class EntityLog extends Model
     public function scopeFilter(Builder $builder, HistoryRequest $request): Builder
     {
         if ($request->filled('user')) {
-            $builder->where('created_by', (int) $request->get('user'));
+            $builder->where($this->getTable() . '.created_by', (int) $request->get('user'));
         }
         if ($request->filled('action')) {
-            $builder->where('action', (int) $request->get('action'));
+            $builder->where($this->getTable() . '.action', (int) $request->get('action'));
         }
         return $builder;
     }

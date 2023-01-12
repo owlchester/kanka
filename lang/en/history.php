@@ -24,4 +24,5 @@ return [
     'unknown'   => [
         'entity'    => 'an unknown entity',
     ],
+    'empty'  => 'No value',
 ];

@@ -12,6 +12,7 @@ class NavigationController extends Controller
     public function __construct(NavigationService $navigationService)
     {
         $this->service = $navigationService;
+        $this->middleware('auth');
     }
 
     public function index()

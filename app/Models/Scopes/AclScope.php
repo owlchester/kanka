@@ -192,7 +192,14 @@ class AclScope implements Scope
         if (auth()->guest()) {
             return $query->where($table . '.visibility_id', Visibility::VISIBILITY_ALL);
         }
-        Permissions::campaign(CampaignLocalization::getCampaign());
+
+        // Not part of the campaign either, just get the all visibility
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->userIsMember()) {
+            return $query->where($table . '.visibility_id', Visibility::VISIBILITY_ALL);
+        }
+
+        Permissions::campaign($campaign);
 
         // Either mine (self && created_by = me) or (if admin: !self, else: all)
         return $query
