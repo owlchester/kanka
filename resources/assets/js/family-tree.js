@@ -46,7 +46,7 @@ let entities = null;
 let nodes = null;
 let offsetX = 0;
 let offsetY = 0;
-let offetIncrement = 200;
+let offsetIncrement = 200;
 let nodeX = 0;
 let nodeY = 0;
 let entityWidth = 160;
@@ -57,7 +57,7 @@ let entityHeight = 80;
  * @param entity
  */
 const drawEntity = (entity) => {
-    //console.log('Draw entity', entity);
+    console.log('Draw entity', entity.name, '>', offsetX, 'v', offsetY);
 
     // This creates a texture from a background image
     const entityPanel = new Sprite(texture);
@@ -81,22 +81,24 @@ const drawEntity = (entity) => {
  * Draw the relation of a node as well as the "line" between the node's main entity and this relation
  * @param relation
  */
-const drawRelation = (relation) => {
+const drawRelation = (relation, fromX, fromY) => {
     console.log('Draw relation', relation);
 
     let entity = entities[relation.entity_id];
     drawEntity(entity);
 
     // Draw the lines between the original and this relations
-    drawRelationLine(relation);
+    drawRelationLine(relation, fromX, fromY);
 
     // Draw next node?
-    if (relation.nodes !== undefined) {
-        offsetY += offetIncrement;
-        relation.nodes.forEach(node => {
+    if (relation.children !== undefined) {
+        offsetY += offsetIncrement;
+        relation.children.forEach(node => {
             drawNode(node);
+            offsetX += offsetIncrement;
         });
-        offsetY -= offetIncrement;
+        offsetX -= relation.children.length * offsetIncrement;
+        offsetY -= offsetIncrement;
     }
 
 };
@@ -106,15 +108,21 @@ const drawRelation = (relation) => {
  * nodeY and nodeX
  * @param relation
  */
-const drawRelationLine = (relation) => {
-    console.log('nodeY x nodeX', nodeY, nodeX);
+const drawRelationLine = (relation, fromX, fromY) => {
+    console.log('Draw', relation.role, fromX, fromY);
     const path = [
-        nodeX + (entityWidth / 2), nodeY,
-        nodeX + (entityWidth / 2), nodeY + (entityHeight + 40),
+        // Origin top left
+        fromX + (entityWidth / 2), fromY,
+        // Origin bottom left
+        fromX + (entityWidth / 2), fromY + (entityHeight + 40),
+        // Current bottom right
         offsetX + (entityWidth / 2), offsetY + (entityHeight + 40),
+        // Current top right
         offsetX + (entityWidth / 2), offsetY,
+        // Current bottom right
         offsetX + (entityWidth / 2), offsetY  + (entityHeight + 40),
-        nodeX + (entityWidth / 2), nodeY  + (entityHeight + 40),
+        // Origin bottom left
+        fromX + (entityWidth / 2), fromY  + (entityHeight + 40),
     ];
     console.log('path', path);
 
@@ -126,8 +134,8 @@ const drawRelationLine = (relation) => {
     app.stage.addChild(graphics);
     // Draw relation name
     const relationName = new Text(relation.role);
-    relationName.x = nodeX + (entityWidth);
-    relationName.y = nodeY + (entityHeight + 10);
+    relationName.x = offsetX - (40);
+    relationName.y = fromY + (entityHeight + 10);
     app.stage.addChild(relationName);
 };
 
@@ -137,30 +145,33 @@ const drawNode = (node) => {
     let entity = entities[node.entity_id];
     drawEntity(entity);
 
+    // Save first entity of the node's position
+    let fromX = offsetX,
+        fromY = offsetY;
+
     // Loop the relations to draw them on the same line
     if (node.relations) {
         node.relations.forEach(rel => {
-            offsetX += offetIncrement;
-            drawRelation(rel);
-            nodeX = offsetX;
-            nodeY = offsetY;
+            offsetX += offsetIncrement;
+            drawRelation(rel, fromX, fromY);
         });
     }
-};
 
-const drawTree = () => {
-    console.log('Draw tree', entities, nodes);
 
-    nodes.forEach(node => {
-        drawNode(node);
-    });
 };
 
 const renderPage = () => {
     axios.get(container.dataset.api).then((resp) => {
         entities = resp.data['entities'];
         nodes = resp.data['nodes'];
-        drawTree();
+
+        console.info('Draw tree');
+        console.log(entities);
+        console.log(nodes);
+
+        nodes.forEach(node => {
+            drawNode(node);
+        });
     });
 };
 
