@@ -6,7 +6,8 @@
             </div>
             <div class="col-lg-7">
                 <div class="header-content text-left text-lg-center">
-                    <p class="mb-5">{{ __('front.master.description', ['kanka' => config('app.name')]) }}</p>
+                    <p class="mb-5 ab-testing-a">{{ __('front.master.description', ['kanka' => config('app.name')]) }}</p>
+                    <p class="mb-5 ab-testing-b">{{ __('front.master.description_q1_2023', ['kanka' => config('app.name')]) }}</p>
                     @if (config('auth.register_enabled'))
                     <a href="{{ route('register') }}" class="btn btn-primary btn-lg">
                         {{ __('front.second_block.call_to_action') }}
