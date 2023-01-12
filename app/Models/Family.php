@@ -243,6 +243,10 @@ class Family extends MiscModel
             'route' => 'families.families',
             'count' => $this->descendants()->count()
         ];
+        $items['second']['tree'] = [
+            'name' => 'families.show.tabs.tree',
+            'route' => 'families.family-tree',
+        ];
 
         return parent::menuItems($items);
     }

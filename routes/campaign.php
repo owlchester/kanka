@@ -67,6 +67,8 @@ Route::get('/organisations/tree', 'OrganisationController@tree')->name('organisa
 Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
 Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
 Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
+Route::get('/families/{family}/tree', [\App\Http\Controllers\Families\FamilyTreeController::class, 'index'])->name('families.family-tree');
+Route::get('/families/{family}/tree/api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'api'])->name('families.family-tree.api');
 
 // Items menu
 Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
