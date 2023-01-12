@@ -11,8 +11,6 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Storage;
-use Exception;
 
 /**
  * Class Location
