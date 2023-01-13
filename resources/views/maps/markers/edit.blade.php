@@ -30,7 +30,7 @@
             <div class="map map-form" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @include('partials.errors')
 
-            {!! Form::model($model, ['route' => ['maps.map_markers.update', 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1]) !!}
+            {!! Form::model($model, ['route' => ['maps.map_markers.update', 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
             @include('maps.markers._form')
 
             <div class="form-group">
