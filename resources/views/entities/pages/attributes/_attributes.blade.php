@@ -38,7 +38,7 @@ $inSection = false;
         <dt>
             <span title="{attribute:{{ $attribute->id }}}" data-toggle="tooltip"
                   data-clipboard="{attribute:{{ $attribute->id }}}" data-toast="{{ __('crud.alerts.copy_attribute') }}">
-            {!! $attribute->name() !!}
+                {!! $attribute->name() !!}
             </span>
             @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
                 <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}"></i>
