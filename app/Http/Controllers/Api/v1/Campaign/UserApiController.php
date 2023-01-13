@@ -32,7 +32,7 @@ class UserApiController extends ApiController
         ->paginate());
     }
 
-    public function user(Campaign $campaign, User $user)
+    public function show(Campaign $campaign, User $user)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
