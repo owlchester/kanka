@@ -69,6 +69,7 @@ return [
         'layers'    => 'Layers',
         'markers'   => 'Markers',
         'settings'  => 'Settings',
+        'legend' => 'Legend',
     ],
     'placeholders'  => [
         'center_marker' => 'Leave empty to load the map in the middle',

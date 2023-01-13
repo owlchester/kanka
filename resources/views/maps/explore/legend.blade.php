@@ -4,7 +4,7 @@
  * @var \App\Models\MapMarker $marker
  */
 ?>
-<h4>{{ __('locations.map.legend') }}</h4>
+<h4>{{ __('maps.panels.legend') }}</h4>
 <ul>
     @foreach ($map->legendMarkers(false) as $marker)
         <li>

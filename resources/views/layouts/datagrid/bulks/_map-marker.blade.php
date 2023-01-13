@@ -12,12 +12,12 @@ $iconOptions = [
 
 $sizeOptions = [
     '' => null,
-    1 => __('locations.map.points.sizes.tiny'),
-    2 => __('locations.map.points.sizes.small'),
-    3 => __('locations.map.points.sizes.standard'),
-    4 => __('locations.map.points.sizes.large'),
-    5 => __('locations.map.points.sizes.huge'),
-    6 => __('locations.map.points.sizes.custom'),
+    1 => __('maps/markers.circle_sizes.tiny'),
+    2 => __('maps/markers.circle_sizes.small'),
+    3 => __('maps/markers.circle_sizes.standard'),
+    4 => __('maps/markers.circle_sizes.large'),
+    5 => __('maps/markers.circle_sizes.huge'),
+    6 => __('maps/markers.circle_sizes.custom'),
 ];
 
 $typeOptions = [
@@ -30,7 +30,7 @@ $groups = $model->groupOptions();
 $groups[-1] = __('crud.filters.options.none');
 ?>
 <div class="form-group">
-    <label for="icon">{{ __('locations.map.points.fields.icon') }}</label>
+    <label for="icon">{{ __('maps/markers.fields.icon') }}</label>
     {!! Form::select('icon', $iconOptions, null, ['class' => 'form-control', 'id' => 'icon']) !!}
 </div>
 @if ($campaign->boosted())
