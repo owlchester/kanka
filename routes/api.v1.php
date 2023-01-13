@@ -80,6 +80,7 @@ Route::get('campaigns/{campaign}/entities/{entity}/mentions', 'EntityMentionApiC
 
 
 Route::get('campaigns/{campaign}/users', 'Campaign\UserApiController@index');
+Route::get('campaigns/{campaign}/users/{user}', 'Campaign\UserApiController@show');
 Route::post('campaigns/{campaign}/users', 'Campaign\UserApiController@add');
 Route::delete('campaigns/{campaign}/users', 'Campaign\UserApiController@remove');
 

@@ -5,6 +5,7 @@
 - [User Campaigns](#user-campaigns)
 - [Single Campaign](#campaign)
 - [Campaign Members](#campaign-members)
+- [Campaign Member](#campaign-member)
 - [Add Role To Member](#add-role-to-member)
 - [Remove Role From Member](#remove-role-from-member)
 <a name="user-campaigns"></a>
@@ -121,6 +122,33 @@ To get a list of all the members of a campaign, use the following endpoint.
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET | `campaigns/{id}/users` | Default |
+
+### Results
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Ilestis",
+            "avatar": "{url}"
+        },
+        {
+            "id": 2,
+            "name": "Ilestis Jr.",
+            "avatar": "{url}"
+        }
+    ]
+}
+```
+
+<a name="campaign-member"></a>
+## Campaign Member
+
+To get the info of an specific member of a campaign, use the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| GET | `campaigns/{id}/users/{user_id}` | Default |
 
 ### Results
 ```json

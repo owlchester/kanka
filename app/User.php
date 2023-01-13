@@ -25,6 +25,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
+use App\Models\Concerns\LastSync;
 
 /**
  * Class User
@@ -67,6 +68,7 @@ class User extends \Illuminate\Foundation\Auth\User
         UserSetting,
         Billable,
         Tutorial,
+        LastSync,
         UserTokens
     ;
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\v1\ApiController;
 use App\Http\Requests\API\UpdateUserRole;
 use App\Http\Resources\UserResource;
 use App\Models\Campaign;
+use App\User;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Services\Campaign\MemberService;
@@ -26,7 +27,19 @@ class UserApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
 
-        return UserResource::collection($campaign->users()->paginate());
+        return UserResource::collection($campaign->users()
+        ->lastSync(request()->get('lastSync'))
+        ->paginate());
+    }
+
+    public function show(Campaign $campaign, User $user)
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize('update', $campaign);
+
+        return UserResource::collection($campaign->users()->where('user_id', '=', $user->id)
+        ->lastSync(request()->get('lastSync'))
+        ->paginate());
     }
 
     /**
