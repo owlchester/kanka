@@ -64,7 +64,9 @@ function isInputField(ele) {
  */
 function initSaveKeyboardShortcut(form) {
     $(document).bind('keydown', function(e) {
-        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        //console.log((e.ctrlKey || e.metaKey), e.key.toLowerCase(), e.key.toLowerCase() === 's', e.shiftKey);
+        // Need to check on lowercase key, because shirt will uppercase it
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
             window.entityFormHasUnsavedChanges = false;
 
             if (e.shiftKey) {
