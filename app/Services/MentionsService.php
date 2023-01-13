@@ -123,7 +123,7 @@ class MentionsService
      * @param Attribute $attribute
      * @return string|string[]|null
      */
-    public function mapAttribute(Attribute $attribute)
+    public function mapAttribute(Attribute $attribute, string $text = null)
     {
         // If the attribute mentions itself in the value, don't do any parsing, it would cause an endless loop.
         if (Str::contains($attribute->value, $attribute->mentionName())) {
@@ -131,7 +131,11 @@ class MentionsService
         }
 
         //Called in this order to avoid a bug that would render an attribute mention inside an attribute wrong.
-        $this->text = Attributes::parse($attribute);
+        if (!$text) {
+            $this->text = Attributes::parse($attribute);
+        } else {
+            $this->text = $text;
+        }
 
         return $this->extractAndReplace();
     }

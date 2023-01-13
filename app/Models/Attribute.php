@@ -220,7 +220,7 @@ class Attribute extends Model
         $name = preg_replace('`\[icon:(.*?)\]`si', '<i class="$1"></i>', $this->name);
         $name = preg_replace($this->listRegexp, '', $name);
 
-        return (string) $name;
+        return Mentions::mapAttribute($this, $name);
     }
 
     /**
