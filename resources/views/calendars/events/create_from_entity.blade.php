@@ -10,7 +10,13 @@
 ])
 @section('content')
 
-    {!! Form::open(['method' => 'POST', 'route' => ['entities.entity_events.store', $entity->id], 'data-shortcut' => 1, 'class' => 'ajax-validation']) !!}
+    {!! Form::open([
+        'method' => 'POST',
+        'route' => ['entities.entity_events.store', $entity->id],
+        'data-shortcut' => 1,
+        'class' => 'ajax-validation',
+        'data-maintenance' => 1,
+    ]) !!}
 
     @if (request()->ajax())
         <div class="modal-body">

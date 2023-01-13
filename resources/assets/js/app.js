@@ -351,6 +351,7 @@ require('./sidebar');
 require('./banner');
 require('./timeline');
 require('./utility/sortable');
+require('./utility/formError');
 
 // VueJS elements
 require('./navigation');

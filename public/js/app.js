@@ -21136,7 +21136,9 @@ __webpack_require__(/*! ./banner */ "./resources/assets/js/banner.js");
 
 __webpack_require__(/*! ./timeline */ "./resources/assets/js/timeline.js");
 
-__webpack_require__(/*! ./utility/sortable */ "./resources/assets/js/utility/sortable.js"); // VueJS elements
+__webpack_require__(/*! ./utility/sortable */ "./resources/assets/js/utility/sortable.js");
+
+__webpack_require__(/*! ./utility/formError */ "./resources/assets/js/utility/formError.js"); // VueJS elements
 
 
 __webpack_require__(/*! ./navigation */ "./resources/assets/js/navigation.js"); //require('./ads');
@@ -21237,79 +21239,33 @@ function initCalendarEventModal() {
     $('.calendar-new-event-field').show();
     $('#calendar-event-submit').toggle();
   });
-  $('form.ajax-validation').unbind('submit').on('submit', function (e) {
-    reminderForm = $(this);
-
-    if (reminderFormValid) {
-      return true;
-    }
-
-    e.preventDefault();
-    $(this).find('.btn-success').prop('disabled', true);
-    $(this).find('.btn-success span').hide();
-    $(this).find('.btn-success i.fa').show();
-    var formData = new FormData(this);
-    $.ajax({
-      url: $(this).attr('action'),
-      method: $(this).attr('method'),
-      data: formData,
-      cache: false,
-      contentType: false,
-      processData: false
-    }).done(function () {
-      // If the validation succeeded, we can really submit the form
-      reminderFormValid = true;
-      reminderForm.submit();
-    }).fail(function (err) {
-      //console.log('error', err);
-      // Reset any error fields
-      reminderForm.find('.input-error').removeClass('input-error');
-      reminderForm.find('.text-danger').remove(); // If we have a 503 error status, let's assume it's from cloudflare and help the user
-      // properly save their data.
-
-      if (err.status === 503) {
-        window.showToast(err.responseJSON.message, 'toast-error');
-        resetReminderAnimation();
-        return;
-      } // If it's 403, the session is gone
-
-
-      if (err.status === 403) {
-        $('#entity-form-403-error').show();
-        resetReminderAnimation();
-      } // Loop through the errors to add the class and error message
-
-
-      var errors = err.responseJSON.errors;
-      var errorKeys = Object.keys(errors);
-      var foundAllErrors = true;
-      errorKeys.forEach(function (i) {
-        var errorSelector = $('[name="' + i + '"]'); //console.log('error field', '[name="' + i + '"]');
-
-        if (errorSelector.length > 0) {
-          reminderForm.find('[name="' + i + '"]').addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-        } else {
-          foundAllErrors = false;
-        }
+  /*$('form.ajax-validation').unbind('submit').on('submit', function (e) {
+      reminderForm = $(this);
+      if (reminderFormValid) {
+          return true;
+      }
+       e.preventDefault();
+       $(this).find('.btn-success')
+          .prop('disabled', true)
+          .addClass('loading');
+       let formData = new FormData(this);
+       $.ajax({
+          url: $(this).attr('action'),
+          method: $(this).attr('method'),
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          context: this,
+      }).done(function () {
+          // If the validation succeeded, we can really submit the form
+          reminderFormValid = true;
+          reminderForm.submit();
+      }).fail(function (err) {
+          window.formErrorHandler(err, this);
       });
-      var firstItem = Object.keys(errors)[0];
-      var firstItemDom = reminderForm.find('[name="' + firstItem + '"]'); // If we can actually find the first element, switch to it and the correct tab.
-
-      if (firstItemDom.length > 0) {
-        firstItemDom.focus();
-      } //console.log('reset stuff');
-
-
-      resetReminderAnimation();
-    });
-    return false;
-  });
-}
-
-function resetReminderAnimation() {
-  reminderForm.find('.btn-success i.fa').hide();
-  reminderForm.find('.btn-success span').show();
-  reminderForm.find('.btn-success').prop('disabled', false);
+       return false;
+  });*/
 }
 /**
  * Register keyboard shortcuts for previous/next view
@@ -21798,8 +21754,6 @@ var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
 var entityCalendarModalForm;
 var entityName;
-var validEntityForm = false,
-    validRelationForm = false;
 $(document).ready(function () {
   registerDynamicRows();
   (0,_components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
@@ -21813,7 +21767,7 @@ $(document).ready(function () {
 
   registerFormSubmitAnimation();
   registerEntityCalendarForm();
-  registerEntityFormSubmit();
+  registerFormMaintenance();
   registerEntityCalendarModal();
   registerModalLoad();
   registerDatagridSorter();
@@ -21830,9 +21784,9 @@ $(document).ready(function () {
 
 function registerModalLoad() {
   $(document).on('shown.bs.modal shown.bs.popover', function () {
-    registerRelationFormSubmit();
     registerEntityCalendarModal();
     registerEntityFormActions();
+    registerFormMaintenance();
   });
 }
 
@@ -21920,7 +21874,7 @@ function registerFormSubmitAnimation() {
           if ($(this).hasClass('dropdown-toggle')) {
             $(this).prop('disabled', true);
           } else {
-            $(this).prop('disabled', true).data('reset', true).find('span').hide().parent().find('.spinner').show();
+            $(this).prop('disabled', true).addClass('loading');
           }
         }); // Inject the selected option for the "workflow" (submit-action)
 
@@ -22132,174 +22086,37 @@ function registerUnsavedChanges() {
  */
 
 
-function registerEntityFormSubmit() {
-  $('form[data-maintenance="1"]').submit(function (e) {
-    if (validEntityForm) {
-      return true;
+function registerFormMaintenance() {
+  $('form[data-maintenance="1"]').each(function () {
+    // Because we call this function again on each modal shown (for loading forms in modals), we need to
+    // save on each form if the listener has already been added, to avoid having multiple onSubmits on
+    // the same element for the same feature.
+    if ($(this).data('with-maintenance') === true) {
+      return;
     }
 
-    e.preventDefault();
-    $.ajax({
-      url: $(this).attr('action'),
-      method: $(this).attr('method'),
-      data: $(this).serialize()
-    }).done(function () {
-      //console.log('good?');
-      // If the validation succeeded, we can really submit the form
-      validEntityForm = true;
-      $('form[data-maintenance="1"]').submit();
-      return true;
-    }).fail(function (err) {
-      //console.log('error', err);
-      // Reset any error fields
-      $('.input-error').removeClass('input-error');
-      $('.text-danger').remove(); // If we have a 503 error status, let's assume it's from cloudflare and help the user
-      // properly save their data.
-
-      if (err.status === 503) {
-        window.showToast(err.responseJSON.message, 'toast-error');
-        resetEntityFormSubmitAnimation();
-        return;
-      } // If it's 403, the session is gone
-
-
-      if (err.status === 403) {
-        $('#entity-form-403-error').show();
-        resetEntityFormSubmitAnimation();
-      } // Loop through the errors to add the class and error message
-
-
-      var errors = err.responseJSON.errors;
-      var logs = [];
-      var errorKeys = Object.keys(errors);
-      var foundAllErrors = true;
-      errorKeys.forEach(function (i) {
-        var errorSelector = $('[name="' + i + '"]');
-
-        if (errorSelector.length > 0) {
-          errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-        } else {
-          foundAllErrors = false;
-          logs.push(errors[i][0]);
-        }
-      }); // If not all error fields could be found, show a generic error message on top of the form.
-
-      if (!foundAllErrors) {
-        var genericError = $('#entity-form-generic-error .error-logs');
-        genericError.html('');
-        logs.forEach(function (i) {
-          var msg = i + "<br />";
-          genericError.append(msg);
-        });
-        $('#entity-form-generic-error').show();
+    $(this).data('with-maintenance', true);
+    $(this).submit(function (e) {
+      if ($(this).data('checked-maintenance') === true) {
+        return true;
       }
 
-      var firstItem = Object.keys(errors)[0];
-      var firstItemDom = document.getElementsByName(firstItem); // If we can actually find the first element, switch to it and the correct tab.
-
-      if (firstItemDom[0]) {
-        firstItemDom[0].scrollIntoView({
-          behavior: 'smooth'
-        }); // Switch tabs/pane
-
-        $('.tab-content .active').removeClass('active');
-        $('.nav-tabs li.active').removeClass('active');
-        var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
-        firstPane.addClass('active');
-        $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
-      } // Reset submit buttons
-
-
-      resetEntityFormSubmitAnimation();
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('action'),
+        method: $(this).attr('method'),
+        data: $(this).serialize(),
+        context: this
+      }).done(function () {
+        //console.log('good?');
+        // If the validation succeeded, we can really submit the form
+        $(this).data('checked-maintenance', true).submit();
+        return true;
+      }).fail(function (err) {
+        window.formErrorHandler(err, this);
+      });
     });
   });
-}
-/**
- *
- */
-
-
-function resetEntityFormSubmitAnimation() {
-  var submit = $('form[data-maintenance="1"]').find('.btn-success');
-
-  if (submit.length > 0) {
-    $.each(submit, function () {
-      $(this).removeAttr('disabled');
-
-      if ($(this).data('reset')) {
-        $(this).find('.spinner').hide().parent().find('span').show();
-      }
-    });
-  }
-}
-/**
- * When the relation form is submitted, we want to ajax validate the request first
- */
-
-
-function registerRelationFormSubmit() {
-  $('#relation-form').submit(function (e) {
-    if (validRelationForm) {
-      return true;
-    }
-
-    e.preventDefault();
-    $.ajax({
-      url: $(this).attr('action'),
-      method: $(this).attr('method'),
-      data: $(this).serialize()
-    }).done(function () {
-      // If the validation succeeded, we can really submit the form
-      validRelationForm = true;
-      $('#relation-form').submit();
-      return true;
-    }).fail(function (err) {
-      // Reset any error fields
-      $('.input-error').removeClass('input-error');
-      $('.text-danger').remove(); // If we have a 503 error status, let's assume it's from cloudflare and help the user
-      // properly save their data.
-
-      if (err.status === 503) {
-        window.showToast(err.responseJSON.message);
-        resetRelationFormSubmitAnimation();
-        return;
-      } // Loop through the errors to add the class and error message
-
-
-      var errors = err.responseJSON.errors;
-      var errorKeys = Object.keys(errors);
-      var foundAllErrors = true;
-      errorKeys.forEach(function (i) {
-        var errorSelector = $('[name="' + i + '"]');
-
-        if (errorSelector.length > 0) {
-          errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-        } else {
-          foundAllErrors = false;
-        }
-      }); // Reset submit buttons
-
-      resetRelationFormSubmitAnimation();
-    });
-  });
-}
-/**
- *
- */
-
-
-function resetRelationFormSubmitAnimation() {
-  var submit = $('#relation-form').find('.btn-success');
-
-  if (submit.length > 0) {
-    $.each(submit, function () {
-      $(this).removeAttr('disabled');
-
-      if ($(this).data('reset')) {
-        $(this).html($(this).data('reset'));
-      }
-    });
-  }
 }
 /**
  * Datagrid Sorter field
@@ -23982,6 +23799,80 @@ window.handleExploreMapClick = function (ev) {
   $('#marker-latitude').val(lat);
   $('#marker-longitude').val(lng);
   $('#marker-modal').modal('show');
+};
+
+/***/ }),
+
+/***/ "./resources/assets/js/utility/formError.js":
+/*!**************************************************!*\
+  !*** ./resources/assets/js/utility/formError.js ***!
+  \**************************************************/
+/***/ (() => {
+
+window.formErrorHandler = function (err, form) {
+  $('.input-error').removeClass('input-error');
+  $('.text-danger').remove(); // Re-enable the submit button
+
+  $(form).find('.btn-success').prop('disabled', false).removeClass('loading'); // If we have a 503 error status, let's assume it's from cloudflare and help the user
+  // properly save their data.
+
+  if (err.status === 503) {
+    window.showToast(err.responseJSON.message, 'toast-error');
+    return;
+  } // If it's 403, the session is gone
+
+
+  if (err.status === 403) {
+    $('#entity-form-403-error').show();
+    return;
+  } // Loop through the errors to add the class and error message
+
+
+  var errors = err.responseJSON.errors;
+  var logs = [];
+  var errorKeys = Object.keys(errors);
+  var foundAllErrors = true;
+  errorKeys.forEach(function (i) {
+    var errorSelector = $('[name="' + i + '"]');
+
+    if (errorSelector.length > 0) {
+      errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+    } else {
+      foundAllErrors = false;
+      logs.push(errors[i][0]);
+    }
+  }); // If not all error fields could be found, show a generic error message on top of the form.
+
+  if (!foundAllErrors) {
+    var genericError = $('#entity-form-generic-error .error-logs');
+    genericError.html('');
+    logs.forEach(function (i) {
+      var msg = i + "<br />";
+      genericError.append(msg);
+    });
+    $('#entity-form-generic-error').show();
+  } // No tabs? Try no further
+
+
+  if ($(this).find('.tab-content').length === 0) {
+    return;
+  }
+
+  var firstItem = Object.keys(errors)[0];
+  var firstItemDom = document.getElementsByName(firstItem); // If we can actually find the first element, switch to it and the correct tab.
+
+  if (!firstItemDom[0]) {
+    return;
+  }
+
+  firstItemDom[0].scrollIntoView({
+    behavior: 'smooth'
+  });
+  $('.tab-content .active').removeClass('active');
+  $('.nav-tabs li.active').removeClass('active');
+  var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
+  firstPane.addClass('active');
+  $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
 };
 
 /***/ }),

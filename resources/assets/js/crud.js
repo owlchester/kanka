@@ -14,8 +14,6 @@ var entityCalendarModalForm;
 
 var entityName;
 
-var validEntityForm = false, validRelationForm = false;
-
 $(document).ready(function () {
 
     registerDynamicRows();
@@ -32,7 +30,7 @@ $(document).ready(function () {
 
     registerFormSubmitAnimation();
     registerEntityCalendarForm();
-    registerEntityFormSubmit();
+    registerFormMaintenance();
     registerEntityCalendarModal();
     registerModalLoad();
     registerDatagridSorter();
@@ -49,9 +47,9 @@ $(document).ready(function () {
  */
 function registerModalLoad() {
     $(document).on('shown.bs.modal shown.bs.popover', function () {
-        registerRelationFormSubmit();
         registerEntityCalendarModal();
         registerEntityFormActions();
+        registerFormMaintenance();
     });
 }
 
@@ -139,9 +137,7 @@ function registerFormSubmitAnimation() {
                     } else {
                         $(this)
                             .prop('disabled', true)
-                            .data('reset', true)
-                            .find('span').hide()
-                            .parent().find('.spinner').show();
+                            .addClass('loading');
                     }
                 });
 
@@ -349,173 +345,37 @@ function registerUnsavedChanges() {
 /**
  * When the entity form is submitted, we want to ajax validate the request first
  */
-function registerEntityFormSubmit() {
-    $('form[data-maintenance="1"]').submit(function (e) {
-        if (validEntityForm) {
-            return true;
+function registerFormMaintenance() {
+    $('form[data-maintenance="1"]').each(function() {
+        // Because we call this function again on each modal shown (for loading forms in modals), we need to
+        // save on each form if the listener has already been added, to avoid having multiple onSubmits on
+        // the same element for the same feature.
+        if ($(this).data('with-maintenance') === true) {
+            return;
         }
+        $(this).data('with-maintenance', true);
 
-        e.preventDefault();
-
-        $.ajax({
-            url: $(this).attr('action'),
-            method: $(this).attr('method'),
-            data: $(this).serialize()
-        }).done(function () {
-            //console.log('good?');
-            // If the validation succeeded, we can really submit the form
-            validEntityForm = true;
-            $('form[data-maintenance="1"]').submit();
-            return true;
-        }).fail(function (err) {
-            //console.log('error', err);
-            // Reset any error fields
-            $('.input-error').removeClass('input-error');
-            $('.text-danger').remove();
-
-            // If we have a 503 error status, let's assume it's from cloudflare and help the user
-            // properly save their data.
-            if (err.status === 503) {
-                window.showToast(err.responseJSON.message, 'toast-error');
-                resetEntityFormSubmitAnimation();
-                return;
+        $(this).submit(function (e) {
+            if ($(this).data('checked-maintenance') === true) {
+                return true;
             }
+            e.preventDefault();
 
-            // If it's 403, the session is gone
-            if (err.status === 403) {
-                $('#entity-form-403-error').show();
-                resetEntityFormSubmitAnimation();
-            }
-
-            // Loop through the errors to add the class and error message
-            let errors = err.responseJSON.errors;
-            let logs = [];
-
-            let errorKeys = Object.keys(errors);
-            let foundAllErrors = true;
-            errorKeys.forEach(function (i) {
-                let errorSelector = $('[name="' + i + '"]');
-                if (errorSelector.length > 0) {
-                    errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-                } else {
-                    foundAllErrors = false;
-                    logs.push(errors[i][0]);
-                }
+            $.ajax({
+                url: $(this).attr('action'),
+                method: $(this).attr('method'),
+                data: $(this).serialize(),
+                context: this,
+            }).done(function () {
+                //console.log('good?');
+                // If the validation succeeded, we can really submit the form
+                $(this).data('checked-maintenance', true).submit();
+                return true;
+            }).fail(function (err) {
+                window.formErrorHandler(err, this);
             });
-
-            // If not all error fields could be found, show a generic error message on top of the form.
-            if (!foundAllErrors) {
-                let genericError = $('#entity-form-generic-error .error-logs');
-                genericError.html('');
-                logs.forEach(function (i) {
-                    let msg = i + "<br />";
-                    genericError.append(msg);
-                });
-                $('#entity-form-generic-error').show();
-            }
-
-            let firstItem = Object.keys(errors)[0];
-            let firstItemDom = document.getElementsByName(firstItem);
-
-            // If we can actually find the first element, switch to it and the correct tab.
-            if (firstItemDom[0]) {
-                firstItemDom[0].scrollIntoView({ behavior: 'smooth' });
-
-                // Switch tabs/pane
-                $('.tab-content .active').removeClass('active');
-                $('.nav-tabs li.active').removeClass('active');
-                let firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
-                firstPane.addClass('active');
-                $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
-            }
-
-            // Reset submit buttons
-            resetEntityFormSubmitAnimation();
         });
     });
-}
-
-/**
- *
- */
-function resetEntityFormSubmitAnimation() {
-    var submit = $('form[data-maintenance="1"]').find('.btn-success');
-    if (submit.length > 0) {
-        $.each(submit, function () {
-            $(this).removeAttr('disabled');
-            if ($(this).data('reset')) {
-                $(this).find('.spinner').hide()
-                    .parent().find('span').show();
-            }
-        });
-    }
-}
-
-/**
- * When the relation form is submitted, we want to ajax validate the request first
- */
-function registerRelationFormSubmit() {
-    $('#relation-form').submit(function (e) {
-        if (validRelationForm) {
-            return true;
-        }
-        e.preventDefault();
-
-        $.ajax({
-            url: $(this).attr('action'),
-            method: $(this).attr('method'),
-            data: $(this).serialize()
-        }).done(function () {
-            // If the validation succeeded, we can really submit the form
-            validRelationForm = true;
-            $('#relation-form').submit();
-            return true;
-        }).fail(function (err) {
-            // Reset any error fields
-            $('.input-error').removeClass('input-error');
-            $('.text-danger').remove();
-
-            // If we have a 503 error status, let's assume it's from cloudflare and help the user
-            // properly save their data.
-            if (err.status === 503) {
-                window.showToast(err.responseJSON.message);
-                resetRelationFormSubmitAnimation();
-                return;
-            }
-
-            // Loop through the errors to add the class and error message
-            var errors = err.responseJSON.errors;
-
-            var errorKeys = Object.keys(errors);
-            var foundAllErrors = true;
-            errorKeys.forEach(function (i) {
-                var errorSelector = $('[name="' + i + '"]');
-                if (errorSelector.length > 0) {
-                    errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-                } else {
-                    foundAllErrors = false;
-                }
-            });
-
-            // Reset submit buttons
-            resetRelationFormSubmitAnimation();
-        });
-    });
-}
-
-/**
- *
- */
-function resetRelationFormSubmitAnimation() {
-    var submit = $('#relation-form').find('.btn-success');
-    if (submit.length > 0) {
-        $.each(submit, function () {
-            $(this).removeAttr('disabled');
-            if ($(this).data('reset')) {
-                $(this).html($(this).data('reset'));
-            }
-        });
-    }
 }
 
 /**
