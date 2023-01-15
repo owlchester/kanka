@@ -22,7 +22,7 @@
         @include('families._menu', ['active' => 'tree', 'model' => $family])
 
         <div class="entity-main-block">
-            <div class="family-tree-setup"
+            <div class="family-tree-setup overflow-x overflow-y"
                  data-api="{{ route('families.family-tree.api', $family) }}">
 
             </div>

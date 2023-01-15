@@ -28,8 +28,8 @@ class FamilyTreeService
     {
         $campaign = $this->family->campaign;
 
-        // Take 7 random characters
-        $take = 7;
+        // Take X random characters
+        $take = 8;
         $characters = Character::with('entity')->has('entity')->take($take)->get();
 
         if (count($characters) != $take) {
@@ -61,6 +61,7 @@ class FamilyTreeService
         $data['entities'][4]['name'] = 'Boris Morley';
         $data['entities'][5]['name'] = 'Francis-Pedro Morley';
         $data['entities'][6]['name'] = 'Frederico Morley';
+        $data['entities'][7]['name'] = 'Fabiano Morley-Sadhet';
 
         /**
          * Build nodes
@@ -87,10 +88,24 @@ class FamilyTreeService
                                             ],
                                             [
                                                 'entity_id' => 6,
-                                            ]
-                                        ]
+                                            ],
+                                            [
+                                                'entity_id' => 7,
+                                                'relations' => [
+                                                    [
+                                                        'entity_id' => 6
+                                                    ]
+                                                ]
+                                            ],
+                                            [
+                                                'entity_id' => 1,
+                                            ],
+                                        ],
                                     ]
                                 ]
+                            ],
+                            [
+                                'entity_id' => 7
                             ]
                         ],
                     ],
@@ -102,8 +117,12 @@ class FamilyTreeService
                             // Child
                             [
                                 'entity_id' => 4,
+                            ],
+                            [
+                                'entity_id' => 7,
                             ]
-                        ]
+                        ],
+                        'largest_node' => 2
                     ]
                 ]
             ]
