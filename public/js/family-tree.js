@@ -2100,13 +2100,13 @@ var entityNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
   align: 'center',
   breakWords: true,
   wordWrap: true,
-  wordWrapWidth: 160
+  wordWrapWidth: 140
 });
 var relationNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
   fontFamily: 'Arial',
   fontSize: 14,
   wordWrap: true,
-  wordWrapWidth: 440
+  wordWrapWidth: 140
 }); // Listen for frame updates
 
 /*app.ticker.add(() => {

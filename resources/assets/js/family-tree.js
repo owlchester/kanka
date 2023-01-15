@@ -34,14 +34,14 @@ const entityNameStyle = new TextStyle({
     align: 'center',
     breakWords: true,
     wordWrap: true,
-    wordWrapWidth: 160,
+    wordWrapWidth: 140,
 });
 
 const relationNameStyle = new TextStyle({
     fontFamily: 'Arial',
     fontSize: 14,
     wordWrap: true,
-    wordWrapWidth: 440,
+    wordWrapWidth: 140,
 });
 
 

@@ -93,7 +93,8 @@ class FamilyTreeService
                                                 'entity_id' => 7,
                                                 'relations' => [
                                                     [
-                                                        'entity_id' => 6
+                                                        'entity_id' => 6,
+                                                        'role' => 'Schnitzel',
                                                     ]
                                                 ]
                                             ],
