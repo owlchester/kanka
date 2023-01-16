@@ -15,7 +15,7 @@
 ])
 
 @section('content')
-    {!! Form::model($model, ['route' => ['maps.map_groups.update', 'map' => $map, 'map_group' => $model], 'method' => 'PATCH', 'id' => 'map-group-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform']) !!}
+    {!! Form::model($model, ['route' => ['maps.map_groups.update', 'map' => $map, 'map_group' => $model], 'method' => 'PATCH', 'id' => 'map-group-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-maintenance' => 1]) !!}
 
     @include('partials.forms.form', [
         'title' => __('maps/groups.edit.title', ['name' => $map->name]),

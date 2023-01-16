@@ -9,7 +9,7 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['entities.inventories.store', $entity->id], 'method'=>'POST', 'data-shortcut' => 1]) !!}
+    {!! Form::open(['route' => ['entities.inventories.store', $entity->id], 'method'=>'POST', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
     @include('partials.forms.form', [
             'title' => __('entities/inventories.create.title', ['name' => $entity->name]),
             'content' => 'entities.pages.inventory._form',

@@ -16,7 +16,7 @@
 
 @section('content')
 
-    {!! Form::open(['route' => ['maps.map_groups.store', $map], 'method' => 'POST', 'data-shortcut' => 1]) !!}
+    {!! Form::open(['route' => ['maps.map_groups.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
 
     @include('partials.forms.form', [
         'title' => __('maps/groups.create.title', ['name' => $map->name]),

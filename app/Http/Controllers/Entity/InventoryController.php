@@ -95,6 +95,10 @@ class InventoryController extends Controller
     {
         $this->authorize('update', $entity->child);
 
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $data = $request->only($this->fillable);
         $ajax = $request->ajax();
 

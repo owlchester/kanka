@@ -168,6 +168,7 @@
                         //'enctype' => 'multipart/form-data',
                         //'id' => 'map-marker-new-form'
                         'class' => 'ajax-subform',
+                        'data-maintenance' => 1
                     ]) !!}
                     @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.map_markers.index:' . $model->id)])
 
