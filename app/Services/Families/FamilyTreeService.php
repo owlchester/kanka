@@ -143,7 +143,6 @@ class FamilyTreeService
                                 'entity_id' => 7,
                             ]
                         ],
-                        'largest_node' => 2
                     ]
                 ]
             ]
