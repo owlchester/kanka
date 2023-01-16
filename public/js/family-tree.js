@@ -2150,7 +2150,12 @@ var drawEntity = function drawEntity(entity, x, y) {
 
 
 var drawRelation = function drawRelation(relation, sourceX, sourceY, drawX, drawY, index) {
-  var entity = entities[relation.entity_id]; //console.log('Draw relation', entity.name, drawX);
+  var entity = entities[relation.entity_id];
+
+  if (!entity) {
+    return;
+  } //console.log('Draw relation', entity.name, drawX);
+
 
   drawEntity(entity, drawX, drawY); // Draw the lines between the original and this relations
 
@@ -2345,7 +2350,12 @@ var relationWidth = function relationWidth(relation, index) {
 
 var drawNode = function drawNode(node, sourceX, sourceY, drawX, drawY) {
   // Draw the main entity of the node
-  var entity = entities[node.entity_id]; //console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
+  var entity = entities[node.entity_id];
+
+  if (!entity) {
+    return;
+  } //console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
+
 
   drawEntity(entity, drawX, drawY); // No relations to draw, finished with the node
 

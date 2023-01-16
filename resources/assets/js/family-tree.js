@@ -100,6 +100,9 @@ const drawEntity = (entity, x, y) => {
  */
 const drawRelation = (relation, sourceX, sourceY, drawX, drawY, index) => {
     let entity = entities[relation.entity_id];
+    if (!entity) {
+        return;
+    }
 
     //console.log('Draw relation', entity.name, drawX);
 
@@ -339,6 +342,9 @@ const relationWidth = (relation, index) => {
 const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
     // Draw the main entity of the node
     let entity = entities[node.entity_id];
+    if (!entity) {
+        return;
+    }
 
     //console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
     drawEntity(entity, drawX, drawY);

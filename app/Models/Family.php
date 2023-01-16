@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int|null $location_id
  * @property Collection|Character[] $members
  * @property Family $family
+ * @property FamilyTree $familyTree
  * @property Collection|Family[] $families
  * @property Collection|Family[] $descendants
  */
@@ -169,6 +170,11 @@ class Family extends MiscModel
     public function location()
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');
+    }
+
+    public function familyTree()
+    {
+        return $this->hasOne(FamilyTree::class);
     }
 
     /**
