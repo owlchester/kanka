@@ -9,7 +9,7 @@
 ])
 
 @section('content')
-    {!! Form::model($inventory, ['route' => ['entities.inventories.update', $entity->id, $inventory], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+    {!! Form::model($inventory, ['route' => ['entities.inventories.update', $entity->id, $inventory], 'method' => 'PATCH', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
 
     @include('partials.forms.form', [
         'title' => __('entities/inventories.update.title', ['name' => $entity->name]),
