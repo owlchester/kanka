@@ -196,7 +196,7 @@ class FamilyTreeService
                                 'relations' => [
                                     [
                                         'entity_id' => 4,
-                                        'role' => 'Husband',
+                                        'role' => 'Partner',
                                         'uuid' => 'a0000000-0000-0000-0000-000000000000',
                                         'children' => [
                                             [
