@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions' => [
+        'customise' => 'Customise sidebar',
+    ],
     'create'            => [
         'title' => 'New Quick Link',
     ],
