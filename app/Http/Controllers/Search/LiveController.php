@@ -100,6 +100,7 @@ class LiveController extends Controller
                 ->campaign($campaign)
                 ->exclude([config('entities.ids.menu_link')])
                 ->excludeIds($exclude)
+                ->only($request->get('only'))
                 ->find()
         );
     }

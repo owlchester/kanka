@@ -69,6 +69,7 @@ Route::get('/families/{family}/families', 'FamilyController@families')->name('fa
 Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
 Route::get('/families/{family}/tree', [\App\Http\Controllers\Families\FamilyTreeController::class, 'index'])->name('families.family-tree');
 Route::get('/families/{family}/tree/api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'api'])->name('families.family-tree.api');
+Route::post('/families/{family}/tree/api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'save'])->name('families.family-tree.api-save');
 
 // Items menu
 Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');

@@ -36,14 +36,7 @@ class FamilyTreeService
 
     protected function loadSetup(): void
     {
-        $familyTree = $this->family->familyTree;
-        if (!$familyTree) {
-            $familyTree = new FamilyTree();
-            $familyTree->family_id = $this->family->id;
-            $familyTree->config = $this->fakeNode();
-            $familyTree->save();
-        }
-        $this->familyTree = $familyTree;
+        $this->loadFamilyTree();
 
         // Get all the entity ids
         if (empty($this->familyTree->config)) {
@@ -54,6 +47,17 @@ class FamilyTreeService
         //foreach ()
     }
 
+    protected function loadFamilyTree(): void
+    {
+        $familyTree = $this->family->familyTree;
+        if (!$familyTree) {
+            $familyTree = new FamilyTree();
+            $familyTree->family_id = $this->family->id;
+            $familyTree->config = $this->fakeNode();
+            $familyTree->save();
+        }
+        $this->familyTree = $familyTree;
+    }
     protected function prepareEntities(): void
     {
         $val = [];
@@ -177,37 +181,46 @@ class FamilyTreeService
         return [
             [
                 'entity_id' => 0,
+                'uuid' => 'df968aa7-74e0-4b38-b887-7d239c458876',
                 'relations' => [
                     // First relation, current wife with kids
                     [
                         'entity_id' => 1,
                         'role' => 'Wife',
+                        'uuid' => 'ae064fb7-db8f-487f-9675-ed9fb595e110',
                         'children' => [
                             // First child, with husband
                             [
                                 'entity_id' => 3,
+                                'uuid' => '20000000-0000-0000-0000-000000000000',
                                 'relations' => [
                                     [
                                         'entity_id' => 4,
                                         'role' => 'Husband',
+                                        'uuid' => 'a0000000-0000-0000-0000-000000000000',
                                         'children' => [
                                             [
                                                 'entity_id' => 5,
+                                                'uuid' => 'b0000000-0000-0000-0000-000000000000',
                                             ],
                                             [
                                                 'entity_id' => 6,
+                                                'uuid' => 'c0000000-0000-0000-0000-000000000000',
                                             ],
                                             [
                                                 'entity_id' => 12,
+                                                'uuid' => 'd0000000-0000-0000-0000-000000000000',
                                                 'relations' => [
                                                     [
                                                         'entity_id' => 6,
+                                                        'uuid' => 'e0000000-0000-0000-0000-000000000000',
                                                         'role' => 'Schnitzel',
                                                     ]
                                                 ]
                                             ],
                                             [
                                                 'entity_id' => 8,
+                                                'uuid' => 'f0000000-0000-0000-0000-000000000000',
                                             ],
                                         ],
                                     ]
@@ -215,13 +228,16 @@ class FamilyTreeService
                             ],
                             [
                                 'entity_id' => 14,
+                                'uuid' => 'g0000000-0000-0000-0000-000000000000',
                                 'relations' => [
                                     [
                                         'entity_id' => 13,
+                                        'uuid' => 'h0000000-0000-0000-0000-000000000000',
                                         'role' => 'Schach',
                                         'children' => [
                                             [
-                                                'entity_id' => 9
+                                                'entity_id' => 9,
+                                                'uuid' => 'i0000000-0000-0000-0000-000000000000',
                                             ],
                                         ]
                                     ]
@@ -229,10 +245,12 @@ class FamilyTreeService
                             ],
                             [
                                 'entity_id' => 7,
+                                'uuid' => 'j0000000-0000-0000-0000-000000000000',
                                 'relations' => [
                                     [
                                         'entity_id' => 6,
                                         'role' => 'Schühle',
+                                        'uuid' => 'k0000000-0000-0000-0000-000000000000',
                                     ]
                                 ],
                             ]
@@ -242,13 +260,16 @@ class FamilyTreeService
                     [
                         'entity_id' => 2,
                         'role' => 'Ex-wife',
+                        'uuid' => 'l0000000-0000-0000-0000-000000000000',
                         'children' => [
                             // Child
                             [
                                 'entity_id' => 11,
+                                'uuid' => 'm0000000-0000-0000-0000-000000000000',
                             ],
                             [
                                 'entity_id' => 10,
+                                'uuid' => 'n0000000-0000-0000-0000-000000000000',
                             ]
                         ],
                     ]
@@ -268,5 +289,39 @@ class FamilyTreeService
             'error' => true,
             'code' => __($code)
         ];
+    }
+
+    /**
+     * Save a new tree config to the database
+     * @param string|null $data
+     * @return $this
+     */
+    public function save(string $data = null): self
+    {
+        $this->loadFamilyTree();
+        if (empty($data)) {
+            $this->familyTree->config = [];
+            $this->familyTree->save();
+            return $this;
+        }
+
+        $data = json_decode($data);
+        $data = $this->prepareForSave($data);
+
+        $this->familyTree->config = $data;
+        $this->familyTree->save();
+
+        return $this;
+    }
+
+    /**
+     * Prepare a new config for the database by adding a uuid everywhere
+     * @param string $data
+     * @return array
+     */
+    protected function prepareForSave(array $data): array
+    {
+        // Loop on the data, adding a uuid on each element that is missing one
+        return $data;
     }
 }

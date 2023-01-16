@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Family;
 use App\Services\Families\FamilyTreeService;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Support\Facades\Request;
 
 class FamilyTreeController extends Controller
 {
@@ -32,12 +33,34 @@ class FamilyTreeController extends Controller
         ;
     }
 
+    /**
+     * Provide the family tree info as a json
+     * @param Family $family
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function api(Family $family)
     {
         return response()->json(
             $this
                 ->service
                 ->family($family)
+                ->api()
+        );
+    }
+
+    /**
+     * Save the new config
+     * @param Request $request
+     * @param Family $family
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function save(Request $request, Family $family)
+    {
+        return response()->json(
+            $this
+                ->service
+                ->family($family)
+                ->save($request->get('data'))
                 ->api()
         );
     }

@@ -141,11 +141,15 @@ class SearchService
     }
 
     /**
-     * @param array|string $types
+     * @param array|string $types = null
      * @return $this
      */
-    public function only($types): self
+    public function only(array|string $types = null): self
     {
+        if (empty($types)) {
+            $this->onlyTypes = [];
+            return $this;
+        }
         $this->onlyTypes = is_array($types) ? $types : [$types];
         return $this;
     }
