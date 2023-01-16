@@ -19,29 +19,19 @@ const graphics = new Graphics();
 
 const entityNameStyle = new TextStyle({
     fontFamily: 'Arial',
-    fontSize: 18,
-    fontStyle: 'italic',
+    fontSize: 16,
     fontWeight: 'bold',
-    fill: ['#ffffff', '#00ff99'], // gradient
-    stroke: '#4a1850',
-    strokeThickness: 5,
-    dropShadow: true,
-    dropShadowColor: '#000000',
-    dropShadowBlur: 4,
-    dropShadowAngle: Math.PI / 6,
-    dropShadowDistance: 6,
     lineJoin: 'round',
-    align: 'center',
     breakWords: true,
     wordWrap: true,
-    wordWrapWidth: 140,
+    wordWrapWidth: 120,
 });
 
 const relationNameStyle = new TextStyle({
     fontFamily: 'Arial',
     fontSize: 14,
     wordWrap: true,
-    wordWrapWidth: 140,
+    wordWrapWidth: 120,
 });
 
 
@@ -53,10 +43,10 @@ const relationNameStyle = new TextStyle({
 
 let entities = null;
 let nodes = null;
-let offsetIncrement = 40;
+let offsetIncrement = 20;
 let childrenLineHeight = 50;
-let entityWidth = 160;
-let entityHeight = 80;
+let entityWidth = 140;
+let entityHeight = 60;
 
 /**
  * Draw an entity box with their name, avatar, and click link
@@ -111,7 +101,7 @@ const drawEntity = (entity, x, y) => {
 const drawRelation = (relation, sourceX, sourceY, drawX, drawY, index) => {
     let entity = entities[relation.entity_id];
 
-    console.log('Draw relation', entity.name, drawX);
+    //console.log('Draw relation', entity.name, drawX);
 
     drawEntity(entity, drawX, drawY);
 
@@ -144,7 +134,7 @@ const drawRelation = (relation, sourceX, sourceY, drawX, drawY, index) => {
  */
 const drawChildren = (children, sourceX, sourceY, parentX, parentY, index) => {
 
-    //console.log('👩‍👩‍👦‍👦 Draw children');
+    //console.log('👩 Draw children');
     // If it's the first element of relations, push to the left
     let startX = sourceX;
     let startY = sourceY + entityHeight + childrenLineHeight;
@@ -155,16 +145,16 @@ const drawChildren = (children, sourceX, sourceY, parentX, parentY, index) => {
     let lineX = index === 0 ? drawX + entityWidth + 20 : parentX;
     drawParentChildrenLine(lineX, drawY - 30, index);
 
+    let nodeOffset = 1;
     children.forEach((node) => {
-        drawChildrenLine(lineX, sourceY + entityHeight + childrenLineHeight, drawX, drawY);
+
+        drawChildrenLine(lineX, drawY - 20, drawX, drawY);
         drawNode(node, startX, startY, drawX, drawY);
 
         // When preparing to draw the next child, we need to figure out how large the current child was, width wise?
-        let nodes = 1;
-        if (node.relations) {
-            nodes += nodeWidth(node.relations);
-        }
-        drawX += (entityWidth + offsetIncrement) * nodes;
+        nodeOffset = childWidth(node);
+        //console.log('Looping children', nodeOffset, node);
+        drawX += (entityWidth + offsetIncrement) * nodeOffset;
     });
 
 };
@@ -217,10 +207,8 @@ const drawChildrenLine = (originX, originY, targetX, targetY) => {
 
     let offsetX = (entityWidth / 2);
     let path = [
-        // oigin bottom
-        originX + offsetX, originY,
-        // origin top
-        originX + offsetX, originY - 20,
+        // origin
+        originX, originY,
 
         // target top
         targetX + offsetX, targetY - 20,
@@ -230,9 +218,6 @@ const drawChildrenLine = (originX, originY, targetX, targetY) => {
 
         // target top
         targetX + offsetX, targetY - 20,
-
-        // origin bottom
-        originX + offsetX, originY - 20,
     ];
     graphics.lineStyle(1);
     graphics.beginFill(0x3500FA, 1);
@@ -285,59 +270,77 @@ const drawParentChildrenLine = (drawX, drawY, index) => {
  * @param drawY
  */
 const drawRelations = (relations, sourceX, sourceY, drawX, drawY) => {
-    let nodeOffset = 0;
-    //console.warn('Draw Relations');
+    let nodeOffset = 1;
+    //console.info('Draw Relations', relations);
     relations.forEach((rel, index) => {
         // If this is the first relation, we want to draw it next to the parent
         let tmpOffsetX = entityWidth + offsetIncrement;
         // However, if it's not, we need to add more padding, based on the previous node width
         if (index > 0) {
-            tmpOffsetX *= nodeOffset;
+            tmpOffsetX *= nodeOffset - 1;
         }
 
-        //offsetX += offsetIncrement + entityWidth;
         drawRelation(rel, drawX, sourceY, drawX + tmpOffsetX, drawY, index);
-        // Reset the offset back
-        //offsetX -= offsetIncrement + entityWidth;
 
-        nodeOffset += nodeWidth(rel);
+        nodeOffset += relationWidth(rel, 0);
     });
 };
 
-/**
- * Figure out how wide a node is
- * @param node
- * @returns {number}
- */
-const nodeWidth = (node) => {
-    let width = 1;
+const childWidth = (child, index) => {
+    let size = 1;
 
-    if (node.children) {
-        let tmp = node.children.length;
-        if (tmp > width) {
-            width = tmp;
-        }
-
-        node.children.forEach((child) => {
-            if (child.relations) {
-                child.relations.forEach((rel) => {
-                    let tmpRel = nodeWidth(rel);
-                    if (tmpRel > width) {
-                        width = tmpRel;
-                    }
-                });
+    // If the child has relations, need to find those
+    if (child.relations !== undefined) {
+        let largestChild = 2; // At least two because this entity + relation = 2
+        child.relations.forEach(rel => {
+            let tmp = relationWidth(rel);
+            if (tmp > largestChild) {
+                largestChild = tmp;
             }
         });
+        size = largestChild;
     }
 
-    return width;
+    // If the child has children of its own? Is that possible?
+    //console.log('child', child, largestChild);
+
+
+    //console.log('- relation width', index, width);
+    return size;
+};
+
+const relationWidth = (relation, index) => {
+    let size = 1;
+
+    // No children, only relation, end it there
+    if (relation.children === undefined) {
+        return size;
+    }
+
+    relation.children.forEach(child => {
+        if (child.relations === undefined) {
+            size++;
+            return;
+        }
+
+        let largestChild = 0;
+        child.relations.forEach(rel => {
+            let tmp = relationWidth(rel);
+            if (tmp > largestChild) {
+                largestChild = tmp;
+            }
+        });
+        size += largestChild;
+    });
+
+    return size;
 };
 
 const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
     // Draw the main entity of the node
     let entity = entities[node.entity_id];
 
-    console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
+    //console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
     drawEntity(entity, drawX, drawY);
 
     // No relations to draw, finished with the node
@@ -351,8 +354,8 @@ const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
 
 const renderPage = () => {
     axios.get(container.dataset.api).then((resp) => {
-        entities = resp.data['entities'];
-        nodes = resp.data['nodes'];
+        entities = resp.data.entities;
+        nodes = resp.data.nodes;
 
         /*console.info('Draw tree');
         console.log(entities);

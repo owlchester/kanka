@@ -106,7 +106,27 @@ class FamilyTreeService
                                 ]
                             ],
                             [
-                                'entity_id' => 7
+                                'entity_id' => 7,
+                                'relations' => [
+                                    [
+                                        'entity_id' => 6,
+                                        'role' => 'Schach',
+                                        'children' => [
+                                            [
+                                                'entity_id' => 1
+                                            ],
+                                        ]
+                                    ]
+                                ]
+                            ],
+                            [
+                                'entity_id' => 0,
+                                'relations' => [
+                                    [
+                                        'entity_id' => 6,
+                                        'role' => 'Schühle',
+                                    ]
+                                ],
                             ]
                         ],
                     ],
