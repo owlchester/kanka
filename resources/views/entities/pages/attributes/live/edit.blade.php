@@ -19,7 +19,7 @@
     @elseif ($attribute->validConstraints())
         <select name="value" class="form-control">
             @foreach ($attribute->listRange() as $option)
-                <option value="{{ $option }}" @if ($option == $attribute->value) selected="selected" @endif>{{ $option }}</option>
+                <option value="{{ $option }}" @if ($option == $attribute->value) selected="selected" @endif>{{ \App\Facades\Mentions::onlyName()->mapText($option) }}</option>
             @endforeach
         </select>
         <p class="help-block">{{ __('entities/attributes.ranges.text', ['options' => $attribute->listRangeText()]) }}</p>

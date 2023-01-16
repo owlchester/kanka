@@ -60,6 +60,9 @@ class MentionsService
     /** @var bool When false, parsing field:entry won't render mentions */
     protected bool $enableEntryField = true;
 
+    /** @var bool When true, names of entities will be rendered, instead of a tooltip link */
+    protected bool $onlyName = false;
+
     protected MarkupFixer $markupFixer;
 
     /**
@@ -80,6 +83,17 @@ class MentionsService
     public function map(MiscModel $model, string $field = 'entry'): string
     {
         $this->text = !empty($model->$field) ? $model->$field : '';
+        return $this->extractAndReplace();
+    }
+
+    /**
+     * Map a string
+     * @param string|null $text
+     * @return string
+     */
+    public function mapText(string $text = null): string
+    {
+        $this->text = $text;
         return $this->extractAndReplace();
     }
 
@@ -138,6 +152,12 @@ class MentionsService
         }
 
         return $this->extractAndReplace();
+    }
+
+    public function onlyName(bool $option = true): self
+    {
+        $this->onlyName = $option;
+        return $this;
     }
 
     /**
@@ -222,49 +242,6 @@ class MentionsService
             return $advancedMention;
         }, $text);
 
-        // TinyMCE mentions
-        /*$text = preg_replace(
-            '`<a class="mention" href="#" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
-            '$2',
-            $text
-        );
-        $text = preg_replace(
-            '`<a class="mention" href="#" data-mention="([^"]*)">(.*?)</a>`',
-            '$1',
-            $text
-        );*/
-
-        // Summernote will inject the link differently.
-        //dump($text);
-        /*$text = preg_replace_callback(
-            '`<a href="([^"]*)" class="mention" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
-            function ($data) {
-                //dump($data);
-                dd($data);
-                if (count($data) !== 5) {
-                    return $data[0];
-                }
-                // If the name was changed, inject advanced mention
-                if ($data[2] != $data[4]) {
-                    return str_replace(']', '|' . $data[4] . ']', $data[3]);
-                }
-                return $data[3];
-            },
-            $text
-        );*/
-
-        // Attributes
-        /*$text = preg_replace(
-            '`<a href="#" class="attribute attribute-mention" data-attribute="([^"]*)">(.*?)</a>`',
-            '$1',
-            $text
-        );
-        $text = preg_replace(
-            '`<a class="attribute attribute-mention" href="#" data-attribute="([^"]*)">(.*?)</a>`',
-            '$1',
-            $text
-        );*/
-
         // Remove advanced mention name blocks
         //dump($text);
         $text = preg_replace(
@@ -342,6 +319,10 @@ class MentionsService
 
             // No entity found, the user might not be allowed to see it
             if (empty($entity) || empty($entity->child)) {
+
+                if ($this->onlyName) {
+                    return __('crud.history.unknown');
+                }
                 $replace = Arr::get(
                     $data,
                     'text',
@@ -455,6 +436,10 @@ class MentionsService
 
                     $cssClasses[] = 'mention-field-' . Str::slug($field);
                 }
+
+                if ($this->onlyName) {
+                    return Arr::get($data, 'text', $entity->name);
+                }
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
@@ -467,6 +452,7 @@ class MentionsService
                     . Arr::get($data, 'text', $entity->name)
                     . '</a>';
             }
+
             return $replace;
         }, $this->text);
 
