@@ -358,17 +358,11 @@ class Attribute extends Model
             //dd('Missing constraints');
             return $this;
         }
-        $range = explode(',', $constraints[1]);
-
-        // Parse mentions?
-        foreach ($range as $k => $v) {
-            //$range[$k] = Mentions::mapAttribute($this, $v);
-        }
+        $this->listRange = explode(',', $constraints[1]);
 
         //dump($constraints);
         //dd($this->listRange);
 
-        $this->listRange = $range;
         return $this;
     }
 
