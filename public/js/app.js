@@ -19755,10 +19755,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     blockClass: function blockClass(active) {
       if (active) {
-        return 'block p-4 flex-grow items-center';
+        return 'block p-4 flex-grow items-center focus:box-shadow';
       }
 
-      return 'block p-4  items-center inactive cursor flex-none';
+      return 'block p-4  items-center inactive cursor flex-none focus:box-shadow';
     },
     logout: function logout() {
       console.info('loging out');
@@ -20319,7 +20319,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.openCampaigns();
     }),
-    "aria-label": "Switch campaigns"
+    "aria-label": "Switch campaigns",
+    tabindex: "0",
+    role: "button"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.campaignIcon()),
     "aria-hidden": "true"
@@ -20330,7 +20332,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.openProfile();
     }),
-    "aria-label": "Profile settings"
+    "aria-label": "Profile settings",
+    tabindex: "0",
+    role: "button"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [$data.show_alerts ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.showInitials() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.initials), 1
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -20345,7 +20349,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.blockClass($data.view_campaigns)),
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.openCampaigns();
-    })
+    }),
+    tabindex: "0",
+    role: "button",
+    "aria-label": "Campaign list"
   }, [$data.view_campaigns ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.campaignIcon()),
     "aria-hidden": "true"
@@ -20372,7 +20379,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.blockClass($data.view_profile)),
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.openProfile();
-    })
+    }),
+    tabindex: "0",
+    role: "button",
+    "aria-label": "Profile pane"
   }, [$data.view_profile ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [$options.showInitials() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.initials), 1
   /* TEXT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {

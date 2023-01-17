@@ -1,9 +1,9 @@
 <template>
     <div class="nav-switcher flex items-center justify-center">
-        <div class="campaigns inline cursor text-center px-5 text-2xl py-2" v-on:click="openCampaigns()" aria-label="Switch campaigns">
+        <div class="campaigns inline cursor text-center px-5 text-2xl py-2" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
             <i v-bind:class="campaignIcon()" aria-hidden="true"></i>
         </div>
-        <div class="profile inline cursor text-center text-uppercase pt-2" v-on:click="openProfile()" aria-label="Profile settings">
+        <div class="profile inline cursor text-center text-uppercase pt-2" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
             <div class="indicator">
                 <span class="notification-badge" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
@@ -19,7 +19,7 @@
         </div>
         <div class="" v-else>
             <div class="header flex">
-                <div :class="blockClass(view_campaigns)" v-on:click="openCampaigns()">
+                <div :class="blockClass(view_campaigns)" v-on:click="openCampaigns()" tabindex="0" role="button" aria-label="Campaign list">
                     <div class="full flex items-center" v-if="view_campaigns">
                         <div class="flex-none mr-4 text-2xl">
                             <i  v-bind:class="campaignIcon()" aria-hidden="true"></i>
@@ -33,7 +33,7 @@
                         <i  v-bind:class="campaignIcon()" aria-hidden="true"></i>
                     </div>
                 </div>
-                <div :class="blockClass(view_profile)" v-on:click="openProfile()">
+                <div :class="blockClass(view_profile)" v-on:click="openProfile()" tabindex="0" role="button" aria-label="Profile pane">
                     <div class="full flex items-center" v-if="view_profile">
                         <div class="flex-none mr-4 profile-box rounded-lg p-2 text-center text-uppercase font-bold" v-if="showInitials()">
                             {{ initials }}
@@ -321,9 +321,9 @@ export default {
         },
         blockClass: function(active) {
             if (active) {
-                return 'block p-4 flex-grow items-center';
+                return 'block p-4 flex-grow items-center focus:box-shadow';
             }
-            return 'block p-4  items-center inactive cursor flex-none';
+            return 'block p-4  items-center inactive cursor flex-none focus:box-shadow';
         },
         logout: function() {
             console.info('loging out');
