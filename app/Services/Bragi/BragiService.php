@@ -2,11 +2,14 @@
 
 namespace App\Services\Bragi;
 
+use App\Exceptions\OpenAiException;
 use App\Http\Requests\BragiRequest;
 use App\Models\BragiLog;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class BragiService
@@ -76,13 +79,18 @@ class BragiService
             ->input($prompt, $name)
             ->generate();
 
-        $data['result'] = $this->openAI->result();
+        try {
+            $data['result'] = $this->openAI->result();
 
-        $logs = [];
-        $logs = $openAI["usage"];
+            $logs = [];
+            $logs = $openAI["usage"];
 
-        // Log the result into the db for admins
-        $this->log($prompt, $data['result'], $logs);
+            // Log the result into the db for admins
+            $this->log($prompt, $data['result'], $logs);
+        } catch (OpenAiException $e) {
+            $data['result'] = 'API error, please try again';
+            Log::warning('OpenAI error', $e->getContext());
+        }
 
 
         $data['tokens'] = $this->user->availableTokens();

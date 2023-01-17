@@ -19673,26 +19673,43 @@ __webpack_require__.r(__webpack_exports__);
   directives: {
     clickOutside: (click_outside_vue3__WEBPACK_IMPORTED_MODULE_3___default().directive)
   },
+
+  /* Properties provided by the html component initialisation */
   props: {
+    /* The user ID */
     user_id: {
       type: String
     },
+
+    /* Route to the API to get info for the navbar */
     api: {
       type: String
     },
+
+    /* Route to the API to get new notifications */
     fetch: {
       type: String
     },
+
+    /* User's initials for when they have no picture */
     initials: {
       type: String
     },
+
+    /* User's profile picture link */
     avatar: {
       type: String
     },
+
+    /* The campaign ID (not used?) */
     campaign_id: undefined,
+
+    /* Bool to define if there are unread notifications */
     has_alerts: {
       type: Boolean
     },
+
+    /* Bool to define if using the fontawesome pro or free license */
     pro: {
       type: Boolean
     }
@@ -19706,10 +19723,15 @@ __webpack_require__.r(__webpack_exports__);
     return {
       // Check for updates in the localstorage every minute for new alerts
       alert_delta: 60 * 1000,
+      // Determine if waiting for data to load (show spinning wheel)
       is_loading: false,
+      // Determine if the pop-out menu is out
       is_expanded: false,
+      // Determine if the api data has been loaded
       has_data: false,
+      // Determine if the campaign list is being shown
       view_campaigns: false,
+      // Determine if the profile box is being shown
       view_profile: false,
       profile: {},
       campaigns: {},
@@ -19717,6 +19739,7 @@ __webpack_require__.r(__webpack_exports__);
       marketplace: {},
       releases: {},
       show_alerts: false,
+      // Determine if data from the api has been loaded
       is_loaded: false
     };
   },
@@ -22838,7 +22861,9 @@ function isInputField(ele) {
 
 function initSaveKeyboardShortcut(form) {
   $(document).bind('keydown', function (e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    //console.log((e.ctrlKey || e.metaKey), e.key.toLowerCase(), e.key.toLowerCase() === 's', e.shiftKey);
+    // Need to check on lowercase key, because shirt will uppercase it
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
       window.entityFormHasUnsavedChanges = false;
 
       if (e.shiftKey) {
