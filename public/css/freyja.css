@@ -454,6 +454,12 @@ body .main-header.main-header-start {
 .navigation-drawer .bordered {
   color: var(--header-link-colours);
 }
+.navigation-drawer .link {
+  color: var(--link-text);
+}
+.navigation-drawer .hover\:drop-shadow {
+  background-color: var(--main-navbar-background);
+}
 
 .nav-switcher .profile .profile-box {
   background-color: var(--header-profile-background, #333);

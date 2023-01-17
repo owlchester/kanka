@@ -75,6 +75,7 @@ class NavigationService
                     'amount' => $this->user->availableBoosts(),
                     'total' => $this->user->maxBoosts()
                 ]),
+                'call_to_action_2' => __('header.user.upgrade')
             ];
         }
         $data['subscription']['title'] = __('settings.menu.subscription');

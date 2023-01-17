@@ -122,6 +122,14 @@ body .main-header.main-header-start {
     .bordered {
         color: var(--header-link-colours);
     }
+
+    .link {
+        color: var(--link-text);
+    }
+
+    .hover\:drop-shadow {
+        background-color: var(--main-navbar-background);
+    }
 }
 .nav-switcher {
     .profile .profile-box {
