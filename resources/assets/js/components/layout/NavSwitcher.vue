@@ -140,7 +140,7 @@
                             </div>
                             <div class="more" v-else>
                                 {{ profile.subscription.call_to_action }}
-                                <p class="link">{{ profile.subscription.call_to_action_2 }}</p>
+                                <div class="link">{{ profile.subscription.call_to_action_2 }}</div>
                             </div>
                         </div>
                     </a>
