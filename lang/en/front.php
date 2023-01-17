@@ -230,7 +230,7 @@ return [
     'master'                => [
         'call_to_action'    => 'Create an account',
         'description'       => ':kanka is a community driven worldbuilding and tabletop RPG campaign management tool perfect for worldbuilders and game masters alike. We help you create and organize your campaigns and worlds with our @mentions system and a whole range of features such as calendars, interactive maps, timelines, organisations, families, and as many characters as you can come up with!',
-        'description_q1_2023' => 'Need to build a world for your TTRPG adventure or your book? We got you covered. :kanka is a worldbuilding tool perfect for anyone looking to tap into their creativity. We help you organise the chaos with a large set of features, going from @mentions to calendars, maps to families, and so much more.',
+        'description_q1_2023' => ':kanka is a collaborative worldbuilding tool perfect for tapping into your creativity. Build your world with wiki-like entities, complex calendars and beautiful maps. Whatever you need, :kanka is here to help you create and run your homebrew RPG campaign.',
         'heading'           => 'Worldbuilding, tabletop RPG campaign management, storytelling. All in one',
         'title'             => 'Kanka',
     ],
