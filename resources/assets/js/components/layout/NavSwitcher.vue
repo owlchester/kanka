@@ -326,7 +326,7 @@ export default {
             return 'block p-4  items-center inactive cursor flex-none focus:box-shadow';
         },
         logout: function() {
-            console.info('loging out');
+            //console.info('loging out');
             document.getElementById('logout-form').submit();
         },
         onClickOutside (event) {

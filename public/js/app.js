@@ -19761,7 +19761,7 @@ __webpack_require__.r(__webpack_exports__);
       return 'block p-4  items-center inactive cursor flex-none focus:box-shadow';
     },
     logout: function logout() {
-      console.info('loging out');
+      //console.info('loging out');
       document.getElementById('logout-form').submit();
     },
     onClickOutside: function onClickOutside(event) {
