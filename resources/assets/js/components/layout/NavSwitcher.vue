@@ -240,26 +240,35 @@ export default {
     directives: {
         clickOutside: vClickOutside.directive
     },
+    /* Properties provided by the html component initialisation */
     props: {
+        /* The user ID */
         user_id: {
             type: String,
         },
+        /* Route to the API to get info for the navbar */
         api: {
             type: String,
         },
+        /* Route to the API to get new notifications */
         fetch: {
             type: String,
         },
+        /* User's initials for when they have no picture */
         initials: {
             type: String,
         },
+        /* User's profile picture link */
         avatar: {
             type: String,
         },
+        /* The campaign ID (not used?) */
         campaign_id: undefined,
+        /* Bool to define if there are unread notifications */
         has_alerts: {
             type: Boolean,
         },
+        /* Bool to define if using the fontawesome pro or free license */
         pro: {
             type: Boolean,
         }
@@ -275,10 +284,15 @@ export default {
         return {
             // Check for updates in the localstorage every minute for new alerts
             alert_delta: 60 * 1000,
+            // Determine if waiting for data to load (show spinning wheel)
             is_loading: false,
+            // Determine if the pop-out menu is out
             is_expanded: false,
+            // Determine if the api data has been loaded
             has_data: false,
+            // Determine if the campaign list is being shown
             view_campaigns: false,
+            // Determine if the profile box is being shown
             view_profile: false,
             profile: {},
             campaigns: {},
@@ -286,6 +300,7 @@ export default {
             marketplace: {},
             releases: {},
             show_alerts: false,
+            // Determine if data from the api has been loaded
             is_loaded: false,
         }
     },
