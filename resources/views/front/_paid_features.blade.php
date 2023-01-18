@@ -124,6 +124,18 @@
             </tr>
             <tr>
                 <td class="text">
+                    {{ __('front.features.patreon.bragi') }}
+                    <a href="https://docs.kanka.io/en/latest/features/bragi.html" target="_blank">
+                        <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                    </a>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><i class="fa-solid fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">
                     {{ __('front.features.patreon.curation') }}
                     <a href="https://docs.kanka.io/en/latest/articles/community-vote.html" target="_blank">
                         <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>

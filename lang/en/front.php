@@ -146,6 +146,7 @@ return [
             '2fa'               => 'Access to Two Factor Authentication',
             'api_calls'         => 'Increased API calls (90 per minute)',
             'boosts'            => 'Campaign Boosters',
+            'bragi'             => 'Access to Bragi, Kanka\'s worldbuilding AI',
             'click-me'          => 'Learn more about this feature.',
             'curation'          => 'Help curate the community vote items',
             'default_image'     => 'Nicer default images for entities in lists',
