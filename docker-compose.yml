@@ -122,6 +122,17 @@ services:
             #- DETECTORS=['thumbor.detectors.face_detector']
         depends_on:
             - minio
+    thumbor-nginx:
+        image: 'nginx:1.9'
+        tty: true
+        volumes:
+            - ./.nginx:/etc/nginx/conf.d/
+        ports:
+            - "8889:80"
+        environment:
+            - NGINX_PORT=8889
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
@@ -133,4 +144,6 @@ volumes:
     sail-minio:
         driver: local
     sail-thumbor:
+        driver: local
+    sail-thumbor-nginx:
         driver: local
