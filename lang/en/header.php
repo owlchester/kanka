@@ -21,7 +21,7 @@ return [
         'settings'      => 'Settings',
         'sign-out'      => 'Sign out',
         'signed-in'     => 'Signed in as :user',
-        'your-profile'  => 'Your profile',
         'upgrade'       => 'Upgrade',
+        'your-profile'  => 'Your profile',
     ],
 ];

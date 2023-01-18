@@ -5,6 +5,7 @@ return [
         'show-old'  => 'Changes',
     ],
     'cta'       => 'Display a log of all the recent changes to the campaign.',
+    'empty'     => 'No value',
     'filters'   => [
         'all-actions'   => 'All actions',
         'all-users'     => 'All members',
@@ -24,5 +25,4 @@ return [
     'unknown'   => [
         'entity'    => 'an unknown entity',
     ],
-    'empty'  => 'No value',
 ];

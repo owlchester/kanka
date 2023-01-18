@@ -5,6 +5,7 @@ return [
         'show-old'  => 'Modifications',
     ],
     'cta'       => 'Afficher un journal de toutes les modifications récentes faites à la campagne.',
+    'empty'     => 'Aucune valeure',
     'filters'   => [
         'all-actions'   => 'Toutes les actions',
         'all-users'     => 'Tous les membres',

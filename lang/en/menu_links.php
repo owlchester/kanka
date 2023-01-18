@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions' => [
+    'actions'           => [
         'customise' => 'Customise sidebar',
     ],
     'create'            => [

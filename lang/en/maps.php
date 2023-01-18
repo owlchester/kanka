@@ -67,9 +67,9 @@ return [
     'panels'        => [
         'groups'    => 'Groups',
         'layers'    => 'Layers',
+        'legend'    => 'Legend',
         'markers'   => 'Markers',
         'settings'  => 'Settings',
-        'legend' => 'Legend',
     ],
     'placeholders'  => [
         'center_marker' => 'Leave empty to load the map in the middle',

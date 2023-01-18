@@ -14,6 +14,7 @@ return [
             'filters'   => [
                 'all'       => 'Status de la campagne',
                 'closed'    => 'Campagnes fermées',
+                'featured'  => 'Gagnants de concours',
                 'open'      => 'Campagnes ouvertes',
             ],
         ],
@@ -146,6 +147,7 @@ return [
             '2fa'               => 'Accès à l\'authentification à deux facteurs',
             'api_calls'         => 'Limite de requête API (90)',
             'boosts'            => 'Boosters de campagne',
+            'bragi'             => 'Accès à Bragi, l\'IA worldbuilding de Kanka',
             'click-me'          => 'En savoir plus sur cette fonctionnalité.',
             'curation'          => 'Aide à l\'établissement des votes communtaires',
             'default_image'     => 'Images par défaut pour les entités',

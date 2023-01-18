@@ -165,7 +165,7 @@ return array(
         'tutorials.actions',
         'tutorials.home',
         'tutorials.characters',
-        'bragi',
+        'openai',
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.

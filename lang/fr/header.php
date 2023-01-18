@@ -21,6 +21,7 @@ return [
         'settings'      => 'Paramêtres',
         'sign-out'      => 'Se déconnecter',
         'signed-in'     => 'Connecté en tant que :user',
+        'upgrade'       => 'S\'abonner',
         'your-profile'  => 'Ton profile',
     ],
 ];

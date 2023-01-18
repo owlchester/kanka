@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'           => [
+        'customise' => 'Personnaliser la navigation',
+    ],
     'create'            => [
         'title' => 'Nouveau Lien de menu',
     ],
