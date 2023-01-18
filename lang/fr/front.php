@@ -282,7 +282,13 @@ return [
             'unlimited'     => 'Nombre de campagne et upload illimité',
             'updates'       => 'Mises à jour et améliorations fréquentes',
         ],
+        'billed_yearly' => ':amount facturé annuellement',
         'description'   => 'Toutes les fonctionnalités essentielles sont gratuites, mais ton soutien nous permet de travailler et d’améliorer Kanka de façon continue.',
+        'lead'          => [
+            'obvious'   => 'choix logique',
+            'text'      => 'Le :obvious pour créer des mondes de manière collaborative et gérer les campagnes de jeux de rôle, à un prix attractif.',
+        ],
+        'refund'        => 'Avec une politique de remboursement de 14 jours sur les abonnements annuels.',
         'tier'          => [
             'free'  => 'Gratuit',
             'month' => 'Mois',

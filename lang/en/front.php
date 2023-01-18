@@ -283,11 +283,11 @@ return [
         ],
         'billed_yearly' => ':amount billed yearly',
         'description'   => 'All core features are free, but supporting :kanka helps us deliver frequent updates and improvements for all users.',
-        'lead' => [
-            'text' => 'The :obvious for collaborative worldbuilding and ttrpg campaign management, at an affordable rate.',
-            'obvious' => 'obvious choice',
+        'lead'          => [
+            'obvious'   => 'obvious choice',
+            'text'      => 'The :obvious for collaborative worldbuilding and ttrpg campaign management, at an affordable rate.',
         ],
-        'refund' => 'With a 14 day refund policy on yearly subscriptions.',
+        'refund'        => 'With a 14 day refund policy on yearly subscriptions.',
         'tier'          => [
             'free'  => 'Free',
             'month' => 'month',

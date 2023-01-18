@@ -45,7 +45,6 @@ return [
     ],
     'register'  => [
         'already'                   => 'Already have an account? :login',
-        'already_account'           => 'Already have an account?',
         'errors'                    => [
             'email_already_taken'   => 'An account with this email is already registered.',
             'general_error'         => 'An error occurred while registering your account. Please try again.',
@@ -56,13 +55,13 @@ return [
             'password'  => 'Password',
             'tos_clean' => 'I agree to the :privacy',
         ],
+        'log-in'                    => 'Log in',
         'register_with_facebook'    => 'Register with Facebook',
         'register_with_google'      => 'Register with Google',
         'register_with_twitter'     => 'Register with Twitter',
         'submit'                    => 'Register',
         'title'                     => 'Register',
         'tos'                       => 'By registering an account, you agree to our :terms and :privacy.',
-        'log-in'                    => 'Log in',
     ],
     'reset'     => [
         'fields'    => [
