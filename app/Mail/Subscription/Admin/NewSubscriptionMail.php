@@ -44,7 +44,7 @@ class NewSubscriptionMail extends Mailable
     public function build()
     {
         $action = $this->new ? 'New' : 'Changed';
-        $lastCancel = $this->user->cancellations->sortByDesc('id')->first();
+        $lastCancel = $this->user->cancellations()->sortByDesc('id')->first();
         // If new, check if user was previously subbed
         if ($this->new) {
             if ($lastCancel > 0) {
@@ -56,6 +56,7 @@ class NewSubscriptionMail extends Mailable
         return $this
             ->from(['address' => config('app.email'), 'name' => 'Kanka Admin'])
             ->subject($subject)
+            ->tag('admin-new')
             ->view('emails.subscriptions.' . ($this->new ? 'new' : 'changed') . '.html', ["lastCancel" => $lastCancel]);
     }
 }

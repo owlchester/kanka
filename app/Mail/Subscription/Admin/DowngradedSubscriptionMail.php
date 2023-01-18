@@ -41,6 +41,7 @@ class DowngradedSubscriptionMail extends Mailable
         return $this
             ->from(['address' => config('app.email'), 'name' => 'Kanka Admin'])
             ->subject('Subscription: Downgraded ' . $this->user->pledge)
+            ->tag('admin-downgrade')
             ->view('emails.subscriptions.changed.html');
     }
 }

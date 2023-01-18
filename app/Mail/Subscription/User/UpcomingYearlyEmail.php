@@ -41,6 +41,7 @@ class UpcomingYearlyEmail extends Mailable
             ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
             ->subject(__('emails/subscriptions/upcoming.title'))
             ->view('emails.subscriptions.upcoming.user-html')
+            ->tag('upcoming-yearly')
             ->text('emails.subscriptions.upcoming.user-text');
     }
 }

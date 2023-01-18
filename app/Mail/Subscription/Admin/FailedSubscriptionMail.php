@@ -37,6 +37,7 @@ class FailedSubscriptionMail extends Mailable
         return $this
             ->from(['address' => config('app.email'), 'name' => 'Kanka Admin'])
             ->subject('Subscription: Failed ' . $this->user->pledge)
+            ->tag('admin-failed')
             ->view('emails.subscriptions.failed.html');
     }
 }

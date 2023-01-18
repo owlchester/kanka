@@ -43,6 +43,7 @@ class CancelledUserSubscriptionMail extends Mailable
         return $this
             ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
             ->subject('Confirmation: ' . $this->user->pledge . ' subscription cancellation')
+            ->tag('cancelled')
             ->view('emails.subscriptions.cancelled.user-html');
     }
 }

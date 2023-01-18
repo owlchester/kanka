@@ -40,6 +40,7 @@ class ExpiringCardEmail extends Mailable
             ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
             ->subject(__('emails/subscriptions/expiring.title'))
             ->view('emails.subscriptions.expiring.user-html')
+            ->tag('expiring')
             ->text('emails.subscriptions.expiring.user-text');
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Jobs\Emails;
-
 
 use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
 use App\Mail\Subscription\User\CancelledUserSubscriptionMail;
