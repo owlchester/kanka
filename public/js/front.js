@@ -150,6 +150,7 @@ $(document).ready(function (e) {
   $(function () {
     $('[data-toggle="tooltip"]').tooltip();
   });
+  initPricingToggle();
 });
 /**
  * Automatically open a kb answer if it's in the anchor
@@ -181,6 +182,38 @@ function initTestimonialSlider() {
     autoplay: false,
     speed: 800
   });
+}
+
+function initPricingToggle() {
+  $('[data-pricing]').click(function (e) {
+    var toggle = $(this).data('pricing'); // Click in the middle
+
+    if (toggle === 'toggle') {
+      if ($(this).hasClass('pricing-monthly')) {
+        pricingToYearly();
+      } else {
+        pricingToMonthly();
+      }
+    } else if (toggle === 'monthly') {
+      pricingToMonthly();
+    } else {
+      pricingToYearly();
+    }
+  });
+}
+
+function pricingToYearly() {
+  $('[data-pricing="monthly"]').removeClass('text-bold');
+  $('[data-pricing="yearly"]').addClass('text-bold');
+  $('[data-pricing="toggle"]').removeClass('pricing-monthly').addClass('pricing-yearly');
+  $('div.pricing').removeClass('pricing-monthly').addClass('pricing-yearly');
+}
+
+function pricingToMonthly() {
+  $('[data-pricing="monthly"]').addClass('text-bold');
+  $('[data-pricing="yearly"]').removeClass('text-bold');
+  $('[data-pricing="toggle"]').removeClass('pricing-yearly').addClass('pricing-monthly');
+  $('div.pricing').removeClass('pricing-yearly').addClass('pricing-monthly');
 }
 
 __webpack_require__(/*! ./community-votes */ "./resources/assets/js/community-votes.js");

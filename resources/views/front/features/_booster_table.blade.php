@@ -1,5 +1,5 @@
-<div class="table-responsive">
-    <table class="table">
+<div class="">
+    <table class="table table-sticky-td">
         <thead>
         <tr>
             <th></th>

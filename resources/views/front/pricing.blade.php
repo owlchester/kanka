@@ -14,9 +14,10 @@
     <section class="features" id="pricing">
         <div class="container">
             <div class="section-body">
-                <div class="mb-5">
-                    <h1 class="display-4">{{ __('front.pricing.title') }}</h1>
-                    <p class="lead">{{ __('front.pricing.description', ['kanka' => config('app.name')]) }}</p>
+                <div class="mb-5 text-center">
+                    <h1 class="h6">{{ __('front.pricing.title') }}</h1>
+                    <h2 class="h2 my-3">{!! __('front.pricing.lead.text', ['obvious' => '<strong>' . __('front.pricing.lead.obvious') . '</strong>']) !!}</h2>
+                    <p class="lead">{{ __('front.pricing.refund') }}</p>
                 </div>
 
                 @include('front._pricing')

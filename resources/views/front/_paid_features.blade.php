@@ -7,8 +7,8 @@
             </div>
         </div>
 
-        <div class="table-responsive">
-        <table class="table">
+        <div class="">
+        <table class="table table-sticky-td">
             <thead>
             <tr>
                 <th></th>
@@ -179,7 +179,7 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-md-6 my-auto">
+            <div class="col-md-6 mx-auto mt-5">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="" data-src="https://www.youtube.com/embed/eSyHGSq4SbE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>

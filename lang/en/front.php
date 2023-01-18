@@ -281,7 +281,13 @@ return [
             'unlimited'     => 'Unlimited campaigns & uploads',
             'updates'       => 'Frequent updates and improvements',
         ],
+        'billed_yearly' => ':amount billed yearly',
         'description'   => 'All core features are free, but supporting :kanka helps us deliver frequent updates and improvements for all users.',
+        'lead' => [
+            'text' => 'The :obvious for collaborative worldbuilding and ttrpg campaign management, at an affordable rate.',
+            'obvious' => 'obvious choice',
+        ],
+        'refund' => 'With a 14 day refund policy on yearly subscriptions.',
         'tier'          => [
             'free'  => 'Free',
             'month' => 'month',

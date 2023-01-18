@@ -779,9 +779,11 @@ ul.pagination {
     //padding: 100px 0;
   }
   .pricing {
+      .card {
+          height: 100%;
+      }
     .card-body {
       ul {
-        min-height: 270px;
         margin-left: 25px;
       }
     }
@@ -841,6 +843,105 @@ ul.pagination {
 }
 .flex-initial {
     flex: 0 1 auto;
+}
+
+
+[data-pricing="toggle"].pricing-monthly {
+    background: #d9d7e0;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    padding: 3px;
+    transition: all 0.3s ease 0s, background 0.5s ease 0s;
+    user-select: none;
+    width: 48px;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    &:after {
+        background: #ffffff;
+        position: relative;
+        display: block;
+        content: "";
+        width: 18px;
+        height: 18px;
+        border-radius: 9999px;
+        transition: all 0.1s ease 0s;
+        left: 0px;
+    }
+}
+[data-pricing="toggle"].pricing-yearly {
+    border-radius: 9999px;
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    padding: 3px;
+    transition: all 0.3s ease 0s, background 0.5s ease 0s;
+    user-select: none;
+    width: 48px;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    background: rgb(55, 182, 53) none repeat scroll 0% 0%;
+    &:after {
+        background: #ffffff;
+        position: relative;
+        display: block;
+        content: "";
+        width: 18px;
+        height: 18px;
+        border-radius: 9999px;
+        transition: all 0.1s ease 0s;
+        left: calc(100% - 18px);
+    }
+}
+
+.pricing-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pricing-toggle {
+    label {
+        margin-bottom: 0;
+    }
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.pricing {
+    .price-monthly, .price-yearly {
+        display: none;
+    }
+}
+.pricing.pricing-monthly {
+    .price-monthly {
+        display: block;
+    }
+}
+.pricing.pricing-yearly {
+    .price-yearly {
+        display: block;
+    }
+}
+
+.table-sticky-td {
+    thead tr th {
+        position: sticky;
+        background-color: white;
+        top: 0;
+        border-bottom: 2px solid #dee2e6;
+        z-index: 1;
+    }
+    /*td:first-of-type {
+        position: sticky;
+        left: 0;
+        background-color: white;
+    }*/
 }
 
 @import "community-votes";
