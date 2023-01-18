@@ -35,7 +35,7 @@ class NewElementalSubscriptionMail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Team'])
+            ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
             ->subject('Welcome Elemental ' . $this->user->name)
             ->view('emails.subscriptions.new.elemental');
     }

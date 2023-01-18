@@ -38,7 +38,7 @@ class UpcomingYearlyEmail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Team'])
+            ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
             ->subject(__('emails/subscriptions/upcoming.title'))
             ->view('emails.subscriptions.upcoming.user-html')
             ->text('emails.subscriptions.upcoming.user-text');
