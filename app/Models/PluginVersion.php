@@ -189,10 +189,10 @@ class PluginVersion extends Model
             }
             $value = $data[$attr];
             if (in_array($attr, $checkboxes)) {
-                if ($data[$attr] === 'on') {
-                    $value = '<i class="fa-solid fa-check"></i>';
+                if ($data[$attr] === 'on' || $data[$attr] === '1') {
+                    $value = '<i class="fa-solid fa-check" aria-hidden="true" aria-label="checked"></i>';
                 } else {
-                    $value = '<i class="fa-solid fa-times"></i>';
+                    $value = '<i class="fa-solid fa-times" aria-hidden="true" aria-label="unchecked"></i>';
                 }
             }
             return '<span class="live-edit" data-id="' . $ids[$attr] . '">' . $value . '</span>';
