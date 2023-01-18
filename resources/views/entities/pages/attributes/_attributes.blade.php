@@ -48,9 +48,9 @@ $inSection = false;
             @if ($attribute->isCheckbox())
                 <span class="live-edit" data-id="{{ $attribute->id }}">
                 @if ($attribute->value)
-                    <i class="fa-solid fa-check"></i>
+                    <i class="fa-solid fa-check" aria-hidden="true" aria-label="checked"></i>
                 @else
-                    <i class="fa-solid fa-times"></i>
+                    <i class="fa-solid fa-times" aria-hidden="true" aria-label="unchecked"></i>
                 @endif
                 </span>
             @elseif ($attribute->isText())
