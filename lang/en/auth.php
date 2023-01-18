@@ -44,6 +44,7 @@ return [
         'title'                 => 'Login',
     ],
     'register'  => [
+        'already'                   => 'Already have an account? :login',
         'already_account'           => 'Already have an account?',
         'errors'                    => [
             'email_already_taken'   => 'An account with this email is already registered.',
@@ -60,6 +61,8 @@ return [
         'register_with_twitter'     => 'Register with Twitter',
         'submit'                    => 'Register',
         'title'                     => 'Register',
+        'tos'                       => 'By registering an account, you agree to our :terms and :privacy.',
+        'log-in'                    => 'Log in',
     ],
     'reset'     => [
         'fields'    => [

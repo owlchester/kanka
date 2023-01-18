@@ -46,33 +46,29 @@
                 </span>
             @endif
         </div>
-        <div class="form-group has-feedback{{ $errors->has('tos') ? ' has-error' : '' }}">
+        <div class="form-group">
             <div class="checkbox">
-                <label for="tos">
-                    <input id="tos" type="checkbox" name="tos" value="1" required>
-                    {!! __('auth.register.fields.tos_clean', [
-    'privacy' => link_to_route('front.privacy', __('front.menu.privacy'), null, ['target' => '_blank'])]) !!}
+                <label for="newsletter" class="">
+                    <input id="newsletter" type="checkbox" name="newsletter" value="1" />
+                    {!! __('front/newsletter.groups.all') !!}
                 </label>
-
-                @if ($errors->has('tos'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('tos') }}</strong>
-                    </span>
-                @endif
-
-
-                <div class="pull-right">
-                    <button type="submit" class="btn btn-primary btn-save">
-                        {{ __('auth.register.submit') }}
-                    </button>
-                    <div class="btn btn-primary btn-wait disabled" style="display: none;">
-                        <i class="fa-solid fa-spinner fa-spin"></i>
-                    </div>
-                </div>
             </div>
         </div>
-
-        <div class="form-group text-right">
+        <div class="">
+            <div class="pull-right pl-2">
+                <button type="submit" class="btn btn-primary btn-save">
+                    {{ __('auth.register.submit') }}
+                </button>
+                <div class="btn btn-primary btn-wait disabled" style="display: none;">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                </div>
+            </div>
+            <p class="small">
+                {!! __('auth.register.tos', [
+    'terms' => link_to_route('front.terms', __('front.terms.title')),
+    'privacy' => link_to_route('front.privacy', __('front.menu.privacy')),
+    ]) !!}
+            </p>
         </div>
     </form>
 
@@ -101,7 +97,7 @@
             </div>
 
             <p>
-                <a href="{{ route('login') }}">{{ __('auth.register.already_account') }}</a>
+                {!! __('auth.register.already', ['login' => link_to('login', __('auth.register.log-in'))]) !!}
             </p>
 
         </div>

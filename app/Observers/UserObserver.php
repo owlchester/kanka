@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Facades\UserCache;
 use App\Jobs\Emails\GoodbyeEmailJob;
+use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Models\CampaignUser;
 use App\Models\CampaignFollower;
@@ -82,6 +83,14 @@ class UserObserver
     {
         WelcomeEmailJob::dispatch($user, app()->getLocale());
         session()->put('user_registered', true);
+
+        if (request()->filled('newsletter')) {
+            $user
+                ->updateSettings(['mail_release' => 1])
+                ->save();
+
+            MailSettingsChangeJob::dispatch($user);
+        }
     }
 
     /**
