@@ -944,5 +944,11 @@ ul.pagination {
     }*/
 }
 
+.sticky {
+    position: sticky;
+    z-index: 99;
+    top: 0rem;
+}
+
 @import "community-votes";
 @import "ab-testing";
