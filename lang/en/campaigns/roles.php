@@ -9,8 +9,8 @@ return [
             'private'   => 'The campaign is currently private.',
             'public'    => 'The campaign is currently public.',
         ],
-        'description'   => 'Set the permissions for the public role to view the following entities of the campaign. A user is automatically in the public role if they are viewing the campaign but aren\'t a member.',
-        'test'          => 'To test the public role\'s permissions, open the campaign :url in an incognito window.',
+        'description'   => 'Set the permissions for the public role to view entities of the following modules of the campaign. A user is automatically considered to be in the public role if they are viewing the campaign without being one of its members.',
+        'test'          => 'To test the public role\'s permissions, open the campaign dashboard :url in an incognito window.',
     ],
     'show'      => [
         'title' => ':role permissions - :campaign',
