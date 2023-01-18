@@ -46,14 +46,14 @@ $model = $entity->child;
     </div>
     <div class="panel-body">
         @if ($widget->conf('full') === '1')
+            @if ($campaign->enabled('characters') && !empty($model->character))
             <dl class="dl-horizontal">
-                @if ($campaign->enabled('characters') && !empty($model->character))
-                    <dt>{{ __('quests.fields.character') }}</dt>
-                    <dd>
-                        {!! $model->character->tooltipedLink() !!}
-                    </dd>
-                @endif
+                <dt>{{ __('quests.fields.character') }}</dt>
+                <dd>
+                    {!! $model->character->tooltipedLink() !!}
+                </dd>
             </dl>
+            @endif
 
             <div class="entity-content">
             {!! $model->entry() !!}
