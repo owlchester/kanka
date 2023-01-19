@@ -282,7 +282,6 @@ return [
             'updates'       => 'Frequent updates and improvements',
         ],
         'billed_yearly' => ':amount billed yearly',
-        'description'   => 'All core features are free, but supporting :kanka helps us deliver frequent updates and improvements for all users.',
         'lead'          => [
             'obvious'   => 'obvious choice',
             'text'      => 'The :obvious for collaborative worldbuilding and ttrpg campaign management, at an affordable rate.',

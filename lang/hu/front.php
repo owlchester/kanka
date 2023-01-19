@@ -240,10 +240,10 @@ return [
         'title'         => 'Partnerek',
     ],
     'pricing'       => [
-        'actions'       => [
+        'actions'   => [
             'subscribe' => 'Előfizetés',
         ],
-        'benefits'      => [
+        'benefits'  => [
             'big_maps'      => 'Nagy térkép méret (:size)',
             'bigger_maps'   => 'Nagyobb térkép méret (:size)',
             'boosters'      => 'Kampány Boosterek',
@@ -254,12 +254,11 @@ return [
             'unlimited'     => 'Korlátlan kampány & feltöltés',
             'updates'       => 'Rendszeres frissítés és fejlesztések',
         ],
-        'description'   => 'Habár minden alapfunkció elérhető ingyen, a Kanka támogatása segít a rendszeres frissítések, és fejlesztések létrejöttében az egész közösség számára.',
-        'tier'          => [
+        'tier'      => [
             'free'  => 'Ingyenes',
             'month' => 'Hónap',
         ],
-        'title'         => 'Árak áttekintése',
+        'title'     => 'Árak áttekintése',
     ],
     'privacy'       => [
         'description'   => 'Érvényes 2018. május 25-től.',

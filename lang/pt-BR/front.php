@@ -256,10 +256,10 @@ return [
         'title'         => 'Parcerias',
     ],
     'pricing'               => [
-        'actions'       => [
+        'actions'   => [
             'subscribe' => 'Torne-se um assinante',
         ],
-        'benefits'      => [
+        'benefits'  => [
             'big_maps'      => 'Tamanho grande do mapa (:size)',
             'bigger_maps'   => 'Tamanho maior do mapa (:size)',
             'boosters'      => 'Impulsos de campanha',
@@ -270,12 +270,11 @@ return [
             'unlimited'     => 'Campanhas e uploads ilimitados',
             'updates'       => 'Atualizações e melhorias frequentes',
         ],
-        'description'   => 'Todos os recursos básicos são gratuitos, mas o suporte ao Kanka nos ajuda a fornecer atualizações e melhorias frequentes para todos os usuários.',
-        'tier'          => [
+        'tier'      => [
             'free'  => 'Grátis',
             'month' => 'Mês',
         ],
-        'title'         => 'Preços',
+        'title'     => 'Preços',
     ],
     'privacy'               => [
         'description'   => 'Data de vigência :date',

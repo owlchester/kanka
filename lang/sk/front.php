@@ -266,10 +266,10 @@ return [
         'title'         => 'Partneri',
     ],
     'pricing'               => [
-        'actions'       => [
+        'actions'   => [
             'subscribe' => 'Predplatné',
         ],
-        'benefits'      => [
+        'benefits'  => [
             'big_maps'      => 'Veľké mapy (:size)',
             'bigger_maps'   => 'Väčšie mapy (:size)',
             'boosters'      => 'Boosty pre kampane',
@@ -280,12 +280,11 @@ return [
             'unlimited'     => 'Neobmedzený počet kampaní a nahrávaných súborov',
             'updates'       => 'Časté aktualizácie a zlepšenia',
         ],
-        'description'   => 'Napriek tomu, že hlavné funkcie sú zadarmo, podpora Kanky nám pomáha prinášať častejšie aktualizácie a zlepšenia pre všetkých používateľov.',
-        'tier'          => [
+        'tier'      => [
             'free'  => 'Zadarmo',
             'month' => 'Mesačne',
         ],
-        'title'         => 'Prehľad cien',
+        'title'     => 'Prehľad cien',
     ],
     'privacy'               => [
         'description'   => 'Vstupuje do platnosti: :date',

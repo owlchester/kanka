@@ -266,10 +266,10 @@ return [
         'title'         => 'Partner',
     ],
     'pricing'               => [
-        'actions'       => [
+        'actions'   => [
             'subscribe' => 'Abonnieren',
         ],
-        'benefits'      => [
+        'benefits'  => [
             'big_maps'      => 'große Kartengröße (:size)',
             'bigger_maps'   => 'größere Kartengröße (:size)',
             'boosters'      => 'Kampagnen-Booster',
@@ -280,12 +280,11 @@ return [
             'unlimited'     => 'Unbegrenzte Kampagnen und Uploads',
             'updates'       => 'Häufige Updates und Verbesserungen',
         ],
-        'description'   => 'Obwohl alle Kernfunktionen kostenlos sind, hilft uns die Unterstützung von Kanka dabei, häufige Updates und Verbesserungen für alle Benutzer bereitzustellen.',
-        'tier'          => [
+        'tier'      => [
             'free'  => 'Kostenlos',
             'month' => 'Monat',
         ],
-        'title'         => 'Preisübersicht',
+        'title'     => 'Preisübersicht',
     ],
     'privacy'               => [
         'description'   => 'Datum des Inkrafttretens: :date',

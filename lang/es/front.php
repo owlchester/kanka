@@ -239,10 +239,10 @@ return [
         'title'         => 'Socios',
     ],
     'pricing'       => [
-        'actions'       => [
+        'actions'   => [
             'subscribe' => 'Suscribirse',
         ],
-        'benefits'      => [
+        'benefits'  => [
             'big_maps'      => 'Mapas grandes (:size)',
             'bigger_maps'   => 'Mapas más grandes (:size)',
             'boosters'      => 'Mejoras de campaña',
@@ -253,12 +253,11 @@ return [
             'unlimited'     => 'Campañas y archivos subidos ilimitados',
             'updates'       => 'Actualizaciones y mejoras frecuentes',
         ],
-        'description'   => 'A pesar de que todas las funciones principales son gratuitas, al apoyar a Kanka nos ayudas a mantenerla actualizada con frecuencia y mejorarla para todos los usuarios.',
-        'tier'          => [
+        'tier'      => [
             'free'  => 'Gratis',
             'month' => 'Mes',
         ],
-        'title'         => 'Resumen de tarifas',
+        'title'     => 'Resumen de tarifas',
     ],
     'privacy'       => [
         'description'   => 'Fecha efectiva: :date',

@@ -266,10 +266,10 @@ return [
         'title'         => 'Partnerzy',
     ],
     'pricing'               => [
-        'actions'       => [
+        'actions'   => [
             'subscribe' => 'Zasubskrybuj',
         ],
-        'benefits'      => [
+        'benefits'  => [
             'big_maps'      => 'Zwiększona mapa (:size)',
             'bigger_maps'   => 'Jeszcze większa mapa (:size)',
             'boosters'      => 'Doładowania kampanii',
@@ -280,12 +280,11 @@ return [
             'unlimited'     => 'Brak limitu liczby kampanii i plików',
             'updates'       => 'Częste aktualizacje i poprawki',
         ],
-        'description'   => 'Wszystkie główne funkcje są darmowe. Ale to dzięki wsparciu subskrybentów możemy aktualizować i rozbudowywać program dla każdego użytkownika.',
-        'tier'          => [
+        'tier'      => [
             'free'  => 'Za darmo',
             'month' => 'miesięcznie',
         ],
-        'title'         => 'Cena',
+        'title'     => 'Cena',
     ],
     'privacy'               => [
         'description'   => 'Efektywna data :date',
