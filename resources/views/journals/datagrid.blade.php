@@ -12,7 +12,13 @@
         // Name
         'name',
         'type',
-        'date',
+        [
+            'label' => __('journals.fields.date'),
+            'field' => 'date',
+            'render' => function ($model) {
+                return \App\Facades\UserDate::format($model->date);
+            }
+        ],
         [
             'type' => 'calendar_date',
         ],
@@ -27,7 +33,7 @@
             'type' => 'is_private',
         ]
     ])
-    ->options(    [
+    ->options([
         'route' => 'journals.index',
         'baseRoute' => 'journals',
         'trans' => 'journals.fields.',

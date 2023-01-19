@@ -1,5 +1,4 @@
 <?php /** @var \App\Models\Calendar $model */ ?>
-@inject('dateRenderer', 'App\Renderers\DateRenderer')
 
 <div class="entity-submenu">
     @if (isset($withPins))

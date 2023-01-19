@@ -8,7 +8,7 @@ namespace App\Services;
  */
 class PaginationService
 {
-    public static $MAX = 100;
+    public static int $MAX = 100;
 
     /**
      * @return array
@@ -16,7 +16,7 @@ class PaginationService
     public function options()
     {
         $options = [
-            15 => 15,
+            null => 15,
             25 => 25,
             45 => 45
         ];
@@ -29,10 +29,10 @@ class PaginationService
     }
 
     /**
-     * Get the max amount possible
+     * Get the max pagination amount possible
      * @return int
      */
-    public function max()
+    public function max(): int
     {
         return auth()->check() && auth()->user()->isSubscriber() ? self::$MAX : 45;
     }

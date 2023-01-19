@@ -197,7 +197,7 @@ trait UserSetting
      * @param array $data
      * @return $this
      */
-    public function saveSettings($data): self
+    public function saveSettings(array $data): self
     {
         $settings = $this->settings;
         // Flatten if provided
@@ -253,5 +253,20 @@ trait UserSetting
     public function alwaysAdvancedMentions(): bool
     {
         return (bool) Arr::get($this->settings, 'advanced_mentions', false);
+    }
+
+    public function currency()
+    {
+        return Arr::get($this->settings, 'currency', 'usd');
+    }
+
+    public function getPaginationAttribute(): int|null
+    {
+        return (int) Arr::get($this->settings, 'pagination');
+    }
+
+    public function getDateformatAttribute(): string|null
+    {
+        return Arr::get($this->settings, 'date_format');
     }
 }

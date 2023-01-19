@@ -29,8 +29,6 @@ class DatagridRenderer
 
     protected FilterService|null $filterService = null;
 
-    protected DateRenderer $dateRenderer;
-
     /** @var Campaign|bool */
     protected $campaign;
 
@@ -40,12 +38,11 @@ class DatagridRenderer
     protected null|string $nestedFilter = null;
 
     /**
-     * @param DateRenderer $dateRenderer
+     *
      */
-    public function __construct(DateRenderer $dateRenderer)
+    public function __construct()
     {
         $this->user = auth()->user();
-        $this->dateRenderer = $dateRenderer;
     }
 
 

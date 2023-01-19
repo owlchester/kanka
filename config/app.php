@@ -232,6 +232,7 @@ return [
         App\Providers\DatagridRendererProvider::class,
         App\Providers\PermissionsServiceProvider::class,
         App\Providers\EntitySetupServiceProvider::class,
+        App\Providers\UserDateServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
 
     ],
@@ -307,6 +308,7 @@ return [
         'Datagrid' => App\Facades\Datagrid::class,
         'EntitySetup' => App\Facades\EntitySetup::class,
         'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
+        'UserDate' => App\Facades\UserDate::class,
     ],
 
 ];

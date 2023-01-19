@@ -9,12 +9,12 @@ trait Paginatable
     /**
      * @var int
      */
-    private $pageSizeLimit = 45;
+    private int $pageSizeLimit = 45;
 
     /**
      * @var int
      */
-    private $pageSizeMinimum = 15;
+    private int $pageSizeMinimum = 15;
 
     /**
      * @return mixed
@@ -24,7 +24,7 @@ trait Paginatable
         $pageSize = 15;
 
         if (auth()->check()) {
-            $pageSize = auth()->user()->default_pagination;
+            $pageSize = auth()->user()->pagination;
             $this->pageSizeLimit = PaginationService::$MAX;
         }
 

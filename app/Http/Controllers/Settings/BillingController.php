@@ -51,7 +51,7 @@ class BillingController extends Controller
     public function save(UserBillingStore $request)
     {
         $user = Auth::user();
-        $user->currency = $request->get('currency') ?? null;
+        $settings = $user->saveSettings($request->only('currency'));
         $user->save();
 
         $from = $request->get('from', 'settings.billing');

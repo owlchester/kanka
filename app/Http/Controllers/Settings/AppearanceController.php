@@ -47,8 +47,13 @@ class AppearanceController extends Controller
     {
         /** @var \App\User $user */
         $user = $request->user();
-        $user->saveSettings($request->only(['editor', 'default_nested', 'advanced_mentions', 'new_entity_workflow', 'campaign_switcher_order_by']))
-            ->update($request->only(['theme', 'default_pagination', 'date_format']));
+        $settingFields = $request->only([
+            'editor', 'default_nested', 'advanced_mentions', 'new_entity_workflow',
+            'campaign_switcher_order_by', 'pagination', 'date_format'
+        ]);
+        $user
+            ->saveSettings($settingFields)
+            ->update($request->only(['theme']));
 
         //refresh user campaigns in cache if order by has changed
         if ($request->has('campaign_switcher_order_by')) {

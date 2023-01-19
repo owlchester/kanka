@@ -374,6 +374,9 @@ class Calendar extends MiscModel
         if (empty($date)) {
             $date = $this->date;
         }
+        if (empty($date)) {
+            return '';
+        }
 
         list($year, $month, $day) = $this->dateArray($date);
 

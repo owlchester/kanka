@@ -601,7 +601,7 @@ class SubscriptionService
      */
     public function owlbearPlanID(): string
     {
-        return $this->user->currency === 'eur' ?
+        return $this->user->billedInEur() ?
             config('subscription.owlbear.eur.' . $this->period) :
             config('subscription.owlbear.usd.' . $this->period);
     }
@@ -611,7 +611,7 @@ class SubscriptionService
      */
     public function wyvernPlanID(): string
     {
-        return $this->user->currency === 'eur' ?
+        return $this->user->billedInEur() ?
             config('subscription.wyvern.eur.' . $this->period) :
             config('subscription.wyvern.usd.' . $this->period);
     }
@@ -621,7 +621,7 @@ class SubscriptionService
      */
     public function elementalPlanID(): string
     {
-        return $this->user->currency === 'eur' ?
+        return $this->user->billedInEur() ?
             config('subscription.elemental.eur.' . $this->period) :
             config('subscription.elemental.usd.' . $this->period);
     }

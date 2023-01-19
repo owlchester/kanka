@@ -66,7 +66,7 @@
                     @endif
                     <dt>{{ __('settings.subscription.fields.currency') }}</dt>
                     <dd>
-                        <span class="mr-2">{{ strtoupper($user->currency ?? 'USD') }}</span>
+                        <span class="mr-2">{{ $user->billedInEur() ? 'EUR' : 'USD' }}</span>
                         <a href="#" data-toggle="modal"
                            data-target="#change-currency">
                             <i class="fa-solid fa-pencil-alt"></i> {{ __('crud.edit') }}

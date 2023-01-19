@@ -35,7 +35,7 @@
                         {{ __('profiles.settings.fields.pagination') }}
                         <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.appearance.helpers.pagination')}}"></i>
                     </label>
-                    {!! Form::select('default_pagination', $pagination->options(), null, ['class' => 'form-control']) !!}
+                    {!! Form::select('pagination', $pagination->options(), null, ['class' => 'form-control']) !!}
                     <p class="help-block visible-xs visible-sm">
                         {{ __('profiles.appearance.helpers.pagination')}}
                     </p>
@@ -47,10 +47,11 @@
                         <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.appearance.helpers.date-format')}}"></i>
                     </label>
                     {!! Form::select('date_format', [
+                        null => 'Month d, Y',
                         'Y-m-d' => 'Y-m-d',
                         'd.m.Y' => 'd.m.Y',
                         'd-m-y' => 'd-m-y',
-                        'm/d/Y' => 'm/d/Y'
+                        'm/d/Y' => 'm/d/Y',
 
                     ], null, ['class' => 'form-control']) !!}
 

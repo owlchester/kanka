@@ -90,8 +90,6 @@ class User extends \Illuminate\Foundation\Auth\User
         'timezone',
         'campaign_role',
         'theme',
-        'date_format',
-        'default_pagination',
         'locale', // Keep this for the LocaleChange middleware
         'last_login_at',
         'has_last_login_sharing',
@@ -424,10 +422,19 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function currencySymbol(): string
     {
-        if ($this->currency === 'eur') {
+        if ($this->billedInEur()) {
             return '€';
         }
         return 'US$';
+    }
+
+    /**
+     * Determine if the user is billed in EUR.
+     * @return bool
+     */
+    public function billedInEur(): bool
+    {
+        return $this->currency() === 'eur';
     }
 
     /**

@@ -1,4 +1,3 @@
-@inject('dateRenderer', App\Renderers\DateRenderer)
 <div class="box box-solid">
     <div class="box-header">
         <h3 class="box-title">
@@ -28,8 +27,8 @@
                         {!! $journal->tooltipedLink() !!}
                     </td>
                     <td class="visible-sm">{{ $journal->type }}</td>
-                    <td class="visible-sm">{{ $dateRenderer->render($journal->date) }}</td>
-                    <td>{{ $dateRenderer->render($journal->getDate()) }}</td>
+                    <td class="visible-sm">{{ \App\Facades\UserDate::format($journal->date) }}</td>
+                    <td>{{ $journal->getDate() }}</td>
                     <td class="text-right">
                         <a href="{{ route('journals.show', [$journal]) }}" class="btn btn-xs btn-primary">
                             <i class="fa-solid fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ __('crud.view') }}</span>

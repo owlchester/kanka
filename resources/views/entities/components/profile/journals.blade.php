@@ -16,7 +16,7 @@
         @if ($model->date)
             <div class="element profile-date">
                 <div class="title">{{ __('journals.fields.date') }}</div>
-                {{ $model->date }}
+                {{ \App\Facades\UserDate::format($model->date) }}
             </div>
         @endif
 
