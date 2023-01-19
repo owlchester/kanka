@@ -5491,6 +5491,18 @@ body.ab-testing-second .ab-testing-a {
   border-style: none;
 }
 
+.border-0 {
+  border-width: 0;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-box {
+  border-color: var(--box-border);
+}
+
 .shadow-lg {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
@@ -5509,6 +5521,10 @@ body.ab-testing-second .ab-testing-a {
 
 .hover\:drop-shadow:hover {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.06));
+}
+
+.bg-box {
+  background-color: var(--box-background);
 }
 
 .list-none {
@@ -5535,6 +5551,10 @@ body.ab-testing-second .ab-testing-a {
 
 .pointer-events-none {
   pointer-events: none;
+}
+
+.hover\:link:hover {
+  color: var(--link-hover);
 }
 
 dialog {

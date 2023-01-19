@@ -97,6 +97,7 @@ TEXT
         'theme'                             => 'Force the theme for the campaign, overriding a user\'s preference.',
         'view_public'                       => 'To view your campaign as a public viewer would, open :link in an incognito window.',
         'visibility'                        => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
+        'no_entry' => 'Looks like the campaign doesn\'t have a description yet! Let\'s fix that.',
     ],
     'index'                             => [
         'actions'   => [
@@ -206,6 +207,10 @@ TEXT
     ],
     'modules'                           => [
         'permission-disabled'   => 'This module is disabled.',
+    ],
+    'overview' => [
+        'entity-count' => '{0} No entities|{1} :amount entity|[2,] :amount entities',
+        'follower-count' => '{0} No followers|{1} :amount follower|[2,] :amount followers',
     ],
     'panels'                            => [
         'boosted'   => 'Boosted',
@@ -453,8 +458,8 @@ TEXT
         'other'             => 'Other',
     ],
     'visibilities'                      => [
-        'private'   => 'Private',
-        'public'    => 'Public',
+        'private'   => 'Private campaign',
+        'public'    => 'Public campaign',
         'review'    => 'Awaiting Review',
     ],
     'warning'                           => [

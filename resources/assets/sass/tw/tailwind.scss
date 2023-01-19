@@ -9,6 +9,7 @@
 @import "tw/borders";
 @import "tw/effects";
 @import "tw/drop-shadow";
+@import "tw/background-color";
 
 
 .list-none {
@@ -32,4 +33,8 @@
 
 .pointer-events-none {
     pointer-events: none;
+}
+
+.hover\:link:hover {
+    color: var(--link-hover);
 }
