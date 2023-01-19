@@ -1,21 +1,3 @@
-.entity-image-focus .focus-selector {
-  overflow: auto;
-  position: relative;
-  max-height: 70vh;
-  margin-bottom: 10px;
-}
-.entity-image-focus .focus-selector .focus {
-  position: absolute;
-  color: white;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
-  cursor: pointer;
-  font-size: 18pt;
-}
-.entity-image-focus .focus-selector .focus:hover {
-  color: red;
-}
-.entity-image-focus .focus-selector img {
-  max-width: unset;
-}
+.entity-image-focus .focus-selector{margin-bottom:10px;max-height:70vh;overflow:auto;position:relative}.entity-image-focus .focus-selector .focus{color:#fff;cursor:pointer;font-size:18pt;position:absolute;text-shadow:rgba(0,0,0,.5) 0 1px 4px}.entity-image-focus .focus-selector .focus:hover{color:red}.entity-image-focus .focus-selector img{max-width:unset}
 
 /*# sourceMappingURL=story.css.map*/
