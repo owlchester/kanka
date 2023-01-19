@@ -44,7 +44,7 @@
                     </h3>
                     <div class="box-tools pull-right">
                         @can('update', $campaign)
-                            <a href="{{ route('campaigns.edit', $campaign->id) }}" class="btn btn-box-tool" title="{{ __('campaigns.show.actions.edit') }}">
+                            <a href="{{ route('campaigns.edit') }}" class="btn btn-box-tool" title="{{ __('campaigns.show.actions.edit') }}">
                                 <i class="fa-solid fa-edit" aria-hidden="true"></i>
                             </a>
                         @endcan
@@ -52,7 +52,7 @@
                 </div>
                 <div class="box-body">
                     @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry()))
-                        <a href="{{ route('campaigns.edit', $campaign->id) }}">
+                        <a href="{{ route('campaigns.edit') }}">
                             {{ __('campaigns.helpers.no_entry') }}
                         </a>
                     @else

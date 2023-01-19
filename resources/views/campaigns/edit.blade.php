@@ -13,7 +13,7 @@
     {!! Form::model($model, [
         'method' => 'PATCH',
         'enctype' => 'multipart/form-data',
-        'route' => ['campaigns.update', $model->id],
+        'route' => ['campaigns.update'],
         'data-shortcut' => '1',
         'class' => 'entity-form',
         'data-unload' => 1,

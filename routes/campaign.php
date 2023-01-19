@@ -250,7 +250,7 @@ Route::resources([
     'abilities' => 'AbilityController',
     'calendars' => 'CalendarController',
     'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
-    'campaigns' => 'CampaignController',
+    //'campaigns' => 'CampaignController',
     'campaign_users' => 'CampaignUserController',
     'campaign_submissions' => 'Campaign\SubmissionController',
     'characters' => 'CharacterController',
@@ -315,6 +315,11 @@ Route::resources([
     'images' => 'Campaign\GalleryController',
 ]);
 Route::get('/leave-campaign', 'CampaignController@leave')->name('campaigns.leave');
+
+// Campaign CRUD
+Route::get('/edit', [\App\Http\Controllers\CampaignController::class, 'edit'])->name('campaigns.edit');
+Route::patch('/update', [\App\Http\Controllers\CampaignController::class, 'update'])->name('campaigns.update');
+Route::delete('/destroy', [\App\Http\Controllers\CampaignController::class, 'destroy'])->name('campaigns.destroy');
 
 
 Route::post('/campaign_styles/bulk', 'Campaign\StyleController@bulk')->name('campaign_styles.bulk');

@@ -385,6 +385,11 @@ TEXT
             'timelines'     => 'Represent the history of your world with timelines.',
         ],
     ],
+    'sharing'                           => [
+        'filters' => 'Public campaigns are visible on the :public-campaigns page. Filling out these fields makes it easier for people to discover the campaign.',
+        'system'    => 'If playing a TTRPG, the system used to play in the campaign.',
+        'language' => 'The language in which the campaign is written.'
+    ],
     'show'                              => [
         'actions'   => [
             'boost' => 'Boost campaign',
@@ -446,6 +451,9 @@ TEXT
             'other'             => 'Other visual options for the campaign.',
             'post_collapsed'    => 'When creating a new post on an entity, select the collapsed field\'s default value.',
             'tooltip'           => 'Control which information is visibile when hovering an entity\'s name in their tooltip.',
+            'theme'             => 'Display the campaign in the user\'s theme, or force it to render in one of the following themes.',
+            'member-list'       => 'Control who can see who\'s in the campaign.',
+            'entity-history'    => 'Control who can see recent changes made to individual entities of the campaign.',
         ],
         'members'           => [
             'hidden'    => 'Only visible to campaign admins',

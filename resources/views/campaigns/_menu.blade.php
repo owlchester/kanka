@@ -1,5 +1,5 @@
-<?php 
-/** @var App\Models\Campaign $campaign 
+<?php
+/** @var App\Models\Campaign $campaign
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\CampaignBoost $boost
  */
@@ -15,7 +15,7 @@ if (auth()->check()) {
             <i class="fa-solid fa-rocket"></i> ' . __('campaigns.show.actions.boost') . '</a>';
     }
     if (auth()->user()->can('update', $campaign)) {
-        $buttons[] = '<a href="'. route('campaigns.edit', $campaign->id) .'" class="btn btn-primary btn-block">
+        $buttons[] = '<a href="'. route('campaigns.edit') .'" class="btn btn-primary btn-block">
             <i class="fa-solid fa-edit" aria-hidden="true"></i> '. __('campaigns.show.actions.edit') .'</a>';
     }
     $buttons[] = '<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#leave-confirm">
@@ -276,7 +276,7 @@ if (auth()->check()) {
                         @if (auth()->user()->can('delete', $campaign))
                             <p class="mt-5">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
                             <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign->id]]) !!}
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy']]) !!}
                             <div class="form-group required">
                                 {!! Form::text('delete', null, ['class' => 'form-control', 'required']) !!}
                             </div>

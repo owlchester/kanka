@@ -40,17 +40,19 @@
 
     <h4>{{ __('campaigns.fields.public_campaign_filters') }}</h4>
 
-    <p class="help-block">{{ __('campaigns.helpers.public_campaign_filters') }}</p>
 
     <div class="row">
         <div class="col-md-6">
+            <p>{!! __('campaigns.sharing.filters', [
+        'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank'])
+    ]) !!}</p>
+
             <div class="form-group">
                 <label>{{ __('campaigns.fields.locale') }}</label>
                 {!! Form::select('locale', $languages->getSupportedLanguagesList(true), null, ['class' => 'form-control']) !!}
-                <p class="help-block">{{ __('campaigns.helpers.locale') }}</p>
+                <p class="help-block">{{ __('campaigns.sharing.language') }}</p>
             </div>
-        </div>
-        <div class="col-md-6">
+
             <div class="form-group">
                 <label>{{ __('campaigns.fields.system') }}</label>
                 {!! Form::text('system', null, [
@@ -59,9 +61,7 @@
                     'list' => 'rpg-system-list',
                     'autocomplete' => 'off'
                 ]) !!}
-                <p class="help-block">{!! __('campaigns.helpers.system', [
-                        'link' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank'])
-                    ]) !!}</p>
+                <p class="help-block">{{ __('campaigns.sharing.system') }}</p>
             </div>
 
             <div class="hidden">

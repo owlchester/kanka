@@ -1,6 +1,6 @@
 @php
 /** @var \App\Models\Campaign $model */
-$themes = [null => ''];
+$themes = [null => __('campaigns.themes.none')];
 foreach (\App\Models\Theme::all() as $theme):
     $themes[$theme->id] = $theme->__toString();
 endforeach;
@@ -35,7 +35,6 @@ if (!isset($model) || !$model->boosted()) {
             <div class="form-group">
                 <label>
                     {{ __('campaigns.fields.theme') }}
-                    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.helpers.theme') }}"></i>
                 </label>
 
 
@@ -45,10 +44,10 @@ if (!isset($model) || !$model->boosted()) {
                     null,
                     $boostedFormFields
                 ) !!}
-                    <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.theme') }}</p>
                 @if (!isset($model) || !$model->boosted())
                     {!! Form::hidden('theme_id', null) !!}
                 @endif
+                <p class="help-block">{{ __('campaigns.ui.helpers.theme') }}</p>
             </div>
         </div>
 
@@ -61,6 +60,7 @@ if (!isset($model) || !$model->boosted()) {
                 @if (!isset($model) || !$model->boosted())
                     {!! Form::hidden('ui_settings[hide_members]', 0) !!}
                 @endif
+                <p class="help-block">{{ __('campaigns.ui.helpers.member-list') }}</p>
             </div>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -72,6 +72,7 @@ if (!isset($model) || !$model->boosted()) {
                 @if (!isset($model) || !$model->boosted())
                     {!! Form::hidden('ui_settings[hide_history]', 0) !!}
                 @endif
+                <p class="help-block">{{ __('campaigns.ui.helpers.entity-history') }}</p>
             </div>
         </div>
     </div>
