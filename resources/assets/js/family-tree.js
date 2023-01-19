@@ -40,12 +40,6 @@ const relationNameStyle = new TextStyle({
     wordWrapWidth: 120,
 });
 
-
-
-
-
-
-
 // Listen for frame updates
 /*app.ticker.add(() => {
     // each frame we spin the bunny around a bit
@@ -78,7 +72,6 @@ const drawEntity = (entity, x, y) => {
     // Add the entityPanel to the scene we are building
     //app.stage.addChild(entityPanel);
 
-
     var entityBox = new Graphics();
     entityBox.beginFill(0xffffff);
     entityBox.lineStyle(1, 0x0, .3);
@@ -102,7 +95,6 @@ const drawEntity = (entity, x, y) => {
     circle.endFill();
     app.stage.addChild(circle);
     viewport.addChild(circle)*/
-
 
     /*var circleMask = new Graphics();
     circleMask.drawCircle(x + 95, y + 10, 20);
@@ -128,14 +120,17 @@ const drawEntity = (entity, x, y) => {
     viewport.addChild(entityImage);
 
     entityImage.mask = circleMask;
-
-    const entityName = new Text(entity.name, entityNameStyle);
+    var name = entity.name;
+    if (name.length > 14) {
+        name = name.substring(0, 14);
+        name = name.concat('...')
+    }
+    const entityName = new Text(name, entityNameStyle);
     entityName.x = x + 10;
     entityName.y = y + 10;
 
     app.stage.addChild(entityName);
     viewport.addChild(entityName);
-
 
     // Add an invisible box on top
     var hitBox = new Graphics();
@@ -159,9 +154,6 @@ const drawEntity = (entity, x, y) => {
     hitBox.on('pointerout', (event) => onPointerOut(entityBox));
     app.stage.addChild(hitBox);
     viewport.addChild(hitBox);
-
-
-
 };
 
 /**

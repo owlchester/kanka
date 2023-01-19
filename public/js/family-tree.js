@@ -2171,7 +2171,14 @@ var drawEntity = function drawEntity(entity, x, y) {
   app.stage.addChild(entityImage);
   viewport.addChild(entityImage);
   entityImage.mask = circleMask;
-  var entityName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(entity.name, entityNameStyle);
+  var name = entity.name;
+
+  if (name.length > 14) {
+    name = name.substring(0, 14);
+    name = name.concat('...');
+  }
+
+  var entityName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(name, entityNameStyle);
   entityName.x = x + 10;
   entityName.y = y + 10;
   app.stage.addChild(entityName);
