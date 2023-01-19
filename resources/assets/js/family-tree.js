@@ -1,4 +1,4 @@
-import { Application, BLEND_MODES, Assets, RenderTexture, Container, Sprite, Text, TextStyle, Graphics, Texture, BaseTexture } from 'pixi.js';
+import { Application, BLEND_MODES, Assets, RenderTexture, Container, Sprite, Text, TextStyle, Graphics, Texture, BaseTexture, Circle } from 'pixi.js';
 import axios from 'axios';
 import { Viewport } from 'pixi-viewport'
 import { add } from 'lodash';
@@ -89,40 +89,47 @@ const drawEntity = (entity, x, y) => {
         entityHeight,
         20
     );
-    entityBox.interactive = true;
-    entityBox.buttonMode = true;
-    entityBox.onclick = (event) => {
-        location.href = entity.url;
-    }
-    entityBox.on('pointerover', (event) => onPointerOver(entityBox));
-    entityBox.on('pointerout', (event) => onPointerOut(entityBox));
-    graphics.endFill();
     app.stage.addChild(entityBox);
-    viewport.addChild(entityBox)
+    viewport.addChild(entityBox);
 
 
-    var circle = new Graphics();
+    /*var circle = new Graphics();
     circle.x = x + 95;
     circle.y = y + 10;
-    circle.lineStyle(0); 
+    circle.lineStyle(0);
     circle.beginFill(0x66ffcc, 1);
     circle.drawCircle(20, 20, 20);
     circle.endFill();
     app.stage.addChild(circle);
-    viewport.addChild(circle)
-
-    var img = new Image();
-    img.crossOrigin = "annonymous";
-    img.src = entity.thumb;
-    var base = new BaseTexture(img), imageTexture = new Texture(base);
-    var imageSprite = new Sprite(imageTexture);
-    imageSprite.x = x + 95;
-    imageSprite.y = y + 10;
-    imageSprite.width = 40;
-    imageSprite.height = 40;
+    viewport.addChild(circle)*/
 
 
+    /*var circle = new Circle();
+    circle.x = x + 95;
+    circle.y = y + 10;
+    circle.radius = 20;
+    //circle.endFill();
 
+    app.stage.addChild(circle);
+    viewport.addChild(circle);*/
+
+    var entityImageTexture = Texture.from(entity.thumb);
+
+    var picture = new Graphics();
+    picture.lineStyle(0);
+    picture.beginTextureFill({ texture: entityImageTexture});
+    picture.drawCircle(x + 110, y + 30, 20);
+    //picture.position.x = x + 95;
+    //picture.position.y = y + 10;
+    picture.endFill();
+
+    app.stage.addChild(picture);
+    viewport.addChild(picture);
+
+    /*app.stage.addChild(imageSprite);
+    viewport.addChild(imageSprite);*/
+
+/*
     var sprite = new Sprite(Texture.WHITE);
     sprite.tint = 0xffffff;
     sprite.x = 0;
@@ -130,36 +137,57 @@ const drawEntity = (entity, x, y) => {
     sprite.width = 2000;
     sprite.height = 1500;
     sprite.blendMode = BLEND_MODES.SRC_IN;
-    
+
     var originalContainer = new Container();
     originalContainer.addChild(circle);
     originalContainer.addChild(sprite);
 
-    var genTexture = app.renderer.generateTexture(originalContainer);
-    var mask = new Sprite(genTexture);
-
-    //mask.width = 40;
-    //mask.height = 40;
-    //mask.x = x + 95;
-    //mask.y = y + 10;
-   // imageSprite.mask = mask;
-
-    
-    //viewport.addChild(mask)
 
     app.stage.addChild(imageSprite);
-    viewport.addChild(imageSprite)
+    viewport.addChild(imageSprite)*/
+
+    //var genTexture = app.renderer.generateTexture(originalContainer);
+    //var mask = new Sprite(genTexture);
+
+    /*mask.width = 40;
+    mask.height = 40;
+    mask.x = x + 95;
+    mask.y = y + 10;*/
+    //imageSprite.mask = mask;
+    //viewport.addChild(mask);
 
     const entityName = new Text(entity.name, entityNameStyle);
     entityName.x = x + 10;
     entityName.y = y + 10;
 
     app.stage.addChild(entityName);
-    viewport.addChild(entityName)
+    viewport.addChild(entityName);
 
 
+    // Add an invisible box on top
+    var hitBox = new Graphics();
+    hitBox.beginFill(0xff0000, 1.0);
+    hitBox.lineStyle(1, 0x22bbff, 1);
+    hitBox.drawRoundedRect(
+        x,
+        y,
+        entityWidth,
+        entityHeight,
+        20
+    );
+    hitBox.endFill();
+    hitBox.interactive = true;
+    hitBox.buttonMode = true;
+    hitBox.onclick = (event) => {
+        location.href = entity.url;
+    }
+    hitBox.alpha = 0;
+    hitBox.on('pointerover', (event) => onPointerOver(entityBox));
+    hitBox.on('pointerout', (event) => onPointerOut(entityBox));
+    app.stage.addChild(hitBox);
+    viewport.addChild(hitBox);
 
-    
+
 
 };
 

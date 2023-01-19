@@ -2139,23 +2139,9 @@ var drawEntity = function drawEntity(entity, x, y) {
   entityBox.beginFill(0xffffff);
   entityBox.lineStyle(1, 0x0, .3);
   entityBox.drawRoundedRect(x, y, entityWidth, entityHeight, 20);
-  entityBox.interactive = true;
-  entityBox.buttonMode = true;
-
-  entityBox.onclick = function (event) {
-    location.href = entity.url;
-  };
-
-  entityBox.on('pointerover', function (event) {
-    return onPointerOver(entityBox);
-  });
-  entityBox.on('pointerout', function (event) {
-    return onPointerOut(entityBox);
-  });
-  graphics.endFill();
   app.stage.addChild(entityBox);
   viewport.addChild(entityBox);
-  var circle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
+  /*var circle = new Graphics();
   circle.x = x + 95;
   circle.y = y + 10;
   circle.lineStyle(0);
@@ -2163,42 +2149,84 @@ var drawEntity = function drawEntity(entity, x, y) {
   circle.drawCircle(20, 20, 20);
   circle.endFill();
   app.stage.addChild(circle);
-  viewport.addChild(circle);
-  var img = new Image();
-  img.crossOrigin = "annonymous";
-  img.src = entity.thumb;
-  var base = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.BaseTexture(img),
-      imageTexture = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture(base);
-  var imageSprite = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(imageTexture);
-  imageSprite.x = x + 95;
-  imageSprite.y = y + 10;
-  imageSprite.width = 40;
-  imageSprite.height = 40;
-  var sprite = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.WHITE);
-  sprite.tint = 0xffffff;
-  sprite.x = 0;
-  sprite.y = 0;
-  sprite.width = 2000;
-  sprite.height = 1500;
-  sprite.blendMode = pixi_js__WEBPACK_IMPORTED_MODULE_0__.BLEND_MODES.SRC_IN;
-  var originalContainer = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Container();
-  originalContainer.addChild(circle);
-  originalContainer.addChild(sprite);
-  var genTexture = app.renderer.generateTexture(originalContainer);
-  var mask = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(genTexture); //mask.width = 40;
-  //mask.height = 40;
-  //mask.x = x + 95;
-  //mask.y = y + 10;
-  // imageSprite.mask = mask;
-  //viewport.addChild(mask)
+  viewport.addChild(circle)*/
 
-  app.stage.addChild(imageSprite);
-  viewport.addChild(imageSprite);
+  /*var circle = new Circle();
+  circle.x = x + 95;
+  circle.y = y + 10;
+  circle.radius = 20;
+  //circle.endFill();
+   app.stage.addChild(circle);
+  viewport.addChild(circle);*/
+
+  var entityImageTexture = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.from(entity.thumb);
+  var picture = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
+  picture.lineStyle(0);
+  picture.beginTextureFill({
+    texture: entityImageTexture
+  });
+  picture.drawCircle(x + 110, y + 30, 20); //picture.position.x = x + 95;
+  //picture.position.y = y + 10;
+
+  picture.endFill();
+  app.stage.addChild(picture);
+  viewport.addChild(picture);
+  /*app.stage.addChild(imageSprite);
+  viewport.addChild(imageSprite);*/
+
+  /*
+      var sprite = new Sprite(Texture.WHITE);
+      sprite.tint = 0xffffff;
+      sprite.x = 0;
+      sprite.y = 0;
+      sprite.width = 2000;
+      sprite.height = 1500;
+      sprite.blendMode = BLEND_MODES.SRC_IN;
+  
+      var originalContainer = new Container();
+      originalContainer.addChild(circle);
+      originalContainer.addChild(sprite);
+  
+  
+      app.stage.addChild(imageSprite);
+      viewport.addChild(imageSprite)*/
+  //var genTexture = app.renderer.generateTexture(originalContainer);
+  //var mask = new Sprite(genTexture);
+
+  /*mask.width = 40;
+  mask.height = 40;
+  mask.x = x + 95;
+  mask.y = y + 10;*/
+  //imageSprite.mask = mask;
+  //viewport.addChild(mask);
+
   var entityName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(entity.name, entityNameStyle);
   entityName.x = x + 10;
   entityName.y = y + 10;
   app.stage.addChild(entityName);
-  viewport.addChild(entityName);
+  viewport.addChild(entityName); // Add an invisible box on top
+
+  var hitBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
+  hitBox.beginFill(0xff0000, 1.0);
+  hitBox.lineStyle(1, 0x22bbff, 1);
+  hitBox.drawRoundedRect(x, y, entityWidth, entityHeight, 20);
+  hitBox.endFill();
+  hitBox.interactive = true;
+  hitBox.buttonMode = true;
+
+  hitBox.onclick = function (event) {
+    location.href = entity.url;
+  };
+
+  hitBox.alpha = 0;
+  hitBox.on('pointerover', function (event) {
+    return onPointerOver(entityBox);
+  });
+  hitBox.on('pointerout', function (event) {
+    return onPointerOut(entityBox);
+  });
+  app.stage.addChild(hitBox);
+  viewport.addChild(hitBox);
 };
 /**
  * Draw the relation of a node as well as the "line" between the node's main entity and this relation
