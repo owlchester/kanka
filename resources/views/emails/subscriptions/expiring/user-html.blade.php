@@ -16,7 +16,7 @@
     'last' => $user->card_last_four,
     ]) }}</p>
 
-    <p>{!! __('emails/subscriptions/expiring.valid', ['action' => link_to_route('settings.billing', __('emails/subscriptions/expiring.action'))]) !!}</p>
+    <p>{!! __('emails/subscriptions/expiring.valid', ['action' => link_to_route('billing.payment-method', __('emails/subscriptions/expiring.action'))]) !!}</p>
 
     <p>
         {{ __('emails/subscriptions/upcoming.closing') }}<br />

@@ -88,7 +88,7 @@
                         @php $method = $user->defaultPaymentMethod(); @endphp
                         {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card->brand), 'last4' => $method->card->last4]) }}
                     @else
-                        {{ link_to_route('settings.billing', __('settings.subscription.payment_method.new_card' )) }}
+                        {{ link_to_route('billing.payment-method', __('settings.subscription.payment_method.new_card' )) }}
                     @endif
                 </dd>
             </dl>
@@ -337,7 +337,7 @@
     <div class="modal fade" id="change-currency" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing.save']]) !!}
+                {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['billing.payment-method.save']]) !!}
                 @include('partials.forms._modal', [
                     'title' => __('settings.subscription.currency.title'),
                     'content' => 'settings.subscription.currency._form',

@@ -376,11 +376,12 @@ class SidebarService
     /**
      * Settings menu active
      * @param string $menu
+     * @param int $segment
      * @return string
      */
-    public function settings(string $menu): string
+    public function settings(string $menu, int $segment = 3): string
     {
-        $current = request()->segment(3);
+        $current = request()->segment($segment);
         if ($current == $menu) {
             return ' active';
         }

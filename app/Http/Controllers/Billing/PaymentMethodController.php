@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Settings;
+namespace App\Http\Controllers\Billing;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserBillingStore;
-use App\Services\SubscriptionService;
 use Illuminate\Support\Facades\Auth;
 
-class BillingController extends Controller
+class PaymentMethodController extends Controller
 {
     /**
-     * BillingController constructor.
+     * PaymentMethodController constructor.
      */
     public function __construct()
     {
@@ -37,7 +36,7 @@ class BillingController extends Controller
         ];
         $translations = json_encode($translations);
 
-        return view('settings.subscription.billing', compact(
+        return view('billing.payment-method', compact(
             'stripeApiToken',
             'user',
             'translations'
@@ -54,7 +53,7 @@ class BillingController extends Controller
         $settings = $user->saveSettings($request->only('currency'));
         $user->save();
 
-        $from = $request->get('from', 'settings.billing');
+        $from = $request->get('from', 'billing.payment-method');
 
         return redirect()
             ->route($from)

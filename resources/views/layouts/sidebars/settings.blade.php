@@ -43,6 +43,14 @@
                     {{ __('settings.menu.subscription') }}
                 </span>
                 <ul class="sidebar-submenu">
+                    @if (config('services.stripe.enabled'))
+                        <li class="{{ $sidebar->settings('subscription') }} subsection">
+                            <a href="{{ route('settings.subscription') }}">
+                                <i class="fa-solid fa-heart"></i>
+                                {{ __('billing/menu.overview') }}
+                            </a>
+                        </li>
+                    @endif
                     <li class="{{ $sidebar->settings('boost') }} subsection">
                         <a href="{{ route('settings.boost') }}">
                             <i class="fa-solid fa-rocket"></i>
@@ -51,22 +59,16 @@
                     </li>
 
                     @if (config('services.stripe.enabled'))
-                        <li class="{{ $sidebar->settings('billing-information') }} subsection">
-                            <a href="{{ route('settings.billing') }}">
+                        <li class="{{ $sidebar->settings('payment-method', 4) }} subsection">
+                            <a href="{{ route('billing.payment-method') }}">
                                 <i class="fa-solid fa-credit-card"></i>
-                                {{ __('settings.menu.billing') }}
+                                {{ __('billing/menu.payment-method') }}
                             </a>
                         </li>
-                        <li class="{{ $sidebar->settings('subscription') }} subsection">
-                            <a href="{{ route('settings.subscription') }}">
-                                <i class="fa-solid fa-heart"></i>
-                                {{ __('settings.menu.subscription_status') }}
-                            </a>
-                        </li>
-                        <li class="{{ $sidebar->settings('invoices') }} subsection">
-                            <a href="{{ route('settings.invoices') }}">
+                        <li class="{{ $sidebar->settings('history', 4) }} subsection">
+                            <a href="{{ route('billing.history') }}">
                                 <i class="fa-solid fa-receipt"></i>
-                                {{ __('settings.menu.invoices') }}
+                                {{ __('billing/menu.history') }}
                             </a>
                         </li>
                     @endif

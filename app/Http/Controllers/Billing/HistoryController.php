@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Settings;
+namespace App\Http\Controllers\Billing;
 
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 
-class InvoiceController extends Controller
+class HistoryController extends Controller
 {
     /**
      * InvoiceController constructor.
@@ -26,7 +26,7 @@ class InvoiceController extends Controller
         $user = $request->user();
         $invoices = !empty($user->stripe_id) ? $user->invoicesIncludingPending() : [];
 
-        return view('settings.invoices', compact(
+        return view('billing.history', compact(
             'invoices'
         ));
     }
@@ -42,7 +42,7 @@ class InvoiceController extends Controller
         $user = $request->user();
         return $user->downloadInvoice($invoice, [
             'vendor' => 'Kanka.io',
-            'product' => 'Kanka Monthly Subscription',
+            'product' => 'Kanka Subscription',
         ]);
     }
 }
