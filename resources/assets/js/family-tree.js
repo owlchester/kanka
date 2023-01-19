@@ -119,8 +119,6 @@ const drawEntity = (entity, x, y) => {
     picture.lineStyle(0);
     picture.beginTextureFill({ texture: entityImageTexture});
     picture.drawCircle(x + 110, y + 30, 20);
-    //picture.position.x = x + 95;
-    //picture.position.y = y + 10;
     picture.endFill();
 
     app.stage.addChild(picture);

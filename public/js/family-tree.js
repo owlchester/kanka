@@ -2165,9 +2165,7 @@ var drawEntity = function drawEntity(entity, x, y) {
   picture.beginTextureFill({
     texture: entityImageTexture
   });
-  picture.drawCircle(x + 110, y + 30, 20); //picture.position.x = x + 95;
-  //picture.position.y = y + 10;
-
+  picture.drawCircle(x + 110, y + 30, 20);
   picture.endFill();
   app.stage.addChild(picture);
   viewport.addChild(picture);
