@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'return'    => 'Powrót do listy głosowań.',
         'show'      => 'Pokaż wyniki głosowania',
+        'subscribe' => 'By głosować, zasubskrybuj Kankę',
         'vote'      => 'Głosuj',
     ],
     'description'   => 'Wspierający Kankę pomagają kształtować jej rozwój biorąc udział w częstych głosowaniach społeczności.',

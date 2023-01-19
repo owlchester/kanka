@@ -21,8 +21,9 @@ return [
         'locations'     => 'Luoghi',
     ],
     'helpers'       => [
-        'characters'    => 'Visualizza tutti i personaggi in questo luogo e nei luoghi discendenti, o semplicemente quelli che si trovano qui.',
-        'descendants'   => 'La lista contiene tutti i luoghi discendenti di questo luogo, non solo quelli direttamente sotto di esso.',
+        'characters'        => 'Visualizza tutti i personaggi in questo luogo e nei luoghi discendenti, o semplicemente quelli che si trovano qui.',
+        'descendants'       => 'La lista contiene tutti i luoghi discendenti di questo luogo, non solo quelli direttamente sotto di esso.',
+        'nested_without'    => 'Visualizzazione di tutti luoghi che non hanno un luogo genitore. Fai clic su una riga per visualizzare i luoghi figli.',
     ],
     'hints'         => [],
     'index'         => [],

@@ -4,6 +4,9 @@ return [
     'actions'       => [
         'add'   => 'Aggiungi una nuova era',
     ],
+    'bulks'         => [
+        'delete'    => '{0} Rimosse :count ere.|{1} Rimossa :count era.|[2,*] Rimosse :count ere.',
+    ],
     'create'        => [
         'success'   => 'Era :name creata.',
         'title'     => 'Nuova era',
@@ -25,6 +28,9 @@ return [
         'eras'          => 'La linea temporale deve essere creata prima delle ere.',
         'is_collapsed'  => 'L\'era è ridotta per impostazione predefinita.',
         'primary'       => 'Separa la tua linea temporale in ere. Una liena temporale deve avere almeno una era per funzionare correttamente.',
+    ],
+    'index'         => [
+        'title' => 'Ere di :name',
     ],
     'placeholders'  => [
         'abbreviation'  => 'a.C., d.C., BCE',

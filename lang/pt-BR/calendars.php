@@ -52,11 +52,13 @@ return [
         'success'   => 'Evento \':event\' adicionado ao calendário.',
     ],
     'events'        => [
+        'end'       => '(fim)',
         'filters'   => [
             'show_after'    => 'Mostrar hoje e depois',
             'show_all'      => 'Mostrar tudo',
             'show_before'   => 'Mostrar antes de hoje',
         ],
+        'start'     => '(começo)',
         'title'     => 'Calendário :name Eventos',
     ],
     'fields'        => [
@@ -88,6 +90,7 @@ return [
         'recurring_until'       => 'Recorrente até o ano',
         'reset'                 => 'Reinicialização semanal',
         'seasons'               => 'Estações',
+        'skip_year_zero'        => 'Ignorar o Ano Zero',
         'start_offset'          => 'Iniciar deslocamento',
         'suffix'                => 'Sufixo',
         'week_names'            => 'Nomes da semana',
@@ -111,6 +114,7 @@ return [
         'parent_calendar'   => 'Relacionar o calendário a um calendário principal incluirá os lembretes e os efeitos do clima do calendário principal.',
         'reset'             => 'Sempre comece no início do mês ou ano no primeiro dia da semana.',
         'seasons'           => 'Crie estações para o seu calendário, informando quando cada uma delas começa. Kanka cuidará do resto.',
+        'skip_year_zero'    => 'Por padrão, o primeiro ano do calendário é o ano zero. Habilite esta opção para pular o ano zero.',
         'weekdays'          => 'Defina os nomes dos dias da semana. São necessários pelo menos 2 dias de semana.',
         'weeks'             => 'Defina alguns nomes para as semanas mais importantes do seu calendário.',
         'years'             => 'Alguns anos são tão importantes que têm um nome próprio.',

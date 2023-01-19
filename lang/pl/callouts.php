@@ -8,6 +8,10 @@ return [
         ],
         'learn-more'    => 'Czym są doładowania?',
         'limitation'    => 'Ta opcja dostępna jest tylko w doładowanych kampaniach',
+        'limitations'   => [
+            'boosted'       => 'Dostęp do tej opcji wymaga doładowania kampanii.',
+            'superboosted'  => 'Dostęp do tej opcji wymaga turbodoładowania kampanii.',
+        ],
         'multiple'      => 'Te opcje dostępne są tylko w doładowanych kampaniach',
         'pitches'       => [
             'element-class' => 'Nadawaj elementom własne klasy CSS po :boosted-campaign.',

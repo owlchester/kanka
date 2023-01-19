@@ -19,6 +19,7 @@ return [
     'fields'        => [
         'children'          => 'Pochodne',
         'is_auto_applied'   => 'Dodawaj automatycznie',
+        'is_hidden'         => 'Ukryj w nagłówkach i dymkach',
         'tag'               => 'Etykieta źródłowa',
         'tags'              => 'Etykiety pochodne',
     ],
@@ -29,6 +30,7 @@ return [
     'hints'         => [
         'children'          => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę i etykiety pochodne.',
         'is_auto_applied'   => 'Zaznacz by dodawać tę etykietę automatycznie do nowych elementów.',
+        'is_hidden'         => 'Po zaznaczeniu, ta etykieta nie będzie wyświetlana w nagłówku i dymkach elementu',
         'tag'               => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę.',
     ],
     'index'         => [],

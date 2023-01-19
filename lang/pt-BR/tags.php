@@ -19,6 +19,7 @@ return [
     'fields'        => [
         'children'          => 'Filhos',
         'is_auto_applied'   => 'Aplicar automaticamente a novas entidades',
+        'is_hidden'         => 'Oculto do cabeçalho e da dica de ferramenta',
         'tag'               => 'Tag Principal',
         'tags'              => 'Subtags',
     ],
@@ -29,6 +30,7 @@ return [
     'hints'         => [
         'children'          => 'Esta lista contém todas entidades diretamente relacionadas a esta tag e todas tags aninhadas nela.',
         'is_auto_applied'   => 'Marque esta opção para aplicar automaticamente esta tag a entidades recém-criadas.',
+        'is_hidden'         => 'Se marcada, esta tag não será exibida no cabeçalho ou dica de ferramenta de uma entidade.',
         'tag'               => 'Exibidas abaixo estão todas as tags diretamente relacionadas a ela.',
     ],
     'index'         => [],

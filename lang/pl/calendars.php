@@ -53,11 +53,13 @@ return [
         'success'   => 'Dodano do kalendarza wydarzenie \':event\'.',
     ],
     'events'        => [
+        'end'       => '(koniec)',
         'filters'   => [
             'show_after'    => 'Pokaż aktualną datę i dalej',
             'show_all'      => 'Pokaż wszystko',
             'show_before'   => 'Pokaż daty przed aktualną',
         ],
+        'start'     => '(początek)',
         'title'     => 'Wydarzenia w kalendarzu :name',
     ],
     'fields'        => [
@@ -89,6 +91,7 @@ return [
         'recurring_until'       => 'Powtarzaj do roku',
         'reset'                 => 'Odnawianie tygodni',
         'seasons'               => 'Pory roku',
+        'skip_year_zero'        => 'Pomiń rok zerowy',
         'start_offset'          => 'Przesunięcie rozpoczęcia',
         'suffix'                => 'Oznaczenie',
         'week_names'            => 'Tygodnie specjalne',
@@ -112,6 +115,7 @@ return [
         'parent_calendar'   => 'W kalendarzu pojawiają się wszystkie wydarzenia oraz efekty pogody z wybranego kalendarza źródłowego.',
         'reset'             => 'Każdy miesiąc lub rok zaczyna się zawsze od pierwszego dnia tygodnia.',
         'seasons'           => 'By dodać porę roku wystarczy określić, kiedy się zaczyna. Kanka obliczy resztę.',
+        'skip_year_zero'    => 'Domyślnie pierwszy rok kalendarza nosi numer zero. Zaznacz, by go pominąć.',
         'weekdays'          => 'Określ nazwy dni tygodnia. Tydzień musi mieć przynajmniej 2 dni.',
         'weeks'             => 'Nadaj nazwy szczególnie ważnym tygodniom tego kalendarza.',
         'years'             => 'Niektóre lata są tak ważne, że posiadają własne nazwy.',

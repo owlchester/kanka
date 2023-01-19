@@ -8,6 +8,10 @@ return [
         ],
         'learn-more'    => 'Cosa sono i potenziamenti?',
         'limitation'    => 'Per accedere a questa funzione, la campagna deve essere potenziata.',
+        'limitations'   => [
+            'boosted'       => 'Per accedere a questa funzione, la campagna deve essere potenziata.',
+            'superboosted'  => 'Per accedere a questa funzione, la campagna deve essere superpotenziata.',
+        ],
         'multiple'      => 'Per accedere a queste funzioni, la campagna deve essere potenziata.',
         'pitches'       => [
             'element-class' => 'Assegna a questo elemento una classe CSS personalizzata con una :boosted-campaign',

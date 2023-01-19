@@ -3,9 +3,13 @@
 return [
     'campaign'          => 'Kampania',
     'campaign_switcher' => [
+        'count'             => 'Członek :member',
         'created_campaigns' => 'Twoje kampanie',
+        'follow_more'       => 'Znajdź kampanie',
+        'followed_campaigns'=> 'Kampanie, które śledzisz',
         'new_campaign'      => 'Nowa kampania',
         'public_campaigns'  => 'Kampanie publiczne',
+        'reorder'           => 'Zmień kolejność',
         'updated'           => 'Zmieniono',
     ],
     'campaigns'         => 'Kampanie',

@@ -4,9 +4,14 @@ return [
     'avatar'            => 'Awatar',
     'logout'            => 'Wyloguj',
     'member_since'      => 'Dołączono :date',
+    'news'              => [
+        'title' => 'Co nowego',
+    ],
     'notifications'     => [
+        'dismiss'   => 'Odrzuć',
         'header'    => 'Powiadomienia',
         'mark_read' => 'Zaznacz jako przeczytane',
+        'no-unread' => 'Brak nieprzeczytanych wiadomości',
         'read_all'  => 'Przeczytaj wszystko',
     ],
     'profile'           => 'Profil',

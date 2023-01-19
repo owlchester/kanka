@@ -1,15 +1,16 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'   => [
         'boost_name'    => 'Doładuj :name',
     ],
-    'benefits'      => [
+    'available' => 'Dostępne doładowania :amount/:total',
+    'benefits'  => [
         'boosted'       => 'Użycie :one doładowania zapewnia dostęp do następujących funkcji: :marketplace, zmiana motywu, możliwość załączania większych plików, odzyskiwanie usuniętych elementów i :more.',
         'more'          => 'inne świetne opcje.',
         'superboosted'  => 'Turbodoładowanie kampanii z pomocą :amount doładowań odblokowuje wszystkie opcje kampanii doładowanej oraz galerię, pełny dziennik zmian każdego elementu i :more.',
     ],
-    'boost'         => [
+    'boost'     => [
         'actions'   => [
             'confirm'   => 'Doładuj!',
             'remove'    => 'Wycofaj doładowanie :campaign',
@@ -27,17 +28,17 @@ return [
         'title'     => 'Doładuj :campaign',
         'upgrade'   => 'zwiększyć poziom subskrypcji',
     ],
-    'campaign'      => [
+    'campaign'  => [
         'boosted'       => 'Doładowana przez :user od :time',
         'superboosted'  => 'Turbodoładowana przez :user od :time',
         'unboosted'     => 'Niedoładowana',
     ],
-    'intro'         => [
+    'intro'     => [
         'anyone'    => 'Możesz doładowywać kampanie, które stworzył ktoś inny, o ile jesteś ich uczestnikiem albo możesz je zobaczyć. To znaczy, kampanie w które grasz albo które możesz przeglądać, gdyż są :public.',
         'data'      => 'Po usunięciu doładowań kampanii dostęp do dodatkowych opcji zostaje usunięty. Aby go odzyskać należy doładować kampanię ponownie.',
         'first'     => 'Przydzielając kampaniom doładowania zyskujesz dostęp do funkcji zaawansowanych. Liczba dostępnych doładowań zależy od :subsription - pozostaje do twojej dyspozycji, póki subskrybujesz Kankę. By doładować kampanię wystarczy przydzielić jej jedno doładowanie. Turbodoładowanie kampanii wymaga trzech doładowań.',
     ],
-    'pitch'         => [
+    'pitch'     => [
         'benefits'      => [
             'backup'        => 'Możliwość odzyskania usuniętych elementów do :days wstecz',
             'customisable'  => 'Pełną kontrolę nad wyglądem kampanii',
@@ -51,13 +52,13 @@ return [
         'more'          => 'Pełną listę udogodnień znajdziesz na stronie :booster.',
         'title'         => 'Wznieś kampanię na nowym poziom, zapewniając wszystkim uczestnikom dostęp do licznych udogodnień',
     ],
-    'ready'         => [
+    'ready'     => [
         'available'         => 'Dostępne doładowania kampanii.',
         'pricing'           => 'Każdy poziom subskrypcji zawiera przynajmniej jedno doładowanie kampanii. Ceny zaczynają się od :amount miesięcznie.',
         'pricing-amount'    => ':currency:amount',
         'title'             => 'Doładuj kampanię',
     ],
-    'superboost'    => [
+    'superboost'=> [
         'actions'   => [
             'confirm'   => 'Turbodoładuj!',
             'remove'    => 'Wycofaj turbodoładnie :campaign',
@@ -70,8 +71,8 @@ return [
         'title'     => 'Turbodoładuj :campaign',
         'upgrade'   => 'Masz chrapkę na ostateczną wersję Kanki? Turbodoładuj :campaign za pomocą :cost dodatkowych doładowań.',
     ],
-    'title'         => 'Doładowania kampanii',
-    'unboost'       => [
+    'title'     => 'Doładowania kampanii',
+    'unboost'   => [
         'confirm'   => 'Tak, na pewno',
         'status'    => [
             'boosting'      => 'doładowanie',

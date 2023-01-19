@@ -82,6 +82,7 @@ TEXT
         'character_personality_visibility'  => 'Ao criar um novo personagem como administrador, selecione a configuração de privacidade padrão para seus traços de personalidade.',
         'css'                               => 'Escreva seu próprio CSS que será carregado nas páginas de sua campanha. Observe que qualquer abuso desse recurso pode levar à remoção do seu CSS personalizado. Ofensas repetidas ou graves podem levar à remoção de sua campanha.',
         'dashboard'                         => 'Personalize a forma como o widget do dashboard da campanha é exibido preenchendo os campos a seguir.',
+        'entity_count_v3'                   => 'Este número é recalculado a cada :amount horas.',
         'entity_privacy'                    => 'Ao criar uma nova entidade como administrador, selecione a configuração de privacidade padrão da nova entidade.',
         'excerpt'                           => 'O resumo da campanha será exibido no painel, então escreva algumas frases apresentando o seu mundo. Mantenha-o curto para obter os melhores resultados.',
         'header_image'                      => 'Imagem exibida como plano de fundo no widget cabeçalho da campanha do dashboard.',
@@ -204,6 +205,9 @@ TEXT
             'removed'   => 'Função :role removida do :user.',
         ],
         'your_role'             => 'Você é  <i>:role</i>',
+    ],
+    'modules'                           => [
+        'permission-disabled'   => 'Este módulo está desativado.',
     ],
     'open_campaign'                     => [],
     'options'                           => [],
@@ -449,6 +453,7 @@ TEXT
         ],
         'nested'            => [
             'nested'    => 'Aninhado',
+            'user'      => 'Padrão do usuário',
         ],
         'other'             => 'Outro',
     ],
