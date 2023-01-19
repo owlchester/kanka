@@ -2151,53 +2151,26 @@ var drawEntity = function drawEntity(entity, x, y) {
   app.stage.addChild(circle);
   viewport.addChild(circle)*/
 
-  /*var circle = new Circle();
-  circle.x = x + 95;
-  circle.y = y + 10;
-  circle.radius = 20;
-  //circle.endFill();
-   app.stage.addChild(circle);
-  viewport.addChild(circle);*/
+  /*var circleMask = new Graphics();
+  circleMask.drawCircle(x + 95, y + 10, 20);
+  circleMask.endHole();
+  circleMask.endFill();*/
 
+  var circleMask = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
+  circleMask.beginFill(0x000000);
+  circleMask.drawCircle(x + 110, y + 30, 20);
+  circleMask.endFill();
+  app.stage.addChild(circleMask);
+  viewport.addChild(circleMask);
   var entityImageTexture = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.from(entity.thumb);
-  var picture = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
-  picture.lineStyle(0);
-  picture.beginTextureFill({
-    texture: entityImageTexture
-  });
-  picture.drawCircle(x + 110, y + 30, 20);
-  picture.endFill();
-  app.stage.addChild(picture);
-  viewport.addChild(picture);
-  /*app.stage.addChild(imageSprite);
-  viewport.addChild(imageSprite);*/
-
-  /*
-      var sprite = new Sprite(Texture.WHITE);
-      sprite.tint = 0xffffff;
-      sprite.x = 0;
-      sprite.y = 0;
-      sprite.width = 2000;
-      sprite.height = 1500;
-      sprite.blendMode = BLEND_MODES.SRC_IN;
-  
-      var originalContainer = new Container();
-      originalContainer.addChild(circle);
-      originalContainer.addChild(sprite);
-  
-  
-      app.stage.addChild(imageSprite);
-      viewport.addChild(imageSprite)*/
-  //var genTexture = app.renderer.generateTexture(originalContainer);
-  //var mask = new Sprite(genTexture);
-
-  /*mask.width = 40;
-  mask.height = 40;
-  mask.x = x + 95;
-  mask.y = y + 10;*/
-  //imageSprite.mask = mask;
-  //viewport.addChild(mask);
-
+  var entityImage = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(entityImageTexture);
+  entityImage.x = x + 90;
+  entityImage.y = y + 10;
+  entityImage.height = 40;
+  entityImage.width = 40;
+  app.stage.addChild(entityImage);
+  viewport.addChild(entityImage);
+  entityImage.mask = circleMask;
   var entityName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(entity.name, entityNameStyle);
   entityName.x = x + 10;
   entityName.y = y + 10;
