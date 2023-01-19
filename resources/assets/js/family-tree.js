@@ -110,7 +110,7 @@ const drawEntity = (entity, x, y) => {
     circleMask.endFill();*/
 
     var circleMask = new Graphics();
-    circleMask.beginFill(0x000000);
+    circleMask.beginFill();
     circleMask.drawCircle(x + 110, y + 30, 20);
     circleMask.endFill();
     app.stage.addChild(circleMask);
