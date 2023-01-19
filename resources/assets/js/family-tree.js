@@ -1,6 +1,12 @@
-import { Application, Assets, Sprite, Text, TextStyle, Graphics } from 'pixi.js';
+import { Application, BLEND_MODES, Assets, RenderTexture, Container, Sprite, Text, TextStyle, Graphics, Texture, BaseTexture } from 'pixi.js';
 import axios from 'axios';
+import { Viewport } from 'pixi-viewport'
+import { add } from 'lodash';
 
+const WORLD_WIDTH = 2000
+const WORLD_HEIGHT = 2000
+const STAR_SIZE = 30
+const BORDER = 10
 
 // The application will create a renderer using WebGL, if possible,
 // with a fallback to a canvas render. It will also setup the ticker
@@ -24,7 +30,7 @@ const entityNameStyle = new TextStyle({
     lineJoin: 'round',
     breakWords: true,
     wordWrap: true,
-    wordWrapWidth: 120,
+    wordWrapWidth: 85,
 });
 
 const relationNameStyle = new TextStyle({
@@ -33,6 +39,11 @@ const relationNameStyle = new TextStyle({
     wordWrap: true,
     wordWrapWidth: 120,
 });
+
+
+
+
+
 
 
 // Listen for frame updates
@@ -78,15 +89,78 @@ const drawEntity = (entity, x, y) => {
         entityHeight,
         20
     );
+    entityBox.interactive = true;
+    entityBox.buttonMode = true;
+    entityBox.onclick = (event) => {
+        location.href = entity.url;
+    }
+    entityBox.on('pointerover', (event) => onPointerOver(entityBox));
+    entityBox.on('pointerout', (event) => onPointerOut(entityBox));
     graphics.endFill();
     app.stage.addChild(entityBox);
+    viewport.addChild(entityBox)
 
-    // Draw the entity's name in it
+
+    var circle = new Graphics();
+    circle.x = x + 95;
+    circle.y = y + 10;
+    circle.lineStyle(0); 
+    circle.beginFill(0x66ffcc, 1);
+    circle.drawCircle(20, 20, 20);
+    circle.endFill();
+    app.stage.addChild(circle);
+    viewport.addChild(circle)
+
+    var img = new Image();
+    img.crossOrigin = "annonymous";
+    img.src = entity.thumb;
+    var base = new BaseTexture(img), imageTexture = new Texture(base);
+    var imageSprite = new Sprite(imageTexture);
+    imageSprite.x = x + 95;
+    imageSprite.y = y + 10;
+    imageSprite.width = 40;
+    imageSprite.height = 40;
+
+
+
+    var sprite = new Sprite(Texture.WHITE);
+    sprite.tint = 0xffffff;
+    sprite.x = 0;
+    sprite.y = 0;
+    sprite.width = 2000;
+    sprite.height = 1500;
+    sprite.blendMode = BLEND_MODES.SRC_IN;
+    
+    var originalContainer = new Container();
+    originalContainer.addChild(circle);
+    originalContainer.addChild(sprite);
+
+    var genTexture = app.renderer.generateTexture(originalContainer);
+    var mask = new Sprite(genTexture);
+
+    //mask.width = 40;
+    //mask.height = 40;
+    //mask.x = x + 95;
+    //mask.y = y + 10;
+   // imageSprite.mask = mask;
+
+    
+    //viewport.addChild(mask)
+
+    app.stage.addChild(imageSprite);
+    viewport.addChild(imageSprite)
+
     const entityName = new Text(entity.name, entityNameStyle);
     entityName.x = x + 10;
     entityName.y = y + 10;
 
     app.stage.addChild(entityName);
+    viewport.addChild(entityName)
+
+
+
+    
+
 };
 
 /**
@@ -194,11 +268,14 @@ const drawRelationLine = (relation, originX, originY, targetX, targetY) => {
     graphics.endFill();
 
     app.stage.addChild(graphics);
+    viewport.addChild(graphics)
+
     // Draw relation name
     const relationName = new Text(relation.role, relationNameStyle);
     relationName.x = targetX - (40);
     relationName.y = targetY + (entityHeight + 0);
     app.stage.addChild(relationName);
+    viewport.addChild(relationName)
 };
 
 const drawChildrenLine = (originX, originY, targetX, targetY) => {
@@ -228,6 +305,8 @@ const drawChildrenLine = (originX, originY, targetX, targetY) => {
     graphics.endFill();
 
     app.stage.addChild(graphics);
+    viewport.addChild(graphics)
+
 };
 
 const drawParentChildrenLine = (drawX, drawY, index) => {
@@ -262,6 +341,8 @@ const drawParentChildrenLine = (drawX, drawY, index) => {
     graphics.endFill();
 
     app.stage.addChild(graphics);
+    viewport.addChild(graphics)
+
 };
 
 /**
@@ -372,5 +453,40 @@ const renderPage = () => {
         });
     });
 };
+function onPointerOver(object) {
+    object.tint = 0x999999;
+}
+
+function onPointerOut(object) {
+    object.tint = 0xFFFFFF;
+}
+
+
+// or with require
+// const PIXI = require('pixi.js')
+// const Viewport = require('pixi-viewport').Viewport
+
+
+// create viewport
+const viewport = new Viewport({
+    screenWidth: window.innerWidth,
+    screenHeight: window.innerHeight,
+    worldWidth: 1000,
+    worldHeight: 1000,
+
+    interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
+})
+
+// add the viewport to the stage
+app.stage.addChild(viewport)
+
+// activate plugins
+viewport
+    .drag()
+    .pinch()
+    .wheel()
+    .decelerate({
+        friction: 0.50,  // percent to decelerate after movement
+    })
 
 renderPage();

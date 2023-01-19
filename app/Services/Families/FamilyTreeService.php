@@ -29,7 +29,7 @@ class FamilyTreeService
 
     public function api(): array
     {
-        $this->loadSetup();
+        //$this->loadSetup();
         return $this->fake();
     }
 
