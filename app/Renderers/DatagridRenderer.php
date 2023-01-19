@@ -411,7 +411,7 @@ class DatagridRenderer
                     $reminder = $model->calendarReminder();
                     $content = link_to_route(
                         'calendars.show',
-                        $this->dateRenderer->render($model->getDate()),
+                        $reminder->readableDate(),
                         [$reminder->calendar_id, 'month' => $reminder->month, 'year' => $reminder->year]
                     );
                 }
