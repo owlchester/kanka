@@ -90,7 +90,7 @@
         <div class="container">
             <div class="section-heading text-center">
                 <h2>{{ __('front.pricing.title') }}</h2>
-                <p class="text-muted">{{ __('front.pricing.description', ['kanka' => config('app.name')]) }}</p>
+                <p class="text-muted my-3">{!! __('front.pricing.lead.text', ['obvious' => '<strong>' . __('front.pricing.lead.obvious') . '</strong>']) !!}<br />{{ __('front.pricing.refund') }}</p>
             </div>
             @include('front._pricing')
         </div>
