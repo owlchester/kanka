@@ -351,12 +351,12 @@ export default {
         },
         readRelease: function(release) {
             let index = this.releases.releases.findIndex(msg => msg.id === release.id);
-            this.releases.releases = this.releases.releases.slice(index + 1, 1);
+            this.releases.releases.slice(index, 1);
             this.updateUnread();
         },
         readNotification: function(notification) {
             let index = this.notifications.messages.findIndex(msg => msg.id == notification.id);
-            this.notifications.messages = this.notifications.messages.slice(index + 1, 1);
+            this.notifications.messages.slice(index, 1);
             this.updateUnread();
         },
         // Figure out if the unread notification is removed

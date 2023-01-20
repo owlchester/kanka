@@ -19795,14 +19795,14 @@ __webpack_require__.r(__webpack_exports__);
       var index = this.releases.releases.findIndex(function (msg) {
         return msg.id === release.id;
       });
-      this.releases.releases = this.releases.releases.slice(index + 1, 1);
+      this.releases.releases.slice(index, 1);
       this.updateUnread();
     },
     readNotification: function readNotification(notification) {
       var index = this.notifications.messages.findIndex(function (msg) {
         return msg.id == notification.id;
       });
-      this.notifications.messages = this.notifications.messages.slice(index + 1, 1);
+      this.notifications.messages.slice(index, 1);
       this.updateUnread();
     },
     // Figure out if the unread notification is removed
