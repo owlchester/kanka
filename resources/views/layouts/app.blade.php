@@ -139,7 +139,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     </div>
 
     <!-- Default modal used throughout the app -->
-    <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal fade" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl"></div>
             <div class="modal-spinner" style="display: none">
@@ -151,7 +151,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     </div>
 
     <!-- Extra-large modal on desktop for more data -->
-    <div class="modal fade" id="large-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal fade" id="large-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content rounded-2xl" id="large-modal-content"></div>
         </div>

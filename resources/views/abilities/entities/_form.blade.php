@@ -15,8 +15,3 @@
 
 @include('cruds.fields.visibility_id', ['model' => null])
 
-<div class="form-group">
-    <button class="btn btn-success">{{ __('crud.save') }}</button>
-    @includeWhen(!$ajax, 'partials.or_cancel')
-</div>
-
