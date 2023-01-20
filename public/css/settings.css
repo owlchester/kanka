@@ -1,28 +1,3 @@
-.row .campaign {
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
-  background-color: #eee;
-  padding: 8px;
-  border-radius: 2px;
-  max-height: 120px;
-  overflow: hidden;
-  height: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(https://images.kanka.io/app/1c6fDq53wSDholuJWNiHMb9zKBQ=/550x120/smart/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
-}
-
-.campaign-list .campaign {
-  background-color: var(--box-background);
-}
-.campaign-list .campaign .name {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  font-weight: 700;
-  overflow: hidden;
-  height: 2rem;
-}
+.row .campaign{align-items:center;background-color:#eee;background-image:url(https://images.kanka.io/app/1c6fDq53wSDholuJWNiHMb9zKBQ=/550x120/smart/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);background-position:50% 50%;background-repeat:no-repeat;background-size:cover;border-radius:2px;display:flex;height:120px;justify-content:center;max-height:120px;overflow:hidden;padding:8px}.campaign-list .campaign{background-color:var(--box-background)}.campaign-list .campaign .name{font-size:1.1rem;font-weight:700;height:2rem;line-height:1.5;overflow:hidden}
 
 /*# sourceMappingURL=settings.css.map*/
