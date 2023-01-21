@@ -22,6 +22,17 @@ class Journal extends Layout
                 'label' => 'entities.journal',
                 'render' => Standard::ENTITYLINK,
             ],
+            'type' => [
+                'key' => 'type',
+                'label' => 'crud.fields.type',
+            ],
+            'date' => [
+                'key' => 'date',
+                'label' => 'journals.fields.date',
+                'render' => function ($model) {
+                    return \App\Facades\UserDate::format($model->date);
+                }
+            ],
             'author' => [
                 'key' => 'author.name',
                 'label' => 'journals.fields.author',
@@ -31,6 +42,19 @@ class Journal extends Layout
                     }
                     return $model->author->tooltipedLink();
                 },
+            ],
+            'parent_journal' => [
+                'key' => 'journal.name',
+                'label' => 'journals.fields.journal',
+                'render' => function ($model) {
+                    if (!$model->journal) {
+                        return null;
+                    }
+                    return $model->journal->tooltipedLink();
+                },
+                'visible' => function () {
+                    return !request()->has('parent_id');
+                }
             ],
         ];
 

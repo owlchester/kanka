@@ -2,6 +2,7 @@
     'title' => __('abilities.abilities.title', ['name' => $model->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @inject('campaignService', 'App\Services\CampaignService')

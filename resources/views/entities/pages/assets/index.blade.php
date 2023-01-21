@@ -14,13 +14,13 @@
     @can('update', $entity->child)
         <div class="header-buttons">
             <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_ALIAS]) }}">
-                <i class="fa-solid fa-plus"></i> {{ __('entities/assets.actions.alias') }}
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/assets.actions.alias') }}
             </a>
             <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_FILE]) }}">
-                <i class="fa-solid fa-plus"></i> {{ __('entities/assets.actions.file') }}
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/assets.actions.file') }}
             </a>
             <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_LINK]) }}">
-                <i class="fa-solid fa-plus"></i> {{ __('entities/assets.actions.link') }}
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/assets.actions.link') }}
             </a>
         </div>
     @endcan
@@ -50,11 +50,23 @@
 
             <div class="entity-assets">
                 <div class="grid grid-cols-3 gap-2 entity-assets-row">
-                    @foreach ($assets as $asset)
+                    @forelse ($assets as $asset)
                         @includeWhen($asset->isFile(), 'entities.pages.assets._file')
                         @includeWhen($asset->isLink(), 'entities.pages.assets._link')
                         @includeWhen($asset->isAlias(), 'entities.pages.assets._alias')
-                    @endforeach
+                    @empty
+                        @can('update', $entity->child)
+                            <a href="#" class="btn btn-app py-5" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_ALIAS]) }}">
+                                <i class="fa-solid fa-plus mb-2" aria-hidden="true"></i> {{ __('entities/assets.actions.alias') }}
+                            </a>
+                            <a href="#" class="btn btn-app py-5" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_FILE]) }}">
+                                <i class="fa-solid fa-plus mb-2" aria-hidden="true"></i> {{ __('entities/assets.actions.file') }}
+                            </a>
+                            <a href="#" class="btn btn-app py-5" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_LINK]) }}">
+                                <i class="fa-solid fa-plus mb-2" aria-hidden="true"></i> {{ __('entities/assets.actions.link') }}
+                            </a>
+                        @endcan
+                    @endforelse
                 </div>
             </div>
         </div>
