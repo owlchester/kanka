@@ -44,7 +44,7 @@ class NewSubscriptionMail extends Mailable
     public function build()
     {
         $action = $this->new ? 'New' : 'Changed';
-        $lastCancel = $this->user->cancellations()->sortByDesc('id')->first();
+        $lastCancel = $this->user->cancellations()->orderByDesc('id')->first();
         // If new, check if user was previously subbed
         if ($this->new) {
             if ($lastCancel > 0) {
