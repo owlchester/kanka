@@ -17,7 +17,13 @@ $statuses = [
     {!! Form::select2(
         'character_id',
         (!empty($member) && $member->character ? $member->character : null),
-        App\Models\Character::class
+        App\Models\Character::class,
+        false,
+        null,
+        null,
+        null,
+        null,
+        request()->ajax() ? '#entity-modal' : null
     ) !!}
 </div>
 <div class="form-group">
@@ -31,6 +37,7 @@ $statuses = [
         'search.organisation-member',
         'organisations.members.placeholders.parent',
         $model,
+        request()->ajax() ? '#entity-modal' : null
     ) !!}
 </div>
 

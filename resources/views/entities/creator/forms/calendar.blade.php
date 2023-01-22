@@ -8,7 +8,11 @@
             null,
             App\Models\Calendar::class,
             false,
-            'calendars.fields.calendar'
+            'calendars.fields.calendar',
+            null,
+            null,
+            null,
+            request()->ajax() ? '#entity-modal' : null,
         ) !!}
     </div>
 </div>

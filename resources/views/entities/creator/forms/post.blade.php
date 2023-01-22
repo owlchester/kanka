@@ -1,7 +1,17 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group required">
-            {!! Form::select2('entity_id', !empty($model) && $model->entity ? $model->entity : null, App\Models\Entity::class, false, 'crud.fields.entity', 'search.entities-with-relations') !!}
+            {!! Form::select2(
+                'entity_id',
+                !empty($model) && $model->entity ? $model->entity : null,
+                App\Models\Entity::class,
+                false,
+                'crud.fields.entity',
+                'search.entities-with-relations',
+                null,
+                null,
+                request()->ajax() ? '#entity-modal' : null,
+            ) !!}
         </div>
     </div>
 </div>

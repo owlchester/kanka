@@ -8,7 +8,8 @@
         'entities/relations.fields.target',
         'search.entities-with-relations',
         'entities/relations.placeholders.target',
-        $entity
+        $entity,
+        request()->ajax() ? '#entity-modal' : null
     ) !!}
 </div>
 <div class="form-group required">
