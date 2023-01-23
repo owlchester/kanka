@@ -2091,19 +2091,26 @@ var app = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Application({
 var container = document.getElementsByClassName('family-tree-setup')[0]; // load the texture we need
 
 var texture = await pixi_js__WEBPACK_IMPORTED_MODULE_0__.Assets.load('/images/family-trees/entity.png');
-var graphics = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
-var entityBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
+var graphics = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics(); // create viewport
+
+var viewport = new pixi_viewport__WEBPACK_IMPORTED_MODULE_2__.Viewport({
+  screenWidth: window.innerWidth,
+  screenHeight: window.innerHeight,
+  worldWidth: 1000,
+  worldHeight: 1000,
+  interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
+
+});
 var entityNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
-  fontFamily: 'Arial',
-  fontSize: 16,
-  fontWeight: 'bold',
+  fontFamily: '"Roboto", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif',
+  fontSize: 14,
   lineJoin: 'round',
   breakWords: true,
   wordWrap: true,
   wordWrapWidth: 85
 });
 var relationNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
-  fontFamily: 'Arial',
+  fontFamily: 'Helvetica, Arial, sans-serif',
   fontSize: 14,
   wordWrap: true,
   wordWrapWidth: 120
@@ -2127,7 +2134,7 @@ var entityHeight = 60;
  * @param y
  */
 
-var drawEntity = function drawEntity(entity, x, y) {
+var drawEntity = function drawEntity(entity, uuid, x, y) {
   //console.log('Draw entity', entity.name, '>', offsetX, 'v', offsetY);
   // This creates a texture from a background image
   var entityPanel = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(texture);
@@ -2137,40 +2144,26 @@ var drawEntity = function drawEntity(entity, x, y) {
   entityPanel.height = entityHeight; // Add the entityPanel to the scene we are building
   //app.stage.addChild(entityPanel);
 
+  var entityBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   entityBox.beginFill(0xffffff);
   entityBox.lineStyle(1, 0x0, .3);
   entityBox.drawRoundedRect(x, y, entityWidth, entityHeight, 20);
-  entityBox.endFill();
-  app.stage.addChild(entityBox);
+  entityBox.endFill(); //app.stage.addChild(entityBox);
+
   viewport.addChild(entityBox);
-  /*var circle = new Graphics();
-  circle.x = x + 95;
-  circle.y = y + 10;
-  circle.lineStyle(0);
-  circle.beginFill(0x66ffcc, 1);
-  circle.drawCircle(20, 20, 20);
-  circle.endFill();
-  app.stage.addChild(circle);
-  viewport.addChild(circle)*/
-
-  /*var circleMask = new Graphics();
-  circleMask.drawCircle(x + 95, y + 10, 20);
-  circleMask.endHole();
-  circleMask.endFill();*/
-
   var circleMask = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   circleMask.beginFill();
   circleMask.drawCircle(x + 110, y + 30, 20);
-  circleMask.endFill();
-  app.stage.addChild(circleMask);
+  circleMask.endFill(); //app.stage.addChild(circleMask);
+
   viewport.addChild(circleMask);
   var entityImageTexture = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.from(entity.thumb);
   var entityImage = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(entityImageTexture);
   entityImage.x = x + 90;
   entityImage.y = y + 10;
   entityImage.height = 40;
-  entityImage.width = 40;
-  app.stage.addChild(entityImage);
+  entityImage.width = 40; //app.stage.addChild(entityImage);
+
   viewport.addChild(entityImage);
   entityImage.mask = circleMask;
   var name = entity.name;
@@ -2182,8 +2175,8 @@ var drawEntity = function drawEntity(entity, x, y) {
 
   var entityName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(name, entityNameStyle);
   entityName.x = x + 10;
-  entityName.y = y + 10;
-  app.stage.addChild(entityName);
+  entityName.y = y + 10; //app.stage.addChild(entityName);
+
   viewport.addChild(entityName); // Add an invisible box on top
 
   var hitBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
@@ -2204,22 +2197,21 @@ var drawEntity = function drawEntity(entity, x, y) {
   });
   hitBox.on('pointerout', function (event) {
     return onPointerOut(entityBox);
-  });
-  app.stage.addChild(hitBox);
+  }); //app.stage.addChild(hitBox);
+
   viewport.addChild(hitBox);
   var closeButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('x', entityNameStyle);
   closeButton.x = x + 125;
   closeButton.y = y;
   closeButton.interactive = true;
   closeButton.buttonMode = true;
-  var deleteNode = 0;
 
   closeButton.onclick = function (event) {
-    deleteEntity(entity.id); //location.href = entity.url.concat('ape');
+    deleteUuid(uuid); //location.href = entity.url.concat('ape');
   }; //console.log(deleteNode);
+  //app.stage.addChild(closeButton);
 
 
-  app.stage.addChild(closeButton);
   viewport.addChild(closeButton);
 };
 /**
@@ -2241,7 +2233,7 @@ var drawRelation = function drawRelation(relation, sourceX, sourceY, drawX, draw
   } //console.log('Draw relation', entity.name, drawX);
 
 
-  drawEntity(entity, drawX, drawY); // Draw the lines between the original and this relations
+  drawEntity(entity, relation.uuid, drawX, drawY); // Draw the lines between the original and this relations
 
   drawRelationLine(relation, sourceX, sourceY, drawX, drawY); // No children, no problems
 
@@ -2312,14 +2304,14 @@ var drawRelationLine = function drawRelationLine(relation, originX, originY, tar
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
-  graphics.endFill();
-  app.stage.addChild(graphics);
-  viewport.addChild(graphics); // Draw relation name
+  graphics.endFill(); //app.stage.addChild(graphics);
+  //viewport.addChild(graphics)
+  // Draw relation name
 
   var relationName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(relation.role, relationNameStyle);
   relationName.x = targetX - 40;
-  relationName.y = targetY + (entityHeight + 0);
-  app.stage.addChild(relationName);
+  relationName.y = targetY + (entityHeight + 0); //app.stage.addChild(relationName);
+
   viewport.addChild(relationName);
 };
 
@@ -2337,9 +2329,8 @@ var drawChildrenLine = function drawChildrenLine(originX, originY, targetX, targ
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
-  graphics.endFill();
-  app.stage.addChild(graphics);
-  viewport.addChild(graphics);
+  graphics.endFill(); //app.stage.addChild(graphics);
+  //viewport.addChild(graphics)
 };
 
 var drawParentChildrenLine = function drawParentChildrenLine(drawX, drawY, index) {
@@ -2358,9 +2349,7 @@ var drawParentChildrenLine = function drawParentChildrenLine(drawX, drawY, index
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
-  graphics.endFill();
-  app.stage.addChild(graphics);
-  viewport.addChild(graphics);
+  graphics.endFill(); //app.stage.addChild(graphics);
 };
 /**
  *
@@ -2450,7 +2439,7 @@ var drawNode = function drawNode(node, sourceX, sourceY, drawX, drawY) {
   } //console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
 
 
-  drawEntity(entity, drawX, drawY); // No relations to draw, finished with the node
+  drawEntity(entity, node.uuid, drawX, drawY); // No relations to draw, finished with the node
 
   if (!node.relations) {
     return;
@@ -2462,6 +2451,29 @@ var drawNode = function drawNode(node, sourceX, sourceY, drawX, drawY) {
 
 var deletedEntities = [];
 
+var drawFamilyTree = function drawFamilyTree() {
+  console.log('Draw Family Tree'); // add the viewport to the stage
+
+  app.stage.addChild(viewport); // activate plugins
+
+  viewport.drag().pinch().wheel().decelerate({
+    friction: 0.50 // percent to decelerate after movement
+
+  });
+  graphics.clear();
+  nodes.forEach(function (node) {
+    console.log(node, 'nodes');
+
+    if (deletedEntities.includes(node.entity_id)) {
+      console.log('deleted node', node.entity_id);
+      return;
+    }
+
+    drawNode(node, 0, 0, 0, 0);
+  });
+  viewport.addChild(graphics);
+};
+
 var renderPage = function renderPage() {
   if (typeof app.stage !== 'undefined') {
     console.log('deleted', 'container.removeChild'); //app.stage.removeChild(1);
@@ -2471,28 +2483,8 @@ var renderPage = function renderPage() {
   container.appendChild(app.view);
   axios__WEBPACK_IMPORTED_MODULE_1___default().get(container.dataset.api).then(function (resp) {
     entities = resp.data.entities;
-    nodes = resp.data.nodes; //entities.forEach(entity => {
-    //    if (deletedEntities.includes(entity['id'])) {
-    //        entities.splice(entity, 1);
-    //   }  
-    //});
-
-    console.log(deletedEntities, entities, nodes);
-    /*console.info('Draw tree');
-    console.log(entities);
-    console.log(nodes);*/
-    //nodes = nodes.filter(function(element){ return element.uuid != the_uuid });
-
-    nodes.forEach(function (node) {
-      console.log(node, 'nodes');
-
-      if (deletedEntities.includes(node.entity_id)) {
-        console.log('deleted node', node.entity_id);
-        return;
-      }
-
-      drawNode(node, 0, 0, 0, 0);
-    });
+    nodes = resp.data.nodes;
+    drawFamilyTree();
   });
 };
 
@@ -2504,45 +2496,56 @@ function onPointerOut(object) {
   object.tint = 0xFFFFFF;
 }
 
-function deleteEntity(id) {
+var deleteUuidFromNodes = function deleteUuidFromNodes(uuid) {
+  console.log('Remove uuid', uuid);
+  return filter(nodes, uuid);
+};
+
+function filter(array, uuid) {
+  //console.log('filter', array, uuid);
+  var getNodes = function getNodes(result, object) {
+    // If it's the uuid we're looking for, return an empty array
+    if (object.uuid === uuid) {
+      return result;
+    }
+
+    if (Array.isArray(object.children)) {
+      var children = object.children.reduce(getNodes, []);
+      object.children = children;
+    } else if (Array.isArray(object.relations)) {
+      var relations = object.relations.reduce(getNodes, []);
+      object.relations = relations;
+    }
+
+    result.push(object);
+    return result;
+  };
+
+  return array.reduce(getNodes, []);
+}
+
+function deleteUuid(uuid) {
   var text;
 
   if (confirm("Do you want to remove this node?") == true) {
     text = "You pressed OK!";
+    /*if (!deletedEntities.includes(id)){
+        //deletedEntities.push(id);
+     }*/
+    //app.stage.removeChildren();
 
-    if (!deletedEntities.includes(id)) {
-      //deletedEntities.push(id);
-      //app.stage.removeChildren();
-      graphics.clear();
-      entityBox.clear();
-    } //renderPage();
+    viewport.removeChildren();
+    deleteUuidFromNodes(uuid);
+    /*console.warn('New node', nodes2);*/
 
+    drawFamilyTree();
   } else {
     text = "You canceled!";
   }
 
-  console.log(text, id);
-} // or with require
-// const PIXI = require('pixi.js')
-// const Viewport = require('pixi-viewport').Viewport
-// create viewport
+  console.log(text, uuid);
+}
 
-
-var viewport = new pixi_viewport__WEBPACK_IMPORTED_MODULE_2__.Viewport({
-  screenWidth: window.innerWidth,
-  screenHeight: window.innerHeight,
-  worldWidth: 1000,
-  worldHeight: 1000,
-  interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
-
-}); // add the viewport to the stage
-
-app.stage.addChild(viewport); // activate plugins
-
-viewport.drag().pinch().wheel().decelerate({
-  friction: 0.50 // percent to decelerate after movement
-
-});
 renderPage();
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);

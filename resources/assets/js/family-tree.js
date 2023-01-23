@@ -25,13 +25,19 @@ const texture = await Assets.load('/images/family-trees/entity.png');
 
 const graphics = new Graphics();
 
-const entityBox = new Graphics();
+// create viewport
+const viewport = new Viewport({
+    screenWidth: window.innerWidth,
+    screenHeight: window.innerHeight,
+    worldWidth: 1000,
+    worldHeight: 1000,
 
+    interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
+});
 
 const entityNameStyle = new TextStyle({
-    fontFamily: 'Arial',
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: '"Roboto", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif',
+    fontSize: 14,
     lineJoin: 'round',
     breakWords: true,
     wordWrap: true,
@@ -39,7 +45,7 @@ const entityNameStyle = new TextStyle({
 });
 
 const relationNameStyle = new TextStyle({
-    fontFamily: 'Arial',
+    fontFamily: 'Helvetica, Arial, sans-serif',
     fontSize: 14,
     wordWrap: true,
     wordWrapWidth: 120,
@@ -64,11 +70,11 @@ let entityHeight = 60;
  * @param x
  * @param y
  */
-const drawEntity = (entity, x, y) => {
+const drawEntity = (entity, uuid, x, y) => {
     //console.log('Draw entity', entity.name, '>', offsetX, 'v', offsetY);
 
     // This creates a texture from a background image
-    const entityPanel = new Sprite(texture);
+    let entityPanel = new Sprite(texture);
     entityPanel.x = x;
     entityPanel.y = y;
     entityPanel.width = entityWidth;
@@ -77,6 +83,7 @@ const drawEntity = (entity, x, y) => {
     // Add the entityPanel to the scene we are building
     //app.stage.addChild(entityPanel);
 
+    let entityBox = new Graphics();
     entityBox.beginFill(0xffffff);
     entityBox.lineStyle(1, 0x0, .3);
     entityBox.drawRoundedRect(
@@ -87,30 +94,16 @@ const drawEntity = (entity, x, y) => {
         20
     );
     entityBox.endFill();
-    app.stage.addChild(entityBox);
+    //app.stage.addChild(entityBox);
     viewport.addChild(entityBox);
 
 
-    /*var circle = new Graphics();
-    circle.x = x + 95;
-    circle.y = y + 10;
-    circle.lineStyle(0);
-    circle.beginFill(0x66ffcc, 1);
-    circle.drawCircle(20, 20, 20);
-    circle.endFill();
-    app.stage.addChild(circle);
-    viewport.addChild(circle)*/
-
-    /*var circleMask = new Graphics();
-    circleMask.drawCircle(x + 95, y + 10, 20);
-    circleMask.endHole();
-    circleMask.endFill();*/
 
     var circleMask = new Graphics();
     circleMask.beginFill();
     circleMask.drawCircle(x + 110, y + 30, 20);
     circleMask.endFill();
-    app.stage.addChild(circleMask);
+    //app.stage.addChild(circleMask);
     viewport.addChild(circleMask);
 
     var entityImageTexture = Texture.from(entity.thumb);
@@ -121,7 +114,7 @@ const drawEntity = (entity, x, y) => {
     entityImage.height = 40;
     entityImage.width = 40;
 
-    app.stage.addChild(entityImage);
+    //app.stage.addChild(entityImage);
     viewport.addChild(entityImage);
 
     entityImage.mask = circleMask;
@@ -134,7 +127,7 @@ const drawEntity = (entity, x, y) => {
     entityName.x = x + 10;
     entityName.y = y + 10;
 
-    app.stage.addChild(entityName);
+    //app.stage.addChild(entityName);
     viewport.addChild(entityName);
 
     // Add an invisible box on top
@@ -157,7 +150,7 @@ const drawEntity = (entity, x, y) => {
     hitBox.alpha = 0;
     hitBox.on('pointerover', (event) => onPointerOver(entityBox));
     hitBox.on('pointerout', (event) => onPointerOut(entityBox));
-    app.stage.addChild(hitBox);
+    //app.stage.addChild(hitBox);
     viewport.addChild(hitBox);
 
     const closeButton = new Text('x', entityNameStyle);
@@ -165,14 +158,13 @@ const drawEntity = (entity, x, y) => {
     closeButton.y = y;
     closeButton.interactive = true;
     closeButton.buttonMode = true;
-    var deleteNode = 0;
     closeButton.onclick = (event) => {
-        deleteEntity(entity.id);
+        deleteUuid(uuid);
         //location.href = entity.url.concat('ape');
     }
     //console.log(deleteNode);
 
-    app.stage.addChild(closeButton);
+    //app.stage.addChild(closeButton);
     viewport.addChild(closeButton);
 };
 
@@ -193,7 +185,7 @@ const drawRelation = (relation, sourceX, sourceY, drawX, drawY, index) => {
 
     //console.log('Draw relation', entity.name, drawX);
 
-    drawEntity(entity, drawX, drawY);
+    drawEntity(entity, relation.uuid, drawX, drawY);
 
     // Draw the lines between the original and this relations
     drawRelationLine(relation, sourceX, sourceY, drawX, drawY);
@@ -280,14 +272,14 @@ const drawRelationLine = (relation, originX, originY, targetX, targetY) => {
     graphics.drawPolygon(path);
     graphics.endFill();
 
-    app.stage.addChild(graphics);
-    viewport.addChild(graphics)
+    //app.stage.addChild(graphics);
+    //viewport.addChild(graphics)
 
     // Draw relation name
     const relationName = new Text(relation.role, relationNameStyle);
     relationName.x = targetX - (40);
     relationName.y = targetY + (entityHeight + 0);
-    app.stage.addChild(relationName);
+    //app.stage.addChild(relationName);
     viewport.addChild(relationName)
 };
 
@@ -317,9 +309,8 @@ const drawChildrenLine = (originX, originY, targetX, targetY) => {
     graphics.drawPolygon(path);
     graphics.endFill();
 
-    app.stage.addChild(graphics);
-    viewport.addChild(graphics)
-
+    //app.stage.addChild(graphics);
+    //viewport.addChild(graphics)
 };
 
 const drawParentChildrenLine = (drawX, drawY, index) => {
@@ -353,8 +344,7 @@ const drawParentChildrenLine = (drawX, drawY, index) => {
     graphics.drawPolygon(path);
     graphics.endFill();
 
-    app.stage.addChild(graphics);
-    viewport.addChild(graphics)
+    //app.stage.addChild(graphics);
 
 };
 
@@ -445,7 +435,7 @@ const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
     }
 
     //console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
-    drawEntity(entity, drawX, drawY);
+    drawEntity(entity, node.uuid, drawX, drawY);
 
     // No relations to draw, finished with the node
     if (!node.relations) {
@@ -457,6 +447,34 @@ const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
 };
 const deletedEntities = [];
 
+const drawFamilyTree = () => {
+    console.log('Draw Family Tree');
+
+    // add the viewport to the stage
+    app.stage.addChild(viewport);
+
+    // activate plugins
+    viewport
+        .drag()
+        .pinch()
+        .wheel()
+        .decelerate({
+            friction: 0.50,  // percent to decelerate after movement
+        });
+
+    graphics.clear();
+    nodes.forEach(node => {
+        console.log(node, 'nodes');
+        if (deletedEntities.includes(node.entity_id)) {
+            console.log('deleted node', node.entity_id);
+            return;
+        }
+        drawNode(node, 0, 0, 0, 0);
+    });
+
+    viewport.addChild(graphics);
+};
+
 const renderPage = () => {
     if (typeof app.stage !== 'undefined'){
         console.log('deleted','container.removeChild');
@@ -467,28 +485,7 @@ const renderPage = () => {
     axios.get(container.dataset.api).then((resp) => {
         entities = resp.data.entities;
         nodes = resp.data.nodes;
-
-        //entities.forEach(entity => {
-        //    if (deletedEntities.includes(entity['id'])) {
-        //        entities.splice(entity, 1);
-        //   }  
-        //});
-
-        console.log(deletedEntities, entities, nodes);
-
-        /*console.info('Draw tree');
-        console.log(entities);
-        console.log(nodes);*/
-        //nodes = nodes.filter(function(element){ return element.uuid != the_uuid });
-
-        nodes.forEach(node => {
-            console.log(node, 'nodes');
-            if (deletedEntities.includes(node.entity_id)) {
-                console.log('deleted node', node.entity_id);
-                return;
-            }
-            drawNode(node, 0, 0, 0, 0);
-        });
+        drawFamilyTree();
     });
 };
 function onPointerOver(object) {
@@ -499,52 +496,52 @@ function onPointerOut(object) {
     object.tint = 0xFFFFFF;
 }
 
+const deleteUuidFromNodes = (uuid) => {
+    console.log('Remove uuid', uuid);
+    return filter(nodes, uuid);
+};
 
-function deleteEntity(id) {
+function filter(array, uuid) {
+    //console.log('filter', array, uuid);
+    const getNodes = (result, object) => {
+        // If it's the uuid we're looking for, return an empty array
+        if (object.uuid === uuid) {
+            return result;
+        }
+        if (Array.isArray(object.children)) {
+            const children = object.children.reduce(getNodes, []);
+            object.children = children;
+        }
+        else if (Array.isArray(object.relations)) {
+            const relations = object.relations.reduce(getNodes, []);
+            object.relations = relations;
+        }
+        result.push(object);
+        return result;
+    };
+
+    return array.reduce(getNodes, []);
+}
+
+function deleteUuid(uuid) {
     let text;
     if (confirm("Do you want to remove this node?") == true) {
       text = "You pressed OK!";
-      if (!deletedEntities.includes(id)){
+      /*if (!deletedEntities.includes(id)){
 
-        
+
         //deletedEntities.push(id);
-        //app.stage.removeChildren();
 
-        graphics.clear();
-        entityBox.clear();
-      }
-      //renderPage();
+      }*/
+        //app.stage.removeChildren();
+        viewport.removeChildren();
+        deleteUuidFromNodes(uuid);
+        /*console.warn('New node', nodes2);*/
+        drawFamilyTree();
     } else {
       text = "You canceled!";
     }
-    console.log(text,id);
+    console.log(text, uuid);
 }
-
-// or with require
-// const PIXI = require('pixi.js')
-// const Viewport = require('pixi-viewport').Viewport
-
-
-// create viewport
-const viewport = new Viewport({
-    screenWidth: window.innerWidth,
-    screenHeight: window.innerHeight,
-    worldWidth: 1000,
-    worldHeight: 1000,
-
-    interaction: app.renderer.plugins.interaction // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
-})
-
-// add the viewport to the stage
-app.stage.addChild(viewport)
-
-// activate plugins
-viewport
-    .drag()
-    .pinch()
-    .wheel()
-    .decelerate({
-        friction: 0.50,  // percent to decelerate after movement
-    })
 
 renderPage();
