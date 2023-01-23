@@ -37,7 +37,7 @@ if (empty($selectedOption) && !empty($prefill)) {
     } elseif ($prefill instanceof \App\Models\Image) {
         $selectedOption = [$prefill->id => $prefill->name];
     } elseif ($prefill instanceof \App\Models\MapMarker) {
-        $selectedOption = [$prefill->id => $prefill->name];
+        $selectedOption = [$prefill->id => $prefill->markerTitle()];
     } elseif (is_array($prefill)) {
         $selectedOption = $prefill;
     }
