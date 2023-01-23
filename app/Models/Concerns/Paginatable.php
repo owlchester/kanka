@@ -6,14 +6,8 @@ use App\Services\PaginationService;
 
 trait Paginatable
 {
-    /**
-     * @var int
-     */
-    private int $pageSizeLimit = 45;
+    private int $pageSizeMax = 45;
 
-    /**
-     * @var int
-     */
     private int $pageSizeMinimum = 15;
 
     /**
@@ -25,7 +19,8 @@ trait Paginatable
 
         if (auth()->check()) {
             $pageSize = auth()->user()->pagination;
-            $this->pageSizeLimit = PaginationService::$MAX;
+            $pagService = app()->make(PaginationService::class);
+            $this->pageSizeMax = $pagService->max();
         }
 
         // Currently exporting single or bulk? Rise limit to 100.
@@ -39,6 +34,6 @@ trait Paginatable
             $this->pageSizeMinimum = 45;
         }
 
-        return min(max($pageSize, $this->pageSizeMinimum), $this->pageSizeLimit);
+        return min(max($pageSize, $this->pageSizeMinimum), $this->pageSizeMax);
     }
 }

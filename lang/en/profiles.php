@@ -95,6 +95,7 @@ return [
             'bio'       => 'The biography is visible on your :link.',
             'editor_v2' => 'Using the legacy text editor (TinyMCE) will not support mentions on mobile devices, and not have support for some features like the campaign gallery.',
             'profile'   => 'public profile',
+            'pagination' => ':amount (available for subscribers)',
         ],
         'hints'     => [
             'advanced_mentions'     => 'If activated, mentions will always render as [entity:123] when editing an entity.',

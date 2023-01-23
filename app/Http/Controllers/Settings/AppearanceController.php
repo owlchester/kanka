@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AppearanceController extends Controller
 {
-    protected $service;
+    protected PaginationService $service;
 
     /**
      * Create a new controller instance.
@@ -32,9 +32,12 @@ class AppearanceController extends Controller
         $date = Carbon::parse('2023-01-09 12:00:00');
         $created = Carbon::parse(auth()->user()->created_at);
         $textEditorSelect = $created->lessThan($date);
+        $paginationOptions = $this->service->options();
+        $paginationDisabled = $this->service->disabled();
 
         return view('settings.layout')
-            ->with('pagination', $this->service)
+            ->with('paginationOptions', $paginationOptions)
+            ->with('paginationDisabled', $paginationDisabled)
             ->with('highlight', $highlight)
             ->with('textEditorSelect', $textEditorSelect);
     }

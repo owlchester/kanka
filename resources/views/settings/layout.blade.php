@@ -35,7 +35,7 @@
                         {{ __('profiles.settings.fields.pagination') }}
                         <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.appearance.helpers.pagination')}}"></i>
                     </label>
-                    {!! Form::select('pagination', $pagination->options(), null, ['class' => 'form-control']) !!}
+                    {!! Form::select('pagination', $paginationOptions, null, ['class' => 'form-control'], $paginationDisabled) !!}
                     <p class="help-block visible-xs visible-sm">
                         {{ __('profiles.appearance.helpers.pagination')}}
                     </p>
@@ -64,15 +64,15 @@
                     <label>
                         {{ __('profiles.settings.fields.campaign_switcher_order_by') }}
                         <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.appearance.helpers.campaign-order')}}"></i></label>
-{!! Form::select('campaign_switcher_order_by', [
-    null => __('profiles.campaign_switcher_order_by.default'),
-    'alphabetical' => __('profiles.campaign_switcher_order_by.alphabetical'),
-    'date_created' => __('profiles.campaign_switcher_order_by.date_created'),
-    'date_joined' => __('profiles.campaign_switcher_order_by.date_joined'),
-    'r_alphabetical' => __('profiles.campaign_switcher_order_by.r_alphabetical'),
-    'r_date_created' => __('profiles.campaign_switcher_order_by.r_date_created'),
-    'r_date_joined' => __('profiles.campaign_switcher_order_by.r_date_joined'),
-], auth()->user()->campaignSwitcherOrderBy, ['class' => 'form-control']) !!}
+                    {!! Form::select('campaign_switcher_order_by', [
+                        null => __('profiles.campaign_switcher_order_by.default'),
+                        'alphabetical' => __('profiles.campaign_switcher_order_by.alphabetical'),
+                        'date_created' => __('profiles.campaign_switcher_order_by.date_created'),
+                        'date_joined' => __('profiles.campaign_switcher_order_by.date_joined'),
+                        'r_alphabetical' => __('profiles.campaign_switcher_order_by.r_alphabetical'),
+                        'r_date_created' => __('profiles.campaign_switcher_order_by.r_date_created'),
+                        'r_date_joined' => __('profiles.campaign_switcher_order_by.r_date_joined'),
+                    ], auth()->user()->campaignSwitcherOrderBy, ['class' => 'form-control']) !!}
 
                     <p class="help-block visible-xs visible-sm">
                         {{ __('profiles.appearance.helpers.campaign-order')}}
@@ -84,10 +84,10 @@
                         {{ __('profiles.settings.fields.new_entity_workflow') }}
                         <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.hints.new_entity_workflow') }}"></i>
                     </label>
-                        {!! Form::select('new_entity_workflow', [
-                                '' => __('profiles.workflows.default'),
-                                'created' => __('profiles.workflows.created'),
-                            ], null, ['class' => 'form-control']) !!}
+                    {!! Form::select('new_entity_workflow', [
+                            '' => __('profiles.workflows.default'),
+                            'created' => __('profiles.workflows.created'),
+                        ], null, ['class' => 'form-control']) !!}
 
                     <p class="help-block visible-xs visible-sm">{{ __('profiles.settings.hints.new_entity_workflow') }}</p>
                 </div>
