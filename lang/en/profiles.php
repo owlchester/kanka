@@ -1,24 +1,8 @@
 <?php
 
 return [
-    'appearance'                    => [
-        'helpers'   => [
-            'campaign-order'    => 'Change the order in which campaigns are listed in the campaign switcher.',
-            'date-format'       => 'Control the date format for real date.',
-            'pagination'        => 'Change the number of elements displayed in various lists.',
-        ],
-    ],
     'avatar'                        => [
         'success'   => 'Avatar updated.',
-    ],
-    'campaign_switcher_order_by'    => [
-        'alphabetical'      => 'Alphabetically',
-        'date_created'      => 'Date Created',
-        'date_joined'       => 'Date Joined',
-        'default'           => 'Default',
-        'r_alphabetical'    => 'Alphabetically Reversed',
-        'r_date_created'    => 'Date Created Reversed',
-        'r_date_joined'     => 'Date Joined Reversed',
     ],
     'edit'                          => [
         'success'   => 'Profile updated',
@@ -82,30 +66,13 @@ return [
         ],
     ],
     'settings'                      => [
-        'fields'    => [
-            'advanced_mentions'             => 'Advanced mentions',
-            'campaign_switcher_order_by'    => 'Campaign list sorting order',
-            'date_format'                   => 'Date formatting',
-            'default_nested'                => 'Nested views as default',
-            'editor'                        => 'Text editor',
-            'new_entity_workflow'           => 'New entity workflow',
-            'pagination'                    => 'Pagination',
-        ],
         'helpers'   => [
             'bio'       => 'The biography is visible on your :link.',
-            'editor_v2' => 'Using the legacy text editor (TinyMCE) will not support mentions on mobile devices, and not have support for some features like the campaign gallery.',
             'profile'   => 'public profile',
-            'pagination' => ':amount (available for subscribers)',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'If activated, mentions will always render as [entity:123] when editing an entity.',
-            'default_nested'        => 'Activate this option if you wish for the default lists to be Nested by default (when available).',
-            'new_entity_workflow'   => 'When creating a new entity, the default workflow is to go to the list of entities. You can change this to view the newly created entity instead.',
         ],
         'success'   => 'Settings changed.',
     ],
     'theme'                         => [
-        'helper'    => 'A campaign with a set theme will override your preference.',
         'success'   => 'Theme changed.',
         'themes'    => [
             'dark'      => 'Dark',
@@ -116,7 +83,7 @@ return [
     ],
     'title'                         => 'Update your profile',
     'workflows'                     => [
-        'created'   => 'Go to created entity',
-        'default'   => 'List of entities',
+        'created'   => 'View the newly created entity',
+        'default'   => 'View the list of entities',
     ],
 ];

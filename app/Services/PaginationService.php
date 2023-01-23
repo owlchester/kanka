@@ -17,14 +17,14 @@ class PaginationService
     public function options(): array
     {
         $options = [
-            null => 15,
-            25 => 25,
-            45 => 45,
-            self::MAX => self::MAX
+            null => __('settings/appearance.values.pagination', ['amount' => 15]),
+            25 => __('settings/appearance.values.pagination', ['amount' => 25]),
+            45 => __('settings/appearance.values.pagination', ['amount' => 45]),
+            self::MAX => __('settings/appearance.values.pagination', ['amount' => self::MAX])
         ];
 
         if (!auth()->user()->isSubscriber()) {
-            $options[self::MAX] = __('profiles.settings.helpers.pagination', ['amount' => self::MAX]);
+            $options[self::MAX] = __('settings/appearance.values.pagination-sub', ['amount' => self::MAX]);
         }
 
         return $options;

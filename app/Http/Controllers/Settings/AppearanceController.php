@@ -66,6 +66,6 @@ class AppearanceController extends Controller
 
         return redirect()
             ->route('settings.appearance')
-            ->with('success', __('settings.layout.success'));
+            ->with('success', __('settings/appearance.success'));
     }
 }

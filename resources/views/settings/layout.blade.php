@@ -18,33 +18,30 @@
             <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
                 <div class="form-group">
                     <label>{{ __('profiles.fields.theme') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.theme.helper')}}"></i>
                     </label>
                     {!! Form::select('theme', [
                         '' => __('profiles.theme.themes.default'),
                         'dark' => __('profiles.theme.themes.dark'),
                         'midnight' => __('profiles.theme.themes.midnight')
                     ], null, ['class' => 'form-control']) !!}
-                    <p class="help-block visible-xs visible-sm">
-                        {{ __('profiles.theme.helper')}}
+                    <p class="help-block">
+                        {{ __('settings/appearance.helpers.theme')}}
                     </p>
                 </div>
 
                 <div class="form-group">
                     <label>
-                        {{ __('profiles.settings.fields.pagination') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.appearance.helpers.pagination')}}"></i>
+                        {{ __('settings/appearance.fields.pagination') }}
                     </label>
                     {!! Form::select('pagination', $paginationOptions, null, ['class' => 'form-control'], $paginationDisabled) !!}
-                    <p class="help-block visible-xs visible-sm">
-                        {{ __('profiles.appearance.helpers.pagination')}}
+                    <p class="help-block">
+                        {{ __('settings/appearance.helpers.pagination')}}
                     </p>
                 </div>
 
                 <div class="form-group">
                     <label>
-                        {{ __('profiles.settings.fields.date_format') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.appearance.helpers.date-format')}}"></i>
+                        {{ __('settings/appearance.fields.date-format') }}
                     </label>
                     {!! Form::select('date_format', [
                         null => 'Month d, Y',
@@ -55,55 +52,51 @@
 
                     ], null, ['class' => 'form-control']) !!}
 
-                    <p class="help-block visible-xs visible-sm">
-                        {{ __('profiles.appearance.helpers.date-format')}}
+                    <p class="help-block">
+                        {{ __('settings/appearance.helpers.date-format')}}
                     </p>
                 </div>
 
                 <div class="form-group {{ $highlight === 'campaign-switcher' ? 'alert alert-info' : '' }}">
                     <label>
-                        {{ __('profiles.settings.fields.campaign_switcher_order_by') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.appearance.helpers.campaign-order')}}"></i></label>
+                        {{ __('settings/appearance.fields.campaign-order') }}
                     {!! Form::select('campaign_switcher_order_by', [
-                        null => __('profiles.campaign_switcher_order_by.default'),
-                        'alphabetical' => __('profiles.campaign_switcher_order_by.alphabetical'),
-                        'date_created' => __('profiles.campaign_switcher_order_by.date_created'),
-                        'date_joined' => __('profiles.campaign_switcher_order_by.date_joined'),
-                        'r_alphabetical' => __('profiles.campaign_switcher_order_by.r_alphabetical'),
-                        'r_date_created' => __('profiles.campaign_switcher_order_by.r_date_created'),
-                        'r_date_joined' => __('profiles.campaign_switcher_order_by.r_date_joined'),
+                        null => __('settings/appearance.campaign-switcher.date_created'),
+                        'r_date_created' => __('settings/appearance.campaign-switcher.r_date_created'),
+                        'alphabetical' => __('settings/appearance.campaign-switcher.alphabetical'),
+                        'r_alphabetical' => __('settings/appearance.campaign-switcher.r_alphabetical'),
+                        'date_joined' => __('settings/appearance.campaign-switcher.date_joined'),
+                        'r_date_joined' => __('settings/appearance.campaign-switcher.r_date_joined'),
                     ], auth()->user()->campaignSwitcherOrderBy, ['class' => 'form-control']) !!}
 
-                    <p class="help-block visible-xs visible-sm">
-                        {{ __('profiles.appearance.helpers.campaign-order')}}
+                    <p class="help-block">
+                        {{ __('settings/appearance.helpers.campaign-order')}}
                     </p>
                 </div>
 
                 <div class="form-group">
                     <label>
-                        {{ __('profiles.settings.fields.new_entity_workflow') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.hints.new_entity_workflow') }}"></i>
+                        {{ __('settings/appearance.fields.new-entity-workflow') }}
                     </label>
                     {!! Form::select('new_entity_workflow', [
                             '' => __('profiles.workflows.default'),
                             'created' => __('profiles.workflows.created'),
                         ], null, ['class' => 'form-control']) !!}
 
-                    <p class="help-block visible-xs visible-sm">{{ __('profiles.settings.hints.new_entity_workflow') }}</p>
+                    <p class="help-block">{{ __('settings/appearance.helpers.new-entity-workflow') }}</p>
                 </div>
 
                 @if ($textEditorSelect)
                     <div class="form-group">
                         <label>
-                            {{ __('profiles.settings.fields.editor') }}
-                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('profiles.settings.helpers.editor_v2') }}"></i>
+                            {{ __('settings/appearance.fields.editor') }}
                         </label>
                         {!! Form::select('editor', [
-                            '' => __('profiles.campaign_switcher_order_by.default') . ' (Summernote)',
+                            '' => __('settings/appearance.campaign-switcher.default') . ' (Summernote)',
                             'legacy' => __('profiles.editors.legacy'),
                         ], null, ['class' => 'form-control']) !!}
 
-                        <p class="help-block visible-xs visible-sm">{{ __('profiles.settings.helpers.editor_v2') }}</p>
+                        <p class="help-block">{{ __('settings/appearance.helpers.editor') }}</p>
                     </div>
                 @endif
             </div>
@@ -113,24 +106,25 @@
                 {!! Form::hidden('default_nested', 0) !!}
                 <label>
                     {!! Form::checkbox('default_nested', 1, auth()->user()->defaultNested) !!}
-                    {{ __('profiles.settings.fields.default_nested') }}
+                    {{ __('settings/appearance.fields.default-nested') }}
                 </label>
-                <p class="help-block">{{ __('profiles.settings.hints.default_nested') }}</p>
+                <p class="help-block">{{ __('settings/appearance.helpers.default-nested') }}</p>
             </div>
 
             <div class="form-group">
                 {!! Form::hidden('advanced_mentions', 0) !!}
                 <label>
                     {!! Form::checkbox('advanced_mentions', 1, auth()->user()->alwaysAdvancedMentions()) !!}
-                    {{ __('profiles.settings.fields.advanced_mentions') }}
+                    {{ __('settings/appearance.fields.advanced-mentions') }}
                 </label>
-                <p class="help-block">{{ __('profiles.settings.hints.advanced_mentions') }}</p>
+                <p class="help-block">{!! __('settings/appearance.helpers.new-entity-workflow', ['mention' => '<code>[entity:123]</code>']) !!}</p>
             </div>
         </div>
 
         <div class="box-footer text-right">
             <button class="btn btn-primary">
-                {{ __('crud.save') }}
+                <i class="fa-solid fa-save" aria-hidden="true"></i>
+                {{ __('settings/appearance.actions.save') }}
             </button>
         </div>
     </div>
