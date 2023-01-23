@@ -93,15 +93,15 @@ class MapGroupController extends Controller
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
-        if ($request->submit === 'update') {
+        if ($request->has('submit-update')) {
             return redirect()
             ->route('maps.map_groups.edit', ['map' => $map, $new])
             ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
-        } elseif ($request->submit === 'new') {
+        } elseif ($request->has('submit-new')) {
             return redirect()
             ->route('maps.map_groups.create', ['map' => $map])
             ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
-        } elseif ($request->submit === 'explore') {
+        } elseif ($request->has('submit-explore')) {
             return redirect()
                 ->route('maps.explore', [$map])
                 ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
@@ -138,15 +138,15 @@ class MapGroupController extends Controller
 
         $mapGroup->update($request->only('name', 'position', 'entry', 'visibility_id', 'is_shown'));
 
-        if ($request->submit === 'update') {
+        if ($request->has('submit-update')) {
             return redirect()
             ->route('maps.map_groups.edit', ['map' => $map, $mapGroup])
             ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
-        } elseif ($request->submit === 'new') {
+        } elseif ($request->has('submit-new')) {
             return redirect()
             ->route('maps.map_groups.create', ['map' => $map])
             ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
-        } elseif ($request->submit === 'explore') {
+        } elseif ($request->has('submit-explore')) {
             return redirect()
                 ->route('maps.explore', [$map])
                 ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));

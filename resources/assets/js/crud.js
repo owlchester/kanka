@@ -361,16 +361,31 @@ function registerFormMaintenance() {
             }
             e.preventDefault();
 
-            $.ajax({
+            // If it's a form with images, we need to handle it a little bit differently
+            let ajaxData = {
                 url: $(this).attr('action'),
                 method: $(this).attr('method'),
                 data: $(this).serialize(),
                 context: this,
-            }).done(function () {
-                //console.log('good?');
+            };
+            if ($(this).find('input[type="file"]').length > 0) {
+                let formData = new FormData(this);
+                ajaxData = {
+                    url: $(this).attr('action'),
+                    method: $(this).attr('method'),
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    context: this,
+                };
+            }
+
+            $.ajax(ajaxData).done(function () {
                 // If the validation succeeded, we can really submit the form
-                $(this).data('checked-maintenance', true).submit();
-                return true;
+                $(this)
+                    .data('checked-maintenance', true)
+                    .submit();
             }).fail(function (err) {
                 window.formErrorHandler(err, this);
             });
