@@ -28,7 +28,7 @@ window.initSummernote = function() {
             ['table', ['table', 'spoiler', 'tableofcontent']],
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
-            ['view', ['fullscreen', 'codeview', 'help']],
+            ['view', ['fullscreen', 'codeview', 'prettify', 'help']],
             (summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null),
         ],
 

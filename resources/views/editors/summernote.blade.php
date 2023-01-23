@@ -11,6 +11,7 @@
     <script src="/vendor/summernote/plugin/spoiler/summernote-spoiler.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-image-attribute.js" defer></script>
     <script src="/vendor/summernote/plugin/kanka/summernote-bragi-kanka.min.js" defer></script>
+    <script src="/vendor/summernote/plugin/kanka/summernote-prettify-kanka.min.js" defer></script>
 {{--    <script src="/vendor/summernote/plugin/rtl/summernote-ext-rtl.js" defer></script>--}}
 
     @if (app()->getLocale() == 'ca')
