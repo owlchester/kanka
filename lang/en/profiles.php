@@ -7,10 +7,6 @@ return [
     'edit'                          => [
         'success'   => 'Profile updated',
     ],
-    'editors'                       => [
-        'legacy'        => 'Legacy (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
     'fields'                        => [
         'avatar'                    => 'Avatar',
         'bio'                       => 'Bio',

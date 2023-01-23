@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'dismissible' => [
+        'main' => 'Control the way Kanka looks and feels. Please note that campaigns can override some of these settings.',
+        'lean-more' => 'Learn more about these settings in our :documentation.',
+    ],
     'actions' => [
         'save' => 'Save settings',
     ],
@@ -37,5 +41,10 @@ return [
         'r_alphabetical'    => 'Alphabetically (Z-A)',
         'r_date_created'    => 'Date created (newest first)',
         'r_date_joined'     => 'Date Joined (newest first)',
+    ],
+
+    'editors'                       => [
+        'legacy'        => 'Legacy (:name)',
+        'default'    => 'Default (:name)',
     ],
 ];

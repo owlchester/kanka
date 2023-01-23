@@ -7,12 +7,28 @@
 
 @section('content')
     @include('partials.errors')
+    @if (auth()->check() && !auth()->user()->settings()->get('tutorial_appearance'))
+        <div class="alert alert-info tutorial">
+            <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'appearance', 'type' => 'tutorial']) }}">×</button>
+
+            <p>{{ __('settings/appearance.dismissible.main') }}</p>
+
+            <p>{!!  __('settings/appearance.dismissible.lean-more', ['documentation' => link_to('https://docs.kanka.io/en/latest/profile/appearance.html', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front.menu.documentation'), ['target' => '_blank'], null, false)])!!}</p>
+        </div>
+    @endif
+
     {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.appearance.update'], 'data-shortcut' => 1]) !!}
     <div class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">
                 {{ __('settings.layout.title') }}
             </h3>
+            <div class="box-tools">
+                <a href="https://docs.kanka.io/en/latest/profile/appearance.html" target="_blank" class="btn btn-box-tool">
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    {{ __('front.menu.documentation') }}
+                </a>
+            </div>
         </div>
         <div class="box-body">
             <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
@@ -92,8 +108,8 @@
                             {{ __('settings/appearance.fields.editor') }}
                         </label>
                         {!! Form::select('editor', [
-                            '' => __('settings/appearance.campaign-switcher.default') . ' (Summernote)',
-                            'legacy' => __('profiles.editors.legacy'),
+                            '' => __('settings/appearance.editors.default', ['name' => 'Summernote']),
+                            'legacy' => __('settings/appearance.editors.legacy', ['name' => 'TinyMCE 4']),
                         ], null, ['class' => 'form-control']) !!}
 
                         <p class="help-block">{{ __('settings/appearance.helpers.editor') }}</p>
