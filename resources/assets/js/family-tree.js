@@ -2,6 +2,9 @@ import { Application, BLEND_MODES, Assets, RenderTexture, Container, Sprite, Tex
 import axios from 'axios';
 import { Viewport } from 'pixi-viewport'
 import { add } from 'lodash';
+//import Modal from './modal.js'
+//import Button from './button.js'
+
 
 const WORLD_WIDTH = 2000
 const WORLD_HEIGHT = 2000
@@ -16,12 +19,14 @@ const app = new Application({ backgroundAlpha: 0, resizeTo: window });
 // The application will create a canvas element for you that you
 // can then insert into the DOM
 const container = document.getElementsByClassName('family-tree-setup')[0];
-container.appendChild(app.view);
 
 // load the texture we need
 const texture = await Assets.load('/images/family-trees/entity.png');
 
 const graphics = new Graphics();
+
+const entityBox = new Graphics();
+
 
 const entityNameStyle = new TextStyle({
     fontFamily: 'Arial',
@@ -72,7 +77,6 @@ const drawEntity = (entity, x, y) => {
     // Add the entityPanel to the scene we are building
     //app.stage.addChild(entityPanel);
 
-    var entityBox = new Graphics();
     entityBox.beginFill(0xffffff);
     entityBox.lineStyle(1, 0x0, .3);
     entityBox.drawRoundedRect(
@@ -82,6 +86,7 @@ const drawEntity = (entity, x, y) => {
         entityHeight,
         20
     );
+    entityBox.endFill();
     app.stage.addChild(entityBox);
     viewport.addChild(entityBox);
 
@@ -154,6 +159,21 @@ const drawEntity = (entity, x, y) => {
     hitBox.on('pointerout', (event) => onPointerOut(entityBox));
     app.stage.addChild(hitBox);
     viewport.addChild(hitBox);
+
+    const closeButton = new Text('x', entityNameStyle);
+    closeButton.x = x + 125;
+    closeButton.y = y;
+    closeButton.interactive = true;
+    closeButton.buttonMode = true;
+    var deleteNode = 0;
+    closeButton.onclick = (event) => {
+        deleteEntity(entity.id);
+        //location.href = entity.url.concat('ape');
+    }
+    //console.log(deleteNode);
+
+    app.stage.addChild(closeButton);
+    viewport.addChild(closeButton);
 };
 
 /**
@@ -415,6 +435,10 @@ const relationWidth = (relation, index) => {
 
 const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
     // Draw the main entity of the node
+    if (deletedEntities.includes(node.entity_id)) {
+        console.log('deleted node', node.entity_id);
+        return;
+    }
     let entity = entities[node.entity_id];
     if (!entity) {
         return;
@@ -431,17 +455,38 @@ const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
     // Loop the relations to draw them on the same line
     drawRelations(node.relations, sourceX, sourceY, drawX, drawY);
 };
+const deletedEntities = [];
 
 const renderPage = () => {
+    if (typeof app.stage !== 'undefined'){
+        console.log('deleted','container.removeChild');
+        //app.stage.removeChild(1);
+        //for (var i = app.stage.children.length - 1; i >= 0; i--) {	app.stage.removeChild(app.stage.children[i]);};
+    }
+    container.appendChild(app.view);
     axios.get(container.dataset.api).then((resp) => {
         entities = resp.data.entities;
         nodes = resp.data.nodes;
 
+        //entities.forEach(entity => {
+        //    if (deletedEntities.includes(entity['id'])) {
+        //        entities.splice(entity, 1);
+        //   }  
+        //});
+
+        console.log(deletedEntities, entities, nodes);
+
         /*console.info('Draw tree');
         console.log(entities);
         console.log(nodes);*/
+        //nodes = nodes.filter(function(element){ return element.uuid != the_uuid });
 
         nodes.forEach(node => {
+            console.log(node, 'nodes');
+            if (deletedEntities.includes(node.entity_id)) {
+                console.log('deleted node', node.entity_id);
+                return;
+            }
             drawNode(node, 0, 0, 0, 0);
         });
     });
@@ -454,6 +499,26 @@ function onPointerOut(object) {
     object.tint = 0xFFFFFF;
 }
 
+
+function deleteEntity(id) {
+    let text;
+    if (confirm("Do you want to remove this node?") == true) {
+      text = "You pressed OK!";
+      if (!deletedEntities.includes(id)){
+
+        
+        //deletedEntities.push(id);
+        //app.stage.removeChildren();
+
+        graphics.clear();
+        entityBox.clear();
+      }
+      //renderPage();
+    } else {
+      text = "You canceled!";
+    }
+    console.log(text,id);
+}
 
 // or with require
 // const PIXI = require('pixi.js')

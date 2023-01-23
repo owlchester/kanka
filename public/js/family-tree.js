@@ -2072,6 +2072,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ //import Modal from './modal.js'
+//import Button from './button.js'
 
 var WORLD_WIDTH = 2000;
 var WORLD_HEIGHT = 2000;
@@ -2086,11 +2088,11 @@ var app = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Application({
 }); // The application will create a canvas element for you that you
 // can then insert into the DOM
 
-var container = document.getElementsByClassName('family-tree-setup')[0];
-container.appendChild(app.view); // load the texture we need
+var container = document.getElementsByClassName('family-tree-setup')[0]; // load the texture we need
 
 var texture = await pixi_js__WEBPACK_IMPORTED_MODULE_0__.Assets.load('/images/family-trees/entity.png');
 var graphics = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
+var entityBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
 var entityNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
   fontFamily: 'Arial',
   fontSize: 16,
@@ -2135,10 +2137,10 @@ var drawEntity = function drawEntity(entity, x, y) {
   entityPanel.height = entityHeight; // Add the entityPanel to the scene we are building
   //app.stage.addChild(entityPanel);
 
-  var entityBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   entityBox.beginFill(0xffffff);
   entityBox.lineStyle(1, 0x0, .3);
   entityBox.drawRoundedRect(x, y, entityWidth, entityHeight, 20);
+  entityBox.endFill();
   app.stage.addChild(entityBox);
   viewport.addChild(entityBox);
   /*var circle = new Graphics();
@@ -2205,6 +2207,20 @@ var drawEntity = function drawEntity(entity, x, y) {
   });
   app.stage.addChild(hitBox);
   viewport.addChild(hitBox);
+  var closeButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('x', entityNameStyle);
+  closeButton.x = x + 125;
+  closeButton.y = y;
+  closeButton.interactive = true;
+  closeButton.buttonMode = true;
+  var deleteNode = 0;
+
+  closeButton.onclick = function (event) {
+    deleteEntity(entity.id); //location.href = entity.url.concat('ape');
+  }; //console.log(deleteNode);
+
+
+  app.stage.addChild(closeButton);
+  viewport.addChild(closeButton);
 };
 /**
  * Draw the relation of a node as well as the "line" between the node's main entity and this relation
@@ -2422,6 +2438,11 @@ var relationWidth = function relationWidth(relation, index) {
 
 var drawNode = function drawNode(node, sourceX, sourceY, drawX, drawY) {
   // Draw the main entity of the node
+  if (deletedEntities.includes(node.entity_id)) {
+    console.log('deleted node', node.entity_id);
+    return;
+  }
+
   var entity = entities[node.entity_id];
 
   if (!entity) {
@@ -2439,15 +2460,37 @@ var drawNode = function drawNode(node, sourceX, sourceY, drawX, drawY) {
   drawRelations(node.relations, sourceX, sourceY, drawX, drawY);
 };
 
+var deletedEntities = [];
+
 var renderPage = function renderPage() {
+  if (typeof app.stage !== 'undefined') {
+    console.log('deleted', 'container.removeChild'); //app.stage.removeChild(1);
+    //for (var i = app.stage.children.length - 1; i >= 0; i--) {	app.stage.removeChild(app.stage.children[i]);};
+  }
+
+  container.appendChild(app.view);
   axios__WEBPACK_IMPORTED_MODULE_1___default().get(container.dataset.api).then(function (resp) {
     entities = resp.data.entities;
-    nodes = resp.data.nodes;
+    nodes = resp.data.nodes; //entities.forEach(entity => {
+    //    if (deletedEntities.includes(entity['id'])) {
+    //        entities.splice(entity, 1);
+    //   }  
+    //});
+
+    console.log(deletedEntities, entities, nodes);
     /*console.info('Draw tree');
     console.log(entities);
     console.log(nodes);*/
+    //nodes = nodes.filter(function(element){ return element.uuid != the_uuid });
 
     nodes.forEach(function (node) {
+      console.log(node, 'nodes');
+
+      if (deletedEntities.includes(node.entity_id)) {
+        console.log('deleted node', node.entity_id);
+        return;
+      }
+
       drawNode(node, 0, 0, 0, 0);
     });
   });
@@ -2459,6 +2502,26 @@ function onPointerOver(object) {
 
 function onPointerOut(object) {
   object.tint = 0xFFFFFF;
+}
+
+function deleteEntity(id) {
+  var text;
+
+  if (confirm("Do you want to remove this node?") == true) {
+    text = "You pressed OK!";
+
+    if (!deletedEntities.includes(id)) {
+      //deletedEntities.push(id);
+      //app.stage.removeChildren();
+      graphics.clear();
+      entityBox.clear();
+    } //renderPage();
+
+  } else {
+    text = "You canceled!";
+  }
+
+  console.log(text, id);
 } // or with require
 // const PIXI = require('pixi.js')
 // const Viewport = require('pixi-viewport').Viewport
