@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Families;
 
 use App\Http\Controllers\Controller;
+use App\Models\Entity;
 use App\Models\Family;
 use App\Services\Families\FamilyTreeService;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Request;
 
 class FamilyTreeController extends Controller
@@ -35,11 +37,15 @@ class FamilyTreeController extends Controller
 
     /**
      * Provide the family tree info as a json
-     * @param Family $family
-     * @return \Illuminate\Http\JsonResponse
      */
-    public function api(Family $family)
+    public function api(Family $family): JsonResponse
     {
+        if (auth()->check()) {
+            $this->authorize('view', $family);
+        } else {
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $family);
+        }
+
         return response()->json(
             $this
                 ->service
@@ -49,12 +55,26 @@ class FamilyTreeController extends Controller
     }
 
     /**
-     * Save the new config
-     * @param Request $request
-     * @param Family $family
-     * @return \Illuminate\Http\JsonResponse
+     * Provide the entity info as a json
      */
-    public function save(Request $request, Family $family)
+    public function entity(Entity $entity): JsonResponse
+    {
+        if (empty($entity->child)) {
+            abort(404);
+        }
+        $this->authorize('view', $entity->child);
+
+        return response()->json(
+            $this
+                ->service
+                ->entity($entity)
+        );
+    }
+
+    /**
+     * Save the new config
+     */
+    public function save(Request $request, Family $family): JsonResponse
     {
         return response()->json(
             $this

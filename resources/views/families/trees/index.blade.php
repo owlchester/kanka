@@ -25,8 +25,8 @@
             <div class="family-tree-setup overflow-x overflow-y"
                 data-api="{{ route('families.family-tree.api', $family) }}"
                 data-save="{{ route('families.family-tree.api-save', $family) }}"
+                data-entity="{{ route('families.family-tree.entity-api', 0) }}"
             >
-
             </div>
         </div>
     </div>

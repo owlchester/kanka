@@ -33,6 +33,19 @@ class FamilyTreeService
         return $this->fake();
     }
 
+    /**
+     * Get an entity's representation for the rendering engine
+     * @param Entity $entity
+     * @return array|string[]
+     */
+    public function entity(Entity $entity): array
+    {
+        if (!$entity->isCharacter()) {
+            return ['error' => 'invalid-character'];
+        }
+        return $this->formatEntity($entity);
+    }
+
 
     protected function loadSetup(): void
     {
@@ -73,12 +86,7 @@ class FamilyTreeService
         $entities = Entity::inTypes([config('entities.ids.character')])
             ->find($this->entityIds);
         foreach ($entities as $entity) {
-            $this->entities[$entity->id] = [
-                'id' => $entity->id,
-                'name' => $entity->name,
-                'url' => $entity->url(),
-                'thumb' => $entity->avatar(),
-            ];
+            $this->entities[$entity->id] = $this->formatEntity($entity);
         }
         //dump($this->entities);
 
@@ -86,6 +94,21 @@ class FamilyTreeService
         //dump($this->missingIds);
 
         $this->cleanupMissingEntities();
+    }
+
+    /**
+     * Format an entity for the rendering engine
+     * @param Entity $entity
+     * @return array
+     */
+    protected function formatEntity(Entity $entity): array
+    {
+        return [
+            'id' => $entity->id,
+            'name' => $entity->name,
+            'url' => $entity->url(),
+            'thumb' => $entity->avatar(),
+        ];
     }
 
     protected function cleanupMissingEntities(): void
