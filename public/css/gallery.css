@@ -1,16 +1,5 @@
-.gallery ul {
-  position: static;
-}
 .gallery ul li {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  box-sizing: border-box;
   background-color: var(--gallery-background);
-}
-.gallery ul li .image-preview .gallery-thumbnail {
-  height: 100px;
-  width: 100px;
 }
 .gallery ul li:focus, .gallery ul li:hover {
   box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
@@ -21,10 +10,6 @@
 .dropping {
   color: var(--gallery-hover-text);
   outline: 1px solid transparent;
-}
-
-.panel-image-edit img {
-  max-width: 100%;
 }
 
 .fileinput-button {

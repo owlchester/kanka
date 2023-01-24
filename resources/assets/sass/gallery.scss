@@ -1,32 +1,8 @@
-$image-preview-height: 100px;
-$image-preview-text-height: 2.5rem;
-$total-iph: calc(#{$image-preview-height} + #{$image-preview-text-height});
-
 .gallery {
     ul {
-        position: static;
-        //right: 0;
-        //margin-right: 0;
-        //padding: 0;
-
         li {
-            //list-style: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            box-sizing: border-box;
             background-color: var(--gallery-background);
 
-            .image-preview {
-
-                .gallery-thumbnail {
-                    height: $image-preview-height;
-                    width: $image-preview-height;
-                }
-
-
-            }
             &:focus,
             &:hover {
                 box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
@@ -40,12 +16,6 @@ $total-iph: calc(#{$image-preview-height} + #{$image-preview-text-height});
 .dropping {
     color: var(--gallery-hover-text);
     outline: 1px solid transparent;
-}
-
-.panel-image-edit {
-    img {
-        max-width: 100%;
-    }
 }
 
 .fileinput-button {

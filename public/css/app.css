@@ -4540,6 +4540,14 @@ body.ab-testing-second .ab-testing-a {
   width: 100%;
 }
 
+.max-h-full {
+  max-height: 100%;
+}
+
+.max-w-full {
+  max-width: 100%;
+}
+
 .flex-none {
   flex: none;
 }
@@ -5543,6 +5551,30 @@ body.ab-testing-second .ab-testing-a {
 
 .bg-box {
   background-color: var(--box-background);
+}
+
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.select-text {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+
+.select-all {
+  -webkit-user-select: all;
+     -moz-user-select: all;
+          user-select: all;
+}
+
+.select-auto {
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+          user-select: auto;
 }
 
 .list-none {
