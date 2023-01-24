@@ -2383,6 +2383,7 @@ function initGallery() {
         }
       });
       uploadFiles(data);
+      galleryForm.classList.remove('drop-shadow', 'dropping');
     } else {
       // Use DataTransfer interface to access the file(s)
       _toConsumableArray(ev.dataTransfer.files).forEach(function (file, i) {

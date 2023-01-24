@@ -47,6 +47,7 @@ function initGallery() {
                 }
             });
             uploadFiles(data);
+            galleryForm.classList.remove('drop-shadow', 'dropping');
         } else {
             // Use DataTransfer interface to access the file(s)
             [...ev.dataTransfer.files].forEach((file, i) => {
