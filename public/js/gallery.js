@@ -10,7 +10,6 @@ $(document).ready(function () {
   initUploader();
   registerEvents();
 });
-
 function initGallery() {
   loader = $('#gallery-loader');
   gallery = $('#gallery-images');
@@ -29,11 +28,10 @@ function initGallery() {
     }
   });
 }
+
 /**
  *
  */
-
-
 function initSearch() {
   gallery.hide();
   loader.show();
@@ -45,11 +43,10 @@ function initSearch() {
     registerEvents();
   });
 }
+
 /**
  *
  */
-
-
 function initUploader() {
   fileDrop.unbind('drop dragover').bind('drop dragover', function (e) {
     e.preventDefault();
@@ -69,7 +66,6 @@ function initUploader() {
     },
     done: function done(e, data) {
       fileProgress.hide();
-
       if (data.result.success) {
         gallery.prepend(data.result.html);
         registerEvents();
@@ -77,46 +73,37 @@ function initUploader() {
     },
     fail: function fail(e, data) {
       fileProgress.hide();
-
       if (data.jqXHR.responseJSON) {
         fileError.text(buildErrors(data.jqXHR.responseJSON.errors)).fadeToggle();
       }
-
       registerEvents();
     }
   });
 }
+
 /**
  *
  * @param data
  * @returns {string}
  */
-
-
 function buildErrors(data) {
   var errors = '';
-
   for (var key in data) {
     // skip loop if the property is from prototype
     if (!data.hasOwnProperty(key)) continue;
-
     for (var e in data[key]) {
       errors += data[key][e] + "\n";
     }
   }
-
   return errors;
 }
-
 function registerEvents() {
   $('#gallery-images li').unbind('click').on('click', function () {
     var folder = $(this).data('folder');
-
     if (folder) {
       window.location = folder;
       return;
     }
-
     $.ajax({
       url: $(this).data('url')
     }).done(function (data) {
