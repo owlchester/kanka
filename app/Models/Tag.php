@@ -325,9 +325,9 @@ class Tag extends MiscModel
      */
     public function bubble(): string
     {
-        return '<span class="label label-tag-bubble ' .
+        return '<span class="label label-tag-bubble overflow-hidden ' .
             ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '" title="' .
-            e($this->name) . '">' . ucfirst(substr(e($this->name), 0, 1)) . '</span>';
+            e($this->name) . '">' . ucfirst(substr($this->slug, 0, 1)) . '</span>';
     }
 
     /**

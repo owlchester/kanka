@@ -4564,6 +4564,10 @@ body.ab-testing-second .ab-testing-a {
   flex-grow: 1;
 }
 
+.grow {
+  flex-grow: 1;
+}
+
 .flex-row-reverse {
   flex-direction: row-reverse;
 }
@@ -5386,6 +5390,20 @@ body.ab-testing-second .ab-testing-a {
 
 .font-black {
   font-weight: 900;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.text-clip {
+  text-overflow: clip;
 }
 
 /** aspect ratio **/

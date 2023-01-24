@@ -21,7 +21,7 @@
     <div class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">
-                {{ __('settings.layout.title') }}
+                {{ __('settings.menu.appearance') }}
             </h3>
             <div class="box-tools">
                 <a href="https://docs.kanka.io/en/latest/profile/appearance.html" target="_blank" class="btn btn-box-tool">
@@ -33,7 +33,7 @@
         <div class="box-body">
             <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
                 <div class="form-group">
-                    <label>{{ __('profiles.fields.theme') }}
+                    <label>{{ __('settings/appearance.fields.theme') }}
                     </label>
                     {!! Form::select('theme', [
                         '' => __('profiles.theme.themes.default'),
@@ -133,7 +133,7 @@
                     {!! Form::checkbox('advanced_mentions', 1, auth()->user()->alwaysAdvancedMentions()) !!}
                     {{ __('settings/appearance.fields.advanced-mentions') }}
                 </label>
-                <p class="help-block">{!! __('settings/appearance.helpers.new-entity-workflow', ['mention' => '<code>[entity:123]</code>']) !!}</p>
+                <p class="help-block">{!! __('settings/appearance.helpers.advanced-mentions', ['mention' => '<code>[entity:123]</code>']) !!}</p>
             </div>
         </div>
 

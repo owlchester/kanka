@@ -15,7 +15,6 @@
         "ext-zip": "*",
         "bacon/bacon-qr-code": "^2.0",
         "binarytorch/larecipe": "^2.0",
-        "blueimp/jquery-file-upload": "^9.23",
         "caseyamcl/toc": "^3.0",
         "chriskonnertz/string-calc": "^1.0",
         "enshrined/svg-sanitize": "^0.15.0",

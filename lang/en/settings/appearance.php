@@ -13,10 +13,10 @@ return [
         'date-format'       => 'Control the format in which to display real world dates.',
         'pagination'        => 'For lists that span multiple pages, define how many are visible on each page.',
         'editor' => 'Using the legacy text editor (TinyMCE) will not support mentions on mobile devices, and not have support for some features like the campaign gallery.',
-        'theme'    => 'Control the look of Kanka. Campaigns can override your preference.',
+        'theme'    => 'View Kanka in the following theme. Individual campaigns can override this preference.',
 
         'advanced-mentions'     => 'When enabled, mentions will always render as :mention when editing texts.',
-        'default-nested'        => 'When enabled, lists which supported nesting will display that way by default. This can be overridden by campaign settings.',
+        'default-nested'        => 'When enabled, lists which supported nesting will display that way by default. Individual campaigns can override this preference.',
         'new-entity-workflow'   => 'When creating a new entity, the default workflow is to go to the list of entities. You can change this to view the newly created entity instead.',
     ],
     'success' => 'Appearance options saved.',
@@ -32,6 +32,7 @@ return [
         'editor'                        => 'Text editor',
         'new-entity-workflow'           => 'After creating a new entity',
         'pagination'                    => 'Results per page',
+        'theme'                         => 'Theme preference'
     ],
 
     'campaign-switcher'    => [

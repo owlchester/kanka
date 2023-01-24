@@ -1,16 +1,15 @@
 <?php
 
-
 namespace App\Services\Campaign;
 
-
+use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Models\Campaign;
 use App\Models\Image;
-use App\Models\ImageFolder;
 use App\Models\Visibility;
 use App\Observers\PurifiableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class GalleryService
@@ -48,38 +47,40 @@ class GalleryService
     /**
      * @param Request $request
      * @param string $field
-     * @return Image
+     * @return array
      */
-    public function store(Request $request, string $field = 'file'): Image
+    public function store(GalleryImageStore $request, string $field = 'file'): array
     {
-        // Create new image
-        $uuid = Str::uuid()->toString();
-
+        $images = [];
         /** @var \Illuminate\Http\UploadedFile $source */
-        $source = $request->file($field);
+        $files = $request->file($field);
+        foreach ($files as $source) {
+            // Prepare the name as sent by the user. It gets purified in the observer
+            $name = $source->getClientOriginalName();
+            $name = Str::beforeLast($name, '.');
 
-        // Prepare the name as sent by the user. It gets purified in the observer
-        $name = $source->getClientOriginalName();
-        $name = Str::beforeLast($name, '.');
+            $image = new Image();
+            $image->campaign_id = $this->campaign->id;
+            $image->created_by = $request->user()->id;
+            $image->id = Str::uuid()->toString();
+            $image->ext = $source->extension();
+            $image->size = (int) ceil($source->getSize() / 1024); // kb
+            $image->name = substr($name, 0, 45);
+            $image->folder_id = $request->post('folder_id');
+            $image->visibility_id = $this->campaign->defaultVisibilityID();
+            $image->save();
 
-        $image = new Image();
-        $image->campaign_id = $this->campaign->id;
-        $image->created_by = $request->user()->id;
-        $image->id = $uuid;
-        $image->ext = $source->extension();
-        $image->size = (int) ceil($source->getSize() / 1024); // kb
-        $image->name = substr($name, 0, 45);
-        $image->folder_id = $request->post('folder_id');
-        $image->visibility_id = $this->campaign->defaultVisibilityID();
-        $image->save();
+            $source
+                ->storePubliclyAs(
+                    $image->folder,
+                    $image->file,
+                    ['disk' => 's3']
+                );
 
-        $source
-            ->storePubliclyAs(
-                $image->folder,
-                $image->file
-            );
+            $images[] = $image;
+        }
 
-        return $image;
+        return $images;
     }
 
     /**

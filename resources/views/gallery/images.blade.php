@@ -2,29 +2,16 @@
 
 
 @if(!empty($folder))
-    @if(empty($folder->folder_id))
-        <li tabindex="0" data-folder="{{ route('campaign.gallery.index') }}">
-            <div class="image-preview">
-                <div class="gallery-folder">
-                    <span class="text">
-                    <i class="fa-solid fa-arrow-left fa-2x"></i>
-                    {{ __('crud.actions.back') }}
-                    </span>
-                </div>
-            </div>
-        </li>
-    @else
-        <li tabindex="0" data-folder="{{ route('campaign.gallery.index', ['folder_id' => $folder->folder_id]) }}">
-            <div class="image-preview">
-                <div class="gallery-folder">
-                    <span class="text">
-                    <i class="fa-solid fa-arrow-left fa-2x"></i>
-                    {{ $folder->imageFolder->name }}
-                    </span>
-                </div>
-            </div>
-        </li>
-    @endif
+    <li tabindex="0" data-folder="{{ empty($folder->folder_id) ? route('campaign.gallery.index') : route('campaign.gallery.index', ['folder_id' => $folder->folder_id]) }}" class="pull-left h-36 w-32 p-2 m-2 rounded drop-shadow cursor flex flex-col items-center justify-center text-center">
+        <i class="fa-solid fa-arrow-left fa-2x mb-3"></i>
+        <div class="w-full truncate">
+            @if (empty($folder->folder_id))
+                {{ __('crud.actions.back') }}
+            @else
+                {{ $folder->imageFolder->name }}
+            @endif
+        </div>
+    </li>
 @endif
 
 @foreach ($images as $image)

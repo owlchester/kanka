@@ -69,15 +69,18 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
-        $image = $this->service
+        $images = $this->service
             ->campaign($campaign)
             ->store($request);
 
-        $body = view('gallery._image')->with('image', $image)->render();
+        $body = [];
+        foreach ($images as $image) {
+            $body[] = view('gallery._image')->with('image', $image)->render();
+        }
 
         return response()->json([
             'success' => true,
-            'html' => $body
+            'images' => $body
         ]);
     }
 

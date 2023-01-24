@@ -3,107 +3,66 @@ $image-preview-text-height: 2.5rem;
 $total-iph: calc(#{$image-preview-height} + #{$image-preview-text-height});
 
 .gallery {
-  ul {
-    position: static;
-    right: 0;
-    margin-right: 0;
-    padding: 0;
+    ul {
+        position: static;
+        //right: 0;
+        //margin-right: 0;
+        //padding: 0;
 
-    li {
-      width: 12.5%;
+        li {
+            //list-style: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            box-sizing: border-box;
+            background-color: var(--gallery-background);
 
-      float: left;
-      padding: 8px;
-      margin: 0;
-      cursor: pointer;
-      list-style: none;
-      text-align: center;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      box-sizing: border-box;
+            .image-preview {
 
-      .image-preview {
-        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1),
-          inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-        cursor: pointer;
-        height: $total-iph;
-        background-color: var(--gallery-background);
+                .gallery-thumbnail {
+                    height: $image-preview-height;
+                    width: $image-preview-height;
+                }
 
-        .gallery-thumbnail {
-          height: $image-preview-height;
-          width: 100%;
-          opacity: 1;
-          transition: opacity 0.1s;
-        }
-        .gallery-folder {
-          text-align: center;
-          line-height: $total-iph;
 
-          .text {
-            margin: 0 5px;
-            width: calc(100% - 10px);
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-
-            display: inline-block;
-            vertical-align: middle;
-            line-height: normal;
-
-            color: var(--gallery-folder-text);
-
-            i {
-              display: block;
             }
-          }
+            &:focus,
+            &:hover {
+                box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
+                color: var(--gallery-hover-text);
+                outline: 1px solid transparent;
+            }
         }
-
-        .thumbnail-text {
-          margin: 0 5px;
-          width: calc(100% - 10px);
-          height: $image-preview-text-height;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-
-          display: block;
-          line-height: $image-preview-text-height;
-        }
-
-        &:focus,
-        &:hover {
-          box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
-          color: var(--gallery-hover-text);
-          outline: 1px solid transparent;
-        }
-      }
     }
-  }
+}
+
+.dropping {
+    color: var(--gallery-hover-text);
+    outline: 1px solid transparent;
 }
 
 .panel-image-edit {
-  img {
-    max-width: 100%;
-  }
+    img {
+        max-width: 100%;
+    }
 }
 
 .fileinput-button {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
 
-  input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    height: 100%;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    font-size: 200px !important;
-    direction: ltr;
-    cursor: pointer;
-  }
+    input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        height: 100%;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        font-size: 200px !important;
+        direction: ltr;
+        cursor: pointer;
+    }
 }
