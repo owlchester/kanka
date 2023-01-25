@@ -1,9 +1,6 @@
 import { Application, BLEND_MODES, Assets, RenderTexture, Container, Sprite, Text, TextStyle, Graphics, Texture, BaseTexture, Circle } from 'pixi.js';
 import axios from 'axios';
 import { Viewport } from 'pixi-viewport'
-import { add } from 'lodash';
-//import Modal from './modal.js'
-//import Button from './button.js'
 
 
 const WORLD_WIDTH = 2000
@@ -160,12 +157,18 @@ const drawEntity = (entity, uuid, x, y) => {
     closeButton.buttonMode = true;
     closeButton.onclick = (event) => {
         deleteUuid(uuid);
-        //location.href = entity.url.concat('ape');
     }
-    //console.log(deleteNode);
-
-    //app.stage.addChild(closeButton);
     viewport.addChild(closeButton);
+
+    const editButton = new Text('edit', entityNameStyle);
+    editButton.x = x + 35;
+    editButton.y = y + 60;
+    editButton.interactive = true;
+    editButton.buttonMode = true;
+    editButton.onclick = (event) => {
+        editEntity(uuid);
+    }
+    viewport.addChild(editButton);
 };
 
 /**
@@ -279,7 +282,12 @@ const drawRelationLine = (relation, originX, originY, targetX, targetY) => {
     const relationName = new Text(relation.role, relationNameStyle);
     relationName.x = targetX - (40);
     relationName.y = targetY + (entityHeight + 0);
-    //app.stage.addChild(relationName);
+    relationName.interactive = true;
+    relationName.buttonMode = true;
+    relationName.onclick = (event) => {
+        renameRelation(relation.uuid);
+    }
+
     viewport.addChild(relationName)
 };
 
@@ -343,9 +351,6 @@ const drawParentChildrenLine = (drawX, drawY, index) => {
     graphics.beginFill(0x3500FA, 1);
     graphics.drawPolygon(path);
     graphics.endFill();
-
-    //app.stage.addChild(graphics);
-
 };
 
 /**
@@ -391,7 +396,6 @@ const childWidth = (child, index) => {
     // If the child has children of its own? Is that possible?
     //console.log('child', child, largestChild);
 
-
     //console.log('- relation width', index, width);
     return size;
 };
@@ -425,10 +429,6 @@ const relationWidth = (relation, index) => {
 
 const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
     // Draw the main entity of the node
-    if (deletedEntities.includes(node.entity_id)) {
-        console.log('deleted node', node.entity_id);
-        return;
-    }
     let entity = entities[node.entity_id];
     if (!entity) {
         return;
@@ -445,7 +445,6 @@ const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
     // Loop the relations to draw them on the same line
     drawRelations(node.relations, sourceX, sourceY, drawX, drawY);
 };
-const deletedEntities = [];
 
 const drawFamilyTree = () => {
     console.log('Draw Family Tree');
@@ -459,16 +458,11 @@ const drawFamilyTree = () => {
         .pinch()
         .wheel()
         .decelerate({
-            friction: 0.50,  // percent to decelerate after movement
+            friction: 0.50,  //Percent to decelerate after movement
         });
 
     graphics.clear();
     nodes.forEach(node => {
-        console.log(node, 'nodes');
-        if (deletedEntities.includes(node.entity_id)) {
-            console.log('deleted node', node.entity_id);
-            return;
-        }
         drawNode(node, 0, 0, 0, 0);
     });
 
@@ -482,6 +476,7 @@ const renderPage = () => {
         //for (var i = app.stage.children.length - 1; i >= 0; i--) {	app.stage.removeChild(app.stage.children[i]);};
     }
     container.appendChild(app.view);
+    //console.log(container.dataset.api, 'api');
     axios.get(container.dataset.api).then((resp) => {
         entities = resp.data.entities;
         nodes = resp.data.nodes;
@@ -501,6 +496,81 @@ const deleteUuidFromNodes = (uuid) => {
     return filter(nodes, uuid);
 };
 
+const replaceEntity = (uuid, entity) => {
+    console.log('Change Entity', uuid);
+    return entityEditor(nodes, uuid, entity);
+};
+
+const renameRelations = (uuid, role) => {
+    console.log('Rename relation', uuid, nodes);
+    return relationFilter(nodes, uuid, role);
+};
+
+function relationFilter(array, uuid, role) {
+    //console.log('filter', array, uuid);
+    const getRelationNodes = (result, object) => {
+        console.log('ape');
+        if (object.uuid === uuid) {
+            console.log(object);
+            object.entity_id = entity.id;
+            object.entity_id = entity.id;
+
+            result.push(object);
+            //console.log(object);
+            return result;
+        }
+
+        if (Array.isArray(object.children)) {
+            const children = object.children.reduce(getRelationNodes, []);
+            object.children = children;
+        }
+        else if (Array.isArray(object.relations)) {
+            const relations = object.relations.reduce(getRelationNodes, []);
+            object.relations = relations;
+        }
+
+        result.push(object);
+        return result;
+    };
+    return array.reduce(getRelationNodes, []);
+}
+
+function entityEditor(array, uuid, entity) {
+    var entity_id = null;
+
+    entities.forEach((existingEntity, index) => {
+        if (existingEntity === entity) {
+            entity_id = index;
+        }
+    });
+
+    if (!entity_id) {
+        entities.push(entity);
+        entity_id = entities.length - 1;
+    }
+
+    const getRelationNodes = (result, object) => {
+        if (object.uuid === uuid) {
+            object.entity_id = entity_id;
+            result.push(object);
+            return result;
+        }
+
+        if (Array.isArray(object.children)) {
+            const children = object.children.reduce(getRelationNodes, []);
+            object.children = children;
+        }
+        else if (Array.isArray(object.relations)) {
+            const relations = object.relations.reduce(getRelationNodes, []);
+            object.relations = relations;
+        }
+
+        result.push(object);
+        return result;
+    };
+    return array.reduce(getRelationNodes, []);
+}
+
 function filter(array, uuid) {
     //console.log('filter', array, uuid);
     const getNodes = (result, object) => {
@@ -519,29 +589,48 @@ function filter(array, uuid) {
         result.push(object);
         return result;
     };
-
+    // If the first node is the uuid, delete everything
+    if (array[0].uuid === uuid) {
+        return array.splice(0, 1);
+    }
     return array.reduce(getNodes, []);
 }
 
 function deleteUuid(uuid) {
-    let text;
     if (confirm("Do you want to remove this node?") == true) {
-      text = "You pressed OK!";
-      /*if (!deletedEntities.includes(id)){
-
-
-        //deletedEntities.push(id);
-
-      }*/
-        //app.stage.removeChildren();
         viewport.removeChildren();
         deleteUuidFromNodes(uuid);
-        /*console.warn('New node', nodes2);*/
         drawFamilyTree();
-    } else {
-      text = "You canceled!";
+    } 
+}
+
+function editEntity(uuid) {
+    $('#add-entity').modal('show');
+    $('#send').off('click').on('click', function () {
+        var entity_id = $('select[name="character_id"]').val();
+        console.log(entity_id, uuid, container.dataset.entity, 'old');
+
+        let url = container.dataset.entity.replace('/0', '/' + entity_id);
+        axios.get(url).then(function (res) {
+            var entity = res.data;
+            console.log('result', res.data);
+            viewport.removeChildren();
+            replaceEntity(uuid, entity);
+            drawFamilyTree();
+        });
+        $('.close');
+        $('#add-entity').modal('hide');
+    });
+}
+
+function renameRelation(uuid) {
+    let relation = prompt("Rename relation");
+    if (relation) {
+        viewport.removeChildren();
+        console.log(relation)
+        renameRelations(uuid, relation);
+        drawFamilyTree();
     }
-    console.log(text, uuid);
 }
 
 renderPage();

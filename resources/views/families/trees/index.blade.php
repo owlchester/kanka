@@ -36,6 +36,11 @@
 @section('scripts')
     @parent
     <script src="{{ mix('js/family-tree.js') }}" defer></script>
+    <script>
+    function editEntity(this) {
+        this.newEntity = 'test';
+    }
+    </script>
 @endsection
 
 @section('modals')
@@ -53,8 +58,6 @@
                     <p>
                         {{ __('families/trees.modal.helper') }}
                     </p>
-
-
                     {!! Form::foreignSelect(
                         'character_id',
                         [
@@ -68,6 +71,12 @@
                     ) !!}
 
                 </div>
+                <div class="modal-footer">
+                    <button id='send' type="button" class="btn btn-success">
+                        {{ __('crud.save') }}
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
