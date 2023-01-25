@@ -28,4 +28,5 @@
     </section>
 
     @include('front._paid_features')
+    @include('front.pricing.faq')
 @endsection

@@ -178,7 +178,7 @@
                 </a>
             </div>
         @endif
-        <div class="row">
+        <div class="row ab-testing-a">
             <div class="col-md-6 mx-auto mt-5">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="" data-src="https://www.youtube.com/embed/eSyHGSq4SbE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
