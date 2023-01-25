@@ -35,7 +35,7 @@ class AppearanceController extends Controller
         $paginationOptions = $this->service->options();
         $paginationDisabled = $this->service->disabled();
 
-        return view('settings.layout')
+        return view('settings.appearance')
             ->with('paginationOptions', $paginationOptions)
             ->with('paginationDisabled', $paginationDisabled)
             ->with('highlight', $highlight)

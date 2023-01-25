@@ -9,27 +9,29 @@
 @section('content')
     @include('partials.errors')
 
-    <div class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                {{ __('profiles.newsletter.title') }}
-            </h3>
-        </div>
-        <div class="box-body">
-            <p class="help-block">
-             {{ __('profiles.newsletter.helpers.header') }}
-            </p>
-            <div class="form-group checkbox">
-                <label>
-                    {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
-                    {!! __('profiles.newsletter.options.monthly') !!}
-                </label>
-                <p class="help-block">
-                    {{ __('front/newsletter.groups.all') }}
-                </p>
+    <div class="max-w-3xl">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    {{ __('profiles.newsletter.title') }}
+                </h3>
             </div>
+            <div class="box-body">
+                <p class="help-block">
+                 {{ __('profiles.newsletter.helpers.header') }}
+                </p>
+                <div class="form-group checkbox">
+                    <label>
+                        {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
+                        {!! __('profiles.newsletter.options.monthly') !!}
+                    </label>
+                    <p class="help-block">
+                        {{ __('front/newsletter.groups.all') }}
+                    </p>
+                </div>
 
-            <input type="hidden" id="newsletter-api" value="{{ route('settings.newsletter-api') }}" />
+                <input type="hidden" id="newsletter-api" value="{{ route('settings.newsletter-api') }}" />
+            </div>
         </div>
     </div>
 @endsection

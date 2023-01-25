@@ -35,6 +35,13 @@
 .justify-end {
     justify-content: flex-end;
 }
+.justify-self-end {
+    justify-self: end;
+}
+
+.self-end {
+    align-self: flex-end;
+}
 
 .basis-1\/3 {
     flex-basis: 33.333333%;
