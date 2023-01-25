@@ -42,7 +42,7 @@ $boxClass = "rounded p-4 bg-box flex flex-col";
             ], null, ['class' => 'form-control self-end']) !!}
         </div>
 
-        <div class="{{ $boxClass }}">
+        <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? 'drop-shadow border-accent border-solid border-2' : '' }}">
             <h2 class="text-base mt-0">
                 <a href="https://docs.kanka.io/en/latest/profile/appearance.html#results-per-page" target="_blank" class="pull-right" title="{{ __('settings/appearance.actions.learn-more') }}" data-toggle="tooltip">
                     <i class="fa-solid fa-question-circle" aria-hidden="true" aria-label="{{ __('front.menu.documentation') }}"></i>
@@ -176,5 +176,8 @@ $boxClass = "rounded p-4 bg-box flex flex-col";
             {{ __('settings/appearance.actions.save') }}
         </button>
     </div>
+    @if (!empty($from))
+        <input type="hidden" name="from" value="{{ $from }}" />
+    @endif
     {!! Form::close() !!}
 @endsection

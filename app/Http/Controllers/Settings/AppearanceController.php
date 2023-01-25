@@ -29,6 +29,7 @@ class AppearanceController extends Controller
     public function index()
     {
         $highlight = request()->get('highlight');
+        $from = request()->get('from');
         $date = Carbon::parse('2023-01-09 12:00:00');
         $created = Carbon::parse(auth()->user()->created_at);
         $textEditorSelect = $created->lessThan($date);
@@ -39,6 +40,7 @@ class AppearanceController extends Controller
             ->with('paginationOptions', $paginationOptions)
             ->with('paginationDisabled', $paginationDisabled)
             ->with('highlight', $highlight)
+            ->with('from', $from)
             ->with('textEditorSelect', $textEditorSelect);
     }
 
@@ -62,6 +64,13 @@ class AppearanceController extends Controller
         if ($request->has('campaign_switcher_order_by')) {
             \App\Facades\UserCache::clearCampaigns();
             \App\Facades\UserCache::clearFollows();
+        }
+
+        if ($request->filled('from')) {
+            $from = base64_decode($request->get('from'));
+            return redirect()
+                ->to($from)
+                ->with('success', __('settings/appearance.success'));
         }
 
         return redirect()

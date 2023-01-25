@@ -244,6 +244,10 @@ return [
         'learn_more'    => 'Learn more about this feature in our :documentation.',
         'linking'       => 'Linking to other entities',
         'nested_parent' => 'Displaying the children of :parent.',
+        'pagination'    => [
+            'text' => 'You can display more results per page by changing your :settings.',
+            'settings' => 'appearance settings',
+        ]
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [
