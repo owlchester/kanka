@@ -11,7 +11,9 @@
                 false,
                 'notes.fields.note',
                 'notes.find',
-                'notes.placeholders.note'
+                'notes.placeholders.note',
+                null,
+                request()->ajax() ? '#entity-modal' : null,
             ) !!}
         </div>
     </div>

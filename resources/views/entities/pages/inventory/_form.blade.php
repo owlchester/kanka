@@ -11,7 +11,9 @@
                 false,
                 'entities.item',
                 'items.find',
-                'crud.placeholders.item'
+                'crud.placeholders.item',
+                null,
+                request()->ajax() ? '#entity-modal' : null
             ) !!}
         </div>
     </div>

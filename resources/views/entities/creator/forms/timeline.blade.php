@@ -8,7 +8,11 @@
             null,
             App\Models\Timeline::class,
             false,
-            'timelines.fields.timeline'
+            'timelines.fields.timeline',
+            null,
+            null,
+            null,
+            request()->ajax() ? '#entity-modal' : null,
         ) !!}
     </div>
 </div>

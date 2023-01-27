@@ -22,6 +22,8 @@ if (isset($parent) && $parent) {
 }
 if (isset($dropdownParent)) {
     $data['dropdownParent'] = $dropdownParent;
+} elseif (request()->ajax()) {
+    $data['dropdownParent'] = '#entity-modal';
 }
 if (isset($from)) {
     $data['from'] = $from;

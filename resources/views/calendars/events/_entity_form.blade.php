@@ -11,7 +11,12 @@ $onlyOneCalendar = count($calendars) == 1;
                 'calendar_id',
                 ($onlyOneCalendar ? $calendars->first() : null),
                 App\Models\Calendar::class,
-                false
+                false,
+                null,
+                null,
+                null,
+                null,
+                request()->ajax() ? '#entity-modal' : null
             ) !!}
         </div>
     </div>

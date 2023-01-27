@@ -11,7 +11,9 @@
                 false,
                 'locations.fields.location',
                 'locations.find',
-                'locations.placeholders.location'
+                'locations.placeholders.location',
+                null,
+                request()->ajax() ? '#entity-modal' : null,
             ) !!}
         </div>
     </div>

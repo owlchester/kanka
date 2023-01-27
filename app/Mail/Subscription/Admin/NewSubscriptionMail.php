@@ -47,7 +47,10 @@ class NewSubscriptionMail extends Mailable
         $lastCancel = $this->user->cancellations()->orderByDesc('id')->first();
         // If new, check if user was previously subbed
         if ($this->new) {
-            if ($lastCancel > 0) {
+            // Auto-cancelled subs due to credit card issues don't trigger a cancellation, so we need to check previous
+            // subs instead.
+            $cancelled = Subscription::where('user_id', $this->user->id)->cancelled()->count();
+            if ($cancelled > 0) {
                 $action = 'Renewed';
             }
         }
