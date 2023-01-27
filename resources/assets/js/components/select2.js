@@ -38,6 +38,13 @@ $(document).ready(function() {
                             results: data
                         };
                     },
+                    error: function(response) {
+                        console.log('error', response);
+                        if (response.status === 503) {
+                            window.showToast(response.responseJSON.message, 'toast-error');
+                        }
+                        return { results: [] }; // Return dataset to load after error
+                    },
                     cache: true
                 },
                 templateResult: function (item) {

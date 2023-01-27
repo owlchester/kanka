@@ -221,7 +221,13 @@ function hintEntities(keyword, callback) {
         type: 'get',
         dataType: 'json',
         async: true
-    }).done(callback);
+    })
+        .done(callback)
+        .fail(function (response) {
+            if (response.status === 503) {
+                window.showToast(response.responseJSON.message, 'toast-error');
+            }
+    });
 }
 
 /**
