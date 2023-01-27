@@ -172,6 +172,8 @@ To create a character, use the following endpoint.
 | `appearance_name` | `array` | An array representing the name of appearance traits. For example ```["Hair", "Eyes"]```  |
 | `appearance_entry` | `array` | An array representing the values of appearance traits. For example ```["Curly black", "Light Green"]```  |
 | `is_personality_visible` | `bool` | If the personality traits should be visible to all (true) or just admins (false) |
+| `is_personality_pinned` | `bool` | If the personality traits are visible on the overview page |
+| `is_appearance_pinned` | `bool` | If the appearance traits are visible on the overview page |
 
 ### Results
 

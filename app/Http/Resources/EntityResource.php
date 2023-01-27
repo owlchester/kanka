@@ -167,6 +167,8 @@ class EntityResource extends JsonResource
             'is_private' => (bool) $misc->is_private,
             'is_template' => (bool) $misc->entity->is_template,
 
+            'is_attributes_private' => (bool) $misc->entity->is_attributes_private,
+
             'entity_id' => $misc->entity->id,
             'tags' => $misc->entity->tags()->pluck('tags.id')->toArray(),
 
