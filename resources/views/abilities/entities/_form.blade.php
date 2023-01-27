@@ -9,7 +9,8 @@
         'crud.fields.entity',
         'search.ability-entities',
         'entities/relations.placeholders.target',
-        $model
+        $model,
+        request()->ajax() ? '#entity-modal' : null,
     ) !!}
 </div>
 
