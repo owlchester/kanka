@@ -86,7 +86,7 @@ return [
         'spain'         => 'Spain',
     ],
     'layout'        => [
-        'title'     => 'Layout',
+        'title' => 'Layout',
     ],
     'menu'          => [
         'account'               => 'Account',

@@ -52,4 +52,7 @@ return [
         'title'     => 'Réorganiser les liens de menu',
     ],
     'show'              => [],
+    'visibilities'      => [
+        'is_active' => 'Afficher le liens dans la navigation',
+    ],
 ];

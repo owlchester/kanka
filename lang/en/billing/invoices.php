@@ -1,21 +1,20 @@
 <?php
 
 return [
-    'title' => 'Billing history',
-    'description' => 'Showing invoices within the past 24 months.',
-
-    'actions'   => [
+    'actions'       => [
         'download'  => 'Download PDF',
     ],
-    'empty'     => 'No invoices found',
-    'fields'    => [
+    'description'   => 'Showing invoices within the past 24 months.',
+    'empty'         => 'No invoices found',
+    'fields'        => [
         'amount'    => 'Amount',
         'date'      => 'Date',
         'invoice'   => 'Invoice',
         'status'    => 'Status',
     ],
-    'status'    => [
+    'status'        => [
         'paid'      => 'Paid',
         'pending'   => 'Pending',
     ],
+    'title'         => 'Billing history',
 ];

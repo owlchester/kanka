@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'avatar'                        => [
+    'avatar'        => [
         'success'   => 'Avatar updated.',
     ],
-    'edit'                          => [
+    'edit'          => [
         'success'   => 'Profile updated',
     ],
-    'fields'                        => [
+    'fields'        => [
         'avatar'                    => 'Avatar',
         'bio'                       => 'Bio',
         'email'                     => 'Email',
@@ -22,10 +22,10 @@ return [
         'settings'                  => 'Settings',
         'theme'                     => 'Theme',
     ],
-    'helpers'                       => [
+    'helpers'       => [
         'profile-name'  => 'Change the way your name appears on your :profile and the :marketplace. If left blank, your account name will be used instead.',
     ],
-    'newsletter'                    => [
+    'newsletter'    => [
         'helpers'   => [
             'header'    => 'Subscribe to the following email newsletters to be notified of what\'s going on with Kanka.',
         ],
@@ -35,10 +35,10 @@ return [
         'title'     => 'Newsletters',
         'updated'   => 'Newsletter preferences updated.',
     ],
-    'password'                      => [
+    'password'      => [
         'success'   => 'Password updated',
     ],
-    'placeholders'                  => [
+    'placeholders'  => [
         'bio'                       => 'A short bio of yourself displayed on your public profile.',
         'email'                     => 'Your email address',
         'name'                      => 'Your name as displayed',
@@ -46,7 +46,7 @@ return [
         'new_password_confirmation' => 'Confirm your new password',
         'password'                  => 'Provide your current password for any changes',
     ],
-    'sections'                      => [
+    'sections'      => [
         'dangerzone'    => 'Danger Zone',
         'delete'        => [
             'confirm'       => 'Delete my account now',
@@ -61,14 +61,14 @@ return [
             'title' => 'Change your password',
         ],
     ],
-    'settings'                      => [
+    'settings'      => [
         'helpers'   => [
             'bio'       => 'The biography is visible on your :link.',
             'profile'   => 'public profile',
         ],
         'success'   => 'Settings changed.',
     ],
-    'theme'                         => [
+    'theme'         => [
         'success'   => 'Theme changed.',
         'themes'    => [
             'dark'      => 'Dark',
@@ -77,8 +77,8 @@ return [
             'midnight'  => 'Midnight Blue',
         ],
     ],
-    'title'                         => 'Update your profile',
-    'workflows'                     => [
+    'title'         => 'Update your profile',
+    'workflows'     => [
         'created'   => 'View the newly created entity',
         'default'   => 'View the list of entities',
     ],

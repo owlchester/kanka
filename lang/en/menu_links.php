@@ -49,4 +49,7 @@ return [
         'success'   => 'Quick links reordered.',
         'title'     => 'Reorder quick links',
     ],
+    'visibilities'      => [
+        'is_active' => 'Show the quick link in the sidebar',
+    ],
 ];

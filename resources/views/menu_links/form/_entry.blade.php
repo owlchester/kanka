@@ -64,7 +64,7 @@ if (isset($model)) {
     <div class="col-md-6">
         <div class="form-group">
             <label class="control-label">
-                {{ __('entities/links.fields.parent') }}
+                {{ __('menu_links.fields.position') }}
                 <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{!! __('entities/links.helpers.parent') !!}" data-toggle="tooltip"></i>
             </label>
             @if ($campaignService->campaign()->boosted())
@@ -112,17 +112,25 @@ if (isset($model)) {
     </div>
     <div class="col-md-6">
         {!! Form::hidden('is_active', 0) !!}
-        <label>
+            <label>
+                {!! __('menu_links.fields.active') !!}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('menu_links.helpers.active') }}"></i>
+            </label>
+
+        <div class="checkbox my-1">
+            <label>
             {!! Form::checkbox('is_active', 1, isset($model) ? $model->is_active : 1) !!}
-            {!! __('menu_links.fields.active') !!}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('menu_links.helpers.active') }}"></i>
-        </label>
+            {{ __('menu_links.visibilities.is_active') }}
+            </label>
+        </div>
         <div class="help-block visible-xs visible-sm">
             {{ __('menu_links.helpers.active') }}
         </div>
 
     </div>
 </div>
+
+<hr />
 
 <h4>{{ __('menu_links.fields.selector') }}</h4>
 <p class="help-block">{{ __('menu_links.helpers.selector') }}</p>

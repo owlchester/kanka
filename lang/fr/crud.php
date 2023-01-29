@@ -245,6 +245,10 @@ return [
         'learn_more'    => 'En savoir plus sur cette fonctionnalité dans notre :documentation.',
         'linking'       => 'Lier d\'autres entités',
         'nested_parent' => 'Affichage des enfants de :parent.',
+        'pagination'    => [
+            'settings'  => 'paramètres d\'affichage',
+            'text'      => 'Plus de résultats par page peuvent être affiché en modifiant tes :settings.',
+        ],
     ],
     'hidden'                    => 'Caché',
     'hints'                     => [

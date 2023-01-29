@@ -207,6 +207,7 @@ return [
             'alternatives_warning'  => 'La mise à niveau de l\'abonnement lors de l\'utilisation de cette méthode n\'est pas possible. Veuillez créer un nouvel abonnement à la fin de votre abonnement actuel.',
             'alternatives_yearly'   => 'En raison des restrictions entourant les paiements récurrents, :method n\'est disponible que pour les abonnements annuels',
             'paypal'                => 'Tu préfères utiliser Paypal? Contactes nous à :email si tu souhaites souscrire à un abonnement annuel en utilisant Paypal.',
+            'paypal_v2'             => 'Nous acceptons PayPal pour les abonnements annuels. Contactes-nous à :email avec ton email de compte Kanka, l\'abonnement que tu désires, et la monnaie (USD ou EUR) dans laquelle tu souhaites être facturé.',
             'stripe'                => 'La facturation est traité en toute securité par :stripe.',
         ],
         'manage_subscription'   => 'Gérer l\'abonnement',

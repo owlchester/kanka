@@ -4,8 +4,8 @@ return [
     'about'                 => [
         'title' => 'About',
     ],
-    'actions' => [
-        'back-to-top' => 'Back to top',
+    'actions'               => [
+        'back-to-top'   => 'Back to top',
     ],
     'campaigns'             => [
         'description_full'  => 'Many campaigns in :kanka are public for all to see. This page contains a list of all public campaigns, as well as some featured campaigns from the community.',

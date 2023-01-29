@@ -245,9 +245,9 @@ return [
         'linking'       => 'Linking to other entities',
         'nested_parent' => 'Displaying the children of :parent.',
         'pagination'    => [
-            'text' => 'You can display more results per page by changing your :settings.',
-            'settings' => 'appearance settings',
-        ]
+            'settings'  => 'appearance settings',
+            'text'      => 'More results per page can be shown by changing your :settings.',
+        ],
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [

@@ -4,6 +4,9 @@ return [
     'about'                 => [
         'title' => 'A propos',
     ],
+    'actions'               => [
+        'back-to-top'   => 'Retourner en haut de la page',
+    ],
     'campaigns'             => [
         'description_full'  => 'Plusieurs campagnes sur Kanka sont publiques et accessibles à tous. Ci-dessous se trouve une liste de toutes les campagnes publiques, ainsi que des campagnes promues par la communauté.',
         'featured'          => [

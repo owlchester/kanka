@@ -88,6 +88,7 @@ TEXT
         'hide_members'                      => 'If enabled, only members of the campaign\'s :admin role will have access to the list of the campaign\'s members.',
         'locale'                            => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'name'                              => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
+        'no_entry'                          => 'Looks like the campaign doesn\'t have a description yet! Let\'s fix that.',
         'permissions_tab'                   => 'Control the default privacy and visibility settings of new elements with the following options.',
         'public_campaign_filters'           => 'Help others find the campaign among other public campaigns by providing the following information.',
         'public_no_visibility'              => 'Heads up! The campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
@@ -97,7 +98,6 @@ TEXT
         'theme'                             => 'Force the theme for the campaign, overriding a user\'s preference.',
         'view_public'                       => 'To view your campaign as a public viewer would, open :link in an incognito window.',
         'visibility'                        => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
-        'no_entry' => 'Looks like the campaign doesn\'t have a description yet! Let\'s fix that.',
     ],
     'index'                             => [
         'actions'   => [
@@ -208,9 +208,9 @@ TEXT
     'modules'                           => [
         'permission-disabled'   => 'This module is disabled.',
     ],
-    'overview' => [
-        'entity-count' => '{0} No entities|{1} :amount entity|[2,] :amount entities',
-        'follower-count' => '{0} No followers|{1} :amount follower|[2,] :amount followers',
+    'overview'                          => [
+        'entity-count'      => '{0} No entities|{1} :amount entity|[2,] :amount entities',
+        'follower-count'    => '{0} No followers|{1} :amount follower|[2,] :amount followers',
     ],
     'panels'                            => [
         'boosted'   => 'Boosted',
@@ -386,9 +386,9 @@ TEXT
         ],
     ],
     'sharing'                           => [
-        'filters' => 'Public campaigns are visible on the :public-campaigns page. Filling out these fields makes it easier for people to discover the campaign.',
+        'filters'   => 'Public campaigns are visible on the :public-campaigns page. Filling out these fields makes it easier for people to discover the campaign.',
+        'language'  => 'The language in which the campaign\'s content is written.',
         'system'    => 'If playing a TTRPG, the system used to play in the campaign.',
-        'language' => 'The language in which the campaign is written.'
     ],
     'show'                              => [
         'actions'   => [
@@ -448,12 +448,12 @@ TEXT
         'helpers'           => [
             'connections'       => 'When clicking on the connections subpage of an entity, select the default interface showed.',
             'connections_mode'  => 'When viewing the relation explorer of an entity, define the default mode that is selected.',
+            'entity-history'    => 'Control who can see recent changes made to individual entities of the campaign.',
+            'member-list'       => 'Control who can see who\'s in the campaign.',
             'other'             => 'Other visual options for the campaign.',
             'post_collapsed'    => 'When creating a new post on an entity, select the collapsed field\'s default value.',
-            'tooltip'           => 'Control which information is visibile when hovering an entity\'s name in their tooltip.',
             'theme'             => 'Display the campaign in the user\'s theme, or force it to render in one of the following themes.',
-            'member-list'       => 'Control who can see who\'s in the campaign.',
-            'entity-history'    => 'Control who can see recent changes made to individual entities of the campaign.',
+            'tooltip'           => 'Control which information is visibile when hovering an entity\'s name in their tooltip.',
         ],
         'members'           => [
             'hidden'    => 'Only visible to campaign admins',
