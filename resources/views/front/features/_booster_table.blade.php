@@ -11,21 +11,42 @@
         <tbody>
         <tr>
             <td class="text">{{ __('front/boosters.perks.entity-count') }}</td>
-            <td><i class="fa-solid fa-infinity"></i></td>
-            <td><i class="fa-solid fa-infinity"></i></td>
-            <td><i class="fa-solid fa-infinity"></i></td>
+            <td>
+                <i class="fa-solid fa-infinity" aria-hidden="true" aria-label="{{ __('Unlimited') }}"></i>
+                <span class="fa-sr-only">{{ __('Unlimited') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-infinity" aria-hidden="true" aria-label="{{ __('Unlimited') }}"></i>
+                <span class="fa-sr-only">{{ __('Unlimited') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-infinity" aria-hidden="true" aria-label="{{ __('Unlimited') }}"></i>
+                <span class="fa-sr-only">{{ __('Unlimited') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front/boosters.perks.member-count') }}</td>
             <td>{{ config('limits.campaigns.members') }}</td>
-            <td><i class="fa-solid fa-infinity"></i></td>
-            <td><i class="fa-solid fa-infinity"></i></td>
+            <td>
+                <i class="fa-solid fa-infinity" aria-hidden="true" aria-label="{{ __('Unlimited') }}"></i>
+                <span class="fa-sr-only">{{ __('Unlimited') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-infinity" aria-hidden="true" aria-label="{{ __('Unlimited') }}"></i>
+                <span class="fa-sr-only">{{ __('Unlimited') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front/boosters.perks.role-count') }}</td>
             <td>{{ config('limits.campaigns.roles') }}</td>
-            <td><i class="fa-solid fa-infinity"></i></td>
-            <td><i class="fa-solid fa-infinity"></i></td>
+            <td>
+                <i class="fa-solid fa-infinity" aria-hidden="true" aria-label="{{ __('Unlimited') }}"></i>
+                <span class="fa-sr-only">{{ __('Unlimited') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-infinity" aria-hidden="true" aria-label="{{ __('Unlimited') }}"></i>
+                <span class="fa-sr-only">{{ __('Unlimited') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">
@@ -35,8 +56,14 @@
                 </a>
             </td>
             <td>{{ config('limits.campaigns.quick-links') }}</td>
-            <td><i class="fa-solid fa-infinity"></i></td>
-            <td><i class="fa-solid fa-infinity"></i></td>
+            <td>
+                <i class="fa-solid fa-infinity" aria-hidden="true" aria-label="{{ __('Unlimited') }}"></i>
+                <span class="fa-sr-only">{{ __('Unlimited') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-infinity" aria-hidden="true" aria-label="{{ __('Unlimited') }}"></i>
+                <span class="fa-sr-only">{{ __('Unlimited') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front.features.boosts.upload') }}</td>
@@ -52,20 +79,38 @@
                 </a>
             </td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{!! __('front.features.boosts.marketplace', ['marketplace' => link_to('https://marketplace.kanka.io', __('front.menu.marketplace'), ['target' => '_blank'])]) !!}</td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front.features.boosts.theme') }}</td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">
@@ -75,40 +120,76 @@
                 </a>
             </td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front.features.boosts.tooltip') }}</td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front.features.boosts.header_image') }}</td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">
                 {!! link_to_route('front.features.dashboards', __('front.features.boosts.dashboards'), [], ['target' => '_blank']) !!}
             </td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front.features.boosts.images') }}</td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front.features.boosts.entity_links') }}</td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">
@@ -118,20 +199,38 @@
                 </a>
             </td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front.features.boosts.map_markers') }}</td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front.features.boosts.timeline_elements') }}</td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">
@@ -141,22 +240,40 @@
                 </a>
             </td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">
                 {!! link_to_route('front.features.relations', __('front.features.boosts.relation-visualiser'), [], ['target' => '_blank']) !!}
             </td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr class="d-none">
             <td class="text">{{ __('front.features.boosts.beta') }}</td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">
@@ -166,8 +283,14 @@
                 </a>
             </td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr id="superboost">
             <td class="text">
@@ -175,7 +298,10 @@
             </td>
             <td></td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">
@@ -186,7 +312,10 @@
             </td>
             <td></td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">
@@ -197,7 +326,10 @@
             </td>
             <td></td>
             <td></td>
-            <td><i class="fa-solid fa-check-circle"></i></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
         </tr>
         <tr>
             <td class="text">{{ __('front.features.boosts.entity_files_v2') }}</td>
