@@ -1,8 +1,8 @@
-<div class="text-center pricing-toggle">
+<div class="text-center pricing-toggle" aria-hidden="true">
     <label data-pricing="monthly" class="text-bold cursor">
         Monthly
     </label>
-    <span data-pricing="toggle" class="pricing-monthly" aria-hidden="true"></span>
+    <span data-pricing="toggle" class="pricing-monthly"></span>
     <label data-pricing="yearly">
         Yearly (save 10%)
     </label>
@@ -58,8 +58,8 @@
                 <div class="text-center align-self-stretch">
                     <div class="card-title text-muted text-uppercase mb-0">Owlbear</div>
                     <div class="card-price price-monthly">$5<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                    <div class="card-price price-yearly">$4.58<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                    <div class="price-yearly small mb-2">{!! __('front.pricing.billed_yearly', ['amount' => '<strong>$55</strong>']) !!}</div>
+                    <div class="card-price price-yearly" aria-hidden="true">$4.58<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
+                    <div class="price-yearly small mb-2" aria-hidden="true">{!! __('front.pricing.billed_yearly', ['amount' => '<strong>$55</strong>']) !!}</div>
                     <div class="card-ribbon card-most-popular text-center">{{ __('tiers.ribbons.popular') }}</div>
                     <hr class="hr-ribbon" />
                 </div>
@@ -105,8 +105,8 @@
                 <div class="text-center align-self-stretch">
                     <div class="card-title text-muted text-uppercase mb-0">Wyvern</div>
                     <div class="card-price price-monthly">$10<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                    <div class="card-price price-yearly">$9.16<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                    <div class="price-yearly small mb-2">{!! __('front.pricing.billed_yearly', ['amount' => '<strong>$110</strong>']) !!}</div>
+                    <div class="card-price price-yearly" aria-hidden="true">$9.16<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
+                    <div class="price-yearly small mb-2" aria-hidden="true">{!! __('front.pricing.billed_yearly', ['amount' => '<strong>$110</strong>']) !!}</div>
                     <div class="card-ribbon card-best-value">{{ __('tiers.ribbons.best-value') }}</div>
                     <hr class="hr-ribbon" />
                 </div>
@@ -151,8 +151,8 @@
                 <div class="text-center align-self-stretch">
                     <div class="card-title text-muted text-uppercase mb-0">Elemental</div>
                     <div class="card-price price-monthly">$25<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                    <div class="card-price price-yearly">$22.91<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                    <div class="price-yearly small mb-2">{!! __('front.pricing.billed_yearly', ['amount' => '<strong>$275</strong>']) !!}</div>
+                    <div class="card-price price-yearly" aria-hidden="true">$22.91<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
+                    <div class="price-yearly small mb-2" aria-hidden="true">{!! __('front.pricing.billed_yearly', ['amount' => '<strong>$275</strong>']) !!}</div>
                     <hr class="ribbon">
                 </div>
                 <ul class="fa-ul">
