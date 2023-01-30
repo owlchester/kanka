@@ -1,6 +1,7 @@
 import { Application, BLEND_MODES, Assets, RenderTexture, Container, Sprite, Text, TextStyle, Graphics, Texture, BaseTexture, Circle } from 'pixi.js';
 import axios from 'axios';
 import { Viewport } from 'pixi-viewport'
+import { stringify } from 'bloodhound-js/lib/utils';
 
 
 const WORLD_WIDTH = 2000
@@ -54,6 +55,7 @@ const relationNameStyle = new TextStyle({
     entityPanel.rotation += 0.01;
 });*/
 
+var newUuid = 1;       // UUID
 let entities = null;
 let nodes = null;
 let offsetIncrement = 20;
@@ -67,7 +69,7 @@ let entityHeight = 60;
  * @param x
  * @param y
  */
-const drawEntity = (entity, uuid, x, y) => {
+const drawEntity = (entity, uuid, x, y, isRelation = false) => {
     //console.log('Draw entity', entity.name, '>', offsetX, 'v', offsetY);
 
     // This creates a texture from a background image
@@ -169,6 +171,29 @@ const drawEntity = (entity, uuid, x, y) => {
         editEntity(uuid);
     }
     viewport.addChild(editButton);
+
+    const addRelationButton = new Text('+ relation', entityNameStyle);
+    addRelationButton.x = x + 140;
+    addRelationButton.y = y + 20;
+    addRelationButton.interactive = true;
+    addRelationButton.buttonMode = true;
+    addRelationButton.onclick = (event) => {
+        addRelation(uuid)
+    }
+    viewport.addChild(addRelationButton);
+
+    if (isRelation) {
+        console.log(uuid);
+        const addChildrenButton = new Text('+ children', entityNameStyle);
+        addChildrenButton.x = x + 75;
+        addChildrenButton.y = y + 60;
+        addChildrenButton.interactive = true;
+        addChildrenButton.buttonMode = true;
+        addChildrenButton.onclick = (event) => {
+            addChildren(uuid)
+        }
+        viewport.addChild(addChildrenButton);
+    }
 };
 
 /**
@@ -188,7 +213,7 @@ const drawRelation = (relation, sourceX, sourceY, drawX, drawY, index) => {
 
     //console.log('Draw relation', entity.name, drawX);
 
-    drawEntity(entity, relation.uuid, drawX, drawY);
+    drawEntity(entity, relation.uuid, drawX, drawY, true);
 
     // Draw the lines between the original and this relations
     drawRelationLine(relation, sourceX, sourceY, drawX, drawY);
@@ -501,6 +526,16 @@ const replaceEntity = (uuid, entity) => {
     return entityEditor(nodes, uuid, entity);
 };
 
+const insertRelation = (uuid, entity, relation) => {
+    console.log('Add Relation', uuid);
+    return relationCreator(nodes, uuid, entity, relation);
+};
+
+const insertChild = (uuid, entity) => {
+    console.log('Add Child', uuid);
+    return childCreator(nodes, uuid, entity);
+};
+
 const renameRelations = (uuid, role) => {
     console.log('Rename relation', uuid, nodes);
     return relationFilter(nodes, uuid, role);
@@ -571,6 +606,88 @@ function entityEditor(array, uuid, entity) {
     return array.reduce(getRelationNodes, []);
 }
 
+function relationCreator(array, uuid, entity, role) {
+    var entity_id = null;
+
+    entities.forEach((existingEntity, index) => {
+        if (existingEntity === entity) {
+            entity_id = index;
+        }
+    });
+
+    if (!entity_id) {
+        entities.push(entity);
+        entity_id = entities.length - 1;
+    }
+    const getRelationNodes = (result, object) => {
+        if (object.uuid === uuid) {
+            console.log(object);
+
+            if (Array.isArray(object.relations)) {
+                object.relations.push({entity_id: entity_id, role: role, uuid: stringify(newUuid)});
+            } else {
+                object.relations = [{entity_id: entity_id, role: role, uuid: stringify(newUuid)}];
+            }
+            newUuid = newUuid + 1;
+            console.log(object, 'ADDED RELATIONS');
+            result.push(object);
+            return result;
+        }
+        if (Array.isArray(object.children)) {
+            const children = object.children.reduce(getRelationNodes, []);
+            object.children = children;
+        }
+        else if (Array.isArray(object.relations)) {
+            const relations = object.relations.reduce(getRelationNodes, []);
+            object.relations = relations;
+        }
+        result.push(object);
+        return result;
+    };
+    return array.reduce(getRelationNodes, []);
+}
+
+function childCreator(array, uuid, entity) {
+    var entity_id = null;
+
+    entities.forEach((existingEntity, index) => {
+        if (existingEntity === entity) {
+            entity_id = index;
+        }
+    });
+
+    if (!entity_id) {
+        entities.push(entity);
+        entity_id = entities.length - 1;
+    }
+    const getRelationNodes = (result, object) => {
+        if (object.uuid === uuid) {
+            console.log(object);
+
+            if (Array.isArray(object.children)) {
+                object.children.push({entity_id: entity_id, uuid: stringify(newUuid)});
+            } else {
+                object.children = [{entity_id: entity_id, uuid: stringify(newUuid)}];
+            }
+            newUuid = newUuid + 1;
+            console.log(object, 'ADDED CHILDREN');
+            result.push(object);
+            return result;
+        }
+        if (Array.isArray(object.children)) {
+            const children = object.children.reduce(getRelationNodes, []);
+            object.children = children;
+        }
+        else if (Array.isArray(object.relations)) {
+            const relations = object.relations.reduce(getRelationNodes, []);
+            object.relations = relations;
+        }
+        result.push(object);
+        return result;
+    };
+    return array.reduce(getRelationNodes, []);
+}
+
 function filter(array, uuid) {
     //console.log('filter', array, uuid);
     const getNodes = (result, object) => {
@@ -605,6 +722,7 @@ function deleteUuid(uuid) {
 }
 
 function editEntity(uuid) {
+    document.getElementById("add-relation").style.display = "none";
     $('#add-entity').modal('show');
     $('#send').off('click').on('click', function () {
         var entity_id = $('select[name="character_id"]').val();
@@ -623,6 +741,51 @@ function editEntity(uuid) {
     });
 }
 
+function addRelation(uuid) {
+    document.getElementById("add-relation").style.display = "";
+    $('#add-entity').modal('show');
+    $('#send').off('click').on('click', function () {
+        var entity_id = $('select[name="character_id"]').val();
+        var relation = $('input[name="relation"]').val();
+
+        //console.log(entity_id, uuid, container.dataset.entity, 'old');
+        console.log(entity_id, relation, 'ADDING RELATION');
+
+        let url = container.dataset.entity.replace('/0', '/' + entity_id);
+        axios.get(url).then(function (res) {
+            var entity = res.data;
+            console.log('Values from the API', res.data);
+            viewport.removeChildren();
+            insertRelation(uuid, entity, relation);
+            //replaceEntity(uuid, entity, relation);
+            drawFamilyTree();
+        });
+
+        document.getElementById("add-relation").style.display = "none";
+        $('.close');
+        $('#add-entity').modal('hide');
+    });
+}
+
+function addChildren(uuid) {
+    document.getElementById("add-relation").style.display = "none";
+    $('#add-entity').modal('show');
+    $('#send').off('click').on('click', function () {
+        var entity_id = $('select[name="character_id"]').val();
+        console.log(entity_id, uuid, container.dataset.entity, 'old');
+
+        let url = container.dataset.entity.replace('/0', '/' + entity_id);
+        axios.get(url).then(function (res) {
+            var entity = res.data;
+            console.log('result', res.data);
+            viewport.removeChildren();
+            insertChild(uuid, entity);
+            drawFamilyTree();
+        });
+        $('.close');
+        $('#add-entity').modal('hide');
+    });
+}
 function renameRelation(uuid) {
     let relation = prompt("Rename relation");
     if (relation) {

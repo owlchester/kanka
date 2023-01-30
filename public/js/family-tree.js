@@ -2067,6 +2067,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var pixi_viewport__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pixi-viewport */ "./node_modules/pixi-viewport/dist/esm/viewport.es.js");
+/* harmony import */ var bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bloodhound-js/lib/utils */ "./node_modules/bloodhound-js/lib/utils.js");
+/* harmony import */ var bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -2116,6 +2119,8 @@ var relationNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
     entityPanel.rotation += 0.01;
 });*/
 
+var newUuid = 1; // UUID
+
 var entities = null;
 var nodes = null;
 var offsetIncrement = 20;
@@ -2130,6 +2135,7 @@ var entityHeight = 60;
  */
 
 var drawEntity = function drawEntity(entity, uuid, x, y) {
+  var isRelation = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
   //console.log('Draw entity', entity.name, '>', offsetX, 'v', offsetY);
   // This creates a texture from a background image
   var entityPanel = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(texture);
@@ -2217,6 +2223,32 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
   };
 
   viewport.addChild(editButton);
+  var addRelationButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ relation', entityNameStyle);
+  addRelationButton.x = x + 140;
+  addRelationButton.y = y + 20;
+  addRelationButton.interactive = true;
+  addRelationButton.buttonMode = true;
+
+  addRelationButton.onclick = function (event) {
+    addRelation(uuid);
+  };
+
+  viewport.addChild(addRelationButton);
+
+  if (isRelation) {
+    console.log(uuid);
+    var addChildrenButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ children', entityNameStyle);
+    addChildrenButton.x = x + 75;
+    addChildrenButton.y = y + 60;
+    addChildrenButton.interactive = true;
+    addChildrenButton.buttonMode = true;
+
+    addChildrenButton.onclick = function (event) {
+      addChildren(uuid);
+    };
+
+    viewport.addChild(addChildrenButton);
+  }
 };
 /**
  * Draw the relation of a node as well as the "line" between the node's main entity and this relation
@@ -2237,7 +2269,7 @@ var drawRelation = function drawRelation(relation, sourceX, sourceY, drawX, draw
   } //console.log('Draw relation', entity.name, drawX);
 
 
-  drawEntity(entity, relation.uuid, drawX, drawY); // Draw the lines between the original and this relations
+  drawEntity(entity, relation.uuid, drawX, drawY, true); // Draw the lines between the original and this relations
 
   drawRelationLine(relation, sourceX, sourceY, drawX, drawY); // No children, no problems
 
@@ -2503,6 +2535,16 @@ var replaceEntity = function replaceEntity(uuid, entity) {
   return entityEditor(nodes, uuid, entity);
 };
 
+var insertRelation = function insertRelation(uuid, entity, relation) {
+  console.log('Add Relation', uuid);
+  return relationCreator(nodes, uuid, entity, relation);
+};
+
+var insertChild = function insertChild(uuid, entity) {
+  console.log('Add Child', uuid);
+  return childCreator(nodes, uuid, entity);
+};
+
 var renameRelations = function renameRelations(uuid, role) {
   console.log('Rename relation', uuid, nodes);
   return relationFilter(nodes, uuid, role);
@@ -2572,6 +2614,108 @@ function entityEditor(array, uuid, entity) {
   return array.reduce(getRelationNodes, []);
 }
 
+function relationCreator(array, uuid, entity, role) {
+  var entity_id = null;
+  entities.forEach(function (existingEntity, index) {
+    if (existingEntity === entity) {
+      entity_id = index;
+    }
+  });
+
+  if (!entity_id) {
+    entities.push(entity);
+    entity_id = entities.length - 1;
+  }
+
+  var getRelationNodes = function getRelationNodes(result, object) {
+    if (object.uuid === uuid) {
+      console.log(object);
+
+      if (Array.isArray(object.relations)) {
+        object.relations.push({
+          entity_id: entity_id,
+          role: role,
+          uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
+        });
+      } else {
+        object.relations = [{
+          entity_id: entity_id,
+          role: role,
+          uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
+        }];
+      }
+
+      newUuid = newUuid + 1;
+      console.log(object, 'ADDED RELATIONS');
+      result.push(object);
+      return result;
+    }
+
+    if (Array.isArray(object.children)) {
+      var children = object.children.reduce(getRelationNodes, []);
+      object.children = children;
+    } else if (Array.isArray(object.relations)) {
+      var relations = object.relations.reduce(getRelationNodes, []);
+      object.relations = relations;
+    }
+
+    result.push(object);
+    return result;
+  };
+
+  return array.reduce(getRelationNodes, []);
+}
+
+function childCreator(array, uuid, entity) {
+  var entity_id = null;
+  entities.forEach(function (existingEntity, index) {
+    if (existingEntity === entity) {
+      entity_id = index;
+    }
+  });
+
+  if (!entity_id) {
+    entities.push(entity);
+    entity_id = entities.length - 1;
+  }
+
+  var getRelationNodes = function getRelationNodes(result, object) {
+    if (object.uuid === uuid) {
+      console.log(object);
+
+      if (Array.isArray(object.children)) {
+        object.children.push({
+          entity_id: entity_id,
+          uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
+        });
+      } else {
+        object.children = [{
+          entity_id: entity_id,
+          uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
+        }];
+      }
+
+      newUuid = newUuid + 1;
+      console.log(object, 'ADDED CHILDREN');
+      result.push(object);
+      return result;
+    }
+
+    if (Array.isArray(object.children)) {
+      var children = object.children.reduce(getRelationNodes, []);
+      object.children = children;
+    } else if (Array.isArray(object.relations)) {
+      var relations = object.relations.reduce(getRelationNodes, []);
+      object.relations = relations;
+    }
+
+    result.push(object);
+    return result;
+  };
+
+  return array.reduce(getRelationNodes, []);
+}
+
 function filter(array, uuid) {
   //console.log('filter', array, uuid);
   var getNodes = function getNodes(result, object) {
@@ -2609,6 +2753,7 @@ function deleteUuid(uuid) {
 }
 
 function editEntity(uuid) {
+  document.getElementById("add-relation").style.display = "none";
   $('#add-entity').modal('show');
   $('#send').off('click').on('click', function () {
     var entity_id = $('select[name="character_id"]').val();
@@ -2619,6 +2764,48 @@ function editEntity(uuid) {
       console.log('result', res.data);
       viewport.removeChildren();
       replaceEntity(uuid, entity);
+      drawFamilyTree();
+    });
+    $('.close');
+    $('#add-entity').modal('hide');
+  });
+}
+
+function addRelation(uuid) {
+  document.getElementById("add-relation").style.display = "";
+  $('#add-entity').modal('show');
+  $('#send').off('click').on('click', function () {
+    var entity_id = $('select[name="character_id"]').val();
+    var relation = $('input[name="relation"]').val(); //console.log(entity_id, uuid, container.dataset.entity, 'old');
+
+    console.log(entity_id, relation, 'ADDING RELATION');
+    var url = container.dataset.entity.replace('/0', '/' + entity_id);
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
+      var entity = res.data;
+      console.log('Values from the API', res.data);
+      viewport.removeChildren();
+      insertRelation(uuid, entity, relation); //replaceEntity(uuid, entity, relation);
+
+      drawFamilyTree();
+    });
+    document.getElementById("add-relation").style.display = "none";
+    $('.close');
+    $('#add-entity').modal('hide');
+  });
+}
+
+function addChildren(uuid) {
+  document.getElementById("add-relation").style.display = "none";
+  $('#add-entity').modal('show');
+  $('#send').off('click').on('click', function () {
+    var entity_id = $('select[name="character_id"]').val();
+    console.log(entity_id, uuid, container.dataset.entity, 'old');
+    var url = container.dataset.entity.replace('/0', '/' + entity_id);
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
+      var entity = res.data;
+      console.log('result', res.data);
+      viewport.removeChildren();
+      insertChild(uuid, entity);
       drawFamilyTree();
     });
     $('.close');
@@ -2640,6 +2827,209 @@ function renameRelation(uuid) {
 renderPage();
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
+
+/***/ }),
+
+/***/ "./node_modules/bloodhound-js/lib/utils.js":
+/*!*************************************************!*\
+  !*** ./node_modules/bloodhound-js/lib/utils.js ***!
+  \*************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/*
+ * typeahead.js
+ * https://github.com/twitter/typeahead.js
+ * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
+ */
+
+var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
+
+var _ = {
+  isMsie: function() {
+    // from https://github.com/ded/bowser/blob/master/bowser.js
+    return (/(msie|trident)/i).test(navigator.userAgent) ?
+      navigator.userAgent.match(/(msie |rv:)(\d+(.\d+)?)/i)[2] : false;
+  },
+
+  isBlankString: function(str) { return !str || /^\s*$/.test(str); },
+
+  // http://stackoverflow.com/a/6969486
+  escapeRegExChars: function(str) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+  },
+
+  isString: function(obj) { return typeof obj === 'string'; },
+
+  isNumber: function(obj) { return typeof obj === 'number'; },
+
+  isArray: Array.isArray,
+
+  isFunction: function(obj) {
+		return typeof obj === 'function';
+	},
+
+  isObject: function(obj) {
+    return typeof obj === 'object';
+  },
+
+  isUndefined: function(obj) { return typeof obj === 'undefined'; },
+
+  isElement: function(obj) { return !!(obj && obj.nodeType === 1); },
+
+  isJQuery: function(obj) { return obj instanceof $; },
+
+  toStr: function toStr(s) {
+    return (_.isUndefined(s) || s === null) ? '' : s + '';
+  },
+
+  bind: function(fn, context) {
+    return fn.bind(context);
+  },
+
+  each: function(collection, cb) {
+    collection.forEach(cb);
+  },
+
+  map: function(array, fn) {
+    return array.map(fn);
+  },
+
+  filter: function(array, fn) {
+    return array.filter(fn);
+  },
+
+  every: function(obj, test) {
+    var result = true;
+
+    if (!obj) { return result; }
+
+    // $.each(obj, function(key, val) {
+    //   if (!(result = test.call(null, val, key, obj))) {
+    //     return false;
+    //   }
+    // });
+
+    for(var key in obj) {
+      if(obj.hasOwnProperty(key)) {
+        var val = obj[key];
+        if (!(result = test.call(null, val, key, obj))) {
+          return false;
+        }
+      }
+    }
+
+    return !!result;
+  },
+
+  some: function(obj, test) {
+    var result = false;
+
+    if (!obj) { return result; }
+
+    // $.each(obj, function(key, val) {
+    //   if (result = test.call(null, val, key, obj)) {
+    //     return false;
+    //   }
+    // });
+
+    for(var key in obj) {
+      if(obj.hasOwnProperty(key)) {
+        var val = obj[key];
+        if (result = test.call(null, val, key, obj)) {
+          return false;
+        }
+      }
+    }
+
+    return !!result;
+  },
+
+  mixin: __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js"),
+
+  identity: function(x) { return x; },
+
+  clone: function(obj) { return assign({}, obj); },
+
+  getIdGenerator: function() {
+    var counter = 0;
+    return function() { return counter++; };
+  },
+
+  templatify: function templatify(obj) {
+    return _.isFunction(obj) ? obj : template;
+
+    function template() { return String(obj); }
+  },
+
+  defer: function(fn) { setTimeout(fn, 0); },
+
+  debounce: function(func, wait, immediate) {
+    var timeout, result;
+
+    return function() {
+      var context = this, args = arguments, later, callNow;
+
+      later = function() {
+        timeout = null;
+        if (!immediate) { result = func.apply(context, args); }
+      };
+
+      callNow = immediate && !timeout;
+
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+
+      if (callNow) { result = func.apply(context, args); }
+
+      return result;
+    };
+  },
+
+  throttle: function(func, wait) {
+    var context, args, timeout, result, previous, later;
+
+    previous = 0;
+    later = function() {
+      previous = new Date();
+      timeout = null;
+      result = func.apply(context, args);
+    };
+
+    return function() {
+      var now = new Date(),
+          remaining = wait - (now - previous);
+
+      context = this;
+      args = arguments;
+
+      if (remaining <= 0) {
+        clearTimeout(timeout);
+        timeout = null;
+        previous = now;
+        result = func.apply(context, args);
+      }
+
+      else if (!timeout) {
+        timeout = setTimeout(later, remaining);
+      }
+
+      return result;
+    };
+  },
+
+  stringify: function(val) {
+    return _.isString(val) ? val : JSON.stringify(val);
+  },
+
+  noop: function() {},
+
+  error: function(msg) {
+    throw new Error(msg);
+  }
+};
+
+module.exports = _;
+
 
 /***/ }),
 
@@ -3678,6 +4068,107 @@ EventEmitter.EventEmitter = EventEmitter;
 if (true) {
   module.exports = EventEmitter;
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/object-assign/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/object-assign/index.js ***!
+  \*********************************************/
+/***/ ((module) => {
+
+"use strict";
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+function toObject(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
 
 
 /***/ }),

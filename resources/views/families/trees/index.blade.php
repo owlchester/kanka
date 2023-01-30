@@ -70,6 +70,11 @@
                         ]
                     ) !!}
 
+                    <div class="form-group mt-5" style="display: none" id="add-relation">
+                        <label>{{ __('families/trees.modal.relation') }}</label>
+                        {!! Form::text('relation', null, ['placeholder' => __('events.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button id='send' type="button" class="btn btn-success">
