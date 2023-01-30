@@ -607,7 +607,7 @@ abstract class MiscModel extends Model
             $classes[] = 'kanka-type-' . Str::slug($this->type);
         }
 
-        foreach ($this->entity->tagsWithEntity() as $tag) {
+        foreach ($this->entity->tagsWithEntity(true) as $tag) {
             $classes[] = 'kanka-tag-' . $tag->id;
             $classes[] = 'kanka-tag-' . $tag->slug;
 

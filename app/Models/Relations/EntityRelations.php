@@ -235,10 +235,13 @@ trait EntityRelations
     /**
      * @return Collection|Tag[]
      */
-    public function tagsWithEntity()
+    public function tagsWithEntity(bool $excludeHidden = false)
     {
         if ($this->tagsWithEntity === false) {
-            $this->tagsWithEntity = $this->tags()->with('entity')->where('is_hidden', '=', '0')->get();
+            $this->tagsWithEntity = $this->tags()->with('entity')->get();
+        }
+        if (!$excludeHidden) {
+            return $this->tagsWithEntity->where('is_hidden', '=', '0');
         }
         return $this->tagsWithEntity;
     }
