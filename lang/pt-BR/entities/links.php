@@ -15,7 +15,6 @@ return [
     'fields'            => [
         'icon'      => 'Ícone',
         'name'      => 'Nome',
-        'parent'    => 'Elemento pai',
         'position'  => 'Posição',
         'url'       => 'URL',
     ],

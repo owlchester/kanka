@@ -59,28 +59,9 @@ return [
         'netherlands'   => 'Holanda',
         'spain'         => 'Espanha',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Baixar PDF',
-            'view_all'  => 'Ver tudo',
-        ],
-        'empty'     => 'Sem faturas',
-        'fields'    => [
-            'amount'    => 'Quantidade',
-            'date'      => 'Data',
-            'invoice'   => 'Fatura',
-            'status'    => 'Status',
-        ],
-        'header'    => 'Abaixo está alista de suas últimas 24 faturas, que podem ser baixadas',
-        'status'    => [
-            'paid'      => 'Pago',
-            'pending'   => 'Pendente',
-        ],
-        'title'     => 'Faturas',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Opções de layout atualizadas.',
-        'title'     => 'Layout',
+        'title' => 'Layout',
     ],
     'marketplace'   => [],
     'menu'          => [
@@ -88,9 +69,7 @@ return [
         'api'                   => 'API',
         'appearance'            => 'Aparência',
         'apps'                  => 'Aplicativos',
-        'billing'               => 'Formas de Pagamento',
         'boosters'              => 'Impulsionamentos',
-        'invoices'              => 'Faturas',
         'notifications'         => 'Notificações',
         'other'                 => 'Outros',
         'patreon'               => 'Patreon',
@@ -129,7 +108,6 @@ return [
         'billing'               => [
             'helper'    => 'Suas informações de faturamento são processadas e armazenadas com segurança através de :stripe. Este método de pagamento é usado para todas as suas assinaturas.',
             'saved'     => 'Método de pagamento salvo',
-            'title'     => 'Editar método de pagamento',
         ],
         'cancel'                => [
             'options'   => [
