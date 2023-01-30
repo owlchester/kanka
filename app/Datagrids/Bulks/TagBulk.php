@@ -11,9 +11,11 @@ class TagBulk extends Bulk
         'tag_id',
         'private_choice',
         'auto_applied_choice',
+        'hide_choice',
     ];
 
     protected array $booleans = [
-        'is_auto_applied'
+        'is_auto_applied',
+        'is_hidden',
     ];
 }
