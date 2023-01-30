@@ -14,6 +14,7 @@ return [
             'filters'   => [
                 'all'       => 'Status otwarty',
                 'closed'    => 'Kampanie zamknięte',
+                'featured'  => 'Zwycięskie prompty',
                 'open'      => 'Kampanie otwarte',
             ],
         ],
@@ -146,6 +147,7 @@ return [
             '2fa'               => 'Dostęp do autoryzacji dwuetapowej',
             'api_calls'         => 'Więcej wywołań API (90 na minutę)',
             'boosts'            => 'Doładowania kampanii',
+            'bragi'             => 'Dostęp do Bragi, SI tworzącej historie.',
             'click-me'          => 'Dowiedz się więcej',
             'curation'          => 'Udział w wyborze przedmiotu głosowania społeczności',
             'default_image'     => 'Własne domyślne ikony elementów kampanii',
@@ -229,10 +231,11 @@ return [
         ],
     ],
     'master'                => [
-        'call_to_action'    => 'Załóż konto',
-        'description'       => 'Kanka to rozwijane przez społeczność narzędzie do budowy światów i zarządzania kampaniami RPG, idealne dla autorów i mistrzów gry. Już nigdy nie pogubisz się w notatkach dzięki systemowi @wzmianek oraz takim funkcjom, jak kalendarze, interaktywne mapy, historie, organizacje, rodziny oraz tyle postaci, ile zdołasz wymyślić!',
-        'heading'           => 'Tworzenie światów, zarządzanie kampaniami RPG, narracja. Wszystko to wspiera',
-        'title'             => 'Kanka',
+        'call_to_action'        => 'Załóż konto',
+        'description'           => 'Kanka to rozwijane przez społeczność narzędzie do budowy światów i zarządzania kampaniami RPG, idealne dla autorów i mistrzów gry. Już nigdy nie pogubisz się w notatkach dzięki systemowi @wzmianek oraz takim funkcjom, jak kalendarze, interaktywne mapy, historie, organizacje, rodziny oraz tyle postaci, ile zdołasz wymyślić!',
+        'description_q1_2023'   => ':kanka to narzędzie do wspólnej budowy światów, które wesprze twoją kreatywność. Świat tworzysz z pomocą wpisów jak w Wikipedii, złożonych kalendarzy i pięknych map. :kanka zawiera wszystko, co potrzebne do przygotowania i rozegrania własnej kampanii gry fabularnej.',
+        'heading'               => 'Tworzenie światów, zarządzanie kampaniami RPG, narracja. Wszystko to wspiera',
+        'title'                 => 'Kanka',
     ],
     'media'                 => [],
     'menu'                  => [
@@ -266,10 +269,10 @@ return [
         'title'         => 'Partnerzy',
     ],
     'pricing'               => [
-        'actions'   => [
+        'actions'       => [
             'subscribe' => 'Zasubskrybuj',
         ],
-        'benefits'  => [
+        'benefits'      => [
             'big_maps'      => 'Zwiększona mapa (:size)',
             'bigger_maps'   => 'Jeszcze większa mapa (:size)',
             'boosters'      => 'Doładowania kampanii',
@@ -280,11 +283,17 @@ return [
             'unlimited'     => 'Brak limitu liczby kampanii i plików',
             'updates'       => 'Częste aktualizacje i poprawki',
         ],
-        'tier'      => [
+        'billed_yearly' => ':amount płatne corocznie.',
+        'lead'          => [
+            'obvious'   => 'doskonały wybór',
+            'text'      => 'To :obvious jeżeli tworzysz wspólne światy i rozgrywasz kampanie rpg, a nie chcesz przepłacać.',
+        ],
+        'refund'        => 'W przypadku subskrypcji rocznej oferujemy zwrot pieniędzy do 14 dni.',
+        'tier'          => [
             'free'  => 'Za darmo',
             'month' => 'miesięcznie',
         ],
-        'title'     => 'Cena',
+        'title'         => 'Cena',
     ],
     'privacy'               => [
         'description'   => 'Efektywna data :date',

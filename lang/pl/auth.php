@@ -43,6 +43,7 @@ return [
         'title'                 => 'Logowanie',
     ],
     'register'  => [
+        'already'                   => 'Masz już konto? :login',
         'already_account'           => 'Masz już konto?',
         'errors'                    => [
             'email_already_taken'   => 'Istnieje już konto związane z tym adresem email.',
@@ -54,11 +55,13 @@ return [
             'password'  => 'Hasło',
             'tos_clean' => 'Akceptuję :privacy',
         ],
+        'log-in'                    => 'Zaloguj się',
         'register_with_facebook'    => 'Zarejestruj przez Facebooka',
         'register_with_google'      => 'Zarejestruj przez Google',
         'register_with_twitter'     => 'Zarejestruj przez Twittera',
         'submit'                    => 'Zarejestruj',
         'title'                     => 'Rejestracja',
+        'tos'                       => 'Rejestrując konto zgadzasz się na nasze :terms i :privacy',
     ],
     'reset'     => [
         'fields'    => [

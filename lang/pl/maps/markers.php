@@ -13,6 +13,14 @@ return [
         'delete'    => '{1} Usunięto :count znacznik.|[2,3,4] Usunięto :count znaczniki.|[5,*] Usunięto :count znaczników.',
         'patch'     => '{1} Zmieniono :count znacznik.|[2,3,4] Zmieniono :count znaczniki.|[5,*] Zmieniono :count znaczników.',
     ],
+    'circle_sizes'  => [
+        'custom'    => 'Własny',
+        'huge'      => 'Ogromny',
+        'large'     => 'Duży',
+        'small'     => 'Mały',
+        'standard'  => 'Domyślny',
+        'tiny'      => 'Malutki',
+    ],
     'create'        => [
         'success'   => 'Stworzono znacznik :name.',
         'title'     => 'Nowy znacznik',
@@ -25,6 +33,7 @@ return [
         'title'     => 'Edycja znacznika :name',
     ],
     'fields'        => [
+        'bg_colour'     => 'Kolor tła',
         'circle_radius' => 'Promień okręgu',
         'copy_elements' => 'Kopiuj elementy',
         'custom_icon'   => 'Własna ikona',
@@ -42,6 +51,7 @@ return [
             'stroke-opacity'    => 'Przejrzystość konturu',
             'stroke-width'      => 'Szerokość konturu',
         ],
+        'size'          => 'Rozmiar',
     ],
     'helpers'       => [
         'base'                      => 'Dodaj znacznik, klikając w dowolnym miejscu mapy.',

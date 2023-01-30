@@ -29,7 +29,6 @@ return [
         'charges'   => 'Ładunki',
     ],
     'helpers'       => [
-        'descendants'       => 'Na liście znajdują się wszystkie zdolności pochodzące od tej zdolności, nie tylko bezpośrednio.',
         'nested_without'    => 'Wyświetlono wszystkie zdolności nieposiadające źródła. Kliknij na rząd, by wyświetlić zdolności pochodne.',
     ],
     'index'         => [],

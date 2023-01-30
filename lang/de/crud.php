@@ -336,6 +336,7 @@ return [
         'race'          => 'Wähle eine Spezies',
         'tag'           => 'Wähle ein Tag',
         'timeline'      => 'Wähle einen Zeitstrahl',
+        'user'          => 'wähle einen Benutzer',
     ],
     'relations'                 => [],
     'remove'                    => 'Löschen',

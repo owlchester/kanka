@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'           => [
+        'customise' => 'Dostosuj menu boczne',
+    ],
     'create'            => [
         'title' => 'Nowy skrót',
     ],

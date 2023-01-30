@@ -85,28 +85,9 @@ return [
         'netherlands'   => 'Holandia',
         'spain'         => 'Hiszpania',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Pobierz PDF',
-            'view_all'  => 'Wszystkie',
-        ],
-        'empty'     => 'Brak rachunków',
-        'fields'    => [
-            'amount'    => 'Kwota',
-            'date'      => 'Data',
-            'invoice'   => 'Rachunek',
-            'status'    => 'Status',
-        ],
-        'header'    => 'Na liście znajdują się ostatnie 24 rachunki. Możesz je pobrać.',
-        'status'    => [
-            'paid'      => 'Opłacony',
-            'pending'   => 'Oczekuje',
-        ],
-        'title'     => 'Rachunki',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Zmieniono opcje układu',
-        'title'     => 'Układ',
+        'title' => 'Układ',
     ],
     'marketplace'   => [],
     'menu'          => [
@@ -114,9 +95,7 @@ return [
         'api'                   => 'API',
         'appearance'            => 'Wygląd',
         'apps'                  => 'Aplikacje',
-        'billing'               => 'Metoda płatności',
         'boosters'              => 'Doładowania',
-        'invoices'              => 'Rachunki',
         'notifications'         => 'Powiadomienia',
         'other'                 => 'Inne',
         'patreon'               => 'Patreon',
@@ -155,7 +134,6 @@ return [
         'billing'               => [
             'helper'    => 'Informacje o płatnościach bezpiecznie przetwarza i przechowuje :stripe. To metoda płatności stosowana we wszystkich subskrypcjach.',
             'saved'     => 'Zapisz metodę płatności',
-            'title'     => 'Edycja metody płatności',
         ],
         'cancel'                => [
             'options'   => [

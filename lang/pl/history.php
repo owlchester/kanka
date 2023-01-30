@@ -5,6 +5,7 @@ return [
         'show-old'  => 'Zmiany',
     ],
     'cta'       => 'Wyświetla listę ostatnich zmian w kampanii.',
+    'empty'     => 'Brak',
     'filters'   => [
         'all-actions'   => 'Wszystkie działania',
         'all-users'     => 'Wszyscy uczestnicy',

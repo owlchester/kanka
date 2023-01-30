@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'           => [
+        'customise' => 'Passe die Seitenleiste an',
+    ],
     'create'            => [
         'title' => 'Neuer Menü Link',
     ],

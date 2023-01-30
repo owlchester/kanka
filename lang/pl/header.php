@@ -21,6 +21,7 @@ return [
         'settings'      => 'Ustawienia',
         'sign-out'      => 'Wyloguj',
         'signed-in'     => 'Zalogowano jako :user',
+        'upgrade'       => 'Zwiększanie',
         'your-profile'  => 'Twój profil',
     ],
 ];

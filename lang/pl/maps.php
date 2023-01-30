@@ -70,6 +70,7 @@ return [
     'panels'        => [
         'groups'    => 'Kategorie',
         'layers'    => 'Warstwy',
+        'legend'    => 'Legenda',
         'markers'   => 'Znaczniki',
         'settings'  => 'Ustawienia',
     ],

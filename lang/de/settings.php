@@ -85,28 +85,9 @@ return [
         'netherlands'   => 'Niederlande',
         'spain'         => 'Spanien',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'PDF herunterladen',
-            'view_all'  => 'Alle anzeigen',
-        ],
-        'empty'     => 'keine Rechnungen',
-        'fields'    => [
-            'amount'    => 'Menge',
-            'date'      => 'Datum',
-            'invoice'   => 'Rechnung',
-            'status'    => 'Status',
-        ],
-        'header'    => 'Unten finden Sie eine Liste Ihrer letzten 24 Rechnungen, die heruntergeladen werden können.',
-        'status'    => [
-            'paid'      => 'Bezahlt',
-            'pending'   => 'steht aus',
-        ],
-        'title'     => 'Rechnungen',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Layout Optionen aktualisiert.',
-        'title'     => 'Layout',
+        'title' => 'Layout',
     ],
     'marketplace'   => [],
     'menu'          => [
@@ -114,9 +95,7 @@ return [
         'api'                   => 'API',
         'appearance'            => 'Aussehen',
         'apps'                  => 'Apps',
-        'billing'               => 'Zahlungsmethode',
         'boosters'              => 'Booster',
-        'invoices'              => 'Rechnungen',
         'notifications'         => 'Benachrichtigungen',
         'other'                 => 'Andere',
         'patreon'               => 'Patreon',
@@ -155,7 +134,6 @@ return [
         'billing'               => [
             'helper'    => 'Ihre Zahlungsinformationen werden sicher verarbeitet und gespeichert durch :stripe. Diese Zahlungsmethode wird für alle Ihre Abonnements verwendet.',
             'saved'     => 'Gespeicherte Zahlungsmethode',
-            'title'     => 'Zahlungsmethode ändern',
         ],
         'cancel'                => [
             'options'   => [
