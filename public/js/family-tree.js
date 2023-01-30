@@ -2072,11 +2072,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-var WORLD_WIDTH = 2000;
-var WORLD_HEIGHT = 2000;
-var STAR_SIZE = 30;
-var BORDER = 10; // The application will create a renderer using WebGL, if possible,
+ // The application will create a renderer using WebGL, if possible,
 // with a fallback to a canvas render. It will also setup the ticker
 // and the root stage PIXI.Container
 
@@ -2127,6 +2123,7 @@ var offsetIncrement = 20;
 var childrenLineHeight = 50;
 var entityWidth = 140;
 var entityHeight = 60;
+var btnEdit, btnClear, btnReset, btnSave;
 /**
  * Draw an entity box with their name, avatar, and click link
  * @param entity
@@ -2823,8 +2820,60 @@ function renameRelation(uuid) {
     drawFamilyTree();
   }
 }
+/**
+ * Reset the tree as it was when originally loaded, and exit the edit mode
+ */
 
-renderPage();
+
+var resetTree = function resetTree() {
+  console.info('Resetting...');
+  btnClear.hide();
+  btnSave.hide();
+  btnReset.hide();
+  btnEdit.show();
+};
+/**
+ * Clear the tree to start from a blank canvas
+ */
+
+
+var clearTree = function clearTree() {
+  console.info('Clearing...');
+};
+
+var initFamilyTree = function initFamilyTree() {
+  // Handle button modes
+  btnEdit = $('#tree-edit');
+  btnSave = $('#tree-save');
+  btnClear = $('#tree-clear');
+  btnReset = $('#tree-reset');
+  btnEdit.on('click', function (e) {
+    e.preventDefault();
+    $(this).hide();
+    btnSave.prop('disabled', true).show();
+    btnClear.show();
+    btnReset.show();
+  });
+  btnClear.on('click', function (e) {
+    e.preventDefault();
+    clearTree();
+  });
+  btnReset.on('click', function (e) {
+    e.preventDefault();
+    resetTree();
+  });
+  btnSave.on('click', function (e) {
+    e.preventDefault();
+    console.info('Saving...');
+  }); // Draw the page
+
+  renderPage();
+}; // When jQuery is ready, draw the family tree
+
+
+$(document).ready(function () {
+  initFamilyTree();
+});
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
 

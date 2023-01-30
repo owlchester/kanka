@@ -1,13 +1,6 @@
-import { Application, BLEND_MODES, Assets, RenderTexture, Container, Sprite, Text, TextStyle, Graphics, Texture, BaseTexture, Circle } from 'pixi.js';
+import { Application, Assets, Sprite, Text, TextStyle, Graphics, Texture } from 'pixi.js';
 import axios from 'axios';
-import { Viewport } from 'pixi-viewport'
-import { stringify } from 'bloodhound-js/lib/utils';
-
-
-const WORLD_WIDTH = 2000
-const WORLD_HEIGHT = 2000
-const STAR_SIZE = 30
-const BORDER = 10
+import { Viewport } from 'pixi-viewport';
 
 // The application will create a renderer using WebGL, if possible,
 // with a fallback to a canvas render. It will also setup the ticker
@@ -62,6 +55,8 @@ let offsetIncrement = 20;
 let childrenLineHeight = 50;
 let entityWidth = 140;
 let entityHeight = 60;
+
+let btnEdit, btnClear, btnReset, btnSave;
 
 /**
  * Draw an entity box with their name, avatar, and click link
@@ -718,7 +713,7 @@ function deleteUuid(uuid) {
         viewport.removeChildren();
         deleteUuidFromNodes(uuid);
         drawFamilyTree();
-    } 
+    }
 }
 
 function editEntity(uuid) {
@@ -796,4 +791,58 @@ function renameRelation(uuid) {
     }
 }
 
-renderPage();
+/**
+ * Reset the tree as it was when originally loaded, and exit the edit mode
+ */
+const resetTree = () => {
+    console.info('Resetting...');
+
+    btnClear.hide();
+    btnSave.hide();
+    btnReset.hide();
+    btnEdit.show();
+};
+
+/**
+ * Clear the tree to start from a blank canvas
+ */
+const clearTree = () => {
+    console.info('Clearing...');
+};
+
+const initFamilyTree = () => {
+    // Handle button modes
+    btnEdit = $('#tree-edit');
+    btnSave = $('#tree-save');
+    btnClear = $('#tree-clear');
+    btnReset = $('#tree-reset');
+
+    btnEdit.on('click', function (e) {
+        e.preventDefault();
+        $(this).hide();
+        btnSave.prop('disabled', true).show();
+        btnClear.show();
+        btnReset.show();
+    });
+
+    btnClear.on('click', function (e) {
+        e.preventDefault();
+        clearTree();
+    });
+    btnReset.on('click', function (e) {
+        e.preventDefault();
+        resetTree();
+    });
+    btnSave.on('click', function (e) {
+        e.preventDefault();
+        console.info('Saving...');
+    });
+
+    // Draw the page
+    renderPage();
+};
+
+// When jQuery is ready, draw the family tree
+$(document).ready(function () {
+    initFamilyTree();
+});
