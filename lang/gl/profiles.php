@@ -1,32 +1,15 @@
 <?php
 
 return [
-    'appearance'                    => [
-        'helpers'   => [
-            'campaign-order'    => 'Cambia a orde no que aparecen as campañas listadas no selector de campaña.',
-            'date-format'       => 'Controla o formato da data real.',
-            'pagination'        => 'Cambia o número de elementos mostrados en varias listas.',
-        ],
-    ],
+    'appearance'                    => [],
     'avatar'                        => [
         'success'   => 'Avatar actualizado.',
     ],
-    'campaign_switcher_order_by'    => [
-        'alphabetical'      => 'Alfabeticamente',
-        'date_created'      => 'Data de creación',
-        'date_joined'       => 'Data na que te uniches',
-        'default'           => 'Por defecto',
-        'r_alphabetical'    => 'Alfabeticamente inversa',
-        'r_date_created'    => 'Data de creación inversa',
-        'r_date_joined'     => 'Data na que te uniches inversa',
-    ],
+    'campaign_switcher_order_by'    => [],
     'edit'                          => [
         'success'   => 'Perfil actualizado',
     ],
-    'editors'                       => [
-        'legacy'        => 'Obsoleto (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
+    'editors'                       => [],
     'fields'                        => [
         'avatar'                    => 'Avatar',
         'bio'                       => 'Biografía',
@@ -81,29 +64,13 @@ return [
         ],
     ],
     'settings'                      => [
-        'fields'    => [
-            'advanced_mentions'             => 'Mencións avanzadas',
-            'campaign_switcher_order_by'    => 'Orde das campañas no menú',
-            'date_format'                   => 'Formato da data',
-            'default_nested'                => 'Vista en árbore por defecto',
-            'editor'                        => 'Editor de texto',
-            'new_entity_workflow'           => 'Novo fluxo de creación de entidades',
-            'pagination'                    => 'Paxinación (elementos por páxina)',
-        ],
         'helpers'   => [
             'bio'       => 'A biogrofía é visible no teu :link.',
-            'editor_v2' => 'O editor de texto obsoleto (TinyMCE) non soporta mencións en dispositivos móbeis nin algunhas funcionalidades como a galería de campaña.',
             'profile'   => 'perfil público',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'Ao activalo, as mencións sempre serán mostradas como [entity:123] ao editar unha entidade.',
-            'default_nested'        => 'Activa esta opción se queres que as listas de entidades sexan mostradas na vista en árbore por defecto (cando sexa posible).',
-            'new_entity_workflow'   => 'Ao crear unha nova entidade, o fluxo por defecto é redireccionarte á lista de entidades. Podes cambiar isto para ir directamente á nova entidade que acabas de crear.',
         ],
         'success'   => 'Configuración cambiada.',
     ],
     'theme'                         => [
-        'helper'    => 'Unha campaña cun estilo establecido sobreescribirá a túa preferencia.',
         'success'   => 'Tema cambiado.',
         'themes'    => [
             'dark'      => 'Escuro',

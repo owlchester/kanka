@@ -7,10 +7,7 @@ return [
     'edit'          => [
         'success'   => 'Profil uppdaterad',
     ],
-    'editors'       => [
-        'legacy'        => 'Legacy (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
+    'editors'       => [],
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Epost',
@@ -47,22 +44,6 @@ return [
         ],
     ],
     'settings'      => [
-        'fields'    => [
-            'advanced_mentions'     => 'Avancerade Omnämningar',
-            'date_format'           => 'Datum Formatering',
-            'default_nested'        => 'Hierarkiska Vyer som Standard',
-            'editor'                => 'Text Redigerare',
-            'new_entity_workflow'   => 'Ny Entitet Arbetsflöde',
-            'pagination'            => 'Element per sida',
-        ],
-        'helpers'   => [
-            'editor_v2' => 'Användande av den legacy text redigeraren (TinyMCE) kommer inte stödja omnämnanden på mobila enheter och har inte stöd för visa funktioner som kampanj galleriet.',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'Om aktiverad, omnämnanden kommer alltid renderas som [entitet:123] när en entitet redigeras.',
-            'default_nested'        => 'Aktivera detta alternativ om du vill ha listor Hierarkiska som standard (när det är tillgängligt).',
-            'new_entity_workflow'   => 'När en ny entitet skapas så är standard arbetsflödet att gå till listan över entiteter. Du kan ändra detta till att visa den nyligen skapade entiteten istället.',
-        ],
         'success'   => 'Inställningar ändrade.',
     ],
     'theme'         => [

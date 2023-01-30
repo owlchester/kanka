@@ -85,28 +85,9 @@ return [
         'netherlands'   => 'Holandsko',
         'spain'         => 'Španielsko',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Stiahnuť PDF',
-            'view_all'  => 'Zobraziť všetky',
-        ],
-        'empty'     => 'Žiadne faktúry',
-        'fields'    => [
-            'amount'    => 'Množstvo',
-            'date'      => 'Dátum',
-            'invoice'   => 'Faktúra',
-            'status'    => 'Stav',
-        ],
-        'header'    => 'Nižšie sa nachádza zoznam posledných 24 faktúr, ktoré si môžeš stiahnuť.',
-        'status'    => [
-            'paid'      => 'Zaplatená',
-            'pending'   => 'Čaká sa na platbu',
-        ],
-        'title'     => 'Faktúry',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Nastavenia schémy aktualizované.',
-        'title'     => 'Schéma',
+        'title' => 'Schéma',
     ],
     'marketplace'   => [],
     'menu'          => [
@@ -114,9 +95,7 @@ return [
         'api'                   => 'API',
         'appearance'            => 'Vzhľad',
         'apps'                  => 'Apps',
-        'billing'               => 'Spôsob platby',
         'boosters'              => 'Boosty',
-        'invoices'              => 'Faktúry',
         'notifications'         => 'Upozornenia',
         'other'                 => 'Iné',
         'patreon'               => 'Patreon',
@@ -155,7 +134,6 @@ return [
         'billing'               => [
             'helper'    => 'Tvoje platobné údaje sú spracované a uložené bezpečne na :stripe. Túto platobnú metódu používame pre všetky platby predplatného.',
             'saved'     => 'Uložený spôsob platby',
-            'title'     => 'Upraviť spôsob platby',
         ],
         'cancel'                => [
             'options'   => [

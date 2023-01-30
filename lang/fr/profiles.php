@@ -1,32 +1,15 @@
 <?php
 
 return [
-    'appearance'                    => [
-        'helpers'   => [
-            'campaign-order'    => 'Changer l\'ordre dans lequel les campagnes s\'affichent dans le changeur de campagne.',
-            'date-format'       => 'Changer le format d\'affichage des dates.',
-            'pagination'        => 'Changer le nombre d\'éléments affichés dans les listes.',
-        ],
-    ],
+    'appearance'                    => [],
     'avatar'                        => [
         'success'   => 'Photo de profil modifiée.',
     ],
-    'campaign_switcher_order_by'    => [
-        'alphabetical'      => 'Alphabétiquement',
-        'date_created'      => 'Date créée',
-        'date_joined'       => 'Date d\'adhésion',
-        'default'           => 'Défaut',
-        'r_alphabetical'    => 'Alphabétiquement inverse',
-        'r_date_created'    => 'Date créée inverse',
-        'r_date_joined'     => 'Date d\'adhésion inverse',
-    ],
+    'campaign_switcher_order_by'    => [],
     'edit'                          => [
         'success'   => 'Profil modifié',
     ],
-    'editors'                       => [
-        'legacy'        => 'Ancien (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
+    'editors'                       => [],
     'fields'                        => [
         'avatar'                    => 'Avatar',
         'bio'                       => 'Bigraphie',
@@ -82,29 +65,13 @@ return [
         ],
     ],
     'settings'                      => [
-        'fields'    => [
-            'advanced_mentions'             => 'Mentions Avancées',
-            'campaign_switcher_order_by'    => 'Ordre du sélecteur de campagne',
-            'date_format'                   => 'Format de date',
-            'default_nested'                => 'Vue imbriquée par défaut',
-            'editor'                        => 'Editeur de texte',
-            'new_entity_workflow'           => 'Workflow de nouvelle entité',
-            'pagination'                    => 'Pagination (éléments par page)',
-        ],
         'helpers'   => [
             'bio'       => 'La biographie est visible sur ton :link.',
-            'editor_v2' => 'L\'ancien éditeur de text (TinyMCE) ne supporte pas les mentions sur mobile, ni certaines fonctionnalités tel que la galerie de campagne.',
             'profile'   => 'profile publique',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'Lorsque cette option est activée, les mentions s\'afficheront tout le temps comme [entity:123] lors de l\'édition d\'une entité.',
-            'default_nested'        => 'Active cette option pour que les listes s\'affichent par défaut de manière imbriquée.',
-            'new_entity_workflow'   => 'Lorsqu\'une entité est créée, le workflow par défaut est de naviguer à la liste des entités. Ce workflow peut être changé pour afficher la nouvelle entité.',
         ],
         'success'   => 'Paramètres modifiés.',
     ],
     'theme'                         => [
-        'helper'    => 'Une campagne avec un thème défini remplacera ta préférence.',
         'success'   => 'Thème modifié.',
         'themes'    => [
             'dark'      => 'Sombre',

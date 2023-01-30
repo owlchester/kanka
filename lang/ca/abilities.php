@@ -29,7 +29,6 @@ return [
         'charges'   => 'Usos',
     ],
     'helpers'       => [
-        'descendants'       => 'Aquí es mostren totes les habilitats descendents d\'aquesta, no només les que es troben al nivell immediatament inferior.',
         'nested_without'    => 'S\'estan mostrant totes les habilitats que no tenen cap pare. Cliqueu una fila per a veure\'n les habilitats descendents.',
     ],
     'index'         => [],

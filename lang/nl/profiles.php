@@ -7,10 +7,7 @@ return [
     'edit'          => [
         'success'   => 'Profiel bijgewerkt',
     ],
-    'editors'       => [
-        'legacy'        => 'Legacy (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
+    'editors'       => [],
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'E-mail',
@@ -48,22 +45,6 @@ return [
         ],
     ],
     'settings'      => [
-        'fields'    => [
-            'advanced_mentions'     => 'Geavanceerde Vermeldingen',
-            'date_format'           => 'Datum Opmaak',
-            'default_nested'        => 'Geneste Weergaven als Standaard',
-            'editor'                => 'Text Editor',
-            'new_entity_workflow'   => 'Nieuwe Entiteit Workflow',
-            'pagination'            => 'Paginering (elementen per pagina)',
-        ],
-        'helpers'   => [
-            'editor_v2' => 'Het gebruik van de legacy text editor (TinyMCE) ondersteunt geen vermeldingen op mobiele apparaten en biedt geen ondersteuning voor sommige functies, zoals de campaign galerij.',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'Indien geactiveerd, worden vermeldingen altijd weergegeven als [entity:123] bij het bewerken van een entiteit.',
-            'default_nested'        => 'Activeer deze optie als je wilt dat de standaard lijsten standaard Genest zijn (indien beschikbaar).',
-            'new_entity_workflow'   => 'Bij het maken van een nieuwe entiteit is de standaard workflow om naar de lijst met entiteiten te gaan. Je kunt dit wijzigen om in plaats daarvan de nieuw gemaakte entiteit te bekijken.',
-        ],
         'success'   => 'Instellingen gewijzigd.',
     ],
     'theme'         => [

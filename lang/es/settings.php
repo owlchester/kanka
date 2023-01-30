@@ -58,36 +58,15 @@ return [
         'netherlands'   => 'Holanda',
         'spain'         => 'España',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Descargar PDF',
-            'view_all'  => 'Ver todas',
-        ],
-        'empty'     => 'Sin facturas',
-        'fields'    => [
-            'amount'    => 'Cantidad',
-            'date'      => 'Fecha',
-            'invoice'   => 'Factura',
-            'status'    => 'Estado',
-        ],
-        'header'    => 'Puedes descargar tus últimas 24 facturas a continuación.',
-        'status'    => [
-            'paid'      => 'Pagada',
-            'pending'   => 'Pendiente',
-        ],
-        'title'     => 'Facturas',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Opciones de diseño actualizadas.',
-        'title'     => 'Diseño',
+        'title' => 'Diseño',
     ],
     'marketplace'   => [],
     'menu'          => [
         'account'               => 'Cuenta',
         'api'                   => 'API',
         'apps'                  => 'Aplicaciones',
-        'billing'               => 'Método de pago',
-        'invoices'              => 'Facturas',
         'other'                 => 'Otros',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opciones de pago',
@@ -125,7 +104,6 @@ return [
         'billing'               => [
             'helper'    => 'Tu información de pago se procesa y se guarda de forma segura mediante :stripe. Este método de pago se usará para todas tus suscripciones.',
             'saved'     => 'Método de pago guardado',
-            'title'     => 'Editar método de pago',
         ],
         'cancel'                => [
             'text'  => '¡Lamentamos verte marchar! Al cancelar tu suscripción, esta seguirá activa hasta el nuevo ciclo de facturación, tras lo cual perderás tus mejoras de campaña y otros beneficios relacionados. No tengas miedo de informarnos sobre cómo podemos mejorar o qué te ha llevado a tomar esta decisión.',

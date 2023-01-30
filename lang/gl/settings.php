@@ -78,28 +78,9 @@ return [
         'netherlands'   => 'Países Baixos',
         'spain'         => 'España',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Descargar PDF',
-            'view_all'  => 'Ver todo',
-        ],
-        'empty'     => 'Sen facturas',
-        'fields'    => [
-            'amount'    => 'Cantidade',
-            'date'      => 'Data',
-            'invoice'   => 'Factura',
-            'status'    => 'Estado',
-        ],
-        'header'    => 'Abaixo tes unha lista coas túas últimas 24 facturas que poden ser descargadas.',
-        'status'    => [
-            'paid'      => 'Pagada',
-            'pending'   => 'Pendente',
-        ],
-        'title'     => 'Facturas',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Opcións de deseño actualizadas.',
-        'title'     => 'Deseño',
+        'title' => 'Deseño',
     ],
     'marketplace'   => [],
     'menu'          => [
@@ -107,9 +88,7 @@ return [
         'api'                   => 'API',
         'appearance'            => 'Aparencia',
         'apps'                  => 'Aplicacións',
-        'billing'               => 'Método de pagamento',
         'boosters'              => 'Potenciadores',
-        'invoices'              => 'Facturas',
         'notifications'         => 'Notificacións',
         'other'                 => 'Miscelánea',
         'patreon'               => 'Patreon',
@@ -148,7 +127,6 @@ return [
         'billing'               => [
             'helper'    => 'A túa información de pagamento é procesada e almacenada de forma segura a través de :stripe. O teu método de pagamento é usado para todas as túas subscripcións.',
             'saved'     => 'Método de pagamento gardado',
-            'title'     => 'Editar método de pagamento',
         ],
         'cancel'                => [
             'options'   => [

@@ -7,10 +7,7 @@ return [
     'edit'          => [
         'success'   => 'A profilodat frissítettük.',
     ],
-    'editors'       => [
-        'legacy'        => 'Örökség (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
+    'editors'       => [],
     'fields'        => [
         'avatar'                    => 'Profilkép',
         'email'                     => 'Email',
@@ -55,22 +52,6 @@ return [
         ],
     ],
     'settings'      => [
-        'fields'    => [
-            'advanced_mentions'     => 'Haladó Említések',
-            'date_format'           => 'Dátumformátum',
-            'default_nested'        => 'Alapértelmezetten hierarchikus nézet',
-            'editor'                => 'Szövegszerkesztő',
-            'new_entity_workflow'   => 'Új entitás munkafolyamat',
-            'pagination'            => 'Lapméret (elemek száma egy lapon)',
-        ],
-        'helpers'   => [
-            'editor_v2' => 'Az örökölt szövegszerkesztő (TinyMCE) használatát nem támogatjuk mobil eszközökn, és néhány lehetőséggel nem rendelkezik, mint például a kampánygaléria.',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'Kapcsold be, ha szeretnéd, hogy az említések minden esetben [entity:123] formában jelenjenek meg az entitás szerkesztése közben.',
-            'default_nested'        => 'Kapcsold be, ha alapértelmezetten Hierarchikus Nézetben szeretnéd látni az entitásaidat (amikor lehetséges)',
-            'new_entity_workflow'   => 'Amikor új entitás hozol létre, az alapértelmezett munkafolymat az entitások listájára ugrás. Ezt megváltoztathatod, hogy az újonnan létrehozott entitást mutassa.',
-        ],
         'success'   => 'A beállításokat megváltoztattuk.',
     ],
     'theme'         => [

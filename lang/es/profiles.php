@@ -4,22 +4,11 @@ return [
     'avatar'                        => [
         'success'   => 'Avatar actualizado.',
     ],
-    'campaign_switcher_order_by'    => [
-        'alphabetical'      => 'Alfabéticamente',
-        'date_created'      => 'Fecha de creación',
-        'date_joined'       => 'Fecha de entrada',
-        'default'           => 'Por defecto',
-        'r_alphabetical'    => 'Alfabéticamente inverso',
-        'r_date_created'    => 'Fecha de creación inversa',
-        'r_date_joined'     => 'Fecha de entrada inversa',
-    ],
+    'campaign_switcher_order_by'    => [],
     'edit'                          => [
         'success'   => 'Perfil actualizado',
     ],
-    'editors'                       => [
-        'legacy'        => 'Obsoleto (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
+    'editors'                       => [],
     'fields'                        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Correo Electronico',
@@ -64,23 +53,6 @@ return [
         ],
     ],
     'settings'                      => [
-        'fields'    => [
-            'advanced_mentions'             => 'Menciones avanzadas',
-            'campaign_switcher_order_by'    => 'Orden de las campañas en el menú',
-            'date_format'                   => 'Formato de fecha',
-            'default_nested'                => 'Vista anidada por defecto',
-            'editor'                        => 'Editor de texto',
-            'new_entity_workflow'           => 'Nuevo flujo de creación de entidades',
-            'pagination'                    => 'Paginación (elementos por página)',
-        ],
-        'helpers'   => [
-            'editor_v2' => 'El editor de texto obsoleto (TinyMCE) no soporta menciones en dispositivos móviles ni algunas funcionalidades como la galería de campaña.',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'Al activarlo, las menciones siempre se renderizarán como [entity:123] al editar una entidad.',
-            'default_nested'        => 'Activa esta opción si quieres que las listas estén en vista anidada por defecto (cuando sea posible).',
-            'new_entity_workflow'   => 'Al crear una nueva entidad, por defecto se te redirecciona a la lista de entidades. En vez de esto, puedes ir directamente a la entidad que acabas de crear.',
-        ],
         'success'   => 'Ajustes cambiados.',
     ],
     'theme'                         => [

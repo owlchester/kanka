@@ -85,28 +85,9 @@ return [
         'netherlands'   => 'Pays-Bas',
         'spain'         => 'Espagne',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Télécharger PDF',
-            'view_all'  => 'Tout voir',
-        ],
-        'empty'     => 'Aucune facture',
-        'fields'    => [
-            'amount'    => 'Montant',
-            'date'      => 'Date',
-            'invoice'   => 'Facture',
-            'status'    => 'Status',
-        ],
-        'header'    => 'Liste des 24 dernières factures qui peuvent être téléchargées.',
-        'status'    => [
-            'paid'      => 'Payé',
-            'pending'   => 'En attente',
-        ],
-        'title'     => 'Factures',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Options de mise en page modifiées.',
-        'title'     => 'Mise en page',
+        'title' => 'Mise en page',
     ],
     'marketplace'   => [],
     'menu'          => [
@@ -114,9 +95,7 @@ return [
         'api'                   => 'API',
         'appearance'            => 'Apparence',
         'apps'                  => 'Apps',
-        'billing'               => 'Méthode de paiement',
         'boosters'              => 'Boosters',
-        'invoices'              => 'Factures',
         'notifications'         => 'Notifications',
         'other'                 => 'Autre',
         'patreon'               => 'Patreon',
@@ -155,7 +134,6 @@ return [
         'billing'               => [
             'helper'    => 'Les informations de paiement sont gérées et sauvegardées de manière sécurisée à travers :stripe. Cette méthode de paiement sera utilisée pour tous les abonnements.',
             'saved'     => 'Méthode de paiement',
-            'title'     => 'Modifier la méthode de paiement',
         ],
         'cancel'                => [
             'options'   => [

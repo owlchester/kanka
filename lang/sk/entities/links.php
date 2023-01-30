@@ -15,7 +15,6 @@ return [
     'fields'            => [
         'icon'      => 'Symbol',
         'name'      => 'Názov',
-        'parent'    => 'Nadradený prvok',
         'position'  => 'Pozícia',
         'url'       => 'URL',
     ],

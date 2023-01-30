@@ -29,7 +29,6 @@ return [
         'charges'   => 'Usos',
     ],
     'helpers'       => [
-        'descendants'       => 'Esta lista contiene todas las habilidades descendientes de esta habilidad, no solo las que están en el nivel inmediatamente inferior.',
         'nested_without'    => 'Mostrando todas las habilidades que no tienen superior. Haz clic sobre una fila para mostrar las habilidades anidadas.',
     ],
     'index'         => [],

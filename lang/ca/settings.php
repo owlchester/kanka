@@ -58,36 +58,15 @@ return [
         'netherlands'   => 'Països Baixos',
         'spain'         => 'Espanya',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Descarrega el PDF',
-            'view_all'  => 'Veu-les totes',
-        ],
-        'empty'     => 'Sense factures',
-        'fields'    => [
-            'amount'    => 'Quantitat',
-            'date'      => 'Data',
-            'invoice'   => 'Factura',
-            'status'    => 'Estat',
-        ],
-        'header'    => 'Podeu descarregar les últimes 24 factures a continuació.',
-        'status'    => [
-            'paid'      => 'Pagada',
-            'pending'   => 'Pendent',
-        ],
-        'title'     => 'Factures',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'S\'han actualitzat les opcions de disseny.',
-        'title'     => 'Disseny',
+        'title' => 'Disseny',
     ],
     'marketplace'   => [],
     'menu'          => [
         'account'               => 'Compte',
         'api'                   => 'API',
         'apps'                  => 'Aplicacions',
-        'billing'               => 'Mètode de pagament',
-        'invoices'              => 'Factures',
         'other'                 => 'Altres',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opcions de pagament',
@@ -125,7 +104,6 @@ return [
         'billing'               => [
             'helper'    => 'La vostra informació de pagament es processa i es guarda de manera segura mitjançant :stripe. Aquest mètode de pagament s\'usarà per a totes les vostres subscripcions.',
             'saved'     => 'Mètode de pagament guardat',
-            'title'     => 'Edita el mètode de pagament',
         ],
         'cancel'                => [
             'text'  => 'Ens sap greu que marxeu! En cancel·lar la vostra subscripció, aquesta continuarà activa fins al nou cicle de facturació, després del qual perdreu les millores de campanya i altres beneficis relacionats. No dubteu en informar-nos sobre com podem millorar o què us ha dut a prendre aquesta decisió.',

@@ -29,7 +29,6 @@ return [
         'charges'   => 'Cariche',
     ],
     'helpers'       => [
-        'descendants'       => 'Questa lista contiene tutte le abilità che sono discendenti di questa abilità e non solamente quelle direttamente sotto di essa.',
         'nested_without'    => 'Visualizzazione di tutte le abilità che non hanno un\'abilità genitore. Clicca su una riga per vedere le abilità figlie.',
     ],
     'index'         => [],
