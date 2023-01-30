@@ -13,7 +13,7 @@
             </a>
             <a href="#" class="btn btn-sm btn-default" id="tree-reset" style="display: none">
                 <i class="fa-solid fa-redo" aria-hidden="true"></i>
-                {{ __('crud.actions.reset') }}
+                {{ __('families/trees.actions.reset') }}
             </a>
             <a href="#" class="btn btn-sm btn-default" id="tree-clear" style="display: none">
                 <i class="fa-solid fa-eraser" aria-hidden="true"></i>
@@ -21,7 +21,7 @@
             </a>
             <a href="#" class="btn btn-sm btn-primary" id="tree-save" style="display: none">
                 <i class="fa-solid fa-save" aria-hidden="true"></i>
-                {{ __('crud.save') }}
+                {{ __('families/trees.actions.save') }}
             </a>
         </div>
     @endcan

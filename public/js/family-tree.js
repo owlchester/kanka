@@ -2067,9 +2067,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var pixi_viewport__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! pixi-viewport */ "./node_modules/pixi-viewport/dist/esm/viewport.es.js");
-/* harmony import */ var bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bloodhound-js/lib/utils */ "./node_modules/bloodhound-js/lib/utils.js");
-/* harmony import */ var bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__);
-
 
 
  // The application will create a renderer using WebGL, if possible,
@@ -2085,7 +2082,8 @@ var app = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Application({
 var container = document.getElementsByClassName('family-tree-setup')[0]; // load the texture we need
 
 var texture = await pixi_js__WEBPACK_IMPORTED_MODULE_0__.Assets.load('/images/family-trees/entity.png');
-var graphics = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics(); // create viewport
+var graphics = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
+var elements = []; // create viewport
 
 var viewport = new pixi_viewport__WEBPACK_IMPORTED_MODULE_2__.Viewport({
   screenWidth: window.innerWidth,
@@ -2108,22 +2106,18 @@ var relationNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
   fontSize: 14,
   wordWrap: true,
   wordWrapWidth: 120
-}); // Listen for frame updates
-
-/*app.ticker.add(() => {
-    // each frame we spin the bunny around a bit
-    entityPanel.rotation += 0.01;
-});*/
-
+});
 var newUuid = 1; // UUID
 
 var entities = null;
 var nodes = null;
+var originalNodes = null;
 var offsetIncrement = 20;
 var childrenLineHeight = 50;
 var entityWidth = 140;
 var entityHeight = 60;
 var btnEdit, btnClear, btnReset, btnSave;
+var isEditing = false;
 /**
  * Draw an entity box with their name, avatar, and click link
  * @param entity
@@ -2149,12 +2143,14 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
   entityBox.endFill(); //app.stage.addChild(entityBox);
 
   viewport.addChild(entityBox);
+  elements.push(entityBox);
   var circleMask = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   circleMask.beginFill();
   circleMask.drawCircle(x + 110, y + 30, 20);
   circleMask.endFill(); //app.stage.addChild(circleMask);
 
   viewport.addChild(circleMask);
+  elements.push(circleMask);
   var entityImageTexture = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.from(entity.thumb);
   var entityImage = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(entityImageTexture);
   entityImage.x = x + 90;
@@ -2163,6 +2159,7 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
   entityImage.width = 40; //app.stage.addChild(entityImage);
 
   viewport.addChild(entityImage);
+  elements.push(entityImage);
   entityImage.mask = circleMask;
   var name = entity.name;
 
@@ -2173,9 +2170,9 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
 
   var entityName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(name, entityNameStyle);
   entityName.x = x + 10;
-  entityName.y = y + 10; //app.stage.addChild(entityName);
-
-  viewport.addChild(entityName); // Add an invisible box on top
+  entityName.y = y + 10;
+  viewport.addChild(entityName);
+  elements.push(entityName); // Add an invisible box on top
 
   var hitBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   hitBox.beginFill(0xff0000, 1.0);
@@ -2198,53 +2195,60 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
   }); //app.stage.addChild(hitBox);
 
   viewport.addChild(hitBox);
-  var closeButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('x', entityNameStyle);
-  closeButton.x = x + 125;
-  closeButton.y = y;
-  closeButton.interactive = true;
-  closeButton.buttonMode = true;
+  elements.push(hitBox);
 
-  closeButton.onclick = function (event) {
-    deleteUuid(uuid);
-  };
+  if (isEditing) {
+    var closeButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('x', entityNameStyle);
+    closeButton.x = x + 125;
+    closeButton.y = y;
+    closeButton.interactive = true;
+    closeButton.buttonMode = true;
 
-  viewport.addChild(closeButton);
-  var editButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('edit', entityNameStyle);
-  editButton.x = x + 35;
-  editButton.y = y + 60;
-  editButton.interactive = true;
-  editButton.buttonMode = true;
-
-  editButton.onclick = function (event) {
-    editEntity(uuid);
-  };
-
-  viewport.addChild(editButton);
-  var addRelationButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ relation', entityNameStyle);
-  addRelationButton.x = x + 140;
-  addRelationButton.y = y + 20;
-  addRelationButton.interactive = true;
-  addRelationButton.buttonMode = true;
-
-  addRelationButton.onclick = function (event) {
-    addRelation(uuid);
-  };
-
-  viewport.addChild(addRelationButton);
-
-  if (isRelation) {
-    console.log(uuid);
-    var addChildrenButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ children', entityNameStyle);
-    addChildrenButton.x = x + 75;
-    addChildrenButton.y = y + 60;
-    addChildrenButton.interactive = true;
-    addChildrenButton.buttonMode = true;
-
-    addChildrenButton.onclick = function (event) {
-      addChildren(uuid);
+    closeButton.onclick = function (event) {
+      deleteUuid(uuid);
     };
 
-    viewport.addChild(addChildrenButton);
+    viewport.addChild(closeButton);
+    elements.push(closeButton);
+    var editButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('edit', entityNameStyle);
+    editButton.x = x + 35;
+    editButton.y = y + 60;
+    editButton.interactive = true;
+    editButton.buttonMode = true;
+
+    editButton.onclick = function (event) {
+      editEntity(uuid);
+    };
+
+    viewport.addChild(editButton);
+    elements.push(editButton);
+    var addRelationButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ relation', entityNameStyle);
+    addRelationButton.x = x + 140;
+    addRelationButton.y = y + 20;
+    addRelationButton.interactive = true;
+    addRelationButton.buttonMode = true;
+
+    addRelationButton.onclick = function (event) {
+      addRelation(uuid);
+    };
+
+    viewport.addChild(addRelationButton);
+    elements.push(addRelationButton);
+
+    if (isRelation) {
+      var addChildrenButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ children', entityNameStyle);
+      addChildrenButton.x = x + 75;
+      addChildrenButton.y = y + 60;
+      addChildrenButton.interactive = true;
+      addChildrenButton.buttonMode = true;
+
+      addChildrenButton.onclick = function (event) {
+        addChildren(uuid);
+      };
+
+      viewport.addChild(addChildrenButton);
+      elements.push(addChildrenButton);
+    }
   }
 };
 /**
@@ -2337,9 +2341,7 @@ var drawRelationLine = function drawRelationLine(relation, originX, originY, tar
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
-  graphics.endFill(); //app.stage.addChild(graphics);
-  //viewport.addChild(graphics)
-  // Draw relation name
+  graphics.endFill(); // Draw relation name
 
   var relationName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(relation.role, relationNameStyle);
   relationName.x = targetX - 40;
@@ -2347,11 +2349,14 @@ var drawRelationLine = function drawRelationLine(relation, originX, originY, tar
   relationName.interactive = true;
   relationName.buttonMode = true;
 
-  relationName.onclick = function (event) {
-    renameRelation(relation.uuid);
-  };
+  if (isEditing) {
+    relationName.onclick = function (event) {
+      renameRelation(relation.uuid);
+    };
+  }
 
   viewport.addChild(relationName);
+  elements.push(relationName);
 };
 
 var drawChildrenLine = function drawChildrenLine(originX, originY, targetX, targetY) {
@@ -2368,8 +2373,7 @@ var drawChildrenLine = function drawChildrenLine(originX, originY, targetX, targ
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
-  graphics.endFill(); //app.stage.addChild(graphics);
-  //viewport.addChild(graphics)
+  graphics.endFill();
 };
 
 var drawParentChildrenLine = function drawParentChildrenLine(drawX, drawY, index) {
@@ -2493,6 +2497,9 @@ var drawFamilyTree = function drawFamilyTree() {
 
   });
   graphics.clear();
+  elements.forEach(function (text) {
+    viewport.removeChild(text);
+  });
   nodes.forEach(function (node) {
     drawNode(node, 0, 0, 0, 0);
   });
@@ -2510,6 +2517,8 @@ var renderPage = function renderPage() {
   axios__WEBPACK_IMPORTED_MODULE_1___default().get(container.dataset.api).then(function (resp) {
     entities = resp.data.entities;
     nodes = resp.data.nodes;
+    originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
+    console.log('original nodes', originalNodes);
     drawFamilyTree();
   });
 };
@@ -2632,13 +2641,13 @@ function relationCreator(array, uuid, entity, role) {
         object.relations.push({
           entity_id: entity_id,
           role: role,
-          uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
+          uuid: stringify(newUuid)
         });
       } else {
         object.relations = [{
           entity_id: entity_id,
           role: role,
-          uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
+          uuid: stringify(newUuid)
         }];
       }
 
@@ -2683,12 +2692,12 @@ function childCreator(array, uuid, entity) {
       if (Array.isArray(object.children)) {
         object.children.push({
           entity_id: entity_id,
-          uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
+          uuid: stringify(newUuid)
         });
       } else {
         object.children = [{
           entity_id: entity_id,
-          uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
+          uuid: stringify(newUuid)
         }];
       }
 
@@ -2830,7 +2839,13 @@ var resetTree = function resetTree() {
   btnClear.hide();
   btnSave.hide();
   btnReset.hide();
-  btnEdit.show();
+  btnEdit.show(); // Reset the nodes as they were on page load
+
+  nodes = JSON.parse(JSON.stringify(originalNodes));
+  console.log('original nodes', nodes); // Edit edit mode and redraw the tree
+
+  isEditing = false;
+  drawFamilyTree();
 };
 /**
  * Clear the tree to start from a blank canvas
@@ -2841,6 +2856,18 @@ var clearTree = function clearTree() {
   console.info('Clearing...');
 };
 
+var enterEditMode = function enterEditMode() {
+  console.info('Editing...'); // Change which buttons are available
+
+  btnEdit.hide();
+  btnSave.prop('disabled', true).show();
+  btnClear.show();
+  btnReset.show(); // Redraw the tree in edit mode
+
+  isEditing = true;
+  drawFamilyTree();
+};
+
 var initFamilyTree = function initFamilyTree() {
   // Handle button modes
   btnEdit = $('#tree-edit');
@@ -2849,10 +2876,7 @@ var initFamilyTree = function initFamilyTree() {
   btnReset = $('#tree-reset');
   btnEdit.on('click', function (e) {
     e.preventDefault();
-    $(this).hide();
-    btnSave.prop('disabled', true).show();
-    btnClear.show();
-    btnReset.show();
+    enterEditMode();
   });
   btnClear.on('click', function (e) {
     e.preventDefault();
@@ -2876,209 +2900,6 @@ $(document).ready(function () {
 });
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
-
-/***/ }),
-
-/***/ "./node_modules/bloodhound-js/lib/utils.js":
-/*!*************************************************!*\
-  !*** ./node_modules/bloodhound-js/lib/utils.js ***!
-  \*************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-/*
- * typeahead.js
- * https://github.com/twitter/typeahead.js
- * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
- */
-
-var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
-
-var _ = {
-  isMsie: function() {
-    // from https://github.com/ded/bowser/blob/master/bowser.js
-    return (/(msie|trident)/i).test(navigator.userAgent) ?
-      navigator.userAgent.match(/(msie |rv:)(\d+(.\d+)?)/i)[2] : false;
-  },
-
-  isBlankString: function(str) { return !str || /^\s*$/.test(str); },
-
-  // http://stackoverflow.com/a/6969486
-  escapeRegExChars: function(str) {
-    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
-  },
-
-  isString: function(obj) { return typeof obj === 'string'; },
-
-  isNumber: function(obj) { return typeof obj === 'number'; },
-
-  isArray: Array.isArray,
-
-  isFunction: function(obj) {
-		return typeof obj === 'function';
-	},
-
-  isObject: function(obj) {
-    return typeof obj === 'object';
-  },
-
-  isUndefined: function(obj) { return typeof obj === 'undefined'; },
-
-  isElement: function(obj) { return !!(obj && obj.nodeType === 1); },
-
-  isJQuery: function(obj) { return obj instanceof $; },
-
-  toStr: function toStr(s) {
-    return (_.isUndefined(s) || s === null) ? '' : s + '';
-  },
-
-  bind: function(fn, context) {
-    return fn.bind(context);
-  },
-
-  each: function(collection, cb) {
-    collection.forEach(cb);
-  },
-
-  map: function(array, fn) {
-    return array.map(fn);
-  },
-
-  filter: function(array, fn) {
-    return array.filter(fn);
-  },
-
-  every: function(obj, test) {
-    var result = true;
-
-    if (!obj) { return result; }
-
-    // $.each(obj, function(key, val) {
-    //   if (!(result = test.call(null, val, key, obj))) {
-    //     return false;
-    //   }
-    // });
-
-    for(var key in obj) {
-      if(obj.hasOwnProperty(key)) {
-        var val = obj[key];
-        if (!(result = test.call(null, val, key, obj))) {
-          return false;
-        }
-      }
-    }
-
-    return !!result;
-  },
-
-  some: function(obj, test) {
-    var result = false;
-
-    if (!obj) { return result; }
-
-    // $.each(obj, function(key, val) {
-    //   if (result = test.call(null, val, key, obj)) {
-    //     return false;
-    //   }
-    // });
-
-    for(var key in obj) {
-      if(obj.hasOwnProperty(key)) {
-        var val = obj[key];
-        if (result = test.call(null, val, key, obj)) {
-          return false;
-        }
-      }
-    }
-
-    return !!result;
-  },
-
-  mixin: __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js"),
-
-  identity: function(x) { return x; },
-
-  clone: function(obj) { return assign({}, obj); },
-
-  getIdGenerator: function() {
-    var counter = 0;
-    return function() { return counter++; };
-  },
-
-  templatify: function templatify(obj) {
-    return _.isFunction(obj) ? obj : template;
-
-    function template() { return String(obj); }
-  },
-
-  defer: function(fn) { setTimeout(fn, 0); },
-
-  debounce: function(func, wait, immediate) {
-    var timeout, result;
-
-    return function() {
-      var context = this, args = arguments, later, callNow;
-
-      later = function() {
-        timeout = null;
-        if (!immediate) { result = func.apply(context, args); }
-      };
-
-      callNow = immediate && !timeout;
-
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-
-      if (callNow) { result = func.apply(context, args); }
-
-      return result;
-    };
-  },
-
-  throttle: function(func, wait) {
-    var context, args, timeout, result, previous, later;
-
-    previous = 0;
-    later = function() {
-      previous = new Date();
-      timeout = null;
-      result = func.apply(context, args);
-    };
-
-    return function() {
-      var now = new Date(),
-          remaining = wait - (now - previous);
-
-      context = this;
-      args = arguments;
-
-      if (remaining <= 0) {
-        clearTimeout(timeout);
-        timeout = null;
-        previous = now;
-        result = func.apply(context, args);
-      }
-
-      else if (!timeout) {
-        timeout = setTimeout(later, remaining);
-      }
-
-      return result;
-    };
-  },
-
-  stringify: function(val) {
-    return _.isString(val) ? val : JSON.stringify(val);
-  },
-
-  noop: function() {},
-
-  error: function(msg) {
-    throw new Error(msg);
-  }
-};
-
-module.exports = _;
-
 
 /***/ }),
 
@@ -4117,107 +3938,6 @@ EventEmitter.EventEmitter = EventEmitter;
 if (true) {
   module.exports = EventEmitter;
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/object-assign/index.js":
-/*!*********************************************!*\
-  !*** ./node_modules/object-assign/index.js ***!
-  \*********************************************/
-/***/ ((module) => {
-
-"use strict";
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-
-/* eslint-disable no-unused-vars */
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-function toObject(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-function shouldUseNative() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !==
-				'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-	var from;
-	var to = toObject(target);
-	var symbols;
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = Object(arguments[s]);
-
-		for (var key in from) {
-			if (hasOwnProperty.call(from, key)) {
-				to[key] = from[key];
-			}
-		}
-
-		if (getOwnPropertySymbols) {
-			symbols = getOwnPropertySymbols(from);
-			for (var i = 0; i < symbols.length; i++) {
-				if (propIsEnumerable.call(from, symbols[i])) {
-					to[symbols[i]] = from[symbols[i]];
-				}
-			}
-		}
-	}
-
-	return to;
-};
 
 
 /***/ }),

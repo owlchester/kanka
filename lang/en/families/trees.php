@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'actions' => [
+        'clear' => 'Clear tree',
+        'reset' => 'Reset tree',
+        'save' => 'Save tree',
+    ],
     'title' => ':name Family Tree',
     'modal'   => [
         'title'     => 'Replace entity',

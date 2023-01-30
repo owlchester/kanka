@@ -16,6 +16,8 @@ const texture = await Assets.load('/images/family-trees/entity.png');
 
 const graphics = new Graphics();
 
+let elements = [];
+
 // create viewport
 const viewport = new Viewport({
     screenWidth: window.innerWidth,
@@ -42,21 +44,19 @@ const relationNameStyle = new TextStyle({
     wordWrapWidth: 120,
 });
 
-// Listen for frame updates
-/*app.ticker.add(() => {
-    // each frame we spin the bunny around a bit
-    entityPanel.rotation += 0.01;
-});*/
-
 var newUuid = 1;       // UUID
 let entities = null;
 let nodes = null;
+let originalNodes = null;
 let offsetIncrement = 20;
 let childrenLineHeight = 50;
 let entityWidth = 140;
 let entityHeight = 60;
 
 let btnEdit, btnClear, btnReset, btnSave;
+
+
+let isEditing = false;
 
 /**
  * Draw an entity box with their name, avatar, and click link
@@ -90,6 +90,7 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
     entityBox.endFill();
     //app.stage.addChild(entityBox);
     viewport.addChild(entityBox);
+    elements.push(entityBox);
 
 
 
@@ -99,6 +100,7 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
     circleMask.endFill();
     //app.stage.addChild(circleMask);
     viewport.addChild(circleMask);
+    elements.push(circleMask);
 
     var entityImageTexture = Texture.from(entity.thumb);
 
@@ -110,19 +112,20 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
 
     //app.stage.addChild(entityImage);
     viewport.addChild(entityImage);
+    elements.push(entityImage);
 
     entityImage.mask = circleMask;
     var name = entity.name;
     if (name.length > 14) {
         name = name.substring(0, 14);
-        name = name.concat('...')
+        name = name.concat('...');
     }
     const entityName = new Text(name, entityNameStyle);
     entityName.x = x + 10;
     entityName.y = y + 10;
 
-    //app.stage.addChild(entityName);
     viewport.addChild(entityName);
+    elements.push(entityName);
 
     // Add an invisible box on top
     var hitBox = new Graphics();
@@ -140,55 +143,63 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
     hitBox.buttonMode = true;
     hitBox.onclick = (event) => {
         location.href = entity.url;
-    }
+    };
     hitBox.alpha = 0;
     hitBox.on('pointerover', (event) => onPointerOver(entityBox));
     hitBox.on('pointerout', (event) => onPointerOut(entityBox));
     //app.stage.addChild(hitBox);
     viewport.addChild(hitBox);
+    elements.push(hitBox);
 
-    const closeButton = new Text('x', entityNameStyle);
-    closeButton.x = x + 125;
-    closeButton.y = y;
-    closeButton.interactive = true;
-    closeButton.buttonMode = true;
-    closeButton.onclick = (event) => {
-        deleteUuid(uuid);
-    }
-    viewport.addChild(closeButton);
+    if (isEditing) {
+        const closeButton = new Text('x', entityNameStyle);
+        closeButton.x = x + 125;
+        closeButton.y = y;
+        closeButton.interactive = true;
+        closeButton.buttonMode = true;
+        closeButton.onclick = (event) => {
+            deleteUuid(uuid);
+        };
+        viewport.addChild(closeButton);
+        elements.push(closeButton);
 
-    const editButton = new Text('edit', entityNameStyle);
-    editButton.x = x + 35;
-    editButton.y = y + 60;
-    editButton.interactive = true;
-    editButton.buttonMode = true;
-    editButton.onclick = (event) => {
-        editEntity(uuid);
-    }
-    viewport.addChild(editButton);
+        const editButton = new Text('edit', entityNameStyle);
+        editButton.x = x + 35;
+        editButton.y = y + 60;
+        editButton.interactive = true;
+        editButton.buttonMode = true;
+        editButton.onclick = (event) => {
+            editEntity(uuid);
+        };
+        viewport.addChild(editButton);
+        elements.push(editButton);
 
-    const addRelationButton = new Text('+ relation', entityNameStyle);
-    addRelationButton.x = x + 140;
-    addRelationButton.y = y + 20;
-    addRelationButton.interactive = true;
-    addRelationButton.buttonMode = true;
-    addRelationButton.onclick = (event) => {
-        addRelation(uuid)
-    }
-    viewport.addChild(addRelationButton);
 
-    if (isRelation) {
-        console.log(uuid);
-        const addChildrenButton = new Text('+ children', entityNameStyle);
-        addChildrenButton.x = x + 75;
-        addChildrenButton.y = y + 60;
-        addChildrenButton.interactive = true;
-        addChildrenButton.buttonMode = true;
-        addChildrenButton.onclick = (event) => {
-            addChildren(uuid)
+        const addRelationButton = new Text('+ relation', entityNameStyle);
+        addRelationButton.x = x + 140;
+        addRelationButton.y = y + 20;
+        addRelationButton.interactive = true;
+        addRelationButton.buttonMode = true;
+        addRelationButton.onclick = (event) => {
+            addRelation(uuid);
+        };
+        viewport.addChild(addRelationButton);
+        elements.push(addRelationButton);
+
+        if (isRelation) {
+            const addChildrenButton = new Text('+ children', entityNameStyle);
+            addChildrenButton.x = x + 75;
+            addChildrenButton.y = y + 60;
+            addChildrenButton.interactive = true;
+            addChildrenButton.buttonMode = true;
+            addChildrenButton.onclick = (event) => {
+                addChildren(uuid);
+            };
+            viewport.addChild(addChildrenButton);
+            elements.push(addChildrenButton);
         }
-        viewport.addChild(addChildrenButton);
     }
+
 };
 
 /**
@@ -295,20 +306,19 @@ const drawRelationLine = (relation, originX, originY, targetX, targetY) => {
     graphics.drawPolygon(path);
     graphics.endFill();
 
-    //app.stage.addChild(graphics);
-    //viewport.addChild(graphics)
-
     // Draw relation name
     const relationName = new Text(relation.role, relationNameStyle);
     relationName.x = targetX - (40);
     relationName.y = targetY + (entityHeight + 0);
     relationName.interactive = true;
     relationName.buttonMode = true;
-    relationName.onclick = (event) => {
-        renameRelation(relation.uuid);
+    if (isEditing) {
+        relationName.onclick = (event) => {
+            renameRelation(relation.uuid);
+        };
     }
-
-    viewport.addChild(relationName)
+    viewport.addChild(relationName);
+    elements.push(relationName);
 };
 
 const drawChildrenLine = (originX, originY, targetX, targetY) => {
@@ -336,9 +346,6 @@ const drawChildrenLine = (originX, originY, targetX, targetY) => {
     graphics.beginFill(0x3500FA, 1);
     graphics.drawPolygon(path);
     graphics.endFill();
-
-    //app.stage.addChild(graphics);
-    //viewport.addChild(graphics)
 };
 
 const drawParentChildrenLine = (drawX, drawY, index) => {
@@ -482,6 +489,10 @@ const drawFamilyTree = () => {
         });
 
     graphics.clear();
+    elements.forEach(text => {
+        viewport.removeChild(text);
+    });
+
     nodes.forEach(node => {
         drawNode(node, 0, 0, 0, 0);
     });
@@ -500,6 +511,8 @@ const renderPage = () => {
     axios.get(container.dataset.api).then((resp) => {
         entities = resp.data.entities;
         nodes = resp.data.nodes;
+        originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
+        console.log('original nodes', originalNodes);
         drawFamilyTree();
     });
 };
@@ -801,6 +814,14 @@ const resetTree = () => {
     btnSave.hide();
     btnReset.hide();
     btnEdit.show();
+
+    // Reset the nodes as they were on page load
+    nodes = JSON.parse(JSON.stringify(originalNodes));
+    console.log('original nodes', nodes);
+
+    // Edit edit mode and redraw the tree
+    isEditing = false;
+    drawFamilyTree();
 };
 
 /**
@@ -808,6 +829,20 @@ const resetTree = () => {
  */
 const clearTree = () => {
     console.info('Clearing...');
+};
+
+const enterEditMode = () => {
+    console.info('Editing...');
+
+    // Change which buttons are available
+    btnEdit.hide();
+    btnSave.prop('disabled', true).show();
+    btnClear.show();
+    btnReset.show();
+
+    // Redraw the tree in edit mode
+    isEditing = true;
+    drawFamilyTree();
 };
 
 const initFamilyTree = () => {
@@ -819,10 +854,7 @@ const initFamilyTree = () => {
 
     btnEdit.on('click', function (e) {
         e.preventDefault();
-        $(this).hide();
-        btnSave.prop('disabled', true).show();
-        btnClear.show();
-        btnReset.show();
+        enterEditMode();
     });
 
     btnClear.on('click', function (e) {
