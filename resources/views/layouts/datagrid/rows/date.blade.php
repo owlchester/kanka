@@ -1,3 +1,3 @@
-@if (!empty($model->date))app.php
+@if (!empty($model->date))
     {{ \App\Facades\UserDate::format($model->date) }}
 @endif
