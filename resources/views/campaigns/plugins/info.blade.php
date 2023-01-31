@@ -1,7 +1,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('campaigns/plugins.info.title', ['plugin' => $plugin->name]),
     'breadcrumbs' => [
-        ['url' => route('campaigns.index'), 'label' => __('entities.campaign')],
+        ['url' => route('campaign'), 'label' => __('entities.campaign')],
         ['url' => route('campaign_plugins.index'), 'label' => __('campaigns.show.tabs.plugins')],
         __('campaigns/plugins.info.title', ['plugin' => $plugin->name]),
     ],

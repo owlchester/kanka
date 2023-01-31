@@ -311,8 +311,8 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
     <style>
         /** Entity Images URL**/
         :root {
-            --entity-image-url: url('{{ $imageUrl }}');
-            --entity-header-image-url: url('{{ $headerImageUrl }}');
+            @if ($imageUrl) --entity-image-url: url('{{ $imageUrl }}'); @endif
+            @if ($headerImageUrl) --entity-header-image-url: url('{{ $headerImageUrl }}'); @endif
         }
     </style>
 @endsection

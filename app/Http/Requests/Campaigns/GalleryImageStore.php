@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Requests\Campaigns;
-
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;

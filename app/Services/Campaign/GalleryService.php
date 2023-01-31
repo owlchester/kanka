@@ -54,6 +54,9 @@ class GalleryService
         $images = [];
         /** @var \Illuminate\Http\UploadedFile $source */
         $files = $request->file($field);
+        if (!is_array($files)) {
+            $files = [$files];
+        }
         foreach ($files as $source) {
             // Prepare the name as sent by the user. It gets purified in the observer
             $name = $source->getClientOriginalName();

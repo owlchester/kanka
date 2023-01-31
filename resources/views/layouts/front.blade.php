@@ -67,13 +67,12 @@
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, 'en') }}" />
 @else
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, null) }}" />
-    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-@if ($localeCode == app()->getLocale())
-@continue
-@endif
-    <link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $localeCode) }}" hreflang="{{ $localeCode }}">
+@foreach(LaravelLocalization::getSupportedLocales() as $language => $properties)
+    @if (in_array($language, ['hr', 'he']))@continue @endif
+<link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $language) }}" hreflang="{{ $language }}">
 @endforeach
 @endif
+
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//code.jquery.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">

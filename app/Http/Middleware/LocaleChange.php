@@ -12,9 +12,8 @@ class LocaleChange
 {
     /**
      * List of languages that are no longer available and should redirect to english
-     * @var string[]
      */
-    protected $disabledLangs = ['he'];
+    protected array $disabledLangs = ['he', 'hr'];
 
     /**
      * @param Request $request
@@ -39,21 +38,26 @@ class LocaleChange
 
         // If it's a logged in user, we might go change their settings
         $locale = LaravelLocalization::getCurrentLocale();
+
         if (auth()->check()) {
             $change = $request->query('updateLocale');
+            $to = $request->url();
+            // Trying to access a no longer supported language, redirect
             if (in_array($locale, $this->disabledLangs)) {
                 $locale = 'en';
+                $change = true;
+                $to = $this->fallbackUrl();
             }
             $user = Auth::user();
             if (!empty($change)) {
                 // Changing locale, save the new one
-                $user->update(['locale' => $locale]);
-                return redirect()->to($request->url());
+                $user->updateQuietly(['locale' => $locale]);
+                return redirect()->to($to);
             } elseif ($user->locale != $locale) {
                 // If the locale is empty, we need to set it.
                 if (empty($user->locale)) {
                     $user->locale = $locale;
-                    $user->save();
+                    $user->saveQuietly();
                 }
                 // Redirect to the user's normal locale
                 $targetUrl = LaravelLocalization::getLocalizedURL($user->locale);
@@ -64,14 +68,21 @@ class LocaleChange
                 return redirect()->to($targetUrl);
             }
         } elseif (in_array($locale, $this->disabledLangs)) {
-            $targetUrl = LaravelLocalization::getLocalizedURL('en');
-            if (config('app.force_https') && !Str::startsWith('https', $targetUrl)) {
-                $targetUrl = Str::replaceFirst('http://', 'https://', $targetUrl);
-            }
             // Permanent redirection to the home page
-            return redirect($targetUrl, 301);
+            return redirect($this->fallbackUrl(), 301);
         }
 
         return $next($request);
+    }
+
+    protected function fallbackUrl(): string
+    {
+        $targetUrl = LaravelLocalization::getLocalizedURL('en');
+        // Prod is behind a reverse proxy that doesn't know about https
+        if (config('app.force_https') && !Str::startsWith('https', $targetUrl)) {
+            $targetUrl = Str::replaceFirst('http://', 'https://', $targetUrl);
+        }
+
+        return $targetUrl;
     }
 }

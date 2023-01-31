@@ -10,6 +10,7 @@ use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\Campaigns\GalleryImageUpdate;
 use App\Models\Image;
 use App\Services\Campaign\GalleryService;
+use Illuminate\Support\Arr;
 
 class GalleryController extends Controller
 {
@@ -64,6 +65,12 @@ class GalleryController extends Controller
         ));
     }
 
+    /**
+     * Uploading multiple images in the gallery
+     * @param GalleryImageStore $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function store(GalleryImageStore $request)
     {
         $campaign = CampaignLocalization::getCampaign();
@@ -95,9 +102,10 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
-        $image = $this->service
+        $images = $this->service
             ->campaign($campaign)
             ->store($request);
+        $image = Arr::first($images);
 
         return response()->json(Img::resetCrop()->url($image->path));
     }
