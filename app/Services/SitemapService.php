@@ -1,10 +1,4 @@
 <?php
-/**
- * Description of
- *
- * @author Ilestis
- * 21/10/2019
- */
 
 namespace App\Services;
 
