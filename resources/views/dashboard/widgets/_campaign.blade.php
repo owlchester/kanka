@@ -8,7 +8,7 @@
     <div class="campaign-header-content">
         <div class="campaign-content">
             <div class="campaign-head">
-                <a href="{{ route('campaigns.show', $campaign) }}" title="{!! $campaign->name !!}" class="campaign-title">
+                <a href="{{ route('campaign') }}" title="{!! $campaign->name !!}" class="campaign-title">
                     {!! $campaign->name !!}
                 </a>
                     <div class="action-bar">
