@@ -4,23 +4,25 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteSettingsAccount;
-use App\Http\Requests\StoreProfile;
 use App\Http\Requests\StoreSettingsAccount;
 use App\Http\Requests\StoreSettingsAccountEmail;
 use App\Http\Requests\StoreSettingsAccountSocial;
 use App\Models\UserLog;
+use App\Services\Account\DeletionService;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
+    protected DeletionService $deletionService;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(DeletionService $deletionService)
     {
         $this->middleware(['auth', 'identity', 'password.confirm']);
+        $this->deletionService = $deletionService;
     }
 
     /**
@@ -90,8 +92,9 @@ class AccountController extends Controller
      */
     public function destroy(DeleteSettingsAccount $request)
     {
-        $user = Auth::user();
-        $user->delete();
-        return redirect()->route('home');
+        $this->deletionService
+            ->user($request->user())
+            ->delete();
+        return redirect()->route('home', ['deleted' => true]);
     }
 }
