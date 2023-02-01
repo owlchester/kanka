@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Support\HtmlPurifier\CalcStyleDefinition;
 use HTMLPurifier_HTMLDefinition;
 use HTMLPurifier_AttrDef_Enum;
+use HTMLPurifier_AttrDef_CSS_Composite;
+use HTMLPurifier_AttrDef_CSS_Length;
+use HTMLPurifier_AttrDef_CSS_Percentage;
 use Stevebauman\Purify\Facades\Purify;
 use Illuminate\Support\ServiceProvider;
 
@@ -42,6 +46,19 @@ class PurifySetupProvider extends ServiceProvider
                 'break-word'
             ]
         );
+        $trusted_wh = new HTMLPurifier_AttrDef_CSS_Composite(
+            array(
+                new HTMLPurifier_AttrDef_CSS_Length('0'),
+                new HTMLPurifier_AttrDef_CSS_Percentage(true),
+                new HTMLPurifier_AttrDef_Enum(array('auto', 'initial', 'inherit')),
+                new CalcStyleDefinition(),
+            )
+        );
+
+        $css->info['width'] =
+        $css->info['height'] =
+            $trusted_wh;
+
         //dd($css);
 
         $purifier->config = $config;
