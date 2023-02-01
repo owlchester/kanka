@@ -701,8 +701,10 @@ class MentionsService
         $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
             $attribute = $this->attribute($id);
-            $fallback = Str::after($matches[1], '|');
-
+            $fallback = '';
+            if (str_contains($matches[1], '|')) {
+                $fallback = Str::after($matches[1], '|');
+            }
             // No entity found, the user might not be allowed to see it, if theres a fallback, apply it
             if (empty($attribute)) {
                 if (!$fallback) {
