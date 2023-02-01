@@ -560,6 +560,9 @@ class MentionsService
             } else {
                 $name = $attribute->name;
             }
+            if (str_contains($matches[1], '|')) {
+                return $matches[0];
+            }
             return '<a href="#" class="attribute attribute-mention" data-attribute="' . $matches[0]
                 . '">{' . $name . '}</a>';
         }, $this->text);
@@ -698,10 +701,17 @@ class MentionsService
         $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
             $attribute = $this->attribute($id);
-
-            // No entity found, the user might not be allowed to see it
+            $fallback = '';
+            if (str_contains($matches[1], '|')) {
+                $fallback = Str::after($matches[1], '|');
+            }
+            // No entity found, the user might not be allowed to see it, if theres a fallback, apply it
             if (empty($attribute)) {
-                $replace = '<i class="unknown-mention unknown-attribute">' . __('crud.history.unknown') . '</i>';
+                if (!$fallback) {
+                    $replace = '<i class="unknown-mention unknown-attribute">' . __('crud.history.unknown') . '</i>';
+                } else {
+                    $replace = '<i class="unknown-mention unknown-attribute">' . $fallback . '</i>';
+                }
             } else {
                 $replace = '<span class="attribute attribute-mention" title="' . e($attribute->name)
                     . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
