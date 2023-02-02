@@ -42,7 +42,9 @@ if (isset($model)) {
                 ) !!}
                 <p class="help-block">
                     {!! __('entities/links.helpers.icon', [
-                        'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank'])
+                        'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
+                        'rpgawesome' => link_to('https://nagoshiashumari.github.io/Rpg-Awesome/', 'RPGAwesome', ['target' => '_blank']),
+                        'docs' => link_to('https://docs.kanka.io/en/latest/features/campaigns/sidebar.html#what-fonts-are-available', __('front.menu.documentation', ['target' => '_blank']))
                     ]) !!}
                 </p>
             @else
