@@ -1,12 +1,8 @@
 <?php
 
 return [
-    'hall_of_fame'  => 'Hall of Fame',
     'index'         => [
-        'community'     => 'Community',
-        'founders'      => 'Founders',
         'lead'          => 'Making worldbuilding fun and reliable',
-        'title'         => 'Team',
         'translations'  => 'Translations',
     ],
     'leads'         => [
