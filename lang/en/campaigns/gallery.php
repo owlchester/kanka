@@ -17,7 +17,7 @@ return [
         'created_by'    => 'Uploaded by',
         'ext'           => 'Ext',
         'folder'        => 'Folder',
-        'image_used_in' => '{0} Used as the image in no entities.|{1} Used as the image of one entity.|[2,] Used as the image of :count entities.',
+        'image_used_in' => '{0} Used as the image in no entities.|{1} Used as the image of one entity.|[2,*] Used as the image of :count entities.',
         'name'          => 'Name',
         'size'          => 'Size',
     ],
