@@ -25,14 +25,9 @@ class CampaignController extends Controller
      */
     protected string $view = 'campaigns';
 
-    /** @var CampaignService  */
-    protected $campaignService;
-
-    /** @var EntityService  */
-    protected $entityService;
-
-    /** @var StarterService  */
-    protected $starterService;
+    protected CampaignService $campaignService;
+    protected EntityService $entityService;
+    protected StarterService $starterService;
 
     /**
      * Create a new controller instance.
