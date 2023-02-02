@@ -102,7 +102,7 @@
                     <div class="h5 mb-3">{{ __('front/about.stats.campaigns') }}</div>
 
                     <div class="h5 mb-3 mt-5">
-                        <a href="{{  route('front.public_campaigns') }}">
+                        <a href="{{  route('front.public_campaigns') }}" class="text-uppercase">
                             {{ __('front/about.links.campaigns') }}
                         </a>
                     </div>
@@ -115,7 +115,7 @@
                     <div class="h5 mb-3">{{ __('front/about.stats.plugins') }}</div>
 
                     <div class="h5 mb-3 mt-5">
-                        <a href="//marketplace.kanka.io">
+                        <a href="//marketplace.kanka.io" class="text-uppercase">
                             {{ __('front/about.links.plugins') }}
                         </a>
                     </div>
@@ -127,7 +127,7 @@
 
                     <div class="h5 mb-3">{{ __('front/about.stats.api') }}</div>
                     <div class="h5 mb-3 mt-5">
-                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview">
+                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" class="text-uppercase">
                             {{ __('front/about.links.api') }}
                         </a>
                     </div>
@@ -140,7 +140,7 @@
                     <div class="h5 mb-3">{{ __('front/about.stats.ruined') }}</div>
 
                     <div class="h5 mb-3 mt-5">
-                        <a href="{{  route('register') }}">
+                        <a href="{{  route('register') }}" class="text-uppercase">
                             {{ __('front/about.links.join') }}
                         </a>
                     </div>
