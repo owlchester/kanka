@@ -1,6 +1,7 @@
 import { Application, Assets, Sprite, Text, TextStyle, Graphics, Texture } from 'pixi.js';
 import axios from 'axios';
 import { Viewport } from 'pixi-viewport';
+import { stringify } from 'bloodhound-js/lib/utils';
 
 // The application will create a renderer using WebGL, if possible,
 // with a fallback to a canvas render. It will also setup the ticker
@@ -48,6 +49,7 @@ var newUuid = 1;       // UUID
 let entities = null;
 let nodes = null;
 let originalNodes = null;
+let originalEntities = null;
 let offsetIncrement = 20;
 let childrenLineHeight = 50;
 let entityWidth = 140;
@@ -57,6 +59,7 @@ let btnEdit, btnClear, btnReset, btnSave;
 
 
 let isEditing = false;
+let isUnchanged = false;
 
 /**
  * Draw an entity box with their name, avatar, and click link
@@ -66,6 +69,7 @@ let isEditing = false;
  */
 const drawEntity = (entity, uuid, x, y, isRelation = false) => {
     //console.log('Draw entity', entity.name, '>', offsetX, 'v', offsetY);
+    var name = entity.name;
 
     // This creates a texture from a background image
     let entityPanel = new Sprite(texture);
@@ -91,34 +95,32 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
     //app.stage.addChild(entityBox);
     viewport.addChild(entityBox);
     elements.push(entityBox);
+    if (uuid != 0) {
+        var circleMask = new Graphics();
+        circleMask.beginFill();
+        circleMask.drawCircle(x + 110, y + 30, 20);
+        circleMask.endFill();
+        //app.stage.addChild(circleMask);
+        viewport.addChild(circleMask);
+        elements.push(circleMask);
 
+        var entityImageTexture = Texture.from(entity.thumb);
 
+        var entityImage = new Sprite(entityImageTexture);
+        entityImage.x = x + 90;
+        entityImage.y = y + 10;
+        entityImage.height = 40;
+        entityImage.width = 40;
 
-    var circleMask = new Graphics();
-    circleMask.beginFill();
-    circleMask.drawCircle(x + 110, y + 30, 20);
-    circleMask.endFill();
-    //app.stage.addChild(circleMask);
-    viewport.addChild(circleMask);
-    elements.push(circleMask);
+        //app.stage.addChild(entityImage);
+        viewport.addChild(entityImage);
+        elements.push(entityImage);
 
-    var entityImageTexture = Texture.from(entity.thumb);
-
-    var entityImage = new Sprite(entityImageTexture);
-    entityImage.x = x + 90;
-    entityImage.y = y + 10;
-    entityImage.height = 40;
-    entityImage.width = 40;
-
-    //app.stage.addChild(entityImage);
-    viewport.addChild(entityImage);
-    elements.push(entityImage);
-
-    entityImage.mask = circleMask;
-    var name = entity.name;
-    if (name.length > 14) {
-        name = name.substring(0, 14);
-        name = name.concat('...');
+        entityImage.mask = circleMask;
+        if (name.length > 14) {
+            name = name.substring(0, 14);
+            name = name.concat('...');
+        }
     }
     const entityName = new Text(name, entityNameStyle);
     entityName.x = x + 10;
@@ -142,7 +144,11 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
     hitBox.interactive = true;
     hitBox.buttonMode = true;
     hitBox.onclick = (event) => {
-        location.href = entity.url;
+        if (!isEditing) {
+            location.href = entity.url;
+        } else {
+            editEntity(uuid);
+        }
     };
     hitBox.alpha = 0;
     hitBox.on('pointerover', (event) => onPointerOver(entityBox));
@@ -151,7 +157,7 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
     viewport.addChild(hitBox);
     elements.push(hitBox);
 
-    if (isEditing) {
+    if (isEditing && uuid != 0) {
         const closeButton = new Text('x', entityNameStyle);
         closeButton.x = x + 125;
         closeButton.y = y;
@@ -173,7 +179,6 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
         };
         viewport.addChild(editButton);
         elements.push(editButton);
-
 
         const addRelationButton = new Text('+ relation', entityNameStyle);
         addRelationButton.x = x + 140;
@@ -475,6 +480,11 @@ const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
 
 const drawFamilyTree = () => {
     console.log('Draw Family Tree');
+    if (isUnchanged) {
+        btnSave.prop('disabled', true).addClass('disabled');
+    } else {
+        btnSave.prop('disabled', false).removeClass('disabled');
+    }
 
     // add the viewport to the stage
     app.stage.addChild(viewport);
@@ -512,7 +522,8 @@ const renderPage = () => {
         entities = resp.data.entities;
         nodes = resp.data.nodes;
         originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
-        console.log('original nodes', originalNodes);
+        originalEntities = JSON.parse(JSON.stringify(resp.data.entities));
+        console.log('original nodes', originalNodes, originalEntities);
         drawFamilyTree();
     });
 };
@@ -552,14 +563,9 @@ const renameRelations = (uuid, role) => {
 function relationFilter(array, uuid, role) {
     //console.log('filter', array, uuid);
     const getRelationNodes = (result, object) => {
-        console.log('ape');
         if (object.uuid === uuid) {
-            console.log(object);
-            object.entity_id = entity.id;
-            object.entity_id = entity.id;
-
+            object.role = role;
             result.push(object);
-            //console.log(object);
             return result;
         }
 
@@ -580,20 +586,29 @@ function relationFilter(array, uuid, role) {
 
 function entityEditor(array, uuid, entity) {
     var entity_id = null;
+    if (uuid == 0) { 
+        entities = [entity];
+        entity_id = 0;
 
-    entities.forEach((existingEntity, index) => {
-        if (existingEntity === entity) {
-            entity_id = index;
+    } else {
+        entities.forEach((existingEntity, index) => {
+            if (existingEntity.id == entity.id) {
+                entity_id = index;
+            }
+        });
+    
+        if (entity_id = null) {
+            entities.push(entity);
+            entity_id = entities.length - 1;
         }
-    });
-
-    if (!entity_id) {
-        entities.push(entity);
-        entity_id = entities.length - 1;
     }
 
     const getRelationNodes = (result, object) => {
         if (object.uuid === uuid) {
+            if (object.uuid == 0) { 
+                object.uuid = stringify(newUuid);
+                newUuid = newUuid + 1;
+            }
             object.entity_id = entity_id;
             result.push(object);
             return result;
@@ -725,6 +740,10 @@ function deleteUuid(uuid) {
     if (confirm("Do you want to remove this node?") == true) {
         viewport.removeChildren();
         deleteUuidFromNodes(uuid);
+        if (nodes.length == 0){
+            clearTree();
+        }
+        isUnchanged = false;
         drawFamilyTree();
     }
 }
@@ -742,6 +761,7 @@ function editEntity(uuid) {
             console.log('result', res.data);
             viewport.removeChildren();
             replaceEntity(uuid, entity);
+            isUnchanged = false;
             drawFamilyTree();
         });
         $('.close');
@@ -766,6 +786,7 @@ function addRelation(uuid) {
             viewport.removeChildren();
             insertRelation(uuid, entity, relation);
             //replaceEntity(uuid, entity, relation);
+            isUnchanged = false;
             drawFamilyTree();
         });
 
@@ -788,6 +809,7 @@ function addChildren(uuid) {
             console.log('result', res.data);
             viewport.removeChildren();
             insertChild(uuid, entity);
+            isUnchanged = false;
             drawFamilyTree();
         });
         $('.close');
@@ -800,6 +822,7 @@ function renameRelation(uuid) {
         viewport.removeChildren();
         console.log(relation)
         renameRelations(uuid, relation);
+        isUnchanged = false;
         drawFamilyTree();
     }
 }
@@ -817,10 +840,12 @@ const resetTree = () => {
 
     // Reset the nodes as they were on page load
     nodes = JSON.parse(JSON.stringify(originalNodes));
+    entities = JSON.parse(JSON.stringify(originalEntities));
     console.log('original nodes', nodes);
 
     // Edit edit mode and redraw the tree
     isEditing = false;
+    isUnchanged = true;
     drawFamilyTree();
 };
 
@@ -829,6 +854,10 @@ const resetTree = () => {
  */
 const clearTree = () => {
     console.info('Clearing...');
+    nodes = [{entity_id: 0, uuid: stringify(0)}];
+    entities = [{id: 0, name: 'Click to add a Character', thumb: 'http://localhost:8081/images/defaults/patreon/characters_thumb.png', url: ''}];
+    isUnchanged = false;
+    drawFamilyTree();
 };
 
 const enterEditMode = () => {
@@ -842,6 +871,7 @@ const enterEditMode = () => {
 
     // Redraw the tree in edit mode
     isEditing = true;
+    isUnchanged = true;
     drawFamilyTree();
 };
 
@@ -858,12 +888,16 @@ const initFamilyTree = () => {
     });
 
     btnClear.on('click', function (e) {
-        e.preventDefault();
-        clearTree();
+        if (confirm("Are you sure you want to clear the family tree?") == true) {
+            e.preventDefault();
+            clearTree();
+        }
     });
     btnReset.on('click', function (e) {
-        e.preventDefault();
-        resetTree();
+        if (confirm("Are you sure you want to reset the family tree?") == true) {
+            e.preventDefault();
+            resetTree();
+        }
     });
     btnSave.on('click', function (e) {
         e.preventDefault();
