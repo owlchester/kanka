@@ -31,8 +31,8 @@ return [
             'description' => 'Jay starts working on Kanka.',
         ],
         '2' => [
-            'title' => 'December 2017',
-            'description' => '500th account created.',
+            'title' => 'February 2018',
+            'description' => '1,000th account created.',
         ],
         '3' => [
             'title' => 'March 2018',
