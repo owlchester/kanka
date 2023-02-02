@@ -13,7 +13,7 @@ if ($widget->entity) {
 
 
 <div class="col-md-{{ $widget->colSize() }}">
-    <div class="widget widget-{{ $widget->widget }} cover-background"
+    <div class="{{ $widgetClass }} {{ !empty($background) ? 'p-5' : null }} border-dashboard widget-{{ $widget->widget }} cover-background"
          data-toggle="ajax-modal"
     @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
          data-target="#large-modal"
@@ -28,12 +28,12 @@ if ($widget->entity) {
          style="background-image: url('{{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }}')"
     @endif
     >
-        <div class="widget-overlay">
-            <div class="handle">
-                <i class="fa-solid fa-arrows-v" aria-hidden="true"></i>
+        <div class="{{ $overlayClass }}">
+            <div class="handle rounded-md px-2 py-1 text-center cursor absolute w-10 border-dashboard background">
+                <i class="fa-solid fa-arrows" aria-hidden="true"></i>
             </div>
             @if ($widget->widget != \App\Models\CampaignDashboardWidget::WIDGET_HEADER)
-                <span class="widget-type">
+                <span class="block text-2xl">
                      {!! $widget->widgetIcon() !!}
                     {{ __('dashboard.setup.widgets.' . $widget->widget) }}
                 </span>
@@ -71,7 +71,7 @@ if ($widget->entity) {
             @endif
 
             @if (!empty($widget->tags))
-                <div class="tags">
+                <div class="tags text-xs">
                     @foreach ($widget->tags as $tag)
                         {!! $tag->html() !!}
                     @endforeach

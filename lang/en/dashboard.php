@@ -95,6 +95,7 @@ return [
             'random'        => 'Random entity',
             'recent'        => 'Entity list',
             'unmentioned'   => 'Unmentioned entities list',
+            'welcome'        => 'Welcome',
         ],
     ],
     'title'         => 'Dashboard',
@@ -113,6 +114,9 @@ return [
         ],
         'campaign'      => [
             'helper'    => 'This widget displays the campaign header. This widget is always shown on the default dashboard.',
+        ],
+        'welcome'      => [
+            'helper'    => 'This widget displays a welcome message on the dashboard that includes helpful links for new users to Kanka.',
         ],
         'create'        => [
             'success'   => 'Widget added to the dashboard.',

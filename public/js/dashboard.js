@@ -3968,6 +3968,7 @@ $(document).ready(function () {
   initDashboardCalendars();
   initFollow();
   removePreviewExpander();
+  initWelcomePulse();
 });
 /**
  *
@@ -4173,6 +4174,21 @@ function renderWidget(widget) {
     window.ajaxTooltip();
     (0,_components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
     initDashboardCalendars();
+  });
+}
+
+function initWelcomePulse() {
+  $('[data-pulse]').on('click', function (e) {
+    e.preventDefault();
+    var target = $(this).data('pulse');
+    var content = $(this).data('content');
+    $(target).popover('show', {
+      content: content,
+      placement: 'top'
+    });
+    setTimeout(function () {
+      $(target).popover('hide');
+    }, 1500);
   });
 }
 })();

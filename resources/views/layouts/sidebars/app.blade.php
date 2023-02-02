@@ -92,10 +92,11 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
     </aside>
     @if (auth()->check() && $currentCampaign->userIsMember())
         <section class="sidebar-creator">
+            <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="top"></span>
             <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex items-center justify-center px-2">
-                <i class="flex-none  fa-solid fa-plus" aria-hidden="true"></i>
+                <i class="flex-none  fa-solid fa-plus" aria-hidden="true" ></i>
                 <span class="flex-grow" data-toggle="tooltip" title="{{ __('entities.creator.tooltip') }}">{{ __('sidebar.new-entity') }}</span>
-                <span class="flex-none keyboard-shortcut pull-right" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true">N</span>
+                <span class="flex-none keyboard-shortcut pull-right" id="qq-kb-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true">N</span>
             </a>
         </section>
     @endif

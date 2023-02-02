@@ -134,7 +134,7 @@
         <div class="row margin-top">
             <div class="col-md-12 text-center">
                 <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default" title="{{ __('dashboard.settings.title') }}">
-                    <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
+                    <i class="fa-solid fa-cog" aria-hidden="true"></i> {{ __('dashboard.settings.title') }}
                 </a>
             </div>
         </div>

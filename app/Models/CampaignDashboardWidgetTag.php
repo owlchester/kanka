@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Models;
 
-
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class CampaignDashboardWidgetTag
@@ -15,8 +13,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property Tag $tag
  * @property CampaignDashboardWidget $widget
  */
-class CampaignDashboardWidgetTag extends Model
+class CampaignDashboardWidgetTag extends Pivot
 {
+    public $table = 'campaign_dashboard_widget_tags';
+
     public function tag()
     {
         return $this->belongsTo(Tag::class);

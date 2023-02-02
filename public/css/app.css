@@ -5550,6 +5550,10 @@ body.ab-testing-second .ab-testing-a {
   border-width: 0;
 }
 
+.border-1 {
+  border-width: 1px;
+}
+
 .border-2 {
   border-width: 2px;
 }
@@ -5608,6 +5612,22 @@ body.ab-testing-second .ab-testing-a {
   -webkit-user-select: auto;
      -moz-user-select: auto;
           user-select: auto;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.relative {
+  position: relative;
+}
+
+.static {
+  position: static;
 }
 
 .list-none {

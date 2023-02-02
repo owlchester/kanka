@@ -7,6 +7,12 @@
 
 ])
 
+@php
+$widgetClass = 'widget relative mb-5 rounded-md text-xl text-center h-40 overflow-hidden hover:drop-shadow cursor' ;
+$overlayClass = 'widget-overlay rounded flex gap-3 flex-col justify-center h-full';
+$newWidgetListClass = 'btn btn-block btn-default text-xl';
+@endphp
+
 @inject('campaignService', 'App\Services\CampaignService')
 @section('content')
 
@@ -118,7 +124,7 @@
         <div class="row" id="widgets" data-url="{{ route('dashboard.reorder') }}">
             @if (empty($dashboard))
             <div class="col-md-12">
-                <div class="widget widget-campaign cover-background" @if($campaignService->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }})" @endif
+                <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background" @if($campaignService->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }})" @endif
                     data-toggle="ajax-modal"
                      data-target="#large-modal"
                      data-url="{{ route('campaigns.dashboard-header.edit', $campaignService->campaign()) }}"
@@ -134,9 +140,10 @@
             @endforeach
 
             <div class="col-md-4">
-                <div class="widget add" data-toggle="modal" data-target="#new-widget" id="btn-add-widget">
-                    <div class="widget-overlay">
-                    <i class="fa-solid fa-plus"></i> {{ __('dashboard.setup.actions.add') }}
+                <div class="{{ $widgetClass }} cursor hover:shadow border-dashed border-2" data-toggle="modal" data-target="#new-widget" id="btn-add-widget">
+                    <div class="{{ $overlayClass }} text-3xl">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        <span class="block">{{ __('dashboard.setup.actions.add') }}</span>
                     </div>
                 </div>
             </div>
@@ -152,26 +159,30 @@
                         {{ __('dashboard.setup.actions.add') }}
                     </h4>
 
-                    <div class="widget-list grid grid-cols-1 gap-5">
-                        <a href="#" class="rounded-lg " id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
-                            <i class="fa-solid fa-list fa-2x"></i> {{ __('dashboard.setup.widgets.recent') }}
+                    <div class="widget-list grid grid-cols-1 gap-2 mb-5">
+                        <a href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
+                            <i class="fa-solid fa-list" aria-hidden="true"></i> {{ __('dashboard.setup.widgets.recent') }}
                         </a>
-                        <a href="#" class="rounded-lg" id="btn-widget-preview" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'preview', 'dashboard' => $dashboard]) }}">
-                            <i class="fa-solid fa-align-justify fa-2x"></i> {{ __('dashboard.setup.widgets.preview') }}
+                        <a href="#" class="{{ $newWidgetListClass }}" id="btn-widget-preview" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'preview', 'dashboard' => $dashboard]) }}">
+                            <i class="fa-solid fa-align-justify" aria-hidden="true"></i>
+                            {{ __('dashboard.setup.widgets.preview') }}
                         </a>
-                        <a  href="#" class="rounded-lg" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'calendar', 'dashboard' => $dashboard]) }}">
-                            <i class="ra ra-moon-sun fa-2x"></i> {{ __('dashboard.setup.widgets.calendar') }}
+                        <a  href="#" class="{{ $newWidgetListClass }}" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'calendar', 'dashboard' => $dashboard]) }}">
+                            <i class="ra ra-moon-sun" aria-hidden="true"></i> {{ __('dashboard.setup.widgets.calendar') }}
                         </a>
 
-                        <a href="#" class="rounded-lg" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
-                            <i class="fa-solid fa-heading fa-2x"></i> {{ __('dashboard.setup.widgets.header') }}
+                        <a href="#" class="{{ $newWidgetListClass }}" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
+                            <i class="fa-solid fa-heading" aria-hidden="true"></i> {{ __('dashboard.setup.widgets.header') }}
                         </a>
-                        <a  href="#" class="rounded-lg" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'random', 'dashboard' => $dashboard]) }}">
-                            <i class="fa-solid fa-dice-d20 fa-2x"></i> {{ __('dashboard.setup.widgets.random') }}
+                        <a  href="#" class="{{ $newWidgetListClass }}" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'random', 'dashboard' => $dashboard]) }}">
+                            <i class="fa-solid fa-dice-d20" aria-hidden="true"></i> {{ __('dashboard.setup.widgets.random') }}
+                        </a>
+                        <a  href="#" class="{{ $newWidgetListClass }}" id="btn-widget-welcome" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'welcome', 'dashboard' => $dashboard]) }}">
+                            <i class="fa-solid fa-party-horn" aria-hidden="true"></i> {{ __('dashboard.setup.widgets.welcome') }}
                         </a>
                         @if(!empty($dashboard))
-                            <a  href="#" class="rounded-lg"  id="btn-widget-campaign" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'campaign', 'dashboard' => $dashboard]) }}">
-                                <i class="fa-solid fa-th-list fa-2x"></i> {{ __('dashboard.setup.widgets.campaign') }}
+                            <a  href="#" class="{{ $newWidgetListClass }}" id="btn-widget-campaign" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'campaign', 'dashboard' => $dashboard]) }}">
+                                <i class="fa-solid fa-th-list" aria-hidden="true"></i> {{ __('dashboard.setup.widgets.campaign') }}
                             </a>
                         @endif
                     </div>

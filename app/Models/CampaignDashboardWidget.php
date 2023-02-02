@@ -36,13 +36,14 @@ class CampaignDashboardWidget extends Model
     /**
      * Widget Constants
      */
-    const WIDGET_PREVIEW = 'preview';
-    const WIDGET_RECENT = 'recent';
-    const WIDGET_CALENDAR = 'calendar';
-    const WIDGET_UNMENTIONED = 'unmentioned';
-    const WIDGET_RANDOM = 'random';
-    const WIDGET_HEADER = 'header';
-    const WIDGET_CAMPAIGN = 'campaign';
+    public const WIDGET_PREVIEW = 'preview';
+    public const WIDGET_RECENT = 'recent';
+    public const WIDGET_CALENDAR = 'calendar';
+    public const WIDGET_UNMENTIONED = 'unmentioned';
+    public const WIDGET_RANDOM = 'random';
+    public const WIDGET_HEADER = 'header';
+    public const WIDGET_CAMPAIGN = 'campaign';
+    public const WIDGET_WELCOME = 'welcome';
 
     // Widgets that are automatically visible on the dashboard
     const WIDGET_VISIBLE = [
@@ -50,6 +51,7 @@ class CampaignDashboardWidget extends Model
         self::WIDGET_UNMENTIONED,
         self::WIDGET_RANDOM,
         self::WIDGET_HEADER,
+        self::WIDGET_WELCOME,
     ];
 
     /**
@@ -101,6 +103,18 @@ class CampaignDashboardWidget extends Model
      */
     public function tags()
     {
+
+        return $this->belongsToMany(
+            Tag::class,
+            'campaign_dashboard_widget_tags',
+            'widget_id',
+            'tag_id'
+        )->using(CampaignDashboardWidgetTag::class);
+
+
+        /*return $this->belongsToMany(MarketplaceTag::class, 'plugin_tag', 'plugin_id', 'tag_id')->using(PluginTag::class);
+
+
         return $this->belongsToMany(
             'App\Models\Tag',
             'campaign_dashboard_widget_tags',
@@ -108,7 +122,7 @@ class CampaignDashboardWidget extends Model
             'tag_id',
             'id',
             'id'
-        );
+        )->*/
     }
 
     /**
@@ -134,7 +148,7 @@ class CampaignDashboardWidget extends Model
      */
     public function scopePositioned(Builder $query): Builder
     {
-        return $query->with(['entity', 'tags:id'])
+        return $query->with(['entity', 'tags'])
             ->orderBy('position', 'asc');
     }
 

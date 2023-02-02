@@ -101,7 +101,6 @@
   width: 70%;
   cursor: pointer;
   text-align: center;
-  color: var(--quick-creator-button-text);
   mix-blend-mode: normal;
   background-color: var(--quick-creator-button-background);
   text-transform: uppercase;
@@ -109,6 +108,9 @@
 }
 .main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button i {
   font-size: 1rem;
+}
+.main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button i, .main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button span {
+  color: var(--quick-creator-button-text);
 }
 .main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button:hover {
   transition: all 0.5s ease-in-out;
