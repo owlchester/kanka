@@ -50,6 +50,12 @@ header.masthead.masthead-half {
 section.cta {
   background: linear-gradient(to left, #3f44a1, #08083c) !important;
 }
+section.cta a {
+  color: #cbc427;
+}
+section.cta a:hover {
+  color: #cbc427;
+}
 
 header.reduced-masthead {
   min-height: 205px;
@@ -838,6 +844,18 @@ ul.pagination li span {
   position: sticky;
   z-index: 99;
   top: 0rem;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.justify-items-stretch {
+  justify-content: stretch;
 }
 
 .vote-options .vote-option {

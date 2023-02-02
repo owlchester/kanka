@@ -61,7 +61,7 @@
                     </li>
                     @if(config('app.admin'))
                     <li>
-                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">{{ __('front.features.api.link') }}</a>
+                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview">{{ __('front.features.api.link') }}</a>
                     </li>
                     @endif
                         <li>

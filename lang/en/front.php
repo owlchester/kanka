@@ -240,7 +240,7 @@ return [
         'title'                 => 'Kanka',
     ],
     'menu'                  => [
-        'about'         => 'About',
+        'about'         => 'About Us',
         'campaigns'     => 'Public Campaigns',
         'community'     => 'Community',
         'contact'       => 'Contact',

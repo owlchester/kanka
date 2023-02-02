@@ -1,11 +1,11 @@
 @extends('layouts.front', [
-    'title' => __('front.menu.about'),
+    'title' => __('front/about.title'),
     'active' => 'about',
     'skipPerf' => true,
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ __('front.about.description', ['kanka' => config('app.name')]) }}" />
+    <meta property="og:description" content="{{ __('front/about.lead', ['kanka' => config('app.name')]) }}" />
     <meta property="og:url" content="{{ route('front.about') }}" />
 @endsection
 
@@ -15,60 +15,47 @@
         <div class="container">
             <div class="section-body text-center">
                 <div class="mb-5">
-                    <h1>{{ __('teams.index.lead', ['kanka' => config('app.name')]) }}</h1>
-                    <p class="lead">{{ __('teams.leads.about') }}</p>
+                    <h1>{{ __('teams.index.lead') }}</h1>
+                    <p class="lead">{{ __('front/about.lead', ['kanka' => config('app.name')]) }}</p>
                 </div>
 
-                <h2 class="m-5">{{ __('teams.index.founders') }}</h2>
-
-                <div class="row equal text-center">
-                    <div class="col-xl-4 col-md-6 col-12 mb-4 offset-xl-2" id="jay">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
-                            <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/rBQO54fZWQxOyJ1yAOrnP0_2qxs=/200x200/smart/src/images%2Fteam%2Fjay.jpg" alt="Jay" width="200">
-                            <h3 class="mb-0">Jay</h3>
-                            <span class="small text-uppercase text-muted">{{ __('teams.people.jay.title') }}</span>
-
-                            <p class="text-justify mt-1">{!! nl2br(__('teams.people.jay.text')) !!}</p>
-
-                            <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> Jay | Ilestis#9745</span>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 col-12 mb-4" id="jon">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
-                            <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/-ZiCBU1NMqqtcZO-Kg3RRxTMGKg=/200x200/smart/src/images%2Fteam%2Fjon.jpg" alt="Jon" width="200">
-                            <h3 class="mb-0">Jon</h3>
-                            <span class="small text-uppercase text-muted">{{ __('teams.people.jon.title') }}</span>
-
-                            <p class="text-justify mt-1">{!! nl2br(__('teams.people.jon.text')) !!}</p>
-
-                            <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> Karuga#6904</span>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="m-5">{{ __('front/about.team.title') }}</h2>
 
 
-                <h2 class="m-5">{{ __('teams.index.title') }}</h2>
                 <div class="row text-center">
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
-                            <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/6-kP8_LpKwPgMfZdU_aCBwk8fF0=/100x100/smart/src/images%2Fteam%2Fitzamna.png" alt="Itzamna" width="100">
+                        <div class="bg-white rounded shadow-sm py-4 fullheight hover-focus">
+                            <img class="img-fluid rounded mb-3 shadow-sm" src="https://images.kanka.io/app/1_uRbTSlgrkXyQOgmeCs9dpUJvU=/200x200/smart/src/images%2Fteam%2Fjay2.jpeg" alt="Jay" />
+                            <h5 class="mb-0">Jay</h5>
+                            <p class="small text-uppercase text-muted mb-0">{{ __('teams.people.jay.title') }}</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-4 col-6 mb-4">
+                        <div class="bg-white rounded shadow-sm py-4 fullheight hover-focus">
+                            <img class="img-fluid rounded mb-3 shadow-sm" src="https://images.kanka.io/app/-ZiCBU1NMqqtcZO-Kg3RRxTMGKg=/200x200/smart/src/images%2Fteam%2Fjon.jpg" alt="Jon" />
+                            <h5 class="mb-0">Jon</h5>
+                            <p class="small text-uppercase text-muted mb-0">{{ __('teams.people.jon.title') }}</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-4 col-6 mb-4">
+                        <div class="bg-white rounded shadow-sm py-4 fullheight hover-focus">
+                            <img class="img-fluid rounded mb-3 shadow-sm" src="https://images.kanka.io/app/-sHCLJYwwdNlvZQBnjTEQxxZv34=/200x200/smart/src/images%2Fteam%2Fitzamna.png" alt="Itzamna" />
                             <h5 class="mb-0">Itzamn&aacute;</h5>
-                            <p class="small text-uppercase text-muted">{{ __('teams.people.itzamna.title') }}</p>
-                            <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> Spitfire#3654</span>
+                            <p class="small text-uppercase text-muted mb-0">{{ __('teams.people.itzamna.title') }}</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
-                            <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/MbbP8mNorhlEuzsDX2vBeY2QAqM=/100x100/smart/src/images%2Fteam%2Flaura.jpeg" alt="Laura" width="100">
+                        <div class="bg-white rounded shadow-sm py-4 fullheight hover-focus">
+                            <img class="img-fluid rounded mb-3 shadow-sm" src="https://images.kanka.io/app/wDJjRkVAnDXyWGlaL21b9lka3JQ=/200x200/smart/src/images%2Fteam%2Flaura.jpeg" alt="Laura" />
                             <h5 class="mb-0">Laura</h5>
-                            <p class="small text-uppercase text-muted">{{ __('teams.people.laura.title') }}</p>
+                            <p class="small text-uppercase text-muted mb-0">{{ __('teams.people.laura.title') }}</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
-                            <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/OSXG6Ue2yLW6636mBZvqkOIS0V8=/100x100/smart/src/images%2Fteam%2Fkaz.jpeg" alt="Kaz" width="100">
+                        <div class="bg-white rounded shadow-sm py-4 fullheight hover-focus">
+                            <img class="img-fluid rounded mb-3 shadow-sm" src="https://images.kanka.io/app/MnPgiJYzzaMr0pcyOkYMd2VXtOo=/200x200/smart/src/images%2Fteam%2Fkaz.jpeg" alt="Kaz" />
                             <h5 class="mb-0">Kaz</h5>
-                            <p class="small text-uppercase text-muted">{{ __('teams.people.kaz.title') }}</p>
+                            <p class="small text-uppercase text-muted mb-0">{{ __('teams.people.kaz.title') }}</p>
                             <span title="Discord" class="pull-bottom">Woof 🐶</span>
                         </div>
                     </div>
@@ -76,28 +63,114 @@
             </div>
         </div>
     </section>
-    <section id="community" class="">
+    <section id="community" class="cta p-5 text-white">
         <div class="container">
-            <div class="section-body  text-center">
-                <h2 class="mt-5">{{ __('teams.index.community') }}</h2>
-                <p class="lead">{{ __('teams.leads.community') }}</p>
-                <div class="row text-center">
-                    <div class="col-xl-3 col-md-4 col-6 mb-4">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
-                            <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/RFQtdd8vwwFOx_Bcncm2I_l-tBQ=/100x100/smart/src/images%2Fteam%2Fjoseph.jpg" alt="ChaosOS" width="100">
-                            <h5 class="mb-0">ChaosOS</h5>
-                            <p class="small text-uppercase text-muted">{{ __('teams.people.joseph.title') }}</p>
-                            <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> ChaosOS#1948</span>
-                        </div>
+            <div class="text-white text-center ">
+                <p class="h3 my-3">
+                    {{ __('front/about.community') }}
+                </p>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-6 col-lg-4 text-center mb-5">
+                    <i class="fa-solid fa-face-smile fa-2x mb-4" aria-hidden="true"></i>
+
+                    <div class="h2 mb-3">200,000+</div>
+
+                    <div class="h5 mb-3">{{ __('front/about.stats.users') }}</div>
+
+                    <div class="h3 mb-3">90+</div>
+
+                    <div class="h5 mb-3">{{ __('front/about.stats.countries') }}</div>
+                </div>
+                <div class="col-6 col-lg-4 text-center mb-5">
+                    <i class="fa-solid fa-pen fa-2x mb-4" aria-hidden="true"></i>
+
+                    <div class="h2 mb-3">4,000,000+</div>
+
+                    <div class="h5 mb-3">{{ __('front/about.stats.entities') }}</div>
+
+                    <div class="h3 mb-3">100,000+</div>
+
+                    <div class="h5 mb-3">{{ __('front/about.stats.missed') }}</div>
+                </div>
+                <div class="col-6 col-lg-4 text-center mb-5">
+                    <i class="fa-solid fa-globe-stand fa-2x mb-4" aria-hidden="true"></i>
+
+                    <div class="h2 mb-3">165,000+</div>
+
+                    <div class="h5 mb-3">{{ __('front/about.stats.campaigns') }}</div>
+
+                    <div class="h5 mb-3 mt-5">
+                        <a href="{{  route('front.public_campaigns') }}">
+                            {{ __('front/about.links.campaigns') }}
+                        </a>
                     </div>
-                    <div class="col-xl-3 col-md-4 col-6 mb-4">
-                        <div class="bg-white rounded shadow-sm py-5 px-4 fullheight hover-focus">
-                            <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://images.kanka.io/app/5NaNz1G4komlYUVsxuqph-Udv3I=/100x100/smart/src/images%2Fteam%2Fryan.jpg" alt="ArcOnyx" width="100">
-                            <h5 class="mb-0">ArcOnyx</h5>
-                            <p class="small text-uppercase text-muted">{{ __('teams.people.ryan.title') }}</p>
-                            <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> ArcOnyx#2348</span>
-                        </div>
+                </div>
+                <div class="col-6 col-lg-4 text-center mb-5">
+                    <i class="fa-solid fa-palette fa-2x mb-4" aria-hidden="true"></i>
+
+                    <div class="h2 mb-3">100+</div>
+
+                    <div class="h5 mb-3">{{ __('front/about.stats.plugins') }}</div>
+
+                    <div class="h5 mb-3 mt-5">
+                        <a href="//marketplace.kanka.io">
+                            {{ __('front/about.links.plugins') }}
+                        </a>
                     </div>
+                </div>
+                <div class="col-6 col-lg-4 text-center mb-5">
+                    <i class="fa-solid fa-pen fa-2x mb-4" aria-hidden="true"></i>
+
+                    <div class="h2 mb-3">5,000+</div>
+
+                    <div class="h5 mb-3">{{ __('front/about.stats.api') }}</div>
+                    <div class="h5 mb-3 mt-5">
+                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview">
+                            {{ __('front/about.links.api') }}
+                        </a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-4 text-center mb-5">
+                    <i class="fa-solid fa-book fa-2x mb-4" aria-hidden="true"></i>
+
+                    <div class="h2 mb-3">0</div>
+
+                    <div class="h5 mb-3">{{ __('front/about.stats.ruined') }}</div>
+
+                    <div class="h5 mb-3 mt-5">
+                        <a href="{{  route('register') }}">
+                            {{ __('front/about.links.join') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team bg-primary" id="history">
+        <div class="container">
+            <div class="section-body text-center">
+                <div class="mb-5">
+                    <h1>{{ __('front/about.history.title') }}</h1>
+                    <p class="lead">{{ __('front/about.history.lead', ['kanka' => config('app.name')]) }}</p>
+                </div>
+
+                <div class="overflow-x-auto d-flex justify-items-stretch text-left pb-3">
+                    @for ($i = 1; $i <= 10; $i++)
+                        <div class="flex-none w-25 mr-3 bg-white rounded shadow-sm p-3 d-inline-block">
+                            <div class="h4 mb">{{ __('front/about.history.' . $i . '.title') }}</div>
+                            <p class="text-muted">{!! __('front/about.history.' . $i . '.description', [
+        'discord' => link_to(config('social.discord'), 'Discord', ['target' => 'discord']),
+        'marketplace' => link_to('//marketplace.kanka.io',  __('front.menu.marketplace'), ['target' => '_blank'])
+]) !!}</p>
+                        </div>
+                    @endfor
+                        <div class="flex-none w-25 float-left mr-3 bg-white rounded shadow-sm p-3 d-inline-block">
+                            <div class="h4 mb">{{ __('front/about.history.last.title') }}</div>
+                            <p class="text-muted">{!! __('front/about.history.last.description') !!}</p>
+                        </div>
                 </div>
             </div>
         </div>

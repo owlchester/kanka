@@ -8,7 +8,7 @@ $KankaIconMiddle: #40479E;
 $KankaBlue: $KankaLogo;
 $KankaDarkBlue: #08083c;
 $KankaGrey: #EDEDED;
-$KankaGold: #9E9740;
+$KankaGold: #cbc427;
 $KankaFooter: #eee;
 
 html {
@@ -56,6 +56,13 @@ section.cta {
   //background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg);
   //background-position: top left;
   //background-size: cover;
+
+    a {
+        color: $KankaGold;
+        &:hover {
+            color: $KankaGold;
+        }
+    }
 }
 header.reduced-masthead {
   min-height: 205px;
@@ -948,6 +955,18 @@ ul.pagination {
     position: sticky;
     z-index: 99;
     top: 0rem;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+}
+
+.flex-none {
+    flex: none;
+}
+
+.justify-items-stretch {
+    justify-content: stretch;
 }
 
 @import "community-votes";
