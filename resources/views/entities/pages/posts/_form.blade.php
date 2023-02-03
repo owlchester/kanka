@@ -12,9 +12,6 @@ $defaultCollapsed = null;
 if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
     $defaultCollapsed = 1;
 }
-//$defaultClass = '';
-//if (isset($model) && empty($model->settings['class'])) {
-//}
 ?>
 <div class="nav-tabs-custom">
     <div class="pull-right">
