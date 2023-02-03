@@ -944,6 +944,10 @@ button.dropdown-item:hover {
   background-color: var(--calendar-week);
 }
 
+/**
+ * Control the way tooltips appear. Boosted campaigns can have entity images displayed in tooltips.
+ * Most of this could easily be replaced with tailwind + whatever boostrap does.
+ */
 .tooltip-inner {
   padding: 3px 3px;
 }
@@ -1040,6 +1044,9 @@ button.dropdown-item:hover {
   margin-right: 0;
 }
 
+/**
+ * Layout tweaks for timelines
+ */
 :root {
   --timeline-item-background: #fff;
   --timeline-element-border: #ddd;
@@ -1580,6 +1587,9 @@ body[class*=kanka-entity] .content-wrapper > .content {
   display: none;
 }
 
+/**
+ * Everything related to the default footer
+ */
 :root {
   --footer-links-background: rgba(255, 255, 255, 0.3);
   --footer-text: #636b6f;
@@ -1616,6 +1626,9 @@ footer ul li a:hover {
     text-align: left;
   }
 }
+/**
+ * Code for tinymce and summernote.
+ */
 /**
  * vendor layout fix for ckeditor full screen mode
  */
@@ -1811,6 +1824,9 @@ img.note-float-left {
   border-radius: 0.25rem;
 }
 
+/**
+ * Copied from old AdminLTE. Replacing this with tailwind will be a massive PITA.
+ */
 .box {
   position: relative;
   border-radius: 3px;
@@ -1869,6 +1885,9 @@ img.note-float-left {
   margin: 0;
 }
 
+/**
+ * Deprecated convo module layout
+ */
 :root {
   --conversation-comment-background: #f7f7f7;
 }
@@ -1878,35 +1897,18 @@ img.note-float-left {
  */
 .box-conversation .box-comments {
   max-height: 65vh;
-  overflow: auto;
   background-color: unset;
 }
 .box-conversation .box-comments .box-comment {
-  padding: 3px 8px;
   background-color: var(--conversation-comment-background);
   border-bottom: none;
-}
-.box-conversation .box-comments .box-comment .message-options {
-  display: none;
-}
-.box-conversation .box-comments .box-comment .message-options .dropdown {
-  position: relative;
-}
-.box-conversation .box-comments .box-comment .comment-text {
-  margin-left: 0;
 }
 .box-conversation .box-comments .box-comment:hover .message-options {
   display: inline-block;
 }
 .box-conversation .box-comments .message-first {
-  margin-top: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-}
-.box-conversation .load-more {
-  margin: 10px 55px;
-  cursor: pointer;
-  text-align: center;
 }
 
 .box-quest-element .widget-user-username a {
@@ -1985,15 +1987,12 @@ img.note-float-left {
     flex-grow: 1;
   }
 }
-/*body.env-local .ads-space {
-  border: 2px dashed blue;
-}*/
+/**
+ * Control the way ads are displayed.
+ * Can probably migrate everything to tw in the admin panel?
+ */
 .dashboard .ads-space {
   margin-bottom: 10px;
-}
-
-.ads-space {
-  overflow: hidden;
 }
 
 .nativead-manager a.nativead-link {
@@ -2005,14 +2004,14 @@ img.note-float-left {
   height: 280px;
 }
 
-.nativead-manager {
-  text-align: center;
-}
-
 .nativead.nativead-banner {
   width: 100%;
 }
 
+/**
+ * Layout rendering for reorderable elements (posts, timeline elements)
+ * 95% can be migrated to tw
+ */
 .element-live-reorder .element {
   display: flex;
   flex-flow: row wrap;

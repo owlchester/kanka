@@ -1,3 +1,7 @@
+/**
+ * Layout rendering for reorderable elements (posts, timeline elements)
+ * 95% can be migrated to tw
+ */
 .element-live-reorder {
     .element {
         display: flex;

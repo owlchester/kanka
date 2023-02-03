@@ -17804,20 +17804,20 @@ __webpack_require__.r(__webpack_exports__);
       return (_this$trans$key = this.trans[key]) !== null && _this$trans$key !== void 0 ? _this$trans$key : 'unknown';
     },
     dropdownClass: function dropdownClass() {
-      return this.openedDropdown ? 'open dropdown' : 'dropdown';
+      return this.openedDropdown ? 'open dropdown relative' : 'dropdown relative';
     },
     openDropdown: function openDropdown() {
       return this.openedDropdown = true;
     },
     boxClasses: function boxClasses(message) {
-      var classes = 'box-comment';
+      var classes = 'box-comment px-1 py-3';
       classes += ' message-author-' + message.from_id;
       classes += ' message-real-author-' + message.created_by;
 
       if (message.group) {
         classes += ' message-followup';
       } else {
-        classes += ' message-first';
+        classes += ' message-first mt-2';
       }
 
       return classes;
@@ -18119,7 +18119,7 @@ var _hoisted_1 = {
 };
 var _hoisted_2 = {
   key: 0,
-  "class": "message-options"
+  "class": "message-options mr-2"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
@@ -18150,7 +18150,7 @@ var _hoisted_9 = {
   "class": "unknown"
 };
 var _hoisted_10 = {
-  "class": "comment-text"
+  "class": "comment-text ml-0"
 };
 var _hoisted_11 = {
   key: 0,
@@ -18221,12 +18221,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "box-comments",
+  "class": "box-comments overflow-auto",
   ref: "messagebox"
 };
 var _hoisted_2 = {
   key: 1,
-  "class": "load more text-center"
+  "class": "load-more cursor-pointer text-center my-5"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
@@ -18238,7 +18238,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_4 = [_hoisted_3];
 var _hoisted_5 = {
   key: 2,
-  "class": "load more text-center"
+  "class": "load-more cursor-pointer text-center my-5"
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
@@ -18265,7 +18265,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$data.previous && !$data.loadingPrevious ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
-    "class": "load-more",
+    "class": "load-more cursor-pointer text-center my-5",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.getPrevious && $options.getPrevious.apply($options, arguments);
     })

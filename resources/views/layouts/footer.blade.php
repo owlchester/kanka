@@ -1,7 +1,7 @@
 <!-- Main Footer -->
 <footer id="footer" class="main-footer">
     @ads('footer')
-    <div class="ads-space">
+    <div class="ads-space overflow-hidden">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="{{ config('tracking.adsense') }}"

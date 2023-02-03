@@ -1,3 +1,6 @@
+/**
+ * Deprecated convo module layout
+ */
 :root {
   --conversation-comment-background: #f7f7f7;
 }
@@ -8,25 +11,12 @@
 .box-conversation {
     .box-comments {
         max-height: 65vh;
-        overflow: auto;
         background-color: unset;
 
         .box-comment {
-            padding: 3px 8px;
             background-color: var(--conversation-comment-background);
             border-bottom: none;
 
-            .message-options {
-                display: none;
-
-                .dropdown {
-                    position: relative;
-                }
-            }
-
-            .comment-text {
-                margin-left: 0;
-            }
 
             &:hover {
                 .message-options {
@@ -36,16 +26,9 @@
         }
 
         .message-first {
-            margin-top: 5px;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
         }
-    }
-
-    .load-more {
-        margin: 10px 55px;
-        cursor: pointer;
-        text-align: center;
     }
 }
 

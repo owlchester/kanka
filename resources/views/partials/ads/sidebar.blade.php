@@ -1,10 +1,10 @@
 @nativeAd(\App\Models\Ad::SECTION_SIDEBAR)
-<div class="ads-space nativead-manager" data-video="true">
+<div class="ads-space nativead-manager text-center" data-video="true">
     {!! \App\Facades\AdCache::show() !!}
 </div>
 @else
     @ads('sidebar')
-    <div class="ads-space">
+    <div class="ads-space overflow-hidden">
         <ins class="adsbygoogle"
              style="display:inline-block;width:280px;height:280px"
              data-ad-client="{{ config('tracking.adsense') }}"
