@@ -12,6 +12,9 @@ $defaultCollapsed = null;
 if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
     $defaultCollapsed = 1;
 }
+//$defaultClass = '';
+//if (isset($model) && empty($model->settings['class'])) {
+//}
 ?>
 <div class="nav-tabs-custom">
     <div class="pull-right">
@@ -70,11 +73,25 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="config[class]">
+                            {{ __('dashboard.widgets.fields.class') }}
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+                        </label>
+                        {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
+                        <p class="help-block visible-xs visible-sm">
+                            {{ __('dashboard.widgets.helpers.class') }}
+                        </p>
+                        @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
+                    </div>
+                </div>
+            </div>
         </div>
 
         @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.posts._permissions')
     </div>
 </div>
-
 
 {!! Form::hidden('entity_id', $entity->id) !!}
