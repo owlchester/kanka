@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="entity-content box-body collapse @if(!$post->collapsed()) in @endif" id="post-body-{{ $post->id }}">
-            <div class="post-details entity-note-details">
+            <div class="post-details mb-2 entity-note-details">
 
                 @if ($post->location)
                 <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
@@ -76,18 +76,18 @@
             </div>
 
 
-            <div class="post-footer entity-note-footer text-right text-muted">
-            <span class="post-footer-element post-created entity-note-footer-element entity-note-created" title="{{ __('entities/notes.footer.created', [
-'user' => $post->created_by ? e(\App\Facades\UserCache::name($post->created_by)) : __('crud.users.unknown'),
-'date' => $post->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
-                {{ $post->created_at->isoFormat('MMMM Do, Y') }}
-            </span>
-                @if ($post->updated_at->greaterThan($post->created_at))
-                    <span class="post-footer-element post-updated entity-note-footer-element entity-note-updated" title="{{ __('entities/notes.footer.updated', [
-'user' => $post->updated_by ? e(\App\Facades\UserCache::name($post->updated_by)) : __('crud.users.unknown'),
-'date' => $post->updated_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
-                {{ $post->updated_at->isoFormat('MMMM Do, Y') }}
-            </span>
+            <div class="post-footer entity-note-footer text-right text-muted text-xs ">
+                <span class="post-footer-element post-created entity-note-footer-element entity-note-created" title="{{ __('entities/notes.footer.created', [
+    'user' => $post->created_by ? e(\App\Facades\UserCache::name($post->created_by)) : __('crud.users.unknown'),
+    'date' => $post->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
+                    {{ $post->created_at->isoFormat('MMMM Do, Y') }}
+                </span>
+                    @if ($post->updated_at->greaterThan($post->created_at))
+                        <span class="post-footer-element post-updated entity-note-footer-element entity-note-updated" title="{{ __('entities/notes.footer.updated', [
+    'user' => $post->updated_by ? e(\App\Facades\UserCache::name($post->updated_by)) : __('crud.users.unknown'),
+    'date' => $post->updated_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
+                    {{ $post->updated_at->isoFormat('MMMM Do, Y') }}
+                </span>
                 @endif
             </div>
         </div>
