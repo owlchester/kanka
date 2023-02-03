@@ -7,7 +7,7 @@
              v-on:click="click(ability)"
              v-bind:class="{ active: active, without: !ability.has_image }"
         >
-            <div class="ability-name">
+            <div class="ability-name cursor-pointer">
                 <div class="name">
                     {{ ability.name }}
                 </div>

@@ -66,13 +66,13 @@
 
                 <div v-if="ability.charges && permission">
                     <div class="charges">
-                        <div class="charge" v-for="n in ability.charges" v-on:click="useCharge(ability, n)"
+                        <div class="charge cursor-pointer" v-for="n in ability.charges" v-on:click="useCharge(ability, n)"
                              v-bind:class="{ used: ability.used_charges >= n }">
                         </div>
                     </div>
                 </div>
 
-                <div class="text-center more-available" v-if="hasAttribute"
+                <div class="text-center cursor-pointer" v-if="hasAttribute"
                      v-on:click="click(ability)">
                     <i class="fa-solid fa-chevron-down" v-if="!details"></i>
                 </div>
@@ -94,7 +94,7 @@
                         </div>
                     </dl>
                 </div>
-                <div class="text-center more-available" v-if="hasAttribute"
+                <div class="text-center cursor-pointer" v-if="hasAttribute"
                      v-on:click="click(ability)">
                     <i class="fa-solid fa-chevron-up" v-if="details"></i>
                 </div>

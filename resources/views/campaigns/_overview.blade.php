@@ -19,7 +19,7 @@
         </div>
     @endcan
 
-    <div class="rounded-xl p-5 text-center bg-box drop-shadow cursor hover:link" data-toggle="dialog"
+    <div class="rounded-xl p-5 text-center bg-box drop-shadow cursor-pointer hover:link" data-toggle="dialog"
          data-target="entity-count">
         <i class="fa-solid fa-globe fa-2x" aria-hidden="true"></i>
         <span class="block mt-2">

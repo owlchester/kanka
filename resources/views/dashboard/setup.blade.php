@@ -18,9 +18,11 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
 
     <div class="box box-solid">
         <div class="box-header with-border">
-            <h4 class="box-title">@if ($dashboard) {!! $dashboard->name !!} @else {{ __('dashboard.dashboards.default.title') }} @endif</h4>
-            <div class="box-tools" style="margin-top: 1px;">
-                <a href="{{ route('dashboard', isset($dashboard) ? ['dashboard' => $dashboard->id] : null) }}" class="btn btn-box-tool" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}"><i class="fa-solid fa-arrow-left"></i> {{ __('dashboard.setup.actions.back_to_dashboard') }}</a>
+            <h3 class="box-title">@if ($dashboard) {!! $dashboard->name !!} @else {{ __('dashboard.dashboards.default.title') }} @endif</h3>
+            <div class="box-tools">
+                <a href="{{ route('dashboard', isset($dashboard) ? ['dashboard' => $dashboard->id] : null) }}" class="btn btn-box-tool" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}">
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{ __('dashboard.setup.actions.back_to_dashboard') }}
+                </a>
             </div>
         </div>
         <div class="box-body">
@@ -140,7 +142,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
             @endforeach
 
             <div class="col-md-4">
-                <div class="{{ $widgetClass }} cursor hover:shadow border-dashed border-2" data-toggle="modal" data-target="#new-widget" id="btn-add-widget">
+                <div class="{{ $widgetClass }} cursor-pointer hover:shadow border-dashed border-2" data-toggle="modal" data-target="#new-widget" id="btn-add-widget">
                     <div class="{{ $overlayClass }} text-3xl">
                         <i class="fa-solid fa-plus" aria-hidden="true"></i>
                         <span class="block">{{ __('dashboard.setup.actions.add') }}</span>

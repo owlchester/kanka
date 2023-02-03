@@ -1,10 +1,10 @@
 <template>
     <div :class="backgroundClass(release)" v-if="!is_dismissed" :data-id="release.id">
         <div class="flex-grow p-2">
-            <a v-html="release.title" class="font-bold cursor block w-full" v-bind:href="release.url" target="_blank"></a>
+            <a v-html="release.title" class="font-bold cursor-pointer block w-full" v-bind:href="release.url" target="_blank"></a>
             <p v-html="release.text"></p>
         </div>
-        <div class="flex-none p-2 cursor dismissable" v-on:click="dismiss(release)" v-if="!this.is_loading" :title="release.dismiss_text">
+        <div class="flex-none p-2 cursor-pointer dismissable" v-on:click="dismiss(release)" v-if="!this.is_loading" :title="release.dismiss_text">
             <i class="fa-solid fa-times" aria-hidden="true"></i>
         </div>
         <div class="flex-none p-2" v-else>

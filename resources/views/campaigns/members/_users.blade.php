@@ -67,7 +67,7 @@
                         <td>
                             {!! $relation->user->rolesList($campaign->id) !!}
                             @can('update', $relation)
-                                <i role="button" tabindex="0" class="fa-solid fa-plus-circle cursor btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
+                                <i role="button" tabindex="0" class="fa-solid fa-plus-circle cursor-pointer btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
                                 @foreach($roles as $role)
                                 <form method='post' action='{{ route('campaign_users.update-roles', [$relation, $role]) }}' class='user-role-update'>
     {!! str_replace('"', '\'', csrf_field()) !!}

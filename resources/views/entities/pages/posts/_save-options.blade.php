@@ -6,17 +6,23 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li><a href="#" class="form-submit-actions">
-                {{ __('crud.save') }}
-                <span class="shortcut hidden-xs">CTRL+S</span>
-            </a></li>
-            <li><a href="#" class="form-submit-actions" data-action="submit-new">
-                {{ __('crud.save_and_new') }}
-            </a></li>
-            <li><a href="#" class="form-submit-actions" data-action="submit-update">
-                {{ __('crud.save_and_update') }}
-                <span class="shortcut hidden-xs">CTRL+SHIFT+S</span>
-            </a></li>
+            <li>
+                <a href="#" class="form-submit-actions flex">
+                    <span class="flex-grow">{{ __('crud.save') }}</span>
+                    <span class="keyboard-shortcut flex-none ml-2 hidden-xs">CTRL+S</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="form-submit-actions" data-action="submit-new">
+                    {{ __('crud.save_and_new') }}
+                </a>
+            </li>
+            <li>
+                <a href="#" class="form-submit-actions flex" data-action="submit-update">
+                    <span class="flex-grow">{{ __('crud.save_and_update') }}</span>
+                    <span class="keyboard-shortcut flex-none ml-2 hidden-xs">CTRL+SHIFT+S</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

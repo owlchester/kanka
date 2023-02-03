@@ -19781,7 +19781,7 @@ __webpack_require__.r(__webpack_exports__);
         return 'block p-4 flex-grow items-center focus:box-shadow';
       }
 
-      return 'block p-4  items-center inactive cursor flex-none focus:box-shadow';
+      return 'block p-4  items-center inactive cursor-pointer flex-none focus:box-shadow';
     },
     logout: function logout() {
       //console.info('loging out');
@@ -20341,7 +20341,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _directive_click_outside = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("click-outside");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "campaigns inline cursor text-center px-5 text-2xl py-2",
+    "class": "campaigns inline cursor-pointer text-center px-5 text-2xl py-2",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.openCampaigns();
     }),
@@ -20354,7 +20354,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 2
   /* CLASS */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "profile inline cursor text-center text-uppercase pt-2",
+    "class": "profile inline cursor-pointer text-center text-uppercase pt-2",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.openProfile();
     }),
@@ -20696,7 +20696,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_3), !this.is_loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
-    "class": "flex-none p-2 cursor dismissable",
+    "class": "flex-none p-2 cursor-pointer dismissable",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.dismiss($props.notification);
     }),
@@ -20721,7 +20721,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_12), !this.is_loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
-    "class": "flex-none p-2 cursor dismissable",
+    "class": "flex-none p-2 cursor-pointer dismissable",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.dismiss($props.notification);
     }),
@@ -20784,7 +20784,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "data-id": $props.release.id
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     innerHTML: $props.release.title,
-    "class": "font-bold cursor block w-full",
+    "class": "font-bold cursor-pointer block w-full",
     href: $props.release.url,
     target: "_blank"
   }, null, 8
@@ -20795,7 +20795,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_4)]), !this.is_loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 0,
-    "class": "flex-none p-2 cursor dismissable",
+    "class": "flex-none p-2 cursor-pointer dismissable",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.dismiss($props.release);
     }),

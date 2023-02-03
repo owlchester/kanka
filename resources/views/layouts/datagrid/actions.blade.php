@@ -2,7 +2,7 @@
     @php return; @endphp
 @endif
 <div class="dropdown">
-    <a class="dropdown-toggle cursor" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+    <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
         <i class="fa-solid fa-ellipsis-v" data-tree="escape"></i>
         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
     </a>

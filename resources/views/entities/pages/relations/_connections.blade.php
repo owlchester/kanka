@@ -15,7 +15,7 @@
             <tr>
                 <th colspan="2">
                     @if(request()->get('order') == 'name' || !request()->has('order'))
-                        {{ __('crud.fields.name') }}
+                        {{ __('crud.fields.entity') }}
                         <i class="fa-solid fa-arrow-down"></i>
                     @else
                         <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'name']) }}">

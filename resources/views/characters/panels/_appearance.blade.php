@@ -5,7 +5,7 @@ $appearances = $model->characterTraits()->appearance()->orderBy('default_order')
 @if (count($appearances) > 0)
     <div class="box box-solid character-appearances">
         <div class="box-header with-border">
-            <h3 class="box-title cursor element-toggle" data-toggle="collapse" data-target="#character-appearance-body" data-short="character-appearance-toggle">
+            <h3 class="box-title cursor-pointer element-toggle" data-toggle="collapse" data-target="#character-appearance-body" data-short="character-appearance-toggle">
                 <i class="fa-solid fa-chevron-up icon-show"></i>
                 <i class="fa-solid fa-chevron-down icon-hide"></i>
                 {{ __('characters.sections.appearance') }}

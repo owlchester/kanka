@@ -13,7 +13,7 @@ $clipboardFilters = $filterService->clipboardFilters();
 @endphp
 
 <div class="box no-border datagrid-filters">
-    <div class="box-header" data-toggle="collapse" data-target="#datagrid-filters">
+    <div class="box-header cursor-pointer" data-toggle="collapse" data-target="#datagrid-filters">
 
         <i class="fa-solid fa-chevron-down pull-right"></i>
         <i class="fa-solid fa-filter"></i> {{ __('crud.filters.title') }}

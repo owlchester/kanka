@@ -18257,7 +18257,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* STYLE, PROPS */
   , _hoisted_30)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $props.ability.charges && $props.permission ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.ability.charges, function (n) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["charge", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["charge cursor-pointer", {
         used: $props.ability.used_charges >= n
       }]),
       onClick: function onClick($event) {
@@ -18270,7 +18270,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* UNKEYED_FRAGMENT */
   ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.hasAttribute ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 1,
-    "class": "text-center more-available",
+    "class": "text-center cursor-pointer",
     onClick: _cache[9] || (_cache[9] = function ($event) {
       return $options.click($props.ability);
     })
@@ -18289,7 +18289,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* UNKEYED_FRAGMENT */
   ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $options.hasAttribute ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 3,
-    "class": "text-center more-available",
+    "class": "text-center cursor-pointer",
     onClick: _cache[10] || (_cache[10] = function ($event) {
       return $options.click($props.ability);
     })
@@ -18355,7 +18355,7 @@ var _hoisted_1 = {
   "class": "col-xs-4 col-sm-3 col-lg-3 text-center"
 };
 var _hoisted_2 = {
-  "class": "ability-name"
+  "class": "ability-name cursor-pointer"
 };
 var _hoisted_3 = {
   "class": "name"

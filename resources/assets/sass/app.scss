@@ -346,11 +346,6 @@ tr.tr-hover {
   z-index: 9900;
 }
 
-/** break lines that get too long **/
-td.breakable {
-  word-break: break-word;
-}
-
 .entity-form {
   margin-block-end: 0;
 
@@ -378,65 +373,7 @@ td.breakable {
       }
     }
   }
-
-  .tab-content {
-    //overflow-x: hidden;
-    //overflow-y: auto;
-    //height: calc(100vh - 200px);
-  }
 }
-.shortcut {
-  margin-left: 14px;
-  color: #8f98a3;
-}
-
-.entity-form-save {
-  padding-right: 0;
-
-  .dropdown-menu {
-    li {
-      a {
-        padding: 10px 14px;
-      }
-    }
-  }
-}
-.form-submit-actions.flex {
-    display: flex;
-}
-
-.menu-link-tabs {
-  margin: 10px 10px;
-  box-shadow: $box-shadow;
-  .nav {
-    border-top: none;
-  }
-}
-
-
-// Quest entity image
-.widget-user-image {
-  .entity-image {
-    float: left;
-    height: 65px;
-    width: 65px;
-  }
-}
-
-.entity-file-visibility-dropdown {
-  cursor: pointer;
-}
-
-
-.cursor {
-  cursor: pointer;
-}
-
-.margin-top {
-  margin-top: 25px;
-}
-
-
 
 // Quest panels
 .widget-user-username {
@@ -519,27 +456,6 @@ td.breakable {
     }
   }
 }
-
-.datagrid-filters {
-  .box-header {
-    cursor: pointer;
-
-    .active-filter {
-      padding: 3px;
-      display: inline-block;
-      margin: 0 5px;
-    }
-  }
-}
-
-
-
-/*#entry td, #entry th {
-  padding: 2px;
-}
-#entry {
-  word-break: break-word;
-}*/
 
 
 

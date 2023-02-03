@@ -36,7 +36,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
     </div>
     <div class="py-5 px-3 flex-none w-16">
         <div class="dropdown">
-            <a class="dropdown-toggle cursor p-2" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+            <a class="dropdown-toggle cursor-pointer p-2" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                 <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </a>

@@ -19,7 +19,7 @@
             @continue
         @endif
         @if ($previousPosition != $item->position)
-            <tr class="active cursor" data-toggle="collapse" data-target=".inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }}">
+            <tr class="active cursor-pointer" data-toggle="collapse" data-target=".inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }}">
                 <th colspan="@if (auth()->check())5 @else 4 @endif" class="text-muted">
                     {!! $item->position ?: '<i>' . __('entities/inventories.show.unsorted') . '</i>' !!}
                 </th>

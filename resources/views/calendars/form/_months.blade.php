@@ -42,7 +42,7 @@ if (!empty($names)) {
             <div class="row">
                 <div class="col-md-6">
                     <div class="input-group">
-                        <span class="input-group-addon cursor">
+                        <span class="input-group-addon cursor-pointer">
                             <span class="fa-solid fa-arrows-alt-v"></span>
                         </span>
                         {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
@@ -83,7 +83,7 @@ if (!empty($names)) {
         <div class="row">
             <div class="col-md-6">
                 <div class="input-group">
-                    <span class="input-group-addon cursor">
+                    <span class="input-group-addon cursor-pointer">
                         <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('month_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.name')]) !!}

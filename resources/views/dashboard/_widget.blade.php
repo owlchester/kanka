@@ -29,7 +29,7 @@ if ($widget->entity) {
     @endif
     >
         <div class="{{ $overlayClass }}">
-            <div class="handle rounded-md px-2 py-1 text-center cursor absolute w-10 border-dashboard background">
+            <div class="handle rounded-md px-2 py-1 text-center cursor-pointer absolute w-10 border-dashboard background">
                 <i class="fa-solid fa-arrows" aria-hidden="true"></i>
             </div>
             @if ($widget->widget != \App\Models\CampaignDashboardWidget::WIDGET_HEADER)

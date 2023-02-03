@@ -131,16 +131,14 @@
     </div>
 
     @if ($settings)
-        <div class="row margin-top">
-            <div class="col-md-12 text-center">
-                <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default" title="{{ __('dashboard.settings.title') }}">
-                    <i class="fa-solid fa-cog" aria-hidden="true"></i> {{ __('dashboard.settings.title') }}
-                </a>
-            </div>
+        <div class="text-center mt-6">
+            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
+                <i class="fa-solid fa-cog" aria-hidden="true"></i> {{ __('dashboard.settings.title') }}
+            </a>
         </div>
 
         @if($widgets->count() === 0)
-            <div class="alert alert-info margin-top">
+            <div class="alert alert-info mt-6">
                 {!! __('dashboard.setup.tutorial.text', [
     'blog' => link_to('https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/', __('dashboard.setup.tutorial.blog'), ['target' => '_blank'])
 ]) !!}

@@ -37,7 +37,7 @@
         <div class="box">
             <div class="box-header">
                 <div class="row">
-                    <div class="col-sm-6 cursor" data-toggle="collapse" data-target="#category-{{ $category->id }}">
+                    <div class="col-sm-6 cursor-pointer" data-toggle="collapse" data-target="#category-{{ $category->id }}">
                         <h3 class="box-title">
                             {{ $category->title }} ({{ $category->translatedCount($lang) }} / {{ $category->faqCount() }})
                         </h3>

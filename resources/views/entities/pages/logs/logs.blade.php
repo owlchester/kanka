@@ -23,7 +23,7 @@
                 <i class="fa-solid fa-spinner fa-spin fa-4x"></i>
             </div>
             <div class="pagination-ajax-content">
-                <table class="table table-hover" style="word-break: break-all;">
+                <table class="table table-hover break-all">
                     <thead>
                         <tr>
                             <th>{{ __('entities/logs.fields.action') }}</th>

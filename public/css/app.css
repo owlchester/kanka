@@ -761,11 +761,6 @@ tr.tr-hover:hover {
   z-index: 9900;
 }
 
-/** break lines that get too long **/
-td.breakable {
-  word-break: break-word;
-}
-
 .entity-form {
   -webkit-margin-after: 0;
           margin-block-end: 0;
@@ -788,47 +783,6 @@ td.breakable {
 }
 .entity-form ul.nav li a i.fa, .entity-form ul.nav li a i.ra, .entity-form ul.nav li a i.fas, .entity-form ul.nav li a i.far, .entity-form ul.nav li a i.fab {
   line-height: 1;
-}
-.shortcut {
-  margin-left: 14px;
-  color: #8f98a3;
-}
-
-.entity-form-save {
-  padding-right: 0;
-}
-.entity-form-save .dropdown-menu li a {
-  padding: 10px 14px;
-}
-
-.form-submit-actions.flex {
-  display: flex;
-}
-
-.menu-link-tabs {
-  margin: 10px 10px;
-  box-shadow: 0 6px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-.menu-link-tabs .nav {
-  border-top: none;
-}
-
-.widget-user-image .entity-image {
-  float: left;
-  height: 65px;
-  width: 65px;
-}
-
-.entity-file-visibility-dropdown {
-  cursor: pointer;
-}
-
-.cursor {
-  cursor: pointer;
-}
-
-.margin-top {
-  margin-top: 25px;
 }
 
 .widget-user-username a {
@@ -926,21 +880,6 @@ td.breakable {
   color: var(--bg-default-link);
 }
 
-.datagrid-filters .box-header {
-  cursor: pointer;
-}
-.datagrid-filters .box-header .active-filter {
-  padding: 3px;
-  display: inline-block;
-  margin: 0 5px;
-}
-
-/*#entry td, #entry th {
-  padding: 2px;
-}
-#entry {
-  word-break: break-word;
-}*/
 .attribute, .note-editing-area > .attribute {
   border-radius: 2px;
   background-color: #ddd;
@@ -2452,9 +2391,6 @@ img.note-float-left {
   margin: 0;
 }
 
-/*.panel-toggable {
-  cursor: pointer;
-}*/
 :root {
   --conversation-comment-background: #f7f7f7;
 }
@@ -2496,27 +2432,15 @@ img.note-float-left {
 }
 
 .box-quest-element .widget-user-header {
-  padding: 20px;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
 }
 .box-quest-element .widget-user-username {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 25px;
   font-weight: 300;
 }
-.box-quest-element .widget-user-desc {
-  margin-top: 0;
-}
-.box-quest-element .widget-user-username,
-.box-quest-element .widget-user-desc {
-  margin-left: 75px;
-}
-.box-quest-element .widget-user-image > img {
-  width: 65px;
-  height: auto;
-  float: left;
+.box-quest-element .widget-user-image .entity-image {
+  height: 40px;
+  width: 40px;
 }
 
 .quick-creator-header {
@@ -5378,71 +5302,6 @@ body.ab-testing-second .ab-testing-a {
   transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem; /* 24px */
-  line-height: 2rem; /* 32px */
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
-.italic {
-  font-style: italic;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.font-extrabold {
-  font-weight: 800;
-}
-
-.font-black {
-  font-weight: 900;
-}
-
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.text-ellipsis {
-  text-overflow: ellipsis;
-}
-
-.text-clip {
-  text-overflow: clip;
-}
-
 /** aspect ratio **/
 .aspect-square {
   aspect-ratio: 1/1;
@@ -5628,6 +5487,83 @@ body.ab-testing-second .ab-testing-a {
 
 .static {
   position: static;
+}
+
+.resize-y {
+  resize: vertical;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+.font-black {
+  font-weight: 900;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.text-clip {
+  text-overflow: clip;
 }
 
 .list-none {
