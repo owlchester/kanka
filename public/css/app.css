@@ -573,11 +573,6 @@ table tbody td {
   background-color: rgba(31, 0, 4, 0.7);
 }
 
-.campaign-name {
-  white-space: normal !important;
-  overflow: hidden;
-}
-
 .entity-image {
   border-radius: 50%;
   width: 40px;
@@ -586,12 +581,6 @@ table tbody td {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   display: block;
-}
-
-.user-name {
-  line-height: 2.8em;
-  margin-left: 8px;
-  display: inline-block;
 }
 
 tr.tr-hover {
@@ -625,29 +614,6 @@ tr.tr-hover:hover {
   margin-bottom: 0;
 }
 
-.entity-modification-history {
-  font-style: italic;
-  font-size: 13px;
-}
-
-.live-search-close {
-  float: left;
-  padding: 6px 15px;
-}
-
-.list-group-unbordered {
-  margin-bottom: 0;
-}
-.list-group-unbordered .list-group-item {
-  word-break: break-word;
-}
-.list-group-unbordered .list-group-item:first-child {
-  border-top: none;
-}
-.list-group-unbordered .list-group-item:last-child {
-  border-bottom: none;
-}
-
 .input-error {
   border: 1px inset red;
 }
@@ -655,17 +621,6 @@ tr.tr-hover:hover {
 .color-tag {
   padding: 2px 5px;
   border-radius: 2px;
-}
-
-.datagrid-search {
-  display: inline-block;
-}
-.datagrid-search .input-group-addon {
-  border-right: 0px;
-}
-
-.datagrid-bulk-actions {
-  display: inline-block;
 }
 
 .entity-attributes .fa-unlock-alt {
@@ -682,22 +637,10 @@ tr.tr-hover:hover {
   color: rgba(0, 0, 0, 0.8);
 }
 
-#attribute_add i {
-  line-height: 1.5em;
-}
-
 #new-entity-modal, #entity-modal {
   z-index: 9900;
 }
 
-.entity-form {
-  -webkit-margin-after: 0;
-          margin-block-end: 0;
-}
-.entity-form .nav-tabs-custom {
-  min-height: 0;
-  background-color: unset;
-}
 .entity-form ul.nav {
   z-index: 2;
   min-height: 40px;
@@ -706,12 +649,6 @@ tr.tr-hover:hover {
   border-top-left-radius: 0;
   border-bottom-color: #fff;
   border-bottom: none;
-}
-.entity-form ul.nav li {
-  margin-right: 2px;
-}
-.entity-form ul.nav li a i.fa, .entity-form ul.nav li a i.ra, .entity-form ul.nav li a i.fas, .entity-form ul.nav li a i.far, .entity-form ul.nav li a i.fab {
-  line-height: 1;
 }
 
 .bg-pink {
@@ -830,18 +767,6 @@ tr.tr-hover:hover {
   display: unset !important;
 }
 
-.mb-xs {
-  margin-bottom: 5px;
-}
-
-.mb-sm {
-  margin-bottom: 10px;
-}
-
-.mb-md {
-  margin-bottom: 15px;
-}
-
 summary {
   display: list-item;
 }
@@ -868,10 +793,6 @@ button.dropdown-item:hover {
   color: var(--dropdown-hover-text);
 }
 
-.table .table-actions .dropdown-toggle i {
-  margin: 3px 10px;
-}
-
 .table-responsive {
   overflow-x: unset;
 }
@@ -879,31 +800,6 @@ button.dropdown-item:hover {
   margin-bottom: 0;
 }
 
-.table-compact {
-  width: auto;
-}
-
-.table-right {
-  width: auto;
-  float: right;
-}
-
-.table-centered {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.user-role-update .btn {
-  margin-bottom: 5px;
-}
-
-.form-control-feedback.fa {
-  line-height: 34px;
-}
-
-.banner-notification {
-  padding: 5px;
-}
 .banner-notification a {
   color: var(--banner-link);
 }
@@ -919,11 +815,7 @@ button.dropdown-item:hover {
 }
 
 .skip-nav-link {
-  position: absolute;
-  left: 0.5rem;
-  top: -2px;
   border-radius: 0 0 0.25rem 0.25rem;
-  padding: 0.5rem 1rem;
   background-color: white;
   color: blue;
   transform: translateY(-120%);
@@ -931,46 +823,8 @@ button.dropdown-item:hover {
   z-index: 1040;
 }
 .skip-nav-link:focus {
-  top: 0;
   transform: translateY(0);
   color: var(--link-text);
-}
-
-.navbar-custom-menu a:focus {
-  color: var(--link-text);
-}
-
-/** Toast **/
-:root {
-  --toast-background: #00a65a;
-  --toast-background-error: #d73925;
-  --toast-text: white;
-}
-
-.toast-container {
-  position: fixed;
-  bottom: 20px;
-  max-height: 100%;
-  right: 20px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.toast-container .toast-success, .toast-container .toast-error {
-  margin-top: 10px;
-  text-align: right;
-}
-.toast-container .toast-success .toast-message, .toast-container .toast-error .toast-message {
-  display: inline-block;
-  background-color: var(--toast-background);
-  color: var(--toast-text);
-  padding: 10px;
-}
-.toast-container .toast-success .toast-message .fa-times, .toast-container .toast-error .toast-message .fa-times {
-  cursor: pointer;
-  margin-left: 5px;
-}
-.toast-container .toast-error .toast-message {
-  background-color: var(--toast-background-error);
 }
 
 .privacy-callout {
@@ -1053,10 +907,6 @@ button.dropdown-item:hover {
   vertical-align: top !important;
   word-wrap: break-word;
 }
-.calendar tbody td h5 {
-  float: left;
-  margin-top: 3px;
-}
 .calendar tbody td h5 .julian-number {
   display: var(--calendar-julian);
 }
@@ -1066,45 +916,16 @@ button.dropdown-item:hover {
 .calendar tbody td p {
   clear: both;
 }
-.calendar tbody td .calendar-season, .calendar tbody td .weather {
-  width: 100%;
-  display: block;
-}
 .calendar tbody td .weather {
   background-color: var(--calendar-weather);
 }
 .calendar tbody td .calendar-season {
-  font-size: 90%;
   color: var(--calendar-season-text);
   background-color: var(--calendar-season);
 }
-.calendar tbody td .reminder-entity {
-  display: block;
-}
-.calendar tbody td .calendar-event-block {
-  display: block;
-  margin: 2px 0;
-  padding-left: 0.2em;
-  text-align: left;
-  font-size: 10pt;
-  margin-bottom: 5px;
-  font-weight: 400;
-  overflow: hidden;
-  cursor: pointer;
-}
 .calendar tbody td .calendar-event-block .entity-image {
-  float: left !important;
   height: 30px;
   width: 30px;
-  margin-right: 5px;
-  display: inline-block;
-}
-.calendar tbody td .calendar-event-block .calendar-event-comment {
-  display: block;
-  font-size: 9pt;
-  padding-top: 5px;
-  max-height: 20px;
-  color: rgba(255, 255, 255, 0.9);
 }
 .calendar tbody td .colour-pallet {
   color: var(--calendar-event-text);
@@ -1119,26 +940,8 @@ button.dropdown-item:hover {
   background-color: var(--calendar-today);
 }
 .calendar tbody tr.named_week td {
-  height: 1em;
-  font-style: italic;
+  height: 1rem;
   background-color: var(--calendar-week);
-}
-
-.calendar-toolbar {
-  padding: 10px 0;
-}
-.calendar-toolbar .calendar-center {
-  display: inline-block;
-}
-.calendar-toolbar .calendar-current {
-  display: inline-block;
-  margin-left: 25px;
-}
-.calendar-toolbar .calendar-current .month {
-  display: inline-block;
-  padding-top: 6px;
-  font-size: 1.2em;
-  margin-right: 5px;
 }
 
 .tooltip-inner {
@@ -3177,6 +2980,306 @@ body.ab-testing-second .ab-testing-a {
 
 .pl-20 {
   padding-left: 5rem;
+}
+
+.p-21 {
+  padding: 5.25rem;
+}
+
+.py-21 {
+  padding-top: 5.25rem;
+  padding-bottom: 5.25rem;
+}
+
+.px-21 {
+  padding-left: 5.25rem;
+  padding-right: 5.25rem;
+}
+
+.pt-21 {
+  padding-top: 5.25rem;
+}
+
+.pr-21 {
+  padding-right: 5.25rem;
+}
+
+.pb-21 {
+  padding-bottom: 5.25rem;
+}
+
+.pl-21 {
+  padding-left: 5.25rem;
+}
+
+.p-22 {
+  padding: 5.5rem;
+}
+
+.py-22 {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+}
+
+.px-22 {
+  padding-left: 5.5rem;
+  padding-right: 5.5rem;
+}
+
+.pt-22 {
+  padding-top: 5.5rem;
+}
+
+.pr-22 {
+  padding-right: 5.5rem;
+}
+
+.pb-22 {
+  padding-bottom: 5.5rem;
+}
+
+.pl-22 {
+  padding-left: 5.5rem;
+}
+
+.p-23 {
+  padding: 5.75rem;
+}
+
+.py-23 {
+  padding-top: 5.75rem;
+  padding-bottom: 5.75rem;
+}
+
+.px-23 {
+  padding-left: 5.75rem;
+  padding-right: 5.75rem;
+}
+
+.pt-23 {
+  padding-top: 5.75rem;
+}
+
+.pr-23 {
+  padding-right: 5.75rem;
+}
+
+.pb-23 {
+  padding-bottom: 5.75rem;
+}
+
+.pl-23 {
+  padding-left: 5.75rem;
+}
+
+.p-24 {
+  padding: 6rem;
+}
+
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.pt-24 {
+  padding-top: 6rem;
+}
+
+.pr-24 {
+  padding-right: 6rem;
+}
+
+.pb-24 {
+  padding-bottom: 6rem;
+}
+
+.pl-24 {
+  padding-left: 6rem;
+}
+
+.p-25 {
+  padding: 6.25rem;
+}
+
+.py-25 {
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
+}
+
+.px-25 {
+  padding-left: 6.25rem;
+  padding-right: 6.25rem;
+}
+
+.pt-25 {
+  padding-top: 6.25rem;
+}
+
+.pr-25 {
+  padding-right: 6.25rem;
+}
+
+.pb-25 {
+  padding-bottom: 6.25rem;
+}
+
+.pl-25 {
+  padding-left: 6.25rem;
+}
+
+.p-26 {
+  padding: 6.5rem;
+}
+
+.py-26 {
+  padding-top: 6.5rem;
+  padding-bottom: 6.5rem;
+}
+
+.px-26 {
+  padding-left: 6.5rem;
+  padding-right: 6.5rem;
+}
+
+.pt-26 {
+  padding-top: 6.5rem;
+}
+
+.pr-26 {
+  padding-right: 6.5rem;
+}
+
+.pb-26 {
+  padding-bottom: 6.5rem;
+}
+
+.pl-26 {
+  padding-left: 6.5rem;
+}
+
+.p-27 {
+  padding: 6.75rem;
+}
+
+.py-27 {
+  padding-top: 6.75rem;
+  padding-bottom: 6.75rem;
+}
+
+.px-27 {
+  padding-left: 6.75rem;
+  padding-right: 6.75rem;
+}
+
+.pt-27 {
+  padding-top: 6.75rem;
+}
+
+.pr-27 {
+  padding-right: 6.75rem;
+}
+
+.pb-27 {
+  padding-bottom: 6.75rem;
+}
+
+.pl-27 {
+  padding-left: 6.75rem;
+}
+
+.p-28 {
+  padding: 7rem;
+}
+
+.py-28 {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.px-28 {
+  padding-left: 7rem;
+  padding-right: 7rem;
+}
+
+.pt-28 {
+  padding-top: 7rem;
+}
+
+.pr-28 {
+  padding-right: 7rem;
+}
+
+.pb-28 {
+  padding-bottom: 7rem;
+}
+
+.pl-28 {
+  padding-left: 7rem;
+}
+
+.p-29 {
+  padding: 7.25rem;
+}
+
+.py-29 {
+  padding-top: 7.25rem;
+  padding-bottom: 7.25rem;
+}
+
+.px-29 {
+  padding-left: 7.25rem;
+  padding-right: 7.25rem;
+}
+
+.pt-29 {
+  padding-top: 7.25rem;
+}
+
+.pr-29 {
+  padding-right: 7.25rem;
+}
+
+.pb-29 {
+  padding-bottom: 7.25rem;
+}
+
+.pl-29 {
+  padding-left: 7.25rem;
+}
+
+.p-30 {
+  padding: 7.5rem;
+}
+
+.py-30 {
+  padding-top: 7.5rem;
+  padding-bottom: 7.5rem;
+}
+
+.px-30 {
+  padding-left: 7.5rem;
+  padding-right: 7.5rem;
+}
+
+.pt-30 {
+  padding-top: 7.5rem;
+}
+
+.pr-30 {
+  padding-right: 7.5rem;
+}
+
+.pb-30 {
+  padding-bottom: 7.5rem;
+}
+
+.pl-30 {
+  padding-left: 7.5rem;
 }
 
 /**
@@ -5971,6 +6074,14 @@ body.ab-testing-second .ab-testing-a {
   overflow: hidden;
 }
 
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
 /** Clear **/
 .clear-both {
   clear: both;
@@ -6538,6 +6649,25 @@ html:has(dialog[open]) {
   .main-footer {
     display: none !important;
   }
+}
+/** Toast **/
+:root {
+  --toast-background: #00a65a;
+  --toast-background-error: #d73925;
+  --toast-text: white;
+}
+
+.toast-container {
+  bottom: 20px;
+  max-height: 100%;
+  right: 20px;
+}
+.toast-container .toast-success .toast-message, .toast-container .toast-error .toast-message {
+  background-color: var(--toast-background);
+  color: var(--toast-text);
+}
+.toast-container .toast-error .toast-message {
+  background-color: var(--toast-background-error);
 }
 
 /*# sourceMappingURL=app.css.map*/

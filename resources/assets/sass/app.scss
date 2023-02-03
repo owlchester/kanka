@@ -145,12 +145,6 @@ table {
   }
 }
 
-
-.campaign-name {
-  white-space: normal !important;
-  overflow: hidden;
-}
-
 .entity-image {
   border-radius: 50%;
   width: 40px;
@@ -160,12 +154,6 @@ table {
   background-position: 50% 50%;
   display: block;
 }
-.user-name {
-  line-height: 2.8em;
-  margin-left: 8px;
-  display: inline-block;
-}
-
 
 tr.tr-hover {
   cursor: pointer;
@@ -200,49 +188,12 @@ tr.tr-hover {
   margin-bottom: 0;
 }
 
-.entity-modification-history {
-  font-style: italic;
-  font-size: 13px;
-}
-
-
-.live-search-close {
-  float: left;
-  padding: 6px 15px;
-}
-
-.list-group-unbordered {
-  margin-bottom: 0;
-  .list-group-item {
-    word-break: break-word;
-
-    &:first-child {
-      border-top: none;
-    }
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
-}
-
 .input-error {
   border: 1px inset red;
 }
 .color-tag {
   padding: 2px 5px;
   border-radius: 2px;
-}
-
-// Datagrid search
-.datagrid-search {
-  display: inline-block;
-  .input-group-addon {
-    border-right: 0px;
-  }
-}
-.datagrid-bulk-actions {
-  display: inline-block;
 }
 
 // Private/Public
@@ -262,45 +213,21 @@ tr.tr-hover {
   }
 }
 
-#attribute_add {
-  i {
-    line-height: 1.5em;
-  }
-}
-
-
-
 #new-entity-modal, #entity-modal {
   z-index: 9900;
 }
 
 .entity-form {
-  margin-block-end: 0;
-
-  .nav-tabs-custom {
-    //width: calc(100% - 300px);
-    min-height: 0;
-    background-color: unset;
-  }
-
-  ul.nav {
-    z-index: 2;
-    min-height: 40px;
-    overflow: hidden;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    border-bottom-color: #fff;
-    border-bottom: none;
-
-    li {
-      margin-right: 2px;
-      a {
-        i.fa, i.ra, i.fas, i.far, i.fab {
-          line-height: 1;
-        }
-      }
+    // Old AdminLTE stuff
+    ul.nav {
+        z-index: 2;
+        min-height: 40px;
+        overflow: hidden;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom-color: #fff;
+        border-bottom: none;
     }
-  }
 }
 .bg-pink {
   color: #fff !important;
@@ -393,24 +320,17 @@ tr.tr-hover {
   padding: 0 7px;
 }
 
+// Visual info on quick link forms for which mode is enabled
 .menu-link-selector {
-  .btn-app > .badge {
-    display: none;
-  }
-  .btn-app.btn-active > .badge {
-    display: unset !important;
-  }
+    .btn-app > .badge {
+        display: none;
+    }
+
+    .btn-app.btn-active > .badge {
+        display: unset !important;
+    }
 }
 
-.mb-xs {
-  margin-bottom: 5px;
-}
-.mb-sm {
-  margin-bottom: 10px;
-}
-.mb-md {
-  margin-bottom: 15px;
-}
 
 // Bootstrap3 sets summary to display:block which isn't correct
 summary { display: list-item; }
@@ -432,46 +352,20 @@ button.dropdown-item {
     color: var(--dropdown-link);
     text-align: left;
 
-
     &:hover {
         background-color: var(--dropdown-hover-background);
         color: var(--dropdown-hover-text);
     }
 }
 
-.table .table-actions .dropdown-toggle i {
-  margin: 3px 10px;
-}
 .table-responsive {
   overflow-x: unset;
   .table {
     margin-bottom: 0;
   }
 }
-.table-compact {
-    width: auto;
-}
-.table-right {
-    width: auto;
-    float: right;
-}
-.table-centered {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.user-role-update {
-  .btn {
-    margin-bottom: 5px;
-  }
-}
-
-.form-control-feedback.fa {
-  line-height: 34px;
-}
 
 .banner-notification {
-  padding: 5px;
   a {
     color: var(--banner-link);
   }
@@ -490,11 +384,7 @@ button.dropdown-item {
 
 // UX
 .skip-nav-link {
-  position: absolute;
-  left: .5rem;
-  top: -2px;
   border-radius: 0 0 0.25rem 0.25rem;
-  padding: 0.5rem 1rem;
   background-color: white;
   color: blue;
   transform: translateY(-120%);
@@ -502,48 +392,11 @@ button.dropdown-item {
   z-index: 1040;
 
   &:focus {
-    top: 0;
     transform: translateY(0);
     color: var(--link-text);
   }
 }
-.navbar-custom-menu a:focus {
-  color: var(--link-text);
-}
 
-/** Toast **/
-:root {
-  --toast-background: #00a65a;
-  --toast-background-error: #d73925;
-  --toast-text: white;
-}
-.toast-container {
-  position: fixed;
-  bottom: 20px;
-  max-height: 100%;
-  right: 20px;
-  overflow-y:auto;
-  overflow-x:hidden;
-
-  .toast-success, .toast-error {
-    margin-top: 10px;
-    text-align: right;
-    .toast-message {
-      display: inline-block;
-      background-color: var(--toast-background);
-      color: var(--toast-text);
-      padding: 10px;
-
-      .fa-times {
-        cursor: pointer;
-        margin-left: 5px;
-      }
-    }
-  }
-  .toast-error .toast-message {
-    background-color: var(--toast-background-error);
-  }
-}
 
 .privacy-callout {
   border-left: 2px solid #f6c9af;
@@ -633,3 +486,4 @@ button.dropdown-item {
 @import "dialog";
 @import "adminlte";
 @import "print/general";
+@import "toast";

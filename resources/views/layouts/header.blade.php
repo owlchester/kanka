@@ -10,16 +10,16 @@ $currentCampaign = CampaignLocalization::getCampaign();
         @endif
 
         @if (!empty($currentCampaign))
-            {!! Form::open(['route' => 'search', 'class' => 'visible-md visible-lg navbar-form navbar-left live-search-form', 'method'=>'GET']) !!}
+            {!! Form::open(['route' => 'search', 'class' => 'visible-md visible-lg navbar-form live-search-form py-0', 'method'=>'GET']) !!}
             <div class="form-group has-feedback flex-grow">
-                <div class="flex">
+                <div class="flex items-center">
                     <input type="search" name="q" id="live-search" class="typeahead form-control" autocomplete="off"
                            placeholder="{{ __('sidebar.search') }}" data-url="{{ route('search.live') }}"
                            data-empty="{{ __('search.no_results') }}"
                            tabindex="2">
                     <span class="keyboard-shortcut form-control-feedback hidden-xs hidden-sm" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) !!}" data-html="true" data-placement="bottom">K</span>
 
-                    <a href="#" role="button" class="live-search-close visible-xs visible-sm self-end" aria-label="Close search">
+                    <a href="#" role="button" class="live-search-close visible-xs visible-sm px-3" aria-label="Close search">
                         <i class="fa-solid fa-close" aria-hidden="true"></i>
                     </a>
                 </div>
