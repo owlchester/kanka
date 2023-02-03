@@ -115,7 +115,7 @@ class PostController extends Controller
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
-        //dd($request->all());
+
         $post->update($request->all());
 
         /** @var MultiEditingService $editingService */
