@@ -14,7 +14,7 @@
 
 @section('content')
 
-    {!! Form::model($entity->child, ['route' => ['entities.entry.update', $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form', 'data-maintenance' => 1]) !!}
+    {!! Form::model($entity->child, ['route' => ['entities.entry.update', $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form', 'data-maintenance' => 1, 'data-unload' => 1,]) !!}
 
     <div class="box box-solid">
         @if (request()->ajax())
@@ -35,7 +35,7 @@
         </div>
         <div class="box-footer">
             <div class="pull-right">
-                <button class="btn btn-success">{{ __('crud.update') }}</button>
+                <button class="btn btn-success" id="form-submit-main">{{ __('crud.update') }}</button>
             </div>
             <a href="{{ url()->previous() }}" class="btn btn-default">
                 {{ __('crud.cancel') }}
