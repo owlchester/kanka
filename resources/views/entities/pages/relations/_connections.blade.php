@@ -40,7 +40,7 @@
             <tbody>
             @foreach ($connections as $connection)
                 <tr data-entity-id="{{ $connection->id }}" data-entity-type="{{ $connection->type() }}">
-                    <td class="avatar">
+                    <td class="w-14">
                         <a class="entity-image" style="background-image: url('{{ $connection->avatar(40) }}');" title="{{ $connection->name }}" href="{{ $connection->url() }}"></a>
                     </td>
                     <td>

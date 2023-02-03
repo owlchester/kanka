@@ -153,7 +153,7 @@ class DatagridRenderer
             $type = $column['type'];
             $class = $column['type'];
             if ($type == 'avatar') {
-                $class = !empty($column['parent']) ? 'avatar hidden-xs hidden-sm' : $class;
+                $class = !empty($column['parent']) ? 'hidden-xs hidden-sm' : $class . ' w-14';
                 //$html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
@@ -182,7 +182,7 @@ class DatagridRenderer
                     'is_private',
                     '<i class="fa-solid fa-lock" title="' .  __('crud.fields.is_private') . '"></i>'
                 );
-                $class = 'icon';
+                $class = 'min-w-12';
             } elseif ($type == 'calendar_date') {
                 $class .= ' hidden-xs hidden-sm';
                 $html = $this->route('calendar_date', __('crud.fields.calendar_date'));

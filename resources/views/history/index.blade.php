@@ -73,7 +73,7 @@
                                     </span>
                             @endif
                         @else
-                        {{ \Illuminate\Support\Str::random(30) }} <a href="#" class="pointer-events-none">changes</a>
+                        {{ \Illuminate\Support\Str::random(30) }} <a href="#" class="cursor-none">changes</a>
                         @endif
                     </div>
                     @if(!empty($log->changes))

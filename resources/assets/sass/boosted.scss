@@ -1,13 +1,6 @@
 /**
  * Styling related to elements that benefit from a campaign's boosted status
  */
-.booster {
-  background-color: #9b8a30;
-}
-.btn-boost {
-  margin-bottom: 25px;
-}
-
 .entity-sidebar {
   .list-group-item {
     border-bottom: unset;
@@ -17,11 +10,12 @@
     border: unset;
   }
 }
+
+// Dynamically control which privacy status icon is shown based on the page's class
 .entity-privacy-icon {
   .fa-lock-open {
     display: inline-block;
   }
-
   .fa-lock {
     display: none;
   }
@@ -429,37 +423,35 @@ body[class*="kanka-entity"] .content-wrapper > .content {
 }
 
 @media (max-width: 767px) {
-  .entity-grid {
-    display: block;
+    .entity-grid {
+        display: block;
 
-    .entity-header {
-      grid-template-columns: 120px minmax(auto, calc(100% - 120px));
+        .entity-header {
+            grid-template-columns: 120px minmax(auto, calc(100% - 120px));
 
-      .entity-banner {
-        min-height: 200px;
-      }
+            .entity-banner {
+                min-height: 200px;
+            }
 
-      .entity-header-image {
-        width: 120px;
-        align-self: flex-start;
+            .entity-header-image {
+                width: 120px;
+                align-self: flex-start;
 
-        .entity-image {
-          height: 100px;
+                .entity-image {
+                    height: 100px;
+                }
+            }
+
+            .entity-name {
+                font-size: 20px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap
+            }
         }
-      }
 
-      .entity-header-text {
-      }
-      .entity-name {
-        font-size: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space:nowrap
-      }
+        .entity-story-block, .entity-main-block {
+            margin: 0 5px;
+        }
     }
-
-    .entity-story-block, .entity-main-block {
-      margin: 0 5px;
-    }
-  }
 }

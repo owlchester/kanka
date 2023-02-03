@@ -16,7 +16,7 @@ $previousRelation = null;
                 {!! $member->character->tooltipedLink() !!}
             @endif
         </span>
-        <br class="clear" />
+        <br class="clear-both" />
     </li>
     @else
     <li class="list-group-item pinned-member" data-character="{{ $member->character_id }}" data-organisation="{{ $member->organisation_id }}" data-role="{{ $member->role }}" data-private="{{ $member->is_private }}">
@@ -30,7 +30,7 @@ $previousRelation = null;
                 {!! $member->character->tooltipedLink() !!}
            @endif
         </span>
-        <br class="clear" />
+        <br class="clear-both" />
 @php $previousRelation = $member->role @endphp
     @endif
 @endforeach

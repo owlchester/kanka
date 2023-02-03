@@ -171,8 +171,8 @@ if (isset($model) && $model->isChunked()) {
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#coordinates">{{ __('maps.fields.tabs.coordinates') }}</a>
                 </li>
-                <li class="{{ (isset($model) && !empty($model))? '' : 'disabled disabledLink' }}">
-                    <a class="{{ (isset($model) && !empty($model))? '' : 'disabledTab' }}" data-toggle="tab"
+                <li class="{{ (isset($model) && !empty($model))? '' : 'disabled cursor-' }}">
+                    <a class="{{ (isset($model) && !empty($model))? '' : 'cursor-none' }}" data-toggle="tab"
                         href="#marker">{{ __('maps.fields.tabs.marker') }}</a>
                 </li>
             </ul>

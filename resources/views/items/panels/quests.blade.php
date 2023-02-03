@@ -10,7 +10,7 @@
         <?php  $r = $model->relatedQuests()->paginate(); ?>
         <table id="item-quests" class="table table-hover ">
             <tbody><tr>
-                <th class="avatar"><br /></th>
+                <th class="w-14"><br /></th>
                 <th>{{ trans('quests.fields.name') }}</th>
                 <th class="hidden-sm">{{ trans('quests.fields.role') }}</th>
                 <th class="hidden-sm">{{ trans('quests.fields.type') }}</th>

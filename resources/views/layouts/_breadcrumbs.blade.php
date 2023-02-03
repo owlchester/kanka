@@ -1,4 +1,4 @@
-<ol class="breadcrumb">
+<ol class="breadcrumb block m-0 mb-2 p-0 text-xs">
     @if (!isset($breadcrumbsDashboard) || $breadcrumbsDashboard === true)
         @if ($campaign)
             <li>

@@ -89,21 +89,21 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
         <div class="content-wrapper" id="{{ isset($contentId) ? $contentId : "main-content" }}">
             @include('layouts.banner')
 
-        @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))
-            <section class="content-header">
-                @includeWhen(!isset($breadcrumbs) || $breadcrumbs !== false, 'layouts._breadcrumbs')
-                @if (!view()->hasSection('entity-header'))
-                    @if (isset($mainTitle))
-                        @yield('header-extra')
-                    @else
-                        <h1>
+            @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))
+                <section class="content-header">
+                    @includeWhen(!isset($breadcrumbs) || $breadcrumbs !== false, 'layouts._breadcrumbs')
+                    @if (!view()->hasSection('entity-header'))
+                        @if (isset($mainTitle))
                             @yield('header-extra')
-                            {!! $title ?? "Page Title" !!}
-                            <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
-                        </h1>
+                        @else
+                            <h1 class="truncate">
+                                @yield('header-extra')
+                                {!! $title ?? "Page Title" !!}
+                                <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
+                            </h1>
+                        @endif
                     @endif
-                @endif
-            </section>
+                </section>
             @endif
 
             @yield('content-header')

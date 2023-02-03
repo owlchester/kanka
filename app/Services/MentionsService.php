@@ -403,7 +403,7 @@ class MentionsService
                         } else {
                             $parsedTargetEntry = $entity->child->entry;
                         }
-                        $cssClasses[] = 'mention-field-entry';
+                        $cssClasses[] = 'mention-field-entry block';
                         $entityName = '<a href="' . $url . '"'
                             . ' class="entity-mention-name block mb-2"'
                             . ' data-toggle="tooltip-ajax"'

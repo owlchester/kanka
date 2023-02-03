@@ -20,7 +20,7 @@ $attributes = isset($entity) ? $entity->starredAttributes() : $model->entity->st
                 <p>{!! nl2br($attribute->mappedValue()) !!}</p>
             @elseif (!$attribute->isCheckbox() && !$attribute->isSection())
                 <span class="pull-right">{!! $attribute->mappedValue() !!}</span>
-                <br class="clear" />
+                <br class="clear-both" />
             @endif
         </li>
     @endforeach

@@ -33,77 +33,40 @@
 
 // Surrounds the whole body
 .wrapper {
-  background: none;
-  height: 100%;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  // AdminLTE wants this but it becomes weird with the min-height computed on firefox
-  //overflow: unset !important;
-}
-// for the content panel
-.content-wrapper {
-    margin-right: auto;
-    margin-left: auto;
-    height: auto;
-    min-height: 100%
+    background: none;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    // AdminLTE wants this but it becomes weird with the min-height computed on firefox
+    //overflow: unset !important;
 }
 .content {
-  min-height: 250px;
-  padding: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-img.profile-user-img {
-  border: none;
-  width: auto;
-  max-height: 400px;
-  padding: 0;
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 
 .content-header {
-  position: relative;
-  padding: 15px 15px 0 15px;
-  .breadcrumb {
-    position: relative;
-    float: none;
-    top: 0;
-    padding: 5px 10px;
-    display: block;
+    padding: 15px 15px 0 15px;
 
-    background: transparent;
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 0.75rem;
+    .breadcrumb {
+        background: transparent;
 
-      > li + li:before {
-          content: ">";
-      }
-  }
-
-  h1 {
-    display: block;
-    font-size: 1.3em;
-    margin: 0;
-  }
-}
-
-.navbar-nav {
-  // Playing the notification buttons next to each other
-  .dropdown-menu > .notification-footer  {
-    a {
-      display: inline-block;
-      padding: 3px 5px;
+        > li + li:before {
+            content: ">";
+        }
     }
-  }
+
+    h1 {
+        display: block;
+        font-size: 1.3em;
+        margin: 0;
+    }
 }
-.navbar-nav > .notifications-menu > .dropdown-menu {
-  width: 360px;
-}
+
 // I hate my life
 .navbar {
     margin-bottom: 0;
@@ -141,14 +104,6 @@ img.profile-user-img {
   }
 }
 
-// Map form
-.disabledLink{
-  cursor: not-allowed;
-}
-.disabledTab{
-  pointer-events: none;
-}
-
 .cover-background {
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -162,12 +117,6 @@ div.required label:after {
   color: var(--input-required-text);
 }
 
-table th.avatar, table td.avatar {
-  width: 40px;
-}
-table th.icon, table th.icon {
-  min-width: 50px;
-}
 table {
   tbody {
     td {
@@ -184,31 +133,10 @@ table {
   }
 }
 
-.clear {
-  clear: both;
-}
-
 .preview-v2 {
-  .image {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 120px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-  }
   a.img-delete {
     color: white;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    display: block;
-    width: 100%;
-    padding: 5px;
-    background: none;
     background-color: rgba(0, 0, 0, 0.3);
-    overflow: hidden;
     max-height: 48px;
 
     &:hover {
@@ -374,13 +302,6 @@ tr.tr-hover {
     }
   }
 }
-
-// Quest panels
-.widget-user-username {
-  a {
-    color: white;
-  }
-}
 .bg-pink {
   color: #fff !important;
   background-color: #ebbde9 !important;
@@ -448,15 +369,6 @@ tr.tr-hover {
 .text-maroon {
     color:#D81B60 !important
 }
-
-.bg-gray, .bg-none {
-  .widget-user-username {
-    a {
-      color: var(--bg-default-link);
-    }
-  }
-}
-
 
 
 // Attributes in entities and text area
@@ -633,56 +545,8 @@ button.dropdown-item {
   }
 }
 
-.tutorial-highlight {
-  box-shadow:
-          0 0 10px #fff,            /* outer white */
-          -10px 0 20px #f0f,        /* outer left magenta */
-          10px 0 20px #0ff;         /* outer right cyan */
-  animation: tutorial-glow 10s linear infinite;
-
-  /*&:before {
-      content: '';
-      position: absolute;
-      left: -2px;
-      top: -2px;
-      background-size: 400%;
-      width: calc(100% + 5px);
-      height: calc(100% + 5px);
-      z-index: -1;
-      animation: tutorial-glow 10s linear infinite;
-  }*/
-}
-
-@keyframes tutorial-glow {
-  0% {
-    box-shadow:
-            0 0 10px #fff,            /* outer white */
-            -10px 0 20px #f0f,        /* outer left magenta */
-            10px 0 20px #0ff;         /* outer right cyan */
-  }
-
-  50% {
-    box-shadow:
-            0 0 10px #fff,            /* outer white */
-            -10px 0 20px #0ff,        /* outer left magenta */
-            10px 0 20px #f0f;         /* outer right cyan */
-  }
-
-  100% {
-    box-shadow:
-            0 0 10px #fff,            /* outer white */
-            -10px 0 20px #f0f,        /* outer left magenta */
-            10px 0 20px #0ff;         /* outer right cyan */
-  }
-}
-
 .privacy-callout {
   border-left: 2px solid #f6c9af;
-
-  label {
-    user-select: none;
-    margin: 0;
-  }
 }
 .booster-block {
   > div {
@@ -744,10 +608,6 @@ button.dropdown-item {
     content: "\f110";
 }
 
-.mention-field-entry {
-    display: block;
-}
-
 
 
 @import "calendar";
@@ -759,6 +619,7 @@ button.dropdown-item {
 @import "footer";
 @import "editor";
 @import "box";
+//@import "tutorial";
 @import "conversation";
 @import "quest";
 @import "quick-creator";

@@ -18,4 +18,4 @@
     @include('gallery._image')
 @endforeach
 
-<br class="clear" />
+<br class="clear-both" />

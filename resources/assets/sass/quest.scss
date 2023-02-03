@@ -1,17 +1,18 @@
 .box-quest-element {
-    .widget-user-header {
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
-    }
+    // Quest panels
     .widget-user-username {
-        font-weight: 300;
+        a {
+            color: white;
+        }
     }
 
-    // Quest entity image
-    .widget-user-image {
-        .entity-image {
-            height: 40px;
-            width: 40px;
+    .bg-gray, .bg-none {
+        .widget-user-username {
+            a {
+                color: var(--bg-default-link);
+            }
         }
     }
 }
+
+

@@ -6,7 +6,7 @@
 <table id="entity-event-list" class="table table-hover">
     <thead>
     <tr>
-        <th class="avatar"></th>
+        <th class="w-14"></th>
         @if (auth()->check())
             <th><a href="{{ route('entities.entity_events.index', [$entity, 'order' => 'events/calendar.name', '#calendars']) }}">{{ __('entities.calendar') }}@if (request()->get('order') == 'events/calendar.name') <i class="fa-solid fa-long-arrow-down"></i>@endif</a></th>
             <th><a href="{{ route('entities.entity_events.index', [$entity, 'order' => 'events/date', '#calendars']) }}">{{ __('events.fields.date') }}@if (request()->get('order') == 'events/date') <i class="fa-solid fa-long-arrow-down"></i>@endif</a></th>

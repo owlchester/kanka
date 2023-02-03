@@ -3,8 +3,20 @@
     .h-#{$i} {
         height: $rem + rem;
     }
+    .min-h-#{$i} {
+        min-height: $rem + rem;
+    }
+    .max-h-#{$i} {
+        max-height: $rem + rem;
+    }
     .w-#{$i} {
         width: $rem + rem;
+    }
+    .min-w-#{$i} {
+        min-width: $rem + rem;
+    }
+    .max-w-#{$i} {
+        max-width: $rem + rem;
     }
 }
 .h-full {

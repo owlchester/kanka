@@ -11,7 +11,7 @@
         ])->paginate(); ?>
         <table id="character-journals" class="table table-hover ">
             <tbody><tr>
-                <th class="avatar"><br /></th>
+                <th class="w-14"><br /></th>
                 <th>{{ __('journals.fields.name') }}</th>
                 <th class="visible-sm">{{ __('crud.fields.type') }}</th>
                 <th class="visible-sm">{{ __('journals.fields.date') }}</th>

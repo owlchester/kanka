@@ -19,7 +19,7 @@
         @php $count++; @endphp
         <div class="col-md-6">
             <div class="box box-widget widget-user-2 box-quest-element" id="quest-element-{{ $element->id }}" @if ($element->entity)data-entity-id="{{ $element->entity->id }}" data-entity-type="{{ $element->entity->type() }}"@endif>
-                <div class="flex p-5 gap-5 items-center {{ $element->colourClass() }}">
+                <div class="flex p-5 gap-3 items-center {{ $element->colourClass() }}">
                     @if ($element->entity)
                         <div class="widget-user-image">
                             <img class="flex-none entity-image rounded-full pull-left" src="{{ $element->entity->avatar(true) }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
@@ -28,10 +28,10 @@
 
                     <div class="flex-grow">
                         <h3 class="widget-user-username m-0 text-2xl">
-                            @if ($element->is_private)
-                                <i class="fa-solid fa-lock pull-right" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
-                            @endif
                             @if($element->entity)
+                                @if ($element->entity->is_private)
+                                    <i class="fa-solid fa-lock" aria-hidden="true" aria-label="{{ __('crud.is_private') }}" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
+                                @endif
                                 {!! $element->entity->tooltipedLink($element->name) !!}
                             @else
                                 <span class="name">
@@ -39,7 +39,9 @@
                                 </span>
                             @endif
                         </h3>
-                        <h5 class="m-0">{!! $element->role !!}<br /></h5>
+                        @if (!empty($element->role))
+                            <h5 class="m-0">{!! $element->role !!}</h5>
+                        @endif
                     </div>
                 </div>
                 <div class="box-body">

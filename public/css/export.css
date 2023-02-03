@@ -32,11 +32,6 @@ img {
   display: none !important;
 }
 
-.profile-user-img {
-  max-width: 200px;
-  margin-top: 20px;
-}
-
 .pull-right {
   display: inline-block;
   text-align: right;
