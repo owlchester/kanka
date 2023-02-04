@@ -33,7 +33,7 @@ class CampaignStyleApiController extends ApiController
      * @param CampaignStyle $campaignStyle
      * @return Resource
      */
-    public function mshow(Campaign $campaign, CampaignStyle $campaignStyle)
+    public function show(Campaign $campaign, CampaignStyle $campaignStyle)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
