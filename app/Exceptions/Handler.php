@@ -140,6 +140,12 @@ class Handler extends ExceptionHandler
             return response()
                 ->json(['Your account limit of ' . $amount . ' requests per minute has been reached.'
                     . $message], 429);
+        } elseif ($exception instanceof AuthenticationException) {
+            return response()
+                ->json([
+                    'code' => 401,
+                    'error' => 'Invalid authentication token. Make sure you copy-pasted it correctly, or try using a new one at https://kanka.io/en-US/settings/api.',
+                ], 401);
         }
         return response()
             ->json([
