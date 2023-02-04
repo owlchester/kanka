@@ -14,10 +14,10 @@
                 @foreach($rows as $layer)
                     <div class="element" data-id="{{ $layer->id }}">
                         {!! Form::hidden('layer[]', $layer->id) !!}
-                        <div class="dragger">
+                        <div class="dragger pr-3">
                             <span class="fa-solid fa-ellipsis-v"></span>
                         </div>
-                        <div class="name">
+                        <div class="name overflow-hidden flex-grow">
                             {!! $layer->name !!}
                         </div>
                     </div>

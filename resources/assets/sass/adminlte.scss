@@ -3,7 +3,6 @@
     transition: transform .3s ease-in-out,width .3s ease-in-out;
   }
   .sidebar-toggle {
-    text-align: center;
     transition: transform .3s ease-in-out,width .3s ease-in-out;
   }
 }
@@ -76,23 +75,6 @@
 }
 
 
-// Navbar stuff
-.navbar-custom-menu {
-    float: right;
-    .navbar-nav {
-        margin: 0;
-        > li {
-            position: static;
-            float: left;
-
-            .dropdown-menu {
-                position: absolute;
-                right: 0;
-                left: auto;
-            }
-        }
-    }
-}
 
 .nav-stacked > li > a, .nav-pills > li > a {
     border-left: 3px solid transparent;
@@ -119,38 +101,13 @@
     padding: 10px;
 }
 
-/** Unread notification number **/
-.main-header .navbar .nav > li > a > .label {
-    position: absolute;
-    top: 9px;
-    right: 7px;
-    text-align: center;
-    font-size: 9px;
-    padding: 2px 3px;
-    line-height: 0.9;
-}
-
 /** Achievements **/
 .info-box {
-    display: block;
-    min-height: 90px;
     background: #fff;
-    width: 100%;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
-    margin-bottom: 15px;
-}
-.info-box small {
-    font-size: 14px;
 }
 .info-box .progress {
     background: rgba(0, 0, 0, 0.2);
-    margin: 5px -10px 5px -10px;
     height: 2px;
-}
-.info-box .progress,
-.info-box .progress .progress-bar {
-    border-radius: 0;
 }
 .info-box .progress .progress-bar {
     background: #fff;
@@ -160,42 +117,6 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 2px;
-    display: block;
-    float: left;
-    height: 90px;
-    width: 90px;
-    text-align: center;
-    font-size: 45px;
-    line-height: 90px;
     background: rgba(0, 0, 0, 0.2);
-}
-.info-box-icon > img {
-    max-width: 100%;
-}
-.info-box-content {
-    padding: 5px 10px;
-    margin-left: 90px;
-}
-.info-box-number {
-    display: block;
-    font-weight: bold;
-    font-size: 18px;
-}
-.progress-description,
-.info-box-text {
-    display: block;
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.info-box-text {
-    text-transform: uppercase;
-}
-.info-box-more {
-    display: block;
-}
-.progress-description {
-    margin: 0;
 }
 

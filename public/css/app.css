@@ -325,12 +325,6 @@ body .main-header .navbar .nav .open > a.active {
   background-color: var(--main-navbar-hover-background);
 }
 
-@media (max-width: 991px) {
-  .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
-    border: 1px solid var(--dropdown-border);
-    background-color: var(--dropdown-background);
-  }
-}
 .nav-tabs-custom > .nav-tabs > li.active:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a {
   background-color: var(--navbar-tab-active-background);
   color: var(--navbar-tab-active-text);
@@ -2022,9 +2016,6 @@ img.note-float-left {
   align-items: center;
   justify-content: center;
 }
-.element-live-reorder .element .dragger {
-  padding-right: 10px;
-}
 .element-live-reorder .element .rounded-icon i {
   border-radius: 50%;
   width: 30px;
@@ -2034,22 +2025,11 @@ img.note-float-left {
   text-align: center;
   display: block;
 }
-.element-live-reorder .element .name {
-  overflow: hidden;
-  flex-grow: 1;
-}
 .element-live-reorder .element .name i {
   min-width: 20px;
 }
 .element-live-reorder .element .name i.ra {
   display: var(--fa-display, inline-block);
-}
-.element-live-reorder .element .state {
-  padding: 0 10px;
-  align-self: flex-end;
-}
-.element-live-reorder .element .icons {
-  align-self: flex-end;
 }
 .element-live-reorder .element select {
   height: 28px;
@@ -2057,58 +2037,21 @@ img.note-float-left {
 }
 .element-live-reorder .element .children {
   flex: 0 0 100%;
-  margin-top: 15px;
 }
 
-ul.sidebar-sortable, ul.sidebar-sortable ul {
-  list-style: none;
-  margin: 0;
-  -webkit-padding-start: 12px;
-          padding-inline-start: 12px;
-}
-ul.sidebar-sortable li, ul.sidebar-sortable ul li {
-  padding: 6px 6px;
-}
-ul.sidebar-sortable li .dnd-handle, ul.sidebar-sortable ul li .dnd-handle {
-  cursor: move;
-}
-ul.sidebar-sortable li i, ul.sidebar-sortable ul li i {
-  width: 20px;
-  display: inline-block;
-}
-ul.sidebar-sortable li ul, ul.sidebar-sortable ul li ul {
-  margin-top: 6px;
-}
-
-.box-module {
-  cursor: pointer;
-}
-
-.ui-sortable-placeholder {
-  border: 1px dotted #333;
-  border-radius: 5px;
-}
-
+/**
+ * Rules for specific campaign interfaces
+ */
 .public-permission {
-  font-size: 1.3rem;
-  line-height: 1.3;
   border: 1px solid var(--box-border);
   background-color: var(--box-background);
   transition: all 0.3s ease-in-out;
-  word-break: break-word;
-  text-align: center;
-  display: flex;
   flex-flow: row wrap;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .public-permission:hover {
   background-color: var(--quick-creator-button-hover-background);
   color: var(--quick-creator-button-hover-text);
-}
-.public-permission i.entity-type-icon {
-  display: block;
 }
 
 .public-permission.enabled {
@@ -2116,13 +2059,6 @@ ul.sidebar-sortable li ul, ul.sidebar-sortable ul li ul {
   color: var(--quick-creator-button-text);
 }
 
-.public-permission.loading i {
-  display: none;
-}
-
-.campaign-settings .box {
-  margin-bottom: 0;
-}
 .campaign-settings .box-success {
   border: 1px solid #00a65a;
 }
@@ -6130,6 +6066,10 @@ body.ab-testing-second .ab-testing-a {
   cursor: not-allowed;
 }
 
+.cursor-move {
+  cursor: move;
+}
+
 .break-all {
   word-break: break-all;
 }
@@ -6167,6 +6107,11 @@ body.ab-testing-second .ab-testing-a {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2rem;
+  line-height: 2.5rem;
 }
 
 .italic {
@@ -6312,7 +6257,6 @@ html:has(dialog[open]) {
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 .main-header .sidebar-toggle {
-  text-align: center;
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
@@ -6399,22 +6343,6 @@ html:has(dialog[open]) {
   background-color: #D81B60 !important;
 }
 
-.navbar-custom-menu {
-  float: right;
-}
-.navbar-custom-menu .navbar-nav {
-  margin: 0;
-}
-.navbar-custom-menu .navbar-nav > li {
-  position: static;
-  float: left;
-}
-.navbar-custom-menu .navbar-nav > li .dropdown-menu {
-  position: absolute;
-  right: 0;
-  left: auto;
-}
-
 .nav-stacked > li > a, .nav-pills > li > a {
   border-left: 3px solid transparent;
   border-radius: 0;
@@ -6441,41 +6369,14 @@ html:has(dialog[open]) {
   padding: 10px;
 }
 
-/** Unread notification number **/
-.main-header .navbar .nav > li > a > .label {
-  position: absolute;
-  top: 9px;
-  right: 7px;
-  text-align: center;
-  font-size: 9px;
-  padding: 2px 3px;
-  line-height: 0.9;
-}
-
 /** Achievements **/
 .info-box {
-  display: block;
-  min-height: 90px;
   background: #fff;
-  width: 100%;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
-  margin-bottom: 15px;
-}
-
-.info-box small {
-  font-size: 14px;
 }
 
 .info-box .progress {
   background: rgba(0, 0, 0, 0.2);
-  margin: 5px -10px 5px -10px;
   height: 2px;
-}
-
-.info-box .progress,
-.info-box .progress .progress-bar {
-  border-radius: 0;
 }
 
 .info-box .progress .progress-bar {
@@ -6487,50 +6388,7 @@ html:has(dialog[open]) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 2px;
-  display: block;
-  float: left;
-  height: 90px;
-  width: 90px;
-  text-align: center;
-  font-size: 45px;
-  line-height: 90px;
   background: rgba(0, 0, 0, 0.2);
-}
-
-.info-box-icon > img {
-  max-width: 100%;
-}
-
-.info-box-content {
-  padding: 5px 10px;
-  margin-left: 90px;
-}
-
-.info-box-number {
-  display: block;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.progress-description,
-.info-box-text {
-  display: block;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.info-box-text {
-  text-transform: uppercase;
-}
-
-.info-box-more {
-  display: block;
-}
-
-.progress-description {
-  margin: 0;
 }
 
 @media print {

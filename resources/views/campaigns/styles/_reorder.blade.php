@@ -15,13 +15,13 @@
             @foreach($reorderStyles as $style)
                 <div class="element" data-id="{{ $style->id }}">
                     {!! Form::hidden('style[]', $style->id) !!}
-                    <div class="dragger">
+                    <div class="pt-3">
                         <span class="fa-solid fa-ellipsis-v"></span>
                     </div>
-                    <div class="name">
+                    <div class="name overflow-hidden flex-grow">
                         {!! $style->name !!}
                     </div>
-                    <div class="icons">
+                    <div class="self-end">
                         @if ($style->is_enabled) <i class="fa-solid fa-check-circle"></i>@endif
                     </div>
                 </div>

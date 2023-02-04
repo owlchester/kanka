@@ -4,7 +4,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
 <header class="main-header @if(isset($startUI) && $startUI) main-header-start @endif">
     <nav class="navbar navbar-static-top flex">
         @if ((auth()->check() && auth()->user()->hasCampaigns()) || !auth()->check())
-            <button class="sidebar-toggle" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>]</code>']) !!}" data-placement="right" data-html="true" tabindex="3">
+            <button class="sidebar-toggle text-center" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>]</code>']) !!}" data-placement="right" data-html="true" tabindex="3">
                 <span class="sr-only">{{ __('header.toggle_navigation') }}</span>
             </button>
         @endif

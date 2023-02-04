@@ -31,13 +31,13 @@
                 @foreach($links as $link)
                     <div class="element" data-id="{{ $link->id }}">
                         {!! Form::hidden('menu_link[]', $link->id) !!}
-                        <div class="dragger">
+                        <div class="dragger pr-3">
                             <span class="fa-solid fa-ellipsis-v"></span>
                         </div>
-                        <div class="name">
+                        <div class="name overflow-hidden flex-grow">
                             <i class="{{ $link->icon() }}"></i> {!! $link->name !!}
                         </div>
-                        <div class="icons">
+                        <div class="self-end">
                             @if ($link->is_private)
                                 <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
                             @endif

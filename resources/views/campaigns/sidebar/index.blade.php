@@ -46,13 +46,13 @@
                         </div>
                     @endif
 
-                    <ul class="sidebar-sortable nested-sortable">
+                    <ul class="list-none m-0 p-0 sidebar-sortable nested-sortable">
                     @foreach ($layout as $name => $setup)
-                        <li class="@if (isset($setup['fixed'])) fixed-position @endif" id="{{ $name }}">
+                        <li class="p-1 @if (isset($setup['fixed'])) fixed-position @endif" id="{{ $name }}">
                             <p class="text-muted text-sm hidden-md hidden-lg">({{ $setup['label'] }})</p>
                             <div class="input-group">
-                                <span class="input-group-addon dnd-handle">
-                                    <i class="{{ $setup['custom_icon'] ?: $setup['icon'] }}"></i>
+                                <span class="input-group-addon dnd-handle cursor-move">
+                                    <i class="inline-block w-6 {{ $setup['custom_icon'] ?: $setup['icon'] }}"></i>
                                 </span>
                                 <input type="text" class="form-control" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] }}" placeholder="{{$setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
                             </div>
@@ -66,13 +66,13 @@
                             @endif
                             <input type="hidden" name="order[{{ $name }}_start]" value="1" />
                             {!! Form::hidden('section_' . $name . '_start', 1) !!}
-                            <ul class="sidebar-sortable nested-sortable">
+                            <ul class="list-none mt-2 m-0 p-0 pl-4 sidebar-sortable nested-sortable">
                                 @foreach ($setup['children'] as $childName => $child)
-                                    <li id="{{ $childName }}">
+                                    <li class="p-1" id="{{ $childName }}">
                                         <p class="text-muted text-sm hidden-md hidden-lg">({{ $child['label'] }})</p>
                                         <div class="input-group">
-                                            <span class="input-group-addon dnd-handle">
-                                                <i class="{{ $child['custom_icon'] ?: $child['icon'] }}"></i>
+                                            <span class="input-group-addon dnd-handle cursor-move">
+                                                <i class="inline-block w-6 {{ $child['custom_icon'] ?: $child['icon'] }}"></i>
                                             </span>
                                             <input type="text" class="form-control" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] }}" placeholder="{{ $child['icon'] }}" data-paste="fontawesome" maxlength="50" />
                                         </div>

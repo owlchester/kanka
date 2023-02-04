@@ -383,10 +383,6 @@ body .main-header .navbar .dropdown .avatar {
 body .main-header .navbar .dropdown .profile-avatar-link {
   padding: 0;
 }
-body .main-header .navbar .navbar-custom-menu .navbar-nav > li > a, body .main-header .navbar .navbar-right > li > a {
-  border: unset;
-  font-size: 18px;
-}
 body .main-header .navbar .sidebar-toggle {
   border: unset;
 }
