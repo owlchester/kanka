@@ -3,6 +3,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
 ?>
 <header id="header" class="">
     <nav class="flex gap-2 justify-center items-center fixed top-0 w-full bg-navbar h-12">
+        <div class="flex-0 flex w-sidebar justify-items items-center">
         @if ((auth()->check() && auth()->user()->hasCampaigns()) || !auth()->check())
             <nav-toggler
                 text="{{ __('header.toggle_navigation') }}"
@@ -17,16 +18,26 @@ $currentCampaign = CampaignLocalization::getCampaign();
                 placeholder="{{ __('SEARCH') }}"
             ></nav-search>
         @endif
+        </div>
+
+        @if (auth()->check() && $currentCampaign->userIsMember())
+        <div class="flex-0">
+            <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="bottom"></span>
+            <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex justify-center text-center gap-2 rounded p-1 px-3 text-uppercase items-center"
+            tabindex="4">
+                <i class="flex-none fa-solid fa-plus" aria-hidden="true" ></i>
+                <span class="flex-grow" data-toggle="tooltip" data-placement="bottom" title="{{ __('entities.creator.tooltip') }}">
+                    {{ __('crud.create') }}
+                </span>
+                <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true" data-placement="bottom" >N</span>
+            </a>
+        </div>
+        @endif
 
         <div class="flex-1 navbar-actions">
-            <div class="flex justify-end px-3">
-                @if (!empty($currentCampaign))
-                    <span href="#" role="button" class="visible-xs visible-sm mobile-search text-lg p-3" aria-label="{{ __('crud.search') }}">
-                        <span class="fa-solid fa-search" aria-hidden="true"></span>
-                    </span>
-                @endif
 
-                @guest
+            <div class="flex justify-end px-3">
+                    @guest
                         <a href="{{ route('login') }}" class="hidden-xs btn mt-1">
                             {{ __('front.menu.login') }}
                         </a>

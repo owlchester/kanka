@@ -7,6 +7,10 @@
   margin-left: $sidebarWidth;
 }
 
+.w-sidebar {
+    width: var(--sidebar-width, 280px);
+}
+
 .main-sidebar {
     width: 280px;
     background-color: var(--sidebar-background);
@@ -109,37 +113,8 @@
         }
 
 
-        .quick-creator-element {
-            text-align: center;
-            margin-bottom: 0.25rem;
 
-            .quick-creator-button {
-                display: flex;
-                align-items: baseline;
-                justify-content: center;
-                font-size: 0.9rem;
-                padding: 0.5rem 0;
-                width: 70%;
-                cursor: pointer;
-                text-align: center;
-                mix-blend-mode: normal;
-                background-color: var(--quick-creator-button-background);
-                text-transform: uppercase;
-                border-radius: 5px;
 
-                i {
-                    font-size: 1rem;
-                }
-                i, span {
-                    color: var(--quick-creator-button-text);
-                }
-
-                &:hover {
-                    transition: all 0.5s ease-in-out;
-                    background-color: var(--quick-creator-button-hover-background);
-                }
-            }
-        }
     }
 }
 .main-sidebar-placeholder {
@@ -360,6 +335,20 @@ body .main-sidebar, body .left-side {
 }
 
 
+.sidebar-toggle [data-sidebar="collapse"] {
+    display: none;
+}
+.sidebar-toggle [data-sidebar="expand"] {
+    display: unset;
+}
+
+body.sidebar-open .sidebar-toggle [data-sidebar="collapse"] {
+    display: unset;
+}
+body.sidebar-open .sidebar-toggle [data-sidebar="expand"] {
+    display: none;
+}
+
 
 /** Mobile **/
 @media (max-width: 767px) {
@@ -394,19 +383,24 @@ body .main-sidebar, body .left-side {
         width: 0 !important;
         z-index: 850;
     }
-    .sidebar-collapse .sidebar-creator {
-        width: 50px !important;
-
-        span {
-            display: none;
-        }
-    }
     .sidebar-collapse .content-wrapper, .sidebar-collapse .right-side, .sidebar-collapse .main-footer {
         margin-left: 0 !important;
         z-index: 840;
     }
 
-    .sidebar-collapse .sidebar-menu > li > .sidebar-text > span, .sidebar-collapse .campaign-updated, .sidebar-collapse .campaign-name {
-        display: none !important;
+
+
+    .sidebar-toggle [data-sidebar="collapse"] {
+        display: unset;
+    }
+    .sidebar-toggle [data-sidebar="expand"] {
+        display: none;
+    }
+
+    body.sidebar-collapse .sidebar-toggle [data-sidebar="collapse"] {
+        display: none;
+    }
+    body.sidebar-collapse .sidebar-toggle [data-sidebar="expand"] {
+        display: unset;
     }
 }

@@ -7,6 +7,10 @@
   margin-left: 280px;
 }
 
+.w-sidebar {
+  width: var(--sidebar-width, 280px);
+}
+
 .main-sidebar {
   width: 280px;
   background-color: var(--sidebar-background);
@@ -87,34 +91,6 @@
   background: rgba(0, 0, 0, 0.24);
   box-shadow: inset 1px 2px 6px rgba(0, 0, 0, 0.16);
   border-radius: 8px;
-}
-.main-sidebar .sidebar-menu .quick-creator-element {
-  text-align: center;
-  margin-bottom: 0.25rem;
-}
-.main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  font-size: 0.9rem;
-  padding: 0.5rem 0;
-  width: 70%;
-  cursor: pointer;
-  text-align: center;
-  mix-blend-mode: normal;
-  background-color: var(--quick-creator-button-background);
-  text-transform: uppercase;
-  border-radius: 5px;
-}
-.main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button i {
-  font-size: 1rem;
-}
-.main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button i, .main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button span {
-  color: var(--quick-creator-button-text);
-}
-.main-sidebar .sidebar-menu .quick-creator-element .quick-creator-button:hover {
-  transition: all 0.5s ease-in-out;
-  background-color: var(--quick-creator-button-hover-background);
 }
 
 .main-sidebar-placeholder {
@@ -313,6 +289,22 @@ body .main-sidebar, body .left-side {
   margin-left: 280px;
 }
 
+.sidebar-toggle [data-sidebar=collapse] {
+  display: none;
+}
+
+.sidebar-toggle [data-sidebar=expand] {
+  display: unset;
+}
+
+body.sidebar-open .sidebar-toggle [data-sidebar=collapse] {
+  display: unset;
+}
+
+body.sidebar-open .sidebar-toggle [data-sidebar=expand] {
+  display: none;
+}
+
 /** Mobile **/
 @media (max-width: 767px) {
   .main-sidebar {
@@ -343,18 +335,21 @@ body .main-sidebar, body .left-side {
     width: 0 !important;
     z-index: 850;
   }
-  .sidebar-collapse .sidebar-creator {
-    width: 50px !important;
-  }
-  .sidebar-collapse .sidebar-creator span {
-    display: none;
-  }
   .sidebar-collapse .content-wrapper, .sidebar-collapse .right-side, .sidebar-collapse .main-footer {
     margin-left: 0 !important;
     z-index: 840;
   }
-  .sidebar-collapse .sidebar-menu > li > .sidebar-text > span, .sidebar-collapse .campaign-updated, .sidebar-collapse .campaign-name {
-    display: none !important;
+  .sidebar-toggle [data-sidebar=collapse] {
+    display: unset;
+  }
+  .sidebar-toggle [data-sidebar=expand] {
+    display: none;
+  }
+  body.sidebar-collapse .sidebar-toggle [data-sidebar=collapse] {
+    display: none;
+  }
+  body.sidebar-collapse .sidebar-toggle [data-sidebar=expand] {
+    display: unset;
   }
 }
 .bg-navbar {
@@ -485,6 +480,23 @@ body .main-sidebar, body .left-side {
  */
 .hover\:lookup-entity:hover {
   background-color: var(--lookup-entity-hover, rgba(0, 0, 0, 0.1));
+}
+
+/**
+ * QQ button
+ */
+.quick-creator-button {
+  background-color: var(--quick-creator-button-background);
+}
+.quick-creator-button i {
+  font-size: 1rem;
+}
+.quick-creator-button i, .quick-creator-button span {
+  color: var(--quick-creator-button-text);
+}
+.quick-creator-button:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: var(--quick-creator-button-hover-background);
 }
 
 :root {

@@ -27,7 +27,7 @@ function initKeyboardShortcuts() {
             if (isInputField(target)) {
                 return;
             }
-            $('#live-search').focus();
+            $('#entity-lookup').focus();
             return false; // don't add the k to the search field
         } else if (e.key === 'n' && !(e.ctrlKey || e.metaKey) && !e.altKey && quickCreatorButton.length > 0) {
             // n for quick creator. Don't re-open if already opened

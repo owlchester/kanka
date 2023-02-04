@@ -153,3 +153,22 @@
 .hover\:lookup-entity:hover {
     background-color: var(--lookup-entity-hover, rgba(0, 0, 0, 0.1));
 }
+
+/**
+ * QQ button
+ */
+.quick-creator-button {
+    background-color: var(--quick-creator-button-background);
+
+    i {
+        font-size: 1rem;
+    }
+    i, span {
+        color: var(--quick-creator-button-text);
+    }
+
+    &:hover {
+        transition: all 0.5s ease-in-out;
+        background-color: var(--quick-creator-button-hover-background);
+    }
+}

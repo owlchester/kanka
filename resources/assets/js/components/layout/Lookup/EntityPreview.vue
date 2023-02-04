@@ -13,7 +13,7 @@
                 {{ tag.name }}
             </a>
         </div>
-        <a class="block cursor-pointer my-2"
+        <a class="block cursor-pointer my-2 text-black"
            v-if="entity.location"
            v-bind:href="entity.location.link"
            :data-tag="entity.id"

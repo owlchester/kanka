@@ -337,7 +337,7 @@ require('./crud');
 require('./post');
 require('./calendar');
 require('./keep-alive');
-require('./search');
+//require('./search');
 //require('./notification');
 require('./quick-creator');
 //require('./tutorial')
