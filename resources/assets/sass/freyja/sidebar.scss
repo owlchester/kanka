@@ -144,7 +144,6 @@
 }
 .main-sidebar-placeholder {
 background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
-  z-index: 820;
 }
 .sidebar-menu {
     .fa, .fas, .fab, .far, .ra, .fa-solid, .fa-regular, .fa-brands, .fa-light, .fa-thin, .fa-duotone {
@@ -390,23 +389,24 @@ body .main-sidebar, body .left-side {
     }
 }
 @media (min-width: 768px) {
-  .sidebar-collapse .main-sidebar {
-    transform: translate(0, 0);
-    width: 0 !important;
-    z-index: 850;
-  }
-  .sidebar-collapse .sidebar-creator {
-    width: 50px !important;
-    span {
-      display: none;
+    .sidebar-collapse .main-sidebar {
+        transform: translate(0, 0);
+        width: 0 !important;
+        z-index: 850;
     }
-  }
-  .sidebar-collapse .content-wrapper, .sidebar-collapse .right-side, .sidebar-collapse .main-footer {
-    margin-left: 0 !important;
-    z-index: 840;
-  }
+    .sidebar-collapse .sidebar-creator {
+        width: 50px !important;
 
-  .sidebar-collapse .sidebar-menu > li > .sidebar-text > span, .sidebar-collapse .campaign-updated, .sidebar-collapse .campaign-name {
-    display: none !important;
-  }
+        span {
+            display: none;
+        }
+    }
+    .sidebar-collapse .content-wrapper, .sidebar-collapse .right-side, .sidebar-collapse .main-footer {
+        margin-left: 0 !important;
+        z-index: 840;
+    }
+
+    .sidebar-collapse .sidebar-menu > li > .sidebar-text > span, .sidebar-collapse .campaign-updated, .sidebar-collapse .campaign-name {
+        display: none !important;
+    }
 }

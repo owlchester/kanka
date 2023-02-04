@@ -387,7 +387,9 @@ Route::get('/search/tag-children', 'Search\LiveController@tagChildren')->name('s
 Route::get('/search/ability-entities', 'Search\LiveController@abilityEntities')->name('search.ability-entities');
 Route::get('/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
 Route::get('/search/months', 'Search\CalendarController@months')->name('search.calendar-months');
-Route::get('/search/live', 'Search\LiveController@index')->name('search.live');
+
+Route::get('/search/live', [\App\Http\Controllers\Search\LiveController::class, 'index'])->name('search.live');
+Route::get('/search/recent', [\App\Http\Controllers\Search\LiveController::class, 'recent'])->name('search.recent');
 
 Route::get('/redirect', 'RedirectController@index')->name('redirect');
 
@@ -441,6 +443,9 @@ Route::post('/entities/{entity}/attribute-template', 'Entity\AttributeTemplateCo
 
 Route::get('/entities/{entity}/permissions', 'PermissionController@view')->name('entities.permissions');
 Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
+
+
+Route::get('/entities/{entity}/preview', 'Entity\PreviewController@index')->name('entities.preview');
 
 // The campaign management sub pages
 Route::get('/overview', 'CampaignController@index')->name('campaign');

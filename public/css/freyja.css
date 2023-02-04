@@ -119,7 +119,6 @@
 
 .main-sidebar-placeholder {
   background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
-  z-index: 820;
 }
 
 .sidebar-menu .fa, .sidebar-menu .fas, .sidebar-menu .fab, .sidebar-menu .far, .sidebar-menu .ra, .sidebar-menu .fa-solid, .sidebar-menu .fa-regular, .sidebar-menu .fa-brands, .sidebar-menu .fa-light, .sidebar-menu .fa-thin, .sidebar-menu .fa-duotone {
@@ -358,37 +357,9 @@ body .main-sidebar, body .left-side {
     display: none !important;
   }
 }
-body .main-header {
-  box-shadow: unset;
-}
-body .main-header .sidebar-toggle {
-  display: block;
-  text-align: center;
-  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
-}
-body .main-header .navbar {
-  margin-left: 280px;
-}
-body .main-header .navbar .dropdown-toggle {
-  height: 50px;
-}
-body .main-header .navbar .dropdown-toggle img {
-  width: 25px;
-  height: 25px;
-}
-body .main-header .navbar .dropdown .avatar {
-  width: 150px;
-  height: 150px;
-}
-body .main-header .navbar .dropdown .profile-avatar-link {
-  padding: 0;
-}
-body .main-header .navbar .sidebar-toggle {
-  border: unset;
-}
-
-body .main-header.main-header-start {
-  background-color: #fff;
+.bg-navbar {
+  background-color: var(--main-navbar-background);
+  z-index: 50;
 }
 
 .navigation-drawer {
@@ -470,18 +441,6 @@ body .main-header.main-header-start {
   color: var(--header-block-hover-text, #2b2e2e);
 }
 
-/** Mobile **/
-@media (max-width: 767px) {
-  body .main-header .navbar {
-    margin-left: 0;
-  }
-  .main-header {
-    background-color: #fff;
-  }
-  .main-header .navbar {
-    margin-left: 0;
-  }
-}
 @media (min-width: 768px) {
   .sidebar-collapse .main-header .navbar {
     margin-left: 0;
@@ -519,6 +478,13 @@ body .main-header.main-header-start {
   width: fit-content;
   padding: 0.3rem;
   border-radius: var(--rounded-badge, 1.9rem);
+}
+
+/**
+ * Lookup
+ */
+.hover\:lookup-entity:hover {
+  background-color: var(--lookup-entity-hover, rgba(0, 0, 0, 0.1));
 }
 
 :root {

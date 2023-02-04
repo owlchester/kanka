@@ -354,5 +354,6 @@ require('./utility/sortable');
 require('./utility/formError');
 
 // VueJS elements
-require('./navigation');
+//require('./navigation');
+require('./header');
 //require('./ads');

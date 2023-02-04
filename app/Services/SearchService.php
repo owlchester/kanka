@@ -37,6 +37,9 @@ class SearchService
     /** @var array List of the only entity types desired */
     protected array $onlyTypes = [];
 
+    /** @var bool If true, adds more info for the nav header lookup */
+    protected bool $v2 = false;
+
     /**
      * Set to true for a full result (rather than id => name)
      * @var bool
@@ -66,6 +69,16 @@ class SearchService
     public function term(string $term = null): self
     {
         $this->term = $term;
+        return $this;
+    }
+
+    /**
+     * Sets the service to return data in the "v2" format, used for the header lookup
+     * @return $this
+     */
+    public function v2(): self
+    {
+        $this->v2 = true;
         return $this;
     }
 
@@ -234,6 +247,11 @@ class SearchService
             if ($child === null || in_array($model->id, $foundEntityIds)) {
                 continue;
             }
+
+            if ($this->v2) {
+                $searchResults[] = $this->formatForLookup($model);
+                continue;
+            }
             $img = '';
             if (!empty($child->image)) {
                 $img = '<span class="entity-image" style="background-image: url(\''
@@ -286,6 +304,15 @@ class SearchService
             }
         }
         if (!$this->new) {
+            if ($this->v2) {
+                return [
+                    'entities' => $searchResults,
+                    'texts' => [
+                        'results' => __('Results'),
+                        'empty_results' => __('No results'),
+                    ]
+                ];
+            }
             return $searchResults;
         } elseif (empty($searchResults)) {
             return $this->newOptions();
@@ -347,5 +374,37 @@ class SearchService
         }
 
         return $options;
+    }
+
+    public function recent(): array
+    {
+        $recent = [];
+
+        $entities = Entity::inRandomOrder()->take(5)->get();
+
+        /** @var Entity $entity */
+        foreach ($entities as $entity) {
+            $recent[] = $this->formatForLookup($entity);
+        }
+
+        return $recent;
+    }
+
+    /**
+     * Format an entity for the lookup/search/recent dropdown
+     * @param Entity $entity
+     * @return array
+     */
+    protected function formatForLookup(Entity $entity): array
+    {
+        return [
+            'id' => $entity->id,
+            'name' => $entity->name,
+            'is_private' => $entity->is_private,
+            'image' => $entity->avatar(),
+            'link' => $entity->url(),
+            'type' => __('entities.' . $entity->type()),
+            'preview' => route('entities.preview', $entity)
+        ];
     }
 }

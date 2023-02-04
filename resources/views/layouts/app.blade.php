@@ -79,7 +79,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute py-2 px-4 top-0" tabindex="1">
     {{ __('crud.navigation.skip_to_content') }}
 </a>
-    <div id="app" class="wrapper">
+    <div id="app" class="wrapper  mt-12">
         @include('layouts.header')
 
         @include('layouts.sidebars.' . ($sidebar ?? 'app'))

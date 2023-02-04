@@ -1,8 +1,11 @@
 .bg-box {
     background-color: var(--box-background);
 }
-.bg-white\/70	{
-    background-color: rgb(255, 255, 255, 0.7);
+.bg-white\/70 {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+.bg-white {
+    background-color: rgb(255, 255, 255);
 }
 
 .bg-black {
@@ -21,4 +24,10 @@
 }
 .bg-neutral-400	{
     background-color: rgb(163 163 163);
+}
+.bg-slate-400 {
+    background-color: rgb(148 163 184);
+}
+.bg-slate-300 {
+    background-color: rgb(203 213 225);
 }
