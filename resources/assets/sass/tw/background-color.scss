@@ -1,3 +1,11 @@
 .bg-box {
     background-color: var(--box-background);
 }
+
+.bg-black {
+    background-color: rgb(0 0 0);
+}
+
+.bg-black\/10 {
+    background-color: rgba(0, 0, 0, 0.1);
+}

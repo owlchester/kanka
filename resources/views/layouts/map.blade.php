@@ -70,21 +70,21 @@ $specificTheme = null;
         <!-- Header -->
         @include('layouts.header')
 
-        <aside class="main-sidebar">
+        <aside class="main-sidebar overflow-hidden pt-0">
             <section class="sidebar" style="height: auto">
 
-                <div id="sidebar-content" class="">
+                <div id="sidebar-content" class="p-0 overflow-auto max-h-screen">
                     <!-- The legend / overview default sidebar of the map -->
                     <div id="sidebar-map">
                         <div class="marker-header">
                             <div class="marker-header-lower">
-                                <div class="marker-name">
+                                <div class="marker-name text-2xl p-3">
                                     {{ $map->name }}
                                 </div>
                             </div>
                         </div>
 
-                        <div class="marker-entry entity-content">
+                        <div class="marker-entry px-3 entity-content">
                             {!! \App\Facades\Mentions::map($map) !!}
                         </div>
 
@@ -119,7 +119,7 @@ $specificTheme = null;
                         </div>
 
 
-                        <div class="map-legend">
+                        <div class="map-legend p-3">
                             @include('maps.explore.legend')
                         </div>
                         <div class="sidebar-menu" style="display: none">
@@ -146,7 +146,7 @@ $specificTheme = null;
         </div>
     </div>
 
-    <div class="toast-container"></div>
+    <div class="toast-container fixed overflow-y-auto overflow-x-hidden"></div>
 
     <!-- Modal -->
     @includeWhen(auth()->check(), 'layouts.modals.delete')

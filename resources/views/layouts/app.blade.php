@@ -161,7 +161,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 
     @yield('modals')
 
-    <div class="toast-container fixed overflow-y-auto overflow-x-hidden"></div>
+    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-5 right-5"></div>
 
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>

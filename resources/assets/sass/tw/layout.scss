@@ -10,17 +10,20 @@
 }
 
 /* Top left bottom right */
-.top-0 {
-    top: 0;
-}
-.right-0 {
-    right: 0;
-}
-.bottom-0 {
-    bottom: 0;
-}
-.left-0 {
-    left: 0;
+@for $i from 0 through 4 {
+    $rem: ($i * 0.25) ;
+    .top-#{$i} {
+        top: $rem + rem;
+    }
+    .bottom-#{$i} {
+        bottom: $rem + rem;
+    }
+    .left-#{$i} {
+        left: $rem + rem;
+    }
+    .bottom-#{$i} {
+        right: $rem + rem;
+    }
 }
 
 /** Overflow **/

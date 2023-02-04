@@ -20,7 +20,7 @@
     @endif
 
     <div class="map" id="map{{ $model->id }}" style="width: 100%; height: 50%;">
-        <div class="map-actions">
+        <div class="map-actions absolute bottom-0 right-0 m-4">
             <button class="btn btn-warning btn-mode-drawing">
                 <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                 {{ __('maps/explore.actions.finish-drawing') }}

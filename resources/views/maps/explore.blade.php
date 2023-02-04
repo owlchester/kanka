@@ -13,7 +13,7 @@
 @section('content')
     <div class="map map-explore" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
         @can('update', $map)
-            <div class="map-actions">
+            <div class="map-actions absolute bottom-0 right-0 m-4">
                 <button class="btn btn-warning btn-mode-enable">
                     <i class="fa-solid fa-plus" aria-hidden="true"></i>
                     {{ __('maps/explore.actions.enter-edit-mode') }}
@@ -211,7 +211,7 @@
             </div>
             <div class="modal-body" id="map-marker-modal-content">
                 <i class="fa-solid fa-spinner fa-spin spinner"></i>
-                <div class="content"></div>
+                <div class="content p-0"></div>
             </div>
         </div>
     </div>

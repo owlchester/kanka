@@ -16,6 +16,7 @@
 
 @section('content')
     @include('partials.errors')
+    <div class="px-3">
     <div class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">
@@ -38,12 +39,12 @@
                 @else
 
             <p class="help-block">{{ __('entities/image.focus.helper') }}</p>
-            <div class="focus-selector">
-                <div class="focus" style="@if(empty($entity->focus_x))display: none; @else left: {{ $entity->focus_x }}px; top: {{ $entity->focus_y }}px; @endif">
-                    <i class="fa-solid fa-bullseye fa-2x"></i>
+            <div class="focus-selector max-h-70vh relative mb-2 overflow-auto">
+                <div class="focus absolute text-white cursor-pointer text-3xl" style="@if(empty($entity->focus_x))display: none; @else left: {{ $entity->focus_x }}px; top: {{ $entity->focus_y }}px; @endif">
+                    <i class="fa-solid fa-bullseye fa-2x hover:text-red"></i>
                 </div>
 
-                <img class="focus-image" src="{{ $model->thumbnail(0) }}" alt="img" />
+                <img class="focus-image max-w-none" src="{{ $model->thumbnail(0) }}" alt="img" />
             </div>
 
             {!! Form::open([
@@ -64,15 +65,9 @@
 
             @endif
         </div>
-    </div>
+    </div></div>
 @endsection
 
-
-
-@section('styles')
-    @parent
-    <link href="{{ mix('css/story.css') }}" rel="stylesheet">
-@endsection
 
 @section('scripts')
     @parent
