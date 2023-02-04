@@ -1,12 +1,13 @@
 <template>
-    <div v-click-outside="onClickOutside">
+    <div v-click-outside="onClickOutside" class="flex-grow mr-2">
         <input type="text" class="form-control" maxlength="25"
+               id="entity-lookup"
                v-model="term"
                @focus="focus()"
                :placeholder="placeholder"
         />
 
-        <div class="absolute top-0 left-0 h-screen bg-navbar mt-12 shadow-r" style="width: 280px" v-if="show_recent || show_loading || show_preview">
+        <div class="search-drawer absolute top-0 left-0 h-screen bg-navbar mt-12 shadow-r w-sidebar" v-if="show_recent || show_loading || show_preview">
             <div class="text-center mt-5" v-if="show_loading">
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" aria-label="Loading"></i>
             </div>
