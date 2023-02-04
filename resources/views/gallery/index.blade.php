@@ -50,10 +50,10 @@ if ($folder) {
 
             <p>{{ __('campaigns/gallery.uploader.or') }}</p>
 
-            <span class="btn btn-primary fileinput-button">
+            <span class="btn btn-primary fileinput-button relative overflow-hidden inline-block">
                 <i class="fa-solid fa-plus"></i>
                 <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
-                <input type="file" id="file-upload" name="file" multiple />
+                <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer" multiple />
             </span>
 
             <p>{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif', 'size' => auth()->user()->maxUploadSize(true)]) }}</p>

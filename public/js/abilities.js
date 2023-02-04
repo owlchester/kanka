@@ -17897,7 +17897,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "viewport box-abilities"
+  "class": "viewport box-abilities relative"
 };
 var _hoisted_2 = {
   key: 0,
@@ -17930,11 +17930,11 @@ var _hoisted_9 = {
 var _hoisted_10 = ["innerHTML"];
 var _hoisted_11 = {
   key: 3,
-  "class": "box-waiting"
+  "class": "box-waiting absolute top-0 w-full h-full bg-black/20 text-center"
 };
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fa-solid fa-spin fa-spinner fa-4x"
+  "class": "fa-solid fa-spin fa-spinner fa-4x mt-5"
 }, null, -1
 /* HOISTED */
 );
@@ -18087,7 +18087,7 @@ var _hoisted_31 = {
   key: 0
 };
 var _hoisted_32 = {
-  "class": "charges"
+  "class": "charges relative"
 };
 var _hoisted_33 = ["onClick"];
 var _hoisted_34 = {
@@ -18257,7 +18257,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* STYLE, PROPS */
   , _hoisted_30)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $props.ability.charges && $props.permission ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.ability.charges, function (n) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["charge cursor-pointer", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["charge inline-block mr-2 h-5 w-5 cursor-pointer bg-white drop-shadow", {
         used: $props.ability.used_charges >= n
       }]),
       onClick: function onClick($event) {
@@ -18355,14 +18355,14 @@ var _hoisted_1 = {
   "class": "col-xs-4 col-sm-3 col-lg-3 text-center"
 };
 var _hoisted_2 = {
-  "class": "ability-name cursor-pointer"
+  "class": "ability-name flex justify-center h-full w-full items-center cursor-pointer bg-white/70 hover:bg-black/10"
 };
 var _hoisted_3 = {
-  "class": "name"
+  "class": "name m-auto p-3 text-2xl"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["ability-parent", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["ability-parent cover-background rounded overflow-hidden mb-4", {
       active: $data.active,
       without: !$props.ability.has_image
     }]),

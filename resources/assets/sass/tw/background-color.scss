@@ -1,6 +1,9 @@
 .bg-box {
     background-color: var(--box-background);
 }
+.bg-white\/70	{
+    background-color: rgb(255, 255, 255, 0.7);
+}
 
 .bg-black {
     background-color: rgb(0 0 0);
@@ -8,4 +11,14 @@
 
 .bg-black\/10 {
     background-color: rgba(0, 0, 0, 0.1);
+}
+.hover\:bg-black\/10:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.bg-black\/20 {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.bg-neutral-400	{
+    background-color: rgb(163 163 163);
 }

@@ -5896,7 +5896,7 @@ body.ab-testing-second .ab-testing-a {
   left: 0rem;
 }
 
-.bottom-0 {
+.right-0 {
   right: 0rem;
 }
 
@@ -5912,7 +5912,7 @@ body.ab-testing-second .ab-testing-a {
   left: 0.25rem;
 }
 
-.bottom-1 {
+.right-1 {
   right: 0.25rem;
 }
 
@@ -5928,7 +5928,7 @@ body.ab-testing-second .ab-testing-a {
   left: 0.5rem;
 }
 
-.bottom-2 {
+.right-2 {
   right: 0.5rem;
 }
 
@@ -5944,7 +5944,7 @@ body.ab-testing-second .ab-testing-a {
   left: 0.75rem;
 }
 
-.bottom-3 {
+.right-3 {
   right: 0.75rem;
 }
 
@@ -5960,7 +5960,7 @@ body.ab-testing-second .ab-testing-a {
   left: 1rem;
 }
 
-.bottom-4 {
+.right-4 {
   right: 1rem;
 }
 
@@ -6094,12 +6094,28 @@ body.ab-testing-second .ab-testing-a {
   background-color: var(--box-background);
 }
 
+.bg-white\/70 {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
 .bg-black {
   background-color: rgb(0, 0, 0);
 }
 
 .bg-black\/10 {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.hover\:bg-black\/10:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.bg-black\/20 {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.bg-neutral-400 {
+  background-color: rgb(163, 163, 163);
 }
 
 .select-none {

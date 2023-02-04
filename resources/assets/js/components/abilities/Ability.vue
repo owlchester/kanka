@@ -65,8 +65,8 @@
 
 
                 <div v-if="ability.charges && permission">
-                    <div class="charges">
-                        <div class="charge cursor-pointer" v-for="n in ability.charges" v-on:click="useCharge(ability, n)"
+                    <div class="charges relative">
+                        <div class="charge inline-block mr-2 h-5 w-5 cursor-pointer bg-white drop-shadow" v-for="n in ability.charges" v-on:click="useCharge(ability, n)"
                              v-bind:class="{ used: ability.used_charges >= n }">
                         </div>
                     </div>
