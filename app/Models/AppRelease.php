@@ -40,6 +40,11 @@ class AppRelease extends Model
         'end_at',
     ];
 
+    public $casts = [
+        'published_at' => 'date',
+        'end_at' => 'date',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -78,6 +83,11 @@ class AppRelease extends Model
      */
     public function alreadyRead(): bool
     {
+        // Don't show announcements that are older than the account itself
+        $firstVisibility = !empty($this->published_at) ? $this->published_at : $this->created_at;
+        if ($firstVisibility->isBefore(auth()->user()->created_at)) {
+            return true;
+        }
         $lastRelease = auth()->user()->settings()->get('releases_' . $this->category_id);
         return $lastRelease == $this->id;
     }

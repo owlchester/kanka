@@ -241,16 +241,17 @@ class NavigationService
         $unreadReleases = [];
         /** @var AppRelease $release */
         foreach ($releases as $release) {
-            if (!$release->alreadyRead()) {
-                $unreadReleases[] = [
-                    'id' => $release->id,
-                    'url' => $release->link,
-                    'title' => $release->name,
-                    'text' => $release->excerpt,
-                    'dismiss' => route('settings.release', $release->id),
-                    'dismiss_text' => __('header.notifications.dismiss'),
-                ];
+            if ($release->alreadyRead()) {
+                continue;
             }
+            $unreadReleases[] = [
+                'id' => $release->id,
+                'url' => $release->link,
+                'title' => $release->name,
+                'text' => $release->excerpt,
+                'dismiss' => route('settings.release', $release->id),
+                'dismiss_text' => __('header.notifications.dismiss'),
+            ];
         }
         return $unreadReleases;
     }
