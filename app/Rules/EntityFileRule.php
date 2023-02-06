@@ -14,7 +14,6 @@ class EntityFileRule implements Rule
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -54,7 +53,7 @@ class EntityFileRule implements Rule
 
 
 
-         ;
+        ;
     }
 
     /**

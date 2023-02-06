@@ -249,11 +249,7 @@ class Item extends MiscModel
             return true;
         }
 
-        return (bool) ($this->character || $this->location)
-
-
-
-         ;
+        return (bool) ($this->character || $this->location);
     }
 
     /**

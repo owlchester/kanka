@@ -744,10 +744,8 @@ class SubscriptionService
     {
         if ($this->user->pledge == Pledge::OWLBEAR && in_array($plan, [Pledge::WYVERN, Pledge::ELEMENTAL])) {
             return true;
-        } return (bool) ($this->user->pledge == Pledge::WYVERN && $plan == Pledge::ELEMENTAL)
-
-
-         ;
+        }
+        return (bool) ($this->user->pledge == Pledge::WYVERN && $plan == Pledge::ELEMENTAL);
     }
 
     /**

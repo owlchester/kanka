@@ -62,7 +62,6 @@ class ChunkMapJob implements ShouldQueue
         } catch (\Exception $e) {
             throw $e;
         }
-
     }
 
     public function failed(\Exception $exception)

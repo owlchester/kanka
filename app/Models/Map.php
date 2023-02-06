@@ -608,10 +608,7 @@ class Map extends MiscModel
         if (empty($this->image) && !$this->isReal()) {
             return false;
         }
-        return ! ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()))
-
-
-         ;
+        return ! ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));
     }
 
     /**

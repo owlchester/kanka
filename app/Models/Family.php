@@ -267,10 +267,7 @@ class Family extends MiscModel
         if (!empty($this->family)) {
             return true;
         }
-        return (bool) (!$this->entity->elapsedEvents->isEmpty())
-
-
-         ;
+        return (bool) (!$this->entity->elapsedEvents->isEmpty());
     }
 
     /**

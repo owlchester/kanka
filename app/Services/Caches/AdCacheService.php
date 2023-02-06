@@ -45,7 +45,7 @@ class AdCacheService
         return (bool) (!empty($this->ad))
 
 
-         ;
+        ;
     }
 
     /**

@@ -17,15 +17,9 @@ class CampaignFollowService
     public function update(Campaign $campaign, User $user): bool
     {
         if ($campaign->isFollowing()) {
-            return ! ($this->remove($campaign, $user))
-
-
-             ;
+            return ! ($this->remove($campaign, $user));
         }
-        return (bool) ($this->add($campaign, $user))
-
-
-         ;
+        return (bool) ($this->add($campaign, $user));
     }
 
     /**

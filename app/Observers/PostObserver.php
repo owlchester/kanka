@@ -5,10 +5,7 @@ namespace App\Observers;
 use App\Facades\Mentions;
 use App\Models\EntityNotePermission;
 use App\Models\Post;
-use App\Models\PostPermission;
 use App\Services\EntityMappingService;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 
 class PostObserver
 {
@@ -140,8 +137,7 @@ class PostObserver
                 $perm->save();
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;
-            }
-            elseif (!in_array($existingKey, $parsed)) {
+            } elseif (!in_array($existingKey, $parsed)) {
                 EntityNotePermission::create([
                     'post_id' => $post->id,
                     'user_id' => $user,
@@ -166,8 +162,7 @@ class PostObserver
                 $perm->save();
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;
-            }
-            elseif (!in_array($existingKey, $parsed)) {
+            } elseif (!in_array($existingKey, $parsed)) {
                 EntityNotePermission::create([
                     'post_id' => $post->id,
                     'role_id' => $user,

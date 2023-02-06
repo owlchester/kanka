@@ -88,7 +88,7 @@ class CampaignRolePolicy
 
 
         // We have an admin role, time to do some weird stuff
-         ;
+        ;
     }
 
 

@@ -17,7 +17,6 @@ class EntityLink implements Rule
      */
     public function __construct()
     {
-
     }
 
     /**

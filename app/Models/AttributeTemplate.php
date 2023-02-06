@@ -244,10 +244,7 @@ class AttributeTemplate extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return (bool) ($this->entityType)
-
-
-         ;
+        return (bool) ($this->entityType);
     }
 
     /**

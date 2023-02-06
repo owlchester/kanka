@@ -335,10 +335,7 @@ class Tag extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return (bool) ($this->type || $this->colour)
-
-
-         ;
+        return (bool) ($this->type || $this->colour);
     }
 
     /**

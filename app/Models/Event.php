@@ -203,11 +203,7 @@ class Event extends MiscModel
             return true;
         }
 
-        return (bool) ($this->location)
-
-
-
-         ;
+        return (bool) ($this->location);
     }
 
     /**

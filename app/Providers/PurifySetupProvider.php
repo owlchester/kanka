@@ -71,7 +71,6 @@ class PurifySetupProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 
     /**

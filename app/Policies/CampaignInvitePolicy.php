@@ -22,7 +22,6 @@ class CampaignInvitePolicy
      */
     public function view(User $user, CampaignInvite $campaignInvite)
     {
-
     }
 
     /**

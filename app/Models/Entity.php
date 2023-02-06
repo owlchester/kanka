@@ -338,11 +338,7 @@ class Entity extends Model
             return true;
         }
 
-        return (bool) ($superboosted && !empty($this->header_uuid) && !empty($this->header))
-
-
-
-         ;
+        return (bool) ($superboosted && !empty($this->header_uuid) && !empty($this->header));
     }
 
     /**
@@ -442,6 +438,6 @@ class Entity extends Model
         return (bool) ($this->pinnedFiles->isNotEmpty())
 
 
-         ;
+        ;
     }
 }

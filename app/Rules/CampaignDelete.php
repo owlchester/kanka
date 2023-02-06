@@ -14,7 +14,6 @@ class CampaignDelete implements Rule
      */
     public function __construct()
     {
-
     }
 
     /**

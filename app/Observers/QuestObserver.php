@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\QuestCache;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Quest;
@@ -42,7 +41,6 @@ class QuestObserver extends MiscObserver
             /** @var Entity $source */
             $source = Entity::findOrFail($sourceId);
             if ($source->isQuest()) {
-
                 foreach ($source->quest->elements as $sub) {
                     $newSub = $sub->replicate();
                     $newSub->quest_id = $model->id;

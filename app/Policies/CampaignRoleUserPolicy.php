@@ -59,10 +59,6 @@ class CampaignRoleUserPolicy
     public function delete(User $user, CampaignRoleUser $campaignRoleUser, CampaignRole $campaignRole)
     {
         // Only campaign admins can remove a user from a campaign role
-        return ! (!$user->isAdmin())
-
-
-
-         ;
+        return $user->isAdmin();
     }
 }
