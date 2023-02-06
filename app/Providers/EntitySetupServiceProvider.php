@@ -27,6 +27,6 @@ class EntitySetupServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 }

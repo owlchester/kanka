@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 class BreadcrumbServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
      *

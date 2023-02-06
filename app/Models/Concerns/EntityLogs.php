@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models\Concerns;
-
 
 use App\Observers\EntityLogObserver;
 

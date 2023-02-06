@@ -61,15 +61,15 @@ use App\Models\Concerns\LastSync;
  */
 class User extends \Illuminate\Foundation\Auth\User
 {
-    use Notifiable,
-        HasApiTokens,
-        UserScope,
-        UserRelations,
-        UserSetting,
-        Billable,
-        Tutorial,
-        LastSync,
-        UserTokens
+    use Billable;
+    use HasApiTokens;
+    use LastSync;
+    use Notifiable;
+    use Tutorial;
+    use UserRelations;
+    use UserScope;
+    use UserSetting;
+    use UserTokens
     ;
 
     protected static $currentCampaign = false;

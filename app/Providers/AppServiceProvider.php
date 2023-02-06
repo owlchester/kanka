@@ -29,7 +29,6 @@ use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
 use App\Models\EntityEvent;
-use App\Models\EntityNote;
 use App\Models\Family;
 use App\Http\Validators\HashValidator;
 use App\Models\Image;
@@ -105,7 +104,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 
     /**
@@ -121,7 +120,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // In production, we want URLs to be HTTPS for pagination and redirects
-        if($this->app->environment('prod')) {
+        if ($this->app->environment('prod')) {
             \URL::forceScheme('https');
         }
 
@@ -189,17 +188,13 @@ class AppServiceProvider extends ServiceProvider
 
         if (request()->has('_debug_perm')) {
             // Add in boot function
-            DB::listen(function($query) {
+            DB::listen(function ($query) {
                 $sql = $query->sql;
-                foreach($query->bindings as $key => $binding){
-                    $sql = preg_replace('/\?/', "'$binding'", $sql, 1);
+                foreach ($query->bindings as $key => $binding) {
+                    $sql = preg_replace('/\?/', "'{$binding}'", $sql, 1);
                 }
                 dump($sql);
             });
         }
-
     }
-
-
-
 }

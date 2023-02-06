@@ -1,10 +1,6 @@
 <?php
 
-
 namespace App\Models\Concerns;
-
-use Illuminate\Database\Eloquent\Builder;
-
 
 trait CompositeKey
 {
@@ -17,11 +13,11 @@ trait CompositeKey
     protected function setKeysForSaveQuery($query)
     {
         $keys = $this->getKeyName();
-        if(!is_array($keys)){
+        if (!is_array($keys)) {
             return parent::setKeysForSaveQuery($query);
         }
 
-        foreach($keys as $keyName){
+        foreach ($keys as $keyName) {
             $query->where($keyName, '=', $this->getKeyForSaveQuery($keyName));
         }
 
@@ -36,7 +32,7 @@ trait CompositeKey
      */
     protected function getKeyForSaveQuery($keyName = null)
     {
-        if(is_null($keyName)){
+        if (null === $keyName) {
             $keyName = $this->getKeyName();
         }
 
