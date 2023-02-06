@@ -8,11 +8,7 @@ use App\Http\Requests\StoreEntityLink;
 use App\Models\Entity;
 use App\Models\EntityLink;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 
 class LinkController extends Controller

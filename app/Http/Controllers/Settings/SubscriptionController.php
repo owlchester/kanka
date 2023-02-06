@@ -83,7 +83,7 @@ class SubscriptionController extends Controller
         $period = $request->get('period', 'monthly');
 
         $amount = $this->subscription->user($request->user())->tier($tier)->period($period)->amount();
-        $card = $request->user()->hasPaymentMethod() ? Arr::first($request->user()->paymentMethods()): null;
+        $card = $request->user()->hasPaymentMethod() ? Arr::first($request->user()->paymentMethods()) : null;
         if (empty($request->user()->stripe_id)) {
             $request->user()->createAsStripeCustomer();
         }

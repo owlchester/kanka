@@ -14,7 +14,7 @@ class GoController extends Controller
      */
     public function index(string $social)
     {
-        if (empty($social) || strlen($social) > 10) {
+        if (empty($social) || mb_strlen($social) > 10) {
             abort(404);
         }
         $conf = config('social.' . $social);

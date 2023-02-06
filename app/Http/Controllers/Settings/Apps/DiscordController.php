@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Settings\Apps;
-
 
 use App\Http\Controllers\Controller;
 use App\Jobs\DiscordRoleJob;
@@ -29,7 +27,6 @@ class DiscordController extends Controller
 
     public function me(Request $request)
     {
-
 //        DiscordRoleJob::dispatch($request->user(), false);
 //
 //        $this->discord

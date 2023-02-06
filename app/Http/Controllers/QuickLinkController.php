@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderMenuLinks;
-use App\Http\Requests\ReorderStories;
-use App\Models\Entity;
 use App\Models\MenuLink;
 use App\Services\MenuLinkService;
-use App\Traits\GuestAuthTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class QuickLinkController extends Controller
 {

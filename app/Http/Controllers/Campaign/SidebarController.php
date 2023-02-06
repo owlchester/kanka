@@ -30,8 +30,12 @@ class SidebarController extends Controller
 
         $layout = $this->service->campaign($campaign)->withDisabled()->layout();
 
-        return view('campaigns.sidebar.index', compact(
-            'campaign', 'layout')
+        return view(
+            'campaigns.sidebar.index',
+            compact(
+            'campaign',
+            'layout'
+        )
         );
     }
 
@@ -52,7 +56,6 @@ class SidebarController extends Controller
             ->route('campaign-sidebar')
             ->with('success', __('campaigns/sidebar.success'))
         ;
-
     }
 
     /**
@@ -70,6 +73,5 @@ class SidebarController extends Controller
             ->route('campaign-sidebar')
             ->with('success', __('campaigns/sidebar.reset.success'))
         ;
-
     }
 }

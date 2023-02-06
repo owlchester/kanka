@@ -46,7 +46,7 @@ class VisibilityController extends Controller
             return redirect()
                 ->route('campaign')
                 ->with('success_raw', $success)
-                ;
+            ;
         }
 
         return redirect()
@@ -117,8 +117,6 @@ class VisibilityController extends Controller
         return redirect()
             ->route('campaign_styles.index')
             ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]))
-            ;
-
-
+        ;
     }
 }

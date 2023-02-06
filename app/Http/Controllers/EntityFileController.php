@@ -4,16 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\EntityFileException;
 use App\Facades\CampaignLocalization;
-use App\Http\Requests\RenameEntityFile;
 use App\Http\Requests\StoreEntityAsset;
-use App\Http\Requests\StoreEntityFile;
 use App\Http\Requests\UpdateEntityFile;
 use App\Models\EntityFile;
 use App\Services\EntityFileService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use App\Models\Entity;
-use Response;
 
 class EntityFileController extends Controller
 {
@@ -97,7 +92,6 @@ class EntityFileController extends Controller
             return redirect()
                 ->route('entities.entity_assets.index', $entity)
                 ->with('success', __('entities/files.create.success', ['file' => $file->name]));
-
         } catch (EntityFileException $e) {
             return redirect()
                 ->route('entities.entity_assets.index', $entity)

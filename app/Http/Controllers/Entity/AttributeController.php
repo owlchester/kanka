@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Entity;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ApplyAttributeTemplate;
 use App\Http\Requests\UpdateEntityAttribute;
 use App\Models\Attribute;
 use App\Models\Entity;

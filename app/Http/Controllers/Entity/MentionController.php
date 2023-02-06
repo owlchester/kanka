@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class MentionController extends Controller

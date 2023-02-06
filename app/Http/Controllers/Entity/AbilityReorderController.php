@@ -26,16 +26,16 @@ class AbilityReorderController extends Controller
         $this->authorize('update', $entity->child);
 
         $abilities = $entity->abilities()
-        ->select('entity_abilities.*')
-        ->with(['ability',
-            // entity
-            'ability.entity', 'ability.entity.image', 'ability.entity.attributes',
-            // parent
-            'ability.ability', 'ability.ability.entity'
-        ])
-        ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
-        ->defaultOrder()
-        ->get();
+            ->select('entity_abilities.*')
+            ->with(['ability',
+                // entity
+                'ability.entity', 'ability.entity.image', 'ability.entity.attributes',
+                // parent
+                'ability.ability', 'ability.ability.entity'
+            ])
+            ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
+            ->defaultOrder()
+            ->get();
 
         $parents = [];
         foreach ($abilities as $ability) {

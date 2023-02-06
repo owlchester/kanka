@@ -9,7 +9,6 @@ use App\Http\Requests\StoreSettingsAccountEmail;
 use App\Http\Requests\StoreSettingsAccountSocial;
 use App\Models\UserLog;
 use App\Services\Account\DeletionService;
-use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {

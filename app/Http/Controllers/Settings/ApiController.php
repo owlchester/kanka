@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreSettingsProfile;
-use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
 {

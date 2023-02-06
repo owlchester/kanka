@@ -7,10 +7,7 @@ use App\Http\Requests\API\UpdateUserRole;
 use App\Http\Resources\UserResource;
 use App\Models\Campaign;
 use App\User;
-use App\Models\CampaignRole;
-use App\Models\CampaignRoleUser;
 use App\Services\Campaign\MemberService;
-use Illuminate\Http\Request;
 
 class UserApiController extends ApiController
 {
@@ -28,8 +25,8 @@ class UserApiController extends ApiController
         $this->authorize('update', $campaign);
 
         return UserResource::collection($campaign->users()
-        ->lastSync(request()->get('lastSync'))
-        ->paginate());
+            ->lastSync(request()->get('lastSync'))
+            ->paginate());
     }
 
     public function show(Campaign $campaign, User $user)
@@ -38,8 +35,8 @@ class UserApiController extends ApiController
         $this->authorize('update', $campaign);
 
         return UserResource::collection($campaign->users()->where('user_id', '=', $user->id)
-        ->lastSync(request()->get('lastSync'))
-        ->paginate());
+            ->lastSync(request()->get('lastSync'))
+            ->paginate());
     }
 
     /**

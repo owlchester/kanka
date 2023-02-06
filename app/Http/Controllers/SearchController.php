@@ -9,7 +9,6 @@ use App\Services\EntityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\FilterService;
-use Response;
 
 class SearchController extends Controller
 {

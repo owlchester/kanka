@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
 use App\Models\Entity;
-use Illuminate\Support\Facades\Auth;
 
 class ImageController extends Controller
 {

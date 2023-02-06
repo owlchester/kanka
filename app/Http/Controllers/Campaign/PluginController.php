@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Campaign;
-
 
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
@@ -194,7 +192,6 @@ class PluginController extends Controller
                 'success',
                 __('campaigns/plugins.update.success', ['plugin' => $plugin->name])
             );
-
     }
 
     public function confirmImport(Plugin $plugin)
@@ -237,9 +234,8 @@ class PluginController extends Controller
                 ->with('plugin_entities_created', $this->service->created())
                 ->with('plugin_entities_updated', $this->service->updated())
                 ->with('plugin_only_new', $request->get('only_new'))
-                ;
-        }
-        catch (\Exception $e) {
+            ;
+        } catch (\Exception $e) {
             return redirect()->route('campaign_plugins.index')
                 ->withError(__('campaigns/plugins.import.errors.' . $e->getMessage(), ['plugin' => $plugin->name]));
         }
@@ -293,6 +289,6 @@ class PluginController extends Controller
         return redirect()
             ->route('campaign_plugins.index')
             ->with('success', trans_choice('campaigns/plugins.bulks.' . $action, $count, ['count' => $count]))
-            ;
+        ;
     }
 }

@@ -2,21 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\Bulks\FamilyBulk;
 use App\Datagrids\Filters\FamilyFilter;
-use App\Datagrids\Sorters\FamilyCharacterSorter;
-use App\Datagrids\Sorters\FamilyFamilySorter;
 use App\Facades\Datagrid;
-use App\Models\Character;
-use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreFamily;
-use App\Http\Requests\StoreLocation;
 use App\Models\Family;
-use App\Models\Location;
-use App\Models\Tag;
 use App\Traits\TreeControllerTrait;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class FamilyController extends CrudController
 {

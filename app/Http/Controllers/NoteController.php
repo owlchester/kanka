@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\NoteFilter;
 use App\Http\Requests\StoreNote;
 use App\Models\Note;
-use App\Models\Tag;
 use App\Traits\TreeControllerTrait;
-use Illuminate\Support\Facades\Session;
 
 class NoteController extends CrudController
 {

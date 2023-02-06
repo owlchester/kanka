@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\HistoryRequest;
 use App\Models\EntityLog;
-use App\User;
 
 class HistoryController extends Controller
 {
@@ -21,7 +20,7 @@ class HistoryController extends Controller
 
         $pagnation = $campaign->superboosted() ? 25 : 10;
         $models = EntityLog::select(['entity_logs.*'])
-            ->with(['user', 'entity' => fn($q) => $q->withTrashed(), 'impersonator'])
+            ->with(['user', 'entity' => fn ($q) => $q->withTrashed(), 'impersonator'])
             ->leftJoin('entities as e', 'e.id', 'entity_logs.entity_id')
             ->filter($request)
             ->orderBy('entity_logs.created_at', 'desc')

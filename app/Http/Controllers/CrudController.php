@@ -8,7 +8,6 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Facades\FormCopy;
 use App\Facades\Permissions;
-use App\Http\Resources\AttributeResource;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\MenuLink;
@@ -26,7 +25,8 @@ use LogicException;
 
 class CrudController extends Controller
 {
-    use GuestAuthTrait, BulkControllerTrait;
+    use BulkControllerTrait;
+    use GuestAuthTrait;
 
     /** @var string The view where to find the resources */
     protected string $view = '';
@@ -153,7 +153,7 @@ class CrudController extends Controller
             // Don't use total as it won't use the distinct() filters (typically when doing
             // left join on the entities table)
             $filteredCount = $models->total();
-            //$filteredCount =  count($models); //->total()
+        //$filteredCount =  count($models); //->total()
         } else {
             /** @var Paginator $models */
             $models = $base->paginate();
@@ -319,7 +319,7 @@ class CrudController extends Controller
             $route = route($this->route . '.' . $subroute);
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
-            $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
+            $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));
             return redirect()
                 ->back()
                 ->withInput()
@@ -351,8 +351,6 @@ class CrudController extends Controller
             }
             if (Permissions::user(auth()->user())->campaign(CampaignLocalization::getCampaign())->isAdmin()) {
                 dd('CCS16 - Error');
-                //$model->save();
-                //$model->load('entity');
             } else {
                 abort(404);
             }
@@ -480,7 +478,7 @@ class CrudController extends Controller
             }
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
-            $error =  str_replace(' ', '_', strtolower(rtrim($exception->getMessage(), '.')));
+            $error =  str_replace(' ', '_', mb_strtolower(rtrim($exception->getMessage(), '.')));
             return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
         }
     }

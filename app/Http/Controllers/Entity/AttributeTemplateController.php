@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Entity;
-
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
