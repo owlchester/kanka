@@ -2,9 +2,6 @@
 
 namespace App\Facades;
 
-use App\Models\Entity;
-use App\Models\MiscModel;
-use App\Services\Caches\EntityCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**

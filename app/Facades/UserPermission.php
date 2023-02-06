@@ -3,7 +3,6 @@
 namespace App\Facades;
 
 use App\Models\Entity;
-use App\User;
 use Illuminate\Support\Facades\Facade;
 
 /**

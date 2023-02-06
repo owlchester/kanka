@@ -2,9 +2,6 @@
 
 namespace App\Facades;
 
-use App\Services\Caches\UserCacheService;
-use App\User;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
 /**

@@ -136,7 +136,7 @@ class Handler extends ExceptionHandler
                 ->json(['error' => 'Page not found'], 404);
         } elseif ($exception instanceof ThrottleRequestsException) {
             $amount = auth()->user()->rateLimit;
-            $message = $amount != 90 ? ' Subscribe to Kanka to unlock higher limits': null;
+            $message = $amount != 90 ? ' Subscribe to Kanka to unlock higher limits' : null;
             return response()
                 ->json(['Your account limit of ' . $amount . ' requests per minute has been reached.'
                     . $message], 429);
