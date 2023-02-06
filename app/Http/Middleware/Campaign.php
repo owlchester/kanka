@@ -4,11 +4,9 @@ namespace App\Http\Middleware;
 
 use App\Facades\CampaignLocalization;
 use Closure;
-use Exception;
 use App\Models\Campaign as CampaignModel;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use \App\Facades\Identity;
+use App\Facades\Identity;
 
 /**
  * Class Campaign
@@ -63,7 +61,7 @@ class Campaign
      * Save the new campaign on the user for further actions
      * @param CampaignModel $campaign
      */
-    protected function saveUserLastCampaignId(\App\Models\Campaign $campaign)
+    protected function saveUserLastCampaignId(CampaignModel $campaign)
     {
         if (!auth()->check()) {
             return;

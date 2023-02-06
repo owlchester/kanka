@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Journal;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class JournalResource extends EntityResource
 {
