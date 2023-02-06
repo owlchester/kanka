@@ -342,11 +342,11 @@ trait EntityRelations
     {
         return
             $this
-            ->relationships()
-            ->select('relations.*')
-            ->with('target')
-            ->has('target')
-            ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
+                ->relationships()
+                ->select('relations.*')
+                ->with('target')
+                ->has('target')
+                ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
         ;
     }
 

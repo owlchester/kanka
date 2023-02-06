@@ -206,23 +206,22 @@ class AclScope implements Scope
             // Ignore the Visibility scope because we're overriding it here with the permission engine of posts
             ->withoutGlobalScope(VisibilityIDScope::class)
             ->where(function ($sub) use ($table) {
-            $visibilities = Permissions::isAdmin()
-                ? [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_ADMIN,
-                    Visibility::VISIBILITY_ADMIN_SELF, Visibility::VISIBILITY_MEMBERS]
-                : [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_MEMBERS];
-            $sub
-                ->where(function ($self) use ($table) {
-                    $self
-                        ->whereIn($table . '.visibility_id', [
-                            Visibility::VISIBILITY_SELF,
-                            Visibility::VISIBILITY_ADMIN_SELF,
-                        ])
-                        ->where($table . '.created_by', auth()->user()->id);
-                })
-                ->orWhereIn($table . '.visibility_id', $visibilities)
-                ->orWhereIn($table . '.id', Permissions::allowedPosts());
-             })
+                $visibilities = Permissions::isAdmin()
+                    ? [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_ADMIN,
+                        Visibility::VISIBILITY_ADMIN_SELF, Visibility::VISIBILITY_MEMBERS]
+                    : [Visibility::VISIBILITY_ALL, Visibility::VISIBILITY_MEMBERS];
+                $sub
+                    ->where(function ($self) use ($table) {
+                        $self
+                            ->whereIn($table . '.visibility_id', [
+                                Visibility::VISIBILITY_SELF,
+                                Visibility::VISIBILITY_ADMIN_SELF,
+                            ])
+                            ->where($table . '.created_by', auth()->user()->id);
+                    })
+                    ->orWhereIn($table . '.visibility_id', $visibilities)
+                    ->orWhereIn($table . '.id', Permissions::allowedPosts());
+            })
             ->whereNotIn($table . '.id', Permissions::deniedPosts());
     }
-
 }
