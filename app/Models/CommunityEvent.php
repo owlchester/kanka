@@ -30,7 +30,8 @@ use Illuminate\Support\Str;
  */
 class CommunityEvent extends Model
 {
-    use CommunityEventScopes, Uuid;
+    use CommunityEventScopes;
+    use Uuid;
 
     public $dates = [
         'start_at',

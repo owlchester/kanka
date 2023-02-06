@@ -24,9 +24,10 @@ use Illuminate\Support\Str;
  */
 class Faq extends Model
 {
+    use  Orderable;
+    use Searchable;
+    use Sortable;
     public $table = 'faq';
-
-    use  Orderable, Sortable, Searchable;
 
 
     public $searchableColumns = ['question', 'answer'];

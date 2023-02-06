@@ -35,20 +35,19 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Relation extends Model
 {
-
+    use Blameable;
+    use HasFilters;
+    use Orderable;
+    use Paginatable;
+    use Searchable;
+    use Sortable;
+    use SortableTrait
+    ;
+    use Starred;
     /**
      * Traits
      */
-    use VisibilityIDTrait,
-        Starred,
-        Paginatable,
-        Blameable,
-        HasFilters,
-        Sortable,
-        Searchable,
-        Orderable,
-        SortableTrait
-    ;
+    use VisibilityIDTrait;
 
     /** @var string[]  */
     protected $fillable = [

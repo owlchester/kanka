@@ -24,13 +24,13 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Event extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        SoftDeletes,
-        Nested,
-        SortableTrait,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -203,11 +203,11 @@ class Event extends MiscModel
             return true;
         }
 
-        if ($this->location) {
-            return true;
-        }
+        return (bool) ($this->location)
 
-        return false;
+
+
+         ;
     }
 
     /**

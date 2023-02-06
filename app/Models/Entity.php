@@ -53,23 +53,23 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  */
 class Entity extends Model
 {
+    use Acl;
+    use BlameableTrait;
     /**
      * Traits
      */
-    use CampaignTrait,
-        EntityRelations,
-        BlameableTrait,
-        EntityScopes,
-        EntityType,
-        Searchable,
-        TooltipTrait,
-        Picture,
-        SoftDeletes,
-        EntityLogs,
-        Paginatable,
-        LastSync,
-        SortableTrait,
-        Acl;
+    use CampaignTrait;
+    use EntityLogs;
+    use EntityRelations;
+    use EntityScopes;
+    use EntityType;
+    use LastSync;
+    use Paginatable;
+    use Picture;
+    use Searchable;
+    use SoftDeletes;
+    use SortableTrait;
+    use TooltipTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -168,8 +168,8 @@ class Entity extends Model
      */
     public function shortName()
     {
-        if (strlen($this->name) > 30) {
-            return '<span title="' . e($this->name) . '">' . substr(e($this->name), 0, 28) . '...</span>';
+        if (mb_strlen($this->name) > 30) {
+            return '<span title="' . e($this->name) . '">' . mb_substr(e($this->name), 0, 28) . '...</span>';
         }
         return $this->name;
     }
@@ -338,11 +338,11 @@ class Entity extends Model
             return true;
         }
 
-        if ($superboosted && !empty($this->header_uuid) && !empty($this->header)) {
-            return true;
-        }
+        return (bool) ($superboosted && !empty($this->header_uuid) && !empty($this->header))
 
-        return false;
+
+
+         ;
     }
 
     /**
@@ -439,9 +439,9 @@ class Entity extends Model
         if ($this->accessAttributes() && $this->starredAttributes()->isNotEmpty()) {
             return true;
         }
-        if ($this->pinnedFiles->isNotEmpty()) {
-            return true;
-        }
-        return false;
+        return (bool) ($this->pinnedFiles->isNotEmpty())
+
+
+         ;
     }
 }

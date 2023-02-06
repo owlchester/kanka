@@ -28,14 +28,14 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Journal extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        CalendarDateTrait,
-        Nested,
-        SoftDeletes,
-        SortableTrait,
-        Acl
+    use Acl
     ;
+    use CalendarDateTrait;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -240,11 +240,11 @@ class Journal extends MiscModel
         if (!empty($this->author) || !empty($this->location)) {
             return true;
         }
-        if (!empty($this->calendarReminder())) {
-            return true;
-        }
+        return (bool) (!empty($this->calendarReminder()))
 
-        return false;
+
+
+         ;
     }
 
     /**

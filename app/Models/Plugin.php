@@ -31,7 +31,8 @@ use Illuminate\Support\Str;
  */
 class Plugin extends Model
 {
-    use SoftDeletes, SortableTrait;
+    use SoftDeletes;
+    use SortableTrait;
 
     protected $cachedHasUpdate = null;
 
@@ -69,10 +70,10 @@ class Plugin extends Model
             $statuses[] = 1;
         }
         return $this->cachedHasUpdate = $this
-                ->versions
-                ->whereIn('status_id', $statuses)
-                ->where('id', '>', $this->pivot->plugin_version_id) // @phpstan-ignore-line
-                ->count() > 0;
+            ->versions
+            ->whereIn('status_id', $statuses)
+            ->where('id', '>', $this->pivot->plugin_version_id) // @phpstan-ignore-line
+            ->count() > 0;
     }
 
     /**
@@ -165,7 +166,7 @@ class Plugin extends Model
         }
 
         return $query->orderByRaw(
-            DB::raw($this->getTable() . ".uuid = '$uuid' DESC")
+            DB::raw($this->getTable() . ".uuid = '{$uuid}' DESC")
         );
     }
     /**

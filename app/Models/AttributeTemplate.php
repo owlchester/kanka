@@ -21,11 +21,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class AttributeTemplate extends MiscModel
 {
-    use CampaignTrait,
-        Nested,
-        SoftDeletes,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use Nested;
+    use SoftDeletes;
 
     /**
      * Fields that can be mass-assigned
@@ -161,7 +161,7 @@ class AttributeTemplate extends MiscModel
             }
 
 
-            list ($type, $value) = $attributeService->randomAttribute($attribute->type_id, $attribute->value);
+            list($type, $value) = $attributeService->randomAttribute($attribute->type_id, $attribute->value);
 
             Attribute::create([
                 'entity_id' => $entity->id,
@@ -183,7 +183,7 @@ class AttributeTemplate extends MiscModel
                 if (in_array($attribute->name, $existing)) {
                     continue;
                 }
-                list ($type, $value) = $attributeService->randomAttribute($attribute->type_id, $attribute->value);
+                list($type, $value) = $attributeService->randomAttribute($attribute->type_id, $attribute->value);
 
                 Attribute::create([
                     'entity_id' => $entity->id,
@@ -244,10 +244,10 @@ class AttributeTemplate extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if ($this->entityType) {
-            return true;
-        }
-        return false;
+        return (bool) ($this->entityType)
+
+
+         ;
     }
 
     /**

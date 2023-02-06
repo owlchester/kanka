@@ -20,12 +20,12 @@ use Illuminate\Support\Collection;
  */
 class Note extends MiscModel
 {
-    use CampaignTrait,
-        Nested,
-        ExportableTrait,
-        SoftDeletes,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
 
     /** @var string[]  */
     protected $fillable = [

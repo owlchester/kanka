@@ -27,12 +27,12 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Race extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        Nested,
-        SoftDeletes,
-        Acl,
-        SortableTrait
+    use Acl;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
+    use SortableTrait
     ;
 
     /** @var string[]  */
@@ -196,8 +196,7 @@ class Race extends MiscModel
             $raceIds[] = $descendant->id;
         };
 
-        return Character
-            ::select('characters.*')
+        return Character::select('characters.*')
             ->distinct('characters.id')
             ->leftJoin('character_race as cr', function ($join) {
                 $join->on('cr.character_id', '=', 'characters.id');

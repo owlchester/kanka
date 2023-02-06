@@ -36,12 +36,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Character extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        SoftDeletes,
-        SortableTrait,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use ExportableTrait;
+    use SoftDeletes;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -417,10 +417,10 @@ class Character extends MiscModel
         if (!$this->races->isEmpty() || !$this->families->isEmpty()) {
             return true;
         }
-        if (!$this->entity->elapsedEvents->isEmpty()) {
-            return true;
-        }
-        return false;
+        return (bool) (!$this->entity->elapsedEvents->isEmpty())
+
+
+         ;
     }
 
     /**

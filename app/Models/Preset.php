@@ -19,9 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Preset extends Model
 {
-    use VisibilityIDTrait;
-    use CampaignTrait;
     use Blameable;
+    use CampaignTrait;
+    use VisibilityIDTrait;
 
     public $fillable = [
         'name',

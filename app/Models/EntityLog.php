@@ -3,10 +3,6 @@
 namespace App\Models;
 
 use App\Http\Requests\HistoryRequest;
-use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Orderable;
-use App\Models\Concerns\Searchable;
-use App\Models\Concerns\Sortable;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
@@ -195,7 +191,6 @@ class EntityLog extends Model
     {
         if (!$this->entity) {
             return link_to_route('recovery', __('history.unknown.entity'));
-
         }
         return $this->entity->tooltipedLink();
     }
