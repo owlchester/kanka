@@ -65,7 +65,7 @@ class FixEntityPrivacy extends Command
                 ->whereNotNull('f.id')
                 ->whereNull('f.deleted_at')
                 ->with(Str::camel($type))
-                ->chunk(2000, function ($models) use ($type) {
+                ->chunk(2000, function ($models) use ($type): void {
                     $this->info('found ' . count($models) . ' ' . $type);
                     foreach ($models as $model) {
                         $this->fix($model, $type);
@@ -81,7 +81,7 @@ class FixEntityPrivacy extends Command
         return 0;
     }
 
-    protected function fix(Entity $entity, string $type)
+    protected function fix(Entity $entity, string $type): void
     {
         /** @var MiscModel|null $child */
         $child = $entity->child;
@@ -89,10 +89,10 @@ class FixEntityPrivacy extends Command
             $this->warn('Unexpected situation for entity #' . $entity->id . ' missing child or child deleted?');
             return;
         } elseif ($child->name != $entity->name) {
-            $this->warn('Unexpected situation for entity #' . $entity->id  . ' name mismatch');
+            $this->warn('Unexpected situation for entity #' . $entity->id . ' name mismatch');
         }
         if ($entity->is_private == $child->is_private) {
-            dd('Unexpected situation for entity #' . $entity->id . ' and child ' . $type . ' #'  . $child->id);
+            dd('Unexpected situation for entity #' . $entity->id . ' and child ' . $type . ' #' . $child->id);
         }
 
         //$this->info('want to fix entity id ' . $entity->id . ' that has private ' . $entity->is_private . ' where child has private ' . $entity->$type->is_private);
@@ -102,7 +102,7 @@ class FixEntityPrivacy extends Command
         $this->queue($entity->id, (int) $child->is_private);
     }
 
-    protected function queue(int $entity, int $private)
+    protected function queue(int $entity, int $private): void
     {
         $this->statements[$private][] = $entity;
 
@@ -111,7 +111,7 @@ class FixEntityPrivacy extends Command
         }
     }
 
-    protected function flush(int $private)
+    protected function flush(int $private): void
     {
         if (empty($this->statements[$private])) {
             return;

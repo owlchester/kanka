@@ -22,11 +22,11 @@
         "modernize_strpos": true,
         "new_with_braces": true,
         "no_empty_comment": true,
+        "no_unused_imports": true,
         "not_operator_with_space": false,
         "ordered_traits": true,
         "simplified_if_return": true,
         "ternary_to_null_coalescing": true,
-        "trim_array_spaces": true,
-        "void_return": true
+        "trim_array_spaces": true
     }
 }

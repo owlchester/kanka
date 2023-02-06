@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Testing\PendingCommand;
 use Illuminate\Support\Facades\Artisan;
 
 class SetupTestDB extends Command

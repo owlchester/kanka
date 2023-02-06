@@ -44,7 +44,7 @@ class CampaignFollowerCount extends Command
     public function handle()
     {
         // @phpstan-ignore-next-line
-        Campaign::public()->with('followers')->chunk(500, function ($campaigns) {
+        Campaign::public()->with('followers')->chunk(500, function ($campaigns): void {
             foreach ($campaigns as $campaign) {
                 $this->processCampaign($campaign);
                 $this->count++;
@@ -59,7 +59,7 @@ class CampaignFollowerCount extends Command
      * @param Campaign $campaign
      * @return void
      */
-    protected function processCampaign(Campaign $campaign)
+    protected function processCampaign(Campaign $campaign): void
     {
         $campaign->follower = $campaign->followers->count();
         $campaign->updateQuietly(['follower']);
