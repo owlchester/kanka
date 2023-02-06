@@ -3,35 +3,23 @@
 namespace App\Services\Campaign;
 
 use App\Http\Requests\Campaigns\GalleryImageStore;
-use App\Models\Campaign;
 use App\Models\Image;
 use App\Models\Visibility;
 use App\Observers\PurifiableTrait;
+use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class GalleryService
 {
+    use CampaignAware;
     use PurifiableTrait;
 
-    /** @var Campaign */
-    protected $campaign;
-
     /** @var Image */
-    protected $image;
+    protected Image $image;
 
-    protected $folders = [];
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
+    protected array $folders = [];
 
     /**
      * @param Image $image

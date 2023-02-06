@@ -2,29 +2,18 @@
 
 namespace App\Services\Campaign;
 
-use App\Models\Campaign;
 use App\Models\Image;
+use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class DefaultImageService
 {
-    /** @var Campaign */
-    protected $campaign;
+    use CampaignAware;
 
     /** @var string */
     protected $type;
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
 
     /**
      * @param string $type

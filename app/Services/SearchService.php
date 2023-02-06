@@ -4,22 +4,21 @@ namespace App\Services;
 
 use App\Facades\Mentions;
 use App\Models\Calendar;
-use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\MiscModel;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Str;
 
 class SearchService
 {
+    use CampaignAware;
+
     /** @var string The search term */
     protected string $term;
 
     /** @var string The search entity type */
     protected string $type;
-
-    /** @var Campaign The current campaign */
-    protected Campaign $campaign;
 
     /** @var int Amount of results (sql limit) */
     protected int $limit = 10;
@@ -79,16 +78,6 @@ class SearchService
             $typeID = config('entities.ids.' . $type);
             $this->onlyTypes = [$typeID];
         }
-        return $this;
-    }
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
         return $this;
     }
 

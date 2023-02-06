@@ -4,33 +4,22 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
-use App\Models\Campaign;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Notifications\Header;
 use App\Observers\PurifiableTrait;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 
 class SubmissionService
 {
+    use CampaignAware;
     use PurifiableTrait;
 
-    /** @var Campaign */
-    protected $campaign;
 
     /** @var CampaignSubmission */
     protected $submission;
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
 
     /**
      * @param CampaignSubmission $submission

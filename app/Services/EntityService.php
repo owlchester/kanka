@@ -24,6 +24,7 @@ use App\Models\Race;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -34,14 +35,13 @@ use Illuminate\Support\Str;
 
 class EntityService
 {
+    use CampaignAware;
+
     /** @var array List of entity types */
     protected array $entities = [];
 
     /** @var bool If the process is copying an entity (this should be moved outside of this class) */
     protected bool $copied = false;
-
-    /** @var Campaign */
-    protected Campaign $campaign;
 
     /** @var bool|array */
     protected bool|array $cachedNewEntityTypes = false;
@@ -86,16 +86,6 @@ class EntityService
             'menu_links' => 'App\Models\MenuLink',
             'relations' => 'App\Models\Relation',
         ];
-    }
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
     }
 
     /**

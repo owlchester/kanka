@@ -7,6 +7,7 @@ use App\Models\AttributeTemplate;
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\Entity;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Kanka\Dnd5eMonster\Template;
@@ -14,19 +15,10 @@ use Stevebauman\Purify\Facades\Purify;
 
 class AttributeService
 {
+    use CampaignAware;
+
     protected array $loadedTemplates = [];
     protected array $loadedPlugins = [];
-    protected Campaign $campaign;
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
 
     /**
      * Apply a template to an entity

@@ -5,31 +5,20 @@ namespace App\Services;
 use App\Exceptions\Campaign\AlreadyBoostedException;
 use App\Exceptions\Campaign\ExhaustedBoostsException;
 use App\Exceptions\Campaign\ExhaustedSuperboostsException;
-use App\Models\Campaign;
 use App\Models\CampaignBoost;
+use App\Traits\CampaignAware;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class CampaignBoostService
 {
-    /** @var Campaign */
-    protected $campaign;
+    use CampaignAware;
 
     /** @var string */
-    protected $action;
+    protected string $action;
 
     /** @var bool If updating an existing boost to a superboost */
-    protected $upgrade = false;
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
+    protected bool $upgrade = false;
 
     /**
      * @param string $action
