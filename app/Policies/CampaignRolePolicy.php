@@ -9,8 +9,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignRolePolicy
 {
-    use HandlesAuthorization;
     use AdminPolicyTrait;
+    use HandlesAuthorization;
 
     /**
      * Determine whether the user can view the campaignRole.
@@ -83,12 +83,12 @@ class CampaignRolePolicy
         }
 
         // Non-admin role? Yep the user can modify the member
-        if (!$campaignRole->isAdmin()) {
-            return true;
-        }
+        return (bool) (!$campaignRole->isAdmin())
+
+
 
         // We have an admin role, time to do some weird stuff
-        return false;
+        ;
     }
 
 

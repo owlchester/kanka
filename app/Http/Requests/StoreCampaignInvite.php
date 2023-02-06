@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\CampaignInvite;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class StoreCampaignInvite extends FormRequest
 {

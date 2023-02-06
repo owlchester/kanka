@@ -3,7 +3,6 @@
 namespace App\Services\Entity;
 
 use App\Models\Character;
-use App\Models\Concerns\Nested;
 use App\Models\Conversation;
 use App\Models\DiceRoll;
 use App\Models\Entity;
@@ -140,8 +139,8 @@ class EntityRelationService
         $relations = [];
         foreach ($this->relations as $relation) {
             if (
-                isset($this->entities[$relation['source']]) &&
-                isset($this->entities[$relation['target']])
+                isset($this->entities[$relation['source']], $this->entities[$relation['target']])
+
             ) {
                 $relations[] = $relation;
             }

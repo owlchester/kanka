@@ -249,7 +249,7 @@ class BulkController extends Controller
     protected function indexRoute(): string
     {
         $subroute = 'index';
-        if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->entity . '.tree')) {
+        if (auth()->user()->defaultNested && \Illuminate\Support\Facades\Route::has($this->entity . '.tree')) {
             $subroute = 'tree';
         }
         return $this->entity . '.' . $subroute;

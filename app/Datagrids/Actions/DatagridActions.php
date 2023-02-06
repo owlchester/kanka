@@ -18,7 +18,7 @@ abstract class DatagridActions
     /** @var bool */
     public $bulkCopyToCampaign = true;
 
-     /** @var bool */
+    /** @var bool */
     public $bulkTransform = true;
 
     /** @var bool */

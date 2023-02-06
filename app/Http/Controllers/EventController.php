@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\EventFilter;
-use App\Datagrids\Sorters\EventEventSorter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreEvent;
 use App\Models\Event;
-use App\Models\Tag;
 use App\Traits\TreeControllerTrait;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class EventController extends CrudController
 {

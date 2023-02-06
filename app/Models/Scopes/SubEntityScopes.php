@@ -3,9 +3,7 @@
 namespace App\Models\Scopes;
 
 use App\Facades\CampaignLocalization;
-use App\Models\Campaign;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Arr;
 
 /**
  * Trait SubEntityScopes

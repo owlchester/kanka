@@ -8,17 +8,16 @@ use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
 use App\Models\EntityUser;
-use App\User;
+use App\Traits\UserAware;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class MultiEditingService
 {
+    use UserAware;
+
     /** @var Model */
     protected $model;
-
-    /** @var User */
-    protected $user;
 
     /**
      * @param Model $model
@@ -27,12 +26,6 @@ class MultiEditingService
     public function model(Model $model): self
     {
         $this->model = $model;
-        return $this;
-    }
-
-    public function user(User $user): self
-    {
-        $this->user = $user;
         return $this;
     }
 

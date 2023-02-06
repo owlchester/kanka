@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Campaign\ExportService;
-use App\Services\CampaignService;
-use App\Services\EntityService;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller

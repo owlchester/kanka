@@ -7,7 +7,6 @@ use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\CharacterTrait;
-use App\Models\Conversation;
 use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityNote;
@@ -25,6 +24,7 @@ use App\Models\Race;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -35,14 +35,13 @@ use Illuminate\Support\Str;
 
 class EntityService
 {
+    use CampaignAware;
+
     /** @var array List of entity types */
     protected array $entities = [];
 
     /** @var bool If the process is copying an entity (this should be moved outside of this class) */
     protected bool $copied = false;
-
-    /** @var Campaign */
-    protected Campaign $campaign;
 
     /** @var bool|array */
     protected bool|array $cachedNewEntityTypes = false;
@@ -87,16 +86,6 @@ class EntityService
             'menu_links' => 'App\Models\MenuLink',
             'relations' => 'App\Models\Relation',
         ];
-    }
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
     }
 
     /**
@@ -304,7 +293,7 @@ class EntityService
             $newModel = $entity->child->replicate();
             // Remove any foreign keys that wouldn't make any sense in the new campaign
             foreach ($newModel->getAttributes() as $attribute) {
-                if (strpos($attribute, '_id') !== false) {
+                if (str_contains($attribute, '_id')) {
                     $newModel->$attribute = null;
                 }
             }
@@ -393,7 +382,7 @@ class EntityService
     {
         // Create new model
         if (!isset($this->entities[$target])) {
-            throw new \Exception("Unknown target '$target' for transforming entity");
+            throw new \Exception("Unknown target '{$target}' for transforming entity");
         }
 
         /** @var MiscModel $new */
@@ -519,7 +508,7 @@ class EntityService
     {
         // Create new model
         if (!isset($this->entities[$target])) {
-            throw new \Exception("Unknown entity type '$target' for creating entity");
+            throw new \Exception("Unknown entity type '{$target}' for creating entity");
         }
 
         /**

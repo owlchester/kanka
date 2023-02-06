@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -27,13 +26,13 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Organisation extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        Nested,
-        SoftDeletes,
-        SortableTrait,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -141,7 +140,6 @@ class Organisation extends MiscModel
                 $join->on('memb.organisation_id', '=', $this->getTable() . '.id');
             })
             ->whereIn('memb.character_id', $ids)->distinct();
-
     }
 
     /**

@@ -24,10 +24,11 @@ class LocaleChange
     {
         // Never bother with any of these requests
         if ($request->is(
-                'subscription-api/*',
-                'feeds/*',
-                '*/sitemap.xml',
-                'oauth/*')) {
+            'subscription-api/*',
+            'feeds/*',
+            '*/sitemap.xml',
+            'oauth/*'
+        )) {
             return $next($request);
         }
 

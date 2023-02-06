@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Search;
-
 
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
@@ -39,6 +37,4 @@ class AttributeSearchController extends Controller
             $data
         );
     }
-
-
 }

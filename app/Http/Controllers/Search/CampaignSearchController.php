@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Search;
-
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;

@@ -5,19 +5,17 @@ namespace App\Services\Campaign;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
 use App\Http\Requests\API\UpdateUserRole;
-use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
+use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use App\User;
 
 class MemberService
 {
-    /** @var Campaign */
-    protected $campaign;
-
-    /** @var User */
-    protected $user;
+    use CampaignAware;
+    use UserAware;
 
     /** @var CampaignRole */
     protected $campaignRole;
@@ -25,25 +23,9 @@ class MemberService
     /** @var CampaignRoleUser|null */
     protected $userCampaignRole;
 
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
-
     public function element(CampaignRoleUser $campaignRoleUser): self
     {
         $this->userCampaignRole = $campaignRoleUser;
-        return $this;
-    }
-
-    public function user(User $user): self
-    {
-        $this->user = $user;
         return $this;
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\EntityFileRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateEntityFile extends FormRequest

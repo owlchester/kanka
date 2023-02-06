@@ -64,7 +64,6 @@ class QuestElementController extends Controller
      */
     public function create(Quest $quest)
     {
-
         $this->authorize('update', $quest);
 
         return view('quests.elements.create', compact(
@@ -96,16 +95,16 @@ class QuestElementController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-            ->route('quests.quest_elements.edit', ['quest_element' => $element, 'quest' => $quest])
-            ->with('success', __('quests.elements.create.success', [
-                'entity' => $element->name()
-            ]));
+                ->route('quests.quest_elements.edit', ['quest_element' => $element, 'quest' => $quest])
+                ->with('success', __('quests.elements.create.success', [
+                    'entity' => $element->name()
+                ]));
         } elseif ($request->has('submit-new')) {
             return redirect()
-            ->route('quests.quest_elements.create', [$quest])
-            ->with('success', __('quests.elements.create.success', [
-                'entity' => $element->name()
-            ]));
+                ->route('quests.quest_elements.create', [$quest])
+                ->with('success', __('quests.elements.create.success', [
+                    'entity' => $element->name()
+                ]));
         }
         return redirect()
             ->route('quests.quest_elements.index', $quest)
@@ -186,16 +185,16 @@ class QuestElementController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-            ->route('quests.quest_elements.edit', ['quest_element' => $questElement, 'quest' => $quest])
-            ->with('success', __('quests.elements.edit.success', [
-                'entity' => $questElement->name()
-            ]));
+                ->route('quests.quest_elements.edit', ['quest_element' => $questElement, 'quest' => $quest])
+                ->with('success', __('quests.elements.edit.success', [
+                    'entity' => $questElement->name()
+                ]));
         } elseif ($request->has('submit-new')) {
             return redirect()
-            ->route('quests.quest_elements.create', [$quest])
-            ->with('success', __('quests.elements.create.success', [
-                'entity' => $questElement->name()
-            ]));
+                ->route('quests.quest_elements.create', [$quest])
+                ->with('success', __('quests.elements.create.success', [
+                    'entity' => $questElement->name()
+                ]));
         }
         return redirect()
             ->route('quests.quest_elements.index', $quest)

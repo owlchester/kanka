@@ -30,6 +30,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EntityAbility extends Model
 {
+    use Blameable;
+    use VisibilityIDTrait;
     /**
      * Fillable fields
      */
@@ -42,8 +44,6 @@ class EntityAbility extends Model
         'position',
         'note',
     ];
-
-    use VisibilityIDTrait, Blameable;
 
     /**
      * Set to false to skip save observers

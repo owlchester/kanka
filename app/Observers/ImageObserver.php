@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Observers;
-
 
 use App\Facades\CampaignCache;
 use App\Models\Image;

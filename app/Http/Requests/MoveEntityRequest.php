@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Services\EntityService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MoveEntityRequest extends FormRequest

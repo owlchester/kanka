@@ -35,14 +35,14 @@ class MapMarkerCacheService extends BaseCache
         ];
 
         $data = MapMarker::leftJoin('maps as m', 'm.id', 'map_markers.map_id')
-        ->where('m.campaign_id', $campaign->id)
-        ->select(DB::raw('custom_icon, MAX(map_markers.created_at) as cmat'))
-        ->groupBy('custom_icon')
-        ->whereNotNull('custom_icon')
-        ->orderBy('cmat', 'DESC')
-        ->take(10)
-        ->pluck('custom_icon')
-        ->all();
+            ->where('m.campaign_id', $campaign->id)
+            ->select(DB::raw('custom_icon, MAX(map_markers.created_at) as cmat'))
+            ->groupBy('custom_icon')
+            ->whereNotNull('custom_icon')
+            ->orderBy('cmat', 'DESC')
+            ->take(10)
+            ->pluck('custom_icon')
+            ->all();
 
         foreach ($default as $key => $value) {
             if (!in_array($value, $data)) {

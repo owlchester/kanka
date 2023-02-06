@@ -1,10 +1,7 @@
 <?php
 
-
 namespace App\Facades;
 
-
-use App\Models\MiscModel;
 use App\Services\FormCopyService;
 use Illuminate\Support\Facades\Facade;
 

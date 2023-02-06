@@ -55,8 +55,8 @@ class PostMoveController extends Controller
             return redirect()
                 ->route($newEntity->pluralType() . '.show', [$newEntity->child->id, '#post-' . $newPost->id])
                 ->with('success', __('entities/notes.move.' . $success, ['name' => $newPost->name,
-                'entity' => $newEntity->name
-            ]));
+                    'entity' => $newEntity->name
+                ]));
         } catch (TranslatableException $ex) {
             return redirect()
                 ->route($entity->pluralType() . '.show', [$entity->child->id, '#post-' . $post->id])

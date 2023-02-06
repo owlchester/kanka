@@ -14,7 +14,6 @@ class EntityFileRule implements Rule
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -50,11 +49,11 @@ class EntityFileRule implements Rule
             return false;
         }
 
-        if (!in_array($value->getClientOriginalExtension(), ['mp3', 'ogg', 'json'])){
-            return false;
-        }
+        return ! (!in_array($value->getClientOriginalExtension(), ['mp3', 'ogg', 'json']))
 
-        return true;
+
+
+        ;
     }
 
     /**
@@ -78,7 +77,7 @@ class EntityFileRule implements Rule
         ];
 
         return ($value instanceof UploadedFile)
-            ? in_array(trim(strtolower($value->getClientOriginalExtension())), $phpExtensions)
-            : in_array(trim(strtolower($value->getExtension())), $phpExtensions);
+            ? in_array(trim(mb_strtolower($value->getClientOriginalExtension())), $phpExtensions)
+            : in_array(trim(mb_strtolower($value->getExtension())), $phpExtensions);
     }
 }

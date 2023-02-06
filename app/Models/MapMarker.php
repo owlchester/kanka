@@ -43,7 +43,11 @@ use Illuminate\Support\Str;
  */
 class MapMarker extends Model
 {
-    use Blameable, VisibilityIDTrait, Paginatable, SourceCopiable, SortableTrait;
+    use Blameable;
+    use Paginatable;
+    use SortableTrait;
+    use SourceCopiable;
+    use VisibilityIDTrait;
 
     public const SHAPE_MARKER = 1;
     public const SHAPE_LABEL = 2;
@@ -299,7 +303,7 @@ class MapMarker extends Model
                 if ($this->entity->isMap()) {
                     $url = $this->entity->url('explore');
                 }
-                $body .= "<p><a href=\"$url\">" . str_replace('`', '\'', $this->entity->name) . "</a></p>";
+                $body .= "<p><a href=\"{$url}\">" . str_replace('`', '\'', $this->entity->name) . "</a></p>";
             }
             // No entry field, include the entity tooltip
             if (!$this->isLabel()) {
@@ -333,11 +337,11 @@ class MapMarker extends Model
             </div>
             ' . $body . '
             <div class="marker-popup-actions">
-                <a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]). '" class="btn btn-xs btn-primary">' . __('crud.edit') . '</a>
-                <a href="' . route('maps.map_markers.create', [$this->map_id, 'source' => $this->id]). '" class="btn btn-xs btn-primary">' . __('crud.actions.copy') . '</a>
+                <a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]) . '" class="btn btn-xs btn-primary">' . __('crud.edit') . '</a>
+                <a href="' . route('maps.map_markers.create', [$this->map_id, 'source' => $this->id]) . '" class="btn btn-xs btn-primary">' . __('crud.actions.copy') . '</a>
 
                 <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="' .
-                    str_replace('`', '\'', $this->markerTitle(false)) .'"
+                    str_replace('`', '\'', $this->markerTitle(false)) . '"
                         data-target="#delete-confirm" data-delete-target="delete-form-marker-' . $this->id . '"
                         title="' . __('crud.remove') . '">
                     ' . __('crud.remove') . '

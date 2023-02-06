@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Requests;
-
 
 use App\Rules\FontAwesomeIcon;
 use App\Traits\ApiRequest;
@@ -38,10 +36,9 @@ class StoreTimelineElement extends FormRequest
             'colour' => 'nullable|string|max:12',
             'date' => 'nullable|string|max:45',
             'visibility_id' => 'nullable|exists:visibilities,id',
-            'icon' => ['nullable', 'string', new FontAwesomeIcon],
+            'icon' => ['nullable', 'string', new FontAwesomeIcon()],
         ];
 
         return $this->clean($rules);
     }
-
 }

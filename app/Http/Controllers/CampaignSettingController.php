@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
-use Illuminate\Http\Request;
 
 class CampaignSettingController extends Controller
 {
@@ -56,6 +55,5 @@ class CampaignSettingController extends Controller
             'status' => $campaign->setting->{$module},
             'toast' => __('campaigns.settings.' . $action, ['module' => __('entities.' . $module)])
         ]);
-
     }
 }

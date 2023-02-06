@@ -4,7 +4,6 @@ namespace App\Rules;
 
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
-use App\Models\CampaignRole;
 use App\Models\Entity;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Str;
@@ -18,7 +17,6 @@ class EntityLink implements Rule
      */
     public function __construct()
     {
-        //
     }
 
     /**

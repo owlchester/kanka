@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Family;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class FamilyResource extends EntityResource
 {

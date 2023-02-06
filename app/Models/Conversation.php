@@ -19,10 +19,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Conversation extends MiscModel
 {
-    use CampaignTrait,
-        SoftDeletes,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use SoftDeletes;
 
     /** @var string[]  */
     protected $fillable = [
@@ -110,7 +110,8 @@ class Conversation extends MiscModel
     /**
      * @return false|string
      */
-    public function jsonParticipants() {
+    public function jsonParticipants()
+    {
         return json_encode($this->participantsList());
     }
 

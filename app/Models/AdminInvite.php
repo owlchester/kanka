@@ -20,8 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AdminInvite extends Model
 {
-    use Sortable;
     use Searchable;
+    use Sortable;
 
     public $sortableColumns = [
         'token',

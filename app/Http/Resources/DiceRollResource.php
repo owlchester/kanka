@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\DiceRoll;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class DiceRollResource extends EntityResource
 {

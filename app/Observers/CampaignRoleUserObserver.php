@@ -6,7 +6,6 @@ use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Jobs\CampaignRoleUserJob;
 use App\Models\CampaignRoleUser;
-use App\Notifications\Header;
 
 class CampaignRoleUserObserver
 {

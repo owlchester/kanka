@@ -43,9 +43,9 @@ class CampaignVisibileEntityCount extends Command
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
-        Campaign::public()->chunk(1000, function ($campaigns) {
+        Campaign::public()->chunk(1000, function ($campaigns): void {
             /** @var Campaign $campaign */
             foreach ($campaigns as $campaign) {
                 $this->count++;
@@ -72,7 +72,7 @@ class CampaignVisibileEntityCount extends Command
      * @param Campaign $campaign
      * @return int number of public entities
      */
-    protected function campaignCount(Campaign $campaign):int
+    protected function campaignCount(Campaign $campaign): int
     {
         /** @var CampaignRole $public */
         $public = CampaignRole::where([

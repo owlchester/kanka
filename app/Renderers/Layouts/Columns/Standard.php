@@ -31,7 +31,7 @@ class Standard extends Column
             return $this->view($render, Arr::get($this->config, 'with'));
         }
 
-        $method = substr($render, 0, -2);
+        $method = mb_substr($render, 0, -2);
         if (Str::endsWith($render, '()') && method_exists($this->model, $method)) {
             return (string) $this->model->$method();
         }

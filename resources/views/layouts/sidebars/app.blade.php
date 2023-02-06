@@ -10,7 +10,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
 @if (!empty($currentCampaign))
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
     @inject('sidebar', 'App\Services\SidebarService')
-    @php $sidebar->prepareQuickLinks($currentCampaign)@endphp
+    @php $sidebar->campaign($currentCampaign)->prepareQuickLinks()@endphp
     <aside class="main-sidebar main-sidebar-placeholder @if(auth()->check() && $currentCampaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($currentCampaign->image) style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
         <section class="sidebar-campaign">
             <div class="campaign-block">

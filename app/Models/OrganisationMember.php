@@ -28,10 +28,10 @@ use Illuminate\Database\Query\Builder;
  */
 class OrganisationMember extends Model
 {
-    use Paginatable;
     use HasFilters;
-    use SortableTrait;
+    use Paginatable;
     use Privatable;
+    use SortableTrait;
 
     public const PIN_CHARACTER = 1;
     public const PIN_ORGANISATION = 2;

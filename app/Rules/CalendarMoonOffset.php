@@ -13,7 +13,6 @@ class CalendarMoonOffset implements Rule
      */
     public function __construct()
     {
-        //
     }
 
     /**

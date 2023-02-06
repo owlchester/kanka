@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
@@ -29,7 +27,9 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class CampaignStyle extends Model
 {
-    use SoftDeletes, CampaignTrait, SortableTrait;
+    use CampaignTrait;
+    use SoftDeletes;
+    use SortableTrait;
 
     public $fillable = [
         'name',
@@ -70,7 +70,7 @@ class CampaignStyle extends Model
      */
     public function length(): string
     {
-        return (string) number_format(strlen($this->content));
+        return (string) number_format(mb_strlen($this->content));
     }
 
     /**
@@ -81,5 +81,4 @@ class CampaignStyle extends Model
     {
         return 'campaign_styles.' . $sub;
     }
-
 }

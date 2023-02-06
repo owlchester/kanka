@@ -23,12 +23,13 @@ class CampaignImageApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return Resource::collection($campaign
-            ->images()
-            ->where('is_default', false)
-            ->defaultOrder()
-            ->lastSync(request()->get('lastSync'))
-            ->paginate()
+        return Resource::collection(
+            $campaign
+                ->images()
+                ->where('is_default', false)
+                ->defaultOrder()
+                ->lastSync(request()->get('lastSync'))
+                ->paginate()
         );
     }
 

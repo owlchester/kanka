@@ -20,7 +20,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class CampaignBoost extends Model
 {
-    use Paginatable, SoftDeletes;
+    use Paginatable;
+    use SoftDeletes;
 
     /** @var string[]  */
     protected $fillable = ['user_id', 'campaign_id'];

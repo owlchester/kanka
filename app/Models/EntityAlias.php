@@ -23,7 +23,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EntityAlias extends Model
 {
-    use VisibilityIDTrait, Blameable, EntityAsset;
+    use Blameable;
+    use EntityAsset;
+    use VisibilityIDTrait;
 
     public $fillable = [
         'entity_id',

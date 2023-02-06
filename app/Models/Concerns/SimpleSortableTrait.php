@@ -24,13 +24,13 @@ trait SimpleSortableTrait
             return $builder;
         }
         if (is_string($datagridSorter)) {
-            $datagridSorter = new $datagridSorter;
+            $datagridSorter = new $datagridSorter();
             $datagridSorter->request(request()->all());
         }
 
         $columns = $datagridSorter->column();
         if (!is_array($columns)) {
-            $columns = array($columns);
+            $columns = [$columns];
         }
         $order = $datagridSorter->order();
 

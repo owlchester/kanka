@@ -95,7 +95,7 @@ class DatagridRenderer
     public function __toString(): string
     {
         $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped' .
-            ($this->nestedFilter ? ' table-nested' : null). '">';
+            ($this->nestedFilter ? ' table-nested' : null) . '">';
         $html .= '<thead><tr>';
         $html .= $this->renderColumns();
         $html .=  '</tr></thead>';
@@ -154,7 +154,7 @@ class DatagridRenderer
             $class = $column['type'];
             if ($type == 'avatar') {
                 $class = !empty($column['parent']) ? 'hidden-xs hidden-sm' : $class . ' w-14';
-                //$html = null;
+            //$html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route('location.name', __('entities.location'));
@@ -165,13 +165,13 @@ class DatagridRenderer
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route(
                     'character.name',
-                    !empty($column['label']) ? $column['label'] :  __('entities.character')
+                    !empty($column['label']) ? $column['label'] : __('entities.character')
                 );
             } elseif ($type == 'entity') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route(
                     'entity.name',
-                    !empty($column['label']) ? $column['label'] :  __('crud.fields.entity')
+                    !empty($column['label']) ? $column['label'] : __('crud.fields.entity')
                 );
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
@@ -180,7 +180,7 @@ class DatagridRenderer
                 }
                 $html = $this->route(
                     'is_private',
-                    '<i class="fa-solid fa-lock" title="' .  __('crud.fields.is_private') . '"></i>'
+                    '<i class="fa-solid fa-lock" title="' . __('crud.fields.is_private') . '"></i>'
                 );
                 $class = 'min-w-12';
             } elseif ($type == 'calendar_date') {
@@ -209,7 +209,7 @@ class DatagridRenderer
             }
         }
 
-        return "<th" . (!empty($class) ? " class=\"$class\"" : null) . ">$html</th>\n";
+        return "<th" . (!empty($class) ? " class=\"{$class}\"" : null) . ">{$html}</th>\n";
     }
 
     /**
@@ -257,7 +257,7 @@ class DatagridRenderer
         }
 
         return "<a href='" .
-            url()->route($this->getOption('route'), $routeOptions). "'>" . $label . $orderImg . "</a>";
+            url()->route($this->getOption('route'), $routeOptions) . "'>" . $label . $orderImg . "</a>";
     }
 
     /**
@@ -399,7 +399,7 @@ class DatagridRenderer
                     return null;
                 }
                 $content = $model->is_private ?
-                    '<i class="fa-solid fa-lock" title="' .  __('crud.is_private') . '"></i>' :
+                    '<i class="fa-solid fa-lock" title="' . __('crud.is_private') . '"></i>' :
                     '<br />';
             } elseif ($type == 'calendar_date') {
                 $class = 'hidden-xs hidden-sm';

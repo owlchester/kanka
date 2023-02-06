@@ -13,8 +13,8 @@ use Illuminate\Support\ServiceProvider;
 
 class PurifySetupProvider extends ServiceProvider
 {
-    const DEFINITION_ID = 'kanka';
-    const DEFINITION_REV = 1;
+    public const DEFINITION_ID = 'kanka';
+    public const DEFINITION_REV = 1;
 
     /**
      * Bootstrap the application services.
@@ -47,12 +47,12 @@ class PurifySetupProvider extends ServiceProvider
             ]
         );
         $trusted_wh = new HTMLPurifier_AttrDef_CSS_Composite(
-            array(
+            [
                 new HTMLPurifier_AttrDef_CSS_Length('0'),
                 new HTMLPurifier_AttrDef_CSS_Percentage(true),
-                new HTMLPurifier_AttrDef_Enum(array('auto', 'initial', 'inherit')),
+                new HTMLPurifier_AttrDef_Enum(['auto', 'initial', 'inherit']),
                 new CalcStyleDefinition(),
-            )
+            ]
         );
 
         $css->info['width'] =
@@ -71,7 +71,6 @@ class PurifySetupProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**
@@ -99,9 +98,9 @@ class PurifySetupProvider extends ServiceProvider
             'Block',
             'Flow',
             'Common',
-            array(
+            [
                 'open' => new \HTMLPurifier_AttrDef_HTML_Bool(true)
-            )
+            ]
         );
         $def->addElement('summary', 'Inline', 'Inline', 'Common');
     }

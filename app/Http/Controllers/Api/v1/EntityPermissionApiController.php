@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\User;
 use App\Models\Entity;
 use App\Http\Requests\StoreEntityPermission as Request;
 use App\Http\Requests\PermissionTestRequest;

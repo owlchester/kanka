@@ -2,33 +2,20 @@
 
 namespace App\Services\Campaign;
 
-use App\Models\Campaign;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 
 class StatService
 {
-    /**
-     * @var Campaign
-     */
-    protected $campaign;
+    use CampaignAware;
 
-    protected $primaryTargets = [25, 50, 100, 250, 500];
+    protected array $primaryTargets = [25, 50, 100, 250, 500];
     //protected $primaryTargets = [2, 5, 10, 25, 40];
 
-    protected $secondaryTargets = [10, 20, 45, 100, 200];
+    protected array $secondaryTargets = [10, 20, 45, 100, 200];
 
-    protected $tertiaryTargets = [1, 2, 5, 10, 20];
+    protected array $tertiaryTargets = [1, 2, 5, 10, 20];
     //protected $secondaryTargets = [1, 2, 3, 4, 5];
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
 
     /**
      * @return array|array[]
@@ -170,7 +157,6 @@ class StatService
      */
     public function achievements(): array
     {
-
         $dead = $this->campaign->characters()->where('is_dead', true)->count();
         $calendars = $this->campaign->calendars()->count();
 
@@ -192,7 +178,7 @@ class StatService
         ];
 
         // Success rate
-        foreach($achievements as $key => $achievement) {
+        foreach ($achievements as $key => $achievement) {
             $achievements[$key]['score'] = $achievement['amount'] > $achievement['target'] ? 100 : ($achievement['amount'] / $achievement['target']);
         }
 

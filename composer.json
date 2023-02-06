@@ -47,6 +47,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
+        "laravel/pint": "^1.4",
         "laravel/sail": "^1.14",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/larastan": "^2.2",

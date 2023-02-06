@@ -128,10 +128,10 @@ class CampaignService
     }
 
  /**
-     * Notify the campaign admins that the campaign was forcibly hidden/made visible
-     * @param Campaign $campaign
-     * @throws Exception
-     */
+  * Notify the campaign admins that the campaign was forcibly hidden/made visible
+  * @param Campaign $campaign
+  * @throws Exception
+  */
     public function hidden(Campaign $campaign)
     {
         $colour = 'green';

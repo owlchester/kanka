@@ -11,7 +11,6 @@ use App\Models\EntityAbility;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Collection;
 use App\Http\Requests\ReorderAbility;
-use Illuminate\Support\Arr;
 use Exception;
 
 class AbilityService
@@ -70,7 +69,7 @@ class AbilityService
 
         // Reorder parents
         usort($this->abilities['parents'], function ($a, $b) {
-            return strcmp(strtoupper($a['name']), strtoupper($b['name']));
+            return strcmp(mb_strtoupper($a['name']), mb_strtoupper($b['name']));
         });
 
         // Meta

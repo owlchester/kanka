@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
-use App\Facades\EntityPermission;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
 use App\Models\CampaignPermission;
@@ -12,7 +11,6 @@ use App\Models\Tag;
 use App\Services\AttributeService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class EntityObserver

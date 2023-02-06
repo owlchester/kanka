@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
@@ -15,7 +14,7 @@ use App\Models\Role;
 use App\Models\SubscriptionSource;
 use App\Models\UserLog;
 use App\Notifications\Header;
-use App\User;
+use App\Traits\UserAware;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -30,13 +29,12 @@ use Exception;
 
 class SubscriptionService
 {
+    use UserAware;
+
     public const STATUS_UNSUBSCRIBED = 0;
     public const STATUS_SUBSCRIBED = 1;
     public const STATUS_GRACE = 2;
     public const STATUS_CANCELLED = 3;
-
-    /** @var User|null */
-    protected $user;
 
     /** @var string */
     protected $tier;
@@ -66,16 +64,6 @@ class SubscriptionService
     protected $request;
 
     /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
-
-    /**
      * @param string $tier
      * @return $this
      * @throws Exception
@@ -84,7 +72,7 @@ class SubscriptionService
     {
         $this->tier = $tier;
         if (!in_array($tier, Pledge::pledges())) {
-            throw new Exception("Unknown tier level '$tier'.");
+            throw new Exception("Unknown tier level '{$tier}'.");
         }
         return $this;
     }
@@ -108,7 +96,7 @@ class SubscriptionService
     {
         $this->period = $period;
         if (!in_array($period, ['monthly', 'yearly'])) {
-            throw new Exception("Unknown period '$period'.");
+            throw new Exception("Unknown period '{$period}'.");
         }
         return $this;
     }
@@ -662,8 +650,8 @@ class SubscriptionService
     {
         if (!empty($tier)) {
             return [
-                config('subscription.' . strtolower($tier). '.eur.monthly'),
-                config('subscription.' . strtolower($tier). '.usd.monthly'),
+                config('subscription.' . mb_strtolower($tier) . '.eur.monthly'),
+                config('subscription.' . mb_strtolower($tier) . '.usd.monthly'),
             ];
         }
         return [
@@ -745,10 +733,8 @@ class SubscriptionService
     {
         if ($this->user->pledge == Pledge::OWLBEAR && in_array($plan, [Pledge::WYVERN, Pledge::ELEMENTAL])) {
             return true;
-        } elseif ($this->user->pledge == Pledge::WYVERN && $plan == Pledge::ELEMENTAL) {
-            return true;
         }
-        return false;
+        return (bool) ($this->user->pledge == Pledge::WYVERN && $plan == Pledge::ELEMENTAL);
     }
 
     /**

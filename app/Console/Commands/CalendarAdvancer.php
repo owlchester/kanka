@@ -45,7 +45,7 @@ class CalendarAdvancer extends Command
      */
     public function handle()
     {
-        Calendar::where('is_incrementing', true)->chunk(500, function ($calendars) {
+        Calendar::where('is_incrementing', true)->chunk(500, function ($calendars): void {
             /** @var Calendar $calendar*/
             foreach ($calendars as $calendar) {
                 try {

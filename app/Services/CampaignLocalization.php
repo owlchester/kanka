@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CampaignLocalization
 {
-
     /**
      * Current campaign id.
      *
@@ -98,7 +97,7 @@ class CampaignLocalization
      */
     public function getUrl(int $campaignId, string $with = null)
     {
-        return app()->getLocale() . '/' . $this->setCampaign($campaignId) . (!empty($with) ? "/$with" : null);
+        return app()->getLocale() . '/' . $this->setCampaign($campaignId) . (!empty($with) ? "/{$with}" : null);
     }
 
     /**

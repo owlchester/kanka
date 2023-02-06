@@ -3,36 +3,23 @@
 namespace App\Services\Campaign;
 
 use App\Http\Requests\Campaigns\GalleryImageStore;
-use App\Models\Campaign;
 use App\Models\Image;
 use App\Models\Visibility;
 use App\Observers\PurifiableTrait;
+use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class GalleryService
 {
+    use CampaignAware;
     use PurifiableTrait;
 
-    /** @var Campaign */
-    protected $campaign;
-
     /** @var Image */
-    protected $image;
+    protected Image $image;
 
-    protected $folders = [];
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
+    protected array $folders = [];
 
     /**
      * @param Image $image
@@ -68,7 +55,7 @@ class GalleryService
             $image->id = Str::uuid()->toString();
             $image->ext = $source->extension();
             $image->size = (int) ceil($source->getSize() / 1024); // kb
-            $image->name = substr($name, 0, 45);
+            $image->name = mb_substr($name, 0, 45);
             $image->folder_id = $request->post('folder_id');
             $image->visibility_id = $this->campaign->defaultVisibilityID();
             $image->save();

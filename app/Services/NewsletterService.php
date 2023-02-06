@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\User;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Spatie\Newsletter\NewsletterFacade as Newsletter;
@@ -10,27 +10,16 @@ use Exception;
 
 class NewsletterService
 {
+    use UserAware;
+
     /** @var string interest-ids */
     public string $releaseID = '3cbff83812';
 
     /** @var string List name */
     public string $listName = 'subscribers';
 
-    /** @var User|null */
-    protected $user;
-
     /** @var string */
     public string $email;
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
 
     /**
      * @param string $email

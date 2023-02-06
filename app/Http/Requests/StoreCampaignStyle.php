@@ -7,8 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCampaignStyle extends FormRequest
 {
-    public const MAX = 60000;
     use ApiRequest;
+    public const MAX = 60000;
 
     /**
      * Determine if the user is authorized to make this request.

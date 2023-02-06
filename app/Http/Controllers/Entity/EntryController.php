@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Entity;
-
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateEntityEntry;

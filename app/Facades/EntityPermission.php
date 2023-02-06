@@ -2,10 +2,6 @@
 
 namespace App\Facades;
 
-use App\Models\Campaign;
-use App\Models\MiscModel;
-use App\Models\Entity;
-use App\User;
 use Illuminate\Support\Facades\Facade;
 
 /**

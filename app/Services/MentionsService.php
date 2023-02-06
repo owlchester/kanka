@@ -319,7 +319,6 @@ class MentionsService
 
             // No entity found, the user might not be allowed to see it
             if (empty($entity) || empty($entity->child)) {
-
                 if ($this->onlyName) {
                     return __('crud.history.unknown');
                 }
@@ -334,7 +333,7 @@ class MentionsService
                     $routeParams = explode('&amp;', $data['params']);
                     foreach ($routeParams as $routeParam) {
                         // Do we whitelist? or have a max length to avoid shenanigans?
-                        if (strlen($routeParam) > 20) {
+                        if (mb_strlen($routeParam) > 20) {
                             continue;
                         }
                         $paramOptions = explode('=', $routeParam);
@@ -743,7 +742,7 @@ class MentionsService
         $toc = $tocGenerator->getHtmlMenu($this->text);
         $this->text = Str::replaceFirst(
             '{table-of-contents}',
-            '<div class="toc">' . $toc .  "</div>\n",
+            '<div class="toc">' . $toc . "</div>\n",
             $this->text
         );
     }
@@ -768,9 +767,9 @@ class MentionsService
         }
 
         // Do we already have it cached?
-        $key = $type . ':' . strtolower($name);
+        $key = $type . ':' . mb_strtolower($name);
         if (isset($this->newEntityMentions[$key])) {
-            return "[$type:" . $this->newEntityMentions[$key] . ']';
+            return "[{$type}:" . $this->newEntityMentions[$key] . ']';
         }
 
         // Create the new misc  model

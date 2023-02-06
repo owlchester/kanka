@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\OrganisationFilter;
-use App\Datagrids\Sorters\OrganisationCharacterSorter;
-use App\Datagrids\Sorters\OrganisationOrganisationSorter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreOrganisation;
-use App\Models\Location;
 use App\Models\Organisation;
-use App\Models\Tag;
 use App\Traits\TreeControllerTrait;
 
 class OrganisationController extends CrudController

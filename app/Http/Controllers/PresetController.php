@@ -6,7 +6,6 @@ use App\Facades\CampaignLocalization;
 use App\Http\Requests\StorePreset;
 use App\Models\Preset;
 use App\Models\PresetType;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
 class PresetController extends Controller
