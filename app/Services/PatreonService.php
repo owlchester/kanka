@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Pledge;
-use App\User;
+use App\Traits\UserAware;
 use App\Models\Role;
 
 /**
@@ -12,21 +12,7 @@ use App\Models\Role;
  */
 class PatreonService
 {
-    /**
-     * @var User
-     */
-    protected User $user;
-
-    /**
-     * Set the user
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user)
-    {
-        $this->user = $user;
-        return $this;
-    }
+    use UserAware;
 
     /**
      * @return mixed

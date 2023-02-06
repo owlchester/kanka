@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\TranslatableException;
 use App\Http\Requests\SaveUserHelp;
+use App\Models\Campaign;
 use App\Services\TroubleshootingService;
 
 class TroubleshootingController extends Controller
@@ -39,9 +40,10 @@ class TroubleshootingController extends Controller
     public function saveInvite(SaveUserHelp $request)
     {
         try {
+            $campaign = Campaign::findOrFail($request->get('campaign'));
             $invite = $this->service
-                ->user(auth()->user())
-                ->campaign($request->get('campaign'))
+                ->user($request->user())
+                ->campaign($campaign)
                 ->generate();
 
             return redirect()

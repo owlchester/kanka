@@ -7,26 +7,15 @@ use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
 use App\Models\Location;
-use App\Models\Note;
-use App\User;
+use App\Traits\UserAware;
 
 class StarterService
 {
+    use UserAware;
+
     /** @var Campaign */
     protected $campaign;
 
-    /** @var User */
-    protected $user;
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
 
     /**
      * @return Campaign

@@ -14,7 +14,7 @@ use App\Models\Role;
 use App\Models\SubscriptionSource;
 use App\Models\UserLog;
 use App\Notifications\Header;
-use App\User;
+use App\Traits\UserAware;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -29,13 +29,12 @@ use Exception;
 
 class SubscriptionService
 {
+    use UserAware;
+
     public const STATUS_UNSUBSCRIBED = 0;
     public const STATUS_SUBSCRIBED = 1;
     public const STATUS_GRACE = 2;
     public const STATUS_CANCELLED = 3;
-
-    /** @var User|null */
-    protected $user;
 
     /** @var string */
     protected $tier;
@@ -63,16 +62,6 @@ class SubscriptionService
 
     /** @var array|Request The request object */
     protected $request;
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
 
     /**
      * @param string $tier

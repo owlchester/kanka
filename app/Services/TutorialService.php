@@ -2,12 +2,14 @@
 
 namespace App\Services;
 
-use App\User;
+use App\Traits\UserAware;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
 
 class TutorialService
 {
+    use UserAware;
+
     protected $workflows = [
         'dashboard_1' => [
             'highlight' => '.subsection.section-characters a',
@@ -16,18 +18,6 @@ class TutorialService
             'highlight' => 'a.btn-new-entity'
         ]
     ];
-    /** @var User */
-    protected $user;
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
 
     /**
      * @return $this

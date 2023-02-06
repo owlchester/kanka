@@ -10,17 +10,12 @@ use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Models\Pledge;
 use App\Notifications\Header;
+use App\Traits\UserAware;
 use App\User;
 
 class NavigationService
 {
-    protected User $user;
-
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
+    use UserAware;
 
     public function data(): array
     {
