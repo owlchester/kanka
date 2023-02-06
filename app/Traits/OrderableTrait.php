@@ -19,11 +19,11 @@ trait OrderableTrait
     public function scopeOrdered(Builder $query, string|null $data, string $defaultField = 'name')
     {
         // No token? Next.
-        if (strpos($data, $this->orderTrigger) === false) {
+        if (!str_contains($data, $this->orderTrigger)) {
             if ($defaultField == 'name' && isset($this->orderDefaultField)) {
                 $defaultField = $this->orderDefaultField;
             }
-            $defaultDir = isset($this->orderDefaultDir) ? $this->orderDefaultDir : 'asc';
+            $defaultDir = $this->orderDefaultDir ?? 'asc';
 
             if ($defaultField == 'events/date') {
                 return $query

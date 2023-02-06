@@ -2,12 +2,10 @@
 
 namespace App\Traits;
 
-use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
 
 trait TreeControllerTrait
@@ -40,7 +38,7 @@ trait TreeControllerTrait
         $filters = $this->filters;
         $filterService = $this->filterService;
         $filter = !empty($this->filter) ? new $this->filter() : null;
-        $langKey = isset($this->langKey) ? $this->langKey : $name;
+        $langKey = $this->langKey ?? $name;
         $templates = $this->loadTemplates($model);
 
         $this->addNavAction(
