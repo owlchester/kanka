@@ -99,7 +99,7 @@ class EntityCreatorController extends Controller
         // Prepare the data
         unset($values['names'], $values['_multi'], $values['_target']);
 
-          // Remove target as we need that for something else
+        // Remove target as we need that for something else
 
         if (!empty($values['entry'])) {
             $values['entry'] = nl2br($values['entry']);

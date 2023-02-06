@@ -27,7 +27,6 @@ class CommunityEventController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -35,7 +34,6 @@ class CommunityEventController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -59,7 +57,6 @@ class CommunityEventController extends Controller
      */
     public function edit($post)
     {
-
     }
 
     /**
@@ -67,7 +64,6 @@ class CommunityEventController extends Controller
      */
     public function update(Request $request, $post)
     {
-
     }
 
     /**
@@ -75,6 +71,5 @@ class CommunityEventController extends Controller
      */
     public function destroy($post)
     {
-
     }
 }

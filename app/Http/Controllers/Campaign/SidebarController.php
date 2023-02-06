@@ -33,9 +33,9 @@ class SidebarController extends Controller
         return view(
             'campaigns.sidebar.index',
             compact(
-            'campaign',
-            'layout'
-        )
+                'campaign',
+                'layout'
+            )
         );
     }
 
