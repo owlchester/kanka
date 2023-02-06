@@ -75,7 +75,7 @@ class RelationController extends CrudController
         }
 
         try {
-            $model = new $this->model;
+            $model = new $this->model();
             /** @var Relation $new */
             $new = $model->create($request->all());
 
@@ -112,7 +112,7 @@ class RelationController extends CrudController
             $route = route($this->route . '.index');
             return response()->redirectTo($route);
         } catch (\LogicException $exception) {
-            $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
+            $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));
             return redirect()
                 ->back()
                 ->withInput()

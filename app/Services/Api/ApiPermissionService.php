@@ -14,7 +14,7 @@ class ApiPermissionService
 {
     protected $cachedPermissions;
 
-     /**
+    /**
      * Get the permissions of an entity
      * @param Entity $entity
      * @return array
@@ -42,7 +42,7 @@ class ApiPermissionService
      */
     public function saveEntity($request, Entity $entity)
     {
-         // First, let's get all the stuff for this entity
+        // First, let's get all the stuff for this entity
         $permissions = $this->entityPermissions($entity);
         $model = [];
         // Next, start looping the data

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\Img;
 use Illuminate\Database\Eloquent\Model;
 
 /**

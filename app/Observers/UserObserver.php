@@ -3,16 +3,13 @@
 namespace App\Observers;
 
 use App\Facades\UserCache;
-use App\Jobs\Emails\GoodbyeEmailJob;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Models\CampaignUser;
 use App\Models\CampaignFollower;
-use App\Models\UserLog;
 use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserObserver
@@ -33,7 +30,7 @@ class UserObserver
         // Purify the bio
         if (!empty($user->profile['bio'])) {
             $profile = $user->profile;
-            $profile['bio'] = substr(strip_tags($profile['bio']), 0, 301);
+            $profile['bio'] = mb_substr(strip_tags($profile['bio']), 0, 301);
             try {
                 $user->profile = $profile;
             } catch (\Exception $e) {
@@ -64,7 +61,6 @@ class UserObserver
      */
     public function updated(User $user)
     {
-
     }
 
     public function creating(User $user)

@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Inventory extends Model
 {
+    use VisibilityIDTrait;
     /**
      * Fillable fields
      */
@@ -38,8 +39,6 @@ class Inventory extends Model
         'is_equipped',
         'copy_item_entry',
     ];
-
-    use VisibilityIDTrait;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

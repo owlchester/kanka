@@ -4,19 +4,16 @@ namespace App\Services;
 
 use App\Exceptions\EntityFileException;
 use App\Http\Requests\StoreEntityAsset;
-use App\Http\Requests\StoreEntityFile;
-use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
-use App\Models\EntityFile;
+use App\Traits\CampaignAware;
 
 class EntityFileService
 {
+    use CampaignAware;
+
     /** @var Entity */
     protected $entity;
-
-    /** @var Campaign */
-    protected $campaign;
 
     /**
      * @param Entity $entity
@@ -29,23 +26,13 @@ class EntityFileService
     }
 
     /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
-
-    /**
      * @param StoreEntityAsset $request
      * @param string $field
      * @param string $folder
      * @return EntityAsset
      * @throws EntityFileException
      */
-    public function upload(StoreEntityAsset $request, $field = 'file', $folder = 'entities/files'): EntityAsset
+    public function upload(StoreEntityAsset $request, string $field = 'file', string $folder = 'entities/files'): EntityAsset
     {
         // Already above max capacity?
         if ($this->entity->files->count() >= $this->campaign->maxEntityFiles()) {

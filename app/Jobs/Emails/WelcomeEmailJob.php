@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Mail;
 
 class WelcomeEmailJob implements ShouldQueue
 {
-    use Dispatchable,
-        InteractsWithQueue,
-        Queueable,
-        SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var int

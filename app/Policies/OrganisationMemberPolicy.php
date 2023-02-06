@@ -16,7 +16,6 @@ class OrganisationMemberPolicy
      */
     public function __construct()
     {
-        //
     }
 
 

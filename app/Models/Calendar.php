@@ -34,11 +34,11 @@ use Illuminate\Support\Str;
  */
 class Calendar extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        SoftDeletes,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use ExportableTrait;
+    use SoftDeletes;
 
     /** @var string[]  */
     protected $fillable = [
@@ -387,7 +387,7 @@ class Calendar extends MiscModel
         try {
             $return = $day . ' ' .
                 (isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month) . ', ' .
-                (isset($years[$year]) ? $years[$year] : $year) . ' ' .
+                ($years[$year] ?? $year) . ' ' .
                 $this->suffix;
             return $return;
         } catch (\Exception $e) { // @phpstan-ignore-line
@@ -659,7 +659,7 @@ class Calendar extends MiscModel
             }
         }
 
-// Get the recurring events separately to make sure we always have 5 real "upcoming" events that mix recurring and single
+        // Get the recurring events separately to make sure we always have 5 real "upcoming" events that mix recurring and single
         $upcomingRecurringEvents = $this->dashboardEvents('>=', $needle, true);
         foreach ($upcomingRecurringEvents as $event) {
             // Recurring events can be forever, so check that's best
@@ -707,29 +707,29 @@ class Calendar extends MiscModel
                             });
                     });
                 })
-                ->orWhere(function ($ondate) {
-                    // Not recurring
-                    $ondate
-                        ->where('is_recurring', false)
-                        ->where(function ($date) {
-                            // An event that happens before this year
-                            $date
-                                ->where('year', '>', $this->currentYear())
-                                ->orWhere(function ($subdate) {
-                                    // An event that happens this year but after this month
-                                    $subdate
-                                        ->where('year', $this->currentYear())
-                                        ->where('month', '>', $this->currentMonth());
-                                })
-                                ->orWhere(function ($subdate) {
-                                    // An event that happens this year after this year
-                                    $subdate
-                                        ->where('year', $this->currentYear())
-                                        ->where('month', $this->currentMonth())
-                                        ->where('day', '>=', $this->currentDay());
-                                });
-                        });
-                });
+                    ->orWhere(function ($ondate) {
+                        // Not recurring
+                        $ondate
+                            ->where('is_recurring', false)
+                            ->where(function ($date) {
+                                // An event that happens before this year
+                                $date
+                                    ->where('year', '>', $this->currentYear())
+                                    ->orWhere(function ($subdate) {
+                                        // An event that happens this year but after this month
+                                        $subdate
+                                            ->where('year', $this->currentYear())
+                                            ->where('month', '>', $this->currentMonth());
+                                    })
+                                    ->orWhere(function ($subdate) {
+                                        // An event that happens this year after this year
+                                        $subdate
+                                            ->where('year', $this->currentYear())
+                                            ->where('month', $this->currentMonth())
+                                            ->where('day', '>=', $this->currentDay());
+                                    });
+                            });
+                    });
             })
             // Skip events that were on months which no longer exist
             ->where('month', '<=', count($this->months()))

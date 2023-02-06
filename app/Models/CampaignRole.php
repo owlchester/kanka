@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
-use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -32,7 +31,8 @@ use Illuminate\Support\Str;
  */
 class CampaignRole extends Model
 {
-    use Paginatable, SortableTrait;
+    use Paginatable;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -193,7 +193,7 @@ class CampaignRole extends Model
     public function scopeSearch(Builder $builder, string $search = null): Builder
     {
         return $builder
-            ->where('name', 'like', "%$search%");
+            ->where('name', 'like', "%{$search}%");
     }
 
     /**

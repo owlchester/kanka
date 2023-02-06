@@ -29,7 +29,7 @@ class StoreEntityFile extends FormRequest
                 'required',
                 'file',
                 'max:' . auth()->user()->maxUploadSize(),
-                new EntityFileRule
+                new EntityFileRule()
             ],
             'name' => 'nullable|string|max:45',
             'visibility_id' => 'nullable|exists:visibilities,id'

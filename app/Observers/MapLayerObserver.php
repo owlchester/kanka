@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Observers;
-
 
 use App\Facades\Mentions;
 use App\Models\MapLayer;
@@ -71,5 +69,4 @@ class MapLayerObserver
         // If we touch, we'll replace the image of the map
         //$mapLayer->map->touch();
     }
-
 }

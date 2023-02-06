@@ -16,7 +16,7 @@ class UserLogObserver
             $userLog->ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
         }
         if (isset($_SERVER["HTTP_CF_IPCOUNTRY"])) {
-            $userLog->country = substr($_SERVER["HTTP_CF_IPCOUNTRY"], 0, 6);
+            $userLog->country = mb_substr($_SERVER["HTTP_CF_IPCOUNTRY"], 0, 6);
         }
     }
 }

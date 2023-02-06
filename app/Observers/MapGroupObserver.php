@@ -1,12 +1,8 @@
 <?php
 
-
 namespace App\Observers;
 
-
-use App\Facades\Mentions;
 use App\Models\MapGroup;
-use App\Services\ImageService;
 
 class MapGroupObserver
 {
@@ -51,5 +47,4 @@ class MapGroupObserver
     {
         $mapGroup->map->touch();
     }
-
 }

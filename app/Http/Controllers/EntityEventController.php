@@ -9,7 +9,6 @@ use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Services\CalendarService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class EntityEventController extends Controller
@@ -64,7 +63,8 @@ class EntityEventController extends Controller
             ->paginate();
 
         return view('entities.pages.reminders.index', compact(
-            'entity', 'reminders'
+            'entity',
+            'reminders'
         ));
     }
 
@@ -214,7 +214,6 @@ class EntityEventController extends Controller
             return redirect()
                 ->route('calendars.events', $entityEvent->calendar)
                 ->with('success', $success);
-
         } elseif ($next == 'entity.events') {
             return redirect()
                 ->route('entities.entity_events.index', $entity)
@@ -223,7 +222,7 @@ class EntityEventController extends Controller
 
         // Redirect to the calendar if that's where we came from
         $previous = url()->previous();
-        if (strpos($previous, '/calendars/') !== false) {
+        if (str_contains($previous, '/calendars/')) {
             return redirect()->route('calendars.show', [$entityEvent->calendar_id])
                 ->with('success', $success);
         }

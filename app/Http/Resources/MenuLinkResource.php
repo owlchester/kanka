@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\MenuLink;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class MenuLinkResource extends EntityResource
 {

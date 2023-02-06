@@ -72,7 +72,6 @@ class RecoveryController extends Controller
                 ->route('recovery')
                 ->with('success', trans_choice('campaigns/recovery.success', $count, ['count' => $count]));
         } catch (\Exception $e) {
-
             return redirect()
                 ->route('recovery')
                 ->with('error', __('campaigns/recovery.error'));

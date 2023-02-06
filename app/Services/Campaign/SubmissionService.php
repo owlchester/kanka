@@ -1,38 +1,25 @@
 <?php
 
-
 namespace App\Services\Campaign;
-
 
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
-use App\Models\Campaign;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Notifications\Header;
 use App\Observers\PurifiableTrait;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 
 class SubmissionService
 {
+    use CampaignAware;
     use PurifiableTrait;
 
-    /** @var Campaign */
-    protected $campaign;
 
     /** @var CampaignSubmission */
     protected $submission;
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
 
     /**
      * @param CampaignSubmission $submission
@@ -68,7 +55,8 @@ class SubmissionService
                     new Header($key, 'user', 'red', [
                         'campaign' => $this->campaign->name,
                         'reason' => $rejection
-                    ]));
+                    ])
+                );
         } else {
             $this->approve((int) Arr::get($data, 'role_id'), $this->purify(Arr::get($data, 'message')));
         }
@@ -104,7 +92,6 @@ class SubmissionService
      */
     protected function approve(int $roleID, string $message = ''): self
     {
-
         // Add the user to the campaign
         $user = CampaignUser::create([
             'user_id' => $this->submission->user_id,

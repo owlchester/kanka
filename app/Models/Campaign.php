@@ -11,12 +11,10 @@ use App\Models\Concerns\LastSync;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\User;
-use App\Models\EntityUser;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Campaign
@@ -62,11 +60,11 @@ use Illuminate\Support\Facades\Auth;
  */
 class Campaign extends MiscModel
 {
-    use CampaignScopes,
-        CampaignRelations,
-        Boosted,
-        CampaignLimit,
-        LastSync;
+    use Boosted;
+    use CampaignLimit;
+    use CampaignRelations;
+    use CampaignScopes;
+    use LastSync;
 
     /**
      * Visibility of a campaign
@@ -143,7 +141,7 @@ class Campaign extends MiscModel
             return $this->excerpt();
         }
         if (!empty(strip_tags($this->entry))) {
-            return strip_tags(substr($this->entry(), 0, 1000)) . ' ...';
+            return strip_tags(mb_substr($this->entry(), 0, 1000)) . ' ...';
         }
         return '';
     }

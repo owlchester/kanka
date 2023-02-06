@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Campaign;
-
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
@@ -10,7 +8,6 @@ use App\Http\Requests\Campaigns\PatchCampaignApplication;
 use App\Http\Requests\Campaigns\StoreCampaignApplicationStatus;
 use App\Models\CampaignSubmission;
 use App\Services\Campaign\SubmissionService;
-use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
@@ -92,6 +89,6 @@ class SubmissionController extends Controller
         return redirect()
             ->route('campaign_submissions.index')
             ->with('success', __('campaigns/submissions.toggle.success'))
-            ;
+        ;
     }
 }

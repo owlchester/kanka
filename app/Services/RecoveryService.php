@@ -173,7 +173,7 @@ class RecoveryService
         // Cleanup any images attached to the child.
         ImageService::cleanup($child);
 
-        if ($child instanceof Location and !empty($child->map)) {
+        if ($child instanceof Location && !empty($child->map)) {
             ImageService::cleanup($child, 'map');
         }
 

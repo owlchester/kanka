@@ -46,7 +46,7 @@ trait SortableTrait
         }
 
         // Force the order to be valid
-        $order = strtolower(Arr::get($filters, 'o', 'asc'));
+        $order = mb_strtolower(Arr::get($filters, 'o', 'asc'));
         if (!in_array($order, ['asc', 'desc'])) {
             $order = 'asc';
         }

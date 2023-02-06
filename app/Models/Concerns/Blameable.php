@@ -91,7 +91,7 @@ trait Blameable
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeCreatedBy(Builder $query, $userId) :Builder
+    public function scopeCreatedBy(Builder $query, $userId): Builder
     {
         if ($userId instanceof Model) {
             $userId = $userId->getKey();
@@ -107,7 +107,7 @@ trait Blameable
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeUpdatedBy(Builder $query, $userId) :Builder
+    public function scopeUpdatedBy(Builder $query, $userId): Builder
     {
         if ($userId instanceof Model) {
             $userId = $userId->getKey();

@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Services\PaginationService;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class StoreSettingsLayout extends FormRequest
 {
@@ -43,7 +42,7 @@ class StoreSettingsLayout extends FormRequest
             'pagination' => 'nullable|numeric|max:' . $this->pagination->max(),
             'theme' => 'nullable',
             'default_nested' => 'nullable',
-//            'editor' => 'in:,summernote,markdown',
+            //            'editor' => 'in:,summernote,markdown',
         ];
     }
 }

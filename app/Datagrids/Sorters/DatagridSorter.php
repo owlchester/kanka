@@ -110,7 +110,7 @@ abstract class DatagridSorter
      */
     public function request(array $data): self
     {
-        $selected = strtolower(Arr::get($data, $this->fieldname()));
+        $selected = mb_strtolower(Arr::get($data, $this->fieldname()));
         $segments = explode('_', $selected);
         if (count($segments) < 2) {
             return $this;
@@ -190,7 +190,7 @@ abstract class DatagridSorter
     protected function validOption(string $key, Campaign $campaign = null)
     {
         $whitelist = ['tag.name', 'target.name'];
-        if (strpos($key, '.name') === false || in_array($key, $whitelist)) {
+        if (!str_contains($key, '.name')   || in_array($key, $whitelist)) {
             return true;
         }
         if ($key == 'entity.name') {

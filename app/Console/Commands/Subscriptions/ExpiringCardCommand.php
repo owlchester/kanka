@@ -50,7 +50,7 @@ class ExpiringCardCommand extends Command
 
         User::where('card_expires_at', $now)
             ->with('subscriptions')
-            ->chunk(100, function ($users) {
+            ->chunk(100, function ($users): void {
                 foreach ($users as $user) {
                     $this->notify($user);
                 }

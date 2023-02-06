@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Calendar;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class CalendarResource extends EntityResource
 {

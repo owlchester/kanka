@@ -25,7 +25,7 @@ trait Searchable
         $searchFields = $this->searchableFields();
         return $query->where(function ($q) use ($term, $searchFields) {
             foreach ($searchFields as $field) {
-                $q->orWhere($this->getTable() . '.' . $field, 'like', "%$term%");
+                $q->orWhere($this->getTable() . '.' . $field, 'like', "%{$term}%");
             }
         });
     }

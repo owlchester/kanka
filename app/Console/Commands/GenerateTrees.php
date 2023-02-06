@@ -51,10 +51,9 @@ class GenerateTrees extends Command
                 $this->warn('Skipping ' . $model);
                 continue;
             }
-            $this->info("Fixing $model");
+            $this->info("Fixing {$model}");
             // @phpstan-ignore-next-line
             $class::fixTree();
-
         }
         $this->info('Finished ' . Carbon::now());
     }
@@ -62,19 +61,18 @@ class GenerateTrees extends Command
     /**
      *
      */
-    protected function fixAll()
+    protected function fixAll(): void
     {
         $models = $this->service->entities();
         foreach ($models as $model => $class) {
-            $new = new $class;
+            $new = new $class();
             try {
                 $parentTreeField = $new->getParentIdName();
-                $this->info("Fixing $model");
+                $this->info("Fixing {$model}");
                 $class::fixTree();
             } catch (\Exception $e) {
                 $this->warn('Skipping ' . $model);
             }
-
         }
     }
 }

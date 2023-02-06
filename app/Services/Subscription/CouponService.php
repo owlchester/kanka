@@ -1,18 +1,16 @@
 <?php
 
-
 namespace App\Services\Subscription;
 
-
-use App\User;
+use App\Traits\UserAware;
 use Stripe\PromotionCode;
 use Stripe\Stripe;
 
 class CouponService
 {
-    protected string $code;
+    use UserAware;
 
-    protected User $user;
+    protected string $code;
 
     /**
      * @param string $code
@@ -21,16 +19,6 @@ class CouponService
     public function code(string $code): self
     {
         $this->code = strip_tags(trim($code, ' '));
-        return $this;
-    }
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
         return $this;
     }
 
@@ -80,7 +68,6 @@ class CouponService
                 'coupon' => $promo->coupon->id,
                 'discount' => __('settings.subscription.coupon.percent_off', ['percent' => $promo->coupon->percent_off]),
             ];
-
         } catch(\Exception $e) {
             return $this->error($e->getMessage());
         }

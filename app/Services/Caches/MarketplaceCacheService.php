@@ -3,7 +3,6 @@
 namespace App\Services\Caches;
 
 use App\Models\Plugin;
-use App\Models\TimelineElement;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Campaign;
-
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
@@ -35,5 +33,4 @@ class GalleryFolderController extends Controller
             ->route('campaign.gallery.index')
             ->withSuccess(__('campaign/gallery.folders.create.success', ['name' => $folder->name]));
     }
-
 }

@@ -43,12 +43,12 @@ use Illuminate\Support\Facades\Storage;
  */
 class Map extends MiscModel
 {
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use Nested;
     use SoftDeletes;
     use SortableTrait;
-    use Acl;
 
     public const MAX_ZOOM = 10;
     public const MIN_ZOOM = -10;
@@ -379,7 +379,7 @@ class Map extends MiscModel
                 if (empty($groups[$marker->group_id])) {
                     $groups[$marker->group_id] = [
                         'name' => $marker->group->name,
-                        'lower_name' => strtolower($marker->group->name),
+                        'lower_name' => mb_strtolower($marker->group->name),
                         'id' => $marker->group_id,
                         'markers' => new Collection()
                     ];
@@ -389,7 +389,7 @@ class Map extends MiscModel
                     'longitude' => $marker->longitude,
                     'latitude' => $marker->latitude,
                     'name' => str_replace("\\'", "'", $marker->markerTitle($link)),
-                    'lower_name' => strtolower($marker->markerTitle(false)),
+                    'lower_name' => mb_strtolower($marker->markerTitle(false)),
                 ]);
                 continue;
             }
@@ -398,7 +398,7 @@ class Map extends MiscModel
                 'longitude' => $marker->longitude,
                 'latitude' => $marker->latitude,
                 'name' => $marker->markerTitle($link),
-                'lower_name' => strtolower($marker->markerTitle(false)),
+                'lower_name' => mb_strtolower($marker->markerTitle(false)),
                 'visibility' => $marker->visibility_id !== 1 ? $marker->visibilityIcon() : null,
             ]);
         }
@@ -525,7 +525,7 @@ class Map extends MiscModel
                 $longitude = $this->center_x;
             }
         }
-        return "$latitude, $longitude";
+        return "{$latitude}, {$longitude}";
     }
 
     /**
@@ -541,7 +541,7 @@ class Map extends MiscModel
         $width = floor((empty($this->width) ? 1000 : $this->width) / 1) + $extra;
 
         $min = $extend ? -50 : 0;
-        return "[[$min, $min], [$height, $width]]";
+        return "[[{$min}, {$min}], [{$height}, {$width}]]";
     }
 
     /**
@@ -608,10 +608,7 @@ class Map extends MiscModel
         if (empty($this->image) && !$this->isReal()) {
             return false;
         }
-        if ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning())) {
-            return false;
-        }
-        return true;
+        return ! ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));
     }
 
     /**

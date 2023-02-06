@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 class UserDateServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
      *

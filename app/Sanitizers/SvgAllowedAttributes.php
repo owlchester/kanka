@@ -17,7 +17,7 @@ class SvgAllowedAttributes implements AttributeInterface
      */
     public static function getAttributes()
     {
-        return array(
+        return [
             // HTML
             'accept',
             'action',
@@ -349,6 +349,6 @@ class SvgAllowedAttributes implements AttributeInterface
             'xlink:title',
             'xml:space',
             'xmlns:xlink',
-        );
+        ];
     }
 }

@@ -75,6 +75,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     private function shouldLoadPolicies(): bool
     {
-        return strtolower(config('app.env')) !== 'testing';
+        return mb_strtolower(config('app.env')) !== 'testing';
     }
 }

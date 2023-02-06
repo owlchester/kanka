@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Datagrids\Bulks;
 
 /**
@@ -11,5 +10,4 @@ namespace App\Datagrids\Bulks;
  */
 class DefaultBulk extends Bulk
 {
-
 }

@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Models\MiscModel;
 use App\Models\Race;
 use App\Models\Location;
-use Illuminate\Support\Collection;
 
 class RaceObserver extends MiscObserver
 {

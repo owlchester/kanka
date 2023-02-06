@@ -6,7 +6,6 @@ use App\Models\Campaign;
 use App\Models\Organisation;
 use App\Http\Requests\StoreOrganisation as Request;
 use App\Http\Resources\OrganisationResource as Resource;
-use App\Http\Resources\OrganisationCollection as Collection;
 
 class OrganisationApiController extends ApiController
 {

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait Pinned
 {
-     /**
+    /**
      * @param Builder $query
      * @param int $pin
      * @return mixed

@@ -56,7 +56,7 @@ class EntityNoteVisibilityScope implements Scope
                 })
                 ->orWhereIn($table . '.visibility', $visibilities)
                 ->orWhereIn($table . '.id', Permissions::allowedPosts());
-            })
+        })
             ->whereNotIn($table . '.id', Permissions::deniedPosts());
 
         return $builder;

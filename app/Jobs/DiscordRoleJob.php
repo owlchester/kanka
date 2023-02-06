@@ -1,12 +1,8 @@
 <?php
 
-
 namespace App\Jobs;
 
-
-use App\Models\Campaign;
 use App\Services\DiscordService;
-use App\Services\EntityService;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -17,7 +13,10 @@ use Illuminate\Support\Facades\Log;
 
 class DiscordRoleJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * The number of times the job may be attempted.

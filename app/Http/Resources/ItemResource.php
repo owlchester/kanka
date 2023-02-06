@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Item;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class ItemResource extends EntityResource
 {

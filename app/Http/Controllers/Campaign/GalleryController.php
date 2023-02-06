@@ -55,7 +55,7 @@ class GalleryController extends Controller
         $this->authorize('gallery', $campaign);
 
         $name = trim(request()->get('q', null));
-        $images = Image::where('name', 'like', "%$name%")
+        $images = Image::where('name', 'like', "%{$name}%")
             ->defaultOrder()
             ->take(50)
             ->get();

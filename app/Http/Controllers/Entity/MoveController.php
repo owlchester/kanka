@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Entity;
 use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MoveEntityRequest;
-use App\Http\Requests\TransformEntityRequest;
 use App\Models\Entity;
 use App\Services\EntityService;
 use App\Traits\GuestAuthTrait;

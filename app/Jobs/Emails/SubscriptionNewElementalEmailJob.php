@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Jobs\Emails;
-
 
 use App\Mail\Subscription\User\NewElementalSubscriptionMail;
 use App\User;
@@ -15,7 +13,10 @@ use Illuminate\Support\Facades\Mail;
 
 class SubscriptionNewElementalEmailJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /** @var int user id */
     public $userId;

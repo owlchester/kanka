@@ -9,9 +9,7 @@ use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Services\Entity\AbilityService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class AbilityController extends Controller

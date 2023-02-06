@@ -59,6 +59,6 @@ class EntityImageApiController extends Controller
             'image_full' => !empty($child->image) ? $child->thumbnail(0) :
                 (!empty($entity->image) ? $entity->image->getImagePath(0) : null),
             'image_thumb' => $child->thumbnail(),
-        ],200);
+        ], 200);
     }
 }

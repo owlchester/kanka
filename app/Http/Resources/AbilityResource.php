@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Ability;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class AbilityResource extends EntityResource
 {

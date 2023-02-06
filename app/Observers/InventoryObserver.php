@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Inventory;
-use App\Services\EntityMappingService;
 use Illuminate\Support\Facades\Auth;
 
 class InventoryObserver

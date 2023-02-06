@@ -7,7 +7,6 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 
 class DatagridRendererProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
      *

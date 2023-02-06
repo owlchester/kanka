@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\MenuLink;
-use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 

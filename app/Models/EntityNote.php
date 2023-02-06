@@ -8,7 +8,6 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\VisibilityIDTrait;
 use App\User;
-use App\Models\EntityUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
@@ -40,8 +39,10 @@ use Illuminate\Support\Collection;
  */
 class EntityNote extends Model
 {
+    use Acl;
+    use Blameable;
     /** Traits */
-    use Paginatable, Blameable, Acl;
+    use Paginatable;
     use VisibilityIDTrait;
 
     /** @var string[]  */

@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\OrganisationMember;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrganisationMemberResource extends ModelResource
 {

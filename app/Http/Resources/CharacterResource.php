@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Character;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 
 class CharacterResource extends EntityResource

@@ -38,8 +38,6 @@ class DummyJobLog extends Command
      */
     public function handle()
     {
-
-
         JobLog::create([
             'name' => $this->signature,
             'result' => '',

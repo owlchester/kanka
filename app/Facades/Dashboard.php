@@ -32,6 +32,3 @@ class Dashboard extends Facade
         return 'dashboard';
     }
 }
-{
-
-}

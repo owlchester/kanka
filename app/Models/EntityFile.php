@@ -24,14 +24,13 @@ use Illuminate\Support\Str;
  */
 class EntityFile extends Model
 {
-
+    use Blameable;
+    use EntityAsset
+    ;
     /**
      * Traits
      */
-    use VisibilityIDTrait,
-        Blameable,
-        EntityAsset
-    ;
+    use VisibilityIDTrait;
 
     /** @var string[]  */
     protected $fillable = [

@@ -79,7 +79,8 @@ class AssetController extends Controller
         $this->authorize('update', $entity->child);
 
         $data = [];
-        $type = ''; $typeId = null;
+        $type = '';
+        $typeId = null;
         if (request()->get('type_id') == EntityAsset::TYPE_FILE) {
             return $this->storeFile($request, $entity);
         } elseif (request()->get('type_id') == EntityAsset::TYPE_LINK) {
@@ -177,7 +178,6 @@ class AssetController extends Controller
 
     public function destroy(Request $request, Entity $entity, EntityAsset $entityAsset)
     {
-
         $this->authorize('update', $entity->child);
 
         if (!$entityAsset->delete()) {

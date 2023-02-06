@@ -18,7 +18,6 @@ class CampaignRole extends Layout
                 'key' => 'name',
                 'label' => 'campaigns.roles.fields.name',
                 'render' => function ($model) {
-
                     /** @var \App\Models\CampaignRole $model */
                     $html = '<a href="' . route('campaign_roles.show', ['campaign_role' => $model])
                         . '">' . $model->name
@@ -30,7 +29,6 @@ class CampaignRole extends Layout
             'users' => [
                 'label' => 'campaigns.roles.fields.users',
                 'render' => function ($model) {
-
                     return $model->users->count();
                 }
             ],
@@ -60,7 +58,6 @@ class CampaignRole extends Layout
                             . '</a>';
                     }
                     if ($model->is_public && !$campaign->isPublic() && $model->permissions->whereNull('entity_id')->count() > 0) {
-
                         $html .= '<div class="hidden-xs"> <i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" title="'
                             . __('campaigns.roles.hints.campaign_not_public')
                             . '"></i></div> <div class="visible-xs">

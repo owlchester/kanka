@@ -9,15 +9,14 @@ use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\EntityNotePermission;
+use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use App\User;
 
 class PermissionService
 {
-    /** @var Campaign */
-    protected $campaign;
-
-    /** @var User|null */
-    protected $user;
+    use CampaignAware;
+    use UserAware;
 
     /** @var int CampaignPermission::ACTION_READ etc */
     protected $action;
@@ -43,26 +42,6 @@ class PermissionService
 
     /** @var null|int the entity type if provided to limit queries */
     protected $entityType = null;
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
 
     public function isAdmin(): bool
     {

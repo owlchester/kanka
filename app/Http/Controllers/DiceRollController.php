@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Datagrids\Actions\DeprecatedDatagridActions;
 use App\Datagrids\Filters\DiceRollFilter;
 use App\Http\Requests\StoreDiceRoll;
-use App\Models\Character;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
 use Illuminate\Support\Facades\Auth;

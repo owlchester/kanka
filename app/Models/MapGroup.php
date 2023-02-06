@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
@@ -26,7 +25,10 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class MapGroup extends Model
 {
-    use VisibilityIDTrait, Blameable, Paginatable, SortableTrait;
+    use Blameable;
+    use Paginatable;
+    use SortableTrait;
+    use VisibilityIDTrait;
 
     protected $sortable = [
         'name',

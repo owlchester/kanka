@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\CampaignPermission;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityPermissionResource extends EntityChild
 {

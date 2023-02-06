@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Facades\Mentions;
 use App\User;
-use App\Models\EntityUser;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityIDTrait;
@@ -25,10 +24,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class QuestElement extends Model
 {
+    use Blameable;
     /**
      * Traits
      */
-    use SimpleSortableTrait, VisibilityIDTrait, Blameable;
+    use SimpleSortableTrait;
+    use VisibilityIDTrait;
 
     /** @var string[]  */
     protected $fillable = [

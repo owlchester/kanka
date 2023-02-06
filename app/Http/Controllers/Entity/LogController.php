@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Entity;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
-use App\Models\EntityLog;
 use App\Services\Entity\LogService;
 
 class LogController extends Controller

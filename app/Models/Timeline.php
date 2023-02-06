@@ -20,13 +20,13 @@ use Illuminate\Support\Collection;
  */
 class Timeline extends MiscModel
 {
-    use CampaignTrait,
-        Acl,
-        ExportableTrait,
-        SoftDeletes,
-        SortableTrait,
-        Nested
+    use Acl;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested
     ;
+    use SoftDeletes;
+    use SortableTrait;
 
     public $fillable = [
         'name',
@@ -184,7 +184,6 @@ class Timeline extends MiscModel
             'count' => $this->descendants()->count()
         ];
         if (auth()->check() && auth()->user()->can('update', $this)) {
-
             $items['second']['eras'] = [
                 'name' => 'timelines.fields.eras',
                 'route' => 'timelines.timeline_eras.index',

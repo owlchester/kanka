@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\RequireLoginException;
-use App\Models\CampaignInvite;
 use App\Services\CampaignService;
 use App\Services\InviteService;
 use App\Facades\CampaignLocalization;
 use App\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class InvitationController extends Controller
 {

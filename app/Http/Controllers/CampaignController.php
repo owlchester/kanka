@@ -7,7 +7,6 @@ use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\DeleteCampaign;
-use App\Models\UserLog;
 use App\Services\MultiEditingService;
 use App\Services\CampaignService;
 use App\Services\EntityService;

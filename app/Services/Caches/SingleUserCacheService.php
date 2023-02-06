@@ -3,7 +3,6 @@
 namespace App\Services\Caches;
 
 use App\User;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

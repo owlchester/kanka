@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Timelines;
 
 use App\Datagrids\Filters\TimelineFilter;
-use App\Datagrids\Sorters\TimelineTimelineSorter;
 use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTimeline;

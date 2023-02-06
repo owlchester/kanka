@@ -7,24 +7,22 @@ use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
-use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\UserLog;
 use App\Notifications\Header;
-use App\User;
-use Illuminate\Support\Facades\Auth;
+use App\Traits\UserAware;
 use Illuminate\Support\Facades\Session;
 use Exception;
 
 class InviteService
 {
+    use UserAware;
+
     /**
      * @var CampaignFollowService
      */
     public $campaignFollowService;
 
-    /** @var User */
-    protected $user;
 
     /**
      * InviteService constructor.
@@ -33,16 +31,6 @@ class InviteService
     public function __construct(CampaignFollowService $campaignFollowService)
     {
         $this->campaignFollowService = $campaignFollowService;
-    }
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
     }
 
     /**

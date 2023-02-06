@@ -28,5 +28,4 @@ class StoreFaqTranslationRequest extends FormRequest
             'locale' => 'required',
         ];
     }
-
 }

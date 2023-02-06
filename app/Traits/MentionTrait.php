@@ -87,7 +87,7 @@ trait MentionTrait
             $type = Arr::first($subSegments);
             $value = Arr::last($subSegments);
             if (in_array($type, ['page', 'field'])) {
-                $data[$type] = strtolower($value);
+                $data[$type] = mb_strtolower($value);
                 $data['custom'] = true;
             } elseif (in_array($type, ['anchor', 'params'])) {
                 $data[$type] = $value;

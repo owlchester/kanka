@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\User;
 use App\Models\Organisation;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class OrganisationPolicy extends MiscPolicy
 {

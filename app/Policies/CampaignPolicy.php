@@ -7,7 +7,6 @@ use App\Facades\EntityPermission;
 use App\Facades\Identity;
 use App\Facades\UserCache;
 use App\Models\CampaignPermission;
-use App\Models\Entity;
 use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\Campaign;
@@ -15,7 +14,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignPolicy
 {
-    use HandlesAuthorization, AdminPolicyTrait;
+    use AdminPolicyTrait;
+    use HandlesAuthorization;
 
     /**
      * Determine whether the user can view the campaign.
@@ -150,7 +150,8 @@ class CampaignPolicy
     public function dashboard(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id && (
-            UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_DASHBOARD, $user, $campaign));
+            UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_DASHBOARD, $user, $campaign)
+        );
     }
 
     /**

@@ -27,7 +27,6 @@ class Member extends Layout
                 'key' => 'role',
                 'label' => 'organisations.members.fields.role',
                 'render' => function ($model) {
-
                     $icon = '';
                     if ($model->inactive()) {
                         $icon = '<i class="fa-solid fa-user-slash mr-1" title="' . __('organisations.members.status.inactive') . '" data-toggle="tooltip"></i>';
@@ -63,10 +62,11 @@ class Member extends Layout
                     if (!$model->pinned()) {
                         return '';
                     }
-                    if ($model->pinnedToCharacter())
+                    if ($model->pinnedToCharacter()) {
                         return '<i class="fa-solid fa-user" data-toggle="tooltip" title="' . __('organisations.members.pinned.character') . '"></i>';
-                    elseif ($model->pinnedToOrganisation())
+                    } elseif ($model->pinnedToOrganisation()) {
                         return '<i class="ra ra-hood" data-toggle="tooltip" title="' . __('organisations.members.pinned.organisation') . '"></i>';
+                    }
                     return '<i class="fa-solid fa-star" data-toggle="tooltip" title="' . __('organisations.members.pinned.both') . '"></i>';
                 }
             ],

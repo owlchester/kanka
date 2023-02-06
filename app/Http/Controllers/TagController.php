@@ -3,20 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\TagFilter;
-use App\Datagrids\Sorters\TagChildrenSorter;
-use App\Datagrids\Sorters\TagTagSorter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreTagEntity;
-use App\Models\Character;
 use App\Http\Requests\StoreTag;
 use App\Models\Tag;
-use App\Services\TagService;
 use App\Traits\TreeControllerTrait;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 
 class TagController extends CrudController
 {

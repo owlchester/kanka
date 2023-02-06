@@ -198,10 +198,10 @@ class DiscordService
             config('discord.roles.' . ($this->user->isElemental() ? 'elemental' : ($this->user->isWyvern() ? 'wyvern' : 'owlbear'))),
         ];
 
-       foreach ($roles as $id) {
-           $url = 'guilds/' . config('discord.channel_id') . '/members/' . $me->id . '/roles/' . $id;
-           $this->logs[] = $this->call('put', $url, $body, $headers);
-       }
+        foreach ($roles as $id) {
+            $url = 'guilds/' . config('discord.channel_id') . '/members/' . $me->id . '/roles/' . $id;
+            $this->logs[] = $this->call('put', $url, $body, $headers);
+        }
 
         return $this;
     }

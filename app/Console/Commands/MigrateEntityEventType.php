@@ -7,7 +7,6 @@ use App\Models\EntityEventType;
 use App\Models\Journal;
 use App\Models\Quest;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 class MigrateEntityEventType extends Command
@@ -46,7 +45,7 @@ class MigrateEntityEventType extends Command
     public function handle()
     {
         $fields = ['id', 'name', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
-        Quest::select($fields)->with(['entity'])->whereNotNull('calendar_id')->chunk(500, function ($quests) {
+        Quest::select($fields)->with(['entity'])->whereNotNull('calendar_id')->chunk(500, function ($quests): void {
             foreach ($quests as $quest) {
                 $this->parse($quest);
             }
@@ -54,7 +53,7 @@ class MigrateEntityEventType extends Command
         $this->info('Migrated ' . $this->count . ' quests.');
 
         $this->count = 0;
-        Journal::select($fields)->with(['entity'])->whereNotNull('calendar_id')->chunk(500, function ($journals) {
+        Journal::select($fields)->with(['entity'])->whereNotNull('calendar_id')->chunk(500, function ($journals): void {
             foreach ($journals as $journal) {
                 $this->parse($journal);
             }
