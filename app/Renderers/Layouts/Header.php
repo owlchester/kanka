@@ -55,7 +55,7 @@ class Header
     {
         $default = null;
         if (Arr::get($this->data, 'render') === Standard::IMAGE) {
-            $default = 'avatar min-w-12';
+            $default = 'avatar w-12';
         }
         if (empty($this->data['class'])) {
             return $default;

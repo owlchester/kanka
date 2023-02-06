@@ -23,10 +23,10 @@ $currentCampaign = CampaignLocalization::getCampaign();
         @if (auth()->check() && $currentCampaign->userIsMember())
         <div class="flex-0">
             <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="bottom"></span>
-            <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex justify-center text-center gap-2 rounded p-1 px-3 text-uppercase items-center"
+            <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex justify-center text-center gap-2 rounded h-9 min-w-9 px-2 text-uppercase items-center"
             tabindex="4">
                 <i class="flex-none fa-solid fa-plus" aria-hidden="true" ></i>
-                <span class="flex-grow" data-toggle="tooltip" data-placement="bottom" title="{{ __('entities.creator.tooltip') }}">
+                <span class="flex-grow hidden-xs" data-toggle="tooltip" data-placement="bottom" title="{{ __('entities.creator.tooltip') }}">
                     {{ __('crud.create') }}
                 </span>
                 <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true" data-placement="bottom" >N</span>
@@ -36,7 +36,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
 
         <div class="flex-1 navbar-actions">
 
-            <div class="flex justify-end px-3">
+            <div class="flex justify-end mr-3">
                     @guest
                         <a href="{{ route('login') }}" class="hidden-xs btn mt-1">
                             {{ __('front.menu.login') }}

@@ -12,8 +12,8 @@
     }
 }
 .nativead.sidebar {
-    width: 280px;
-    height: 280px;
+    width: var(--sidebar-width);
+    height: var(--sidebar-width);
 }
 .nativead.nativead-banner {
     width: 100%;
