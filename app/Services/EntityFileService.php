@@ -4,11 +4,9 @@ namespace App\Services;
 
 use App\Exceptions\EntityFileException;
 use App\Http\Requests\StoreEntityAsset;
-use App\Http\Requests\StoreEntityFile;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
-use App\Models\EntityFile;
 
 class EntityFileService
 {

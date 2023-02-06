@@ -170,7 +170,6 @@ class StatService
      */
     public function achievements(): array
     {
-
         $dead = $this->campaign->characters()->where('is_dead', true)->count();
         $calendars = $this->campaign->calendars()->count();
 
@@ -192,7 +191,7 @@ class StatService
         ];
 
         // Success rate
-        foreach($achievements as $key => $achievement) {
+        foreach ($achievements as $key => $achievement) {
             $achievements[$key]['score'] = $achievement['amount'] > $achievement['target'] ? 100 : ($achievement['amount'] / $achievement['target']);
         }
 

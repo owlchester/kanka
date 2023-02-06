@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Subscription;
-
 
 use App\User;
 use Stripe\PromotionCode;
@@ -80,7 +78,6 @@ class CouponService
                 'coupon' => $promo->coupon->id,
                 'discount' => __('settings.subscription.coupon.percent_off', ['percent' => $promo->coupon->percent_off]),
             ];
-
         } catch(\Exception $e) {
             return $this->error($e->getMessage());
         }

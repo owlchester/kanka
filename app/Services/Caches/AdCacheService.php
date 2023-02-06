@@ -42,10 +42,10 @@ class AdCacheService
     public function has(int $section): bool
     {
         $this->load($section);
-        if (!empty($this->ad)) {
-            return true;
-        }
-        return false;
+        return (bool) (!empty($this->ad))
+
+
+         ;
     }
 
     /**

@@ -40,8 +40,7 @@ class SitemapService
     {
         if (empty($this->page)) {
             return $this->base();
-        }
-        elseif (!empty($this->page) && method_exists($this, $this->page)) {
+        } elseif (!empty($this->page) && method_exists($this, $this->page)) {
             return [];
         }
 

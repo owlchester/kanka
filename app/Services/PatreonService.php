@@ -51,10 +51,10 @@ class PatreonService
         }
 
         $settings = $this->user->settings;
-        unset($settings['patreon_fullname']);
-        unset($settings['patreon_name']);
-        unset($settings['patreon_id']);
-        unset($settings['patreon_email']);
+        unset($settings['patreon_fullname'], $settings['patreon_name'], $settings['patreon_id'], $settings['patreon_email']);
+
+
+
         if (empty($settings)) {
             $settings = null;
         }
@@ -64,6 +64,4 @@ class PatreonService
 
         return true;
     }
-
-
 }

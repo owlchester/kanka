@@ -41,7 +41,7 @@ class UserDateService
         if (auth()->guest() || empty(auth()->user()->dateformat)) {
             return;
         }
-        $this->format = strtoupper(auth()->user()->dateformat);
+        $this->format = mb_strtoupper(auth()->user()->dateformat);
         $this->format = str_replace('M', 'MM', $this->format);
     }
 }

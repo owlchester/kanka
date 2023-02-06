@@ -21,8 +21,7 @@ class PostCacheService extends BaseCache
         }
 
         $date = Carbon::now();
-        $data = AppRelease::
-            select('id', 'name', 'excerpt', 'link', 'category_id', 'created_at', 'published_at')
+        $data = AppRelease::select('id', 'name', 'excerpt', 'link', 'category_id', 'created_at', 'published_at')
             ->whereRaw('id IN (select MAX(id) FROM releases WHERE published_at < \'' . $date . '\' AND (end_at IS NULL OR end_at > \'' . $date . '\') GROUP BY category_id)')
             //->groupBy('category_id2')
             ->latest('published_at')

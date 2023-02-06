@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Character;
 use App\Models\Entity;
-use App\Models\Family;
 use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -56,7 +55,7 @@ class FormService
         // Only copy on MiscModel (entity) models
         if ($entity instanceof MiscModel) {
             $value = $entity->$field;
-            if (!empty($value) and is_object($value)) {
+            if (!empty($value) && is_object($value)) {
                 return [$value->id => $value->name];
             }
         }

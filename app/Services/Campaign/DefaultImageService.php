@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Campaign;
-
 
 use App\Models\Campaign;
 use App\Models\Image;
@@ -65,7 +63,7 @@ class DefaultImageService
         $image->id = $uuid;
         $image->ext = $source->extension();
         $image->size = (int) ceil($source->getSize() / 1024); // kb
-        $image->name = substr($source->getFileName(), 0, 45);
+        $image->name = mb_substr($source->getFileName(), 0, 45);
         $image->is_default = true;
         $image->save();
 

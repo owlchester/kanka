@@ -7,7 +7,6 @@ use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\CharacterTrait;
-use App\Models\Conversation;
 use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityNote;
@@ -304,7 +303,7 @@ class EntityService
             $newModel = $entity->child->replicate();
             // Remove any foreign keys that wouldn't make any sense in the new campaign
             foreach ($newModel->getAttributes() as $attribute) {
-                if (strpos($attribute, '_id') !== false) {
+                if (str_contains($attribute, '_id')) {
                     $newModel->$attribute = null;
                 }
             }
@@ -393,7 +392,7 @@ class EntityService
     {
         // Create new model
         if (!isset($this->entities[$target])) {
-            throw new \Exception("Unknown target '$target' for transforming entity");
+            throw new \Exception("Unknown target '{$target}' for transforming entity");
         }
 
         /** @var MiscModel $new */
@@ -519,7 +518,7 @@ class EntityService
     {
         // Create new model
         if (!isset($this->entities[$target])) {
-            throw new \Exception("Unknown entity type '$target' for creating entity");
+            throw new \Exception("Unknown entity type '{$target}' for creating entity");
         }
 
         /**

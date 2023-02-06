@@ -61,7 +61,7 @@ class TutorialService
             ->doneTutorial($key);
 
         if (empty($next) || !view()->exists('tutorials.' . $next)) {
-            $highlight = Arr::get($this->workflows, $key. '.highlight');
+            $highlight = Arr::get($this->workflows, $key . '.highlight');
             return response()->json(['success' => true, 'close' => true, 'highlight' => $highlight]);
         }
 

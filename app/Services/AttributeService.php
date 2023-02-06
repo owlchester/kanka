@@ -134,7 +134,7 @@ class AttributeService
             } else {
                 // Special case if the attribute is a random
                 if ($entity->typeId() != config('entities.ids.attribute_template')) {
-                    list ($typeID, $value) = $this->randomAttribute($typeID, $value);
+                    list($typeID, $value) = $this->randomAttribute($typeID, $value);
                 }
 
                 $attribute = new Attribute([
@@ -298,7 +298,7 @@ class AttributeService
             $type = $this->mapAttributeTypeToID($type);
             $value = Arr::get($attribute, 'value', '');
 
-            list ($type, $value) = $this->randomAttribute($type, $value);
+            list($type, $value) = $this->randomAttribute($type, $value);
 
             $order++;
 

@@ -8,7 +8,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\MiscModel;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class SearchService
@@ -291,9 +290,9 @@ class SearchService
             return $this->newOptions();
         }
 
-        $lowerCleanTerm = strtolower($cleanTerm);
+        $lowerCleanTerm = mb_strtolower($cleanTerm);
         foreach ($searchResults as $result) {
-            if (strtolower($result['name']) == $lowerCleanTerm) {
+            if (mb_strtolower($result['name']) == $lowerCleanTerm) {
                 return $searchResults;
             }
         }
@@ -315,7 +314,7 @@ class SearchService
             $months = $calendar->months();
 
             foreach ($months as $month) {
-                if ((!empty($this->term) && strpos($month['name'], $this->term) !== false) || empty($this->term)) {
+                if ((!empty($this->term) && str_contains($month['name'], $this->term)) || empty($this->term)) {
                     $searchResults[] = [
                         'fullname' => $month['name'],
                         'name' => $month['name'] . ' (' . $calendar->name . ')',

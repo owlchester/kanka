@@ -343,7 +343,7 @@ class SidebarService
 
         foreach ($this->rules[$menu] as $rule) {
             if (request()->segment(4) == $rule) {
-                return " $class";
+                return " {$class}";
             }
         }
 
@@ -352,7 +352,7 @@ class SidebarService
             /** @var Entity $entity */
             $entity = request()->route('entity');
             if ($entity->pluralType() == $menu) {
-                return " $class";
+                return " {$class}";
             }
         }
 

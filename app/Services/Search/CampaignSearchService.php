@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Search;
-
 
 use App\Models\Campaign;
 use App\Models\CampaignUser;

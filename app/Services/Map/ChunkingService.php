@@ -290,8 +290,8 @@ class ChunkingService
         $this->maxBound = max([$this->width, $this->height]);
         $this->zoomLevels($this->maxBound);
 
-        unset($s3);
-        unset($original);
+        unset($s3, $original);
+
         return $this;
     }
 }

@@ -9,7 +9,6 @@ use App\Models\Visibility;
 use App\Observers\PurifiableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class GalleryService
@@ -68,7 +67,7 @@ class GalleryService
             $image->id = Str::uuid()->toString();
             $image->ext = $source->extension();
             $image->size = (int) ceil($source->getSize() / 1024); // kb
-            $image->name = substr($name, 0, 45);
+            $image->name = mb_substr($name, 0, 45);
             $image->folder_id = $request->post('folder_id');
             $image->visibility_id = $this->campaign->defaultVisibilityID();
             $image->save();

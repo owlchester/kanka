@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\CommunityVote;
 use App\Models\CommunityVoteBallot;

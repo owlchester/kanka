@@ -7,12 +7,10 @@ use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
-use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Exception;
 
