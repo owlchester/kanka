@@ -10,8 +10,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignInvitePolicy
 {
-    use HandlesAuthorization;
     use AdminPolicyTrait;
+    use HandlesAuthorization;
 
     /**
      * Determine whether the user can view the campaignInvite.
@@ -22,7 +22,7 @@ class CampaignInvitePolicy
      */
     public function view(User $user, CampaignInvite $campaignInvite)
     {
-        //
+
     }
 
     /**

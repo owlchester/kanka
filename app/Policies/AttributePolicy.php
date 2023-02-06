@@ -17,7 +17,7 @@ class AttributePolicy
      */
     public function __construct()
     {
-        //
+
     }
 
     /**

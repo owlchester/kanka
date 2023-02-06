@@ -8,7 +8,6 @@ use App\Models\Campaign;
 use App\Facades\EntityPermission;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
-use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\User;

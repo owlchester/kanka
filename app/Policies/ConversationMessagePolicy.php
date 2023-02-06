@@ -4,9 +4,7 @@ namespace App\Policies;
 
 use App\Models\ConversationMessage;
 use App\User;
-use App\Models\Event;
 use Carbon\Carbon;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ConversationMessagePolicy
 {

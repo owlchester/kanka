@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Models\Map;
 use App\Services\Map\ChunkingService;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -15,7 +14,10 @@ use Illuminate\Support\Facades\Log;
 
 class ChunkMapJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public $tries = 1;
 
@@ -60,7 +62,7 @@ class ChunkMapJob implements ShouldQueue
         } catch (\Exception $e) {
             throw $e;
         }
-        //
+
     }
 
     public function failed(\Exception $exception)

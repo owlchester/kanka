@@ -17,7 +17,7 @@ class CampaignBoostPolicy
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
