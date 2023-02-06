@@ -14,7 +14,7 @@ class CampaignDelete implements Rule
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
@@ -26,7 +26,7 @@ class CampaignDelete implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Str::is(strtolower($value), 'delete');
+        return Str::is(mb_strtolower($value), 'delete');
     }
 
     /**

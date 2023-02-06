@@ -14,7 +14,7 @@ class GoodBye implements Rule
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
@@ -26,7 +26,8 @@ class GoodBye implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Str::is($value, 'goodbye') or Str::is($value, 'Goodbye');
+        // Todo: mb_strtolower
+        return Str::is($value, 'goodbye') || Str::is($value, 'Goodbye');
     }
 
     /**

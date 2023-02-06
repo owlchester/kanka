@@ -65,7 +65,7 @@ class Plugin extends Layout
                     if (!$model->isTheme()) {
                         return '';
                     }
-                    if($model->pivot->is_active) {
+                    if ($model->pivot->is_active) {
                         return
                             '<i class="fa-solid fa-check-circle" title="' .
                             __('campaigns/plugins.status.enabled') .

@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Columns;
 
-
 use App\Renderers\Layouts\Layout;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;

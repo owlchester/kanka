@@ -14,7 +14,7 @@ class FontAwesomeIcon implements Rule
      */
     public function __construct()
     {
-        //
+
     }
 
     /**

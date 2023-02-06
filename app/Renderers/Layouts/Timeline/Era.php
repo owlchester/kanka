@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Timeline;
 
-use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
 class Era extends Layout
@@ -41,9 +40,9 @@ class Era extends Layout
                 'key' => 'is_collapsed',
                 'label' => 'timelines/eras.fields.is_collapsed',
                 'render' => function ($model) {
-                if ($model->is_collapsed) {
-                    return '<i class="fa-solid fa-check-circle" aria-hidden="true"></i>';
-                }
+                    if ($model->is_collapsed) {
+                        return '<i class="fa-solid fa-check-circle" aria-hidden="true"></i>';
+                    }
                     return '';
                 },
             ],

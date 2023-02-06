@@ -32,7 +32,7 @@ class CalcStyleDefinition extends HTMLPurifier_AttrDef
         $string = trim($string);
         if (!$this->case_sensitive) {
             // we may want to do full case-insensitive libraries
-            $string = ctype_lower($string) ? $string : strtolower($string);
+            $string = ctype_lower($string) ? $string : mb_strtolower($string);
         }
         if (Str::contains($string, ['&', '<'])) {
             return false;
@@ -52,8 +52,8 @@ class CalcStyleDefinition extends HTMLPurifier_AttrDef
      */
     public function make($string)
     {
-        if (strlen($string) > 2 && $string[0] == 's' && $string[1] == ':') {
-            $string = substr($string, 2);
+        if (mb_strlen($string) > 2 && $string[0] == 's' && $string[1] == ':') {
+            $string = mb_substr($string, 2);
             $sensitive = true;
         } else {
             $sensitive = false;
