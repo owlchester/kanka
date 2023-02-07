@@ -5,6 +5,8 @@ namespace App\Observers;
 use App\Facades\UserCache;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
+use App\Jobs\Users\UnsubscribeUser;
+use App\Jobs\Users\UpdateEmail;
 use App\Models\CampaignUser;
 use App\Models\CampaignFollower;
 use App\Services\ImageService;
@@ -61,6 +63,10 @@ class UserObserver
      */
     public function updated(User $user)
     {
+        // Tell mailchimp about the user's new email
+        if (!$user->wasRecentlyCreated && $user->isDirty('email') && $user->hasNewsletter()) {
+            UpdateEmail::dispatch($user->getOriginal('email'), $user->email);
+        }
     }
 
     public function creating(User $user)
@@ -104,6 +110,11 @@ class UserObserver
             ->clearCampaigns()
             ->clearRoles()
         ;
+
+        // If the user was subscribed to the newsletter, unsubscribe them
+        if (!empty($user->hasNewsletter())) {
+            UnsubscribeUser::dispatch($user->email);
+        }
     }
 
     /**

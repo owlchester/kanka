@@ -11,7 +11,6 @@ use Stevebauman\Purify\Facades\Purify;
  * Trait UserSetting
  * @package App\Models
  *
- * @property bool $mail_newsletter
  * @property bool $mail_vote
  * @property bool $mail_release
  * @property string $patreon_email
@@ -129,23 +128,6 @@ trait UserSetting
     public function getAdvancedMentionsAttribute()
     {
         return Arr::get($this->settings, 'advanced_mentions', false);
-    }
-
-
-    /**
-     * @param string|null $value
-     */
-    public function setMailNewsletterAttribute($value)
-    {
-        $this->setSettingsOption('mail_newsletter', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMailNewsletterAttribute()
-    {
-        return Arr::get($this->settings, 'mail_newsletter', false);
     }
 
     /**
@@ -266,5 +248,14 @@ trait UserSetting
     public function getDateformatAttribute(): string|null
     {
         return Arr::get($this->settings, 'date_format');
+    }
+
+    /**
+     * Determine if a user is subsribed to the newsletter
+     * @return bool
+     */
+    public function hasNewsletter(): bool
+    {
+        return !empty($this->mail_release);
     }
 }

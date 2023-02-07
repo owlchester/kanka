@@ -50,7 +50,7 @@ class MailSettingsChangeJob implements ShouldQueue
         $newsletter = app()->make(NewsletterService::class);
 
         // If the user was subscribed and no longer desires anything, unsub them
-        $wantsSomething = $user->mail_release;
+        $wantsSomething = $user->hasNewsletter();
 
         if ($newsletter->user($user)->isSubscribed() && !$wantsSomething) {
             $newsletter->remove();
