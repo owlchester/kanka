@@ -7,7 +7,7 @@ use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
-use App\Jobs\Emails\SubscriptionNewElementalEmailJob;
+use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\Pledge;
 use App\Models\Role;
@@ -16,6 +16,7 @@ use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Traits\UserAware;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
@@ -25,7 +26,6 @@ use Stripe\Charge;
 use Stripe\Customer as StripeCustomer;
 use Stripe\Source;
 use Stripe\Stripe;
-use Exception;
 
 class SubscriptionService
 {
@@ -268,7 +268,11 @@ class SubscriptionService
 
         SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
         if ($plan == Pledge::ELEMENTAL) {
-            SubscriptionNewElementalEmailJob::dispatch($this->user, $period, $new);
+            WelcomeSubscriptionEmailJob::dispatch($this->user, 'elemental');
+        } elseif ($plan == Pledge::WYVERN) {
+            WelcomeSubscriptionEmailJob::dispatch($this->user, 'wyvern');
+        } elseif ($plan == Pledge::OWLBEAR) {
+            WelcomeSubscriptionEmailJob::dispatch($this->user, 'owlbear');
         }
 
         // Save the new sub value
