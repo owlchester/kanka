@@ -20,39 +20,11 @@ use Illuminate\Database\Eloquent\Model;
 trait Blameable
 {
     /**
-     * Get any of override 'blameable attributes'.
-     *
-     * @return array
-     */
-    /*public function blameable() :array
-    {
-        if (property_exists($this, 'blameable')) {
-            return (array) static::$blameable;
-        }
-        return [];
-    }*/
-
-    /**
      * Boot the trait's observers
      */
     public static function bootBlameable(): void
     {
         static::observe(app(BlameableObserver::class));
-    }
-
-    /**
-     * Register events we need to listen for.
-     *
-     * @return void
-     */
-    public static function registerListeners()
-    {
-        static::creating('App\Listeners\Blameable\Creating@handle');
-        static::updating('App\Listeners\Blameable\Updating@handle');
-        /*if (static::usingSoftDeletes()) {
-            static::deleting('App\Listeners\Deleting@handle');
-            static::restoring('App\Listeners\Restoring@handle');
-        }*/
     }
 
     /**

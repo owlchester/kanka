@@ -112,12 +112,14 @@ class EntityNote extends Model
     /**
      * Copy an entity note to another target
      * @param Entity $target
+     * @return Post|EntityNote
      */
     public function copyTo(Entity $target)
     {
-        $new = $this->replicate(['entity_id']);
+        $new = $this->replicate(['entity_id', 'created_by']);
         $new->entity_id = $target->id;
-        $result = $new->save();
+        $new->created_by = auth()->user()->id;
+        $new->saveQuietly();
 
         // Also replicate permissions
         foreach ($this->permissions as $perm) {
@@ -126,7 +128,7 @@ class EntityNote extends Model
             $newPerm->save();
         }
 
-        return $result;
+        return $new;
     }
 
     /**

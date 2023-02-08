@@ -3,17 +3,27 @@
 namespace App\Services\Entity;
 
 use App\Http\Requests\MovePostRequest;
+use App\Models\Entity;
 use App\Models\Post;
 use App\Services\EntityMappingService;
 
 class PostService
 {
-    /** @var EntityMappingService */
     protected EntityMappingService $mappingService;
+
+    protected Post $post;
+
+    protected int $entityId;
 
     public function __construct(EntityMappingService $mappingService)
     {
         $this->mappingService = $mappingService;
+    }
+
+    public function post(Post $post): self
+    {
+        $this->post = $post;
+        return $this;
     }
 
     /**
@@ -23,31 +33,41 @@ class PostService
      * @param MovePostRequest $request
      * @return Post
      */
-    public function movePost(Post $post, MovePostRequest $request): Post
+    public function handle(MovePostRequest $request): Post
     {
+        $this->entityId = (int) $request->get('entity');
         if ($request->has('copy')) {
-            $newPost = $post->replicate();
-            $newPost->entity_id = $request->get('entity');
-            $newPost->savedObserver = false;
-            $newPost->save();
-
-            // Also replicate permissions
-            foreach ($post->permissions as $perm) {
-                $newPerm = $perm->replicate(['post_id']);
-                $newPerm->post_id = $newPost->id;
-                $newPerm->save();
-            }
-
-            // Update the "mentioned in" mapping for the entity
-            $this->mappingService->mapPost($newPost);
-
-            return $newPost;
+            return $this->copy();
         }
+        return $this->move();
+    }
 
-        $post->entity_id = $request->get('entity');
-        $post->save();
+    /**
+     * Copy the post with its permissions to another entity
+     * @return Post
+     * @throws \Exception
+     */
+    protected function copy(): Post
+    {
+        $entity = Entity::findOrFail($this->entityId);
+        $newPost = $this->post->copyTo($entity);
 
+        // Update the "mentioned in" mapping for the entity
+        $this->mappingService->mapPost($newPost);
 
-        return $post;
+        return $newPost;
+    }
+
+    /**
+     * Move the post to another entity
+     *
+     * @return Post
+     */
+    protected function move(): Post
+    {
+        $this->post->entity_id = $this->entityId;
+        $this->post->save();
+
+        return $this->post;
     }
 }

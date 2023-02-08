@@ -47,7 +47,8 @@ class PostMoveController extends Controller
         $this->authorize('update', $newEntity->child);
         try {
             $newPost = $this->service
-                ->movePost($post, $request);
+                ->post($post)
+                ->handle($request);
             $success = 'move_success';
             if (isset($request['copy'])) {
                 $success = 'copy_success';

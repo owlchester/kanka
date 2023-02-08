@@ -91,9 +91,9 @@ class RecoveryService
         $entity->restore();
 
         // Refresh the child first to not re-trigger the entity creation on save
-        $child->savingObserver = false;
+        //$child->savingObserver = false;
         $child->refresh();
-        $child->restore();
+        $child->restoreQuietly();
         return true;
     }
 
@@ -151,8 +151,7 @@ class RecoveryService
                 }
                 $subChild->$parentField = null;
                 $subChild->timestamps = false;
-                $child->savingObserver = false;
-                $subChild->save();
+                $subChild->saveQuietly();
                 dump('#' . $entity->id . ' child ' . $child->getEntityType() . ' #' . $child->id . ' untreed');
             }
 
@@ -162,8 +161,7 @@ class RecoveryService
             $child->_rgt = null; // @phpstan-ignore-line
 
             $child->timestamps = false;
-            $child->savingObserver = false;
-            $child->save();
+            $child->saveQuietly();
             $child->refresh();
         }
 

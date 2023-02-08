@@ -4,7 +4,7 @@ namespace App\Services\Entity;
 
 use App\Http\Requests\ReorderStories;
 use App\Models\Entity;
-use App\Models\EntityNote;
+use App\Models\Post;
 
 class StoryService
 {
@@ -43,8 +43,8 @@ class StoryService
                 continue;
             }
             $id = $data['id'];
-            /** @var EntityNote|null $story */
-            $story = $this->entity->notes->where('id', $id)->first();
+            /** @var Post|null $story */
+            $story = $this->entity->posts->where('id', $id)->first();
             if (empty($story)) {
                 continue;
             }
@@ -69,9 +69,8 @@ class StoryService
             }
 
             $story->position = $position;
-            $story->savingObserver = false;
-            $story->savedObserver = false;
-            $story->save();
+            $story->timestamps = false;
+            $story->saveQuietly();
             $position++;
         }
 

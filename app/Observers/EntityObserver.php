@@ -173,9 +173,10 @@ class EntityObserver
             //$attributes = array_combine($sourceAttributes, $entityAttributes);
             $entry = Str::replace($sourceAttributes, $entityAttributes, $entity->child->entry);
             $entity->child->update(['entry' => $entry]);
-            foreach ($entity->notes as $note) {
-                $note->entry = Str::replace($sourceAttributes, $entityAttributes, $note->entry);
-                $note->update();
+            foreach ($entity->posts as $post) {
+                $post->entry = Str::replace($sourceAttributes, $entityAttributes, $post->entry);
+                $post->timestamps = false;
+                $post->updateQuietly();
             }
         }
         return $this;

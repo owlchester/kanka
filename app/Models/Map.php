@@ -552,8 +552,7 @@ class Map extends MiscModel
     {
         $groups = [];
         foreach ($this->layers as $sub) {
-            $newSub = $sub->replicate();
-            $newSub->savingObserver = false;
+            $newSub = $sub->replicate(['map_id']);
             $newSub->map_id = $target->id;
 
             if (!empty($sub->image) && Storage::exists($sub->image)) {
@@ -564,18 +563,16 @@ class Map extends MiscModel
                     Storage::copy($sub->image, $newPath);
                 }
             }
-            $newSub->save();
+            $newSub->saveQuietly();
         }
         foreach ($this->groups as $sub) {
-            $newSub = $sub->replicate();
-            $newSub->savingObserver = false;
+            $newSub = $sub->replicate(['map_id']);
             $newSub->map_id = $target->id;
-            $newSub->save();
+            $newSub->saveQuietly();
             $groups[$sub->id] = $newSub->id;
         }
         foreach ($this->markers as $sub) {
-            $newSub = $sub->replicate();
-            $newSub->savingObserver = false;
+            $newSub = $sub->replicate(['map_id']);
             $newSub->map_id = $target->id;
             $newSub->group_id = !empty($newSub->group_id) && isset($groups[$newSub->group_id]) ? $groups[$newSub->group_id] : null;
 
@@ -595,7 +592,7 @@ class Map extends MiscModel
                     $newSub->name = $raw ? $raw->name : 'Copy of #' . $sub->id;
                 }
             }
-            $newSub->save();
+            $newSub->saveQuietly();
         }
     }
 

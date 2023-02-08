@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Ability;
+use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Character;
@@ -320,29 +321,29 @@ class EntityService
             $newModel->createEntity();
 
             // Copy entity notes over
-            foreach ($entity->notes as $note) {
+            foreach ($entity->posts as $note) {
                 /** @var EntityNote $newNote */
-                $newNote = $note->replicate();
+                $newNote = $note->replicate(['entity_id', 'created_by', 'updated_by']);
                 $newNote->entity_id = $newModel->entity->id;
-                $newNote->savedObserver = false;
-                $newNote->save();
+                $newNote->created_by = auth()->user()->id;
+                $newNote->saveQuietly();
             }
 
             // Attributes please
             foreach ($entity->attributes as $attribute) {
-                /** @var EntityNote $newNote */
-                $newAttribute = $attribute->replicate();
+                /** @var Attribute $newAttribute */
+                $newAttribute = $attribute->replicate(['entity_id']);
                 $newAttribute->entity_id = $newModel->entity->id;
-                $newAttribute->save();
+                $newAttribute->saveQuietly();
             }
 
             // Characters: copy traits
             if ($entity->child instanceof Character) {
                 /** @var CharacterTrait $trait */
                 foreach ($entity->child->characterTraits as $trait) {
-                    $newTrait = $trait->replicate();
+                    $newTrait = $trait->replicate(['character_id']);
                     $newTrait->character_id = $newModel->id;
-                    $newTrait->save();
+                    $newTrait->saveQuietly();
                 }
             }
 
@@ -350,9 +351,9 @@ class EntityService
             if ($entity->child instanceof Timeline) {
                 foreach ($entity->child->eras as $era) {
                     /** @var TimelineEra $newEra **/
-                    $newEra = $era->replicate();
+                    $newEra = $era->replicate(['timeline_id']);
                     $newEra->timeline_id = $newModel->id;
-                    $newEra->save();
+                    $newEra->saveQuietly();
                 }
             }
 

@@ -135,11 +135,12 @@ abstract class MiscObserver
         $sourceId = request()->post('copy_source_id');
 
         // Copy entity notes from source?
+        // Todo: move ALL of this to a service holy smokes
         if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {
             /** @var Entity $source */
             $source = Entity::findOrFail($sourceId);
-            foreach ($source->notes as $note) {
-                $note->copyTo($model->entity);
+            foreach ($source->posts as $post) {
+                $post->copyTo($model->entity);
             }
         }
         if (request()->has('copy_source_links') && request()->filled('copy_source_links')) {
