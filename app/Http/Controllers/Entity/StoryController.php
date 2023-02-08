@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderStories;
 use App\Models\Entity;
+use App\Facades\Identity;
+use App\Models\EntityLog;
 use App\Services\Entity\StoryService;
 use App\Traits\GuestAuthTrait;
 
@@ -50,6 +52,13 @@ class StoryController extends Controller
         $this->service
             ->entity($entity)
             ->reorder($request);
+
+        $log = new EntityLog();
+        $log->entity_id = $entity->id;
+        $log->created_by = auth()->user()->id;
+        $log->impersonated_by = Identity::getImpersonatorId();
+        $log->action = EntityLog::ACTION_REORDER_POST;
+        $log->save();
 
         return redirect()
             ->to($entity->url('show'))

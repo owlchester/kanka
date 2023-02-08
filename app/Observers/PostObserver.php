@@ -6,6 +6,8 @@ use App\Facades\Mentions;
 use App\Models\EntityNotePermission;
 use App\Models\Post;
 use App\Services\EntityMappingService;
+use App\Facades\Identity;
+use App\Models\EntityLog;
 
 class PostObserver
 {
@@ -74,6 +76,42 @@ class PostObserver
     /**
      * @param Post $post
      */
+    public function created(Post $post)
+    {
+        $log = new EntityLog();
+        $log->entity_id = $post->entity->id;
+        $log->created_by = auth()->user()->id;
+        $log->entity_note_id = $post->id;
+        $log->impersonated_by = Identity::getImpersonatorId();
+        $log->action = EntityLog::ACTION_CREATE_POST;
+        $log->save();
+        //dd($log);
+
+        //$entity->is_created_now = true;
+    }
+
+    /**
+     * @param Post $post
+     */
+    public function updated(Post $post)
+    {
+        // Don't log updates if just did one (typically when creating, restoring or bulk editing)
+        if (!$post->entity->hasUpdateLog() || $post->updated_at == $post->created_at || !empty($post->getOriginal('deleted_at'))) {
+            return;
+        }
+
+        $log = new EntityLog();
+        $log->entity_id = $post->entity->id;
+        $log->created_by = auth()->user()->id;
+        $log->impersonated_by = Identity::getImpersonatorId();
+        $log->entity_note_id = $post->id;
+        $log->action = EntityLog::ACTION_UPDATE_POST;
+        $log->save();
+    }
+
+    /**
+     * @param Post $post
+     */
     public function saved(Post $post)
     {
         if (!$post->savedObserver) {
@@ -98,6 +136,14 @@ class PostObserver
      */
     public function deleted(Post $post)
     {
+        $log = new EntityLog();
+        $log->entity_id = $post->entity->id;
+        $log->created_by = auth()->user()->id;
+        $log->entity_note_id = $post->id;
+        $log->impersonated_by = Identity::getImpersonatorId();
+        $log->action = EntityLog::ACTION_DELETE_POST;
+        $log->save();
+
         // When deleting an entity note, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.

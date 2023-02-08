@@ -32,6 +32,10 @@ class EntityLog extends Model
     public const ACTION_UPDATE = 2;
     public const ACTION_DELETE = 3;
     public const ACTION_RESTORE = 4;
+    public const ACTION_CREATE_POST = 5;
+    public const ACTION_UPDATE_POST = 6;
+    public const ACTION_DELETE_POST = 7;
+    public const ACTION_REORDER_POST = 8;
 
     public $fillable = [
         'entity_id',
@@ -78,6 +82,14 @@ class EntityLog extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function post()
+    {
+        return $this->belongsTo('App\Models\EntityNote', 'entity_note_id');
+    }
+
+    /**
      * @return string
      */
     public function actionCode(): string
@@ -90,6 +102,14 @@ class EntityLog extends Model
             return 'delete';
         } elseif ($this->action == self::ACTION_RESTORE) {
             return 'restore';
+        } elseif ($this->action == self::ACTION_CREATE_POST) {
+            return 'create_post';
+        } elseif ($this->action == self::ACTION_UPDATE_POST) {
+            return 'update_post';
+        } elseif ($this->action == self::ACTION_DELETE_POST) {
+            return 'delete_post';
+        } elseif ($this->action == self::ACTION_REORDER_POST) {
+            return 'reorder_post';
         }
         return 'unknown';
     }

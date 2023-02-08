@@ -20,6 +20,10 @@ return [
         'delete'    => ':user deleted :entity',
         'restore'   => ':user restored :entity',
         'update'    => ':user updated :entity',
+        'create_post'    => ':user created post ":post" in :entity',
+        'delete_post'    => ':user deleted post ":post" in :entity',
+        'reorder_post'   => ':user reordered posts of :entity',
+        'update_post'    => ':user updated post ":post" in :entity',
     ],
     'title'     => 'History',
     'unknown'   => [
