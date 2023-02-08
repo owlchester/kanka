@@ -34,7 +34,7 @@
                     </thead>
                     <tbody>
                     @foreach ($logs as $log)
-                        @if ($log->action < 5 || $log->post)
+                        @if ($log->action < 7 || $log->post)
                             <tr>
                                 <td>
                                     {{ __('entities/logs.actions.' . $log->actionCode(), ['post' => $log->post?->name]) }}

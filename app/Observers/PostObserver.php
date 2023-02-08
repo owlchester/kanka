@@ -78,13 +78,7 @@ class PostObserver
      */
     public function created(Post $post)
     {
-        $log = new EntityLog();
-        $log->entity_id = $post->entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->entity_note_id = $post->id;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->action = EntityLog::ACTION_CREATE_POST;
-        $log->save();
+        $this->log($post, EntityLog::ACTION_CREATE_POST);
         //dd($log);
 
         //$entity->is_created_now = true;
@@ -100,13 +94,7 @@ class PostObserver
             return;
         }
 
-        $log = new EntityLog();
-        $log->entity_id = $post->entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->entity_note_id = $post->id;
-        $log->action = EntityLog::ACTION_UPDATE_POST;
-        $log->save();
+        $this->log($post, EntityLog::ACTION_UPDATE_POST);
     }
 
     /**
@@ -136,13 +124,7 @@ class PostObserver
      */
     public function deleted(Post $post)
     {
-        $log = new EntityLog();
-        $log->entity_id = $post->entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->entity_note_id = $post->id;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->action = EntityLog::ACTION_DELETE_POST;
-        $log->save();
+        $this->log($post, EntityLog::ACTION_DELETE_POST);
 
         // When deleting an entity note, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
@@ -151,7 +133,22 @@ class PostObserver
             $post->entity->child->touch();
         }
     }
-
+    /**
+     * @param Post $post
+     * @param int $action
+     */
+    private function log(Post $post, int $action)
+    {
+        $log = new EntityLog();
+        $log->entity_id = $post->entity->id;
+        $log->created_by = auth()->user()->id;
+        if ($action !=  EntityLog::ACTION_DELETE_POST) {
+            $log->post_id = $post->id;
+        }
+        $log->impersonated_by = Identity::getImpersonatorId();
+        $log->action = $action;
+        $log->save();
+    }
     /**
      * @param Post $post
      * @return bool

@@ -7,7 +7,7 @@ return [
         'restore'   => 'Restore',
         'update'    => 'Update',
         'create_post'    => 'Created post ":post"',
-        'delete_post'    => 'Deleted post ":post"',
+        'delete_post'    => 'Deleted post',
         'reorder_post'   => 'Reordered posts',
         'update_post'    => 'Updated post ":post"',
         'view'      => 'View changes',

@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('entity_logs', function (Blueprint $table) {
-   
-            $table->integer('entity_note_id')->unsigned()->nullable();
-            $table->foreign('entity_note_id')->references('id')->on('entity_notes')->nullOnDelete();
+            $table->integer('post_id')->unsigned()->nullable();
+            $table->foreign('post_id')->references('id')->on('entity_notes')->nullOnDelete();
         });
     }
 
@@ -28,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('entity_logs', function (Blueprint $table) {
-            $table->dropForeign(['entity_note_id']);
-            $table->dropColumn('entity_note_id');        
+            $table->dropForeign(['post_id']);
+            $table->dropColumn('post_id');        
         });
     }
 };

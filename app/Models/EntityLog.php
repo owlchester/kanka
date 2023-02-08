@@ -18,6 +18,7 @@ use Illuminate\Support\Str;
  * @property integer $created_by
  * @property integer $impersonated_by
  * @property integer $action
+ * @property integer $post_id
  * @property string|array  $changes
  * @property Entity $entity
  * @property User $user
@@ -32,10 +33,10 @@ class EntityLog extends Model
     public const ACTION_UPDATE = 2;
     public const ACTION_DELETE = 3;
     public const ACTION_RESTORE = 4;
-    public const ACTION_CREATE_POST = 5;
-    public const ACTION_UPDATE_POST = 6;
-    public const ACTION_DELETE_POST = 7;
-    public const ACTION_REORDER_POST = 8;
+    public const ACTION_DELETE_POST = 5;
+    public const ACTION_REORDER_POST = 6;
+    public const ACTION_CREATE_POST = 7;
+    public const ACTION_UPDATE_POST = 8;
 
     public $fillable = [
         'entity_id',
@@ -86,7 +87,7 @@ class EntityLog extends Model
      */
     public function post()
     {
-        return $this->belongsTo('App\Models\EntityNote', 'entity_note_id');
+        return $this->belongsTo('App\Models\EntityNote', 'post_id');
     }
 
     /**

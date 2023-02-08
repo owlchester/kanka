@@ -50,7 +50,7 @@
 
     @if ($models->count() > 0)
         @foreach ($models as $log)
-            @if ($log->action < 5 || $log->post)
+            @if ($log->action < 7 || $log->post)
                 @if ($log->day() !== $previous)
                     @if ($previous !== null) </ul> @endif
                     <div class="{{ !$superboosted ? 'blur' : null }} font-bold">{{ $log->created_at->format('M d, Y') }}</div>
