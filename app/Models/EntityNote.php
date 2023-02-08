@@ -65,18 +65,6 @@ class EntityNote extends Model
     ];
 
     /**
-     * Set to false to skip saved observers
-     * @var bool
-     */
-    public $savedObserver = true;
-
-    /**
-     * Set to false to skip saving observers
-     * @var bool
-     */
-    public $savingObserver = true;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity()
