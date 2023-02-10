@@ -70,6 +70,14 @@ if (isset($colourAppendTo) && request()->ajax()) {
             <label>{{ __('calendars.fields.recurring_until') }}</label>
             {!! Form::text('recurring_until', null, ['placeholder' => __('calendars.placeholders.recurring_until'), 'class' => 'form-control', 'maxlength' => 12]) !!}
         </div>
+        <div class="form-group">
+            <label>{{ __('calendars.fields.recurring_until_month') }}</label>
+            {!! Form::select('recurring_until_month', isset($calendar) ? ([null=>''] + $calendar->monthList()) : [], (!empty($recurringUntilMonth) ? $recurringUntilMonth : null), ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            <label>{{ __('calendars.fields.recurring_until_day') }}</label>
+            {!! Form::number('recurring_until_day', null, ['class' => 'form-control']) !!}
+        </div>
     </div>
 </div>
 

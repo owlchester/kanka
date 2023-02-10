@@ -704,6 +704,18 @@ class Calendar extends MiscModel
                                     ->whereNull('recurring_until')
                                     // Events that end in the future are fine, they could be reoccuring on this month
                                     ->orWhere('recurring_until', '>=', $this->currentYear());
+                            })
+                            ->where(function ($recurringuntilMonth) {
+                                $recurringuntilMonth
+                                    ->whereNull('recurring_until_month')
+                                    // Events that end in the future are fine, they could be reoccuring on this month
+                                    ->orWhere('recurring_until_month', '>=', $this->currentMonth());
+                            })
+                            ->where(function ($recurringuntilDay) {
+                                $recurringuntilDay
+                                    ->whereNull('recurring_until_day')
+                                    // Events that end in the future are fine, they could be reoccuring on this month
+                                    ->orWhere('recurring_until_day', '>=', $this->currentDay());
                             });
                     });
                 })

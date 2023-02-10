@@ -88,6 +88,12 @@ class CalendarRenderer
     protected array $eventEnd = [];
 
     /**
+     * End date of events displayed on the calendar view
+     * @var bool
+     */
+    protected bool $eventEndsThisMonth = false;
+
+    /**
      * Initializer
      * @param Calendar $calendar
      */
@@ -864,6 +870,7 @@ class CalendarRenderer
         }
         /** @var EntityEvent $event */
         foreach ($reminders as $event) {
+            $this->eventEndsThisMonth = false;
             $date = $event->year . '-' . $event->month . '-' . $event->day;
 
             // If the event is recurring, get the year to make sure it should start showing. This was previously
@@ -871,6 +878,12 @@ class CalendarRenderer
             if ($event->is_recurring) {
                 if ($event->year > $this->getYear()) {
                     continue;
+                }
+                if (!empty($event->recurring_until) && $event->recurring_until == $this->getYear() && !empty($event->recurring_until_month) && $event->recurring_until_month <= $this->getMonth()) {
+                    if (empty($event->recurring_until_day) || $event->recurring_until_month < $this->getMonth()) {
+                        continue;
+                    }
+                    $this->eventEndsThisMonth = true;
                 }
                 // Over max reoccurring year?
                 if (!empty($event->recurring_until) && $event->recurring_until < $this->getYear()) {
@@ -928,6 +941,9 @@ class CalendarRenderer
             $extraDate = $this->addDay($extraDate);
 
             list($y, $m, $d) = $this->splitDate($extraDate);
+            if ($this->eventEndsThisMonth == true && $d > $reminder->recurring_until_day) {
+                continue;
+            }
             if (!$this->calendar->hasYearZero() && $y == 0) {
                 $extraDate = '1-' . $m . '-' . $d;
             }
