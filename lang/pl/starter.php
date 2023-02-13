@@ -2,7 +2,7 @@
 
 return [
     'campaign'      => [
-        'name'  => ':świat użytkownika',
+        'name'  => ':user użytkownika',
     ],
     'character1'    => [
         'fears'     => 'Jakub boi się głośnych dźwięków i wybuchów.',

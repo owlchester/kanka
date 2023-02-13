@@ -419,11 +419,11 @@ Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->na
 //Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
 
 // Entity files
-Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
+//Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
 Route::get('/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
 Route::get('/entities/{entity}/mentions', 'Entity\MentionController@index')->name('entities.mentions');
-Route::get('/entities/{entity}/timelines', 'Entity\TimelineController@index')->name('entities.timelines');
-Route::get('/entities/{entity}/map-markers', 'DashboardController@index')->name('entities.map-markers');
+//Route::get('/entities/{entity}/timelines', 'Entity\TimelineController@index')->name('entities.timelines');
+//Route::get('/entities/{entity}/map-markers', 'DashboardController@index')->name('entities.map-markers');
 //Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
 
 // Inventory

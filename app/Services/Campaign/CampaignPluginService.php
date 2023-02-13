@@ -153,6 +153,10 @@ class CampaignPluginService
             ->publishedVersions($this->plugin->created_by)
             ->orderBy('id', 'desc')
             ->first();
+        // The user could be submitting a plugin to update that was removed in another window
+        if (empty($latest)) {
+            return false;
+        }
 
         /** @var CampaignPlugin $campaignPlugin */
         $campaignPlugin = CampaignPlugin::where('campaign_id', $this->campaign->id)

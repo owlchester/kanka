@@ -785,4 +785,17 @@ class SubscriptionService
     {
         return $this->tier == Pledge::ELEMENTAL;
     }
+
+    /**
+     * Determine if the user is only limited to paypal subscriptions
+     * @return bool
+     */
+    public function isLimited(): bool
+    {
+        $countries = ['EG'];
+        return $this->user->logs()
+            ->where('type_id', UserLog::TYPE_LOGIN)
+            ->whereIn('country', $countries)
+            ->count() > 0;
+    }
 }
