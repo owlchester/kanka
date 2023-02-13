@@ -47,13 +47,13 @@
                         </li>
                     @endforeach
 
-                    @if($settings)
+                    @can('dashboard', $campaign)
                         <li>
                             <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
                                 <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
                             </a>
                         </li>
-                    @endif
+                    @endcan
                     @can('update', $campaign)
                         <li class="divider"></li>
                         <li>
@@ -64,10 +64,12 @@
                     @endcan
                 </ul>
             </div>
-        @elseif($settings)
+        @else
+            @can('update', $campaign)
             <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
                 <i class="fa-solid fa-th-large"></i>
             </a>
+            @endcan
         @endif
         @can ('follow', $campaign)
             <button id="campaign-follow" class="btn btn-default btn-xl" data-id="{{ $campaign->id }}"
@@ -130,7 +132,7 @@
         </div>
     </div>
 
-    @if ($settings)
+    @can('update', $campaign)
         <div class="text-center mt-6">
             <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
                 <i class="fa-solid fa-cog" aria-hidden="true"></i> {{ __('dashboard.settings.title') }}
@@ -144,7 +146,7 @@
 ]) !!}
             </div>
         @endif
-    @endif
+    @endcan
 @endsection
 
 @section('scripts')

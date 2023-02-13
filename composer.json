@@ -36,7 +36,7 @@
         "pragmarx/google2fa-laravel": "^2.0",
         "predis/predis": "^1.1",
         "richan-fongdasen/eloquent-blameable": "^1.6",
-        "sentry/sentry-laravel": "^2.8",
+        "sentry/sentry-laravel": "^3.2",
         "sergej-kurakin/diceroller": "^2.0",
         "spatie/laravel-backup": "^8.0",
         "spatie/laravel-feed": "^4.0",
