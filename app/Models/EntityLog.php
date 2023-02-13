@@ -117,11 +117,11 @@ class EntityLog extends Model
 
     public function actionIcon(): string
     {
-        if ($this->action == self::ACTION_CREATE) {
+        if ($this->action == self::ACTION_CREATE || $this->action == self::ACTION_CREATE_POST) {
             return 'fa-plus';
-        } elseif ($this->action == self::ACTION_UPDATE) {
+        } elseif ($this->action == self::ACTION_UPDATE || $this->action == self::ACTION_UPDATE_POST || $this->action == self::ACTION_REORDER_POST) {
             return 'fa-pencil';
-        } elseif ($this->action == self::ACTION_DELETE) {
+        } elseif ($this->action == self::ACTION_DELETE || $this->action == self::ACTION_DELETE_POST) {
             return 'fa-trash';
         } elseif ($this->action == self::ACTION_RESTORE) {
             return 'fa-history';
@@ -130,11 +130,11 @@ class EntityLog extends Model
     }
     public function actionBackground(): string
     {
-        if ($this->action == self::ACTION_CREATE) {
+        if ($this->action == self::ACTION_CREATE || $this->action == self::ACTION_CREATE_POST) {
             return 'bg-green';
-        } elseif ($this->action == self::ACTION_UPDATE) {
+        } elseif ($this->action == self::ACTION_UPDATE || $this->action == self::ACTION_UPDATE_POST || $this->action == self::ACTION_REORDER_POST) {
             return 'bg-blue';
-        } elseif ($this->action == self::ACTION_DELETE) {
+        } elseif ($this->action == self::ACTION_DELETE || $this->action == self::ACTION_DELETE_POST) {
             return 'bg-red';
         } elseif ($this->action == self::ACTION_RESTORE) {
             return 'bg-orange';
@@ -216,6 +216,19 @@ class EntityLog extends Model
         return $this->entity->tooltipedLink();
     }
 
+    public function actions($action): array
+    {
+        if ($action == self::ACTION_CREATE || $this->action == self::ACTION_CREATE_POST) {
+            return [ self::ACTION_CREATE, self::ACTION_CREATE_POST ];
+        } elseif ($action == self::ACTION_UPDATE) {
+            return [self::ACTION_UPDATE, self::ACTION_UPDATE_POST, self::ACTION_REORDER_POST];
+        } elseif ($action == self::ACTION_DELETE) {
+            return [self::ACTION_DELETE, self::ACTION_DELETE_POST];
+        } elseif ($this->action == self::ACTION_RESTORE) {
+            return [self::ACTION_RESTORE];
+        }
+    }
+
     /**
      * @param Builder $builder
      * @param HistoryRequest $request
@@ -227,7 +240,9 @@ class EntityLog extends Model
             $builder->where($this->getTable() . '.created_by', (int) $request->get('user'));
         }
         if ($request->filled('action')) {
-            $builder->where($this->getTable() . '.action', (int) $request->get('action'));
+            foreach ($this->actions($request->get('action')) as $action) {
+                $builder->orWhere($this->getTable() . '.action', (int) $action);
+            }
         }
         return $builder;
     }
