@@ -32,7 +32,7 @@ class StorePost extends FormRequest
             'visibility_id' => 'nullable|exists:visibilities,id',
             'is_pinned' => 'boolean',
             'position' => 'nullable|integer|min:0|max:128',
-            'entry' => '',
+            'entry' => 'nullable|string',
         ]);
     }
 }

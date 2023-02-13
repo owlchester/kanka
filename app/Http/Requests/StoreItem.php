@@ -30,7 +30,8 @@ class StoreItem extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'type' => 'nullable|max:191',
+            'entry' => 'nullable|string',
+            'type' => 'nullable|string|max:191',
             'location_id', 'nullable|integer|exists:locations,id',
             'character_id', 'nullable|integer|exists:character,id',
             'item_id' => 'nullable|integer|exists:items,id',

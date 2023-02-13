@@ -25,7 +25,7 @@ class UpdateEntityEntry extends FormRequest
     public function rules()
     {
         return [
-            'entry' => 'required',
+            'entry' => 'required|string',
         ];
     }
 
