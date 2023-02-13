@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::table('entity_events', function (Blueprint $table) {
             $table->unsignedMediumInteger('recurring_until_month')->nullable();
             $table->unsignedMediumInteger('recurring_until_day')->nullable();
+            $table->index(['recurring_until_month', 'recurring_until_day']);
 
         });
     }
