@@ -30,11 +30,6 @@ class AppRelease extends Model
 
     public $table = 'releases';
 
-    public $dates = [
-        'published_at',
-        'end_at',
-    ];
-
     public $casts = [
         'published_at' => 'date',
         'end_at' => 'date',
