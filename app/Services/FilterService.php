@@ -190,7 +190,7 @@ class FilterService
      * @return array|\Illuminate\Contracts\Translation\Translator|mixed|string|null
      * @throws \Exception
      */
-    public function single($key, $default = null)
+    public function single(mixed $key, ?string $default = null)
     {
         if (is_array($key)) {
             throw new \Exception('Key for FilterService can\'t be an array');
@@ -199,7 +199,8 @@ class FilterService
             if ($this->isCheckbox($key)) {
                 return $this->filters[$key] == '1' ? __('general.yes') : __('general.no');
             }
-            return $this->filters[$key];
+            $result = $this->filters[$key];
+            return is_array($result) ? $default : $result;
         }
         return $default;
     }

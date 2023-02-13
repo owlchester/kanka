@@ -21,7 +21,7 @@ class ItemFilter extends DatagridFilter
                 'label' => __('items.fields.item'),
                 'type' => 'select2',
                 'route' => route('items.find'),
-                'placeholder' =>  __('items.placeholders.item'),
+                'placeholder' =>  __('crud.placeholders.item'),
                 'model' => Item::class,
             ])
             ->location()
