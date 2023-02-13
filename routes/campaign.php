@@ -262,7 +262,7 @@ Route::resources([
     'dice_roll_results' => 'DiceRollResultController',
     'events' => 'EventController',
     'locations' => 'LocationController',
-    'locations.map_points' => 'LocationMapPointController',
+    //'locations.map_points' => 'LocationMapPointController',
     'families' => 'FamilyController',
     'items' => 'ItemController',
     'journals' => 'JournalController',
