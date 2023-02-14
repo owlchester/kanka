@@ -157,3 +157,10 @@ Route::post('/editing/timeline-elements/{timeline_element}/confirm-editing', [\A
 Route::post('/editing/timeline-elements/{timeline_element}/keep-alive', [\App\Http\Controllers\EditingController::class, 'keepAliveTimelineElement'])->name('timeline-elements.keep-alive');
 
 
+// Quick Creator
+Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');
+Route::get('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
+Route::post('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
+
+
+

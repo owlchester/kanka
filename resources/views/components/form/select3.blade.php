@@ -17,6 +17,7 @@ $placeholderKey = Arr::get($options, 'placeholderKey');
 $from = Arr::get($options, 'from');
 $allowClear = Arr::get($options, 'allowClear', true);
 $dropdownParent = Arr::get($options, 'dropdownParent');
+$campaign = \App\Facades\CampaignLocalization::getCampaign();
 
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old($fieldId);
@@ -110,7 +111,7 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 </div>
 @elseif(!empty($quickCreator))
     <div class="input-group-btn">
-        <a class="quick-creator-subform btn btn-tab-form" data-url="{{ route('entity-creator.form', ['type' => $pluralField, 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier]) }}">
+        <a class="quick-creator-subform btn btn-tab-form" data-url="{{ route('entity-creator.form', ['campaign' => $campaign, 'type' => $pluralField, 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier]) }}">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>

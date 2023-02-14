@@ -226,10 +226,3 @@ Route::get('/redirect', 'RedirectController@index')->name('redirect');
 Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 
-
-
-// Entity quick creator
-Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');
-Route::get('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
-Route::post('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
-

@@ -231,6 +231,8 @@ class CrudController extends Controller
         $model = new $this->model();
         $templates = $this->buildAttributeTemplates($model->entityTypeId());
 
+        $campaign = CampaignLocalization::getCampaign();
+        $params['campaign'] = $campaign;
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes;

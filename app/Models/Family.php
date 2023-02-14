@@ -24,8 +24,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Family extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use Nested;

@@ -1,7 +1,7 @@
 <?php $enableNew = true; ?>
 @inject('campaignService', 'App\Services\CampaignService')
 
-<form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', ['type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }}">
+<form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', ['campaign' => $campaign, 'type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }}">
     @csrf
 
 <div class="modal-body entity-creator-body-{{ $type }}">
@@ -88,11 +88,6 @@
                     <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
                 </button>
             @endif
-
-            <!--<a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-target="#entity-modal" class="btn btn-default">
-                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                {{ __('entities.creator.back') }}
-            </a>-->
 
             <a role="button" class="text-uppercase" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
                 {{ __('crud.cancel') }}
