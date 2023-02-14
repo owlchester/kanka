@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\EntityPermission;
@@ -17,13 +16,6 @@ use Illuminate\Support\Facades\Auth;
 class MiscPolicy
 {
     use HandlesAuthorization;
-
-    /**
-     * If a whole model requires a boosted campaign, for example if it's early access, set the child policy's
-     * $boosted property to true.
-     * @var bool
-     */
-    protected bool $boosted = false;
 
     /**
      * @param User $user
@@ -43,13 +35,6 @@ class MiscPolicy
      */
     public function view(User $user, $entity)
     {
-        if ($this->boosted) {
-            $campaign = CampaignLocalization::getCampaign();
-            if (!$campaign->boosted()) {
-                return false;
-            }
-        }
-
         return
             // The entity's campaign must be the same as the current user campaign
             $user->campaign->id == $entity->campaign_id
@@ -69,13 +54,6 @@ class MiscPolicy
      */
     public function create(User $user, $entity = null, Campaign $campaign = null)
     {
-        if ($this->boosted) {
-            $campaign = CampaignLocalization::getCampaign();
-            if (!$campaign->boosted()) {
-                return false;
-            }
-        }
-
         return auth()->check() && $this->checkPermission(CampaignPermission::ACTION_ADD, $user, null, $campaign);
     }
 
@@ -103,6 +81,18 @@ class MiscPolicy
     {
         return Auth::check() &&  (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
             && $this->checkPermission(CampaignPermission::ACTION_DELETE, $user, $entity);
+    }
+
+    /**
+     * Determine whether the user can bulk delete entities of this type
+     *
+     * @param  ?\App\User  $user
+     * @param  \App\Models\MiscModel $entity
+     * @return bool
+     */
+    public function bulkDelete(?User $user, $entity)
+    {
+        return $user && $this->checkPermission(CampaignPermission::ACTION_DELETE, $user, $entity);
     }
 
     /**

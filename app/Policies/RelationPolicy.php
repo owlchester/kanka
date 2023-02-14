@@ -33,6 +33,7 @@ class RelationPolicy
      */
     public function create(User $user)
     {
+        // We need this because the CrudController's index "new entity" button calls directly model->create
         $campaign = CampaignLocalization::getCampaign();
         return $user->can('relations', $campaign);
     }
@@ -56,19 +57,20 @@ class RelationPolicy
      * Determine whether the user can delete the relation.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Relation|null  $relation
+     * @param  \App\Models\Relation  $relation
      * @return bool
      */
-    public function delete(User $user, Relation|null $relation)
+    public function delete(?User $user, Relation $relation)
     {
-        // If the relation is empty, this call is coming from the bulk delete check
-        if (empty($relation) || empty($relation->id)) {
-            $campaign = CampaignLocalization::getCampaign();
-            return $user->can('relations', $campaign);
-        }
         if (empty($relation->owner) || empty($relation->owner->child)) {
             return false;
         }
         return $user->can('relation', $relation->owner->child);
+    }
+
+    public function bulkDelete(?User $user, ?Relation $relation)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        return $user->can('relations', $campaign);
     }
 }

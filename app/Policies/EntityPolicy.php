@@ -37,8 +37,9 @@ class EntityPolicy
     }
 
     /**
-     * @param User|null $user
+     * @param ?User $user
      * @param Entity $entity
+     * @param Campaign $campaign
      * @return bool
      */
     public function history(?User $user, Entity $entity, Campaign $campaign)
