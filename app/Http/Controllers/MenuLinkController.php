@@ -35,16 +35,23 @@ class MenuLinkController extends CrudController
         $this->filters = [
             'name',
         ];
+    }
+
+    /**
+     */
+    public function index(Request $request)
+    {
+        $campaign = CampaignLocalization::getCampaign();
 
         $this->addNavAction(
             route('quick-links.reorder'),
             '<i class="fa-solid fa-arrows-alt-v" aria-hidden="true"></i> <span class="hidden-xs">' .
-                __('menu_links.reorder.title') . '</span>'
+            __('menu_links.reorder.title') . '</span>'
         );
         $this->addNavAction(
-            route('campaign-sidebar'),
+            route('campaign-sidebar', $campaign),
             '<i class="fa-solid fa-cog" aria-hidden="true"></i> <span class="hidden-xs">' .
-                __('menu_links.actions.customise') . '</span>'
+            __('menu_links.actions.customise') . '</span>'
         );
         $this->addNavAction(
             '//docs.kanka.io/en/latest/advanced/quick-links.html',
@@ -52,12 +59,7 @@ class MenuLinkController extends CrudController
             'default',
             true
         );
-    }
 
-    /**
-     */
-    public function index(Request $request)
-    {
         // Check that the user has permission to actually be here
         if (auth()->guest() || !auth()->user()->can('browse', new MenuLink())) {
             return redirect()->route('dashboard');

@@ -39,7 +39,7 @@
                         @if ($mention->isCampaign())
                             <tr>
                                 <td>
-                                    <a href="{{ route('campaigns.show', $mention->campaign_id) }}">
+                                    <a href="{{ route('overview', $mention->campaign_id) }}">
                                         {{ $mention->campaign->name }}
                                     </a>
                                 </td>
