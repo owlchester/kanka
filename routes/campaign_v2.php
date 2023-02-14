@@ -163,4 +163,27 @@ Route::get('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorControl
 Route::post('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
 
 
+// Old search
 
+
+Route::get('/search/calendars', [\App\Http\Controllers\Search\MiscController::class, 'calendars'])->name('calendars.find');
+Route::get('/search/characters', [\App\Http\Controllers\Search\MiscController::class, 'characters'])->name('characters.find');
+Route::get('/search/campaigns', [\App\Http\Controllers\Search\MiscController::class, 'campaigns'])->name('campaigns.find');
+Route::get('/search/events', [\App\Http\Controllers\Search\MiscController::class, 'events'])->name('events.find');
+Route::get('/search/families', [\App\Http\Controllers\Search\MiscController::class, 'families'])->name('families.find');
+Route::get('/search/item', [\App\Http\Controllers\Search\MiscController::class, 'items'])->name('items.find');
+Route::get('/search/locations', [\App\Http\Controllers\Search\MiscController::class, 'locations'])->name('locations.find');
+Route::get('/search/notes', [\App\Http\Controllers\Search\MiscController::class, 'notes'])->name('notes.find');
+Route::get('/search/journals', [\App\Http\Controllers\Search\MiscController::class, 'journals'])->name('journals.find');
+Route::get('/search/timelines', [\App\Http\Controllers\Search\MiscController::class, 'timelines'])->name('timelines.find');
+Route::get('/search/organisations', [\App\Http\Controllers\Search\MiscController::class, 'organisations'])->name('organisations.find');
+Route::get('/search/tags', [\App\Http\Controllers\Search\MiscController::class, 'tags'])->name('tags.find');
+Route::get('/search/dice-rolls', [\App\Http\Controllers\Search\MiscController::class, 'diceRolls'])->name('dice_rolls.find');
+Route::get('/search/quests', [\App\Http\Controllers\Search\MiscController::class, 'quests'])->name('quests.find');
+Route::get('/search/conversations', [\App\Http\Controllers\Search\MiscController::class, 'conversations'])->name('conversations.find');
+Route::get('/search/races', [\App\Http\Controllers\Search\MiscController::class, 'races'])->name('races.find');
+Route::get('/search/creatures', [\App\Http\Controllers\Search\MiscController::class, 'creatures'])->name('creatures.find');
+Route::get('/search/abilities', [\App\Http\Controllers\Search\MiscController::class, 'abilities'])->name('abilities.find');
+Route::get('/search/maps', [\App\Http\Controllers\Search\MiscController::class, 'maps'])->name('maps.find');
+Route::get('/search/markers', [\App\Http\Controllers\Search\MiscController::class, 'markers'])->name('markers.find');
+Route::get('/search/attribute-templates', [\App\Http\Controllers\Search\MiscController::class, 'attributeTemplates'])->name('attribute_templates.find');

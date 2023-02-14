@@ -120,6 +120,8 @@ class CrudController extends Controller
             );
         }
 
+        $campaign = CampaignLocalization::getCampaign();
+
         /**
          * Prepare a lot of variables that will be shared over to the view
          * @var MiscModel $model
@@ -130,6 +132,9 @@ class CrudController extends Controller
         $langKey = $this->langKey ?? $name;
         $filters = $this->filters;
         $filter = !empty($this->filter) ? new $this->filter() : null;
+        if (!empty($filter)) {
+            $filter->campaign($campaign)->build();;
+        }
         $filterService = $this->filterService;
         $route = $this->route;
         $bulk = $this->bulkModel();
@@ -178,6 +183,7 @@ class CrudController extends Controller
         $actions = $this->navActions;
 
         return view('cruds.index', compact(
+            'campaign',
             'models',
             'name',
             'langKey',

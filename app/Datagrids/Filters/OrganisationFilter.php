@@ -10,7 +10,7 @@ class OrganisationFilter extends DatagridFilter
     /**
      * Filters available for organisations
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -20,7 +20,7 @@ class OrganisationFilter extends DatagridFilter
                 'field' => 'organisation_id',
                 'label' => __('entities.organisation'),
                 'type' => 'select2',
-                'route' => route('organisations.find'),
+                'route' => route('organisations.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.organisation'),
                 'model' => Organisation::class,
             ])
@@ -28,7 +28,7 @@ class OrganisationFilter extends DatagridFilter
                 'field' => 'member_id',
                 'label' => __('entities.character'),
                 'type' => 'select2',
-                'route' => route('characters.find'),
+                'route' => route('characters.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.character'),
                 'model' => Character::class,
             ])

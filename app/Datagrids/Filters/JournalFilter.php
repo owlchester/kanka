@@ -9,7 +9,7 @@ class JournalFilter extends DatagridFilter
     /**
      * Filters available for journals
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -19,7 +19,7 @@ class JournalFilter extends DatagridFilter
                 'field' => 'author_id',
                 'label' => __('journals.fields.author'),
                 'type' => 'select2',
-                'route' => route('search.entities-with-relations'),
+                'route' => route('search.entities-with-relations', $this->campaign),
                 'placeholder' =>  __('journals.placeholders.author'),
                 'model' => Entity::class,
             ])

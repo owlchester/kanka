@@ -9,7 +9,7 @@ class MapFilter extends DatagridFilter
     /**
      * Filters available for maps
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -18,7 +18,7 @@ class MapFilter extends DatagridFilter
                 'field' => 'map_id',
                 'label' => __('entities.map'),
                 'type' => 'select2',
-                'route' => route('maps.find'),
+                'route' => route('maps.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.map'),
                 'model' => Map::class,
             ])

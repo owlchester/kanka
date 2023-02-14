@@ -10,7 +10,7 @@ class FamilyFilter extends DatagridFilter
     /**
      * Filters available for families
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -19,7 +19,7 @@ class FamilyFilter extends DatagridFilter
                 'field' => 'family_id',
                 'label' => __('entities.family'),
                 'type' => 'select2',
-                'route' => route('families.find'),
+                'route' => route('families.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.family'),
                 'model' => Family::class,
             ])
@@ -28,7 +28,7 @@ class FamilyFilter extends DatagridFilter
                 'field' => 'member_id',
                 'label' => __('entities.character'),
                 'type' => 'select2',
-                'route' => route('characters.find'),
+                'route' => route('characters.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.character'),
                 'model' => Character::class,
             ])

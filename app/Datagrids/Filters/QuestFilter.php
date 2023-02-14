@@ -10,7 +10,7 @@ class QuestFilter extends DatagridFilter
     /**
      * Filters available for quests
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -22,7 +22,7 @@ class QuestFilter extends DatagridFilter
                 'field' => 'quest_id',
                 'label' => __('quests.fields.quest'),
                 'type' => 'select2',
-                'route' => route('quests.find'),
+                'route' => route('quests.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.quest'),
                 'model' => Quest::class,
             ])
@@ -30,7 +30,7 @@ class QuestFilter extends DatagridFilter
                 'field' => 'quest_element_id',
                 'label' => __('crud.fields.entity'),
                 'type' => 'select2',
-                'route' => route('search.entities-with-relations'),
+                'route' => route('search.entities-with-relations', $this->campaign),
                 'placeholder' =>  __('quests.placeholders.entity'),
                 'model' => Entity::class,
             ])

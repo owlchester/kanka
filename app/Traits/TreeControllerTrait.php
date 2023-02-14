@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Facades\CampaignLocalization;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -28,6 +29,8 @@ trait TreeControllerTrait
             );
         }
 
+        $campaign = CampaignLocalization::getCampaign();
+
         /**
          * Prepare a lot of variables that will be shared over to the view
          * @var MiscModel $model
@@ -38,6 +41,9 @@ trait TreeControllerTrait
         $filters = $this->filters;
         $filterService = $this->filterService;
         $filter = !empty($this->filter) ? new $this->filter() : null;
+        if (!empty($filter)) {
+            $filter->campaign($campaign)->build();
+        }
         $langKey = $this->langKey ?? $name;
         $templates = $this->loadTemplates($model);
 
@@ -107,6 +113,7 @@ trait TreeControllerTrait
         $actions = $this->navActions;
 
         return view('cruds.tree', compact(
+            'campaign',
             'models',
             'name',
             'langKey',

@@ -76,6 +76,7 @@ if(empty($searchParams)){
 if (!empty($from)) {
     $searchParams['exclude'] = $from->id;
 }
+$searchParams['campaign'] = $campaign->id;
 
 $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>

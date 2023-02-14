@@ -9,7 +9,7 @@ class EventFilter extends DatagridFilter
     /**
      * Filters available for events
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -19,7 +19,7 @@ class EventFilter extends DatagridFilter
                 'field' => 'event_id',
                 'label' => __('entities.event'),
                 'type' => 'select2',
-                'route' => route('events.find'),
+                'route' => route('events.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.event'),
                 'model' => Event::class,
             ])

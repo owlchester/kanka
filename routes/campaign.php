@@ -182,27 +182,6 @@ Route::resources([
 Route::get('/search', 'SearchController@search')->name('search');
 
 // Misc Model Search
-Route::get('/search/calendars', 'Search\MiscController@calendars')->name('calendars.find');
-Route::get('/search/characters', 'Search\MiscController@characters')->name('characters.find');
-Route::get('/search/campaigns', 'Search\MiscController@campaigns')->name('campaigns.find');
-Route::get('/search/events', 'Search\MiscController@events')->name('events.find');
-Route::get('/search/families', 'Search\MiscController@families')->name('families.find');
-Route::get('/search/item', 'Search\MiscController@items')->name('items.find');
-Route::get('/search/locations', 'Search\MiscController@locations')->name('locations.find');
-Route::get('/search/notes', 'Search\MiscController@notes')->name('notes.find');
-Route::get('/search/journals', 'Search\MiscController@journals')->name('journals.find');
-Route::get('/search/timelines', 'Search\MiscController@timelines')->name('timelines.find');
-Route::get('/search/organisations', 'Search\MiscController@organisations')->name('organisations.find');
-Route::get('/search/tags', 'Search\MiscController@tags')->name('tags.find');
-Route::get('/search/dice-rolls', 'Search\MiscController@diceRolls')->name('dice_rolls.find');
-Route::get('/search/quests', 'Search\MiscController@quests')->name('quests.find');
-Route::get('/search/conversations', 'Search\MiscController@conversations')->name('conversations.find');
-Route::get('/search/races', 'Search\MiscController@races')->name('races.find');
-Route::get('/search/creatures', 'Search\MiscController@creatures')->name('creatures.find');
-Route::get('/search/abilities', 'Search\MiscController@abilities')->name('abilities.find');
-Route::get('/search/maps', 'Search\MiscController@maps')->name('maps.find');
-Route::get('/search/markers', 'Search\MiscController@markers')->name('markers.find');
-Route::get('/search/attribute-templates', 'Search\MiscController@attributeTemplates')->name('attribute_templates.find');
 Route::get('/search/images', 'Search\ImageSearchController@index')->name('images.find');
 
 Route::get('/search/members', 'Search\CampaignSearchController@members')->name('find.campaign.members');

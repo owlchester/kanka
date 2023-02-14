@@ -11,7 +11,7 @@ class CharacterFilter extends DatagridFilter
     /**
      * Filters available for characters
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -20,7 +20,7 @@ class CharacterFilter extends DatagridFilter
                 'field' => 'family_id',
                 'label' => __('entities.family'),
                 'type' => 'select2',
-                'route' => route('families.find'),
+                'route' => route('families.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.family'),
                 'model' => Family::class,
                 'withChildren' => true,
@@ -39,7 +39,7 @@ class CharacterFilter extends DatagridFilter
                 'field' => 'member_id',
                 'label' => __('entities.organisation'),
                 'type' => 'select2',
-                'route' => route('organisations.find'),
+                'route' => route('organisations.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.organisation'),
                 'model' => Organisation::class,
                 'withChildren' => true,

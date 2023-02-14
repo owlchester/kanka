@@ -9,7 +9,7 @@ class LocationFilter extends DatagridFilter
     /**
      * Filters available for locations
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -18,7 +18,7 @@ class LocationFilter extends DatagridFilter
                 'field' => 'parent_location_id',
                 'label' => __('entities.location'),
                 'type' => 'select2',
-                'route' => route('locations.find'),
+                'route' => route('locations.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.location'),
                 'model' => Location::class,
             ])

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
  */
 abstract class DatagridFilter
 {
+    use CampaignAware;
 
     /** @var array Filters to be rendered */
     protected array $filters = [];
@@ -50,7 +51,7 @@ abstract class DatagridFilter
             'field' => 'location_id',
             'label' => __('entities.location'),
             'type' => 'select2',
-            'route' => route('locations.find'),
+            'route' => route('locations.find', $this->campaign),
             'placeholder' =>  __('crud.placeholders.location'),
             'model' => Location::class,
             'withChildren' => true,
@@ -68,7 +69,7 @@ abstract class DatagridFilter
             'field' => 'character_id',
             'label' => __('entities.character'),
             'type' => 'select2',
-            'route' => route('characters.find'),
+            'route' => route('characters.find', $this->campaign),
             'placeholder' =>  __('crud.placeholders.character'),
             'model' => Character::class,
         ];
@@ -85,7 +86,7 @@ abstract class DatagridFilter
             'field' => 'journal_id',
             'label' => __('journals.fields.journal'),
             'type' => 'select2',
-            'route' => route('journals.find'),
+            'route' => route('journals.find', $this->campaign),
             'placeholder' =>  __('crud.placeholders.journal'),
             'model' => Journal::class,
         ];
@@ -102,7 +103,7 @@ abstract class DatagridFilter
             'field' => 'tags',
             'label' => __('entities.tag'),
             'type' => 'tag',
-            'route' => route('tags.find'),
+            'route' => route('tags.find', $this->campaign),
             'placeholder' =>  __('crud.placeholders.tag'),
             'model' => Tag::class,
         ];

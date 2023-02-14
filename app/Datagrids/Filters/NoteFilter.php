@@ -9,7 +9,7 @@ class NoteFilter extends DatagridFilter
     /**
      * Filters available for notes
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -18,7 +18,7 @@ class NoteFilter extends DatagridFilter
                 'field' => 'note_id',
                 'label' => __('notes.fields.note'),
                 'type' => 'select2',
-                'route' => route('notes.find'),
+                'route' => route('notes.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.note'),
                 'model' => Note::class,
             ])

@@ -37,7 +37,7 @@ $statuses = [
             <div class="row">
                 <div class="col-sm-3">
                     <select name="organisations[{{ $organisation->id }}]" class="form-control select2" style="width: 100%"
-                        data-url="{{ route('organisations.find') }}"
+                        data-url="{{ route('organisations.find', $campaign) }}"
                         data-placeholder="{{ __('crud.placeholders.organisation') }}"
                         data-language="{{ LaravelLocalization::getCurrentLocale() }}"
                         data-allow-clear="false"
@@ -89,7 +89,7 @@ $statuses = [
         <div class="row">
             <div class="col-sm-3">
                 <select name="organisations[]" class="form-control tmp-org" style="width: 100%"
-                        data-url="{{ route('organisations.find') }}"
+                        data-url="{{ route('organisations.find', $campaign) }}"
                         data-placeholder="{{ __('crud.placeholders.organisation') }}"
                         data-language="{{ LaravelLocalization::getCurrentLocale() }}"
                 >

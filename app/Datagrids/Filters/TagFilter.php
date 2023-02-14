@@ -9,7 +9,7 @@ class TagFilter extends DatagridFilter
     /**
      * Filters available for tags
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -18,7 +18,7 @@ class TagFilter extends DatagridFilter
                 'field' => 'tag_id',
                 'label' => __('entities.tag'),
                 'type' => 'select2',
-                'route' => route('tags.find'),
+                'route' => route('tags.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.tag'),
                 'model' => Tag::class,
             ])

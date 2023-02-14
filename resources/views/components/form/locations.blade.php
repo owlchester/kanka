@@ -32,7 +32,7 @@ if ($quickCreator) {
 
 @if ($quickCreator)<div class="input-group input-group-sm">@endif
 
-<select multiple="multiple" name="locations[]" class="form-control select2" data-tags="true" style="width: 100%" data-url="{{ route('locations.find') }}" data-allow-clear="true" data-allow-new="false" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
+<select multiple="multiple" name="locations[]" class="form-control select2" data-tags="true" style="width: 100%" data-url="{{ route('locations.find', $campaign) }}" data-allow-clear="true" data-allow-new="false" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>
     @endforeach
