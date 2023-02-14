@@ -45,8 +45,8 @@
         data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
 @if (isset($name) && $name == 'characters')        data-bragi="{{ route('bragi') }}"@endif
 @if(isset($campaignService) && $campaignService->campaign() !== null)
-        data-gallery="{{ $campaignService->campaign()->superboosted() ? route('campaign.gallery.summernote') : null }}"
-    @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
+        data-gallery="{{ $campaignService->campaign()->superboosted() ? route('gallery.summernote', [$campaignService->campaign()]) : null }}"
+    @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('gallery.ajax-upload', [$campaignService->campaign()]) }}" @endif
 @endif
 @if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', $model->entity) }}"
 @elseif (!empty($entity))        data-attributes="{{ route('search.attributes', $entity) }}"

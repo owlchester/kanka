@@ -3,12 +3,6 @@
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
 
-Route::get('/gallery', 'Campaign\GalleryController@index')->name('campaign.gallery.index');
-Route::get('/gallery/load', 'Campaign\GalleryController@load')->name('campaign.gallery.load');
-Route::get('/gallery/search', 'Campaign\GalleryController@search')->name('campaign.gallery.search');
-Route::post('/gallery/ajax-upload', 'Campaign\GalleryController@ajaxUpload')->name('campaign.gallery.ajax-upload');
-Route::get('/gallery/ajax-gallery', 'Campaign\AjaxGalleryController@index')->name('campaign.gallery.summernote');
-
 // Abilities
 Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
 Route::get('/abilities/{ability}/entities', 'AbilityController@entities')->name('abilities.entities');
@@ -180,8 +174,6 @@ Route::get('/members/switch/{campaign_user}/{entity}', 'Campaign\MemberControlle
 
 
 
-Route::post('/gallery/folder', 'Campaign\GalleryController@folder')
-    ->name('campaign.gallery.folder');
 
 Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')
     ->name('menu_links.random');
@@ -258,8 +250,6 @@ Route::resources([
     'campaign_dashboards' => 'Campaign\DashboardController',
 
     'preset_types.presets' => 'PresetController',
-
-    'images' => 'Campaign\GalleryController',
 ]);
 
 // Old Search

@@ -37,7 +37,7 @@
         <div class="col-sm-2">
             @if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($model->entity->image))
                 <div class="preview-v2">
-                    <a class="h-28 cover-background relative inline-block w-full" href="{{ route('campaign.gallery.index', ['folder_id' => $model->entity->image->folder_id]) }}" style="background-image: url('{{ $model->entity->image->getUrl(80, null, 'header_image') }}')" title="{{ $model->name }}">
+                    <a class="h-28 cover-background relative inline-block w-full" href="{{ route('gallery.index', ['campaign' => $campaign, 'folder_id' => $model->entity->image->folder_id]) }}" style="background-image: url('{{ $model->entity->image->getUrl(80, null, 'header_image') }}')" title="{{ $model->name }}">
                     </a>
                 </div>
             @endif

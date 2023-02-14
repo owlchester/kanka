@@ -77,6 +77,7 @@ Route::resources([
     'campaign_roles.campaign_role_users' => 'CampaignRoleUserController',
     'campaign_styles' => 'Campaign\StyleController',
     'campaign_dashboard_widgets' => 'Campaign\DashboardWidgetController',
+    'images' => 'Campaign\GalleryController',
 ]);
 
 Route::post('/campaign_roles/{campaign_role}/savePermissions', [\App\Http\Controllers\Campaign\RoleController::class, 'savePermissions'])->name('campaign_roles.savePermissions');
@@ -106,7 +107,6 @@ if(config('marketplace.enabled')) {
 
 
 // Campaign Dashboard Widgets
-
 Route::get('/dashboard-setup', [\App\Http\Controllers\DashboardSetupController::class, 'index'])->name('dashboard.setup');
 Route::post('/dashboard-setup', [\App\Http\Controllers\DashboardSetupController::class, 'save'])->name('dashboard.setup');
 Route::post('/dashboard-setup/reorder', [\App\Http\Controllers\DashboardSetupController::class, 'reorder'])->name('dashboard.reorder');
@@ -115,3 +115,15 @@ Route::get('/dashboard/widgets/unmentioned/{id}', [\App\Http\Controllers\Dashboa
 Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/add', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'add'])->name('dashboard.calendar.add');
 Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/sub', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'sub'])->name('dashboard.calendar.sub');
 Route::get('/dashboard/widgets/{campaignDashboardWidget}/render', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'render'])->name('dashboard.calendar.render');
+
+
+
+Route::get('/gallery', [\App\Http\Controllers\Campaign\GalleryController::class, 'index'])->name('gallery.index');
+Route::get('/gallery/load', [\App\Http\Controllers\Campaign\GalleryController::class, 'load'])->name('gallery.load');
+Route::get('/gallery/search', [\App\Http\Controllers\Campaign\GalleryController::class, 'search'])->name('gallery.search');
+Route::post('/gallery/ajax-upload', [\App\Http\Controllers\Campaign\GalleryController::class, 'ajaxUpload'])->name('gallery.ajax-upload');
+Route::post('/gallery/folder', [\App\Http\Controllers\Campaign\GalleryController::class, 'folder'])
+    ->name('gallery.folder');
+
+Route::get('/gallery/ajax-gallery', [\App\Http\Controllers\Campaign\AjaxGalleryController::class, 'index'])->name('gallery.summernote');
+

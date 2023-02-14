@@ -4,10 +4,10 @@
  * @var \App\Models\Image $folder
  */
 
-$breadcrumbs[] = ['url' => route('campaign.gallery.index'), 'label' => __('campaigns/gallery.breadcrumb')];
+$breadcrumbs[] = ['url' => route('gallery.index', $campaign), 'label' => __('campaigns/gallery.breadcrumb')];
 if ($folder) {
     if (!empty($folder->folder_id)) {
-        $breadcrumbs[] = ['url' => route('campaign.gallery.index', ['folder_id' => $folder->folder_id]), 'label' => e($folder->imageFolder->name)];
+        $breadcrumbs[] = ['url' => route('gallery.index', ['campaign' => $campaign, 'folder_id' => $folder->folder_id]), 'label' => e($folder->imageFolder->name)];
     }
     $breadcrumbs[] = e($folder->name);
 }
@@ -31,18 +31,18 @@ if ($folder) {
             </button>
 
             @if(!empty($folder))
-                <button class="btn btn-default" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', $folder) }}">
+                <button class="btn btn-default" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', [$campaign, $folder]) }}">
                     <i class="fa-solid fa-pencil"></i> {{ __('crud.edit') }}
                 </button>
             @endif
 
             <div class="search pull-right">
-                <input type="text" class="form-control" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('campaign.gallery.search') }}" />
+                <input type="text" class="form-control" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('gallery.search', [$campaign]) }}" />
             </div>
         </div>
     </div>
 
-    <form id="gallery-form" method="post" action="{{ route('images.store') }}" enctype="multipart/form-data" class="file-upload-form mb-5">
+    <form id="gallery-form" method="post" action="{{ route('images.store', [$campaign]) }}" enctype="multipart/form-data" class="file-upload-form mb-5">
         {{ csrf_field() }}
         <div class="uploader collapse out well text-center border-dotted border-1 " id="uploader">
 
@@ -89,7 +89,7 @@ if ($folder) {
     <div class="modal fade" id="modal-new-folder" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                {!! Form::open(['route' => 'campaign.gallery.folder', 'method' => 'POST']) !!}
+                {!! Form::open(['route' => ['gallery.folder', [$campaign]], 'method' => 'POST']) !!}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">{{ __('campaigns/gallery.new_folder.title') }}</h4>

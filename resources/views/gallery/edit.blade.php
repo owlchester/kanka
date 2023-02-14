@@ -42,7 +42,7 @@ $imageCount = 0;
 
                 <hr />
 
-                {!! Form::model($image, ['route' => ['images.update', $image], 'method' => 'PUT', 'class' => '']) !!}
+                {!! Form::model($image, ['route' => ['images.update', [$campaign, $image]], 'method' => 'PUT', 'class' => '']) !!}
 
                 <div class="form-group">
                     <label for="name" class="control-label required">{{ __('crud.fields.name') }}</label>
@@ -76,7 +76,7 @@ $imageCount = 0;
                 <a href="#" class="delete-confirm pull-right text-red" data-name="{{ $image->name }}" data-toggle="modal" data-target="#delete-confirm">
                     <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                 </a>
-                {!! Form::open(['method' => 'DELETE','route' => ['images.destroy', $image->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['images.destroy', [$campaign, $image->id]], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                 {!! Form::close() !!}
                 @endif
 

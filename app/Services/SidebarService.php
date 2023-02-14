@@ -253,7 +253,7 @@ class SidebarService
         'gallery' => [
             'icon' => 'fa-solid fa-images',
             'label' => 'sidebar.gallery',
-            'route' => 'campaign.gallery.index',
+            'route' => 'gallery.index',
             'perm' => 'gallery',
             'module' => false,
         ],
