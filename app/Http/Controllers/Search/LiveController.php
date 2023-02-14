@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Search;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Ability;
+use App\Models\Campaign;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\Tag;
@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 class LiveController extends Controller
 {
     /** @var SearchService */
-    protected $search;
+    protected SearchService $search;
 
     /**
      * LiveController constructor.
@@ -22,14 +22,17 @@ class LiveController extends Controller
      */
     public function __construct(SearchService $searchService)
     {
+        $this->middleware('auth');
         $this->search = $searchService;
     }
 
     /**
      * Live Search
      */
-    public function index(Request $request)
+    public function index(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $term = trim($request->get('q'));
         $type = $request->get('type', null);
         if (!empty($type)) {
@@ -40,7 +43,6 @@ class LiveController extends Controller
             $type = (int) $type;
         }
         $exclude = trim($request->get('exclude'));
-        $campaign = CampaignLocalization::getCampaign();
         $new = request()->has('new');
 
         return response()->json(
@@ -60,10 +62,11 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function reminderEntities(Request $request)
+    public function reminderEntities(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
         return response()->json(
             $this->search
@@ -84,10 +87,11 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function relationEntities(Request $request)
+    public function relationEntities(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
         $exclude = [];
 
         if ($request->has('exclude')) {
@@ -109,10 +113,11 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function tagChildren(Request $request)
+    public function tagChildren(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
         $exclude = [];
         if ($request->has('exclude')) {
@@ -136,10 +141,11 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function abilityEntities(Request $request)
+    public function abilityEntities(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
         $exclude = [];
         if ($request->has('exclude')) {
@@ -163,10 +169,11 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function calendars(Request $request)
+    public function calendars(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
         return response()->json(
             $this->search
@@ -182,10 +189,11 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function organisationMembers(Request $request)
+    public function organisationMembers(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
         $exclude = [];
         $data = [];

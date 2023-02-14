@@ -75,8 +75,7 @@ class SearchService
     public function type(int $type = null): self
     {
         if (!empty($type)) {
-            $typeID = config('entities.ids.' . $type);
-            $this->onlyTypes = [$typeID];
+            $this->onlyTypes = [$type];
         }
         return $this;
     }

@@ -28,7 +28,7 @@ class PostMoveController extends Controller
     public function index(Entity $entity, Post $post)
     {
         $this->authorize('view', $entity->child);
-        $campaign = CampaignLocalization::getCampaign()->entities()->get();
+        $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.posts.move.index', compact(
             'entity',

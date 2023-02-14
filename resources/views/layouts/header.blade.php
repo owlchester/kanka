@@ -14,7 +14,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
             <div class="form-group has-feedback flex-grow">
                 <div class="flex items-center">
                     <input type="search" name="q" id="live-search" class="typeahead form-control" autocomplete="off"
-                           placeholder="{{ __('sidebar.search') }}" data-url="{{ route('search.live') }}"
+                           placeholder="{{ __('sidebar.search') }}" data-url="{{ route('search.live', $campaign) }}"
                            data-empty="{{ __('search.no_results') }}"
                            tabindex="2">
                     <span class="keyboard-shortcut form-control-feedback hidden-xs hidden-sm" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) !!}" data-html="true" data-placement="bottom">K</span>

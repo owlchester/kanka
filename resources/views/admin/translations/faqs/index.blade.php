@@ -83,15 +83,6 @@
 
     <div
             id="summernote-config"
-            data-mention="{{ route('search.live') }}"
-            data-advanced-mention="{{ auth()->user()->alwaysAdvancedMentions() }}"
-            data-months="{{ route('search.calendar-months') }}"
-            data-gallery-title="Superboosted Gallery"
-            data-gallery-close="{{ __('crud.click_modal.close') }}"
-            data-gallery-add="{{ __('crud.add') }}"
-            data-gallery-select-all="{{ __('general.select_all') }}"
-            data-gallery-deselect-all="{{ __('general.deselect_all') }}"
-            data-gallery-error="generic.gallery.error"
             data-locale="{{ app()->getLocale() }}">
     </div>
 @endsection

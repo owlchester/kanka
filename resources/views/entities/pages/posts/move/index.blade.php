@@ -21,7 +21,7 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label>{{ __('entities/notes.move.entity') }}</label>
-                        <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations') }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
+                        <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations', ['campaign' => $campaign]) }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
                     </div>
                     <div class="form-group form-check">
                         <label>{!! Form::checkbox('copy', 1, true) !!}

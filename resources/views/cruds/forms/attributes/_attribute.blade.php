@@ -34,7 +34,7 @@ if ($attribute->isSection()) {
                 {!! Form::hidden('attr_value[' . $id . ']', 0) !!}
                 {!! Form::checkbox('attr_value[' . $id . ']', 1, $attribute->value) !!}
             @elseif ($attribute->isText())
-                {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 4, 'data-remote' => route('search.live')]) !!}
+                {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 4, 'data-remote' => route('search.live', $campaign)]) !!}
             @elseif ($attribute->isSection())
                 {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
             @elseif($attribute->name == '_layout')
@@ -43,7 +43,7 @@ if ($attribute->isSection()) {
             @elseif ($attribute->isNumber())
                 {!! Form::number('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             @else
-                {!! Form::text('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live')]) !!}
+                {!! Form::text('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live', $campaign)]) !!}
             @endif
         </div>
         <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2">

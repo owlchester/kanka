@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use Illuminate\Http\Request;
 
@@ -15,12 +16,13 @@ class AttributeSearchController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
-        $this->middleware('campaign.member');
+        $this->middleware('auth');
     }
 
-    public function index(Request $request, Entity $entity)
+    public function index(Request $request, Campaign $campaign, Entity $entity)
     {
+        $this->authorize('update', $entity->child);
+
         $attributes = $entity->attributes()
             ->where('name', 'LIKE', '%' . $request->get('q') . '%')
             //->whereNotIn('type', ['section'])

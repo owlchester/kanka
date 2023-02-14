@@ -23,7 +23,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 </div>
             </div>
             <div class="{{ $textBlock }}">
-                {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live')]) !!}
+                {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live', $campaign)]) !!}
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
@@ -51,7 +51,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 </div>
             </div>
             <div class="{{ $textBlock }}">
-                {!! Form::textarea('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 3, 'data-remote' => route('search.live')]) !!}
+                {!! Form::textarea('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 3, 'data-remote' => route('search.live', $campaign)]) !!}
             </div>
             <div class="{{ $actionBlock }}">
                 {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}

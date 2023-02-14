@@ -50,6 +50,8 @@ $searchParams = [];
 if (!empty($from)) {
     $searchParams['exclude'] = $from->id;
 }
+$campaign = \App\Facades\CampaignLocalization::getCampaign();
+$searchParams['campaign'] = $campaign->id;
 
 $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>

@@ -187,3 +187,22 @@ Route::get('/search/abilities', [\App\Http\Controllers\Search\MiscController::cl
 Route::get('/search/maps', [\App\Http\Controllers\Search\MiscController::class, 'maps'])->name('maps.find');
 Route::get('/search/markers', [\App\Http\Controllers\Search\MiscController::class, 'markers'])->name('markers.find');
 Route::get('/search/attribute-templates', [\App\Http\Controllers\Search\MiscController::class, 'attributeTemplates'])->name('attribute_templates.find');
+
+// Misc Model Search
+Route::get('/search/images', [\App\Http\Controllers\Search\ImageSearchController::class, 'index'])->name('images.find');
+
+//Route::get('/search/members', [\App\Http\Controllers\Search\CampaignSearchController::class, 'members'])->name('find.campaign.members');
+//Route::get('/search/roles', [\App\Http\Controllers\Search\CampaignSearchController::class, 'roles'])->name('find.campaign.roles');
+
+// Entity Search
+Route::get('/search/entity-calendars', [\App\Http\Controllers\Search\CalendarController::class, 'index'])->name('search.calendars');
+Route::get('/search/attributes/{entity}', [\App\Http\Controllers\Search\AttributeSearchController::class, 'index'])->name('search.attributes');
+
+// Global Entity Search
+Route::get('/search/live', [\App\Http\Controllers\Search\LiveController::class, 'index'])->name('search.live');
+Route::get('/search/reminder-entities', [\App\Http\Controllers\Search\LiveController::class, 'reminderEntities'])->name('search.entities-with-reminders');
+Route::get('/search/relation-entities', [\App\Http\Controllers\Search\LiveController::class, 'relationEntities'])->name('search.entities-with-relations');
+Route::get('/search/tag-children', [\App\Http\Controllers\Search\LiveController::class, 'tagChildren'])->name('search.tag-children');
+Route::get('/search/ability-entities', [\App\Http\Controllers\Search\LiveController::class, 'abilityEntities'])->name('search.ability-entities');
+Route::get('/search/organisation-member', [\App\Http\Controllers\Search\LiveController::class, 'organisationMembers'])->name('search.organisation-member');
+Route::get('/search/months', [\App\Http\Controllers\Search\CalendarController::class, 'months'])->name('search.calendar-months');

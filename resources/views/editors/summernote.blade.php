@@ -31,9 +31,9 @@
 
     <div
         id="summernote-config"
-        data-mention="{{ route('search.live') }}"
+        data-mention="{{ route('search.live', $campaign) }}"
         data-advanced-mention="{{ auth()->user()->alwaysAdvancedMentions() }}"
-        data-months="{{ route('search.calendar-months') }}"
+        data-months="{{ route('search.calendar-months', $campaignService->campaign()) }}"
         data-gallery-title="Superboosted Gallery"
         data-gallery-close="{{ __('crud.click_modal.close') }}"
         data-gallery-add="{{ __('crud.add') }}"
@@ -48,8 +48,8 @@
         data-gallery="{{ $campaignService->campaign()->superboosted() ? route('gallery.summernote', [$campaignService->campaign()]) : null }}"
     @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('gallery.ajax-upload', [$campaignService->campaign()]) }}" @endif
 @endif
-@if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', $model->entity) }}"
-@elseif (!empty($entity))        data-attributes="{{ route('search.attributes', $entity) }}"
+@if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', ['campaign' => $campaignService->campaign(), 'entity' => $model->entity]) }}"
+@elseif (!empty($entity))        data-attributes="{{ route('search.attributes', ['campaign' => $campaignService->campaign(), 'entity' => $entity]) }}"
 
 @endif
         data-locale="{{ app()->getLocale() }}"></div>

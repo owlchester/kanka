@@ -178,29 +178,8 @@ Route::resources([
 
 ]);
 
-// Old Search
+
 Route::get('/search', 'SearchController@search')->name('search');
-
-// Misc Model Search
-Route::get('/search/images', 'Search\ImageSearchController@index')->name('images.find');
-
-Route::get('/search/members', 'Search\CampaignSearchController@members')->name('find.campaign.members');
-Route::get('/search/roles', 'Search\CampaignSearchController@roles')->name('find.campaign.roles');
-
-// Entity Search
-Route::get('/search/entity-calendars', 'Search\CalendarController@index')->name('search.calendars');
-Route::get('/search/attributes/{entity}', 'Search\AttributeSearchController@index')->name('search.attributes');
-
-// Global Entity Search
-Route::get('/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
-Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations');
-Route::get('/search/tag-children', 'Search\LiveController@tagChildren')->name('search.tag-children');
-Route::get('/search/ability-entities', 'Search\LiveController@abilityEntities')->name('search.ability-entities');
-Route::get('/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
-Route::get('/search/months', 'Search\CalendarController@months')->name('search.calendar-months');
-Route::get('/search/live', 'Search\LiveController@index')->name('search.live');
-
-Route::get('/redirect', 'RedirectController@index')->name('redirect');
 
 Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');

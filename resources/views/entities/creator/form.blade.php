@@ -21,7 +21,7 @@
                 'autocomplete' => 'off',
                 'class' => 'form-control',
                 'rows' => 4,
-                'data-live' => route('search.live'),
+                'data-live' => route('search.live', $campaign),
                 'data-type' => $singularType,
                 'id' => 'qq-name-field'
             ]) !!}
@@ -31,7 +31,7 @@
                     'autocomplete' => 'off',
                     'class' => 'form-control',
                     'maxlength' => 191,
-                    'data-live' => route('search.live'),
+                    'data-live' => route('search.live', $campaign),
                     'data-type' => $singularType,
                     'data-bulk' => true,
                     'id' => 'qq-name-field'

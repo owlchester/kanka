@@ -30,7 +30,7 @@ class CharacterFilter extends DatagridFilter
                 'field' => 'race_id',
                 'label' => __('entities.race'),
                 'type' => 'select2',
-                'route' => route('races.find'),
+                'route' => route('races.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.race'),
                 'model' => Race::class,
                 'withChildren' => true,
