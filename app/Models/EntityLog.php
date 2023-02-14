@@ -240,7 +240,7 @@ class EntityLog extends Model
      */
     public function scopeFilter(Builder $builder, HistoryRequest $request): Builder
     {
-        if ($request->filled('user')) {
+        if ($request->filled('user') && !$request->filled('action')) {
             $builder->where($this->getTable() . '.created_by', (int) $request->get('user'));
         }
         if ($request->filled('action')) {
