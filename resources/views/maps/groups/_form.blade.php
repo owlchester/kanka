@@ -15,10 +15,7 @@
 </div>
 
 @php 
-    $options = $map->groupPositionOptions();
-    if (!empty($model->position) && $model->position == array_key_last($options) - 1) {
-        array_pop($options);  
-    }
+    $options = $map->groupPositionOptions(!empty($model->position) ? $model->position : null);
     $last = array_key_last($options);
 @endphp
 

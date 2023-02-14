@@ -317,25 +317,36 @@ class Map extends MiscModel
     /**
      * @return array|string[]
      */
-    public function groupPositionOptions(): array
+    public function groupPositionOptions($position = null): array
     {
         $options = [1 => __('maps/groups.placeholders.position')];
         $groups = $this->groups->sortBy('position');
         foreach ($groups as $group) {
             $options[$group->position + 1] = __('maps/groups.placeholders.position_list', ['name' => $group->name]);
         }
+
+        //If is the last position remove last+1 position from the options array
+        if ($position == array_key_last($options) - 1) {
+            array_pop($options);
+        }
+
         return $options;
     }
 
     /**
      * @return array|string[]
      */
-    public function layerPositionOptions(): array
+    public function layerPositionOptions($position = null): array
     {
         $options = [1 => __('maps/layers.placeholders.position')];
         $layers = $this->layers->sortBy('position');
         foreach ($layers as $layer) {
             $options[$layer->position + 1] = __('maps/layers.placeholders.position_list', ['name' => $layer->name]);
+        }
+
+        //If is the last position remove last+1 position from the options array
+        if ($position == array_key_last($options) - 1) {
+            array_pop($options);
         }
         return $options;
     }

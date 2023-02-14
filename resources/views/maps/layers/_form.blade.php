@@ -24,10 +24,7 @@ $typeOptions = [
 </div>
 
 @php
-    $options = $map->layerPositionOptions();
-    if (!empty($model->position) && $model->position == array_key_last($options) - 1) {
-        array_pop($options);  
-    }
+    $options = $map->layerPositionOptions(!empty($model->position) ? $model->position : null);
     $last = array_key_last($options);
 @endphp
 
