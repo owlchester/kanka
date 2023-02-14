@@ -256,7 +256,6 @@ Route::resources([
     //'presets' => 'PresetController',
 
     'campaign_dashboards' => 'Campaign\DashboardController',
-    'campaign_dashboard_widgets' => 'Campaign\DashboardWidgetController',
 
     'preset_types.presets' => 'PresetController',
 
@@ -307,16 +306,6 @@ Route::get('/search/months', 'Search\CalendarController@months')->name('search.c
 Route::get('/search/live', 'Search\LiveController@index')->name('search.live');
 
 Route::get('/redirect', 'RedirectController@index')->name('redirect');
-
-// Campaign Dashboard Widgets
-Route::get('/dashboard-setup', 'DashboardSetupController@index')->name('dashboard.setup');
-Route::post('/dashboard-setup', 'DashboardSetupController@save')->name('dashboard.setup');
-Route::post('/dashboard-setup/reorder', [\App\Http\Controllers\DashboardSetupController::class, 'reorder'])->name('dashboard.reorder');
-Route::get('/dashboard/widgets/recent/{id}', 'DashboardController@recent')->name('dashboard.recent');
-Route::get('/dashboard/widgets/unmentioned/{id}', 'DashboardController@unmentioned')->name('dashboard.unmentioned');
-Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/add', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'add'])->name('dashboard.calendar.add');
-Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/sub', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'sub'])->name('dashboard.calendar.sub');
-Route::get('/dashboard/widgets/{campaignDashboardWidget}/render', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'render'])->name('dashboard.calendar.render');
 
 // Move
 Route::get('/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');

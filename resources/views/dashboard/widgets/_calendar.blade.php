@@ -12,7 +12,7 @@ if (empty($calendar)) {
     return;
 }
 ?>
-<div class="panel panel-default {{ $widget->customClass($campaign) }} widget-render" id="dashboard-widget-{{ $widget->id }}" data-url="{{ route('dashboard.calendar.render', $widget->id) }}">
+<div class="panel panel-default {{ $widget->customClass($campaign) }} widget-render" id="dashboard-widget-{{ $widget->id }}" data-url="{{ route('dashboard.calendar.render', ['campaign' => $campaign, $widget]) }}">
     @if (!$calendar->image)
     <div class="panel-heading">
        <h3 class="panel-title">

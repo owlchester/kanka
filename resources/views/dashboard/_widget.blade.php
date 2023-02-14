@@ -20,7 +20,7 @@ if ($widget->entity) {
          data-url="{{ route('dashboard-header.edit', ['campaign' => $campaign, 'campaignDashboardWidget' => $widget]) }}"
     @else
          data-target="#edit-widget"
-         data-url="{{ route('campaign_dashboard_widgets.edit', $widget) }}"
+         data-url="{{ route('campaign_dashboard_widgets.edit', [$campaign, $widget]) }}"
     @endif
     @if (!empty($background))
          style="background-image: url('{{ $background }}')"

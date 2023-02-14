@@ -64,7 +64,7 @@
                                         @can('dashboard', $campaign)
                                             <li class="divider"></li>
                                             <li>
-                                                <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
+                                                <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['campaign' => $campaign, 'dashboard' => $dashboard->id] : ['campaign' => $campaign]) }}">
                                                     {{ __('dashboard.settings.title') }}
                                                 </a>
                                             </li>
@@ -73,7 +73,7 @@
                                 </div>
                             @else
                                 @can('dashboard', $campaign)
-                                <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
+                                <a href="{{ route('dashboard.setup', ['campaign' => $campaign]) }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
                                     <i class="fa-solid fa-th-large"></i>
                                 </a>
                                 @endcan
@@ -104,7 +104,7 @@
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" title="{{ __('dashboard.settings.title') }}">
+                                    <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['campaign' => $campaign, 'dashboard' => $dashboard->id] : ['campaign' => $campaign]) }}" title="{{ __('dashboard.settings.title') }}">
                                         <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
                                     </a>
                                 </li>

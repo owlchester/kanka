@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Widgets;
 
 use App\Http\Controllers\Controller;
 use App\Models\Calendar;
+use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 
 class CalendarWidgetController extends Controller
@@ -12,7 +13,7 @@ class CalendarWidgetController extends Controller
      * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function add(CampaignDashboardWidget $campaignDashboardWidget)
+    public function add(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         if ($campaignDashboardWidget->widget != CampaignDashboardWidget::WIDGET_CALENDAR) {
             return response()->json([
@@ -25,14 +26,15 @@ class CalendarWidgetController extends Controller
         $calendar->addDay();
 
         return view('dashboard.widgets.calendar.body')
-            ->with('widget', $campaignDashboardWidget);
+            ->with('widget', $campaignDashboardWidget)
+            ->with('campaign', $campaign);
     }
 
     /**
      * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function sub(CampaignDashboardWidget $campaignDashboardWidget)
+    public function sub(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         if ($campaignDashboardWidget->widget != CampaignDashboardWidget::WIDGET_CALENDAR) {
             return response()->json([
@@ -45,7 +47,8 @@ class CalendarWidgetController extends Controller
         $calendar->subDay();
 
         return view('dashboard.widgets.calendar.body')
-            ->with('widget', $campaignDashboardWidget);
+            ->with('widget', $campaignDashboardWidget)
+            ->with('campaign', $campaign);
     }
 
     /**
@@ -53,7 +56,7 @@ class CalendarWidgetController extends Controller
      * @param CampaignDashboardWidget $campaignDashboardWidget
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
      */
-    public function render(CampaignDashboardWidget $campaignDashboardWidget)
+    public function render(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         if ($campaignDashboardWidget->widget != CampaignDashboardWidget::WIDGET_CALENDAR) {
             return response()->json([
@@ -62,6 +65,7 @@ class CalendarWidgetController extends Controller
         }
 
         return view('dashboard.widgets.calendar.body')
-            ->with('widget', $campaignDashboardWidget);
+            ->with('widget', $campaignDashboardWidget)
+            ->with('campaign', $campaign);
     }
 }

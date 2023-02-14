@@ -76,6 +76,7 @@ Route::resources([
     'campaign_roles' => 'CampaignRoleController',
     'campaign_roles.campaign_role_users' => 'CampaignRoleUserController',
     'campaign_styles' => 'Campaign\StyleController',
+    'campaign_dashboard_widgets' => 'Campaign\DashboardWidgetController',
 ]);
 
 Route::post('/campaign_roles/{campaign_role}/savePermissions', [\App\Http\Controllers\Campaign\RoleController::class, 'savePermissions'])->name('campaign_roles.savePermissions');
@@ -102,3 +103,15 @@ if(config('marketplace.enabled')) {
     Route::post('/plugins/{plugin}/update', [\App\Http\Controllers\Campaign\PluginController::class, 'update'])->name('campaign_plugins.update');
     Route::post('/plugins/bulk', [\App\Http\Controllers\Campaign\PluginController::class, 'bulk'])->name('campaign_plugins.bulk');
 }
+
+
+// Campaign Dashboard Widgets
+
+Route::get('/dashboard-setup', [\App\Http\Controllers\DashboardSetupController::class, 'index'])->name('dashboard.setup');
+Route::post('/dashboard-setup', [\App\Http\Controllers\DashboardSetupController::class, 'save'])->name('dashboard.setup');
+Route::post('/dashboard-setup/reorder', [\App\Http\Controllers\DashboardSetupController::class, 'reorder'])->name('dashboard.reorder');
+Route::get('/dashboard/widgets/recent/{id}', [\App\Http\Controllers\DashboardController::class, 'recent'])->name('dashboard.recent');
+Route::get('/dashboard/widgets/unmentioned/{id}', [\App\Http\Controllers\DashboardController::class, 'unmentioned'])->name('dashboard.unmentioned');
+Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/add', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'add'])->name('dashboard.calendar.add');
+Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/sub', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'sub'])->name('dashboard.calendar.sub');
+Route::get('/dashboard/widgets/{campaignDashboardWidget}/render', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'render'])->name('dashboard.calendar.render');

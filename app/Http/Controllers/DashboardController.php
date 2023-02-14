@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Facades\DataLayer;
+use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,13 +53,11 @@ class DashboardController extends Controller
     }
 
     /**
-     * @param int $id
      */
-    public function recent($id)
+    public function recent(Campaign $campaign, int $id)
     {
         /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
-        $campaign = CampaignLocalization::getCampaign();
         if ($widget->widget != CampaignDashboardWidget::WIDGET_RECENT) {
             return response()->json([
                 'success' => true
@@ -75,13 +74,11 @@ class DashboardController extends Controller
     }
 
     /**
-     * @param int $id
      */
-    public function unmentioned($id)
+    public function unmentioned(Campaign $campaign, int $id)
     {
         /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
-        $campaign = CampaignLocalization::getCampaign();
         if ($widget->widget != CampaignDashboardWidget::WIDGET_UNMENTIONED) {
             return response()->json([
                 'success' => true

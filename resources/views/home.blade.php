@@ -49,7 +49,7 @@
 
                     @can('dashboard', $campaign)
                         <li>
-                            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
+                            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['campaign' => $campaign, 'dashboard' => $dashboard->id] : ['campaign' => $campaign]) }}">
                                 <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
                             </a>
                         </li>
@@ -66,7 +66,7 @@
             </div>
         @else
             @can('update', $campaign)
-            <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
+            <a href="{{ route('dashboard.setup', $campaign) }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
                 <i class="fa-solid fa-th-large"></i>
             </a>
             @endcan
@@ -134,7 +134,7 @@
 
     @can('update', $campaign)
         <div class="text-center mt-6">
-            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
+            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['campaign' => $campaign, 'dashboard' => $dashboard->id] : ['campaign' => $campaign]) }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
                 <i class="fa-solid fa-cog" aria-hidden="true"></i> {{ __('dashboard.settings.title') }}
             </a>
         </div>

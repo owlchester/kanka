@@ -29,12 +29,12 @@ $weather = $calendar->calendarWeather()
 ?>
 <div class="current-date" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
-        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', $widget) }}" data-widget="{{ $widget->id }}">
+        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}">
             <i class="fa-solid fa-chevron-circle-left" data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" ></i>
         </a>
         <span>{{ $calendar->niceDate() }}</span>
 
-        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.add', $widget) }}" data-widget="{{ $widget->id }}">
+        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.add', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}">
             <i class="fa-solid fa-chevron-circle-right" data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.next') }}" ></i>
         </a>
     @else
