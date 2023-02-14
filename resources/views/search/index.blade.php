@@ -7,7 +7,7 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
-    {!! Form::open(['route' => 'search', 'method' => 'GET']) !!}
+    {!! Form::open(['route' => ['search', $campaign], 'method' => 'GET']) !!}
 
             <div class="box box-solid">
                 <div class="box-body">

@@ -179,7 +179,6 @@ Route::resources([
 ]);
 
 
-Route::get('/search', 'SearchController@search')->name('search');
 
 Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\MiscModel;
 use App\Services\CampaignService;
@@ -48,12 +49,15 @@ class SearchController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function search(Request $request)
+    public function index(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $term = $request->get('q');
         if (empty($term) || !is_string($term)) {
             return view('search.index')
-                ->with('results', []);
+                ->with('results', [])
+                ->with('campaign', $campaign);
         }
         $term = trim($term);
         $results = [];
@@ -87,6 +91,7 @@ class SearchController extends Controller
         }
 
         return view('search.index', compact(
+            'campaign',
             'filters',
             'term',
             'results',

@@ -10,7 +10,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
         @endif
 
         @if (!empty($currentCampaign))
-            {!! Form::open(['route' => 'search', 'class' => 'visible-md visible-lg navbar-form live-search-form py-0', 'method'=>'GET']) !!}
+            {!! Form::open(['route' => ['search', $currentCampaign], 'class' => 'visible-md visible-lg navbar-form live-search-form py-0', 'method'=>'GET']) !!}
             <div class="form-group has-feedback flex-grow">
                 <div class="flex items-center">
                     <input type="search" name="q" id="live-search" class="typeahead form-control" autocomplete="off"

@@ -206,3 +206,6 @@ Route::get('/search/tag-children', [\App\Http\Controllers\Search\LiveController:
 Route::get('/search/ability-entities', [\App\Http\Controllers\Search\LiveController::class, 'abilityEntities'])->name('search.ability-entities');
 Route::get('/search/organisation-member', [\App\Http\Controllers\Search\LiveController::class, 'organisationMembers'])->name('search.organisation-member');
 Route::get('/search/months', [\App\Http\Controllers\Search\CalendarController::class, 'months'])->name('search.calendar-months');
+
+// The good old search
+Route::get('/search', [\App\Http\Controllers\SearchController::class, 'index'])->name('search');
