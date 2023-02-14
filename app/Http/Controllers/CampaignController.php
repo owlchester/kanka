@@ -78,7 +78,6 @@ class CampaignController extends Controller
         try {
             /** @var Campaign $campaign */
             $campaign = Campaign::create($data);
-            auth()->user()->setCurrentCampaign($campaign);
 
             DB::commit();
         } catch (\Exception $e) {

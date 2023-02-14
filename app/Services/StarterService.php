@@ -6,15 +6,16 @@ use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
+use App\Models\Entity;
 use App\Models\Location;
+use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Str;
 
 class StarterService
 {
     use UserAware;
-
-    /** @var Campaign */
-    protected $campaign;
+    use CampaignAware;
 
 
     /**
@@ -29,42 +30,44 @@ class StarterService
             'ui_settings' => ['nested' => true]
         ];
         /** @var Campaign $campaign */
-        $campaign = Campaign::create($data);
-        $this->user->setCurrentCampaign($campaign);
+        $this->campaign = Campaign::create($data);
 
         try {
-            $this->generateBoilerplate($campaign);
+            $this->generateBoilerplate();
         } catch (\Exception $e) {
+            throw $e;
             // Don't block the user if the boilerplate crashes
         }
 
-        return $campaign;
+        return $this->campaign;
     }
 
     /**
      * @param Campaign $campaign
      */
-    public function generateBoilerplate(Campaign $campaign)
+    public function generateBoilerplate()
     {
-        CampaignLocalization::forceCampaign($campaign);
-        $this->campaign = $campaign;
+        // We need this for the acl scopes. Can't save the models quietly because we're trying to set up a tree.
+        CampaignLocalization::forceCampaign($this->campaign);
 
         // Generate locations
         $kingdom = new Location([
             'name' => __('starter.kingdom1.name'),
+            'slug' => Str::slug(__('starter.kingdom1.name')),
             'type' => __('starter.kingdom1.type'),
             'entry' => '<p>' . __('starter.kingdom1.description') . '</p>',
-            'campaign_id' => $campaign->id,
+            'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $kingdom->save();
 
         $city = new Location([
             'name' => __('starter.kingdom2.name'),
+            'slug' => Str::slug(__('starter.kingdom2.name')),
             'type' => __('starter.kingdom2.type'),
             'parent_location_id' => $kingdom->id,
             'entry' => '<p>' . __('starter.kingdom2.description') . '</p>',
-            'campaign_id' => $campaign->id,
+            'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $city->save();
@@ -72,28 +75,26 @@ class StarterService
         // Generate characters
         $james = new Character([
             'name' => __('starter.character1.name'),
+            'slug' => Str::slug(__('starter.character1.name')),
             'title' => __('starter.character1.title'),
             'age' => '43',
             'sex' => __('starter.character1.sex'),
             'entry' => '<p>' . __('starter.character1.history') . '</p>',
             'location_id' => $city->id,
-            'campaign_id' => $campaign->id,
-            'fears' => __('starter.character1.fears'),
-            'traits' => __('starter.character1.traits'),
+            'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $james->save();
 
         $irwie = new Character([
             'name' => __('starter.character2.name'),
+            'slug' => Str::slug(__('starter.character2.name')),
             'title' => __('starter.character2.title'),
             'age' => '31',
             'sex' => __('starter.character2.sex'),
             'entry' => '<p>' . __('starter.character2.history') . '</p>',
             'location_id' => $city->id,
-            'campaign_id' => $campaign->id,
-            'fears' => __('starter.character2.fears'),
-            'traits' => __('starter.character2.traits'),
+            'campaign_id' => $this->campaign->id,
             'is_private' => false,
         ]);
         $irwie->save();

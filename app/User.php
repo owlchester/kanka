@@ -122,6 +122,7 @@ class User extends \Illuminate\Foundation\Auth\User
     ];
 
     /**
+     * Todo: remove this concept
      * Get the user's campaign.
      * This is the equivalent of calling user->campaign or user->getCampaign
      * @return Campaign|null
@@ -135,18 +136,6 @@ class User extends \Illuminate\Foundation\Auth\User
         }
         return self::$currentCampaign;
     }
-
-    /**
-     * Change the current campaign (when creating a new one)
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function setCurrentCampaign(Campaign $campaign): self
-    {
-        self::$currentCampaign = $campaign;
-        return $this;
-    }
-
 
     /**
      * Get the other campaigns of the user

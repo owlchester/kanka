@@ -45,6 +45,7 @@ abstract class MiscObserver
     public function saving(MiscModel $model)
     {
         $model->slug = Str::slug($model->name, '');
+        // Todo: this needs to go
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
         $model->name = trim($model->name); // Remove empty spaces in names
         //$model->name = strip_tags($model->name);
