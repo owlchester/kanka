@@ -257,6 +257,3 @@ Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::cl
 Route::get('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
 Route::post('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
 
-
-Route::get('/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'index'])->name('bragi');
-Route::post('/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'generate'])->name('bragi.generate');

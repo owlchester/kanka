@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Bragi;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BragiRequest;
+use App\Models\Campaign;
 use App\Services\Bragi\BragiService;
 
 class BragiController extends Controller
@@ -17,7 +18,7 @@ class BragiController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    public function index(Campaign $campaign)
     {
         return response()->json(
             $this->service
@@ -26,10 +27,8 @@ class BragiController extends Controller
         );
     }
 
-    public function generate(BragiRequest $request)
+    public function generate(BragiRequest $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         return response()->json(
             $this->service
                 ->user(auth()->user())

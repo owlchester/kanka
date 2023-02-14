@@ -130,5 +130,8 @@ Route::get('/gallery/ajax-gallery', [\App\Http\Controllers\Campaign\AjaxGalleryC
 // General campaign features
 Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'index'])->name('history.index');
 
+// Bragi plugin for summernote
+Route::get('/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'index'])->name('bragi');
+Route::post('/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'generate'])->name('bragi.generate');
 
 
