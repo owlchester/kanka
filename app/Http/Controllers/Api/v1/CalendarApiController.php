@@ -49,7 +49,9 @@ class CalendarApiController extends ApiController
         $this->authorize('create', Calendar::class);
 
         /** @var Calendar $model */
-        $model = Calendar::create($request->all());
+        $data = $request->all();
+        $data['campaign_id'] = $campaign->id;
+        $model = Calendar::create($data);
         $this->crudSave($model);
         return new Resource($model);
     }

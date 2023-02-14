@@ -49,7 +49,9 @@ class CreatureApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Creature::class);
 
-        $model = Creature::create($request->all());
+        $data = $request->all();
+        $data['campaign_id'] = $campaign->id;
+        $model = Creature::create($data);
         $this->crudSave($model);
         return new Resource($model);
     }
