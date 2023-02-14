@@ -194,7 +194,6 @@ Route::resources([
 
     'campaign_dashboards' => 'Campaign\DashboardController',
 
-    'preset_types.presets' => 'PresetController',
 ]);
 
 // Old Search
@@ -245,11 +244,6 @@ Route::get('/redirect', 'RedirectController@index')->name('redirect');
 Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 
-
-Route::get('/presets/type/{preset_type}/list', [\App\Http\Controllers\PresetController::class, 'presets'])->name('presets.list');
-Route::get('/presets/type/{preset_type}/create', [\App\Http\Controllers\PresetController::class, 'create'])->name('presets.create');
-Route::post('/presets/type/{preset_type}/store', [\App\Http\Controllers\PresetController::class, 'store'])->name('presets.store');
-Route::post('/presets/{preset}/load', [\App\Http\Controllers\PresetController::class, 'load'])->name('presets.show');
 
 
 // Entity quick creator

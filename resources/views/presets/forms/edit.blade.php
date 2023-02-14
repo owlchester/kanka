@@ -6,7 +6,7 @@
 
 @section('content')
 
-    {!! Form::model($preset, ['route' => ['preset_types.presets.update', 'preset_type' => $presetType, 'preset' => $preset], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+    {!! Form::model($preset, ['route' => ['preset_types.presets.update', $campaign, $presetType, $preset], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
         <div class="panel">
             @include('presets.forms._' . $presetType->code)
             <div class="panel-footer">
@@ -33,7 +33,7 @@
 
 @section('modals')
     @parent
-    {!! Form::open(['method' => 'DELETE', 'route' => ['preset_types.presets.destroy', 'preset_type' => $presetType, 'preset' => $preset], 'style' => 'display:inline', 'id' => 'delete-form-preset-' . $preset->id]) !!}
+    {!! Form::open(['method' => 'DELETE', 'route' => ['preset_types.presets.destroy', ['campaign' => $campaign, 'preset_type' => $presetType, 'preset' => $preset]], 'style' => 'display:inline', 'id' => 'delete-form-preset-' . $preset->id]) !!}
     <input type="hidden" name="from" value="{{ $from }}" />
     {!! Form::close() !!}
 

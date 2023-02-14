@@ -134,4 +134,14 @@ Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'index']
 Route::get('/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'index'])->name('bragi');
 Route::post('/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'generate'])->name('bragi.generate');
 
+// Map market presets
+Route::get('/presets/type/{preset_type}/list', [\App\Http\Controllers\PresetController::class, 'presets'])->name('presets.list');
+Route::get('/presets/type/{preset_type}/create', [\App\Http\Controllers\PresetController::class, 'create'])->name('presets.create');
+Route::post('/presets/type/{preset_type}/store', [\App\Http\Controllers\PresetController::class, 'store'])->name('presets.store');
+Route::post('/presets/{preset}/load', [\App\Http\Controllers\PresetController::class, 'load'])->name('presets.show');
+
+Route::resources([
+    'preset_types.presets' => \App\Http\Controllers\PresetController::class,
+]);
+
 

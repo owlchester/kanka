@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <form method="POST" action="{{ route('presets.store', $presetType) }}">
+    <form method="POST" action="{{ route('presets.store', ['campaign' => $campaign, 'preset_type' => $presetType]) }}">
         <div class="panel">
             @include('presets.forms._' . $presetType->code)
             <div class="panel-footer">
