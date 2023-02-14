@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
 use App\Models\CampaignPermission;
@@ -246,8 +245,7 @@ class EntityObserver
     public function saveBoosted(Entity $entity): void
     {
         // No changed for non-boosted campaigns
-        $campaign = CampaignLocalization::getCampaign();
-        if (!$campaign->boosted()) {
+        if (!$entity->campaign->boosted()) {
             return;
         }
 

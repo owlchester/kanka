@@ -45,7 +45,9 @@ class EntityRelationApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $model = Relation::create($request->all());
+        $data = $request->all();
+        $data['campaign_id'] = $entity->campaign_id;
+        $model = Relation::create($data);
         return new Resource($model);
     }
 

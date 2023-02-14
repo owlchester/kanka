@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Relation;
 
 class RelationObserver
@@ -12,6 +11,5 @@ class RelationObserver
      */
     public function creating(Relation $relation)
     {
-        $relation->campaign_id = CampaignLocalization::getCampaign()->id;
     }
 }

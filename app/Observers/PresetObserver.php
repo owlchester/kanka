@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Preset;
 
 class PresetObserver
@@ -11,7 +10,6 @@ class PresetObserver
 
     public function saving(Preset $preset)
     {
-        $preset->campaign_id = CampaignLocalization::getCampaign()->id;
         $preset->name = $this->purify(trim($preset->name));
 
         // Clean up config

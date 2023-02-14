@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Models\MenuLink;
 
 class MenuLinkObserver
@@ -17,10 +16,6 @@ class MenuLinkObserver
         if (!$model->savingObserver) {
             return;
         }
-
-        $model->campaign_id = CampaignLocalization::getCampaign()->id;
-        //$model->icon = $this->purify($model->icon);
-        //$model->tab = strtolower(trim($model->tab, '#'));
 
         // Handle empty or wrong positions
         if (empty($model->position)) {

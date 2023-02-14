@@ -149,6 +149,7 @@ class RelationController extends Controller
         $data = $request->only([
             'owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility_id'
         ]);
+        $data['campaign_id'] = $entity->campaign_id;
 
         /** @var Relation $relation */
         $relation = new Relation();
