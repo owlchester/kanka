@@ -704,21 +704,6 @@ class Calendar extends MiscModel
                                     ->whereNull('recurring_until')
                                     // Events that end in the future are fine, they could be reoccuring on this month
                                     ->orWhere('recurring_until', '>=', $this->currentYear());
-                            })
-                            ->where(function ($recurringuntilMonth) {
-                                $recurringuntilMonth
-                                    ->whereNull('recurring_until_month')
-                                    // Events that end in the future are fine, they could be reoccuring on this month
-                                    ->orWhere('recurring_until_month', '>=', $this->currentMonth())
-                                    ->where('recurring_until', '>=', $this->currentYear());
-                            })
-                            ->where(function ($recurringuntilDay) {
-                                $recurringuntilDay
-                                    ->whereNull('recurring_until_day')
-                                    // Events that end in the future are fine, they could be reoccuring on this month
-                                    ->orWhere('recurring_until_day', '>=', $this->currentDay())
-                                    ->orWhere('recurring_until_month', '>=', $this->currentMonth())
-                                    ->where('recurring_until', '>=', $this->currentYear());
                             });
                     });
                 })
@@ -754,6 +739,17 @@ class Calendar extends MiscModel
             ->take($needle)
             ->get();
 
+        foreach ($reminders as $key => $reminder) {
+            if (
+                (!empty($reminder->recurring_until) && empty($reminder->recurring_until_month) && $reminder->recurring_until < $this->currentYear()) ||
+                (!empty($reminder->recurring_until_month) && empty($reminder->recurring_until_day) && $reminder->recurring_until_month < $this->currentMonth() && $reminder->recurring_until < $this->currentYear()) ||
+                (!empty($reminder->recurring_until_day) && ($reminder->recurring_until_day < $this->currentDay() && $reminder->recurring_until_month == $this->currentMonth() && $reminder->recurring_until == $this->currentYear() ||
+                $reminder->recurring_until_month < $this->currentMonth() && $reminder->recurring_until <= $this->currentYear())
+                )
+            ) {
+                $reminders->forget($key);
+            }
+        }
 
         // Order the past events in descending date to get the closest ones to the current date first
         return $reminders->sortBy(function ($reminder) {
@@ -792,21 +788,6 @@ class Calendar extends MiscModel
                                     // Events that end in the future are fine, they could be reoccuring on this month
                                     ->orWhere('recurring_until', '>=', $this->currentYear());
                             })
-                            ->where(function ($recurringuntilMonth) {
-                                $recurringuntilMonth
-                                    ->whereNull('recurring_until_month')
-                                    // Events that end in the future are fine, they could be reoccuring on this month
-                                    ->orWhere('recurring_until_month', '>=', $this->currentMonth())
-                                    ->where('recurring_until', '>=', $this->currentYear());
-                            })
-                            ->where(function ($recurringuntilDay) {
-                                $recurringuntilDay
-                                    ->whereNull('recurring_until_day')
-                                    // Events that end in the future are fine, they could be reoccuring on this month
-                                    ->orWhere('recurring_until_day', '>=', $this->currentDay())
-                                    ->where('recurring_until_month', '>=', $this->currentMonth())
-                                    ->where('recurring_until', '>=', $this->currentYear());
-                            })
                             ->where('year', '<=', $this->currentYear());
                     });
                 })
@@ -841,6 +822,18 @@ class Calendar extends MiscModel
             ->orderBy('day', 'desc')
             ->take($needle)
             ->get();
+
+        foreach ($reminders as $key => $reminder) {
+            if (
+                (!empty($reminder->recurring_until) && empty($reminder->recurring_until_month) && $reminder->recurring_until < $this->currentYear()) ||
+                (!empty($reminder->recurring_until_month) && empty($reminder->recurring_until_day) && $reminder->recurring_until_month < $this->currentMonth() && $reminder->recurring_until < $this->currentYear()) ||
+                (!empty($reminder->recurring_until_day) && ($reminder->recurring_until_day < $this->currentDay() && $reminder->recurring_until_month == $this->currentMonth() && $reminder->recurring_until == $this->currentYear() ||
+                $reminder->recurring_until_month < $this->currentMonth() && $reminder->recurring_until <= $this->currentYear())
+                )
+            ) {
+                $reminders->forget($key);
+            }
+        }
 
         // Order the past events in descending date to get the closest ones to the current date first
         return $reminders->sortBy(function ($reminder) {

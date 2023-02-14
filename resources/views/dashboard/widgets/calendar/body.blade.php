@@ -63,23 +63,25 @@ $weather = $calendar->calendarWeather()
             </h4>
             <ul class="list-unstyled">
                 @foreach ($previousEvents->take(5) as $reminder)
-                    @if (!$reminder->entity) @continue @endif
-                    <li data-ago="{{ $reminder->daysAgo() }}">
-                        <div class="pull-right">
-                            @if (!empty($reminder->comment))
-                                <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
-                            @endif
-                                @if ($reminder->is_recurring)
-                                <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
-                            @endif
-                            <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
-                        </div>
-                        {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
+                    @if ($reminder->daysAgo() > -1)
+                        @if (!$reminder->entity) @continue @endif
+                        <li data-ago="{{ $reminder->daysAgo() }}">
+                            <div class="pull-right">
+                                @if (!empty($reminder->comment))
+                                    <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                @endif
+                                    @if ($reminder->is_recurring)
+                                    <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
+                                @endif
+                                <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+                            </div>
+                            {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
 
-                        @if (app()->environment('local'))
-                            ({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)
-                        @endif
-                    </li>
+                            @if (app()->environment('local'))
+                                ({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)
+                            @endif
+                        </li>
+                    @endif
                 @endforeach
             </ul>
         </div>
@@ -95,26 +97,28 @@ $weather = $calendar->calendarWeather()
             </h4>
             <ul class="list-unstyled">
                 @foreach ($upcomingEvents->take(5) as $reminder)
-                    @if (!$reminder->entity) @continue @endif
-                    <li data-in="{{ $reminder->inDays() }}">
-                        <div class="pull-right">
-                            @if (!empty($reminder->comment))
-                                <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+                    @if ($reminder->inDays() > -1)
+                        @if (!$reminder->entity) @continue @endif
+                        <li data-in="{{ $reminder->inDays() }}">
+                            <div class="pull-right">
+                                @if (!empty($reminder->comment))
+                                    <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                @endif
+                                @if ($reminder->is_recurring)
+                                    <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
+                                @endif
+                                @if ($reminder->isToday($calendar))
+                                    <i class="fa-solid fa-calendar-check" data-toggle="tooltip" title="{{ __('calendars.actions.today') }}"></i>
+                                @else
+                                    <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
+                                @endif
+                            </div>
+                            {{ link_to($reminder->entity->url(), $reminder->entity->name, ['title' => $reminder->comment, 'data-toggle' => 'tooltip']) }}
+                            @if (app()->environment('local'))
+                            ({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)
                             @endif
-                            @if ($reminder->is_recurring)
-                                <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
-                            @endif
-                            @if ($reminder->isToday($calendar))
-                                <i class="fa-solid fa-calendar-check" data-toggle="tooltip" title="{{ __('calendars.actions.today') }}"></i>
-                            @else
-                                <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
-                            @endif
-                        </div>
-                        {{ link_to($reminder->entity->url(), $reminder->entity->name, ['title' => $reminder->comment, 'data-toggle' => 'tooltip']) }}
-                        @if (app()->environment('local'))
-                        ({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)
-                        @endif
-                    </li>
+                        </li>
+                    @endif
                 @endforeach
             </ul>
         </div>
