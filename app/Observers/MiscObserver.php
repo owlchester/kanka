@@ -7,7 +7,6 @@ use App\Facades\EntityCache;
 use App\Facades\Identity;
 use App\Facades\Mentions;
 use App\Models\Character;
-use App\Models\Concerns\Nested;
 use App\Models\Conversation;
 use App\Models\Entity;
 use App\Models\EntityLog;
@@ -28,7 +27,7 @@ abstract class MiscObserver
      * Service used to build the map of the entity
      * @var EntityMappingService
      */
-    protected $entityMappingService;
+    protected EntityMappingService $entityMappingService;
 
     /**
      * CharacterObserver constructor.
@@ -46,9 +45,12 @@ abstract class MiscObserver
     {
         $model->slug = Str::slug($model->name, '');
         // Todo: this needs to go
-        $model->campaign_id = CampaignLocalization::getCampaign()->id;
+        if (empty($model->campaign_id)) {
+            dd('adding the campaign');
+            $model->campaign_id = CampaignLocalization::getCampaign()->id;
+        }
+        // Why aren't we purifying names anymore?
         $model->name = trim($model->name); // Remove empty spaces in names
-        //$model->name = strip_tags($model->name);
 
         // If we're from the "move" service, we can skip this part.
         // Or if we are deleting, we don't want to re-do the whole set foreign ids to null

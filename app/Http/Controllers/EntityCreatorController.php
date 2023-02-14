@@ -83,10 +83,10 @@ class EntityCreatorController extends Controller
      */
     public function store(Request $request, $type)
     {
+        $campaign = CampaignLocalization::getCampaign();
         // Make sure the user is allowed to create this kind of entity
         $class = null;
         if ($type == 'posts') {
-            $campaign = CampaignLocalization::getCampaign();
             $this->authorize('recover', $campaign);
         } else {
             $class = $this->entityService->getClass($type);
@@ -95,6 +95,7 @@ class EntityCreatorController extends Controller
 
         $names = explode(PHP_EOL, str_replace("\r", '', $request->get('name')));
         $values = $request->all();
+        $values['campaign_id'] = $campaign->id;
 
         // Prepare the data
         unset($values['names'], $values['_multi'], $values['_target']);

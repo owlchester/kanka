@@ -507,6 +507,7 @@ class EntityService
      */
     public function create($name, $target)
     {
+        dd('ESC: 16-C');
         // Create new model
         if (!isset($this->entities[$target])) {
             throw new \Exception("Unknown entity type '{$target}' for creating entity");
@@ -677,17 +678,18 @@ class EntityService
      * @param string $name
      * @return MiscModel
      */
-    public function makeNewMentionEntity(MiscModel $model, string $name)
+    public function makeNewMentionEntity(MiscModel $model, string $name): MiscModel
     {
-        $campaign = CampaignLocalization::getCampaign();
         $defaultPrivate = false;
-        if (auth()->user()->isAdmin() && $campaign->entity_visibility) {
+        if (auth()->user()->isAdmin() && $this->campaign->entity_visibility) {
             $defaultPrivate = true;
         }
+        // Todo: remove observers and do everything quietly
         $model->name = $name;
         $model->savingObserver = false;
         $model->forceSavedObserver = true;
         $model->is_private = $defaultPrivate;
+        $model->campaign_id = $this->campaign->id;
         $model->save();
         if (!$model->entity->isTag()) {
             $allTags = $this->getAutoApplyTags();

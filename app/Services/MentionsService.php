@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Facades\Attributes;
 use App\Models\Attribute;
 use App\Models\Entity;
-use App\Models\EntityAlias;
 use App\Models\EntityAsset;
 use App\Models\MiscModel;
 use App\Models\Post;
@@ -776,7 +775,8 @@ class MentionsService
         /** @var MiscModel $newMisc */
         $newMisc = new $types[$type]();
 
-        $new = $this->entityService->makeNewMentionEntity($newMisc, $name);
+        $campaign = \App\Facades\CampaignLocalization::getCampaign();
+        $new = $this->entityService->campaign($campaign)->makeNewMentionEntity($newMisc, $name);
         $this->newEntityMentions[$key] = $new->entity->id;
         $this->createdNewEntities = true;
 
