@@ -117,13 +117,18 @@ Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/sub', [\App\H
 Route::get('/dashboard/widgets/{campaignDashboardWidget}/render', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'render'])->name('dashboard.calendar.render');
 
 
-
+// Gallery
 Route::get('/gallery', [\App\Http\Controllers\Campaign\GalleryController::class, 'index'])->name('gallery.index');
 Route::get('/gallery/load', [\App\Http\Controllers\Campaign\GalleryController::class, 'load'])->name('gallery.load');
 Route::get('/gallery/search', [\App\Http\Controllers\Campaign\GalleryController::class, 'search'])->name('gallery.search');
 Route::post('/gallery/ajax-upload', [\App\Http\Controllers\Campaign\GalleryController::class, 'ajaxUpload'])->name('gallery.ajax-upload');
 Route::post('/gallery/folder', [\App\Http\Controllers\Campaign\GalleryController::class, 'folder'])
     ->name('gallery.folder');
-
+// Gallery view in summernote
 Route::get('/gallery/ajax-gallery', [\App\Http\Controllers\Campaign\AjaxGalleryController::class, 'index'])->name('gallery.summernote');
+
+
+Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'index'])->name('history.index');
+
+
 

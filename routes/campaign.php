@@ -1,6 +1,5 @@
 <?php
 
-
 Route::get('/', 'DashboardController@index')->name('dashboard');
 
 // Abilities
@@ -36,7 +35,6 @@ Route::post('/maps/{map}/markers/bulk', 'Maps\MapMarkerController@bulk')->name('
 
 // Character
 Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
-//Route::get('/characters/{character}/map-points', 'CharacterSubController@mapPoints')->name('characters.map-points');
 
 Route::get('/dice_rolls/{dice_roll}/roll', 'DiceRollController@roll')->name('dice_rolls.roll');
 Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
@@ -120,7 +118,6 @@ Route::get('/entities/{entity}/attributes/live-edit/', [\App\Http\Controllers\En
 Route::post('/entities/{entity}/attributes/live-edit/{attribute}/save', [\App\Http\Controllers\Entity\AttributeController::class, 'liveSave'])
     ->name('entities.attributes.live.save');
 
-Route::model('attribute', \App\Models\Attribute::class);
 
 
 Route::get('/entities/{entity}/story-reorder', [\App\Http\Controllers\Entity\StoryController::class, 'edit'])->name('entities.story.reorder');
@@ -336,20 +333,6 @@ Route::post('/entities/{entity}/attribute-template', 'Entity\AttributeTemplateCo
 Route::get('/entities/{entity}/permissions', 'PermissionController@view')->name('entities.permissions');
 Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
 
-// The campaign management sub pages
-/*Route::get('/overview', 'CampaignController@index')->name('campaign');
-Route::get('/modules', 'CampaignSettingController@index')->name('campaign.modules');
-Route::post('/modules/toggle/{module?}', 'CampaignSettingController@toggle')->name('campaign.modules.toggle');
-Route::get('/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-theme');
-Route::post('/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');
-Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaign.export');
-Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
-Route::get('/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
-Route::post('/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');
-
-Route::get('/campaign-applications', 'Campaign\SubmissionController@toggle')->name('campaign-applications');
-Route::post('/campaign-applications', 'Campaign\SubmissionController@toggleSave')->name('campaign-applications.save');*/
-
 Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 
@@ -359,14 +342,12 @@ Route::get('/presets/type/{preset_type}/create', [\App\Http\Controllers\PresetCo
 Route::post('/presets/type/{preset_type}/store', [\App\Http\Controllers\PresetController::class, 'store'])->name('presets.store');
 Route::post('/presets/{preset}/load', [\App\Http\Controllers\PresetController::class, 'load'])->name('presets.show');
 
-Route::model('preset_type', \App\Models\PresetType::class);
 
 // Entity quick creator
 Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');
 Route::get('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
 Route::post('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
 
-Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'index'])->name('history.index');
 
 Route::get('/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'index'])->name('bragi');
 Route::post('/bragi', [\App\Http\Controllers\Bragi\BragiController::class, 'generate'])->name('bragi.generate');

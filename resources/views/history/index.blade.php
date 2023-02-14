@@ -3,7 +3,7 @@
 ?>
 @extends('layouts.app', [
     'title' => __('history.title'),
-    'breadcrumbs' => [['url' => route('history.index'), 'label' => __('history.title')]],
+    'breadcrumbs' => [['url' => route('history.index', [$campaign]), 'label' => __('history.title')]],
     'bodyClass' => 'campaign-history',
     'mainTitle' => false,
 ])
@@ -23,7 +23,7 @@
 
 
     @if ($superboosted)
-        {!! Form::open(['method' => 'GET', 'route' => 'history.index', 'class' => 'history-filters']) !!}
+        {!! Form::open(['method' => 'GET', 'route' => ['history.index', $campaign], 'class' => 'history-filters']) !!}
         <div class="flex items-center flex-row-reverse mb-5">
             <div class="flex-none">
                 {!! Form::select('action', $actions, $action, ['class' => 'form-control']) !!}
@@ -38,7 +38,7 @@
             </div>
             @if (count($filters) > 0)
                 <div class="flex-none mr-2">
-                    <a href="{{ route('history.index') }}" role="button" class="btn btn-default">{{ __('crud.actions.reset') }}</a>
+                    <a href="{{ route('history.index', [$campaign]) }}" role="button" class="btn btn-default">{{ __('crud.actions.reset') }}</a>
                 </div>
             @endif
             <div class="flex-none filters-loading mr-2" style="display: none">

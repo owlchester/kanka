@@ -34,8 +34,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
 
+        Route::model('attribute', \App\Models\Attribute::class);
         Route::model('plugin', Plugin::class);
         Route::model('campaign', Campaign::class);
+        Route::model('preset_type', \App\Models\PresetType::class);
         //Route::model('vanity', Vanity::class);
     }
 
