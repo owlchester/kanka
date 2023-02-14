@@ -135,7 +135,6 @@ class QuestElementController extends Controller
         $this->authorize('update', $quest);
         $model = $questElement;
 
-        /** @var MiscModel $model */
         $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
 
@@ -150,6 +149,7 @@ class QuestElementController extends Controller
         }
 
         return view('quests.elements.update', compact(
+            'campaign',
             'quest',
             'model',
             'editingUsers'

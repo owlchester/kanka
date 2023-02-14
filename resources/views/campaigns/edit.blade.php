@@ -25,7 +25,7 @@
     @include('campaigns.forms.' . ($start ? 'start' : 'standard'))
 
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('campaigns.keep-alive', $model->id) }}" />
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('campaign.keep-alive', [$campaign]) }}" />
     @endif
 @endsection
 

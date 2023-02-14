@@ -51,7 +51,7 @@ __('timelines/elements.edit.title', ['name' => $model->name])
     {!! Form::close() !!}
 
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('timeline-elements.keep-alive', $model->id) }}" />
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('timeline-elements.keep-alive', ['campaign' => $campaign, 'timeline_element' => $model->id]) }}" />
     @endif
 @endsection
 

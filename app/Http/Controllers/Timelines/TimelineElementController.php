@@ -105,7 +105,6 @@ class TimelineElementController extends Controller
     {
         $this->authorize('update', $timeline);
 
-        /** @var MiscModel $model */
         $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
         $model = $timelineElement;
@@ -124,7 +123,13 @@ class TimelineElementController extends Controller
 
         return view(
             'timelines.elements.edit',
-            compact('timeline', 'ajax', 'model', 'editingUsers')
+            compact(
+                'campaign',
+                'timeline',
+                'ajax',
+                'model',
+                'editingUsers',
+            )
         );
     }
 

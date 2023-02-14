@@ -1,18 +1,18 @@
 <?php
     if ($model instanceof \App\Models\EntityNote) {
-        $url = route('posts.confirm-editing', ['post' => $model, 'entity' => $entity]);
+        $url = route('posts.confirm-editing', ['campaign' => $campaign, 'post' => $model, 'entity' => $entity]);
         $key = 'entities/notes.warning.editing.description';
     } elseif ($model instanceof \App\Models\Campaign) {
-        $url = route('campaigns.confirm-editing', $model);
+        $url = route('campaign.confirm-editing', $model);
         $key = 'campaigns.warning.editing.description';
     } elseif ($model instanceof \App\Models\TimelineElement) {
-        $url = route('timeline-elements.confirm-editing', $model);
+        $url = route('timeline-elements.confirm-editing', ['campaign' => $campaign, 'timeline_element' => $model]);
         $key = 'timelines/elements.warning.editing.description';
     } elseif ($model instanceof \App\Models\QuestElement) {
-        $url = route('quest-elements.confirm-editing', $model);
+        $url = route('quest-elements.confirm-editing', ['campaign' => $campaign, 'quest_element' => $model]);
         $key = 'quests.elements.warning.editing.description';
     } else {
-        $url = route('entities.confirm-editing', $model->entity);
+        $url = route('entities.confirm-editing', ['campaign' => $campaign, $model->entity]);
         $key = 'entities/story.warning.editing.description';
     }
 ?>

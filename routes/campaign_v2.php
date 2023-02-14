@@ -144,4 +144,16 @@ Route::resources([
     'preset_types.presets' => \App\Http\Controllers\PresetController::class,
 ]);
 
+// Edit warning for entity
+Route::post('/editing/entities/{entity}/confirm-editing', [\App\Http\Controllers\EditingController::class, 'confirmEntity'])->name('entities.confirm-editing');
+Route::post('/editing/entities/{entity}/keep-alive', [\App\Http\Controllers\EditingController::class, 'keepAliveEntity'])->name('entities.keep-alive');
+Route::post('/editing/campaign/confirm-editing', [\App\Http\Controllers\EditingController::class, 'confirmCampaign'])->name('campaign.confirm-editing');
+Route::post('/editing/campaign/keep-alive', [\App\Http\Controllers\EditingController::class, 'keepAliveCampaign'])->name('campaign.keep-alive');
+Route::post('/editing/posts/{entity}/{post}/confirm-editing', [\App\Http\Controllers\EditingController::class, 'confirmPost'])->name('posts.confirm-editing');
+Route::post('/editing/posts/{entity}/{post}/keep-alive', [\App\Http\Controllers\EditingController::class, 'keepAlivePost'])->name('posts.keep-alive');
+Route::post('/editing/quest-elements/{quest_element}/confirm-editing', [\App\Http\Controllers\EditingController::class, 'confirmQuestElement'])->name('quest-elements.confirm-editing');
+Route::post('/editing/quest-elements/{quest_element}/keep-alive', [\App\Http\Controllers\EditingController::class, 'keepAliveQuestElement'])->name('quest-elements.keep-alive');
+Route::post('/editing/timeline-elements/{timeline_element}/confirm-editing', [\App\Http\Controllers\EditingController::class, 'confirmTimelineElement'])->name('timeline-elements.confirm-editing');
+Route::post('/editing/timeline-elements/{timeline_element}/keep-alive', [\App\Http\Controllers\EditingController::class, 'keepAliveTimelineElement'])->name('timeline-elements.keep-alive');
+
 

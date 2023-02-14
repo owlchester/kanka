@@ -42,7 +42,7 @@ class EditingController extends Controller
             ]);
     }
 
-    public function confirm(Entity $entity)
+    public function confirmEntity(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -56,28 +56,28 @@ class EditingController extends Controller
         return $this->confirmHandle($campaign);
     }
 
-    public function confirmPost(Entity $entity, Post $post)
+    public function confirmPost(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('entity-note', [$entity->child, 'edit', $post]);
 
         return $this->confirmHandle($post);
     }
 
-    public function confirmQuestElement(QuestElement $questElement)
+    public function confirmQuestElement(Campaign $campaign, QuestElement $questElement)
     {
         $this->authorize('update', $questElement->quest()->first());
 
         return $this->confirmHandle($questElement);
     }
 
-    public function confirmTimelineElement(TimelineElement $timelineElement)
+    public function confirmTimelineElement(Campaign $campaign, TimelineElement $timelineElement)
     {
         $this->authorize('update', $timelineElement->timeline()->first());
 
         return $this->confirmHandle($timelineElement);
     }
 
-    public function keepAlive(Entity $entity)
+    public function keepAliveEntity(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -91,21 +91,21 @@ class EditingController extends Controller
         return $this->keepAliveHandle($campaign);
     }
 
-    public function keepAlivePost(Entity $entity, Post $post)
+    public function keepAlivePost(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('entity-note', [$entity->child, 'edit', $post]);
 
         return $this->keepAliveHandle($post);
     }
 
-    public function keepAliveTimelineElement(TimelineElement $timelineElement)
+    public function keepAliveTimelineElement(Campaign $campaign, TimelineElement $timelineElement)
     {
         $this->authorize('update', $timelineElement->timeline()->first());
 
         return $this->keepAliveHandle($timelineElement);
     }
 
-    public function keepAliveQuestElement(QuestElement $questElement)
+    public function keepAliveQuestElement(Campaign $campaign, QuestElement $questElement)
     {
         $this->authorize('update', $questElement->quest()->first());
 

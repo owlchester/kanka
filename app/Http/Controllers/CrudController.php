@@ -392,6 +392,7 @@ class CrudController extends Controller
 
         $params = [
             'model' => $model,
+            'campaign' => $campaign,
             'name' => $this->view,
             'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && auth()->user()->can('permission', $model),

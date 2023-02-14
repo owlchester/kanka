@@ -104,25 +104,7 @@ Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('cal
 //        Route::get('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
 //        Route::post('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
 
-// Entity
-Route::post('/entities/{entity}/confirm-editing', 'EditingController@confirm')->name('entities.confirm-editing');
-Route::post('/entities/{entity}/keep-alive', 'EditingController@keepAlive')->name('entities.keep-alive');
 
-// Campaign
-Route::post('/editing/campaigns/{campaign}/confirm-editing', 'EditingController@confirmCampaign')->name('campaigns.confirm-editing');
-Route::post('/editing/campaigns/{campaign}/keep-alive', 'EditingController@keepAliveCampaign')->name('campaigns.keep-alive');
-
-// Posts
-Route::post('/editing/posts/{entity}/{post}/confirm-editing', 'EditingController@confirmPost')->name('posts.confirm-editing');
-Route::post('/editing/posts/{entity}/{post}/keep-alive', 'EditingController@keepAlivePost')->name('posts.keep-alive');
-
-// Quest Elements
-Route::post('/editing/quest-elements/{quest_element}/confirm-editing', 'EditingController@confirmQuestElement')->name('quest-elements.confirm-editing');
-Route::post('/editing/quest-elements/{quest_element}/keep-alive', 'EditingController@keepAliveQuestElement')->name('quest-elements.keep-alive');
-
-// Timeline Elements
-Route::post('/editing/timeline-elements/{timeline_element}/confirm-editing', 'EditingController@confirmTimelineElement')->name('timeline-elements.confirm-editing');
-Route::post('/editing/timeline-elements/{timeline_element}/keep-alive', 'EditingController@keepAliveTimelineElement')->name('timeline-elements.keep-alive');
 
 // Impersonator
 Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');

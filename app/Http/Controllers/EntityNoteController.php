@@ -98,11 +98,12 @@ class EntityNoteController extends Controller
         $from = request()->get('from');
 
         return view('entities.pages.posts.edit', compact(
+            'campaign',
             'entity',
             'model',
             'parentRoute',
             'from',
-            'editingUsers'
+            'editingUsers',
         ));
     }
 

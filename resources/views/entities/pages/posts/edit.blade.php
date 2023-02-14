@@ -35,7 +35,7 @@
     </div>
 
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('posts.keep-alive', ['post' => $model, 'entity' => $entity]) }}" />
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('posts.keep-alive', ['campaign' => $campaign, 'post' => $model, 'entity' => $entity]) }}" />
     @endif
 @endsection
 

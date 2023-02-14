@@ -60,7 +60,7 @@
         </div>
     </div>
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('quest-elements.keep-alive', $model->id) }}" />
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('quest-elements.keep-alive', ['campaign' => $campaign, 'quest_element' => $model->id]) }}" />
     @endif
 @endsection
 

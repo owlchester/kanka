@@ -92,7 +92,7 @@
 
 
     @if(!empty($model->entity) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', $model->entity->id) }}" />
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', [$campaign, $model->entity->id]) }}" />
     @endif
 @endsection
 
