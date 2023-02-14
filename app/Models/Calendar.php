@@ -709,13 +709,16 @@ class Calendar extends MiscModel
                                 $recurringuntilMonth
                                     ->whereNull('recurring_until_month')
                                     // Events that end in the future are fine, they could be reoccuring on this month
-                                    ->orWhere('recurring_until_month', '>=', $this->currentMonth());
+                                    ->orWhere('recurring_until_month', '>=', $this->currentMonth())
+                                    ->where('recurring_until', '>=', $this->currentYear());
                             })
                             ->where(function ($recurringuntilDay) {
                                 $recurringuntilDay
                                     ->whereNull('recurring_until_day')
                                     // Events that end in the future are fine, they could be reoccuring on this month
-                                    ->orWhere('recurring_until_day', '>=', $this->currentDay());
+                                    ->orWhere('recurring_until_day', '>=', $this->currentDay())
+                                    ->orWhere('recurring_until_month', '>=', $this->currentMonth())
+                                    ->where('recurring_until', '>=', $this->currentYear());
                             });
                     });
                 })
@@ -793,13 +796,16 @@ class Calendar extends MiscModel
                                 $recurringuntilMonth
                                     ->whereNull('recurring_until_month')
                                     // Events that end in the future are fine, they could be reoccuring on this month
-                                    ->orWhere('recurring_until_month', '>=', $this->currentMonth());
+                                    ->orWhere('recurring_until_month', '>=', $this->currentMonth())
+                                    ->where('recurring_until', '>=', $this->currentYear());
                             })
                             ->where(function ($recurringuntilDay) {
                                 $recurringuntilDay
                                     ->whereNull('recurring_until_day')
                                     // Events that end in the future are fine, they could be reoccuring on this month
-                                    ->orWhere('recurring_until_day', '>=', $this->currentDay());
+                                    ->orWhere('recurring_until_day', '>=', $this->currentDay())
+                                    ->where('recurring_until_month', '>=', $this->currentMonth())
+                                    ->where('recurring_until', '>=', $this->currentYear());
                             })
                             ->where('year', '<=', $this->currentYear());
                     });
