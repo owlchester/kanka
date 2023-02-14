@@ -65,10 +65,10 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 @endif
 
 @if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme() && request()->get('_plugins') !== '0')
-    <link href="{{ route('campaign_plugins.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
+    <link href="{{ route('campaign_plugins.css', ['campaign' => $campaign, 'ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
 @endif
 @if (!empty($campaign) && $campaign->boosted() && request()->get('_styles') !== '0')
-    <link href="{{ route('campaign.css', ['ts' => \App\Facades\CampaignCache::stylesTimestamp()]) }}" rel="stylesheet">
+    <link href="{{ route('campaign.css', ['campaign' => $campaign, 'ts' => \App\Facades\CampaignCache::stylesTimestamp()]) }}" rel="stylesheet">
 @endif
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>

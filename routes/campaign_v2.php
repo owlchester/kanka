@@ -19,6 +19,9 @@ Route::post('/campaign-theme', [\App\Http\Controllers\Campaign\StyleController::
 Route::get('/export', [\App\Http\Controllers\Campaign\ExportController::class, 'index'])->name('export');
 Route::post('/export', [\App\Http\Controllers\Campaign\ExportController::class, 'export'])->name('export-process');
 
+Route::get('/campaign.styles', [\App\Http\Controllers\CampaignController::class, 'css'])->name('campaign.css');
+Route::get('/campaign_plugin.styles', [\App\Http\Controllers\Campaign\PluginController::class, 'css'])->name('campaign_plugins.css');
+
 
 Route::get('/campaign-visibility', [\App\Http\Controllers\Campaign\VisibilityController::class, 'edit'])->name('campaign-visibility');
 Route::post('/campaign-visibility', [\App\Http\Controllers\Campaign\VisibilityController::class, 'save'])->name('campaign-visibility.save');

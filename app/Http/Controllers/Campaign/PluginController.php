@@ -31,6 +31,8 @@ class PluginController extends Controller
      */
     public function index(Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         Datagrid::layout(\App\Renderers\Layouts\Campaign\Plugin::class)
             ->route('campaign_plugins.index', ['campaign' => $campaign]);
 
@@ -144,6 +146,8 @@ class PluginController extends Controller
      */
     public function css(Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $themes = CampaignCache::themes();
 
         $response = \Illuminate\Support\Facades\Response::make($themes);

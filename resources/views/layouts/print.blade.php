@@ -59,7 +59,7 @@ $specificTheme = null;
     <link href="{{ route('campaign_plugins.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
 @endif
 @if (!empty($campaign) && $campaign->boosted())
-    <link href="{{ route('campaign.css', ['ts' => \App\Facades\CampaignCache::stylesTimestamp()]) }}" rel="stylesheet">
+    <link href="{{ route('campaign.css', ['campaign' => $campaign, 'ts' => \App\Facades\CampaignCache::stylesTimestamp()]) }}" rel="stylesheet">
 @endif
     <link href="{{ mix('css/print.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">

@@ -105,15 +105,6 @@ Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('cal
 //        Route::post('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
 
 
-
-// Impersonator
-Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
-Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
-Route::get('/members/switch/{campaign_user}/{entity}', 'Campaign\MemberController@switch')->name('identity.switch-entity');
-
-
-
-
 Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')
     ->name('menu_links.random');
 
@@ -180,6 +171,12 @@ Route::resources([
 
 
 
-Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
-Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
+
+// Impersonator
+Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
+Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
+Route::get('/members/switch/{campaign_user}/{entity}', 'Campaign\MemberController@switch')->name('identity.switch-entity');
+
+
+
 
