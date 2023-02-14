@@ -212,3 +212,6 @@ Route::get('/search/months', [\App\Http\Controllers\Search\CalendarController::c
 
 // The good old search
 Route::get('/search', [\App\Http\Controllers\SearchController::class, 'index'])->name('search');
+
+Route::post('/bulk/process', [\App\Http\Controllers\BulkController::class, 'process'])->name('bulk.process');
+Route::get('/bulk/modal', [\App\Http\Controllers\BulkController::class, 'modal'])->name('bulk.modal');

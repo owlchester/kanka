@@ -60,7 +60,7 @@
     @include('partials.ads.top')
 
     <div class="box no-border">
-        {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
+        {!! Form::open(['url' => route('bulk.process', [$campaign]), 'method' => 'POST']) !!}
         <div class="box-body no-padding">
 
             <div class="table-responsive">

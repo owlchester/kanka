@@ -1,5 +1,5 @@
 <?php /** @var \App\Datagrids\Bulks\Bulk $bulk */ $fieldCount = 0;?>
-{!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
+{!! Form::open(['url' => route('bulk.process', [$campaign]), 'method' => 'POST']) !!}
 <div class="modal fade" id="bulk-edit" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

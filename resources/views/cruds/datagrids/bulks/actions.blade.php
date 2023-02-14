@@ -11,26 +11,26 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     }
     if ($datagridActions->hasBulkPermissions()) {
         $dropdownActions[] = '
-            <a href="#" class="bulk-permissions" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', ['view' => 'permissions']) . '" data-bulk-action="ajax">
+            <a href="#" class="bulk-permissions" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', ['campaign' => $campaign, 'view' => 'permissions']) . '" data-bulk-action="ajax">
                 <i class="fa-solid fa-cog" aria-hidden="true"></i> ' .  __('crud.bulk.actions.permissions') . '
             </a>';
     }
     if ($datagridActions->hasBulkTemplate()) {
     //if (isset($bulk) && (!isset($bulkTemplates) || $bulkTemplates)) {
         $dropdownActions[] = '
-            <a href="#" class="bulk-templates" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', ['view' => 'templates']) . '" data-bulk-action="ajax">
+            <a href="#" class="bulk-templates" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', ['campaign' => $campaign, 'view' => 'templates']) . '" data-bulk-action="ajax">
                 <i class="fa-solid fa-th-list" aria-hidden="true"></i> ' . __('crud.bulk.actions.templates') . '
             </a>';
     }
     if ($datagridActions->hasBulkTransform()) {
         $dropdownActions[] = '
-            <a href="#" class="bulk-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' .  route('bulk.modal', ['view' => 'transform', 'type' => $name]) . '" data-bulk-action="ajax">
+            <a href="#" class="bulk-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' .  route('bulk.modal', ['campaign' => $campaign, 'view' => 'transform', 'type' => $name]) . '" data-bulk-action="ajax">
                 <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i> ' .  __('crud.actions.transform') . '
             </a>';
     }
     if ($datagridActions->hasBulkCopy()) {
         $dropdownActions[] = '
-            <a href="#" class="bulk-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' .  route('bulk.modal', ['view' => 'copy_campaign', 'type' => $name]) . '" data-bulk-action="ajax">
+            <a href="#" class="bulk-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' .  route('bulk.modal', ['campaign' => $campaign, 'view' => 'copy_campaign', 'type' => $name]) . '" data-bulk-action="ajax">
                 <i class="fa-regular fa-clone" aria-hidden="true"></i> ' .  __('crud.actions.copy_to_campaign') . '
             </a>';
     }

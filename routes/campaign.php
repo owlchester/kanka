@@ -85,9 +85,6 @@ Route::get('/tags/{tag}/children', 'TagController@children')->name('tags.childre
 Route::get('/tags/{tag}/entity-add', 'TagController@entityAdd')->name('tags.entity-add');
 Route::post('/tags/{tag}/entity-add', 'TagController@entityStore')->name('tags.entity-add.save');
 
-// Multi-delete for cruds
-Route::post('/bulk/process', 'BulkController@process')->name('bulk.process');
-Route::get('/bulk/modal', 'BulkController@modal')->name('bulk.modal');
 
 Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
 Route::get('/journals/tree', 'JournalController@tree')->name('journals.tree');
@@ -119,6 +116,15 @@ Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::c
 Route::post('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'save'])
     ->name('quick-links.reorder-save');
 
+// Entity Abilities API
+Route::get('/entities/{entity}/abilities', 'Entity\AbilityController@index')->name('entities.abilities');
+Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
+Route::get('/entities/{entity}/entity_abilities/import', 'Entity\AbilityController@import')->name('entities.entity_abilities.import');
+Route::post('/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\AbilityController@useCharge')->name('entities.entity_abilities.use');
+Route::get('/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
+
+Route::get('/entities/{entity}/entity_assets/{entity_asset}/go', 'Entity\AssetController@go')->name('entities.entity_assets.go');
+//Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
 
 Route::resources([
     'abilities' => 'AbilityController',
@@ -168,8 +174,6 @@ Route::resources([
     'campaign_dashboards' => 'Campaign\DashboardController',
 
 ]);
-
-
 
 
 // Impersonator

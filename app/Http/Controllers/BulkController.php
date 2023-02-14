@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\TranslatableException;
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\BulkRequest;
+use App\Models\Campaign;
 use App\Services\AttributeService;
 use App\Services\BulkService;
 use App\Services\EntityService;
@@ -18,19 +18,21 @@ class BulkController extends Controller
     use BulkControllerTrait;
 
     /** @var BulkService */
-    protected $bulkService;
+    protected BulkService $bulkService;
 
     /** @var EntityService */
-    protected $entityService;
+    protected EntityService $entityService;
 
     /** @var BulkRequest */
-    protected $request;
+    protected BulkRequest $request;
 
     /** @var array */
-    protected $routeParams = [];
+    protected array $routeParams = [];
 
     /** @var null|string */
     protected null|string $entity = null;
+
+    protected $campaign;
 
     /**
      * BulkController constructor.
@@ -45,8 +47,10 @@ class BulkController extends Controller
     /**
      * @param BulkRequest $request
      */
-    public function process(BulkRequest $request)
+    public function process(BulkRequest $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+        $this->campaign = $campaign;
         $this->request = $request;
         $this->entity = $request->get('entity');
         $models = $request->get('model', []);
@@ -105,17 +109,16 @@ class BulkController extends Controller
         $entities = null;
 
         if (request()->get('view') == 'templates') {
-            $campaign = CampaignLocalization::getCampaign();
             /** @var AttributeService $service */
             $service = app()->make('App\Services\AttributeService');
-            $templates = $service->campaign(CampaignLocalization::getCampaign())->templateList();
+            $templates = $service->campaign($this->campaign)->templateList();
         } elseif (request()->get('view') === 'transform') {
             $entities = $this->entityService
                 ->labelledEntities(true, [Str::plural($type), 'menu_links', 'relations'], true);
             $entities[''] = __('entities/transform.fields.select_one');
         }
 
-        $campaign = CampaignLocalization::getCampaign();
+        $campaign = $this->campaign;
         return view('cruds.datagrids.bulks.modals._' . $request->get('view'), compact(
             'campaign',
             'templates',
