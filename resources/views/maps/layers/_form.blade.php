@@ -25,6 +25,9 @@ $typeOptions = [
 
 @php
     $options = $map->layerPositionOptions();
+    if (!empty($model->position) && $model->position == array_key_last($options) - 1) {
+        array_pop($options);  
+    }
     $last = array_key_last($options);
 @endphp
 
@@ -36,7 +39,7 @@ $typeOptions = [
     <div class="col-sm-6">
         <div class="form-group">
             <label>{{ __('maps/layers.fields.position') }}</label>
-            {!! Form::select('position', $options, (!empty($layer) ? $layer : $last), ['class' => 'form-control']) !!}
+            {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
         </div>
     </div>
 </div>
