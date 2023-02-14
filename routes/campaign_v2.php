@@ -92,7 +92,6 @@ Route::get('/roles/search', [\App\Http\Controllers\Campaign\RoleController::clas
 
 // Marketplace plugin route
 if(config('marketplace.enabled')) {
-
     Route::get('/plugins', [\App\Http\Controllers\Campaign\PluginController::class, 'index'])->name('campaign_plugins.index');
 
     Route::delete('/plugins/{plugin}/delete', [\App\Http\Controllers\Campaign\PluginController::class, 'delete'])->name('campaign_plugins.destroy');
@@ -128,6 +127,7 @@ Route::post('/gallery/folder', [\App\Http\Controllers\Campaign\GalleryController
 Route::get('/gallery/ajax-gallery', [\App\Http\Controllers\Campaign\AjaxGalleryController::class, 'index'])->name('gallery.summernote');
 
 
+// General campaign features
 Route::get('/history', [\App\Http\Controllers\HistoryController::class, 'index'])->name('history.index');
 
 

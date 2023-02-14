@@ -10,11 +10,6 @@ Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 Route::get('/abilities/{ability}/entity-add', 'AbilityController@entityAdd')->name('abilities.entity-add');
 Route::post('/abilities/{ability}/entity-add', 'AbilityController@entityStore')->name('abilities.entity-add.save');
 
-//Ability reorder
-Route::get('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Entity\AbilityReorderController::class, 'index'])
-    ->name('entities.entity_abilities.reorder');
-Route::post('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Entity\AbilityReorderController::class, 'save'])
-    ->name('entities.entity_abilities.reorder-save');
 
 // Maps
 Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
@@ -109,41 +104,6 @@ Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('cal
 //        Route::get('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
 //        Route::post('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
 
-// Attribute multi-save
-Route::get('/entities/{entity}/attributes', [\App\Http\Controllers\Entity\AttributeController::class, 'index'])->name('entities.attributes');
-Route::get('/entities/{entity}/attributes/edit', [\App\Http\Controllers\Entity\AttributeController::class, 'edit'])->name('entities.attributes.edit');
-Route::post('/entities/{entity}/attributes/save', [\App\Http\Controllers\Entity\AttributeController::class, 'save'])->name('entities.attributes.save');
-Route::get('/entities/{entity}/attributes/live-edit/', [\App\Http\Controllers\Entity\AttributeController::class, 'liveEdit'])
-    ->name('entities.attributes.live.edit');
-Route::post('/entities/{entity}/attributes/live-edit/{attribute}/save', [\App\Http\Controllers\Entity\AttributeController::class, 'liveSave'])
-    ->name('entities.attributes.live.save');
-
-
-
-Route::get('/entities/{entity}/story-reorder', [\App\Http\Controllers\Entity\StoryController::class, 'edit'])->name('entities.story.reorder');
-Route::post('/entities/{entity}/story-reorder', [\App\Http\Controllers\Entity\StoryController::class, 'save'])->name('entities.story.reorder-save');
-Route::get('/entities/{entity}/story-more', [\App\Http\Controllers\Entity\StoryController::class, 'more'])->name('entities.story.load-more');
-
-// Image of entities
-Route::get('/entities/{entity}/image-focus', [\App\Http\Controllers\Entity\ImageController::class, 'focus'])->name('entities.image.focus');
-Route::post('/entities/{entity}/image-focus', [\App\Http\Controllers\Entity\ImageController::class, 'saveFocus'])->name('entities.image.save-focus');
-
-Route::get('/entities/{entity}/image-replace', [\App\Http\Controllers\Entity\ImageController::class, 'replace'])->name('entities.image.replace');
-Route::post('/entities/{entity}/image-replace', [\App\Http\Controllers\Entity\ImageController::class, 'update'])->name('entities.image.replace.save');
-
-// Quick privacy toggle
-Route::get('/entities/{entity}/privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'index'])->name('entities.quick-privacy');
-Route::post('/entities/{entity}/privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.quick-privacy.toggle');
-//Route::post('/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
-
-
-// Entity update entry
-Route::get('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'edit'])->name('entities.entry.edit');
-Route::patch('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
-
-Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
-Route::get('/entities/{entity}/relations/table', 'Entity\RelationController@table')->name('entities.relations_table');
-
 // Entity
 Route::post('/entities/{entity}/confirm-editing', 'EditingController@confirm')->name('entities.confirm-editing');
 Route::post('/entities/{entity}/keep-alive', 'EditingController@keepAlive')->name('entities.keep-alive');
@@ -186,18 +146,6 @@ Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::c
 Route::post('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'save'])
     ->name('quick-links.reorder-save');
 
-// Entity Abilities API
-Route::get('/entities/{entity}/abilities', 'Entity\AbilityController@index')->name('entities.abilities');
-Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
-Route::get('/entities/{entity}/entity_abilities/import', 'Entity\AbilityController@import')->name('entities.entity_abilities.import');
-Route::post('/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\AbilityController@useCharge')->name('entities.entity_abilities.use');
-Route::get('/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
-
-Route::get('/entities/{entity}/entity_assets/{entity_asset}/go', 'Entity\AssetController@go')->name('entities.entity_assets.go');
-Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
-
-Route::get('/entities/{entity}/profile', 'Entity\ProfileController@index')
-    ->name('entities.profile');
 
 Route::resources([
     'abilities' => 'AbilityController',
@@ -293,45 +241,6 @@ Route::get('/search/months', 'Search\CalendarController@months')->name('search.c
 Route::get('/search/live', 'Search\LiveController@index')->name('search.live');
 
 Route::get('/redirect', 'RedirectController@index')->name('redirect');
-
-// Move
-Route::get('/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
-Route::post('/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move');
-Route::get('/entities/{entity}/posts/{post}/move', 'Entity\PostMoveController@index')->name('posts.move');
-Route::post('/entities/{entity}/posts/{post}/move', 'Entity\PostMoveController@move')->name('posts.move');
-
-// Transform
-Route::get('/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');
-Route::post('/entities/{entity}/transform', 'Entity\TransformController@transform')->name('entities.transform');
-
-Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
-
-Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
-
-
-// Entity files
-//Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
-Route::get('/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
-Route::get('/entities/{entity}/mentions', 'Entity\MentionController@index')->name('entities.mentions');
-//Route::get('/entities/{entity}/timelines', 'Entity\TimelineController@index')->name('entities.timelines');
-//Route::get('/entities/{entity}/map-markers', 'DashboardController@index')->name('entities.map-markers');
-//Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
-
-// Inventory
-Route::get('/entities/{entity}/inventory', 'Entity\InventoryController@index')->name('entities.inventory');
-
-// Export
-Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');
-Route::get('/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');
-
-Route::get('/entities/{entity}/template', 'EntityController@template')->name('entities.template');
-
-// Attribute template
-Route::get('/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@apply')->name('entities.attributes.template');
-Route::post('/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@applyTemplate')->name('entities.attributes.template');
-
-Route::get('/entities/{entity}/permissions', 'PermissionController@view')->name('entities.permissions');
-Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
 
 Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
