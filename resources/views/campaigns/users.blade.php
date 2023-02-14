@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.members') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.members')
     ],
     'canonical' => true,

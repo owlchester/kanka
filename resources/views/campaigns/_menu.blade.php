@@ -7,7 +7,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();
 $buttons = [];
 if (auth()->check()) {
     if (!$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost)) {
-        $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn btn-block bg-maroon mb-5">
+        $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$campaign, $boost]) . '" class="btn btn-block bg-maroon mb-5">
             <i class="fa-solid fa-rocket"></i> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
     }
     if (!$campaign->boosted()) {
@@ -15,7 +15,7 @@ if (auth()->check()) {
             <i class="fa-solid fa-rocket"></i> ' . __('campaigns.show.actions.boost') . '</a>';
     }
     if (auth()->user()->can('update', $campaign)) {
-        $buttons[] = '<a href="'. route('campaigns.edit') .'" class="btn btn-primary btn-block">
+        $buttons[] = '<a href="'. route('edit', $campaign) .'" class="btn btn-primary btn-block">
             <i class="fa-solid fa-edit" aria-hidden="true"></i> '. __('campaigns.show.actions.edit') .'</a>';
     }
     $buttons[] = '<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#leave-confirm">
@@ -41,27 +41,27 @@ if (auth()->check()) {
             <div class="box-body no-padding">
                 <ul class="nav nav-pills nav-stacked">
                     <li class="@if(empty($active) || $active == 'campaign')active @endif">
-                        <a href="{{ route('campaign') }}">
+                        <a href="{{ route('overview', $campaign) }}">
                             {{ __('crud.tabs.overview') }}
                         </a>
                     </li>
                     @can('update', $campaign)
                         <li class="@if(!empty($active) && $active == 'export')active @endif">
-                            <a href="{{ route('campaign.export') }}">
+                            <a href="{{ route('export', $campaign) }}">
                                 {{ __('campaigns.show.tabs.export') }}
                             </a>
                         </li>
                     @endif
                     @can('update', $campaign)
                     <li class="@if(!empty($active) && $active == 'recovery')active @endif">
-                        <a href="{{ route('recovery') }}">
+                        <a href="{{ route('recovery', $campaign) }}">
                             {{ __('campaigns.show.tabs.recovery') }}
                         </a>
                     </li>
                     @endcan
                     @can('stats', $campaign)
                         <li class="@if(!empty($active) && $active == 'stats')active @endif">
-                            <a href="{{ route('stats') }}">
+                            <a href="{{ route('stats', $campaign) }}">
                                 {{ __('campaigns.show.tabs.achievements') }}
                             </a>
                         </li>
@@ -76,14 +76,14 @@ if (auth()->check()) {
                 <ul class="nav nav-pills nav-stacked">
                     @can('members', $campaign)
                         <li class="@if(!empty($active) && $active == 'users')active @endif">
-                            <a href="{{ route('campaign_users.index') }}">
+                            <a href="{{ route('campaign_users.index', $campaign) }}">
                                 {{ __('campaigns.show.tabs.members') }}
                             </a>
                         </li>
                     @endcan
                     @can('submissions', $campaign)
                         <li class="@if(!empty($active) && $active == 'submissions')active @endif">
-                            <a href="{{ route('campaign_submissions.index') }}">
+                            <a href="{{ route('campaign_submissions.index', $campaign) }}">
                                 {{ __('campaigns.show.tabs.applications') }}
                                 @if ($campaign->submissions()->count() > 0) <span class="label label-default pull-right">
                                             {{ $campaign->submissions()->count() }}
@@ -93,7 +93,7 @@ if (auth()->check()) {
                     @endcan
                     @can('roles', $campaign)
                         <li class="@if(!empty($active) && $active == 'roles')active @endif">
-                            <a href="{{ route('campaign_roles.index') }}">
+                            <a href="{{ route('campaign_roles.index', $campaign) }}">
                                 {{ __('campaigns.show.tabs.roles') }}
                             </a>
                         </li>
@@ -108,31 +108,31 @@ if (auth()->check()) {
                 <ul class="nav nav-pills nav-stacked">
                     @can('update', $campaign)
                     <li class="@if(!empty($active) && $active == 'settings')active @endif">
-                        <a href="{{ route('campaign.modules') }}">
+                        <a href="{{ route('modules', $campaign) }}">
                             {{ __('campaigns.show.tabs.settings') }}
                         </a>
                     </li>
                     @endcan
                     @if(config('marketplace.enabled'))
                         <li class="@if (!empty($active) && $active == 'plugins')active @endif">
-                            <a href="{{ route('campaign_plugins.index') }}">
+                            <a href="{{ route('campaign_plugins.index', $campaign) }}">
                                 {{ __('campaigns.show.tabs.plugins') }}
                             </a>
                         </li>
                     @endif
                     @can('update', $campaign)
                     <li class="@if(!empty($active) && $active == 'default-images')active @endif">
-                        <a href="{{ route('campaign.default-images') }}">
+                        <a href="{{ route('default-images', $campaign) }}">
                             {{ __('campaigns.show.tabs.default-images') }}
                         </a>
                     </li>
                     <li class="@if(!empty($active) && $active == 'styles')active @endif">
-                        <a href="{{ route('campaign_styles.index') }}">
+                        <a href="{{ route('campaign_styles.index', $campaign) }}">
                             {{ __('campaigns.show.tabs.styles') }}
                         </a>
                     </li>
                     <li class="@if(!empty($active) && $active == 'sidebar')active @endif">
-                        <a href="{{ route('campaign-sidebar') }}">
+                        <a href="{{ route('campaign-sidebar', $campaign) }}">
                             {{ __('campaigns.show.tabs.sidebar') }}
                         </a>
                     </li>
@@ -146,60 +146,60 @@ if (auth()->check()) {
     $menuOptions = [];
     $menuOptions['campaign'] = [
         'label' => __('crud.tabs.overview'),
-        'route' => route('campaign')
+        'route' => route('overview', $campaign)
     ];
     if (auth()->check()) {
         if (auth()->user()->can('update', $campaign)) {
             $menuOptions['export'] = [
                     'label' => __('campaigns.show.tabs.export'),
-                    'route' => route('campaign.export')
+                    'route' => route('export', $campaign)
             ];
             $menuOptions['recovery'] = [
                     'label' => __('campaigns.show.tabs.recovery'),
-                    'route' => route('recovery')
+                    'route' => route('recovery', $campaign)
             ];
         }
         if (auth()->user()->can('stats', $campaign)) {
             $menuOptions['stats'] = [
                     'label' => __('campaigns.show.tabs.achievements'),
-                    'route' => route('stats')
+                    'route' => route('stats', $campaign)
             ];
         }
         if (auth()->user()->can('members', $campaign)) {
             $menuOptions['users'] = [
                     'label' => __('campaigns.show.tabs.members'),
-                    'route' => route('campaign_users.index')
+                    'route' => route('campaign_users.index', $campaign)
             ];
         }
         if (auth()->user()->can('submissions', $campaign)) {
             $menuOptions['submissions'] = [
                     'label' => __('campaigns.show.tabs.applications'),
-                    'route' => route('campaign_submissions.index')
+                    'route' => route('campaign_submissions.index', $campaign)
             ];
         }
         if (auth()->user()->can('roles', $campaign)) {
             $menuOptions['roles'] = [
                     'label' => __('campaigns.show.tabs.roles'),
-                    'route' => route('campaign_roles.index')
+                    'route' => route('campaign_roles.index', $campaign)
             ];
         }
 
         if (auth()->user()->can('update', $campaign)) {
             $menuOptions['settings'] = [
                 'label' => __('campaigns.show.tabs.settings'),
-                'route' => route('campaign.modules')
+                'route' => route('modules', $campaign)
             ];
             $menuOptions['default-images'] = [
                 'label' => __('campaigns.show.tabs.default-images'),
-                'route' => route('campaign.default-images')
+                'route' => route('default-images', $campaign)
             ];
             $menuOptions['styles'] = [
                 'label' => __('campaigns.show.tabs.styles'),
-                'route' => route('campaign_styles.index')
+                'route' => route('campaign_styles.index', $campaign)
             ];
             $menuOptions['sidebar'] = [
                 'label' => __('campaigns.show.tabs.sidebar'),
-                'route' => route('campaign-sidebar')
+                'route' => route('campaign-sidebar', $campaign)
             ];
         }
     }
@@ -207,7 +207,7 @@ if (auth()->check()) {
     if (config('marketplace.enabled')) {
         $menuOptions['plugins'] = [
             'label' => __('campaigns.show.tabs.plugins'),
-            'route' => route('campaign_plugins.index')
+            'route' => route('campaign_plugins.index', $campaign)
         ];
     }
     @endphp
@@ -239,7 +239,7 @@ if (auth()->check()) {
                     @if(auth()->user()->can('leave', $campaign))
                         <p class="mt-5">{!! __('campaigns.leave.confirm', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}
 
-                        {!! Form::open(['method' => 'GET', 'route' => ['campaigns.leave', $campaign->id]]) !!}
+                        {!! Form::open(['method' => 'GET', 'route' => ['leave', $campaign]]) !!}
                         <div class="py-5">
                             <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                             <button type="submit" class="btn btn-danger px-8 ml-5 rounded-full">
@@ -250,7 +250,7 @@ if (auth()->check()) {
                         {!! Form::close() !!}
                     @else
                         <p class="mt-5">{{ __('campaigns.leave.no-admin-left') }}</p>
-                        <a href="{{ route('campaign_users.index') }}" class="btn btn-default px-8 rounded-full">
+                        <a href="{{ route('campaign_users.index', $campaign) }}" class="btn btn-default px-8 rounded-full">
                             {{ __('campaigns.leave.fix') }}
                         </a>
                     @endif
@@ -272,7 +272,7 @@ if (auth()->check()) {
                         @if (auth()->user()->can('delete', $campaign))
                             <p class="mt-5">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
                             <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy']]) !!}
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['destroy', $campaign]]) !!}
                             <div class="form-group required">
                                 {!! Form::text('delete', null, ['class' => 'form-control', 'required']) !!}
                             </div>
@@ -286,7 +286,7 @@ if (auth()->check()) {
                             {!! Form::close() !!}
                         @else
                             <p class="mt-5">{{ __('campaigns.destroy.helper-v2') }}</p>
-                            <a href="{{ route('campaign_users.index') }}" class="btn btn-default px-8 rounded-full">
+                            <a href="{{ route('campaign_users.index', $campaign) }}" class="btn btn-default px-8 rounded-full">
                                 {{ __('campaigns.leave.fix') }}
                             </a>
                         @endif

@@ -24,8 +24,7 @@ class StoreCampaignRole extends FormRequest
     public function rules()
     {
         return [
-            'campaign_id' => 'required|exists:campaigns,id',
-            'name' => 'required',
+            'name' => 'required|string|min:1|max:40',
         ];
     }
 }

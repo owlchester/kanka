@@ -1,8 +1,8 @@
 @extends('layouts.app', [
     'title' => trans('campaigns.edit.title', ['campaign' => $model->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
-        trans('crud.edit')
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
+        __('crud.edit')
     ],
     'canonical' => true,
 ])
@@ -13,7 +13,7 @@
     {!! Form::model($model, [
         'method' => 'PATCH',
         'enctype' => 'multipart/form-data',
-        'route' => ['campaigns.update'],
+        'route' => ['update', $campaign],
         'data-shortcut' => '1',
         'class' => 'entity-form',
         'data-unload' => 1,

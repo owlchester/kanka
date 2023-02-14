@@ -9,7 +9,7 @@ $permission->role($role);
 ?>
 <h1 class="mb-2 mt-0">
     <div class="pull-right">
-        <a href="#" data-url="{{ route('campaign-visibility') }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn btn-primary" >
+        <a href="#" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn btn-primary" >
             <i class="fa-solid fa-user-secret"></i> {{ __('campaigns/roles.actions.status', ['status' => $campaign->isPublic() ? __('campaigns.visibilities.public') : __('campaigns.visibilities.private')]) }}
         </a>
 
@@ -45,7 +45,7 @@ $permission->role($role);
 
 <div class="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
     @foreach ($permission->entityTypes() as $name => $id)
-        <div class="public-permission flex rounded items-center text-center justify-center text-break cursor-pointer text-xl px-2 py-5 {{ $permission->type($id)->can() ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$role, 'entity' => $id, 'action' => \App\Models\CampaignPermission::ACTION_READ]) }}">
+        <div class="public-permission flex rounded items-center text-center justify-center text-break cursor-pointer text-xl px-2 py-5 {{ $permission->type($id)->can() ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$campaign, $role, 'entity' => $id, 'action' => \App\Models\CampaignPermission::ACTION_READ]) }}">
             <i class="entity-type-icon block text-2xl {{ EntitySetup::icon($id) }} mb-2" aria-hidden="true"></i>
 
             <div>{{ EntitySetup::plural($id) }}</div>

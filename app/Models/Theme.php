@@ -30,4 +30,9 @@ class Theme extends Model
     {
         return __('profiles.theme.themes.' . $this->name);
     }
+
+    public function routeParams(array $options = []): array
+    {
+        return [$this->campaign_id, $this->id];
+    }
 }

@@ -2,8 +2,8 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('campaigns/submissions.edit.title', ['name' => $submission->user->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
-        ['url' => route('campaign_submissions.index'), 'label' => __('campaigns.show.tabs.applications')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
+        ['url' => route('campaign_submissions.index', $campaign), 'label' => __('campaigns.show.tabs.applications')],
         $submission->user->name,
     ],
     'mainTitle' => false,
@@ -14,7 +14,7 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::model($submission, ['method' => 'PATCH', 'route' => ['campaign_submissions.update', $submission->id], 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
+            {!! Form::model($submission, ['method' => 'PATCH', 'route' => ['campaign_submissions.update', [$campaign, $submission->id]], 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
 
             @if($action === 'approve')
                 <p>{{ __('campaigns/submissions.update.approve') }}</p>

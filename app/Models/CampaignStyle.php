@@ -81,4 +81,8 @@ class CampaignStyle extends Model
     {
         return 'campaign_styles.' . $sub;
     }
+    public function routeParams(array $options = []): array
+    {
+        return [$this->campaign_id, $this->id];
+    }
 }

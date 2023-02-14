@@ -15,8 +15,8 @@
                 <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>
             </button>
 
-            <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
-               data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create') }}">
+            <a href="{{ route('campaign_invites.create', [$campaign]) }}" class="btn btn-primary btn-sm"
+               data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create', [$campaign]) }}">
                 <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
                 <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
             </a>
@@ -64,7 +64,7 @@
                                 </td>
 
                                 <td class="text-right">
-                                    {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
+                                    {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', [$campaign, $relation->id]],'style'=>'display:inline']) !!}
                                     <button class="btn btn-sm btn-danger">
                                         <i class="fa-solid fa-trash" aria-hidden="true"></i> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
                                     </button>
@@ -101,7 +101,7 @@
             __('campaigns.members.invite.description'),
             __('campaigns.members.invite.more', [
                         'link' =>
-                            '<a href="' . route('campaign_roles.index') . '">'
+                            '<a href="' . route('campaign_roles.index', $campaign) . '">'
                             . __('campaigns.members.invite.roles_page') . '</a>'
                     ])
         ]

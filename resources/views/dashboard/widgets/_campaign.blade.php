@@ -8,7 +8,7 @@
     <div class="campaign-header-content">
         <div class="campaign-content">
             <div class="campaign-head">
-                <a href="{{ route('campaign') }}" title="{!! $campaign->name !!}" class="campaign-title">
+                <a href="{{ route('overview', $campaign) }}" title="{!! $campaign->name !!}" class="campaign-title">
                     {!! $campaign->name !!}
                 </a>
                     <div class="action-bar">
@@ -18,7 +18,7 @@
                                     data-following="{{ $campaign->isFollowing() ? true : false }}"
                                     data-follow="{{ __('dashboard.actions.follow') }}"
                                     data-unfollow="{{ __('dashboard.actions.unfollow') }}"
-                                    data-url="{{ route('campaign.follow') }}"
+                                    data-url="{{ route('follow', $campaign) }}"
                                     data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
                                     data-placement="bottom"
                             >
@@ -27,7 +27,7 @@
                         @endcan
                         @can('apply', $campaign)
                             <button id="campaign-apply" class="btn btn-default btn-xl mr-2" data-id="{{ $campaign->id }}"
-                                    data-url="{{ route('campaign.apply') }}"
+                                    data-url="{{ route('application', $campaign) }}"
                                     data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
                                     data-target="#large-modal"
                                     data-placement="bottom"
@@ -110,23 +110,23 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="{{ route('campaigns.edit') }}">
+                                    <a href="{{ route('edit', $campaign) }}">
                                         <i class="fa-solid fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="{{ route('campaign_users.index') }}"  title="{{ __('campaigns.show.tabs.members') }}">
+                                    <a href="{{ route('campaign_users.index', $campaign) }}"  title="{{ __('campaigns.show.tabs.members') }}">
                                         <i class="fa-solid fa-user"></i> {{ __('campaigns.show.tabs.members') }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('campaign_roles.index') }}" title="{{  __('campaigns.show.tabs.roles') }}">
+                                    <a href="{{ route('campaign_roles.index', $campaign) }}" title="{{  __('campaigns.show.tabs.roles') }}">
                                         <i class="fa-solid fa-user-tag"></i> {{ __('campaigns.show.tabs.roles') }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('campaign.modules') }}" title="{{ __('campaigns.show.tabs.settings') }}">
+                                    <a href="{{ route('modules', $campaign) }}" title="{{ __('campaigns.show.tabs.settings') }}">
                                         <i class="fa-solid fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
                                     </a>
                                 </li>

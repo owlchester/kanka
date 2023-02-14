@@ -2,7 +2,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.default-images') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.default-images')
     ],
     'mainTitle' => false,
@@ -46,7 +46,7 @@
                                         {!! Form::open([
                                             'method' => 'DELETE',
                                             'route' => [
-                                                'campaign.default-images.delete',
+                                                'default-images.delete', $campaign,
                                             ],
                                             'style' => 'display:inline',
                                             'id' => 'delete-form-' . $image['uuid']
@@ -60,9 +60,9 @@
                         </table>
                     </div>
                     <div class="box-footer no-border">
-                        <a href="{{ route('campaign.default-images.create') }}" class="btn btn-primary"
+                        <a href="{{ route('default-images.create', $campaign) }}" class="btn btn-primary"
                            data-toggle="ajax-modal" data-target="#entity-modal"
-                           data-url="{{ route('campaign.default-images.create') }}">
+                           data-url="{{ route('default-images.create', $campaign) }}">
                             {{ __('campaigns/default-images.actions.add') }}
                         </a>
                     </div>

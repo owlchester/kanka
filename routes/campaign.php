@@ -3,12 +3,6 @@
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
 
-Route::post('/follow', 'CampaignFollowController@update')->name('campaign.follow');
-
-Route::get('/apply', 'Campaign\ApplyController@index')->name('campaign.apply');
-Route::post('/apply', 'Campaign\ApplyController@save')->name('campaign.apply.save');
-Route::delete('/remove', 'Campaign\ApplyController@remove')->name('campaign.apply.remove');
-
 Route::get('/gallery', 'Campaign\GalleryController@index')->name('campaign.gallery.index');
 Route::get('/gallery/load', 'Campaign\GalleryController@load')->name('campaign.gallery.load');
 Route::get('/gallery/search', 'Campaign\GalleryController@search')->name('campaign.gallery.search');
@@ -179,41 +173,12 @@ Route::post('/editing/quest-elements/{quest_element}/keep-alive', 'EditingContro
 Route::post('/editing/timeline-elements/{timeline_element}/confirm-editing', 'EditingController@confirmTimelineElement')->name('timeline-elements.confirm-editing');
 Route::post('/editing/timeline-elements/{timeline_element}/keep-alive', 'EditingController@keepAliveTimelineElement')->name('timeline-elements.keep-alive');
 
-// Permission save
-Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');
-Route::post('/campaign_roles/{campaign_role}/toggle/{entity}/{action}', 'CampaignRoleController@toggle')->name('campaign_roles.toggle');
-Route::post('/campaign_roles/bulk', 'CampaignRoleController@bulk')->name('campaign_roles.bulk');
-
 // Impersonator
 Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
 Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
 Route::get('/members/switch/{campaign_user}/{entity}', 'Campaign\MemberController@switch')->name('identity.switch-entity');
 
 
-Route::post('/campaign_users/{campaign_user}/update-role/{campaign_role}', 'Campaign\MemberController@updateRoles')->name('campaign_users.update-roles');
-
-// Recovery
-Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');
-Route::post('/recovery', 'Campaign\RecoveryController@recover')->name('recovery.save');
-
-
-
-// Stats
-Route::get('/stats', 'Campaign\StatController@index')->name('stats');
-
-// User search
-Route::get('/users/search', 'CampaignUserController@search')->name('users.find');
-Route::get('/roles/search', 'CampaignRoleController@search')->name('roles.find');
-
-
-Route::get('/default-images', 'Campaign\DefaultImageController@index')
-    ->name('campaign.default-images');
-Route::get('/default-images/create', 'Campaign\DefaultImageController@create')
-    ->name('campaign.default-images.create');
-Route::post('/default-images/create', 'Campaign\DefaultImageController@store')
-    ->name('campaign.default-images.store');
-Route::delete('/default-images', 'Campaign\DefaultImageController@destroy')
-    ->name('campaign.default-images.delete');
 
 Route::post('/gallery/folder', 'Campaign\GalleryController@folder')
     ->name('campaign.gallery.folder');
@@ -245,14 +210,10 @@ Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('e
 Route::get('/entities/{entity}/profile', 'Entity\ProfileController@index')
     ->name('entities.profile');
 
-//Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([
     'abilities' => 'AbilityController',
     'calendars' => 'CalendarController',
     'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
-    //'campaigns' => 'CampaignController',
-    'campaign_users' => 'CampaignUserController',
-    'campaign_submissions' => 'Campaign\SubmissionController',
     'characters' => 'CharacterController',
     'characters.character_organisations' => 'CharacterOrganisationController',
     'conversations' => 'ConversationController',
@@ -262,7 +223,6 @@ Route::resources([
     'dice_roll_results' => 'DiceRollResultController',
     'events' => 'EventController',
     'locations' => 'LocationController',
-    //'locations.map_points' => 'LocationMapPointController',
     'families' => 'FamilyController',
     'items' => 'ItemController',
     'journals' => 'JournalController',
@@ -280,32 +240,20 @@ Route::resources([
     'timelines' => 'Timelines\TimelineController',
     'timelines.timeline_eras' => 'Timelines\TimelineEraController',
     'timelines.timeline_elements' => 'Timelines\TimelineElementController',
-    'campaign_invites' => 'CampaignInviteController',
     'races' => 'RaceController',
     'creatures' => 'CreatureController',
     'relations' => 'RelationController',
 
-    // Entities
-    //'entities.attributes' => 'AttributeController',
     'entities.entity_abilities' => 'Entity\AbilityController',
     'entities.entity_notes' => 'EntityNoteController',
     'entities.posts' => 'Entity\PostController',
     'entities.entity_events' => 'EntityEventController',
-    //'entities.entity_files' => 'EntityFileController',
-    //'entities.entity_links' => 'Entity\LinkController',
-    //'entities.entity_aliases' => 'Entity\AliasController',
     'entities.entity_assets' => 'Entity\AssetController',
     'entities.inventories' => 'Entity\InventoryController',
     'entities.relations' => 'Entity\RelationController',
 
     'attribute_templates' => 'AttributeTemplateController',
     //'presets' => 'PresetController',
-
-    // Permission manager
-    'campaign_roles' => 'CampaignRoleController',
-    'campaign_roles.campaign_role_users' => 'CampaignRoleUserController',
-    'campaign_styles' => 'Campaign\StyleController',
-    //'campaigns.campaign_roles.campaign_permissions' => 'CampaignPermissions',
 
     'campaign_dashboards' => 'Campaign\DashboardController',
     'campaign_dashboard_widgets' => 'Campaign\DashboardWidgetController',
@@ -314,38 +262,7 @@ Route::resources([
 
     'images' => 'Campaign\GalleryController',
 ]);
-Route::get('/leave-campaign', 'CampaignController@leave')->name('campaigns.leave');
 
-// Campaign CRUD
-Route::get('/edit', [\App\Http\Controllers\CampaignController::class, 'edit'])->name('campaigns.edit');
-Route::patch('/update', [\App\Http\Controllers\CampaignController::class, 'update'])->name('campaigns.update');
-Route::delete('/destroy', [\App\Http\Controllers\CampaignController::class, 'destroy'])->name('campaigns.destroy');
-
-
-Route::post('/campaign_styles/bulk', 'Campaign\StyleController@bulk')->name('campaign_styles.bulk');
-Route::post('/campaign_styles/reorder', 'Campaign\StyleController@reorder')->name('campaign_styles.reorder-save');
-
-Route::get('/campaigns/{campaign}/dashboard-header/{campaignDashboardWidget?}', 'Campaign\DashboardHeaderController@edit')->name('campaigns.dashboard-header.edit');
-Route::patch('/campaigns/{campaign}/dashboard-header', 'Campaign\DashboardHeaderController@update')->name('campaigns.dashboard-header.update');
-
-// Helper links
-Route::get('/campaign-roles/admin', 'CampaignRoleController@admin')->name('campaigns.campaign_roles.admin');
-Route::get('/campaign-roles/public', 'CampaignRoleController@public')->name('campaigns.campaign_roles.public');
-
-// Marketplace plugin route
-if(config('marketplace.enabled')) {
-    Route::get('/plugins', 'Campaign\PluginController@index')->name('campaign_plugins.index');
-    Route::delete('/plugins/{plugin}/delete', 'Campaign\PluginController@delete')->name('campaign_plugins.destroy');
-    Route::get('/plugins/{plugin}/enable', 'Campaign\PluginController@enable')->name('campaign_plugins.enable');
-    Route::get('/plugins/{plugin}/disable', 'Campaign\PluginController@disable')->name('campaign_plugins.disable');
-    Route::post('/plugins/{plugin}/import', 'Campaign\PluginController@import')->name('campaign_plugins.import');
-    Route::get('/plugins/{plugin}/confirm-import', 'Campaign\PluginController@confirmImport')->name('campaign_plugins.confirm-import');
-    Route::get('/plugins/{plugin}/update', 'Campaign\PluginController@updateInfo')->name('campaign_plugins.update-info');
-    Route::post('/plugins/{plugin}/update', 'Campaign\PluginController@update')->name('campaign_plugins.update');
-    Route::post('/plugins/bulk', 'Campaign\PluginController@bulk')->name('campaign_plugins.bulk');
-}
-
-//Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timelines\TimelineEraController@reorder')->name('timelines.reorder');
 // Old Search
 Route::get('/search', 'SearchController@search')->name('search');
 
@@ -415,8 +332,6 @@ Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('
 
 Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
 
-//Route::get('/entities/copy-to-campaign/{entity}', 'EntityController@copyToCampaign')->name('entities.copy_to_campaign');
-//Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
 
 // Entity files
 //Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
@@ -443,25 +358,22 @@ Route::get('/entities/{entity}/permissions', 'PermissionController@view')->name(
 Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
 
 // The campaign management sub pages
-Route::get('/overview', 'CampaignController@index')->name('campaign');
+/*Route::get('/overview', 'CampaignController@index')->name('campaign');
 Route::get('/modules', 'CampaignSettingController@index')->name('campaign.modules');
 Route::post('/modules/toggle/{module?}', 'CampaignSettingController@toggle')->name('campaign.modules.toggle');
 Route::get('/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-theme');
 Route::post('/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');
 Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaign.export');
 Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
-Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
-Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 Route::get('/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');
 
 Route::get('/campaign-applications', 'Campaign\SubmissionController@toggle')->name('campaign-applications');
-Route::post('/campaign-applications', 'Campaign\SubmissionController@toggleSave')->name('campaign-applications.save');
+Route::post('/campaign-applications', 'Campaign\SubmissionController@toggleSave')->name('campaign-applications.save');*/
 
-// Campaign sidebar setup
-Route::get('/sidebar-setup', 'Campaign\SidebarController@index')->name('campaign-sidebar');
-Route::post('/sidebar-setup', 'Campaign\SidebarController@save')->name('campaign-sidebar-save');
-Route::delete('/sidebar-setup/reset', 'Campaign\SidebarController@reset')->name('campaign-sidebar-reset');
+Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
+Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
+
 
 Route::get('/presets/type/{preset_type}/list', [\App\Http\Controllers\PresetController::class, 'presets'])->name('presets.list');
 Route::get('/presets/type/{preset_type}/create', [\App\Http\Controllers\PresetController::class, 'create'])->name('presets.create');

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property Campaign $campaign
  *
  * @method static Builder|self allCampaigns()
+ * @method static Builder|self inCampaign(Campaign $campaign)
  */
 trait CampaignTrait
 {
@@ -28,6 +29,16 @@ trait CampaignTrait
     {
         $this->withCampaignLimit = false;
         return $builder;
+    }
+
+    /**
+     * @param Builder $builder
+     * @param Campaign $campaign
+     * @return Builder
+     */
+    public function scopeInCampaign(Builder $builder, Campaign $campaign): Builder
+    {
+        return $builder->where('campaign_id', $campaign->id);
     }
 
     /**

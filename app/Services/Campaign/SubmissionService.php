@@ -76,7 +76,7 @@ class SubmissionService
                 'door-open',
                 'yellow',
                 [
-                    'link' => route('campaign_submissions.index'),
+                    'link' => route('campaign_submissions.index', $this->campaign),
                     'campaign' => $this->campaign->name
                 ]
             ));

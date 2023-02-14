@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Columns;
 
+use App\Models\Campaign;
 use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -13,6 +14,9 @@ abstract class Column
 {
     /** @var Model|MiscModel */
     protected $model;
+
+    /** @var ?Campaign */
+    protected ?Campaign $campaign;
 
     /** @var array */
     protected $config;

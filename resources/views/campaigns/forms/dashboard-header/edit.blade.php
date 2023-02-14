@@ -1,6 +1,6 @@
-<?php /** @var \App\Models\Campaign $model */?>
+<?php /** @var \App\Models\Campaign $campaign */?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => __('campaigns/dashboard-header.edit.title', ['name' => $model->name]),
+    'title' => __('campaigns/dashboard-header.edit.title', ['name' => $campaign->name]),
     'breadcrumbs' => [],
     'mainTitle' => false,
 ])
@@ -8,9 +8,9 @@
 @inject('campaignService', 'App\Services\CampaignService')
 @section('content')
 
-    {!! Form::model($model, [
+    {!! Form::model($campaign, [
         'method' => 'PATCH',
-        'route' => ['campaigns.dashboard-header.update', $model],
+        'route' => ['dashboard-header.update', [$campaign]],
         'data-shortcut' => 1,
         'class' => 'entity-form',
         'enctype' => 'multipart/form-data',

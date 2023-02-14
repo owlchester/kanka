@@ -115,7 +115,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     </label>
                     <p class="help-block">
                         {!! __('characters.hints.is_personality_visible', [
-        'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), null, ['target' => '_blank'])
+        'admin' => link_to_route('campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), CampaignLocalization::getCampaign(), ['target' => '_blank'])
 ]) !!}
                     </p>
                 </div>

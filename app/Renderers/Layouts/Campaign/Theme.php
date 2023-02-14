@@ -24,7 +24,7 @@ class Theme extends Layout
                 'key' => 'name',
                 'label' => 'campaigns/styles.fields.name',
                 'render' => function ($model) {
-                    return link_to_route('campaign_styles.edit', $model->name, $model);
+                    return link_to_route('campaign_styles.edit', $model->name, [$model, 'campaign' => $model->campaign_id]);
                 },
             ],
             'length' => [

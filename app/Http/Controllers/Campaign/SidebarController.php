@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Services\SidebarService;
 
 class SidebarController extends Controller
 {
-    /** @var SidebarService */
-    protected $service;
+    protected SidebarService $service;
 
     public function __construct(SidebarService $service)
     {
@@ -23,12 +22,14 @@ class SidebarController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
-        $layout = $this->service->campaign($campaign)->withDisabled()->layout();
+        $layout = $this->service
+            ->campaign($campaign)
+            ->withDisabled()
+            ->layout();
 
         return view(
             'campaigns.sidebar.index',
@@ -43,9 +44,8 @@ class SidebarController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function save()
+    public function save(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         // Good luck
@@ -53,7 +53,7 @@ class SidebarController extends Controller
             ->save(request()->all());
 
         return redirect()
-            ->route('campaign-sidebar')
+            ->route('campaign-sidebar', $campaign)
             ->with('success', __('campaigns/sidebar.success'))
         ;
     }
@@ -62,15 +62,16 @@ class SidebarController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function reset()
+    public function reset(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
-        $this->service->campaign($campaign)->reset();
+        $this->service
+            ->campaign($campaign)
+            ->reset();
 
         return redirect()
-            ->route('campaign-sidebar')
+            ->route('campaign-sidebar', $campaign)
             ->with('success', __('campaigns/sidebar.reset.success'))
         ;
     }

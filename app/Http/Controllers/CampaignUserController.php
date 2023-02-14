@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 
@@ -22,9 +23,8 @@ class CampaignUserController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('members', $campaign);
 
         $users = $campaign
@@ -51,39 +51,11 @@ class CampaignUserController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(CampaignUser $campaignUser)
+    public function destroy(Campaign $campaign, CampaignUser $campaignUser)
     {
         $this->authorize('invite', $campaignUser->campaign);
 
         $campaignUser->delete();
-        return redirect()->route('campaign_users.index');
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function search(Request $request)
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('members', $campaign);
-
-        $term = $request->get('q', null);
-        if (empty($term)) {
-            $members = $campaign->users()->orderBy('name', 'asc')->limit(5)->get();
-        } else {
-            $members = $campaign->users()->where('name', 'like', '%' . $term . '%')->limit(5)->get();
-        }
-
-        $results = [];
-        foreach ($members as $member) {
-            $results[] = [
-                'id' => $member->id,
-                'text' => $member->name
-            ];
-        }
-
-        return response()->json($results);
+        return redirect()->route('campaign_users.index', $campaign);
     }
 }

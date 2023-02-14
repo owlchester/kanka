@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreCampaignInvite;
+use App\Models\Campaign;
 use App\Models\CampaignInvite;
 
 class CampaignInviteController extends Controller
@@ -31,9 +32,8 @@ class CampaignInviteController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create()
+    public function create(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('invite', $campaign);
         $ajax = request()->ajax();
 
@@ -53,9 +53,8 @@ class CampaignInviteController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StoreCampaignInvite $request)
+    public function store(StoreCampaignInvite $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('invite', $campaign);
 
         $data = $request->only('role_id', 'validity');
@@ -71,7 +70,7 @@ class CampaignInviteController extends Controller
             'title' => __('campaigns.invites.actions.copy')
         ], null, false);
 
-        return redirect()->route('campaign_users.index')
+        return redirect()->route('campaign_users.index', $campaign)
             ->with(
                 'success_raw',
                 __(
@@ -87,12 +86,12 @@ class CampaignInviteController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(CampaignInvite $campaignInvite)
+    public function destroy(Campaign $campaign, CampaignInvite $campaignInvite)
     {
         $this->authorize('delete', $campaignInvite);
 
         $campaignInvite->delete();
-        return redirect()->route('campaign_users.index')
+        return redirect()->route('campaign_users.index', $campaign)
             ->with('success', __('campaigns.invites.destroy.success'));
     }
 }

@@ -19,7 +19,7 @@ class CampaignRole extends Layout
                 'label' => 'campaigns.roles.fields.name',
                 'render' => function ($model) {
                     /** @var \App\Models\CampaignRole $model */
-                    $html = '<a href="' . route('campaign_roles.show', ['campaign_role' => $model])
+                    $html = '<a href="' . route('campaign_roles.show', ['campaign' => $model->campaign_id, 'campaign_role' => $model])
                         . '">' . $model->name
                         . '</a><br />';
 
@@ -50,7 +50,7 @@ class CampaignRole extends Layout
 
                     /** @var \App\Models\CampaignRole $model */
                     if (!$model->is_admin) {
-                        $html = '<a href="' . route('campaign_roles.show', ['campaign_role' => $model])
+                        $html = '<a href="' . route('campaign_roles.show', ['campaign' => $model->campaign_id, 'campaign_role' => $model])
                             . '" title="'
                             . __('campaigns.roles.actions.permissions')
                             . '">'

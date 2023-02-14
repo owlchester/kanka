@@ -2,7 +2,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns/sidebar.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.sidebar')
     ],
     'mainTitle' => false,
@@ -29,7 +29,7 @@
                     {{ __('campaigns.members.actions.help') }}
                 </button>
             {!! Form::open([
-    'route' => 'campaign-sidebar-save',
+    'route' => ['campaign-sidebar-save', $campaign],
     'method' => 'POST',
     'class' => 'sidebar-setup form-inline form-mobile-inline',
     'data-shortcut' => 1
@@ -112,6 +112,7 @@
         'method' => 'DELETE',
         'route' => [
             'campaign-sidebar-reset',
+            $campaign
         ]
     ]) !!}
     <div class="modal fade" id="reset-confirm" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">

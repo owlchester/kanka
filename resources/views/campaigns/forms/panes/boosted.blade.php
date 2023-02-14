@@ -39,7 +39,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 </div>
                 <p class="help-block">
                     {!! __('campaigns.helpers.hide_members', [
-    'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), null, ['target' => '_blank'])
+    'admin' => link_to_route('campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
 ]) !!}
                 </p>
             </div>
@@ -55,7 +55,7 @@ $role = \App\Facades\CampaignCache::adminRole();
 
                 <p class="help-block">
                     {!! __('campaigns.helpers.hide_history', [
-    'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), null, ['target' => '_blank'])
+    'admin' => link_to_route('campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
 ]) !!}
                 </p>
             </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns/recovery.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.recovery')
     ],
     'mainTitle' => false,
@@ -29,7 +29,7 @@
             @includeWhen(session()->get('boosted-pitch'), 'layouts.callouts.boost', ['texts' => []])
 
             <div class="box box-recovery">
-                @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'recovery.save']) !!} @endif
+                @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['recovery.save', $campaign]]) !!} @endif
                 <div id="datagrid-parent">
                     @include('layouts.datagrid._table')
                 </div>

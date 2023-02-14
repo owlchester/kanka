@@ -4,7 +4,7 @@ use \Illuminate\Support\Arr;
 @extends('layouts.app', [
     'title' => __('campaigns/stats.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.achievements')
     ],
     'mainTitle' => false,

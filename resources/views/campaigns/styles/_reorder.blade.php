@@ -1,6 +1,6 @@
 
 {!! Form::open([
-    'route' => ['campaign_styles.reorder-save'],
+    'route' => ['styles.reorder', $campaign],
     'method' => 'POST',
 ]) !!}
 <div class="box box-solid box-entity-story-reorder">

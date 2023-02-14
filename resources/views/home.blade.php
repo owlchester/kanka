@@ -57,7 +57,7 @@
                     @can('update', $campaign)
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ route('campaigns.edit') }}">
+                            <a href="{{ route('edit', $campaign) }}">
                                 <i class="fa-solid fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
                             </a>
                         </li>
@@ -77,7 +77,7 @@
                     data-following="{{ $campaign->isFollowing() ? true : false }}"
                     data-follow="{{ __('dashboard.actions.follow') }}"
                     data-unfollow="{{ __('dashboard.actions.unfollow') }}"
-                    data-url="{{ route('campaign.follow') }}"
+                    data-url="{{ route('follow', $campaign) }}"
                     data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
                     data-placement="bottom"
             >
@@ -86,7 +86,7 @@
         @endcan
         @can('apply', $campaign)
             <button id="campaign-apply" class="btn btn-default btn-xl mr-2" data-id="{{ $campaign->id }}"
-                    data-url="{{ route('campaign.apply') }}"
+                    data-url="{{ route('application', $campaign) }}"
                     data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
                     data-target="#large-modal"
                     data-placement="bottom"

@@ -57,7 +57,7 @@
                             </div>
                         </td>
                         <td class=" max-w-30">
-                            <a class="block text-break truncate" href="{{ route('users.profile', $relation->user_id) }}" target="_blank">
+                            <a class="block text-break truncate" href="{{ route('users.profile', [$campaign, $relation->user_id]) }}" target="_blank">
                                 {{ $relation->user->name }}
                             </a>
                             @if ($relation->user->isBanned())
@@ -69,7 +69,7 @@
                             @can('update', $relation)
                                 <i role="button" tabindex="0" class="fa-solid fa-plus-circle cursor-pointer btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
                                 @foreach($roles as $role)
-                                <form method='post' action='{{ route('campaign_users.update-roles', [$relation, $role]) }}' class='user-role-update'>
+                                <form method='post' action='{{ route('campaign_users.update-roles', [$campaign, $relation, $role]) }}' class='user-role-update'>
     {!! str_replace('"', '\'', csrf_field()) !!}
 
                                     <button class='btn btn-block btn-role-update mb-2'>
@@ -105,7 +105,7 @@
                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                         @can('switch', $relation)
                                             <li>
-                                                <a href="{{ route('identity.switch', $relation) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
+                                                <a href="{{ route('identity.switch', [$relation]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
                                                     <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
                                                     {{ __('campaigns.members.actions.switch') }}
                                                 </a>
@@ -128,7 +128,7 @@
                                 @can('delete', $relation)
                                     {!! Form::open([
                                         'method' => 'DELETE',
-                                        'route' => ['campaign_users.destroy', $relation->id],
+                                        'route' => ['campaign_users.destroy', [$campaign, $relation->id]],
                                         'style' => 'display:inline',
                                         'id' => 'campaign-user-' . $relation->id]) !!}
 

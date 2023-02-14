@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Exceptions\TranslatableException;
+use App\Facades\CampaignLocalization;
 use App\Facades\Identity;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Models\CampaignUser;
 use App\Models\Entity;
 use App\Services\Campaign\MemberService;
+use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    /** @var MemberService */
-    protected $service;
+    protected MemberService $service;
 
     /**
      * Create a new controller instance.
@@ -28,10 +30,6 @@ class MemberController extends Controller
 
     /**
      * Switch to another member
-     * @param CampaignUser $campaignUser
-     * @param Entity|null $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function switch(CampaignUser $campaignUser, Entity $entity = null)
     {
@@ -51,7 +49,6 @@ class MemberController extends Controller
 
     /**
      * Switch back to the original user
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function back()
     {
@@ -65,12 +62,9 @@ class MemberController extends Controller
     }
 
     /**
-     * @param CampaignUser $campaignUser
-     * @param CampaignRole $campaignRole
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * UI for updating a user of the campaign's role
      */
-    public function updateRoles(CampaignUser $campaignUser, CampaignRole $campaignRole)
+    public function updateRoles(Campaign $campaign, CampaignUser $campaignUser, CampaignRole $campaignRole)
     {
         $this->authorize('update', $campaignUser);
 
@@ -78,15 +72,40 @@ class MemberController extends Controller
             $added = $this->service->update($campaignUser, $campaignRole);
         } catch (TranslatableException $e) {
             return redirect()
-                ->route('campaign_users.index')
+                ->route('campaign_users.index', $campaign)
                 ->with('error_raw', $e->getTranslatedMessage());
         }
 
         return redirect()
-            ->route('campaign_users.index')
+            ->route('campaign_users.index', $campaign)
             ->with('success', __('campaigns.members.updates.' . ($added ? 'added' : 'removed'), [
                 'user' => $campaignUser->user->name,
                 'role' => $campaignRole->name
             ]));
+    }
+
+    /**
+     * Endpoint for searching members of the campaign based by name
+     */
+    public function search(Request $request, Campaign $campaign)
+    {
+        $this->authorize('members', $campaign);
+
+        $term = $request->get('q', null);
+        if (empty($term)) {
+            $members = $campaign->users()->orderBy('name', 'asc')->limit(5)->get();
+        } else {
+            $members = $campaign->users()->where('name', 'like', '%' . $term . '%')->limit(5)->get();
+        }
+
+        $results = [];
+        foreach ($members as $member) {
+            $results[] = [
+                'id' => $member->id,
+                'text' => $member->name
+            ];
+        }
+
+        return response()->json($results);
     }
 }

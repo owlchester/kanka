@@ -1,4 +1,4 @@
-{!! Form::model($campaign, ['route' => 'campaign-applications.save', 'method' => 'POST']) !!}
+{!! Form::model($campaign, ['route' => ['campaign-applications.save', $campaign], 'method' => 'POST']) !!}
 
 
 <div class="modal-body">

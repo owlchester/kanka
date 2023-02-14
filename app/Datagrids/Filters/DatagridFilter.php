@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Tag;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
  */
 abstract class DatagridFilter
 {
+
     /** @var array Filters to be rendered */
     protected array $filters = [];
 

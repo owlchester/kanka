@@ -178,6 +178,11 @@ class Plugin extends Model
         return 'campaign_plugins.' . $sub;
     }
 
+    public function routeParams(array $options = []): array
+    {
+        return ['campaign' => $this->pivot->campaign_id, 'plugin' => $this->id];
+    }
+
     /**
      * Determine if the plugin is obsolete
      * @return bool

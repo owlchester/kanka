@@ -3,7 +3,7 @@ use App\Facades\Datagrid ?>
 @extends('layouts.app', [
     'title' => __('campaigns/styles.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.styles')
     ],
     'mainTitle' => false,
@@ -28,11 +28,11 @@ use App\Facades\Datagrid ?>
                     <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     {{ __('campaigns.members.actions.help') }}
                 </button>
-                <a href="#" data-url="{{ route('campaign-theme') }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn btn-default btn-sm pull-right ml-1">
+                <a href="#" data-url="{{ route('campaign-theme', $campaign) }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn btn-default btn-sm pull-right ml-1">
                     <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
                 </a>
 
-                <a href="{{ route('campaign_styles.create') }}" class="btn btn-primary btn-sm pull-right ml-1">
+                <a href="{{ route('campaign_styles.create', $campaign) }}" class="btn btn-primary btn-sm pull-right ml-1">
                     <i class="fa-solid fa-plus"></i> {{ __('campaigns/styles.actions.new') }}
                 </a>
 
@@ -44,7 +44,7 @@ use App\Facades\Datagrid ?>
                         </p>
                     </div>
                 @else
-                    @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_styles.bulk']) !!} @endif
+                    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_styles.bulk', $campaign]]) !!} @endif
                     <div id="datagrid-parent">
                         @include('campaigns.styles._table')
                     </div>

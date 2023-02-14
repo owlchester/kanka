@@ -17,7 +17,7 @@ if ($widget->entity) {
          data-toggle="ajax-modal"
     @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
          data-target="#large-modal"
-         data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaignService->campaign(), 'campaignDashboardWidget' => $widget]) }}"
+         data-url="{{ route('dashboard-header.edit', ['campaign' => $campaign, 'campaignDashboardWidget' => $widget]) }}"
     @else
          data-target="#edit-widget"
          data-url="{{ route('campaign_dashboard_widgets.edit', $widget) }}"

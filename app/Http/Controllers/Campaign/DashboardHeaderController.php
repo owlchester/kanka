@@ -29,7 +29,7 @@ class DashboardHeaderController extends Controller
         }
 
         return view('campaigns.forms.dashboard-header.edit')
-            ->with('model', $campaign)
+            ->with('campaign', $campaign)
             ->with('ajax', $ajax)
             ->with('widget', $campaignDashboardWidget);
     }
@@ -47,8 +47,12 @@ class DashboardHeaderController extends Controller
 
         $campaign->update($request->only('excerpt'));
 
+        $options = ['campaign' => $campaign];
+        if ($campaignDashboardWidget->dashboard_id) {
+            $options['dashboard'] = $campaignDashboardWidget->dashboard_id;
+        }
         return redirect()
-            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
+            ->route('dashboard.setup', $options)
             ->with('success', __('campaigns/dashboard-header.edit.success'));
     }
 }

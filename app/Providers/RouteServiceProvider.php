@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Api\v1\HealthController;
+use App\Models\Campaign;
 use App\Models\Plugin;
+use App\Models\Vanity;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -33,6 +35,8 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::model('plugin', Plugin::class);
+        Route::model('campaign', Campaign::class);
+        //Route::model('vanity', Vanity::class);
     }
 
     /**
@@ -47,6 +51,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
         $this->mapFrontRoutes();
         $this->mapCampaignRoutes();
+        //$this->mapVanityRoutes();
         $this->mapProfileRoutes();
         $this->mapPartnerRoutes();
         $this->mapAuthRoutes();
@@ -106,6 +111,23 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime', 'campaign'])
             ->prefix(LaravelLocalization::setLocale() . '/' . CampaignLocalization::setCampaign())
+            ->namespace($this->namespace)
+            ->group(base_path('routes/campaign.php'));
+
+        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
+            ->prefix(LaravelLocalization::setLocale() . '/w/{campaign}')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/campaign_v2.php'));
+    }
+
+    /**
+     * Allow vanity urls for some campaigns
+     * @return void
+     */
+    protected function mapVanityRoutes()
+    {
+        Route::domain('{vanity}.' . env('APP_URL'))
+            ->middleware(['web'])
             ->namespace($this->namespace)
             ->group(base_path('routes/campaign.php'));
     }

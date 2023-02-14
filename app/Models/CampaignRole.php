@@ -247,4 +247,9 @@ class CampaignRole extends Model
     {
         return 'campaign_roles.' . $sub;
     }
+
+    public function routeParams(array $options = []): array
+    {
+        return ['campaign' => $this->campaign_id, 'campaign_role' => $this->id];
+    }
 }

@@ -9,8 +9,6 @@ use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\DeleteCampaign;
 use App\Services\MultiEditingService;
 use App\Services\CampaignService;
-use App\Services\EntityService;
-use App\Services\StarterService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -25,8 +23,6 @@ class CampaignController extends Controller
     protected string $view = 'campaigns';
 
     protected CampaignService $campaignService;
-    protected EntityService $entityService;
-    protected StarterService $starterService;
 
     /**
      * Create a new controller instance.
@@ -34,21 +30,18 @@ class CampaignController extends Controller
      * CampaignController constructor.
      * @param CampaignService $campaignService
      */
-    public function __construct(CampaignService $campaignService, EntityService $entityService, StarterService $starterService)
+    public function __construct(CampaignService $campaignService)
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'css']]);
         $this->campaignService = $campaignService;
-        $this->entityService = $entityService;
-        $this->starterService = $starterService;
     }
 
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index(Request $request)
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         return view($this->view . '.show', compact('campaign'));
     }
 
@@ -87,12 +80,6 @@ class CampaignController extends Controller
             $campaign = Campaign::create($data);
             auth()->user()->setCurrentCampaign($campaign);
 
-            // If it's the first campaign for the user, generate some boilerplate content
-            /*if ($first) {
-                CampaignLocalization::forceCampaign($campaign);
-                $this->starterService->generateBoilerplate($campaign);
-            }*/
-
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -121,9 +108,8 @@ class CampaignController extends Controller
      * @param Campaign $campaign
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show()
+    public function show(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         return view($this->view . '.show', compact('campaign'));
     }
 
@@ -132,9 +118,8 @@ class CampaignController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit()
+    public function edit(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         /** @var MiscModel $model */
@@ -149,7 +134,12 @@ class CampaignController extends Controller
                 $editingService->edit();
             }
         }
-        return view($this->view . '.edit', ['model' => $campaign, 'start' => false, 'editingUsers' => $editingUsers]);
+        return view($this->view . '.edit', [
+            'model' => $campaign,
+            'campaign' => $campaign,
+            'start' => false,
+            'editingUsers' => $editingUsers
+        ]);
     }
 
     /**
@@ -158,9 +148,8 @@ class CampaignController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreCampaign $request)
+    public function update(Campaign $campaign, StoreCampaign $request)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $data = $request->all();
@@ -186,7 +175,7 @@ class CampaignController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->route('campaigns.edit', $campaign)
+                ->route('edit', $campaign)
                 ->with('success', __($this->view . '.edit.success'));
         }
         if ($request->has('submit-new')) {
@@ -195,7 +184,7 @@ class CampaignController extends Controller
                 ->with('success', __($this->view . '.edit.success'));
         }
 
-        return redirect()->route('campaign')
+        return redirect()->route('overview', $campaign)
             ->with('success', __($this->view . '.edit.success'));
     }
 
@@ -205,9 +194,8 @@ class CampaignController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(DeleteCampaign $request)
+    public function destroy(Campaign $campaign, DeleteCampaign $request)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('delete', $campaign);
 
         $this->campaignService->delete($campaign);
@@ -220,9 +208,8 @@ class CampaignController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function leave()
+    public function leave(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('leave', $campaign);
 
         try {
@@ -237,9 +224,8 @@ class CampaignController extends Controller
      * Get the campaign css
      * @return Response
      */
-    public function css()
+    public function css(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $css = null;
         if ($campaign->boosted()) {
             $css = CampaignCache::styles();

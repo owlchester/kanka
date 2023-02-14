@@ -2,7 +2,7 @@
 <div class="grid grid-cols-2 md:grid-cols-5 gap-5 mb-5">
 
     @can ('update', $campaign)
-        <a href="#" role="button" class="block rounded-xl p-5 text-center overflow-hidden bg-box drop-shadow" data-url="{{ route('campaign-visibility', ['from' => 'overview']) }}" data-target="#entity-modal" data-toggle="ajax-modal">
+        <a href="#" role="button" class="block rounded-xl p-5 text-center overflow-hidden bg-box drop-shadow" data-url="{{ route('campaign-visibility', [$campaign, 'from' => 'overview']) }}" data-target="#entity-modal" data-toggle="ajax-modal">
     @else
         <div class="rounded-xl p-5 text-center bg-box drop-shadow">
     @endcan

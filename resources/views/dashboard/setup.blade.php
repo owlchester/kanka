@@ -129,7 +129,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
                 <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background" @if($campaignService->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }})" @endif
                     data-toggle="ajax-modal"
                      data-target="#large-modal"
-                     data-url="{{ route('campaigns.dashboard-header.edit', $campaignService->campaign()) }}"
+                     data-url="{{ route('dashboard-header.edit', $campaign) }}"
                 >
                     <div class="widget-overlay">
                         <span class="widget-type">{{ __('dashboard.setup.widgets.campaign') }}</span>

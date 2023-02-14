@@ -26,11 +26,13 @@ class PostController extends Controller
     {
         $this->authorize('post', [$entity->child, 'add']);
         $parentRoute = $entity->pluralType();
+        $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.posts.create', compact(
             'post',
             'entity',
             'parentRoute',
+            'campaign',
         ));
     }
 
@@ -103,7 +105,8 @@ class PostController extends Controller
             'model',
             'parentRoute',
             'from',
-            'editingUsers'
+            'editingUsers',
+            'campaign'
         ));
     }
 

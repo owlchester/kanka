@@ -9,10 +9,10 @@
         <h3 class="box-title">{{ __('campaigns.roles.members') }}</h3>
         <div class="box-tools">
             @can('user', $role)
-                <a href="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}"
+                <a href="{{ route('campaign_roles.campaign_role_users.create', ['campaign' => $campaign, 'campaign_role' => $role]) }}"
                    class="btn btn-box-tool"
                    data-toggle="ajax-modal" data-target="#entity-modal"
-                   data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
+                   data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign' => $campaign, 'campaign_role' => $role]) }}">
                     <i class="fa-solid fa-plus"></i>
                     {{ __('campaigns.roles.users.actions.add') }}
                 </a>
@@ -41,10 +41,10 @@
                 <p>{{__('campaigns.roles.hints.empty_role')}}</p>
 
                 @can('user', $role)
-                <button href="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}"
+                <button href="{{ route('campaign_roles.campaign_role_users.create', ['campaign' => $campaign, 'campaign_role' => $role]) }}"
                    class="btn btn-default"
                    data-toggle="ajax-modal" data-target="#entity-modal"
-                   data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
+                   data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign' => $campaign, 'campaign_role' => $role]) }}">
                     <i class="fa-solid fa-plus"></i>
                     {{ __('campaigns.roles.users.actions.add') }}
                 </button>
@@ -64,7 +64,7 @@
     @foreach ($members as $relation)
         @can('delete', [$relation, $role])
         {!! Form::open([
-                'method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign_role' => $role, 'campaign_role_user' => $relation->id],
+                'method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign' => $campaign, 'campaign_role' => $role, 'campaign_role_user' => $relation->id],
                 'style' => 'display:inline',
                 'id' => 'campaign-role-member-' . $relation->id
             ]) !!}

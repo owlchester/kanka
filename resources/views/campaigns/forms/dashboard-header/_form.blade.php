@@ -29,9 +29,8 @@
                 <p class="help-block">
                     {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => auth()->user()->maxUploadSize(true)]) }}
                     {{ __('crud.hints.image_recommendation', ['width' => '1200', 'height' => '400']) }}
-                    @php $currentCampaign = \App\Facades\CampaignLocalization::getCampaign(false); @endphp
                     @subscriber()
-                        @if ($currentCampaign && !$currentCampaign->boosted())
+                        @if ($campaign && !$campaign->boosted())
                             <p>
                                 <a href="{{ route('settings.boost', ['campaign' => $currentCampaign]) }}">
                                     <i class="fa-solid fa-rocket" aria-hidden="true"></i>
@@ -45,10 +44,10 @@
                 </p>
             </div>
             <div class="col-md-2">
-                @if (!empty($model->header_image))
+                @if (!empty($campaign->header_image))
                     @include('cruds.fields._image_preview', [
-                        'image' => $model->thumbnail(200, 160, 'header_image'),
-                        'title' => $model->name,
+                        'image' => $campaign->thumbnail(200, 160, 'header_image'),
+                        'title' => $campaign->name,
                         'target' => 'remove-header_image'
                     ])
                 @endif

@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns/export.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.export')
     ],
     'canonical' => true,
@@ -30,7 +30,7 @@
                 <div class="col-sm-12 col-md-6 col-md-offset-3 text-center my-5">
                     <i class="fa-solid fa-spinner fa-spin fa-2x campaign-export-spinner" aria-hidden="true"></i>
 
-                    <button class="btn btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process') }}" style="display: none">
+                    <button class="btn btn-primary btn-large campaign-export-btn" data-url="{{ route('export-process', $campaign) }}" style="display: none">
                         <i class="fa-solid fa-download" aria-hidden="true"></i>
                         {{ __('campaigns/export.actions.export') }}
                     </button>

@@ -37,8 +37,8 @@
                     </a>
                 @elseif (is_array($action))
                     @if (\Illuminate\Support\Arr::get($action, 'type') === 'ajax-modal')
-                        <a href="{{ route($action['route'], $model) }}"
-                           data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route($action['route'], $model) }}">
+                        <a href="{{ route($action['route'], method_exists($model, 'routeParams') ? $model->routeParams($params) : $model) }}"
+                           data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route($action['route'], method_exists($model, 'routeParams') ? $model->routeParams($params) : $model) }}">
                             @if (!empty($action['icon']))
                                 <i class="{{ $action['icon'] }}" aria-hidden="true"></i>
                             @endif

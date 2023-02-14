@@ -16,7 +16,7 @@
                             <a class="btn btn-xl btn-primary"
                                href="#"
                                data-toggle="ajax-modal"
-                               data-url="{{ route('campaign_submissions.edit', [$submission->id, 'action' => 'approve']) }}"
+                               data-url="{{ route('campaign_submissions.edit', [$campaign, $submission->id, 'action' => 'approve']) }}"
                                data-target="#entity-modal"
                                title="{{ __('campaigns/submissions.actions.accept') }}">
                                 <i class="fa-solid fa-check"></i>
@@ -25,7 +25,7 @@
                             <a class="btn btn-xl btn-danger pull-right"
                                href="#"
                                data-toggle="ajax-modal"
-                               data-url="{{ route('campaign_submissions.edit', [$submission->id, 'action' => 'reject']) }}"
+                               data-url="{{ route('campaign_submissions.edit', [$campaign, $submission->id, 'action' => 'reject']) }}"
                                data-target="#entity-modal"
                                title="{{ __('campaigns/submissions.actions.reject') }}">
                                 <i class="fa-solid fa-times"></i>

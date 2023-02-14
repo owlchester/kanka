@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRoleUser;
 use App\Models\CampaignRoleUser;
@@ -28,9 +29,9 @@ class CampaignRoleUserController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    public function index(Campaign $campaign)
     {
-        return redirect()->route('campaign_roles.index');
+        return redirect()->route('campaign_roles.index', $campaign);
     }
 
     /**
@@ -38,7 +39,7 @@ class CampaignRoleUserController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create(CampaignRole $campaignRole)
+    public function create(Campaign $campaign, CampaignRole $campaignRole)
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('roles', $campaign);
@@ -53,14 +54,14 @@ class CampaignRoleUserController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StoreCampaignRoleUser $request, CampaignRole $campaignRole)
+    public function store(StoreCampaignRoleUser $request, Campaign $campaign, CampaignRole $campaignRole)
     {
-        $campaign = $campaignRole->campaign;
         $this->authorize('roles', $campaign);
         $this->authorize('create', CampaignRole::class);
 
         $relation = CampaignRoleUser::create($request->all());
         return redirect()->route('campaign_roles.show', [
+            'campaign' => $campaign,
             'campaign_role' => $campaignRole])
             ->with('success', __($this->view . '.create.success', [
                 'user' => $relation->user->name,
@@ -73,10 +74,10 @@ class CampaignRoleUserController extends Controller
      * @param CampaignRoleUser $campaignRoleUser
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
+    public function show(Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
         return redirect()
-            ->route('campaign_roles.show', $campaignRole);
+            ->route('campaign_roles.show', [$campaign, $campaignRole]);
     }
 
     /**
@@ -85,9 +86,8 @@ class CampaignRoleUserController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
+    public function destroy(Campaign $campaign, CampaignRole $campaignRole, CampaignRoleUser $campaignRoleUser)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('roles', $campaign);
         $this->authorize('delete', [$campaignRoleUser, $campaignRole]);
 
@@ -97,11 +97,11 @@ class CampaignRoleUserController extends Controller
                 ->element($campaignRoleUser)
                 ->delete();
         } catch (TranslatableException $e) {
-            return redirect()->route('campaign_roles.show', $campaignRole)
+            return redirect()->route('campaign_roles.show', [$campaign, $campaignRole])
                 ->with('error_raw', $e->getTranslatedMessage());
         }
 
-        return redirect()->route('campaign_roles.show', $campaignRole)
+        return redirect()->route('campaign_roles.show', [$campaign, $campaignRole])
             ->with('success', __($this->view . '.destroy.success', [
                 'user' => $campaignRoleUser->user->name,
                 'role' => $campaignRoleUser->campaignRole->name

@@ -20,19 +20,19 @@ class DatagridRenderer2
     protected $layout;
 
     /** @var array  */
-    protected $deleteForms = [];
+    protected array $deleteForms = [];
 
     /** @var array Action params for the edit/delete */
-    protected $actionParams = [];
+    protected array $actionParams = [];
 
     /** @var bool If permissions are checked or not. If false, assume we are admin. */
-    protected $permissions = true;
+    protected bool $permissions = true;
 
     protected $routeName = null;
-    protected $routeOptions = [];
+    protected array $routeOptions = [];
 
     /** @var bool|array */
-    protected $bulks = false;
+    protected bool|array $bulks = false;
 
     /** @var \App\Models\Campaign */
     protected $campaign;
@@ -41,6 +41,7 @@ class DatagridRenderer2
 
     public function __construct()
     {
+        // Todo: remove this
         $this->campaign = CampaignLocalization::getCampaign();
     }
 
@@ -81,7 +82,7 @@ class DatagridRenderer2
 
     /**
      * Set which element needs to be highlighted
-     * @param callable $highlight
+     * @param Closure $highlight
      * @return $this
      */
     public function highlight(Closure $highlight): self

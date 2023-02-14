@@ -13,7 +13,7 @@
         </div>
     </div>
 @else
-    <div class="box box-module cursor-pointer box-solid flex flex-wrap flex-col select-none {{ $campaign->enabled($module) ? 'box-success' : 'box-default' }} {{ isset($deprecated) ? 'box-deprecated' : null }}" id="{{ $module }}" data-url="{{ route('campaign.modules.toggle', ['module' => $module]) }}">
+    <div class="box box-module cursor-pointer box-solid flex flex-wrap flex-col select-none {{ $campaign->enabled($module) ? 'box-success' : 'box-default' }} {{ isset($deprecated) ? 'box-deprecated' : null }}" id="{{ $module }}" data-url="{{ route('modules.toggle', [$campaign, 'module' => $module]) }}">
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="{{ $icon }}"></i> {{ __('entities.' . $module) }}

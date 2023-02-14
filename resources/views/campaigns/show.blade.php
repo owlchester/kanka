@@ -2,7 +2,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')]
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')]
     ],
     'canonical' => true,
     'mainTitle' => false,
@@ -29,7 +29,7 @@
                 @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
                     <div class="alert alert-warning">
                         <p>{!! __('campaigns.helpers.public_no_visibility', [
-    'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'))
+    'fix' => link_to_route('campaign_roles.public', __('crud.fix-this-issue'))
 ]) !!}</p>
                     </div>
                 @endif
@@ -44,7 +44,7 @@
                     </h3>
                     <div class="box-tools pull-right">
                         @can('update', $campaign)
-                            <a href="{{ route('campaigns.edit') }}" class="btn btn-box-tool" title="{{ __('campaigns.show.actions.edit') }}">
+                            <a href="{{ route('edit', $campaign) }}" class="btn btn-box-tool" title="{{ __('campaigns.show.actions.edit') }}">
                                 <i class="fa-solid fa-edit" aria-hidden="true"></i>
                             </a>
                         @endcan
@@ -52,7 +52,7 @@
                 </div>
                 <div class="box-body">
                     @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry()))
-                        <a href="{{ route('campaigns.edit') }}">
+                        <a href="{{ route('edit', $campaign) }}">
                             {{ __('campaigns.helpers.no_entry') }}
                         </a>
                     @else

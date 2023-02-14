@@ -4,7 +4,7 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Services\SidebarService $sidebar
  */
-$currentCampaign = CampaignLocalization::getCampaign();
+$currentCampaign = $campaign ?? CampaignLocalization::getCampaign();
 $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
 ?>
 @if (!empty($currentCampaign))
@@ -51,7 +51,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                 $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                             }
                             @endphp
-                            <a href="{{ route($route) }}">
+                            <a href="{{ route($route, ['campaign' => $currentCampaign]) }}">
                                 <i class="{{ $element['custom_icon'] ?: $element['icon']  }}"></i>
                                 {!! $element['custom_label'] ?: $element['label']  !!}
                             </a>
@@ -72,7 +72,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                         $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                                     }
                                 @endphp
-                                <a href="{{ route($route) }}">
+                                <a href="{{ route($route, ['campaign' => $currentCampaign]) }}">
                                     <i class="{{ $child['custom_icon'] ?: $child['icon'] }}"></i>
                                     {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>

@@ -42,10 +42,10 @@ class Plugin extends Layout
                         return $base;
                     }
 
-                    return '<a href="' . route('campaign_plugins.update-info', $model)
+                    return '<a href="' . route('campaign_plugins.update-info', ['plugin' => $model, 'campaign' => $model->pivot->campaign_id])
                             . '" class="btn btn-xs btn-info" data-toggle="ajax-modal" '
                             . 'data-target="#entity-modal" data-url="'
-                            . route('campaign_plugins.update-info', $model) . '">'
+                            . route('campaign_plugins.update-info', ['plugin' => $model, 'campaign' => $model->pivot->campaign_id]) . '">'
                             . __('campaigns/plugins.actions.update_available')
                             . '</a> ' . $base
                     ;
