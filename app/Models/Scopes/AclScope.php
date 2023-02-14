@@ -73,7 +73,8 @@ class AclScope implements Scope
         }
 
         // Campaign admins doesn't have any restrictions on base
-        Permissions::campaign(CampaignLocalization::getCampaign())
+        $campaign = CampaignLocalization::getCampaign();
+        Permissions::campaign($campaign)
             ->action(CampaignPermission::ACTION_READ);
         if (auth()->check()) {
             Permissions::user(auth()->user());

@@ -47,7 +47,7 @@ class StarterService
      */
     public function generateBoilerplate()
     {
-        // We need this for the acl scopes. Can't save the models quietly because we're trying to set up a tree.
+        // For some reason, we need this for the node to be properly created (child location)
         CampaignLocalization::forceCampaign($this->campaign);
 
         // Generate locations
