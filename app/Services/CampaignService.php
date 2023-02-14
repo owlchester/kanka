@@ -64,9 +64,10 @@ class CampaignService
     public static function switchCampaign(Campaign $campaign)
     {
         session()->put('campaign_id', $campaign->id);
+        /** @var User $user */
         $user = auth()->user();
         $user->last_campaign_id = $campaign->id;
-        $user->save();
+        $user->saveQuietly();
     }
 
     /**
