@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Character;
 use App\Models\CharacterOrganisation;
 use App\Models\OrganisationMember;
@@ -84,9 +85,14 @@ class CharacterOrganisationController extends Controller
     public function edit(Character $character, CharacterOrganisation $characterOrganisation)
     {
         $this->authorize('organisation', [$character, 'edit']);
+        if ($character->id !== $characterOrganisation->character_id) {
+            abort(404);
+        }
         $ajax = request()->ajax();
+        $campaign = CampaignLocalization::getCampaign();
 
         return view($this->view . '.' . ($ajax ? '_' : null) . 'edit', [
+            'campaign' => $campaign,
             'model' => $character,
             'member' => $characterOrganisation,
             'ajax' => $ajax
@@ -106,6 +112,9 @@ class CharacterOrganisationController extends Controller
         CharacterOrganisation $characterOrganisation
     ) {
         $this->authorize('organisation', [$character, 'edit']);
+        if ($character->id !== $characterOrganisation->character_id) {
+            abort(404);
+        }
 
         $characterOrganisation->update($request->all());
 
@@ -129,6 +138,9 @@ class CharacterOrganisationController extends Controller
     public function destroy(Character $character, CharacterOrganisation $characterOrganisation)
     {
         $this->authorize('organisation', [$character, 'delete']);
+        if ($character->id !== $characterOrganisation->character_id) {
+            abort(404);
+        }
 
         $characterOrganisation->delete();
 

@@ -122,36 +122,6 @@ class User extends \Illuminate\Foundation\Auth\User
     ];
 
     /**
-     * Todo: remove this concept
-     * Get the user's campaign.
-     * This is the equivalent of calling user->campaign or user->getCampaign
-     * @return Campaign|null
-     */
-    public function getCampaignAttribute()
-    {
-        // We use a dirty static system because relying on the last_campaign_id doesn't work when two sessions
-        // are active form the same user.
-        if (self::$currentCampaign === false) {
-            self::$currentCampaign = CampaignLocalization::getCampaign();
-        }
-        return self::$currentCampaign;
-    }
-
-    /**
-     * Get the other campaigns of the user
-     * @param bool $hasEmpty
-     * @return array
-     */
-    public function moveCampaignList(bool $hasEmpty = true): array
-    {
-        $campaigns = $hasEmpty ? [0 => ''] : [];
-        foreach ($this->campaigns()->whereNotIn('campaign_id', [$this->campaign->id])->get() as $campaign) {
-            $campaigns[$campaign->id] = $campaign->name;
-        }
-        return $campaigns;
-    }
-
-    /**
      * @param int $size = 40
      * @return string
      */
@@ -170,8 +140,8 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function rolesList(int $campaignId = null): string
     {
-        if ($campaignId === null && !empty($this->campaign)) {
-            $campaignId = $this->campaign->id;
+        if ($campaignId === null) {
+            $campaignId = CampaignLocalization::getCampaign()->id;
         }
 
         /** @var CampaignRole[] $roles */
@@ -187,11 +157,9 @@ class User extends \Illuminate\Foundation\Auth\User
         return (string) implode(', ', $roleLinks);
     }
 
-    public function hasCampaignRole(int $roleId)
+    public function hasCampaignRole(Campaign $campaign, int $roleId)
     {
-        $campaignId = $this->campaign->id;
-        $roleIds = $this->campaignRoles->where('campaign_id', $campaignId)->pluck('id')->toArray();
-
+        $roleIds = $this->campaignRoles->where('campaign_id', $campaign->id)->pluck('id')->toArray();
         return in_array($roleId, $roleIds);
     }
 
@@ -200,7 +168,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isAdmin(): bool
     {
-        return UserCache::user($this)->campaign($this->campaign)->admin();
+        return UserCache::user($this)->admin();
     }
 
     /**

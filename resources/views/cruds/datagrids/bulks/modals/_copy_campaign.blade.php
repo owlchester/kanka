@@ -10,7 +10,7 @@
 
     <div class="form-group">
         <label>{{ __('entities/move.fields.campaign') }}</label>
-        {!! Form::select('campaign', Auth::user()->moveCampaignList(false), null, ['class' => 'form-control']) !!}
+        {!! Form::select('campaign', $campaigns, null, ['class' => 'form-control']) !!}
     </div>
 
     @if(view()->exists($type . '.bulk.modals._copy_to_campaign'))

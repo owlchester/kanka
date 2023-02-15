@@ -26,9 +26,9 @@ class OrganisationMemberPolicy
      * @param  \App\Models\Entity  $entity
      * @return mixed
      */
-    public function update(User $user, $entity)
+    public function update(?User $user, $entity)
     {
-        if (auth()->guest() || $entity->organisation->campaign_id != $user->campaign->id) {
+        if (!$user) {
             return false;
         }
         return auth()->user()->can('update', $entity->organisation) ||
@@ -43,9 +43,9 @@ class OrganisationMemberPolicy
      * @param  \App\Models\Entity  $entity
      * @return mixed
      */
-    public function delete(User $user, $entity)
+    public function delete(?User $user, $entity)
     {
-        if (auth()->guest() || $entity->organisation->campaign_id != $user->campaign->id) {
+        if (!$user) {
             return false;
         }
         return auth()->user()->can('delete', $entity->organisation) ||

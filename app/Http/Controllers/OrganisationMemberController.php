@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Http\Requests\StoreOrganisationMember;
@@ -69,9 +70,14 @@ class OrganisationMemberController extends Controller
     public function edit(Organisation $organisation, OrganisationMember $organisationMember)
     {
         $this->authorize('member', $organisation);
+        if ($organisationMember->organisation_id !== $organisation->id) {
+            abort(404);
+        }
         $ajax = request()->ajax();
+        $campaign = CampaignLocalization::getCampaign();
 
         return view($this->view . '.edit', [
+            'campaign' => $campaign,
             'model' => $organisation,
             'member' => $organisationMember,
             'ajax' => $ajax
@@ -87,6 +93,9 @@ class OrganisationMemberController extends Controller
         OrganisationMember $organisationMember
     ) {
         $this->authorize('member', $organisation);
+        if ($organisationMember->organisation_id !== $organisation->id) {
+            abort(404);
+        }
 
         $organisationMember->update($request->all());
         return redirect()->route('organisations.show', $organisation->id)
@@ -99,6 +108,9 @@ class OrganisationMemberController extends Controller
     public function destroy(Organisation $organisation, OrganisationMember $organisationMember)
     {
         $this->authorize('member', $organisation);
+        if ($organisationMember->organisation_id !== $organisation->id) {
+            abort(404);
+        }
 
         $organisationMember->delete();
         return redirect()->route('organisations.show', $organisationMember->organisation_id)

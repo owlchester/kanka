@@ -39,8 +39,11 @@ class MoveController extends Controller
     {
         $this->authorize('view', $entity->child);
 
-        $campaigns = Auth::user()->moveCampaignList();
-        $campaigns[0] = __('entities/move.fields.select_one');
+        $campaigns = [0 => __('entities/move.fields.select_one')];
+        $campaign = CampaignLocalization::getCampaign();
+        foreach (auth()->user()->campaigns()->whereNot('campaign_id', $campaign->id)->get() as $camp) {
+            $campaigns[$camp->id] = $camp->name;
+        }
 
         return view('entities.pages.move.index', compact(
             'entity',

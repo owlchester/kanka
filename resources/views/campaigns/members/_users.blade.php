@@ -73,7 +73,7 @@
     {!! str_replace('"', '\'', csrf_field()) !!}
 
                                     <button class='btn btn-block btn-role-update mb-2'>
-                                    @if($relation->user->hasCampaignRole($role->id))
+                                    @if($relation->user->hasCampaignRole($campaign, $role->id))
                                         <span class='text-danger'><i class='fa-solid fa-times' aria-hidden='true'></i> {{ $role->name }}</span>
                                     @else
                                         <i class='fa-solid fa-plus' aria-hidden='true'></i> {{ $role->name }}

@@ -106,7 +106,7 @@ class BulkController extends Controller
         }
 
         $type = request()->get('type');
-        $templates = [];
+        $templates = $campaigns = [];
         $entities = null;
 
         if (request()->get('view') == 'templates') {
@@ -117,11 +117,17 @@ class BulkController extends Controller
             $entities = $this->entityService
                 ->labelledEntities(true, [Str::plural($type), 'menu_links', 'relations'], true);
             $entities[''] = __('entities/transform.fields.select_one');
+        } elseif (request()->get('view') === 'copy_campaign') {
+            $campaign = CampaignLocalization::getCampaign();
+            foreach (auth()->user()->campaigns()->whereNot('campaign_id', $campaign->id)->get() as $camp) {
+                $campaigns[$camp->id] = $camp->name;
+            }
         }
 
         $campaign = $this->campaign;
         return view('cruds.datagrids.bulks.modals._' . $request->get('view'), compact(
             'campaign',
+            'campaigns',
             'templates',
             'type',
             'entities'
