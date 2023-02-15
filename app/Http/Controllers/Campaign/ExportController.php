@@ -21,7 +21,7 @@ class ExportController extends Controller
      */
     public function __construct(ExportService $exportService)
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'index']);
         $this->service = $exportService;
     }
 
@@ -30,6 +30,7 @@ class ExportController extends Controller
      */
     public function index(Campaign $campaign)
     {
+        $this->authorize('admin', $campaign);
         return view('campaigns.export', compact('campaign'));
     }
 

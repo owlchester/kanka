@@ -16,7 +16,7 @@ class StatController extends Controller
 
     public function __construct(StatService $service)
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'index']);
         $this->service = $service;
     }
 

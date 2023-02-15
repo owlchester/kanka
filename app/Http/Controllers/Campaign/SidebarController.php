@@ -12,7 +12,7 @@ class SidebarController extends Controller
 
     public function __construct(SidebarService $service)
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'index']);
         $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;

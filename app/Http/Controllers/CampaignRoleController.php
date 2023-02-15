@@ -24,8 +24,7 @@ class CampaignRoleController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('campaign.member');
+        $this->middleware('auth', ['except' => 'index']);
     }
 
     /**
@@ -34,6 +33,7 @@ class CampaignRoleController extends Controller
      */
     public function index(Campaign $campaign)
     {
+        $this->authorize('admin', $campaign);
         Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignRole::class)
             ->route('campaign_roles.index', ['campaign' => $campaign]);
 

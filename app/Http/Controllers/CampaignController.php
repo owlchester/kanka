@@ -42,6 +42,7 @@ class CampaignController extends Controller
      */
     public function index(Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
         return view($this->view . '.show', compact('campaign'));
     }
 

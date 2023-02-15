@@ -15,8 +15,7 @@ class SubmissionController extends Controller
 
     public function __construct(SubmissionService $service)
     {
-        $this->middleware('auth');
-
+        $this->middleware('auth', ['except' => 'index']);
         $this->service = $service;
     }
 

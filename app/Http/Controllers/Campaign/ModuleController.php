@@ -14,7 +14,7 @@ class ModuleController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'index']);
     }
 
     /**
@@ -22,6 +22,7 @@ class ModuleController extends Controller
      */
     public function index(Campaign $campaign)
     {
+        $this->authorize('setting', $campaign);
         return view('campaigns.settings', compact('campaign'));
     }
 
