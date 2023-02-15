@@ -16,7 +16,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-map-markers'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 
 @include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])

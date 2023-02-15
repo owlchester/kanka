@@ -11,25 +11,21 @@
     'miscModel' => $model,
     'bodyClass' => 'entity-image-replace'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 
 @section('content')
     @include('partials.errors')
-    <div class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">
+        <div class="modal-header">
+            @if(request()->ajax())
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+            @endif
+
+            <h3 class="modal-title">
                 {{ __('entities/image.replace.panel_title') }}
             </h3>
-            @if(request()->ajax())
-                <div class="box-tools">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
         </div>
-        <div class="box-body">
+        <div class="modal-body">
             {!! Form::open([
                 'route' => ['entities.image.replace', $entity],
                 'method' => 'POST',
@@ -38,11 +34,11 @@
 
             @include('cruds.fields.image', ['imageRequired' => false, 'model' => $model])
 
-            @includeWhen($campaignService->campaign()->boosted(), 'cruds.fields.entity_image')
+            @includeWhen($campaign->boosted(), 'cruds.fields.entity_image')
 
-            <input type="submit" class="btn btn-block btn-primary" value="{{ __('entities/image.actions.save-replace') }}" />
-
-            {!! Form::close() !!}
         </div>
-    </div>
+        <div class="modal-footer">
+            <input type="submit" class="btn btn-block btn-primary" value="{{ __('entities/image.actions.save-replace') }}" />
+        </div>
+    {!! Form::close() !!}
 @endsection

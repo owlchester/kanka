@@ -29,7 +29,7 @@
 
 @include('cruds.fields.entry2')
 
-@if ($campaignService->enabled('characters'))
+@if ($campaign->enabled('characters'))
     <div class="form-group">
         @include('components.form.members', ['options' => [
             'model' => $model ?? FormCopy::model(),

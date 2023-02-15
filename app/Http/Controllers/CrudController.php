@@ -355,13 +355,14 @@ class CrudController extends Controller
         }
         $name = $this->view;
         $ajax = request()->ajax();
+        $campaign = CampaignLocalization::getCampaign();
 
         // Fix for models without an entity
         if (empty($model->entity) && !($model instanceof MenuLink)) {
             if (auth()->guest()) {
                 abort(404);
             }
-            if (Permissions::user(auth()->user())->campaign(CampaignLocalization::getCampaign())->isAdmin()) {
+            if (Permissions::user(auth()->user())->campaign($campaign)->isAdmin()) {
                 dd('CCS16 - Error');
             } else {
                 abort(404);
@@ -370,7 +371,7 @@ class CrudController extends Controller
 
         return view(
             'cruds.show',
-            compact('model', 'name', 'ajax')
+            compact('campaign', 'model', 'name', 'ajax')
         );
     }
 
@@ -530,6 +531,7 @@ class CrudController extends Controller
         // Policies will always fail if they can't resolve the user.
         $this->authCheck($model);
 
+        $campaign = CampaignLocalization::getCampaign();
         $name = $this->view;
         $fullview = $this->view . '.' . $view;
         if ($directView) {
@@ -542,6 +544,7 @@ class CrudController extends Controller
         $rows = $this->rows;
 
         return view('cruds.subview', compact(
+            'campaign',
             'fullview',
             'model',
             'name',

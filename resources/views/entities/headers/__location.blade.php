@@ -1,9 +1,8 @@
 <?php /**
  * @var \App\Models\MiscModel $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
-@if ($campaignService->enabled('locations') && $model->location)
+@if ($campaign->enabled('locations') && $model->location)
     <div class="entity-header-sub pull-left">
         <i class="ra ra-tower" title="{{ __('entities.location') }}"></i>
 

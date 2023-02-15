@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('timelines'))
+@if (!$campaign->enabled('timelines'))
     <?php return ?>
 @endif
 

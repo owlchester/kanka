@@ -13,7 +13,7 @@
 
     <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
 
-        @if ($campaignService->enabled('locations') && !$model->locations->isEmpty())
+        @if ($campaign->enabled('locations') && !$model->locations->isEmpty())
             <div class="element profile-location">
                 <div class="title">
                     {{ __('creatures.fields.locations') }}

@@ -29,7 +29,7 @@
         ],
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => '<i class="fa-solid fa-users" title="' . __('maps.fields.maps') . '"></i>',
@@ -46,6 +46,5 @@
         'route' => 'maps.index',
         'baseRoute' => 'maps',
         'trans' => 'maps.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

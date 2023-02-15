@@ -20,7 +20,7 @@
         [
             'label' => __('entities.character'),
             'field' => 'diceRoll.character.name',
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 if ($model->diceRoll->character) {
                     return $model->diceRoll->character->tooltipedLink();
@@ -49,7 +49,6 @@
         'route' => 'dice_roll_results.index',
         'baseRoute' => 'dice_roll_results',
         'trans' => 'dice_rolls.fields.',
-        'campaignService' => $campaignService,
         'disableEntity' => true,
     ]
 ) !!}

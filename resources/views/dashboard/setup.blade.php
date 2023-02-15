@@ -13,7 +13,6 @@ $overlayClass = 'widget-overlay rounded flex gap-3 flex-col justify-center h-ful
 $newWidgetListClass = 'btn btn-block btn-default text-xl';
 @endphp
 
-@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
 
     <div class="box box-solid">
@@ -124,7 +123,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
         <div class="row" id="widgets" data-url="{{ route('dashboard.reorder', $campaign) }}">
             @if (empty($dashboard))
             <div class="col-md-12">
-                <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background" @if($campaignService->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }})" @endif
+                <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background" @if($campaign->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }})" @endif
                     data-toggle="ajax-modal"
                      data-target="#large-modal"
                      data-url="{{ route('dashboard-header.edit', $campaign) }}"

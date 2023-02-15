@@ -101,7 +101,7 @@ $sizeOptions = [
         <div class="tab-pane @if($activeTab == 5) active @endif" id="marker-poly">
             <div class="form-group">
                 <label>{{ __('maps/markers.fields.custom_shape') }}</label>
-                @if ($campaignService->campaign()->boosted())
+                @if ($campaign->boosted())
                     @if(isset($model))
                         <p class="help-block">
                             {{ __('maps/markers.helpers.polygon.edit') }}
@@ -126,7 +126,7 @@ $sizeOptions = [
                     </p>
                     {!! Form::textarea('custom_shape', \App\Facades\FormCopy::field('custom_shape')->string(), ['class' => 'form-control', 'rows' => 2, 'placeholder' => __('maps/markers.placeholders.custom_shape')]) !!}
                 @else
-                    @include('layouts.callouts.boost', ['texts' => [__('maps/markers.pitches.poly')], 'campaign' => $campaignService->campaign()])
+                    @include('layouts.callouts.boost', ['texts' => [__('maps/markers.pitches.poly')], 'campaign' => $campaign])
                 @endif
             </div>
 
@@ -171,7 +171,7 @@ $sizeOptions = [
                 </div>
             </div>
 
-            @can('mapPresets', $campaignService->campaign())
+            @can('mapPresets', $campaign)
                 <a href="{{ route('preset_types.presets.create', [$campaign, 'preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}" class="btn btn-success">
                     {{ __('presets.actions.create') }}
                 </a>

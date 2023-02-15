@@ -1,7 +1,6 @@
 <?php
 $dashboards = ['' => ''];
-//$dashboards['default'] = __('menu_links.fields.default_dashboard');
-foreach (\App\Facades\Dashboard::campaign($campaignService->campaign())->getDashboards() as $dash) {
+foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) {
     $dashboards[$dash->id] = $dash->name;
 }
 ?>
@@ -9,7 +8,7 @@ foreach (\App\Facades\Dashboard::campaign($campaignService->campaign())->getDash
     {!! __('menu_links.helpers.dashboard', ['boosted' => link_to_route('front.boosters', __('crud.boosted_campaigns'))]) !!}
 </p>
 
-@if($campaignService->campaign()->boosted())
+@if($campaign->boosted())
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">

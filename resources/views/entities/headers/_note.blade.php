@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Note $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->note)

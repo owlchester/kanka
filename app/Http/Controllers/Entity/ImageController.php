@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
@@ -21,8 +22,10 @@ class ImageController extends Controller
         } else {
             $this->authorize('update', $entity->child);
         }
+        $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.image.focus')
+            ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('model', $entity->child);
     }
@@ -59,8 +62,10 @@ class ImageController extends Controller
         } else {
             $this->authorize('update', $entity->child);
         }
+        $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.image.replace')
+            ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('model', $entity->child);
     }

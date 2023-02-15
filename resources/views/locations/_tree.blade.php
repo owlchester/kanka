@@ -32,7 +32,7 @@
         ],
         [
             'label' => __('locations.fields.characters'),
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count();
             },

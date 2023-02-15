@@ -11,7 +11,7 @@
     'miscModel' => $model,
     'bodyClass' => 'entity-image-focus'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 
 @section('content')
@@ -25,8 +25,8 @@
         </div>
         <div class="box-body">
 
-            @if ($campaignService->campaign()->boosted())
-                @if($campaignService->campaign()->superboosted() && empty($model->image) && !empty($entity->image_uuid))
+            @if ($campaign->boosted())
+                @if($campaign->superboosted() && empty($model->image) && !empty($entity->image_uuid))
                     <p class="alert alert-warning">
                         {{ __('entities/image.focus.warning') }}
                     </p>

@@ -24,15 +24,15 @@
             'type' => 'avatar',
             'parent' => 'location',
             'parent_route' => 'locations',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => '<i class="fa-solid fa-users" title="' . __('organisations.fields.members') . '"></i>',
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->members->count();
             },
@@ -57,7 +57,6 @@
         'route' => 'organisations.tree',
         'baseRoute' => 'organisations',
         'trans' => 'organisations.fields.',
-        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

@@ -1,4 +1,4 @@
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 <div class="modal-body qq-modal-selection">
     <div class="h-8">

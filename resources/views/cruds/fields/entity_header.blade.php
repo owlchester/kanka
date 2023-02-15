@@ -1,4 +1,4 @@
-@if ($campaignService->campaign()->superboosted())
+@if ($campaign->superboosted())
     @php
     $preset = null;
     if (isset($model) && $model->entity && $model->entity->header_uuid) {

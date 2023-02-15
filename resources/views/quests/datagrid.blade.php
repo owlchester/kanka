@@ -13,7 +13,7 @@
         'type',
         [
             'type' => 'character',
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'label' => __('quests.fields.character'),
         ],
         [
@@ -50,6 +50,5 @@
         'route' => 'quests.index',
         'baseRoute' => 'quests',
         'trans' => 'quests.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

@@ -172,7 +172,6 @@ Route::resources([
     //'presets' => 'PresetController',
 
     'campaign_dashboards' => 'Campaign\DashboardController',
-
 ]);
 
 

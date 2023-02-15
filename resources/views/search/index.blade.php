@@ -4,7 +4,7 @@
         __('search.title'),
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 @section('content')
     {!! Form::open(['route' => ['search', $campaign], 'method' => 'GET']) !!}

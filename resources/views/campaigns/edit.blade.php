@@ -7,8 +7,6 @@
     'canonical' => true,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
-
 @section('fullpage-form')
     {!! Form::model($model, [
         'method' => 'PATCH',
@@ -24,8 +22,8 @@
     @include('partials.errors')
     @include('campaigns.forms.' . ($start ? 'start' : 'standard'))
 
-    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('campaign.keep-alive', [$campaign]) }}" />
+    @if(!empty($model) && $model->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('campaign.keep-alive', [$model]) }}" />
     @endif
 @endsection
 
@@ -34,7 +32,6 @@
     {!! Form::close() !!}
 @endsection
 
-@inject('campaignService', 'App\Services\CampaignService')
 @include('editors.editor')
 
 @section('modals')

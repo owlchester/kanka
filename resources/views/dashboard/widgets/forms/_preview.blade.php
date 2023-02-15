@@ -1,4 +1,4 @@
-@php $boosted = $campaignService->campaign()->boosted() @endphp
+@php $boosted = $campaign->boosted() @endphp
 <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
         <li class="active">

@@ -14,7 +14,7 @@
         __('maps/markers.create.title')
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 @section('content')
     {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}

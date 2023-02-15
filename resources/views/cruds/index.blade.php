@@ -7,8 +7,6 @@
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
-
 
 @section('content')
     <div class="row mb-5">

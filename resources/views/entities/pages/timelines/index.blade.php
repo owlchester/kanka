@@ -15,7 +15,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-timelines'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 @section('content')
     @include('partials.errors')

@@ -1,7 +1,6 @@
 <?php /**
  * @var \App\Models\MenuLink $model
  * @var \App\Services\EntityService $entityService
- * @var \App\Services\CampaignService $campaign
  * @var \App\Services\SidebarService $sidebar
  */
 
@@ -30,7 +29,7 @@ if (isset($model)) {
         <div class="form-group">
             <label class="control-label">{{ __('entities/links.fields.icon') }}</label>
 
-            @if($campaignService->campaign()->boosted())
+            @if($campaign->boosted())
                 {!! Form::text(
                     'icon',
                     null,
@@ -50,7 +49,7 @@ if (isset($model)) {
             @else
                 @subscriber()
                 <p class="help-block">
-                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaign])]) !!}
                 </p>
                 @else
                     <p class="help-block">
@@ -69,7 +68,7 @@ if (isset($model)) {
                 {{ __('menu_links.fields.position') }}
                 <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{!! __('entities/links.helpers.parent') !!}" data-toggle="tooltip"></i>
             </label>
-            @if ($campaignService->campaign()->boosted())
+            @if ($campaign->boosted())
                 {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'menu_links' : $model->parent), ['class' => 'form-control']) }}
 
                 <p class="help-block visible-xs visible-sm">
@@ -78,7 +77,7 @@ if (isset($model)) {
             @else
                 @subscriber()
                     <p class="help-block">
-                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaign])]) !!}
                     </p>
                 @else
                     <p class="help-block">
@@ -94,7 +93,7 @@ if (isset($model)) {
                 {{ __('dashboard.widgets.fields.class') }}
                 <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
             </label>
-            @if ($campaignService->campaign()->boosted())
+            @if ($campaign->boosted())
                 {!! Form::text('css', null, ['class' => 'form-control', 'id' => 'config[class]', 'maxlength' => 45]) !!}
                 <p class="help-block visible-xs visible-sm">
                     {{ __('dashboard.widgets.helpers.class') }}
@@ -102,7 +101,7 @@ if (isset($model)) {
             @else
                 @subscriber()
                     <p class="help-block">
-                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaign])]) !!}
                     </p>
                 @else
                     <p class="help-block">

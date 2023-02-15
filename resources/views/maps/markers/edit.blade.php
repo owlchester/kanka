@@ -14,7 +14,7 @@
     ]
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
+
 @section('content')
     <div class="panel panel-default">
         @if ($ajax)

@@ -7,7 +7,7 @@
     'mainTitle' => false,
     'miscModel' => $model,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 @section('content')
     <header>

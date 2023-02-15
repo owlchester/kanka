@@ -8,8 +8,6 @@
     ]
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
-
 @section('content')
     {!! Form::model($ability, [
         'route' => ['entities.entity_abilities.update', $entity->id, $ability],

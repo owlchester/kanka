@@ -2,7 +2,7 @@
     'title' => __('presets.edit.title', ['name' => $preset->name]),
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 @section('content')
 

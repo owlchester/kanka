@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\MiscModel|\App\Models\Entity $model */?>
-@can('history', [$model->entity, $campaignService->campaign()])
+@can('history', [$model->entity, $campaign])
 <div class="entity-modification-history">
     <p class="help-block text-right italic text-xs">
     @if ($model->entity)

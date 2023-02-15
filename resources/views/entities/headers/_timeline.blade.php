@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Timeline $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->timeline)

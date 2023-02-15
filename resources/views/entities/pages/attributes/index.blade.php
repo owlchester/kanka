@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Inventory $item */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/attributes.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => false,
@@ -8,7 +8,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-attributes'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 
 @section('entity-header-actions')

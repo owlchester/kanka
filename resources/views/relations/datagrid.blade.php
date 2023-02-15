@@ -64,7 +64,6 @@
         'route' => 'relations.index',
         'baseRoute' => 'relations',
         'trans' => 'relations.fields.',
-        'campaignService' => $campaignService,
         'disableEntity' => true,
     ]
 ) !!}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\DeprecatedDatagridActions;
 use App\Datagrids\Filters\ConversationFilter;
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreConversation;
 use App\Models\Conversation;
 
@@ -57,13 +58,14 @@ class ConversationController extends CrudController
         } else {
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $conversation);
         }
+        $campaign = CampaignLocalization::getCampaign();
         $name = $this->view;
         $ajax = request()->ajax();
         $model = $conversation;
 
         return view(
             'cruds.show',
-            compact('model', 'name', 'ajax')
+            compact('campaign', 'model', 'name', 'ajax')
         );
     }
 

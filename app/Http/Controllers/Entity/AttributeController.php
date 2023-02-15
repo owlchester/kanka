@@ -66,7 +66,7 @@ class AttributeController extends Controller
 
 
         return view('entities.pages.attributes.index', compact(
-            'ajax',
+            'campaign',
             'entity',
             'model',
             'marketplaceTemplate',

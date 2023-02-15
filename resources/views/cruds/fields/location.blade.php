@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('locations'))
+@if (!$campaign->enabled('locations'))
     <?php return ?>
 @endif
 

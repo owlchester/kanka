@@ -7,7 +7,7 @@
         __('crud.update'),
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 @section('fullpage-form')
     {!! Form::model($model, [
@@ -33,8 +33,7 @@
             <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
         </a>
     </div>
-
-    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
+    @if(!empty($model) && $campaign->hasEditingWarning())
         <input type="hidden" id="editing-keep-alive" data-url="{{ route('posts.keep-alive', ['campaign' => $campaign, 'post' => $model, 'entity' => $entity]) }}" />
     @endif
 @endsection

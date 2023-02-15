@@ -40,6 +40,5 @@
         'route' => 'conversations.index',
         'baseRoute' => 'conversations',
         'trans' => 'conversations.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

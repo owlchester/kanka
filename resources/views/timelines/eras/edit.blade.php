@@ -13,7 +13,7 @@
         __('timelines/eras.edit.title', ['name' => $model->name])
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 @section('content')
     @include('partials.errors')
     {!! Form::model($model, [

@@ -4,7 +4,7 @@ $horizontalForm = isset($horizontalForm) ? $horizontalForm : false;
 ?>
 <div class="form-group">
     <label @if($horizontalForm) class="control-label col-sm-3 col-lg-2" @endif>{{ __('entities/links.fields.icon') }}</label>
-        @if($campaignService->campaign()->boosted())
+        @if($campaign->boosted())
             @if($horizontalForm) <div class="col-sm-9 col-lg-10"> @endif
                 {!! Form::text(
                     'icon',
@@ -24,7 +24,7 @@ $horizontalForm = isset($horizontalForm) ? $horizontalForm : false;
             @else
                 @subscriber()
                 <p class="help-block">
-                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaign])]) !!}
                 </p>
             @else
                 <p class="help-block">

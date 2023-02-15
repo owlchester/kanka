@@ -1,6 +1,4 @@
 
-@inject('campaignService', 'App\Services\CampaignService')
-
 <div class="form-group required">
     <label>{{ __('timelines/elements.fields.era') }}</label>
     {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => 'form-control']) !!}
@@ -80,7 +78,7 @@
                 null,
                 ['class' => 'form-control',
                     'placeholder' => 'fa-solid fa-gem, ra ra-sword',
-                    ($campaignService->campaign()->boosted() ? null : 'disabled'),
+                    ($campaign->boosted() ? null : 'disabled'),
                     'list' => 'timeline-element-icon-list',
                     'autocomplete' => 'off',
                     'data-paste' => 'fontawesome',
@@ -98,10 +96,10 @@
             'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>'
             ]) !!}</p>
 
-            @if (!$campaignService->campaign()->boosted())
+            @if (!$campaign->boosted())
                 @subscriber()
                     <p class="help-block">
-                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('crud.boosted_campaigns'), ['campaign' => $campaignService->campaign()])]) !!}
+                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.boost', __('crud.boosted_campaigns'), ['campaign' => $campaign])]) !!}
                     </p>
                 @else
                     <p class="help-block">

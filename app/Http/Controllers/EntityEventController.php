@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\UpdateCalendarEvent;
 use App\Models\Calendar;
@@ -21,7 +22,7 @@ class EntityEventController extends Controller
     protected string $view = 'entity_event';
     protected string $route = 'entity_event';
 
-    protected $calendarService;
+    protected CalendarService $calendarService;
 
     /**
      * @var string
@@ -33,7 +34,6 @@ class EntityEventController extends Controller
      */
     public function __construct(CalendarService $calendarService)
     {
-        //parent::__construct();
         $this->calendarService = $calendarService;
     }
 
@@ -54,6 +54,7 @@ class EntityEventController extends Controller
         } else {
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child, $entity->typeId());
         }
+        $campaign = CampaignLocalization::getCampaign();
         $reminders = $entity
             ->events()
             ->has('calendar')
@@ -63,6 +64,7 @@ class EntityEventController extends Controller
             ->paginate();
 
         return view('entities.pages.reminders.index', compact(
+            'campaign',
             'entity',
             'reminders'
         ));

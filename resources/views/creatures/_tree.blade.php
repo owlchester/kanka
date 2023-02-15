@@ -27,7 +27,6 @@
         'route' => 'creatures.tree',
         'baseRoute' => 'creatures',
         'trans' => 'creatures.fields.',
-        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

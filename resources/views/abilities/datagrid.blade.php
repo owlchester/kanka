@@ -42,6 +42,5 @@
         'route' => 'abilities.index',
         'baseRoute' => 'abilities',
         'trans' => 'abilities.fields.',
-        'campaignService' => $campaignService
     ])
 ; !!}

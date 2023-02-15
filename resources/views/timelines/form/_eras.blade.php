@@ -2,7 +2,6 @@
 /**
  * @var \App\Models\TimelineEra $era
  * @var \App\Models\Timeline $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 

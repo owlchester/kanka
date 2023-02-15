@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('races'))
+@if (!$campaign->enabled('races'))
     <?php return ?>
 @endif
 

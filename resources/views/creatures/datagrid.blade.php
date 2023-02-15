@@ -26,6 +26,5 @@
         'route' => 'creatures.index',
         'baseRoute' => 'creatures',
         'trans' => 'creatures.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

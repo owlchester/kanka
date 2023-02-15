@@ -9,7 +9,7 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-reminders'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 
 @section('entity-header-actions')

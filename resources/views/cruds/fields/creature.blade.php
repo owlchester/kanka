@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('creatures'))
+@if (!$campaign->enabled('creatures'))
     <?php return ?>
 @endif
 

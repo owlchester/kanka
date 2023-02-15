@@ -37,6 +37,5 @@
         'route' => 'attribute_templates.index',
         'baseRoute' => 'attribute_templates',
         'trans' => 'attribute_templates.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

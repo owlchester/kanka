@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('items'))
+@if (!$campaign->enabled('items'))
     <?php return ?>
 @endif
 

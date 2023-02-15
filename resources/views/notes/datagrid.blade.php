@@ -28,6 +28,5 @@
         'route' => 'notes.index',
         'baseRoute' => 'notes',
         'trans' => 'notes.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

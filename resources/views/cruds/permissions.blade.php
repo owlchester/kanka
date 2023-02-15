@@ -15,7 +15,6 @@
         __('crud.edit'),
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     @inject('permissionService', 'App\Services\PermissionService')

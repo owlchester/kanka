@@ -17,7 +17,7 @@
     </div>
 
     <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
-        @if ($campaignService->enabled('families') && !$model->families->isEmpty())
+        @if ($campaign->enabled('families') && !$model->families->isEmpty())
             <div class="element profile-family">
                 <div class="title">{{ __('entities.families') }}</div>
                 @php $existingFamilies = []; @endphp

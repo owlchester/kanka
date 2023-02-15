@@ -19,17 +19,9 @@
             },
             'disableSort' => true,
         ],
-        /*[
-            'field' => 'calendar_id',
-            'label' => trans('calendars.fields.calendar'),
-            'visible' => $campaignService->enabled('calendars'),
-            'render' => function($model) {
-                return $model->calendar ? $model->calendar->tooltipedLink() : null;
-            },
-        ],*/
         [
-            'label' => trans('calendars.fields.calendars'),
-            'visible' => $campaignService->enabled('calendars'),
+            'label' => __('calendars.fields.calendars'),
+            'visible' => $campaign->enabled('calendars'),
             'render' => function($model) {
                 return $model->calendars->count();
             },

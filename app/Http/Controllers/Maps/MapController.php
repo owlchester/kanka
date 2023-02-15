@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Maps;
 
 use App\Datagrids\Filters\MapFilter;
+use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMap;
@@ -125,6 +126,7 @@ class MapController extends CrudController
      */
     public function explore(Map $map)
     {
+        $campaign = CampaignLocalization::getCampaign();
         // Policies will always fail if they can't resolve the user.
         if (auth()->check()) {
             $this->authorize('view', $map);
@@ -145,7 +147,7 @@ class MapController extends CrudController
                 ;
             }
         }
-        return view('maps.explore', compact('map'));
+        return view('maps.explore', compact('campaign', 'map'));
     }
 
     /**

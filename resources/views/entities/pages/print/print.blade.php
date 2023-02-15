@@ -3,7 +3,7 @@
  * @var \App\Models\Entity $entity
  */?>
 
-@inject('campaignService', 'App\Services\CampaignService')
+
 @php
     $headerImage = true;
 @endphp

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInventory;
 use App\Models\Entity;
@@ -52,7 +53,7 @@ class InventoryController extends Controller
         } else {
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
-
+        $campaign = CampaignLocalization::getCampaign();
         $ajax = request()->ajax();
 
         $inventory = $entity
@@ -64,6 +65,7 @@ class InventoryController extends Controller
             });
 
         return view('entities.pages.inventory.index', compact(
+            'campaign',
             'ajax',
             'entity',
             'inventory',

@@ -6,8 +6,6 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
-
 @section('entity-header-actions')
 
     @can('organisation', [$model, 'add'])

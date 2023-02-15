@@ -33,7 +33,7 @@
                             process(data)
                         })
                     } @if(!empty($model) && method_exists($model, 'hasEntity') && $model->hasEntity() && $model->entity)else if(delimiter === '{') {
-                        $.getJSON('{{ route('search.attributes', ['campaign' => $campaignService->campaign(), 'entity' => $model->entity]) }}?q='+ query, function(data) {
+                        $.getJSON('{{ route('search.attributes', ['campaign' => $campaign, 'entity' => $model->entity]) }}?q='+ query, function(data) {
                             process(data)
                         })
                     }@endif else {
@@ -42,7 +42,7 @@
                         } else {
                             advancedRequest = false;
                         }
-                        $.getJSON('{{ route('search.live', $campaignService->campaign()) }}?q='+ query + '&new=1', function(data) {
+                        $.getJSON('{{ route('search.live', $campaign) }}?q='+ query + '&new=1', function(data) {
                             process(data)
                         })
                     }

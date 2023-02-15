@@ -5,6 +5,4 @@
     <meta property="og:url" content="{{ $model->getLink()  }}" />
 @endsection
 
-@inject('campaignService', 'App\Services\CampaignService')
-
 @include($fullview)

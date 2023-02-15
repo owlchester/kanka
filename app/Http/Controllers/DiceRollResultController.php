@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\NoDatagridActions;
+use App\Facades\CampaignLocalization;
 use App\Models\DiceRollResult;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,7 @@ class DiceRollResultController extends CrudController
         $filters = $this->filters;
         $filterService = $this->filterService;
         $datagridActions = new NoDatagridActions();
+        $campaign = CampaignLocalization::getCampaign();
 
         $base = $model
             ->search(request()->get('search'))
@@ -60,6 +62,7 @@ class DiceRollResultController extends CrudController
 
         $models = $base->paginate();
         return view('cruds.index', compact(
+            'campaign',
             'models',
             'name',
             'model',

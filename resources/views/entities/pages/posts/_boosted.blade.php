@@ -9,8 +9,8 @@
             <p class="">{{ __('callouts.booster.limitation') }}</p>
 
             @subscriber()
-            <a href="{{ route('settings.boost', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-maroon btn-sm" target="_blank">
-                {!! __('callouts.booster.actions.boost', ['campaign' => $campaignService->campaign()->name]) !!}
+            <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-maroon btn-sm" target="_blank">
+                {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
             </a>
             @else
                 <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon btn-sm">

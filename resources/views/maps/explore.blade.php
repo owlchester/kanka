@@ -3,7 +3,7 @@
 * @var \App\Models\Map $map
 */
 ?>
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 @extends('layouts.map', [
 'title' => $map->name,

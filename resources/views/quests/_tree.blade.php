@@ -15,7 +15,7 @@
         // Character
         [
             'type' => 'character',
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'label' => trans('quests.fields.character'),
         ],
         [

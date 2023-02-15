@@ -24,8 +24,8 @@ if ($widget->entity) {
     @endif
     @if (!empty($background))
          style="background-image: url('{{ $background }}')"
-    @elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN && $campaignService->campaign()->header_image)
-         style="background-image: url('{{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }}')"
+    @elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN && $campaign->header_image)
+         style="background-image: url('{{ Img::crop(1200, 400)->url($campaign->header_image) }}')"
     @endif
     >
         <div class="{{ $overlayClass }}">

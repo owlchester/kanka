@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAbility;
 use App\Models\Ability;
@@ -55,8 +56,10 @@ class AbilityController extends Controller
             'remove' => __('crud.remove'),
         ];
         $translations = json_encode($translations);
+        $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.abilities.index', compact(
+            'campaign',
             'entity',
             'translations'
         ));
@@ -70,8 +73,10 @@ class AbilityController extends Controller
     public function create(Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.abilities.create', compact(
+            'campaign',
             'entity'
         ));
     }

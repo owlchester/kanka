@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('races'))
+@if (!$campaign->enabled('races'))
     <?php return ?>
 @endif
 <input type="hidden" name="save_races" value="1">

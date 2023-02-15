@@ -12,16 +12,6 @@
         // Name
         'name',
         'type',
-        /*[
-            'label' => __('entities.races'),
-            'field' => 'race.name',
-            'visible' => $campaignService->enabled('races'),
-            'render' => function($model) {
-                if ($model->race) {
-                    return $model->race->tooltipedLink();
-                }
-            }
-        ],*/
         [
             'label' => __('races.fields.races'),
             'render' => function($model) {
@@ -31,7 +21,7 @@
         ],
         [
             'label' => __('races.fields.characters'),
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count() . ' / ' . $model->allCharacters(true)->count();
             },
@@ -45,7 +35,6 @@
         'route' => 'races.tree',
         'baseRoute' => 'races',
         'trans' => 'races.fields.',
-        'campaignService' => $campaignService,
         'row' => [
             'data' => [
                 'data-children' => function($model) {

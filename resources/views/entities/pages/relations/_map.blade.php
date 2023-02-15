@@ -10,7 +10,7 @@ $options = [
 ];
 
 ?>
-@if(!$campaignService->campaign()->boosted())
+@if(!$campaign->boosted())
     @include('layouts.callouts.boost', ['texts' => [__('entities/relations.call-to-action')]])
     <?php return ?>
 @endif

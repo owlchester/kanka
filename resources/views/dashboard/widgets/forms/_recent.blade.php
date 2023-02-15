@@ -4,7 +4,7 @@ $advancedFilters = [
     'unmentioned' => __('dashboard.widgets.recent.advanced_filters.unmentioned'),
     'mentionless' => __('dashboard.widgets.recent.advanced_filters.mentionless'),
 ];
-$boosted = $campaignService->campaign()->boosted()
+$boosted = $campaign->boosted()
 @endphp
 <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
@@ -71,7 +71,7 @@ $boosted = $campaignService->campaign()->boosted()
             </div>
 
             <div class="collapse {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
-                @if($campaignService->campaign()->boosted())
+                @if($campaign->boosted())
                     {!! Form::hidden('config[entity-header]', 0) !!}
                     <div class="form-group checkbox">
                         <label>

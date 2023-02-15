@@ -7,7 +7,6 @@
         __('entities/notes.actions.add')
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
     {!! Form::open([

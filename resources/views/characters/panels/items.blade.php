@@ -15,7 +15,7 @@
                 <th class="w-14"><br /></th>
                 <th>{{ __('items.fields.name') }}</th>
                 <th class="hidden-xs">{{ __('crud.fields.type') }}</th>
-                @if ($campaignService->enabled('locations'))
+                @if ($campaign->enabled('locations'))
                     <th class="hidden-xs">{{ __('entities.location') }}</th>
                 @endif
                 <th>&nbsp;</th>
@@ -29,7 +29,7 @@
                         {!! $item->tooltipedLink() !!}
                     </td>
                     <td class="hidden-xs">{{ $item->type }}</td>
-                    @if ($campaignService->enabled('locations'))
+                    @if ($campaign->enabled('locations'))
                         <td class="hidden-xs">
                             @if ($item->location)
                                 {!! $item->location->tooltipedLink() !!}

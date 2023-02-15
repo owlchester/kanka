@@ -14,7 +14,7 @@
         [
             'label' => __('entities.race'),
             'field' => 'race.name',
-            'visible' => $campaignService->enabled('races'),
+            'visible' => $campaign->enabled('races'),
             'render' => function($model) {
                 if ($model->race) {
                     return $model->race->tooltipedLink();
@@ -23,7 +23,7 @@
         ],
         [
             'label' => __('races.fields.characters'),
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count();
             },
@@ -37,6 +37,5 @@
         'route' => 'races.index',
         'baseRoute' => 'races',
         'trans' => 'races.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

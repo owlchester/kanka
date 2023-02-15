@@ -14,7 +14,7 @@ __('timelines/elements.edit.title', ['name' => $model->name])
 ]
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 @section('content')
     @include('partials.errors')
@@ -50,7 +50,7 @@ __('timelines/elements.edit.title', ['name' => $model->name])
     </div>
     {!! Form::close() !!}
 
-    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
+    @if(!empty($model) && $campaign->hasEditingWarning())
         <input type="hidden" id="editing-keep-alive" data-url="{{ route('timeline-elements.keep-alive', ['campaign' => $campaign, 'timeline_element' => $model->id]) }}" />
     @endif
 @endsection

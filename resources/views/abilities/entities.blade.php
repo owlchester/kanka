@@ -6,9 +6,6 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
-
-
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons">

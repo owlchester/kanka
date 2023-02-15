@@ -3,7 +3,7 @@
         {{ __('characters.fields.traits') }}
     </a>
 </li>
-@if ($campaignService->enabled('organisations'))
+@if ($campaign->enabled('organisations'))
 <li class="{{ (request()->get('tab') == 'organisations' ? ' active' : '') }}" data-tab="organisations">
     <a href="#form-organisations" title="{{ __('characters.show.tabs.organisations') }}" data-toggle="tooltip">
         <i class="ra ra-hood" title="{{ __('characters.show.tabs.organisations') }}"></i>

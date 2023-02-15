@@ -11,8 +11,6 @@
 
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
-
 @include('entities.components.header', ['model' => $model])
 @section('content')
     @include('partials.errors')

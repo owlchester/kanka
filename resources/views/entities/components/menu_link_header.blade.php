@@ -1,5 +1,4 @@
 <?php /**
- * @var \App\Services\CampaignService $campaign
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  * @var \App\Models\Tag $tag

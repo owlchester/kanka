@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Map $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->organisation)

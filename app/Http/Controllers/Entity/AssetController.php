@@ -40,9 +40,11 @@ class AssetController extends Controller
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
+        $campaign = CampaignLocalization::getCampaign();
         $assets = $entity->assets;
 
         return view('entities.pages.assets.index', compact(
+            'campaign',
             'entity',
             'assets'
         ));

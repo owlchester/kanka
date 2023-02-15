@@ -7,8 +7,6 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-abilities'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
-
 
 @section('content')
     @include('partials.errors')

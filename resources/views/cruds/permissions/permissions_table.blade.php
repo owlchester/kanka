@@ -10,7 +10,7 @@ $actions = [
     'deny' => __('crud.permissions.actions.bulk_entity.deny'),
     'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
 ];
-$permissionService->campaign($campaignService->campaign());
+$permissionService->campaign($campaign);
 ?>
 
 <p class="help-block">
@@ -44,7 +44,7 @@ $permissionService->campaign($campaignService->campaign());
             <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
         </div>
     </div>
-    @foreach ($campaignService->campaign()->roles()->withoutAdmin()->get() as $role)
+    @foreach ($campaign->roles()->withoutAdmin()->get() as $role)
         <div class="row mb-5">
             <div class="col-sm-4">{{ $role->name }}</div>
             <div class="text-center col-sm-2">

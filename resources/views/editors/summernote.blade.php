@@ -31,9 +31,10 @@
 
     <div
         id="summernote-config"
+@if (isset($campaign))
         data-mention="{{ route('search.live', $campaign) }}"
         data-advanced-mention="{{ auth()->user()->alwaysAdvancedMentions() }}"
-        data-months="{{ route('search.calendar-months', $campaignService->campaign()) }}"
+        data-months="{{ route('search.calendar-months', $campaign) }}"
         data-gallery-title="Superboosted Gallery"
         data-gallery-close="{{ __('crud.click_modal.close') }}"
         data-gallery-add="{{ __('crud.add') }}"
@@ -43,18 +44,19 @@
         data-filesize="{{ auth()->user()->maxUploadSize() }}"
         data-placeholder="{{ __('crud.placeholders.entry') }}"
         data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
-@if (isset($name) && $name == 'characters')        data-bragi="{{ route('bragi', $campaignService->campaign()) }}"@endif
-@if(isset($campaignService) && $campaignService->campaign() !== null)
-        data-gallery="{{ $campaignService->campaign()->superboosted() ? route('gallery.summernote', [$campaignService->campaign()]) : null }}"
-    @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('gallery.ajax-upload', [$campaignService->campaign()]) }}" @endif
+@if (isset($name) && $name == 'characters')        data-bragi="{{ route('bragi', $campaign) }}"@endif
+@if(isset($campaign) && $campaign !== null)
+        data-gallery="{{ $campaign->superboosted() ? route('gallery.summernote', [$campaign]) : null }}"
+    @if($campaign->superboosted()) data-gallery-upload="{{ route('gallery.ajax-upload', [$campaign]) }}" @endif
 @endif
-@if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', ['campaign' => $campaignService->campaign(), 'entity' => $model->entity]) }}"
-@elseif (!empty($entity))        data-attributes="{{ route('search.attributes', ['campaign' => $campaignService->campaign(), 'entity' => $entity]) }}"
+@if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', ['campaign' => $campaign, 'entity' => $model->entity]) }}"
+@elseif (!empty($entity))        data-attributes="{{ route('search.attributes', ['campaign' => $campaign, 'entity' => $entity]) }}"
 
+@endif
 @endif
         data-locale="{{ app()->getLocale() }}"></div>
 
-@if(isset($campaignService) && $campaignService instanceof \App\Services\CampaignService && $campaignService->campaign() !== null)
+@if(isset($campaign) && $campaign instanceof \App\Models\Campaign)
     <div class="modal fade" id="campaign-imageupload-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl">
@@ -62,7 +64,7 @@
                     <div id="campaign-imageupload-boosted">
                         <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
 
-                        @include('layouts.callouts.boost-modal', ['texts' => [__('campaigns/gallery.pitch')], 'superboost' => true, 'campaign' => $campaignService->campaign()])
+                        @include('layouts.callouts.boost-modal', ['texts' => [__('campaigns/gallery.pitch')], 'superboost' => true, 'campaign' => $campaign])
                     </div>
                     <p class="alert alert-danger" id="campaign-imageupload-error" style="display:none"></p>
                     <p class="alert alert-danger" id="campaign-imageupload-permission" style="display:none">

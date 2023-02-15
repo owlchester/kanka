@@ -32,7 +32,6 @@
     ->options(    [
         'route' => 'history.index',
         'baseRoute' => 'history',
-        'campaignService' => $campaignService,
         'disableEntity' => true,
     ]
 ) !!}

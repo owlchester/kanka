@@ -14,7 +14,7 @@
         [
             'label' => trans('families.fields.family'),
             'field' => 'family.name',
-            'visible' => $campaignService->enabled('families'),
+            'visible' => $campaign->enabled('families'),
             'render' => function($model) {
                 if ($model->family) {
                     return $model->family->tooltipedLink();
@@ -26,15 +26,15 @@
             'type' => 'avatar',
             'parent' => 'location',
             'parent_route' => 'locations',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => '<i class="fa-solid fa-users" title="' . trans('families.fields.members') . '"></i>',
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->members->count();
             },
@@ -48,6 +48,5 @@
         'route' => 'families.index',
         'baseRoute' => 'families',
         'trans' => 'families.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

@@ -7,7 +7,7 @@
         __('crud.update'),
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
+
 
 @section('content')
     <div class="row">
@@ -59,7 +59,7 @@
             {!! Form::close() !!}
         </div>
     </div>
-    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
+    @if(!empty($model) && $campaign->hasEditingWarning())
         <input type="hidden" id="editing-keep-alive" data-url="{{ route('quest-elements.keep-alive', ['campaign' => $campaign, 'quest_element' => $model->id]) }}" />
     @endif
 @endsection

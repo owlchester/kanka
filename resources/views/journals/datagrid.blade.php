@@ -37,6 +37,5 @@
         'route' => 'journals.index',
         'baseRoute' => 'journals',
         'trans' => 'journals.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

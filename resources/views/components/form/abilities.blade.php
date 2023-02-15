@@ -20,6 +20,7 @@ if (Arr::has($options, 'exclude', false)) {
 } elseif (Arr::has($options, 'exclude-entity', false)) {
     $searchParams['exclude-entity'] = Arr::get($options, 'exclude-entity');
 }
+$searchParams['campaign'] = $campaign->id;
 
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old('abilities[]');

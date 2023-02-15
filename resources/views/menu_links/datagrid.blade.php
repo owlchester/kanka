@@ -62,7 +62,6 @@
         'route' => 'menu_links.index',
         'baseRoute' => 'menu_links',
         'trans' => 'menu_links.fields.',
-        'campaignService' => $campaignService,
         'disableEntity' => true,
     ]
 ) !!}
