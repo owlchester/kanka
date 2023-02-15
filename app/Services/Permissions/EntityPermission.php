@@ -155,8 +155,8 @@ class EntityPermission
     public function hasPermission(
         int $entityType,
         int $action,
-        User $user = null,
-        $entity = null,
+        ?User $user,
+        mixed $entity = null,
         Campaign $campaign = null
     ): bool {
         $this->loadAllPermissions($user, $campaign);
@@ -237,23 +237,6 @@ class EntityPermission
     }
 
     /**
-     * Determine if a user is part of a role that can do an action on all entities of a campaign
-     * @return bool
-     */
-    public function canRole(string $action, string $modelName, $user = null, Campaign $campaign = null): bool
-    {
-        $this->loadAllPermissions($user, $campaign);
-        $key = $modelName . '_' . $action;
-
-        // We check if the role was set for global entity permissions
-        if (isset($this->cached[$key]) && $this->cached[$key]) {
-            return $this->cached[$key];
-        }
-
-        return false;
-    }
-
-    /**
      * It's way easier to just load all permissions of the user once and "cache" them, rather than try and be
      * optional on each query.
      * @param ?User $user
@@ -265,12 +248,6 @@ class EntityPermission
         // If no campaign was provided, get the one in the url. One is provided when moving entities between campaigns
         if (empty($campaign)) {
             $campaign = \App\Facades\CampaignLocalization::getCampaign();
-            // Our Campaign middleware takes care of this, but the laravel binding is going to get the model first
-            // so we have to add this abort here to handle calling the permission engine on campaigns which
-            // no longer exists.
-            if (empty($campaign)) {
-                abort(404);
-            }
         }
 
         if ($this->loadedAll === true && $campaign->id == $this->loadedCampaignId) {

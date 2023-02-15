@@ -143,6 +143,7 @@ class SidebarService
             'module' => false,
             'route' => 'overview',
             'fixed' => true,
+            'w' => true,
         ],
         'characters' => [
             'icon' => 'fa-solid fa-user',
@@ -193,6 +194,7 @@ class SidebarService
             'label' => 'sidebar.campaign',
             'route' => 'overview',
             'fixed' => true,
+            'w' => true,
         ],
         'quests' => [
             'icon' => 'ra ra-wooden-sign',
@@ -256,6 +258,7 @@ class SidebarService
             'route' => 'gallery.index',
             'perm' => 'gallery',
             'module' => false,
+            'w' => true,
         ],
         'attribute_templates' => [
             'icon' => 'fa-solid fa-copy',
@@ -273,6 +276,7 @@ class SidebarService
             'label' => 'history.title',
             'perm' => true,
             'module' => false,
+            'w' => true,
         ],
     ];
 

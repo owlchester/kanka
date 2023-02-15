@@ -50,8 +50,9 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                             if (isset($element['tree'])) {
                                 $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                             }
+                            $routeParams = isset($element['w']) ? ['campaign' => $currentCampaign] : null;
                             @endphp
-                            <a href="{{ route($route, ['campaign' => $currentCampaign]) }}">
+                            <a href="{{ route($route, $routeParams) }}">
                                 <i class="{{ $element['custom_icon'] ?: $element['icon']  }}"></i>
                                 {!! $element['custom_label'] ?: $element['label']  !!}
                             </a>
@@ -71,8 +72,9 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                     if (isset($child['tree'])) {
                                         $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                                     }
+                                    $routeParams = isset($child['w']) ? ['campaign' => $currentCampaign] : null;
                                 @endphp
-                                <a href="{{ route($route, ['campaign' => $currentCampaign]) }}">
+                                <a href="{{ route($route, $routeParams) }}">
                                     <i class="{{ $child['custom_icon'] ?: $child['icon'] }}"></i>
                                     {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>
