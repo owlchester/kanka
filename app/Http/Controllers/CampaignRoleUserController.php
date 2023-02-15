@@ -43,7 +43,6 @@ class CampaignRoleUserController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('roles', $campaign);
-        $this->authorize('user', $campaignRole);
 
         return view($this->view . '.create', ['campaign' => $campaign, 'role' => $campaignRole]);
     }
@@ -57,7 +56,6 @@ class CampaignRoleUserController extends Controller
     public function store(StoreCampaignRoleUser $request, Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('roles', $campaign);
-        $this->authorize('create', CampaignRole::class);
 
         $relation = CampaignRoleUser::create($request->all());
         return redirect()->route('campaign_roles.show', [

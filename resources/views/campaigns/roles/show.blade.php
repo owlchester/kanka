@@ -41,14 +41,14 @@
                     @else
                         <p class="help-block">{!! __('campaigns.roles.hints.role_admin', ['name' => '<strong>' . $role->name . '</strong>']) !!} </p>
                     @endif
-                    @can('permission', $role)
+                    @can('roles', $campaign)
                     {{ Form::open(['route' => ['campaign_roles.savePermissions', 'campaign_role' => $role, 'campaign' => $campaign], 'data-shortcut' => '1']) }}
 
                         @include('campaigns.roles._pretty')
                     @endif
                 </div>
                 <div class="box-footer text-right">
-                    @can('permission', $role)
+                    @can('roles', $campaign)
                         <button class="btn btn-success">
                             <i class="fa-solid fa-save" aria-hidden="true"></i>
                             {{ __('crud.save') }}

@@ -53,7 +53,7 @@ class CampaignUserController extends Controller
      */
     public function destroy(Campaign $campaign, CampaignUser $campaignUser)
     {
-        $this->authorize('invite', $campaignUser->campaign);
+        $this->authorize('delete', $campaignUser);
 
         $campaignUser->delete();
         return redirect()->route('campaign_users.index', $campaign);

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
+use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -31,6 +32,7 @@ use Illuminate\Support\Str;
  */
 class CampaignRole extends Model
 {
+    use CampaignTrait;
     use Paginatable;
     use SortableTrait;
 

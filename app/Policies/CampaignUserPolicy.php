@@ -50,18 +50,16 @@ class CampaignUserPolicy
         if (Identity::isImpersonating()) {
             return false;
         }
-        if ($user->campaign->id !== $campaignUser->campaign->id) {
-            return false;
-        }
-
         if (!UserCache::user($user)->admin()) {
             return false;
         }
 
+        // Can't update yourself
         if ($user->id === $campaignUser->user_id) {
             return false;
         }
 
+        // Can update non-admins
         if (!$campaignUser->user->isAdmin()) {
             return true;
         }

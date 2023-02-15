@@ -29,16 +29,13 @@ class MiscPolicy
     /**
      * Determine whether the user can view the entity.
      *
-     * @param  \App\User  $user
+     * @param  ?\App\User  $user
      * @param  \App\Models\MiscModel $entity
      * @return bool
      */
-    public function view(User $user, $entity)
+    public function view(?User $user, $entity)
     {
         return
-            // The entity's campaign must be the same as the current user campaign
-            $user->campaign->id == $entity->campaign_id
-            &&
             // The user must have access.
             // isAdmin could be cached for performance, but needs to trigger a release when changing permissions
             // other permissions should also be cacheable with a release trigger
@@ -47,14 +44,17 @@ class MiscPolicy
 
     /**
      * Determine whether the user can create entities.
-     * @param User $user
+     * @param ?User $user
      * @param MiscModel|null $entity
      * @param Campaign|null $campaign
      * @return bool
      */
-    public function create(User $user, $entity = null, Campaign $campaign = null)
+    public function create(?User $user, $entity = null, Campaign $campaign = null)
     {
-        return auth()->check() && $this->checkPermission(CampaignPermission::ACTION_ADD, $user, null, $campaign);
+        if (!$user) {
+            return false;
+        }
+        return $this->checkPermission(CampaignPermission::ACTION_ADD, $user, null, $campaign);
     }
 
     /**
@@ -64,10 +64,12 @@ class MiscPolicy
      * @param  \App\Models\MiscModel $entity
      * @return bool
      */
-    public function update(User $user, $entity)
+    public function update(?User $user, $entity)
     {
-        return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
-            && $this->checkPermission(CampaignPermission::ACTION_EDIT, $user, $entity);
+        if (!$user) {
+            return false;
+        }
+        return $this->checkPermission(CampaignPermission::ACTION_EDIT, $user, $entity);
     }
 
     /**
@@ -77,10 +79,12 @@ class MiscPolicy
      * @param  \App\Models\MiscModel $entity
      * @return bool
      */
-    public function delete(User $user, $entity)
+    public function delete(?User $user, $entity)
     {
-        return Auth::check() &&  (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
-            && $this->checkPermission(CampaignPermission::ACTION_DELETE, $user, $entity);
+        if (!$user) {
+            return false;
+        }
+        return $this->checkPermission(CampaignPermission::ACTION_DELETE, $user, $entity);
     }
 
     /**
@@ -92,7 +96,10 @@ class MiscPolicy
      */
     public function bulkDelete(?User $user, $entity)
     {
-        return $user && $this->checkPermission(CampaignPermission::ACTION_DELETE, $user, $entity);
+        if (!$user) {
+            return false;
+        }
+        return $this->checkPermission(CampaignPermission::ACTION_DELETE, $user, $entity);
     }
 
     /**

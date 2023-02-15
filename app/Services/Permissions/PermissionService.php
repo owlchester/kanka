@@ -341,6 +341,7 @@ class PermissionService
         }
 
         // If we have a user, they might have individual entity permissions
+        // Todo: left join the entity to properly save the type_id ?
         $permissions = CampaignPermission::where('user_id', $this->user->id)
             ->where('campaign_id', $this->campaign->id)
             ->get();

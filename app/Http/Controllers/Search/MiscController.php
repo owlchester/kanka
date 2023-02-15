@@ -10,7 +10,6 @@ use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Response;
 
 class MiscController extends Controller
 {
@@ -31,7 +30,7 @@ class MiscController extends Controller
      */
     public function locations(Request $request)
     {
-        $term = trim($request->q);
+        $term = trim($request->get('q', ''));
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Location::class, $exclude);
     }
@@ -83,7 +82,7 @@ class MiscController extends Controller
             $formatted[] = $format;
         }
 
-        return Response::json($formatted);
+        return response()->json($formatted);
     }
 
     /**
@@ -92,7 +91,7 @@ class MiscController extends Controller
      */
     public function families(Request $request)
     {
-        $term = trim($request->q);
+        $term = trim($request->get('q', ''));
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Family::class, $exclude);
     }
@@ -266,7 +265,7 @@ class MiscController extends Controller
             $formatted[] = $format;
         }
 
-        return Response::json($formatted);
+        return response()->json($formatted);
     }
 
     /**
@@ -370,6 +369,6 @@ class MiscController extends Controller
             $formatted[] = $format;
         }
 
-        return Response::json($formatted);
+        return response()->json($formatted);
     }
 }

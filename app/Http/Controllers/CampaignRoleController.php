@@ -33,11 +33,10 @@ class CampaignRoleController extends Controller
      */
     public function index(Campaign $campaign)
     {
-        $this->authorize('admin', $campaign);
+        $this->authorize('roles', $campaign);
         Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignRole::class)
             ->route('campaign_roles.index', ['campaign' => $campaign]);
 
-        $this->authorize('roles', $campaign);
 
         $roles = $campaign->roles()
             ->sort(request()->only(['o', 'k']))
@@ -69,7 +68,7 @@ class CampaignRoleController extends Controller
      */
     public function create(Campaign $campaign)
     {
-        $this->authorize('create', CampaignRole::class);
+        $this->authorize('roles', $campaign);
         if (!$campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
@@ -88,13 +87,13 @@ class CampaignRoleController extends Controller
      */
     public function store(StoreCampaignRole $request, Campaign $campaign)
     {
+        $this->authorize('roles', $campaign);
         if (!$campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
                 ->with('skipImage', true)
                 ->with('name', 'campaign_roles');
         }
-        $this->authorize('create', CampaignRole::class);
         $role = new CampaignRole($request->all());
         $role->campaign_id = $campaign->id;
         $role->save();
@@ -109,7 +108,7 @@ class CampaignRoleController extends Controller
      */
     public function show(Campaign $campaign, CampaignRole $campaignRole)
     {
-        $this->authorize('view', $campaignRole);
+        $this->authorize('roles', $campaign);
 
         // @phpstan-ignore-next-line
         $members = $campaignRole
@@ -132,7 +131,7 @@ class CampaignRoleController extends Controller
      */
     public function edit(Campaign $campaign, CampaignRole $campaignRole)
     {
-        $this->authorize('update', $campaignRole);
+        $this->authorize('roles', $campaign);
         $ajax = request()->ajax();
 
         return view($this->view . '.edit', [
@@ -151,7 +150,7 @@ class CampaignRoleController extends Controller
      */
     public function update(StoreCampaignRole $request, Campaign $campaign, CampaignRole $campaignRole)
     {
-        $this->authorize('update', $campaignRole);
+        $this->authorize('roles', $campaign);
 
         $campaignRole->update($request->all());
         return redirect()->route('campaign_roles.index', $campaign)
@@ -165,7 +164,7 @@ class CampaignRoleController extends Controller
      */
     public function destroy(Campaign $campaign, CampaignRole $campaignRole)
     {
-        $this->authorize('delete', $campaignRole);
+        $this->authorize('roles', $campaign);
         $campaignRole->delete();
 
         return redirect()->route('campaign_roles.index', $campaign)
