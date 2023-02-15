@@ -7,13 +7,12 @@
 
         <p class="help-block">
             {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, ogg, json', 'size' => auth()->user()->maxUploadSize(true)]) }}
-            @php $currentCampaign = \App\Facades\CampaignLocalization::getCampaign(false); @endphp
             @subscriber()
-                @if ($currentCampaign && !$currentCampaign->boosted())
+                @if (!$campaign->boosted())
                     <p>
-                        <a href="{{ route('settings.boost', ['campaign' => $currentCampaign]) }}">
+                        <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}">
                             <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-                            {!! __('callouts.subscribe.share-booster', ['campaign' => $currentCampaign->name]) !!}
+                            {!! __('callouts.subscribe.share-booster', ['campaign' => $campaign->name]) !!}
                         </a>
                     </p>
                 @endif

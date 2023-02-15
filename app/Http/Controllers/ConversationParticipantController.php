@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreConversationParticipant;
 use App\Models\Conversation;
 use App\Models\ConversationParticipant;
@@ -13,7 +14,9 @@ class ConversationParticipantController extends Controller
     public function index(Conversation $conversation)
     {
         $ajax = request()->ajax();
-        return view('conversations.participants', ['model' => $conversation, 'ajax' => $ajax]);
+        $campaign = CampaignLocalization::getCampaign();
+        return view('conversations.participants', ['model' => $conversation, 'ajax' => $ajax])
+            ->with('campaign', $campaign);
     }
 
     /**

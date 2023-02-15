@@ -63,7 +63,7 @@ class MapGroupController extends Controller
 
         return view(
             'maps.groups.create',
-            compact('map')
+            compact('map', 'campaign')
         );
     }
 

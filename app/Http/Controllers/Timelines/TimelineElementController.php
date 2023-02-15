@@ -59,13 +59,13 @@ class TimelineElementController extends Controller
     {
         $this->authorize('update', $timeline);
 
-        $ajax = request()->ajax();
+        $campaign = CampaignLocalization::getCampaign();
         $eraId = $request->get('era_id');
         $position = $request->get('position', 1);
 
         return view(
             'timelines.elements.create',
-            compact('timeline', 'ajax', 'eraId', 'position')
+            compact('campaign', 'timeline', 'eraId', 'position')
         );
     }
 

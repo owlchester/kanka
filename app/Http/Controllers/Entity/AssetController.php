@@ -218,6 +218,7 @@ class AssetController extends Controller
         }
 
         return view('entities.pages.files.create')
+            ->with('campaign', $campaign)
             ->with('entity', $entity);
     }
 
@@ -231,10 +232,12 @@ class AssetController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->boosted()) {
             return view('entities.pages.links.unboosted')
+                ->with('campaign', $campaign)
                 ->with('campaign', $campaign);
         }
 
         return view('entities.pages.links.create', compact(
+            'campaign',
             'entity'
         ));
     }
@@ -253,6 +256,7 @@ class AssetController extends Controller
         }
 
         return view('entities.pages.aliases.create', compact(
+            'campaign',
             'entity'
         ));
     }

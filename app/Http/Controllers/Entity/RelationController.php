@@ -126,11 +126,13 @@ class RelationController extends Controller
     public function create(Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        $campaign = CampaignLocalization::getCampaign();
 
         $ajax = request()->ajax();
         $mode = $this->getModeOption();
 
         return view('entities.pages.relations.create', compact(
+            'campaign',
             'entity',
             'ajax',
             'mode'

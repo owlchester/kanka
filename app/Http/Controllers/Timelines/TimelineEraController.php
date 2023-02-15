@@ -59,12 +59,12 @@ class TimelineEraController extends Controller
     public function create(Timeline $timeline)
     {
         $this->authorize('update', $timeline);
-        $ajax = request()->ajax();
+        $campaign = CampaignLocalization::getCampaign();
         $from = request()->get('from') == 'view' ? 'view' : null;
 
         return view(
             'timelines.eras.create',
-            compact('timeline', 'ajax', 'from')
+            compact('campaign', 'timeline', 'from')
         );
     }
 

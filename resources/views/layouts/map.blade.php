@@ -1,7 +1,6 @@
 <?php /**
  * @var \App\Models\Map $map
  */
-$campaign = CampaignLocalization::getCampaign();
 $themeOverride = request()->get('_theme');
 $specificTheme = null;
 ?><!DOCTYPE html>

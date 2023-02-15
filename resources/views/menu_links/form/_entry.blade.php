@@ -4,7 +4,6 @@
  * @var \App\Services\SidebarService $sidebar
  */
 
-$campaign = CampaignLocalization::getCampaign(false);
 $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type';
 
 $isEntity = $isDashboard = $isRandom = $isList = false;

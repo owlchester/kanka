@@ -67,7 +67,7 @@ class MapLayerController extends Controller
 
         return view(
             'maps.layers.create',
-            compact('map')
+            compact('campaign', 'map')
         );
     }
 

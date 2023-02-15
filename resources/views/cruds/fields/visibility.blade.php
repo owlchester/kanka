@@ -36,7 +36,7 @@ if (isset($model) && in_array($model->visibility, [\App\Models\Visibility::VISIB
         {{ __('crud.fields.visibility') }}
         <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('crud.hints.visibility') }}"></i>
     </label>
-    {{ Form::select('visibility', $options, empty($model) ? CampaignLocalization::getCampaign()->default_visibility : $model->visibility, ['class' => 'form-control', 'id' => 'visibility']) }}
+    {{ Form::select('visibility', $options, empty($model) ? $campaign->default_visibility : $model->visibility, ['class' => 'form-control', 'id' => 'visibility']) }}
 
     <p class="help-block visible-xs visible-sm">{{ __('crud.hints.visibility') }}</p>
 </div>

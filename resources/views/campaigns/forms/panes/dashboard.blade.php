@@ -29,13 +29,12 @@
                 <p class="help-block">
                     {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => auth()->user()->maxUploadSize(true)]) }}
                     {{ __('crud.hints.image_recommendation', ['width' => '1200', 'height' => '400']) }}
-                    @php $currentCampaign = \App\Facades\CampaignLocalization::getCampaign(false); @endphp
                     @subscriber()
-                        @if ($currentCampaign && !$currentCampaign->boosted())
+                        @if ($campaign && !$campaign->boosted())
                             <p>
-                                <a href="{{ route('settings.boost', ['campaign' => $currentCampaign]) }}">
+                                <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}">
                                     <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-                                    {!! __('callouts.subscribe.share-booster', ['campaign' => $currentCampaign->name]) !!}
+                                    {!! __('callouts.subscribe.share-booster', ['campaign' => $campaign->name]) !!}
                                 </a>
                             </p>
                         @endif

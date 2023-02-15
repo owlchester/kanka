@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Datagrid2;
 
+use App\Facades\CampaignLocalization;
 use App\Models\MapGroup;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -55,7 +56,9 @@ trait BulkControllerTrait
 
     public function bulkBatch(string $route, string $view, array $models, mixed $model = null)
     {
+        $campaign = CampaignLocalization::getCampaign();
         return view('layouts.datagrid.bulks.update')
+            ->with('campaign', $campaign)
             ->with('route', $route)
             ->with('view', $view)
             ->with('models', $models)

@@ -52,7 +52,6 @@ class AttributeController extends Controller
             abort(403);
         }
 
-        $ajax = request()->ajax();
         $campaign = CampaignLocalization::getCampaign();
         $template = null;
         $marketplaceTemplate = null;
@@ -63,7 +62,6 @@ class AttributeController extends Controller
             $template = $this->service->communityTemplate($layout->value);
             $marketplaceTemplate = $this->service->marketplaceTemplate($layout->value, $campaign);
         }
-
 
         return view('entities.pages.attributes.index', compact(
             'campaign',
@@ -88,8 +86,10 @@ class AttributeController extends Controller
         $this->authorize('attributes', $entity);
 
         $parentRoute = $entity->pluralType();
+        $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.attributes.edit', compact(
+            'campaign',
             'entity',
             'parentRoute'
         ));

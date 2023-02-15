@@ -3,7 +3,6 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\MiscModel $miscModel
  */
-$campaign = CampaignLocalization::getCampaign();
 $themeOverride = request()->get('_theme', 'base');
 $specificTheme = null;
 ?><!DOCTYPE html>

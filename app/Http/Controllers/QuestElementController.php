@@ -38,10 +38,10 @@ class QuestElementController extends Controller
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $quest);
         }
 
+        $campaign = CampaignLocalization::getCampaign();
         $datagridSorter = new QuestElementSorter();
         $datagridSorter->request(request()->all());
 
-        $ajax = request()->ajax();
         $model = $quest;
         $elements = $quest
             ->elements()
@@ -50,7 +50,7 @@ class QuestElementController extends Controller
             ->paginate();
 
         return view('quests.elements.index', compact(
-            'ajax',
+            'campaign',
             'model',
             'elements',
             'datagridSorter'
@@ -65,8 +65,10 @@ class QuestElementController extends Controller
     public function create(Quest $quest)
     {
         $this->authorize('update', $quest);
+        $campaign = CampaignLocalization::getCampaign();
 
         return view('quests.elements.create', compact(
+            'campaign',
             'quest'
         ));
     }

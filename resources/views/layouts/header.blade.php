@@ -1,6 +1,3 @@
-<?php
-$currentCampaign = CampaignLocalization::getCampaign();
-?>
 <header class="main-header @if(isset($startUI) && $startUI) main-header-start @endif">
     <nav class="navbar navbar-static-top flex">
         @if ((auth()->check() && auth()->user()->hasCampaigns()) || !auth()->check())
@@ -9,8 +6,8 @@ $currentCampaign = CampaignLocalization::getCampaign();
             </button>
         @endif
 
-        @if (!empty($currentCampaign))
-            {!! Form::open(['route' => ['search', $currentCampaign], 'class' => 'visible-md visible-lg navbar-form live-search-form py-0', 'method'=>'GET']) !!}
+        @if (!empty($campaign))
+            {!! Form::open(['route' => ['search', $campaign], 'class' => 'visible-md visible-lg navbar-form live-search-form py-0', 'method'=>'GET']) !!}
             <div class="form-group has-feedback flex-grow">
                 <div class="flex items-center">
                     <input type="search" name="q" id="live-search" class="typeahead form-control" autocomplete="off"
@@ -29,7 +26,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
 
         <div class="flex-1 navbar-actions">
             <div class="flex justify-end px-3">
-                @if (!empty($currentCampaign))
+                @if (!empty($campaign))
                     <span href="#" role="button" class="visible-xs visible-sm mobile-search text-lg p-3" aria-label="{{ __('crud.search') }}">
                         <span class="fa-solid fa-search" aria-hidden="true"></span>
                     </span>
@@ -54,7 +51,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             fetch="{{ route('notifications.refresh') }}"
                             initials="{{ auth()->user()->initials() }}"
                             avatar="{{ auth()->user()->getAvatarUrl(36) }}"
-                            campaign_id="{{ !empty($currentCampaign) ? $currentCampaign->id : null }}"
+                            campaign_id="{{ !empty($campaign) ? $campaign->id : null }}"
                             :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
                             :pro="{{ config('fontawesome.kit') !== false ? 'true' : 'false' }}"
                         ></nav-switcher>

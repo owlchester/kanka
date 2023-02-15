@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\TranslatableException;
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\BulkRequest;
 use App\Models\Campaign;
 use App\Services\AttributeService;
@@ -204,8 +205,9 @@ class BulkController extends Controller
     protected function print()
     {
         $entities = $this->bulkService->export();
-
+        $campaign = CampaignLocalization::getCampaign();
         return view('entities.pages.print.print-bulk')
+            ->with('campaign', $campaign)
             ->with('entities', $entities)
             ->with('printing', true)
         ;

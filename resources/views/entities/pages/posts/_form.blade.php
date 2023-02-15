@@ -7,9 +7,8 @@ $permissions = [
     1 => __('crud.edit'),
     2 => __('crud.permissions.actions.bulk.deny')
 ];
-$currentCampaign = \App\Facades\CampaignLocalization::getCampaign();
 $defaultCollapsed = null;
-if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
+if (!isset($model) && !empty($campaign->ui_settings['post_collapsed'])) {
     $defaultCollapsed = 1;
 }
 ?>
@@ -77,11 +76,11 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
                             {{ __('dashboard.widgets.fields.class') }}
                             <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
                         </label>
-                        {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
+                        {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$campaign->boosted() ? 'disabled' : null]) !!}
                         <p class="help-block visible-xs visible-sm">
                             {{ __('dashboard.widgets.helpers.class') }}
                         </p>
-                        @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
+                        @includeWhen(!$campaign->boosted(), 'entities.pages.posts._boosted')
                     </div>
                 </div>
             </div>

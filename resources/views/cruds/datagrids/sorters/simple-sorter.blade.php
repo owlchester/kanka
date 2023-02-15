@@ -6,7 +6,7 @@
     </div>
     <select id="datagrid-simple-sorter" name="{{ $datagridSorter->fieldname() }}" class="form-control" data-url="{{ request()->url() . (!empty($allMembers) ? '?all_members=1' : (isset($filter) ? $filter : null)) . (isset($target) ? $target : null) }}">
         <option value=""></option>
-@foreach ($datagridSorter->options(\App\Facades\CampaignLocalization::getCampaign()) as $key => $val)
+@foreach ($datagridSorter->options($campaign) as $key => $val)
     @if ($key === 'today')
         <option value="{{ $key . $datagridSorter->direction() }}" @if($datagridSorter->isSelected($key)) selected="selected" @endif>
             {{ __('calendars.sorters.after') }}

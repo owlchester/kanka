@@ -7,7 +7,6 @@
         __('crud.update'),
     ]
 ])
-<?php $campaign = CampaignLocalization::getCampaign(); ?>
 
 @section('content')
     <div class="panel panel-default">

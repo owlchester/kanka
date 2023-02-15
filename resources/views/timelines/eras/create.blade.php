@@ -4,7 +4,7 @@
 * @var \App\Models\TimelineEra $model
 */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('timelines/eras.create.title', ['name' => $timeline->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -26,7 +26,7 @@
         'data-maintenance' => 1,
     ]) !!}
     <div class="panel panel-default">
-        @if ($ajax)
+        @if (request()->ajax())
             <div class="panel-heading">
                 <button type="button" class="close" data-dismiss="modal"
                     aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>

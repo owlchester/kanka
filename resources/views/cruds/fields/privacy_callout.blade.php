@@ -12,9 +12,9 @@ if (isset($privacyToggle)) {
     <div class="my-1 checkbox">
         {!! Form::hidden('is_private', 0) !!}
         <label class="m-0 select-none">
-            {!! Form::checkbox('is_private', 1, empty($model) ? (!empty($source) ? $source->is_private : CampaignLocalization::getCampaign()->entity_visibility) : $model->is_private, $data) !!}
+            {!! Form::checkbox('is_private', 1, empty($model) ? (!empty($source) ? $source->is_private : $campaign->entity_visibility) : $model->is_private, $data) !!}
             {!! __('crud.fields.is_private_v3', [
-    'admin-role' => link_to_route('campaign_roles.admin', \Illuminate\Support\Arr::get(\App\Facades\CampaignCache::adminRole(), 'name', __('campaigns.roles.admin_role')), CampaignLocalization::getCampaign(), ['target' => '_blank'])
+    'admin-role' => link_to_route('campaign_roles.admin', \Illuminate\Support\Arr::get(\App\Facades\CampaignCache::adminRole(), 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
 ]) !!}
         </label>
     </div>
