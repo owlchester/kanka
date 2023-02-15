@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Exceptions\TranslatableException;
-use App\Facades\CampaignLocalization;
-use App\Facades\Identity;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Models\CampaignUser;
-use App\Models\Entity;
 use App\Services\Campaign\MemberService;
 use Illuminate\Http\Request;
 
@@ -26,39 +23,6 @@ class MemberController extends Controller
     {
         $this->middleware('auth');
         $this->service = $memberService;
-    }
-
-    /**
-     * Switch to another member
-     */
-    public function switch(CampaignUser $campaignUser, Entity $entity = null)
-    {
-        $this->authorize('switch', $campaignUser);
-
-        if (Identity::switch($campaignUser)) {
-            if ($entity) {
-                return redirect()
-                    ->to($entity->url());
-            }
-            return redirect()
-                ->route('dashboard');
-        }
-        return redirect()
-            ->route('dashboard');
-    }
-
-    /**
-     * Switch back to the original user
-     */
-    public function back()
-    {
-        if (Identity::back()) {
-            return redirect()
-                ->route('dashboard')
-                ->with('success', __('campaigns.members.switch_back_success'));
-        }
-        return redirect()
-            ->route('dashboard');
     }
 
     /**

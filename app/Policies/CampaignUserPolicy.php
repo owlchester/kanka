@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Facades\Identity;
 use App\Facades\UserCache;
+use App\Models\Campaign;
 use App\Models\CampaignRoleUser;
 use App\Traits\AdminPolicyTrait;
 use App\User;
@@ -91,12 +92,12 @@ class CampaignUserPolicy
      * @param  \App\Models\CampaignUser  $campaignUser
      * @return mixed
      */
-    public function switch(User $user, CampaignUser $campaignUser)
+    public function switch(User $user, CampaignUser $campaignUser, Campaign $campaign)
     {
         if (Identity::isImpersonating()) {
             return false;
         }
-        return $user->campaign->id == $campaignUser->campaign->id
+        return $campaign->id == $campaignUser->campaign->id
             && $user->isAdmin() && !$campaignUser->user->isAdmin()
             && !$campaignUser->user->isBanned()
         ;

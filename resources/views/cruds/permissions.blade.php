@@ -6,7 +6,7 @@
  * @var \App\Models\CampaignUser $member
  */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('crud.permissions.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [

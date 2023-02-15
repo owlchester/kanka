@@ -174,12 +174,3 @@ Route::resources([
     'campaign_dashboards' => 'Campaign\DashboardController',
 ]);
 
-
-// Impersonator
-Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
-Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
-Route::get('/members/switch/{campaign_user}/{entity}', 'Campaign\MemberController@switch')->name('identity.switch-entity');
-
-
-
-

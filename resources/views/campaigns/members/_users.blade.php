@@ -96,16 +96,16 @@
                             @endif
                         </td>
                         <td class="text-right">
-                            @if(auth()->user()->can('switch', $relation) || auth()->user()->can('delete', $relation))
+                            @if(auth()->user()->can('switch', [$relation, $campaign]) || auth()->user()->can('delete', $relation))
                                 <div class="dropdown">
                                     <a class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
                                         <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                                         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                        @can('switch', $relation)
+                                        @can('switch', [$relation, $campaign])
                                             <li>
-                                                <a href="{{ route('identity.switch', [$relation]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
+                                                <a href="{{ route('identity.switch', [$campaign, $relation]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
                                                     <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
                                                     {{ __('campaigns.members.actions.switch') }}
                                                 </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\StorePermission;
 use App\Models\Entity;
 use App\Services\PermissionService;
@@ -29,9 +30,9 @@ class PermissionController extends Controller
     public function view(Entity $entity)
     {
         $this->authorize('permission', $entity->child);
-        $ajax = request()->ajax();
+        $campaign = CampaignLocalization::getCampaign();
 
-        return view('cruds.permissions', compact('entity', 'ajax'));
+        return view('cruds.permissions', compact('campaign', 'entity'));
     }
 
     /**
@@ -47,6 +48,6 @@ class PermissionController extends Controller
         $this->permissionService->saveEntity($request->only('role', 'user'), $entity);
 
         return redirect()->back()
-            ->with('success_raw', trans('crud.permissions.success'));
+            ->with('success_raw', __('crud.permissions.success'));
     }
 }

@@ -215,3 +215,10 @@ Route::get('/search', [\App\Http\Controllers\SearchController::class, 'index'])-
 
 Route::post('/bulk/process', [\App\Http\Controllers\BulkController::class, 'process'])->name('bulk.process');
 Route::get('/bulk/modal', [\App\Http\Controllers\BulkController::class, 'modal'])->name('bulk.modal');
+
+
+// Impersonator
+
+Route::get('/members/switch/{campaign_user}', [\App\Http\Controllers\Campaign\IdentityController::class, 'switch'])->name('identity.switch');
+Route::get('/members/back', [\App\Http\Controllers\Campaign\IdentityController::class, 'back'])->name('identity.back');
+Route::get('/members/switch/{campaign_user}/entity/{entity}', [\App\Http\Controllers\Campaign\IdentityController::class, 'switchEntity'])->name('identity.switch-entity');
