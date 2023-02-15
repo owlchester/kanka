@@ -48,6 +48,7 @@ class StarterService
     public function generateBoilerplate()
     {
         // For some reason, we need this for the node to be properly created (child location)
+        // Todo: avoid this whole loop by making it a request the user is redirected to?
         CampaignLocalization::forceCampaign($this->campaign);
 
         // Generate locations

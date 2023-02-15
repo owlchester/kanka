@@ -4,7 +4,6 @@ namespace App\Services\Caches;
 
 use App\Models\TimelineElement;
 use Illuminate\Support\Facades\Cache;
-use App\Facades\CampaignLocalization;
 use Illuminate\Support\Facades\DB;
 
 class TimelineElementCacheService extends BaseCache
@@ -14,8 +13,6 @@ class TimelineElementCacheService extends BaseCache
      */
     public function iconSuggestion(): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $key = $this->iconSuggestionKey();
         if (Cache::has($key)) {
             return Cache::get($key);
@@ -35,7 +32,7 @@ class TimelineElementCacheService extends BaseCache
         ];
 
         $data = TimelineElement::leftJoin('timelines as t', 't.id', 'timeline_elements.timeline_id')
-            ->where('t.campaign_id', $campaign->id)
+            ->where('t.campaign_id', $this->campaign->id)
             ->select(DB::raw('icon, MAX(timeline_elements.created_at) as cmat'))
             ->groupBy('icon')
             ->whereNotNull('icon')

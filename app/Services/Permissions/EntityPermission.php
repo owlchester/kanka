@@ -256,18 +256,18 @@ class EntityPermission
     /**
      * It's way easier to just load all permissions of the user once and "cache" them, rather than try and be
      * optional on each query.
-     * @param User $user
-     * @param Campaign $campaign
+     * @param ?User $user
+     * @param ?Campaign $campaign
      * @return void
      */
-    protected function loadAllPermissions(User $user = null, Campaign $campaign = null)
+    protected function loadAllPermissions(?User $user, ?Campaign $campaign)
     {
         // If no campaign was provided, get the one in the url. One is provided when moving entities between campaigns
         if (empty($campaign)) {
             $campaign = \App\Facades\CampaignLocalization::getCampaign();
             // Our Campaign middleware takes care of this, but the laravel binding is going to get the model first
             // so we have to add this abort here to handle calling the permission engine on campaigns which
-            // no longer exist.
+            // no longer exists.
             if (empty($campaign)) {
                 abort(404);
             }

@@ -23,11 +23,9 @@ use App\Models\OrganisationMember;
 use App\Models\Quest;
 use App\Models\Race;
 use App\Models\Tag;
-use App\Models\Timeline;
 use App\Models\TimelineEra;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Exceptions\TranslatableException;
@@ -208,18 +206,18 @@ class EntityService
     {
         // First we make sure we have access to the new campaign.
         /** @var Campaign|null $campaign */
-        $campaign = auth()->user()->campaigns()->where('campaign_id', $campaignId)->first();
-        if (empty($campaign)) {
+        $newCampaign = auth()->user()->campaigns()->where('campaign_id', $campaignId)->first();
+        if (empty($newCampaign)) {
             throw new TranslatableException('entities/move.errors.unknown_campaign');
         }
 
         // Check that the new campaign is different than the current one.
-        if ($campaign->id == $entity->campaign_id) {
+        if ($newCampaign->id == $entity->campaign_id) {
             throw new TranslatableException('entities/move.errors.same_campaign');
         }
 
         // Can the user create an entity of that type on the new campaign?
-        if (!auth()->user()->can('create', [get_class($entity->child), null, $campaign])) {
+        if (!auth()->user()->can('create', [get_class($entity->child), null, $newCampaign])) {
             throw new TranslatableException('entities/move.errors.permission');
         }
 
@@ -230,18 +228,17 @@ class EntityService
 
         if ($copy) {
             $this->copied = true;
-            return $this->copyToCampaign($entity, $campaign);
+            return $this->copyToCampaign($entity, $newCampaign);
         }
-
-        // Save and keep the current campaign before updating the entity
-        $currentCampaign = CampaignLocalization::getCampaign();
 
         DB::beginTransaction();
         try {
             // Made it so far, we can move the entity's campaign_id. We first need to remove all the
-            // relations and, since they won't make sense on the new campaign.
+            // relations since they won't make sense on the new campaign.
             $entity->relationships()->delete();
             $entity->targetRelationships()->delete();
+
+            // What about inventory, reminders, assets, abilities?
 
             // Get the child of the entity (the actual Location, Character etc) and remove the permissions, since they
             // won't make sense on the new campaign either.
@@ -249,29 +246,21 @@ class EntityService
             $child = $entity->child;
             $entity->permissions()->delete();
 
-            // Detach is a custom function on a child to remove itself from where it is parent to other entities.
+            // Detach is a custom function on a child to remove itself from where its parent to other entities.
             $child->detach();
 
             // Update Entity first, as there are no hooks on the Entity model.
-            CampaignLocalization::forceCampaign($campaign);
-            $entity->campaign_id = $campaign->id;
-            $entity->save();
-
-            // Finally, we can change and save the child. Should be all good. But tell the app not
-            // to create the entity to avoid silly duplicates and new entities.
-            $child->savingObserver = false;
+            $entity->campaign_id = $newCampaign->id;
+            $entity->saveQuietly();
 
             // Update child second. We do this otherwise we'll have an old entity and a new one
-            $child->campaign_id = $campaign->id; // Technically don't need this since it's in MiscObserver::saving()
-            $child->save();
+            $child->campaign_id = $newCampaign->id;
+            $child->saveQuietly();
 
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
         }
-
-        // Switch back to the original campaign
-        CampaignLocalization::forceCampaign($currentCampaign);
 
         return $entity;
     }
@@ -283,11 +272,7 @@ class EntityService
      */
     protected function copyToCampaign(Entity $entity, Campaign $newCampaign)
     {
-        // Save and keep the current campaign before updating the entity
-        $originalCampaign = CampaignLocalization::getCampaign();
-
         // Update Entity first, as there are no hooks on the Entity model.
-        CampaignLocalization::forceCampaign($newCampaign);
 
         DB::beginTransaction();
         try {
@@ -309,22 +294,16 @@ class EntityService
                 }
             }
 
-            // Remove map stuff from locations
-            if ($newModel instanceof Location) {
-                $newModel->map = null;
-            }
-
             // The model is ready to be saved.
-            $newModel->savingObserver = false;
-            $newModel->saveObserver = false;
-            $newModel->save();
-            $newModel->createEntity();
+            $newModel->campaign_id = $newCampaign->id;
+            $newModel->saveQuietly();
+            $newEntity = $newModel->createEntity();
 
             // Copy entity notes over
             foreach ($entity->posts as $note) {
                 /** @var EntityNote $newNote */
                 $newNote = $note->replicate(['entity_id', 'created_by', 'updated_by']);
-                $newNote->entity_id = $newModel->entity->id;
+                $newNote->entity_id = $newEntity->id;
                 $newNote->created_by = auth()->user()->id;
                 $newNote->saveQuietly();
             }
@@ -333,12 +312,12 @@ class EntityService
             foreach ($entity->attributes as $attribute) {
                 /** @var Attribute $newAttribute */
                 $newAttribute = $attribute->replicate(['entity_id']);
-                $newAttribute->entity_id = $newModel->entity->id;
+                $newAttribute->entity_id = $newEntity->id;
                 $newAttribute->saveQuietly();
             }
 
             // Characters: copy traits
-            if ($entity->child instanceof Character) {
+            if ($entity->isCharacter()) {
                 /** @var CharacterTrait $trait */
                 foreach ($entity->child->characterTraits as $trait) {
                     $newTrait = $trait->replicate(['character_id']);
@@ -348,7 +327,7 @@ class EntityService
             }
 
             // Timeline: copy eras
-            if ($entity->child instanceof Timeline) {
+            if ($entity->isTimeline()) {
                 foreach ($entity->child->eras as $era) {
                     /** @var TimelineEra $newEra **/
                     $newEra = $era->replicate(['timeline_id']);
@@ -365,9 +344,6 @@ class EntityService
         } catch (\Exception $e) {
             DB::rollBack();
         }
-
-        // Switch back to the original campaign
-        CampaignLocalization::forceCampaign($originalCampaign);
 
         return $entity;
     }
@@ -500,30 +476,6 @@ class EntityService
     }
 
     /**
-     * @param string $name
-     * @param string $target
-     * @return MiscModel
-     * @throws \Exception
-     */
-    public function create($name, $target)
-    {
-        dd('ESC: 16-C');
-        // Create new model
-        if (!isset($this->entities[$target])) {
-            throw new \Exception("Unknown entity type '{$target}' for creating entity");
-        }
-
-        /**
-         * @var MiscModel $new
-         */
-        $new = new $this->entities[$target]();
-        $new->name = $name;
-        $new->is_private = Auth::user()->isAdmin() ? CampaignLocalization::getCampaign()->entity_visibility : false;
-        $new->save();
-        return $new;
-    }
-
-    /**
      * Get an entity object string based on the entity type
      * @param string $entity
      * @return string|bool
@@ -626,7 +578,7 @@ class EntityService
             return $this->cachedNewEntityTypes = [];
         }
 
-        // Save and keep the current campaign before updating the entity
+        // Todo: move to CampaignAware
         $campaign = CampaignLocalization::getCampaign();
 
         $newTypes = [

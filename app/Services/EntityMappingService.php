@@ -126,7 +126,6 @@ class EntityMappingService
             $singularType = config('entities.ids.' . $singularType);
 
             // Determine the real campaign id from the model.
-            // Todo: why can't we use CampaignLocalization? Because this was used by the migration script?
             $campaignId = $model->campaign_id;
             if ($model instanceof Campaign) {
                 $campaignId = $model->id;
@@ -139,6 +138,7 @@ class EntityMappingService
             }
 
             /** @var Entity|null $target */
+            // Why isn't id enough?
             $target = Entity::where([
                 'type_id' => $singularType, 'id' => $id, 'campaign_id' => $campaignId
             ])->first();
@@ -175,7 +175,7 @@ class EntityMappingService
     {
         $mention = new EntityMention();
 
-        // Determine what kind of entity this is
+        // Determine what kind of model this is
         if ($model instanceof Campaign) {
             $mention->campaign_id = $model->id;
         } elseif ($model instanceof EntityNote) {
@@ -216,13 +216,14 @@ class EntityMappingService
      */
     protected function log(string $message = null)
     {
-        if ($this->verbose === true) {
-            echo $message;
-            if (app()->runningInConsole()) {
-                echo "\n";
-            } else {
-                echo "<br />";
-            }
+        if ($this->verbose !== true) {
+            return;
+        }
+        echo $message;
+        if (app()->runningInConsole()) {
+            echo "\n";
+        } else {
+            echo "<br />";
         }
     }
 }

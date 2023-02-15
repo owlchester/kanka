@@ -253,8 +253,7 @@ class EntityObserver
             $entity->tooltip = $this->purify(request()->get('entity_tooltip'));
         }
 
-
-        // Handle map. Let's use a service for this.
+        // Handle header image. Let's use a service for this.
         ImageService::entity($entity, 'campaign/' . $entity->campaign_id, 0, 'header_image');
 
         // Superboosted image gallery selection

@@ -6,6 +6,7 @@ use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MoveEntityRequest;
 use App\Models\Entity;
+use App\Facades\CampaignLocalization;
 use App\Services\EntityService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
@@ -56,9 +57,11 @@ class MoveController extends Controller
     public function move(MoveEntityRequest $request, Entity $entity)
     {
         $this->authorize('view', $entity->child);
+        $campaign = CampaignLocalization::getCampaign();
 
         try {
             $this->service
+                ->campaign($campaign)
                 ->move($entity, $request->only('campaign', 'copy'));
 
             $copied = $this->service->copied();

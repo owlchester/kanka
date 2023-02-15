@@ -41,10 +41,7 @@ class NavigationService
         if (Identity::isImpersonating()) {
             $data['is_impersonating'] = true;
 
-            \App\Facades\CampaignLocalization::setCampaign(Identity::getCampaignId());
-            $returnUrl = route('identity.back');
-            $campaignUrl = 'campaign/' . Identity::getCampaignId();
-            $returnUrl = str_replace('campaign/navigation', $campaignUrl, $returnUrl);
+            $returnUrl = route('identity.back', Identity::getCampaignId());
             $data['return'] = [
                 'url' => $returnUrl,
                 'name' => __('campaigns.members.actions.switch-back'),

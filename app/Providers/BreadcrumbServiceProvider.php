@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\CampaignLocalization;
 use App\Services\BreadcrumbService;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +16,10 @@ class BreadcrumbServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(BreadcrumbService::class, function ($app) {
-            return new BreadcrumbService();
+            $service = new BreadcrumbService();
+            $campaign = CampaignLocalization::getCampaign();
+            $service->campaign($campaign);
+            return $service;
         });
 
         $this->app->alias(BreadcrumbService::class, 'breadcrumb');

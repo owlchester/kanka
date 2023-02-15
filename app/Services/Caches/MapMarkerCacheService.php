@@ -4,7 +4,6 @@ namespace App\Services\Caches;
 
 use App\Models\MapMarker;
 use Illuminate\Support\Facades\Cache;
-use App\Facades\CampaignLocalization;
 use Illuminate\Support\Facades\DB;
 
 class MapMarkerCacheService extends BaseCache
@@ -14,8 +13,6 @@ class MapMarkerCacheService extends BaseCache
      */
     public function iconSuggestion(): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $key = $this->iconSuggestionKey();
         if (Cache::has($key)) {
             return Cache::get($key);
@@ -35,7 +32,7 @@ class MapMarkerCacheService extends BaseCache
         ];
 
         $data = MapMarker::leftJoin('maps as m', 'm.id', 'map_markers.map_id')
-            ->where('m.campaign_id', $campaign->id)
+            ->where('m.campaign_id', $this->campaign->id)
             ->select(DB::raw('custom_icon, MAX(map_markers.created_at) as cmat'))
             ->groupBy('custom_icon')
             ->whereNotNull('custom_icon')

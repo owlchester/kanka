@@ -28,7 +28,7 @@ class IdentityController extends Controller
     {
         $this->authorize('switch', [$campaignUser, $campaign]);
 
-        if (Identity::switch($campaignUser)) {
+        if (Identity::campaign($campaign)->switch($campaignUser)) {
             return redirect()
                 ->route('dashboard');
         }
@@ -43,7 +43,7 @@ class IdentityController extends Controller
     {
         $this->authorize('switch', [$campaignUser, $campaign]);
 
-        if (Identity::switch($campaignUser)) {
+        if (Identity::campaign($campaign)->switch($campaignUser)) {
             return redirect()
                     ->to($entity->url());
         }
