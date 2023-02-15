@@ -8,7 +8,7 @@
     <label for="config-entity">
         {{ __('dashboard.dashboards.fields.name') }}
     </label>
-    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('dashboard.dashboards.placeholders.name')]) !!}
+    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('dashboard.dashboards.placeholders.name'), 'required' => 'required']) !!}
 </div>
 
 
