@@ -5,7 +5,7 @@
 ])
 
 @section('content')
-    {!! Form::model($dashboard, ['route' => ['campaign_dashboards.update', $dashboard], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+    {!! Form::model($dashboard, ['route' => ['campaign_dashboards.update', [$campaign, $dashboard]], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
     @include('partials.forms.form', [
         'title' => __('dashboard.dashboards.update.title', ['name' => $dashboard->name]),
         'content' => 'dashboard.dashboards._form',

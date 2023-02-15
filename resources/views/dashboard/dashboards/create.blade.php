@@ -6,7 +6,7 @@
 
 @section('content')
 
-    {!! Form::open(['route' => ['campaign_dashboards.store'], 'method' => 'POST', 'data-shortcut' => 1]) !!}
+    {!! Form::open(['route' => ['campaign_dashboards.store', [$campaign]], 'method' => 'POST', 'data-shortcut' => 1]) !!}
     @include('partials.forms.form', [
         'title' => __('dashboard.dashboards.create.title'),
         'content' => 'dashboard.dashboards._form',

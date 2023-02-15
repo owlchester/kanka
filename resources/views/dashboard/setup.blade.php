@@ -84,7 +84,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
                                     href="#"
                                data-toggle="ajax-modal"
                                data-target="#edit-widget"
-                               data-url="{{ route('campaign_dashboards.edit', $dashboard) }}"
+                               data-url="{{ route('campaign_dashboards.edit', [$campaign, $dashboard]) }}"
                             >
                                 <i class="fa-solid fa-pencil-alt"></i>
                                 {{ __('dashboard.dashboards.actions.edit') }}
@@ -95,7 +95,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
                                     href="#"
                                     data-toggle="ajax-modal"
                                     data-target="#edit-widget"
-                                    data-url="{{ route('campaign_dashboards.create', ['source' => $dashboard]) }}"
+                                    data-url="{{ route('campaign_dashboards.create', [$campaign, 'source' => $dashboard]) }}"
                             >
                                 <i class="fa-solid fa-copy"></i>
                                 {{ __('crud.actions.copy') }}
@@ -108,7 +108,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
                                 <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                 {{ __('crud.remove') }}
                             </a>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_dashboards.destroy', $dashboard], 'style '=> 'display:inline', 'id' => 'delete-dashboard-' . $dashboard->id]) !!}
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_dashboards.destroy', [$campaign, $dashboard]], 'style '=> 'display:inline', 'id' => 'delete-dashboard-' . $dashboard->id]) !!}
                             {!! Form::close() !!}
                         </li>
                     </ul>

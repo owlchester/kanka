@@ -81,6 +81,7 @@ Route::resources([
     'campaign_styles' => 'Campaign\StyleController',
     'campaign_dashboard_widgets' => 'Campaign\DashboardWidgetController',
     'images' => 'Campaign\GalleryController',
+    'campaign_dashboards' => 'Campaign\DashboardController',
 ]);
 
 Route::post('/campaign_roles/{campaign_role}/savePermissions', [\App\Http\Controllers\Campaign\RoleController::class, 'savePermissions'])->name('campaign_roles.savePermissions');

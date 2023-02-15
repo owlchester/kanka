@@ -170,7 +170,5 @@ Route::resources([
 
     'attribute_templates' => 'AttributeTemplateController',
     //'presets' => 'PresetController',
-
-    'campaign_dashboards' => 'Campaign\DashboardController',
 ]);
 
