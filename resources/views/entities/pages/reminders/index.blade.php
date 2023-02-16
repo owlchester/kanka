@@ -15,9 +15,9 @@
 @section('entity-header-actions')
     @can('events', $entity->child)
         <div class="header-buttons">
-            <a href="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
+            <a href="{{ route('entities.entity_events.create', [$campaign, $entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
                class="btn btn-sm btn-warning pull-right" data-toggle="ajax-modal" data-target="#entity-modal"
-               data-url="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}">
+               data-url="{{ route('entities.entity_events.create', [$campaign, $entity, 'next' => 'entity.events']) }}">
                 <i class="fa-solid fa-plus"></i> {{ __('entities/events.show.actions.add') }}
             </a>
         </div>

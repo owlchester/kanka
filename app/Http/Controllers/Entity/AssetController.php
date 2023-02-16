@@ -6,9 +6,11 @@ use App\Exceptions\EntityFileException;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAsset;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Services\EntityFileService;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -20,10 +22,11 @@ class AssetController extends Controller
      * Guest Auth Trait
      */
     use GuestAuthTrait;
+    use CampaignAware;
 
     public function __construct()
     {
-        //$this->middleware('campaign.boosted');
+        $this->middleware('auth');
     }
 
     /**
@@ -31,7 +34,7 @@ class AssetController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         // Policies will always fail if they can't resolve the user.
         if (auth()->check()) {
@@ -40,7 +43,6 @@ class AssetController extends Controller
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
-        $campaign = CampaignLocalization::getCampaign();
         $assets = $entity->assets;
 
         return view('entities.pages.assets.index', compact(
@@ -56,14 +58,15 @@ class AssetController extends Controller
      * @param EntityAsset $entityAsset
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(Entity $entity, EntityAsset $entityAsset)
+    public function show(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
-        return redirect()->route('entities.entity_assets.index', $entity);
+        return redirect()->route('entities.entity_assets.index', [$campaign, $entity]);
     }
 
-    public function create(Entity $entity)
+    public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        $this->campaign($campaign);
 
         $typeID = (int) request()->get('type');
         if ($typeID == EntityAsset::TYPE_FILE) {
@@ -76,10 +79,11 @@ class AssetController extends Controller
         abort(404);
     }
 
-    public function store(StoreEntityAsset $request, Entity $entity)
+    public function store(StoreEntityAsset $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
+        $this->campaign($campaign);
         $data = [];
         $type = '';
         $typeId = null;
@@ -100,7 +104,7 @@ class AssetController extends Controller
         $asset = EntityAsset::create($data);
 
         return redirect()
-            ->route('entities.entity_assets.index', $entity)
+            ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __(
                 'entities/' . $type . '.create.success',
                 ['name' => $asset->name, 'entity' => $entity->name]
@@ -109,31 +113,30 @@ class AssetController extends Controller
 
     protected function storeFile(StoreEntityAsset $request, Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
         /** @var EntityFileService $service */
         $service = app()->make(EntityFileService::class);
 
         try {
             $file = $service
                 ->entity($entity)
-                ->campaign($campaign)
+                ->campaign($this->campaign)
                 ->upload($request);
 
             return redirect()
-                ->route('entities.entity_assets.index', $entity)
+                ->route('entities.entity_assets.index', [$this->campaign, $entity])
                 ->with('success', __('entities/files.create.success', ['file' => $file->name]));
         } catch (EntityFileException $e) {
             return redirect()
-                ->route('entities.entity_assets.index', $entity)
-                ->with('error', __('crud.files.errors.' . $e->getMessage(), ['max' => $campaign->maxEntityFiles()]));
+                ->route('entities.entity_assets.index', [$this->campaign, $entity])
+                ->with('error', __('crud.files.errors.' . $e->getMessage(), ['max' => $this->campaign->maxEntityFiles()]));
         } catch (\Exception $e) {
             return redirect()
-                ->route('entities.entity_assets.index', $entity)
+                ->route('entities.entity_assets.index', [$this->campaign, $entity])
                 ->with('error', $e->getMessage());
         }
     }
 
-    public function edit(Entity $entity, EntityAsset $entityAsset)
+    public function edit(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('update', $entity->child);
 
@@ -145,13 +148,15 @@ class AssetController extends Controller
         }
 
         return view('entities.pages.' . $file . '.update')
+            ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('entityAsset', $entityAsset);
     }
 
-    public function update(StoreEntityAsset $request, Entity $entity, EntityAsset $entityAsset)
+    public function update(StoreEntityAsset $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('update', $entity->child);
+        $this->campaign($campaign);
 
         $type = 'files';
         if ($entityAsset->isAlias()) {
@@ -173,12 +178,12 @@ class AssetController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.entity_assets.index', $entity)
+            ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __('entities/' . $type . '.update.success', ['name' => $entityAsset->name, 'entity' => $entity->name]));
     }
 
 
-    public function destroy(Request $request, Entity $entity, EntityAsset $entityAsset)
+    public function destroy(Request $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('update', $entity->child);
 
@@ -198,7 +203,7 @@ class AssetController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.entity_assets.index', $entity)
+            ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __('entities/' . $type . '.destroy.success', ['name' => $entityAsset->name, 'entity' => $entity->name]));
     }
 
@@ -209,16 +214,15 @@ class AssetController extends Controller
      */
     protected function createFile(Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
-        $max = $campaign->maxEntityFiles();
+        $max = $this->campaign->maxEntityFiles();
         if ($entity->files->count() >= $max) {
             return view('entities.pages.files.max')
-                ->with('campaign', $campaign)
+                ->with('campaign', $this->campaign)
                 ->with('max', $max);
         }
 
         return view('entities.pages.files.create')
-            ->with('campaign', $campaign)
+            ->with('campaign', $this->campaign)
             ->with('entity', $entity);
     }
 
@@ -229,17 +233,15 @@ class AssetController extends Controller
      */
     protected function createLink(Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
-        if (!$campaign->boosted()) {
+        if (!$this->campaign->boosted()) {
             return view('entities.pages.links.unboosted')
-                ->with('campaign', $campaign)
-                ->with('campaign', $campaign);
+                ->with('campaign', $this->campaign);
         }
 
         return view('entities.pages.links.create', compact(
-            'campaign',
             'entity'
-        ));
+        ))
+            ->with('campaign', $this->campaign);
     }
 
     /**
@@ -249,16 +251,15 @@ class AssetController extends Controller
      */
     protected function createAlias(Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
-        if (!$campaign->boosted()) {
+        if (!$this->campaign->boosted()) {
             return view('entities.pages.aliases.unboosted')
-                ->with('campaign', $campaign);
+                ->with('campaign', $this->campaign);
         }
 
         return view('entities.pages.aliases.create', compact(
-            'campaign',
             'entity'
-        ));
+        ))
+            ->with('campaign', $this->campaign);
     }
 
 
@@ -268,7 +269,7 @@ class AssetController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function go(Entity $entity, EntityAsset $entityAsset)
+    public function go(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         // Policies will always fail if they can't resolve the user.
         if (auth()->check()) {
@@ -297,6 +298,7 @@ class AssetController extends Controller
         }
 
         return view('entities.pages.links.go', compact(
+            'campaign',
             'entity',
             'entityAsset'
         ));

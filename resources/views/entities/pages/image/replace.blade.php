@@ -27,7 +27,7 @@
         </div>
         <div class="modal-body">
             {!! Form::open([
-                'route' => ['entities.image.replace', $entity],
+                'route' => ['entities.image.replace', [$campaign, $entity]],
                 'method' => 'POST',
                 'enctype' => 'multipart/form-data',
             ]) !!}

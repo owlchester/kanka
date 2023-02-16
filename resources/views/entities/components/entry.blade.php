@@ -8,7 +8,7 @@
         <div class="box-tools">
             @if (auth()->check())
                 @can('update', [$model])
-                    <a href="{{ route('entities.entry.edit', $model->entity) }}" title="{{ __('crud.edit') }}" role="button" class="btn btn-box-tool" data-toggle="tooltip">
+                    <a href="{{ route('entities.entry.edit', [$campaign, $model->entity]) }}" title="{{ __('crud.edit') }}" role="button" class="btn btn-box-tool" data-toggle="tooltip">
                         <i class="fa-solid fa-edit"></i>
                     </a>
                 @endcan

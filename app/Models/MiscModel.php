@@ -297,7 +297,7 @@ abstract class MiscModel extends Model
             'name' => 'crud.tabs.story',
             'route' => $this->entity->pluralType() . '.show',
             'button' => auth()->check() && auth()->user()->can('update', $this) ? [
-                'url' => route('entities.story.reorder', $this->entity->id),
+                'url' => route('entities.story.reorder', [$this->campaign_id, $this->entity->id]),
                 'icon' => 'fa-solid fa-cog',
                 'tooltip' => __('entities/story.reorder.icon_tooltip'),
             ] : null,
@@ -456,8 +456,10 @@ abstract class MiscModel extends Model
             return e($this->name);
         }
 
+        $campaign = CampaignLocalization::getCampaign();
+
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
-            'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
+            'data-url="' . route('entities.tooltip', ['campaign' => $campaign, 'entity' => $this->entity->id]) . '" href="' .
             $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .
         '</a>';
@@ -562,14 +564,14 @@ abstract class MiscModel extends Model
         // Relations & Inventory
         if (!isset($this->hasRelations)) {
             $actions[] = '<li>
-                <a href="' . route('entities.relations.index', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="relations">
+                <a href="' . route('entities.relations.index', [$campaign, $this->entity]) . '" class="dropdown-item datagrid-dropdown-item" data-name="relations">
                     <i class="fa-solid fa-users" aria-hidden="true"></i> ' . __('crud.tabs.connections') . '
                 </a>
             </li>';
 
             if ($campaign->enabled('inventories')) {
                 $actions[] = '<li>
-                <a href="' . route('entities.inventory', $this->entity) . '" class="dropdown-item datagrid-dropdown-item" data-name="inventory">
+                <a href="' . route('entities.inventories.index', [$campaign, $this->entity]) . '" class="dropdown-item datagrid-dropdown-item" data-name="inventory">
                     <i class="ra ra-round-bottom-flask" aria-hidden="true"></i> ' . __('crud.tabs.inventory') . '
                 </a>
             </li>';

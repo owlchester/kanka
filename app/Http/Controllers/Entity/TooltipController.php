@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Entity;
 
-use App\Facades\CampaignLocalization;
+use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 
-class EntityTooltipController extends Controller
+class TooltipController extends Controller
 {
     use GuestAuthTrait;
 
     /**
      * Prepare and show an entity's tooltip
      */
-    public function show(Entity $entity)
+    public function show(Campaign $campaign, Entity $entity)
     {
         if (empty($entity->child)) {
             abort(403);
@@ -31,7 +32,6 @@ class EntityTooltipController extends Controller
             $tagClasses[] = 'kanka-tag-' . $tag->slug;
         }
 
-        $campaign = CampaignLocalization::getCampaign();
         $tooltip = view('entities.components.tooltip')
             ->with('entity', $entity)
             ->with('tags', $entity->tagsWithEntity())

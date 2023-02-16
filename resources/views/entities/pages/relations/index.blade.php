@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/relations.show.title', ['name' => $entity->name]),
     'breadcrumbs' => false,
     'canonical' => true,
@@ -14,16 +14,17 @@
 @section('entity-header-actions')
         <div class="header-buttons">
             <div class="btn-group">
-                <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
+                <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
                     <i class="fa-solid fa-list-ul"></i>
                 </a>
-                <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'map']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
+                <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'map']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
                     <i class="fa-solid fa-map"></i>
                 </a>
             </div>
 
             @can('relation', [$entity->child, 'add'])
-            <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
+            <a href="{{ route('entities.relations.create', [$campaign, $entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal"
+               data-url="{{ route('entities.relations.create', [$campaign, $entity, 'mode' => $mode]) }}">
                 <i class="fa-solid fa-plus"></i>
                 <span class="hidden-xs hidden-sm">
                     {{ __('entities.relation') }}

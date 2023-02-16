@@ -62,9 +62,9 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                 <li>
-                                    <a href="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
+                                    <a href="{{ route('entities.inventories.edit', [$campaign, $entity, 'inventory' => $item->id]) }}"
                                        data-toggle="ajax-modal" data-target="#entity-modal"
-                                       data-url="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
+                                       data-url="{{ route('entities.inventories.edit', [$campaign, $entity, 'inventory' => $item->id]) }}"
                                        title="{{ __('crud.edit') }}">
                                         <i class="fa-solid fa-edit"></i> {{ __('crud.edit') }}
                                     </a>
@@ -75,7 +75,7 @@
                                         <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                         {{ __('crud.remove') }}
                                     </a>
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.inventories.destroy', 'entity' => $entity, 'inventory' => $item], 'style' => 'display:inline', 'id' => 'delete-form-' . $item->id]) !!}
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.inventories.destroy', [$campaign, $entity, 'inventory' => $item]], 'style' => 'display:inline', 'id' => 'delete-form-' . $item->id]) !!}
                                     {!! Form::close() !!}
                                 </li>
                             </ul>

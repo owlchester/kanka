@@ -10,7 +10,7 @@
 @section('content')
     @include('partials.errors')
 
-    {!! Form::open(['route' => ['entities.transform', $entity->id], 'method' => 'POST']) !!}
+    {!! Form::open(['route' => ['entities.transform', [$campaign, $entity]], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
     <div class="panel panel-default">

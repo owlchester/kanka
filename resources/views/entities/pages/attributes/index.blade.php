@@ -14,11 +14,11 @@
 @section('entity-header-actions')
     @can('attribute', [$entity->child, 'add'])
         <div class="header-buttons">
-            <a class="btn btn-sm btn-default" href="{{ route('entities.attributes.template', $entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', $entity) }}">
+            <a class="btn btn-sm btn-default" href="{{ route('entities.attributes.template', [$campaign, $entity]) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', [$campaign, $entity]) }}">
                 <i class="fa-solid fa-copy"></i> {{ __('entities/attributes.actions.apply_template') }}
             </a>
 
-            <a href="{{ route('entities.attributes.edit', ['entity' => $entity]) }}" class="btn btn-sm btn-warning">
+            <a href="{{ route('entities.attributes.edit', [$campaign, $model->entity]) }}" class="btn btn-sm btn-warning">
                 <i class="fa-solid fa-list"></i> {{ __('entities/attributes.actions.manage') }}
             </a>
         </div>
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', $entity) }}" />
+        <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', [$campaign, $entity]) }}" />
     </div>
 @endsection
 

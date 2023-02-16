@@ -1,16 +1,16 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => trans('entities/abilities.create.title', ['name' => $entity->name]),
+    'title' => __('entities/abilities.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        ['url' => route('entities.entity_abilities.index', $entity->id), 'label' => trans('crud.tabs.ability')],
+        ['url' => route('entities.entity_abilities.index', [$campaign, $entity]), 'label' => __('crud.tabs.ability')],
     ]
 ])
 
 @section('content')
     {!! Form::open([
-        'route' => ['entities.entity_abilities.store', $entity],
+        'route' => ['entities.entity_abilities.store', [$campaign, $entity]],
         'method'=>'POST',
         'data-shortcut' => 1
     ]) !!}

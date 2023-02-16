@@ -28,11 +28,13 @@
             ]
         ])
 
-        @include($entity->pluralType() . '._menu', [
-            'active' => 'story',
-            'model' => $entity->child,
-            'name' => $entity->pluralType()
-        ])
+        <div class="entity-submenu">
+            @include('entities.components.menu', [
+                'active' => 'story',
+                'model' => $entity->child,
+                'name' => $entity->pluralType()
+            ])
+        </div>
 
         <div class="entity-main-block">
             @include('entities.pages.story._reorder')

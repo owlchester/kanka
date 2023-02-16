@@ -17,7 +17,7 @@ $isAdmin = Auth::user()->isAdmin();
 
 @section('fullpage-form')
     {!! Form::open([
-        'url' => route('entities.attributes.save', ['entity' => $entity]),
+        'url' => route('entities.attributes.save', [$campaign, $entity]),
         'method' => 'POST',
         'data-shortcut' => 1,
         'class' => 'entity-form',

@@ -98,9 +98,6 @@ Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->
 Route::get('/calendars/{calendar}/events', 'CalendarController@events')->name('calendars.events');
 Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('calendars.today');
 
-//        Route::get('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
-//        Route::post('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
-
 
 Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')
     ->name('menu_links.random');
@@ -115,13 +112,6 @@ Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::c
     ->name('quick-links.reorder');
 Route::post('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'save'])
     ->name('quick-links.reorder-save');
-
-// Entity Abilities API
-Route::get('/entities/{entity}/abilities', 'Entity\AbilityController@index')->name('entities.abilities');
-Route::get('/entities/{entity}/entity_abilities/api', 'Entity\AbilityController@api')->name('entities.entity_abilities.api');
-Route::get('/entities/{entity}/entity_abilities/import', 'Entity\AbilityController@import')->name('entities.entity_abilities.import');
-Route::post('/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\AbilityController@useCharge')->name('entities.entity_abilities.use');
-Route::get('/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
 
 Route::get('/entities/{entity}/entity_assets/{entity_asset}/go', 'Entity\AssetController@go')->name('entities.entity_assets.go');
 //Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
@@ -159,14 +149,6 @@ Route::resources([
     'races' => 'RaceController',
     'creatures' => 'CreatureController',
     'relations' => 'RelationController',
-
-    'entities.entity_abilities' => 'Entity\AbilityController',
-    'entities.entity_notes' => 'EntityNoteController',
-    'entities.posts' => 'Entity\PostController',
-    'entities.entity_events' => 'EntityEventController',
-    'entities.entity_assets' => 'Entity\AssetController',
-    'entities.inventories' => 'Entity\InventoryController',
-    'entities.relations' => 'Entity\RelationController',
 
     'attribute_templates' => 'AttributeTemplateController',
     //'presets' => 'PresetController',

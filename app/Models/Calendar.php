@@ -130,7 +130,7 @@ class Calendar extends MiscModel
                 $sub->select('campaign_id', 'id', 'ext');
             },
             'calendars' => function ($sub) {
-                $sub->select('id', 'name', 'calendar_id');
+                $sub->select('id', 'name', 'calendar_id', 'campaign_id');
             }
         ]);
     }

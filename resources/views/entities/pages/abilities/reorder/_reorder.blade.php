@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\TimelineEra[] $abilities */?>
 {!! Form::open([
-        'route' => ['entities.entity_abilities.reorder-save', $entity],
+        'route' => ['entities.entity_abilities.reorder-save', [$campaign, $entity]],
         'method' => 'POST',
     ]) !!}
 <div class="box box-solid box-entity-story-reorder">

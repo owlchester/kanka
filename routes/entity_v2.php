@@ -1,5 +1,7 @@
 <?php
 
+
+
 //Ability reorder
 Route::get('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Entity\AbilityReorderController::class, 'index'])->name('entities.entity_abilities.reorder');
 Route::post('/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Entity\AbilityReorderController::class, 'save'])->name('entities.entity_abilities.reorder-save');
@@ -36,6 +38,7 @@ Route::patch('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryCont
 Route::get('/entities/{entity}/relations_map', [\App\Http\Controllers\Entity\RelationController::class, 'map'])->name('entities.relations_map');
 Route::get('/entities/{entity}/relations/table', [\App\Http\Controllers\Entity\RelationController::class, 'table'])->name('entities.relations_table');
 
+
 // Entity Abilities API
 Route::get('/entities/{entity}/abilities', [\App\Http\Controllers\Entity\AbilityController::class, 'index'])->name('entities.abilities');
 Route::get('/entities/{entity}/entity_abilities/api', [\App\Http\Controllers\Entity\AbilityController::class, 'api'])->name('entities.entity_abilities.api');
@@ -60,7 +63,7 @@ Route::post('/entities/{entity}/posts/{post}/move', [\App\Http\Controllers\Entit
 Route::get('/entities/{entity}/transform', [\App\Http\Controllers\Entity\TransformController::class, 'index'])->name('entities.transform');
 Route::post('/entities/{entity}/transform', [\App\Http\Controllers\Entity\TransformController::class, 'transform'])->name('entities.transform');
 
-Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
+Route::get('/entities/{entity}/tooltip', [\App\Http\Controllers\Entity\TooltipController::class, 'show'])->name('entities.tooltip');
 
 Route::get('/entities/{entity}/json-export', [\App\Http\Controllers\Entity\ExportController::class, 'json'])->name('entities.json-export');
 Route::get('/entities/{entity}/html-export', [\App\Http\Controllers\Entity\ExportController::class, 'html'])->name('entities.html-export');
@@ -86,3 +89,14 @@ Route::post('/entities/{entity}/attribute-template', [\App\Http\Controllers\Enti
 
 Route::get('/entities/{entity}/permissions', 'PermissionController@view')->name('entities.permissions');
 Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
+
+
+Route::resources([
+    'entities.entity_abilities' => 'Entity\AbilityController',
+    'entities.entity_notes' => 'EntityNoteController',
+    'entities.posts' => 'Entity\PostController',
+    'entities.entity_events' => 'EntityEventController',
+    'entities.entity_assets' => 'Entity\AssetController',
+    'entities.inventories' => 'Entity\InventoryController',
+    'entities.relations' => 'Entity\RelationController',
+]);

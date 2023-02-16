@@ -33,8 +33,8 @@
 
                     @can('update', $entity->child)
                         <div class="pull-right">
-                            <a href="{{ route('entities.entity_assets.create', $entity) }}" class="btn btn-sm btn-primary"
-                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', $entity) }}">
+                            <a href="{{ route('entities.entity_assets.create', [$campaign, $entity]) }}" class="btn btn-sm btn-primary"
+                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$campaign, $entity]) }}">
                                 <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/links.actions.add') }}</span>
                                 <span class="visible-xs visible-sm">{{ __('crud.add') }}</span>
                             </a>

@@ -9,6 +9,7 @@ use App\Models\EntityAsset;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Services\TOC\TocSlugify;
+use App\Traits\CampaignAware;
 use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -19,6 +20,7 @@ use TOC\MarkupFixer;
 class MentionsService
 {
     use MentionTrait;
+    use CampaignAware;
 
     /** @var string The text that is being parsed, usualy an entry field */
     protected string $text = '';
@@ -71,6 +73,7 @@ class MentionsService
     public function __construct(EntityService $entityService)
     {
         $this->entityService = $entityService;
+        $this->campaign = \App\Facades\CampaignLocalization::getCampaign();
     }
 
     /**
@@ -348,6 +351,7 @@ class MentionsService
                     // Let's validate this new url first. Maybe we need to map to entities/id (ex inventory)
                     $entityPages = ['inventory', 'abilities', 'relations', 'attributes', 'assets'];
                     if (in_array($data['page'], $entityPages)) {
+                        $routeOptions['campaign'] = $entity->campaign_id;
                         $page = $data['page'];
                         if ($page === 'relations') {
                             $page = 'relations.index';
@@ -371,7 +375,7 @@ class MentionsService
                     $url .= '#' . $data['anchor'];
                 }
 
-                $dataUrl = route('entities.tooltip', $entity);
+                $dataUrl = route('entities.tooltip', ['campaign' => $entity->campaign_id, 'entity' => $entity->id]);
 
                 // If this request is through the API, we need to inject the language in the url
                 if (request()->is('api/*')) {

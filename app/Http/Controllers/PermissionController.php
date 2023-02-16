@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\StorePermission;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\PermissionService;
 
 class PermissionController extends Controller
 {
-    /**
-     * @var PermissionService
-     */
-    protected $permissionService;
+    protected PermissionService $permissionService;
 
     /**
      * PermissionController constructor.
@@ -27,12 +25,14 @@ class PermissionController extends Controller
      * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function view(Entity $entity)
+    public function view(Campaign $campaign, Entity $entity)
     {
         $this->authorize('permission', $entity->child);
-        $campaign = CampaignLocalization::getCampaign();
 
-        return view('cruds.permissions', compact('campaign', 'entity'));
+        return view('cruds.permissions', compact(
+            'campaign',
+            'entity'
+        ));
     }
 
     /**
@@ -41,7 +41,7 @@ class PermissionController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StorePermission $request, Entity $entity)
+    public function store(StorePermission $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('permission', $entity->child);
 

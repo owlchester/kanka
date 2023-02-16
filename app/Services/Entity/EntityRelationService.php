@@ -19,11 +19,14 @@ use App\Models\OrganisationMember;
 use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class EntityRelationService
 {
+    use CampaignAware;
+
     /** @var Entity */
     protected Entity $entity;
 
@@ -169,7 +172,7 @@ class EntityRelationService
             // Fallback?
             $img = '';
         }
-        $params = [$entity->id, 'mode' => 'map'];
+        $params = [$this->campaign, $entity->id, 'mode' => 'map'];
         if ($this->option) {
             $params['option'] = $this->option;
         }
@@ -234,6 +237,7 @@ class EntityRelationService
                 'is_mirrored' => $relation->isMirrored(),
                 'shape' => $relation->isMirrored() && $relation->mirror && $relation->relation == $relation->mirror->relation ? 'none' : 'triangle',
                 'edit_url' => route('entities.relations.edit', [
+                    'campaign' => $this->campaign,
                     'entity' => $relation->owner_id,
                     'relation' => $relation,
                     'from' => $this->entity->id,

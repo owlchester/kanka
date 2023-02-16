@@ -18,19 +18,14 @@ class BulkController extends Controller
 {
     use BulkControllerTrait;
 
-    /** @var BulkService */
     protected BulkService $bulkService;
 
-    /** @var EntityService */
     protected EntityService $entityService;
 
-    /** @var BulkRequest */
     protected BulkRequest $request;
 
-    /** @var array */
     protected array $routeParams = [];
 
-    /** @var null|string */
     protected null|string $entity = null;
 
     protected $campaign;
@@ -41,6 +36,7 @@ class BulkController extends Controller
      */
     public function __construct(BulkService $bulkService, EntityService $entityService)
     {
+        $this->middleware('auth');
         $this->bulkService = $bulkService;
         $this->entityService = $entityService;
     }
@@ -99,8 +95,10 @@ class BulkController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function modal(Request $request)
+    public function modal(Request $request, Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         if (!$request->has('view') || !in_array($request->get('view'), ['permissions', 'copy_campaign', 'templates', 'transform'])) {
             return response()->json(['error' => 'invalid view']);
         }
@@ -112,19 +110,17 @@ class BulkController extends Controller
         if (request()->get('view') == 'templates') {
             /** @var AttributeService $service */
             $service = app()->make('App\Services\AttributeService');
-            $templates = $service->campaign($this->campaign)->templateList();
+            $templates = $service->campaign($campaign)->templateList();
         } elseif (request()->get('view') === 'transform') {
             $entities = $this->entityService
                 ->labelledEntities(true, [Str::plural($type), 'menu_links', 'relations'], true);
             $entities[''] = __('entities/transform.fields.select_one');
         } elseif (request()->get('view') === 'copy_campaign') {
-            $campaign = CampaignLocalization::getCampaign();
             foreach (auth()->user()->campaigns()->whereNot('campaign_id', $campaign->id)->get() as $camp) {
                 $campaigns[$camp->id] = $camp->name;
             }
         }
 
-        $campaign = $this->campaign;
         return view('cruds.datagrids.bulks.modals._' . $request->get('view'), compact(
             'campaign',
             'campaigns',

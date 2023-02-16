@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Entity;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApplyAttributeTemplate;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\AttributeService;
 
 class AttributeTemplateController extends Controller
 {
-    /** @var AttributeService */
-    protected $service;
+    protected AttributeService $service;
 
     /**
      * Create a new controller instance.
@@ -30,16 +30,16 @@ class AttributeTemplateController extends Controller
      * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function apply(Entity $entity)
+    public function apply(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
         $this->authorize('attributes', $entity);
 
-        $campaign = CampaignLocalization::getCampaign();
         $templates = $this->service->campaign($campaign)->templateList();
 
 
         return view('entities.pages.attribute-templates.apply', compact(
+            'campaign',
             'entity',
             'templates'
         ));
@@ -51,7 +51,7 @@ class AttributeTemplateController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
+    public function applyTemplate(ApplyAttributeTemplate $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
         $templateName = $this->service->apply($entity, $request->get('template_id'));
@@ -67,13 +67,13 @@ class AttributeTemplateController extends Controller
                 ]));
         } elseif ($request->has('submit-update')) {
             return redirect()
-                ->route('entities.attributes.edit', $entity)
+                ->route('entities.attributes.edit', [$campaign, $entity])
                 ->with('success', __('entities/attributes.template.success', [
                     'name' => $templateName, 'entity' => $entity->child->name
                 ]));
         }
         return redirect()
-            ->route('entities.attributes', $entity)
+            ->route('entities.attributes', [$campaign, $entity])
             ->with('success', __('entities/attributes.template.success', [
                 'name' => $templateName, 'entity' => $entity->child->name
             ]));

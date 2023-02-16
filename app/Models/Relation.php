@@ -234,7 +234,7 @@ class Relation extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->owner_id, $this->id, 'mode' => 'table'];
+        return [$this->campaign_id, $this->owner_id, $this->id, 'mode' => 'table'];
     }
     public function actionDeleteConfirmOptions(): string
     {

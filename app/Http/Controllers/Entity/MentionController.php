@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,9 @@ class MentionController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
+        $this->authorize('access', $campaign);
         if (empty($entity->child)) {
             abort(404);
         }
@@ -31,13 +33,12 @@ class MentionController extends Controller
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
-        $ajax = request()->ajax();
         $mentions = $entity
             ->targetMentions()
             ->with(['campaign', 'post', 'post.entity', 'entity'])
             ->paginate();
         return view('entities.pages.mentions.mentions', compact(
-            'ajax',
+            'campaign',
             'entity',
             'mentions'
         ));

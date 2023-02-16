@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers\Calendar;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCalendarWeather;
 use App\Models\Calendar;
@@ -16,10 +17,7 @@ use App\Services\CalendarService;
 
 class CalendarWeatherController extends Controller
 {
-    /**
-     * @var CalendarService
-     */
-    protected $calendarService;
+    protected CalendarService $calendarService;
 
     /**
      * CalendarWeatherController constructor.
@@ -44,22 +42,22 @@ class CalendarWeatherController extends Controller
     {
         $this->authorize('update', $calendar);
 
-        $ajax = request()->ajax();
         $date = request()->get('date');
         list($year, $month, $day) = explode('-', $date);
         if (str_starts_with($date, '-')) {
             list($year, $month, $day) = explode('-', trim($date, '-'));
             $year = '-' . $year;
         }
+        $campaign = CampaignLocalization::getCampaign();
 
         $weather = $this->calendarService->findWeather($calendar, (int) $year, (int) $month, (int) $day);
 
         return view('calendars.weather.' . (!empty($weather) ? 'edit' : 'create'), compact(
+            'campaign',
             'calendar',
             'day',
             'month',
             'year',
-            'ajax',
             'weather'
         ));
     }

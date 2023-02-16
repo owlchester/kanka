@@ -11,7 +11,7 @@
         <ul class="list-unstyled">
             @foreach ($model->entity->assets->where('type_id', \App\Models\EntityAsset::TYPE_LINK) as $asset)
                 <li data-target="{{ $asset->id }}" data-visibility="{{ $asset->visibility }}">
-                    <a href="{{ route('entities.entity_assets.go', ['entity' => $model->entity->id, 'entity_asset' => $asset]) }}" title="{!! $asset->name !!}" target="_blank" rel="noreferrer nofollow" class="entity-link">
+                    <a href="{{ route('entities.entity_assets.go', [$campaign, 'entity' => $model->entity->id, 'entity_asset' => $asset]) }}" title="{!! $asset->name !!}" target="_blank" rel="noreferrer nofollow" class="entity-link">
                         <i class="{{ $asset->icon() }} mr-2"></i> {!! $asset->name !!}
                     </a>
                 </li>

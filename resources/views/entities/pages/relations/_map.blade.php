@@ -16,7 +16,7 @@ $options = [
 @endif
 
 {!! Form::open([
-    'route' => ['entities.relations.index', $entity],
+    'route' => ['entities.relations.index', [$campaign, $entity]],
     'method' => 'GET',
 ]) !!}
 <div class="box box-solid">
@@ -38,6 +38,6 @@ $options = [
         <div class="loading text-center" id="spinner">
             <i class="fa-solid fa-spinner fa-spin fa-4x"></i>
         </div>
-        <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$entity, 'option' => $option]) }}"></div>
+        <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$campaign, $entity, 'option' => $option]) }}"></div>
     </div>
 </div>

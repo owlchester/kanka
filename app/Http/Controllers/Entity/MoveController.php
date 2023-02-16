@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Entity;
 use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MoveEntityRequest;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Facades\CampaignLocalization;
 use App\Services\EntityService;
@@ -13,13 +14,9 @@ use Illuminate\Support\Facades\Auth;
 
 class MoveController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
-    /** @var EntityService */
-    protected $service;
+    protected EntityService $service;
 
     /**
      * AbilityController constructor.
@@ -35,17 +32,17 @@ class MoveController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('view', $entity->child);
 
         $campaigns = [0 => __('entities/move.fields.select_one')];
-        $campaign = CampaignLocalization::getCampaign();
         foreach (auth()->user()->campaigns()->whereNot('campaign_id', $campaign->id)->get() as $camp) {
             $campaigns[$camp->id] = $camp->name;
         }
 
         return view('entities.pages.move.index', compact(
+            'campaign',
             'entity',
             'campaigns'
         ));
@@ -57,10 +54,9 @@ class MoveController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function move(MoveEntityRequest $request, Entity $entity)
+    public function move(MoveEntityRequest $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('view', $entity->child);
-        $campaign = CampaignLocalization::getCampaign();
 
         try {
             $this->service

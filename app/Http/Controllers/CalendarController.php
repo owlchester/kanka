@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\CalendarFilter;
+use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
@@ -84,7 +85,6 @@ class CalendarController extends CrudController
     {
         $this->authorize('update', $calendar);
 
-        $ajax = request()->ajax();
         $date = request()->get('date');
         list($year, $month, $day) = explode('-', $date);
         if (str_starts_with($date, '-')) {
@@ -92,13 +92,14 @@ class CalendarController extends CrudController
             $year = "-{$year}";
         }
 
+        $campaign = CampaignLocalization::getCampaign();
 
         return view('calendars.events.create', compact(
+            'campaign',
             'calendar',
             'day',
             'month',
             'year',
-            'ajax',
         ));
     }
 

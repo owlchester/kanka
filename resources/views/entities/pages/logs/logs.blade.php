@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\EntityLog $log */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/logs.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -9,7 +9,7 @@
     ]
 ])
 @section('content')
-    @if ($ajax)
+    @if (request()->ajax())
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">
@@ -103,13 +103,13 @@
                     </tbody>
                 </table>
 
-                @if (!$ajax)
+                @if (!request()->ajax())
                     {{ $logs->links() }}
                 @endif
             </div>
         </div>
 
-        @if ($ajax && $logs->hasPages())
+        @if (request()->ajax() && $logs->hasPages())
             <div class="modal-footer pagination-ajax-links">
                 {{ $logs->links() }}
             </div>

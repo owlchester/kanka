@@ -9,7 +9,7 @@
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['posts.move', $entity->id, $post->id], 'method' => 'POST']) !!}
+    {!! Form::open(['route' => ['posts.move', [$campaign, $entity, $post]], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
     <div class="row">

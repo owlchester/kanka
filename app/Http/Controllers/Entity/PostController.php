@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePost;
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Services\MultiEditingService;
 use App\Models\Post;
@@ -16,17 +17,16 @@ class PostController extends Controller
 {
     use GuestAuthTrait;
 
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('browse', [$entity->child]);
         return redirect()->to($entity->url());
     }
 
-    public function create(Entity $entity, Post $post)
+    public function create(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'add']);
         $parentRoute = $entity->pluralType();
-        $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.posts.create', compact(
             'post',
@@ -36,7 +36,7 @@ class PostController extends Controller
         ));
     }
 
-    public function show(Entity $entity, Post $post)
+    public function show(Campaign $campaign, Entity $entity, Post $post)
     {
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
@@ -50,7 +50,7 @@ class PostController extends Controller
         return redirect()->to($entity->url());
     }
 
-    public function store(StorePost $request, Entity $entity)
+    public function store(StorePost $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('post', [$entity->child, 'add']);
 
@@ -78,12 +78,10 @@ class PostController extends Controller
             ]));
     }
 
-    public function edit(Entity $entity, Post $post)
+    public function edit(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'edit', $post]);
 
-        /** @var MiscModel $model */
-        $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
         $model = $post;
 
@@ -111,7 +109,7 @@ class PostController extends Controller
         ));
     }
 
-    public function update(StorePost $request, Entity $entity, Post $post)
+    public function update(StorePost $request, Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'edit', $post]);
 
@@ -143,7 +141,7 @@ class PostController extends Controller
             ]));
     }
 
-    public function destroy(Entity $entity, Post $post)
+    public function destroy(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'delete']);
 

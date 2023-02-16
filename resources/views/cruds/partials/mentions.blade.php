@@ -12,10 +12,10 @@ $mentionCount = $model->entity->mentionsCount();
     'more' => link_to_route(
         'entities.mentions',
         __('entities/mentions.see_more'),
-        $model->entity,
+        [$model->campaign_id, $model->entity],
         [
             'data-toggle' => 'ajax-modal',
-            'data-url' => route('entities.mentions', $model->entity),
+            'data-url' => route('entities.mentions', [$model->campaign_id, $model->entity]),
             'data-target' => '#entity-modal',
         ]
     )

@@ -48,7 +48,7 @@
             </div>
 
             {!! Form::open([
-    'route' => ['entities.image.focus', $entity],
+    'route' => ['entities.image.focus', [$campaign, $entity],
     'method' => 'POST'
 ]) !!}
             {!! Form::hidden('focus_x', null) !!}

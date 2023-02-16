@@ -110,13 +110,13 @@ class Journal extends MiscModel
             'entity.calendarDateEvents',
             'author',
             'location' => function ($sub) {
-                $sub->select('id', 'name');
+                $sub->select('id', 'name', 'campaign_id');
             },
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'journal' => function ($sub) {
-                $sub->select('id', 'name');
+                $sub->select('id', 'name', 'campaign_id');
             },
             'journal.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');

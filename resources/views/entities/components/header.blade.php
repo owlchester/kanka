@@ -68,13 +68,14 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="{{ route('entities.image.replace', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.image.replace', $model->entity) }}">
+                    <a href="{{ route('entities.image.replace', [$campaign, $model->entity]) }}" data-toggle="ajax-modal" data-target="#entity-modal"
+                       data-url="{{ route('entities.image.replace', [$campaign, $model->entity]) }}">
                         {{ __('entities/image.actions.replace_image') }}
                     </a>
                 </li>
                 <li>
                     @if ($campaign->boosted())
-                    <a href="{{ route('entities.image.focus', $model->entity) }}">
+                    <a href="{{ route('entities.image.focus', [$campaign, $model->entity]) }}">
                         {{ __('entities/image.actions.change_focus') }}
                     </a>
                     @else
@@ -127,7 +128,8 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                     @endif
 
                     @if (auth()->check() && auth()->user()->isAdmin())
-                        <span role="button" tabindex="0" class="entity-icons entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy">
+                        <span role="button" tabindex="0" class="entity-icons entity-privacy-icon" data-toggle="dialog-ajax"
+                              data-url="{{ route('entities.quick-privacy', [$campaign, $model->entity]) }}" data-target="quick-privacy">
                             <i class="fa-solid fa-lock" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip"></i>
                             <i class="fa-solid fa-lock-open" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip"></i>
                         </span>
@@ -169,7 +171,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                         @if(auth()->check())
                             @can('update', $model)
                                 <li>
-                                    <a href="{{ route('entities.story.reorder', $model->entity->id) }}">
+                                    <a href="{{ route('entities.story.reorder', [$model->campaign_id, $model->entity]) }}">
                                         <i class="fa-solid fa-list-ol"></i> {{ __('entities/story.reorder.icon_tooltip') }}
                                     </a>
                                 </li>
@@ -182,7 +184,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                 </li>
                         @if (auth()->user()->isAdmin())
                                 <li>
-                                    <a href="{{ route('entities.template', $entity) }}">
+                                    <a href="{{ route('entities.template', [$campaign, $entity]) }}">
                                         @if($entity->is_template)
                                             <i class="fa-regular fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.unset') }}
                                         @else
@@ -194,12 +196,12 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                 <li class="divider"></li>
                     @endif
                                 <li>
-                                    <a href="{{ route('entities.html-export', $entity) }}">
+                                    <a href="{{ route('entities.html-export', [$campaign, $entity]) }}">
                                         <i class="fa-solid fa-print" aria-hidden="true"></i> {{ __('crud.actions.print') }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('entities.json-export', $entity) }}">
+                                    <a href="{{ route('entities.json-export', [$campaign, $entity]) }}">
                                         <i class="fa-solid fa-download" aria-hidden="true"></i> {{ __('crud.actions.json-export') }}
                                     </a>
                                 </li>
@@ -207,7 +209,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                             @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="{{ route('entities.move', $entity->id) }}">
+                                    <a href="{{ route('entities.move', [$campaign, $entity]) }}">
                                         <i class="fa-solid fa-clone" aria-hidden="true"></i> {{ __('crud.actions.move') }}
                                     </a>
                                 </li>
@@ -215,7 +217,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
 
                             @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
                                 <li>
-                                    <a href="{{ route('entities.transform', $entity->id) }}">
+                                    <a href="{{ route('entities.transform', [$campaign, $entity]) }}">
                                         <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.transform') }}
                                     </a>
                                 </li>
@@ -227,7 +229,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                                     <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm" data-recoverable="1">
                                         <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
                                     </a>
-                                    {!! Form::open(['method' => 'DELETE','route' => [$entity->pluralType() . '.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
+                                    {!! Form::open(['method' => 'DELETE','route' => [$entity->pluralType() . '.destroy', [$campaign, $model]], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                                     {!! Form::close() !!}
                                 </li>
                             @endcan
@@ -255,7 +257,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             @foreach ($entityTags as $tag)
                 @if (!$tag->entity) @continue @endif
                 <a href="{{ route('tags.show', $tag) }}" data-toggle="tooltip-ajax"
-                   data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', $tag->entity->id) }}"
+                   data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity]) }}"
                    data-tag-slug="{{ $tag->slug }}"
                 >
                     {!! $tag->html() !!}

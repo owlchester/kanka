@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\UpdateCalendarEvent;
 use App\Models\Calendar;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Services\CalendarService;
@@ -44,7 +45,7 @@ class EntityEventController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         if (empty($entity->child)) {
             abort(404);
@@ -54,7 +55,6 @@ class EntityEventController extends Controller
         } else {
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child, $entity->typeId());
         }
-        $campaign = CampaignLocalization::getCampaign();
         $reminders = $entity
             ->events()
             ->has('calendar')
@@ -75,10 +75,10 @@ class EntityEventController extends Controller
      * @param EntityEvent $entityEvent
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(Entity $entity, EntityEvent $entityEvent)
+    public function show(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
         return redirect()
-            ->route('entities.entity_events.index', $entity);
+            ->route('entities.entity_events.index', [$campaign, $entity]);
     }
 
     /**
@@ -88,7 +88,7 @@ class EntityEventController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function create(Entity $entity)
+    public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -99,6 +99,7 @@ class EntityEventController extends Controller
         $next = request()->get('next', null);
 
         return view('calendars.events.create_from_entity', compact(
+            'campaign',
             'entity',
             'name',
             'route',
@@ -111,7 +112,7 @@ class EntityEventController extends Controller
 
     /**
      */
-    public function store(AddCalendarEvent $request, Entity $entity)
+    public function store(AddCalendarEvent $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -126,18 +127,18 @@ class EntityEventController extends Controller
         $next = request()->post('next', '0');
         if ($next == 'entity.events') {
             return redirect()
-                ->route('entities.entity_events.index', $entity)
+                ->route('entities.entity_events.index', [$campaign, $entity])
                 ->with('success', __('calendars.event.create.success'));
         }
 
         return redirect()
-            ->route('entities.entity_events.index', $entity)
+            ->route('entities.entity_events.index', [$campaign, $entity])
             ->with('success', __('calendars.event.create.success'));
     }
 
     /**
      */
-    public function edit(Entity $entity, EntityEvent $entityEvent)
+    public function edit(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('update', $entityEvent->calendar);
 
@@ -153,6 +154,7 @@ class EntityEventController extends Controller
         }
 
         return view('calendars.events.edit', compact(
+            'campaign',
             'entity',
             'entityEvent',
             'calendar',
@@ -167,7 +169,7 @@ class EntityEventController extends Controller
 
     /**
      */
-    public function update(UpdateCalendarEvent $request, Entity $entity, EntityEvent $entityEvent)
+    public function update(UpdateCalendarEvent $request, Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('update', $entityEvent->calendar);
 
@@ -192,7 +194,7 @@ class EntityEventController extends Controller
                 ->with('success', __('calendars.event.edit.success'));
         } elseif ($next == 'entity.events') {
             return redirect()
-                ->route('entities.entity_events.index', $entity)
+                ->route('entities.entity_events.index', [$campaign, $entity])
                 ->with('success', __('calendars.event.edit.success'));
         } elseif (Str::startsWith($next, 'calendar.')) {
             $id = Str::after($next, 'calendar.');
@@ -205,7 +207,7 @@ class EntityEventController extends Controller
 
     /**
      */
-    public function destroy(Entity $entity, EntityEvent $entityEvent)
+    public function destroy(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('attribute', $entity->child);
         $entityEvent->delete();
@@ -218,7 +220,7 @@ class EntityEventController extends Controller
                 ->with('success', $success);
         } elseif ($next == 'entity.events') {
             return redirect()
-                ->route('entities.entity_events.index', $entity)
+                ->route('entities.entity_events.index', [$campaign, $entity])
                 ->with('success', $success);
         }
 
@@ -230,7 +232,7 @@ class EntityEventController extends Controller
         }
 
         return redirect()
-            ->route('entities.entity_events.index', $entity)
+            ->route('entities.entity_events.index', [$campaign, $entity])
             ->with('success', $success);
     }
 }

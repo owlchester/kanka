@@ -137,13 +137,13 @@ class Item extends MiscModel
                 $sub->select('campaign_id', 'id', 'ext');
             },
             'location' => function ($sub) {
-                $sub->select('id', 'name');
+                $sub->select('id', 'name', 'campaign_id');
             },
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'character' => function ($sub) {
-                $sub->select('id', 'name');
+                $sub->select('id', 'name', 'campaign_id');
             },
             'character.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');

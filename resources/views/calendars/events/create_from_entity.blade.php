@@ -12,7 +12,7 @@
 
     {!! Form::open([
         'method' => 'POST',
-        'route' => ['entities.entity_events.store', $entity->id],
+        'route' => ['entities.entity_events.store', [$campaign, $entity]],
         'data-shortcut' => 1,
         'class' => 'ajax-validation',
         'data-maintenance' => 1,

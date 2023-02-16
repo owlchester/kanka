@@ -18,7 +18,7 @@
                         {{ __('crud.fields.entity') }}
                         <i class="fa-solid fa-arrow-down"></i>
                     @else
-                        <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'name']) }}">
+                        <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'name']) }}">
                             {{ __('crud.fields.name') }}
                         </a>
                     @endif
@@ -29,7 +29,7 @@
 
                         <i class="fa-solid fa-arrow-down"></i>
                     @else
-                    <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'type_id']) }}">
+                    <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table', '#entity-related', 'order' => 'type_id']) }}">
                         {{ __('crud.fields.entity_type') }}
                     </a>
                     @endif

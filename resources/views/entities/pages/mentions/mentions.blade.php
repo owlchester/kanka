@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\EntityMention $mention */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => trans('entities/mentions.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -9,9 +9,9 @@
     ]
 ])
 @section('content')
-    @if (!$ajax) <div class="box box-default">@endif
+    @if (!request()->ajax()) <div class="box box-default">@endif
     <div class="pagination-ajax-body">
-        @if ($ajax)
+        @if (request()->ajax())
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">
@@ -129,7 +129,7 @@
                     </tbody>
                 </table>
 
-                @if ($ajax)
+                @if (request()->ajax())
                     <div class="pagination-ajax-links">
                         {{ $mentions->links() }}
                     </div>
@@ -139,5 +139,5 @@
             </div>
         </div>
     </div>
-    @if (!$ajax) </div>@endif
+    @if (!request()->ajax()) </div>@endif
 @endsection

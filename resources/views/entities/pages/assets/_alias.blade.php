@@ -9,7 +9,7 @@
 
             <div class="text-lg">
             @if(auth()->check() && auth()->user()->can('update', $entity->child))
-                <a href="{{ route('entities.entity_assets.edit', [$entity, $asset]) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.edit', [$entity, $asset]) }}">
+                <a href="{{ route('entities.entity_assets.edit', [$entity->campaign_id, $entity, $asset]) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.edit', [$entity->campaign_id, $entity, $asset]) }}">
                     <i class="fa-solid fa-pencil" aria-hidden="true" aria-label="{{ __('crud.edit') }}"></i>
                 </a>
             @endif

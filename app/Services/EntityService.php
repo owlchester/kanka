@@ -561,7 +561,7 @@ class EntityService
     public function toggleTemplate(Entity $entity): Entity
     {
         $entity->is_template = !$entity->is_template;
-        $entity->save();
+        $entity->saveQuietly();
         return $entity;
     }
 

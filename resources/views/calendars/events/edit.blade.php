@@ -14,7 +14,7 @@
     'canonical' => true,
 ])
 @section('content')
-    {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $entity->id, $entityEvent->id], 'data-shortcut' => '1', 'class' => 'ajax-validation', 'data-maintenance' => 1]) !!}
+    {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', [$campaign, $entity, $entityEvent]], 'data-shortcut' => '1', 'class' => 'ajax-validation', 'data-maintenance' => 1]) !!}
 
     @if (request()->ajax())
         <div class="modal-body">
@@ -89,7 +89,7 @@
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['entities.entity_events.destroy', $entity->id, $entityEvent->id],
+        'route' => ['entities.entity_events.destroy', [$campaign, $entity, $entityEvent]],
         'id' => 'delete-reminder-' . $entityEvent->id]) !!}
     @if (request()->has('layout'))
         {!! Form::hidden('layout', request()->get('layout')) !!}

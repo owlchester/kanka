@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\CalendarWeather $weather */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars/weather.edit.title'),
     'breadcrumbs' => [
         ['url' => route('calendars.index'), 'label' => __('entities.calendars')],

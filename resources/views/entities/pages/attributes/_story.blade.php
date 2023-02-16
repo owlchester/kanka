@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', $entity) }}" />
+<input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', [$campaign, $entity]) }}" />
 
 @section('scripts')
     @parent

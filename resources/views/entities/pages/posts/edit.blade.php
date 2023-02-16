@@ -12,7 +12,7 @@
 @section('fullpage-form')
     {!! Form::model($model, [
     'method' => 'PATCH',
-    'route' => ['entities.posts.update', $entity->id, $model->id],
+    'route' => ['entities.posts.update', [$campaign, $entity, $model]],
     'data-shortcut' => '1',
     'class' => 'entity-note-form post-form entity-form',
     'id' => 'entity-form',
@@ -49,7 +49,7 @@
 
 @section('modals')
     @parent
-    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.posts.destroy', 'entity' => $entity, 'post' => $model], 'style' => 'display:inline', 'id' => 'delete-form-note-' . $model->id]) !!}
+    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.posts.destroy', [$campaign, $entity, 'post' => $model]], 'style' => 'display:inline', 'id' => 'delete-form-note-' . $model->id]) !!}
     {!! Form::close() !!}
 
     @includeWhen(!empty($editingUsers) && !empty($model), 'cruds.forms.edit_warning', ['model' => $model, 'entity' => $entity])

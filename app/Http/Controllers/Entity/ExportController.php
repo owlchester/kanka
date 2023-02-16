@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\ExportService;
 use App\Traits\GuestAuthTrait;
@@ -19,8 +20,7 @@ class ExportController extends Controller
      */
     use GuestAuthTrait;
 
-    /** @var ExportService */
-    protected $service;
+    protected ExportService $service;
 
     /**
      * ExportController constructor.
@@ -36,7 +36,7 @@ class ExportController extends Controller
      * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function json(Entity $entity)
+    public function json(Campaign $campaign, Entity $entity)
     {
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
@@ -53,7 +53,7 @@ class ExportController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function html(Entity $entity)
+    public function html(Campaign $campaign, Entity $entity)
     {
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
@@ -63,6 +63,7 @@ class ExportController extends Controller
         }
 
         return view('entities.pages.print.print')
+            ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('model', $entity->child)
             ->with('name', $entity->pluralType())

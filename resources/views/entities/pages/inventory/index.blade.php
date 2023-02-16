@@ -15,9 +15,9 @@
 @section('entity-header-actions')
     @can('inventory', $entity->child)
         <div class="header-buttons">
-            <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-warning btn-sm"
+            <a href="{{ route('entities.inventories.create', [$campaign, $entity]) }}" class="btn btn-warning btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal"
-               data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
+               data-url="{{ route('entities.inventories.create', [$campaign, $entity]) }}"
             >
                 <i class="fa-solid fa-plus"></i>
                 {{ __('entities/inventories.actions.add') }}
@@ -54,9 +54,9 @@
                         <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
 
                         @can('inventory', $entity->child)
-                        <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-warning btn-sm"
+                        <a href="{{ route('entities.inventories.create', [$campaign, $entity]) }}" class="btn btn-warning btn-sm"
                            data-toggle="ajax-modal" data-target="#entity-modal"
-                           data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
+                           data-url="{{ route('entities.inventories.create', [$campaign, $entity]) }}"
                         >
                             <i class="fa-solid fa-plus"></i>
                             {{ __('entities/inventories.actions.add') }}
