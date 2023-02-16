@@ -25,6 +25,7 @@ class StoreCampaign extends FormRequest
     {
         $rules = [
             'name' => 'required|string|min:4',
+            'entry' => 'nullable|string',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'header_image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'locale' => 'nullable|string',

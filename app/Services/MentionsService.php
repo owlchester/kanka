@@ -815,7 +815,7 @@ class MentionsService
         $attributes = [];
         $dom = new \DOMDocument();
         try {
-            $dom->loadHTML($html);
+            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
 
             $links = $dom->getElementsByTagName('a');
             $link = $links[0];

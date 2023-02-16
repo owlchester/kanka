@@ -317,25 +317,36 @@ class Map extends MiscModel
     /**
      * @return array|string[]
      */
-    public function groupPositionOptions(): array
+    public function groupPositionOptions($position = null): array
     {
         $options = [1 => __('maps/groups.placeholders.position')];
         $groups = $this->groups->sortBy('position');
         foreach ($groups as $group) {
             $options[$group->position + 1] = __('maps/groups.placeholders.position_list', ['name' => $group->name]);
         }
+
+        //If is the last position remove last+1 position from the options array
+        if ($position == array_key_last($options) - 1) {
+            array_pop($options);
+        }
+
         return $options;
     }
 
     /**
      * @return array|string[]
      */
-    public function layerPositionOptions(): array
+    public function layerPositionOptions($position = null): array
     {
         $options = [1 => __('maps/layers.placeholders.position')];
         $layers = $this->layers->sortBy('position');
         foreach ($layers as $layer) {
             $options[$layer->position + 1] = __('maps/layers.placeholders.position_list', ['name' => $layer->name]);
+        }
+
+        //If is the last position remove last+1 position from the options array
+        if ($position == array_key_last($options) - 1) {
+            array_pop($options);
         }
         return $options;
     }
@@ -552,8 +563,7 @@ class Map extends MiscModel
     {
         $groups = [];
         foreach ($this->layers as $sub) {
-            $newSub = $sub->replicate();
-            $newSub->savingObserver = false;
+            $newSub = $sub->replicate(['map_id']);
             $newSub->map_id = $target->id;
 
             if (!empty($sub->image) && Storage::exists($sub->image)) {
@@ -564,18 +574,16 @@ class Map extends MiscModel
                     Storage::copy($sub->image, $newPath);
                 }
             }
-            $newSub->save();
+            $newSub->saveQuietly();
         }
         foreach ($this->groups as $sub) {
-            $newSub = $sub->replicate();
-            $newSub->savingObserver = false;
+            $newSub = $sub->replicate(['map_id']);
             $newSub->map_id = $target->id;
-            $newSub->save();
+            $newSub->saveQuietly();
             $groups[$sub->id] = $newSub->id;
         }
         foreach ($this->markers as $sub) {
-            $newSub = $sub->replicate();
-            $newSub->savingObserver = false;
+            $newSub = $sub->replicate(['map_id']);
             $newSub->map_id = $target->id;
             $newSub->group_id = !empty($newSub->group_id) && isset($groups[$newSub->group_id]) ? $groups[$newSub->group_id] : null;
 
@@ -595,7 +603,7 @@ class Map extends MiscModel
                     $newSub->name = $raw ? $raw->name : 'Copy of #' . $sub->id;
                 }
             }
-            $newSub->save();
+            $newSub->saveQuietly();
         }
     }
 

@@ -37,11 +37,8 @@ class UserApp extends Model
         'settings',
     ];
 
-    public $dates = [
-        'expires_at'
-    ];
-
     public $casts = [
+        'expires_at' => 'date',
         'settings' => 'array'
     ];
 

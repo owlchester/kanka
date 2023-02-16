@@ -126,7 +126,7 @@ class Attribute extends Model
             return $this->mappedName;
         }
 
-        return (string) $this->mappedName = Attributes::map($this, 'name');
+        return (string) $this->mappedName = Attributes::map($this);
     }
 
     /**
@@ -358,7 +358,6 @@ class Attribute extends Model
 
         preg_match($this->listRegexp, $this->mappedName(), $constraints);
         if (count($constraints) !== 2) {
-            //dd('Missing constraints');
             return $this;
         }
         $this->listRange = explode(',', $constraints[1]);
@@ -374,9 +373,15 @@ class Attribute extends Model
      */
     public function listRange(): array
     {
+        if (! is_array($this->listRange)) {
+            return [];
+        }
         return $this->listRange;
     }
 
+    /**
+     * @return string
+     */
     public function listRangeText(): string
     {
         return implode(', ', $this->listRange);

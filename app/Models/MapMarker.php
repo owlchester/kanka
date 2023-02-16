@@ -288,9 +288,9 @@ class MapMarker extends Model
 
     /**
      * Generate the marker's popup that is usually opened on hover
-     * @return string
+     * @return ?string
      */
-    protected function popup(): string|null
+    protected function popup(): ?string
     {
         if ($this->editing) {
             return null;
@@ -314,7 +314,7 @@ class MapMarker extends Model
         }
 
         // When exploring, we want the texts to be slightly shorter, to avoid lots of jittering on maps
-        if ($this->exploring) {
+        if ($this->isExploring()) {
             $body = Str::limit($body, 300);
             return '.bindPopup(`
             <div class="marker-popup-content">
@@ -359,7 +359,7 @@ class MapMarker extends Model
         if (!auth()->check()) {
             return false;
         }
-        return $this->editing || ($this->exploring && $this->is_draggable);
+        return $this->editing || ($this->isExploring() && $this->is_draggable);
     }
 
     /**
@@ -373,7 +373,7 @@ class MapMarker extends Model
         }
 
         // Exploring and moving? Update through ajax
-        if ($this->exploring && $this->is_draggable) {
+        if ($this->isExploring() && $this->is_draggable) {
             return '.on(`dragstart`, function() {
                 this.closePopup();
             })
@@ -508,10 +508,20 @@ class MapMarker extends Model
     public function exploring(bool $popup = true): self
     {
         $this->exploring = true;
-        if ($popup == true) {
+        if ($popup) {
             $this->tooltipPopup = '.on(`mouseover`, function (ev) {this.openPopup();})';
         }
         return $this;
+    }
+
+    /**
+     * Determine if the marker is being viewed in the "explore" page.
+     * Refactor potential: move all of the rendering logic to a separate class.
+     * @return bool
+     */
+    public function isExploring(): bool
+    {
+        return $this->exploring;
     }
 
     /**

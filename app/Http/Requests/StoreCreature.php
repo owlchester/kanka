@@ -28,6 +28,7 @@ class StoreCreature extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
+            'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'creature_id' => 'nullable|integer|exists:creatures,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),

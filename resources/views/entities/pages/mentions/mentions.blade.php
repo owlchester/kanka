@@ -82,6 +82,9 @@
                             @if(!$mention->questElement->quest || !$mention->questElement->quest->entity)
                                 @continue
                             @endif
+                            @if ($mention->questElement->entity_id && empty($mention->questElement->entity))
+                                @continue
+                            @endif
                             <tr>
                                 <td>
                                     @if ($mention->questElement->quest->entity->is_private)
@@ -100,6 +103,9 @@
                             </tr>
                         @elseif ($mention->isTimelineElement() && $mention->timelineElement)
                             @if(!$mention->timelineElement->timeline || !$mention->timelineElement->timeline->entity)
+                                @continue
+                            @endif
+                            @if ($mention->timelineElement->entity_id && empty($mention->timelineElement->entity))
                                 @continue
                             @endif
                             <tr>

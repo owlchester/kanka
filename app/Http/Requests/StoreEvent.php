@@ -28,9 +28,10 @@ class StoreEvent extends FormRequest
     {
         return $this->clean([
             'name' => 'required|max:191',
+            'entry' => 'nullable|string',
+            'type' => 'nullable|string|max:191',
             'location_id' => 'nullable|integer|exists:locations,id',
             'event_id' => 'nullable|integer|exists:events,id',
-            'type' => 'nullable|max:191',
             'date' => 'nullable|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',

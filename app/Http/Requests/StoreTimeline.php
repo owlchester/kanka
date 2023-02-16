@@ -28,7 +28,8 @@ class StoreTimeline extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'type' => 'nullable|max:191',
+            'entry' => 'nullable|string',
+            'type' => 'nullable|string|max:191',
             'timeline_id' => 'nullable|integer|exists:timelines,id',
             'calendar_id' => 'nullable|integer|exists:calendars,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp,svg|max:' . auth()->user()->maxUploadSize(),

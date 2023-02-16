@@ -18,9 +18,8 @@ class PostObserver
 
     /**
      * Service used to build the map of the entity
-     * @var EntityMappingService
      */
-    protected $entityMappingService;
+    protected EntityMappingService $entityMappingService;
 
     /**
      * CharacterObserver constructor.
@@ -36,10 +35,6 @@ class PostObserver
      */
     public function saving(Post $post)
     {
-        if (!$post->savingObserver) {
-            return;
-        }
-
         $post->entry = $this->purify(Mentions::codify($post->entry));
 
         // Is private hook for non-admin (who can't set is_private)
@@ -102,10 +97,6 @@ class PostObserver
      */
     public function saved(Post $post)
     {
-        if (!$post->savedObserver) {
-            return;
-        }
-
         $this->savePermissions($post);
 
         // When adding or changing an entity note to an entity, we want to update the

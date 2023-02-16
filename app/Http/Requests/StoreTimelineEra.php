@@ -28,6 +28,7 @@ class StoreTimelineEra extends FormRequest
     {
         $rules = [
             'name' => 'required|string',
+            'entry' => 'nullable|string',
             'abbreviation' => 'nullable|string',
             'start_date' => 'nullable|integer',
             'end_date' => 'nullable|integer',

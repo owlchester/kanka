@@ -15,7 +15,7 @@ return [
 
     'banned'    => [
         'permanent' => 'You\'ve been permanently banned.',
-        'temporary' => '{1} You\'ve been banned for :days day|[2,*] You\'ve been banned for :days days',
+        'temporary' => '{1} You\'ve been banned for :days day.|[2,*] You\'ve been banned for :days days.',
     ],
     'confirm'   => [
         'confirm'   => 'Confirm',
