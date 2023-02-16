@@ -224,7 +224,7 @@ class MapGroupController extends Controller
      * @param Request $request
      * @param Map $map
      */
-    public function reorder(ReorderGroups $request, Map $map)
+    public function reorder(ReorderGroups $request, Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map);
 

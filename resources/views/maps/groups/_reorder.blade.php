@@ -1,5 +1,5 @@
 {!! Form::open([
-    'route' => ['maps.groups.reorder-save', 'map' => $model],
+    'route' => ['maps.groups.reorder-save', [$campaign, 'map' => $model]],
     'method' => 'POST',
 ]) !!}
     <div class="box box-solid box-entity-story-reorder">

@@ -232,13 +232,13 @@ class MapLayerController extends Controller
         }
 
         if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.layers.bulk', [$campaign, $map]), '_map-layer', $models);
+            return $this->bulkBatch(route('maps.layers.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-layer', $models);
         }
 
         $count = $this->bulkProcess($request, MapLayer::class);
 
         return redirect()
-            ->route('maps.map_layers.index', [$campaign, $map])
+            ->route('maps.map_layers.index', [$map])
             ->with('success', trans_choice('maps/layers.bulks.' . $action, $count, ['count' => $count]))
         ;
     }
@@ -248,7 +248,7 @@ class MapLayerController extends Controller
      * @param Request $request
      * @param Map $map
      */
-    public function reorder(ReorderLayers $request, Map $map)
+    public function reorder(ReorderLayers $request, Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map);
 
