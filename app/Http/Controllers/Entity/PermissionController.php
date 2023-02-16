@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Entity;
 
-use App\Facades\CampaignLocalization;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePermission;
 use App\Models\Campaign;
 use App\Models\Entity;

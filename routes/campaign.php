@@ -113,8 +113,6 @@ Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::c
 Route::post('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'save'])
     ->name('quick-links.reorder-save');
 
-Route::get('/entities/{entity}/entity_assets/{entity_asset}/go', 'Entity\AssetController@go')->name('entities.entity_assets.go');
-//Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
 
 Route::resources([
     'abilities' => 'AbilityController',
@@ -153,4 +151,3 @@ Route::resources([
     'attribute_templates' => 'AttributeTemplateController',
     //'presets' => 'PresetController',
 ]);
-

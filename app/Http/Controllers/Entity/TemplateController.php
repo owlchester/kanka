@@ -1,20 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Entity;
 
+use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\EntityService;
 
-class EntityController extends Controller
+class TemplateController extends Controller
 {
     protected EntityService $entityService;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct(EntityService $entityService)
     {
         $this->middleware('auth');
@@ -23,14 +19,14 @@ class EntityController extends Controller
     }
 
     /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
+     * Set or unset an entity as a template
      */
-    public function template(Campaign $campaign, Entity $entity)
+    public function update(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
         $entity = $this->entityService->toggleTemplate($entity);
+
         return redirect()->back()
             ->with(
                 'success',

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Entity;
 
-use App\Facades\CampaignLocalization;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\UpdateCalendarEvent;
 use App\Models\Calendar;
@@ -13,7 +13,7 @@ use App\Services\CalendarService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Str;
 
-class EntityEventController extends Controller
+class ReminderController extends Controller
 {
     use GuestAuthTrait;
 
