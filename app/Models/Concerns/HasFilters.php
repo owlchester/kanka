@@ -99,8 +99,8 @@ trait HasFilters
 
         foreach ($this->filterParams as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
-                // The requested field is an array, which we don't support ("or" searches)
-                if (is_array($value)) {
+                // The requested field is an array, which we don't support for anything other than tags ("or" searches)
+                if (is_array($value) && $key != "tags") {
                     continue;
                 }
                 $this->filterOption = !empty($params[$key . '_option']) ? $params[$key . '_option'] : null;
