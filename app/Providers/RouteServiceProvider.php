@@ -116,20 +116,10 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/campaign.php'));
 
-        /*Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime', 'campaign'])
-            ->prefix(LaravelLocalization::setLocale() . '/' . CampaignLocalization::setCampaign())
-            ->namespace($this->namespace)
-            ->group(base_path('routes/entity.php'));*/
-
         Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
             ->prefix(LaravelLocalization::setLocale() . '/w/{campaign}')
             ->namespace($this->namespace)
-            ->group(base_path('routes/campaign_v2.php'));
-
-        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
-            ->prefix(LaravelLocalization::setLocale() . '/w/{campaign}')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/entity_v2.php'));
+            ->group(base_path('routes/world.php'));
     }
 
     /**
