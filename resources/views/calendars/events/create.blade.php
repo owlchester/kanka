@@ -9,7 +9,7 @@
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['calendars.event.store', $calendar->id], 'method'=>'POST', 'data-shortcut' => 1, 'class' => 'ajax-validation', 'data-maintenance' => 1]) !!}
+    {!! Form::open(['route' => ['calendars.event.store', [$campaign, $calendar->id]], 'method'=>'POST', 'data-shortcut' => 1, 'class' => 'ajax-validation', 'data-maintenance' => 1]) !!}
 
     @if (request()->ajax())
         <div class="modal-body">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Actions\DeprecatedDatagridActions;
 use App\Datagrids\Filters\DiceRollFilter;
 use App\Http\Requests\StoreDiceRoll;
+use App\Models\Campaign;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
 use Illuminate\Support\Facades\Auth;
@@ -106,7 +107,7 @@ class DiceRollController extends CrudController
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function roll(DiceRoll $diceRoll)
+    public function roll(Campaign $campaign, DiceRoll $diceRoll)
     {
         $this->authorize('roll', $diceRoll);
 
@@ -128,7 +129,7 @@ class DiceRollController extends CrudController
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroyRoll(DiceRoll $diceRoll, DiceRollResult $diceRollResult)
+    public function destroyRoll(Campaign $campaign, DiceRoll $diceRoll, DiceRollResult $diceRollResult)
     {
         $this->authorize('delete', $diceRoll);
 

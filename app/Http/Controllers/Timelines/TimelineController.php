@@ -6,6 +6,7 @@ use App\Datagrids\Filters\TimelineFilter;
 use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTimeline;
+use App\Models\Campaign;
 use App\Models\Timeline;
 use App\Traits\TreeControllerTrait;
 
@@ -71,11 +72,11 @@ class TimelineController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function timelines(Timeline $timeline)
+    public function timelines(Campaign $campaign, Timeline $timeline)
     {
         $this->authCheck($timeline);
 
-        $options = ['timeline' => $timeline];
+        $options = ['campaign' => $campaign, 'timeline' => $timeline];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $timeline->id;

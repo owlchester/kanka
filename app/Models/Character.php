@@ -375,7 +375,8 @@ class Character extends MiscModel
             $items['second']['organisations'] = [
                 'name' => 'characters.show.tabs.organisations',
                 'route' => 'characters.organisations',
-                'count' => $count
+                'count' => $count,
+                'world' => true,
             ];
         }
 

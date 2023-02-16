@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\CreatureFilter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreCreature;
+use App\Models\Campaign;
 use App\Models\Creature;
 use App\Traits\TreeControllerTrait;
 
@@ -64,11 +65,11 @@ class CreatureController extends CrudController
 
     /**
      */
-    public function creatures(Creature $creature)
+    public function creatures(Campaign $campaign, Creature $creature)
     {
         $this->authCheck($creature);
 
-        $options = ['creature' => $creature];
+        $options = ['campaign' => $campaign, 'creature' => $creature];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $creature->id;

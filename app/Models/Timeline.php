@@ -181,13 +181,14 @@ class Timeline extends MiscModel
         $items['second']['timelines'] = [
             'name' => 'timelines.fields.timelines',
             'route' => 'timelines.timelines',
-            'count' => $this->descendants()->count()
+            'count' => $this->descendants()->count(),
+            'world' => true,
         ];
         if (auth()->check() && auth()->user()->can('update', $this)) {
             $items['second']['eras'] = [
                 'name' => 'timelines.fields.eras',
                 'route' => 'timelines.timeline_eras.index',
-                'count' => $this->eras->count()
+                'count' => $this->eras->count(),
             ];
             $items['second']['reorder'] = [
                 'name' => 'timelines.show.tabs.reorder',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\ItemFilter;
 use App\Http\Requests\StoreItem;
+use App\Models\Campaign;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Traits\TreeControllerTrait;
@@ -69,7 +70,7 @@ class ItemController extends CrudController
     /**
      * Display the specified resource.
      */
-    public function inventories(Item $item)
+    public function inventories(Campaign $campaign, Item $item)
     {
         return $this->menuView($item, 'inventories');
     }
@@ -77,11 +78,11 @@ class ItemController extends CrudController
     /**
      * @param Item $item
      */
-    public function items(Item $item)
+    public function items(Campaign $campaign, Item $item)
     {
         $this->authCheck($item);
 
-        $options = ['item' => $item];
+        $options = ['campaign' => $campaign, 'item' => $item];
         $filters = [];
 
         Datagrid::layout(\App\Renderers\Layouts\Item\Item::class)

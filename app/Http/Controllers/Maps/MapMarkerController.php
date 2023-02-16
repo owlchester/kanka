@@ -232,7 +232,7 @@ class MapMarkerController extends Controller
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Throwable
      */
-    public function details(Map $map, MapMarker $mapMarker)
+    public function details(Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
         if (auth()->check()) {
             $this->authorize('view', $map);
@@ -249,8 +249,6 @@ class MapMarkerController extends Controller
                 $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $mapMarker->entity->child, $mapMarker->entity->typeId());
             }
         }
-
-        $campaign = CampaignLocalization::getCampaign();
 
         $name = $mapMarker->name;
         if ($mapMarker->entity) {
@@ -279,7 +277,7 @@ class MapMarkerController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function move(Request $request, Map $map, MapMarker $mapMarker)
+    public function move(Request $request, Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
         $this->authorize('update', $map);
 

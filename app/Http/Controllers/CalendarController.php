@@ -8,6 +8,7 @@ use App\Facades\Datagrid;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
+use App\Models\Campaign;
 use App\Services\CalendarService;
 use App\Traits\TreeControllerTrait;
 use Response;
@@ -81,7 +82,7 @@ class CalendarController extends CrudController
         return $this->crudDestroy($calendar);
     }
 
-    public function event(Calendar $calendar)
+    public function event(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('update', $calendar);
 
@@ -91,8 +92,6 @@ class CalendarController extends CrudController
             list($year, $month, $day) = explode('-', trim($date, '-'));
             $year = "-{$year}";
         }
-
-        $campaign = CampaignLocalization::getCampaign();
 
         return view('calendars.events.create', compact(
             'campaign',
@@ -148,11 +147,11 @@ class CalendarController extends CrudController
 
     /**
      */
-    public function events(Calendar $calendar)
+    public function events(Campaign $campaign, Calendar $calendar)
     {
         $this->authCheck($calendar);
 
-        $options = ['calendar' => $calendar];
+        $options = ['campaign' => $campaign, 'calendar' => $calendar];
         $after = $before = false;
         if (request()->has('before_id')) {
             $options['before_id'] = 1;
@@ -190,7 +189,7 @@ class CalendarController extends CrudController
     /**
      * Set the day as today
      */
-    public function today(Calendar $calendar)
+    public function today(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('update', $calendar);
 
@@ -202,6 +201,6 @@ class CalendarController extends CrudController
         }
 
         return redirect()->back()
-            ->with('success', trans('calendars.edit.today'));
+            ->with('success', __('calendars.edit.today'));
     }
 }

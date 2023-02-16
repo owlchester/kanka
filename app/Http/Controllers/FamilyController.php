@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\FamilyFilter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreFamily;
+use App\Models\Campaign;
 use App\Models\Family;
 use App\Traits\TreeControllerTrait;
 
@@ -55,11 +56,11 @@ class FamilyController extends CrudController
     /**
      * @param Family $family
      */
-    public function families(Family $family)
+    public function families(Campaign $campaign, Family $family)
     {
         $this->authCheck($family);
 
-        $options = ['family' => $family];
+        $options = ['campaign' => $campaign, 'family' => $family];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $family->id;
@@ -89,11 +90,11 @@ class FamilyController extends CrudController
     /**
      * @param Family $family
      */
-    public function members(Family $family)
+    public function members(Campaign $campaign, Family $family)
     {
         $this->authCheck($family);
 
-        $options = ['family' => $family];
+        $options = ['campaign' => $campaign, 'family' => $family];
         $filters = [];
         $relation = 'allMembers';
         if (request()->has('family_id')) {

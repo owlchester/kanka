@@ -5,11 +5,11 @@
         </h3>
         <div class="box-tools">
             @if (request()->has('parent_id'))
-                <a href="{{ route('timelines.timelines', [$model]) }}" class="btn btn-box-tool">
+                <a href="{{ route('timelines.timelines', [$campaign, $model]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                 </a>
             @else
-                <a href="{{ route('timelines.timelines', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
+                <a href="{{ route('timelines.timelines', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->timelines()->count() }})
                 </a>
             @endif

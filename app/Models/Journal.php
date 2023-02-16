@@ -144,7 +144,8 @@ class Journal extends MiscModel
         $items['second']['journals'] = [
             'name' => 'journals.show.tabs.journals',
             'route' => 'journals.journals',
-            'count' => $this->descendants()->count()
+            'count' => $this->descendants()->count(),
+            'world' => true,
         ];
         return parent::menuItems($items);
     }

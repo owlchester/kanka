@@ -3,6 +3,7 @@
 $datagridOptions = [];
     if (!empty($onload)) {
     $routeOptions = [
+        $campaign,
         $model,
         'init' => 1,
     ];
@@ -19,11 +20,11 @@ $datagridOptions = [];
         </h3>
         <div class="box-tools">
             @if (request()->has('parent_id'))
-                <a href="{{ route('abilities.abilities', [$model]) }}" class="btn btn-box-tool">
+                <a href="{{ route('abilities.abilities', [$campaign, $model]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                 </a>
             @else
-                <a href="{{ route('abilities.abilities', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
+                <a href="{{ route('abilities.abilities', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->abilities()->count() }})
                 </a>
             @endif

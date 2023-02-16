@@ -326,7 +326,7 @@ class MapMarker extends Model
             </div>`)
                 ' . $this->tooltipPopup . '
             .on(`click`, function (ev) {
-                window.markerDetails(`' . route('maps.markers.details', [$this->map_id, $this->id]) . '`)
+                window.markerDetails(`' . route('maps.markers.details', [$this->map->id, $this->map_id, $this->id]) . '`)
             })';
         }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\QuestFilter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreQuest;
+use App\Models\Campaign;
 use App\Models\Quest;
 use App\Traits\TreeControllerTrait;
 
@@ -62,11 +63,11 @@ class QuestController extends CrudController
 
     /**
      */
-    public function quests(Quest $quest)
+    public function quests(Campaign $campaign, Quest $quest)
     {
         $this->authCheck($quest);
 
-        $options = ['quest' => $quest];
+        $options = ['campaign' => $campaign, 'quest' => $quest];
         $filters = [];
 
         Datagrid::layout(\App\Renderers\Layouts\Quest\Quest::class)

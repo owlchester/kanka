@@ -5,11 +5,11 @@
         </h3>
         <div class="box-tools">
             @if (request()->has('parent'))
-                <a href="{{ route('races.races', [$model]) }}" class="btn btn-box-tool">
+                <a href="{{ route('races.races', [$campaign, $model]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                 </a>
             @else
-                <a href="{{ route('races.races', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
+                <a href="{{ route('races.races', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->races()->count() }})
                 </a>
             @endif

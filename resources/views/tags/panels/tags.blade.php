@@ -16,11 +16,11 @@ if (request()->has('tag_id')) {
                 <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('tag_id'))
-                <a href="{{ route('tags.tags', [$model, '#tag-tags']) }}" class="btn btn-box-tool">
+                <a href="{{ route('tags.tags', [$campaign, $model, '#tag-tags']) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                 </a>
             @else
-                <a href="{{ route('tags.tags', [$model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn btn-box-tool">
+                <a href="{{ route('tags.tags', [$campaign, $model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->tags()->count() }})
                 </a>
             @endif

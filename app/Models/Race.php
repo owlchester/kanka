@@ -216,7 +216,8 @@ class Race extends MiscModel
             $items['second']['races'] = [
                 'name' => 'races.show.tabs.races',
                 'route' => 'races.races',
-                'count' => $count
+                'count' => $count,
+                'world' => true,
             ];
         }
         return parent::menuItems($items);

@@ -1,4 +1,4 @@
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('organisations.members.create.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [

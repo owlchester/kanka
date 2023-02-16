@@ -328,7 +328,8 @@ class Location extends MiscModel
             $items['second']['locations'] = [
                 'name' => 'entities.locations',
                 'route' => 'locations.locations',
-                'count' => $count
+                'count' => $count,
+                'world' => true,
             ];
         }
 
@@ -337,7 +338,8 @@ class Location extends MiscModel
             $items['second']['characters'] = [
                 'name' => 'entities.characters',
                 'route' => 'locations.characters',
-                'count' => $count
+                'count' => $count,
+                'world' => true,
             ];
         }
         /*$count = $this->events()->count();

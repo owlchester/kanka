@@ -5,6 +5,7 @@
 $allMembers = true;
 $addEntityUrl = route('tags.entity-add', [$campaign, $model]);
 $datagridOptions = [
+    $campaign,
     $model,
     'init' => 1
 ];

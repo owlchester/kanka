@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\RaceFilter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreRace;
+use App\Models\Campaign;
 use App\Models\Race;
 use App\Traits\TreeControllerTrait;
 
@@ -64,11 +65,11 @@ class RaceController extends CrudController
 
     /**
      */
-    public function characters(Race $race)
+    public function characters(Campaign $campaign, Race $race)
     {
         $this->authCheck($race);
 
-        $options = ['race' => $race];
+        $options = ['campaign' => $campaign, 'race' => $race];
         $filters = [];
         $relation = 'allCharacters';
         if (request()->has('race_id')) {
@@ -103,11 +104,11 @@ class RaceController extends CrudController
 
     /**
      */
-    public function races(Race $race)
+    public function races(Campaign $campaign, Race $race)
     {
         $this->authCheck($race);
 
-        $options = ['race' => $race];
+        $options = ['campaign' => $campaign, 'race' => $race];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $race->id;

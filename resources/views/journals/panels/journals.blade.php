@@ -14,11 +14,11 @@
                 <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('parent_id'))
-                <a href="{{ route('journals.journals', [$model]) }}" class="btn btn-box-tool">
+                <a href="{{ route('journals.journals', [$campaign, $model]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allJournals()->count() }})
                 </a>
             @else
-                <a href="{{ route('journals.journals', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
+                <a href="{{ route('journals.journals', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->journals()->count() }})
                 </a>
             @endif

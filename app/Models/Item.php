@@ -223,7 +223,8 @@ class Item extends MiscModel
             $items['second']['inventories'] = [
                 'name' => 'items.show.tabs.inventories',
                 'route' => 'items.inventories',
-                'count' => $inventoryCount
+                'count' => $inventoryCount,
+                'world' => true,
             ];
         }
 

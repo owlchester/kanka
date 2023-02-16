@@ -1,5 +1,6 @@
 <?php
 $datagridOptions = [
+    $campaign,
     $model,
     'init' => 1
 ];

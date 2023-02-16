@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\OrganisationFilter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreOrganisation;
+use App\Models\Campaign;
 use App\Models\Organisation;
 use App\Traits\TreeControllerTrait;
 
@@ -68,11 +69,11 @@ class OrganisationController extends CrudController
     /**
      * @param Organisation $organisation
      */
-    public function organisations(Organisation $organisation)
+    public function organisations(Campaign $campaign, Organisation $organisation)
     {
         $this->authCheck($organisation);
 
-        $options = ['organisation' => $organisation];
+        $options = ['campaign' => $campaign, 'organisation' => $organisation];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['organisation_id'] = $organisation->id;
@@ -104,11 +105,11 @@ class OrganisationController extends CrudController
     /**
      * @param Organisation $organisation
      */
-    public function members(Organisation $organisation)
+    public function members(Campaign $campaign, Organisation $organisation)
     {
         $this->authCheck($organisation);
 
-        $options = ['organisation' => $organisation];
+        $options = ['campaign' => $campaign, 'organisation' => $organisation];
         $base = 'members';
         if (request()->has('all')) {
             $options['all'] = true;

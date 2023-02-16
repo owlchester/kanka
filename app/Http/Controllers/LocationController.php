@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\LocationFilter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreLocation;
+use App\Models\Campaign;
 use App\Models\Location;
 use App\Traits\TreeControllerTrait;
 
@@ -73,11 +74,11 @@ class LocationController extends CrudController
     /**
      * @param Location $location
      */
-    public function characters(Location $location)
+    public function characters(Campaign $campaign, Location $location)
     {
         $this->authCheck($location);
 
-        $options = ['location' => $location];
+        $options = ['campaign' => $campaign, 'location' => $location];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $location->id;
@@ -107,11 +108,11 @@ class LocationController extends CrudController
     /**
      * @param Location $location
      */
-    public function locations(Location $location)
+    public function locations(Campaign $campaign, Location $location)
     {
         $this->authCheck($location);
 
-        $options = ['location' => $location];
+        $options = ['campaign' => $campaign, 'location' => $location];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $location->id;

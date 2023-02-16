@@ -81,11 +81,11 @@ class TagController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function tags(Tag $tag)
+    public function tags(Campaign $campaign, Tag $tag)
     {
         $this->authCheck($tag);
 
-        $options = ['tag' => $tag];
+        $options = ['campaign' => $campaign, 'tag' => $tag];
         $filters = [];
         if (request()->has('tag_id')) {
             $options['tag_id'] = $tag->id;
@@ -115,11 +115,11 @@ class TagController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function children(Tag $tag)
+    public function children(Campaign $campaign, Tag $tag)
     {
         $this->authCheck($tag);
 
-        $options = ['tag' => $tag];
+        $options = ['campaign' => $campaign, 'tag' => $tag];
         $base = 'allChildren';
         if (request()->has('tag_id')) {
             $options['tag_id'] = $tag->id;

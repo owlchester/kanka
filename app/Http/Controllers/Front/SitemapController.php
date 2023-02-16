@@ -13,10 +13,7 @@ use App\Services\SitemapService;
 
 class SitemapController extends Controller
 {
-    /**
-     * @var SitemapService
-     */
-    public $sitemapService;
+    public SitemapService $sitemapService;
 
     /**
      * SitemapController constructor.

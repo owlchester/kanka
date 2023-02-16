@@ -186,7 +186,8 @@ class Creature extends MiscModel
             $items['second']['creatures'] = [
                 'name' => 'creatures.show.tabs.creatures',
                 'route' => 'creatures.creatures',
-                'count' => $count
+                'count' => $count,
+                'world' => true,
             ];
         }
         return parent::menuItems($items);

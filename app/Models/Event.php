@@ -187,7 +187,8 @@ class Event extends MiscModel
         $items['second']['events'] = [
             'name' => 'events.fields.events',
             'route' => 'events.events',
-            'count' => $this->descendants()->count()
+            'count' => $this->descendants()->count(),
+            'world' => true,
         ];
 
         return parent::menuItems($items);

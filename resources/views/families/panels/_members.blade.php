@@ -5,6 +5,7 @@
  */
 $allMembers = true;
 $datagridOptions = [
+    $campaign,
     $model,
     'init' => 1
 ];

@@ -177,12 +177,14 @@ class Ability extends MiscModel
         $items['second']['abilities'] = [
             'name' => 'abilities.show.tabs.abilities',
             'route' => 'abilities.abilities',
-            'count' => $this->descendants()->count()
+            'count' => $this->descendants()->count(),
+            'world' => true,
         ];
         $items['second']['entities'] = [
             'name' => 'abilities.show.tabs.entities',
             'route' => 'abilities.entities',
-            'count' => $this->entities()->count()
+            'count' => $this->entities()->count(),
+            'world' => true,
         ];
         return parent::menuItems($items);
     }

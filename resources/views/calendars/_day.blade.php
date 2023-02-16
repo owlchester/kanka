@@ -16,6 +16,7 @@
                     </a>
 @php
     $routeOptions = [
+    $campaign,
     $model, 'date' => $day['date']
 ];
 if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {

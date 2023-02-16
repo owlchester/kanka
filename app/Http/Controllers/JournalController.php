@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\JournalFilter;
 use App\Facades\Datagrid;
+use App\Models\Campaign;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal;
 use App\Traits\TreeControllerTrait;
@@ -74,11 +75,11 @@ class JournalController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function journals(Journal $journal)
+    public function journals(Campaign $campaign, Journal $journal)
     {
         $this->authCheck($journal);
 
-        $options = ['journal' => $journal];
+        $options = ['campaign' => $campaign, 'journal' => $journal];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $journal->id;

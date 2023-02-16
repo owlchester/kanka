@@ -5,12 +5,12 @@
         </h3>
 
         <div class="box-tools">
-            @if (request()->has('parent'))
-                <a href="{{ route('creatures.creatures', [$model]) }}" class="btn btn-box-tool">
+            @if (request()->has('parent_id'))
+                <a href="{{ route('creatures.creatures', [$campaign, $model]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                 </a>
             @else
-                <a href="{{ route('creatures.creatures', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
+                <a href="{{ route('creatures.creatures', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->creatures()->count() }})
                 </a>
             @endif

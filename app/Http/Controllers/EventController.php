@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\EventFilter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreEvent;
+use App\Models\Campaign;
 use App\Models\Event;
 use App\Traits\TreeControllerTrait;
 
@@ -55,11 +56,11 @@ class EventController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function events(Event $event)
+    public function events(Campaign $campaign, Event $event)
     {
         $this->authCheck($event);
 
-        $options = ['event' => $event];
+        $options = ['campaign' => $campaign, 'event' => $event];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $event->id;

@@ -31,11 +31,12 @@ class OrganisationMemberController extends Controller
     public function create(Organisation $organisation)
     {
         $this->authorize('member', $organisation);
-        $ajax = request()->ajax();
+
+        $campaign = CampaignLocalization::getCampaign();
 
         return view($this->view . '.create', [
+            'campaign' => $campaign,
             'model' => $organisation,
-            'ajax' => $ajax
         ]);
     }
 
@@ -73,14 +74,12 @@ class OrganisationMemberController extends Controller
         if ($organisationMember->organisation_id !== $organisation->id) {
             abort(404);
         }
-        $ajax = request()->ajax();
         $campaign = CampaignLocalization::getCampaign();
 
         return view($this->view . '.edit', [
             'campaign' => $campaign,
             'model' => $organisation,
             'member' => $organisationMember,
-            'ajax' => $ajax
         ]);
     }
 

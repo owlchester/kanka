@@ -6,11 +6,11 @@
         </h3>
         <div class="box-tools">
             @if (request()->has('parent'))
-                <a href="{{ route('families.families', [$model]) }}" class="btn btn-box-tool">
+                <a href="{{ route('families.families', [$campaign, $model]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                 </a>
             @else
-                <a href="{{ route('families.families', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
+                <a href="{{ route('families.families', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->families()->count() }})
                 </a>
             @endif

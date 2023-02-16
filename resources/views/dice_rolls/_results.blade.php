@@ -4,7 +4,7 @@
     <h3 class="box-title">{{ __('dice_rolls.index.actions.results') }}</h3>
     <div class="box-tools">
         @can('roll', $model)
-            <a href="{{ route('dice_rolls.roll', ['dice_roll' => $model]) }}" class="btn btn-box-tool">
+            <a href="{{ route('dice_rolls.roll', [$campaign, 'dice_roll' => $model]) }}" class="btn btn-box-tool">
                 <i class="fa-solid fa-plus"></i> {{ __('dice_rolls.results.actions.add') }}
             </a>
         @endcan
@@ -29,7 +29,7 @@
             <td>{{ $relation->updated_at->diffForHumans() }}</td>
             <td class="text-right">
                 @can('delete', $model)
-                {!! Form::open(['method' => 'DELETE','route' => ['dice_rolls.destroy_roll', $model, $relation->id],'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['dice_rolls.destroy_roll', $campaign, $model, $relation->id],'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger" title="{{ __('crud.remove') }}" data-toggle="tooltip">
                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
                 </button>

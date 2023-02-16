@@ -265,6 +265,7 @@ class Organisation extends MiscModel
                 'name' => 'organisations.show.tabs.organisations',
                 'route' => 'organisations.organisations',
                 'count' => $count,
+                'world' => true,
             ];
         }
 

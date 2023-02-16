@@ -538,7 +538,8 @@ class Calendar extends MiscModel
             $items['second']['events'] = [
                 'name' => 'crud.tabs.reminders',
                 'route' => 'calendars.events',
-                'count' => $count
+                'count' => $count,
+                'world' => true,
             ];
         }
         return parent::menuItems($items);

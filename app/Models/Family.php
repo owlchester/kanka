@@ -238,7 +238,8 @@ class Family extends MiscModel
         $items['second']['families'] = [
             'name' => 'families.show.tabs.families',
             'route' => 'families.families',
-            'count' => $this->descendants()->count()
+            'count' => $this->descendants()->count(),
+            'world' => true,
         ];
 
         return parent::menuItems($items);

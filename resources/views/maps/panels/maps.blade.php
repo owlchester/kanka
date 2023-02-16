@@ -11,11 +11,11 @@ if (request()->has('map_id')) {
         </h3>
         <div class="box-tools">
             @if (request()->has('map_id'))
-                <a href="{{ route('maps.maps', [$model, '#map-maps']) }}" class="btn btn-default btn-box-tool">
+                <a href="{{ route('maps.maps', [$campaign, $model]) }}" class="btn btn-default btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants->count() }})
                 </a>
             @else
-                <a href="{{ route('maps.maps', [$model, 'map_id' => $model->id, '#map-maps']) }}" class="btn btn-default btn-box-tool">
+                <a href="{{ route('maps.maps', [$campaign, $model, 'map_id' => $model->id]) }}" class="btn btn-default btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->maps->count() }})
                 </a>
             @endif

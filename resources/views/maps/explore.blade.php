@@ -173,7 +173,9 @@
         }
 
         .marker-{{ $marker->id }} .marker-pin::after {
-            @if (!empty($marker->entity_id) && $marker->entity && $marker->icon == 4)background-image: url('{{ $marker->entity->child->thumbnail(400) }}');
+            @if (!empty($marker->entity_id) && $marker->entity && $marker->icon == 4)
+            @php /* :( for performance ... */$marker->entity->child->entity = $marker->entity @endphp
+                background-image: url('{{ $marker->entity->child->thumbnail(400) }}');
 
                 @if (!empty($marker->pin_size))
                     width: {{ $marker->pinSize(false) - 4 }}px;

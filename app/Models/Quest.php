@@ -247,7 +247,8 @@ class Quest extends MiscModel
         $items['second']['elements'] = [
             'name' => 'quests.show.tabs.elements',
             'route' => 'quests.quest_elements.index',
-            'count' => $count
+            'count' => $count,
+            'world' => true,
         ];
         return parent::menuItems($items);
     }

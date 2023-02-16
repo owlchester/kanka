@@ -242,7 +242,8 @@ class Tag extends MiscModel
             $items['second']['tags'] = [
                 'name' => 'tags.show.tabs.tags',
                 'route' => 'tags.tags',
-                'count' => $count
+                'count' => $count,
+                'world' => true,
             ];
         }
         return parent::menuItems($items);

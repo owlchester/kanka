@@ -80,11 +80,11 @@ class AbilityController extends CrudController
 
     /**
      */
-    public function abilities(Ability $ability)
+    public function abilities(Campaign $campaign, Ability $ability)
     {
         $this->authCheck($ability);
 
-        $options = ['ability' => $ability];
+        $options = ['campaign' => $campaign, 'ability' => $ability];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $ability->id;
@@ -114,12 +114,12 @@ class AbilityController extends CrudController
 
     /**
      */
-    public function entities(Ability $ability)
+    public function entities(Campaign $campaign, Ability $ability)
     {
         $this->authCheck($ability);
 
         Datagrid::layout(\App\Renderers\Layouts\Ability\Entity::class)
-            ->route('abilities.entities', [$ability]);
+            ->route('abilities.entities', [$campaign, $ability]);
 
         $this->rows = $ability
             ->entities()
@@ -130,8 +130,6 @@ class AbilityController extends CrudController
         if (request()->ajax()) {
             return $this->datagridAjax();
         }
-
-        $campaign = CampaignLocalization::getCampaign();
 
         return view('abilities.entities')
             ->with('campaign', $campaign)

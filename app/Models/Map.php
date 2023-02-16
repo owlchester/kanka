@@ -206,7 +206,9 @@ class Map extends MiscModel
      */
     public function groups()
     {
-        return $this->hasMany('App\Models\MapGroup', 'map_id', 'id');
+        return $this->hasMany('App\Models\MapGroup', 'map_id', 'id')
+            ->with('markers')
+        ;
     }
 
     /**
@@ -215,7 +217,7 @@ class Map extends MiscModel
     public function markers()
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
-            ->with(['entity', 'group']);
+            ->with(['entity', 'group', 'map']);
     }
 
     /**
@@ -244,8 +246,6 @@ class Map extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $items['second']['maps'] = [
             'name' => 'maps.show.tabs.maps',
             'route' => 'maps.maps',
