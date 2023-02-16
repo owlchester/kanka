@@ -6,6 +6,7 @@ use App\Datagrids\Filters\TagFilter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreTagEntity;
 use App\Http\Requests\StoreTag;
+use App\Models\Campaign;
 use App\Models\Tag;
 use App\Traits\TreeControllerTrait;
 
@@ -147,16 +148,17 @@ class TagController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function entityAdd(Tag $tag)
+    public function entityAdd(Campaign $campaign, Tag $tag)
     {
         $this->authorize('update', $tag);
         $ajax = request()->ajax();
-        $formOptions = ['tags.entity-add.save', 'tag' => $tag];
+        $formOptions = ['tags.entity-add.save', 'tag' => $tag, 'campaign' => $campaign];
         if (request()->has('from-children')) {
             $formOptions['from-children'] = true;
         }
 
         return view('tags.entities.create', [
+            'campaign' => $campaign,
             'model' => $tag,
             'ajax' => $ajax,
             'formOptions' => $formOptions
@@ -169,7 +171,7 @@ class TagController extends CrudController
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function entityStore(StoreTagEntity $request, Tag $tag)
+    public function entityStore(StoreTagEntity $request, Campaign $campaign, Tag $tag)
     {
         $this->authorize('update', $tag);
         $redirectUrlOptions = ['tag' => $tag->id];

@@ -249,6 +249,7 @@ class Map extends MiscModel
         $items['second']['maps'] = [
             'name' => 'maps.show.tabs.maps',
             'route' => 'maps.maps',
+            'world' => true,
             'count' => $this->maps()->count()
         ];
         if (auth()->check() && auth()->user()->can('update', $this)) {
@@ -626,7 +627,7 @@ class Map extends MiscModel
                     __('maps.tooltips.chunking.running') . '"></i>';
             }
         }
-        return '<a href="' . route('maps.explore', $this->id) . '" target="_blank" ' .
+        return '<a href="' . route('maps.explore', [$this->campaign_id, $this->id]) . '" target="_blank" ' .
             'data-toggle="tooltip" title="' . __('maps.actions.explore') . '">' .
             '<i class="fa-solid fa-map" data-tree="escape"></i>' .
             '</a>';

@@ -8,6 +8,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Http\Requests\StoreMapMarker;
+use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapMarker;
 use App\Traits\GuestAuthTrait;
@@ -113,7 +114,7 @@ class MapMarkerController extends Controller
 
         if ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map, 'focus' => $new->id])
+                ->route('maps.explore', ['campaign' => $map->campaign_id, $map, 'focus' => $new->id])
                 ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
         } elseif ($request->has('submit-update')) {
             return redirect()
@@ -121,7 +122,7 @@ class MapMarkerController extends Controller
                 ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
         } elseif ($request->get('from') == 'explore') {
             return redirect()
-                ->route('maps.explore', [$map, 'focus' => $new->id]);
+                ->route('maps.explore', ['campaign' => $map->campaign_id, $map, 'focus' => $new->id]);
         }
 
         return redirect()
@@ -147,11 +148,17 @@ class MapMarkerController extends Controller
         $model = $mapMarker;
         $includeMap = true;
         $activeTab = $mapMarker->shape_id;
+        $campaign = CampaignLocalization::getCampaign();
 
-        return view(
-            'maps.markers.edit',
-            compact('map', 'ajax', 'model', 'includeMap', 'activeTab', 'from')
-        );
+        return view('maps.markers.edit', compact(
+            'campaign',
+            'map',
+            'ajax',
+            'model',
+            'includeMap',
+            'activeTab',
+            'from'
+        ));
     }
 
     /**
@@ -181,15 +188,15 @@ class MapMarkerController extends Controller
 
         if ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map, 'focus' => $mapMarker->id])
+                ->route('maps.explore', ['campaign' => $map->campaign_id, $map, 'focus' => $mapMarker->id])
                 ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
         } elseif ($request->has('submit-update')) {
             return redirect()
-                ->route('maps.map_markers.edit', [$map, $mapMarker])
+                ->route('maps.map_markers.edit', ['campaign' => $map->campaign_id, $map, $mapMarker])
                 ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
         }
         return redirect()
-            ->route('maps.map_markers.index', [$map, '#tab_form-markers'])
+            ->route('maps.map_markers.index', ['campaign' => $map->campaign_id, $map, '#tab_form-markers'])
             ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
     }
 
@@ -210,7 +217,7 @@ class MapMarkerController extends Controller
 
         if (request()->get('from') == 'map') {
             return redirect()
-                ->route('maps.explore', $map);
+                ->route('maps.explore', ['campaign' => $map->campaign_id, $map]);
         }
 
         return redirect()
@@ -312,7 +319,7 @@ class MapMarkerController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function bulk(Request $request, Map $map)
+    public function bulk(Request $request, Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map);
         $action = $request->get('action');
@@ -322,7 +329,7 @@ class MapMarkerController extends Controller
         }
 
         if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.markers.bulk', ['map' => $map]), '_map-marker', $models, $map);
+            return $this->bulkBatch(route('maps.markers.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-marker', $models, $map);
         }
 
         $count = $this->bulkProcess($request, MapMarker::class);

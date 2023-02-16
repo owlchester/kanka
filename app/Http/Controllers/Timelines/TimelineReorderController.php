@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Timelines;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderTimeline;
+use App\Models\Campaign;
 use App\Models\Timeline;
 use App\Services\TimelineService;
 
 class TimelineReorderController extends Controller
 {
-    /** @var TimelineService */
-    protected $service;
+    protected TimelineService $service;
 
     public function __construct(TimelineService $timelineService)
     {
@@ -21,7 +21,7 @@ class TimelineReorderController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Timeline $timeline)
+    public function index(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('update', $timeline);
 
@@ -32,6 +32,7 @@ class TimelineReorderController extends Controller
             ->get();
 
         return view('timelines.reorder.index', compact(
+            'campaign',
             'eras',
             'timeline'
         ));
@@ -43,7 +44,7 @@ class TimelineReorderController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function save(Timeline $timeline, ReorderTimeline $request)
+    public function save(Campaign $campaign, Timeline $timeline, ReorderTimeline $request)
     {
         $this->authorize('update', $timeline);
 
@@ -51,7 +52,7 @@ class TimelineReorderController extends Controller
             ->timeline($timeline)
             ->reorder($request);
         return redirect()
-            ->route('timelines.show', [$timeline])
+            ->to($timeline->getLink())
             ->withSuccess(__('timelines.reorder.success'));
     }
 }

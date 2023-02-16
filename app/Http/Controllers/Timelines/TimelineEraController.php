@@ -7,6 +7,7 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Http\Requests\StoreTimelineEra;
+use App\Models\Campaign;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
 use Illuminate\Http\Request;
@@ -178,7 +179,7 @@ class TimelineEraController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function bulk(Request $request, Timeline $timeline)
+    public function bulk(Request $request, Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('update', $timeline);
         $action = $request->get('action');

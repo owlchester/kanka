@@ -17,7 +17,7 @@
     @include('partials.errors')
 
     {!! Form::open([
-        'route' => 'quick-links.reorder-save',
+        'route' => ['quick-links.reorder-save', [$campaign]],
         'method' => 'POST',
     ]) !!}
     <div class="box box-solid box-entity-story-reorder">

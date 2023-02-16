@@ -9,8 +9,8 @@
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons">
-            <a href="{{ route('abilities.entity-add', $model) }}" class="btn btn-warning btn-sm"
-               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('abilities.entity-add', $model) }}">
+            <a href="{{ route('abilities.entity-add', [$campaign, $model]) }}" class="btn btn-warning btn-sm"
+               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('abilities.entity-add', [$campaign, $model]) }}">
                 <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('abilities.children.actions.add') }}</span>
             </a>
         </div>

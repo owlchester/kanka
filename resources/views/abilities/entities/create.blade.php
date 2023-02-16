@@ -1,9 +1,9 @@
 <?php /** @var \App\Models\Ability $model */ ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('abilities.children.create.title', ['name' => $model->name]),
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('abilities'), 'label' => __('entities.abilities')],
-        ['url' => route('abilities.show', $model->id), 'label' => $model->name]
+        ['url' => $model->getLink(), 'label' => $model->name]
     ]
 ])
 

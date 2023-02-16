@@ -42,7 +42,7 @@
                                     {!! $marker->map->tooltipedLink() !!}
                                 </td>
                                 <td>
-                                    <a href="{{ route('maps.explore', [$marker->map_id, 'lat' => $marker->latitude, 'lng' => $marker->longitude]) }}" target="_blank">
+                                    <a href="{{ route('maps.explore', [$campaign, $marker->map_id, 'lat' => $marker->latitude, 'lng' => $marker->longitude]) }}" target="_blank">
                                         <i class="fa-solid fa-map"></i>
                                     </a>
                                 </td>

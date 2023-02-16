@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\AbilityFilter;
+use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreAbilityEntity;
 use App\Http\Requests\StoreAbility;
 use App\Models\Ability;
+use App\Models\Campaign;
 use App\Traits\TreeControllerTrait;
 
 class AbilityController extends CrudController
@@ -129,32 +131,34 @@ class AbilityController extends CrudController
             return $this->datagridAjax();
         }
 
+        $campaign = CampaignLocalization::getCampaign();
+
         return view('abilities.entities')
+            ->with('campaign', $campaign)
             ->with('model', $ability)
             ->with('rows', $this->rows);
     }
 
     /**
      */
-    public function entityAdd(Ability $ability)
+    public function entityAdd(Campaign $campaign, Ability $ability)
     {
         $this->authorize('update', $ability);
-        $ajax = request()->ajax();
-        $formOptions = ['abilities.entity-add.save', 'ability' => $ability];
+        $formOptions = ['abilities.entity-add.save', 'ability' => $ability, 'campaign' => $campaign];
         if (request()->has('from-children')) {
             $formOptions['from-children'] = true;
         }
 
         return view('abilities.entities.create', [
             'model' => $ability,
-            'ajax' => $ajax,
+            'campaign' => $campaign,
             'formOptions' => $formOptions
         ]);
     }
 
     /**
      */
-    public function entityStore(StoreAbilityEntity $request, Ability $ability)
+    public function entityStore(StoreAbilityEntity $request, Campaign $campaign, Ability $ability)
     {
         $this->authorize('update', $ability);
         $redirectUrlOptions = ['ability' => $ability->id];

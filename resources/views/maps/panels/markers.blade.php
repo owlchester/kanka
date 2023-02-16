@@ -1,5 +1,5 @@
 <div class="box box-solid mt-5" id="map-markers">
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.markers.bulk', 'map' => $model]]) !!} @endif
+    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.markers.bulk', ['campaign' => $campaign, 'map' => $model]]]) !!} @endif
     <div class="box-header with-border">
         <h3 class="box-title">
             {{ __('maps.panels.markers') }}

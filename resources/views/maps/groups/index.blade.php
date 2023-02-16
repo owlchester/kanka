@@ -15,7 +15,7 @@
                 <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
             </a>
             @if ($model->explorable())
-                <a href="{{ route('maps.explore', ['map' => $model]) }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('maps.explore', [$campaign, 'map' => $model]) }}" class="btn btn-primary btn-sm">
                     <i class="fa-solid fa-map" aria-hidden="true"></i>
                     {{ __('maps.actions.explore') }}
                 </a>

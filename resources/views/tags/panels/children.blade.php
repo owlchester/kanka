@@ -3,7 +3,7 @@
  * @var \App\Models\Tag $model
  */
 $allMembers = true;
-$addEntityUrl = route('tags.entity-add', $model);
+$addEntityUrl = route('tags.entity-add', [$campaign, $model]);
 $datagridOptions = [
     $model,
     'init' => 1

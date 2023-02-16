@@ -44,7 +44,7 @@ class MenuLinkController extends CrudController
         $campaign = CampaignLocalization::getCampaign();
 
         $this->addNavAction(
-            route('quick-links.reorder'),
+            route('quick-links.reorder', [$campaign]),
             '<i class="fa-solid fa-arrows-alt-v" aria-hidden="true"></i> <span class="hidden-xs">' .
             __('menu_links.reorder.title') . '</span>'
         );

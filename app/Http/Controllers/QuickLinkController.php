@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReorderMenuLinks;
+use App\Models\Campaign;
 use App\Models\MenuLink;
 use App\Services\MenuLinkService;
 
@@ -24,13 +25,15 @@ class QuickLinkController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function reorder()
+    public function reorder(Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
         $this->authorize('create', MenuLink::class);
 
         $links = MenuLink::ordered()->get();
 
         return view('menu_links.reorder', compact(
+            'campaign',
             'links'
         ));
     }
@@ -40,7 +43,7 @@ class QuickLinkController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function save(ReorderMenuLinks $request)
+    public function save(ReorderMenuLinks $request, Campaign $campaign)
     {
         $this->authorize('create', MenuLink::class);
 

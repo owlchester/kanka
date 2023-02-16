@@ -7,28 +7,11 @@ Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->nam
 Route::get('/abilities/{ability}/entities', 'AbilityController@entities')->name('abilities.entities');
 Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
-Route::get('/abilities/{ability}/entity-add', 'AbilityController@entityAdd')->name('abilities.entity-add');
-Route::post('/abilities/{ability}/entity-add', 'AbilityController@entityStore')->name('abilities.entity-add.save');
-
-
 // Maps
-Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
-Route::get('/maps/{map}/explore', 'Maps\MapController@explore')->name('maps.explore');
-Route::get('/maps/{map}/chunks/', 'Maps\MapController@chunks')->name('maps.chunks');
-Route::get('/maps/{map}/ticker', 'Maps\MapController@ticker')->name('maps.ticker');
 Route::get('/maps/{map}/{map_marker}/details', 'Maps\MapMarkerController@details')->name('maps.markers.details');
 Route::post('/maps/{map}/{map_marker}/move', 'Maps\MapMarkerController@move')->name('maps.markers.move');
 Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
-//Route::get('/maps/{map}/map-points', 'Maps\MapController@mapPoints')->name('maps.map-points');
-Route::post('/maps/{map}/groups/bulk', 'Maps\MapGroupController@bulk')->name('maps.groups.bulk');
-Route::post('/maps/{map}/groups/reorder', 'Maps\MapGroupController@reorder')->name('maps.groups.reorder-save');
 
-Route::post('/maps/{map}/layers/bulk', 'Maps\MapLayerController@bulk')->name('maps.layers.bulk');
-Route::post('/maps/{map}/layers/reorder', 'Maps\MapLayerController@reorder')->name('maps.layers.reorder-save');
-
-Route::post('/maps/{map}/markers/bulk', 'Maps\MapMarkerController@bulk')->name('maps.markers.bulk');
-
-// Character
 Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
 
 Route::get('/dice_rolls/{dice_roll}/roll', 'DiceRollController@roll')->name('dice_rolls.roll');
@@ -81,11 +64,6 @@ Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
 Route::get('/tags/{tag}/tags', 'TagController@tags')->name('tags.tags');
 Route::get('/tags/{tag}/children', 'TagController@children')->name('tags.children');
 
-// Tags Quick Add
-Route::get('/tags/{tag}/entity-add', 'TagController@entityAdd')->name('tags.entity-add');
-Route::post('/tags/{tag}/entity-add', 'TagController@entityStore')->name('tags.entity-add.save');
-
-
 Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
 Route::get('/journals/tree', 'JournalController@tree')->name('journals.tree');
 
@@ -98,20 +76,6 @@ Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->
 Route::get('/calendars/{calendar}/events', 'CalendarController@events')->name('calendars.events');
 Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('calendars.today');
 
-
-Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')
-    ->name('menu_links.random');
-
-Route::get('/timelines/{timeline}/reorder', [\App\Http\Controllers\Timelines\TimelineReorderController::class, 'index'])
-    ->name('timelines.reorder');
-Route::post('/timelines/{timeline}/reorder', [\App\Http\Controllers\Timelines\TimelineReorderController::class, 'save'])
-    ->name('timelines.reorder-save');
-Route::post('/timelines/{timeline}/eras/bulk', 'Timelines\TimelineEraController@bulk')->name('timelines.eras.bulk');
-
-Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'reorder'])
-    ->name('quick-links.reorder');
-Route::post('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'save'])
-    ->name('quick-links.reorder-save');
 
 
 Route::resources([

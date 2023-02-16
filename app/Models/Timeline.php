@@ -192,6 +192,7 @@ class Timeline extends MiscModel
             $items['second']['reorder'] = [
                 'name' => 'timelines.show.tabs.reorder',
                 'route' => 'timelines.reorder',
+                'world' => true,
             ];
         }
 

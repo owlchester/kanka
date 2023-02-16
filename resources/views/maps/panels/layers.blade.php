@@ -11,7 +11,7 @@
 @endif
 
 <div class="box box-solid" id="map-layers">
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.layers.bulk', 'map' => $model]]) !!} @endif
+    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.layers.bulk', [$campaign, 'map' => $model]]]) !!} @endif
     <div class="box-header with-border">
         <h3 class="box-title">
             {{ __('maps.panels.layers') }}

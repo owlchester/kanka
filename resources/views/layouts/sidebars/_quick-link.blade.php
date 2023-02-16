@@ -22,7 +22,7 @@
     </li>
 @elseif ($menuLink->isRandom())
     <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($currentCampaign) }}">
-        <a href="{{ route('menu_links.random', $menuLink) }}">
+        <a href="{{ route('quick-links.random', [$menuLink->campaign_id, $menuLink]) }}">
             <i class="{{ $menuLink->icon() }}"></i>
             {{ $menuLink->name }}
         </a>

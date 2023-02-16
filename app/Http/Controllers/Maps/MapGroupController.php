@@ -103,7 +103,7 @@ class MapGroupController extends Controller
                 ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map])
+                ->route('maps.explore', [$map->campaign_id, $map])
                 ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
         }
 
@@ -148,7 +148,7 @@ class MapGroupController extends Controller
                 ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map])
+                ->route('maps.explore', [$map->campaign_id, $map])
                 ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
         }
 
@@ -198,7 +198,7 @@ class MapGroupController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function bulk(Request $request, Map $map)
+    public function bulk(Request $request, Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map);
         $action = $request->get('action');
@@ -208,7 +208,7 @@ class MapGroupController extends Controller
         }
 
         if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.groups.bulk', ['map' => $map]), '_map-group', $models);
+            return $this->bulkBatch(route('maps.groups.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-group', $models);
         }
 
         $count = $this->bulkProcess($request, MapGroup::class);

@@ -205,7 +205,7 @@ class AbilityService
         ];
 
         if (!empty($entityAbility->ability->charges)) {
-            $data['actions']['use'] = route('entities.entity_abilities.use', [$this->entity, $entityAbility]);
+            $data['actions']['use'] = route('entities.entity_abilities.use', [$this->entity->campaign_id, $this->entity, $entityAbility]);
         }
 
         return $data;

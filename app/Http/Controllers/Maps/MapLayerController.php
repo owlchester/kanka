@@ -114,7 +114,7 @@ class MapLayerController extends Controller
                 ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map])
+                ->route('maps.explore', [$map->campaign_id, $map])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
         }
 
@@ -169,7 +169,7 @@ class MapLayerController extends Controller
                 ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map])
+                ->route('maps.explore', [$map->campaign_id, $map])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
         }
         return redirect()
@@ -222,7 +222,7 @@ class MapLayerController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function bulk(Request $request, Map $map)
+    public function bulk(Request $request, Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map);
         $action = $request->get('action');
@@ -232,13 +232,13 @@ class MapLayerController extends Controller
         }
 
         if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.layers.bulk', ['map' => $map]), '_map-layer', $models);
+            return $this->bulkBatch(route('maps.layers.bulk', [$campaign, $map]), '_map-layer', $models);
         }
 
         $count = $this->bulkProcess($request, MapLayer::class);
 
         return redirect()
-            ->route('maps.map_layers.index', ['map' => $map])
+            ->route('maps.map_layers.index', [$campaign, $map])
             ->with('success', trans_choice('maps/layers.bulks.' . $action, $count, ['count' => $count]))
         ;
     }

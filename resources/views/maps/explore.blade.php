@@ -124,7 +124,7 @@
 
         // Map ticker to update markers every 20 seconds
         var tickerTimeout = 20000;
-        var tickerUrl = '{{ route('maps.ticker', $map) }}';
+        var tickerUrl = '{{ route('maps.ticker', [$campaign, $map]) }}';
         var tickerTs = '{{ \Carbon\Carbon::now() }}';
         $(document).ready(function() {
             setTimeout(mapTicker, tickerTimeout);

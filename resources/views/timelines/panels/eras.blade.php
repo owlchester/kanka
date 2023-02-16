@@ -1,5 +1,5 @@
 <div class="box box-solid" id="timeline-eras">
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['timelines.eras.bulk', 'timeline' => $model]]) !!} @endif
+    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['timelines.eras.bulk', $campaign, 'timeline' => $model]]) !!} @endif
     <div class="box-header with-border">
         <h3 class="box-title">
             {{ __('timelines.fields.eras') }}

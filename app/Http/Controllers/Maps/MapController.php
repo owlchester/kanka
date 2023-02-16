@@ -7,6 +7,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMap;
+use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapMarker;
 use App\Traits\TreeControllerTrait;
@@ -92,11 +93,11 @@ class MapController extends CrudController
 
     /**
      */
-    public function maps(Map $map)
+    public function maps(Campaign $campaign, Map $map)
     {
         $this->authCheck($map);
 
-        $options = ['map' => $map];
+        $options = ['map' => $map, 'campaign' => $map->campaign_id];
         $base = 'descendants';
         if (request()->has('map_id')) {
             $options['map_id'] = $map->id;
@@ -124,9 +125,8 @@ class MapController extends CrudController
     /**
      * Exploration view for a map
      */
-    public function explore(Map $map)
+    public function explore(Campaign $campaign, Map $map)
     {
-        $campaign = CampaignLocalization::getCampaign();
         // Policies will always fail if they can't resolve the user.
         if (auth()->check()) {
             $this->authorize('view', $map);
@@ -153,7 +153,7 @@ class MapController extends CrudController
     /**
      * Map ticker for updates to pointers
      */
-    public function ticker(Map $map)
+    public function ticker(Campaign $campaign, Map $map)
     {
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
@@ -183,7 +183,7 @@ class MapController extends CrudController
     /**
      * Load only a chunk of the map and cache it for the user
      */
-    public function chunks(Map $map)
+    public function chunks(Campaign $campaign, Map $map)
     {
         $headers = ['Expires', Carbon::now()->addDays(1)->toDateTimeString()];
         if (!request()->has(['z', 'x', 'y'])) {

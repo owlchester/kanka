@@ -9,7 +9,7 @@
             </div>
         </div>
         @can('update', $model)
-            <a href="{{ route('timelines.reorder', $model) }}" class="btn btn-default btn-sm ">
+            <a href="{{ route('timelines.reorder', [$model->campaign_id, $model]) }}" class="btn btn-default btn-sm ">
                 <i class="fa-solid fa-sort"></i> {{ __('timelines.show.tabs.reorder') }}
             </a>
             <a href="{{ route('timelines.edit', $model) }}" class="btn btn-primary btn-sm ">
@@ -17,7 +17,7 @@
             </a>
         @endcan
         @can('post', [$model, 'add'])
-            <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn btn-warning btn-sm btn-new-entity"
+            <a href="{{ route('entities.posts.create', [$model->campaign_id, $model->entity]) }}" class="btn btn-warning btn-sm btn-new-entity"
                data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
                 <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}
             </a>

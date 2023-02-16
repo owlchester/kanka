@@ -6,12 +6,19 @@
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked entity-menu">
                 @foreach ($menuItems as $key => $menuItem)
+                    @php $routeParams = [$model];
+                    if (isset($menuItem['entity'])) {
+                        $routeParams = ['campaign' => $campaign, 'entity' => $model->entity];
+                    } elseif (isset($menuItem['world'])) {
+                        $routeParams['campaign'] = $campaign;
+                    }
+                    @endphp
                     <li class="flex @if(!empty($active) && $active == $key)active @endif">
                         <a
-                            href="{{ route($menuItem['route'], (!isset($menuItem['entity']) ? $model : ['entity' => $model->entity, 'campaign' => $campaign])) }}"
+                            href="{{ route($menuItem['route'], $routeParams) }}"
                             title="{{ __($menuItem['name']) }}" @if(Arr::get($menuItem, 'ajax'))
                             data-toggle="ajax-modal" data-target="#large-modal"
-                            data-url="{{ route($menuItem['route'], (!isset($menuItem['entity']) ? $model : ['entity' => $model->entity, 'campaign' => $campaign])) }}"@endif @if (!empty($menuItem['id']))
+                            data-url="{{ route($menuItem['route'], $routeParams) }}"@endif @if (!empty($menuItem['id']))
                             id="{{ $menuItem['id'] }}" @endif
                             class="truncate flex-grow">
                             @if (!empty($menuItem['count']))
@@ -43,9 +50,16 @@
                     <option disabled>----</option>
                 @endif
                 @foreach ($menuItems as $key => $menuItem)
+                    @php $routeParams = [$model];
+                    if (isset($menuItem['entity'])) {
+                        $routeParams = ['campaign' => $campaign, 'entity' => $model->entity];
+                    } elseif (isset($menuItem['world'])) {
+                        $routeParams['campaign'] = $campaign;
+                    }
+                    @endphp
                     <option
                             name="{{ $key }}"
-                            data-route="{{ route($menuItem['route'], (!isset($menuItem['entity']) ? $model : ['entity' => $model->entity, 'campaign' => $campaign])) }}"
+                            data-route="{{ route($menuItem['route'], $routeParams) }}"
                             @if($key == $active) selected="selected" @endif
                             @if(Arr::get($menuItem, 'ajax')) data-toggle="ajax-modal" data-target="#large-modal" @endif
                     >
