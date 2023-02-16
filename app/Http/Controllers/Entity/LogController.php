@@ -36,7 +36,7 @@ class LogController extends Controller
 
         $ajax = request()->ajax();
 
-        $logs = $entity->logs()->with(['user', 'impersonator'])->recent()->paginate();
+        $logs = $entity->logs()->with(['user', 'impersonator', 'post'])->recent()->paginate();
 
         $transKey = $entity->pluralType();
 
