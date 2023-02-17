@@ -34,40 +34,41 @@
                     </thead>
                     <tbody>
                     @foreach ($logs as $log)
-                        <tr>
-                            <td>
-                                {{ __('entities/logs.actions.' . $log->actionCode()) }}
-                            </td>
-                            <td>@if ($log->user)
-                                    {!! link_to_route('users.profile', $log->user->name, $log->user, ['target' => '_blank']) !!}
-                                @else
-                                    {{  __('crud.history.unknown') }}
-                                @endif
-
-                                @if ($log->impersonator)
-                                    ({{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }})
-                                @endif
-                            </td>
-                            <td>
-                                {{ $log->created_at->diffForHumans() }}
-                            </td>
-                            <td class="text-right">
-                                @if ($campaign->superboosted())
-                                    @if(!empty($log->changes))
-                                        <a href="#log-{{ $log->id }}" data-toggle="collapse">
-                                            <i class="fa-solid fa-scroll" aria-hidden="true"></i>
-                                            <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
-                                        </a>
+                        @if ($log->action < 7 || $log->post)
+                            <tr>
+                                <td>
+                                    {{ __('entities/logs.actions.' . $log->actionCode(), ['post' => $log->post?->name]) }}
+                                </td>
+                                <td>@if ($log->user)
+                                        {!! link_to_route('users.profile', $log->user->name, $log->user, ['target' => '_blank']) !!}
+                                    @else
+                                        {{  __('crud.history.unknown') }}
                                     @endif
-                                @else
-                                   <a href="#log-cta" data-toggle="collapse">
-                                       <i class="fa-solid fa-scroll" aria-hidden="true"></i>
-                                       <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
-                                   </a>
-                                @endif
-                            </td>
-                        </tr>
 
+                                    @if ($log->impersonator)
+                                        ({{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }})
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $log->created_at->diffForHumans() }}
+                                </td>
+                                <td class="text-right">
+                                    @if ($campaign->superboosted())
+                                        @if(!empty($log->changes))
+                                            <a href="#log-{{ $log->id }}" data-toggle="collapse">
+                                                <i class="fa-solid fa-scroll" aria-hidden="true"></i>
+                                                <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
+                                            </a>
+                                        @endif
+                                    @else
+                                    <a href="#log-cta" data-toggle="collapse">
+                                        <i class="fa-solid fa-scroll" aria-hidden="true"></i>
+                                        <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
+                                    </a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endif
                         @if ($campaign->superboosted() && !empty($log->changes))
                         <tr id="log-{{ $log->id }}" class="collapse">
                             <td colspan="4">

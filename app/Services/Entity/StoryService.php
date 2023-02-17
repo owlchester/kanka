@@ -4,6 +4,9 @@ namespace App\Services\Entity;
 
 use App\Http\Requests\ReorderStories;
 use App\Models\Entity;
+use App\Models\EntityNote;
+use App\Facades\Identity;
+use App\Models\EntityLog;
 use App\Models\Post;
 
 class StoryService
@@ -73,7 +76,21 @@ class StoryService
             $story->saveQuietly();
             $position++;
         }
+        $this->log();
 
         return true;
+    }
+
+    /**
+     * Log the changes in the entity_logs table
+     */
+    private function log()
+    {
+        $log = new EntityLog();
+        $log->entity_id = $this->entity->id;
+        $log->created_by = auth()->user()->id;
+        $log->impersonated_by = Identity::getImpersonatorId();
+        $log->action = EntityLog::ACTION_REORDER_POST;
+        $log->save();
     }
 }

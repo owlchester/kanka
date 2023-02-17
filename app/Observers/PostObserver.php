@@ -6,6 +6,8 @@ use App\Facades\Mentions;
 use App\Models\EntityNotePermission;
 use App\Models\Post;
 use App\Services\EntityMappingService;
+use App\Facades\Identity;
+use App\Models\EntityLog;
 
 class PostObserver
 {
@@ -69,6 +71,30 @@ class PostObserver
     /**
      * @param Post $post
      */
+    public function created(Post $post)
+    {
+        $this->log($post, EntityLog::ACTION_CREATE_POST);
+        //dd($log);
+
+        //$entity->is_created_now = true;
+    }
+
+    /**
+     * @param Post $post
+     */
+    public function updated(Post $post)
+    {
+        // Don't log updates if just did one (typically when creating, restoring or bulk editing)
+        if (!$post->entity->hasUpdateLog() || $post->updated_at == $post->created_at || !empty($post->getOriginal('deleted_at'))) {
+            return;
+        }
+
+        $this->log($post, EntityLog::ACTION_UPDATE_POST);
+    }
+
+    /**
+     * @param Post $post
+     */
     public function saved(Post $post)
     {
         $this->savePermissions($post);
@@ -89,6 +115,8 @@ class PostObserver
      */
     public function deleted(Post $post)
     {
+        $this->log($post, EntityLog::ACTION_DELETE_POST);
+
         // When deleting an entity note, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
@@ -96,7 +124,22 @@ class PostObserver
             $post->entity->child->touch();
         }
     }
-
+    /**
+     * @param Post $post
+     * @param int $action
+     */
+    private function log(Post $post, int $action)
+    {
+        $log = new EntityLog();
+        $log->entity_id = $post->entity->id;
+        $log->created_by = auth()->user()->id;
+        if ($action !=  EntityLog::ACTION_DELETE_POST) {
+            $log->post_id = $post->id;
+        }
+        $log->impersonated_by = Identity::getImpersonatorId();
+        $log->action = $action;
+        $log->save();
+    }
     /**
      * @param Post $post
      * @return bool
