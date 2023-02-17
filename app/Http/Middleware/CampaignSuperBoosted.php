@@ -28,7 +28,7 @@ class CampaignSuperBoosted
                     'error' => 'This feature is reserved to superboosted campaigns.'
                 ]);
             }
-            return redirect()->route('dashboard')->withErrors(__('campaigns.errors.superboosted'));
+            return redirect()->route('dashboard', [$campaign])->withErrors(__('campaigns.errors.superboosted'));
         }
 
         return $next($request);

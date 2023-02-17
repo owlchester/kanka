@@ -212,7 +212,7 @@ class Entity extends Model
             $routeOptions['campaign'] = $this->campaign_id;
             return route($this->pluralType() . '.' . $action, $routeOptions);
         } catch (\Exception $e) {
-            return route('dashboard');
+            return route('dashboard', [$campaign]);
         }
     }
 

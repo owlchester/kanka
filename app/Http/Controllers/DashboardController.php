@@ -13,10 +13,10 @@ class DashboardController extends Controller
 {
     /**
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
         // If the user isn't viewing specific campaign and has no campaigns, get them to create their first campaign
-        $campaign = CampaignLocalization::getCampaign();
         if (empty($campaign) && (Auth::check() && !Auth::user()->hasCampaigns())) {
             return redirect()->route('start');
         }

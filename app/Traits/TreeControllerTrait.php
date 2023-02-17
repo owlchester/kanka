@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -18,10 +19,13 @@ trait TreeControllerTrait
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function tree(Request $request)
+    public function tree(Request $request, Campaign $campaign)
     {
+        $this->campaign($campaign);
+        $this->authorize('access', $this->campaign);
+
         if (!$this->moduleEnabled()) {
-            return redirect()->route('dashboard')->with(
+            return redirect()->route('dashboard', [$this->campaign->id])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#' . $this->module]),

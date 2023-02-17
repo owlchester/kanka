@@ -92,7 +92,7 @@ class DashboardWidgetController extends Controller
      */
     public function show(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard', [$campaign]);
     }
 
     /**

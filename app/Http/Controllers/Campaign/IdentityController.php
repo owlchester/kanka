@@ -30,10 +30,10 @@ class IdentityController extends Controller
 
         if (Identity::campaign($campaign)->switch($campaignUser)) {
             return redirect()
-                ->route('dashboard');
+                ->route('dashboard', [$campaign]);
         }
         return redirect()
-            ->route('dashboard');
+            ->route('dashboard', [$campaign]);
     }
 
     /**
@@ -48,7 +48,7 @@ class IdentityController extends Controller
                     ->to($entity->url());
         }
         return redirect()
-            ->route('dashboard');
+            ->route('dashboard', [$campaign]);
     }
 
     /**
@@ -58,10 +58,10 @@ class IdentityController extends Controller
     {
         if (Identity::back()) {
             return redirect()
-                ->route('dashboard')
+                ->route('dashboard', [$campaign])
                 ->with('success', __('campaigns.members.switch_back_success'));
         }
         return redirect()
-            ->route('dashboard');
+            ->route('dashboard', [$campaign]);
     }
 }

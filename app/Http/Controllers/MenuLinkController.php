@@ -61,7 +61,7 @@ class MenuLinkController extends CrudController
 
         // Check that the user has permission to actually be here
         if (auth()->guest() || !auth()->user()->can('browse', new MenuLink())) {
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard', [$campaign]);
         }
         return $this->campaign($campaign)->crudIndex($request);
     }
@@ -120,7 +120,7 @@ class MenuLinkController extends CrudController
 
         if (empty($route)) {
             return redirect()
-                ->route('dashboard')
+                ->route('dashboard', [$campaign])
                 ->with(
                     'error',
                     __('menu_links.random_no_entity')

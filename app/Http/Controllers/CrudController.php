@@ -102,9 +102,6 @@ class CrudController extends Controller
      */
     public function index(Request $request, Campaign $campaign)
     {
-        if (empty($campaign) || empty($campaign->id)) {
-            $campaign = CampaignLocalization::getCampaign();
-        }
         return $this->campaign($campaign)->crudIndex($request);
     }
 
@@ -116,8 +113,10 @@ class CrudController extends Controller
      */
     public function crudIndex(Request $request)
     {
+        $this->authorize('access', $this->campaign);
+
         if (!$this->moduleEnabled()) {
-            return redirect()->route('dashboard')->with(
+            return redirect()->route('dashboard', [$this->campaign->id])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
                     // @phpstan-ignore-next-line

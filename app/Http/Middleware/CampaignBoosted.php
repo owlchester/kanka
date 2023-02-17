@@ -29,7 +29,7 @@ class CampaignBoosted
                     'error' => 'This feature is reserved to boosted campaigns.'
                 ]);
             }
-            return redirect()->route('dashboard')->withErrors(__('crud.errors.boosted'));
+            return redirect()->route('dashboard', [$campaign])->withErrors(__('crud.errors.boosted'));
         }
 
         return $next($request);

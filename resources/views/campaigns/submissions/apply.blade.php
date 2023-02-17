@@ -43,7 +43,7 @@
                     <i class="fa-solid fa-trash-o"></i> {{ __('crud.remove') }}
                 </a>
 
-                {!! Form::open(['method' => 'DELETE','route' => ['campaign.apply.remove', $campaign], 'style '=> 'display:inline', 'id' => 'delete-submission']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['apply-remove', $campaign], 'style '=> 'display:inline', 'id' => 'delete-submission']) !!}
                 {!! Form::close() !!}
             @endif
         </div>

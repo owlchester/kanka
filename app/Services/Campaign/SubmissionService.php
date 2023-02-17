@@ -120,7 +120,7 @@ class SubmissionService
                     [
                         'campaign' => $this->campaign->name,
                         'reason'   => $message,
-                        'link' => route('dashboard'),
+                        'link' => route('dashboard', [$this->campaign->id]),
                     ]
                 )
             );

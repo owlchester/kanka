@@ -2,7 +2,7 @@
 $width = $featured ? 350 : 200;
 ?>
 <div class="campaign-container @if($campaign->boosted()) campaign-boosted @endif">
-    <a class="campaign @if(!$featured) small-campaign @endif " href="{{ url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()) }}" title="{!! $campaign->name !!}">
+    <a class="campaign @if(!$featured) small-campaign @endif " href="{{ route('dashboard', $campaign->id) }}" title="{!! $campaign->name !!}">
         <div class="campaign-image campaign-placeholder"  @if ($campaign->image) style="background-image: url('{{ $campaign->thumbnail($width, 200) }}')" @endif>
 
         </div>

@@ -62,7 +62,7 @@ class ApplyController extends Controller
                 ->notifyAdmins();
         }
 
-        return redirect()->route('dashboard')
+        return redirect()->route('dashboard', [$campaign])
             ->with('success', $success);
     }
 
@@ -75,7 +75,7 @@ class ApplyController extends Controller
         if (!empty($submission)) {
             $submission->delete();
         }
-        return redirect()->route('dashboard')
+        return redirect()->route('dashboard', [$campaign])
             ->with('success', __('campaigns/submissions.apply.success.remove'));
     }
 }

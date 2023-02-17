@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Campaign;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Route;
 
 class CampaignLocalization
 {
@@ -65,19 +66,8 @@ class CampaignLocalization
             return $this->campaign;
         }
 
-        // Some pages like helper pages don't have a campaign in the url
-        $this->campaign = null;
-        if (is_numeric($this->campaignId) && !empty($this->campaignId)) {
-            /** @var Campaign|null $campaign */
-            $campaign = Campaign::find((int) $this->campaignId);
-            $this->campaign = $campaign;
-            // If we're looking for a campaign that doesn't exist, just 404
-            if (empty($this->campaign) && $canAbort) {
-                throw new ModelNotFoundException();
-            }
-        }
-
-        return $this->campaign;
+        // Load the campaign from the router
+        return $this->campaign = request()->route('campaign');;
     }
 
     /**
