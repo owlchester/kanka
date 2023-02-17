@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Identity;
 use App\Facades\Mentions;
@@ -46,8 +45,7 @@ abstract class MiscObserver
         $model->slug = Str::slug($model->name, '');
         // Todo: this needs to go
         if (empty($model->campaign_id)) {
-            dd('adding the campaign');
-            $model->campaign_id = CampaignLocalization::getCampaign()->id;
+            dd('adding the campaign, add `campaign_id` to the model\'s `$fillable` array.');
         }
         // Why aren't we purifying names anymore?
         $model->name = trim($model->name); // Remove empty spaces in names
