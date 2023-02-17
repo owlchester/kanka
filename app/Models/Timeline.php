@@ -29,6 +29,7 @@ class Timeline extends MiscModel
     use SortableTrait;
 
     public $fillable = [
+        'campaign_id',
         'name',
         'type',
         'calendar_id',
