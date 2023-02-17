@@ -108,7 +108,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
             <ul class="sidebar-menu tree" data-widget="tree">
                 @foreach (\App\Facades\UserCache::campaigns() as $userCampaign)
                     <li class="section-campaign section-campaign-{{ $userCampaign->id }}">
-                        <a href="{{ url(app()->getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
+                        <a href="{{ route('dashboard', $userCampaign->id) }}">
                             <i class="fa-solid fa-globe"></i>
                             {!! $userCampaign->name !!}
                         </a>

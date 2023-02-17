@@ -12,7 +12,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         @endif
      </div>
     <div class="py-5 flex-1">
-        <a class="name truncate font-bold h-8 text-lg" href="{{ url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()) }}">
+        <a class="name truncate font-bold h-8 text-lg" href="{{ route('dashboard', $userCampaign->id) }}">
             {!! $campaign->name !!}
         </a>
 

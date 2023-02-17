@@ -109,6 +109,9 @@ class CampaignRoleController extends Controller
     public function show(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('roles', $campaign);
+        if ($campaign->id !== $campaignRole->campaign_id) {
+            return redirect()->route('dashboard', $campaignRole->campaign_id);
+        }
 
         // @phpstan-ignore-next-line
         $members = $campaignRole
@@ -132,13 +135,14 @@ class CampaignRoleController extends Controller
     public function edit(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('roles', $campaign);
-        $ajax = request()->ajax();
+        if ($campaign->id !== $campaignRole->campaign_id) {
+            return redirect()->route('dashboard', $campaignRole->campaign_id);
+        }
 
         return view($this->view . '.edit', [
             'model' => $campaign,
             'campaign' => $campaign,
             'role' => $campaignRole,
-            'ajax' => $ajax
         ]);
     }
 
@@ -151,6 +155,9 @@ class CampaignRoleController extends Controller
     public function update(StoreCampaignRole $request, Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('roles', $campaign);
+        if ($campaign->id !== $campaignRole->campaign_id) {
+            return redirect()->route('dashboard', $campaignRole->campaign_id);
+        }
 
         $campaignRole->update($request->all());
         return redirect()->route('campaign_roles.index', $campaign)
@@ -165,6 +172,9 @@ class CampaignRoleController extends Controller
     public function destroy(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('roles', $campaign);
+        if ($campaign->id !== $campaignRole->campaign_id) {
+            return redirect()->route('dashboard', $campaignRole->campaign_id);
+        }
         $campaignRole->delete();
 
         return redirect()->route('campaign_roles.index', $campaign)

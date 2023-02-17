@@ -49,26 +49,18 @@ class HomeController extends Controller
             return redirect()->route('start');
         }
 
-        // Redirect to real dashboard
-        $campaign = CampaignLocalization::getCampaign();
-        if ($campaign) {
-            return redirect()->route('home');
-        }
-
         // Otherwise, redirect to the last campaign the user has
         $last = auth()->user()->last_campaign_id;
         if (!empty($last)) {
             $campaign = Campaign::find($last);
             if ($campaign) {
-                CampaignLocalization::setCampaign($campaign->id);
-                return redirect()->to(CampaignLocalization::getUrl($campaign->id));
+                return redirect()->route('dashboard', $campaign->id);
             }
         }
         // No valid last campaign? Let's redirect to the last campaign the user had
         $campaigns = auth()->user()->campaigns;
         foreach ($campaigns as $campaign) {
-            CampaignLocalization::setCampaign($campaign->id);
-            return redirect()->to(CampaignLocalization::getUrl($campaign->id));
+            return redirect()->route('dashboard', $campaign->id);
         }
 
         // No campaign? Ok, go to start.

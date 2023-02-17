@@ -253,14 +253,6 @@ class Campaign extends MiscModel
     }
 
     /**
-     * @return string
-     */
-    public function getMiddlewareLink(): string
-    {
-        return 'campaign/' . $this->id;
-    }
-
-    /**
      * Determine if the user is currently following the campaign
      * @return bool
      */

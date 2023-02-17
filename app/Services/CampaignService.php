@@ -117,7 +117,7 @@ class CampaignService
             [
                 'user' => auth()->user()->name,
                 'campaign' => $campaign->name,
-                'link' => $campaign->getMiddlewareLink()
+                'link' => route('dashboard', $campaign->id)
             ]
         );
 
@@ -151,7 +151,7 @@ class CampaignService
             $colour,
             [
                 'campaign' => $campaign->name,
-                'link' => $campaign->getMiddlewareLink()
+                'link' => route('dashboard', $campaign->id)
             ]
         );
     }

@@ -32,7 +32,6 @@ use Illuminate\Support\Str;
  */
 class CampaignRole extends Model
 {
-    use CampaignTrait;
     use Paginatable;
     use SortableTrait;
 

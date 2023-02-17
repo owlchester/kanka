@@ -88,7 +88,7 @@ class CampaignController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->to(app()->getLocale() . '/campaign/' . $campaign->id . '/campaigns/' . $campaign->id . '/edit')
+                ->to($campaign->getLink('edit'))
                 ->with('success', __($this->view . '.create.success'));
         } elseif ($request->has('submit-new')) {
             return redirect()
@@ -97,10 +97,10 @@ class CampaignController extends Controller
         } elseif ($first) {
             $user = auth()->user();
             $user->save();
-            return redirect()->to(app()->getLocale() . '/' . $campaign->getMiddlewareLink());
+            return redirect()->route('dashboard', $campaign->id);
         }
 
-        return redirect()->to(app()->getLocale() . '/' . $campaign->getMiddlewareLink())
+        return redirect()->route('dashboard', $campaign->id)
             ->with('success', __($this->view . '.create.success'));
     }
 

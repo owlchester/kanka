@@ -137,7 +137,7 @@ class InviteService
                 [
                     'user' => $this->user->name,
                     'campaign' => $campaign->name,
-                    'link' => $campaign->getMiddlewareLink()
+                    'link' => route('dashboard', $campaign->id)
                 ]
             )
         );

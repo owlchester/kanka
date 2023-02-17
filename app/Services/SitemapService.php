@@ -82,10 +82,10 @@ class SitemapService
 
         /** @var Campaign $campaign */
         foreach ($features as $campaign) {
-            $links[] = LaravelLocalization::localizeURL($campaign->getMiddlewareLink(), $this->locale);
+            $links[] = LaravelLocalization::localizeURL(route('dashboard', $campaign->id), $this->locale);
         }
         foreach ($campaigns as $campaign) {
-            $links[] = LaravelLocalization::localizeURL($campaign->getMiddlewareLink(), $this->locale);
+            $links[] = LaravelLocalization::localizeURL(route('dashboard', $campaign->id), $this->locale);
         }
         return $links;
     }
