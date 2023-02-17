@@ -35,7 +35,6 @@ Route::get('/calendars/{calendar}/events', [CalendarController::class, 'events']
 Route::get('/calendars/{calendar}/today', [CalendarController::class, 'today'])->name('calendars.today');
 
 // Maps
-Route::get('/maps/{map}/maps', [MapController::class, 'maps'])->name('maps.maps');
 Route::get('/maps/{map}/explore', [MapController::class, 'explore'])->name('maps.explore');
 Route::get('/maps/{map}/chunks/', [MapController::class, 'chunks'])->name('maps.chunks');
 Route::get('/maps/{map}/ticker', [MapController::class, 'ticket'])->name('maps.ticker');
@@ -52,60 +51,46 @@ Route::post('/maps/{map}/markers/bulk', [MapMarkerController::class, 'bulk'])->n
 Route::get('/tags/{tag}/tags', [\App\Http\Controllers\TagController::class, 'tags'])->name('tags.tags');
 Route::get('/tags/{tag}/children', [\App\Http\Controllers\TagController::class, 'children'])->name('tags.children');
 
-// Todo: merge all of these on an entity basis
-Route::get('/creatures/{creature}/creatures', 'CreatureController@creatures')->name('creatures.creatures');
-Route::get('/timelines/{timeline}/timelines', 'Timelines\TimelineController@timelines')->name('timelines.timelines');
-Route::get('/events/{event}/events', 'EventController@events')->name('events.events');
-Route::get('/journals/{journal}/journals', 'JournalController@journals')->name('journals.journals');
-Route::get('/races/{race}/races', 'RaceController@races')->name('races.races');
-
 Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
 Route::get('/items/{item}/items', 'ItemController@items')->name('items.items');
-Route::get('/quests/{quest}/quests', 'QuestController@quests')->name('quests.quests');
 Route::get('/races/{race}/characters', 'RaceController@characters')->name('races.characters');
 
 Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
-Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
 
-Route::get('/organisations/{organisation}/members', 'OrganisationController@members')->name('organisations.members');
-Route::get('/organisations/{organisation}/organisations', 'OrganisationController@organisations')->name('organisations.organisations');
+Route::get('/organisations/{organisation}/members', 'OrganisationSubController@members')->name('organisations.members');
+//Route::get('/organisations/{organisation}/organisations', 'OrganisationSubController@organisations')->name('organisations.organisations');
+
 Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
 
-Route::get('/locations/{location}/characters', 'LocationController@characters')->name('locations.characters');
-Route::get('/locations/{location}/locations', 'LocationController@locations')->name('locations.locations');
-
+Route::get('/locations/{location}/characters', 'LocationSubController@characters')->name('locations.characters');
 
 Route::get('/maps/{map}/{map_marker}/details', 'Maps\MapMarkerController@details')->name('maps.markers.details');
 Route::post('/maps/{map}/{map_marker}/move', 'Maps\MapMarkerController@move')->name('maps.markers.move');
 
-Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
-Route::get('/abilities/{ability}/entities', 'AbilityController@entities')->name('abilities.entities');
+//Route::get('/abilities/{ability}/abilities', 'AbilitySubController@abilities')->name('abilities.abilities');
+Route::get('/abilities/{ability}/entities', 'AbilitySubController@entities')->name('abilities.entities');
 
 // Trees
 Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
-
-Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
-
-// Trees
-Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
-Route::get('/organisations/tree', 'OrganisationController@tree')->name('organisations.tree');
-Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
-Route::get('/items/tree', 'ItemController@tree')->name('items.tree');
-Route::get('/quests/tree', 'QuestController@tree')->name('quests.tree');
-Route::get('/races/tree', 'RaceController@tree')->name('races.tree');
+Route::get('/calendars/tree', 'CalendarController@tree')->name('calendars.tree');
 Route::get('/creatures/tree', 'CreatureController@tree')->name('creatures.tree');
 Route::get('/events/tree', 'EventController@tree')->name('events.tree');
-Route::get('/timelines/tree', 'Timelines\TimelineController@tree')->name('timelines.tree');
-Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
-Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
+Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
 Route::get('/journals/tree', 'JournalController@tree')->name('journals.tree');
-Route::get('/calendars/tree', 'CalendarController@tree')->name('calendars.tree');
+Route::get('/items/tree', 'ItemController@tree')->name('items.tree');
+Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
+Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
+Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
+Route::get('/organisations/tree', 'OrganisationController@tree')->name('organisations.tree');
+Route::get('/quests/tree', 'QuestController@tree')->name('quests.tree');
+Route::get('/races/tree', 'RaceController@tree')->name('races.tree');
+Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
+Route::get('/timelines/tree', 'Timelines\TimelineController@tree')->name('timelines.tree');
 
 Route::resources([
     'attribute_templates' => 'AttributeTemplateController',
     'menu_links' => 'MenuLinkController',
     'relations' => 'RelationController',
-
 
     'abilities' => 'AbilityController',
     'calendars' => 'CalendarController',
@@ -115,29 +100,26 @@ Route::resources([
     'conversations' => 'ConversationController',
     'conversations.conversation_participants' => 'ConversationParticipantController',
     'conversations.conversation_messages' => 'ConversationMessageController',
+    'creatures' => 'CreatureController',
     'dice_rolls' => 'DiceRollController',
     'dice_roll_results' => 'DiceRollResultController',
     'events' => 'EventController',
     'families' => 'FamilyController',
     'items' => 'ItemController',
-    'locations' => 'LocationController',
-
     'journals' => 'JournalController',
+    'locations' => 'LocationController',
     'maps' => 'Maps\MapController',
     'maps.map_layers' => 'Maps\MapLayerController',
     'maps.map_groups' => 'Maps\MapGroupController',
     'maps.map_markers' => 'Maps\MapMarkerController',
-
+    'notes' => 'NoteController',
     'organisations' => 'OrganisationController',
     'organisations.organisation_members' => 'OrganisationMemberController',
-    'notes' => 'NoteController',
     'quests' => 'QuestController',
     'quests.quest_elements' => 'QuestElementController',
+    'races' => 'RaceController',
     'tags' => 'TagController',
-
     'timelines' => 'Timelines\TimelineController',
     'timelines.timeline_eras' => 'Timelines\TimelineEraController',
     'timelines.timeline_elements' => 'Timelines\TimelineElementController',
-    'races' => 'RaceController',
-    'creatures' => 'CreatureController',
 ]);

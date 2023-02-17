@@ -185,9 +185,9 @@ class Creature extends MiscModel
         if ($count > 0) {
             $items['second']['creatures'] = [
                 'name' => 'creatures.show.tabs.creatures',
-                'route' => 'creatures.creatures',
+                'route' => 'entities.descendants',
                 'count' => $count,
-                'world' => true,
+                'entity' => true
             ];
         }
         return parent::menuItems($items);

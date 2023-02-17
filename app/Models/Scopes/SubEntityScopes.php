@@ -101,4 +101,9 @@ trait SubEntityScopes
 
         return $query->with($relations);
     }
+
+    public function scopeDescendantDatagrid(Builder $query): Builder
+    {
+        return $query;
+    }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Maps;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Http\Requests\StoreMapGroup;

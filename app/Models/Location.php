@@ -121,6 +121,13 @@ class Location extends MiscModel
         ]);
     }
 
+    public function scopeDescendantDatagrid(Builder $query): Builder
+    {
+        return $query
+            ->select(['id', 'image', 'name', 'type', 'parent_location_id', 'is_private'])
+            ->with(['location', 'location.entity', 'entity', 'entity.tags', 'entity.image']);
+    }
+
     /**
      * Only select used fields in datagrids
      * @return array
@@ -327,9 +334,9 @@ class Location extends MiscModel
         if ($count > 0) {
             $items['second']['locations'] = [
                 'name' => 'entities.locations',
-                'route' => 'locations.locations',
+                'route' => 'entities.descendants',
                 'count' => $count,
-                'world' => true,
+                'entity' => true,
             ];
         }
 
@@ -339,7 +346,6 @@ class Location extends MiscModel
                 'name' => 'entities.characters',
                 'route' => 'locations.characters',
                 'count' => $count,
-                'world' => true,
             ];
         }
         /*$count = $this->events()->count();

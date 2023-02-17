@@ -37,8 +37,6 @@ class TimelineController extends Controller
         $ajax = request()->ajax();
         $timelines = $entity
             ->timelines()
-            ->with(['timeline', 'timeline.entity', 'era'])
-            ->has('timeline')
             ->paginate();
 
         return view('entities.pages.timelines.index', compact(

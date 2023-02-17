@@ -108,7 +108,7 @@ class MapLayer extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->map->id, $this->map_id, $this->id];
+        return [$this->map->campaign_id, $this->map_id, $this->id];
     }
 
     /**

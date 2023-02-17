@@ -237,9 +237,9 @@ class Family extends MiscModel
     {
         $items['second']['families'] = [
             'name' => 'families.show.tabs.families',
-            'route' => 'families.families',
+            'route' => 'entities.descendants',
             'count' => $this->descendants()->count(),
-            'world' => true,
+            'entity' => true,
         ];
 
         return parent::menuItems($items);
@@ -281,5 +281,11 @@ class Family extends MiscModel
             'family_id',
             'member_id',
         ];
+    }
+
+    public function scopeDescendantDatagrid(Builder $query): Builder
+    {
+        return $query
+            ->with(['location', 'location.entity', 'entity', 'entity.tags']);
     }
 }

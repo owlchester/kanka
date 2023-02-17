@@ -81,37 +81,6 @@ class MapController extends CrudController
     }
 
     /**
-     */
-    public function maps(Campaign $campaign, Map $map)
-    {
-        $this->authCheck($map);
-
-        $options = ['map' => $map, 'campaign' => $map->campaign_id];
-        $base = 'descendants';
-        if (request()->has('map_id')) {
-            $options['map_id'] = $map->id;
-            $base = 'maps';
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Map\Map::class)
-            ->route('maps.maps', $options);
-
-
-        $this->rows = $map
-            ->{$base}()
-            ->sort(request()->only(['o', 'k']))
-            ->with(['entity', 'map', 'map.entity'])
-            ->paginate();
-
-        if (request()->ajax()) {
-            return $this->datagridAjax();
-        }
-
-        return $this
-            ->menuView($map, 'maps');
-    }
-
-    /**
      * Exploration view for a map
      */
     public function explore(Campaign $campaign, Map $map)

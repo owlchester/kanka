@@ -56,40 +56,6 @@ class FamilyController extends CrudController
     /**
      * @param Family $family
      */
-    public function families(Campaign $campaign, Family $family)
-    {
-        $this->authCheck($family);
-
-        $options = ['campaign' => $campaign, 'family' => $family];
-        $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $family->id;
-            $filters['family_id'] = $family->id;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Family\Family::class)
-            ->route('families.families', $options);
-
-        // @phpstan-ignore-next-line
-        $this->rows = $family
-            ->descendants()
-            ->sort(request()->only(['o', 'k']))
-            ->filter($filters)
-            ->with(['location', 'location.entity', 'entity', 'entity.tags'])
-            ->paginate();
-
-        // Ajax Datagrid
-        if (request()->ajax()) {
-            return $this->datagridAjax();
-        }
-
-        return $this
-            ->menuView($family, 'families');
-    }
-
-    /**
-     * @param Family $family
-     */
     public function members(Campaign $campaign, Family $family)
     {
         $this->authCheck($family);

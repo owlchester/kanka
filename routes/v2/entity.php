@@ -5,6 +5,7 @@ use App\Http\Controllers\Entity\AbilityReorderController;
 use App\Http\Controllers\Entity\AttributeController;
 use App\Http\Controllers\Entity\AttributeTemplateController;
 use App\Http\Controllers\Entity\AssetController;
+use App\Http\Controllers\Entity\DescendantController;
 use App\Http\Controllers\Entity\EntryController;
 use App\Http\Controllers\Entity\ExportController;
 use App\Http\Controllers\Entity\ImageController;
@@ -105,6 +106,8 @@ Route::post('/entities/{entity}/attribute-template', [AttributeTemplateControlle
 
 Route::get('/entities/{entity}/permissions', [PermissionController::class, 'view'])->name('entities.permissions');
 Route::post('/entities/{entity}/permissions', [PermissionController::class, 'store'])->name('entities.permissions');
+
+Route::get('/entities/{entity}/descendants', [DescendantController::class, 'index'])->name('entities.descendants');
 
 Route::resources([
     'entities.entity_abilities' => 'Entity\AbilityController',

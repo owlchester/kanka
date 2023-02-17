@@ -215,9 +215,9 @@ class Race extends MiscModel
         if ($campaign->enabled('races') && $count > 0) {
             $items['second']['races'] = [
                 'name' => 'races.show.tabs.races',
-                'route' => 'races.races',
+                'route' => 'entities.descendants',
                 'count' => $count,
-                'world' => true,
+                'entity' => true,
             ];
         }
         return parent::menuItems($items);
@@ -261,5 +261,11 @@ class Race extends MiscModel
         }
 
         return parent::showProfileInfo();
+    }
+
+    public function scopeDescendantDatagrid(Builder $query): Builder
+    {
+        return $query
+            ->with(['entity', 'characters']);
     }
 }

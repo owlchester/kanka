@@ -62,36 +62,4 @@ class CreatureController extends CrudController
     {
         return $this->campaign($campaign)->crudDestroy($creature);
     }
-
-    /**
-     */
-    public function creatures(Campaign $campaign, Creature $creature)
-    {
-        $this->authCheck($creature);
-
-        $options = ['campaign' => $campaign, 'creature' => $creature];
-        $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $creature->id;
-            $filters['creature_id'] = $creature->id;
-        }
-        Datagrid::layout(\App\Renderers\Layouts\Creature\Creature::class)
-            ->route('creatures.creatures', $options);
-
-        // @phpstan-ignore-next-line
-        $this->rows = $creature
-            ->descendants()
-            ->sort(request()->only(['o', 'k']))
-            ->filter($filters)
-            ->with(['entity'])
-            ->paginate(15);
-
-        // Ajax Datagrid
-        if (request()->ajax()) {
-            return $this->datagridAjax();
-        }
-
-        return $this
-            ->menuView($creature, 'creatures');
-    }
 }

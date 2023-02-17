@@ -216,15 +216,12 @@ class Item extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $inventoryCount = $this->inventories()->with('item')->has('entity')->count();
         if ($inventoryCount > 0) {
             $items['second']['inventories'] = [
                 'name' => 'items.show.tabs.inventories',
                 'route' => 'items.inventories',
                 'count' => $inventoryCount,
-                'world' => true,
             ];
         }
 

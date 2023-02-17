@@ -143,9 +143,9 @@ class Journal extends MiscModel
     {
         $items['second']['journals'] = [
             'name' => 'journals.show.tabs.journals',
-            'route' => 'journals.journals',
+            'route' => 'entities.descendants',
             'count' => $this->descendants()->count(),
-            'world' => true,
+            'entity' => true,
         ];
         return parent::menuItems($items);
     }
@@ -259,5 +259,11 @@ class Journal extends MiscModel
             'date_start',
             'date_end',
         ];
+    }
+
+    public function scopeDescendantDatagrid(Builder $query): Builder
+    {
+        return $query
+            ->with(['entity', 'character']);
     }
 }

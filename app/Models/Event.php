@@ -186,9 +186,9 @@ class Event extends MiscModel
     {
         $items['second']['events'] = [
             'name' => 'events.fields.events',
-            'route' => 'events.events',
+            'route' => 'entities.descendants',
             'count' => $this->descendants()->count(),
-            'world' => true,
+            'entity' => true,
         ];
 
         return parent::menuItems($items);
@@ -218,5 +218,11 @@ class Event extends MiscModel
             'location_id',
             'event_id',
         ];
+    }
+
+    public function scopeDescendantDatagrid(Builder $query): Builder
+    {
+        return $query
+            ->with(['entity', 'entity.image', 'event', 'event.entity']);
     }
 }

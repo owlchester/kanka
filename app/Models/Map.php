@@ -63,6 +63,7 @@ class Map extends MiscModel
 
     /** @var string[]  */
     protected $fillable = [
+        'campaign_id',
         'name',
         'slug',
         'type',
@@ -248,8 +249,9 @@ class Map extends MiscModel
     {
         $items['second']['maps'] = [
             'name' => 'maps.show.tabs.maps',
-            'route' => 'maps.maps',
-            'count' => $this->maps()->count()
+            'route' => 'entities.descendants',
+            'count' => $this->maps()->count(),
+            'entity' => true,
         ];
         if (auth()->check() && auth()->user()->can('update', $this)) {
             $items['second']['layers'] = [
@@ -751,5 +753,11 @@ class Map extends MiscModel
         array_splice($actions, 2, 0, $newActions);
 
         return $actions;
+    }
+
+    public function scopeDescendantDatagrid(Builder $query): Builder
+    {
+        return $query
+            ->with(['entity', 'map', 'map.entity']);
     }
 }

@@ -8,15 +8,15 @@
     'title' => __('maps/layers.create.title', ['name' => $map->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('maps.index'), 'label' => __('entities.maps')],
-        ['url' => $map->entity->url('show'), 'label' => $map->name],
-        ['url' => route('maps.map_layers.index', [$map]), 'label' => __('maps.panels.layers')],
+        ['url' => $map->entity->url('index'), 'label' => __('entities.maps')],
+        ['url' => $map->entity->url(), 'label' => $map->name],
+        ['url' => $map->entity->url('map_layers.index'), 'label' => __('maps.panels.layers')],
         __('maps/layers.create.title')
     ]
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['maps.map_layers.store', $map], 'method' => 'POST', 'id' => 'map-layer-form', 'enctype' => 'multipart/form-data', 'data-maintenance' => 1]) !!}
+    {!! Form::open(['route' => ['maps.map_layers.store', $campaign, $map], 'method' => 'POST', 'id' => 'map-layer-form', 'enctype' => 'multipart/form-data', 'data-maintenance' => 1]) !!}
 
         <div class="panel panel-default">
 

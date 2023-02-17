@@ -101,37 +101,4 @@ class RaceController extends CrudController
         return $this
             ->menuView($race, 'characters');
     }
-
-    /**
-     */
-    public function races(Campaign $campaign, Race $race)
-    {
-        $this->authCheck($race);
-
-        $options = ['campaign' => $campaign, 'race' => $race];
-        $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $race->id;
-            $filters['race_id'] = $race->id;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Race\Race::class)
-            ->route('races.races', $options);
-
-        // @phpstan-ignore-next-line
-        $this->rows = $race
-            ->descendants()
-            ->sort(request()->only(['o', 'k']))
-            ->with(['entity', 'characters'])
-            ->filter($filters)
-            ->paginate(15);
-
-        // Ajax Datagrid
-        if (request()->ajax()) {
-            return $this->datagridAjax();
-        }
-
-        return $this
-            ->menuView($race, 'races');
-    }
 }

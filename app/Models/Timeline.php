@@ -180,9 +180,9 @@ class Timeline extends MiscModel
     {
         $items['second']['timelines'] = [
             'name' => 'timelines.fields.timelines',
-            'route' => 'timelines.timelines',
+            'route' => 'entities.descendants',
             'count' => $this->descendants()->count(),
-            'world' => true,
+            'entity' => true,
         ];
         if (auth()->check() && auth()->user()->can('update', $this)) {
             $items['second']['eras'] = [
@@ -193,7 +193,6 @@ class Timeline extends MiscModel
             $items['second']['reorder'] = [
                 'name' => 'timelines.show.tabs.reorder',
                 'route' => 'timelines.reorder',
-                'world' => true,
             ];
         }
 
@@ -219,5 +218,11 @@ class Timeline extends MiscModel
             'calendar_id',
             'timeline_id',
         ];
+    }
+
+    public function scopeDescendantDatagrid(Builder $query): Builder
+    {
+        return $query
+            ->with(['entity', 'timeline', 'timeline.entity']);
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\JournalFilter;
-use App\Facades\Datagrid;
 use App\Models\Campaign;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal;
@@ -68,41 +67,5 @@ class JournalController extends CrudController
     public function destroy(Campaign $campaign, Journal $journal)
     {
         return $this->campaign($campaign)->crudDestroy($journal);
-    }
-
-    /**
-     * @param Journal $journal
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function journals(Campaign $campaign, Journal $journal)
-    {
-        $this->authCheck($journal);
-
-        $options = ['campaign' => $campaign, 'journal' => $journal];
-        $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $journal->id;
-            $filters['journal_id'] = $journal->id;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Journal\Journal::class)
-            ->route('journals.journals', $options);
-
-        // @phpstan-ignore-next-line
-        $this->rows = $journal
-            ->allJournals()
-            ->sort(request()->only(['o', 'k']))
-            ->filter($filters)
-            ->with(['entity', 'character'])
-            ->paginate();
-
-        // Ajax Datagrid
-        if (request()->ajax()) {
-            return $this->datagridAjax();
-        }
-
-        return $this
-            ->menuView($journal, 'journals');
     }
 }

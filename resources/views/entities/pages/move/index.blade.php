@@ -1,8 +1,8 @@
 @extends('layouts.app', [
     'title' => __('entities/move.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => route($entity->pluralType() . '.index'), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => route($entity->pluralType() . '.show', [$entity->entity_id]), 'label' => $entity->name],
+        ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
+        ['url' => $entity->url(), 'label' => $entity->name],
         __('crud.actions.move'),
     ]
 ])

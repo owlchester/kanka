@@ -6,7 +6,6 @@ use App\Datagrids\Filters\ItemFilter;
 use App\Http\Requests\StoreItem;
 use App\Models\Campaign;
 use App\Models\Item;
-use Illuminate\Http\Request;
 use App\Traits\TreeControllerTrait;
 use App\Facades\Datagrid;
 
@@ -92,7 +91,6 @@ class ItemController extends CrudController
             ->items()
             ->sort(request()->only(['o', 'k']))
             ->filter($filters)
-            ->with(['entity', 'entity.image'])
             ->paginate(15);
 
         return $this->datagridAjax();

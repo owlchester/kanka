@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Timelines;
 
 use App\Datagrids\Filters\TimelineFilter;
-use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTimeline;
 use App\Models\Campaign;
@@ -65,40 +64,5 @@ class TimelineController extends CrudController
     public function destroy(Campaign $campaign, Timeline $timeline)
     {
         return $this->campaign($campaign)->crudDestroy($timeline);
-    }
-
-    /**
-     * @param Timeline $timeline
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function timelines(Campaign $campaign, Timeline $timeline)
-    {
-        $this->authCheck($timeline);
-
-        $options = ['campaign' => $campaign, 'timeline' => $timeline];
-        $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $timeline->id;
-            $filters['timeline_id'] = $timeline->id;
-        }
-
-        Datagrid::layout(\App\Renderers\Layouts\Timeline\Timeline::class)
-            ->route('timelines.timelines', $options);
-
-        // @phpstan-ignore-next-line
-        $this->rows = $timeline
-            ->descendants()
-            ->sort(request()->only(['o', 'k']))
-            ->with(['entity', 'timeline', 'timeline.entity'])
-            ->filter($filters)
-            ->paginate();
-
-        if (request()->ajax()) {
-            return $this->datagridAjax();
-        }
-
-        return $this
-            ->menuView($timeline, 'timelines');
     }
 }

@@ -18,8 +18,7 @@ class MapLayerController extends Controller
     use BulkControllerTrait;
 
     /**
-     * @param Map $map
-     * @return \Illuminate\Http\RedirectResponse
+     * Index
      */
     public function index(Campaign $campaign, Map $map)
     {
