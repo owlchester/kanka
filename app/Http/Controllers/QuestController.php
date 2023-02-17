@@ -28,37 +28,37 @@ class QuestController extends CrudController
 
     /**
      */
-    public function store(StoreQuest $request)
+    public function store(StoreQuest $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      */
-    public function show(Quest $quest)
+    public function show(Campaign $campaign, Quest $quest)
     {
-        return $this->crudShow($quest);
+        return $this->campaign($campaign)->crudShow($quest);
     }
 
     /**
      */
-    public function edit(Quest $quest)
+    public function edit(Campaign $campaign, Quest $quest)
     {
-        return $this->crudEdit($quest);
+        return $this->campaign($campaign)->crudEdit($quest);
     }
 
     /**
      */
-    public function update(StoreQuest $request, Quest $quest)
+    public function update(StoreQuest $request, Campaign $campaign, Quest $quest)
     {
-        return $this->crudUpdate($request, $quest);
+        return $this->campaign($campaign)->crudUpdate($request, $quest);
     }
 
     /**
      */
-    public function destroy(Quest $quest)
+    public function destroy(Campaign $campaign, Quest $quest)
     {
-        return $this->crudDestroy($quest);
+        return $this->campaign($campaign)->crudDestroy($quest);
     }
 
     /**

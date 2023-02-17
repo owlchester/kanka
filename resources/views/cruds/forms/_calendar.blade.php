@@ -115,4 +115,4 @@ if (!empty($oldCalendarID)) {
     </a>
 </div>
 
-<input type="hidden" name="calendar-data-url" data-url="{{ route('calendars.month-list', ['calendar' => 0]) }}">
+<input type="hidden" name="calendar-data-url" data-url="{{ route('calendars.month-list', [$campaign, 'calendar' => 0]) }}">

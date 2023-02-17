@@ -5,7 +5,7 @@
     'title' => __('crud.titles.editing', ['name' => $model->name])  . ' - ' . __('entities.' . $name),
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
-        ['url' => route($name . '.show', $model->id), 'label' => $model->name],
+        ['url' => $model->getLink(), 'label' => $model->name],
         __('crud.edit'),
     ],
     'mainTitle' => false,
@@ -15,7 +15,7 @@
 {!! Form::model($model, [
     'method' => 'PATCH',
     'enctype' => 'multipart/form-data',
-    'route' => [$name . '.update', $model->id],
+    'route' => [$name . '.update', ['campaign' => $campaign->id, $model->id]],
     'data-shortcut' => '1',
     'data-max-fields' => ini_get('max_input_vars'),
     'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null),

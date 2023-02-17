@@ -31,7 +31,7 @@
                 <ul class="dropdown-menu" role="menu">
                     @if (!empty($dashboard))
                         <li>
-                            <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
+                            <a href="{{ route('dashboard', [$campaign->id, 'dashboard' => 'default']) }}">
                                 <i class="fa-solid fa-th-large"></i> {{ __('dashboard.dashboards.default.title')}}
                             </a>
                         </li>
@@ -41,7 +41,7 @@
                             @continue
                         @endif
                         <li>
-                            <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
+                            <a href="{{ route('dashboard', [$campaign->id, 'dashboard' => $dash->id]) }}">
                                 <i class="fa-solid fa-th-large"></i> {!! $dash->name !!}
                             </a>
                         </li>

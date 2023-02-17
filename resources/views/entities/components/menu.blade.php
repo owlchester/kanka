@@ -6,11 +6,9 @@
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked entity-menu">
                 @foreach ($menuItems as $key => $menuItem)
-                    @php $routeParams = [$model];
+                    @php $routeParams = ['campaign' => $campaign, $model];
                     if (isset($menuItem['entity'])) {
                         $routeParams = ['campaign' => $campaign, 'entity' => $model->entity];
-                    } elseif (isset($menuItem['world'])) {
-                        $routeParams['campaign'] = $campaign;
                     }
                     @endphp
                     <li class="flex @if(!empty($active) && $active == $key)active @endif">
@@ -50,11 +48,9 @@
                     <option disabled>----</option>
                 @endif
                 @foreach ($menuItems as $key => $menuItem)
-                    @php $routeParams = [$model];
+                    @php $routeParams = ['campaign' => $campaign, $model];
                     if (isset($menuItem['entity'])) {
                         $routeParams = ['campaign' => $campaign, 'entity' => $model->entity];
-                    } elseif (isset($menuItem['world'])) {
-                        $routeParams['campaign'] = $campaign;
                     }
                     @endphp
                     <option

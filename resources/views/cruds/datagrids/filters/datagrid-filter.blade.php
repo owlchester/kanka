@@ -21,14 +21,14 @@ $clipboardFilters = $filterService->clipboardFilters();
         @if ($activeFilters > 0)
             <span class="label label-danger">{{ $activeFilters }}</span>
             <div class="box-tools">
-                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-box-tool">
+                <a href="{{ route($route, ['campaign' => $campaign->id, 'reset-filter' => 'true']) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.clear') }}
                 </a>
             </div>
         @endif
     </div>
 
-    {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
+    {!! Form::open(['url' => route($route, ['campaign' => $campaign->id]), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
     <div class="collapse out" id="datagrid-filters">
         <div class="box-body">
             @if (auth()->guest())
@@ -91,7 +91,7 @@ $clipboardFilters = $filterService->clipboardFilters();
         </div>
         <div class="box-footer text-center">
             <div class="pull-left hidden-xs">
-                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default">
+                <a href="{{ route($route, ['campaign' => $campaign->id, 'reset-filter' => 'true']) }}" class="btn btn-default">
                     <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.clear') }}
                 </a>
 
@@ -115,7 +115,7 @@ $clipboardFilters = $filterService->clipboardFilters();
             </div>
 
             <div class="visible-xs pull-left block">
-                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default mr-2">
+                <a href="{{ route($route, ['campaign' => $campaign->id, 'reset-filter' => 'true']) }}" class="btn btn-default mr-2">
                     <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.mobile.clear') }}
                 </a>
 

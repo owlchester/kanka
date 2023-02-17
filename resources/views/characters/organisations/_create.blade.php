@@ -1,5 +1,5 @@
 {!! Form::open([
-    'route' => ['characters.character_organisations.store', $model->id],
+    'route' => ['characters.character_organisations.store', [$model->campaign_id, $model->id]],
     'method'=>'POST',
     'data-shortcut' => '1'
 ]) !!}

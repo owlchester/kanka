@@ -26,29 +26,29 @@ class EventController extends CrudController
     /** @var string Filter */
     protected $filter = EventFilter::class;
 
-    public function store(StoreEvent $request)
+    public function store(StoreEvent $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
-    public function show(Event $event)
+    public function show(Campaign $campaign, Event $event)
     {
-        return $this->crudShow($event);
+        return $this->campaign($campaign)->crudShow($event);
     }
 
-    public function edit(Event $event)
+    public function edit(Campaign $campaign, Event $event)
     {
-        return $this->crudEdit($event);
+        return $this->campaign($campaign)->crudEdit($event);
     }
 
-    public function update(StoreEvent $request, Event $event)
+    public function update(StoreEvent $request, Campaign $campaign, Event $event)
     {
-        return $this->crudUpdate($request, $event);
+        return $this->campaign($campaign)->crudUpdate($request, $event);
     }
 
-    public function destroy(Event $event)
+    public function destroy(Campaign $campaign, Event $event)
     {
-        return $this->crudDestroy($event);
+        return $this->campaign($campaign)->crudDestroy($event);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\NoteFilter;
 use App\Http\Requests\StoreNote;
+use App\Models\Campaign;
 use App\Models\Note;
 use App\Traits\TreeControllerTrait;
 
@@ -26,40 +27,28 @@ class NoteController extends CrudController
     /** @var string Filter */
     protected $filter = NoteFilter::class;
 
-    /**
-     * @param StoreNote $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(StoreNote $request)
+    public function store(StoreNote $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
-    /**
-     */
-    public function show(Note $note)
+    public function show(Campaign $campaign, Note $note)
     {
-        return $this->crudShow($note);
+        return $this->campaign($campaign)->crudShow($note);
     }
 
-    /**
-     */
-    public function edit(Note $note)
+    public function edit(Campaign $campaign, Note $note)
     {
-        return $this->crudEdit($note);
+        return $this->campaign($campaign)->crudEdit($note);
     }
 
-    /**
-     */
-    public function update(StoreNote $request, Note $note)
+    public function update(StoreNote $request, Campaign $campaign, Note $note)
     {
-        return $this->crudUpdate($request, $note);
+        return $this->campaign($campaign)->crudUpdate($request, $note);
     }
 
-    /**
-     */
-    public function destroy(Note $note)
+    public function destroy(Campaign $campaign, Note $note)
     {
-        return $this->crudDestroy($note);
+        return $this->campaign($campaign)->crudDestroy($note);
     }
 }

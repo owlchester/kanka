@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Facades\Datagrid;
+use App\Models\Campaign;
 use App\Models\Character;
 
 class CharacterSubController extends CharacterController
 {
     /**
      */
-    public function organisations(Character $character)
+    public function organisations(Campaign $campaign, Character $character)
     {
         $this->authCheck($character);
 
         Datagrid::layout(\App\Renderers\Layouts\Character\Organisation::class)
-            ->route('characters.organisations', [$character]);
+            ->actionParams(['campaign' => $campaign->id])
+            ->route('characters.organisations', [$campaign, $character]);
 
         $this->rows = $character
             ->organisationMemberships()

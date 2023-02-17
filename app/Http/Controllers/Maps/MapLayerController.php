@@ -21,12 +21,11 @@ class MapLayerController extends Controller
      * @param Map $map
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function index(Map $map)
+    public function index(Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map);
 
-        $campaign = CampaignLocalization::getCampaign();
-        $options = ['map' => $map->id];
+        $options = ['campaign' => $campaign->id, 'map' => $map->id];
         $model = $map;
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Layer::class)
@@ -43,9 +42,9 @@ class MapLayerController extends Controller
         return view('maps.layers.index', compact('campaign', 'rows', 'model'));
     }
 
-    public function show(Map $map)
+    public function show(Campaign $campaign, Map $map)
     {
-        return redirect()->route('maps.show', $map);
+        return redirect()->to($map->getLink());
     }
 
     /**
@@ -53,10 +52,9 @@ class MapLayerController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create(Map $map)
+    public function create(Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map);
-        $campaign = CampaignLocalization::getCampaign();
 
         if ($map->layers->count() >= $campaign->maxMapLayers()) {
             return view('maps.form._layers_max')
@@ -77,7 +75,7 @@ class MapLayerController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Map $map, StoreMapLayer $request)
+    public function store(Campaign $campaign, Map $map, StoreMapLayer $request)
     {
         $this->authorize('update', $map);
 
@@ -85,8 +83,6 @@ class MapLayerController extends Controller
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
-
-        $campaign = CampaignLocalization::getCampaign();
 
         if ($map->layers->count() >= $campaign->maxMapLayers()) {
             return view('maps.form._groups_max')
@@ -103,23 +99,22 @@ class MapLayerController extends Controller
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
-
         if ($request->has('submit-update')) {
             return redirect()
-                ->route('maps.map_layers.edit', ['map' => $map, $new])
+                ->route('maps.map_layers.edit', ['campaign' => $campaign->id, 'map' => $map->id, $new])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
         } elseif ($request->haS('submit-new')) {
             return redirect()
-                ->route('maps.map_layers.create', ['map' => $map])
+                ->route('maps.map_layers.create', ['campaign' => $campaign->id, 'map' => $map->id])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map->campaign_id, $map])
+                ->route('maps.explore', [$campaign->id, $map->id])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
         }
 
         return redirect()
-            ->route('maps.map_layers.index', $map)
+            ->route('maps.map_layers.index', [$campaign->id, $map->id])
             ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
     }
 
@@ -129,7 +124,7 @@ class MapLayerController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Map $map, MapLayer $mapLayer)
+    public function edit(Campaign $campaign, Map $map, MapLayer $mapLayer)
     {
         $this->authorize('update', $map);
 
@@ -137,7 +132,7 @@ class MapLayerController extends Controller
 
         return view(
             'maps.layers.edit',
-            compact('map', 'model')
+            compact('campaign', 'map', 'model')
         );
     }
 
@@ -148,7 +143,7 @@ class MapLayerController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreMapLayer $request, Map $map, MapLayer $mapLayer)
+    public function update(StoreMapLayer $request, Campaign $campaign, Map $map, MapLayer $mapLayer)
     {
         $this->authorize('update', $map);
 
@@ -161,19 +156,19 @@ class MapLayerController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->route('maps.map_layers.edit', ['map' => $map, $mapLayer])
+                ->route('maps.map_layers.edit', ['campaign' => $campaign->id, 'map' => $map, $mapLayer])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
         } elseif ($request->haS('submit-new')) {
             return redirect()
-                ->route('maps.map_layers.create', ['map' => $map])
+                ->route('maps.map_layers.create', ['campaign' => $campaign->id, 'map' => $map])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map->campaign_id, $map])
+                ->route('maps.explore', ['campaign' => $campaign->id, $map])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
         }
         return redirect()
-            ->route('maps.map_layers.index', $map)
+            ->route('maps.map_layers.index', ['campaign' => $campaign->id, $map])
             ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));
     }
 
@@ -183,14 +178,14 @@ class MapLayerController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Map $map, MapLayer $mapLayer)
+    public function destroy(Campaign $campaign, Map $map, MapLayer $mapLayer)
     {
         $this->authorize('update', $map);
 
         $mapLayer->delete();
 
         return redirect()
-            ->route('maps.map_layers.index', [$map])
+            ->route('maps.map_layers.index', [$campaign->id, $map->id])
             ->withSuccess(__('maps/layers.delete.success', ['name' => $mapLayer->name]));
     }
 
@@ -238,7 +233,7 @@ class MapLayerController extends Controller
         $count = $this->bulkProcess($request, MapLayer::class);
 
         return redirect()
-            ->route('maps.map_layers.index', [$map])
+            ->route('maps.map_layers.index', [$campaign->id, $map->id])
             ->with('success', trans_choice('maps/layers.bulks.' . $action, $count, ['count' => $count]))
         ;
     }
@@ -265,7 +260,7 @@ class MapLayerController extends Controller
         }
         $order--;
         return redirect()
-            ->route('maps.map_layers.index', ['map' => $map])
+            ->route('maps.map_layers.index', [$campaign->id, $map->id])
             ->with('success', trans_choice('maps/layers.reorder.success', $order, ['count' => $order]));
     }
 }

@@ -127,7 +127,7 @@ class MapLayer extends Model
      */
     public function getLink(): string
     {
-        return route('maps.map_layers.edit', ['map' => $this->map_id, $this->id]);
+        return route('maps.map_layers.edit', ['campaign' => $this->map->id, 'map' => $this->map_id, $this->id]);
     }
 
     /**

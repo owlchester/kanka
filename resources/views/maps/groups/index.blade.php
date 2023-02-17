@@ -20,9 +20,9 @@
                     {{ __('maps.actions.explore') }}
                 </a>
             @endif
-            <a href="{{ route('maps.map_groups.create', ['map' => $model]) }}" class="btn btn-warning btn-sm"
+            <a href="{{ route('maps.map_groups.create', ['campaign' => $campaign->id, 'map' => $model->id]) }}" class="btn btn-warning btn-sm"
                 data-toggle="ajax-modal" data-target="#entity-modal"
-                data-url="{{ route('maps.map_groups.create', ['map' => $model]) }}"
+                data-url="{{ route('maps.map_groups.create', ['campaign' => $campaign->id, 'map' => $model->id]) }}"
             >
                 <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('maps/groups.actions.add') }}
             </a>

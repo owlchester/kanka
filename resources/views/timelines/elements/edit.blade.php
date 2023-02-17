@@ -4,24 +4,22 @@
 * @var \App\Models\TimelineElement $model
 */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-'title' => __('timelines/elements.edit.title', ['name' => $model->name]),
-'description' => '',
-'breadcrumbs' => [
-['url' => route('timelines.index'), 'label' => __('entities.timelines')],
-['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
-__('timelines/elements.edit.title', ['name' => $model->name])
-]
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
+    'title' => __('timelines/elements.edit.title', ['name' => $model->name]),
+    'description' => '',
+    'breadcrumbs' => [
+    ['url' => $timeline->entity->url('index'), 'label' => __('entities.timelines')],
+    ['url' => $timeline->getLink(), 'label' => $timeline->name],
+        __('timelines/elements.edit.title', ['name' => $model->name])
+    ]
 ])
-
-
 
 @section('content')
     @include('partials.errors')
 
-    {!! Form::model($model, ['route' => ['timelines.timeline_elements.update', 'timeline' => $timeline, 'timeline_element' => $model], 'method' => 'PATCH', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+    {!! Form::model($model, ['route' => ['timelines.timeline_elements.update', 'campaign' => $campaign->id, 'timeline' => $timeline, 'timeline_element' => $model], 'method' => 'PATCH', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
     <div class="panel panel-default">
-        @if ($ajax)
+        @if (request()->ajax())
             <div class="panel-heading">
                 <button type="button" class="close" data-dismiss="modal"
                     aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
@@ -34,7 +32,7 @@ __('timelines/elements.edit.title', ['name' => $model->name])
             @include('timelines.elements._form')
         </div>
         <div class="panel-footer">
-            <a href="{{ route('timelines.show', $timeline) }}" class="btn btn-default">
+            <a href="{{ $timeline->getLink() }}" class="btn btn-default">
                 {{ __('crud.cancel') }}
             </a>
 

@@ -23,7 +23,7 @@ class ConversationResource extends JsonResource
         /** @var Conversation $resource */
         $resource = $this->resource;
 
-        $messages = new Collection($resource->messages()->default($oldest, $newest)->get());
+        $messages = new Collection($resource->messages()->with('conversation')->default($oldest, $newest)->get());
         $messages = $messages->reverse();
 
         $data = [];

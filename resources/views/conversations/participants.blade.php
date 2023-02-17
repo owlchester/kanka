@@ -1,16 +1,15 @@
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('conversations.participants.title', ['name' => $model->name]),
-    'description' => __('conversations.participants.description'),
     'breadcrumbs' => [
-        ['url' => route('conversations.index'), 'label' => __('entities.conversations')],
-        ['url' => route('conversations.show', $model->id), 'label' => $model->name],
+        ['url' => $model->entity->url('index'), 'label' => __('entities.conversations')],
+        ['url' => $model->getLink(), 'label' => $model->name],
         __('crud.update'),
     ]
 ])
 
 @section('content')
     <div class="panel panel-default">
-        @if ($ajax)
+        @if (request()->ajax())
             <div class="panel-heading">
                 <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                 <h4>{{ __('conversations.participants.modal', ['name' => $model->name]) }}</h4>
@@ -22,13 +21,13 @@
                     @if ($participant->isMember() || (auth()->check() && auth()->user()->can('view', $participant->entity())))
                     <li class="list-group-item">
                         @can('update', $model)
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $model, $participant], 'style'=>'display:inline']) !!}
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $campaign, $model, $participant], 'style'=>'display:inline']) !!}
                         @endcan
 
                         @if ($participant->isMember())
                             {{ $participant->entity()->name }}
                         @else
-                            <a href="{{ route('characters.show', $participant->entity()) }}">{{ $participant->entity()->name }}</a>
+                            <a href="{{ $participant->entity()->getLink() }}">{{ $participant->entity()->name }}</a>
                         @endif
 
                         @can('update', $model)
@@ -46,7 +45,7 @@
                 @include('partials.errors')
                 <?php $memberList = $campaign->membersList($model->participantsList(false)); ?>
                 @if($model->forCharacters() || count($memberList) > 0)
-                {!! Form::open(['route' => ['conversations.conversation_participants.store', $model], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
+                {!! Form::open(['route' => ['conversations.conversation_participants.store', $campaign, $model], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-group required">

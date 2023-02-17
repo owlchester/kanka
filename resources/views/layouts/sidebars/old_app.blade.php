@@ -1,5 +1,5 @@
 <li class="{{ $sidebar->active('dashboard') }} section section-dashboard">
-    <a href="{{ route('dashboard') }}">
+    <a href="{{ route('dashboard', $campaign) }}">
         <i class="fa-solid fa-th-large"></i> <span>{{ __('sidebar.dashboard') }}</span>
     </a>
 </li>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Sorters\QuestElementSorter;
+use App\Models\Campaign;
 use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Http\Requests\StoreQuestElement;
@@ -26,7 +27,7 @@ class QuestElementController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Quest $quest)
+    public function index(Campaign $campaign, Quest $quest)
     {
         if (empty($quest->entity)) {
             abort(404);
@@ -38,7 +39,6 @@ class QuestElementController extends Controller
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $quest);
         }
 
-        $campaign = CampaignLocalization::getCampaign();
         $datagridSorter = new QuestElementSorter();
         $datagridSorter->request(request()->all());
 
@@ -62,10 +62,9 @@ class QuestElementController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create(Quest $quest)
+    public function create(Campaign $campaign, Quest $quest)
     {
         $this->authorize('update', $quest);
-        $campaign = CampaignLocalization::getCampaign();
 
         return view('quests.elements.create', compact(
             'campaign',
@@ -79,7 +78,7 @@ class QuestElementController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StoreQuestElement $request, Quest $quest)
+    public function store(StoreQuestElement $request, Campaign $campaign, Quest $quest)
     {
         $this->authorize('update', $quest);
 
@@ -120,9 +119,9 @@ class QuestElementController extends Controller
      * @param Quest $quest
      * @param QuestElement $questElement
      */
-    public function show(Quest $quest, QuestElement $questElement)
+    public function show(Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
-        abort(404);
+        return redirect()->to($quest->getLink());
     }
 
 
@@ -132,12 +131,11 @@ class QuestElementController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Quest $quest, QuestElement $questElement)
+    public function edit(Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
         $this->authorize('update', $quest);
         $model = $questElement;
 
-        $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
 
         if ($campaign->hasEditingWarning()) {
@@ -165,7 +163,7 @@ class QuestElementController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreQuestElement $request, Quest $quest, QuestElement $questElement)
+    public function update(StoreQuestElement $request, Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
         $this->authorize('update', $quest);
 
@@ -211,7 +209,7 @@ class QuestElementController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Quest $quest, QuestElement $questElement)
+    public function destroy(Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
         $this->authorize('update', $quest);
 

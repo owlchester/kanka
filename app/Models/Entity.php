@@ -206,9 +206,10 @@ class Entity extends Model
     {
         try {
             if ($action == 'index') {
-                return route($this->pluralType() . '.index');
+                return route($this->pluralType() . '.index', [$this->campaign_id]);
             }
             $routeOptions = array_merge([$this->entity_id], $options);
+            $routeOptions['campaign'] = $this->campaign_id;
             return route($this->pluralType() . '.' . $action, $routeOptions);
         } catch (\Exception $e) {
             return route('dashboard');

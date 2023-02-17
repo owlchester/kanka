@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreConversationParticipant;
+use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\ConversationParticipant;
 
@@ -11,17 +12,16 @@ class ConversationParticipantController extends Controller
 {
     /**
      */
-    public function index(Conversation $conversation)
+    public function index(Campaign $campaign, Conversation $conversation)
     {
         $ajax = request()->ajax();
-        $campaign = CampaignLocalization::getCampaign();
         return view('conversations.participants', ['model' => $conversation, 'ajax' => $ajax])
             ->with('campaign', $campaign);
     }
 
     /**
      */
-    public function store(StoreConversationParticipant $request, Conversation $conversation)
+    public function store(StoreConversationParticipant $request, Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('update', $conversation);
 
@@ -29,8 +29,8 @@ class ConversationParticipantController extends Controller
         $participant = $participant->create($request->all());
 
         return redirect()
-            ->route('conversations.show', $conversation)
-            ->with('success', trans('conversations.participants.create.success', [
+            ->to($conversation->getLink())
+            ->with('success', __('conversations.participants.create.success', [
                 'name' => $conversation->name,
                 'entity' => $participant->name()
             ]));
@@ -39,7 +39,7 @@ class ConversationParticipantController extends Controller
 
     /**
      */
-    public function edit(Conversation $conversation, ConversationParticipant $conversationParticipant)
+    public function edit(Campaign $campaign, Conversation $conversation, ConversationParticipant $conversationParticipant)
     {
         $this->authorize('update', $conversation);
 
@@ -50,6 +50,7 @@ class ConversationParticipantController extends Controller
      */
     public function update(
         StoreConversationParticipant $request,
+        Campaign $campaign,
         Conversation $conversation,
         ConversationParticipant $conversationParticipant
     ) {
@@ -57,15 +58,16 @@ class ConversationParticipantController extends Controller
 
         $conversationParticipant->update($request->all());
 
-        return redirect()->route('conversations.show', [$conversation->id])
-            ->with('success', trans('crud.notes.edit.success', [
+        return redirect()
+            ->to($conversation->getLink())
+            ->with('success', __('crud.notes.edit.success', [
                 'name' => $conversationParticipant->name, 'entity' => $conversation->name
             ]));
     }
 
     /**
      */
-    public function destroy(Conversation $conversation, ConversationParticipant $conversationParticipant)
+    public function destroy(Campaign $campaign, Conversation $conversation, ConversationParticipant $conversationParticipant)
     {
         $this->authorize('update', $conversation);
 
@@ -74,8 +76,8 @@ class ConversationParticipantController extends Controller
         }
 
         return redirect()
-            ->route('conversations.show', $conversation)
-            ->with('success', trans('conversations.participants.destroy.success', [
+            ->to($conversation->getLink())
+            ->with('success', __('conversations.participants.destroy.success', [
                 'name' => $conversation->name,
                 'entity' => $conversationParticipant->entity()->name
             ]));

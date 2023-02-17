@@ -28,7 +28,7 @@ $translations = json_encode([
             <div class="box-header">
                 <div class="box-tools">
                     <button class="btn btn-default" data-toggle="ajax-modal" data-target="#entity-modal"
-                            data-url="{{ route('conversations.conversation_participants.index', $model) }}">
+                            data-url="{{ route('conversations.conversation_participants.index', [$campaign, $model]) }}">
                         <i class="fa-solid fa-users"> {{ $model->participants->count() }}</i>
                     </button>
                 </div>
@@ -37,11 +37,11 @@ $translations = json_encode([
                 <div class="box-conversation" id="conversation">
                     <conversation
                             id="{{ $model->id }}"
-                            api="{{ route('conversations.conversation_messages.index', $model) }}"
+                            api="{{ route('conversations.conversation_messages.index', [$campaign, $model]) }}"
                             target="{{ $model->forCharacters() ? 'character' : 'user'}}"
                             :targets="{{ $model->jsonParticipants() }}"
                             :disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
-                            send="{{ route('conversations.conversation_messages.store', $model) }}"
+                            send="{{ route('conversations.conversation_messages.store', [$campaign, $model]) }}"
                             trans="{{ $translations }}"
                     >
                     </conversation>

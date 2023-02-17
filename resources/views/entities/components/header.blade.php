@@ -140,7 +140,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
                             @can('update', $model)
                                 <li>
-                                    <a href="{{ route($entity->pluralType() . '.edit', $model->id) }}" data-keyboard="edit">
+                                    <a href="{{ $model->getLink('edit') }}" data-keyboard="edit">
                                         <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.edit') }}
 
                                         <span class="keyboard-shortcut pull-right" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>E</code>']) !!}" data-html="true">E</span>
@@ -149,19 +149,19 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                             @endcan
                             @can('create', $model)
                                 <li>
-                                    <a href="{{ route($entity->pluralType() . '.create') }}">
+                                    <a href="{{ route($entity->pluralType() . '.create', ['campaign' => $entity->campaign_id]) }}">
                                         <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new') }}
                                     </a>
                                 </li>
                                 @if (\Illuminate\Support\Facades\Route::has($entity->pluralType() . '.tree'))
                                     <li>
-                                        <a href="{{ route($entity->pluralType() . '.create', ['parent_id' => $model->id]) }}">
+                                        <a href="{{ route($entity->pluralType() . '.create', ['campaign' => $entity->campaign_id, 'parent_id' => $model->id]) }}">
                                             <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new_child') }}
                                         </a>
                                     </li>
                                 @endif
                                 <li>
-                                    <a href="{{ route($entity->pluralType() . '.create', ['copy' => $model->id]) }}">
+                                    <a href="{{ route($entity->pluralType() . '.create', ['campaign' => $entity->campaign_id, 'copy' => $model->id]) }}">
                                         <i class="fa-solid fa-copy" aria-hidden="true"></i> {{ __('crud.actions.copy') }}
                                     </a>
                                 </li>
@@ -256,7 +256,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
         <div class="entity-tags entity-header-line">
             @foreach ($entityTags as $tag)
                 @if (!$tag->entity) @continue @endif
-                <a href="{{ route('tags.show', $tag) }}" data-toggle="tooltip-ajax"
+                <a href="{{ $tag->getLink() }}" data-toggle="tooltip-ajax"
                    data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity]) }}"
                    data-tag-slug="{{ $tag->slug }}"
                 >

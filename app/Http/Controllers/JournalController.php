@@ -33,41 +33,41 @@ class JournalController extends CrudController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJournal $request)
+    public function store(StoreJournal $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Journal $journal)
+    public function show(Campaign $campaign, Journal $journal)
     {
-        return $this->crudShow($journal);
+        return $this->campaign($campaign)->crudShow($journal);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Journal $journal)
+    public function edit(Campaign $campaign, Journal $journal)
     {
-        return $this->crudEdit($journal);
+        return $this->campaign($campaign)->crudEdit($journal);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreJournal $request, Journal $journal)
+    public function update(StoreJournal $request, Campaign $campaign, Journal $journal)
     {
-        return $this->crudUpdate($request, $journal);
+        return $this->campaign($campaign)->crudUpdate($request, $journal);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Journal $journal)
+    public function destroy(Campaign $campaign, Journal $journal)
     {
-        return $this->crudDestroy($journal);
+        return $this->campaign($campaign)->crudDestroy($journal);
     }
 
     /**

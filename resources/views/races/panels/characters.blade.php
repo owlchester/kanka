@@ -26,11 +26,11 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
             </a>
 
             @if (request()->has('race_id'))
-                <a href="{{ route('races.show', $model) }}" class="btn btn-box-tool">
+                <a href="{{ route('races.show', [$campaign->id, $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
                 </a>
             @else
-                <a href="{{ route('races.show', [$model, 'race_id' => $model->id]) }}" class="btn btn-box-tool">
+                <a href="{{ route('races.show', [$campaign->id, $model->id, 'race_id' => $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
                 </a>
             @endif

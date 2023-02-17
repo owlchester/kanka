@@ -10,7 +10,7 @@
 {!! Form::open([
     'method' => 'POST',
     'enctype' => 'multipart/form-data',
-    'route' => [$name . '.store'],
+    'route' => [$name . '.store', ['campaign' => $campaign->id]],
     'data-shortcut' => '1',
     'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null),
     'id' => 'entity-form',

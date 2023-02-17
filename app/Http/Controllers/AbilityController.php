@@ -30,52 +30,41 @@ class AbilityController extends CrudController
     /** @var string Filter */
     protected $filter = AbilityFilter::class;
 
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAbility $request)
+    public function store(StoreAbility $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      */
-    public function show(Ability $ability)
+    public function show(Campaign $campaign, Ability $ability)
     {
-        return $this->crudShow($ability);
+        return $this->campaign($campaign)->crudShow($ability);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ability $ability)
+    public function edit(Campaign $campaign, Ability $ability)
     {
-        return $this->crudEdit($ability);
+        return $this->campaign($campaign)->crudEdit($ability);
     }
 
     /**
      */
-    public function update(StoreAbility $request, Ability $ability)
+    public function update(StoreAbility $request, Campaign $campaign, Ability $ability)
     {
-        return $this->crudUpdate($request, $ability);
+        return $this->campaign($campaign)->crudUpdate($request, $ability);
     }
 
     /**
      */
-    public function destroy(Ability $ability)
+    public function destroy(Campaign $campaign, Ability $ability)
     {
-        return $this->crudDestroy($ability);
+        return $this->campaign($campaign)->crudDestroy($ability);
     }
 
     /**

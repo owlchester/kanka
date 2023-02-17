@@ -105,7 +105,7 @@ class MapGroup extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->map_id, $this->id];
+        return [$this->map->campaign_id, $this->map_id, $this->id];
     }
 
     /**
@@ -124,7 +124,7 @@ class MapGroup extends Model
      */
     public function getLink(): string
     {
-        return route('maps.map_groups.edit', ['map' => $this->map_id, $this->id]);
+        return route('maps.map_groups.edit', ['campaign' => $this->map->campaign_id, 'map' => $this->map_id, 'map_group' => $this->id]);
     }
 
     /**

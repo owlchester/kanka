@@ -10,9 +10,9 @@
 
     @can('organisation', [$model, 'add'])
         <div class="header-buttons">
-            <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}"
+            <a href="{{ route('characters.character_organisations.create', ['campaign' => $model->campaign_id, 'character' => $model->id]) }}"
                class="btn btn-sm btn-warning" data-toggle="ajax-modal"
-               data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
+               data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', ['campaign' => $model->campaign_id, 'character' => $model->id]) }}">
                 <i class="fa-solid fa-plus"></i> {{ __('characters.organisations.actions.add')  }}
             </a>
         </div>

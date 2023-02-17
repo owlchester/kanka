@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\NoDatagridActions;
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\DiceRollResult;
 use Illuminate\Http\Request;
 
@@ -22,23 +23,15 @@ class DiceRollResultController extends CrudController
     protected $filter = DiceRollResult::class;
 
     /**
-     * Controller constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->addNavAction(
-            route('dice_rolls.index'),
-            '<i class="fa-solid fa-square"></i> ' . __('dice_rolls.index.actions.dice')
-        );
-    }
-    /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request, Campaign $campaign)
     {
         //$this->authorize('browse', $this->model);
+        $this->addNavAction(
+            route('dice_rolls.index', $campaign),
+            '<i class="fa-solid fa-square"></i> ' . __('dice_rolls.index.actions.dice')
+        );
 
         $model = new $this->model();
         $this->filterService->make($this->view, request()->all(), $model);
@@ -48,9 +41,9 @@ class DiceRollResultController extends CrudController
         $filters = $this->filters;
         $filterService = $this->filterService;
         $datagridActions = new NoDatagridActions();
-        $campaign = CampaignLocalization::getCampaign();
 
         $base = $model
+            ->with(['user', 'diceRoll', 'diceRoll.character'])
             ->search(request()->get('search'))
             ->order($this->filterService->order())
         ;
@@ -81,8 +74,8 @@ class DiceRollResultController extends CrudController
     /**
      * Display the specified resource.
      */
-    public function show(DiceRollResult $diceRollResult)
+    public function show(Campaign $campaign, DiceRollResult $diceRollResult)
     {
-        return redirect()->route('dice_rolls.show', $diceRollResult->diceRoll);
+        return redirect()->to($diceRollResult->diceRoll->getLink());
     }
 }

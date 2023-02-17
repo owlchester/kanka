@@ -8,6 +8,7 @@ use App\Http\Requests\StoreDiceRoll;
 use App\Models\Campaign;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DiceRollController extends CrudController
@@ -28,15 +29,10 @@ class DiceRollController extends CrudController
     /** @var string  */
     protected $datagridActions = DeprecatedDatagridActions::class;
 
-    /**
-     * Controller constructor.
-     */
-    public function __construct()
+    public function index(Request $request, Campaign $campaign)
     {
-        parent::__construct();
-
         $this->addNavAction(
-            route('dice_roll_results.index'),
+            route('dice_roll_results.index', [$campaign]),
             '<i class="fa-solid fa-list"></i> ' . __('dice_rolls.index.actions.results')
         );
         $this->addNavAction(
@@ -45,51 +41,27 @@ class DiceRollController extends CrudController
             'default',
             true
         );
+
+        return $this->campaign($campaign)->crudIndex($request);
+    }
+    public function store(StoreDiceRoll $request, Campaign $campaign)
+    {
+        return $this->campaign($campaign)->crudStore($request, true);
     }
 
-    /**
-     * @param StoreDiceRoll $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function store(StoreDiceRoll $request)
+    public function show(Campaign $campaign, DiceRoll $diceRoll)
     {
-        return $this->crudStore($request, true);
+        return $this->campaign($campaign)->crudShow($diceRoll);
     }
 
-    /**
-     * @param DiceRoll $diceRoll
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function show(DiceRoll $diceRoll)
+    public function edit(Campaign $campaign, DiceRoll $diceRoll)
     {
-        return $this->crudShow($diceRoll);
+        return $this->campaign($campaign)->crudEdit($diceRoll);
     }
 
-    /**
-     * @param DiceRoll $diceRoll
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
-    public function edit(DiceRoll $diceRoll)
+    public function update(StoreDiceRoll $request, Campaign $campaign, DiceRoll $diceRoll)
     {
-        return $this->crudEdit($diceRoll);
-    }
-
-    /**
-     * @param StoreDiceRoll $request
-     * @param DiceRoll $diceRoll
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
-    public function update(StoreDiceRoll $request, DiceRoll $diceRoll)
-    {
-        return $this->crudUpdate($request, $diceRoll);
+        return $this->campaign($campaign)->crudUpdate($request, $diceRoll);
     }
 
     /**
@@ -97,9 +69,9 @@ class DiceRollController extends CrudController
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(DiceRoll $diceRoll)
+    public function destroy(Campaign $campaign, DiceRoll $diceRoll)
     {
-        return $this->crudDestroy($diceRoll);
+        return $this->campaign($campaign)->crudDestroy($diceRoll);
     }
 
     /**

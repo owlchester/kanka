@@ -11,5 +11,5 @@
 </div>
 
 @section('modals')
-    @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms(), 'params' => []])
+    @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms(), 'params' => Datagrid::getActionParams()])
 @endsection

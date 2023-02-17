@@ -8,8 +8,8 @@
     'title' => __('timelines/eras.create.title', ['name' => $timeline->name]),
     'description' => '',
     'breadcrumbs' => [
-    ['url' => route('timelines.index'), 'label' => __('entities.timelines')],
-    ['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
+    ['url' => $timeline->entity->url('index'), 'label' => __('entities.timelines')],
+    ['url' => $timeline->entity->url(), 'label' => $timeline->name],
     __('timelines/eras.create.title')
     ]
 ])
@@ -18,7 +18,7 @@
     @include('partials.errors')
 
     {!! Form::open([
-        'route' => ['timelines.timeline_eras.store', $timeline],
+        'route' => ['timelines.timeline_eras.store', [$campaign, $timeline]],
         'method' => 'POST',
         'id' => 'timeline-era-form',
         'class' => 'ajax-subform',

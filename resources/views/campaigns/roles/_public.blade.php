@@ -32,7 +32,7 @@ $permission->role($role);
 
         <p class="mb-5">
             {!! __('campaigns/roles.public.test', [
-    'url' => link_to_route('dashboard')]) !!}
+    'url' => link_to_route('dashboard', $campaign->id)]) !!}
         </p>
 
         <p class="mb-5">
@@ -67,7 +67,7 @@ $permission->role($role);
     'title' => __('campaigns.roles.modals.details.title'),
     'textes' => [
         __('campaigns/roles.public.description', ['name' => $role->name]),
-        __('campaigns/roles.public.test', ['url' => link_to_route('dashboard')]),
+        __('campaigns/roles.public.test', ['url' => link_to_route('dashboard', $campaign->id)]),
         '<a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> ' . __('helpers.public') . '</a>'
 ]
 ])

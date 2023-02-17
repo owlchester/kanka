@@ -6,7 +6,7 @@
         __('crud.tabs.reminders'),
         __('crud.update'),
     ] : [
-        ['url' => route('calendars.index'), 'label' => __('entities.calendars')],
+        ['url' => route('calendars.index', [$campaign]), 'label' => __('entities.calendars')],
         ['url' => $entityEvent->calendar->getLink(), 'label' => $entityEvent->calendar->name],
         __('crud.tabs.reminders'),
         __('crud.update'),

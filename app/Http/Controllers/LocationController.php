@@ -34,41 +34,41 @@ class LocationController extends CrudController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLocation $request)
+    public function store(StoreLocation $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Location $location)
+    public function show(Campaign $campaign, Location $location)
     {
-        return $this->crudShow($location);
+        return $this->campaign($campaign)->crudShow($location);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Location $location)
+    public function edit(Campaign $campaign, Location $location)
     {
-        return $this->crudEdit($location);
+        return $this->campaign($campaign)->crudEdit($location);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreLocation $request, Location $location)
+    public function update(StoreLocation $request, Campaign $campaign, Location $location)
     {
-        return $this->crudUpdate($request, $location);
+        return $this->campaign($campaign)->crudUpdate($request, $location);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Location $location)
+    public function destroy(Campaign $campaign, Location $location)
     {
-        return $this->crudDestroy($location);
+        return $this->campaign($campaign)->crudDestroy($location);
     }
 
     /**

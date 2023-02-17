@@ -230,6 +230,7 @@ class DatagridRenderer
         }
 
         $routeOptions = [
+            'campaign' => $this->getCampaign(),
             'order' => $field ,
             'page' => request()->get('page')
         ];
@@ -356,6 +357,7 @@ class DatagridRenderer
                 if ($who instanceof Entity) {
                     $who = $who->child;
                 }
+                $who = !empty($column['parent']) ? $model->{$column['parent']} : $model;
                 $class = !empty($column['parent']) ? 'hidden-xs hidden-sm' : $class;
                 if (!empty($who)) {
                     $whoRoute = !empty($column['parent_route'])
@@ -363,7 +365,7 @@ class DatagridRenderer
                             ? $column['parent_route']
                             : $column['parent_route']($model))
                         : $this->getOption('baseRoute');
-                    $route = route($whoRoute . '.show', [$who]);
+                    $route = route($whoRoute . '.show', ['campaign' => $this->campaign->id, $who]);
                     $content = '<a class="entity-image" style="background-image: url(\'' . $who->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
@@ -409,7 +411,7 @@ class DatagridRenderer
                     $content = link_to_route(
                         'calendars.show',
                         $reminder->readableDate(),
-                        [$reminder->calendar_id, 'month' => $reminder->month, 'year' => $reminder->year]
+                        [$this->getCampaign(), $reminder->calendar_id, 'month' => $reminder->month, 'year' => $reminder->year]
                     );
                 }
             } else {
@@ -492,7 +494,7 @@ class DatagridRenderer
         $actions = '';
         if ($this->user && $this->user->can('update', $model)) {
             $actions .= ' <a href="'
-                . route($this->getOption('baseRoute') . '.edit', [$model])
+                . $model->getLink('edit')
                 . '" title="' . __('crud.edit') . '">
                 <i class="fa-solid fa-edit" aria-hidden="true"></i>
             </a>';

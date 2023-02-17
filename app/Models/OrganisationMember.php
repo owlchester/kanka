@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
@@ -175,6 +176,6 @@ class OrganisationMember extends Model
      */
     public function routeParams(array $options = []): array
     {
-        return array_merge([$this->character_id, $this->id], $options);
+        return array_merge(['character' => $this->character_id, 'character_organisation' => $this->id], $options);
     }
 }

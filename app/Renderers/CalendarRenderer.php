@@ -118,7 +118,7 @@ class CalendarRenderer
             } else {
                 return route(
                     'calendars.show',
-                    ['calendar' => $this->calendar, 'layout' => 'year', 'year' => $year]
+                    ['campaign' => $this->calendar->campaign_id, 'calendar' => $this->calendar->id, 'layout' => 'year', 'year' => $year]
                 );
             }
         }
@@ -135,7 +135,7 @@ class CalendarRenderer
             return $months[$month - 1]['name'] . " {$year}";
         }
 
-        $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
+        $routeOptions = ['campaign' => $this->calendar->campaign_id, 'calendar' => $this->calendar->id, 'month' => $month, 'year' => $year];
         if ($this->calendar->defaultLayout() === 'year') {
             // @phpstan-ignore-next-line
             $routeOptions['layout'] = $this->isYearlyLayout() ? 'year' : 'month';
@@ -164,6 +164,7 @@ class CalendarRenderer
         }
 
         $options = [
+            'campaign' => $this->calendar->campaign_id,
             'calendar' => $this->calendar,
             'month' => $month,
             'year' => $year,
@@ -273,7 +274,7 @@ class CalendarRenderer
             } else {
                 return route(
                     'calendars.show',
-                    ['calendar' => $this->calendar, 'layout' => 'year', 'year' => $year]
+                    ['campaign' => $this->calendar->campaign_id, 'calendar' => $this->calendar, 'layout' => 'year', 'year' => $year]
                 );
             }
         }
@@ -290,7 +291,7 @@ class CalendarRenderer
             return $months[$month - 1]['name'] . " {$year}";
         }
 
-        $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
+        $routeOptions = ['campaign' => $this->calendar->campaign_id, 'calendar' => $this->calendar, 'month' => $month, 'year' => $year];
         if ($this->calendar->yearlyLayout()) {
             // @phpstan-ignore-next-line
             $routeOptions['layout'] = $this->isYearlyLayout() ? 'year' : 'month';
@@ -695,7 +696,7 @@ class CalendarRenderer
         return link_to_route(
             'calendars.show',
             trans('calendars.actions.today'),
-            [$this->calendar, 'month' => $calendarMonth, 'year' => $calendarYear],
+            ['campaign' => $this->calendar->campaign_id, $this->calendar, 'month' => $calendarMonth, 'year' => $calendarYear],
             $options
         );
     }

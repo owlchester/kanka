@@ -27,7 +27,7 @@
             'field' => 'tag.name',
             'render' => function($model) {
                 if ($model->tag) {
-                    return '<a href="' . route('tags.show', $model->tag->id) . '">' . e($model->tag->name) . '</a>';
+                    return '<a href="' . $model->tag->getLink() . '">' . e($model->tag->name) . '</a>';
                 }
             }
         ],

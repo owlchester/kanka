@@ -29,7 +29,9 @@ trait TreeControllerTrait
             );
         }
 
-        $campaign = CampaignLocalization::getCampaign();
+        if (empty($this->campaign)) {
+            $this->campaign = CampaignLocalization::getCampaign();
+        }
 
         /**
          * Prepare a lot of variables that will be shared over to the view
@@ -42,13 +44,13 @@ trait TreeControllerTrait
         $filterService = $this->filterService;
         $filter = !empty($this->filter) ? new $this->filter() : null;
         if (!empty($filter)) {
-            $filter->campaign($campaign)->build();
+            $filter->campaign($this->campaign)->build();
         }
         $langKey = $this->langKey ?? $name;
         $templates = $this->loadTemplates($model);
 
         $this->addNavAction(
-            route($this->route . '.index'),
+            route($this->route . '.index', ['campaign' => $this->campaign->id]),
             '<i class="fa-solid fa-list"></i> ' . __('entities.' . $this->view)
         );
 
@@ -72,13 +74,13 @@ trait TreeControllerTrait
             if (!empty($parent) && !empty($parent->$singularModel)) {
                 // Go back to previous parent
                 $this->addNavAction(
-                    route($this->route . '.tree', ['parent_id' => $parent->$singularModel->id]),
+                    route($this->route . '.tree', ['campaign' => $this->campaign->id, 'parent_id' => $parent->$singularModel->id]),
                     '<i class="fa-solid fa-arrow-left"></i> ' . $parent->$singularModel->name
                 );
             } else {
                 // Go back to first level
                 $this->addNavAction(
-                    route($this->route . '.tree'),
+                    route($this->route . '.tree', ['campaign' => $this->campaign->id]),
                     '<i class="fa-solid fa-arrow-left"></i> ' . __('crud.actions.back')
                 );
             }
@@ -113,7 +115,6 @@ trait TreeControllerTrait
         $actions = $this->navActions;
 
         return view('cruds.tree', compact(
-            'campaign',
             'models',
             'name',
             'langKey',
@@ -129,6 +130,7 @@ trait TreeControllerTrait
             'templates',
             'datagridActions',
             'parent'
-        ));
+        ))
+            ->with('campaign', $this->campaign);
     }
 }

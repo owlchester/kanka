@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\AttributeTemplateFilter;
 use App\Models\AttributeTemplate;
 use App\Http\Requests\StoreAttributeTemplate;
+use App\Models\Campaign;
 
 class AttributeTemplateController extends CrudController
 {
@@ -36,39 +37,39 @@ class AttributeTemplateController extends CrudController
 
     /**
      */
-    public function store(StoreAttributeTemplate $request)
+    public function store(StoreAttributeTemplate $request, Campaign $campaign)
     {
-        return $this->crudStore($request, true);
+        return $this->campaign($campaign)->crudStore($request, true);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(AttributeTemplate $attributeTemplate)
+    public function show(Campaign $campaign, AttributeTemplate $attributeTemplate)
     {
-        return $this->crudShow($attributeTemplate);
+        return $this->campaign($campaign)->crudShow($attributeTemplate);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AttributeTemplate $attributeTemplate)
+    public function edit(Campaign $campaign, AttributeTemplate $attributeTemplate)
     {
-        return $this->crudEdit($attributeTemplate);
+        return $this->campaign($campaign)->crudEdit($attributeTemplate);
     }
 
     /**
      */
-    public function update(StoreAttributeTemplate $request, AttributeTemplate $attributeTemplate)
+    public function update(StoreAttributeTemplate $request, Campaign $campaign, AttributeTemplate $attributeTemplate)
     {
-        return $this->crudUpdate($request, $attributeTemplate);
+        return $this->campaign($campaign)->crudUpdate($request, $attributeTemplate);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AttributeTemplate $attributeTemplate)
+    public function destroy(Campaign $campaign, AttributeTemplate $attributeTemplate)
     {
-        return $this->crudDestroy($attributeTemplate);
+        return $this->campaign($campaign)->crudDestroy($attributeTemplate);
     }
 }

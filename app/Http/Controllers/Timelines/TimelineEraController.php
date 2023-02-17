@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Timelines;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Datagrid2\BulkControllerTrait;
@@ -26,16 +25,16 @@ class TimelineEraController extends Controller
         'is_collapsed',
     ];
 
-    public function index(Timeline $timeline)
+    public function index(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('update', $timeline);
 
-        $campaign = CampaignLocalization::getCampaign();
-        $options = ['timeline' => $timeline->id];
+        $options = ['campaign' => $campaign->id, 'timeline' => $timeline->id];
         $model = $timeline;
 
         Datagrid::layout(\App\Renderers\Layouts\Timeline\Era::class)
-            ->route('timelines.timeline_eras.index', $options);
+            ->route('timelines.timeline_eras.index', $options)
+            ->actionParams(['campaign' => $campaign->id]);
         $rows = $timeline
             ->eras()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
@@ -47,9 +46,9 @@ class TimelineEraController extends Controller
 
         return view('timelines.eras.index', compact('campaign', 'rows', 'model'));
     }
-    public function show(Timeline $timeline, TimelineEra $timelineEra)
+    public function show(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
-        return redirect()->route('timelines.show', $timeline);
+        return redirect()->to($timeline->getLink());
     }
 
     /**
@@ -57,10 +56,9 @@ class TimelineEraController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create(Timeline $timeline)
+    public function create(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('update', $timeline);
-        $campaign = CampaignLocalization::getCampaign();
         $from = request()->get('from') == 'view' ? 'view' : null;
 
         return view(
@@ -75,7 +73,7 @@ class TimelineEraController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Timeline $timeline, StoreTimelineEra $request)
+    public function store(Campaign $campaign, Timeline $timeline, StoreTimelineEra $request)
     {
         $this->authorize('update', $timeline);
 
@@ -91,11 +89,11 @@ class TimelineEraController extends Controller
 
         if (request()->post('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$timeline, '#era' . $new->id])
+                ->route('timelines.show', [$timeline->campaign_id, $timeline, '#era' . $new->id])
                 ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
         }
         return redirect()
-            ->route('timelines.timeline_eras.index', [$timeline])
+            ->route('timelines.timeline_eras.index', [$timeline->campaign_id, $timeline])
             ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
     }
 
@@ -105,17 +103,16 @@ class TimelineEraController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Timeline $timeline, TimelineEra $timelineEra)
+    public function edit(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('update', $timeline);
 
-        $ajax = request()->ajax();
         $model = $timelineEra;
         $from = request()->get('from') == 'view' ? 'view' : null;
 
         return view(
             'timelines.eras.edit',
-            compact('timeline', 'ajax', 'model', 'from')
+            compact('timeline', 'model', 'from')
         );
     }
 
@@ -126,7 +123,7 @@ class TimelineEraController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreTimelineEra $request, Timeline $timeline, TimelineEra $timelineEra)
+    public function update(StoreTimelineEra $request, Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('update', $timeline);
 
@@ -139,12 +136,12 @@ class TimelineEraController extends Controller
 
         if (request()->post('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$timeline, '#era' . $timelineEra->id])
+                ->route('timelines.show', [$campaign, $timeline, '#era' . $timelineEra->id])
                 ->withSuccess(__('timelines/eras.edit.success', ['name' => $timelineEra->name]));
         }
 
         return redirect()
-            ->route('timelines.timeline_eras.index', [$timeline])
+            ->route('timelines.timeline_eras.index', [$campaign, $timeline])
             ->withSuccess(__('timelines/eras.edit.success', ['name' => $timelineEra->name]));
     }
 
@@ -154,7 +151,7 @@ class TimelineEraController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Timeline $timeline, TimelineEra $timelineEra)
+    public function destroy(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('update', $timeline);
 
@@ -163,12 +160,12 @@ class TimelineEraController extends Controller
 
         if (request()->get('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$timeline])
+                ->to($timeline->getLink())
                 ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
         }
 
         return redirect()
-            ->route('timelines.timeline_eras.index', [$timeline])
+            ->route('timelines.timeline_eras.index', [$campaign, $timeline])
             ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
     }
 

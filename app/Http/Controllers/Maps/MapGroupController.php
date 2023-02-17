@@ -20,12 +20,11 @@ class MapGroupController extends Controller
     /**
      * Index
      */
-    public function index(Map $map)
+    public function index(Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map);
 
-        $campaign = CampaignLocalization::getCampaign();
-        $options = ['map' => $map->id];
+        $options = ['campaign' => $campaign->id, 'map' => $map->id];
         $model = $map;
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Group::class)
@@ -42,17 +41,16 @@ class MapGroupController extends Controller
         return view('maps.groups.index', compact('campaign', 'rows', 'model'));
     }
 
-    public function show(Map $map)
+    public function show(Campaign $campaign, Map $map)
     {
-        return redirect()->route('maps.show', $map);
+        return redirect()->to($map->getLink());
     }
 
     /**
      */
-    public function create(Map $map)
+    public function create(Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map);
-        $campaign = CampaignLocalization::getCampaign();
 
         if ($map->groups->count() >= $campaign->maxMapLayers()) {
             return view('maps.form._groups_max')
@@ -69,7 +67,7 @@ class MapGroupController extends Controller
 
     /**
      */
-    public function store(Map $map, StoreMapGroup $request)
+    public function store(Campaign $campaign, Map $map, StoreMapGroup $request)
     {
         $this->authorize('update', $map);
 
@@ -78,7 +76,6 @@ class MapGroupController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $campaign = CampaignLocalization::getCampaign();
         if ($map->groups->count() >= $campaign->maxMapLayers()) {
             return view('maps.form._groups_max')
                 ->with('campaign', $campaign)
@@ -95,39 +92,39 @@ class MapGroupController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->route('maps.map_groups.edit', ['map' => $map, $new])
+                ->route('maps.map_groups.edit', ['campaign' => $campaign->id, 'map' => $map->id, $new])
                 ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
         } elseif ($request->has('submit-new')) {
             return redirect()
-                ->route('maps.map_groups.create', ['map' => $map])
+                ->route('maps.map_groups.create', ['campaign' => $campaign->id, 'map' => $map->id])
                 ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map->campaign_id, $map])
+                ->route('maps.explore', ['campaign' => $campaign->id, $map->id])
                 ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
         }
 
         return redirect()
-            ->route('maps.map_groups.index', $map)
+            ->route('maps.map_groups.index', ['campaign' => $campaign->id, $map->id])
             ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
     }
 
     /**
      */
-    public function edit(Map $map, MapGroup $mapGroup)
+    public function edit(Campaign $campaign, Map $map, MapGroup $mapGroup)
     {
         $this->authorize('update', $map);
         $model = $mapGroup;
 
         return view(
             'maps.groups.edit',
-            compact('map', 'model')
+            compact('campaign', 'map', 'model')
         );
     }
 
     /**
      */
-    public function update(StoreMapGroup $request, Map $map, MapGroup $mapGroup)
+    public function update(StoreMapGroup $request, Campaign $campaign, Map $map, MapGroup $mapGroup)
     {
         $this->authorize('update', $map);
 
@@ -140,33 +137,33 @@ class MapGroupController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->route('maps.map_groups.edit', ['map' => $map, $mapGroup])
+                ->route('maps.map_groups.edit', ['campaign' => $campaign->id, 'map' => $map->id, $mapGroup])
                 ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
         } elseif ($request->has('submit-new')) {
             return redirect()
-                ->route('maps.map_groups.create', ['map' => $map])
+                ->route('maps.map_groups.create', ['campaign' => $campaign->id, 'map' => $map->id])
                 ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
         } elseif ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map->campaign_id, $map])
+                ->route('maps.explore', ['campaign' => $campaign->id, $map->id])
                 ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
         }
 
         return redirect()
-            ->route('maps.map_groups.index', $map)
+            ->route('maps.map_groups.index', ['campaign' => $campaign->id, $map->id])
             ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
     }
 
     /**
      */
-    public function destroy(Map $map, MapGroup $mapGroup)
+    public function destroy(Campaign $campaign, Map $map, MapGroup $mapGroup)
     {
         $this->authorize('update', $map);
 
         $mapGroup->delete();
 
         return redirect()
-            ->route('maps.map_groups.index', [$map])
+            ->route('maps.map_groups.index', ['campaign' => $campaign->id, $map->id])
             ->withSuccess(__('maps/groups.delete.success', ['name' => $mapGroup->name]));
     }
 
@@ -214,7 +211,7 @@ class MapGroupController extends Controller
         $count = $this->bulkProcess($request, MapGroup::class);
 
         return redirect()
-            ->route('maps.map_groups.index', ['map' => $map])
+            ->route('maps.map_groups.index', [$campaign->id, $map->id])
             ->with('success', trans_choice('maps/groups.bulks.' . $action, $count, ['count' => $count]))
         ;
     }
@@ -241,7 +238,7 @@ class MapGroupController extends Controller
         }
         $order--;
         return redirect()
-            ->route('maps.map_groups.index', ['map' => $map])
+            ->route('maps.map_groups.index', [$campaign->id, $map->id])
             ->with('success', trans_choice('maps/groups.reorder.success', $order, ['count' => $order]));
     }
 }

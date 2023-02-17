@@ -2,7 +2,7 @@
     @if (!isset($breadcrumbsDashboard) || $breadcrumbsDashboard === true)
         @if ($campaign)
             <li>
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('dashboard', $campaign) }}">
                     <i class="fa-solid fa-globe"></i>
                     <span class="hidden-xs hidden-sm">
                         {!! $campaign->name !!}

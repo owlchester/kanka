@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\CalendarFilter;
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
@@ -11,7 +10,6 @@ use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Services\CalendarService;
 use App\Traits\TreeControllerTrait;
-use Response;
 
 class CalendarController extends CrudController
 {
@@ -24,7 +22,7 @@ class CalendarController extends CrudController
     protected string $route = 'calendars';
     protected $module = 'calendars';
 
-    protected $calendarService;
+    protected CalendarService $calendarService;
 
     /** @var string */
     protected $model = \App\Models\Calendar::class;
@@ -45,41 +43,41 @@ class CalendarController extends CrudController
     /**
      * Store the new calendar in the db
      */
-    public function store(StoreCalendar $request)
+    public function store(StoreCalendar $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Calendar $calendar)
+    public function show(Campaign $campaign, Calendar $calendar)
     {
-        return $this->crudShow($calendar);
+        return $this->campaign($campaign)->crudShow($calendar);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Calendar $calendar)
+    public function edit(Campaign $campaign, Calendar $calendar)
     {
-        return $this->crudEdit($calendar);
+        return $this->campaign($campaign)->crudEdit($calendar);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCalendar $request, Calendar $calendar)
+    public function update(StoreCalendar $request, Campaign $campaign, Calendar $calendar)
     {
-        return $this->crudUpdate($request, $calendar);
+        return $this->campaign($campaign)->crudUpdate($request, $calendar);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Calendar $calendar)
+    public function destroy(Campaign $campaign, Calendar $calendar)
     {
-        return $this->crudDestroy($calendar);
+        return $this->campaign($campaign)->crudDestroy($calendar);
     }
 
     public function event(Campaign $campaign, Calendar $calendar)
@@ -134,7 +132,7 @@ class CalendarController extends CrudController
      */
     public function monthList(Calendar $calendar)
     {
-        return Response::json([
+        return response()->json([
             'months' => $calendar->months(),
             'current' => [
                 'year' => $calendar->currentDate('year'),

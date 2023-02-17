@@ -11,7 +11,7 @@
     'description' => '',
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => route($entity->pluralType() . '.show', $entity->child->id), 'label' => $entity->name],
+        ['url' => $entity->url(), 'label' => $entity->name],
         __('crud.edit'),
     ]
 ])

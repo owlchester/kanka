@@ -28,29 +28,29 @@ class FamilyController extends CrudController
     /** @var string Filter */
     protected $filter = FamilyFilter::class;
 
-    public function store(StoreFamily $request)
+    public function store(StoreFamily $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
-    public function show(Family $family)
+    public function show(Campaign $campaign, Family $family)
     {
-        return $this->crudShow($family);
+        return $this->campaign($campaign)->crudShow($family);
     }
 
-    public function edit(Family $family)
+    public function edit(Campaign $campaign, Family $family)
     {
-        return $this->crudEdit($family);
+        return $this->campaign($campaign)->crudEdit($family);
     }
 
-    public function update(StoreFamily $request, Family $family)
+    public function update(StoreFamily $request, Campaign $campaign, Family $family)
     {
-        return $this->crudUpdate($request, $family);
+        return $this->campaign($campaign)->crudUpdate($request, $family);
     }
 
-    public function destroy(Family $family)
+    public function destroy(Campaign $campaign, Family $family)
     {
-        return $this->crudDestroy($family);
+        return $this->campaign($campaign)->crudDestroy($family);
     }
 
     /**

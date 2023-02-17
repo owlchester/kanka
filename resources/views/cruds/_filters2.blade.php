@@ -1,6 +1,6 @@
 @if (!empty($filters))
 <?php $filterColWidth = count($filters) > 8 ? 6 : 12; ?>
-    {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
+    {!! Form::open(['url' => route($route, ['campaign' => $campaign->id]), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
     <div class="row">
     @foreach ($filters as $field)
         <div class="col-md-{{ is_array($field) ? 12 : $filterColWidth }}">
@@ -60,7 +60,7 @@
 </div>
 <button class="btn btn-primary">{{ __('crud.filter') }}</button>
 
-<a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default pull-right">
+<a href="{{ route($route, ['campaign' => $campaign->id, 'reset-filter' => 'true']) }}" class="btn btn-default pull-right">
     <i class="fa-solid fa-eraser"></i> {{ trans('crud.filters.clear') }}
 </a>
 

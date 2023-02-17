@@ -1,8 +1,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars.event.create.title', ['name' => $calendar->name]),
     'breadcrumbs' => [
-        ['url' => route('calendars.index'), 'label' => __('entities.calendars')],
-        ['url' => route('calendars.show', $calendar->id), 'label' => $calendar->name],
+        ['url' => route('calendars.index', $campaign), 'label' => __('entities.calendars')],
+        ['url' => $calendar->getLink(), 'label' => $calendar->name],
         __('crud.tabs.reminders'),
     ],
     'canonical' => true,

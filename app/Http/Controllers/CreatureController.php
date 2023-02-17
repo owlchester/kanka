@@ -30,37 +30,37 @@ class CreatureController extends CrudController
      * @param StoreCreature $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreCreature $request)
+    public function store(StoreCreature $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      */
-    public function show(Creature $creature)
+    public function show(Campaign $campaign, Creature $creature)
     {
-        return $this->crudShow($creature);
+        return $this->campaign($campaign)->crudShow($creature);
     }
 
     /**
      */
-    public function edit(Creature $creature)
+    public function edit(Campaign $campaign, Creature $creature)
     {
-        return $this->crudEdit($creature);
+        return $this->campaign($campaign)->crudEdit($creature);
     }
 
     /**
      */
-    public function update(StoreCreature $request, Creature $creature)
+    public function update(StoreCreature $request, Campaign $campaign, Creature $creature)
     {
-        return $this->crudUpdate($request, $creature);
+        return $this->campaign($campaign)->crudUpdate($request, $creature);
     }
 
     /**
      */
-    public function destroy(Creature $creature)
+    public function destroy(Campaign $campaign, Creature $creature)
     {
-        return $this->crudDestroy($creature);
+        return $this->campaign($campaign)->crudDestroy($creature);
     }
 
     /**

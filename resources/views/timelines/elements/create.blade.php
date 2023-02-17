@@ -8,15 +8,15 @@
 'title' => __('timelines/elements.create.title', ['name' => $timeline->name]),
 'description' => '',
 'breadcrumbs' => [
-['url' => route('timelines.index'), 'label' => __('entities.timelines')],
-['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
+['url' => $timeline->entity->url('index'), 'label' => __('entities.timelines')],
+['url' => $timeline->entity->url(), 'label' => $timeline->name],
 __('timelines/elements.create.title')
 ]
 ])
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['timelines.timeline_elements.store', $timeline], 'method' => 'POST', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+    {!! Form::open(['route' => ['timelines.timeline_elements.store', [$campaign, $timeline]], 'method' => 'POST', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
     <div class="panel panel-default">
         @if (request()->ajax())
             <div class="panel-heading">
@@ -31,7 +31,7 @@ __('timelines/elements.create.title')
             @include('timelines.elements._form', ['model' => null])
         </div>
         <div class="panel-footer">
-            <a href="{{ route('timelines.show', $timeline) }}" class="btn btn-default">
+            <a href="{{ $timeline->getLink() }}" class="btn btn-default">
                 {{ __('crud.cancel') }}
             </a>
             <div class="form-element pull-right">

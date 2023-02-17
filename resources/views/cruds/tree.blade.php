@@ -11,11 +11,11 @@
 @section('content')
     <div class="row mb-5">
         <div class="col-md-12">
-            @include('layouts.datagrid.search', ['route' => route($name . '.tree')])
+            @include('layouts.datagrid.search', ['route' => route($name . '.tree', ['campaign' => $campaign->id])])
 
             @can('create', $model)
                 <div class="btn-group pull-right">
-                    <a href="{{ route($name . '.create') }}" class="btn btn-primary btn-new-entity" data-entity-type="{{ $name }}">
+                    <a href="{{ route($name . '.create', ['campaign' => $campaign->id]) }}" class="btn btn-primary btn-new-entity" data-entity-type="{{ $name }}">
                         <i class="fa-solid fa-plus"></i>
                         <span class="hidden-xs hidden-sm">{{ __('entities.' .  \Illuminate\Support\Str::singular($route)) }}</span>
                     </a>
@@ -26,7 +26,7 @@
                         @if ($templates->isNotEmpty())
                         @foreach ($templates as $entityTemplate)
                             <li>
-                                <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $name }}">
+                                <a href="{{ route($name . '.create', ['campaign' => $campaign->id, 'copy' => $entityTemplate->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $name }}">
                                     <i class="fa-solid fa-star"></i> {{ $entityTemplate->name  }}</span>
                                 </a>
                             </li>
@@ -96,5 +96,5 @@
 
     @includeWhen(auth()->check(), 'cruds.datagrids.bulks.modals')
 
-    <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.tree') }}">
+    <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.tree', ['campaign' => $campaign->id]) }}">
 @endsection

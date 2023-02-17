@@ -251,7 +251,7 @@ abstract class MiscModel extends Model
             return '#';
         }
         try {
-            return route($this->entity->pluralType() . '.' . $route, $this->id);
+            return route($this->entity->pluralType() . '.' . $route, [$this->campaign_id, $this->id]);
         } catch (Exception $e) {
             return '#';
         }

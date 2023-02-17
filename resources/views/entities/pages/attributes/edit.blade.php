@@ -10,7 +10,7 @@ $isAdmin = Auth::user()->isAdmin();
     'description' => '',
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $parentRoute)],
-        ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
+        ['url' => $entity->url(), 'label' => $entity->name],
         __('crud.tabs.attributes'),
     ],
     'mainTitle' => false,

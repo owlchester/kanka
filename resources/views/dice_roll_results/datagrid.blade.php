@@ -14,7 +14,7 @@
             'label' => __('entities.dice_roll'),
             'field' => 'diceRoll.name',
             'render' => function($model) {
-                return '<a href="' . route('dice_rolls.show', $model->dice_roll_id) . '">' . e($model->diceRoll->name) . '</a>';
+                return '<a href="' . route('dice_rolls.show', [$model->diceRoll->campaign_id, $model->dice_roll_id]) . '">' . e($model->diceRoll->name) . '</a>';
             }
         ],
         [

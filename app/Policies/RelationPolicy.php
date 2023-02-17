@@ -62,9 +62,14 @@ class RelationPolicy
      */
     public function delete(?User $user, Relation $relation)
     {
+        if (empty($user)) {
+            return false;
+        }
+        dd(empty($relation));
         if (empty($relation->owner) || empty($relation->owner->child)) {
             return false;
         }
+        dd('wa');
         return $user->can('relation', $relation->owner->child);
     }
 

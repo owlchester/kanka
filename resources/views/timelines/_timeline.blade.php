@@ -29,7 +29,7 @@ $loadedElements = [];
 
             <div class="box-tools">
                 @can('update', $timeline)
-                    <a href="{{ route('timelines.timeline_eras.edit', [$timeline, $era, 'from' => 'view']) }}"
+                    <a href="{{ route('timelines.timeline_eras.edit', [$campaign, $timeline, $era, 'from' => 'view']) }}"
                        class="btn btn-box-tool" role="button"
                        title="{{ __('crud.edit') }}"
                     >
@@ -42,7 +42,7 @@ $loadedElements = [];
                        title="{{ __('crud.remove') }}">
                         <i class="fa-solid fa-trash" aria-hidden="true"></i>
                     </a>
-                    {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $timeline, $era, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-era-' . $era->id]) !!}
+                    {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $campaign, $timeline, $era, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-era-' . $era->id]) !!}
                     {!! Form::close() !!}
                 @endcan
             </div>
@@ -67,7 +67,7 @@ $loadedElements = [];
 
     @can('update', $timeline)
         <div class="text-center mb-5">
-            <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn btn-primary btn-sm"
+            <a href="{{ route('timelines.timeline_elements.create', [$campaign, $model, 'era_id' => $era, 'position' => $position]) }}" class="btn btn-primary btn-sm"
                 title="{{ __('crud.create') }}"
             >
                 <i class="fa-solid fa-plus"></i>
@@ -80,7 +80,7 @@ $loadedElements = [];
     <div class="alert alert-warning">
         <div class = "mb-2" >{{ __('timelines.helpers.no_era_v2') }} </div>
         @can('update', $timeline)
-        <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-warning btn-sm">
+        <a href="{{ route('timelines.timeline_eras.create', ['campaign' => $campaign->id, 'timeline' => $model, 'from' => 'view']) }}" class="btn btn-warning btn-sm">
             <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
         </a>
         @endcan
@@ -89,7 +89,7 @@ $loadedElements = [];
 @if (!$timeline->eras->isEmpty())
     @can('update', $timeline)
         <div class="text-center mb-5">
-            <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('timelines.timeline_eras.create', ['campaign' => $campaign->id, 'timeline' => $model, 'from' => 'view']) }}" class="btn btn-primary btn-sm">
                 <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
             </a>
         </div>
@@ -101,7 +101,7 @@ $loadedElements = [];
     @can('update', $timeline)
         @include('editors.editor')
 
-        @if ($ajax)
+        @if (request()->ajax())
             <script type="text/javascript">
                 $(document).ready(function () {
     @if(auth()->user()->editor != 'legacy')
@@ -131,7 +131,7 @@ $loadedElements = [];
                 @continue
             @endif
 
-            {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_elements.destroy', $timeline, $element, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-element-' . $element->id]) !!}
+            {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_elements.destroy', $campaign, $timeline, $element, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-element-' . $element->id]) !!}
             {!! Form::close() !!}
         @endforeach
     @endcan

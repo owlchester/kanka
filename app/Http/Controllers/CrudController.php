@@ -8,6 +8,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Facades\FormCopy;
 use App\Facades\Permissions;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\MenuLink;
@@ -15,6 +16,7 @@ use App\Models\MiscModel;
 use App\Services\MultiEditingService;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -27,6 +29,7 @@ class CrudController extends Controller
 {
     use BulkControllerTrait;
     use GuestAuthTrait;
+    use CampaignAware;
 
     /** @var string The view where to find the resources */
     protected string $view = '';
@@ -97,9 +100,12 @@ class CrudController extends Controller
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function index(Request $request)
+    public function index(Request $request, Campaign $campaign)
     {
-        return $this->crudIndex($request);
+        if (empty($campaign) || empty($campaign->id)) {
+            $campaign = CampaignLocalization::getCampaign();
+        }
+        return $this->campaign($campaign)->crudIndex($request);
     }
 
     /**
@@ -120,8 +126,6 @@ class CrudController extends Controller
             );
         }
 
-        $campaign = CampaignLocalization::getCampaign();
-
         /**
          * Prepare a lot of variables that will be shared over to the view
          * @var MiscModel $model
@@ -133,7 +137,7 @@ class CrudController extends Controller
         $filters = $this->filters;
         $filter = !empty($this->filter) ? new $this->filter() : null;
         if (!empty($filter)) {
-            $filter->campaign($campaign)->build();;
+            $filter->campaign($this->campaign)->build();;
         }
         $filterService = $this->filterService;
         $route = $this->route;
@@ -176,14 +180,13 @@ class CrudController extends Controller
         // Add a button to the tree view if the controller has it
         if (method_exists($this, 'tree')) {
             $this->addNavAction(
-                route($this->route . '.tree'),
+                route($this->route . '.tree', ['campaign' => $this->campaign->id]),
                 '<i class="fa-solid fa-share-nodes" aria-hidden="true"></i> ' . __('crud.actions.explore_view')
             );
         }
         $actions = $this->navActions;
 
         return view('cruds.index', compact(
-            'campaign',
             'models',
             'name',
             'langKey',
@@ -198,7 +201,8 @@ class CrudController extends Controller
             'bulk',
             'templates',
             'datagridActions',
-        ));
+        ))
+            ->with('campaign', $this->campaign);
     }
 
     /**
@@ -206,9 +210,12 @@ class CrudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Campaign $campaign)
     {
-        return $this->crudCreate();
+        if (empty($campaign) || empty($campaign->id)) {
+            $campaign = CampaignLocalization::getCampaign();
+        }
+        return $this->campaign($campaign)->crudCreate();
     }
     public function crudCreate($params = [])
     {
@@ -237,8 +244,7 @@ class CrudController extends Controller
         $model = new $this->model();
         $templates = $this->buildAttributeTemplates($model->entityTypeId());
 
-        $campaign = CampaignLocalization::getCampaign();
-        $params['campaign'] = $campaign;
+        $params['campaign'] = $this->campaign;
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes;
@@ -268,10 +274,12 @@ class CrudController extends Controller
                 return redirect()->back();
             }
         }
+        if (empty($this->campaign)) {
+            $this->campaign = CampaignLocalization::getCampaign();
+        }
 
-        $campaign = CampaignLocalization::getCampaign();
         $data = $request->all();
-        $data['campaign_id'] = $campaign->id;
+        $data['campaign_id'] = $this->campaign->id;
 
         try {
             /** @var MiscModel $model */
@@ -291,44 +299,43 @@ class CrudController extends Controller
                 'name' => link_to_route(
                     $this->view . '.show',
                     e($new->name),
-                    [$new->id]
+                    ['campaign' => $this->campaign->id, $new->id]
                 )
             ]);
 
             session()->flash('success_raw', $success);
 
             if ($request->has('submit-new')) {
-                $route = route($this->route . '.create');
+                $route = route($this->route . '.create', ['campaign' => $this->campaign->id]);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
-                $route = route($this->route . '.edit', $new);
+                $route = $new->getLink('edit');
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view')) {
-                $route = route($this->route . '.show', $new);
+                $route = $new->getLink();
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
-                $route = route($this->route . '.create', ['copy' => $new->id]);
+                $route = route($this->route . '.create', ['campaign' => $this->campaign->id, 'copy' => $new->id]);
                 return response()->redirectTo($route);
             } elseif (auth()->user()->new_entity_workflow == 'created') {
                 $redirectToCreated = true;
             } elseif ($model->getEntityType() == 'maps') {
                 // If creating a map, go to edit it directly
-                $route = route($this->route . '.edit', $new);
+                $route = $new->getLink('edit');
                 return response()->redirectTo($route);
             }
 
             if ($redirectToCreated) {
-                $route = route($this->route . '.show', $new);
+                $route = $new->getLink();
                 return response()->redirectTo($route);
             }
 
             $subroute = 'index';
-            $campaign = CampaignLocalization::getCampaign();
-            $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+            $defaultNested = auth()->user()->defaultNested || $this->campaign->defaultToNested();
             if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
                 $subroute = 'tree';
             }
-            $route = route($this->route . '.' . $subroute);
+            $route = route($this->route . '.' . $subroute, ['campaign' => $this->campaign]);
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));
@@ -354,15 +361,17 @@ class CrudController extends Controller
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
         }
         $name = $this->view;
-        $ajax = request()->ajax();
-        $campaign = CampaignLocalization::getCampaign();
+
+        if (empty($this->campaign)) {
+            $this->campaign = CampaignLocalization::getCampaign();
+        }
 
         // Fix for models without an entity
         if (empty($model->entity) && !($model instanceof MenuLink)) {
             if (auth()->guest()) {
                 abort(404);
             }
-            if (Permissions::user(auth()->user())->campaign($campaign)->isAdmin()) {
+            if (Permissions::user(auth()->user())->campaign($this->campaign)->isAdmin()) {
                 dd('CCS16 - Error');
             } else {
                 abort(404);
@@ -371,8 +380,9 @@ class CrudController extends Controller
 
         return view(
             'cruds.show',
-            compact('campaign', 'model', 'name', 'ajax')
-        );
+            compact('model', 'name')
+        )
+            ->with('campaign', $this->campaign);
     }
 
     /**
@@ -386,10 +396,9 @@ class CrudController extends Controller
         $this->authorize('update', $model);
 
         /** @var MiscModel $model */
-        $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
 
-        if ($campaign->hasEditingWarning() && $model->entity) {
+        if ($this->campaign->hasEditingWarning() && $model->entity) {
             /** @var MultiEditingService $editingService */
             $editingService = app()->make(MultiEditingService::class);
             $editingUsers = $editingService->model($model->entity)->user(auth()->user())->users();
@@ -398,10 +407,13 @@ class CrudController extends Controller
                 $editingService->edit();
             }
         }
+        if (empty($campaign) || empty($campaign->id)) {
+            $campaign = CampaignLocalization::getCampaign();
+        }
 
         $params = [
             'model' => $model,
-            'campaign' => $campaign,
+            'campaign' => $this->campaign,
             'name' => $this->view,
             'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && auth()->user()->can('permission', $model),
@@ -451,7 +463,7 @@ class CrudController extends Controller
                 'name' => link_to_route(
                     $this->route . '.show',
                     e($model->name),
-                    [$model]
+                    [$model->campaign_id, $model]
                 )
             ]);
 
@@ -465,7 +477,7 @@ class CrudController extends Controller
 
             session()->flash('success_raw', $success);
 
-            $options = [$model];
+            $options = [$model->campaign_id, $model];
             if (request()->has('redirect')) {
                 $redirect = explode('&', request()->get('redirect'));
                 foreach ($redirect as $option) {
@@ -475,19 +487,18 @@ class CrudController extends Controller
             }
             $route = route($this->route . '.show', $options);
             if ($request->has('submit-new')) {
-                $route = route($this->route . '.create');
+                $route = route($this->route . '.create', ['campaign' => $this->campaign->id]);
             } elseif ($request->has('submit-update')) {
                 $route = route($this->route . '.edit', $model->id);
             } elseif ($request->has('submit-close')) {
                 $subroute = 'index';
-                $campaign = CampaignLocalization::getCampaign();
-                $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+                $defaultNested = auth()->user()->defaultNested || $this->campaign->defaultToNested();
                 if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
                     $subroute = 'tree';
                 }
-                $route = route($this->route . '.' . $subroute);
+                $route = route($this->route . '.' . $subroute, ['campaign' => $this->campaign->id]);
             } elseif ($request->has('submit-copy')) {
-                $route = route($this->route . '.create', ['copy' => $model->id]);
+                $route = route($this->route . '.create', ['campaign' => $this->campaign->id, 'copy' => $model->id]);
                 return response()->redirectTo($route);
             }
             return response()->redirectTo($route);
@@ -510,13 +521,12 @@ class CrudController extends Controller
         $model->delete();
 
         $subroute = 'index';
-        $campaign = CampaignLocalization::getCampaign();
-        $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+        $defaultNested = auth()->user()->defaultNested || $this->campaign->defaultToNested();
         if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
             $subroute = 'tree';
         }
 
-        return redirect()->route($this->route . '.' . $subroute)
+        return redirect()->route($this->route . '.' . $subroute, ['campaign' => $this->campaign->id])
             ->with('success', __('general.success.deleted', ['name' => $model->name]));
     }
 
@@ -531,7 +541,9 @@ class CrudController extends Controller
         // Policies will always fail if they can't resolve the user.
         $this->authCheck($model);
 
-        $campaign = CampaignLocalization::getCampaign();
+        if (empty($this->campaign)) {
+            $this->campaign = CampaignLocalization::getCampaign();
+        }
         $name = $this->view;
         $fullview = $this->view . '.' . $view;
         if ($directView) {
@@ -544,7 +556,6 @@ class CrudController extends Controller
         $rows = $this->rows;
 
         return view('cruds.subview', compact(
-            'campaign',
             'fullview',
             'model',
             'name',
@@ -552,7 +563,7 @@ class CrudController extends Controller
             'data',
             'view',
             'rows'
-        ));
+        ))->with('campaign', $this->campaign);
     }
 
     /**

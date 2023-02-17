@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\CharacterFilter;
+use App\Models\Campaign;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter;
 
@@ -25,36 +26,36 @@ class CharacterController extends CrudController
      */
     protected $filter = CharacterFilter::class;
 
-    public function store(StoreCharacter $request)
+    public function store(StoreCharacter $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      */
-    public function show(Character $character)
+    public function show(Campaign $campaign, Character $character)
     {
-        return $this->crudShow($character);
+        return $this->campaign($campaign)->crudShow($character);
     }
 
     /**
      */
-    public function edit(Character $character)
+    public function edit(Campaign $campaign, Character $character)
     {
-        return $this->crudEdit($character);
+        return $this->campaign($campaign)->crudEdit($character);
     }
 
     /**
      */
-    public function update(StoreCharacter $request, Character $character)
+    public function update(StoreCharacter $request, Campaign $campaign, Character $character)
     {
-        return $this->crudUpdate($request, $character);
+        return $this->campaign($campaign)->crudUpdate($request, $character);
     }
 
     /**
      */
-    public function destroy(Character $character)
+    public function destroy(Campaign $campaign, Character $character)
     {
-        return $this->crudDestroy($character);
+        return $this->campaign($campaign)->crudDestroy($character);
     }
 }

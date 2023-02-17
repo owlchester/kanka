@@ -10,19 +10,19 @@
         @foreach ($actions as $action)
             <li>
                 @if ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT)
-                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : $model) }}">
+                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : ['campaign' => $campaign->id, $model]) }}">
                         <i class="fa-solid fa-pencil"></i>
                         {{ __('crud.edit') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_COPY)
-                    <a href="{{ route($model->url('create'), method_exists($model, 'routeCopyParams') ? $model->routeCopyParams($params) : $model) }}">
+                    <a href="{{ route($model->url('create'), method_exists($model, 'routeCopyParams') ? $model->routeCopyParams($params) : ['campaign' => $campaign->id, $model]) }}">
                         <i class="fa-solid fa-copy"></i>
                         {{ __('crud.actions.copy') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT_AJAX)
-                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : $model) }}"
+                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : ['campaign' => $campaign->id, $model]) }}"
                        data-toggle="ajax-modal" data-target="#entity-modal"
-                       data-url="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : $model) }}"
+                       data-url="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : ['campaign' => $campaign->id, $model]) }}"
                     >
                         <i class="fa-solid fa-pencil"></i>
                         {{ __('crud.edit') }}

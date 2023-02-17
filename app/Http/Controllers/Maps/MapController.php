@@ -34,61 +34,50 @@ class MapController extends CrudController
     /** @var string Filter */
     protected $filter = MapFilter::class;
 
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMap $request)
+    public function store(StoreMap $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Map $map)
+    public function show(Campaign $campaign, Map $map)
     {
-        return $this->crudShow($map);
+        return $this->campaign($campaign)->crudShow($map);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Map $map)
+    public function edit(Campaign $campaign, Map $map)
     {
         // Can't edit a map being chunked
         if ($map->isChunked() && $map->chunkingRunning()) {
             return response()
-                ->redirectToRoute('maps.show', $map->id)
+                ->redirectTo($map->getLink())
                 ->with('error', __('maps.errors.chunking.running.edit') . ' ' . __('maps.errors.chunking.running.time'));
         }
-        return $this->crudEdit($map);
+        return $this->campaign($campaign)->crudEdit($map);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreMap $request, Map $map)
+    public function update(StoreMap $request, Campaign $campaign, Map $map)
     {
-        return $this->crudUpdate($request, $map);
+        return $this->campaign($campaign)->crudUpdate($request, $map);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Map $map)
+    public function destroy(Campaign $campaign, Map $map)
     {
-        return $this->crudDestroy($map);
+        return $this->campaign($campaign)->crudDestroy($map);
     }
 
     /**

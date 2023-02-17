@@ -27,11 +27,11 @@ $existing = $model->allChildren()->count();
                 <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('tag_id'))
-                <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn btn-box-tool">
+                <a href="{{ route('tags.show', [$campaign, $model, '#tag-children']) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->count() }})
                 </a>
             @else
-                <a href="{{ route('tags.show', [$model, 'tag_id' => $model->id, '#tag-children']) }}" class="btn btn-box-tool">
+                <a href="{{ route('tags.show', [$campaign, $model, 'tag_id' => $model->id, '#tag-children']) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->count() }})
                 </a>
             @endif

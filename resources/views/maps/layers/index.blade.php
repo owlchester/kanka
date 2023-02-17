@@ -16,13 +16,13 @@
                 <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
             </a>
             @if ($model->explorable())
-                <a href="{{ route('maps.explore', [$campaign, 'map' => $model]) }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('maps.explore', ['campaign' => $campaign->id, 'map' => $model->id]) }}" class="btn btn-primary btn-sm">
                     <i class="fa-solid fa-map" aria-hidden="true"></i>
                     {{ __('maps.actions.explore') }}
                 </a>
             @endif
-            <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-warning btn-sm"
-                data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
+            <a href="{{ route('maps.map_layers.create', ['campaign' => $campaign->id, 'map' => $model->id]) }}" class="btn btn-warning btn-sm"
+                data-url="{{ route('maps.map_layers.create', ['campaign' => $campaign->id, 'map' => $model->id]) }}"
             >
             <i class="fa-solid fa-plus"></i> {{ __('maps/layers.actions.add') }}
             </a>

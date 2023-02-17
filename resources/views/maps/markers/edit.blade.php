@@ -4,12 +4,12 @@
 * @var \App\Models\MapMarker $model
 */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('maps/markers.edit.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('maps.index'), 'label' => __('entities.maps')],
-        ['url' => $map->entity->url('show'), 'label' => $map->name],
+        ['url' => $map->entity->url('index'), 'label' => __('entities.maps')],
+        ['url' => $map->entity->url(), 'label' => $map->name],
         __('maps/markers.edit.title', ['name' => $model->name])
     ]
 ])
@@ -17,7 +17,7 @@
 
 @section('content')
     <div class="panel panel-default">
-        @if ($ajax)
+        @if (request()->ajax())
             <div class="panel-heading">
                 <button type="button" class="close" data-dismiss="modal"
                     aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
@@ -30,7 +30,7 @@
             <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @include('partials.errors')
 
-            {!! Form::model($model, ['route' => ['maps.map_markers.update', 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+            {!! Form::model($model, ['route' => ['maps.map_markers.update', 'campaign' => $campaign->id, 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
             @include('maps.markers._form')
 
             <div class="form-group">
@@ -63,7 +63,7 @@
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['maps.map_markers.destroy', $model->map_id, $model->id],
+        'route' => ['maps.map_markers.destroy', $campaign->id, $model->map_id, $model->id],
         'style' => 'display:inline',
         'id' => 'delete-marker-confirm-form-' . $model->id]) !!}
     {!! Form::close() !!}

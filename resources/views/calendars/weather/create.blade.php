@@ -1,15 +1,15 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars/weather.create.title', ['name' => $calendar->name]),
     'breadcrumbs' => [
-        ['url' => route('calendars.index'), 'label' => __('entities.calendars')],
-        ['url' => route('calendars.show', $calendar->id), 'label' => $calendar->name],
+        ['url' => route('calendars.index', [$campaign]), 'label' => __('entities.calendars')],
+        ['url' => $calendar->getLink(), 'label' => $calendar->name],
         __('calendars.show.tabs.weather'),
     ],
     'canonical' => true,
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['calendars.calendar_weather.store', $calendar->id], 'method' => 'POST', 'data-shortcut' => '1']) !!}
+    {!! Form::open(['route' => ['calendars.calendar_weather.store', [$campaign->id, $calendar->id]], 'method' => 'POST', 'data-shortcut' => '1']) !!}
 
     @if (request()->ajax())
         <div class="modal-body">

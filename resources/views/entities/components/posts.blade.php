@@ -59,7 +59,7 @@ $first = $pinnedPosts->first();
 @if (!request()->ajax() && $entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
 @can('post', [$model, 'add'])
     <div class="mb-5 text-center row-add-note-button">
-        <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn btn-warning btn-sm btn-new-post"
+        <a href="{{ route('entities.posts.create', ['campaign' => $entity->campaign_id, 'entity' => $entity->id]) }}" class="btn btn-warning btn-sm btn-new-post"
            data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
             <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}
         </a>

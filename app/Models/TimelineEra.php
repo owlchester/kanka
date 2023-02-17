@@ -136,7 +136,7 @@ class TimelineEra extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->timeline_id, $this->id];
+        return [$this->timeline->campaign_id, $this->timeline_id, $this->id];
     }
 
     /**
@@ -145,7 +145,7 @@ class TimelineEra extends Model
      */
     public function getLink(): string
     {
-        return route('timelines.timeline_eras.edit', ['timeline' => $this->timeline_id, $this->id]);
+        return route('timelines.timeline_eras.edit', ['campaign' => $this->timeline->campaign_id, 'timeline' => $this->timeline_id, $this->id]);
     }
 
     /**

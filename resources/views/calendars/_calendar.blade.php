@@ -46,8 +46,8 @@ $weekNumber = 1;
 
             <div class="pull-right">
                 <div class="btn-group">
-                    <a href="{{ route('calendars.show', [$model, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}" class="btn btn-default btn-corner-left"<?=($renderer->isYearlyLayout() ? ' disabled="disabled"' : null)?>>{{ __('calendars.layouts.year') }}</a>
-                    <a href="{{ route('calendars.show', array_merge([$model, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [])) }}" class="btn btn-default btn-corner-right"<?=(!$renderer->isYearlyLayout() ? ' disabled="disabled"' : null)?>>{{ __('calendars.layouts.month') }}</a>
+                    <a href="{{ route('calendars.show', [$campaign, $model, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}" class="btn btn-default btn-corner-left"<?=($renderer->isYearlyLayout() ? ' disabled="disabled"' : null)?>>{{ __('calendars.layouts.year') }}</a>
+                    <a href="{{ route('calendars.show', array_merge([$campaign, $model, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [$campaign])) }}" class="btn btn-default btn-corner-right"<?=(!$renderer->isYearlyLayout() ? ' disabled="disabled"' : null)?>>{{ __('calendars.layouts.month') }}</a>
                 </div>
             </div>
             <div class="month-alias help-block">{!! $renderer->monthAlias() !!}</div>
@@ -112,7 +112,7 @@ $weekNumber = 1;
                 <h4 class="modal-title" id="myModalLabel">{{ __('calendars.modals.switcher.title') }}</h4>
             </div>
             <div class="modal-body">
-                {!! Form::open(['route' => ['calendars.show', $model], 'method' => 'GET']) !!}
+                {!! Form::open(['route' => ['calendars.show', [$campaign, $model]], 'method' => 'GET']) !!}
                 <div class="form-group">
                     <label>{{ __('calendars.fields.year') }}</label>
                     {!! Form::number('year', null, ['class' => 'form-control', 'placeholder' => e($renderer->currentYear())]) !!}

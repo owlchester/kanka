@@ -266,4 +266,18 @@ class Relation extends Model
             'is_mirrored',
         ];
     }
+
+    /**
+     * @param string $route = 'show'
+     * @return string
+     * @throws Exception
+     */
+    public function getLink(string $route = 'show'): string
+    {
+        try {
+            return route('relations.' . $route, [$this->owner->campaign_id, $this->id]);
+        } catch (\Exception $e) {
+            return '#';
+        }
+    }
 }

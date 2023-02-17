@@ -39,41 +39,41 @@ class TagController extends CrudController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTag $request)
+    public function store(StoreTag $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Tag $tag)
+    public function show(Campaign $campaign, Tag $tag)
     {
-        return $this->crudShow($tag);
+        return $this->campaign($campaign)->crudShow($tag);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tag $tag)
+    public function edit(Campaign $campaign, Tag $tag)
     {
-        return $this->crudEdit($tag);
+        return $this->campaign($campaign)->crudEdit($tag);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreTag $request, Tag $tag)
+    public function update(StoreTag $request, Campaign $campaign, Tag $tag)
     {
-        return $this->crudUpdate($request, $tag);
+        return $this->campaign($campaign)->crudUpdate($request, $tag);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tag $tag)
+    public function destroy(Campaign $campaign, Tag $tag)
     {
-        return $this->crudDestroy($tag);
+        return $this->campaign($campaign)->crudDestroy($tag);
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+Route::get('/', 'DashboardController@index')->name('dashboard');
+
 Route::get('/overview', [\App\Http\Controllers\CampaignController::class, 'index'])->name('overview');
 
 Route::get('/leave', [\App\Http\Controllers\CampaignController::class, 'leave'])->name('leave');

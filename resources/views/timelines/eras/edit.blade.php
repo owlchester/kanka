@@ -4,7 +4,7 @@
 * @var \App\Models\TimelineEra $model
 */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('timelines/eras.edit.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -17,7 +17,7 @@
 @section('content')
     @include('partials.errors')
     {!! Form::model($model, [
-        'route' => ['timelines.timeline_eras.update', 'timeline' => $timeline, 'timeline_era' => $model],
+        'route' => ['timelines.timeline_eras.update', 'campaign' => $campaign, 'timeline' => $timeline, 'timeline_era' => $model],
         'method' => 'PATCH',
         'id' => 'timeline-era-form',
         'class' => 'ajax-subform',

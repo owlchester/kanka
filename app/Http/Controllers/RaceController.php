@@ -30,37 +30,37 @@ class RaceController extends CrudController
      * @param StoreRace $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRace $request)
+    public function store(StoreRace $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      */
-    public function show(Race $race)
+    public function show(Campaign $campaign, Race $race)
     {
-        return $this->crudShow($race);
+        return $this->campaign($campaign)->crudShow($race);
     }
 
     /**
      */
-    public function edit(Race $race)
+    public function edit(Campaign $campaign, Race $race)
     {
-        return $this->crudEdit($race);
+        return $this->campaign($campaign)->crudEdit($race);
     }
 
     /**
      */
-    public function update(StoreRace $request, Race $race)
+    public function update(StoreRace $request, Campaign $campaign, Race $race)
     {
-        return $this->crudUpdate($request, $race);
+        return $this->campaign($campaign)->crudUpdate($request, $race);
     }
 
     /**
      */
-    public function destroy(Race $race)
+    public function destroy(Campaign $campaign, Race $race)
     {
-        return $this->crudDestroy($race);
+        return $this->campaign($campaign)->crudDestroy($race);
     }
 
     /**

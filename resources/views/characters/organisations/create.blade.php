@@ -1,8 +1,8 @@
-@extends('layouts.app', [
-    'title' => trans('characters.organisations.create.title', ['name' => $model->name]),
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
+    'title' => __('characters.organisations.create.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => route('characters.index'), 'label' => __('entities.characters')],
-        ['url' => route('characters.show', $model->id), 'label' => $model->name]
+        ['url' => route('characters.index', ['campaign' => $model->campaign_id]), 'label' => __('entities.characters')],
+        ['url' => $model->getLink(), 'label' => $model->name]
     ]
 ])
 

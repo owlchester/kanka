@@ -105,7 +105,7 @@
     @parent
     <!-- Deletion forms -->
     @foreach ($model->markers as $marker)
-        {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $model, $marker], 'style ' => 'display:inline', 'id' => 'delete-form-marker-' . $marker->id]) !!}
+        {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $campaign, $model, $marker], 'style ' => 'display:inline', 'id' => 'delete-form-marker-' . $marker->id]) !!}
         {!! Form::close() !!}
     @endforeach
 @endsection
@@ -163,7 +163,7 @@
                 </div>
                 <div class="panel-body">
                     {!! Form::open([
-                        'route' => ['maps.map_markers.store', $model],
+                        'route' => ['maps.map_markers.store', $campaign, $model],
                         'method' => 'POST',
                         //'enctype' => 'multipart/form-data',
                         //'id' => 'map-marker-new-form'

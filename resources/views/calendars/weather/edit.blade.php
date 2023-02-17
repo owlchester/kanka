@@ -2,15 +2,15 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars/weather.edit.title'),
     'breadcrumbs' => [
-        ['url' => route('calendars.index'), 'label' => __('entities.calendars')],
-        ['url' => route('calendars.show', $weather->calendar->id), 'label' => $weather->calendar->name],
+        ['url' => $calendar->entity->url('index'), 'label' => __('entities.calendars')],
+        ['url' => $calendar->entity->url(), 'label' => $weather->calendar->name],
         __('calendars.show.tabs.weather'),
         __('crud.update'),
     ],
     'canonical' => true,
 ])
 @section('content')
-    {!! Form::model($weather, ['method' => 'PATCH', 'route' => ['calendars.calendar_weather.update', $weather->calendar->id, $weather->id], 'data-shortcut' => '1']) !!}
+    {!! Form::model($weather, ['method' => 'PATCH', 'route' => ['calendars.calendar_weather.update', [$campaign, $weather->calendar->id, $weather->id]], 'data-shortcut' => '1']) !!}
 
     @if (request()->ajax())
         <div class="modal-body">
@@ -64,7 +64,7 @@
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['calendars.calendar_weather.destroy', $weather->calendar->id, $weather->id],
+        'route' => ['calendars.calendar_weather.destroy', [$campaign, $weather->calendar->id, $weather->id]],
         'id' => 'delete-weather-' . $weather->id]) !!}
     @if (request()->has('layout'))
         {!! Form::hidden('layout', request()->get('layout')) !!}

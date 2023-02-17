@@ -39,10 +39,10 @@
                 @endif
             </td>
             <td class="text-right">
-                <a href="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}" class="btn btn-primary btn-xs"
+                <a href="{{ route('timelines.timeline_eras.edit', [$campaign, $model, $era]) }}" class="btn btn-primary btn-xs"
                    title="{{ __('crud.edit') }}"
                    data-toggle="ajax-modal" data-target="#large-modal"
-                   data-url="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}"
+                   data-url="{{ route('timelines.timeline_eras.edit', [$campaign, $model, $era]) }}"
                    data-backdrop="static"
                 >
                     <i class="fa-solid fa-pencil"></i>
@@ -64,9 +64,9 @@
         {{ $eras->links() }}
     </div>
 
-    <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn btn-primary btn-sm"
+    <a href="{{ route('timelines.timeline_eras.create', ['campaign' => $campaign->id, 'timeline' => $model]) }}" class="btn btn-primary btn-sm"
        data-toggle="ajax-modal" data-target="#large-modal"
-       data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
+       data-url="{{ route('timelines.timeline_eras.create', ['campaign' => $campaign->id, 'timeline' => $model]) }}"
        data-backdrop="static"
     >
         <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
@@ -90,7 +90,7 @@
 @section('modals')
     @parent
     @foreach ($eras as $era)
-        {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $model, $era], 'style '=> 'display:inline', 'id' => 'delete-form-era-' . $era->id]) !!}
+        {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $campaign, $model, $era], 'style '=> 'display:inline', 'id' => 'delete-form-era-' . $era->id]) !!}
         {!! Form::close() !!}
     @endforeach
 @endsection

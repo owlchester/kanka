@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Calendar $model */
-$options = ['calendar' => $model->id];
+$options = ['campaign' => $campaign->id, 'calendar' => $model->id];
 $redirect = [];
 if (request()->get('layout') === 'year') {
     $redirect[] = 'layout=year';
@@ -30,7 +30,7 @@ if (!empty($redirect)) {
             </a>
         @endcan
         @can('post', [$model, 'add'])
-            <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn btn-warning btn-sm btn-new-post"
+            <a href="{{ route('entities.posts.create', ['campaign' => $model->entity->campaign_id, 'entity' => $model->entity->id]) }}" class="btn btn-warning btn-sm btn-new-post"
                data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
                 <i class="fa-solid fa-plus"></i> {{ __('crud.actions.new_post') }}
             </a>

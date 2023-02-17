@@ -29,41 +29,41 @@ class OrganisationController extends CrudController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrganisation $request)
+    public function store(StoreOrganisation $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Organisation $organisation)
+    public function show(Campaign $campaign, Organisation $organisation)
     {
-        return $this->crudShow($organisation);
+        return $this->campaign($campaign)->crudShow($organisation);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Organisation $organisation)
+    public function edit(Campaign $campaign, Organisation $organisation)
     {
-        return $this->crudEdit($organisation);
+        return $this->campaign($campaign)->crudEdit($organisation);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreOrganisation $request, Organisation $organisation)
+    public function update(StoreOrganisation $request, Campaign $campaign, Organisation $organisation)
     {
-        return $this->crudUpdate($request, $organisation);
+        return $this->campaign($campaign)->crudUpdate($request, $organisation);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Organisation $organisation)
+    public function destroy(Campaign $campaign, Organisation $organisation)
     {
-        return $this->crudDestroy($organisation);
+        return $this->campaign($campaign)->crudDestroy($organisation);
     }
 
     /**
@@ -117,7 +117,7 @@ class OrganisationController extends CrudController
         }
         Datagrid::layout(\App\Renderers\Layouts\Organisation\Member::class)
             ->route('organisations.members', $options)
-            ->actionParams(['from' => 'org']);
+            ->actionParams(['campaign' => $campaign->id, 'from' => 'org']);
 
         $this->rows = $organisation
             ->{$base}()

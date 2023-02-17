@@ -175,6 +175,7 @@ class MenuLink extends MiscModel
     public function getRouteParams()
     {
         $parameters = [
+            $this->campaign_id,
             $this->target->entity_id,
             'quick-link' => $this->id
         ];
@@ -202,7 +203,7 @@ class MenuLink extends MiscModel
             if (Arr::get($this->options, 'default_dashboard') === '1') {
                 $dashboard = 'default';
             }
-            return route('dashboard', ['dashboard' => $dashboard, 'quick-link' => $this->id]);
+            return route('dashboard', [$this->campaign_id, 'dashboard' => $dashboard, 'quick-link' => $this->id]);
         }
         return !empty($this->entity_id) ? $this->getEntityRoute() : $this->getIndexRoute();
     }
@@ -222,7 +223,7 @@ class MenuLink extends MiscModel
             $menuRoute = $this->target->pluralType() . '.' . $this->menu;
 
             // Inventories use a different url buildup
-            $routeOptions = [$this->target->id, 'quick-link' => $this->id];
+            $routeOptions = [$this->campaign_id, $this->target->id, 'quick-link' => $this->id];
             if ($this->menu === 'inventory') {
                 return route('entities.inventory', $routeOptions);
             } elseif ($this->menu === 'relations') {
@@ -248,7 +249,7 @@ class MenuLink extends MiscModel
      */
     protected function getIndexRoute(): string
     {
-        $filters = $this->filters . '&_clean=true&_from=quicklink&quick-link=' . $this->id;
+        $filters = ['campaign' => $this->campaign_id, $this->filters . '&_clean=true&_from=quicklink&quick-link=' . $this->id];
         $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] == '1' ? 'tree' : 'index');
 
         $routeName = Str::plural($this->type) . ".{$nestedType}";
@@ -269,7 +270,7 @@ class MenuLink extends MiscModel
      */
     public function getLink(string $route = 'show'): string
     {
-        return route('menu_links.' . $route, $this->id);
+        return route('menu_links.' . $route, [$this->campaign_id, $this->id]);
     }
 
     /**
@@ -353,7 +354,7 @@ class MenuLink extends MiscModel
             return null;
         }
 
-        return $entity->url('show');
+        return $entity->url();
     }
 
     /**

@@ -23,7 +23,7 @@
             @foreach ($r as $item)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $item->thumbnail() }}');" title="{{ $item->name }}" href="{{ route('items.show', $item->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $item->thumbnail() }}');" title="{{ $item->name }}" href="{{ $item->getLink() }}"></a>
                     </td>
                     <td>
                         {!! $item->tooltipedLink() !!}
@@ -37,7 +37,7 @@
                         </td>
                     @endif
                     <td class="text-right">
-                        <a href="{{ route('items.show', [$item]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ $item->getLink() }}" class="btn btn-xs btn-primary">
                             <i class="fa-solid fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
                         </a>
                     </td>

@@ -337,8 +337,8 @@ class MapMarker extends Model
             </div>
             ' . $body . '
             <div class="marker-popup-actions">
-                <a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]) . '" class="btn btn-xs btn-primary">' . __('crud.edit') . '</a>
-                <a href="' . route('maps.map_markers.create', [$this->map_id, 'source' => $this->id]) . '" class="btn btn-xs btn-primary">' . __('crud.actions.copy') . '</a>
+                <a href="' . route('maps.map_markers.edit', [$this->map->campaign_id, $this->map_id, $this->id]) . '" class="btn btn-xs btn-primary">' . __('crud.edit') . '</a>
+                <a href="' . route('maps.map_markers.create', [$this->map->campaign_id, $this->map_id, 'source' => $this->id]) . '" class="btn btn-xs btn-primary">' . __('crud.actions.copy') . '</a>
 
                 <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="' .
                     str_replace('`', '\'', $this->markerTitle(false)) . '"
@@ -660,11 +660,11 @@ class MapMarker extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->map_id, $this->id];
+        return [$this->map->campaign_id, $this->map_id, $this->id];
     }
     public function routeCopyParams(array $options = []): array
     {
-        return [$this->map_id, 'source' => $this->id];
+        return [$this->map->campaign_id, $this->map_id, 'source' => $this->id];
     }
     /**
      * Patch an entity from the datagrid2 batch editing
@@ -685,7 +685,7 @@ class MapMarker extends Model
      */
     public function getLink(): string
     {
-        return route('maps.map_markers.edit', ['map' => $this->map_id, $this->id]);
+        return route('maps.map_markers.edit', ['campaign' => $this->map->campaign_id, 'map' => $this->map_id, 'map_marker' => $this->id]);
     }
 
     /**

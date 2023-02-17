@@ -41,7 +41,7 @@ if ($datagridActions->hasBulkPrint()) {
         <i class="fa-solid fa-print"></i> ' . __('crud.actions.print') . '
     </a>';
 }
-if (auth()->check() && auth()->user()->can('bulkDelete', $model)) {
+if (auth()->check() && auth()->user()->can('delete', $model)) {
     $dropdownActions[] = 'divider';
     $dropdownActions[] = '
         <a href="#" class="text-red bulk-delete" data-toggle="modal" data-target="#bulk-delete.modal" data-bulk-action="delete">

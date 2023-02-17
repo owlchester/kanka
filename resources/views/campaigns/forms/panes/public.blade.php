@@ -21,7 +21,7 @@
             </div>
             @if (isset($model) && $model->isPublic())
                 <p class="help-block">
-                    {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard') . '" target="_blank">' . route('dashboard') . '</a>']) !!}
+                    {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '" target="_blank">' . route('dashboard', $campaign) . '</a>']) !!}
                 </p>
 
                 @if ($model->publicHasNoVisibility())

@@ -6,6 +6,7 @@ use App\Datagrids\Actions\DeprecatedDatagridActions;
 use App\Datagrids\Filters\ConversationFilter;
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreConversation;
+use App\Models\Campaign;
 use App\Models\Conversation;
 
 class ConversationController extends CrudController
@@ -43,14 +44,12 @@ class ConversationController extends CrudController
 
     /**
      */
-    public function store(StoreConversation $request)
+    public function store(StoreConversation $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
-    /**
-     */
-    public function show(Conversation $conversation)
+    public function show(Campaign $campaign, Conversation $conversation)
     {
         // Policies will always fail if they can't resolve the user.
         if (auth()->check()) {
@@ -58,7 +57,6 @@ class ConversationController extends CrudController
         } else {
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $conversation);
         }
-        $campaign = CampaignLocalization::getCampaign();
         $name = $this->view;
         $ajax = request()->ajax();
         $model = $conversation;
@@ -69,24 +67,18 @@ class ConversationController extends CrudController
         );
     }
 
-    /**
-     */
-    public function edit(Conversation $conversation)
+    public function edit(Campaign $campaign, Conversation $conversation)
     {
-        return $this->crudEdit($conversation);
+        return $this->campaign($campaign)->crudEdit($conversation);
     }
 
-    /**
-     */
-    public function update(StoreConversation $request, Conversation $conversation)
+    public function update(StoreConversation $request, Campaign $campaign, Conversation $conversation)
     {
-        return $this->crudUpdate($request, $conversation);
+        return $this->campaign($campaign)->crudUpdate($request, $conversation);
     }
 
-    /**
-     */
-    public function destroy(Conversation $conversation)
+    public function destroy(Campaign $campaign, Conversation $conversation)
     {
-        return $this->crudDestroy($conversation);
+        return $this->campaign($campaign)->crudDestroy($conversation);
     }
 }
