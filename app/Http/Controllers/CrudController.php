@@ -210,9 +210,6 @@ class CrudController extends Controller
      */
     public function create(Campaign $campaign)
     {
-        if (empty($campaign) || empty($campaign->id)) {
-            $campaign = CampaignLocalization::getCampaign();
-        }
         return $this->campaign($campaign)->crudCreate();
     }
     public function crudCreate($params = [])
@@ -271,9 +268,6 @@ class CrudController extends Controller
             if ($this->limitCheckReached()) {
                 return redirect()->back();
             }
-        }
-        if (empty($this->campaign)) {
-            $this->campaign = CampaignLocalization::getCampaign();
         }
 
         $data = $request->all();
@@ -360,10 +354,6 @@ class CrudController extends Controller
         }
         $name = $this->view;
 
-        if (empty($this->campaign)) {
-            $this->campaign = CampaignLocalization::getCampaign();
-        }
-
         // Fix for models without an entity
         if (empty($model->entity) && !($model instanceof MenuLink)) {
             if (auth()->guest()) {
@@ -404,9 +394,6 @@ class CrudController extends Controller
             if (empty($editingUsers)) {
                 $editingService->edit();
             }
-        }
-        if (empty($campaign) || empty($campaign->id)) {
-            $campaign = CampaignLocalization::getCampaign();
         }
 
         $params = [
@@ -540,6 +527,7 @@ class CrudController extends Controller
         $this->authCheck($model);
 
         if (empty($this->campaign)) {
+            dd('menu view...');
             $this->campaign = CampaignLocalization::getCampaign();
         }
         $name = $this->view;
@@ -668,8 +656,7 @@ class CrudController extends Controller
      */
     protected function moduleEnabled(): bool
     {
-        $campaign = CampaignLocalization::getCampaign();
-        return empty($this->module) || $campaign->enabled($this->module);
+        return empty($this->module) || $this->campaign->enabled($this->module);
     }
 
     /**

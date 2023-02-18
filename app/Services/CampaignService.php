@@ -191,42 +191,6 @@ class CampaignService
     }
 
     /**
-     * Shorthand to determine if a campaign has an entity enabled or not
-     *
-     * @param string $entity
-     * @return bool
-     */
-    public function enabled(string $entity = '')
-    {
-        return $this->campaign()->enabled($entity);
-    }
-
-    /**
-     * Is the user a member?
-     * @return bool
-     */
-    public function member()
-    {
-        return $this->campaign()->member();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function roles()
-    {
-        return $this->campaign()->roles;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function users()
-    {
-        return $this->campaign()->users;
-    }
-
-    /**
      * @param Campaign $campaign
      * @param string $key
      * @param string $icon

@@ -235,8 +235,6 @@ class Tag extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $count = $this->descendants->count();
         if ($count > 0) {
             $items['second']['tags'] = [

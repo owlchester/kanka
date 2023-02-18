@@ -328,8 +328,6 @@ class Location extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $count = $this->descendants()->has('location')->count();
         if ($count > 0) {
             $items['second']['locations'] = [
@@ -341,7 +339,7 @@ class Location extends MiscModel
         }
 
         $count = $this->allCharacters()->count();
-        if ($campaign->enabled('characters') && $count > 0) {
+        if ($this->campaign->enabled('characters') && $count > 0) {
             $items['second']['characters'] = [
                 'name' => 'entities.characters',
                 'route' => 'locations.characters',

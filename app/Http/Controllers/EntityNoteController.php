@@ -79,8 +79,8 @@ class EntityNoteController extends Controller
     {
         $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
 
+        dd('waaaa');
         /** @var MiscModel $model */
-        $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
         $model = $entityNote;
 

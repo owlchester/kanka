@@ -54,7 +54,6 @@ class InventoryController extends Controller
         } else {
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
-        $campaign = CampaignLocalization::getCampaign();
         $ajax = request()->ajax();
 
         $inventory = $entity

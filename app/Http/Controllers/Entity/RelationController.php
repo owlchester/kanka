@@ -66,8 +66,6 @@ class RelationController extends Controller
 
         $order = request()->get('order', null);
 
-        $ajax = request()->ajax();
-
         $rows = $connections = $connectionService = [];
         // @phpstan-ignore-next-line
         $defaultToTable = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnection());
@@ -101,7 +99,6 @@ class RelationController extends Controller
                 $option = 'mentions';
             }
         }
-        $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.relations.index', compact(
             'entity',

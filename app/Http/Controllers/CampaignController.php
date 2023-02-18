@@ -52,7 +52,7 @@ class CampaignController extends Controller
      */
     public function create()
     {
-        $campaign = CampaignLocalization::getCampaign();
+        dd('wat');
         $this->authorize('create', $campaign);
 
         return view($this->view . '.create', ['start' => false]);

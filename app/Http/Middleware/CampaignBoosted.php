@@ -20,7 +20,7 @@ class CampaignBoosted
         $campaign = CampaignLocalization::getCampaign();
         if (empty($campaign)) {
             return redirect()->route('login')
-                ->withErrors(__('You\'ve been banned'));
+                ->withErrors(__('I\'m confused?'));
         }
 
         if (!$campaign->boosted()) {

@@ -130,7 +130,7 @@ class CalendarController extends CrudController
 
     /**
      */
-    public function monthList(Calendar $calendar)
+    public function monthList(Campaign $campaign, Calendar $calendar)
     {
         return response()->json([
             'months' => $calendar->months(),

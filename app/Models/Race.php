@@ -206,10 +206,8 @@ class Race extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $count = $this->descendants()->count();
-        if ($campaign->enabled('races') && $count > 0) {
+        if ($this->campaign->enabled('races') && $count > 0) {
             $items['second']['races'] = [
                 'name' => 'races.show.tabs.races',
                 'route' => 'entities.descendants',

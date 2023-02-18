@@ -134,7 +134,6 @@ class MenuLinkController extends CrudController
      */
     protected function limitCheckReached(): bool
     {
-        $campaign = CampaignLocalization::getCampaign();
-        return !$campaign->canHaveMoreQuickLinks();
+        return !$this->campaign->canHaveMoreQuickLinks();
     }
 }

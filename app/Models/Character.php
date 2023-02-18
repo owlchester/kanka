@@ -355,7 +355,6 @@ class Character extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
         $canEdit = auth()->check() && auth()->user()->can('update', $this);
 
         $items['second']['profile'] = [
@@ -371,7 +370,7 @@ class Character extends MiscModel
         ];
 
         $count = $this->organisationMemberships()->has('organisation')->count();
-        if ($campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
+        if ($this->campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
             $items['second']['organisations'] = [
                 'name' => 'characters.show.tabs.organisations',
                 'route' => 'characters.organisations',

@@ -17,8 +17,9 @@ class BreadcrumbServiceProvider extends ServiceProvider
     {
         $this->app->singleton(BreadcrumbService::class, function ($app) {
             $service = new BreadcrumbService();
-            $campaign = CampaignLocalization::getCampaign();
-            $service->campaign($campaign);
+            if (CampaignLocalization::hasCampaign()) {
+                $service->campaign(CampaignLocalization::getCampaign());
+            }
             return $service;
         });
 

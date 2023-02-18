@@ -422,8 +422,7 @@ class PluginVersion extends Model
         }
         $data['_tags'] = $tags;
 
-        $campaign = CampaignLocalization::getCampaign();
-        $data['_superboosted'] = $campaign->superboosted();
+        $data['_superboosted'] = $entity->campaign->superboosted();
 
         // Add any missing attributes to be accessible in blade
         foreach ($this->templateAttributes as $name) {
