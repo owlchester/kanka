@@ -40,7 +40,7 @@ class SubmissionController extends Controller
 
         $action = request()->get('action');
         if (!in_array($action, ['approve', 'reject'])) {
-            return redirect()->route('campaign_submissions.index');
+            return redirect()->route('campaign_submissions.index', $campaign->id);
         }
 
         return view('campaigns.submissions.edit')

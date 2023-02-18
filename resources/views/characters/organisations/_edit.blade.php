@@ -1,6 +1,6 @@
 {!! Form::model($member, [
     'method' => 'PATCH',
-    'route' => ['characters.character_organisations.update', $model->id, $member->id],
+    'route' => ['characters.character_organisations.update', [$campaign->id, $model->id, $member->id]],
     'data-shortcut' => 1
 ]) !!}
 

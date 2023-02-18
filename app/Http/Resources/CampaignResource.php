@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Facades\CampaignCache;
 use App\Facades\Mentions;
+use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use Illuminate\Http\Resources\Json\JsonResource;

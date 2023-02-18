@@ -1,6 +1,6 @@
 <!-- Main Footer -->
 <footer id="footer" class="main-footer">
-    @ads('footer')
+    @ads('footer', $campaign ?? null)
     <div class="ads-space overflow-hidden">
         <ins class="adsbygoogle"
              style="display:block"

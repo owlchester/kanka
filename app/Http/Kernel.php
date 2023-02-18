@@ -83,8 +83,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'campaign' => '\App\Http\Middleware\Campaign',
-        'campaign.member' => \App\Http\Middleware\CampaignMember::class,
+        'campaign.valid' => \App\Http\Middleware\CampaignIsValid::class,
         'campaign.boosted' => \App\Http\Middleware\CampaignBoosted::class,
         'campaign.superboosted' => \App\Http\Middleware\CampaignSuperBoosted::class,
 

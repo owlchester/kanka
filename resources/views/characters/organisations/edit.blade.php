@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => trans('characters.organisations.edit.title', ['name' => $model->name]),
+    'title' => __('characters.organisations.edit.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => route('characters.index'), 'label' => __('entities.characters')],
-        ['url' => route('characters.show', $model->id), 'label' => $model->name]
+        ['url' => $model->getLink('index'), 'label' => __('entities.characters')],
+        ['url' => $model->getLink(), 'label' => $model->name]
     ]
 ])
 

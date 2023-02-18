@@ -38,7 +38,6 @@ class CrudAttributeController extends Controller
     public function __construct(AttributeService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
 
         $this->attributeService = $service;
     }

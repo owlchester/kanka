@@ -138,12 +138,8 @@ class User extends \Illuminate\Foundation\Auth\User
      * @param int|null $campaignId
      * @return string
      */
-    public function rolesList(int $campaignId = null): string
+    public function rolesList(int $campaignId): string
     {
-        if ($campaignId === null) {
-            $campaignId = CampaignLocalization::getCampaign()->id;
-        }
-
         /** @var CampaignRole[] $roles */
         $roles = $this->campaignRoles->where('campaign_id', $campaignId);
         $roleLinks = [];
@@ -177,7 +173,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function hasCampaigns($count = 0): bool
     {
-        return UserCache::user($this)->campaigns()->count() > $count;
+        return SingleUserCache::user($this)->campaigns()->count() > $count;
     }
 
     /**
@@ -187,7 +183,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function hasOtherCampaigns(int $campaignId): bool
     {
-        $campaigns = UserCache::campaigns();
+        $campaigns = SingleUserCache::campaigns();
         return $campaigns->where('campaign_id', '<>', $campaignId)->count() > 0;
     }
 
@@ -276,7 +272,7 @@ class User extends \Illuminate\Foundation\Auth\User
             return true;
         }
         // We check the campaign and roles for 61105 because of a special Elemental subscriber.
-        $campaign = CampaignLocalization::getCampaign(false);
+        $campaign = CampaignLocalization::getCampaign();
         return (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
     }
 
@@ -398,7 +394,7 @@ class User extends \Illuminate\Foundation\Auth\User
         }
 
         // Campaigns that are boosted don't either
-        $campaign = CampaignLocalization::getCampaign(false);
+        $campaign = CampaignLocalization::getCampaign();
         return !empty($campaign) && !$campaign->boosted();
     }
 

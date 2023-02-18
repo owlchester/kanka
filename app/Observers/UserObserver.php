@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
@@ -54,7 +55,7 @@ class UserObserver
     {
         // Only clear the cache if the name changed
         if ($user->isDirty('name')) {
-            UserCache::user($user)->clearName();
+            SingleUserCache::user($user)->clearName();
         }
     }
 
@@ -105,7 +106,7 @@ class UserObserver
             ImageService::cleanup($user, 'avatar');
         }
 
-        UserCache::user($user)
+        SingleUserCache::user($user)
             ->clearName()
             ->clearCampaigns()
             ->clearRoles()

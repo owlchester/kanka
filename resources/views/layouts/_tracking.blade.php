@@ -65,7 +65,7 @@
     </script>
 @endif
 
-@ads()
+@ads(null, $campaign ?? null)
     @if(!isset($noads))
     <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" @if(!app()->environment('prod'))data-adtest="on"@endif></script>
     @endif

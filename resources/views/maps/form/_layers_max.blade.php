@@ -2,9 +2,9 @@
     'title' => __('maps/layers.create.title', ['name' => $map->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('maps.index'), 'label' => __('entities.maps')],
+        ['url' => route('maps.index', $campaign->id), 'label' => __('entities.maps')],
         ['url' => $map->entity->url('show'), 'label' => $map->name],
-        ['url' => route('maps.map_layers.index', [$map]), 'label' => __('maps.panels.layers')],
+        ['url' => route('maps.map_layers.index', [$campaign->id, $map->id]), 'label' => __('maps.panels.layers')],
         __('maps/layers.create.title')
     ]
 ])

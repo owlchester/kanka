@@ -90,7 +90,7 @@ $specificTheme = null;
                         <div class="marker-actions text-center">
                             @can('update', $map)
                                 <div class="btn-group">
-                                    <a href="{{ route('maps.edit', [$map]) }}" class="btn btn-primary">
+                                    <a href="{{ route('maps.edit', [$campaign, $map]) }}" class="btn btn-primary">
                                         <i class="fa-solid fa-map" aria-hidden="true"></i> {{ __('maps.actions.edit') }}
                                     </a>
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -98,17 +98,17 @@ $specificTheme = null;
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="{{ route('maps.map_layers.index', [$map]) }}" class="dropdown-item">
+                                            <a href="{{ route('maps.map_layers.index', [$campaign->id, $map->id]) }}" class="dropdown-item">
                                                 <i class="fa-solid fa-layer-group" aria-hidden="true"></i> {{ __('maps.panels.layers') }}
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('maps.map_groups.index', [$map]) }}" class="dropdown-item">
+                                            <a href="{{ route('maps.map_groups.index', [$campaign->id, $map->id]) }}" class="dropdown-item">
                                                 <i class="fa-solid fa-map-signs" aria-hidden="true"></i> {{ __('maps.panels.groups') }}
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('maps.map_markers.index', [$map]) }}" class="dropdown-item">
+                                            <a href="{{ route('maps.map_markers.index', [$campaign->id, $map->id]) }}" class="dropdown-item">
                                                 <i class="fa-solid fa-map-pin" aria-hidden="true"></i> {{ __('maps.panels.markers') }}
                                             </a>
                                         </li>

@@ -11,7 +11,6 @@ class ImageSearchController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('campaign.member');
         $this->middleware('campaign.boosted');
     }
 

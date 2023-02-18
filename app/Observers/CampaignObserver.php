@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
+use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
@@ -134,7 +136,7 @@ class CampaignObserver
         ]);
         $setting->save();
 
-        UserCache::clearCampaigns();
+        SingleUserCache::clearCampaigns();
 
         auth()->user()->log(UserLog::TYPE_CAMPAIGN_NEW);
     }
@@ -155,6 +157,11 @@ class CampaignObserver
 
         $this->saveRpgSystems($campaign);
 
+
+        if (!CampaignLocalization::hasCampaign()) {
+            return;
+        }
+
         foreach ($campaign->members()->with('user')->get() as $member) {
             UserCache::user($member->user)->clearCampaigns();
         }
@@ -163,7 +170,7 @@ class CampaignObserver
         // This can be for the name, image, public status etc which needs to be reflected
         // in the user's sidebar.
         foreach ($campaign->followers as $follow) {
-            UserCache::user($follow)->clearFollows();
+            SingleUserCache::user($follow)->clearFollows();
         }
     }
 
@@ -173,7 +180,7 @@ class CampaignObserver
     public function deleted(Campaign $campaign)
     {
         ImageService::cleanup($campaign);
-        UserCache::clearCampaigns();
+        SingleUserCache::clearCampaigns();
     }
 
     /**

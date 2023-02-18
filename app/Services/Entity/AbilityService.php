@@ -193,10 +193,10 @@ class AbilityService
                 'url' => !empty($entityAbility->ability->image) ? $entityAbility->ability->getOriginalImageUrl() : null,
             ],
             'actions' => [
-                'edit' => route('entities.entity_abilities.edit', [$this->campaign, $this->entity, $entityAbility]),
-                'update' => route('entities.entity_abilities.update', [$this->campaign, $this->entity, $entityAbility]),
-                'delete' => route('entities.entity_abilities.destroy', [$this->campaign, $this->entity, $entityAbility]),
-                'view' => route('abilities.show', $entityAbility->ability_id),
+                'edit' => route('entities.entity_abilities.edit', [$this->campaign->id, $this->entity, $entityAbility]),
+                'update' => route('entities.entity_abilities.update', [$this->campaign->id, $this->entity, $entityAbility]),
+                'delete' => route('entities.entity_abilities.destroy', [$this->campaign->id, $this->entity, $entityAbility]),
+                'view' => route('abilities.show', [$this->campaign->id, $entityAbility->ability_id]),
             ],
             'entity' => [
                 'id' => $entityAbility->ability->entity->id,

@@ -1,4 +1,4 @@
-@nativeAd(\App\Models\Ad::SECTION_BANNER)
+@nativeAd(\App\Models\Ad::SECTION_BANNER, $campaign)
 <div class="ads-space overflow-hidden nativead-manager text-center" data-video="true" style="max-height: 228px;">
     {!! \App\Facades\AdCache::show() !!}
 </div>
@@ -10,7 +10,7 @@
 ]) !!}
 </p>
 @else
-@ads('entity')
+@ads('entity', $campaign)
 <div class="ads-space overflow-hidden">
     <ins class="adsbygoogle"
          style="display:block"

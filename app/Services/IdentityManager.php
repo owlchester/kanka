@@ -118,7 +118,7 @@ class IdentityManager
      */
     public function getImpersonatorId()
     {
-        return session($this->getSessionKey(), null);
+        return session($this->getSessionKey());
     }
 
     /**
@@ -126,7 +126,7 @@ class IdentityManager
      */
     public function getCampaignId()
     {
-        return session($this->getSessionCampaignKey(), null);
+        return session($this->getSessionCampaignKey());
     }
 
     /**

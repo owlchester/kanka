@@ -207,9 +207,8 @@ class BulkController extends Controller
     protected function print()
     {
         $entities = $this->bulkService->export();
-        $campaign = CampaignLocalization::getCampaign();
         return view('entities.pages.print.print-bulk')
-            ->with('campaign', $campaign)
+            ->with('campaign', $this->campaign)
             ->with('entities', $entities)
             ->with('printing', true)
         ;

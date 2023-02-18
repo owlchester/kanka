@@ -1,14 +1,14 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('campaigns/styles.create.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign_styles.index'), 'label' => __('campaigns.show.tabs.styles')]
+        ['url' => route('campaign_styles.index', $campaign->id), 'label' => __('campaigns.show.tabs.styles')]
     ]
 ])
 
 @section('content')
     <div class="panel panel-default">
         {!! Form::open([
-            'route' => ['campaign_styles.store'],
+            'route' => ['campaign_styles.store', $campaign->id],
             'method' => 'POST',
             'data-shortcut' => 1,
             'id' => 'campaign-style',

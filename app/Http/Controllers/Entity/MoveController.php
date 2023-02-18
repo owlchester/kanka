@@ -66,7 +66,7 @@ class MoveController extends Controller
             $copied = $this->service->copied();
 
             return redirect()
-                ->route($entity->pluralType() . '.index')
+                ->route($entity->url('index'))
                 ->with('success', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name]));
         } catch (TranslatableException $ex) {
             return redirect()

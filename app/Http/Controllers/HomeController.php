@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Facades\FrontCache;
 use App\Models\Campaign;
-use App\Facades\CampaignLocalization;
 use App\Services\ReferralService;
 
 class HomeController extends Controller
@@ -28,7 +27,7 @@ class HomeController extends Controller
         if (auth()->guest()) {
             return $this->front();
         }
-        return $this->back();
+        return $this->backend();
     }
 
     /**
@@ -41,15 +40,25 @@ class HomeController extends Controller
     }
 
     /**
+     * Redirect the user to their last seen campaign
      */
-    protected function back()
+    protected function backend()
     {
+        // If the user is coming from another campaign (for ex permission denied on their private campaign), we
+        // want to redirect them directly to that campaign.
         $campaignId = session()->get('campaign_id');
-        if (empty($campaignId) || !auth()->user()->hasCampaigns()) {
+        if ($campaignId) {
+            $campaign = Campaign::find($campaignId);
+            if ($campaign) {
+                return redirect()->route('dashboard', $campaign->id);
+            }
+        }
+        // No campaigns? Get them to create one, until we have a cool dashboard
+        if (!auth()->user()->hasCampaigns()) {
             return redirect()->route('start');
         }
 
-        // Otherwise, redirect to the last campaign the user has
+        // Otherwise, redirect to the last campaign the user has seen
         $last = auth()->user()->last_campaign_id;
         if (!empty($last)) {
             $campaign = Campaign::find($last);

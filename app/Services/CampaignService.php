@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
@@ -122,7 +123,7 @@ class CampaignService
         );
 
         // Clear cache
-        UserCache::clearCampaigns();
+        SingleUserCache::clearCampaigns();
         auth()->user()->log(UserLog::TYPE_CAMPAIGN_LEAVE);
 
         self::switchToNext();
@@ -168,7 +169,7 @@ class CampaignService
             return;
         }
         $last = $user->lastCampaign;
-        if ($last) {
+        if ($last && !session()->has('campaign_id')) {
             self::switchCampaign($last);
         }
     }

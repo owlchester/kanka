@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\CampaignCache;
+use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 
 class CampaignRoleObserver
@@ -13,7 +14,9 @@ class CampaignRoleObserver
      */
     public function saved(CampaignRole $campaignRole)
     {
-        CampaignCache::clearRoles()->clearAdmins();
+        if (CampaignLocalization::hasCampaign()) {
+            CampaignCache::clearRoles()->clearAdmins();
+        }
     }
 
     /**

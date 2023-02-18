@@ -35,7 +35,6 @@ class CampaignInviteController extends Controller
     public function create(Campaign $campaign)
     {
         $this->authorize('invite', $campaign);
-        $ajax = request()->ajax();
 
         if (!$campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
@@ -44,7 +43,9 @@ class CampaignInviteController extends Controller
                 ->with('name', 'campaign_roles');
         }
 
-        return view('campaigns.invites.create', compact('campaign', 'ajax'));
+        $roles = $campaign->roles()->where('is_admin', 0)->where('is_public', 0)->orderBy('name')->pluck('name', 'id');
+
+        return view('campaigns.invites.create', compact('campaign', 'roles'));
     }
 
     /**

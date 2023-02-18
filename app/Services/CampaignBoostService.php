@@ -15,7 +15,7 @@ class CampaignBoostService
     use CampaignAware;
 
     /** @var string */
-    protected string $action;
+    protected ?string $action = null;
 
     /** @var bool If updating an existing boost to a superboost */
     protected bool $upgrade = false;

@@ -139,7 +139,7 @@ class Tag extends MiscModel
                 $sub->select('campaign_id', 'id', 'ext');
             },
             'tag' => function ($sub) {
-                $sub->select('id', 'name');
+                $sub->select('id', 'name', 'campaign_id');
             },
             'tag.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');

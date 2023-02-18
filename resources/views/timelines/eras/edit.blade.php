@@ -8,8 +8,8 @@
     'title' => __('timelines/eras.edit.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('timelines.index'), 'label' => __('entities.timelines')],
-        ['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
+        ['url' => $timeline->entity->url('index'), 'label' => __('entities.timelines')],
+        ['url' => $timeline->entity->url(), 'label' => $timeline->name],
         __('timelines/eras.edit.title', ['name' => $model->name])
     ]
 ])

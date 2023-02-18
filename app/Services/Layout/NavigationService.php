@@ -5,6 +5,7 @@ namespace App\Services\Layout;
 use App\Facades\Identity;
 use App\Facades\MarketplaceCache;
 use App\Facades\PostCache;
+use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
 use App\Models\AppRelease;
 use App\Models\Campaign;
@@ -98,7 +99,7 @@ class NavigationService
         $campaigns = $this->user->campaigns;
         $member = 0;
         /** @var Campaign $campaign */
-        foreach (UserCache::campaigns() as $campaign) {
+        foreach (SingleUserCache::campaigns() as $campaign) {
             $data['member'][] = [
                 'name' => $campaign->name,
                 'is_boosted' => $campaign->boosted(),
@@ -108,7 +109,7 @@ class NavigationService
             $member++;
         }
 
-        foreach (UserCache::follows() as $campaign) {
+        foreach (SingleUserCache::follows() as $campaign) {
             $data['following'][] = [
                 'name' => $campaign->name,
                 'is_boosted' => $campaign->boosted(),

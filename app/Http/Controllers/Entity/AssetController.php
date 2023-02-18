@@ -36,6 +36,7 @@ class AssetController extends Controller
      */
     public function index(Campaign $campaign, Entity $entity)
     {
+        dd('wat');
         // Policies will always fail if they can't resolve the user.
         if (auth()->check()) {
             $this->authorize('view', $entity->child);

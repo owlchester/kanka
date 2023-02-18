@@ -23,12 +23,6 @@ class CampaignMember
             return redirect()->route('campaigns.index');
         }
 
-        // Make sure the campaign exists. Why do we need this?
-        /*$campaign = Campaign::where('id', $campaignId)->first();
-        if (empty($campaign)) {
-            return redirect()->route('campaigns.index');
-        }*/
-
         return $next($request);
     }
 }

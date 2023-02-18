@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Breadcrumb;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
@@ -247,12 +248,16 @@ abstract class MiscModel extends Model
      */
     public function getLink(string $route = 'show'): string
     {
+        if ($route === 'index') {
+            return Breadcrumb::index($this->entity->pluralType());
+        }
         if (empty($this->entity)) {
             return '#';
         }
         try {
             return route($this->entity->pluralType() . '.' . $route, [$this->campaign_id, $this->id]);
         } catch (Exception $e) {
+            //throw $e;
             return '#';
         }
     }
@@ -358,7 +363,7 @@ abstract class MiscModel extends Model
 
 
         // Each entity can have assets
-        if ($this->entity->hasFiles()) {
+        if (auth()->check() && $this->entity->hasFiles()) {
             $items['third']['assets'] = [
                 'name' => 'crud.tabs.assets',
                 'route' => 'entities.entity_assets.index',

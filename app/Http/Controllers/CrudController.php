@@ -90,7 +90,6 @@ class CrudController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('campaign.member');
         $this->filterService = new FilterService();
     }
 

@@ -6,10 +6,13 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Traits\GuestAuthTrait;
 use ReflectionClass;
 
 class DescendantController extends Controller
 {
+    use GuestAuthTrait;
+
     public function index(Campaign $campaign, Entity $entity)
     {
         if (empty($entity->child)) {
@@ -18,7 +21,7 @@ class DescendantController extends Controller
         if (auth()->check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
         $options = ['campaign' => $campaign, 'entity' => $entity];

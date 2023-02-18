@@ -50,7 +50,7 @@ class PluginController extends Controller
             ->has('user')
             ->with('versions');
 
-        if (!auth()->check() || !$campaign->userIsMember()) {
+        if (auth()->guest() || !$campaign->userIsMember()) {
             $plugins->where('campaign_plugins.is_active', true);
         }
         $rows = $plugins->paginate();
@@ -257,7 +257,7 @@ class PluginController extends Controller
         $models = request()->get('model');
         if (!in_array($action, ['enable', 'disable', 'update', 'delete']) || empty($models)) {
             return redirect()
-                ->route('campaign_plugins.index');
+                ->route('campaign_plugins.index', $campaign->id);
         }
 
         $this->service->campaign($campaign);

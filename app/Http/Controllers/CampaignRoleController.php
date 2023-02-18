@@ -196,7 +196,7 @@ class CampaignRoleController extends Controller
         $models = request()->get('model');
         if (!in_array($action, ['edit', 'delete']) || empty($models)) {
             return redirect()
-                ->route('campaign_roles.index');
+                ->route('campaign_roles.index', $campaign->id);
         }
         $count = 0;
         foreach ($models as $id) {

@@ -61,7 +61,7 @@ class StyleController extends Controller
     public function show(Campaign $campaign, CampaignStyle $campaignStyle)
     {
         return redirect()
-            ->route('campaign_styles.index');
+            ->route('campaign_styles.index', $campaign->id);
     }
 
     public function create(Campaign $campaign)
@@ -69,7 +69,7 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         if ($campaign->styles()->count() >= self::MAX_THEMES) {
-            return redirect()->route('campaign_styles.index')
+            return redirect()->route('campaign_styles.index', $campaign->id)
                 ->with('error', __('campaigns/styles.errors.max_reached', ['max' => self::MAX_THEMES]));
         }
         return view('campaigns.styles.create', compact('campaign'));
@@ -80,7 +80,7 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         if ($campaign->styles()->count() >= self::MAX_THEMES) {
-            return redirect()->route('campaign_styles.index')
+            return redirect()->route('campaign_styles.index', $campaign->id)
                 ->with('error', __('campaigns/styles.errors.max_reached', ['max' => self::MAX_THEMES]));
         }
 

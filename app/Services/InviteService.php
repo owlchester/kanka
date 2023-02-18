@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
@@ -98,7 +99,7 @@ class InviteService
         } else {
             // User is already part of the campaign, don't go further otherwise one user can spam the join link and
             // use up all the available tokens (validity field).
-            UserCache::clearCampaigns();
+            SingleUserCache::clearCampaigns();
             UserCache::clearRoles();
             return true;
         }
@@ -145,7 +146,7 @@ class InviteService
         $this->user->log(UserLog::TYPE_CAMPAIGN_JOIN);
 
         // Make sure the user's cache is cleared
-        UserCache::clearCampaigns();
+        SingleUserCache::clearCampaigns();
         UserCache::clearRoles();
 
         return $role->campaign;

@@ -365,7 +365,7 @@ class DatagridRenderer
                             ? $column['parent_route']
                             : $column['parent_route']($model))
                         : $this->getOption('baseRoute');
-                    $route = route($whoRoute . '.show', ['campaign' => $this->campaign->id, $who]);
+                    $route = route($whoRoute . '.show', ['campaign' => $this->getCampaign()->id, $who]);
                     $content = '<a class="entity-image" style="background-image: url(\'' . $who->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }

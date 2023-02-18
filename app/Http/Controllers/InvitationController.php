@@ -53,9 +53,8 @@ class InvitationController extends Controller
                 return redirect()->route('start')
                     ->withError($e->getMessage());
             }
-            CampaignLocalization::setCampaign($campaign->id);
             return redirect()
-                ->to(CampaignLocalization::getUrl($campaign->id))
+                ->route('dashboard', $campaign->id)
                 ->withError($e->getMessage());
         }
     }

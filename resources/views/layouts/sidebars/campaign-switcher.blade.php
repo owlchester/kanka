@@ -4,7 +4,7 @@
     </div>
 
     <ul class="switcher-campaigns">
-        @foreach (\App\Facades\UserCache::campaigns() as $userCampaign)
+        @foreach (\App\Facades\SingleUserCache::campaigns() as $userCampaign)
             @if (!isset($currentCampaign) || ($userCampaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating()))
                 <li>
                     @if ($userCampaign->image)
@@ -26,10 +26,10 @@
         @endcan
     </ul>
 
-    @if (\App\Facades\UserCache::follows()->count() > 0)
+    @if (\App\Facades\SingleUserCache::follows()->count() > 0)
         <div class="section">{{ __('sidebar.campaign_switcher.public_campaigns') }}</div>
         <ul class="switcher-following">
-            @foreach (\App\Facades\UserCache::follows() as $userCampaign)
+            @foreach (\App\Facades\SingleUserCache::follows() as $userCampaign)
                 @if (!isset($currentCampaign) || ($userCampaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating()))
                     <li>@if ($userCampaign->image)
                             <div class="background-image" style="background-image: url({{ Img::crop(208, 48)->url($userCampaign->image) }})"></div>

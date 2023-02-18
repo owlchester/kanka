@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Facades\AdCache;
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\User;
 use Carbon\Carbon;
 use Collective\Html\FormFacade as Form;
@@ -81,7 +82,7 @@ class MacroServiceProvider extends ServiceProvider
         });
 
         /** @ads() to show ads */
-        Blade::if('ads', function (string $section = null) {
+        Blade::if('ads', function (?string $section, ?Campaign $campaign) {
             if (empty(config('tracking.adsense'))) {
                 return false;
             }
@@ -103,11 +104,10 @@ class MacroServiceProvider extends ServiceProvider
             }
 
             // Boosted campaigns don't either have ads displayed to their members
-            $campaign = CampaignLocalization::getCampaign(false);
             return !empty($campaign) && !$campaign->boosted();
         });
 
-        Blade::if('nativeAd', function (int $section) {
+        Blade::if('nativeAd', function (int $section, ?Campaign $campaign) {
             // If we provided an ad test, override that
             if (!config('app.admin')) {
                 return false;
@@ -134,7 +134,6 @@ class MacroServiceProvider extends ServiceProvider
             }
 
             // Boosted campaigns don't either have ads displayed to their members
-            $campaign = CampaignLocalization::getCampaign(false);
             return !empty($campaign) && !$campaign->boosted();
         });
 

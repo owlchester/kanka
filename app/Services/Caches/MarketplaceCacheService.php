@@ -6,8 +6,10 @@ use App\Models\Plugin;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-class MarketplaceCacheService extends BaseCache
+class MarketplaceCacheService
 {
+    use CacheAware;
+
     /**
      * @return array
      */

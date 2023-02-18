@@ -111,13 +111,13 @@ class Ability extends MiscModel
                 $sub->select('campaign_id', 'id', 'ext');
             },
             'ability' => function ($sub) {
-                $sub->select('id', 'name');
+                $sub->select('id', 'name', 'campaign_id');
             },
             'ability.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'abilities' => function ($sub) {
-                $sub->select('id', 'name', 'ability_id');
+                $sub->select('id', 'name', 'ability_id', 'campaign_id');
             },
         ]);
     }
@@ -173,19 +173,16 @@ class Ability extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $items['second']['abilities'] = [
             'name' => 'abilities.show.tabs.abilities',
-            'route' => 'abilities.abilities',
+            'route' => 'entities.descendants',
             'count' => $this->descendants()->count(),
-            'world' => true,
+            'entity' => true,
         ];
         $items['second']['entities'] = [
             'name' => 'abilities.show.tabs.entities',
             'route' => 'abilities.entities',
             'count' => $this->entities()->count(),
-            'world' => true,
         ];
         return parent::menuItems($items);
     }

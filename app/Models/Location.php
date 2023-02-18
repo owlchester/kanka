@@ -112,10 +112,10 @@ class Location extends MiscModel
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'locations' => function ($sub) {
-                $sub->select('id', 'parent_location_id');
+                $sub->select('id', 'parent_location_id', 'campaign_id');
             },
             'characters' => function ($sub) {
-                $sub->select('id', 'location_id');
+                $sub->select('id', 'location_id', 'campaign_id');
             },
             'races'
         ]);

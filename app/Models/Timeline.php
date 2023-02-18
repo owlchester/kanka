@@ -94,7 +94,7 @@ class Timeline extends MiscModel
                 $sub->select('campaign_id', 'id', 'ext');
             },
             'timeline' => function ($sub) {
-                $sub->select('id', 'name', 'timeline_id');
+                $sub->select('id', 'name', 'timeline_id', 'campaign_id');
             },
             'timeline.entity',
             'eras' => function ($sub) {

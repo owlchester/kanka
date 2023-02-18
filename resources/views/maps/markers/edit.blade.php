@@ -63,7 +63,7 @@
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['maps.map_markers.destroy', $campaign->id, $model->map_id, $model->id],
+        'route' => ['maps.map_markers.destroy', [$campaign->id, $model->map_id, $model->id]],
         'style' => 'display:inline',
         'id' => 'delete-marker-confirm-form-' . $model->id]) !!}
     {!! Form::close() !!}

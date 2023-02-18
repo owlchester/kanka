@@ -12,4 +12,14 @@ class RelationDatagridActions extends DatagridActions
     public $bulkPrint = false;
     public $bulkTransform = false;
     public $bulkTemplate = false;
+
+
+    /**
+     * Action called for bulk delete on the model's policy
+     * @return string
+     */
+    public function bulkDeleteActionName(): string
+    {
+        return 'bulkDelete';
+    }
 }

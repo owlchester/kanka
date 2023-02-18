@@ -51,7 +51,7 @@ class QuickLinkController extends Controller
             ->reorder($request);
 
         return redirect()
-            ->route('menu_links.index')
+            ->route('menu_links.index', $campaign->id)
             ->with('success', __('menu_links.reorder.success'));
     }
 }

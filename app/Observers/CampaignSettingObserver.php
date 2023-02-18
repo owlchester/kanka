@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\CampaignCache;
+use App\Facades\CampaignLocalization;
 use App\Models\CampaignSetting;
 
 /**
@@ -16,6 +17,8 @@ class CampaignSettingObserver
      */
     public function saved(CampaignSetting $campaignSetting)
     {
-        CampaignCache::clearSettings();
+        if (CampaignLocalization::hasCampaign()) {
+            CampaignCache::clearSettings();
+        }
     }
 }

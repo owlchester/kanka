@@ -14,7 +14,7 @@
             <th><a href="{{ route('entities.entity_events.index', [$entity, 'order' => 'events/comment', '#calendars']) }}">{{ __('calendars.fields.comment') }}@if (request()->get('order') == 'events/comment') <i class="fa-solid fa-long-arrow-down"></i>@endif</a></th>
             <th><br /></th>
         @else
-            <th>{{ __('entitites.calendar') }}</th>
+            <th>{{ __('entities.calendar') }}</th>
             <th>{{ __('calendars.fields.date') }}</th>
             <th>{{ __('calendars.fields.length') }}</th>
             <th>{{ __('calendars.fields.comment') }}</th>
@@ -27,7 +27,7 @@
     @foreach ($reminders as $relation)
         <tr>
             <td>
-                <a class="entity-image" style="background-image: url('{{ $relation->calendar->thumbnail() }}');" title="{{ $relation->calendar->name }}" href="{{ $relations->calendar->getLink() }}"></a>
+                <a class="entity-image" style="background-image: url('{{ $relation->calendar->thumbnail() }}');" title="{{ $relation->calendar->name }}" href="{{ $relation->calendar->getLink() }}"></a>
             </td>
             <td>
                 {!! $relation->calendar->tooltipedLink() !!}

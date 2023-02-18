@@ -22,26 +22,26 @@ class PermissionService
     protected $action;
 
     /** @var array Entity IDs and Types the user can access */
-    protected $entityIds = [];
-    protected $entityTypes = [];
-    protected $entityTypesIds = [];
-    protected $deniedIds = [];
-    protected $allowedModels = [];
-    protected $deniedModels = [];
-    protected $loadedPermissions = false;
+    protected array $entityIds = [];
+    protected array $entityTypes = [];
+    protected array $entityTypesIds = [];
+    protected array $deniedIds = [];
+    protected array $allowedModels = [];
+    protected array $deniedModels = [];
+    protected mixed $loadedPermissions = false;
 
     /** @var array Permissions for posts */
-    protected $allowedPostIDs = [];
-    protected $deniedPostIDs = [];
-    protected $loadedPosts = false;
+    protected array $allowedPostIDs = [];
+    protected array $deniedPostIDs = [];
+    protected mixed $loadedPosts = false;
 
-    protected $loadedRoles = false;
-    protected $admin = false;
+    protected mixed $loadedRoles = false;
+    protected bool $admin = false;
 
-    protected $granted = false;
+    protected bool $granted = false;
 
     /** @var null|int the entity type if provided to limit queries */
-    protected $entityType = null;
+    protected mixed $entityType = null;
 
     public function isAdmin(): bool
     {

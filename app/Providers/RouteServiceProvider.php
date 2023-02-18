@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\HealthController;
 use App\Models\Campaign;
 use App\Models\Plugin;
 use App\Models\Vanity;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -38,7 +39,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('plugin', Plugin::class);
         Route::model('campaign', Campaign::class);
         Route::model('preset_type', \App\Models\PresetType::class);
-        //Route::model('vanity', Vanity::class);
     }
 
     /**
@@ -111,7 +111,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapCampaignRoutes()
     {
-        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
+        Route::middleware(['web', 'campaign.valid', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
             ->prefix(LaravelLocalization::setLocale() . '/w/{campaign}')
             ->namespace($this->namespace)
             ->group(base_path('routes/world.php'));

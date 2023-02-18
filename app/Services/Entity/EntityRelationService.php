@@ -227,6 +227,10 @@ class EntityRelationService
                 $this->addEntity($relation->target);
             }
 
+            $shape = 'triangle';
+            if ($relation->isMirrored() && $relation->mirror && $relation->relation == $relation->mirror?->relation) {
+                $shape = 'none';
+            }
             $this->relations[] = [
                 'source' => $relation->owner_id,
                 'target' => $relation->target_id,
@@ -235,7 +239,7 @@ class EntityRelationService
                 'attitude' => $relation->attitude,
                 'type' => 'entity-relation',
                 'is_mirrored' => $relation->isMirrored(),
-                'shape' => $relation->isMirrored() && $relation->mirror && $relation->relation == $relation->mirror->relation ? 'none' : 'triangle',
+                'shape' => $shape,
                 'edit_url' => route('entities.relations.edit', [
                     'campaign' => $this->campaign,
                     'entity' => $relation->owner_id,
@@ -246,7 +250,7 @@ class EntityRelationService
                 ])
             ];
 
-            if ($relation->isMirrored() && $relation->relation && $relation->relation == $relation->mirror->relation) {
+            if ($relation->isMirrored() && $relation->mirror && $relation->relation && $relation->relation == $relation->mirror->relation) {
                 $this->mirrors[$relation->id . '-' . $relation->mirror_id] = true;
             }
             $this->relationIds[] = $relation->id;

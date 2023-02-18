@@ -20,7 +20,6 @@ use TOC\MarkupFixer;
 class MentionsService
 {
     use MentionTrait;
-    use CampaignAware;
 
     /** @var string The text that is being parsed, usualy an entry field */
     protected string $text = '';
@@ -73,7 +72,6 @@ class MentionsService
     public function __construct(EntityService $entityService)
     {
         $this->entityService = $entityService;
-        $this->campaign = \App\Facades\CampaignLocalization::getCampaign();
     }
 
     /**

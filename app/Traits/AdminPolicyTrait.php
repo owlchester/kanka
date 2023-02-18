@@ -23,7 +23,7 @@ trait AdminPolicyTrait
     {
         if ($this->cachedAdminPolicy === null) {
             $this->cachedAdminPolicy = false;
-            $campaign = CampaignLocalization::getCampaign(false);
+            $campaign = CampaignLocalization::getCampaign();
             /** @var CampaignRole[] $roles */
             $roles = $user->campaignRoles->where('campaign_id', $campaign->id);
             foreach ($roles as $role) {

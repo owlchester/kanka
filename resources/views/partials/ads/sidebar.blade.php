@@ -1,9 +1,9 @@
-@nativeAd(\App\Models\Ad::SECTION_SIDEBAR)
+@nativeAd(\App\Models\Ad::SECTION_SIDEBAR, $campaign)
 <div class="ads-space nativead-manager text-center" data-video="true">
     {!! \App\Facades\AdCache::show() !!}
 </div>
 @else
-    @ads('sidebar')
+    @ads('sidebar', $campaign)
     <div class="ads-space overflow-hidden">
         <ins class="adsbygoogle"
              style="display:inline-block;width:280px;height:280px"

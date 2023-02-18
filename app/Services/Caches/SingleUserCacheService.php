@@ -2,27 +2,19 @@
 
 namespace App\Services\Caches;
 
+use App\Traits\UserAware;
 use App\User;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 /**
  * @property \App\User $user
  */
 class SingleUserCacheService
 {
-    protected User $user;
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
+    use CacheAware;
+    use UserAware;
 
     public function entitiesCreatedCount(): int
     {
@@ -39,38 +31,168 @@ class SingleUserCacheService
     }
 
     /**
-     * Wrapper for the cache get method
-     * @param string $key
-     * @return mixed
+     * Get the user campaigns
+     * @return Collection
      */
-    protected function get(string $key)
+    public function campaigns(): Collection
     {
-        return Cache::get($key);
+        $key = $this->campaignsKey();
+        if ($this->has($key)) {
+            return $this->get($key);
+        }
+
+        /** @var Builder|mixed $query */
+        $query = $this->user->campaigns();
+        $data = [];
+
+        // order the campaigns array based on the user settings
+        switch ($this->user->campaignSwitcherOrderBy) {
+            case 'alphabetical':
+                $data = $query->orderBy('name', 'asc')->get();
+                break;
+            case 'r_alphabetical':
+                $data = $query->orderBy('name', 'desc')->get();
+                break;
+            case 'date_joined':
+                $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'asc')->get();
+                break;
+            case 'r_date_joined':
+                $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'desc')->get();
+                break;
+            case 'r_date_created':
+                $data = $query->orderBy('created_at', 'desc')->get();
+                break;
+            default:
+                $data = $query->get();
+                break;
+        }
+
+        $this->forever($key, $data);
+
+        return $data;
     }
 
     /**
-     * Wrapper for the cache forever method. Don't actually store forever as data from inactive users doesn't
-     * need to be kept somewhere.
-     * @param string $key
-     * @param mixed $data
-     * @param int $days
-     * @return bool
+     * Clear user campaign cache
+     * @return $this
      */
-    protected function forever(string $key, $data, int $days = 7): bool
+    public function clearCampaigns(): self
     {
-        Log::info(class_basename($this), [
-            'forever' => $key,
-        ]);
-        return Cache::put($key, $data, $days * 86400);
+        $key = $this->campaignsKey();
+        $this->forget($key);
+        return $this;
     }
 
     /**
-     * Wrapper for the cache has metho
-     * @param string $key
-     * @return bool
+     * @return string
      */
-    protected function has(string $key): bool
+    protected function campaignsKey(): string
     {
-        return Cache::has($key);
+        return 'user_' . $this->user->id . '_campaigns';
+    }
+
+    /**
+     * Get the user follows
+     * @return Collection
+     */
+    public function follows(): Collection
+    {
+        $key = $this->followsKey();
+        if ($this->has($key)) {
+            return $this->get($key);
+        }
+
+        /** @var \Illuminate\Database\Query\Builder $query */
+        $query = $data = $this->user->following()->public();
+        $data = [];
+
+        // order the campaigns array based on the user settings
+        switch ($this->user->campaignSwitcherOrderBy) {
+            case 'alphabetical':
+                $data = $query->orderBy('name', 'asc')->get();
+                break;
+            case 'r_alphabetical':
+                $data = $query->orderBy('name', 'desc')->get();
+                break;
+            case 'date_joined':
+                // @phpstan-ignore-next-line
+                $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'asc')->get();
+                break;
+            case 'r_date_joined':
+                // @phpstan-ignore-next-line
+                $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'desc')->get();
+                break;
+            case 'date_created':
+                $data = $query->orderBy('created_at', 'asc')->get();
+                break;
+            case 'r_date_created':
+                $data = $query->orderBy('created_at', 'desc')->get();
+                break;
+            default:
+                $data = $query->get();
+                break;
+        }
+        $this->forever($key, $data);
+
+        return $data;
+    }
+
+    /**
+     * Clear user campaign cache
+     * @return $this
+     */
+    public function clearFollows(): self
+    {
+        $key = $this->followsKey();
+        $this->forget($key);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    protected function followsKey(): string
+    {
+        return 'user_' . $this->user->id . '_follows';
+    }
+
+    /**
+     * Get the user name
+     * @param int $userId the user id
+     * @return string
+     */
+    public function name(int $userId): string
+    {
+        $key = $this->nameKey($userId);
+        if ($this->has($key)) {
+            return (string) $this->get($key);
+        }
+
+        $data = null;
+        if ($user = User::select('name')->find($userId)) {
+            $data = $user->name;
+        }
+
+        $this->forever($key, $data);
+
+        return $data;
+    }
+
+    /**
+     * @return $this
+     */
+    public function clearName(): self
+    {
+        $key = $this->nameKey($this->user->id);
+        $this->forget($key);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    protected function nameKey(int $userId): string
+    {
+        return 'user_' . $userId . '_name';
     }
 }

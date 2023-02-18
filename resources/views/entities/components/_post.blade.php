@@ -78,13 +78,13 @@
 
             <div class="post-footer entity-note-footer text-right text-muted text-xs ">
                 <span class="post-footer-element post-created entity-note-footer-element entity-note-created" title="{{ __('entities/notes.footer.created', [
-    'user' => $post->created_by ? e(\App\Facades\UserCache::name($post->created_by)) : __('crud.users.unknown'),
+    'user' => $post->created_by ? e(\App\Facades\SingleUserCache::name($post->created_by)) : __('crud.users.unknown'),
     'date' => $post->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
                     {{ $post->created_at->isoFormat('MMMM Do, Y') }}
                 </span>
                     @if ($post->updated_at->greaterThan($post->created_at))
                         <span class="post-footer-element post-updated entity-note-footer-element entity-note-updated" title="{{ __('entities/notes.footer.updated', [
-    'user' => $post->updated_by ? e(\App\Facades\UserCache::name($post->updated_by)) : __('crud.users.unknown'),
+    'user' => $post->updated_by ? e(\App\Facades\SingleUserCache::name($post->updated_by)) : __('crud.users.unknown'),
     'date' => $post->updated_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
                     {{ $post->updated_at->isoFormat('MMMM Do, Y') }}
                 </span>

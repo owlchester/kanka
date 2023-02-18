@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Facades\CampaignCache;
 use App\Models\CampaignFollower;
 use App\Models\CampaignUser;
+use App\Facades\CampaignLocalization;
 
 class CampaignUserObserver
 {
@@ -36,7 +37,9 @@ class CampaignUserObserver
         }
 
         // Update the campaign members cache when a user was added to the campaign
-        CampaignCache::campaign($campaignUser->campaign)->clearMembers();
+        if (CampaignLocalization::hasCampaign()) {
+            CampaignCache::campaign($campaignUser->campaign)->clearMembers();
+        }
     }
 
     /**

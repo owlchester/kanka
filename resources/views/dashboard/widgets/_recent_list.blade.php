@@ -14,7 +14,7 @@
         @endif
 
         <div class="blame">
-            {{ !empty($entity->updated_by) ? \App\Facades\UserCache::name($entity->updated_by) : trans('crud.history.unknown') }}<br class="hidden-xs" />
+            {{ !empty($entity->updated_by) ? \App\Facades\SingleUserCache::name($entity->updated_by) : trans('crud.history.unknown') }}<br class="hidden-xs" />
 @can('history', [$entity, $campaign])
             @if (!empty($entity->updated_at))
             <span class="elapsed" title="{{ $entity->updated_at }}">
