@@ -7,6 +7,7 @@ use App\Models\Entity;
 use App\Models\Family;
 use App\Models\FamilyTree;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class FamilyTreeService
 {
@@ -27,10 +28,20 @@ class FamilyTreeService
         return $this;
     }
 
-    public function api(): array
+    public function api()//: array
     {
-        //$this->loadSetup();
-        return $this->fake();
+        $this->loadSetup();
+        //return $this->fake();
+        return $this->tree();
+    }
+
+    /**
+     * Return all data required to generate the family tree
+     * @return array
+     */
+    public function tree(): array
+    {
+        return ['nodes' => $this->familyTree->config, 'entities' => $this->entities];
     }
 
     /**
@@ -66,7 +77,7 @@ class FamilyTreeService
         if (!$familyTree) {
             $familyTree = new FamilyTree();
             $familyTree->family_id = $this->family->id;
-            $familyTree->config = $this->fakeNode();
+            $familyTree->config = $this->emptyNode(); //$this->fakeNode();
             $familyTree->save();
         }
         $this->familyTree = $familyTree;
@@ -89,11 +100,15 @@ class FamilyTreeService
             $this->entities[$entity->id] = $this->formatEntity($entity);
         }
         //dump($this->entities);
-
-        $this->missingIds = array_diff($this->entityIds, array_keys($this->entities));
+        if (!empty($this->entities)) {
+            $this->missingIds = array_diff($this->entityIds, array_keys($this->entities));
+            $this->cleanupMissingEntities();
+        } else {
+            $this->entities = [];
+            $this->familyTree->config = [];
+            //$this->generatePlaceholder();
+        }
         //dump($this->missingIds);
-
-        $this->cleanupMissingEntities();
     }
 
     /**
@@ -301,6 +316,17 @@ class FamilyTreeService
         ];
     }
 
+    protected function emptyNode(): array
+    {
+        return [
+            [
+                'entity_id' => 0,
+                'uuid' => '0',
+                'relations' => []
+            ]
+        ];
+    }
+
     /**
      * Return an error handled by the frontend
      * @param string $code
@@ -319,7 +345,7 @@ class FamilyTreeService
      * @param string|null $data
      * @return $this
      */
-    public function save(string $data = null): self
+    public function save(array $data = []): self
     {
         $this->loadFamilyTree();
         if (empty($data)) {
@@ -328,7 +354,7 @@ class FamilyTreeService
             return $this;
         }
 
-        $data = json_decode($data);
+        //$data = json_decode($data);
         $data = $this->prepareForSave($data);
 
         $this->familyTree->config = $data;
@@ -339,12 +365,22 @@ class FamilyTreeService
 
     /**
      * Prepare a new config for the database by adding a uuid everywhere
-     * @param string $data
+     * @param array $data
      * @return array
      */
-    protected function prepareForSave(array $data): array
+    protected function prepareForSave(array $data)//: array
     {
+        //dd('data', $data);
+        $assingUuid = function (&$value, $key) {
+            if ($key == 'uuid' && (!is_string($value) || (preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/', $value) !== 1))) {
+                $value = (string) Str::uuid();
+            }
+            //echo "The key $key has the value $value <br>";
+        };
+
+        array_walk_recursive($data, $assingUuid, );
         // Loop on the data, adding a uuid on each element that is missing one
+        //dd('ended recursive', $data);
         return $data;
     }
 }

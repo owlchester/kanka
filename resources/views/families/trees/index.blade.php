@@ -95,7 +95,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button id='send' type="button" class="btn btn-success">
+                    <button id='send' type="button" class="btn btn-success" data-toast="{{ __('crud.alerts.copy_mention') }}">
                         {{ __('crud.save') }}
                     </button>
                 </div>

@@ -8,7 +8,8 @@ use App\Models\Family;
 use App\Services\Families\FamilyTreeService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Request;
+//use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class FamilyTreeController extends Controller
 {
@@ -76,6 +77,7 @@ class FamilyTreeController extends Controller
      */
     public function save(Request $request, Family $family): JsonResponse
     {
+        //dd($request->get('data'));
         return response()->json(
             $this
                 ->service

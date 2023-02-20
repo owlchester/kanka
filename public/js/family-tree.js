@@ -2502,6 +2502,11 @@ var drawNode = function drawNode(node, sourceX, sourceY, drawX, drawY) {
 var drawFamilyTree = function drawFamilyTree() {
   console.log('Draw Family Tree');
 
+  if (nodes.length == 0 && isEditing) {
+    clearTree();
+    isUnchanged = true;
+  }
+
   if (isUnchanged) {
     btnSave.prop('disabled', true).addClass('disabled');
   } else {
@@ -2604,19 +2609,15 @@ function entityEditor(array, uuid, entity) {
   var entity_id = null;
 
   if (uuid == 0) {
-    entities = [entity];
-    entity_id = 0;
+    delete entities[0];
+    entity_id = entity.id;
+    entities[entity.id] = entity;
   } else {
-    entities.forEach(function (existingEntity, index) {
-      if (existingEntity.id == entity.id) {
-        entity_id = index;
-      }
-    });
-
-    if (entity_id = null) {
-      entities.push(entity);
-      entity_id = entities.length - 1;
+    if (!entities[entity.id]) {
+      entities[entity.id] = entity;
     }
+
+    entity_id = entity.id;
   }
 
   var getRelationNodes = function getRelationNodes(result, object) {
@@ -2648,16 +2649,12 @@ function entityEditor(array, uuid, entity) {
 
 function relationCreator(array, uuid, entity, role) {
   var entity_id = null;
-  entities.forEach(function (existingEntity, index) {
-    if (existingEntity === entity) {
-      entity_id = index;
-    }
-  });
 
-  if (!entity_id) {
-    entities.push(entity);
-    entity_id = entities.length - 1;
+  if (!entities[entity.id]) {
+    entities[entity.id] = entity;
   }
+
+  entity_id = entity.id;
 
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
@@ -2700,16 +2697,12 @@ function relationCreator(array, uuid, entity, role) {
 
 function childCreator(array, uuid, entity) {
   var entity_id = null;
-  entities.forEach(function (existingEntity, index) {
-    if (existingEntity === entity) {
-      entity_id = index;
-    }
-  });
 
-  if (!entity_id) {
-    entities.push(entity);
-    entity_id = entities.length - 1;
+  if (!entities[entity.id]) {
+    entities[entity.id] = entity;
   }
+
+  entity_id = entity.id;
 
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
@@ -2745,6 +2738,7 @@ function childCreator(array, uuid, entity) {
     return result;
   };
 
+  console.log(entities);
   return array.reduce(getRelationNodes, []);
 }
 
@@ -2808,6 +2802,7 @@ function editEntity(uuid) {
     $('.close');
     $('#add-entity').modal('hide');
   });
+  closeModal();
 }
 
 function addRelation(uuid) {
@@ -2832,6 +2827,7 @@ function addRelation(uuid) {
     $('.close');
     $('#add-entity').modal('hide');
   });
+  closeModal();
 }
 
 function addChildren(uuid) {
@@ -2852,6 +2848,15 @@ function addChildren(uuid) {
     $('.close');
     $('#add-entity').modal('hide');
   });
+  closeModal();
+}
+
+function closeModal() {
+  $("#add-entity").on('hidden.bs.modal', function () {
+    $(this).find("input,textarea,text").val('').end();
+    $('select.select2').val(null).trigger('change.select2');
+  });
+  console.log($(this).select2);
 }
 
 function renameRelation(uuid) {
@@ -2943,7 +2948,18 @@ var initFamilyTree = function initFamilyTree() {
   });
   btnSave.on('click', function (e) {
     e.preventDefault();
-    console.info('Saving...');
+    console.info('Saving...'); //console.log(container.dataset.api, 'api');
+
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post(container.dataset.save, {
+      data: nodes,
+      entities: entities
+    }).then(function (resp) {
+      console.log('Saved Tree');
+    });
+    renderPage();
+    resetTree();
+    var toast = 'Saved Succesfully!';
+    window.showToast(toast);
   }); // Draw the page
 
   renderPage();
