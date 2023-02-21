@@ -1,9 +1,9 @@
 {
-    "/js/app.js": "/js/app.js?id=fc51ae5b2b900b3392839b598df0a260",
+    "/js/app.js": "/js/app.js?id=665f8df88ec1328d18c7319793a1504a",
     "/js/auth.js": "/js/auth.js?id=6dc54d04e7b0493d16c9a6cd7844cd23",
     "/js/ajax-subforms.js": "/js/ajax-subforms.js?id=2a2a7009080bc6370179e1321b608579",
     "/js/location/map-v3.js": "/js/location/map-v3.js?id=f29e8c8bd984797bdaacd61005eeb2d4",
-    "/js/api.js": "/js/api.js?id=3bcbb1f67a284e792cf9b587727cb0f7",
+    "/js/api.js": "/js/api.js?id=b7b6b91d9257140cefdc4276f84de134",
     "/js/attributes.js": "/js/attributes.js?id=73291cc28337b2d088b74c2e645db2a6",
     "/js/abilities.js": "/js/abilities.js?id=4b0ac9add2608bd58b5b9ef79270326e",
     "/js/story.js": "/js/story.js?id=bbfd895d813be98854e1de5771ca35c8",
@@ -35,7 +35,6 @@
     "/css/dark.css": "/css/dark.css?id=e4830344e06447df2733acb4832b563a",
     "/css/settings.css": "/css/settings.css?id=68b329da9893e34099c7d8ad5cb9c940",
     "/css/dashboard.css": "/css/dashboard.css?id=e9b59268431eed2f91b1a630c5fcf8c6",
-    "/css/front/critical.css": "/css/front/critical.css?id=68b329da9893e34099c7d8ad5cb9c940",
     "/css/auth.css": "/css/auth.css?id=89cd08663e137bd2f098d614813ffa9b",
     "/css/gallery.css": "/css/gallery.css?id=53a403b168ea8c3acd2b1e8195a5280b",
     "/css/subscription.css": "/css/subscription.css?id=2415f1c58272d921cf1bf7b65884b601"

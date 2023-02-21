@@ -274,7 +274,7 @@ if (auth()->check()) {
                             <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy']]) !!}
                             <div class="form-group required">
-                                {!! Form::text('delete', null, ['class' => 'form-control', 'required']) !!}
+                                {!! Form::text('delete', null, ['class' => 'form-control', 'required', 'id' => 'campaign-delete-form']) !!}
                             </div>
                             <div class="py-5">
                                 <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>

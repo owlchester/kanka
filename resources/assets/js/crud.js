@@ -621,3 +621,8 @@ function rebuildCalendarDayList(max) {
         entityCalendarDayField.append('<option value="' + d + '" ' + selected + '>' + d + '</option>');
     }
 }
+
+$('#campaign-delete-confirm').on('shown.bs.modal', function () {
+    console.log('ape2');
+    $('#campaign-delete-form').focus();
+})
