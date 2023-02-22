@@ -57,21 +57,6 @@ class PostObserver
     /**
      * @param Post $post
      */
-    public function creating(Post $post)
-    {
-        //if (!$post->position == 1) {
-        //    // Make sure we're adding this note at the end of other posts
-        //    $last = $post->entity->posts()
-        //        ->where('id', '!=', $post->id)
-        //        ->orderBy('position', 'desc')
-        //        ->first();
-        //    $post->position = $last ? ($last->position + 1) : 1;
-        //}
-    }
-
-    /**
-     * @param Post $post
-     */
     public function created(Post $post)
     {
         $this->log($post, EntityLog::ACTION_CREATE_POST);
