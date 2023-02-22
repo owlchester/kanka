@@ -10,6 +10,7 @@ class MapGroupObserver
      * Purify trait
      */
     use PurifiableTrait;
+    use ReorderTrait;
 
     /**
      * @param MapGroup $mapGroup
@@ -45,6 +46,7 @@ class MapGroupObserver
      */
     public function saved(MapGroup $mapGroup)
     {
+        $this->reorder($mapGroup);
         $mapGroup->map->touch();
     }
 }

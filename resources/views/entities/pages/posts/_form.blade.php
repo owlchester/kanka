@@ -12,6 +12,10 @@ $defaultCollapsed = null;
 if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
     $defaultCollapsed = 1;
 }
+
+$options = $entity->postPositionOptions(!empty($model->position) ? $model->position : null);
+$last = array_key_last($options);
+
 ?>
 <div class="nav-tabs-custom">
     <div class="pull-right">
@@ -85,6 +89,10 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="form-group">
+            <label>{{ __('crud.fields.position') }}</label>
+            {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
         </div>
 
         @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.posts._permissions')
