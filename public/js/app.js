@@ -22421,6 +22421,11 @@ function rebuildCalendarDayList(max) {
   }
 }
 
+$('#campaign-delete-confirm').on('shown.bs.modal', function () {
+  console.log('ape2');
+  $('#campaign-delete-form').focus();
+});
+
 /***/ }),
 
 /***/ "./resources/assets/js/datagrids.js":
@@ -60304,19 +60309,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/sass/front/critical.scss":
-/*!***************************************************!*\
-  !*** ./resources/assets/sass/front/critical.scss ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./resources/assets/sass/relations.scss":
 /*!**********************************************!*\
   !*** ./resources/assets/sass/relations.scss ***!
@@ -75819,7 +75811,6 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			"css/dark": 0,
 /******/ 			"css/settings": 0,
 /******/ 			"css/dashboard": 0,
-/******/ 			"css/front/critical": 0,
 /******/ 			"css/auth": 0,
 /******/ 			"css/gallery": 0,
 /******/ 			"css/subscription": 0
@@ -75872,25 +75863,24 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/vendor.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/abilities.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/export.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/map-v3.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/subscription.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/gallery.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/front.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/auth.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/front/critical.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/relations.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/dashboard.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/settings.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/themes/dark.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/themes/midnight.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/tinymce.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/freyja/freyja.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/front/critical","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/print/print.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/vendor.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/abilities.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/export.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/map-v3.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/subscription.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/gallery.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/front.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/auth.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/relations.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/dashboard.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/settings.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/themes/dark.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/themes/midnight.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/tinymce.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/freyja/freyja.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/vendor","css/map-v3","css/app","css/relations","css/front","css/export","css/abilities","css/print","css/freyja","css/tinymce","css/midnight","css/dark","css/settings","css/dashboard","css/auth","css/gallery","css/subscription"], () => (__webpack_require__("./resources/assets/sass/print/print.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
