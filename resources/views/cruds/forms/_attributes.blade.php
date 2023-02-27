@@ -6,8 +6,10 @@
 $attributes = [];
 if (isset($model)) {
     $attributes = $model->entity->attributes()->ordered()->get();
+    $entity = $model->entity;
 } elseif (isset($source)) {
     $attributes = $source->entity->attributes()->ordered()->get();
+    $entity = $source->entity;
 }
 $isAdmin = Auth::user()->isAdmin();
 $existingAttributeNames = [];
@@ -21,7 +23,9 @@ foreach ($attributes as $attribute) {
 <div id="entity-attributes-all">
     <div class="entity-attributes">
         @foreach ($attributes as $attribute)
-            @include('cruds.forms.attributes._attribute')
+            @if (!$attribute->is_hidden)
+                @include('cruds.forms.attributes._attribute')
+            @endif
         @endforeach
         @if (isset($entityAttributeTemplates))
             @foreach ($entityAttributeTemplates as $attributeTemplate)
@@ -34,7 +38,7 @@ foreach ($attributes as $attribute) {
 <input type="hidden" name="save-attributes" value="1" />
 
 @include('cruds.forms.attributes._blocks', ['existing' => count($attributes)])
-@include('cruds.forms.attributes._buttons', ['existing' => count($attributes)])
+@include('cruds.forms.attributes._buttons', ['model' => isset($entity) ? $entity->child : null, 'existing' => count($attributes)])
 
 @section('scripts')
     @parent

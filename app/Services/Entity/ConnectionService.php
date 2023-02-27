@@ -339,7 +339,11 @@ class ConnectionService
      */
     protected function loadLocation(): self
     {
-        if (!isset($this->entity->child->location) || empty($this->entity->child->location)) {
+        if (
+            !isset($this->entity->child->location) ||
+            empty($this->entity->child->location) ||
+            empty($this->entity->child->location->entity)
+        ) {
             return $this;
         }
 

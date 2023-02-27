@@ -16,10 +16,10 @@ use Exception;
 class UserEventSubscriber
 {
     /** @var InviteService */
-    public $inviteService;
+    public InviteService $inviteService;
 
     /** @var StarterService */
-    public $starterService;
+    public StarterService $starterService;
 
     /**
      * Create the event listener.
@@ -63,10 +63,12 @@ class UserEventSubscriber
                 // Silence errors here
             }
         } elseif (session()->has('first_login')) {
+            // Todo: move this to the controller? Not sure why it should be an event's responsability
             // Let's create their first campaign for them
             $campaign = $this->starterService
                 ->user($event->user)
                 ->createCampaign();
+            session()->remove('first_login');
             CampaignService::switchCampaign($campaign);
             return true;
         }

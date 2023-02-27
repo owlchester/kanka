@@ -35,7 +35,7 @@
             ]
         ])
         @include('maps._menu', ['active' => 'markers'])
-        <div class="entity-main-block">
+        <div class="entity-main-block flex flex-col">
             @include('maps.form._markers', ['source' => null])
             @include('maps.panels.markers')
         </div>

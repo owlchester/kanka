@@ -23,7 +23,7 @@ class QuestFilter extends DatagridFilter
                 'label' => __('quests.fields.quest'),
                 'type' => 'select2',
                 'route' => route('quests.find'),
-                'placeholder' =>  __('quests.placeholders.quest'),
+                'placeholder' =>  __('crud.placeholders.quest'),
                 'model' => Quest::class,
             ])
             ->add([

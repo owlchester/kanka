@@ -38,6 +38,7 @@ class DeleteUser implements ShouldQueue
      */
     public function handle()
     {
+        /** @var User $user */
         $user = User::find($this->user);
         if (!$user) {
             // User wasn't found

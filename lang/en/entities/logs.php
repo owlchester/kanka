@@ -2,11 +2,15 @@
 
 return [
     'actions'           => [
-        'create'    => 'Create',
-        'delete'    => 'Delete',
-        'restore'   => 'Restore',
-        'update'    => 'Update',
-        'view'      => 'View changes',
+        'create'        => 'Create',
+        'create_post'   => 'Created post ":post"',
+        'delete'        => 'Delete',
+        'delete_post'   => 'Deleted post',
+        'reorder_post'  => 'Reordered posts',
+        'restore'       => 'Restore',
+        'update'        => 'Update',
+        'update_post'   => 'Updated post ":post"',
+        'view'          => 'View changes',
     ],
     'call-to-action'    => 'Full change logs for up to :amount day are available to superboosted campaigns.',
     'fields'            => [

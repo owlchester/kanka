@@ -28,7 +28,8 @@ class StoreAbility extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'type' => 'nullable:max:191',
+            'entry' => 'nullable|string',
+            'type' => 'nullable|string|max:191',
             'ability_id' => 'nullable|integer|exists:abilities,id',
             'charges' => 'nullable|max:120',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),

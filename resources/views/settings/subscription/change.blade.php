@@ -39,6 +39,7 @@
 
         <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
+                @if (! $limited)
                 <li role="presentation" class="active">
                     <a href="#card" aria-controls="home" role="tab" data-toggle="tab">
                         <i class="fa-regular fa-credit-card" aria-hidden="true"></i>
@@ -55,7 +56,8 @@
                         giropay
                     </a>
                 </li>
-                <li role="presentation">
+                @endif
+                <li role="presentation" @if ($limited) class="active" @endif>
                     <a href="#paypal" aria-controls="settings" role="tab" data-toggle="tab">
                         <i class="fa-brands fa-paypal" aria-hidden="true"></i>
                         PayPal
@@ -65,6 +67,7 @@
 
             <!-- Tab panes -->
             <div class="tab-content">
+                @if (! $limited)
                 <div role="tabpanel" class="tab-pane active" id="card">
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
 
@@ -223,7 +226,8 @@
                         @endif
                     @endif
                 </div>
-                <div role="tabpanel" class="tab-pane" id="paypal">
+                @endif
+                <div role="tabpanel" class="tab-pane {{ $limited ? 'active' : null }}" id="paypal">
                     <p class="help-block">
                         {!! __('settings.subscription.helpers.paypal_v2', ['email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}
                     </p>

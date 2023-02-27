@@ -2,11 +2,15 @@
 
 return [
     'actions'           => [
-        'create'    => 'Créé',
-        'delete'    => 'Supprimé',
-        'restore'   => 'Restoré',
-        'update'    => 'Mis à jour',
-        'view'      => 'Voir les changements',
+        'create'        => 'Créé',
+        'create_post'   => 'Créé la note ":post"',
+        'delete'        => 'Supprimé',
+        'delete_post'   => 'Supprimé une note',
+        'reorder_post'  => 'Notes réordonnés',
+        'restore'       => 'Restoré',
+        'update'        => 'Mis à jour',
+        'update_post'   => 'Modifié la note ":post"',
+        'view'          => 'Voir les changements',
     ],
     'call-to-action'    => 'Des journaux complets des changements sont disponibles pendant :amount jours pour les campagnes superboostées.',
     'fields'            => [

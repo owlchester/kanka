@@ -27,8 +27,7 @@ class MenuLinkService
             }
 
             $link->position = $position;
-            $link->savingObserver = false;
-            $link->save();
+            $link->saveQuietly();
             $position++;
         }
 

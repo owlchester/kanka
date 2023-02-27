@@ -4,9 +4,9 @@ namespace App\Console\Commands;
 
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
-use App\Jobs\Emails\SubscriptionNewElementalEmailJob;
 use App\Jobs\Emails\Subscriptions\ExpiringCardAlert;
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
+use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use Illuminate\Console\Command;
 
@@ -42,7 +42,11 @@ class TestEmail extends Command
         } elseif ($template === 'cancelled') {
             SubscriptionCancelEmailJob::dispatch($user, null, 'custom text');
         } elseif ($template === 'elemental') {
-            SubscriptionNewElementalEmailJob::dispatch($user);
+            WelcomeSubscriptionEmailJob::dispatch($user, 'elemental');
+        } elseif ($template === 'wyvern') {
+            WelcomeSubscriptionEmailJob::dispatch($user, 'wyvern');
+        } elseif ($template === 'owlbear') {
+            WelcomeSubscriptionEmailJob::dispatch($user, 'owlbear');
         } elseif ($template === 'expiring') {
             ExpiringCardAlert::dispatch($user);
         } elseif ($template === 'failed') {

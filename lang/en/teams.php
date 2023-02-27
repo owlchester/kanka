@@ -1,18 +1,18 @@
 <?php
 
 return [
-    'index'         => [
+    'index' => [
         'lead'          => 'Making worldbuilding fun and reliable',
         'translations'  => 'Translations',
     ],
-    'leads'         => [
+    'leads' => [
         'translators'   => 'Kanka is translated to several languages thanks to these amazing contributors.',
     ],
-    'people'        => [
+    'people'=> [
         'itzamna'   => [
             'title' => 'Junior Developer',
         ],
-        'jay' => [
+        'jay'       => [
             'title' => 'Founder & Lead Developer',
         ],
         'jon'       => [

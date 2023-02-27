@@ -19,6 +19,7 @@ class ItemApiController extends ApiController
         $this->authorize('access', $campaign);
         return Resource::collection($campaign
             ->items()
+            ->has('entity')
             ->filter(request()->all())
             ->withApi()
             ->lastSync(request()->get('lastSync'))

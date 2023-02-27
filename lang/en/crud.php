@@ -378,10 +378,10 @@ return [
     ],
     'view'                      => 'View',
     'visibilities'              => [
-        'admin'         => 'Admin',
-        'admin-self'    => 'Self & Admin',
+        'admin'         => 'Admins',
+        'admin-self'    => 'Only me & Admins',
         'all'           => 'All',
-        'members'       => 'Members',
-        'self'          => 'Self',
+        'members'       => 'Members of the campaign',
+        'self'          => 'Only me',
     ],
 ];

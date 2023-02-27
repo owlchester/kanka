@@ -186,7 +186,8 @@ trait EntityScopes
             return $query;
         }
 
-        if ($types[0] == 'all') {
+        // Use to do [0] but that can be get unset by the exclude
+        if (head($types) == 'all') {
             return $query;
         }
 

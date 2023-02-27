@@ -43,6 +43,19 @@
         color: white;
     }
 
+    .mail-btn {
+        padding: 10px 20px;
+        border-radius: 20px;
+        background-color: #1919ad;
+        color: #efefef;
+        text-decoration: none;
+        margin: 20px 0;
+        display: inline-block;
+    }
+    .main-btn:hover {
+        font-weight: 900;
+    }
+
     @media(max-width: 992px) {
         .content {
             width: auto;
