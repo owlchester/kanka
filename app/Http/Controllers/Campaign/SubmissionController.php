@@ -42,6 +42,13 @@ class SubmissionController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('submissions', $campaign);
 
+        if (!$campaign->canHaveMoreMembers()) {
+            return view('cruds.forms.limit')
+                ->with('key', 'members')
+                ->with('skipImage', true)
+                ->with('name', 'campaign_roles');
+        }
+
         $action = request()->get('action');
         if (!in_array($action, ['approve', 'reject'])) {
             return redirect()->route('campaign_submissions.index');
@@ -59,6 +66,11 @@ class SubmissionController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('submissions', $campaign);
+
+        if (!$campaign->canHaveMoreMembers()) {
+            return redirect()->back()
+                ->with('error', __('Campaign is full, please boost it.'));
+        }
 
         $note = $this->service
             ->campaign($campaign)
