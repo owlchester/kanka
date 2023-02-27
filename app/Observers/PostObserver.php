@@ -101,8 +101,8 @@ class PostObserver
 
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
-        $post->entity->child->savingObserver = false;
-        $post->entity->child->touch();
+        $post->entity->touchSilently();
+        $post->entity->child->touchSilently();
 
         // If the entity note's entry has changed, we need to re-build it's map.
         if ($post->isDirty('entry')) {
@@ -121,7 +121,8 @@ class PostObserver
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
         if ($post->entity) {
-            $post->entity->child->touch();
+            $post->entity->touchSilently();
+            $post->entity->child->touchSilently();
         }
     }
     /**

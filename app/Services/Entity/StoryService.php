@@ -92,5 +92,8 @@ class StoryService
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = EntityLog::ACTION_REORDER_POST;
         $log->save();
+
+        $this->entity->touchSilently();
+        $this->entity->child->touchSilently();
     }
 }
