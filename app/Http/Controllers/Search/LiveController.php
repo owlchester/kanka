@@ -65,16 +65,21 @@ class LiveController extends Controller
      */
     public function recent()
     {
-        if (auth()->guest()) {
-            return abort(401);
-        }
+        $recent = [];
+        if (auth()->check()) {
+            $campaign = CampaignLocalization::getCampaign();
 
-        $recent = $this->search->recent();
+            $recent = $this->search
+                ->campaign($campaign)
+                ->user(auth()->user())
+                ->recent();
+        }
 
         return response()->json([
             'recent' => $recent,
             'texts' => [
-                'recents' => __('Recents'),
+                'recents' => __('search.lookup.recents'),
+                'hint' => __('search.lookup.hint')
             ],
         ]);
     }

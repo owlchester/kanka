@@ -1,19 +1,28 @@
 <template>
-    <div class="entity-header p-3 bg-slate-300">
-        <div class="block text-2xl font-extrabold">
-            {{ entity.name }}
+    <div class="entity-header p-3 bg-entity-focus">
+        <div class="block w-full flex items-center">
+
+            <a class="text-2xl font-extrabold" v-bind:href="entity.link">
+              {{ entity.name }}
+            </a>
+
+            <i class="fa-solid fa-skull mx-2" aria-hidden="true" v-if="entity.is_dead"></i>
+
+            <a class="ml-2 text-xs" target="_blank" v-bind:href="entity.link">
+                <i class="fa-solid fa-external-link" aria-hidden="true" aria-label="Open in a new window"></i>
+            </a>
         </div>
         <div class="block w-full" v-if="hasTitle()">
             {{ entity.title}}
         </div>
-        <div class="my-2" v-if="entity.tags.length > 0">
+        <div class="my-1 w-full" v-if="entity.tags.length > 0">
             <a :class="tagClass(tag)" v-for="tag in entity.tags"
                 v-bind:href="tag.link"
                 >
                 {{ tag.name }}
             </a>
         </div>
-        <a class="block cursor-pointer my-2 text-black"
+        <a class="block w-full cursor-pointer my-2"
            v-if="entity.location"
            v-bind:href="entity.location.link"
            :data-tag="entity.id"
@@ -31,11 +40,11 @@
     </div>
     <div class="entity-sections">
         <div class="tabs flex my-2 justify-center items-center border-solid border-slate-600 border-b-2 border-r-0 border-t-0 border-l-0">
-            <div v-bind:class="tabClass('profile')" v-on:click="switchTab('profile')">Profile</div>
-            <div v-bind:class="tabClass('connections')" v-on:click="switchTab('connections')">Connections</div>
+            <div v-bind:class="tabClass('profile')" v-on:click="switchTab('profile')">{{ entity.texts.profile }}</div>
+            <div v-bind:class="tabClass('links')" v-on:click="switchTab('links')">{{ entity.texts.connections }}</div>
             <div v-bind:class="tabClass('access')" v-on:click="switchTab('access')"></div>
         </div>
-        <div class="tab-profile p-3" v-if="focus_profile">
+        <div class="tab-profile p-5" v-if="focus_profile">
             <div class="entity-pinned-attributes" v-if="entity.attributes.length > 0">
                 <div  v-for="attribute in entity.attributes" class="mb-3">
                     <span class="inline-block text-uppercase font-extrabold mr-1">
@@ -54,10 +63,13 @@
                 </div>
             </div>
         </div>
-        <div class="tab-connections p-3" v-if="focus_connections">
+        <div class="tab-links p-3" v-if="focus_pins">
             <LookupEntity  v-for="relation in entity.connections"
                 :entity="relation">
             </LookupEntity>
+            <p class="text-center italic" v-if="entity.connections.length === 0">
+                {{ entity.texts['no-connections'] }}
+            </p>
         </div>
     </div>
 </template>
@@ -75,7 +87,7 @@ export default {
     data() {
         return {
             focus_profile: true,
-            focus_connections: false,
+            focus_pins: false,
             focus_access: false,
         }
     },
@@ -84,7 +96,7 @@ export default {
             return this.entity.title;
         },
         tagClass(tag) {
-            let cls = 'inline-block rounded-xl px-3 py-1 mr-1 bg-neutral-400 text-black text-xs mb-1';
+            let cls = 'inline-block rounded-xl px-3 py-1 mr-2 bg-neutral-400 text-black text-xs mb-1';
             if (tag.colour) {
                 cls += ' bg-' + tag.colour;
             }
@@ -94,23 +106,23 @@ export default {
             return 'url(' + this.entity.image + ')';
         },
         tabClass: function(tab) {
-            let cls = 'p-1 px-1 mx-1 pt-2 select-none text-center truncate border-b-2';
-            if ((tab === 'profile' && this.focus_profile) || (tab === 'connections' && this.focus_connections) || (tab === 'access' && this.focus_access)) {
-                cls += ' font-black border-solid border-slate-600 border-r-0 border-t-0 border-l-0';
+            let cls = 'p-1 px-1 mx-1 pt-2 select-none text-center truncate border-b-2 border-solid border-r-0 border-t-0 border-l-0';
+            if ((tab === 'profile' && this.focus_profile) || (tab === 'links' && this.focus_pins) || (tab === 'access' && this.focus_access)) {
+                cls += ' font-black border-slate-600';
             } else {
-                cls += ' cursor-pointer';
+                cls += ' cursor-pointer border-lookup';
             }
 
             return cls;
         },
         switchTab: function (tab) {
             this.focus_profile = false;
-            this.focus_connections = false;
+            this.focus_pins = false;
             this.focus_access = false;
             if (tab === 'profile') {
                 this.focus_profile = true;
-            } else if (tab === 'connections') {
-                this.focus_connections = true;
+            } else if (tab === 'links') {
+                this.focus_pins = true;
             } else if (tab === 'access') {
                 this.focus_access = true;
             }

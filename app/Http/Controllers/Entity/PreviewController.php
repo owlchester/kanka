@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Services\Entity\PreviewService;
+use App\Services\SearchService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,7 @@ class PreviewController extends Controller
 
     /**
      * AbilityController constructor.
-     * @param AbilityService $service
+     * @param PreviewService $service
      */
     public function __construct(PreviewService $service)
     {
@@ -42,6 +43,13 @@ class PreviewController extends Controller
         }
 
         $campaign = CampaignLocalization::getCampaign();
+
+        if (auth()->check()) {
+            $service = app()->make(SearchService::class);
+            $service->campaign($campaign)
+                ->user(auth()->user())
+                ->logView($entity);
+        }
 
         return response()->json(
             $this

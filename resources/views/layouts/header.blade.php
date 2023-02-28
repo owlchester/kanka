@@ -25,8 +25,8 @@ $currentCampaign = CampaignLocalization::getCampaign();
             <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="bottom"></span>
             <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex justify-center text-center gap-2 rounded h-9 min-w-9 px-2 text-uppercase items-center"
             tabindex="4">
-                <i class="flex-none fa-solid fa-plus" aria-hidden="true" ></i>
-                <span class="flex-grow hidden-xs" data-toggle="tooltip" data-placement="bottom" title="{{ __('entities.creator.tooltip') }}">
+                <i class="flex-none fa-solid fa-plus ml-1" aria-hidden="true" ></i>
+                <span class="flex-grow hidden-xs">
                     {{ __('crud.create') }}
                 </span>
                 <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true" data-placement="bottom" >N</span>

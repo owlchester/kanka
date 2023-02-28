@@ -11,9 +11,14 @@
             <div class="text-center mt-5" v-if="show_loading">
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" aria-label="Loading"></i>
             </div>
-            <div class="search-recent p-2 overflow-y h-screen shadow-r mb-5" v-if="show_recent">
+            <div class="search-recent bg-lookup p-2 overflow-y h-screen shadow-r mb-5" v-if="show_recent">
+                <div class="mb-5" v-if="!show_results">
+                    <p class="italic text-xs text-center">
+                        {{ texts.hint}}
+                    </p>
+                </div>
                 <div class="search-results mb-5" v-if="show_results">
-                    <div class="text-lg text-uppercase mb-2">{{ texts.results }}</div>
+                    <div class="text-sm text-uppercase mb-2">{{ texts.results }}</div>
 
                     <div class="italic" v-if="results.length === 0">
                         {{ texts.empty_results }}
@@ -25,7 +30,7 @@
                 </div>
 
                 <div class="recent-searches" v-if="recent.length > 0">
-                    <div class="text-lg text-uppercase mb-2">{{ texts.recents }}</div>
+                    <div class="text-sm text-uppercase my-2 mx-1">{{ texts.recents }}</div>
 
                     <LookupEntity v-for="entity in recent"
                                   :entity="entity"
@@ -34,7 +39,7 @@
                 </div>
 
             </div>
-            <div class="search-preview h-screen overflow-y shadow-r mb-5" v-if="show_preview">
+            <div class="search-preview bg-lookup h-screen overflow-y shadow-r pb-5" v-if="show_preview">
                 <EntityPreview
                     :entity="preview_entity">
                 </EntityPreview>
@@ -126,9 +131,15 @@ export default {
             axios.get(this.api_recent).then(response => {
                 this.recent = response.data.recent;
                 this.texts.recents = response.data.texts.recents;
+                this.texts.hint = response.data.texts.hint;
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = true;
+            }).catch(error => {
+                // Probably unlogged user
+                this.show_loading = false;
+                this.show_recent = true;
+                this.has_recent = false;
             });
         },
         // Load results from a search

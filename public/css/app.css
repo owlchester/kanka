@@ -6173,14 +6173,19 @@ body.ab-testing-second .ab-testing-a {
   background-color: rgb(163, 163, 163);
 }
 
-.bg-slate-400 {
-  background-color: rgb(148, 163, 184);
+/*.bg-slate-400 {
+    background-color: rgb(148 163 184);
 }
-
 .bg-slate-300 {
-  background-color: rgb(203, 213, 225);
+    background-color: rgb(203 213 225);
+}
+.bg-gray-300 {
+    background-color: rgb(209 213 219);
 }
 
+.bg-neutral-300	{
+    background-color: rgb(212 212 212);
+}*/
 .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;

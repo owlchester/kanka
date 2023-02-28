@@ -11,6 +11,17 @@ use Illuminate\Support\Str;
 
 trait Picture
 {
+    private int $avatarSize = 40;
+
+    /**
+     * Set the avatar size (defaults to 40)
+     */
+    public function avatarSize(int $size): self
+    {
+        $this->avatarSize = $size;
+        return $this;
+    }
+
     /**
      * @param bool $thumb
      * @param string $field
@@ -18,9 +29,11 @@ trait Picture
      */
     public function avatar(bool $thumb = false, string $field = 'image')
     {
-        $avatar = Cache::get($this->avatarCacheKey($thumb, $field), false);
+        $size = $thumb ? '_thumb' : ($this->avatarSize != 40 ? '_mid' : null);
+        $avatar = Cache::get($this->avatarCacheKey($field, $size), false);
+        $avatar = false;
         if ($avatar === false) {
-            $avatar = $this->cacheAvatar($thumb, $field);
+            $avatar = $this->cacheAvatar($field, $size);
         }
         return $this->avatarUrl($avatar);
     }
@@ -30,15 +43,15 @@ trait Picture
      * @param string $field
      * @return string
      */
-    protected function cacheAvatar(bool $thumb, string $field)
+    protected function cacheAvatar(string $field, string $size = null)
     {
         // Can't get the child? Something is weird, let's cache something empty rather than crash the user
         if (empty($this->child)) {
             return '';
         }
         // Todo: we are caching with the user's nicer image here
-        $avatar = $this->child->withEntity($this)->thumbnail();
-        Cache::forever($this->avatarCacheKey($thumb, $field), $avatar);
+        $avatar = $this->child->withEntity($this)->thumbnail($this->avatarSize);
+        Cache::forever($this->avatarCacheKey($field, $size), $avatar);
         return $avatar;
     }
 
@@ -54,7 +67,8 @@ trait Picture
             // Check if the campaign has a default image first
             $campaign = CampaignLocalization::getCampaign();
             if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
-                return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->type()]['path']);
+                return Img::crop($this->avatarSize, $this->avatarSize)
+                    ->url(CampaignCache::defaultImages()[$this->type()]['path']);
             }
 
             if (auth()->check() && auth()->user()->isGoblin()) {
@@ -71,16 +85,14 @@ trait Picture
     public function clearAvatarCache()
     {
         $fields = ['image'];
-        if (!empty($this->child->cachedImageFields)) {
-            $fields = array_merge($fields, $this->child->cachedImageFields);
-        }
         foreach ($fields as $field) {
             // Ful image
-            $image = $this->avatarCacheKey(false, $field);
+            $image = $this->avatarCacheKey($field);
             Cache::forget($image);
 
             // Thumb
-            $image = $this->avatarCacheKey(true, $field);
+            $image = $this->avatarCacheKey($field, '_thumb');
+            $image = $this->avatarCacheKey($field, '_mid');
             Cache::forget($image);
         }
     }
@@ -90,8 +102,8 @@ trait Picture
      * @param string $field
      * @return string
      */
-    protected function avatarCacheKey(bool $thumb, string $field): string
+    protected function avatarCacheKey(string $field, string $size = null): string
     {
-        return 'entity_picture_' . $this->id . '_' . $field . ($thumb ? '_thumb' : null);
+        return 'entity_picture_' . $this->id . '_' . $field . $size;
     }
 }

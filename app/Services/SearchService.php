@@ -8,11 +8,15 @@ use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
+use App\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class SearchService
 {
     use CampaignAware;
+    use UserAware;
 
     /** @var string The search term */
     protected string $term;
@@ -366,9 +370,16 @@ class SearchService
 
     public function recent(): array
     {
-        $recent = [];
+        $recentIds = $this->recentEntityIds();
+        if (empty($recentIds)) {
+            return [];
+        }
 
-        $entities = Entity::inRandomOrder()->take(5)->get();
+        $orderedIds = implode(',', $recentIds);
+        $entities = Entity::whereIn('id', $recentIds)
+            ->orderByRaw("FIELD(id, $orderedIds)")
+            ->get();
+        $recent = [];
 
         /** @var Entity $entity */
         foreach ($entities as $entity) {
@@ -389,10 +400,40 @@ class SearchService
             'id' => $entity->id,
             'name' => $entity->name,
             'is_private' => $entity->is_private,
-            'image' => $entity->avatar(),
+            'image' => $entity->avatarSize(64)->avatar(),
             'link' => $entity->url(),
             'type' => __('entities.' . $entity->type()),
             'preview' => route('entities.preview', $entity)
         ];
+    }
+
+    public function logView(Entity $entity): void
+    {
+        $recents = $original = $this->recentEntityIds();
+        $recents = array_diff($recents, [$entity->id]);
+        $recents = [$entity->id, ...$recents];
+
+        // Limit the array to five
+        $recents = array_splice($recents, 0, 5);
+
+        if ($recents == $original) {
+            return;
+        }
+        $key = $this->recentEntityCacheKey();
+        cache()->put($key, $recents, 7 * 86400);
+    }
+
+    protected function recentEntityIds(): array
+    {
+        $key = $this->recentEntityCacheKey();
+        if (!cache()->has($key)) {
+            return [];
+        }
+        return (array) cache()->get($key);
+    }
+
+    protected function recentEntityCacheKey(): string
+    {
+        return 'recent_c' . $this->campaign->id . '_u' . $this->user->id;
     }
 }

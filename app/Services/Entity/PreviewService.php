@@ -4,19 +4,25 @@ namespace App\Services\Entity;
 
 use App\Facades\Img;
 use App\Models\Attribute;
+use App\Models\Character;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use Illuminate\Support\Arr;
 
 class PreviewService
 {
     use EntityAware;
     use CampaignAware;
 
+    protected array $profile = [];
+
+    protected array $data = [];
+
     public function preview(): array
     {
-        $data = [
+        $this->data = [
             'id' => $this->entity->id,
             'name' => $this->entity->name,
             'title' => $this->entity->isCharacter() ? $this->entity->child->title : null,
@@ -24,14 +30,21 @@ class PreviewService
             'image' => $this->image()
         ];
 
-        $data['tags'] = $this->tags();
-        $data['location'] = $this->location();
-        $data['attributes'] = $this->attributes();
-        $data['profile'] = $this->profile();
-        $data['connections'] = $this->connections();
-        $data['access'] = []; //$this->access();
+        $this->data['is_dead'] = false;
+        $this->data['tags'] = $this->tags();
+        $this->data['location'] = $this->location();
+        $this->data['attributes'] = $this->attributes();
+        $this->data['profile'] = $this->profile();
+        $this->data['connections'] = $this->connections();
+        $this->data['access'] = []; //$this->access();
 
-        return $data;
+        $this->data['texts'] = [
+            'profile' => __('crud.tabs.profile'),
+            'connections' => __('search.preview.links'),
+            'no-connections' => __('search.preview.no-connections')
+        ];
+
+        return $this->data;
     }
 
     /**
@@ -40,21 +53,19 @@ class PreviewService
      */
     protected function profile(): array
     {
-        $profile = [];
         /** @var MiscModel $child */
         $child = $this->entity->child;
         if (!empty($child->type)) {
-            $profile[] = [
-                'field' => __('crud.fields.type'),
-                'slug' => 'type',
-                'value' => $child->type,
-            ];
+            $this->addProfile('crud.fields.type', 'type', $child->type);
         }
 
         // Entity-specific content?
+        if ($this->entity->isCharacter()) {
+            $this->characterProfile($child);
+        }
 
 
-        return $profile;
+        return $this->profile;
     }
 
     protected function image(): mixed
@@ -138,7 +149,7 @@ class PreviewService
                 'id' => $relation->target->id,
                 'name' => $relation->target->name,
                 'type' => $relation->relation,
-                'image' => $relation->target->avatar(),
+                'image' => $relation->target->avatarSize(64)->avatar(),
                 'link' => $relation->target->url(),
             ];
 
@@ -146,5 +157,43 @@ class PreviewService
         }
 
         return $relations;
+    }
+
+    protected function characterProfile(Character $child): void
+    {
+        if ($child->families->isNotEmpty()) {
+            $races = $child->families->pluck('name')->toArray();
+            $this->addProfile('entities.families', 'families', implode(', ', $races));
+        }
+
+        if ($child->races->isNotEmpty()) {
+            $races = $child->races->pluck('name')->toArray();
+            $this->addProfile('entities.races', 'races', implode(', ', $races));
+        }
+
+        if ($child->age) {
+            $this->addProfile('characters.fields.age', 'age', $child->age);
+        }
+
+        if ($child->sex) {
+            $this->addProfile('characters.fields.sex', 'gender', $child->sex);
+        }
+
+        if ($child->pronouns) {
+            $this->addProfile('characters.fields.pronouns', 'pronouns', $child->pronouns);
+        }
+
+        if ($child->is_dead) {
+            $this->data['is_dead'] = true;
+        }
+    }
+
+    protected function addProfile(string $key, string $slug, mixed $value = null): void
+    {
+        $this->profile[] = [
+            'field' => __($key),
+            'slug' => $slug,
+            'value' => $value,
+        ];
     }
 }

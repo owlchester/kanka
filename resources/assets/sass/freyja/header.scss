@@ -2,6 +2,15 @@
     background-color: var(--main-navbar-background);
     z-index: 50;
 }
+.bg-lookup {
+    background-color: var(--main-navbar-background);
+}
+.border-lookup {
+    border-color: var(--main-navbar-background);
+}
+.bg-entity-focus {
+    background-color: var(--lookup-entity-background, rgb(222 222 222));
+}
 
 .navigation-drawer {
     width: 82%;
@@ -150,6 +159,10 @@
 /**
  * Lookup
  */
+.search-recent, .search-preview {
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
+    color: var(--lookup-text, #333);
+}
 .hover\:lookup-entity:hover {
     background-color: var(--lookup-entity-hover, rgba(0, 0, 0, 0.1));
 }
