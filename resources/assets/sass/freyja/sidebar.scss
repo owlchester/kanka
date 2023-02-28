@@ -188,6 +188,9 @@ body .main-sidebar, body .left-side {
 }
 
 
+.sidebar-toggle {
+    color: var(--theme-main-text);
+}
 .sidebar-toggle [data-sidebar="collapse"] {
     display: none;
 }

@@ -156,6 +156,10 @@ body .main-sidebar, body .left-side {
   margin-left: var(--sidebar-width);
 }
 
+.sidebar-toggle {
+  color: var(--theme-main-text);
+}
+
 .sidebar-toggle [data-sidebar=collapse] {
   display: none;
 }
