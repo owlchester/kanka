@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'           => [
+        'customise' => 'Personalizar barra lateral',
+    ],
     'create'            => [
         'title' => 'Novo link rápido',
     ],
@@ -49,4 +52,7 @@ return [
         'title'     => 'Reordenar links rápidos',
     ],
     'show'              => [],
+    'visibilities'      => [
+        'is_active' => 'Mostrar o link rápido na barra lateral',
+    ],
 ];

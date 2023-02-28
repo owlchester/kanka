@@ -245,6 +245,10 @@ return [
         'learn_more'    => 'Więc informacji o tej funkcji zawiera :documentation.',
         'linking'       => 'Łącza do innych elementów',
         'nested_parent' => 'Wyświetl pochodne :parent',
+        'pagination'    => [
+            'settings'  => 'ustawienia wyglądu',
+            'text'      => 'Możesz wyświetlać więcej wpisów na stronie, zmieniając swoje :settings.',
+        ],
     ],
     'hidden'                    => 'Ukryte',
     'hints'                     => [

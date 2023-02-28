@@ -24,7 +24,7 @@ return [
     ],
     'create'            => [
         'new_title' => 'Nova relação',
-        'success'   => 'Relação adicionada para :name.',
+        'success'   => 'Relação :target adicionada para :entity.',
         'title'     => 'Criar relações',
     ],
     'delete_mirrored'   => [

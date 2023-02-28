@@ -185,6 +185,7 @@ return [
             'alternatives_warning'  => 'Jeżeli używasz tej metody, nie możesz zmienić poziomu subskrypcji. Zasubskrybuj ponownie, gdy ta subskrypcja wygaśnie.',
             'alternatives_yearly'   => 'Z powodu ograniczeń cyklu płatniczego, :method jest dostępna tylko dla subskrypcji rocznych.',
             'paypal'                => 'Wolisz użyć PayPala? Skontaktuj się z nami pisząc na adres :email, a przygotujemy dla ciebie roczny plan subskrypcji przez PayPal.',
+            'paypal_v2'             => 'Przyjmujemy opłaty za subskrypcję roczną wykonywane z pomocą PayPal. Napisz do nas na :email podając mail przypisany do twojego konta, poziom który chcesz wykupić i wybraną walutę (USD albo EUR), a wystawimy rachunek.',
             'stripe'                => 'Informacje o płatnościach bezpiecznie przetwarza i przechowuje :stripe.',
         ],
         'manage_subscription'   => 'Zarządzaj subskrypcją',

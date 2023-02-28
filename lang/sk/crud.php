@@ -245,6 +245,10 @@ return [
         'learn_more'    => 'Zisti viac o tejto funkcii v našej :documentation.',
         'linking'       => 'Prepojenia s inými objektami',
         'nested_parent' => 'Zobrazenie podobjektov :parent.',
+        'pagination'    => [
+            'settings'  => 'nastavení zobrazenia',
+            'text'      => 'Viacero výsledkov na stránke zobrazíš zmenou tvojich :settings.',
+        ],
     ],
     'hidden'                    => 'Skrytý',
     'hints'                     => [
@@ -335,6 +339,7 @@ return [
         'race'          => 'Vyber rasu',
         'tag'           => 'Vyber kategóriu',
         'timeline'      => 'Vyber časovú os',
+        'user'          => 'Vyber užívateľa',
     ],
     'relations'                 => [],
     'remove'                    => 'Zmazať',

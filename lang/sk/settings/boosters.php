@@ -1,15 +1,16 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'   => [
         'boost_name'    => 'Boost :name',
     ],
-    'benefits'      => [
+    'available' => 'Dostupné boosty :amount/:total',
+    'benefits'  => [
         'boosted'       => 'Boostnutie kampane s :one booster odomyká prístup k :marketplace, štýlovaniu, nahrávaniu väčších súborov pre všetkých členov, obnovovanie zmazaných objektov a :more.',
         'more'          => 'ďalšie úžasné funkcionality.',
         'superboosted'  => 'Superboostnutie kampane s :amount boostami odomyká všetky výhody boostnutej kampane, ako aj galériu kampane, plné reporty zmien, ktoré boli robené na objektoch, a :more.',
     ],
-    'boost'         => [
+    'boost'     => [
         'actions'   => [
             'confirm'   => 'Boostni to!',
             'remove'    => 'Ukončiť boostnutie :campaign',
@@ -27,17 +28,17 @@ return [
         'title'     => 'Boostnuť :campaign',
         'upgrade'   => 'Aktualizovať tvoje predplatné',
     ],
-    'campaign'      => [
+    'campaign'  => [
         'boosted'       => 'Boostnuté :user od :time',
         'superboosted'  => 'Superboostnuté :user od :time',
         'unboosted'     => 'Neboostnuté',
     ],
-    'intro'         => [
+    'intro'     => [
         'anyone'    => 'Nemusíš len boostnuť kampane, ktoré sú vytvorené tebou. Môžeš boostnuť hociktorú kampaň, ktorej si súčasťou alebo ktorá je viditeľná. Toto zahŕňa kampane, v ktorých hrávaš, alebo :public, ktoré sa ti páčia.',
         'data'      => 'Ak kampaň prestane byť boostnutá, prístup k boostnutým funkciám je odobratý. Ale žiaden obsah sa je odstránený, takže boostnutie kampane v budúcnosti ti ho opäť sprístupní.',
         'first'     => 'Rozšírené funkcie sa odomykajú priradením boostov na boostnutie alebo superboostnutie kampane. Počet boostov, ktoré máš, je dané tvojím :subscription. Toto číslo je dostupné zakaždým, kým máš predplatné. Boostnutie kampane priradí tejto jeden z tvojich boostov, zatiaľ čo superboostnutie požaduje boosty tri.',
     ],
-    'pitch'         => [
+    'pitch'     => [
         'benefits'      => [
             'backup'        => 'Obnov predtým odstránený objekt spred :amount dní',
             'customisable'  => 'Úplná možnosť úpravy vizuálu kampane',
@@ -51,13 +52,13 @@ return [
         'more'          => 'Spoznaj celý zoznam benefitov na stránke :boosters.',
         'title'         => 'Posuň kampaň na vyššiu úroveň s možnosťou vlastných úprav a výhod pre všetkých jej členov.',
     ],
-    'ready'         => [
+    'ready'     => [
         'available'         => 'Tvoje dostupné kampaňové boosty.',
         'pricing'           => 'Všetky tvoje úrovne predplatného obsahujú aspoň jeden boost kampane a začínajú na :amount mesačne.',
         'pricing-amount'    => ':amount :currency',
         'title'             => 'Boostnutie kampane',
     ],
-    'superboost'    => [
+    'superboost'=> [
         'actions'   => [
             'confirm'   => 'Superboostni to!',
             'remove'    => 'Ukončiť superboostnutie :campaign',
@@ -70,8 +71,8 @@ return [
         'title'     => 'Superboostnuť :campaign',
         'upgrade'   => 'Priprav sa na ultimátne využitie Kanky! Superboostnutie :campaign jej priradí :cost dodatočné kampaňové boosty.',
     ],
-    'title'         => 'Kampaňové boosty',
-    'unboost'       => [
+    'title'     => 'Kampaňové boosty',
+    'unboost'   => [
         'confirm'   => 'Áno, určite',
         'status'    => [
             'boosting'      => 'boostnutá',

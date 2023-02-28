@@ -19,6 +19,7 @@ return [
     'fields'        => [
         'children'          => 'Podradené kategórie',
         'is_auto_applied'   => 'Automaticky nastaviť pre nové objekty',
+        'is_hidden'         => 'Skryté v záhlaví a náhľade',
         'tag'               => 'Kategória',
         'tags'              => 'Priradené kategórie',
     ],
@@ -29,6 +30,7 @@ return [
     'hints'         => [
         'children'          => 'Tento zoznam obsahuje všetky objekty priamo pod touto kategóriou a jej podriadenými kategóriami.',
         'is_auto_applied'   => 'Aktivuj toto nastavenie, ak chceš, aby bola táto kategória automaticky pri novo vytvorených objektoch.',
+        'is_hidden'         => 'Ak zaškrtneš túto možnosť, táto kategória sa nezobrazí v záhlaví ani náhľade objektu.',
         'tag'               => 'Zobrazené sú všetky kategórie, ktoré sú tejto priamo podriadené.',
     ],
     'index'         => [],

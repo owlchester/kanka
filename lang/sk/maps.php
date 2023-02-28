@@ -70,6 +70,7 @@ return [
     'panels'        => [
         'groups'    => 'Skupiny',
         'layers'    => 'Vrstvy',
+        'legend'    => 'Legenda',
         'markers'   => 'Značky',
         'settings'  => 'Nastavenia',
     ],

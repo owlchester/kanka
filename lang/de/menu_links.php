@@ -52,4 +52,11 @@ return [
         'title'     => 'Menü Links neu anordnen',
     ],
     'show'              => [],
+    'visibilities'      => [
+        'is_active' => <<<'TEXT'
+Zeige den Quicklink
+in der Seitenleiste an
+TEXT
+,
+    ],
 ];

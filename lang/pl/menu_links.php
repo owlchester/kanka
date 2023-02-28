@@ -52,4 +52,7 @@ return [
         'title'     => 'Zmiana kolejności skrótów',
     ],
     'show'              => [],
+    'visibilities'      => [
+        'is_active' => 'Pokaż skróty w menu bocznym',
+    ],
 ];

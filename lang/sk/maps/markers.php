@@ -13,6 +13,14 @@ return [
         'delete'    => '{1} Odstránená :count značka.|[2,4] Odstránené :count značky.|[5,*] Odstránených :count značiek.',
         'patch'     => '{1} Aktualizovaná :count značka.|[2,4] Aktualizované :count značky.|[5,*] Aktualizovaných :count značiek.',
     ],
+    'circle_sizes'  => [
+        'custom'    => 'Vlastná',
+        'huge'      => 'Obrovská',
+        'large'     => 'Veľká',
+        'small'     => 'Malá',
+        'standard'  => 'Štandardná',
+        'tiny'      => 'Drobná',
+    ],
     'create'        => [
         'success'   => 'Značka :name vytvorená.',
         'title'     => 'Nová značka',
@@ -25,6 +33,7 @@ return [
         'title'     => 'Upraviť značku :name',
     ],
     'fields'        => [
+        'bg_colour'     => 'Farba pozadia',
         'circle_radius' => 'Polomer kruhu',
         'copy_elements' => 'Kopírovať prvky',
         'custom_icon'   => 'Vlastný symbol',
@@ -42,6 +51,7 @@ return [
             'stroke-opacity'    => 'Nepriehľadnosť ťahu',
             'stroke-width'      => 'Hrúbka ťahu',
         ],
+        'size'          => 'Veľkosť',
     ],
     'helpers'       => [
         'base'                      => 'Pridaj značky na mapu kliknutím na hociktorý bod na nej.',

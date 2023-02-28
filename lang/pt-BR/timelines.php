@@ -22,6 +22,7 @@ return [
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas as linhas do tempo que não tem uma linha do tempo pai. Clique em uma linha para ver as linhas do tempo filhos.',
+        'no_era_v2'         => 'Esta linha do tempo atualmente não tem nenhuma era. Adicione uma ou várias eras, após o qual você pode adicionar elementos às eras aqui.',
         'reverse_order'     => 'Habilite para mostrar linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
     ],
     'index'         => [],

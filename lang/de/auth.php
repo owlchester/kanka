@@ -32,6 +32,7 @@ return [
         'title'                 => 'Login',
     ],
     'register'  => [
+        'already'                   => 'Hast du schon ein Konto? :login',
         'already_account'           => 'Hast du bereits einen Account?',
         'errors'                    => [
             'email_already_taken'   => 'Ein Account mit dieser Email ist bereits registriert.',
@@ -43,11 +44,13 @@ return [
             'password'  => 'Passwort',
             'tos_clean' => 'Ich stimme der :privacy zu',
         ],
+        'log-in'                    => 'Log in',
         'register_with_facebook'    => 'Mit Facebook registrieren',
         'register_with_google'      => 'Mit Google registrieren',
         'register_with_twitter'     => 'Mit Twitter registrieren',
         'submit'                    => 'Registrieren',
         'title'                     => 'Registrieren',
+        'tos'                       => 'Durch die Registrierung eines Kontos stimmst du unseren :terms und :privacy zu.',
     ],
     'reset'     => [
         'fields'    => [

@@ -4,6 +4,9 @@ return [
     'actions'       => [
         'add'   => 'Adicionar nova era',
     ],
+    'bulks'         => [
+        'delete'    => '{0} Removida :count era.|{1} Removida :count era.|[2,*] Removidas :count eras.',
+    ],
     'create'        => [
         'success'   => 'Era :name criada.',
         'title'     => 'Nova era',
@@ -25,6 +28,9 @@ return [
         'eras'          => 'Uma linha do tempo precisa ser criada antes que eras possam ser adicionadas a ela.',
         'is_collapsed'  => 'Era está colapsada (minimizada) por padrão.',
         'primary'       => 'Separe sua linha do tempo em eras. Uma linha do tempo precisa de pelo menos uma era para funcionar corretamente.',
+    ],
+    'index'         => [
+        'title' => 'Eras de :name',
     ],
     'placeholders'  => [
         'abbreviation'  => 'a.C., d.C.',

@@ -20,6 +20,7 @@ return [
         'success'   => 'Estilo :name deletado.',
     ],
     'errors'    => [
+        'max_content'   => 'A regra CSS não pode ter mais de :amount caracteres.',
         'max_reached'   => 'Número máximo de estilos (:max) alcançado.',
     ],
     'fields'    => [

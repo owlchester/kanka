@@ -52,11 +52,13 @@ return [
         'success'   => 'Event \':event\' zum Kalender hinzugefügt.',
     ],
     'events'        => [
+        'end'       => '(ende)',
         'filters'   => [
             'show_after'    => 'Zeige heute und die Zukunft',
             'show_all'      => 'Zeige alles',
             'show_before'   => 'Zeige die Vergangenheit',
         ],
+        'start'     => '(start)',
         'title'     => 'Kalender :name Events',
     ],
     'fields'        => [
@@ -88,6 +90,7 @@ return [
         'recurring_until'       => 'Wiederholt sich bis zum Jahr',
         'reset'                 => 'Wöchentliches zurücksetzen',
         'seasons'               => 'Jahreszeiten',
+        'skip_year_zero'        => 'Jahr Null überspringen',
         'start_offset'          => 'Startdatum',
         'suffix'                => 'Suffix',
         'week_names'            => 'Wochennamen',
@@ -111,6 +114,7 @@ return [
         'parent_calendar'   => 'Wenn Sie dem Kalender einen übergeordneten Kalender geben, werden die Erinnerungen und Wettereffekte des übergeordneten Kalenders angezeigt.',
         'reset'             => 'Beginnen Sie den Anfang des Monats oder Jahres immer am ersten Wochentag.',
         'seasons'           => 'Erstelle Jahreszeiten in dem du den jeweiligen Start festlegst. Kanka übernimmt den Rest.',
+        'skip_year_zero'    => 'Standardmäßig ist das erste Jahr des Kalenders das Jahr Null. Aktiviere diese Option, um das Jahr Null zu überspringen.',
         'weekdays'          => 'Lege die Namen deiner Wochentage fest. Es werden mindestens 2 Wochentage benötigt.',
         'weeks'             => 'Definieren Sie einige Namen für die wichtigeren Wochen Ihres Kalenders.',
         'years'             => 'Manche Jahre sind so wichtig, dass sie ihren eigenen Namen haben.',
