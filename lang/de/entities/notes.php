@@ -23,6 +23,7 @@ return [
         'title'     => 'Aktualisiere Notiz für :name',
     ],
     'fields'        => [
+        'collapsed' => 'Schließen Sie die angeheftete Objektnotiz standardmäßig',
         'creator'   => 'Ersteller',
         'entry'     => 'Eintrag',
         'name'      => 'Name',

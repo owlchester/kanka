@@ -22,6 +22,7 @@ return [
         'title'     => 'Actualizar post de :name',
     ],
     'fields'        => [
+        'collapsed' => 'Post colapsado por defecto',
         'creator'   => 'Creador',
         'entry'     => 'Entrada',
         'name'      => 'Nombre',

@@ -18,6 +18,7 @@ return [
         'title'     => 'Jegyzet frissítése :name számára',
     ],
     'fields'        => [
+        'collapsed' => 'Entitás megjegyzés összecsukása alapértelmezettre',
         'creator'   => 'Létrehozó',
         'entry'     => 'Bejegyzés',
         'name'      => 'Név',
