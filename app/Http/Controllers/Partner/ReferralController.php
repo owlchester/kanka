@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Partner;
-
 
 use App\Models\Referral;
 

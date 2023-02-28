@@ -46,16 +46,16 @@ use Illuminate\Support\Str;
  */
 abstract class MiscModel extends Model
 {
-    use Paginatable,
-        Searchable,
-        Orderable,
-        HasFilters,
-        //Tooltip,
-        Sortable,
-        SubEntityScopes,
-        SourceCopiable,
-        LastSync
+    use HasFilters;
+    use LastSync
     ;
+    use Orderable;
+    use Paginatable;
+    use Searchable;
+    //Tooltip,
+    use Sortable;
+    use SourceCopiable;
+    use SubEntityScopes;
 
     /**
      * If set to false, the saving observer in MiscObserver will be skipped
@@ -142,8 +142,8 @@ abstract class MiscModel extends Model
      */
     public function shortName()
     {
-        if (strlen($this->name) > 30) {
-            return '<span title="' . e($this->name) . '">' . substr(e($this->name), 0, 28) . '...</span>';
+        if (mb_strlen($this->name) > 30) {
+            return '<span title="' . e($this->name) . '">' . mb_substr(e($this->name), 0, 28) . '...</span>';
         }
         return $this->name;
     }
@@ -158,7 +158,7 @@ abstract class MiscModel extends Model
     public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
-            return $this->getImageFallback($width);
+            return $this->getImageFallback();
         }
 
         $img = Img::resetCrop()
@@ -167,7 +167,7 @@ abstract class MiscModel extends Model
 
         if (!empty($width)) {
             $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
-            if(!empty($entity->focus_x) && !empty($entity->focus_y)) {
+            if (!empty($entity->focus_x) && !empty($entity->focus_y)) {
                 $img = $img->focus($entity->focus_x, $entity->focus_y);
             }
         }
@@ -187,10 +187,9 @@ abstract class MiscModel extends Model
 
     /**
      * Get the image fallback image
-     * @param int $width = 400
      * @return string
      */
-    protected function getImageFallback(int $width = 400): string
+    protected function getImageFallback(): string
     {
         // Campaign could have something set up
         $campaign = CampaignLocalization::getCampaign();
@@ -207,11 +206,11 @@ abstract class MiscModel extends Model
             return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {
             // Goblins and above have nicer icons
-            return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
+            return asset('/images/defaults/patreon/' . $this->getTable() . '_thumb.png');
         }
 
         // Default fallback
-        return asset('/images/defaults/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.jpg');
+        return asset('/images/defaults/' . $this->getTable() . '_thumb.jpg');
     }
 
     /**
@@ -265,7 +264,7 @@ abstract class MiscModel extends Model
         // Loop on children attributes and detach.
         $attributes = $this->getAttributes();
         foreach ($attributes as $attribute) {
-            if (strpos($attribute, '_id') !== false && $attribute != 'campaign_id') {
+            if (str_contains($attribute, '_id')   && $attribute != 'campaign_id') {
                 $this->$attribute = null;
             }
         }
@@ -282,7 +281,7 @@ abstract class MiscModel extends Model
             return false;
         }
         // If all that's in the entry is two \n, then there is no real content
-        return strlen($this->entry) > 2;
+        return mb_strlen($this->entry) > 2;
     }
 
     /**
@@ -336,13 +335,14 @@ abstract class MiscModel extends Model
             ];
         }
 
-        if ($this->entity->accessAttributes())
-        $items['third']['attributes'] = [
-            'name' => 'crud.tabs.attributes',
-            'route' => 'entities.attributes',
-            'entity' => true,
-            'icon' => '',
-        ];
+        if ($this->entity->accessAttributes()) {
+            $items['third']['attributes'] = [
+                'name' => 'crud.tabs.attributes',
+                'route' => 'entities.attributes',
+                'entity' => true,
+                'icon' => '',
+            ];
+        }
 
         // Each entity can have an inventory
         if ($campaign->enabled('inventories')) {
@@ -369,7 +369,6 @@ abstract class MiscModel extends Model
 
         // Permissions for the admin?
         if (auth()->check() && auth()->user()->can('permission', $this)) {
-
             $items['fourth']['permissions'] = [
                 'name' => 'crud.tabs.permissions',
                 'route' => 'entities.permissions',
@@ -509,7 +508,7 @@ abstract class MiscModel extends Model
      */
     public function touchSilently()
     {
-        return static::withoutEvents(function() {
+        return static::withoutEvents(function () {
             return $this->touch();
         });
     }
@@ -547,7 +546,6 @@ abstract class MiscModel extends Model
      */
     public function copyRelatedToTarget(MiscModel $target)
     {
-
     }
 
     /**
@@ -617,10 +615,9 @@ abstract class MiscModel extends Model
         }
 
         // Specific entity flags
-        if ($this instanceof Character and $this->is_dead) {
+        if ($this instanceof Character && $this->is_dead) {
             $classes[] = 'character-dead';
-        }
-        elseif ($this instanceof Quest and $this->is_completed) {
+        } elseif ($this instanceof Quest && $this->is_completed) {
             $classes[] = 'quest-completed';
         }
 
@@ -632,7 +629,7 @@ abstract class MiscModel extends Model
         $campaign = CampaignLocalization::getCampaign();
         $superboosted = $campaign->superboosted();
 
-        if($campaign->boosted() && $this->entity->hasHeaderImage($superboosted)) {
+        if ($campaign->boosted() && $this->entity->hasHeaderImage($superboosted)) {
             $classes[] = 'entity-with-banner';
         }
 

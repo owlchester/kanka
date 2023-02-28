@@ -1,28 +1,13 @@
 <?php
 
-
 namespace App\Services\Search;
 
-
-use App\Models\Campaign;
 use App\Models\CampaignUser;
+use App\Traits\CampaignAware;
 
 class CampaignSearchService
 {
-    /**
-     * @var Campaign
-     */
-    protected Campaign $campaign;
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
+    use CampaignAware;
 
     /**
      * List of roles in a campaign
@@ -31,12 +16,10 @@ class CampaignSearchService
      */
     public function roles(string $query = null): array
     {
-        $result = $this->campaign->roles()
+        return $this->campaign->roles()
             ->search($query)
             ->get(['name', 'id'])
             ->toArray();
-
-        return $result;
     }
 
     /**

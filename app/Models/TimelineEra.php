@@ -102,8 +102,8 @@ class TimelineEra extends Model
      */
     public function ages(): string
     {
-        $from = strlen($this->start_year);
-        $to = strlen($this->end_year);
+        $from = mb_strlen($this->start_year);
+        $to = mb_strlen($this->end_year);
 
         if ($from == 0 && $to == 0) {
             return '';
@@ -111,8 +111,7 @@ class TimelineEra extends Model
 
         if ($from == 0) {
             return '< ' . $this->end_year;
-        }
-        elseif ($to == 0) {
+        } elseif ($to == 0) {
             return '> ' . $this->start_year;
         }
 

@@ -7,11 +7,9 @@ use App\Http\Requests\FilterPublicCampaignRequest;
 use App\Models\Campaign;
 use App\Services\ReferralService;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
-
     /**
      * FrontController constructor.
      */

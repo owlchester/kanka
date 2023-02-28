@@ -54,7 +54,7 @@
 
                     <table id="entity-quests" class="table table-hover">
                         <tbody><tr>
-                            <th class="avatar"></th>
+                            <th class="w-14"></th>
                             <th>{{ __('quests.elements.fields.quest') }}</th>
                             <th>{{ __('quests.fields.role') }}</th>
                             <th>{{ __('quests.fields.type') }}</th>

@@ -12,5 +12,4 @@ class NewsletterStore extends FormRequest
             'mail_release' => 'nullable',
         ];
     }
-
 }

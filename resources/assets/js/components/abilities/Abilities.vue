@@ -1,5 +1,5 @@
 <template>
-    <div class="viewport box-abilities">
+    <div class="viewport box-abilities relative">
         <div v-if="loading" class="load more text-center">
             <i class="fa-solid fa-spin fa-spinner"></i>
         </div>
@@ -42,8 +42,8 @@
         <AbilityForm :trans="json_trans">
         </AbilityForm>
 
-        <div v-if="waiting" class="box-waiting">
-            <i class="fa-solid fa-spin fa-spinner fa-4x"></i>
+        <div v-if="waiting" class="box-waiting absolute top-0 w-full h-full bg-black/20 text-center">
+            <i class="fa-solid fa-spin fa-spinner fa-4x mt-5"></i>
         </div>
     </div>
 </template>

@@ -7,7 +7,6 @@ use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\DeleteCampaign;
-use App\Models\UserLog;
 use App\Services\MultiEditingService;
 use App\Services\CampaignService;
 use App\Services\EntityService;
@@ -25,14 +24,9 @@ class CampaignController extends Controller
      */
     protected string $view = 'campaigns';
 
-    /** @var CampaignService  */
-    protected $campaignService;
-
-    /** @var EntityService  */
-    protected $entityService;
-
-    /** @var StarterService  */
-    protected $starterService;
+    protected CampaignService $campaignService;
+    protected EntityService $entityService;
+    protected StarterService $starterService;
 
     /**
      * Create a new controller instance.

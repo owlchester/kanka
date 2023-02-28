@@ -18,8 +18,7 @@ class RelationApiController extends ApiController
         return Resource::collection(
             $campaign->entityRelations()
                 ->has('target')
-            ->paginate()
+                ->paginate()
         );
     }
-
 }

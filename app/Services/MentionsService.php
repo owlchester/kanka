@@ -319,7 +319,6 @@ class MentionsService
 
             // No entity found, the user might not be allowed to see it
             if (empty($entity) || empty($entity->child)) {
-
                 if ($this->onlyName) {
                     return __('crud.history.unknown');
                 }
@@ -334,7 +333,7 @@ class MentionsService
                     $routeParams = explode('&amp;', $data['params']);
                     foreach ($routeParams as $routeParam) {
                         // Do we whitelist? or have a max length to avoid shenanigans?
-                        if (strlen($routeParam) > 20) {
+                        if (mb_strlen($routeParam) > 20) {
                             continue;
                         }
                         $paramOptions = explode('=', $routeParam);
@@ -403,7 +402,7 @@ class MentionsService
                         } else {
                             $parsedTargetEntry = $entity->child->entry;
                         }
-                        $cssClasses[] = 'mention-field-entry';
+                        $cssClasses[] = 'mention-field-entry block';
                         $entityName = '<a href="' . $url . '"'
                             . ' class="entity-mention-name block mb-2"'
                             . ' data-toggle="tooltip-ajax"'
@@ -560,6 +559,9 @@ class MentionsService
             } else {
                 $name = $attribute->name;
             }
+            if (str_contains($matches[1], '|')) {
+                return $matches[0];
+            }
             return '<a href="#" class="attribute attribute-mention" data-attribute="' . $matches[0]
                 . '">{' . $name . '}</a>';
         }, $this->text);
@@ -698,10 +700,17 @@ class MentionsService
         $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
             $attribute = $this->attribute($id);
-
-            // No entity found, the user might not be allowed to see it
+            $fallback = '';
+            if (str_contains($matches[1], '|')) {
+                $fallback = Str::after($matches[1], '|');
+            }
+            // No entity found, the user might not be allowed to see it, if theres a fallback, apply it
             if (empty($attribute)) {
-                $replace = '<i class="unknown-mention unknown-attribute">' . __('crud.history.unknown') . '</i>';
+                if (!$fallback) {
+                    $replace = '<i class="unknown-mention unknown-attribute">' . __('crud.history.unknown') . '</i>';
+                } else {
+                    $replace = '<i class="unknown-mention unknown-attribute">' . $fallback . '</i>';
+                }
             } else {
                 $replace = '<span class="attribute attribute-mention" title="' . e($attribute->name)
                     . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
@@ -733,7 +742,7 @@ class MentionsService
         $toc = $tocGenerator->getHtmlMenu($this->text);
         $this->text = Str::replaceFirst(
             '{table-of-contents}',
-            '<div class="toc">' . $toc .  "</div>\n",
+            '<div class="toc">' . $toc . "</div>\n",
             $this->text
         );
     }
@@ -758,9 +767,9 @@ class MentionsService
         }
 
         // Do we already have it cached?
-        $key = $type . ':' . strtolower($name);
+        $key = $type . ':' . mb_strtolower($name);
         if (isset($this->newEntityMentions[$key])) {
-            return "[$type:" . $this->newEntityMentions[$key] . ']';
+            return "[{$type}:" . $this->newEntityMentions[$key] . ']';
         }
 
         // Create the new misc  model
@@ -806,7 +815,7 @@ class MentionsService
         $attributes = [];
         $dom = new \DOMDocument();
         try {
-            $dom->loadHTML($html);
+            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
 
             $links = $dom->getElementsByTagName('a');
             $link = $links[0];

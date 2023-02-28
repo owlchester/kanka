@@ -59,7 +59,7 @@ class ChildlessEntities extends Command
                 ->leftJoin($plural . ' as f', 'f.id', 'entities.entity_id')
                 ->whereNull('f.id')
                 ->with(Str::camel($type))
-                ->chunk(1000, function ($models) use ($type) {
+                ->chunk(1000, function ($models) use ($type): void {
                     foreach ($models as $model) {
                         $this->trace($model, $type);
                     }
@@ -79,7 +79,7 @@ class ChildlessEntities extends Command
         return 0;
     }
 
-    protected function trace(Entity $entity, string $type)
+    protected function trace(Entity $entity, string $type): void
     {
         $this->traces[] = $entity->id;
         $this->total++;

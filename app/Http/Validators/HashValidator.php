@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Http\Validators;
 
 use Illuminate\Support\Facades\Hash;
-use \Illuminate\Validation\Validator;
+use Illuminate\Validation\Validator;
 
 class HashValidator extends Validator
 {

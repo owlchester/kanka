@@ -4,8 +4,6 @@ namespace App\Observers;
 
 use App\Models\Location;
 use App\Models\MiscModel;
-use App\Services\ImageService;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LocationObserver extends MiscObserver
 {

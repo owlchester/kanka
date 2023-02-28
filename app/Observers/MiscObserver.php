@@ -15,7 +15,6 @@ use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 abstract class MiscObserver
@@ -136,11 +135,12 @@ abstract class MiscObserver
         $sourceId = request()->post('copy_source_id');
 
         // Copy entity notes from source?
+        // Todo: move ALL of this to a service holy smokes
         if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {
             /** @var Entity $source */
             $source = Entity::findOrFail($sourceId);
-            foreach ($source->notes as $note) {
-                $note->copyTo($model->entity);
+            foreach ($source->posts as $post) {
+                $post->copyTo($model->entity);
             }
         }
         if (request()->has('copy_source_links') && request()->filled('copy_source_links')) {
@@ -238,8 +238,6 @@ abstract class MiscObserver
                     foreach ($value as $k => $v) {
                         $logs[$k] = $v;
                     }
-
-
                 }
                 $log->changes = $logs;
             }
@@ -284,7 +282,7 @@ abstract class MiscObserver
                 return '';
             }
             //special treatment for map center markers
-            elseif($attribute == 'center_marker_id'){
+            elseif ($attribute == 'center_marker_id') {
                 $originalMarker = \App\Models\MapMarker::where('id', $original)->first();
                 if (!empty($originalMarker)) {
                     return (string) $originalMarker->name;
@@ -314,8 +312,7 @@ abstract class MiscObserver
             /** @var MiscModel $result */
             $result = $relationModel->where('id', $original)->firstOrFail();
             return $result->name;
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return '';
         }
     }

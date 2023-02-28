@@ -7,7 +7,7 @@ $hasOthers = false;
         {{ __('crud.bulk.buttons.label') }}
         <i class="fa-solid fa-caret-down"></i>
     </a>
-    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+    <ul class="dropdown-menu" role="menu">
 
         @foreach (\App\Facades\Datagrid::bulks() as $bulk)
             @if ($bulk === \App\Renderers\Layouts\Layout::ACTION_EDIT)

@@ -62,7 +62,7 @@
             </div>
 
             <div class="entity-modification-history">
-                <div class="help-block text-right">
+                <div class="help-block text-right italic text-xs">
                     @if (!empty($campaign->created_at) && !empty($campaign->updated_at))
                     {!! __('crud.history.created_date_clean', [
                         'date' => '<span data-toggle="tooltip" title="' . $campaign->created_at . ' UTC' . '">' . $campaign->created_at->diffForHumans() . '</span>'

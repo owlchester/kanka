@@ -164,7 +164,7 @@ class CampaignBoostController extends Controller
         return view('settings.boosters.unboost')
             ->with('campaign', $campaignBoost->campaign)
             ->with('boost', $campaignBoost)
-            ;
+        ;
     }
 
     /**

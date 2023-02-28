@@ -3,11 +3,11 @@
 namespace App\Services;
 
 use App\Models\Ability;
+use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\CharacterTrait;
-use App\Models\Conversation;
 use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityNote;
@@ -25,6 +25,7 @@ use App\Models\Race;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -35,14 +36,13 @@ use Illuminate\Support\Str;
 
 class EntityService
 {
+    use CampaignAware;
+
     /** @var array List of entity types */
     protected array $entities = [];
 
     /** @var bool If the process is copying an entity (this should be moved outside of this class) */
     protected bool $copied = false;
-
-    /** @var Campaign */
-    protected Campaign $campaign;
 
     /** @var bool|array */
     protected bool|array $cachedNewEntityTypes = false;
@@ -87,16 +87,6 @@ class EntityService
             'menu_links' => 'App\Models\MenuLink',
             'relations' => 'App\Models\Relation',
         ];
-    }
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
     }
 
     /**
@@ -304,7 +294,7 @@ class EntityService
             $newModel = $entity->child->replicate();
             // Remove any foreign keys that wouldn't make any sense in the new campaign
             foreach ($newModel->getAttributes() as $attribute) {
-                if (strpos($attribute, '_id') !== false) {
+                if (str_contains($attribute, '_id')) {
                     $newModel->$attribute = null;
                 }
             }
@@ -331,29 +321,29 @@ class EntityService
             $newModel->createEntity();
 
             // Copy entity notes over
-            foreach ($entity->notes as $note) {
+            foreach ($entity->posts as $note) {
                 /** @var EntityNote $newNote */
-                $newNote = $note->replicate();
+                $newNote = $note->replicate(['entity_id', 'created_by', 'updated_by']);
                 $newNote->entity_id = $newModel->entity->id;
-                $newNote->savedObserver = false;
-                $newNote->save();
+                $newNote->created_by = auth()->user()->id;
+                $newNote->saveQuietly();
             }
 
             // Attributes please
             foreach ($entity->attributes as $attribute) {
-                /** @var EntityNote $newNote */
-                $newAttribute = $attribute->replicate();
+                /** @var Attribute $newAttribute */
+                $newAttribute = $attribute->replicate(['entity_id']);
                 $newAttribute->entity_id = $newModel->entity->id;
-                $newAttribute->save();
+                $newAttribute->saveQuietly();
             }
 
             // Characters: copy traits
             if ($entity->child instanceof Character) {
                 /** @var CharacterTrait $trait */
                 foreach ($entity->child->characterTraits as $trait) {
-                    $newTrait = $trait->replicate();
+                    $newTrait = $trait->replicate(['character_id']);
                     $newTrait->character_id = $newModel->id;
-                    $newTrait->save();
+                    $newTrait->saveQuietly();
                 }
             }
 
@@ -361,9 +351,9 @@ class EntityService
             if ($entity->child instanceof Timeline) {
                 foreach ($entity->child->eras as $era) {
                     /** @var TimelineEra $newEra **/
-                    $newEra = $era->replicate();
+                    $newEra = $era->replicate(['timeline_id']);
                     $newEra->timeline_id = $newModel->id;
-                    $newEra->save();
+                    $newEra->saveQuietly();
                 }
             }
 
@@ -393,7 +383,7 @@ class EntityService
     {
         // Create new model
         if (!isset($this->entities[$target])) {
-            throw new \Exception("Unknown target '$target' for transforming entity");
+            throw new \Exception("Unknown target '{$target}' for transforming entity");
         }
 
         /** @var MiscModel $new */
@@ -519,7 +509,7 @@ class EntityService
     {
         // Create new model
         if (!isset($this->entities[$target])) {
-            throw new \Exception("Unknown entity type '$target' for creating entity");
+            throw new \Exception("Unknown entity type '{$target}' for creating entity");
         }
 
         /**

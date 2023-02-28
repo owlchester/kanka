@@ -30,10 +30,10 @@
         </div>
         <div class="col-sm-2">
             @if (!empty($model->entity) && !empty($model->entity->header_uuid) && !empty($model->entity->header))
-                <div class="preview-v2">
-                    <div class="image" style="background-image: url('{{ $model->entity->header->getUrl(80, null, 'header_image') }}')" title="{{ $model->name }}">
-                    </div>
-                </div>
+                @include('cruds.fields._image_preview', [
+                    'image' => $model->entity->header->getUrl(80, null, 'header_image'),
+                    'title' => $model->name,
+                ])
             @endif
         </div>
     </div>

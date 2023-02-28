@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 class ImgServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
      *

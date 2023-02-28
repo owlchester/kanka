@@ -20,7 +20,7 @@ trait TooltipTrait
     {
         $displayName = !empty($name) ? ($escape ? e($name) : $name) : e($this->name);
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->id . '"' .
-            'data-url="' . route('entities.tooltip', $this->id). '" href="' . $this->url() . '" ' . $data . '>' .
+            'data-url="' . route('entities.tooltip', $this->id) . '" href="' . $this->url() . '" ' . $data . '>' .
             $displayName .
             '</a>';
     }
@@ -67,7 +67,7 @@ trait TooltipTrait
     {
         $html = [];
         foreach (config('purify.tooltips.allowed') as $tag) {
-            $html[] = "<$tag>";
+            $html[] = "<{$tag}>";
         }
         $html[] = '<br>';
         return $html;

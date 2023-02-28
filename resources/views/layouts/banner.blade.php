@@ -1,5 +1,5 @@
 @if (false && auth()->check() && !auth()->user()->settings()->get('banner_5yearpromo') && \Carbon\Carbon::create(2022, 10, 31)->isFuture())
-    <div class="bg-primary banner-notification">
+    <div class="bg-primary banner-notification p-2">
         <span>
             <a href="{{ route('settings.subscription') }}">
                 {!! __('banners.kanka4years', ['code' => '<code>KANKA5YEAR</code>']) !!}
@@ -11,7 +11,7 @@
 @endif
 
 @if (false)
-<div class="bg-orange banner-notification">
+<div class="bg-orange banner-notification p-2">
     <span>
         @if (auth()->check())
         <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'das_migration']) }}">×</button>

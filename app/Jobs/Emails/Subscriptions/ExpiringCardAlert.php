@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Mail;
 
 class ExpiringCardAlert implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /** @var int user id */
     protected $user;
@@ -45,5 +48,4 @@ class ExpiringCardAlert implements ShouldQueue
                 new ExpiringCardEmail($user)
             );
     }
-
 }

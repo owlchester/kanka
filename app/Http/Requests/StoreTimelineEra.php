@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Requests;
-
 
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -38,5 +36,4 @@ class StoreTimelineEra extends FormRequest
 
         return $this->clean($rules);
     }
-
 }

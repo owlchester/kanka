@@ -1,25 +1,18 @@
 .box-quest-element {
-    .widget-user-header {
-        padding: 20px;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
-    }
+    // Quest panels
     .widget-user-username {
-        margin-top: 5px;
-        margin-bottom: 5px;
-        font-size: 25px;
-        font-weight: 300;
+        a {
+            color: white;
+        }
     }
-    .widget-user-desc {
-        margin-top: 0;
-    }
-    .widget-user-username,
-    .widget-user-desc {
-        margin-left: 75px;
-    }
-    .widget-user-image > img {
-        width: 65px;
-        height: auto;
-        float: left;
+
+    .bg-gray, .bg-none {
+        .widget-user-username {
+            a {
+                color: var(--bg-default-link);
+            }
+        }
     }
 }
+
+

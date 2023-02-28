@@ -28,12 +28,12 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Item extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        SoftDeletes,
-        SortableTrait,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use ExportableTrait;
+    use SoftDeletes;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -249,11 +249,7 @@ class Item extends MiscModel
             return true;
         }
 
-        if ($this->character || $this->location) {
-            return true;
-        }
-
-        return false;
+        return (bool) ($this->character || $this->location);
     }
 
     /**

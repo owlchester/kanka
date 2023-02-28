@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Map;
 
-use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
 class Marker extends Layout
@@ -62,7 +61,6 @@ class Marker extends Layout
      */
     public function actions(): array
     {
-
         return [
             self::ACTION_EDIT,
             self::ACTION_COPY,

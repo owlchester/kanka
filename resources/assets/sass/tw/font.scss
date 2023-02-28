@@ -27,6 +27,10 @@
     font-size: 1.875rem;
     line-height: 2.25rem;
 }
+.text-4xl {
+    font-size: 2rem;
+    line-height: 2.5rem;
+}
 
 .italic {
     font-style: italic;
@@ -50,6 +54,6 @@
 .text-ellipsis {
     text-overflow: ellipsis;
 }
-    .text-clip {
-        text-overflow: clip;
-    }
+.text-clip {
+    text-overflow: clip;
+}

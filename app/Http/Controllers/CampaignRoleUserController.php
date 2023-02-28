@@ -8,7 +8,6 @@ use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRoleUser;
 use App\Models\CampaignRoleUser;
 use App\Services\Campaign\MemberService;
-use App\Services\Campaign\RoleUserService;
 
 class CampaignRoleUserController extends Controller
 {

@@ -31,11 +31,6 @@ body .main-header {
         }
     }
 
-    .navbar .navbar-custom-menu .navbar-nav > li > a, .navbar .navbar-right > li > a {
-        border: unset;
-        font-size: 18px;
-    }
-
     .navbar .sidebar-toggle {
         border: unset;
     }
@@ -199,3 +194,4 @@ body .main-header.main-header-start {
         border-radius: var(--rounded-badge,1.9rem);
     }
 }
+

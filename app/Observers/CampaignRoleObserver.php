@@ -21,7 +21,7 @@ class CampaignRoleObserver
      */
     public function deleted(CampaignRole $campaignRole)
     {
-        CampaignCache::clearRoles()->clearAdmins();;
+        CampaignCache::clearRoles()->clearAdmins();
     }
 
     /**
@@ -30,7 +30,7 @@ class CampaignRoleObserver
     public function updated(CampaignRole $campaignRole)
     {
         if ($campaignRole->is_admin) {
-            CampaignCache::clearAdminRole()->clearAdmins();;
+            CampaignCache::clearAdminRole()->clearAdmins();
         }
     }
 }

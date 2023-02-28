@@ -52,7 +52,7 @@ if (auth()->check() && auth()->user()->can('delete', $model)) {
 @endphp
 
 @if (!empty($dropdownActions))
-<div class="datagrid-bulk-actions">
+<div class="datagrid-bulk-actions inline-block">
     <div class="btn-group">
         <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right">
             {{ __('crud.bulk.buttons.label') }}

@@ -68,7 +68,7 @@ trait Orderable
 //
 //                    return $query
 //                        ->orderByRaw('(select count(*) from ' . $foreignName . ' where ' .
-// $relation->getForeignKeyName() . ' = ' . $this->getTable() . '.' . $this->primaryKey . ') ' . $direction);
+                // $relation->getForeignKeyName() . ' = ' . $this->getTable() . '.' . $this->primaryKey . ') ' . $direction);
 //                }
 
                 // If the field has a casting

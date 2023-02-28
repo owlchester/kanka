@@ -9,7 +9,6 @@ use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
 use App\Services\CalendarService;
 use App\Traits\TreeControllerTrait;
-use Illuminate\Http\Request;
 use Response;
 
 class CalendarController extends CrudController
@@ -90,7 +89,7 @@ class CalendarController extends CrudController
         list($year, $month, $day) = explode('-', $date);
         if (str_starts_with($date, '-')) {
             list($year, $month, $day) = explode('-', trim($date, '-'));
-            $year = "-$year";
+            $year = "-{$year}";
         }
 
 

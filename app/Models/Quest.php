@@ -26,13 +26,13 @@ use Illuminate\Support\Collection;
  */
 class Quest extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        CalendarDateTrait,
-        SoftDeletes,
-        SortableTrait,
-        Acl
+    use Acl
     ;
+    use CalendarDateTrait;
+    use CampaignTrait;
+    use ExportableTrait;
+    use SoftDeletes;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [

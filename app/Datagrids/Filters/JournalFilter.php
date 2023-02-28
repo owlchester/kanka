@@ -16,12 +16,12 @@ class JournalFilter extends DatagridFilter
             ->add('type')
             ->dateRange()
             ->add([
-                    'field' => 'author_id',
-                    'label' => __('journals.fields.author'),
-                    'type' => 'select2',
-                    'route' => route('search.entities-with-relations'),
-                    'placeholder' =>  __('journals.placeholders.author'),
-                    'model' => Entity::class,
+                'field' => 'author_id',
+                'label' => __('journals.fields.author'),
+                'type' => 'select2',
+                'route' => route('search.entities-with-relations'),
+                'placeholder' =>  __('journals.placeholders.author'),
+                'model' => Entity::class,
             ])
             ->location()
             ->isPrivate()

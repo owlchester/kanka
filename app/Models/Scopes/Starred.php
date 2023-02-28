@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait Starred
 {
-     /**
+    /**
      * @param Builder $query
      * @param int $star
      * @return mixed

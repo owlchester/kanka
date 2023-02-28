@@ -4,7 +4,6 @@ namespace App\Http\Resources;
 
 use App\Facades\Mentions;
 use App\Models\QuestElement;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class QuestElementResource extends ModelResource
 {

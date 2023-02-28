@@ -61,15 +61,15 @@ use App\Models\Concerns\LastSync;
  */
 class User extends \Illuminate\Foundation\Auth\User
 {
-    use Notifiable,
-        HasApiTokens,
-        UserScope,
-        UserRelations,
-        UserSetting,
-        Billable,
-        Tutorial,
-        LastSync,
-        UserTokens
+    use Billable;
+    use HasApiTokens;
+    use LastSync;
+    use Notifiable;
+    use Tutorial;
+    use UserRelations;
+    use UserScope;
+    use UserSetting;
+    use UserTokens
     ;
 
     protected static $currentCampaign = false;
@@ -109,16 +109,6 @@ class User extends \Illuminate\Foundation\Auth\User
     ];
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'last_login_at',
-        'banned_until',
-    ];
-
-    /**
      * Casted variables
      * @var array<string, string>
      */
@@ -126,7 +116,9 @@ class User extends \Illuminate\Foundation\Auth\User
         'settings' => 'array',
         'tutorial' => 'array',
         'profile' => 'array',
-        'card_expires_at' => 'datetime'
+        'card_expires_at' => 'datetime',
+        'last_login_at' => 'date',
+        'banned_until' => 'date',
     ];
 
     /**

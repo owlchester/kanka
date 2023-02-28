@@ -1,10 +1,7 @@
 <?php
 
-
 namespace App\Observers;
 
-
-use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Models\CampaignFollower;
 
@@ -17,8 +14,7 @@ class CampaignFollowerObserver
     {
         UserCache::clearFollows();
         $campaignFollower->campaign->follower++;
-        $campaignFollower->campaign->save(); 
-
+        $campaignFollower->campaign->save();
     }
 
     /**
@@ -28,6 +24,6 @@ class CampaignFollowerObserver
     {
         UserCache::clearFollows();
         $campaignFollower->campaign->follower--;
-        $campaignFollower->campaign->save(); 
+        $campaignFollower->campaign->save();
     }
 }

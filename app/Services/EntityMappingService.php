@@ -14,8 +14,6 @@ use App\Models\MiscModel;
 use App\Traits\MentionTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class EntityMappingService
 {

@@ -17,9 +17,10 @@ class CampaignDashboardWidgetApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return Resource::collection($campaign->widgets()
-            ->lastSync(request()->get('lastSync'))
-            ->paginate()
+        return Resource::collection(
+            $campaign->widgets()
+                ->lastSync(request()->get('lastSync'))
+                ->paginate()
         );
     }
 

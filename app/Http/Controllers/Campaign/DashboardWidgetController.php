@@ -52,6 +52,9 @@ class DashboardWidgetController extends Controller
         $this->authorize('dashboard', $campaign);
 
         $widget = request()->get('widget', 'preview');
+        if (!view()->exists('dashboard.widgets.forms._' . $widget)) {
+            abort(404);
+        }
         $entities = $this->buildEntities();
 
         $dashboard = request()->has('dashboard') ?

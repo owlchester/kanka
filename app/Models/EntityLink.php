@@ -24,8 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EntityLink extends Model
 {
-    use VisibilityIDTrait,
-        EntityAsset;
+    use EntityAsset;
+    use VisibilityIDTrait;
 
     public $fillable = [
         'entity_id',

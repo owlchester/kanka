@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\CampaignDashboardWidget;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class CampaignDashboardWidgetResource extends EntityChild
 {

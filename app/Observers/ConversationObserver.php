@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Models\MiscModel;
 

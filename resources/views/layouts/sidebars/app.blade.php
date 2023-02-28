@@ -10,11 +10,11 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
 @if (!empty($currentCampaign))
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
     @inject('sidebar', 'App\Services\SidebarService')
-    @php $sidebar->prepareQuickLinks($currentCampaign)@endphp
+    @php $sidebar->campaign($currentCampaign)->prepareQuickLinks()@endphp
     <aside class="main-sidebar main-sidebar-placeholder @if(auth()->check() && $currentCampaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($currentCampaign->image) style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
         <section class="sidebar-campaign">
             <div class="campaign-block">
-                <div class="campaign-head cursor" data-toggle="popover" title="New design" data-content="Looking for your campaigns? They are now available on the top-right when clicking the <i class='fa-solid fa-grid' aria-hidden='true'></i> icon." data-html="true" data-container="body">
+                <div class="campaign-head cursor-pointer" data-toggle="popover" title="New design" data-content="Looking for your campaigns? They are now available on the top-right when clicking the <i class='fa-solid fa-grid' aria-hidden='true'></i> icon." data-html="true" data-container="body">
                     <div class="campaign-name">
                         {!! $currentCampaign->name !!}
                     </div>
@@ -92,10 +92,11 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
     </aside>
     @if (auth()->check() && $currentCampaign->userIsMember())
         <section class="sidebar-creator">
+            <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="top"></span>
             <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex items-center justify-center px-2">
-                <i class="flex-none  fa-solid fa-plus" aria-hidden="true"></i>
+                <i class="flex-none  fa-solid fa-plus" aria-hidden="true" ></i>
                 <span class="flex-grow" data-toggle="tooltip" title="{{ __('entities.creator.tooltip') }}">{{ __('sidebar.new-entity') }}</span>
-                <span class="flex-none keyboard-shortcut pull-right" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true">N</span>
+                <span class="flex-none keyboard-shortcut pull-right" id="qq-kb-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true">N</span>
             </a>
         </section>
     @endif

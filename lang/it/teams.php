@@ -1,36 +1,15 @@
 <?php
 
 return [
-    'hall_of_fame'  => 'Hall of Fame',
-    'index'         => [
-        'community'     => 'Community',
-        'title'         => 'Team',
+    'index' => [
         'translations'  => 'Traduzioni',
     ],
-    'people'        => [
-        'jay'       => [
-            'text'  => <<<'TEXT'
-Ho creato Kanka nell'Ottobre del 2017 poiché non c'era alcuno strumento che mi permettesse di creare facilmente un mondo con i miei amici, e che mi fornisse anche la possibilità di controllare chi potesse vedere o fare cose.
-
-Nella prima parte del 2020 ho fatto un salto di fede lavorando full time su Kanka, grazie al supporto degli amici e della community.
-TEXT
-,
+    'people'=> [
+        'jay'   => [
             'title' => 'Fondatore e Capo Sviluppatore',
         ],
-        'jon'       => [
-            'text'  => <<<'TEXT'
-Jay e io siamo amici da almeno un decennio, ed è stato entusiasmante vederlo sviluppare Kanka negli scorsi anni.
-
-Nella prima parte del 2020, ho affiancato Jay per gestire business development & marketing, non guardando mai indietro da quel momento in poi!
-TEXT
-,
+        'jon'   => [
             'title' => 'Co-fondatore e Business Manager',
-        ],
-        'joseph'    => [
-            'title' => 'QA e Onboarding',
-        ],
-        'ryan'      => [
-            'title' => 'Community Manager e Capo QA',
         ],
     ],
 ];

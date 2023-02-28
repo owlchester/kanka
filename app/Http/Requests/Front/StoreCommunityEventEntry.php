@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Requests\Front;
-
 
 use App\Rules\EntityLink;
 use Illuminate\Foundation\Http\FormRequest;
@@ -27,7 +25,7 @@ class StoreCommunityEventEntry extends FormRequest
     public function rules()
     {
         return [
-            'link' => ['required', 'url', new EntityLink],
+            'link' => ['required', 'url', new EntityLink()],
             'comment' => 'nullable|string',
         ];
     }

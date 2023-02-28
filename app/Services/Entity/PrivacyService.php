@@ -4,7 +4,6 @@ namespace App\Services\Entity;
 
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
-use App\Models\CampaignUser;
 use App\Models\Entity;
 use App\User;
 
@@ -47,7 +46,6 @@ class PrivacyService
                     $data['roles'][] = $role->name;
                     continue;
                 }
-
             }
             // Specific entity
             $perm = $role->permissions

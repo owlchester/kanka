@@ -5,32 +5,21 @@ namespace App\Services;
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Http\Requests\StoreCampaignDashboard;
-use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardRole;
 use App\Models\CampaignRole;
 use App\Models\Entity;
+use App\Traits\CampaignAware;
 
 class DashboardService
 {
-    /** @var array IDs of entities displayed */
-    protected $displayedEntities = [];
+    use CampaignAware;
 
-    /** @var Campaign */
-    protected $campaign;
+    /** @var array IDs of entities displayed */
+    protected array $displayedEntities = [];
 
     /** @var CampaignDashboard */
-    protected $dashboard;
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
+    protected CampaignDashboard $dashboard;
 
     /**
      * @param CampaignDashboard $dashboard

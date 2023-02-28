@@ -21,7 +21,10 @@ use Exception;
 
 class CampaignAssetExport implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * The number of times the job may be attempted.
@@ -65,7 +68,7 @@ class CampaignAssetExport implements ShouldQueue
         $this->entity = app()->make(EntityService::class);
 
         // We want the full path for jobs running in the queue.
-        $zipName = 'campaign_' . $this->campaign->id . '_' .  uniqid() . '_' . date('Ymd_His') . '_assets.zip';
+        $zipName = 'campaign_' . $this->campaign->id . '_' . uniqid() . '_' . date('Ymd_His') . '_assets.zip';
         CampaignCache::campaign($this->campaign);
         $pathName = storage_path() . '/exports/campaigns/' . $zipName;
         $zip = new ZipArchive();

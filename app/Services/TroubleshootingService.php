@@ -5,34 +5,15 @@ namespace App\Services;
 use App\Exceptions\TranslatableException;
 use App\Models\AdminInvite;
 use App\Models\Campaign;
+use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use App\User;
 use Illuminate\Support\Str;
 
 class TroubleshootingService
 {
-    protected Campaign $campaign;
-
-    protected User $user;
-
-    /**
-     * @param int $campaignID
-     * @return $this
-     */
-    public function campaign(int $campaignID): self
-    {
-        $this->campaign = Campaign::findOrFail($campaignID);
-        return $this;
-    }
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
+    use CampaignAware;
+    use UserAware;
 
     /**
      * Generate a list of campaigns the user is an admin of

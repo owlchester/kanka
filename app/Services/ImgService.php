@@ -106,7 +106,7 @@ class ImgService
         }
 
         // Default base
-        if(!$this->console) {
+        if (!$this->console) {
             $this->base();
         }
 

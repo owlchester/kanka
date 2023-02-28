@@ -50,10 +50,9 @@ class CleanupEntityLogs extends Command
          * We don't delete logs here (that's handled by the MassPrunable trait), but instead, we remove
          * the changelogs that are available to superboosted campaigns for up to $amount(30) days.
          */
-        EntityLog::
-            where('created_at', '<=', Carbon::now()->subDays($amount)->toDateString())
+        EntityLog::where('created_at', '<=', Carbon::now()->subDays($amount)->toDateString())
             ->whereNotNull('changes')
-            ->chunk(100, function ($models) {
+            ->chunk(100, function ($models): void {
                 $entityIds = [];
                 foreach ($models as $model) {
                     $entityIds[] = $model->id;

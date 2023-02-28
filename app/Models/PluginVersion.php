@@ -200,7 +200,7 @@ class PluginVersion extends Model
         //dd($html);
 
         $obLevel = ob_get_level();
-        ob_start() and extract($data, EXTR_SKIP);
+        ob_start() && extract($data, EXTR_SKIP);
 
         $errors = null;
 
@@ -337,10 +337,8 @@ class PluginVersion extends Model
         $condition = trim($matches[1]);
         if (Str::contains($condition, '<i class="missing">')) {
             return false;
-        } elseif (empty($condition)) {
-            return false;
         }
-        return true;
+        return ! (empty($condition));
     }
 
     /**

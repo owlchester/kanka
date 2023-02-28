@@ -47,26 +47,38 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-lg-4">
                     <input type="hidden" name="location_id" value="" />
                     @include('cruds.fields.location', ['from' => null])
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-lg-4">
                     @include('cruds.fields.visibility_id')
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-lg-4">
                     <div class="form-group">
-                        {!! Form::hidden('settings[collapsed]', 0) !!}
-                        <label>
-                            {!! Form::checkbox('settings[collapsed]', 1, $defaultCollapsed) !!}
-                            {{ __('entities/notes.fields.collapsed') }}
-                            <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-html="true" title="{!! __('entities/notes.hints.reorder', ['icon' => '<i class=\'fa-solid fa-cog\'></i>']) !!}"></i>
+                        <label for="config[class]">
+                            {{ __('dashboard.widgets.fields.class') }}
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
                         </label>
-                        <div class="help-block visible-xs visible-sm">
-                            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fa-solid fa-cog"></i>']) !!}
-                        </div>
+                        {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
+                        <p class="help-block visible-xs visible-sm">
+                            {{ __('dashboard.widgets.helpers.class') }}
+                        </p>
+                        @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    @php
+                        $collapsedOptions = [
+                            0 => __('entities/notes.collapsed.open'),
+                            1 => __('entities/notes.collapsed.closed')
+                        ];
+                    @endphp
+                    <div class="form-group">
+                        <label>
+                            {{ __('entities/notes.fields.display') }}
+                        </label>
+                        {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => 'form-control']) !!}
                     </div>
                 </div>
             </div>
@@ -75,6 +87,5 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
         @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.posts._permissions')
     </div>
 </div>
-
 
 {!! Form::hidden('entity_id', $entity->id) !!}

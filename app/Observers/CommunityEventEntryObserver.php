@@ -2,9 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\CommunityEvent;
 use App\Models\CommunityEventEntry;
-use App\Services\ImageService;
 
 class CommunityEventEntryObserver
 {

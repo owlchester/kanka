@@ -24,7 +24,7 @@ trait ExportableTrait
                         $json[$foreign][] = $model->toArray();
                     }
                 } catch (Exception $e) {
-                    throw new Exception("Unknown relation '$foreign' on model " . get_class($this));
+                    throw new Exception("Unknown relation '{$foreign}' on model " . get_class($this));
                 }
             }
         }

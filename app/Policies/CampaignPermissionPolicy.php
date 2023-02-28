@@ -10,8 +10,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignPermissionPolicy
 {
-    use HandlesAuthorization;
     use AdminPolicyTrait;
+    use HandlesAuthorization;
 
     /**
      * Determine whether the user can view the campaignPermission.

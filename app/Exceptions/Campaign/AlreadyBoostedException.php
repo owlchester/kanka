@@ -3,8 +3,6 @@
 namespace App\Exceptions\Campaign;
 
 use App\Exceptions\TranslatableException;
-use App\Models\Campaign;
-use Exception;
 use Throwable;
 
 class AlreadyBoostedException extends TranslatableException

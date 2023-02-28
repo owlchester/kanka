@@ -146,8 +146,8 @@ class CharacterObserver extends MiscObserver
             }
             $model->organisation_id = $id;
             $model->role = $roles->has($key) ? $roles->get($key, '') : $newRoles->shift();
-            $model->pin_id = $pins->has($key) ? $pins->get($key,  '') : $newPins->shift();
-            $model->status_id = $statuses->has($key) ? $statuses->get($key,  '') : $newStatuses->shift();
+            $model->pin_id = $pins->has($key) ? $pins->get($key, '') : $newPins->shift();
+            $model->status_id = $statuses->has($key) ? $statuses->get($key, '') : $newStatuses->shift();
             if (request()->has('organisation_privates')) {
                 $model->is_private = $privates->has($key) ? $privates->get($key, false) : $newPrivates->shift();
             } else {
@@ -211,7 +211,6 @@ class CharacterObserver extends MiscObserver
                 continue;
             }
             $newRaces[] = $race->id;
-
         }
         $character->races()->attach($newRaces);
 
@@ -268,7 +267,6 @@ class CharacterObserver extends MiscObserver
                 continue;
             }
             $newFamilies[] = $family->id;
-
         }
         $character->families()->attach($newFamilies);
 

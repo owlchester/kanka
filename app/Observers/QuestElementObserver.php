@@ -7,7 +7,6 @@ use App\Facades\QuestCache;
 use App\Models\QuestElement;
 use App\Models\Visibility;
 use App\Services\EntityMappingService;
-use App\Traits\VisibilityIDTrait;
 
 class QuestElementObserver
 {

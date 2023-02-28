@@ -23,7 +23,7 @@
                 <i class="fa-solid fa-spinner fa-spin fa-4x"></i>
             </div>
             <div class="pagination-ajax-content">
-                <table class="table table-hover" style="word-break: break-all;">
+                <table class="table table-hover break-all">
                     <thead>
                         <tr>
                             <th>{{ __('entities/logs.fields.action') }}</th>
@@ -34,40 +34,43 @@
                     </thead>
                     <tbody>
                     @foreach ($logs as $log)
-                        <tr>
-                            <td>
-                                {{ __('entities/logs.actions.' . $log->actionCode()) }}
-                            </td>
-                            <td>@if ($log->user)
-                                    {!! link_to_route('users.profile', $log->user->name, $log->user, ['target' => '_blank']) !!}
-                                @else
-                                    {{  __('crud.history.unknown') }}
-                                @endif
-
-                                @if ($log->impersonator)
-                                    ({{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }})
-                                @endif
-                            </td>
-                            <td>
-                                {{ $log->created_at->diffForHumans() }}
-                            </td>
-                            <td class="text-right">
-                                @if ($campaign->superboosted())
-                                    @if(!empty($log->changes))
-                                        <a href="#log-{{ $log->id }}" data-toggle="collapse">
-                                            <i class="fa-solid fa-scroll" aria-hidden="true"></i>
-                                            <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
-                                        </a>
+                        @if ($log->action < 7 || $log->post)
+                            <tr>
+                                <td>
+                                    {{ __('entities/logs.actions.' . $log->actionCode(), ['post' => $log->post?->name]) }}
+                                </td>
+                                <td>@if ($log->user)
+                                        {!! link_to_route('users.profile', $log->user->name, $log->user, ['target' => '_blank']) !!}
+                                    @else
+                                        {{  __('crud.history.unknown') }}
                                     @endif
-                                @else
-                                   <a href="#log-cta" data-toggle="collapse">
-                                       <i class="fa-solid fa-scroll" aria-hidden="true"></i>
-                                       <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
-                                   </a>
-                                @endif
-                            </td>
-                        </tr>
 
+                                    @if ($log->impersonator)
+                                        ({{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }})
+                                    @endif
+                                </td>
+                                <td>
+                                    <span title="{{ $log->created_at }} UTC" data-toggle="tooltip">
+                                        {{ $log->created_at->diffForHumans() }}
+                                    </span>
+                                </td>
+                                <td class="text-right">
+                                    @if ($campaign->superboosted())
+                                        @if(!empty($log->changes))
+                                            <a href="#log-{{ $log->id }}" data-toggle="collapse">
+                                                <i class="fa-solid fa-scroll" aria-hidden="true"></i>
+                                                <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
+                                            </a>
+                                        @endif
+                                    @else
+                                    <a href="#log-cta" data-toggle="collapse">
+                                        <i class="fa-solid fa-scroll" aria-hidden="true"></i>
+                                        <span class="hidden-xs">{{ __('entities/logs.actions.view') }}</span>
+                                    </a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endif
                         @if ($campaign->superboosted() && !empty($log->changes))
                         <tr id="log-{{ $log->id }}" class="collapse">
                             <td colspan="4">

@@ -1,45 +1,4 @@
 @media (max-width: 767px) {
-  // Menu nav points to show next to one another on mobile
-  .nav-stacked > li {
-    display: block;
-    width: auto;
-  }
-
-  footer.main-footer {
-    .footer {
-      background: transparent;
-      padding: 3px;
-
-      .email {
-        margin: 10px 0;
-      }
-    }
-  }
-
-  .navbar-nav .campaign-menu .campaign-image {
-    margin-right: 0px;
-  }
-
-  .navbar-nav {
-    .menu {
-      .campaign-image {
-        margin-right: 4px;
-      }
-    }
-
-    .campaign-menu {
-      .dropdown-menu {
-        width: 90%;
-        box-shadow: $box-shadow;
-      }
-
-      a.campaign-selector {
-        -webkit-filter: unset;
-        filter: unset;
-      }
-    }
-  }
-
   // On mobile, the default is for the sidebar to be closed
   .navbar .sidebar-toggle {
     margin-left: 0;
@@ -48,78 +7,14 @@
     }
   }
 
-  .main-sidebar {
-    padding-top: 50px;
-  }
-
   .content-header {
     padding-top: 5px;
-
-    h1 {
-      font-size: 22px;
-      line-height: 28px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-
-      .pull-right {
-        margin: 0;
-        line-height: 32px;
-      }
-    }
-
-    .breadcrumb {
-      background: transparent;
-      padding: 0 0 3px 0;
-      margin-top: 0;
-
-      li {
-        display: inline-block;
-        padding: 5px 0 1px;
-        color: #8f98a3;
-
-        &:before {
-          padding: 0 2px;
-        }
-      }
-    }
-
-    .form-group {
-      margin-bottom: 0;
-    }
-  }
-
-  .dl-force-mobile {
-    dt {
-      float: left;
-      width: 120px;
-      clear: left;
-      text-align: right;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    dd {
-      margin-left: 140px;
-    }
-  }
-
-  .navbar-nav > .notifications-menu > .dropdown-menu {
-    width: 90%;
-  }
-  .navbar-form {
-    padding-top: 0;
-    padding-bottom: 0;
   }
 
   .table-responsive {
     overflow-x: auto;
     overflow-y: auto;
     border: none;
-
-    table {
-    }
-    padding-bottom: 20px;
   }
   .keyboard-shortcut {
     display: none;
@@ -127,25 +22,17 @@
 }
 
 @media (max-width: 991px) {
-  .content-header > .breadcrumb {
-    background-color: transparent;
-  }
+    // On smaller devices, place all tabs in forms on a single line and allow to scroll through them. This is
+    // especially useful on the calendar form for mobile users.
+    .nav-tabs-custom {
+        ul.nav-tabs {
+            display: inline-flex;
+            width: 100%;
+            overflow-x: auto;
 
-  .nav-tabs-custom {
-    ul.nav-tabs {
-      display: inline-flex;
-      width: 100%;
-      overflow-x: auto;
-      -ms-overflow-style: none; /*// IE 10+*/
-      overflow: -moz-scrollbars-none; /*// Firefox*/
+            &:before {
+                display: none;
+            }
+        }
     }
-
-    .form-group {
-      margin-bottom: 0;
-    }
-
-    .nav-tabs::-webkit-scrollbar {
-      display: none; /*Safari and Chrome*/
-    }
-  }
 }

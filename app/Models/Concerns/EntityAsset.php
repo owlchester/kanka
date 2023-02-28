@@ -1,12 +1,9 @@
 <?php
 
-
 namespace App\Models\Concerns;
-
 
 trait EntityAsset
 {
-
     public function isLink(): bool
     {
         return $this->isLink;

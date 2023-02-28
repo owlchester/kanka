@@ -14,10 +14,10 @@
             @foreach($eras as $era)
                 <div class="element" data-id="{{ $era->id }}">
                     {!! Form::hidden('timeline_era[]', $era->id) !!}
-                    <div class="dragger">
+                    <div class="dragger pr-3">
                         <span class="fa-solid fa-sort"></span>
                     </div>
-                    <div class="name">
+                    <div class="name overflow-hidden flex-grow">
                         {!! $era->name !!}
                         <span class="text-sm">
                             {!! $era->ages()!!}
@@ -25,17 +25,17 @@
                     </div>
 
                     @if (!$era->orderedElements->isEmpty())
-                    <div class="sortable-elements children">
+                    <div class="sortable-elements mt-3 children">
                         @foreach ($era->orderedElements as $element)
                             @if ($element->invisibleEntity())
                                 @continue
                             @endif
                             <div class="element" data-id="element-{{ $element->id }}">
                                 {!! Form::hidden('timeline_element[' . $era->id . '][]', $element->id) !!}
-                                <div class="dragger rounded-icon">
+                                <div class="dragger dragger pr-3 rounded-icon">
                                     {!! $element->htmlIcon() !!}
                                 </div>
-                                <div class="name">
+                                <div class="name overflow-hidden flex-grow">
                                     {!! $element->htmlName() !!}
                                     @if (isset($element->date))<span class="text-sm">({{ $element->date }})</span>@endif
                                 </div>

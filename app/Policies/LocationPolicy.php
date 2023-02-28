@@ -2,9 +2,6 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\Models\Location;
-
 class LocationPolicy extends MiscPolicy
 {
     public function entityTypeID(): int

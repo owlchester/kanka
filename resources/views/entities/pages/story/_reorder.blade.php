@@ -37,20 +37,20 @@ if ($firstPost && $firstPost->position >= 0) {
 
                 <div class="element" data-id="{{ $note->id }}">
                     {!! Form::hidden('posts[' . $note->id . '][id]', $note->id) !!}
-                    <div class="dragger">
+                    <div class="dragger pr-3">
                         <span class="fa-solid fa-ellipsis-v"></span>
                     </div>
-                    <div class="name">
+                    <div class="name overflow-hidden flex-grow">
                         {!! $note->name !!}
                     </div>
-                    <div class="state">
+                    <div class="px-2 self-end">
                         <select name="posts[{{ $note->id }}][collapsed]" class="form-control">
                             <option value="0">{{ __('entities/notes.states.expanded') }}</option>
                             <option value="1" @if ($note->collapsed()) selected="selected" @endif>{{ __('entities/notes.states.collapsed') }}</option>
                         </select>
                     </div>
 
-                    <div class="icons">
+                    <div class="self-end">
 @php
     $options = [];
     $options[\App\Models\Visibility::VISIBILITY_ALL] = __('crud.visibilities.all');

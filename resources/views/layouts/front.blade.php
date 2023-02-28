@@ -79,7 +79,6 @@
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
 
-    <!--<link href="{{ mix('css/front/critical.css') }}" rel="stylesheet">-->
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
 
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">

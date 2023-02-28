@@ -311,13 +311,6 @@ body .main-header .navbar .nav .open > a.active {
   }
 }
 
-@media (max-width: 991px) {
-  .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
-    border: 1px solid var(--dropdown-border);
-    background-color: var(--dropdown-background);
-  }
-}
-
 .nav-tabs-custom > .nav-tabs > li.active:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a {
   background-color: var(--navbar-tab-active-background);
   color: var(--navbar-tab-active-text);

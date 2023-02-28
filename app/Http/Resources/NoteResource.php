@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Note;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class NoteResource extends EntityResource
 {

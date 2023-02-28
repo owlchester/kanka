@@ -1,18 +1,16 @@
+/**
+ * Contains styling for an entity's submenu and various elements related.
+ * For styling regarding the general layout of entities, check boosted.scss.
+ */
 .entity-menu {
     li {
         display: flex;
 
         a {
-            flex-grow: 1;
             max-height: 53px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
         }
 
         a.icon {
-            margin-left: auto;
-            flex-grow: unset;
             padding: 10px 12px;
             text-overflow: unset;
         }
@@ -31,8 +29,6 @@
     }
 
     .post-details {
-        margin-bottom: 5px;
-
         .post-detail-element:not(:last-child) {
             &:after {
                 content: "|";
@@ -41,9 +37,6 @@
     }
 
     .post-footer {
-        font-size: 12px;
-        //padding: 10px 0 10px 10px;
-
         .post-updated {
             &:before {
                 content: "|";
@@ -60,33 +53,6 @@
     flex-grow: 5;
 }
 
-.kanka-entity-timeline > .box-header > .box-tools {
-    flex-basis: 73px;
-    text-align: right;
-    margin: 0 0 0 5px;
-
-    a {
-        &:hover {
-            background: unset !important;
-        }
-    }
-
-    i {
-        font-size: 14px;
-        margin-left: 5px;
-    }
-}
-
-/** Privacy popup **/
-.dynamic-list {
-    display: inline-block;
-
-    a:not(:last-of-type), span:not(:last-of-type) {
-        &:after {
-            content: ', ';
-        }
-    }
-}
 
 /** Collapsed / Expanded elements **/
 .element-toggle {

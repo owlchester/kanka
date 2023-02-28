@@ -102,8 +102,11 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                 </div>
             @endif
         </div>
+
+        <ul class="m-0 p-0">
+            @include('entities.components.elasped_events')
+        </ul>
     </div>
 </div>
 
-@include('entities.components.elasped_events')
 

@@ -26,9 +26,9 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
+            <section class="content-header mb-5">
                 <div class="row">
-                    <div class="col-md-12 content-header">
+                    <div class="col-md-12">
                         <h1>
                             {{ $title ?? "Page Title" }}
                             <small>{{ $description ?? null }}</small>

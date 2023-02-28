@@ -69,8 +69,8 @@ class DashboardController extends Controller
         $dashboard = $this->service->campaign($campaign)->create($request);
 
         //if (!empty($dashboard)) {
-            return redirect()->route('dashboard.setup', ['dashboard' => $dashboard->id])
-                ->with('success', __('dashboard.dashboards.create.success', ['name' => $dashboard->name]));
+        return redirect()->route('dashboard.setup', ['dashboard' => $dashboard->id])
+            ->with('success', __('dashboard.dashboards.create.success', ['name' => $dashboard->name]));
         /*}
         return redirect()->route('campaign_dashboards.create');*/
     }
@@ -108,6 +108,5 @@ class DashboardController extends Controller
 
         return redirect()->route('dashboard.setup')
             ->with('success', __('dashboard.dashboards.delete.success', ['name' => $campaignDashboard->name]));
-
     }
 }

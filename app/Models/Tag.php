@@ -31,14 +31,14 @@ use Illuminate\Support\Collection;
  */
 class Tag extends MiscModel
 {
-    use CampaignTrait,
-        Nested,
-        ExportableTrait,
-        TagScopes,
-        SoftDeletes,
-        SortableTrait,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
+    use SortableTrait;
+    use TagScopes;
 
     /**
      * Entity type
@@ -131,7 +131,6 @@ class Tag extends MiscModel
      */
     public function scopePreparedWith(Builder $query): Builder
     {
-
         return $query->with([
             'entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid');
@@ -274,7 +273,7 @@ class Tag extends MiscModel
             $colour = $mappings[$this->colour];
         }
 
-        return 'bg-' . $colour .  ' color-palette color-tag';
+        return 'bg-' . $colour . ' color-palette color-tag';
     }
 
     /**
@@ -327,7 +326,7 @@ class Tag extends MiscModel
     {
         return '<span class="label label-tag-bubble overflow-hidden ' .
             ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '" title="' .
-            e($this->name) . '">' . ucfirst(substr($this->slug, 0, 1)) . '</span>';
+            e($this->name) . '">' . ucfirst(mb_substr($this->slug, 0, 1)) . '</span>';
     }
 
     /**
@@ -336,10 +335,7 @@ class Tag extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if ($this->type || $this->colour) {
-            return true;
-        }
-        return false;
+        return (bool) ($this->type || $this->colour);
     }
 
     /**

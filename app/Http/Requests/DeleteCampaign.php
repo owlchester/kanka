@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Rules\CampaignDelete;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class DeleteCampaign extends FormRequest
 {
@@ -26,7 +25,7 @@ class DeleteCampaign extends FormRequest
     public function rules()
     {
         $rules = [
-            'delete' => ['string', new CampaignDelete],
+            'delete' => ['string', new CampaignDelete()],
         ];
         return $rules;
     }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Resources\EntityResource;
 use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -57,7 +56,5 @@ class EntityTemplateApiController extends ApiController
 
         $resource = new Resource($entity);
         return $resource->withMisc();
-
-
     }
 }

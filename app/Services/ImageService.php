@@ -38,7 +38,7 @@ class ImageService
         }
 
         // No new image
-        if (!request()->has($field) and !request()->filled($field . '_url')) {
+        if (!request()->has($field) && !request()->filled($field . '_url')) {
             return;
         }
 
@@ -63,7 +63,7 @@ class ImageService
                     )
                 );
                 $cleanImageName = str_replace(['.', '/'], ['', ''], $cleanImageName);
-                $path = "$folder/" . uniqid() . "_" . Str::limit($cleanImageName, 20, '');
+                $path = "{$folder}/" . uniqid() . "_" . Str::limit($cleanImageName, 20, '');
 
                 // Check if file is too big
                 $copiedFileSize = ceil(filesize($tempImage) / 1000);
@@ -76,7 +76,7 @@ class ImageService
                 // Add back the extension if it's missing after trimming long names
                 $imageUrlExt = '.' . str_replace('image/', '', $file->getMimeType());
                 if (!Str::endsWith($path, $imageUrlExt)) {
-                    $path = $path . strtolower($imageUrlExt);
+                    $path = $path . mb_strtolower($imageUrlExt);
                 }
             } else {
                 $file = request()->file($field);
@@ -148,7 +148,7 @@ class ImageService
      */
     public static function entity(Entity $entity, string $folder = '', $thumbSize = 60, string $field = 'header_image')
     {
-        if (request()->has($field) or request()->filled($field . '_url')) {
+        if (request()->has($field) || request()->filled($field . '_url')) {
             try {
                 $file = $path = null;
                 $url = request()->filled($field . '_url');

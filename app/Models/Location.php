@@ -34,13 +34,13 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Location extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        Nested,
-        SoftDeletes,
-        SortableTrait,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
+    use SortableTrait;
 
 
     /** @var string[]  */

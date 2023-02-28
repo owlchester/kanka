@@ -21,5 +21,5 @@
 
 <div class="form-group">
     <label>{{ __('crud.fields.entry') }}</label>
-    {!! Form::textarea('entry', FormCopy::field('entry')->string(), ['class' => 'form-control', 'rows' => 5]) !!}
+    {!! Form::textarea('entry', FormCopy::field('entry')->string(), ['class' => 'form-control resize-y', 'rows' => 5]) !!}
 </div>

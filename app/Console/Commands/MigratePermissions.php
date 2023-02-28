@@ -88,7 +88,7 @@ class MigratePermissions extends Command
      * Migrate all permissions belonging to campaign roles
      * @throws \Exception
      */
-    protected function migrateRolePermissions()
+    protected function migrateRolePermissions(): void
     {
         $this->count = 0;
         $total = CampaignPermission::whereNull('campaign_id')->whereNotNull('campaign_role_id')->count();
@@ -101,7 +101,7 @@ class MigratePermissions extends Command
             ->whereNull('campaign_id')
              //   ->where('campaign_role_id', 268897)
             ->whereNotNull('campaign_role_id')
-            ->chunkById(10000, function ($models) {
+            ->chunkById(10000, function ($models): void {
                 /** @var CampaignPermission $model */
                 foreach ($models as $model) {
                     try {
@@ -132,7 +132,7 @@ class MigratePermissions extends Command
     /**
      * Migrate all permissions belonging to specific users
      */
-    protected function migrateUserPermissions()
+    protected function migrateUserPermissions(): void
     {
         $this->count = 0;
         $total = CampaignPermission::whereNull('campaign_id')->whereNotNull('user_id')->count();
@@ -146,7 +146,7 @@ class MigratePermissions extends Command
             ->has('entity') // skip soft deleted entities
             ->whereNull('campaign_id')
             ->whereNotNull('user_id')
-            ->chunkById(10000, function ($models) {
+            ->chunkById(10000, function ($models): void {
                 /** @var CampaignPermission $model */
                 foreach ($models as $model) {
                     try {
@@ -209,14 +209,14 @@ class MigratePermissions extends Command
      * @param int|null $miscID
      * @param int|null $entityType
      */
-    protected function update(int $id, int $campaignID, int $action, int $miscID = null, int $entityType = null)
+    protected function update(int $id, int $campaignID, int $action, int $miscID = null, int $entityType = null): void
     {
         $statement = "UPDATE campaign_permissions SET " .
-            "`campaign_id` = $campaignID, " .
-            "`action` = $action ".
-            (!empty($miscID) ? ", `misc_id` = $miscID " : null).
-            (!empty($entityType) ? ", `entity_type_id` = $entityType " : null).
-            " WHERE `id` = '$id' LIMIT 1";
+            "`campaign_id` = {$campaignID}, " .
+            "`action` = {$action} " .
+            (!empty($miscID) ? ", `misc_id` = {$miscID} " : null) .
+            (!empty($entityType) ? ", `entity_type_id` = {$entityType} " : null) .
+            " WHERE `id` = '{$id}' LIMIT 1";
         DB::statement($statement);
     }
 

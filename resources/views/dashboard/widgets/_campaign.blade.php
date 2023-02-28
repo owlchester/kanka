@@ -61,20 +61,22 @@
                                             </li>
                                         @endforeach
 
-                                        @if($settings)
+                                        @can('dashboard', $campaign)
                                             <li class="divider"></li>
                                             <li>
                                                 <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
                                                     {{ __('dashboard.settings.title') }}
                                                 </a>
                                             </li>
-                                        @endif
+                                        @endcan
                                     </ul>
                                 </div>
-                            @elseif($settings)
+                            @else
+                                @can('dashboard', $campaign)
                                 <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
                                     <i class="fa-solid fa-th-large"></i>
                                 </a>
+                                @endcan
                             @endif
                         @endcannot
 

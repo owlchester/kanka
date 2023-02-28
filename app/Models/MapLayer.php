@@ -30,7 +30,10 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class MapLayer extends Model
 {
-    use VisibilityIDTrait, Blameable, Paginatable, SortableTrait;
+    use Blameable;
+    use Paginatable;
+    use SortableTrait;
+    use VisibilityIDTrait;
 
     /** @var bool If set to false, skip the saving observer */
     public $savingObserver = true;

@@ -32,8 +32,6 @@
             <div id="datagrid-parent" class="table-responsive">
                 @include('layouts.datagrid._table')
             </div>
-
-            @includeWhen(false, 'entities.pages.relations._table')
         @endif
     </div>
 </div>

@@ -1,32 +1,19 @@
 <?php
 
-
 namespace App\Services\Campaign;
 
-
-use App\Models\Campaign;
 use App\Models\Image;
+use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class DefaultImageService
 {
-    /** @var Campaign */
-    protected $campaign;
+    use CampaignAware;
 
     /** @var string */
     protected $type;
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
 
     /**
      * @param string $type
@@ -65,7 +52,7 @@ class DefaultImageService
         $image->id = $uuid;
         $image->ext = $source->extension();
         $image->size = (int) ceil($source->getSize() / 1024); // kb
-        $image->name = substr($source->getFileName(), 0, 45);
+        $image->name = mb_substr($source->getFileName(), 0, 45);
         $image->is_default = true;
         $image->save();
 

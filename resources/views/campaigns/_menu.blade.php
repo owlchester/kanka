@@ -7,11 +7,11 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();
 $buttons = [];
 if (auth()->check()) {
     if (!$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost)) {
-        $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn btn-block bg-maroon btn-boost">
+        $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn btn-block bg-maroon mb-5">
             <i class="fa-solid fa-rocket"></i> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
     }
     if (!$campaign->boosted()) {
-        $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-maroon btn-boost">
+        $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-maroon mb-5">
             <i class="fa-solid fa-rocket"></i> ' . __('campaigns.show.actions.boost') . '</a>';
     }
     if (auth()->user()->can('update', $campaign)) {
@@ -212,18 +212,14 @@ if (auth()->check()) {
     }
     @endphp
     <div class="hidden-md hidden-lg" id="sm-a">
-        <div class="box box-solid">
-            <div class="box-body">
-                <div class="form-group">
-                    <select name="menu-switcher" class="form-control submenu-switcher">
-                        @foreach ($menuOptions as $key => $option)
-                            <option name="{{ $key }}" data-route="{{ $option['route'] . '#sm-a' }}" @if($key == $active) selected="selected" @endif>
-                                {{ $option['label'] }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+        <div class="form-group">
+            <select name="menu-switcher" class="form-control submenu-switcher">
+                @foreach ($menuOptions as $key => $option)
+                    <option name="{{ $key }}" data-route="{{ $option['route'] }}" @if($key == $active) selected="selected" @endif>
+                        {{ $option['label'] }}
+                    </option>
+                @endforeach
+            </select>
         </div>
     </div>
 
@@ -278,7 +274,7 @@ if (auth()->check()) {
                             <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy']]) !!}
                             <div class="form-group required">
-                                {!! Form::text('delete', null, ['class' => 'form-control', 'required']) !!}
+                                {!! Form::text('delete', null, ['class' => 'form-control', 'required', 'id' => 'campaign-delete-form']) !!}
                             </div>
                             <div class="py-5">
                                 <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>

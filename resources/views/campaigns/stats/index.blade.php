@@ -37,21 +37,21 @@ use \Illuminate\Support\Arr;
             @else
 
             @foreach ($stats as $key => $stat)
-                <div class="info-box level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-gray @elseif ($stat['level'] == 5) bg-yellow @else bg-aqua @endif">
-                    <span class="info-box-icon">
+                <div class="info-box drop-shadow h-22 block w-full rounded mb-4 flex align-center items-stretch level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-gray @elseif ($stat['level'] == 5) bg-yellow @else bg-aqua @endif">
+                    <div class="flex items-center justify-center flex-0 info-box-icon text-4xl w-22">
                         <i class="{{ $stat['icon'] }}"></i><br />
-                    </span>
+                    </div>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">{{  __('campaigns/stats.titles.' . $key, ['level' => Arr::get($stat, 'level', 0)])}}</span>
-                        <span class="info-box-number">{{ __('campaigns/stats.targets.' . $key, [
+                    <div class="py-1 flex-grow">
+                        <span class="px-2 text-uppercase truncate block">{{  __('campaigns/stats.titles.' . $key, ['level' => Arr::get($stat, 'level', 0)])}}</span>
+                        <span class="px-2 block font-bold text-lg">{{ __('campaigns/stats.targets.' . $key, [
                         'target' => Arr::get($stat, 'target', 0),
                     ]) }}</span>
                         @if($stat['level'] < 5)
-                        <div class="progress">
+                        <div class="progress my-1">
                             <div class="progress-bar" style="width: {{ Arr::get($stat, 'progress', 0) }}%"></div>
                         </div>
-                        <span class="progress-description">
+                        <span class="px-2 m-0 progress-description truncate block">
                         {{ __('campaigns/stats.placeholder', [
 'amount' =>  Arr::get($stat, 'amount', 0),
 'target' =>  Arr::get($stat, 'target', 0),

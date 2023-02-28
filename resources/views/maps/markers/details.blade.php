@@ -5,19 +5,21 @@
  */
 $boosted = $campaign->boosted();
 $class = $backgroundImage = null;
+$markerNameCss = "py-3";
 if ($marker->entity && $marker->entity->hasImage($boosted)) {
-    $class = 'with-image';
+    $class = 'with-image cover-background';
     $backgroundImage = "background-image: url('" . $marker->entity->getEntityImageUrl($boosted, 400, 200) . "');";
+    $markerNameCss = 'py-6';
 }
 ?>
 @if (!request()->has('mobile'))
 <div class="marker-header {{ $class }}" style="{{ $backgroundImage }}">
-    <div class="marker-top text-right">
+    <div class="marker-top text-right pull-right">
         <span class="marker-close" title="{{ __('crud.click_modal.close') }}"><i class="fa-solid fa-close"></i></span>
     </div>
 
     <div class="marker-header-lower">
-        <div class="marker-name">
+        <div class="marker-name overflow-hidden text-2xl w-full text-bold {{ $markerNameCss }}">
         @if ($marker->entity)
             <a href="{{ $marker->entity->url() }}" target="_blank">
                 @if (!empty($marker->name))

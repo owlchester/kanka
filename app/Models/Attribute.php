@@ -31,7 +31,10 @@ use Illuminate\Support\Str;
  */
 class Attribute extends Model
 {
-    use OrderableTrait, Paginatable, Starred, Privatable;
+    use OrderableTrait;
+    use Paginatable;
+    use Privatable;
+    use Starred;
 
     public const TYPE_CHECKBOX = 'checkbox';
     public const TYPE_SECTION = 'section';

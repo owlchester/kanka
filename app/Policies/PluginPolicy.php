@@ -10,7 +10,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PluginPolicy
 {
-    use HandlesAuthorization, AdminPolicyTrait;
+    use AdminPolicyTrait;
+    use HandlesAuthorization;
 
     public function delete(User $user, Plugin $plugin)
     {
@@ -41,6 +42,4 @@ class PluginPolicy
     {
         return UserCache::user($user)->admin() && $plugin->isContentPack();
     }
-
-
 }

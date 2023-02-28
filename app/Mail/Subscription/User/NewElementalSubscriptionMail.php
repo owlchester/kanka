@@ -6,11 +6,11 @@ use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class NewElementalSubscriptionMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var User
@@ -36,7 +36,7 @@ class NewElementalSubscriptionMail extends Mailable
     {
         return $this
             ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
-            ->subject('Welcome Elemental ' . $this->user->name)
+            ->subject('Thank you, and welcome!')
             ->tag('elemental')
             ->view('emails.subscriptions.new.elemental');
     }

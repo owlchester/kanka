@@ -6,29 +6,16 @@ use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
-use App\Models\Item;
 use App\Models\Location;
-use App\Models\Note;
-use App\Models\UserLog;
-use App\User;
+use App\Traits\UserAware;
 
 class StarterService
 {
+    use UserAware;
+
     /** @var Campaign */
     protected $campaign;
 
-    /** @var User */
-    protected $user;
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
 
     /**
      * @return Campaign
@@ -120,26 +107,10 @@ class StarterService
     protected function dashboard()
     {
         // Note for the dashboard
-        $entry = nl2br(__('starter.note1.entry', [
-            'youtube' => link_to('https://www.youtube.com/channel/UCwb3pl0LOlxd3GvMPAXIEog/videos', 'Youtube'),
-            'faq' => link_to_route('faq.index', __('front.faq.title')),
-            'discord' => link_to(config('social.discord'), 'Discord'),
-            'public' => link_to_route('front.public_campaigns', __('front.menu.campaigns')),
-            'subscriptions' => link_to_route('settings.subscription', __('starter.note1.subscriptions')),
-        ]));
-        $note = new Note([ 'name' => __('starter.note1.name'),
-            'campaign_id' => $this->campaign->id,
-            'entry' => $entry,
-            'is_private' => false,
-        ]);
-        $note->save();
-
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
-            'entity_id' => $note->entity->id,
-            'widget' => CampaignDashboardWidget::WIDGET_PREVIEW,
+            'widget' => CampaignDashboardWidget::WIDGET_WELCOME,
             'width' => 6, // half
-            'config' => ['full' => '1'],
             'position' => 1,
         ]);
         $widget->save();

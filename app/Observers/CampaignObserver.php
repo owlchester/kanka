@@ -5,9 +5,7 @@ namespace App\Observers;
 use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Models\Campaign;
-use App\Models\CampaignFollower;
 use App\Models\CampaignUser;
-use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
@@ -71,7 +69,7 @@ class CampaignObserver
             $isPublic = request()->get('is_public', null);
             if (!empty($isPublic) && $previousVisibility == Campaign::VISIBILITY_PRIVATE) {
                 $campaign->visibility_id = Campaign::VISIBILITY_PUBLIC;
-                // Default to public for now. Later will have REVIEW mode.
+            // Default to public for now. Later will have REVIEW mode.
             } elseif (empty($isPublic) && $previousVisibility != Campaign::VISIBILITY_PRIVATE) {
                 $campaign->visibility_id = Campaign::VISIBILITY_PRIVATE;
             }

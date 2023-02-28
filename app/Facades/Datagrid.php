@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Facades;
 
 use App\Renderers\DatagridRenderer2;

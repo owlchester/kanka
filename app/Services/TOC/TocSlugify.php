@@ -28,7 +28,7 @@ class TocSlugify implements SlugifyInterface
      */
     public function __construct(?SlugifyInterface $slugify = null)
     {
-        $this->used = array();
+        $this->used = [];
         $this->slugify = $slugify ?: new Slugify();
     }
 

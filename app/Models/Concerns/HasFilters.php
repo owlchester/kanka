@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 use App\Models\Location;
 use App\Models\Family;
 use App\Models\Race;
-use App\Models\Organisation;
 
 /**
  * HasFilters
@@ -92,7 +91,7 @@ trait HasFilters
     public function scopeFilter(Builder $query, array $params = []): Builder
     {
         $fields = $this->getFilterableColumns();
-        if (!is_array($params) or empty($params) or empty($fields)) {
+        if (!is_array($params) || empty($params) || empty($fields)) {
             return $query;
         }
 
@@ -116,7 +115,6 @@ trait HasFilters
 
                 // Explicit filters (numbers typically, foreign ids)
                 if (in_array($key, $this->explicitFilters)) {
-
                     if ($this->filterOperator == 'IS NULL') {
                         $query->whereNull($this->getTable() . '.' . $key);
                     } else {
@@ -253,7 +251,7 @@ trait HasFilters
             ->where(
                 str_replace($relationName, 'f', str_replace('-', '.', $key)),
                 $this->filterOperator,
-                ($this->filterOperator == '=' ? $this->filterValue : "%$this->filterValue%")
+                ($this->filterOperator == '=' ? $this->filterValue : "%{$this->filterValue}%")
             );
     }
 
@@ -337,7 +335,7 @@ trait HasFilters
             $query->where(
                 $this->getTable() . '.' . $key,
                 $this->filterOperator,
-                ($this->filterOperator == '=' ? $this->filterValue : "%$searchTerm%")
+                ($this->filterOperator == '=' ? $this->filterValue : "%{$searchTerm}%")
             );
             $firstTerm = false;
         }
@@ -465,8 +463,8 @@ trait HasFilters
         foreach ($value as $v) {
             $v = (int) $v;
             $query
-                ->leftJoin('character_race as cr' . $v, "cr$v.character_id", $this->getTable() . '.id')
-                ->where("cr$v.race_id", $v)
+                ->leftJoin('character_race as cr' . $v, "cr{$v}.character_id", $this->getTable() . '.id')
+                ->where("cr{$v}.race_id", $v)
             ;
         }
     }
@@ -522,10 +520,10 @@ trait HasFilters
             }
         }
         $query
-        ->select($this->getTable() . '.*')
-        ->leftJoin('character_race as cr', function ($join) {
-            $join->on('cr.character_id', '=', $this->getTable() . '.id');
-        })->whereIn('cr.race_id', $ids)->distinct();
+            ->select($this->getTable() . '.*')
+            ->leftJoin('character_race as cr', function ($join) {
+                $join->on('cr.character_id', '=', $this->getTable() . '.id');
+            })->whereIn('cr.race_id', $ids)->distinct();
     }
 
     /**
@@ -551,10 +549,10 @@ trait HasFilters
             }
         }
         $query
-        ->select($this->getTable() . '.*')
-        ->leftJoin('character_family as cf', function ($join) {
-            $join->on('cf.character_id', '=', $this->getTable() . '.id');
-        })->whereIn('cf.family_id', $ids)->distinct();
+            ->select($this->getTable() . '.*')
+            ->leftJoin('character_family as cf', function ($join) {
+                $join->on('cf.character_id', '=', $this->getTable() . '.id');
+            })->whereIn('cf.family_id', $ids)->distinct();
     }
 
     /**
@@ -596,8 +594,8 @@ trait HasFilters
             }
             $v = (int) $v;
             $query
-                ->leftJoin('entity_tags as et' . $v, "et$v.entity_id", 'e.id')
-                ->where("et$v.tag_id", $v)
+                ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", 'e.id')
+                ->where("et{$v}.tag_id", $v)
             ;
         }
     }
@@ -612,7 +610,7 @@ trait HasFilters
     protected function filterDateRange(Builder $query, string $key, array $params = []): void
     {
         // Don't apply twice if both fields are set
-        if ($key === 'date_end' and !empty($params['date_start'])) {
+        if ($key === 'date_end' && !empty($params['date_start'])) {
             return;
         }
         $start = Arr::get($params, 'date_start');

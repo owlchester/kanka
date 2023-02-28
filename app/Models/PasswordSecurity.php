@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Support\Facades\Auth;
 use BaconQrCode\Renderer\ImageRenderer;
-use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
@@ -18,10 +15,10 @@ class PasswordSecurity extends Model
     protected $table = 'password_securities';
 
     /**
-    * The attributes that are mass assignable.
-    *
-    * @var string[]
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
     protected $fillable = [
         'user_id',
         'google2fa_enable',
@@ -29,16 +26,16 @@ class PasswordSecurity extends Model
     ];
 
     /**
-    * A Google2FA belongsTo a user
-    */
+     * A Google2FA belongsTo a user
+     */
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
     /**
-    * Generates the QR code for 2FA
-    */
+     * Generates the QR code for 2FA
+     */
     public function getGoogleQR()
     {
         if (Auth::guest()) {

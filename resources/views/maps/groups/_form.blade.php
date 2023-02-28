@@ -15,11 +15,11 @@
 </div>
 
 @php 
-    $options = $map->groupPositionOptions();
+    $options = $map->groupPositionOptions(!empty($model->position) ? $model->position : null);
     $last = array_key_last($options);
 @endphp
 
 <div class="form-group">
     <label>{{ __('maps/groups.fields.position') }}</label>
-    {!! Form::select('position', $options, (!empty($group) ? $group : $last), ['class' => 'form-control']) !!}
+    {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
 </div>

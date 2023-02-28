@@ -1,5 +1,5 @@
 @nativeAd(\App\Models\Ad::SECTION_BANNER)
-<div class="ads-space nativead-manager" data-video="true" style="max-height: 228px;">
+<div class="ads-space overflow-hidden nativead-manager text-center" data-video="true" style="max-height: 228px;">
     {!! \App\Facades\AdCache::show() !!}
 </div>
 <p class="text-center text-muted">
@@ -11,7 +11,7 @@
 </p>
 @else
 @ads('entity')
-<div class="ads-space">
+<div class="ads-space overflow-hidden">
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="{{ config('tracking.adsense') }}"

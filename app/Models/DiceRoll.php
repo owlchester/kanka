@@ -13,10 +13,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class DiceRoll extends MiscModel
 {
-    use CampaignTrait,
-        SoftDeletes,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use SoftDeletes;
 
     /** @var string[]  */
     protected $fillable = [

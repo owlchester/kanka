@@ -2,7 +2,6 @@
 
 namespace App\Facades;
 
-use App\Models\Campaign;
 use Illuminate\Support\Facades\Facade;
 
 /**

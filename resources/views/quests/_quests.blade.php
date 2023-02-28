@@ -19,7 +19,7 @@ if($subquests->count() == 0) {
         <table id="quest-quests" class="table table-hover">
             <thead>
                 <tr>
-                    <th class="avatar"><br /></th>
+                    <th class="w-14"><br /></th>
                     <th>{{ __('quests.fields.name') }}</th>
                     <th>{{ __('quests.fields.type') }}</th>
                     <th>{{ __('quests.fields.date') }}</th>

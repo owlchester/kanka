@@ -165,7 +165,7 @@ $sizeOptions = [
                 {!! __('maps/markers.presets.helper') !!}
             </p>
 
-            <div class="marker-preset-list">
+            <div class="marker-preset-list rounded">
                 <div class="text-center">
                     <i class="fa-solid fa-spin fa-spinner"></i>
                 </div>

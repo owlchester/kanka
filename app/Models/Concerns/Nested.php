@@ -16,7 +16,6 @@ use Kalnoy\Nestedset\NestedSet;
 use Kalnoy\Nestedset\QueryBuilder;
 use LogicException;
 
-
 /**
  * Trait Nested
  * @package App\Models\Concerns
@@ -110,19 +109,21 @@ trait Nested
     {
         $this->moved = false;
 
-        if ( ! $this->pending && ! $this->exists) {
+        if (! $this->pending && ! $this->exists) {
             $this->makeRoot();
         }
 
-        if ( ! $this->pending) return;
+        if (! $this->pending) {
+            return;
+        }
 
-        $method = 'action'.ucfirst(array_shift($this->pending));
+        $method = 'action' . ucfirst(array_shift($this->pending));
         //dump($method);
         $parameters = $this->pending;
 
         $this->pending = null;
 
-        $this->moved = call_user_func_array([ $this, $method ], $parameters);
+        $this->moved = call_user_func_array([$this, $method], $parameters);
     }
 
     /**
@@ -152,8 +153,8 @@ trait Nested
     {
         static $softDelete;
 
-        if (is_null($softDelete)) {
-            $instance = new static;
+        if (null === $softDelete) {
+            $instance = new static();
 
             return $softDelete = method_exists($instance, 'bootSoftDeletes');
         }
@@ -175,7 +176,7 @@ trait Nested
     protected function actionRoot()
     {
         // Simplest case that do not affect other nodes.
-        if ( ! $this->exists) {
+        if (! $this->exists) {
             $cut = $this->getLowerBound() + 1;
 
             $this->setLft($cut);
@@ -215,7 +216,7 @@ trait Nested
 
         $cut = $prepend ? $parent->getLft() + 1 : $parent->getRgt();
 
-        if ( ! $this->insertAt($cut)) {
+        if (! $this->insertAt($cut)) {
             return false;
         }
 
@@ -259,7 +260,9 @@ trait Nested
      */
     public function refreshNode()
     {
-        if ( ! $this->exists || static::$actionsPerformed === 0) return;
+        if (! $this->exists || static::$actionsPerformed === 0) {
+            return;
+        }
 
         $attributes = $this->newNestedSetQuery()->getNodeData($this->getKey());
 
@@ -330,7 +333,7 @@ trait Nested
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getSiblingsAndSelf(array $columns = [ '*' ])
+    public function getSiblingsAndSelf(array $columns = ['*'])
     {
         return $this->siblingsAndSelf()->get($columns);
     }
@@ -519,7 +522,7 @@ trait Nested
             ->assertNotDescendant($node)
             ->assertSameScope($node);
 
-        if ( ! $this->isSiblingOf($node)) {
+        if (! $this->isSiblingOf($node)) {
             $this->setParent($node->getRelationValue('parent'));
         }
 
@@ -549,7 +552,9 @@ trait Nested
      */
     public function insertBeforeNode(self $node)
     {
-        if ( ! $this->beforeNode($node)->save()) return false;
+        if (! $this->beforeNode($node)->save()) {
+            return false;
+        }
 
         // We'll update the target node since it will be moved
         $node->refreshNode();
@@ -586,7 +591,9 @@ trait Nested
             ->skip($amount - 1)
             ->first();
 
-        if ( ! $sibling) return false;
+        if (! $sibling) {
+            return false;
+        }
 
         return $this->insertBeforeNode($sibling);
     }
@@ -606,7 +613,9 @@ trait Nested
             ->skip($amount - 1)
             ->first();
 
-        if ( ! $sibling) return false;
+        if (! $sibling) {
+            return false;
+        }
 
         return $this->insertAfterNode($sibling);
     }
@@ -639,9 +648,11 @@ trait Nested
     protected function moveNode($position)
     {
         $updated = $this->newNestedSetQuery()
-                ->moveNode($this->getKey(), $position) > 0;
+            ->moveNode($this->getKey(), $position) > 0;
 
-        if ($updated) $this->refreshNode();
+        if ($updated) {
+            $this->refreshNode();
+        }
 
         return $updated;
     }
@@ -750,18 +761,21 @@ trait Nested
     public function applyNestedSetScope($query, $table = null)
     {
         // @phpstan-ignore-next-line
-        if ( ! $scoped = $this->getScopeAttributes()) {
+        if (! $scoped = $this->getScopeAttributes()) {
             return $query;
         }
 
         // @phpstan-ignore-next-line
-        if ( ! $table) {
+        if (! $table) {
             $table = $this->getTable();
         }
 
         foreach ($scoped as $attribute) {
-            $query->where($table.'.'.$attribute, '=',
-                $this->getAttributeValue($attribute));
+            $query->where(
+                $table . '.' . $attribute,
+                '=',
+                $this->getAttributeValue($attribute)
+            );
         }
 
         return $query;
@@ -782,7 +796,7 @@ trait Nested
      */
     public static function scoped(array $attributes)
     {
-        $instance = new static;
+        $instance = new static();
 
         $instance->setRawAttributes($attributes);
 
@@ -792,7 +806,7 @@ trait Nested
     /**
      * {@inheritdoc}
      */
-    public function newCollection(array $models = array())
+    public function newCollection(array $models = [])
     {
         return new Collection($models);
     }
@@ -817,7 +831,7 @@ trait Nested
         $instance->save();
 
         // Now create children
-        $relation = new EloquentCollection;
+        $relation = new EloquentCollection();
 
         foreach ((array)$children as $child) {
             $relation->add($child = static::create($child, $instance));
@@ -837,7 +851,9 @@ trait Nested
      */
     public function getNodeHeight()
     {
-        if ( ! $this->exists) return 2;
+        if (! $this->exists) {
+            return 2;
+        }
 
         return $this->getRgt() - $this->getLft() + 1;
     }
@@ -863,7 +879,9 @@ trait Nested
      */
     public function setParentIdAttribute($value)
     {
-        if ($this->getParentId() == $value) return;
+        if ($this->getParentId() == $value) {
+            return;
+        }
 
         if ($value) {
             $this->appendToNode($this->newScopedQuery()->findOrFail($value));
@@ -880,7 +898,7 @@ trait Nested
     public function isRoot()
     {
         // @phpstan-ignore-next-line
-        return is_null($this->getParentId());
+        return null === $this->getParentId();
     }
 
     /**
@@ -960,7 +978,7 @@ trait Nested
      *
      * @return Model|null
      */
-    public function getNextNode(array $columns = [ '*' ])
+    public function getNextNode(array $columns = ['*'])
     {
         return $this->nextNodes()->defaultOrder()->first($columns);
     }
@@ -974,7 +992,7 @@ trait Nested
      *
      * @return Model|null
      */
-    public function getPrevNode(array $columns = [ '*' ])
+    public function getPrevNode(array $columns = ['*'])
     {
         return $this->prevNodes()->defaultOrder('desc')->first($columns);
     }
@@ -984,7 +1002,7 @@ trait Nested
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getAncestors(array $columns = [ '*' ])
+    public function getAncestors(array $columns = ['*'])
     {
         return $this->ancestors()->get($columns);
     }
@@ -994,7 +1012,7 @@ trait Nested
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getDescendants(array $columns = [ '*' ])
+    public function getDescendants(array $columns = ['*'])
     {
         return $this->descendants()->get($columns);
     }
@@ -1004,7 +1022,7 @@ trait Nested
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getSiblings(array $columns = [ '*' ])
+    public function getSiblings(array $columns = ['*'])
     {
         return $this->siblings()->get($columns);
     }
@@ -1012,7 +1030,7 @@ trait Nested
     /**
      * @param array $columns
      */
-    public function getNextSiblings(array $columns = [ '*' ])
+    public function getNextSiblings(array $columns = ['*'])
     {
         return $this->nextSiblings()->get($columns);
     }
@@ -1020,7 +1038,7 @@ trait Nested
     /**
      * @param array $columns
      */
-    public function getPrevSiblings(array $columns = [ '*' ])
+    public function getPrevSiblings(array $columns = ['*'])
     {
         return $this->prevSiblings()->get($columns);
     }
@@ -1029,7 +1047,7 @@ trait Nested
      * @param array $columns
      * @return Model|QueryBuilder|object|null
      */
-    public function getNextSibling(array $columns = [ '*' ])
+    public function getNextSibling(array $columns = ['*'])
     {
         return $this->nextSiblings()->defaultOrder()->first($columns);
     }
@@ -1038,7 +1056,7 @@ trait Nested
      * @param array $columns
      * @return Model|QueryBuilder|object|null
      */
-    public function getPrevSibling(array $columns = [ '*' ])
+    public function getPrevSibling(array $columns = ['*'])
     {
         return $this->prevSiblings()->defaultOrder('desc')->first($columns);
     }
@@ -1155,7 +1173,7 @@ trait Nested
      */
     public function getBounds()
     {
-        return [ $this->getLft(), $this->getRgt() ];
+        return [$this->getLft(), $this->getRgt()];
     }
 
     /**
@@ -1226,7 +1244,7 @@ trait Nested
      */
     protected function assertNodeExists(self $node)
     {
-        if ( ! $node->getLft() || ! $node->getRgt()) {
+        if (! $node->getLft() || ! $node->getRgt()) {
             throw new LogicException('Node must exists.');
         }
 

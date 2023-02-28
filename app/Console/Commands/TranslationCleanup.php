@@ -41,7 +41,7 @@ class TranslationCleanup extends Command
         $oldKeys = [];
         $translations = DB::table('ltm_translations', 'a')
             ->select(['a.locale', 'a.group', 'a.key', 'a.value', 'b.value'])
-            ->leftJoin('ltm_translations as b', function ($join) {
+            ->leftJoin('ltm_translations as b', function ($join): void {
                 $join->on('b.key', '=', 'a.key')
                     ->on('b.group', '=', 'a.group')
                     ->on('b.locale', '=', DB::raw("'en'"))
@@ -70,7 +70,7 @@ class TranslationCleanup extends Command
         foreach ($oldKeys as $group => $keys) {
             $this->info('Group ' . $group . ' with ' . count($keys) . ' keys.');
 
-            $query = "DELETE from ltm_translations where `group` = '" . $group . "' and `key` in ('" . implode("', '", array_values($keys)). "')";
+            $query = "DELETE from ltm_translations where `group` = '" . $group . "' and `key` in ('" . implode("', '", array_values($keys)) . "')";
             DB::statement($query);
         }
 

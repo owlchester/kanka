@@ -7,15 +7,12 @@ use App\Http\Requests\BragiRequest;
 use App\Models\BragiLog;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class BragiService
 {
-    use UserAware;
     use CampaignAware;
+    use UserAware;
 
     protected OpenAiService $openAI;
 
@@ -68,7 +65,6 @@ class BragiService
             return $this->renderError([], 'invalid-sub');
         } elseif ($this->user->availableTokens() <= 0) {
             return $this->renderError([], 'out-of-tokens', ['date' => $this->user->tokenRenewalDate()]);
-
         }
         $data = [];
         $prompt = $request->get('prompt');

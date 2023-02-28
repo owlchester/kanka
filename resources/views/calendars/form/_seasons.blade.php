@@ -68,7 +68,7 @@ if (!empty($seasonNames)) {
         <div class="row">
             <div class="col-md-6">
                 <div class="input-group">
-                    <span class="input-group-addon cursor">
+                    <span class="input-group-addon cursor-pointer">
                         <span class="fa-solid fa-arrows-alt-v"></span>
                     </span>
                     {!! Form::text('season_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.name')]) !!}

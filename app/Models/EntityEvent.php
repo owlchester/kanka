@@ -34,8 +34,11 @@ use Illuminate\Support\Str;
  */
 class EntityEvent extends MiscModel
 {
+    use Blameable;
     /** Traits */
-    use OrderableTrait, SortableTrait, VisibilityIDTrait, Blameable;
+    use OrderableTrait;
+    use SortableTrait;
+    use VisibilityIDTrait;
 
     /**
      * Trigger for filtering based on the order request.
@@ -196,7 +199,7 @@ class EntityEvent extends MiscModel
             try {
                 $this->readableDate = $this->day . ' ' .
                     (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
-                    (isset($years[$this->year]) ? $years[$this->year] : $this->year) . ' ' .
+                    ($years[$this->year] ?? $this->year) . ' ' .
                     $this->calendar->suffix;
                 // @phpstan-ignore-next-line
             } catch (\Exception $e) {

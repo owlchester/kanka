@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsLayout;
 use App\Services\PaginationService;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class AppearanceController extends Controller
 {

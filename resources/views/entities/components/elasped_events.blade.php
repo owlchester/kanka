@@ -50,39 +50,33 @@ foreach ($elapsed as $event) {
     @php $birth = $calendarEvents['birth'] ?? null; $death = $calendarEvents['death'] ?? null; @endphp
     @if (!empty($birth) && !empty($death))
 
-        <li class="list-group-item">
-            <b>{{ __('characters.fields.life') }}</b><br />
-            <span class="pull-right">
+        <li class="flex">
+            <div class="flex-grow font-bold">{{ __('characters.fields.life') }}</div>
+            <div class="flex-grow text-right">
                 <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" title="{{ $birth->calendar->name }}" data-toggle="tooltip">
                     {{ $birth->readableDate() }}
                 </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
                     {{ $death->readableDate() }}
                 </a> ({{ $birth->calcElapsed($death) }})
-            </span>
-            <br class="clear" />
+            </div>
         </li>
-
     @elseif (!empty($birth))
-        <li class="list-group-item">
-            <b>{{ __('entities/events.types.birth') }}</b>
-            <span class="pull-right">
+        <li class="flex">
+            <div class="flex-grow font-bold">{{ __('entities/events.types.birth') }}</div>
+            <div class="flex-grow text-right">
                 <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" title="{{ $birth->calendar->name }}" data-toggle="tooltip">
                 {{ $birth->readableDate() }}
                 </a> ({{ $birth->calcElapsed() }})
-            </span>
-            <br class="clear" />
+            </div>
         </li>
-
     @elseif (!empty($death))
-        <li class="list-group-item">
-            <b>{{ __('entities/events.types.death') }}</b>
-            <span class="pull-right">
+        <li class="flex">
+            <div class="flex-grow font-bold">{{ __('entities/events.types.death') }}</div>
+            <div class="flex-grow text-right">
                 <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
                 {{ $death->readableDate() }}
                 </a> ({{ $death->calcElapsed() }})
-            </span>
-            <br class="clear" />
+            </div>
         </li>
-
     @endif
 @endforeach

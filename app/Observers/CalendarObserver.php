@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Models\Calendar;
 use App\Models\MiscModel;
-use Illuminate\Support\Facades\Session;
 
 class CalendarObserver extends MiscObserver
 {
@@ -32,7 +31,7 @@ class CalendarObserver extends MiscObserver
         $monthCount = 0;
         $monthNames = request()->post('month_name', []);
         $monthLengths = request()->post('month_length', []);
-        $monthAliases= request()->post('month_alias', []);
+        $monthAliases = request()->post('month_alias', []);
         $monthTypes = request()->post('month_type', []);
         foreach ($monthNames as $name) {
             if (empty($name)) {
@@ -188,7 +187,7 @@ class CalendarObserver extends MiscObserver
             }
         }
 
-        $model->date = "$year-$month-$day";
+        $model->date = "{$year}-{$month}-{$day}";
 
         // Leap year
         if ($model->has_leap_year) {
