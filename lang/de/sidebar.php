@@ -1,23 +1,10 @@
 <?php
 
 return [
-    'campaign'          => 'Kampagne',
     'campaign_switcher' => [
-        'created_campaigns' => 'deine Kampagnen',
-        'new_campaign'      => 'Neue Kampagne',
-        'public_campaigns'  => 'öffentliche Kampagne',
-        'updated'           => 'aktualisiert',
+        'count'                 => 'Mitglied von :member',
+        'follow_more'           => 'Kampagne folgen',
+        'followed_campaigns'    => 'Kampagnen denen gefolgt wird',
+        'reorder'               => 'neu anordnen',
     ],
-    'campaigns'         => 'Kampagnen',
-    'custom_links'      => 'Selbsterstellte Links',
-    'dashboard'         => 'Dashboard',
-    'entity-creator'    => 'Schnell erstellen',
-    'gallery'           => 'Galerie',
-    'manage_links'      => 'Verwalte Links',
-    'new-entity'        => 'Erstelle ein neues Objekt',
-    'other'             => 'Anderes',
-    'presets'           => 'Vorlage',
-    'relations'         => 'Beziehungen',
-    'search'            => 'Suche...',
-    'world'             => 'Welt',
 ];
