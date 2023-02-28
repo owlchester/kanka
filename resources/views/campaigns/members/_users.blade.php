@@ -72,7 +72,7 @@
                                 <form method='post' action='{{ route('campaign_users.update-roles', [$relation, $role]) }}' class='user-role-update'>
     {!! str_replace('"', '\'', csrf_field()) !!}
 
-                                    <button class='btn btn-block btn-role-update mb-2'>
+                                    <button class='btn btn-default btn-block btn-role-update mb-2'>
                                     @if($relation->user->hasCampaignRole($role->id))
                                         <span class='text-danger'><i class='fa-solid fa-times' aria-hidden='true'></i> {{ $role->name }}</span>
                                     @else
