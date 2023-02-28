@@ -4,6 +4,7 @@ return [
     'index'     => [
         'translations'  => 'Prijevodi',
     ],
+    'patreon'   => [],
     'people'    => [
         'jay'   => [
             'title' => 'Osnivač i vodeći programer',

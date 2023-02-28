@@ -4,6 +4,7 @@ return [
     'index'     => [
         'translations'  => 'Traducciones',
     ],
+    'patreon'   => [],
     'people'    => [
         'jay'   => [
             'title' => 'Fundador y desarrollador principal',

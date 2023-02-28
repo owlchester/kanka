@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'cards' => [],
+    'cards' => [
+        'description'   => 'Predplatné si môžeš zakúpiť s väčšinou kreditných a debetných kariet ako Visa a Mastercard, ako aj s Giropay, Sofort a PayPal pre ročné predplatné.',
+    ],
     'faq'   => [
         'cancellation'  => [
             'answer'    => 'Keď zrušíš tvoje predplatné, ostanú tvoje výhody aktívne do konca obdobia tvojho predplatného.',

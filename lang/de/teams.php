@@ -8,6 +8,7 @@ return [
     'leads'     => [
         'translators'   => 'Kanka wurde dank dieser großartigen Mitwirkenden in mehrere Sprachen übersetzt.',
     ],
+    'patreon'   => [],
     'people'    => [
         'itzamna'   => [
             'title' => 'Junior-Entwickler',

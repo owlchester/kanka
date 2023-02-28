@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'cards' => [],
+    'cards' => [
+        'description'   => 'Możesz opłacić subskrypcję z pomocą popularnych kart debetowych i kredytowych (jak Visa albo Mastercard) albo - w wypadku subskrypcji rocznej - za pośrednictwem Giropay, Sofort albo PayPal.',
+    ],
     'faq'   => [
         'cancellation'  => [
             'answer'    => 'Gdy anulujesz subskrypcję, wynikające z niej korzyści pozostają aktywne do końca okresu rozliczeniowego.',

@@ -8,6 +8,7 @@ return [
     'leads'     => [
         'translators'   => 'Kanka é traducida a unha variedade de linguas grazas á contribución destas xeniais persoas.',
     ],
+    'patreon'   => [],
     'people'    => [
         'itzamna'   => [
             'title' => 'Desenvolvedor Junior',
