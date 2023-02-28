@@ -23,7 +23,6 @@ return [
         'title'     => 'Actualizar entrada de ":name"',
     ],
     'fields'        => [
-        'collapsed' => 'Entrada colapsada por defecto.',
         'creator'   => 'Creada por',
         'entry'     => 'Entrada principal',
         'name'      => 'Nome',

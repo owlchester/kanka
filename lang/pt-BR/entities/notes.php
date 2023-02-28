@@ -23,7 +23,6 @@ return [
         'title'     => 'Atualizar Nota de :name',
     ],
     'fields'        => [
-        'collapsed' => 'Fechar notas de entidade fixas por padrão',
         'creator'   => 'Criador',
         'entry'     => 'Entrada',
         'name'      => 'Nome',

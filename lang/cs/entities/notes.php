@@ -18,7 +18,6 @@ return [
         'title'     => 'Upravit poznámku objektu :name',
     ],
     'fields'        => [
-        'collapsed' => 'Zobrazovat poznámku sbalenou',
         'creator'   => 'Autor',
         'entry'     => 'Záznam',
         'name'      => 'Název',
