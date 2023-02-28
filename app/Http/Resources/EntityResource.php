@@ -132,6 +132,9 @@ class EntityResource extends JsonResource
     {
         /** @var MiscModel|Item $misc */
         $misc = $this->resource;
+        if (!$misc->entity) {
+            return 'permission issue';
+        }
 
         $galleryImage = $misc->entity->image;
         $campaign = CampaignLocalization::getCampaign();
