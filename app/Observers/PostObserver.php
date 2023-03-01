@@ -15,6 +15,7 @@ class PostObserver
      * Purify trait
      */
     use PurifiableTrait;
+    use ReorderTrait;
 
     /**
      * Service used to build the map of the entity
@@ -56,21 +57,6 @@ class PostObserver
     /**
      * @param Post $post
      */
-    public function creating(Post $post)
-    {
-        if (!$post->position == 1) {
-            // Make sure we're adding this note at the end of other posts
-            $last = $post->entity->posts()
-                ->where('id', '!=', $post->id)
-                ->orderBy('position', 'desc')
-                ->first();
-            $post->position = $last ? ($last->position + 1) : 1;
-        }
-    }
-
-    /**
-     * @param Post $post
-     */
     public function created(Post $post)
     {
         $this->log($post, EntityLog::ACTION_CREATE_POST);
@@ -98,6 +84,7 @@ class PostObserver
     public function saved(Post $post)
     {
         $this->savePermissions($post);
+        $this->reorder($post);
 
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
