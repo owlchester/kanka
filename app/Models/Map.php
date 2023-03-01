@@ -326,7 +326,7 @@ class Map extends MiscModel
         }
 
         //If is the last position remove last+1 position from the options array
-        if ($position == array_key_last($options) - 1) {
+        if ($position == array_key_last($options) - 1 && count($options) > 1) {
             array_pop($options);
         }
 
@@ -345,7 +345,7 @@ class Map extends MiscModel
         }
 
         //If is the last position remove last+1 position from the options array
-        if ($position == array_key_last($options) - 1) {
+        if ($position == array_key_last($options) - 1 && count($options) > 1) {
             array_pop($options);
         }
         return $options;
