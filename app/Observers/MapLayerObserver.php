@@ -67,7 +67,7 @@ class MapLayerObserver
      */
     public function saved(MapLayer $mapLayer)
     {
-        $this->reorder(mapLayer: $mapLayer);
+        $this->reorder($mapLayer);
         // If we touch, we'll replace the image of the map
         //$mapLayer->map->touch();
     }

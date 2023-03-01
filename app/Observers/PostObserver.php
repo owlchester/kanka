@@ -84,7 +84,7 @@ class PostObserver
     public function saved(Post $post)
     {
         $this->savePermissions($post);
-        $this->reorder(post: $post);
+        $this->reorder($post);
 
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.

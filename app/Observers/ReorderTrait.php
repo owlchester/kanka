@@ -13,27 +13,26 @@ use App\Models\MapLayer;
 trait ReorderTrait
 {
     /**
-     * @param MapGroup $mapGroup
-     * @param MapLayer $mapLayer
+     * @param mixed $model
      */
-    public function reorder(MapGroup $mapGroup = null, MapLayer $mapLayer = null, EntityNote $post = null)
+    public function reorder(mixed $model)
     {
         $position = 1;
 
-        if ($mapGroup) {
-            foreach ($mapGroup->map->groups()->orderBy('position')->get() as $group) {
+        if ($model instanceof MapGroup) {
+            foreach ($model->map->groups()->orderBy('position')->get() as $group) {
                 $group->position = $position;
                 $group->updateQuietly();
                 $position = $position + 1;
             }
-        } elseif ($mapLayer) {
-            foreach ($mapLayer->map->layers()->orderBy('position')->get() as $layer) {
+        } elseif ($model instanceof MapLayer) {
+            foreach ($model->map->layers()->orderBy('position')->get() as $layer) {
                 $layer->position = $position;
                 $layer->updateQuietly();
                 $position = $position + 1;
             }
-        } elseif ($post) {
-            foreach ($post->entity->posts()->orderBy('position')->get() as $post) {
+        } elseif ($model instanceof EntityNote) {
+            foreach ($model->entity->posts()->orderBy('position')->get() as $post) {
                 $post->position = $position;
                 $post->updateQuietly();
                 $position = $position + 1;
