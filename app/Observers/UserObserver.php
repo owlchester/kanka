@@ -13,6 +13,7 @@ use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Illuminate\Support\Facades\Session;
 
 class UserObserver
 {
@@ -72,9 +73,19 @@ class UserObserver
     public function creating(User $user)
     {
         $user->locale = LaravelLocalization::getCurrentLocale();
+        $settings = [];
+
         if (session()->has('tracking')) {
-            $user->settings = ['tracking' => session()->get('tracking')];
+            $settings['tracking'] = session()->get('tracking');
             session()->remove('tracking');
+        }
+
+        if (session()->has('invite_token')) {
+            $settings['invited'] = true;
+        }
+
+        if (count($settings) > 0) {
+            $user->settings = $settings;
         }
     }
 
