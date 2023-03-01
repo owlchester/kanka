@@ -128,6 +128,7 @@ class CampaignBoostController extends Controller
             $this->campaignBoostService
                 ->campaign($campaign)
                 ->upgrade()
+                ->action($request->post('action'))
                 ->boost();
 
             $this->campaignService->notify(
