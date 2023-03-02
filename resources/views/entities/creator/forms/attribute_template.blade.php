@@ -6,6 +6,8 @@
         false,
         __('attribute_templates.fields.attribute_template'),
         null,
-        __('attribute_templates.placeholders.attribute_template')
+        __('attribute_templates.placeholders.attribute_template'),
+        null,
+        request()->ajax() ? '#entity-modal' : null,
     ) !!}
 </div>

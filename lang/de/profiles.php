@@ -1,32 +1,15 @@
 <?php
 
 return [
-    'appearance'                    => [
-        'helpers'   => [
-            'campaign-order'    => 'Ändere die Reihenfolge, in der Kampagnen im Kampagnenwechsler aufgelistet werden.',
-            'date-format'       => 'Kontrolliere das Datumsformat für das Datum im wahren Leben.',
-            'pagination'        => 'Änderne die Anzahl der angezeigten Elemente in verschiedenen Listen.',
-        ],
-    ],
+    'appearance'                    => [],
     'avatar'                        => [
         'success'   => 'Avatar aktualisiert.',
     ],
-    'campaign_switcher_order_by'    => [
-        'alphabetical'      => 'Alphabetisch',
-        'date_created'      => 'Erstellungsdatum',
-        'date_joined'       => 'Beitrittsdatum',
-        'default'           => 'Standard',
-        'r_alphabetical'    => 'umgekehrt Alphabetisch',
-        'r_date_created'    => 'umgekehrt Erstellungsdatum',
-        'r_date_joined'     => 'umgekehrt Beitrittsdatum',
-    ],
+    'campaign_switcher_order_by'    => [],
     'edit'                          => [
         'success'   => 'Profil aktualisert',
     ],
-    'editors'                       => [
-        'legacy'        => 'Legacy (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
+    'editors'                       => [],
     'fields'                        => [
         'avatar'                    => 'Avatar',
         'bio'                       => 'Biografie',
@@ -82,29 +65,13 @@ return [
         ],
     ],
     'settings'                      => [
-        'fields'    => [
-            'advanced_mentions'             => 'Fortgeschrittene Erwähnungen',
-            'campaign_switcher_order_by'    => 'Sortierreihenfolge für Kampagnenwechsler',
-            'date_format'                   => 'Datenformatierung',
-            'default_nested'                => 'Verschachtelte Ansicht als Standard',
-            'editor'                        => 'Texteditor',
-            'new_entity_workflow'           => 'Neuer Objektworkflow',
-            'pagination'                    => 'Seitennummerierung (Objekte pro Seite)',
-        ],
         'helpers'   => [
             'bio'       => 'Die Biografie ist auf Ihrem :link sichtbar.',
-            'editor_v2' => 'Die Verwendung des Legacy-Texteditors (TinyMCE) unterstützt keine Erwähnungen auf Mobilgeräten und unterstützt einige Funktionen wie die Kampagnengalerie nicht.',
             'profile'   => 'öffentliches Profil',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'Wenn diese Option aktiviert ist, werden Erwähnungen beim Bearbeiten eines Objektes immer als [entity: 123] angezeigt.',
-            'default_nested'        => 'Aktivier diese Option, wenn du Listen im Standard in der verschachtelten Ansicht sehen möchtest (soweit verfügbar).',
-            'new_entity_workflow'   => 'Beim Erstellen eines neuen Objektes wird standardmäßig zur Liste der Objekte gewechselt. Sie können dies ändern, um stattdessen das neu erstellte Objekt anzuzeigen.',
         ],
         'success'   => 'Einstellungen geändert.',
     ],
     'theme'                         => [
-        'helper'    => 'Eine Kampagne mit einem festgelegten Thema überschreibt deine Präferenz.',
         'success'   => 'Theme geändert.',
         'themes'    => [
             'dark'      => 'Dunkel',

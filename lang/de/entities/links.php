@@ -15,7 +15,6 @@ return [
     'fields'            => [
         'icon'      => 'Symbol',
         'name'      => 'Name',
-        'parent'    => 'übergeordnetes Element',
         'position'  => 'Position',
         'url'       => 'URL',
     ],

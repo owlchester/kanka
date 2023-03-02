@@ -12,7 +12,10 @@ use Illuminate\Queue\SerializesModels;
 
 class MailSettingsChangeJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var int
@@ -47,7 +50,7 @@ class MailSettingsChangeJob implements ShouldQueue
         $newsletter = app()->make(NewsletterService::class);
 
         // If the user was subscribed and no longer desires anything, unsub them
-        $wantsSomething = $user->mail_release;
+        $wantsSomething = $user->hasNewsletter();
 
         if ($newsletter->user($user)->isSubscribed() && !$wantsSomething) {
             $newsletter->remove();

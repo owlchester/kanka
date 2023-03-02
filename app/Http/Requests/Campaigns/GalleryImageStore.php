@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Requests\Campaigns;
-
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -28,7 +26,11 @@ class GalleryImageStore extends FormRequest
     {
         //opentype,ttf,woff,woff2 not working for some reason.
         $rules = [
-            'file' => 'required|mimes:jpeg,jpg,gif,png,webp|max:' . auth()->user()->maxUploadSize(),
+            'file' => [
+                '*' => [
+                    'required', 'mimes:jpeg,jpg,gif,png,webp', 'max:' . auth()->user()->maxUploadSize()
+                ],
+            ],
             'folder_id' => [
                 'nullable',
                 Rule::exists('images', 'id')->where(function ($query) {

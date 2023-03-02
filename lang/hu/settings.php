@@ -58,36 +58,15 @@ return [
         'netherlands'   => 'Hollandia',
         'spain'         => 'Spanyolország',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'PDF letöltése',
-            'view_all'  => 'Összes megtekintése',
-        ],
-        'empty'     => 'Nincs számla',
-        'fields'    => [
-            'amount'    => 'Mennyiség',
-            'date'      => 'Dátum',
-            'invoice'   => 'Számla',
-            'status'    => 'Állapot',
-        ],
-        'header'    => 'Alább található a legutolsó 24 számla listája, melyek letölthetőek.',
-        'status'    => [
-            'paid'      => 'Fizetve',
-            'pending'   => 'Függőben',
-        ],
-        'title'     => 'Számlák',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Az elrendezési beállításokat frissítettük.',
-        'title'     => 'Elrendezés',
+        'title' => 'Elrendezés',
     ],
     'marketplace'   => [],
     'menu'          => [
         'account'               => 'Fiók',
         'api'                   => 'API',
         'apps'                  => 'Appok',
-        'billing'               => 'Fizetési Mód',
-        'invoices'              => 'Számlák',
         'other'                 => 'Egyéb',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Fizetési lehetőségek',
@@ -125,7 +104,6 @@ return [
         'billing'               => [
             'helper'    => 'A számlázási információid tárolása, és feldolgozása a :stripe-on keresztül történik, biztonságos formában. Ez a fizetési mód kerül felhasználásra minden előfizetésed esetében.',
             'saved'     => 'Mentett fizetési mód',
-            'title'     => 'Fizetési mód szerkesztése',
         ],
         'cancel'                => [
             'text'  => 'Sajnáljuk, hogy mész! Az előfizetésed lemondása aktívan tartja előfizetésed a következő számlázási ciklusig, amikor is megszűnnek a kampány boost-jait, és minden egyéb előnyöd, amelyet a Kanka támogatásával szereztél. Ha van kedved, kérlek töltsd ki az alábbi kérdőívet, hogy megtudhassuk, hogy mit csinálhatnánk jobban a jövőben, illetve hogy mi vezetett arra a döntésre, hogy megszüntesd az előfizetésed.',

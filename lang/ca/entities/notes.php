@@ -22,7 +22,6 @@ return [
         'title'     => 'Actualiza l\'anotació de :name',
     ],
     'fields'        => [
-        'collapsed' => 'Tanca l\'anotació fixada per defecte',
         'creator'   => 'Creador',
         'entry'     => 'Entrada',
         'name'      => 'Nom',

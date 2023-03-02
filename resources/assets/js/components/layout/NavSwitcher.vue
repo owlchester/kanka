@@ -1,9 +1,9 @@
 <template>
     <div class="nav-switcher flex items-center justify-center">
-        <div class="campaigns inline cursor text-center px-5 text-2xl py-2" v-on:click="openCampaigns()" aria-label="Switch campaigns">
+        <div class="campaigns inline cursor-pointer text-center px-5 text-2xl py-2" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
             <i v-bind:class="campaignIcon()" aria-hidden="true"></i>
         </div>
-        <div class="profile inline cursor text-center text-uppercase pt-2" v-on:click="openProfile()" aria-label="Profile settings">
+        <div class="profile inline cursor-pointer text-center text-uppercase pt-2" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
             <div class="indicator">
                 <span class="notification-badge" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
@@ -19,7 +19,7 @@
         </div>
         <div class="" v-else>
             <div class="header flex">
-                <div :class="blockClass(view_campaigns)" v-on:click="openCampaigns()">
+                <div :class="blockClass(view_campaigns)" v-on:click="openCampaigns()" tabindex="0" role="button" aria-label="Campaign list">
                     <div class="full flex items-center" v-if="view_campaigns">
                         <div class="flex-none mr-4 text-2xl">
                             <i  v-bind:class="campaignIcon()" aria-hidden="true"></i>
@@ -33,7 +33,7 @@
                         <i  v-bind:class="campaignIcon()" aria-hidden="true"></i>
                     </div>
                 </div>
-                <div :class="blockClass(view_profile)" v-on:click="openProfile()">
+                <div :class="blockClass(view_profile)" v-on:click="openProfile()" tabindex="0" role="button" aria-label="Profile pane">
                     <div class="full flex items-center" v-if="view_profile">
                         <div class="flex-none mr-4 profile-box rounded-lg p-2 text-center text-uppercase font-bold" v-if="showInitials()">
                             {{ initials }}
@@ -100,21 +100,21 @@
                     </div>
 
                     <div class="grid grid-cols-3 gap-2">
-                        <a v-bind:href="marketplace.themes.url" class="bordered border-solid py-2 text-center justify-center rounded-md" target="_blank">
+                        <a v-bind:href="marketplace.themes.url" class="bordered border-solid py-2 text-center justify-center rounded-md hover:drop-shadow" target="_blank">
                             <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                                 <i class="fa-solid fa-palette mt-3" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.themes.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.themes.number }}</div>
                         </a>
-                        <a v-bind:href="marketplace.sheets.url" class="bordered border-solid py-2 text-center  justify-center rounded-md" target="_blank">
+                        <a v-bind:href="marketplace.sheets.url" class="bordered border-solid py-2 text-center justify-center rounded-md hover:drop-shadow" target="_blank">
                             <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                             <i class="fa-solid fa-columns mt-3" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.sheets.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.sheets.number }}</div>
                         </a>
-                        <a v-bind:href="marketplace.content.url" class="bordered border-solid py-2 text-center  justify-center rounded-md" target="_blank">
+                        <a v-bind:href="marketplace.content.url" class="bordered border-solid py-2 text-center justify-center rounded-md hover:drop-shadow" target="_blank">
                             <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                                 <i class="fa-solid fa-dice-d20 mt-3" aria-hidden="true"></i>
                             </div>
@@ -126,7 +126,7 @@
 
                 <div class="subscription mb-5" v-if="!profile.is_impersonating">
                     <div class="text-uppercase font-bold py-2">{{ profile.subscription.title }}</div>
-                    <a class="bordered border-solid rounded-lg flex justify-center items-center" v-bind:href="profile.urls.subscription">
+                    <a class="bordered border-solid rounded-lg flex justify-center items-center hover:drop-shadow" v-bind:href="profile.urls.subscription">
                         <div class="flex-none p-2">
                             <img class="w-16 h-16" v-bind:src="profile.subscription.image" v-bind:alt="profile.subscription.tier">
                         </div>
@@ -140,6 +140,7 @@
                             </div>
                             <div class="more" v-else>
                                 {{ profile.subscription.call_to_action }}
+                                <div class="link">{{ profile.subscription.call_to_action_2 }}</div>
                             </div>
                         </div>
                     </a>
@@ -240,26 +241,35 @@ export default {
     directives: {
         clickOutside: vClickOutside.directive
     },
+    /* Properties provided by the html component initialisation */
     props: {
+        /* The user ID */
         user_id: {
             type: String,
         },
+        /* Route to the API to get info for the navbar */
         api: {
             type: String,
         },
+        /* Route to the API to get new notifications */
         fetch: {
             type: String,
         },
+        /* User's initials for when they have no picture */
         initials: {
             type: String,
         },
+        /* User's profile picture link */
         avatar: {
             type: String,
         },
+        /* The campaign ID (not used?) */
         campaign_id: undefined,
+        /* Bool to define if there are unread notifications */
         has_alerts: {
             type: Boolean,
         },
+        /* Bool to define if using the fontawesome pro or free license */
         pro: {
             type: Boolean,
         }
@@ -275,10 +285,15 @@ export default {
         return {
             // Check for updates in the localstorage every minute for new alerts
             alert_delta: 60 * 1000,
+            // Determine if waiting for data to load (show spinning wheel)
             is_loading: false,
+            // Determine if the pop-out menu is out
             is_expanded: false,
+            // Determine if the api data has been loaded
             has_data: false,
+            // Determine if the campaign list is being shown
             view_campaigns: false,
+            // Determine if the profile box is being shown
             view_profile: false,
             profile: {},
             campaigns: {},
@@ -286,6 +301,7 @@ export default {
             marketplace: {},
             releases: {},
             show_alerts: false,
+            // Determine if data from the api has been loaded
             is_loaded: false,
         }
     },
@@ -321,12 +337,12 @@ export default {
         },
         blockClass: function(active) {
             if (active) {
-                return 'block p-4 flex-grow items-center';
+                return 'block p-4 flex-grow items-center focus:box-shadow';
             }
-            return 'block p-4  items-center inactive cursor flex-none';
+            return 'block p-4  items-center inactive cursor-pointer flex-none focus:box-shadow';
         },
         logout: function() {
-            console.info('loging out');
+            //console.info('loging out');
             document.getElementById('logout-form').submit();
         },
         onClickOutside (event) {
@@ -335,12 +351,12 @@ export default {
         },
         readRelease: function(release) {
             let index = this.releases.releases.findIndex(msg => msg.id === release.id);
-            this.releases.releases = this.releases.releases.slice(index + 1, 1);
+            this.releases.releases.slice(index, 1);
             this.updateUnread();
         },
         readNotification: function(notification) {
             let index = this.notifications.messages.findIndex(msg => msg.id == notification.id);
-            this.notifications.messages = this.notifications.messages.slice(index + 1, 1);
+            this.notifications.messages.slice(index, 1);
             this.updateUnread();
         },
         // Figure out if the unread notification is removed

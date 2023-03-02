@@ -6,8 +6,6 @@ if($subquests->count() == 0) {
 }
 ?>
 
-@inject('dateRenderer', 'App\Renderers\DateRenderer')
-
 <div class="box box-solid quest-subquests" id="subquests">
     <div class="box-header with-border">
         <h3 class="box-title">{{ __('quests.fields.quests') }}</h3>
@@ -21,7 +19,7 @@ if($subquests->count() == 0) {
         <table id="quest-quests" class="table table-hover">
             <thead>
                 <tr>
-                    <th class="avatar"><br /></th>
+                    <th class="w-14"><br /></th>
                     <th>{{ __('quests.fields.name') }}</th>
                     <th>{{ __('quests.fields.type') }}</th>
                     <th>{{ __('quests.fields.date') }}</th>
@@ -45,7 +43,9 @@ if($subquests->count() == 0) {
                         {{ $subquest->type }}
                     </td>
                     <td>
-                        {{ $dateRenderer->render($subquest->date) }}
+                        @if (!empty($subquest->date))
+                            {{ \App\Facades\UserDate::format($subquest->date) }}
+                        @endif
                     </td>
                     <td>
                         @if ($subquest->is_completed)

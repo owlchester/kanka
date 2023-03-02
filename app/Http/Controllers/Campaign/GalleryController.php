@@ -10,6 +10,7 @@ use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\Campaigns\GalleryImageUpdate;
 use App\Models\Image;
 use App\Services\Campaign\GalleryService;
+use Illuminate\Support\Arr;
 
 class GalleryController extends Controller
 {
@@ -54,7 +55,7 @@ class GalleryController extends Controller
         $this->authorize('gallery', $campaign);
 
         $name = trim(request()->get('q', null));
-        $images = Image::where('name', 'like', "%$name%")
+        $images = Image::where('name', 'like', "%{$name}%")
             ->defaultOrder()
             ->take(50)
             ->get();
@@ -64,20 +65,29 @@ class GalleryController extends Controller
         ));
     }
 
+    /**
+     * Uploading multiple images in the gallery
+     * @param GalleryImageStore $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function store(GalleryImageStore $request)
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
-        $image = $this->service
+        $images = $this->service
             ->campaign($campaign)
             ->store($request);
 
-        $body = view('gallery._image')->with('image', $image)->render();
+        $body = [];
+        foreach ($images as $image) {
+            $body[] = view('gallery._image')->with('image', $image)->render();
+        }
 
         return response()->json([
             'success' => true,
-            'html' => $body
+            'images' => $body
         ]);
     }
 
@@ -92,9 +102,10 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
-        $image = $this->service
+        $images = $this->service
             ->campaign($campaign)
             ->store($request);
+        $image = Arr::first($images);
 
         return response()->json(Img::resetCrop()->url($image->path));
     }

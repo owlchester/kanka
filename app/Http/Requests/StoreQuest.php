@@ -29,7 +29,8 @@ class StoreQuest extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'type' => 'nullable|max:45',
+            'entry' => 'nullable|string',
+            'type' => 'nullable|string|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'quest_id' => 'nullable|integer|exists:quests,id',
@@ -53,7 +54,7 @@ class StoreQuest extends FormRequest
                 'nullable',
                 'integer',
                 'not_in:' . ((int) $self),
-                Rule::exists('quests', 'id')->where(function ($query)  use ($self) {
+                Rule::exists('quests', 'id')->where(function ($query) use ($self) {
                     return $query->whereNull('quest_id')->orWhere('quest_id', '!=', $self);
                 }),
             ];

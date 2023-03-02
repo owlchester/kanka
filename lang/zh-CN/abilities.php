@@ -29,7 +29,6 @@ return [
         'charges'   => '充能',
     ],
     'helpers'       => [
-        'descendants'       => '这个列表包含了所有派生自此能力的子能力。包括子能力的子能力...',
         'nested_without'    => '展示所有没有父能力的能力。点击某行来查看子能力。',
     ],
     'index'         => [],

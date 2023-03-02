@@ -42,8 +42,9 @@ function initKeyboardShortcuts() {
             }
             kbEditTarget[0].click();
         } else if (e.key === 'Escape') {
+            //console.log('escape', entityModal.has('.qq-modal-selection').length);
             // ESC to close quick creator selection modal
-            if (entityModal.has('.entity-creator').length === 1) {
+            if (entityModal.has('.qq-modal-selection').length === 1) {
                 entityModal.modal('hide');
             }
         }
@@ -64,7 +65,9 @@ function isInputField(ele) {
  */
 function initSaveKeyboardShortcut(form) {
     $(document).bind('keydown', function(e) {
-        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        //console.log((e.ctrlKey || e.metaKey), e.key.toLowerCase(), e.key.toLowerCase() === 's', e.shiftKey);
+        // Need to check on lowercase key, because shirt will uppercase it
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
             window.entityFormHasUnsavedChanges = false;
 
             if (e.shiftKey) {

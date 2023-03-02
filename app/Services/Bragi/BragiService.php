@@ -2,17 +2,17 @@
 
 namespace App\Services\Bragi;
 
+use App\Exceptions\OpenAiException;
 use App\Http\Requests\BragiRequest;
 use App\Models\BragiLog;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class BragiService
 {
-    use UserAware;
     use CampaignAware;
+    use UserAware;
 
     protected OpenAiService $openAI;
 
@@ -65,7 +65,6 @@ class BragiService
             return $this->renderError([], 'invalid-sub');
         } elseif ($this->user->availableTokens() <= 0) {
             return $this->renderError([], 'out-of-tokens', ['date' => $this->user->tokenRenewalDate()]);
-
         }
         $data = [];
         $prompt = $request->get('prompt');
@@ -76,13 +75,18 @@ class BragiService
             ->input($prompt, $name)
             ->generate();
 
-        $data['result'] = $this->openAI->result();
+        try {
+            $data['result'] = $this->openAI->result();
 
-        $logs = [];
-        $logs = $openAI["usage"];
+            $logs = [];
+            $logs = $openAI["usage"];
 
-        // Log the result into the db for admins
-        $this->log($prompt, $data['result'], $logs);
+            // Log the result into the db for admins
+            $this->log($prompt, $data['result'], $logs);
+        } catch (OpenAiException $e) {
+            $data['result'] = 'API error, please try again';
+            Log::warning('OpenAI error', $e->getContext());
+        }
 
 
         $data['tokens'] = $this->user->availableTokens();

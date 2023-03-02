@@ -85,28 +85,9 @@ return [
         'netherlands'   => 'Holandsko',
         'spain'         => 'Španielsko',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Stiahnuť PDF',
-            'view_all'  => 'Zobraziť všetky',
-        ],
-        'empty'     => 'Žiadne faktúry',
-        'fields'    => [
-            'amount'    => 'Množstvo',
-            'date'      => 'Dátum',
-            'invoice'   => 'Faktúra',
-            'status'    => 'Stav',
-        ],
-        'header'    => 'Nižšie sa nachádza zoznam posledných 24 faktúr, ktoré si môžeš stiahnuť.',
-        'status'    => [
-            'paid'      => 'Zaplatená',
-            'pending'   => 'Čaká sa na platbu',
-        ],
-        'title'     => 'Faktúry',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Nastavenia schémy aktualizované.',
-        'title'     => 'Schéma',
+        'title' => 'Schéma',
     ],
     'marketplace'   => [],
     'menu'          => [
@@ -114,9 +95,7 @@ return [
         'api'                   => 'API',
         'appearance'            => 'Vzhľad',
         'apps'                  => 'Apps',
-        'billing'               => 'Spôsob platby',
         'boosters'              => 'Boosty',
-        'invoices'              => 'Faktúry',
         'notifications'         => 'Upozornenia',
         'other'                 => 'Iné',
         'patreon'               => 'Patreon',
@@ -155,7 +134,6 @@ return [
         'billing'               => [
             'helper'    => 'Tvoje platobné údaje sú spracované a uložené bezpečne na :stripe. Túto platobnú metódu používame pre všetky platby predplatného.',
             'saved'     => 'Uložený spôsob platby',
-            'title'     => 'Upraviť spôsob platby',
         ],
         'cancel'                => [
             'options'   => [
@@ -207,6 +185,7 @@ return [
             'alternatives_warning'  => 'Aktualizácia predplatného týmto spôsobom nie je možná. Prosím, vytvor nové predplatné, keď tvoje súčasné skončí.',
             'alternatives_yearly'   => 'Kvôli obmedzeniam ohľadom opakovaných platieb, :method je dostupný len pre ročné zúčtovanie.',
             'paypal'                => 'Chceš radšej použiť Paypal? Kontaktuj nás na :email, ak chceš platiť ročné predplatné cez Paypal.',
+            'paypal_v2'             => 'Akceptujeme PayPal pri ročnom predplatnom. Pošli nám mail na :email z tvojho mailu v Kanke, vrstvu, na ktorú sa chceš prihlásiť a menu (USD alebo EUR), v ktorej chceš obdržať faktúru.',
             'stripe'                => 'Tvoje platobné údaje sú spracované a uložené bezpečne prostredníctvom :stripe.',
         ],
         'manage_subscription'   => 'Spravovať predplatné',

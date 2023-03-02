@@ -43,7 +43,7 @@ class MigrateEntityAssets extends Command
     {
         EntityAsset::file()->delete();
         $this->count = 0;
-        EntityFile::chunk(5000, function ($files) {
+        EntityFile::chunk(5000, function ($files): void {
             /** @var EntityFile $file */
             foreach ($files as $file) {
                 $this->count++;
@@ -58,7 +58,7 @@ class MigrateEntityAssets extends Command
 
         $this->count = 0;
         EntityAsset::link()->delete();
-        EntityLink::chunk(5000, function ($links) {
+        EntityLink::chunk(5000, function ($links): void {
             /** @var EntityLink $link */
             foreach ($links as $link) {
                 $this->count++;

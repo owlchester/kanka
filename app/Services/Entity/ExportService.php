@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Entity;
-
 
 use App\Models\Entity;
 use Illuminate\Support\Str;

@@ -38,7 +38,7 @@ $inSection = false;
         <dt>
             <span title="{attribute:{{ $attribute->id }}}" data-toggle="tooltip"
                   data-clipboard="{attribute:{{ $attribute->id }}}" data-toast="{{ __('crud.alerts.copy_attribute') }}">
-            {!! $attribute->name() !!}
+                {!! $attribute->name() !!}
             </span>
             @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
                 <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}"></i>
@@ -48,9 +48,9 @@ $inSection = false;
             @if ($attribute->isCheckbox())
                 <span class="live-edit" data-id="{{ $attribute->id }}">
                 @if ($attribute->value)
-                    <i class="fa-solid fa-check"></i>
+                    <i class="fa-solid fa-check" aria-hidden="true" aria-label="checked"></i>
                 @else
-                    <i class="fa-solid fa-times"></i>
+                    <i class="fa-solid fa-times" aria-hidden="true" aria-label="unchecked"></i>
                 @endif
                 </span>
             @elseif ($attribute->isText())

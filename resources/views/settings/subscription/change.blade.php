@@ -39,13 +39,35 @@
 
         <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#card" aria-controls="home" role="tab" data-toggle="tab">Card</a></li>
-                <li role="presentation"><a href="#sofort" aria-controls="profile" role="tab" data-toggle="tab">Sofort</a></li>
-                <li role="presentation"><a href="#giropay" aria-controls="settings" role="tab" data-toggle="tab">giropay</a></li>
+                @if (! $limited)
+                <li role="presentation" class="active">
+                    <a href="#card" aria-controls="home" role="tab" data-toggle="tab">
+                        <i class="fa-regular fa-credit-card" aria-hidden="true"></i>
+                        {{ __('billing/payment_methods.types.card') }}
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#sofort" aria-controls="profile" role="tab" data-toggle="tab">
+                        Sofort
+                        </a>
+                </li>
+                <li role="presentation">
+                    <a href="#giropay" aria-controls="settings" role="tab" data-toggle="tab">
+                        giropay
+                    </a>
+                </li>
+                @endif
+                <li role="presentation" @if ($limited) class="active" @endif>
+                    <a href="#paypal" aria-controls="settings" role="tab" data-toggle="tab">
+                        <i class="fa-brands fa-paypal" aria-hidden="true"></i>
+                        PayPal
+                    </a>
+                </li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
+                @if (! $limited)
                 <div role="tabpanel" class="tab-pane active" id="card">
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
 
@@ -65,7 +87,7 @@
                         <div class="text-center mb-5">
                             <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
                             <i class="fa-solid fa-credit-card"></i> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
-                            <p><a href="{{ route('settings.billing') }}">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
+                            <p><a href="{{ route('billing.payment-method') }}">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
                         </div>
                         @if ($isDowngrading)
 
@@ -203,6 +225,12 @@
                         @endif
                         @endif
                     @endif
+                </div>
+                @endif
+                <div role="tabpanel" class="tab-pane {{ $limited ? 'active' : null }}" id="paypal">
+                    <p class="help-block">
+                        {!! __('settings.subscription.helpers.paypal_v2', ['email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}
+                    </p>
                 </div>
             </div>
         </div>

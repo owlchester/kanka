@@ -95,6 +95,7 @@ return [
             'random'        => 'Random entity',
             'recent'        => 'Entity list',
             'unmentioned'   => 'Unmentioned entities list',
+            'welcome'       => 'Welcome',
         ],
     ],
     'title'         => 'Dashboard',
@@ -177,6 +178,9 @@ return [
         ],
         'update'        => [
             'success'   => 'Widget modified.',
+        ],
+        'welcome'       => [
+            'helper'    => 'This widget displays a welcome message on the dashboard that includes helpful links for new users to Kanka.',
         ],
         'widths'        => [
             '0' => 'Auto',

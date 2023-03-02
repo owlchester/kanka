@@ -3,14 +3,14 @@
 namespace App\Mail\Subscription\User;
 
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 class ExpiringCardEmail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var User
@@ -37,9 +37,10 @@ class ExpiringCardEmail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Team'])
+            ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
             ->subject(__('emails/subscriptions/expiring.title'))
             ->view('emails.subscriptions.expiring.user-html')
+            ->tag('expiring')
             ->text('emails.subscriptions.expiring.user-text');
     }
 }

@@ -40,9 +40,9 @@ class CommunityVote extends Model implements Feedable
     protected $cachedStatus = false;
     protected $cachedResults = false;
 
-    public $dates = [
-        'visible_at',
-        'published_at'
+    public $casts = [
+        'visible_at' => 'date',
+        'published_at' => 'date',
     ];
 
     /**

@@ -15,12 +15,12 @@ $attributes = isset($entity) ? $entity->starredAttributes() : $model->entity->st
                     <span class="pull-right">{{ __('general.no') }}</span>
                 @endif
             @endif
-            <strong title="{{ __('entities/attributes.fields.is_star') }}">{{ $attribute->name() }}</strong>
+            <strong title="{{ __('entities/attributes.fields.is_star') }}">{!! $attribute->name() !!}</strong>
             @if ($attribute->isText())
                 <p>{!! nl2br($attribute->mappedValue()) !!}</p>
             @elseif (!$attribute->isCheckbox() && !$attribute->isSection())
                 <span class="pull-right">{!! $attribute->mappedValue() !!}</span>
-                <br class="clear" />
+                <br class="clear-both" />
             @endif
         </li>
     @endforeach

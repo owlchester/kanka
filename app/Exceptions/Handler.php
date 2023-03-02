@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException as SymHttpException;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Sentry\Laravel\Integration;
 
 class Handler extends ExceptionHandler
 {
@@ -29,21 +30,11 @@ class Handler extends ExceptionHandler
         NotFoundHttpException::class,
     ];
 
-    /**
-     * Report or log an exception.
-     *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
-     * @param  \Exception  $exception
-     * @return void
-     */
-    public function report(Throwable $exception)
+    public function register(): void
     {
-        if (app()->bound('sentry') && $this->shouldReport($exception)) {
-            app('sentry')->captureException($exception);
-        }
-
-        parent::report($exception);
+        $this->reportable(function (Throwable $e) {
+            Integration::captureUnhandledException($e);
+        });
     }
 
     /**
@@ -136,10 +127,16 @@ class Handler extends ExceptionHandler
                 ->json(['error' => 'Page not found'], 404);
         } elseif ($exception instanceof ThrottleRequestsException) {
             $amount = auth()->user()->rateLimit;
-            $message = $amount != 90 ? ' Subscribe to Kanka to unlock higher limits': null;
+            $message = $amount != 90 ? ' Subscribe to Kanka to unlock higher limits' : null;
             return response()
                 ->json(['Your account limit of ' . $amount . ' requests per minute has been reached.'
                     . $message], 429);
+        } elseif ($exception instanceof AuthenticationException) {
+            return response()
+                ->json([
+                    'code' => 401,
+                    'error' => 'Invalid authentication token. Make sure you copy-pasted it correctly, or try using a new one at https://kanka.io/en-US/settings/api.',
+                ], 401);
         }
         return response()
             ->json([

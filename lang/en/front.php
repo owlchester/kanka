@@ -4,6 +4,9 @@ return [
     'about'                 => [
         'title' => 'About',
     ],
+    'actions'               => [
+        'back-to-top'   => 'Back to top',
+    ],
     'campaigns'             => [
         'description_full'  => 'Many campaigns in :kanka are public for all to see. This page contains a list of all public campaigns, as well as some featured campaigns from the community.',
         'featured'          => [
@@ -14,8 +17,8 @@ return [
             'filters'   => [
                 'all'       => 'Open status',
                 'closed'    => 'Closed campaigns',
-                'open'      => 'Open campaigns',
                 'featured'  => 'Prompt winners',
+                'open'      => 'Open campaigns',
             ],
         ],
         'public'            => [
@@ -146,6 +149,7 @@ return [
             '2fa'               => 'Access to Two Factor Authentication',
             'api_calls'         => 'Increased API calls (90 per minute)',
             'boosts'            => 'Campaign Boosters',
+            'bragi'             => 'Access to Bragi, Kanka\'s worldbuilding AI',
             'click-me'          => 'Learn more about this feature.',
             'curation'          => 'Help curate the community vote items',
             'default_image'     => 'Nicer default images for entities in lists',
@@ -229,14 +233,14 @@ return [
         ],
     ],
     'master'                => [
-        'call_to_action'    => 'Create an account',
-        'description'       => ':kanka is a community driven worldbuilding and tabletop RPG campaign management tool perfect for worldbuilders and game masters alike. We help you create and organize your campaigns and worlds with our @mentions system and a whole range of features such as calendars, interactive maps, timelines, organisations, families, and as many characters as you can come up with!',
-        'description_q1_2023' => 'Need to build a world for your TTRPG adventure or your book? We got you covered. :kanka is a worldbuilding tool perfect for anyone looking to tap into their creativity. We help you organise the chaos with a large set of features, going from @mentions to calendars, maps to families, and so much more.',
-        'heading'           => 'Worldbuilding, tabletop RPG campaign management, storytelling. All in one',
-        'title'             => 'Kanka',
+        'call_to_action'        => 'Create an account',
+        'description'           => ':kanka is a community driven worldbuilding and tabletop RPG campaign management tool perfect for worldbuilders and game masters alike. We help you create and organize your campaigns and worlds with our @mentions system and a whole range of features such as calendars, interactive maps, timelines, organisations, families, and as many characters as you can come up with!',
+        'description_q1_2023'   => ':kanka is a collaborative worldbuilding tool perfect for tapping into your creativity. Build your world with wiki-like entities, complex calendars and beautiful maps. Whatever you need, :kanka is here to help you create and run your homebrew RPG campaign.',
+        'heading'               => 'Worldbuilding, tabletop RPG campaign management, storytelling. All in one',
+        'title'                 => 'Kanka',
     ],
     'menu'                  => [
-        'about'         => 'About',
+        'about'         => 'About Us',
         'campaigns'     => 'Public Campaigns',
         'community'     => 'Community',
         'contact'       => 'Contact',
@@ -280,7 +284,12 @@ return [
             'unlimited'     => 'Unlimited campaigns & uploads',
             'updates'       => 'Frequent updates and improvements',
         ],
-        'description'   => 'All core features are free, but supporting :kanka helps us deliver frequent updates and improvements for all users.',
+        'billed_yearly' => ':amount billed yearly',
+        'lead'          => [
+            'obvious'   => 'obvious choice',
+            'text'      => 'The :obvious for collaborative worldbuilding and ttrpg campaign management, at an affordable rate.',
+        ],
+        'refund'        => 'With a 14 day refund policy on yearly subscriptions.',
         'tier'          => [
             'free'  => 'Free',
             'month' => 'month',

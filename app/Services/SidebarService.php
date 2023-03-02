@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MenuLink;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -12,6 +12,8 @@ use Stevebauman\Purify\Facades\Purify;
 
 class SidebarService
 {
+    use CampaignAware;
+
     /**
      * List of the campaign's quick links
      * @var array
@@ -308,17 +310,8 @@ class SidebarService
         //'search' => null,
     ];
 
-    /** @var Campaign */
-    protected $campaign;
-
     /** @var bool */
     protected bool $withDisabled = false;
-
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
 
     public function withDisabled(): self
     {
@@ -343,7 +336,7 @@ class SidebarService
 
         foreach ($this->rules[$menu] as $rule) {
             if (request()->segment(4) == $rule) {
-                return " $class";
+                return " {$class}";
             }
         }
 
@@ -352,7 +345,7 @@ class SidebarService
             /** @var Entity $entity */
             $entity = request()->route('entity');
             if ($entity->pluralType() == $menu) {
-                return " $class";
+                return " {$class}";
             }
         }
 
@@ -376,11 +369,12 @@ class SidebarService
     /**
      * Settings menu active
      * @param string $menu
+     * @param int $segment
      * @return string
      */
-    public function settings(string $menu): string
+    public function settings(string $menu, int $segment = 3): string
     {
-        $current = request()->segment(3);
+        $current = request()->segment($segment);
         if ($current == $menu) {
             return ' active';
         }
@@ -654,21 +648,20 @@ class SidebarService
 
     /**
      * Prepare the quick links by figuring out where they will be rendered
-     * @param Campaign $campaign
      * @return void
      */
-    public function prepareQuickLinks(Campaign $campaign): void
+    public function prepareQuickLinks(): void
     {
         $this->quickLinks = [];
 
         // Quick menu module not activated on the campaign, no need to go further
-        if (!$campaign->enabled('menu_links')) {
+        if (!$this->campaign->enabled('menu_links')) {
             return;
         }
-        $quickLinks = $campaign->menuLinks()->active()->ordered()->with(['target'])->get();
+        $quickLinks = $this->campaign->menuLinks()->active()->ordered()->with(['target'])->get();
         foreach ($quickLinks as $quickLink) {
             $parent = 'menu_links';
-            if (!empty($quickLink->parent) && $campaign->boosted()) {
+            if (!empty($quickLink->parent) && $this->campaign->boosted()) {
                 $parent = $quickLink->parent;
             }
             $this->quickLinks[$parent][] = $quickLink;

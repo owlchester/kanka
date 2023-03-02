@@ -242,10 +242,10 @@ return [
         'title'         => 'Partneri',
     ],
     'pricing'       => [
-        'actions'       => [
+        'actions'   => [
             'subscribe' => 'Pretplati se',
         ],
-        'benefits'      => [
+        'benefits'  => [
             'big_maps'      => 'Velika veličina mape (:size)',
             'bigger_maps'   => 'Veća veličina mape (:size)',
             'boosters'      => 'Pojačivača kampanje',
@@ -256,12 +256,11 @@ return [
             'unlimited'     => 'Neograničene kampanje i prijenosi',
             'updates'       => 'Česte nadogradnje i poboljšanja',
         ],
-        'description'   => 'Iako su sve osnovne značajke besplatne, podrška Kanke pomaže nam dostaviti česte nadogradnje i poboljšanja za sve korisnike.',
-        'tier'          => [
+        'tier'      => [
             'free'  => 'Besplatno',
             'month' => 'Mjesec',
         ],
-        'title'         => 'Pregled cijena',
+        'title'     => 'Pregled cijena',
     ],
     'privacy'       => [
         'description'   => 'Datum stupanja na snagu: :date',

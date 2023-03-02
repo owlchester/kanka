@@ -3,7 +3,6 @@
 namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
-use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\Character;
 use App\Models\CharacterTrait;
@@ -17,6 +16,7 @@ use App\Models\PluginVersionEntity;
 use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -26,54 +26,43 @@ use Exception;
 
 class CampaignPluginService
 {
-    /** @var Campaign */
-    protected $campaign;
+    use CampaignAware;
 
     /** @var Plugin */
     protected $plugin;
 
     /** @var array */
-    protected $entityIds = [];
+    protected array $entityIds = [];
 
     /** @var array  */
-    protected $miscIds = [];
+    protected array $miscIds = [];
 
     /** @var array  */
-    protected $entityTypes = [];
+    protected array $entityTypes = [];
 
     /** @var array */
-    protected $models = [];
+    protected array $models = [];
 
     /** @var array */
-    protected $loadedRelations = [];
+    protected array $loadedRelations = [];
 
     /** @var array */
-    protected $loadedPosts = [];
+    protected array $loadedPosts = [];
 
     /** @var null|Collection */
     protected $importedEntities = null;
 
     /** @var array updated entities */
-    protected $updated = [];
+    protected array $updated = [];
 
     /** @var array created entities */
-    protected $created = [];
+    protected array $created = [];
 
     /** @var array entities that are to be skipped */
-    protected $skippedEntities = [];
+    protected array $skippedEntities = [];
 
-    protected $forcePrivate = false;
-    protected $skipUpdates = false;
-
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
+    protected bool $forcePrivate = false;
+    protected bool $skipUpdates = false;
 
     /**
      * @param array $options
@@ -164,6 +153,10 @@ class CampaignPluginService
             ->publishedVersions($this->plugin->created_by)
             ->orderBy('id', 'desc')
             ->first();
+        // The user could be submitting a plugin to update that was removed in another window
+        if (empty($latest)) {
+            return false;
+        }
 
         /** @var CampaignPlugin $campaignPlugin */
         $campaignPlugin = CampaignPlugin::where('campaign_id', $this->campaign->id)

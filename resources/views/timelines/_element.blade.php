@@ -11,7 +11,7 @@
     <div class="timeline-item">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title cursor element-toggle {{ $element->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
+                <h3 class="box-title cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
 
                     <i class="fa-solid fa-chevron-up icon-show"></i>
                     <i class="fa-solid fa-chevron-down icon-hide"></i>

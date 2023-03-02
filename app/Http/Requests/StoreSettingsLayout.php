@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Services\PaginationService;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class StoreSettingsLayout extends FormRequest
 {
@@ -39,11 +38,11 @@ class StoreSettingsLayout extends FormRequest
     public function rules()
     {
         return [
-            'date_format' => 'required',
-            'default_pagination' => 'required|numeric|max:' . $this->pagination->max(),
+            'date_format' => 'nullable|string|max:5',
+            'pagination' => 'nullable|numeric|max:' . $this->pagination->max(),
             'theme' => 'nullable',
             'default_nested' => 'nullable',
-//            'editor' => 'in:,summernote,markdown',
+            //            'editor' => 'in:,summernote,markdown',
         ];
     }
 }

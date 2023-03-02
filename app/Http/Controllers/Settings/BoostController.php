@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Facades\CampaignCache;
-use App\Facades\UserCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Models\CampaignBoost;
 use App\Services\CampaignBoostService;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 
 class BoostController extends Controller
 {

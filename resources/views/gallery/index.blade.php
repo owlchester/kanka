@@ -42,22 +42,19 @@ if ($folder) {
         </div>
     </div>
 
-    <form method="post" action="{{ route('images.store') }}" enctype="multipart/form-data" class="file-upload-form">
+    <form id="gallery-form" method="post" action="{{ route('images.store') }}" enctype="multipart/form-data" class="file-upload-form mb-5">
         {{ csrf_field() }}
-        <div class="uploader collapse out well text-center" id="uploader">
-            <a href="#" class="pull-right" data-toggle="collapse" data-target="#uploader">
-                <i class="fa-solid fa-times"></i>
-            </a>
+        <div class="uploader collapse out well text-center border-dotted border-1 " id="uploader">
 
             <h4>{{ __('campaigns/gallery.uploader.well') }}</h4>
 
             <p>{{ __('campaigns/gallery.uploader.or') }}</p>
 
-            <span class="btn btn-primary fileinput-button">
-              <i class="fa-solid fa-plus"></i>
-              <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
-              <input type="file" id="file-upload" name="file" multiple />
-        </span>
+            <span class="btn btn-primary fileinput-button relative overflow-hidden inline-block">
+                <i class="fa-solid fa-plus"></i>
+                <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
+                <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer" multiple />
+            </span>
 
             <p>{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif', 'size' => auth()->user()->maxUploadSize(true)]) }}</p>
 
@@ -81,7 +78,7 @@ if ($folder) {
             <i class="fa-solid fa-spinner fa-spin fa-4x"></i>
         </div>
         <div id="gallery-content">
-            <ul id="gallery-images">
+            <ul id="gallery-images" class="m-0 p-0 list-none">
                 @include('gallery.images')
             </ul>
         </div>
@@ -122,9 +119,6 @@ if ($folder) {
 
 @section('scripts')
     <script src="{{ mix('js/gallery.js') }}" defer></script>
-    <script src="{{ mix('js/vendor/jquery.ui.widget.js') }}" defer></script>
-    <script src="{{ mix('js/jquery.fileupload.js') }}" defer></script>
-    <script src="{{ mix('js/jquery.iframe-transport.js') }}" defer></script>
 @endsection
 
 @section('styles')

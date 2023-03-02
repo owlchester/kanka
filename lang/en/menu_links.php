@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'           => [
+        'customise' => 'Customise sidebar',
+    ],
     'create'            => [
         'title' => 'New Quick Link',
     ],
@@ -45,5 +48,8 @@ return [
     'reorder'           => [
         'success'   => 'Quick links reordered.',
         'title'     => 'Reorder quick links',
+    ],
+    'visibilities'      => [
+        'is_active' => 'Show the quick link in the sidebar',
     ],
 ];

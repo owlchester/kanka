@@ -4,27 +4,25 @@
 */
 ?>
 
-<li tabindex="0" role="checkbox" aria-label="{{ $image->name }}" aria-checked="false" data-id="{{ $image->id }}"
-    data-url="{{ route('images.edit', $image) }}" @if ($image->is_folder) data-folder="{{ route('campaign.gallery.index', ['folder_id' => $image->id]) }}" @endif>
-    <div class="image-preview">
-        @if ($image->is_folder)
-            <div class="gallery-folder">
-                <span class="text">
-                    @if ($image->visibility_id == \App\Models\Visibility::VISIBILITY_ALL)
-                    <i class="fa-solid fa-folder fa-2x"></i>
-                    @else
-                        {!! $image->visibilityIcon('fa-2x') !!}
-                    @endif
-                    {{ $image->name }}
-                </span>
-            </div>
+<li tabindex="0" class="pull-left h-36 w-32 p-2 m-2 rounded drop-shadow cursor-pointer flex flex-col items-center justify-center text-center select-none" role="checkbox" aria-label="{{ $image->name }}" aria-checked="false" data-id="{{ $image->id }}"
+    data-url="{{ route('images.edit', $image) }}" @if ($image->is_folder) data-folder="{{ route('campaign.gallery.index', ['folder_id' => $image->id]) }}" @endif title="{{ $image->name }}">
+    @if ($image->is_folder)
+        @if ($image->visibility_id == \App\Models\Visibility::VISIBILITY_ALL)
+            <i class="fa-solid fa-folder text-3xl mb-3" aria-hidden="true"></i>
         @else
-            <div class="gallery-thumbnail cover-background"
-                style="background-image: url('{{ Img::crop(100, 100)->url($image->path) }}')">
-            </div>
-            <span class="thumbnail-text">
-                {!! $image->visibilityIcon() !!} {{ $image->name }}
-            </span>
+            {!! $image->visibilityIcon('fa-2x') !!}
         @endif
+        <div class="truncate w-full">
+            {{ $image->name }}
+        </div>
+    @else
+    <div class="w-full image-preview ">
+        <div class="w-25 h-25 inline-block rounded cover-background"
+            style="background-image: url('{{ Img::crop(100, 100)->url($image->path) }}')">
+        </div>
+        <div class="w-full thumbnail-text text-left inline-block truncate">
+            {!! $image->visibilityIcon() !!} {{ $image->name }}
+        </div>
     </div>
+        @endif
 </li>

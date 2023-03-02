@@ -1,7 +1,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('campaigns.roles.users.create.title', ['name' => $role->name]),
     'breadcrumbs' => [
-        ['url' => route('campaigns.index'), 'label' => __('entities.campaign')],
+        ['url' => route('campaign'), 'label' => __('entities.campaign')],
         ['url' => route('campaign_roles.index'), 'label' => __('campaigns.show.tabs.roles')],
         ['url' => route('campaign_roles.show', $role), 'label' => $role->name],
     ]

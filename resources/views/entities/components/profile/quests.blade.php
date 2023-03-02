@@ -5,7 +5,7 @@
 @endif
 
 <div class="sidebar-section-box sidebar-section-profile">
-    <div class="sidebar-section-title cursor" data-toggle="collapse" data-target="#sidebar-profile-elements">
+    <div class="sidebar-section-title cursor-pointer text-lg user-select" data-toggle="collapse" data-target="#sidebar-profile-elements">
         <i class="fa-solid fa-chevron-right" style="display: none"></i>
         <i class="fa-solid fa-chevron-down"></i>
         {{ __('crud.tabs.profile') }}
@@ -22,7 +22,7 @@
         @if ($model->date)
             <div class="element profile-date">
                 <div class="title">{{ __('journals.fields.date') }}</div>
-                {{ $model->date }}
+                {{ \App\Facades\UserDate::format($model->date) }}
             </div>
         @endif
         @include('entities.components.profile._reminder')

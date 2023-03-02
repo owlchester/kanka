@@ -2,10 +2,9 @@
     <div class="form-group required">
         <label>
             {{ __('campaigns.fields.name') }}
-            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.helpers.name') }}"></i>
         </label>
         {!! Form::text('name', null, ['placeholder' => __('campaigns.placeholders.name'), 'class' => 'form-control', 'required', 'maxlength' => 191]) !!}
-        <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.name') }}</p>
+        <p class="help-block">{{ __('campaigns.helpers.name') }}</p>
     </div>
 
     <div class="form-group">

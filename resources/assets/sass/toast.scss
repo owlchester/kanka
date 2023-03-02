@@ -1,0 +1,21 @@
+/** Toast **/
+:root {
+    --toast-background: #00a65a;
+    --toast-background-error: #d73925;
+    --toast-text: white;
+}
+.toast-container {
+    bottom: 20px;
+    max-height: 100%;
+    right: 20px;
+
+    .toast-success, .toast-error {
+        .toast-message {
+            background-color: var(--toast-background);
+            color: var(--toast-text);
+        }
+    }
+    .toast-error .toast-message {
+        background-color: var(--toast-background-error);
+    }
+}

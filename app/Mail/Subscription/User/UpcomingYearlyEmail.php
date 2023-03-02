@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class UpcomingYearlyEmail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var User
@@ -38,9 +39,10 @@ class UpcomingYearlyEmail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Team'])
+            ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
             ->subject(__('emails/subscriptions/upcoming.title'))
             ->view('emails.subscriptions.upcoming.user-html')
+            ->tag('upcoming-yearly')
             ->text('emails.subscriptions.upcoming.user-text');
     }
 }

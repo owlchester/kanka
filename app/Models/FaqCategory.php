@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,7 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FaqCategory extends Model
 {
-    use Sortable, Searchable;
+    use Searchable;
+    use Sortable;
 
     public $searchableColumns = ['name'];
     public $sortableColumns = [];

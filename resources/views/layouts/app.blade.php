@@ -64,10 +64,10 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     @endif
 @endif
 
-@if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme())
+@if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme() && request()->get('_plugins') !== '0')
     <link href="{{ route('campaign_plugins.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
 @endif
-@if (!empty($campaign) && $campaign->boosted())
+@if (!empty($campaign) && $campaign->boosted() && request()->get('_styles') !== '0')
     <link href="{{ route('campaign.css', ['ts' => \App\Facades\CampaignCache::stylesTimestamp()]) }}" rel="stylesheet">
 @endif
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -76,7 +76,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 <body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if(!app()->environment('prod')) env-{{ app()->environment() }} @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
 
-<a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link" tabindex="1">
+<a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute py-2 px-4 top-0" tabindex="1">
     {{ __('crud.navigation.skip_to_content') }}
 </a>
     <div id="app" class="wrapper">
@@ -89,21 +89,21 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
         <div class="content-wrapper" id="{{ isset($contentId) ? $contentId : "main-content" }}">
             @include('layouts.banner')
 
-        @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))
-            <section class="content-header">
-                @includeWhen(!isset($breadcrumbs) || $breadcrumbs !== false, 'layouts._breadcrumbs')
-                @if (!view()->hasSection('entity-header'))
-                    @if (isset($mainTitle))
-                        @yield('header-extra')
-                    @else
-                        <h1>
+            @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))
+                <section class="content-header">
+                    @includeWhen(!isset($breadcrumbs) || $breadcrumbs !== false, 'layouts._breadcrumbs')
+                    @if (!view()->hasSection('entity-header'))
+                        @if (isset($mainTitle))
                             @yield('header-extra')
-                            {!! $title ?? "Page Title" !!}
-                            <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
-                        </h1>
+                        @else
+                            <h1 class="truncate">
+                                @yield('header-extra')
+                                {!! $title ?? "Page Title" !!}
+                                <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
+                            </h1>
+                        @endif
                     @endif
-                @endif
-            </section>
+                </section>
             @endif
 
             @yield('content-header')
@@ -139,7 +139,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     </div>
 
     <!-- Default modal used throughout the app -->
-    <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal fade" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl"></div>
             <div class="modal-spinner" style="display: none">
@@ -151,7 +151,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     </div>
 
     <!-- Extra-large modal on desktop for more data -->
-    <div class="modal fade" id="large-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal fade" id="large-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content rounded-2xl" id="large-modal-content"></div>
         </div>
@@ -161,7 +161,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 
     @yield('modals')
 
-    <div class="toast-container"></div>
+    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-5 right-5"></div>
 
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>

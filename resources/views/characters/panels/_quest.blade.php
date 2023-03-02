@@ -1,7 +1,7 @@
 <table id="character-quests-table" class="table table-hover ">
     <thead>
         <tr>
-            <th class="avatar"><br /></th>
+            <th class="w-14"><br /></th>
             <th>{{ trans('quests.fields.name') }}</th>
             @if ($role)<th class="hidden-sm">{{ trans('quests.fields.role') }}</th>@endif
             <th class="visible-sm">{{ trans('crud.fields.type') }}</th>

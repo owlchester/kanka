@@ -12,279 +12,281 @@
 ])
 
 @section('content')
-    @include('partials.errors')
-    @if (session('sub_value'))
-        <div class="text-center">
-            <p>
-                <a  href="{{ route('settings.boost') }}" class="btn btn-primary btn-lg mr-4" target="blank">
-                    <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
-                    {{ __('settings/boosters.ready.title') }}
-                </a>
-                @if (!$user->discord())
-                    <a  href="{{ route('settings.apps') }}" class="btn btn-primary btn-lg ml-4" target="blank">
-                        <i class="fa-brands fa-discord mr-1" aria-hidden="true"></i>
-                        {{ __('settings.apps.discord.unlock') }}
+    <div class="max-w-4xl">
+        @include('partials.errors')
+        @if (session('sub_value'))
+            <div class="text-center">
+                <p>
+                    <a  href="{{ route('settings.boost') }}" class="btn btn-primary btn-lg mr-4" target="blank">
+                        <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
+                        {{ __('settings/boosters.ready.title') }}
                     </a>
-                @endif
-            </p>
-        </div>
-    @endif
-    <div class="box box-solid">
-        <div class="box-body">
-            <p>
-                {!! __('subscription.benefits.main', [
-                    'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank']),
-                    'boosters' => link_to_route('front.boosters', __('subscription.benefits.boosters'), '', ['target' => '_blank']),
-                    'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
-                ]) !!}
-            </p>
-            <dl class="dl-horizontal">
-                @if ($user->isLegacyPatron())
-                    <dt>{{ __('settings.subscription.fields.plan') }}</dt>
-                    <dd>{{ $user->pledge }}</dd>
-                    <dt>{{ __('settings.subscription.fields.billing') }}</dt>
-                    <dd>By Patreon</dd>
-                @else
-                    <dt>{{ __('settings.subscription.fields.plan') }}</dt>
-                    <dd>{{ $currentPlan }}</dd>
-                    <dt>{{ __('settings.subscription.fields.billing') }}</dt>
-                    <dd>
-                    @if ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
-                    @else
-                        {{ __('front.pricing.tier.free') }}
-                    @endif
-                    <dt>{{ __('settings.subscription.fields.currency') }}</dt>
-                    <dd>
-                        <span class="mr-2">{{ strtoupper($user->currency ?? 'USD') }}</span>
-                        <a href="#" data-toggle="modal"
-                           data-target="#change-currency">
-                            <i class="fa-solid fa-pencil-alt"></i> {{ __('crud.edit') }}
+                    @if (!$user->discord())
+                        <a  href="{{ route('settings.apps') }}" class="btn btn-primary btn-lg ml-4" target="blank">
+                            <i class="fa-brands fa-discord mr-1" aria-hidden="true"></i>
+                            {{ __('settings.apps.discord.unlock') }}
                         </a>
-                    </dd>
-                    @if ($user->subscribed('kanka'))
-                        <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
-                        <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
-                        @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
-                            <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
-                            <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
-                        @endif
                     @endif
-
-                @endif
-                <dt>{{ __('settings.subscription.fields.payment_method') }}</dt>
-                <dd>
-                    @if ($user->hasPaymentMethod())
-                        @php $method = $user->defaultPaymentMethod(); @endphp
-                        {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card->brand), 'last4' => $method->card->last4]) }}
+                </p>
+            </div>
+        @endif
+        <div class="box box-solid">
+            <div class="box-body">
+                <p>
+                    {!! __('subscription.benefits.main', [
+                        'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank']),
+                        'boosters' => link_to_route('front.boosters', __('subscription.benefits.boosters'), '', ['target' => '_blank']),
+                        'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
+                    ]) !!}
+                </p>
+                <dl class="dl-horizontal">
+                    @if ($user->isLegacyPatron())
+                        <dt>{{ __('settings.subscription.fields.plan') }}</dt>
+                        <dd>{{ $user->pledge }}</dd>
+                        <dt>{{ __('settings.subscription.fields.billing') }}</dt>
+                        <dd>By Patreon</dd>
                     @else
-                        {{ link_to_route('settings.billing', __('settings.subscription.payment_method.new_card' )) }}
+                        <dt>{{ __('settings.subscription.fields.plan') }}</dt>
+                        <dd>{{ $currentPlan }}</dd>
+                        <dt>{{ __('settings.subscription.fields.billing') }}</dt>
+                        <dd>
+                        @if ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
+                            {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
+                        @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
+                            {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
+                        @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
+                            {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
+                        @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
+                            {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
+                        @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
+                            {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
+                        @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
+                            {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
+                        @else
+                            {{ __('front.pricing.tier.free') }}
+                        @endif
+                        <dt>{{ __('settings.subscription.fields.currency') }}</dt>
+                        <dd>
+                            <span class="mr-2">{{ $user->billedInEur() ? 'EUR' : 'USD' }}</span>
+                            <a href="#" data-toggle="modal"
+                               data-target="#change-currency">
+                                <i class="fa-solid fa-pencil-alt"></i> {{ __('crud.edit') }}
+                            </a>
+                        </dd>
+                        @if ($user->subscribed('kanka'))
+                            <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
+                            <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
+                            @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
+                                <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
+                                <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
+                            @endif
+                        @endif
+
                     @endif
-                </dd>
-            </dl>
-        </div>
-    </div>
-
-    <div class="box box-solid period-month" id="pricing-overview">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                {{ __('settings.subscription.tiers') }}
-            </h3>
-            <div class="box-tools">
-                <button class="btn btn-box-tool" data-toggle="modal"
-                        data-target="#change-information">
-                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('settings.subscription.upgrade_downgrade.button') }}
-                </button>
+                    <dt>{{ __('settings.subscription.fields.payment_method') }}</dt>
+                    <dd>
+                        @if ($user->hasPaymentMethod())
+                            @php $method = $user->defaultPaymentMethod(); @endphp
+                            {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card->brand), 'last4' => $method->card->last4]) }}
+                        @else
+                            {{ link_to_route('billing.payment-method', __('settings.subscription.payment_method.new_card' )) }}
+                        @endif
+                    </dd>
+                </dl>
             </div>
         </div>
-        <div class="box-body no-padding">
 
-            <div class="text-center py-5 text-vertical ab-testing-b">
-                <span>{{ __('tiers.periods.monthly') }}</span>
-                <label class="toggle mx-1">
-                    <input type="checkbox" name="period">
-                    <span class="slider subscription-period-slider"></span>
-                </label>
-                <span>{{ __('tiers.toggle.yearly') }}</span>
+        <div class="box box-solid period-month" id="pricing-overview">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    {{ __('settings.subscription.tiers') }}
+                </h3>
+                <div class="box-tools">
+                    <button class="btn btn-box-tool" data-toggle="modal"
+                            data-target="#change-information">
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('settings.subscription.upgrade_downgrade.button') }}
+                    </button>
+                </div>
             </div>
+            <div class="box-body no-padding">
 
-            <table class="table table-bordered tiers">
-                <thead>
-                <tr class="ab-testing-a">
-                    <th class="align-middle">
-                        <div class="tier">
-                            <div class="img">
-                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png" alt="Kobold"/>
-                            </div>
-                            <div class="text">
-                                KOBOLD
-                                <span class="price">
-                                    {{ __('front.features.patreon.free') }}
-                                </span>
-                            </div>
-                        </div>
-                    </th>
-                    <th class="align-middle">
-                        <div class="tier">
-                            <div class="img">
-                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png" alt="Owlbear"/>
-                            </div>
-                            <div class="text">
-                                OWLBEAR
-                                <span class="price">
-                                    {{ __('tiers.pricing', ['amount' => 5, 'currency' => $user->currencySymbol()]) }}
-                                </span>
-                            </div>
-                        </div>
-                    </th>
-                    <th class="align-middle">
-                        <div class="tier">
-                            <div class="img">
-                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png" alt="Wyvern"/>
-                            </div>
-                            <div class="text">
-                                WYVERN
-                                <span class="price">
-                                    {{ __('tiers.pricing', ['amount' => 10, 'currency' => $user->currencySymbol()]) }}
-                                </span>
-                            </div>
-                        </div>
-                    </th>
-                    <th class="align-middle">
-                        <div class="tier">
-                            <div class="img">
-                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental"/>
-                            </div>
-                            <div class="text">
-                                ELEMENTAL
-                                <span class="price">
-                                    {{ __('tiers.pricing', ['amount' => 25, 'currency' => $user->currencySymbol()]) }}
-                                </span>
-                            </div>
-                        </div>
-                    </th>
-                </tr>
-                <tr class="ab-testing-b">
-                    <th class="align-middle">
-                        <div class="tier">
-                            <div class="img">
-                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png" alt="Kobold"/>
-                            </div>
-                            <div class="text">
-                                KOBOLD
-                                <span class="price">
-                                    {{ __('front.features.patreon.free') }}
-                                </span>
-                            </div>
-                        </div>
-                    </th>
-                    <th class="align-middle">
-                        <div class="tier">
-                            <div class="img">
-                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png" alt="Owlbear"/>
-                            </div>
-                            <div class="text">
-                                OWLBEAR
-                                <div class="price price-monthly">
-                                    {{ $user->currencySymbol() }} 5<sup>00</sup>
-                                    <span class="">{{ __('tiers.periods.monthly') }}</span>
+                <div class="text-center py-5 text-vertical ab-testing-b">
+                    <span>{{ __('tiers.periods.monthly') }}</span>
+                    <label class="toggle mx-1">
+                        <input type="checkbox" name="period">
+                        <span class="slider subscription-period-slider"></span>
+                    </label>
+                    <span>{{ __('tiers.toggle.yearly') }}</span>
+                </div>
+
+                <table class="table table-bordered tiers">
+                    <thead>
+                    <tr class="ab-testing-a">
+                        <th class="align-middle">
+                            <div class="tier">
+                                <div class="img">
+                                    <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png" alt="Kobold"/>
                                 </div>
-                                <div class="price price-yearly">
-                                    {{ $user->currencySymbol() }} 55<sup>00</sup>
-                                    <span class="">{{ __('tiers.periods.yearly') }}</span>
+                                <div class="text">
+                                    KOBOLD
+                                    <span class="price">
+                                        {{ __('front.features.patreon.free') }}
+                                    </span>
                                 </div>
                             </div>
-                            <div class="ribbon ribbon-top-right">
-                                <span>{{ __('tiers.ribbons.popular') }}</span>
-                            </div>
-                        </div>
-                    </th>
-                    <th class="align-middle">
-                        <div class="tier">
-                            <div class="img">
-                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png" alt="Wyvern"/>
-                            </div>
-                            <div class="text">
-                                WYVERN
-                                <div class="price price-monthly">
-                                    {{ $user->currencySymbol() }} 10<sup>00</sup>
-                                    <span class="">{{ __('tiers.periods.monthly') }}</span>
+                        </th>
+                        <th class="align-middle">
+                            <div class="tier">
+                                <div class="img">
+                                    <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png" alt="Owlbear"/>
                                 </div>
-                                <div class="price price-yearly">
-                                    {{ $user->currencySymbol() }} 110<sup>00</sup>
-                                    <span class="">{{ __('tiers.periods.yearly') }}</span>
+                                <div class="text">
+                                    OWLBEAR
+                                    <span class="price">
+                                        {{ __('tiers.pricing', ['amount' => 5, 'currency' => $user->currencySymbol()]) }}
+                                    </span>
                                 </div>
                             </div>
-                            <div class="ribbon ribbon-top-right ribbon-red">
-                                <span>{{ __('tiers.ribbons.best-value') }}</span>
-                            </div>
-                        </div>
-                    </th>
-                    <th class="align-middle">
-                        <div class="tier">
-                            <div class="img">
-                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental"/>
-                            </div>
-                            <div class="text">
-                                ELEMENTAL
-                                <div class="price price-monthly">
-                                    {{ $user->currencySymbol() }} 25<sup>00</sup>
-                                    <span class="">{{ __('tiers.periods.monthly') }}</span>
+                        </th>
+                        <th class="align-middle">
+                            <div class="tier">
+                                <div class="img">
+                                    <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png" alt="Wyvern"/>
                                 </div>
-                                <div class="price price-yearly">
-                                    {{ $user->currencySymbol() }} 275<sup>00</sup>
-                                    <span class="">{{ __('tiers.periods.yearly') }}</span>
+                                <div class="text">
+                                    WYVERN
+                                    <span class="price">
+                                        {{ __('tiers.pricing', ['amount' => 10, 'currency' => $user->currencySymbol()]) }}
+                                    </span>
                                 </div>
                             </div>
-                        </div>
-                    </th>
-                </tr>
-                @if ($user->isLegacyPatron())
-                    <tr>
-                        <td class="text-center" colspan="4">
-                            <div class="alert alert-warning">
-                                {!! __('settings.subscription.warnings.patreon', ['patreon' => link_to_route('settings.patreon', __('settings.menu.patreon'))]) !!}
+                        </th>
+                        <th class="align-middle">
+                            <div class="tier">
+                                <div class="img">
+                                    <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental"/>
+                                </div>
+                                <div class="text">
+                                    ELEMENTAL
+                                    <span class="price">
+                                        {{ __('tiers.pricing', ['amount' => 25, 'currency' => $user->currencySymbol()]) }}
+                                    </span>
+                                </div>
                             </div>
-                        </td>
+                        </th>
                     </tr>
-                @elseif($user->hasIncompletePayment('kanka'))
-                    <tr>
-                        <td class="text-center" colspan="4">
-                            <div class="alert alert-warning">
-                                {!! __('settings.subscription.warnings.incomplete') !!}
+                    <tr class="ab-testing-b">
+                        <th class="align-middle">
+                            <div class="tier">
+                                <div class="img">
+                                    <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png" alt="Kobold"/>
+                                </div>
+                                <div class="text">
+                                    KOBOLD
+                                    <span class="price">
+                                        {{ __('front.features.patreon.free') }}
+                                    </span>
+                                </div>
                             </div>
-                        </td>
+                        </th>
+                        <th class="align-middle">
+                            <div class="tier">
+                                <div class="img">
+                                    <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png" alt="Owlbear"/>
+                                </div>
+                                <div class="text">
+                                    OWLBEAR
+                                    <div class="price price-monthly">
+                                        {{ $user->currencySymbol() }} 5<sup>00</sup>
+                                        <span class="">{{ __('tiers.periods.monthly') }}</span>
+                                    </div>
+                                    <div class="price price-yearly">
+                                        {{ $user->currencySymbol() }} 55<sup>00</sup>
+                                        <span class="">{{ __('tiers.periods.yearly') }}</span>
+                                    </div>
+                                </div>
+                                <div class="ribbon ribbon-top-right">
+                                    <span>{{ __('tiers.ribbons.popular') }}</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="align-middle">
+                            <div class="tier">
+                                <div class="img">
+                                    <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png" alt="Wyvern"/>
+                                </div>
+                                <div class="text">
+                                    WYVERN
+                                    <div class="price price-monthly">
+                                        {{ $user->currencySymbol() }} 10<sup>00</sup>
+                                        <span class="">{{ __('tiers.periods.monthly') }}</span>
+                                    </div>
+                                    <div class="price price-yearly">
+                                        {{ $user->currencySymbol() }} 110<sup>00</sup>
+                                        <span class="">{{ __('tiers.periods.yearly') }}</span>
+                                    </div>
+                                </div>
+                                <div class="ribbon ribbon-top-right ribbon-red">
+                                    <span>{{ __('tiers.ribbons.best-value') }}</span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="align-middle">
+                            <div class="tier">
+                                <div class="img">
+                                    <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental"/>
+                                </div>
+                                <div class="text">
+                                    ELEMENTAL
+                                    <div class="price price-monthly">
+                                        {{ $user->currencySymbol() }} 25<sup>00</sup>
+                                        <span class="">{{ __('tiers.periods.monthly') }}</span>
+                                    </div>
+                                    <div class="price price-yearly">
+                                        {{ $user->currencySymbol() }} 275<sup>00</sup>
+                                        <span class="">{{ __('tiers.periods.yearly') }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
                     </tr>
-                @else
-                <tr class="ab-testing-a">
-                    @include('settings.subscription._buttons', ['toggle' => false])
-                </tr>
-                <tr class="ab-testing-b">
-                    @include('settings.subscription._buttons', ['toggle' => true])
-                </tr>
-                @endif
-                </thead>
-                @include('settings.subscription._benefits')
-            </table>
-        </div>
-        <div class="box-footer">
-            <p class="help-block">
-                {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
-            </p>
-            <hr />
-            <p class="help-block">
-                {!! __('settings.subscription.helpers.paypal', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
-            </p>
+                    @if ($user->isLegacyPatron())
+                        <tr>
+                            <td class="text-center" colspan="4">
+                                <div class="alert alert-warning">
+                                    {!! __('settings.subscription.warnings.patreon', ['patreon' => link_to_route('settings.patreon', __('settings.menu.patreon'))]) !!}
+                                </div>
+                            </td>
+                        </tr>
+                    @elseif($user->hasIncompletePayment('kanka'))
+                        <tr>
+                            <td class="text-center" colspan="4">
+                                <div class="alert alert-warning">
+                                    {!! __('settings.subscription.warnings.incomplete') !!}
+                                </div>
+                            </td>
+                        </tr>
+                    @else
+                    <tr class="ab-testing-a">
+                        @include('settings.subscription._buttons', ['toggle' => false])
+                    </tr>
+                    <tr class="ab-testing-b">
+                        @include('settings.subscription._buttons', ['toggle' => true])
+                    </tr>
+                    @endif
+                    </thead>
+                    @include('settings.subscription._benefits')
+                </table>
+            </div>
+            <div class="box-footer">
+                <p class="help-block">
+                    {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
+                </p>
+                <hr />
+                <p class="help-block">
+                    {!! __('settings.subscription.helpers.paypal', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
+                </p>
+            </div>
         </div>
     </div>
 
@@ -337,7 +339,7 @@
     <div class="modal fade" id="change-currency" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing.save']]) !!}
+                {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['billing.payment-method.save']]) !!}
                 @include('partials.forms._modal', [
                     'title' => __('settings.subscription.currency.title'),
                     'content' => 'settings.subscription.currency._form',

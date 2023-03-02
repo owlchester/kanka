@@ -19,7 +19,7 @@ class NoteFilter extends DatagridFilter
                 'label' => __('notes.fields.note'),
                 'type' => 'select2',
                 'route' => route('notes.find'),
-                'placeholder' =>  __('notes.placeholders.note'),
+                'placeholder' =>  __('crud.placeholders.note'),
                 'model' => Note::class,
             ])
             ->isPrivate()

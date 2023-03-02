@@ -1,12 +1,12 @@
 <template>
-    <div class="box-comments" ref="messagebox">
-        <div class="load-more" v-if="previous && !loadingPrevious" v-on:click="getPrevious">
+    <div class="box-comments overflow-auto" ref="messagebox">
+        <div class="load-more cursor-pointer text-center my-5" v-if="previous && !loadingPrevious" v-on:click="getPrevious">
             {{ translate('load_previous') }}
         </div>
-        <div class="load more text-center" v-if="loadingPrevious">
+        <div class="load-more cursor-pointer text-center my-5" v-if="loadingPrevious">
             <i class="fa-solid fa-spin fa-spinner"></i>
         </div>
-        <div class="load more text-center" v-if="initializing">
+        <div class="load-more cursor-pointer text-center my-5" v-if="initializing">
             <i class="fa-solid fa-spin fa-spinner fa-4x"></i>
         </div>
         <Message

@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
-use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
 class Recovery extends Layout

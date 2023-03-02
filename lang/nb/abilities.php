@@ -14,9 +14,7 @@ return [
         'ability'   => 'Forelder Egenskap',
         'charges'   => 'Ladninger',
     ],
-    'helpers'       => [
-        'descendants'   => 'Denne listen inneholder alle egenskaper som er etterkommere av denne egenskapen, ikke bare de som stammer direkte fra den.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Antall ladninger. Referer atributt med {Level}*{CHA}',

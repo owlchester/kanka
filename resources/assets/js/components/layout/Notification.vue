@@ -5,7 +5,7 @@
         </div>
         <div class="flex-grow p-2" v-html="notification.text"></div>
 
-        <div class="flex-none p-2 cursor dismissable" v-on:click="dismiss(notification)" v-if="!this.is_loading" :title="notification.dismiss_text">
+        <div class="flex-none p-2 cursor-pointer dismissable" v-on:click="dismiss(notification)" v-if="!this.is_loading" :title="notification.dismiss_text">
             <i class="fa-solid fa-times" aria-hidden="true"></i>
         </div>
         <div class="flex-none p-2" v-else>
@@ -18,7 +18,7 @@
         </div>
         <div class="flex-grow p-2" v-html="notification.text"></div>
 
-        <div class="flex-none p-2 cursor dismissable" v-on:click="dismiss(notification)" v-if="!this.is_loading" :title="notification.dismiss_text">
+        <div class="flex-none p-2 cursor-pointer dismissable" v-on:click="dismiss(notification)" v-if="!this.is_loading" :title="notification.dismiss_text">
             <i class="fa-solid fa-times" aria-hidden="true"></i>
         </div>
         <div class="flex-none p-2" v-else>

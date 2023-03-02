@@ -52,27 +52,27 @@
                 <tbody>
                 @foreach ($users as $relation)
                     <tr>
-                        <td>
+                        <td class="w-14">
                             <div class="entity-image pull-left" style="background-image: url({{ $relation->user->getAvatarUrl() }})" title="{{ $relation->user->name }}">
                             </div>
-                            <div class="user-name text-break">
-                                <a href="{{ route('users.profile', $relation->user_id) }}" target="_blank">
-                                    {{ $relation->user->name }}
-                                </a>
-                                @if ($relation->user->isBanned())
-                                    <i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" title = "{{ __('campaigns.members.fields.banned') }}"></i>
-                                @endif
-                            </div>
+                        </td>
+                        <td class=" max-w-30">
+                            <a class="block text-break truncate" href="{{ route('users.profile', $relation->user_id) }}" target="_blank">
+                                {{ $relation->user->name }}
+                            </a>
+                            @if ($relation->user->isBanned())
+                                <i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" title = "{{ __('campaigns.members.fields.banned') }}"></i>
+                            @endif
                         </td>
                         <td>
                             {!! $relation->user->rolesList($campaign->id) !!}
                             @can('update', $relation)
-                                <i role="button" tabindex="0" class="fa-solid fa-plus-circle cursor btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
+                                <i role="button" tabindex="0" class="fa-solid fa-plus-circle cursor-pointer btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
                                 @foreach($roles as $role)
                                 <form method='post' action='{{ route('campaign_users.update-roles', [$relation, $role]) }}' class='user-role-update'>
     {!! str_replace('"', '\'', csrf_field()) !!}
 
-                                    <button class='btn btn-block btn-role-update'>
+                                    <button class='btn btn-default btn-block btn-role-update mb-2'>
                                     @if($relation->user->hasCampaignRole($role->id))
                                         <span class='text-danger'><i class='fa-solid fa-times' aria-hidden='true'></i> {{ $role->name }}</span>
                                     @else

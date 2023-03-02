@@ -5,8 +5,6 @@ namespace App\Observers;
 use App\Models\Entity;
 use App\Models\Map;
 use App\Models\MiscModel;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
 
 class MapObserver extends MiscObserver
 {

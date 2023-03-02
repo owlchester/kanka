@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\EntityEvent;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityEventResource extends EntityChild
 {

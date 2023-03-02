@@ -58,36 +58,15 @@ return [
         'netherlands'   => 'Nizozemska',
         'spain'         => 'Španjolska',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Preuzmi PDF',
-            'view_all'  => 'Pogledaj sve',
-        ],
-        'empty'     => 'Nema fakture',
-        'fields'    => [
-            'amount'    => 'Količina',
-            'date'      => 'Datum',
-            'invoice'   => 'Faktura',
-            'status'    => 'Status',
-        ],
-        'header'    => 'Ispod je popis zadnje 24 fakture koje možete preuzeti.',
-        'status'    => [
-            'paid'      => 'Plaćeno',
-            'pending'   => 'U tijeku',
-        ],
-        'title'     => 'Fakture',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Ažurirane opcije rasporeda.',
-        'title'     => 'Izgled',
+        'title' => 'Izgled',
     ],
     'marketplace'   => [],
     'menu'          => [
         'account'               => 'Račun',
         'api'                   => 'API',
         'apps'                  => 'Aplikacije',
-        'billing'               => 'Način plaćanja',
-        'invoices'              => 'Fakture',
         'other'                 => 'Ostalo',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Mogućnosti plaćanja',
@@ -125,7 +104,6 @@ return [
         'billing'               => [
             'helper'    => 'Podaci o naplati obrađuju se i pohranjuju na sigurno putem :stripe. Ovaj način plaćanja koristi se za sve tvoje pretplate.',
             'saved'     => 'Spremljen način plaćanja',
-            'title'     => 'Uredi način plaćanja',
         ],
         'cancel'                => [
             'text'  => 'Žao nam je što odlaziš! Ako otkažeš pretplatu, bit će aktivna do sljedećeg ciklusa naplate, nakon čega ćeš izgubiti pojačanja kampanje i druge pogodnosti povezane s podrškom Kanke. Slobodno ispuni sljedeći obrazac i obavijesti nas što možemo učiniti boljim ili što je dovelo do tvoje odluke.',

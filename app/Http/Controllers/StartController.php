@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreCampaign;
-use App\Services\CampaignService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

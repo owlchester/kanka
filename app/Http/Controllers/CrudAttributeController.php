@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\AttributeService;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\Entity;
 use App\Models\Attribute;

@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'           => [
+        'customise' => 'Dostosuj menu boczne',
+    ],
     'create'            => [
         'title' => 'Nowy skrót',
     ],
@@ -49,4 +52,7 @@ return [
         'title'     => 'Zmiana kolejności skrótów',
     ],
     'show'              => [],
+    'visibilities'      => [
+        'is_active' => 'Pokaż skróty w menu bocznym',
+    ],
 ];

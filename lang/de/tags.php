@@ -19,6 +19,7 @@ return [
     'fields'        => [
         'children'          => 'Kinder',
         'is_auto_applied'   => 'Automatisch auf neue Objekte anwenden',
+        'is_hidden'         => 'Ausgeblendet von Header und Tooltip',
         'tag'               => 'Übergeordnete Kategorie',
         'tags'              => 'Unterkategorien',
     ],
@@ -29,6 +30,7 @@ return [
     'hints'         => [
         'children'          => 'Diese Liste enthält alle Objekte, die direkt in dieser Kategorie und allen Unterkategorien sind.',
         'is_auto_applied'   => 'Aktiviere diese Option, um dieses Tag automatisch auf neu erstellte Objekte anzuwenden.',
+        'is_hidden'         => 'Wenn es aktiviert ist, wird dieser Tag nicht in der Kopfzeile oder QuickInfo eines Objekts angezeigt.',
         'tag'               => 'Unten dargestellt sind alle Kategorien, die direkt unter dieser eingeordnet sind.',
     ],
     'index'         => [],

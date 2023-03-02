@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\MiscModel|\App\Models\Entity $model */?>
 @can('history', [$model->entity, $campaignService->campaign()])
 <div class="entity-modification-history">
-    <p class="help-block text-right">
+    <p class="help-block text-right italic text-xs">
     @if ($model->entity)
         {!! __('crud.history.created_clean', [
             'name' => (!empty($model->entity->created_by) ? link_to_route('users.profile', e(\App\Facades\UserCache::name($model->entity->created_by)), $model->entity->created_by, ['target' => '_blank']) : __('crud.history.unknown')),

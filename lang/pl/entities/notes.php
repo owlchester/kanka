@@ -23,7 +23,6 @@ return [
         'title'     => 'Edycja komentarza do elementu :name',
     ],
     'fields'        => [
-        'collapsed' => 'Domyślnie zamykaj przypięte komentarze',
         'creator'   => 'Twórca',
         'entry'     => 'Szczegóły',
         'name'      => 'Nazwa',

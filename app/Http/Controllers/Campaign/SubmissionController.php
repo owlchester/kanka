@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Campaign;
-
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
@@ -10,7 +8,6 @@ use App\Http\Requests\Campaigns\PatchCampaignApplication;
 use App\Http\Requests\Campaigns\StoreCampaignApplicationStatus;
 use App\Models\CampaignSubmission;
 use App\Services\Campaign\SubmissionService;
-use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
@@ -45,6 +42,13 @@ class SubmissionController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('submissions', $campaign);
 
+        if (!$campaign->canHaveMoreMembers()) {
+            return view('cruds.forms.limit')
+                ->with('key', 'members')
+                ->with('skipImage', true)
+                ->with('name', 'campaign_roles');
+        }
+
         $action = request()->get('action');
         if (!in_array($action, ['approve', 'reject'])) {
             return redirect()->route('campaign_submissions.index');
@@ -62,6 +66,11 @@ class SubmissionController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('submissions', $campaign);
+
+        if (!$campaign->canHaveMoreMembers()) {
+            return redirect()->back()
+                ->with('error', __('Campaign is full, please boost it.'));
+        }
 
         $note = $this->service
             ->campaign($campaign)
@@ -92,6 +101,6 @@ class SubmissionController extends Controller
         return redirect()
             ->route('campaign_submissions.index')
             ->with('success', __('campaigns/submissions.toggle.success'))
-            ;
+        ;
     }
 }

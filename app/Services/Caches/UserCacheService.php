@@ -59,9 +59,6 @@ class UserCacheService extends BaseCache
             case 'r_date_joined':
                 $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'desc')->get();
                 break;
-            case 'date_created':
-                $data = $query->orderBy('created_at', 'asc')->get();
-                break;
             case 'r_date_created':
                 $data = $query->orderBy('created_at', 'desc')->get();
                 break;

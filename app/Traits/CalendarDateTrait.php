@@ -4,10 +4,7 @@ namespace App\Traits;
 
 use App\Models\Calendar;
 use App\Models\EntityEvent;
-use App\Models\EntityEventType;
-use App\Models\MiscModel;
 use App\Observers\Remindable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 /**

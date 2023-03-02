@@ -26,12 +26,12 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Creature extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        Nested,
-        SoftDeletes,
-        Acl,
-        SortableTrait
+    use Acl;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
+    use SortableTrait
     ;
 
     /** @var string[]  */

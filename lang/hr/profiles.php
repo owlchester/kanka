@@ -7,10 +7,7 @@ return [
     'edit'          => [
         'success'   => 'Profil ažuriran',
     ],
-    'editors'       => [
-        'legacy'        => 'Zastarjeli uređivač teksta (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
+    'editors'       => [],
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
@@ -49,22 +46,6 @@ return [
         ],
     ],
     'settings'      => [
-        'fields'    => [
-            'advanced_mentions'     => 'Napredne napomene',
-            'date_format'           => 'Oblikovanje datuma',
-            'default_nested'        => 'Ugniježđeni pregledi kao standardni',
-            'editor'                => 'Uređivač teksta',
-            'new_entity_workflow'   => 'Tijek rada novog entiteta',
-            'pagination'            => 'Paginacija (elemenata po stranici)',
-        ],
-        'helpers'   => [
-            'editor_v2' => 'Korištenje zastarjelog uređivača teksta (TinyMCE 4) ne radi na mobilnim uređajima i ne podržava neke funkcionalnosti, poput galerije kampanje.',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'Ako je aktivirano, spominjanja će se uvijek prikazivati kao [entitet:123] prilikom uređivanja entiteta.',
-            'default_nested'        => 'Aktiviraj ovu opciju ako želiš da standardni nači popisa bude Ugniježđeni (ako je dostupan).',
-            'new_entity_workflow'   => 'Prilikom stvaranja novog entiteta, zadani tijek rada je ići na popis entiteta. Ovo možeš promijeniti da umjesto toga vidiš novostvoreni entitet.',
-        ],
         'success'   => 'Postavke su promijenjene.',
     ],
     'theme'         => [

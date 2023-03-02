@@ -2,7 +2,6 @@
 
 namespace App\Renderers;
 
-use App\Facades\EntityPermission;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\EntityEvent;
@@ -133,7 +132,7 @@ class CalendarRenderer
         }
 
         if ($title) {
-            return $months[$month - 1]['name'] . " $year";
+            return $months[$month - 1]['name'] . " {$year}";
         }
 
         $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
@@ -206,7 +205,7 @@ class CalendarRenderer
         }
 
         $months = $this->calendar->months();
-        return $months[$month - 1]['name'] . " $year";
+        return $months[$month - 1]['name'] . " {$year}";
     }
 
     /**
@@ -231,7 +230,7 @@ class CalendarRenderer
         $yearText = $year;
         if (isset($names[$year])) {
             $safeName = e($names[$year]);
-            $yearText = "<span title=\"$year\">$safeName</span>";
+            $yearText = "<span title=\"{$year}\">{$safeName}</span>";
         }
         return $yearText;
     }
@@ -288,7 +287,7 @@ class CalendarRenderer
         }
 
         if ($title) {
-            return $months[$month - 1]['name'] . " $year";
+            return $months[$month - 1]['name'] . " {$year}";
         }
 
         $routeOptions = ['calendar' => $this->calendar, 'month' => $month, 'year' => $year];
@@ -970,7 +969,7 @@ class CalendarRenderer
             $year++;
         }
 
-        return "$year-$month-$day";
+        return "{$year}-{$month}-{$day}";
     }
 
     /**

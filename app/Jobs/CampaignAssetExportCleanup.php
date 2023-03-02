@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Campaign;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,7 +11,10 @@ use Illuminate\Support\Facades\Storage;
 
 class CampaignAssetExportCleanup implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var string

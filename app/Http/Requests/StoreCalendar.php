@@ -29,6 +29,7 @@ class StoreCalendar extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
+            'entry' => 'nullable|string',
             'type' => 'nullable|max:191',
             'calendar_id' => 'nullable|integer|exists:calendars,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
@@ -43,7 +44,7 @@ class StoreCalendar extends FormRequest
             'season_name' => 'nullable|array',
             'template_id' => 'nullable',
             'moon_offset' => [
-                '*' => new CalendarMoonOffset
+                '*' => new CalendarMoonOffset()
             ]
         ];
 

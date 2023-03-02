@@ -66,7 +66,7 @@ class SubscriptionController extends Controller
             'service',
             'invoices',
             'tracking',
-            'gaTrackingEvent'
+            'gaTrackingEvent',
         ));
     }
 
@@ -83,7 +83,7 @@ class SubscriptionController extends Controller
         $period = $request->get('period', 'monthly');
 
         $amount = $this->subscription->user($request->user())->tier($tier)->period($period)->amount();
-        $card = $request->user()->hasPaymentMethod() ? Arr::first($request->user()->paymentMethods()): null;
+        $card = $request->user()->hasPaymentMethod() ? Arr::first($request->user()->paymentMethods()) : null;
         if (empty($request->user()->stripe_id)) {
             $request->user()->createAsStripeCustomer();
         }
@@ -92,6 +92,7 @@ class SubscriptionController extends Controller
         $user = $request->user();
         $isDowngrading = $this->subscription->downgrading();
         $hasPromo = $period == 'yearly' && \Carbon\Carbon::create(2022, 10, 31)->isFuture();
+        $limited = $this->subscription->isLimited();
 
         return view('settings.subscription.change', compact(
             'tier',
@@ -103,6 +104,7 @@ class SubscriptionController extends Controller
             'user',
             'isDowngrading',
             'hasPromo',
+            'limited',
         ));
     }
 

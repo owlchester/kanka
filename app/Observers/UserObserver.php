@@ -3,16 +3,17 @@
 namespace App\Observers;
 
 use App\Facades\UserCache;
-use App\Jobs\Emails\GoodbyeEmailJob;
+use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
+use App\Jobs\Users\UnsubscribeUser;
+use App\Jobs\Users\UpdateEmail;
 use App\Models\CampaignUser;
 use App\Models\CampaignFollower;
-use App\Models\UserLog;
 use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Illuminate\Support\Facades\Session;
 
 class UserObserver
 {
@@ -32,7 +33,7 @@ class UserObserver
         // Purify the bio
         if (!empty($user->profile['bio'])) {
             $profile = $user->profile;
-            $profile['bio'] = substr(strip_tags($profile['bio']), 0, 301);
+            $profile['bio'] = mb_substr(strip_tags($profile['bio']), 0, 301);
             try {
                 $user->profile = $profile;
             } catch (\Exception $e) {
@@ -63,15 +64,28 @@ class UserObserver
      */
     public function updated(User $user)
     {
-
+        // Tell mailchimp about the user's new email
+        if (!$user->wasRecentlyCreated && $user->isDirty('email') && $user->hasNewsletter()) {
+            UpdateEmail::dispatch($user->getOriginal('email'), $user->email);
+        }
     }
 
     public function creating(User $user)
     {
         $user->locale = LaravelLocalization::getCurrentLocale();
+        $settings = [];
+
         if (session()->has('tracking')) {
-            $user->settings = ['tracking' => session()->get('tracking')];
+            $settings['tracking'] = session()->get('tracking');
             session()->remove('tracking');
+        }
+
+        if (session()->has('invite_token')) {
+            $settings['invited'] = true;
+        }
+
+        if (count($settings) > 0) {
+            $user->settings = $settings;
         }
     }
 
@@ -82,6 +96,14 @@ class UserObserver
     {
         WelcomeEmailJob::dispatch($user, app()->getLocale());
         session()->put('user_registered', true);
+
+        if (request()->filled('newsletter')) {
+            $user
+                ->updateSettings(['mail_release' => 1])
+                ->save();
+
+            MailSettingsChangeJob::dispatch($user);
+        }
     }
 
     /**
@@ -99,6 +121,11 @@ class UserObserver
             ->clearCampaigns()
             ->clearRoles()
         ;
+
+        // If the user was subscribed to the newsletter, unsubscribe them
+        if (!empty($user->hasNewsletter())) {
+            UnsubscribeUser::dispatch($user->email);
+        }
     }
 
     /**

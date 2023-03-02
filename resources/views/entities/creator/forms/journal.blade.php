@@ -10,7 +10,11 @@
                     (isset($model) && $model->character ? $model->character : FormCopy::field('character')->select()),
                     App\Models\Character::class,
                     false,
-                    'journals.fields.author'
+                    'journals.fields.author',
+                    null,
+                    null,
+                    null,
+                    request()->ajax() ? '#entity-modal' : null,
                 ) !!}
             </div>
         @endif

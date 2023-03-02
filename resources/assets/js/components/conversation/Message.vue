@@ -1,7 +1,7 @@
 <template>
     <div v-bind:class="boxClasses(message)">
         <div class="message-time text-right pull-right">
-            <div class="message-options" v-if="message.can_delete">
+            <div class="message-options mr-2" v-if="message.can_delete">
                 <div v-bind:class="dropdownClass()" v-click-outside="onClickOutside">
                     <a v-on:click="openDropdown()" role="button">
                         <span class="caret"></span>
@@ -23,7 +23,7 @@
               {{ translate('user_unknown') }}
           </strong>
         </div>
-        <div class="comment-text">
+        <div class="comment-text ml-0">
             {{ message.message }}
             <span class="pull-right text-muted" v-if="!message.group">
                 <em v-if="message.is_updated" v-bind:title="message.updated_at">{{ translate('is_updated') }},</em> {{ message.created_at }}
@@ -70,20 +70,20 @@
                 return this.trans[key] ?? 'unknown';
             },
             dropdownClass() {
-                return this.openedDropdown ? 'open dropdown' : 'dropdown';
+                return this.openedDropdown ? 'open dropdown relative' : 'dropdown relative';
             },
             openDropdown() {
                 return this.openedDropdown = true;
             },
             boxClasses: function (message) {
-                let classes = 'box-comment';
+                let classes = 'box-comment px-1 py-3';
                 classes += ' message-author-' + message.from_id;
                 classes += ' message-real-author-' + message.created_by;
 
                 if (message.group) {
                     classes += ' message-followup';
                 } else {
-                    classes += ' message-first'
+                    classes += ' message-first mt-2'
                 }
                 return classes;
             },

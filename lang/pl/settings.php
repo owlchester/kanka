@@ -85,28 +85,9 @@ return [
         'netherlands'   => 'Holandia',
         'spain'         => 'Hiszpania',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Pobierz PDF',
-            'view_all'  => 'Wszystkie',
-        ],
-        'empty'     => 'Brak rachunków',
-        'fields'    => [
-            'amount'    => 'Kwota',
-            'date'      => 'Data',
-            'invoice'   => 'Rachunek',
-            'status'    => 'Status',
-        ],
-        'header'    => 'Na liście znajdują się ostatnie 24 rachunki. Możesz je pobrać.',
-        'status'    => [
-            'paid'      => 'Opłacony',
-            'pending'   => 'Oczekuje',
-        ],
-        'title'     => 'Rachunki',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Zmieniono opcje układu',
-        'title'     => 'Układ',
+        'title' => 'Układ',
     ],
     'marketplace'   => [],
     'menu'          => [
@@ -114,9 +95,7 @@ return [
         'api'                   => 'API',
         'appearance'            => 'Wygląd',
         'apps'                  => 'Aplikacje',
-        'billing'               => 'Metoda płatności',
         'boosters'              => 'Doładowania',
-        'invoices'              => 'Rachunki',
         'notifications'         => 'Powiadomienia',
         'other'                 => 'Inne',
         'patreon'               => 'Patreon',
@@ -155,7 +134,6 @@ return [
         'billing'               => [
             'helper'    => 'Informacje o płatnościach bezpiecznie przetwarza i przechowuje :stripe. To metoda płatności stosowana we wszystkich subskrypcjach.',
             'saved'     => 'Zapisz metodę płatności',
-            'title'     => 'Edycja metody płatności',
         ],
         'cancel'                => [
             'options'   => [
@@ -207,6 +185,7 @@ return [
             'alternatives_warning'  => 'Jeżeli używasz tej metody, nie możesz zmienić poziomu subskrypcji. Zasubskrybuj ponownie, gdy ta subskrypcja wygaśnie.',
             'alternatives_yearly'   => 'Z powodu ograniczeń cyklu płatniczego, :method jest dostępna tylko dla subskrypcji rocznych.',
             'paypal'                => 'Wolisz użyć PayPala? Skontaktuj się z nami pisząc na adres :email, a przygotujemy dla ciebie roczny plan subskrypcji przez PayPal.',
+            'paypal_v2'             => 'Przyjmujemy opłaty za subskrypcję roczną wykonywane z pomocą PayPal. Napisz do nas na :email podając mail przypisany do twojego konta, poziom który chcesz wykupić i wybraną walutę (USD albo EUR), a wystawimy rachunek.',
             'stripe'                => 'Informacje o płatnościach bezpiecznie przetwarza i przechowuje :stripe.',
         ],
         'manage_subscription'   => 'Zarządzaj subskrypcją',

@@ -57,20 +57,20 @@ Route::get('/subscription/callback', 'Settings\SubscriptionController@callback')
     ->name('settings.subscription.callback');
 Route::post('/subscription/change', 'Settings\SubscriptionController@subscribe')
     ->name('settings.subscription.subscribe');
-Route::get('/billing-information', 'Settings\BillingController@index')
-    ->name('settings.billing');
-Route::patch('/billing-information', 'Settings\BillingController@save')
-    ->name('settings.billing.save');
+Route::get('/billing/payment-method', [\App\Http\Controllers\Billing\PaymentMethodController::class, 'index'])
+    ->name('billing.payment-method');
+Route::patch('/billing/payment-method', [\App\Http\Controllers\Billing\PaymentMethodController::class, 'save'])
+    ->name('billing.payment-method.save');
 
 Route::post('/subscription/alt-subscribe', 'Settings\SubscriptionController@altSubscribe')
     ->name('settings.subscription.alt-subscribe');
 Route::get('/subscription/alt-callback', 'Settings\SubscriptionController@altCallback')
     ->name('settings.subscription.alt-callback');
 
-Route::get('/invoices', 'Settings\InvoiceController@index')
-    ->name('settings.invoices');
-Route::get('/invoices/download/{invoice}', 'Settings\InvoiceController@download')
-    ->name('settings.invoices.download');
+Route::get('/billing/history', [\App\Http\Controllers\Billing\HistoryController::class, 'index'])
+    ->name('billing.history');
+Route::get('/billing/history/download/{invoice}', [\App\Http\Controllers\Billing\HistoryController::class, 'download'])
+    ->name('billing.history.download');
 
 Route::get('/bragi', 'Settings\BragiController@index')
     ->name('settings.bragi');

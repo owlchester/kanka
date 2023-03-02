@@ -2,9 +2,7 @@
 
 namespace App\Facades;
 
-use App\Models\AppRelease;
 use App\Services\Caches\PostCacheService;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
 /**

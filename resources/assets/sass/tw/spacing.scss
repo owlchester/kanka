@@ -1,7 +1,7 @@
 /**
  * Paddings
  */
-@for $i from 0 through 20 {
+@for $i from 0 through 30 {
     $rem: ($i * 0.25) ;
     .p-#{$i} {
         padding: $rem + rem;

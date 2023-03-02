@@ -43,22 +43,18 @@ $label = $imageLabel ?? 'crud.fields.image';
     </div>
     @if (!empty($model->image))
     <div class="col-md-2">
-        <div class="preview-v2">
-            <div class="image" style="background-image: url('{{ $model->thumbnail(120) }}')">
-                @if (empty($imageRequired) || !$imageRequired)
-                <a href="#" class="img-delete" data-target="remove-image" title="{{ __('crud.remove') }}">
-                    <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
-                </a>
-                @endif
-            </div>
-        </div>
+        @include('cruds.fields._image_preview', [
+            'image' => $model->thumbnail(120),
+            'title' => $model->name,
+            'target' => empty($imageRequired) || !$imageRequired ? 'remove-image' : null,
+        ])
     </div>
     @elseif (isset($campaignImage) && $campaignImage)
         <div class="col-md-2">
-            <div class="preview-v2">
-                <div class="image" style="background-image: url('https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg')">
-                </div>
-            </div>
+            @include('cruds.fields._image_preview', [
+                'image' => 'https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg',
+                'title' => 'Default',
+            ])
         </div>
     @endif
 </div>

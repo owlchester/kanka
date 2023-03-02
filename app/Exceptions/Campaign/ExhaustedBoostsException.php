@@ -3,8 +3,6 @@
 namespace App\Exceptions\Campaign;
 
 use App\Exceptions\TranslatableException;
-use Exception;
-use Throwable;
 
 class ExhaustedBoostsException extends TranslatableException
 {

@@ -11,7 +11,7 @@ return [
         'notifications' => 'Notifications',
     ],
     'groups'    => [
-        'all'           => 'Receive occasional updates about new features, community votes and events, etc',
+        'all'           => 'Receive occasional updates about new features, community votes, promotions, and events.',
         'newsletter'    => 'Newsletter',
     ],
     'headline'  => 'Subscribe to one or all of our newsletters to stay up to date with :kanka.',

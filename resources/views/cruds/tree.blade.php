@@ -73,6 +73,8 @@
             <div class="table-responsive">
                 @include($name . '._tree')
             </div>
+
+            @includeWhen($models->hasPages() && auth()->check() && !auth()->user()->settings()->get('tutorial_pagination'), 'cruds.helpers.pagination', ['action' => 'tree'])
         </div>
         <div class="box-footer">
 

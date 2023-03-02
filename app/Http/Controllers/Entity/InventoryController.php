@@ -7,8 +7,6 @@ use App\Http\Requests\StoreInventory;
 use App\Models\Entity;
 use App\Models\Inventory;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class InventoryController extends Controller
@@ -61,7 +59,7 @@ class InventoryController extends Controller
             ->inventories()
             ->with(['entity', 'item', 'item.entity'])
             ->get()
-            ->sortBy(function($model, $key) {
+            ->sortBy(function ($model, $key) {
                 return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
             });
 
@@ -94,6 +92,10 @@ class InventoryController extends Controller
     public function store(StoreInventory $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only($this->fillable);
         $ajax = $request->ajax();

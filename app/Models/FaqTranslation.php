@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Orderable;
-use App\Models\Concerns\Searchable;
-use App\Models\Concerns\Sortable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
  * Class Faq
@@ -60,5 +55,4 @@ class FaqTranslation extends Model
     {
         return $query->where('faq_id', $faq);
     }
-
 }

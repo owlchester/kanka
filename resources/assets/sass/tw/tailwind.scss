@@ -4,31 +4,27 @@
 @import "tw/grid";
 @import "tw/display";
 @import "tw/floating-forms";
-@import "tw/font";
 @import "tw/layout";
 @import "tw/borders";
 @import "tw/effects";
+@import "tw/drop-shadow";
+@import "tw/background-color";
+@import "tw/user-select";
+@import "tw/position";
+@import "tw/interactivity";
+@import "tw/typography";
 
 
 .list-none {
   list-style-type: none;
 }
 
-.w-full {
-  width: 100%;
-}
-.h-full {
-  height: 100%;
-}
-
-.select-none {
-  user-select: none;
-}
 
 .line-through {
   text-decoration-line: line-through;
 }
 
-.pointer-events-none {
-    pointer-events: none;
+
+.hover\:link:hover {
+    color: var(--link-hover);
 }

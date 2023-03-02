@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\ConversationParticipant;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class ConversationParticipantResource extends ModelResource
 {

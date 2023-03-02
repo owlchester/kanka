@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Mail;
 
 class UpcomingYearlyAlert implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /** @var int user id */
     protected $user;

@@ -14,16 +14,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Check the campaign
+        // If the user isn't viewing specific campaign and has no campaigns, get them to create their first campaign
         $campaign = CampaignLocalization::getCampaign();
         if (empty($campaign) && (Auth::check() && !Auth::user()->hasCampaigns())) {
             return redirect()->route('start');
-        }
-
-        $user = null;
-        $settings = null;
-        if (Auth::check() && Auth::user()->can('dashboard', $campaign)) {
-            $settings = true;
         }
 
         // Determine the user's dashboard
@@ -49,7 +43,6 @@ class DashboardController extends Controller
 
         return view('home', compact(
             'campaign',
-            'settings',
             'widgets',
             'dashboard',
             'dashboards',

@@ -1,11 +1,23 @@
-<div class="row pricing mt-5 pt-5">
+<div class="text-center pricing-toggle" aria-hidden="true">
+    <label data-pricing="monthly" class="text-bold cursor">
+        Monthly
+    </label>
+    <span data-pricing="toggle" class="pricing-monthly"></span>
+    <label data-pricing="yearly">
+        Yearly (save 10%)
+    </label>
+</div>
+
+<div class="row pricing mt-5 pt-5 pricing-monthly">
     <div class="col-lg-3 col-md-4 ">
         <div class="card mb-5 mb-lg-0">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
                 <div class="card-image subscription-kobold"></div>
-                <div class="card-title text-muted text-uppercase text-center">Kobold</div>
-                <div class="card-price text-center">{{ __('front.pricing.tier.free') }}</div>
-                <hr>
+                <div class="text-center align-self-stretch">
+                    <div class="card-title text-muted text-uppercase mb-0">Kobold</div>
+                    <div class="card-price">{{ __('front.pricing.tier.free') }}</div>
+                    <hr>
+                </div>
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-regular fa-circle-xmark text-danger"></i></span>
@@ -13,13 +25,13 @@
                             <strong>{{ __('front.pricing.benefits.no_boosters') }}</strong>
                         </a>
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.unlimited') }}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.core') }}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.updates') }}
                     </li>
 
@@ -31,7 +43,7 @@
 {{--                    </li>--}}
                 </ul>
                 @if(config('auth.register_enabled'))
-                <a href="{{ route('register') }}" class="btn btn-block btn-primary text-uppercase btn-kobold">
+                <a href="{{ route('register') }}" class="mt-auto btn btn-block btn-primary text-uppercase btn-kobold">
                     {{ __('front.second_block.call_to_action') }}
                 </a>
                 @endif
@@ -41,12 +53,16 @@
 
     <div class="col-lg-3 col-md-4">
         <div class="card mb-5 mb-lg-0 mt-5 mt-md-0">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
                 <div class="card-image subscription-owlbear"></div>
-                <div class="card-title text-muted text-uppercase text-center">Owlbear</div>
-                <div class="card-price text-center">$5<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                <div class="card-ribbon card-most-popular text-center">{{ __('tiers.ribbons.popular') }}</div>
-                <hr class="hr-ribbon" />
+                <div class="text-center align-self-stretch">
+                    <div class="card-title text-muted text-uppercase mb-0">Owlbear</div>
+                    <div class="card-price price-monthly">$5<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
+                    <div class="card-price price-yearly" aria-hidden="true">$4.58<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
+                    <div class="price-yearly small mb-2" aria-hidden="true">{!! __('front.pricing.billed_yearly', ['amount' => '<strong>$55</strong>']) !!}</div>
+                    <div class="card-ribbon card-most-popular text-center">{{ __('tiers.ribbons.popular') }}</div>
+                    <hr class="hr-ribbon" />
+                </div>
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-regular fa-check-circle"></i></span>
@@ -54,16 +70,16 @@
                             <strong>3 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.big_maps', ['size' => '10 MB']) }}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
 
@@ -75,7 +91,7 @@
 {{--                    </li>--}}
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" class="btn btn-block btn-primary text-uppercase btn-owlbear">
+                <a href="{{ route('settings.subscription') }}" class="mt-auto btn btn-block btn-primary text-uppercase btn-owlbear">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>
@@ -84,12 +100,16 @@
 
     <div class="col-lg-3 col-md-4">
         <div class="card mb-5 mb-lg-0 mt-5 mt-md-0">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
                 <div class="card-image subscription-wyvern"></div>
-                <div class="card-title text-muted text-uppercase text-center">Wyvern</div>
-                <div class="card-price text-center">$10<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                <div class="card-ribbon card-best-value text-center">{{ __('tiers.ribbons.best-value') }}</div>
-                <hr class="hr-ribbon" />
+                <div class="text-center align-self-stretch">
+                    <div class="card-title text-muted text-uppercase mb-0">Wyvern</div>
+                    <div class="card-price price-monthly">$10<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
+                    <div class="card-price price-yearly" aria-hidden="true">$9.16<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
+                    <div class="price-yearly small mb-2" aria-hidden="true">{!! __('front.pricing.billed_yearly', ['amount' => '<strong>$110</strong>']) !!}</div>
+                    <div class="card-ribbon card-best-value">{{ __('tiers.ribbons.best-value') }}</div>
+                    <hr class="hr-ribbon" />
+                </div>
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-regular fa-check-circle"></i></span>
@@ -97,16 +117,16 @@
                             <strong>6 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.bigger_maps', ['size' => '20 MB']) }}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
 
@@ -118,7 +138,7 @@
 {{--                    </li>--}}
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" class="btn btn-block btn-primary text-uppercase btn-wyvern">
+                <a href="{{ route('settings.subscription') }}" class="mt-auto btn btn-block btn-primary text-uppercase btn-wyvern">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>
@@ -126,11 +146,15 @@
     </div>
     <div class="offset-md-4 offset-lg-0 col-lg-3 col-md-4">
         <div class="card mb-5 mb-lg-0 mt-5 mt-md-0">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
                 <div class="card-image subscription-elemental"></div>
-                <div class="card-title text-muted text-uppercase text-center">Elemental</div>
-                <div class="card-price text-center">$25<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
-                <hr>
+                <div class="text-center align-self-stretch">
+                    <div class="card-title text-muted text-uppercase mb-0">Elemental</div>
+                    <div class="card-price price-monthly">$25<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
+                    <div class="card-price price-yearly" aria-hidden="true">$22.91<span class="period"> / {{ __('front.pricing.tier.month') }}</span></div>
+                    <div class="price-yearly small mb-2" aria-hidden="true">{!! __('front.pricing.billed_yearly', ['amount' => '<strong>$275</strong>']) !!}</div>
+                    <hr class="ribbon">
+                </div>
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fa-regular fa-check-circle"></i></span>
@@ -138,24 +162,24 @@
                             <strong>10 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.huge_maps', ['size' => '50 MB']) }}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
-                    <li>
+                    <li class="small">
                         <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.impact') }}
                     </li>
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" class="btn btn-block btn-primary text-uppercase btn-elemental">
+                <a href="{{ route('settings.subscription') }}" class="mt-auto btn btn-block btn-primary text-uppercase btn-elemental">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>

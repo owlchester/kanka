@@ -8,7 +8,6 @@ use Illuminate\Support\ServiceProvider;
 
 class MentionsServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
      *

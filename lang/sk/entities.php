@@ -16,12 +16,14 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Vytvoriť :type',
+            'full'      => 'Prejsť na úplný formulár',
             'more'      => 'Pridať viac detailov',
         ],
         'back'              => 'Späť na výber',
         'bulk_names'        => 'Pridaj jedno meno na riadok',
         'duplicate'         => 'Existujú iné objekty tohto typu s rovnakým menom.',
         'helper_v2'         => 'Zrýchlene vytvor základ nového objektu bez prerušenia práce.',
+        'missing_v2'        => 'Jediné moduly, ktoré sú aktivované a ktoré máš povolenie vytvárať sú dostupné na tejto obrazovke. :learn-more',
         'modes'             => [
             'bulk'      => 'Masové pridanie',
             'default'   => 'Rýchle pridanie',
@@ -33,6 +35,10 @@ return [
         ],
         'success_multiple'  => '{1} Nový objekt :link vytvorený.|[2,4] Nové objekty :link vytvorené.|[5,*] Nových objektov :link vytvorených.',
         'title'             => 'Nový objekt',
+        'titles'            => [
+            'everything'    => 'Všetko',
+            'quick-access'  => 'Rýchly prístup',
+        ],
         'tooltip'           => 'Vytvoriť nový objekt bez opustenia aktuálnej stránky',
     ],
     'creature'              => 'Bytosť',

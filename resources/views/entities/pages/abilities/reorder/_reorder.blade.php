@@ -14,7 +14,7 @@
     @foreach($parents as $key => $parent)
         <div class="element-live-reorder">
             <div class="element">
-                <div class="name">
+                <div class="name overflow-hidden flex-grow">
                     @if ($key === "")
                         {{ __('entities/abilities.reorder.parentless') }}
                     @else
@@ -25,7 +25,7 @@
                     @foreach($parent as $ability)
                         <div class="element" data-id="{{ $ability->id }}">
                             {!! Form::hidden('ability[]', $ability->id) !!}
-                            <div class="dragger">
+                            <div class="dragger pr-3">
                                 <span class="fa-solid fa-sort"></span>
                             </div>
                             <div class="name">

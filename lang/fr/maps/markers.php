@@ -13,6 +13,14 @@ return [
         'delete'    => '{1} Retiré :count marqueur.|[2,*] Retiré :count marqueurs.',
         'patch'     => '{1} Modifié :count marqueur.|[2,*] Modifié :count marqueurs.',
     ],
+    'circle_sizes'  => [
+        'custom'    => 'Personnalisé',
+        'huge'      => 'Énorme',
+        'large'     => 'Grand',
+        'small'     => 'Petit',
+        'standard'  => 'Moyen',
+        'tiny'      => 'Minuscule',
+    ],
     'create'        => [
         'success'   => 'Marqueur :name créé.',
         'title'     => 'Nouveau marqueur',
@@ -25,6 +33,7 @@ return [
         'title'     => 'Modifier le marqueur :name',
     ],
     'fields'        => [
+        'bg_colour'     => 'Couleur de fond',
         'circle_radius' => 'Radius du cercle',
         'copy_elements' => 'Copier les éléments',
         'custom_icon'   => 'Icône personnalisée',
@@ -42,6 +51,7 @@ return [
             'stroke-opacity'    => 'Opacité de la bordure',
             'stroke-width'      => 'Taille de la bordure',
         ],
+        'size'          => 'Taille',
     ],
     'helpers'       => [
         'base'                      => 'Ajouter des marqueurs en cliquant sur la carte.',

@@ -6,7 +6,7 @@ use PragmaRX\Google2FALaravel\Support\Authenticator;
 
 class Google2FAAuthentication extends Authenticator
 {
-  // If User does not have Google2FA Setup yet
+    // If User does not have Google2FA Setup yet
     protected function canPassWithoutCheckingOTP()
     {
         if (!isset($this->getUser()->passwordSecurity)) {
@@ -26,12 +26,11 @@ class Google2FAAuthentication extends Authenticator
         }
 
     // If User is not Authenticated through 2FA
-        if (is_null($secret) || empty($secret)) {
+        if (null === $secret || empty($secret)) {
             // return Action
             return redirect()->action('PasswordSecurityController@generate2faSecretCode');
         }
             // If user has Google2FA setup and is Authenticated
         return $secret;
     }
-
 }

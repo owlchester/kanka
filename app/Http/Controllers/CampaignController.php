@@ -7,7 +7,6 @@ use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\DeleteCampaign;
-use App\Models\UserLog;
 use App\Services\MultiEditingService;
 use App\Services\CampaignService;
 use App\Services\EntityService;
@@ -25,14 +24,9 @@ class CampaignController extends Controller
      */
     protected string $view = 'campaigns';
 
-    /** @var CampaignService  */
-    protected $campaignService;
-
-    /** @var EntityService  */
-    protected $entityService;
-
-    /** @var StarterService  */
-    protected $starterService;
+    protected CampaignService $campaignService;
+    protected EntityService $entityService;
+    protected StarterService $starterService;
 
     /**
      * Create a new controller instance.
@@ -127,8 +121,9 @@ class CampaignController extends Controller
      * @param Campaign $campaign
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(Campaign $campaign)
+    public function show()
     {
+        $campaign = CampaignLocalization::getCampaign();
         return view($this->view . '.show', compact('campaign'));
     }
 
@@ -137,8 +132,9 @@ class CampaignController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Campaign $campaign)
+    public function edit()
     {
+        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         /** @var MiscModel $model */
@@ -162,8 +158,9 @@ class CampaignController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreCampaign $request, Campaign $campaign)
+    public function update(StoreCampaign $request)
     {
+        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $data = $request->all();
@@ -208,8 +205,9 @@ class CampaignController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Campaign $campaign, DeleteCampaign $request)
+    public function destroy(DeleteCampaign $request)
     {
+        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('delete', $campaign);
 
         $this->campaignService->delete($campaign);

@@ -11,8 +11,6 @@ use App\Models\Relation;
 use App\Services\Entity\ConnectionService;
 use App\Services\Entity\EntityRelationService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RelationController extends Controller

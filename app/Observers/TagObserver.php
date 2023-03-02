@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\MiscModel;
 use App\Models\Tag;
 
 class TagObserver extends MiscObserver

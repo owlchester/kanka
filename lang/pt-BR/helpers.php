@@ -6,7 +6,13 @@ return [
         'description'   => 'Os seguintes filtros estão disponíveis para o endpoint :name da API.',
         'title'         => 'Filtros da API',
     ],
-    'attributes'        => [],
+    'attributes'        => [
+        'link'  => 'Opções de atributo',
+    ],
+    'calendar-widget'   => [
+        'info'  => 'Por que esses lembretes estão sendo exibidos?',
+        'title' => 'Widget do Calendário',
+    ],
     'dice'              => [],
     'entity_templates'  => [
         'link'  => 'Como configurar modelos',

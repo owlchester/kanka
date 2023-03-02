@@ -12,7 +12,7 @@
         <?php  $r = $model->items()->simpleSort($datagridSorter)->with(['location', 'entity', 'entity.tags'])->paginate(); ?>
         <table id="character-items-table" class="table table-hover ">
             <tbody><tr>
-                <th class="avatar"><br /></th>
+                <th class="w-14"><br /></th>
                 <th>{{ __('items.fields.name') }}</th>
                 <th class="hidden-xs">{{ __('crud.fields.type') }}</th>
                 @if ($campaignService->enabled('locations'))

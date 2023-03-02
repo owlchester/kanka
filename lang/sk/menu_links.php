@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'           => [
+        'customise' => 'Upraviť bočný panel',
+    ],
     'create'            => [
         'title' => 'Nový menu link',
     ],
@@ -49,4 +52,7 @@ return [
         'title'     => 'Preskupiť menu linky',
     ],
     'show'              => [],
+    'visibilities'      => [
+        'is_active' => 'Zobraziť rýchly link v bočnom paneli',
+    ],
 ];

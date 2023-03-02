@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\Entity;
-use App\Models\MiscModel;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -51,7 +50,7 @@ class RestoreEntities extends Command
         $blocks = 5000;
         $count = 0;
 
-        for($i = 0; $i <= $max; $i+=$blocks) {
+        for ($i = 0; $i <= $max; $i+=$blocks) {
             $entities = Entity::select('entity_id')->where('type', $type)
                 ->doesnthave($type)
                 ->take($blocks)
@@ -59,10 +58,10 @@ class RestoreEntities extends Command
                 ->pluck('entity_id')
                 ->toArray();
 
-            Storage::disk('local')->append($type .'.txt', "SELECT * FROM $plural WHERE id in (" . implode(',', $entities) . ") and deleted_at is null;\n");
+            Storage::disk('local')->append($type . '.txt', "SELECT * FROM {$plural} WHERE id in (" . implode(',', $entities) . ") and deleted_at is null;\n");
             $count += count($entities);
         }
 
-        $this->info('Done preparing ' . $count . " $plural.");
+        $this->info('Done preparing ' . $count . " {$plural}.");
     }
 }

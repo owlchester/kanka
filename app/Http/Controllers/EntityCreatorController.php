@@ -97,9 +97,9 @@ class EntityCreatorController extends Controller
         $values = $request->all();
 
         // Prepare the data
-        unset($values['names']);
-        unset($values['_multi']);
-        unset($values['_target']);  // Remove target as we need that for something else
+        unset($values['names'], $values['_multi'], $values['_target']);
+
+        // Remove target as we need that for something else
 
         if (!empty($values['entry'])) {
             $values['entry'] = nl2br($values['entry']);
@@ -313,9 +313,15 @@ class EntityCreatorController extends Controller
         $orderedEntityTypes = $this->orderedEntityTypes($this->entityTypes);
 
         return view('entities.creator.' . $view, compact(
-            'type', 'singularType',
-            'entityType', 'origin', 'target',
-            'multi', 'mode', 'source', 'templates',
+            'type',
+            'singularType',
+            'entityType',
+            'origin',
+            'target',
+            'multi',
+            'mode',
+            'source',
+            'templates',
             'entities',
             //'entityTypes',
             'orderedEntityTypes',

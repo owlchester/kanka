@@ -68,7 +68,7 @@ class MiscController extends Controller
         } else {
             $models = $modelClass
                 ->with('families')
-                ->where('name', 'like', "%$term%")
+                ->where('name', 'like', "%{$term}%")
                 ->limit(10)
                 ->get();
         }
@@ -244,7 +244,7 @@ class MiscController extends Controller
             if (Str::startsWith($term, '=')) {
                 $modelClass->where('name', ltrim($term, '='));
             } else {
-                $modelClass->where('name', 'like', "%$term%");
+                $modelClass->where('name', 'like', "%{$term}%");
             }
         } else {
             $modelClass->orderBy('updated_at', 'desc');
@@ -252,7 +252,7 @@ class MiscController extends Controller
 
         //execute query
         $models = $modelClass->limit(10)
-                    ->get();
+            ->get();
 
         //format results for frontend select
         $formatted = [];
@@ -346,7 +346,7 @@ class MiscController extends Controller
             if (Str::startsWith($term, '=')) {
                 $models->where('name', ltrim($term, '='));
             } else {
-                $models->where('name', 'like', "%$term%");
+                $models->where('name', 'like', "%{$term}%");
             }
             $models = $models
                 ->limit(10)
@@ -356,7 +356,6 @@ class MiscController extends Controller
 
         /** @var \App\Models\MiscModel $model */
         foreach ($models as $model) {
-
             $format = [
                 'id' => $model->id,
                 'text' => $model->name,

@@ -254,7 +254,7 @@ Route::resources([
     'abilities' => 'AbilityController',
     'calendars' => 'CalendarController',
     'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
-    'campaigns' => 'CampaignController',
+    //'campaigns' => 'CampaignController',
     'campaign_users' => 'CampaignUserController',
     'campaign_submissions' => 'Campaign\SubmissionController',
     'characters' => 'CharacterController',
@@ -266,7 +266,7 @@ Route::resources([
     'dice_roll_results' => 'DiceRollResultController',
     'events' => 'EventController',
     'locations' => 'LocationController',
-    'locations.map_points' => 'LocationMapPointController',
+    //'locations.map_points' => 'LocationMapPointController',
     'families' => 'FamilyController',
     'items' => 'ItemController',
     'journals' => 'JournalController',
@@ -319,6 +319,11 @@ Route::resources([
     'images' => 'Campaign\GalleryController',
 ]);
 Route::get('/leave-campaign', 'CampaignController@leave')->name('campaigns.leave');
+
+// Campaign CRUD
+Route::get('/edit', [\App\Http\Controllers\CampaignController::class, 'edit'])->name('campaigns.edit');
+Route::patch('/update', [\App\Http\Controllers\CampaignController::class, 'update'])->name('campaigns.update');
+Route::delete('/destroy', [\App\Http\Controllers\CampaignController::class, 'destroy'])->name('campaigns.destroy');
 
 
 Route::post('/campaign_styles/bulk', 'Campaign\StyleController@bulk')->name('campaign_styles.bulk');
@@ -418,11 +423,11 @@ Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->na
 //Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
 
 // Entity files
-Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
+//Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
 Route::get('/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
 Route::get('/entities/{entity}/mentions', 'Entity\MentionController@index')->name('entities.mentions');
-Route::get('/entities/{entity}/timelines', 'Entity\TimelineController@index')->name('entities.timelines');
-Route::get('/entities/{entity}/map-markers', 'DashboardController@index')->name('entities.map-markers');
+//Route::get('/entities/{entity}/timelines', 'Entity\TimelineController@index')->name('entities.timelines');
+//Route::get('/entities/{entity}/map-markers', 'DashboardController@index')->name('entities.map-markers');
 //Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
 
 // Inventory

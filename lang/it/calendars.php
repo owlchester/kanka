@@ -52,11 +52,13 @@ return [
         'success'   => 'Evento \':event\' aggiunto al calendario.',
     ],
     'events'        => [
+        'end'       => '(fine)',
         'filters'   => [
             'show_after'    => 'Mostra oggi e dopo',
             'show_all'      => 'Mostra tutto',
             'show_before'   => 'Mostra fino a oggi',
         ],
+        'start'     => '(inizio)',
         'title'     => 'Eventi del Calendario :name',
     ],
     'fields'        => [
@@ -88,6 +90,7 @@ return [
         'recurring_until'       => 'Ricorrente fino all\'Anno',
         'reset'                 => 'Ripristino Settimanale',
         'seasons'               => 'Stagioni',
+        'skip_year_zero'        => 'Togli Anno Zero',
         'start_offset'          => 'Inizio ritardo',
         'suffix'                => 'Suffisso',
         'week_names'            => 'Nomi della Settimana',
@@ -111,6 +114,7 @@ return [
         'parent_calendar'   => 'I calendari includono i promemoria e i tempi meteorologici del calendario sovraordinato.',
         'reset'             => 'Fai sempre coincidere l\'inizio del mese o dell\'anno col primo giorno della settimana.',
         'seasons'           => 'Crea stagioni per il tuo calendario specificando quando ha inizio ciascuna di esse. Kanka si occuperà del resto.',
+        'skip_year_zero'    => 'Per impostazione predefinita, il primo anno del calendario è l\'anno zero. Attiva questa opzione per togliere l\'anno zero.',
         'weekdays'          => 'Imposta i tuoi nomi dei giorni della settimana. Sono necessari almeno 2 giorni della settimana.',
         'weeks'             => 'Definisci alcuni nomi per le settimane più importanti del tuo calendario.',
         'years'             => 'Alcuni anni sono così importanti che hanno un nome specifico.',

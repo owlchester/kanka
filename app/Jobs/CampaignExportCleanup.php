@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Storage;
 
 class CampaignExportCleanup implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var Campaign

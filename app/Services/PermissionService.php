@@ -388,7 +388,6 @@ class PermissionService
                             $permissions['role'][$roleId][$perm]->update(['access' => false]);
                             unset($permissions['role'][$roleId][$perm]);
                         }
-
                     } elseif ($action == 'inherit') {
                         // Inherit? Remove it if it exists
                         if (!empty($permissions['role'][$roleId][$perm])) {
@@ -532,9 +531,9 @@ class PermissionService
 
         $key = $this->type . '_' . $action;
         if (!empty($role)) {
-            return Arr::has($this->basePermissions, "roles.$role.$key");
+            return Arr::has($this->basePermissions, "roles.{$role}.{$key}");
         }
-        return Arr::has($this->basePermissions, "users.$user.$key");
+        return Arr::has($this->basePermissions, "users.{$user}.{$key}");
     }
 
     /**

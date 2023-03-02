@@ -9,7 +9,7 @@
         <?php $r = $model->inventories()->orderBy('entity_id', 'ASC')->with(['entity'])->has('entity')->paginate(); ?>
         <table id="item-inventories" class="table table-hover">
             <tbody><tr>
-                <th class="avatar"><br /></th>
+                <th class="min-w-10"><br /></th>
                 <th>{{ __('crud.fields.entity') }}</th>
                 <th class="hidden-sm">{{ __('entities/inventories.fields.amount') }}</th>
                 <th class="hidden-sm">{{ __('entities/inventories.fields.position') }}</th>

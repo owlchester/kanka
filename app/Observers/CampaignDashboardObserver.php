@@ -2,10 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\Ability;
 use App\Models\CampaignDashboard;
-use App\Models\CampaignDashboardWidget;
-use App\Models\MiscModel;
 
 class CampaignDashboardObserver
 {

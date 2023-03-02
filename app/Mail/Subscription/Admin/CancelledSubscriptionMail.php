@@ -6,11 +6,11 @@ use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class CancelledSubscriptionMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var User
@@ -43,8 +43,9 @@ class CancelledSubscriptionMail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Team'])
+            ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
             ->subject('Subscription: Cancelled ' . $this->user->pledge)
+            ->tag('admin-cancelled')
             ->view('emails.subscriptions.cancelled.html');
     }
 }

@@ -13,6 +13,14 @@ return [
         'delete'    => '{1} entferne :count marker.|[2,*] entferne :count markers.',
         'patch'     => '{1} aktualisiere :count marker.|[2,*] aktualisiere :count markers.',
     ],
+    'circle_sizes'  => [
+        'custom'    => 'benutzerdefiniert',
+        'huge'      => 'riesig',
+        'large'     => 'groß',
+        'small'     => 'klein',
+        'standard'  => 'standard',
+        'tiny'      => 'winzig',
+    ],
     'create'        => [
         'success'   => 'Marker :name erstellt',
         'title'     => 'neuer Marker',
@@ -25,6 +33,7 @@ return [
         'title'     => 'Marker :name editieren',
     ],
     'fields'        => [
+        'bg_colour'     => 'Hintergrundfarbe',
         'circle_radius' => 'Kreisradius',
         'copy_elements' => 'kopiere Elemente',
         'custom_icon'   => 'Benutzerdefiniertes Symbol',
@@ -42,6 +51,7 @@ return [
             'stroke-opacity'    => 'Strichdeckkraft',
             'stroke-width'      => 'Strichbreite',
         ],
+        'size'          => 'Größe',
     ],
     'helpers'       => [
         'base'                      => 'Fügen Sie der Karte Markierungen hinzu, indem Sie auf eine beliebige Stelle klicken.',

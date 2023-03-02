@@ -25,6 +25,11 @@ return [
             'quest'             => 'Missão',
         ],
         'title'     => 'Elementos da Missão :name',
+        'warning'   => [
+            'editing'   => [
+                'description'   => 'Parece que outra pessoa está editando este elemento de missão! Deseja voltar atrás ou ignorar este aviso, correndo o risco de perder dados? Membros atualmente editando este elemento de missão:',
+            ],
+        ],
     ],
     'fields'        => [
         'character'     => 'Quem deu a missão',

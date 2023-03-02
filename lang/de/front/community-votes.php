@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'return'    => 'Kehre zu allen Community Votes zurück.',
         'show'      => 'Abstimmungsergebnisse anzeigen',
+        'subscribe' => 'Abonniere Kanka, um abzustimmen',
         'vote'      => 'Abstimmung',
     ],
     'description'   => 'Benutzer, die Kanka unterstützen, gestalten die Entwicklung der App mit, indem sie an häufigen Community Votes teilnehmen.',

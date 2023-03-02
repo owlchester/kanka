@@ -1,49 +1,51 @@
 :root {
     --body-background: #f5f8fa;
-  --body-text: #636b6f;
-  --header-text: inherit;
+    --body-text: #636b6f;
+    --header-text: inherit;
 
-  --breadcrumb-text: #444;
+    --breadcrumb-text: #444;
 
-  --input-border-color: #d2d6de;
-  --input-background-color: #fff;
-  --input-background-disabled-color: #eeeeee;
-  --input-text-color: inherit;
-  --input-file-filter: none;
+    --input-border-color: #d2d6de;
+    --input-background-color: #fff;
+    --input-background-disabled-color: #eeeeee;
+    --input-text-color: inherit;
+    --input-file-filter: none;
 
-  --content-wrapper-background: #ecf0f5;
+    --content-wrapper-background: #ecf0f5;
 
-  --hr-border-top: 1px solid #eee;
+    --hr-border-top: 1px solid #eee;
 
-  --modal-background: #fff;
-  --modal-inner-border: #f4f4f4;
-  --modal-close-opacity: 0.2;
-  --modal-body-text: #444;
-  --modal-close-color: #000;
+    --modal-background: #fff;
+    --modal-inner-border: #f4f4f4;
+    --modal-close-opacity: 0.2;
+    --modal-body-text: #444;
+    --modal-close-color: #000;
 
-  --submenu-hover-background: #f7f7f7;
-  --submenu-link: inherit;
+    --submenu-hover-background: #f7f7f7;
+    --submenu-link: inherit;
 
-  --tab-color: #444;
-  --tab-background: #f5f8fa;
-  --tab-hover-color: #999;
-  --tab-hover-background: #f5f8fa;
-  --tab-active-color: #444;
-  --tab-active-background: #fff;
-  --tab-content-background: var(--modal-background);
-  --tab-active-border: #f4f4f4;
-  --list-group-item-border: #d3e0e9;
-  --list-group-item-background: #fff;
+    --tab-color: #444;
+    --tab-background: #f5f8fa;
+    --tab-hover-color: #999;
+    --tab-hover-background: #f5f8fa;
+    --tab-active-color: #444;
+    --tab-active-background: #fff;
+    --tab-content-background: var(--modal-background);
+    --tab-active-border: #f4f4f4;
+    --list-group-item-border: #d3e0e9;
+    --list-group-item-background: #fff;
 
-  --label-default-background: #d2d6de;
-  --label-default-text: #fff;
+    --label-default-background: #d2d6de;
+    --label-default-text: #fff;
 
-  --text-help: #8c8c8c;
-  --code-background: #f9f2f4;
-  --code-text: #c7254e;
-  --pre-background: #f9f9f9;
-  --pre-text: #333;
+    --text-help: #8c8c8c;
+    --code-background: #f9f2f4;
+    --code-text: #c7254e;
+    --pre-background: #f9f9f9;
+    --pre-text: #333;
     --boosted: #D81B60;
+
+    --color-accent: var(--link-text);
 }
 
 body {
@@ -306,13 +308,6 @@ body .main-header .navbar .nav .open > a.active {
   color: var(--main-navbar-text);
   &:hover {
     background-color: var(--main-navbar-hover-background);
-  }
-}
-
-@media (max-width: 991px) {
-  .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
-    border: 1px solid var(--dropdown-border);
-    background-color: var(--dropdown-background);
   }
 }
 

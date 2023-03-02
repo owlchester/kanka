@@ -16,6 +16,9 @@
 .flex-grow {
     flex-grow: 1;
 }
+.grow {
+    flex-grow: 1;
+}
 .flex-row-reverse {
     flex-direction: row-reverse;
 }
@@ -31,6 +34,13 @@
 }
 .justify-end {
     justify-content: flex-end;
+}
+.justify-self-end {
+    justify-self: end;
+}
+
+.self-end {
+    align-self: flex-end;
 }
 
 .basis-1\/3 {

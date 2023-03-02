@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Rules\AccountEmail;
 use App\Rules\AccountName;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -52,7 +53,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255', 'min:2', new AccountName()],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', new AccountEmail()],
             'password' => ['required', 'string', 'min:8'],
         ]);
     }

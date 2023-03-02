@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Jobs\Emails;
-
 
 use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
 use App\Mail\Subscription\User\CancelledUserSubscriptionMail;
@@ -17,7 +15,10 @@ use Illuminate\Support\Facades\Mail;
 
 class SubscriptionCancelEmailJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /** @var int */
     public $userId;

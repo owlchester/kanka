@@ -8,7 +8,7 @@
     <div class="campaign-header-content">
         <div class="campaign-content">
             <div class="campaign-head">
-                <a href="{{ route('campaigns.show', $campaign) }}" title="{!! $campaign->name !!}" class="campaign-title">
+                <a href="{{ route('campaign') }}" title="{!! $campaign->name !!}" class="campaign-title">
                     {!! $campaign->name !!}
                 </a>
                     <div class="action-bar">
@@ -61,20 +61,22 @@
                                             </li>
                                         @endforeach
 
-                                        @if($settings)
+                                        @can('dashboard', $campaign)
                                             <li class="divider"></li>
                                             <li>
                                                 <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
                                                     {{ __('dashboard.settings.title') }}
                                                 </a>
                                             </li>
-                                        @endif
+                                        @endcan
                                     </ul>
                                 </div>
-                            @elseif($settings)
+                            @else
+                                @can('dashboard', $campaign)
                                 <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
                                     <i class="fa-solid fa-th-large"></i>
                                 </a>
+                                @endcan
                             @endif
                         @endcannot
 
@@ -108,7 +110,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="{{ route('campaigns.edit', $campaign) }}">
+                                    <a href="{{ route('campaigns.edit') }}">
                                         <i class="fa-solid fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
                                     </a>
                                 </li>

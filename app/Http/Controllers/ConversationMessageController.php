@@ -7,7 +7,6 @@ use App\Http\Resources\Conversation\ConversationMessageResource;
 use App\Http\Resources\Conversation\ConversationResource;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class ConversationMessageController extends Controller

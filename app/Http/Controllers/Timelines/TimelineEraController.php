@@ -196,7 +196,7 @@ class TimelineEraController extends Controller
         return redirect()
             ->route('timelines.timeline_eras.index', ['timeline' => $timeline])
             ->with('success', trans_choice('timelines/eras.bulks.' . $action, $count, ['count' => $count]))
-            ;
+        ;
     }
     /**
      * @return \Illuminate\Http\JsonResponse

@@ -6,7 +6,6 @@ use App\Models\Campaign;
 use App\Models\Quest;
 use App\Http\Requests\StoreQuest as Request;
 use App\Http\Resources\QuestResource as Resource;
-use App\Http\Resources\QuestCollection as Collection;
 
 class QuestApiController extends ApiController
 {

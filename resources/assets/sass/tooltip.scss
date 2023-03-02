@@ -1,3 +1,7 @@
+/**
+ * Control the way tooltips appear. Boosted campaigns can have entity images displayed in tooltips.
+ * Most of this could easily be replaced with tailwind + whatever boostrap does.
+ */
 .tooltip-inner {
   padding: 3px 3px;
   .tooltip-content {

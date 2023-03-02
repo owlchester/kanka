@@ -67,20 +67,18 @@
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, 'en') }}" />
 @else
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, null) }}" />
-    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-@if ($localeCode == app()->getLocale())
-@continue
-@endif
-    <link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $localeCode) }}" hreflang="{{ $localeCode }}">
+@foreach(LaravelLocalization::getSupportedLocales() as $language => $properties)
+    @if (in_array($language, ['hr', 'he']))@continue @endif
+<link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $language) }}" hreflang="{{ $language }}">
 @endforeach
 @endif
+
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//code.jquery.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
 
-    <!--<link href="{{ mix('css/front/critical.css') }}" rel="stylesheet">-->
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
 
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">

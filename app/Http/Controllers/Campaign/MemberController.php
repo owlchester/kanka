@@ -9,7 +9,6 @@ use App\Models\CampaignRole;
 use App\Models\CampaignUser;
 use App\Models\Entity;
 use App\Services\Campaign\MemberService;
-use Illuminate\Support\Facades\Request;
 
 class MemberController extends Controller
 {

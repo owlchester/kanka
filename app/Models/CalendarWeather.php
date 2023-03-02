@@ -26,9 +26,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CalendarWeather extends Model
 {
-    use CalendarWeatherScopes,
-        Blameable,
-        VisibilityIDTrait;
+    use Blameable;
+    use CalendarWeatherScopes;
+    use VisibilityIDTrait;
 
     /**
      * @var string
@@ -70,7 +70,7 @@ class CalendarWeather extends Model
             (!empty($this->precipitation) ? __('calendars/weather.fields.precipitation') . ': ' . e($this->precipitation) . "<br />\n" : null) .
             (!empty($this->wind) ? __('calendars/weather.fields.wind') . ': ' . e($this->wind) . "<br />\n" : null) .
             (!empty($this->effect) ? __('calendars/weather.fields.effect') . ': ' . e($this->effect) . "<br />\n" : null)
-            ;
+        ;
     }
 
     /**

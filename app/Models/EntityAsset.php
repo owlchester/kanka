@@ -25,11 +25,13 @@ use Illuminate\Support\Str;
  */
 class EntityAsset extends Model
 {
+    use Blameable;
+    use EntityAssetScopes;
+    use Pinned;
+    use VisibilityIDTrait;
     public const TYPE_FILE = 1;
     public const TYPE_LINK = 2;
     public const TYPE_ALIAS = 3;
-
-    use VisibilityIDTrait, EntityAssetScopes, Blameable, Pinned;
 
     public $fillable = [
         'type_id',

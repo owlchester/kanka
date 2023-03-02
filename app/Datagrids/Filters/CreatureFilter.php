@@ -23,15 +23,7 @@ class CreatureFilter extends DatagridFilter
                 'placeholder' =>  __('crud.placeholders.creature'),
                 'model' => Creature::class,
             ])
-            ->add([
-                'field' => 'location_id',
-                'label' => __('entities.location'),
-                'type' => 'select2',
-                'route' => route('locations.find'),
-                'placeholder' =>  __('crud.placeholders.location'),
-                'model' => Location::class,
-                'withChildren' => true,
-            ])
+            ->location()
             ->isPrivate()
             ->template()
             ->hasImage()

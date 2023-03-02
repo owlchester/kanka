@@ -44,7 +44,7 @@ return [
         'title'                 => 'Login',
     ],
     'register'  => [
-        'already_account'           => 'Tu as déjà un compte',
+        'already'                   => 'Tu as déjà un compte? :login',
         'errors'                    => [
             'email_already_taken'   => 'Un compte avec cette adresse email est déjà enregistré.',
             'general_error'         => 'Une erreur est survenue lors de la création du compte. Merci de ressayer.',
@@ -55,11 +55,13 @@ return [
             'password'  => 'Mot de passe',
             'tos_clean' => 'J\'accepte la :privacy',
         ],
+        'log-in'                    => 'Connectes-toi',
         'register_with_facebook'    => 'S\'enregister avec Facebook',
         'register_with_google'      => 'S\'enregister avec Google',
         'register_with_twitter'     => 'S\'enregister avec Twitter',
         'submit'                    => 'S\'inscrire',
         'title'                     => 'Inscription',
+        'tos'                       => 'En enregistrant un compte, tu acceptes nos :terms et :privacy.',
     ],
     'reset'     => [
         'fields'    => [

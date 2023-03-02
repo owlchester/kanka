@@ -1,13 +1,10 @@
 <?php
 
-
 namespace App\Observers;
-
 
 use App\Facades\Identity;
 use App\Models\Entity;
 use App\Models\EntityLog;
-use Carbon\Carbon;
 
 /**
  * Class EntityLogObserver

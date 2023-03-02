@@ -29,7 +29,6 @@ return [
         'charges'   => 'Ladungen',
     ],
     'helpers'       => [
-        'descendants'       => 'Diese Liste enthält alle Fähigkeiten, die vererbt werden, und nicht nur diejenigen, die sich auf der nächstniedrigeren Ebene befinden.',
         'nested_without'    => 'Anzeigen aller Fähigkeiten, die keine übergeordnete Fähigkeit haben. Klicken Sie auf eine Zeile, um die Fähigkeiten untergeordneten Objekte anzuzeigen.',
     ],
     'index'         => [],

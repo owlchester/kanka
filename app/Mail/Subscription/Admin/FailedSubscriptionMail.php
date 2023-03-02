@@ -6,11 +6,11 @@ use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class FailedSubscriptionMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var User
@@ -35,8 +35,9 @@ class FailedSubscriptionMail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Admin'])
+            ->from(['address' => config('app.email'), 'name' => 'Kanka Admin'])
             ->subject('Subscription: Failed ' . $this->user->pledge)
+            ->tag('admin-failed')
             ->view('emails.subscriptions.failed.html');
     }
 }

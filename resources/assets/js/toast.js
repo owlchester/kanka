@@ -13,8 +13,8 @@ function registerToastDismiss() {
 /** Show an expiring message at the bottom right of the page **/
 window.showToast = function(message, css) {
     css = css || 'toast-success';
-    let $container = $('<div class="' + css + '">');
-    $container.html('<span class="toast-message">' + message + '<i class="fa-solid fa-times" data-toggle="dismiss"></i></span');
+    let $container = $('<div class="' + css + ' mt-2 text-right">');
+    $container.html('<span class="toast-message inline-block p-3">' + message + '<i class="fa-solid fa-times cursor-pointer ml-1" data-toggle="dismiss"></i></span');
 
     $('.toast-container').append($container);
     setTimeout(function() {

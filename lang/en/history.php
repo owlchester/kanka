@@ -5,6 +5,7 @@ return [
         'show-old'  => 'Changes',
     ],
     'cta'       => 'Display a log of all the recent changes to the campaign.',
+    'empty'     => 'No value',
     'filters'   => [
         'all-actions'   => 'All actions',
         'all-users'     => 'All members',
@@ -15,14 +16,17 @@ return [
         'changes'   => 'The following fields previously had these values.',
     ],
     'log'       => [
-        'create'    => ':user created :entity',
-        'delete'    => ':user deleted :entity',
-        'restore'   => ':user restored :entity',
-        'update'    => ':user updated :entity',
+        'create'        => ':user created :entity',
+        'create_post'   => ':user created the post ":post" on :entity',
+        'delete'        => ':user deleted :entity',
+        'delete_post'   => ':user deleted a post on :entity',
+        'reorder_post'  => ':user reordered the posts of :entity',
+        'restore'       => ':user restored :entity',
+        'update'        => ':user updated :entity',
+        'update_post'   => ':user updated the post ":post" on :entity',
     ],
     'title'     => 'History',
     'unknown'   => [
         'entity'    => 'an unknown entity',
     ],
-    'empty'  => 'No value',
 ];

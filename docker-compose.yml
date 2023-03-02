@@ -123,7 +123,7 @@ services:
         depends_on:
             - minio
     thumbor-nginx:
-        image: 'nginx:1.9'
+        image: 'nginx:1.23'
         tty: true
         volumes:
             - ./.nginx:/etc/nginx/conf.d/
@@ -133,6 +133,8 @@ services:
             - NGINX_PORT=8889
         networks:
             - sail
+        depends_on:
+            - thumbor
 networks:
     sail:
         driver: bridge

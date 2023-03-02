@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Mail;
 
 class SubscriptionDeletedEmailJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var int
@@ -57,6 +60,6 @@ class SubscriptionDeletedEmailJob implements ShouldQueue
             ->send(
                 new DeletedSubscriptionMail($user)
             );
-            $user->log(UserLog::TYPE_SUB_CANCEL_AUTO);
+        $user->log(UserLog::TYPE_SUB_CANCEL_AUTO);
     }
 }

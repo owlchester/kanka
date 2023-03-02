@@ -58,13 +58,12 @@ $tooltipTags = implode(', ', $tooltipTags);
                 </div>
                 <div class="col-md-2">
                     @if (!empty($model->entity) && !empty($model->entity->header_image))
-                        <div class="preview-v2">
-                            <div class="image" style="background-image: url('{{ $model->entity->thumbnail(120) }}')" title="{{ $model->name }}">
-                                <a href="#" class="img-delete" data-target="remove-header_image" title="{{ __('crud.remove') }}">
-                                    <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
-                                </a>
-                            </div>
-                        </div>
+
+                        @include('cruds.fields._image_preview', [
+                            'image' => $model->entity->thumbnail(120),
+                            'title' => $model->name,
+                            'target' => 'remove-header_image',
+                        ])
                     @endif
                 </div>
             </div>

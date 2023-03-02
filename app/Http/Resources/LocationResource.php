@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Location;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class LocationResource extends EntityResource
 {

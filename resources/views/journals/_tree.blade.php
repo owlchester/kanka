@@ -16,7 +16,13 @@
         // Name
         'name',
         'type',
-        'date',
+        [
+            'label' => __('journals.fields.date'),
+            'field' => 'date',
+            'render' => function ($model) {
+                return \App\Facades\UserDate::format($model->date);
+            }
+        ],
         [
             'type' => 'calendar_date',
         ],

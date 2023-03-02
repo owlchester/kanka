@@ -16,12 +16,14 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Erstellen :type',
+            'full'      => 'Gehe zum vollständigen Formular',
             'more'      => 'Füge weitere Details hinzu',
         ],
         'back'              => 'Zurück zur Auswahl',
         'bulk_names'        => 'Füge einen Namen pro Zeile hinzu',
         'duplicate'         => 'Es gibt andere Objekte dieses Typs mit demselben Namen.',
         'helper_v2'         => 'Erstelle schnell die Grundlage für ein neues Objekt, ohne deinen aktuellen Fluss zu unterbrechen.',
+        'missing_v2'        => 'In dieser Oberfläche sind nur Module verfügbar, die aktiviert sind und für die du die Berechtigung zum Erstellen hast. :learn-more.',
         'modes'             => [
             'bulk'      => 'Bulk hinzufügen',
             'default'   => 'Schnell hinzufügen',
@@ -33,6 +35,10 @@ return [
         ],
         'success_multiple'  => '{1} Neues Objekt :link erstellt.|[2,*] Neues Objekt :link erstellt.',
         'title'             => 'Neues Objekt',
+        'titles'            => [
+            'everything'    => 'Alles',
+            'quick-access'  => 'Schnellzugriff',
+        ],
         'tooltip'           => 'Erstellen Sie ein neues Objekt, ohne die aktuelle Seite zu verlassen',
     ],
     'creature'              => 'Kreatur',

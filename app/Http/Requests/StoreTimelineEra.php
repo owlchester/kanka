@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Requests;
-
 
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -30,6 +28,7 @@ class StoreTimelineEra extends FormRequest
     {
         $rules = [
             'name' => 'required|string',
+            'entry' => 'nullable|string',
             'abbreviation' => 'nullable|string',
             'start_date' => 'nullable|integer',
             'end_date' => 'nullable|integer',
@@ -37,5 +36,4 @@ class StoreTimelineEra extends FormRequest
 
         return $this->clean($rules);
     }
-
 }

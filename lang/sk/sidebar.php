@@ -3,9 +3,13 @@
 return [
     'campaign'          => 'Kampaň',
     'campaign_switcher' => [
+        'count'             => 'Člen v :member',
         'created_campaigns' => 'Tvoje kampane',
+        'follow_more'       => 'Nájsť kampane',
+        'followed_campaigns'=> 'Sledované kampane',
         'new_campaign'      => 'Nová kampaň',
         'public_campaigns'  => 'Verejné kampane',
+        'reorder'           => 'Preusporiadať',
         'updated'           => 'Upravené',
     ],
     'campaigns'         => 'Kampane',

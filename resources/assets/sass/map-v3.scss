@@ -18,10 +18,6 @@ $mapSidebarWidth: 380px;
     min-height: calc(30vh);
 }
 
-.map-form {
-    margin-bottom: 15px;
-}
-
 .marker {
     color: white;
     background-color: unset;
@@ -53,26 +49,7 @@ $mapSidebarWidth: 380px;
     }
 }
 
-.marker.custom {
-
-}
-
-.marker-details {
-    padding: 0.85rem;
-
-    h3 {
-        margin: 11px 0;
-    }
-
-    .marker-entry {
-        padding: 0.85rem 0
-    }
-}
-
 .btn-map-explore {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
     color: #fff !important;
     z-index: 999;
 }
@@ -128,11 +105,7 @@ $mapSidebarWidth: 380px;
     z-index: 910;
 }
 
-.map-actions, .map-mode {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 1rem;
+.map-actions {
     z-index: 500;
 
     .btn-mode-enable {
@@ -151,26 +124,11 @@ $mapSidebarWidth: 380px;
         white-space: unset;
     }
 
-    .sidebar {
-        li {
-            height: unset;
-        }
 
-        a {
-            color: var(--sidebar-link);
-        }
-
-        .entity-content {
-            a {
-                color: var(--link-text);
-            }
-        }
-    }
 
     .main-sidebar {
         //background-color: #dedede;
         color: #efefef;
-        overflow: hidden;
         padding-top: 0;
         z-index: 1040;
     }
@@ -179,14 +137,6 @@ $mapSidebarWidth: 380px;
         .marker-top {
             float: right;
         }
-
-        .marker-name {
-            font-size: 1.4rem;
-            padding: 0.825rem;
-        }
-    }
-    .map-legend {
-        padding: 0.85rem;
     }
 
     .marker-header.with-image {
@@ -207,17 +157,11 @@ $mapSidebarWidth: 380px;
 
             .marker-name {
                 padding: 2.0rem 0.5rem 0.8rem 0.5rem;
-                font-weight: 700;
                 background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
-                overflow: hidden;
-                width: 100%;
             }
         }
     }
 
-    .marker-entry {
-        padding: 0 0.825rem;
-    }
     .marker-actions {
         margin: 20px 0;
         .dropdown-menu li > a {
@@ -225,34 +169,9 @@ $mapSidebarWidth: 380px;
         }
     }
 
-    .entity-title {
-        min-height: 40px;
-        margin-bottom: 5px;
-
-        a {
-            display: flex;
-            align-items: center;
-        }
-
-        .entity-image {
-            display: inline-block;
-            margin-right: 5px;
-        }
-
-        .entity-name {
-            display: inline;
-            font-size: 12pt;
-        }
+    .marker-entry {
+        padding: 0 0.75rem;
     }
-
-    // In the modal modal, no extra padding
-    .modal-body .content .marker-entry {
-        padding: 0;
-    }
-}
-
-#map-marker-modal-content .content {
-    padding: 0;
 }
 
 body.map-edit-mode {
@@ -359,7 +278,22 @@ body.map-drawing-mode {
     background: transparent !important;
 }
 
-/** Leaflet marker **/
+
+.marker-preset-list .preset {
+    border: 1px solid var(--tab-background);
+    background-color: var(--tab-background);
+    &:hover {
+        border: 1px solid var(--tab-hover-background);
+    }
+
+    .preset-use {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+/** Used by the ruler plugin */
 .leaflet-ruler {
     height: 48px;
     width: 48px;
@@ -379,7 +313,6 @@ body.map-drawing-mode {
     background-position: center;
     background-image: url("/images/vendor/leaflet/ruler/icon-colored.png");
 }
-
 .leaflet-bar {
     background-color: #ffffff;
 }
@@ -403,23 +336,7 @@ body.map-drawing-mode {
 .plus-length {
     padding-left: 45px;
 }
-
-.marker-preset-list .preset {
-    padding: 0.8rem;
-    border: 1px solid var(--tab-background);
-    background-color: var(--tab-background);
-    border-radius: 5px;
-    &:hover {
-        border: 1px solid var(--tab-hover-background);
-    }
-
-    .preset-use {
-        cursor: pointer;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-}
+/** END Used by the ruler plugin */
 
 @import "~leaflet.markercluster/dist/MarkerCluster.css";
 @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";

@@ -35,14 +35,14 @@ class TimelineElementCacheService extends BaseCache
         ];
 
         $data = TimelineElement::leftJoin('timelines as t', 't.id', 'timeline_elements.timeline_id')
-        ->where('t.campaign_id', $campaign->id)
-        ->select(DB::raw('icon, MAX(timeline_elements.created_at) as cmat'))
-        ->groupBy('icon')
-        ->whereNotNull('icon')
-        ->orderBy('cmat', 'DESC')
-        ->take(10)
-        ->pluck('icon')
-        ->all();
+            ->where('t.campaign_id', $campaign->id)
+            ->select(DB::raw('icon, MAX(timeline_elements.created_at) as cmat'))
+            ->groupBy('icon')
+            ->whereNotNull('icon')
+            ->orderBy('cmat', 'DESC')
+            ->take(10)
+            ->pluck('icon')
+            ->all();
 
         foreach ($default as $key => $value) {
             if (!in_array($value, $data)) {

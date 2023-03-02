@@ -9,7 +9,8 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MenuLinkPolicy
 {
-    use HandlesAuthorization, AdminPolicyTrait;
+    use AdminPolicyTrait;
+    use HandlesAuthorization;
 
     public function browse(User $user)
     {

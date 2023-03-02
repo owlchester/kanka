@@ -57,36 +57,15 @@ return [
         'netherlands'   => 'Hollanda',
         'spain'         => 'İspanya',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'PDF Olarak İndir',
-            'view_all'  => 'Hepsini görüntüle',
-        ],
-        'empty'     => 'Fatura yok',
-        'fields'    => [
-            'amount'    => 'Tutar',
-            'date'      => 'Tarih',
-            'invoice'   => 'Fatura',
-            'status'    => 'Durum',
-        ],
-        'header'    => 'Aşağıda indirebileceğiniz son 24 faturanızın bir listesi mevcuttur.',
-        'status'    => [
-            'paid'      => 'Ödendi',
-            'pending'   => 'Beklemede',
-        ],
-        'title'     => 'Faturalar',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Düzen seçenekleri güncellendi.',
-        'title'     => 'Düzen',
+        'title' => 'Düzen',
     ],
     'marketplace'   => [],
     'menu'          => [
         'account'               => 'Hesap',
         'api'                   => 'API',
         'apps'                  => 'Uygulamalar',
-        'billing'               => 'Ödeme Yöntemi',
-        'invoices'              => 'Faturalar',
         'other'                 => 'Diğer',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Ödeme Seçenekleri',
@@ -123,7 +102,6 @@ return [
         'billing'   => [
             'helper'    => 'Faturalandırma bilgileriniz :stripe tarafından işlenir güvenle korunur. Bu ödeme yöntemi bütün abonelikleriniz için kullanılır.',
             'saved'     => 'Kaydedilen ödeme yöntemi',
-            'title'     => 'Ödeme Yöntemini Düzenle',
         ],
         'cancel'    => [
             'text'  => 'Gittiğinizi görmek üzücü! Aboneliğinizi iptal etmek aboneliğinizi bir sonraki faturalandırma dönemine kadar aktif tutacaktır, bundan itibaren serüven desteklerinizi ve Kanka\'yı desteklemek ile beraber gelen diğer faydaları kaybedeceksiniz. Neyi daha iyi yapabileceğimiz ya da kararınızı neyin etkilediği hakkında bizi bilgilendirebileceğiniz, aşağıdaki formu doldurmaktan lütfen çekinmeyin.',

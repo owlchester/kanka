@@ -29,7 +29,6 @@ return [
         'charges'   => 'Cargas',
     ],
     'helpers'       => [
-        'descendants'       => 'Esta lista contém todas as habilidades que são descendentes dessa habilidade, e não apenas aquelas diretamente relacionadas a ela.',
         'nested_without'    => 'Mostrando todas as habilidades que não possuem uma habilidade-pai. Clique em uma linha para ver as habilidades-filhos.',
     ],
     'index'         => [],

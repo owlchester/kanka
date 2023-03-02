@@ -1,6 +1,6 @@
 <div class="quick-creator-header mt-8 pb-4 mb-4">
-    <div class="grid grid-cols-2 gap-1">
-        <div>
+    <div class="flex gap-1">
+        <div class="flex-grow">
             <div class="qq-mode text-sm mb-2 text-uppercase">
                 @if ($mode === 'bulk')
                     {{ __('entities.creator.modes.bulk') }}

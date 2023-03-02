@@ -1,10 +1,7 @@
 <?php
 
-
 namespace App\Http\Controllers\Campaign;
 
-
-use App\Facades\Img;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +13,8 @@ class AjaxGalleryController extends Controller
         $this->middleware('auth');
     }
 
-    public function index() {
+    public function index()
+    {
         $start = request()->get('page', 0);
         $perPage = 20;
         $offset = $start * $perPage;

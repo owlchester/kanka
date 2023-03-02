@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'return'    => 'Späť na prehľad všetkých komunitných hlasovaní.',
         'show'      => 'Zobraziť výsledky hlasovania',
+        'subscribe' => 'Predplať si Kanku a získaj možnosť hlasovať',
         'vote'      => 'Hlasovanie',
     ],
     'description'   => 'Používatelia, ktorí podporujú Kanku, sa podieľajú na vývine tejto aplikácie tým, že sa účastnia častých komunitných hlasovaní.',

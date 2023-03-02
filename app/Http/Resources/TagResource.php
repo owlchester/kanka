@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Tag;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class TagResource extends EntityResource
 {

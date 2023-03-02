@@ -1,32 +1,15 @@
 <?php
 
 return [
-    'appearance'                    => [
-        'helpers'   => [
-            'campaign-order'    => 'Zmienia kolejność wyświetlania kampanii w menu bocznym.',
-            'date-format'       => 'Sposób zapisywania prawdziwej daty.',
-            'pagination'        => 'Zmienia liczbę elementów wyświetlanych na różnych listach.',
-        ],
-    ],
+    'appearance'                    => [],
     'avatar'                        => [
         'success'   => 'Zmieniono awatar.',
     ],
-    'campaign_switcher_order_by'    => [
-        'alphabetical'      => 'Kolejność alfabetyczna',
-        'date_created'      => 'Data stworzenia',
-        'date_joined'       => 'Data dołączenia',
-        'default'           => 'Domyślna',
-        'r_alphabetical'    => 'Odwrócona kolejność alfabetyczna',
-        'r_date_created'    => 'Odwrócona data stworzenia',
-        'r_date_joined'     => 'Odwócona data dołączenia',
-    ],
+    'campaign_switcher_order_by'    => [],
     'edit'                          => [
         'success'   => 'Zmieniono profil',
     ],
-    'editors'                       => [
-        'legacy'        => 'Legacy (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
+    'editors'                       => [],
     'fields'                        => [
         'avatar'                    => 'Awatar',
         'bio'                       => 'Życiorys',
@@ -82,29 +65,13 @@ return [
         ],
     ],
     'settings'                      => [
-        'fields'    => [
-            'advanced_mentions'             => 'Zaawansowane wzmianki',
-            'campaign_switcher_order_by'    => 'Kolejność wyświetlania kampanii',
-            'date_format'                   => 'Format daty',
-            'default_nested'                => 'Domyślny widok hierarchii',
-            'editor'                        => 'Edytor tekstu',
-            'new_entity_workflow'           => 'Tworzenie elementów',
-            'pagination'                    => 'Elementy na stronie',
-        ],
         'helpers'   => [
             'bio'       => 'Życiorys będzie widoczny w twoim :link.',
-            'editor_v2' => 'Jeżeli używasz poprzedniego edytora tekstu (TinyMCE) nie będziesz mieć dostępu do powiadomień na urządzeniach mobilnych oraz niektórych funkcji, na przykład galerii kampanii.',
             'profile'   => 'profilu publicznym',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'Po zaznaczeniu, podczas edycji elementów będą generowane wzmianki w formacie [element:123].',
-            'default_nested'        => 'Zaznacz, jeżeli chcesz by listy elementów wyświetlały się domyślnie w widoku hierarchii (gdy to możliwe).',
-            'new_entity_workflow'   => 'Gdy stworzysz nowy element, domyślnie wyświetli się lista elementów tego typu. Możesz to zmienić i automatycznie przechodzić do widoku właśnie stworzonego elementu.',
         ],
         'success'   => 'Zmieniono ustawienia.',
     ],
     'theme'                         => [
-        'helper'    => 'Motyw kampanii ma pierwszeństwo przed własnymi ustawieniami.',
         'success'   => 'Zmieniono motyw.',
         'themes'    => [
             'dark'      => 'Ciemny',

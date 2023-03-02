@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;

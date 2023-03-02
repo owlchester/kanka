@@ -1,3 +1,3 @@
-@inject('dateRenderer', 'App\Renderers\DateRenderer')
-
-{{ $dateRenderer->render($model->date) }}
+@if (!empty($model->date))
+    {{ \App\Facades\UserDate::format($model->date) }}
+@endif

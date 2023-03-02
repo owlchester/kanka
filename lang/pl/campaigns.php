@@ -82,6 +82,7 @@ TEXT
         'character_personality_visibility'  => 'Wybierz domyślą widoczność cech osobowości nowych postaci, tworzonych przez adminów.',
         'css'                               => 'Twórz własne style CSS do używania w kampanii. Uwaga - nadużywanie tej opcji może poskutkować usunięciem stworzonych stylów. Powtarzające się albo poważne wykroczenia mogą spowodować usunięcie kampanii.',
         'dashboard'                         => 'Dostosuj sposób wyświetlania widżetów na pulpicie kampanii wypełniając poniższe pola',
+        'entity_count_v3'                   => 'Wartość aktualizowana co :amount godzin.',
         'entity_privacy'                    => 'Wybierz domyślą dostępność nowych elementów, tworzonych przez adminów.',
         'excerpt'                           => 'Podsumowanie kampanii będzie wyświetlane na pulpicie, więc poświęć mu kilka zdań. Najlepiej, gdy jest krótkie i dobitne.',
         'header_image'                      => 'Obraz wyświetlany w tle nagłówka pulpitu kampanii',
@@ -89,6 +90,7 @@ TEXT
         'hide_members'                      => 'Zaznacz, by ukryć listę uczestników kampanii przed nieposiadającymi statusu administratora.',
         'locale'                            => 'Język, w którym piszesz kampanię. Służy do tworzenia zawartości oraz filtrowania kampanii publicznych.',
         'name'                              => 'Twoja kampania lub świat mogą się nazywać jakkolwiek, o ile nazwa ma przynamniej 4 litery lub cyfry.',
+        'no_entry'                          => 'Ta kampania nie ma chyba żadnego opisu! Pora to naprawić.',
         'permissions_tab'                   => 'Poniższe opcje pozwalają kontrolować widoczność i dostępność nowych elementów.',
         'public_campaign_filters'           => 'Pomóż innym graczom znaleźć twoją kampanię wśród innych dostępnych publicznie, podając następujące informacje.',
         'public_no_visibility'              => 'Uwaga! Ta kampania jest publiczna, ale nie rola "publiczność" na razie niczego nie widzi. :fix',
@@ -205,8 +207,15 @@ TEXT
         ],
         'your_role'             => 'Twoja rola: <i>:role</i>',
     ],
+    'modules'                           => [
+        'permission-disabled'   => 'Moduł jest wyłączony.',
+    ],
     'open_campaign'                     => [],
     'options'                           => [],
+    'overview'                          => [
+        'entity-count'      => '{0} Brak elementów|{1} :amount element|[2,3,4] :amount elementy|[5,] :amount elementów',
+        'follower-count'    => '{0} Brak śledzących|{1} :amount śledzący|[2,] :amount śledzących',
+    ],
     'panels'                            => [
         'boosted'   => 'Doładowana',
         'dashboard' => 'Pulpit',
@@ -380,6 +389,11 @@ TEXT
             'timelines'     => 'Dzieje świata wedle rozmaitych historii.',
         ],
     ],
+    'sharing'                           => [
+        'filters'   => 'Kampanie publiczne widoczne są na stronie :public-campaigns. Wypełniając poniższe pola pomagasz znaleźć tam twoją kampanię!',
+        'language'  => 'Język, w którym napisano treść kampanii.',
+        'system'    => 'Jeżeli gracie w grę RPG, tu wpisz system którego używacie.',
+    ],
     'show'                              => [
         'actions'   => [
             'boost' => 'Doładuj kampanię',
@@ -439,8 +453,11 @@ TEXT
         'helpers'           => [
             'connections'       => 'Wybierz domyślny sposób wyświetlania powiązań po wejściu na odpowiednią podstronę elementu.',
             'connections_mode'  => 'Określ domyślny sposób wyświetlania relacji elementu z innymi.',
+            'entity-history'    => 'Kontroluje, kto może zobaczyć ostatnie zmiany w konkretnych elementach kampanii.',
+            'member-list'       => 'Kontroluje kto może zobaczyć uczestników kampanii.',
             'other'             => 'Inne opcje wizualne kampanii',
             'post_collapsed'    => 'Wybierz sposób wyświetlania nowych komentarzy do elementów.',
+            'theme'             => 'Wyświetla kampanię używając motywu użytkownika, albo wymusza wyświetlenie w jednym z poniższych motywów.',
             'tooltip'           => 'Wybierz informacje widoczne po najechaniu kursorem na nazwę elementu na liście',
         ],
         'members'           => [
@@ -449,6 +466,7 @@ TEXT
         ],
         'nested'            => [
             'nested'    => 'Widok hierarchii',
+            'user'      => 'Domyśle ustawienie użytkownika',
         ],
         'other'             => 'Inne',
     ],

@@ -35,6 +35,7 @@ Most entities have the following attributes.
 | `image_thumb` | `string` | The url to the thumbnail of the object. |
 | `image_uuid` | `uuid` | The image gallery uuid of the entity (only available for superboosted campaigns) |
 | `is_private` | `boolean` | Determines if the object is only visible by `admin` members of the campaign.<br /> If the user requesting the API isn't a member of the `admin` role, such objects won't be returned. |
+| `is_attributes_private` | `boolean` | Determines if the entity's attributes are only visible to members of the campaign's admin role. |
 | `entity_id` | `integer` | The id identifying the objects against all other entities.
 | `tags` | `array` | An array of tags that the object is related to. |
 | `created_at` | `object` | An object representing when the object was created (server time) |

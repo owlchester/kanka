@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreSettingsProfile;
 use App\Services\PatreonService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PatreonController extends Controller
 {

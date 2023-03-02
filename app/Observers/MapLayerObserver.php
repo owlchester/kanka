@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Observers;
-
 
 use App\Facades\Mentions;
 use App\Models\MapLayer;
@@ -14,6 +12,7 @@ class MapLayerObserver
      * Purify trait
      */
     use PurifiableTrait;
+    use ReorderTrait;
 
     /**
      * @param MapLayer $mapLayer
@@ -68,8 +67,8 @@ class MapLayerObserver
      */
     public function saved(MapLayer $mapLayer)
     {
+        $this->reorder($mapLayer);
         // If we touch, we'll replace the image of the map
         //$mapLayer->map->touch();
     }
-
 }

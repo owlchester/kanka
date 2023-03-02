@@ -42,8 +42,8 @@
         <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
         {{ __('entities/attributes.actions.show_hidden') }}
     </button>
-@endif 
-<div class="alert alert-warning alert-too-many-fields margin-top" style="display:none">
+@endif
+<div class="alert alert-warning alert-too-many-fields mt-6" style="display:none">
     {!! __('entities/attributes.errors.too_many', [
     'max' => number_format(ini_get('max_input_vars'))
 ]) !!}

@@ -8,24 +8,26 @@
     </button>
     <ul class="dropdown-menu dropdown-menu-right" role="menu">
         <li>
-            <button type="submit" name="submit" value="save" class="dropdown-item">
-                {{ __('crud.save') }}
-            </button>
+            <a href="#" class="form-submit-actions flex">
+                <span class="flex-grow">{{ __('crud.save') }}</span>
+            </a>
         </li>
         <li>
-            <button type="submit" name="submit" value="update" class="dropdown-item">
-                {{ __('crud.save_and_update') }}
-            </button>
+            <a href="#" class="form-submit-actions flex" data-action="submit-new">
+                <span class="flex-grow">{{ __('crud.save_and_new') }}</span>
+            </a>
         </li>
         <li>
-            <button type="submit" name="submit" value="new" class="dropdown-item">
-                {{ __('crud.save_and_new') }}
-            </button>
+            <a href="#" class="form-submit-actions flex" data-action="submit-update">
+                <span class="flex-grow">{{ __('crud.save_and_update') }}</span>
+            </a>
         </li>
         <li>
-            <button type="submit" name="submit" value="explore" class="dropdown-item">
-                {{ __('maps/markers.actions.save_and_explore') }}
-            </button>
+            <a href="#" class="form-submit-actions flex" data-action="submit-explore">
+                <span class="flex-grow">
+                    {{ __('maps/markers.actions.save_and_explore') }}
+                </span>
+            </a>
         </li>
     </ul>
     <div class="submit-animation" style="display: none;">

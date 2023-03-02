@@ -2,6 +2,17 @@
 
 return [
     'account'       => [
+        '2fa'               => [
+            'actions'       => [
+                'disable'   => 'Desativar autenticação de dois-fatores',
+            ],
+            'disable'       => [
+                'title' => 'Desativar autenticação de dois-fatores',
+            ],
+            'enabled'       => 'Autenticação de dois-fatores está atualmente ativada em sua conta.',
+            'error_enable'  => 'Código Inválido, tente novamente',
+            'title'         => 'Autenticação de dois-fatores',
+        ],
         'actions'           => [
             'social'            => 'Trocar para o login do Kanka',
             'update_email'      => 'Atualizar e-mail',
@@ -59,28 +70,9 @@ return [
         'netherlands'   => 'Holanda',
         'spain'         => 'Espanha',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Baixar PDF',
-            'view_all'  => 'Ver tudo',
-        ],
-        'empty'     => 'Sem faturas',
-        'fields'    => [
-            'amount'    => 'Quantidade',
-            'date'      => 'Data',
-            'invoice'   => 'Fatura',
-            'status'    => 'Status',
-        ],
-        'header'    => 'Abaixo está alista de suas últimas 24 faturas, que podem ser baixadas',
-        'status'    => [
-            'paid'      => 'Pago',
-            'pending'   => 'Pendente',
-        ],
-        'title'     => 'Faturas',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Opções de layout atualizadas.',
-        'title'     => 'Layout',
+        'title' => 'Layout',
     ],
     'marketplace'   => [],
     'menu'          => [
@@ -88,9 +80,7 @@ return [
         'api'                   => 'API',
         'appearance'            => 'Aparência',
         'apps'                  => 'Aplicativos',
-        'billing'               => 'Formas de Pagamento',
         'boosters'              => 'Impulsionamentos',
-        'invoices'              => 'Faturas',
         'notifications'         => 'Notificações',
         'other'                 => 'Outros',
         'patreon'               => 'Patreon',
@@ -129,7 +119,6 @@ return [
         'billing'               => [
             'helper'    => 'Suas informações de faturamento são processadas e armazenadas com segurança através de :stripe. Este método de pagamento é usado para todas as suas assinaturas.',
             'saved'     => 'Método de pagamento salvo',
-            'title'     => 'Editar método de pagamento',
         ],
         'cancel'                => [
             'options'   => [
@@ -138,6 +127,7 @@ return [
                 'missing_features'  => 'Recursos ausentes',
                 'not_for'           => 'Assinatura não é para mim',
                 'not_using'         => 'Não estou usando o Kanka no momento',
+                'other'             => 'Outro',
             ],
             'text'      => 'Lamentamos ver você ir! O cancelamento de sua assinatura a manterá ativa até o próximo ciclo de faturamento, após o qual você perderá os impulsionamentos à sua campanha e outros benefícios relacionados ao suporte ao Kanka. Sinta-se à vontade para preencher o formulário a seguir para nos informar o que podemos fazer melhor ou o que levou à sua decisão.',
         ],
@@ -180,6 +170,7 @@ return [
             'alternatives_warning'  => 'Não é possível atualizar sua assinatura ao usar este método. Faça uma nova assinatura quando a atual terminar.',
             'alternatives_yearly'   => 'Devido às restrições em torno dos pagamentos recorrentes, :method está disponível apenas para assinaturas anuais',
             'paypal'                => 'Quer usar o Paypal em vez disso? Contate-nos em :email se pretender assinar um plano anual através do Paypal.',
+            'paypal_v2'             => 'Aceitamos PayPal para assinaturas anuais. Entre em contato conosco em :email com o e-mail da sua conta Kanka, o nível que deseja assinar e a moeda (USD ou EUR) na qual deseja ser cobrado.',
             'stripe'                => 'Suas informações de cobrança são processadas e armazenadas com segurança por meio de :stripe.',
         ],
         'manage_subscription'   => 'Gerenciar assinatura',

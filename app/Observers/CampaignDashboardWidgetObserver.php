@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignDashboardWidget;
-use App\Models\Tag;
 
 class CampaignDashboardWidgetObserver
 {

@@ -7,14 +7,10 @@
 ])
 
 @section('content')
+    <h1>
+        {{ __('settings.patreon.title') }}
+    </h1>
     @include('partials.errors')
-    <div class="box box-solid">
-        <div class="box-header">
-            <h4 class="box-title with-border">
-                {{ __('settings.patreon.title') }}
-            </h4>
-        </div>
-    </div>
 
     @if(auth()->user()->isLegacyPatron())
         @includeIf('settings._' . strtolower(auth()->user()->pledge ?: 'kobold'))

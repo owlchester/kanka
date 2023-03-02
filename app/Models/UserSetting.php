@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Models;
-
 
 use App\User;
 use Illuminate\Support\Arr;
@@ -13,7 +11,6 @@ use Stevebauman\Purify\Facades\Purify;
  * Trait UserSetting
  * @package App\Models
  *
- * @property bool $mail_newsletter
  * @property bool $mail_vote
  * @property bool $mail_release
  * @property string $patreon_email
@@ -133,23 +130,6 @@ trait UserSetting
         return Arr::get($this->settings, 'advanced_mentions', false);
     }
 
-
-    /**
-     * @param string|null $value
-     */
-    public function setMailNewsletterAttribute($value)
-    {
-        $this->setSettingsOption('mail_newsletter', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMailNewsletterAttribute()
-    {
-        return Arr::get($this->settings, 'mail_newsletter', false);
-    }
-
     /**
      * @param string|null $value
      */
@@ -197,7 +177,7 @@ trait UserSetting
      * @param array $data
      * @return $this
      */
-    public function saveSettings($data): self
+    public function saveSettings(array $data): self
     {
         $settings = $this->settings;
         // Flatten if provided
@@ -253,5 +233,29 @@ trait UserSetting
     public function alwaysAdvancedMentions(): bool
     {
         return (bool) Arr::get($this->settings, 'advanced_mentions', false);
+    }
+
+    public function currency()
+    {
+        return Arr::get($this->settings, 'currency', 'usd');
+    }
+
+    public function getPaginationAttribute(): int|null
+    {
+        return (int) Arr::get($this->settings, 'pagination');
+    }
+
+    public function getDateformatAttribute(): string|null
+    {
+        return Arr::get($this->settings, 'date_format');
+    }
+
+    /**
+     * Determine if a user is subsribed to the newsletter
+     * @return bool
+     */
+    public function hasNewsletter(): bool
+    {
+        return !empty($this->mail_release);
     }
 }

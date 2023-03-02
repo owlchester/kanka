@@ -90,6 +90,7 @@ TEXT
         'hide_members'                      => 'Activer cette option pour cacher la liste des membres de la campagne aux membres qui ne sont pas dans le groupe admin de celle-ci.',
         'locale'                            => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
         'name'                              => 'Le nom de la campagne doit contenir au minimum 4 caractères.',
+        'no_entry'                          => 'La campagne n\'a pas encore de description! Corrigeons cela.',
         'permissions_tab'                   => 'Controller les visibilités par défaut de nouveaux éléments avec ces options.',
         'public_campaign_filters'           => 'Aides les autres utilisateurs à trouver la campagne parmi les autres campagnes publiques en fournissant les détails suivants.',
         'public_no_visibility'              => 'Attention! La campagne est public, mais le rôle publique de la campagne n\'a pas d\'accès. :fix.',
@@ -211,6 +212,10 @@ TEXT
     ],
     'open_campaign'                     => [],
     'options'                           => [],
+    'overview'                          => [
+        'entity-count'      => '{0} Aucune entité|{1} :amount entité|[2,] :amount entités',
+        'follower-count'    => '{0} Aucun abonné|{1} :amount abonné|[2,] :amount abonnés',
+    ],
     'panels'                            => [
         'boosted'   => 'Boosté',
         'dashboard' => 'Tableau de bord',
@@ -384,6 +389,11 @@ TEXT
             'timelines'     => 'Représenter l\'histoire du monde de manière visuelle avec des chronologies.',
         ],
     ],
+    'sharing'                           => [
+        'filters'   => 'Les campagnes publiques sont visible sur la page de :public-campaigns. Remplir les champs suivants rend la tâche plus facile pour les gens de découvrir la campagne.',
+        'language'  => 'La langue dans laquelle le contenu de la campagne est écrite.',
+        'system'    => 'Si la campagne est liée à un jeu de rôle, le système utilisé par la campagne.',
+    ],
     'show'                              => [
         'actions'   => [
             'boost' => 'Booster la campagne',
@@ -443,8 +453,11 @@ TEXT
         'helpers'           => [
             'connections'       => 'Interface qui s\'affiche par défaut en cliquant sur la page connexions d\'une page.',
             'connections_mode'  => 'Modifier le mode affiché par défaut lorsque l\'outil de visualisation de relation d\'une entité est ouvert.',
+            'entity-history'    => 'Contrôler qui peut voir les changements récents fait aux entités de la campagne.',
+            'member-list'       => 'Contrôler qui peut voir les membres de la campagne.',
             'other'             => 'Autres options visuelles de la campagne.',
             'post_collapsed'    => 'Lors de la création d\'une nouvelle entrée sur une entité, sélection de l\'affichage par défaut.',
+            'theme'             => 'Afficher la campagne dans le thème choisi par l\'utilisateur, ou forcer l\'affichage dans un des thèmes suivants.',
             'tooltip'           => 'Définir quelles options sont visibles lors du survol du nom d\'une entité.',
         ],
         'members'           => [

@@ -25,13 +25,13 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Family extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        Nested,
-        SoftDeletes,
-        SortableTrait,
-        Acl
+    use Acl
     ;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
+    use SortableTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -140,7 +140,6 @@ class Family extends MiscModel
                 })
                 ->where('memb.character_id', null);
         } elseif ($filter === FilterOption::EXCLUDE) {
-
             return $query
                 ->whereRaw('(select count(*) from character_family as memb where memb.family_id = ' .
                     $this->getTable() . '.id and memb.character_id in (' . (int) $value . ')) = 0');
@@ -212,8 +211,7 @@ class Family extends MiscModel
             $familyId[] = $descendant->id;
         };
 
-        return Character
-            ::select('characters.*')
+        return Character::select('characters.*')
             ->distinct('characters.id')
             ->leftJoin('character_family as cf', function ($join) {
                 $join->on('cf.character_id', '=', 'characters.id');
@@ -279,10 +277,7 @@ class Family extends MiscModel
         if (!empty($this->family)) {
             return true;
         }
-        if (!$this->entity->elapsedEvents->isEmpty()) {
-            return true;
-        }
-        return false;
+        return (bool) (!$this->entity->elapsedEvents->isEmpty());
     }
 
     /**

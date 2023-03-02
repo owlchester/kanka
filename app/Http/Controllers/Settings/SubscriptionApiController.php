@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Requests\ValidateCoupon;
@@ -80,11 +79,11 @@ class SubscriptionApiController extends Controller
      *
      * @param Request $request The request data from the user.
      */
-    public function getPaymentMethods( Request $request )
+    public function getPaymentMethods(Request $request)
     {
         $user = $request->user();
 
-        $methods = array();
+        $methods = [];
 
         if ($user->hasPaymentMethod()) {
             foreach ($user->paymentMethods() as $method) {
@@ -106,7 +105,7 @@ class SubscriptionApiController extends Controller
      *
      * @param Request $request The request data from the user.
      */
-    public function removePaymentMethod( Request $request )
+    public function removePaymentMethod(Request $request)
     {
         $user = $request->user();
         $paymentMethodID = $request->get('id');

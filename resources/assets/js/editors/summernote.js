@@ -28,7 +28,7 @@ window.initSummernote = function() {
             ['table', ['table', 'spoiler', 'tableofcontent']],
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
-            ['view', ['fullscreen', 'codeview', 'help']],
+            ['view', ['fullscreen', 'codeview', 'prettify', 'help']],
             (summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null),
         ],
 
@@ -221,7 +221,13 @@ function hintEntities(keyword, callback) {
         type: 'get',
         dataType: 'json',
         async: true
-    }).done(callback);
+    })
+        .done(callback)
+        .fail(function (response) {
+            if (response.status === 503) {
+                window.showToast(response.responseJSON.message, 'toast-error');
+            }
+    });
 }
 
 /**

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Maps;
-
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
@@ -14,6 +12,7 @@ use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapLayer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class MapLayerController extends Controller
 {
@@ -99,21 +98,22 @@ class MapLayerController extends Controller
 
         $model = new MapLayer();
         $data = $request->only('name', 'position', 'entry', 'visibility_id', 'type_id');
-        if ($data['position']) {
+        if (Arr::exists($data, 'position')) {
             $map->layers()->where('position', '>', $data['position'] - 1)->increment('position');
         }
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
-        if ($request->submit === 'update') {
+
+        if ($request->has('submit-update')) {
             return redirect()
-            ->route('maps.map_layers.edit', ['map' => $map, $new])
-            ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
-        } elseif ($request->submit === 'new') {
+                ->route('maps.map_layers.edit', ['map' => $map, $new])
+                ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
+        } elseif ($request->haS('submit-new')) {
             return redirect()
-            ->route('maps.map_layers.create', ['map' => $map])
-            ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
-        } elseif ($request->submit === 'explore') {
+                ->route('maps.map_layers.create', ['map' => $map])
+                ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
+        } elseif ($request->has('submit-explore')) {
             return redirect()
                 ->route('maps.explore', [$map])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $new->name]));
@@ -160,18 +160,18 @@ class MapLayerController extends Controller
 
         $mapLayer->update($request->only('name', 'position', 'entry', 'visibility_id', 'type_id'));
 
-        if ($request->submit === 'update') {
+        if ($request->has('submit-update')) {
             return redirect()
-            ->route('maps.map_layers.edit', ['map' => $map, $mapLayer])
-            ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));
-        } elseif ($request->submit === 'new') {
+                ->route('maps.map_layers.edit', ['map' => $map, $mapLayer])
+                ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
+        } elseif ($request->haS('submit-new')) {
             return redirect()
-            ->route('maps.map_layers.create', ['map' => $map])
-            ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));
-        } elseif ($request->submit === 'explore') {
+                ->route('maps.map_layers.create', ['map' => $map])
+                ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
+        } elseif ($request->has('submit-explore')) {
             return redirect()
                 ->route('maps.explore', [$map])
-                ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));
+                ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
         }
         return redirect()
             ->route('maps.map_layers.index', $map)

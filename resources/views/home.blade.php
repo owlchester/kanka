@@ -47,27 +47,29 @@
                         </li>
                     @endforeach
 
-                    @if($settings)
+                    @can('dashboard', $campaign)
                         <li>
                             <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
                                 <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
                             </a>
                         </li>
-                    @endif
+                    @endcan
                     @can('update', $campaign)
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ route('campaigns.edit', $campaign) }}">
+                            <a href="{{ route('campaigns.edit') }}">
                                 <i class="fa-solid fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
                             </a>
                         </li>
                     @endcan
                 </ul>
             </div>
-        @elseif($settings)
+        @else
+            @can('update', $campaign)
             <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
                 <i class="fa-solid fa-th-large"></i>
             </a>
+            @endcan
         @endif
         @can ('follow', $campaign)
             <button id="campaign-follow" class="btn btn-default btn-xl" data-id="{{ $campaign->id }}"
@@ -130,23 +132,21 @@
         </div>
     </div>
 
-    @if ($settings)
-        <div class="row margin-top">
-            <div class="col-md-12 text-center">
-                <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default" title="{{ __('dashboard.settings.title') }}">
-                    <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
-                </a>
-            </div>
+    @can('update', $campaign)
+        <div class="text-center mt-6">
+            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
+                <i class="fa-solid fa-cog" aria-hidden="true"></i> {{ __('dashboard.settings.title') }}
+            </a>
         </div>
 
         @if($widgets->count() === 0)
-            <div class="alert alert-info margin-top">
+            <div class="alert alert-info mt-6">
                 {!! __('dashboard.setup.tutorial.text', [
     'blog' => link_to('https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/', __('dashboard.setup.tutorial.blog'), ['target' => '_blank'])
 ]) !!}
             </div>
         @endif
-    @endif
+    @endcan
 @endsection
 
 @section('scripts')

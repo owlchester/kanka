@@ -4,7 +4,6 @@ namespace App\Models\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 /**
@@ -71,8 +70,8 @@ trait EntityScopes
         foreach ($tags as $tag) {
             $v = (int) $tag;
             $query
-                ->leftJoin('entity_tags as et' . $v, "et$v.entity_id", $this->getTable() . '.id')
-                ->where("et$v.tag_id", $v)
+                ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", $this->getTable() . '.id')
+                ->where("et{$v}.tag_id", $v)
             ;
         }
 
@@ -162,7 +161,6 @@ trait EntityScopes
                     ->whereHas('tags', function ($query) use ($value) {
                         return $query->whereIn('tags.id', $value);
                     });
-
             } else {
                 $query->where($field, 'LIKE', '%' . $value . '%');
             }
@@ -188,7 +186,8 @@ trait EntityScopes
             return $query;
         }
 
-        if ($types[0] == 'all') {
+        // Use to do [0] but that can be get unset by the exclude
+        if (head($types) == 'all') {
             return $query;
         }
 

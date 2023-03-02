@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\NewsletterStore;
 use App\Jobs\Emails\MailSettingsChangeJob;
-use Illuminate\Http\Request;
 
 class NewsletterApiController extends Controller
 {

@@ -16,12 +16,14 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Stwórz :type',
+            'full'      => 'Przejdź do wersji pełnej',
             'more'      => 'Szczegóły',
         ],
         'back'              => 'Powrót do menu wyboru',
         'bulk_names'        => 'Jedna nazwa na wiersz',
         'duplicate'         => 'Istnieje inny element tego typu o tej samej nazwie.',
         'helper_v2'         => 'Szybko stwórz szkic nowego elementu nie przerywając obecnej pracy.',
+        'missing_v2'        => 'W tym panelu widoczne są tylko włączone moduły, w których masz prawo tworzyć elementy. :learn-more.',
         'modes'             => [
             'bulk'      => 'Stwórz wiele',
             'default'   => 'Stwórz szybko',
@@ -33,6 +35,10 @@ return [
         ],
         'success_multiple'  => '{1} Stworzono nowy element :link.|[2,*] Stworzono nowe elementy :link.',
         'title'             => 'Nowy element',
+        'titles'            => [
+            'everything'    => 'Wszystko',
+            'quick-access'  => 'Szybki dostęp',
+        ],
         'tooltip'           => 'Stwórz nowy element bez opuszczania obecnej strony',
     ],
     'creature'              => 'Istota',

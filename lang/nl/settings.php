@@ -58,36 +58,15 @@ return [
         'netherlands'   => 'Nederland',
         'spain'         => 'Spanje',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Download PDF',
-            'view_all'  => 'Bekijk alle',
-        ],
-        'empty'     => 'Geen facturen',
-        'fields'    => [
-            'amount'    => 'Aantal',
-            'date'      => 'Datum',
-            'invoice'   => 'Factuur',
-            'status'    => 'Status',
-        ],
-        'header'    => 'Hieronder vind je een lijst met je laatste 24 facturen die je kunt downloaden.',
-        'status'    => [
-            'paid'      => 'Betaald',
-            'pending'   => 'In afwachting',
-        ],
-        'title'     => 'Facturen',
-    ],
+    'invoices'      => [],
     'layout'        => [
-        'success'   => 'Lay-out opties bijgewerkt.',
-        'title'     => 'Lay-out',
+        'title' => 'Lay-out',
     ],
     'marketplace'   => [],
     'menu'          => [
         'account'               => 'Account',
         'api'                   => 'API',
         'apps'                  => 'Apps',
-        'billing'               => 'Betalingsmiddel',
-        'invoices'              => 'Facturen',
         'other'                 => 'Andere',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Betalingsmogelijkheden',
@@ -125,7 +104,6 @@ return [
         'billing'               => [
             'helper'    => 'Je factuurgegevens worden veilig verwerkt en opgeslagen via :stripe. Deze betaalmethode wordt gebruikt voor al je abonnementen.',
             'saved'     => 'Opgeslagen betaalmethode',
-            'title'     => 'Betalingsmethode bewerken',
         ],
         'cancel'                => [
             'text'  => 'Spijtig om je te zien gaan! Als je jouw abonnement opzegt, blijft het actief tot je volgende betalingscyclus, waarna je jouw campaign boosts en andere voordelen met betrekking tot het ondersteunen van Kanka kwijtraakt. Vul gerust het volgende formulier in om ons te laten weten wat we beter kunnen doen, of wat tot je beslissing heeft geleid.',

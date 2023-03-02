@@ -16,12 +16,14 @@ return [
     'creator'               => [
         'actions'           => [
             'create'    => 'Criar :type',
+            'full'      => 'Acesse o formulário completo',
             'more'      => 'Adicionar mais detalhes',
         ],
         'back'              => 'Voltar para seleção',
         'bulk_names'        => 'Adicionar um nome por linha',
         'duplicate'         => 'Já existem outras entidades deste tipo com o mesmo nome.',
         'helper_v2'         => 'Crie rapidamente a base de uma nova entidade sem interromper seu fluxo atual.',
+        'missing_v2'        => 'Apenas os módulos habilitados e que você tem permissão para criar estão disponíveis nesta interface. :learn-more.',
         'modes'             => [
             'bulk'      => 'Adicionar em massa',
             'default'   => 'Adicionar rápido',
@@ -33,6 +35,10 @@ return [
         ],
         'success_multiple'  => '{1} Nova entidade :link criada.|[2,*] Novas entidades :link criadas.',
         'title'             => 'Nova entidade',
+        'titles'            => [
+            'everything'    => 'Tudo',
+            'quick-access'  => 'Acesso rápido',
+        ],
         'tooltip'           => 'Crie uma nova entidade sem deixar a página atual',
     ],
     'creature'              => 'Criatura',

@@ -4,13 +4,9 @@ namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderStories;
-use App\Models\Ability;
 use App\Models\Entity;
-use App\Models\EntityAbility;
 use App\Services\Entity\StoryService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class StoryController extends Controller
 {

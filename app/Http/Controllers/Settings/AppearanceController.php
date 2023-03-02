@@ -6,11 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsLayout;
 use App\Services\PaginationService;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class AppearanceController extends Controller
 {
-    protected $service;
+    protected PaginationService $service;
 
     /**
      * Create a new controller instance.
@@ -29,13 +28,18 @@ class AppearanceController extends Controller
     public function index()
     {
         $highlight = request()->get('highlight');
+        $from = request()->get('from');
         $date = Carbon::parse('2023-01-09 12:00:00');
         $created = Carbon::parse(auth()->user()->created_at);
         $textEditorSelect = $created->lessThan($date);
+        $paginationOptions = $this->service->options();
+        $paginationDisabled = $this->service->disabled();
 
-        return view('settings.layout')
-            ->with('pagination', $this->service)
+        return view('settings.appearance')
+            ->with('paginationOptions', $paginationOptions)
+            ->with('paginationDisabled', $paginationDisabled)
             ->with('highlight', $highlight)
+            ->with('from', $from)
             ->with('textEditorSelect', $textEditorSelect);
     }
 
@@ -47,8 +51,13 @@ class AppearanceController extends Controller
     {
         /** @var \App\User $user */
         $user = $request->user();
-        $user->saveSettings($request->only(['editor', 'default_nested', 'advanced_mentions', 'new_entity_workflow', 'campaign_switcher_order_by']))
-            ->update($request->only(['theme', 'default_pagination', 'date_format']));
+        $settingFields = $request->only([
+            'editor', 'default_nested', 'advanced_mentions', 'new_entity_workflow',
+            'campaign_switcher_order_by', 'pagination', 'date_format'
+        ]);
+        $user
+            ->saveSettings($settingFields)
+            ->update($request->only(['theme']));
 
         //refresh user campaigns in cache if order by has changed
         if ($request->has('campaign_switcher_order_by')) {
@@ -56,8 +65,15 @@ class AppearanceController extends Controller
             \App\Facades\UserCache::clearFollows();
         }
 
+        if ($request->filled('from')) {
+            $from = base64_decode($request->get('from'));
+            return redirect()
+                ->to($from)
+                ->with('success', __('settings/appearance.success'));
+        }
+
         return redirect()
             ->route('settings.appearance')
-            ->with('success', __('settings.layout.success'));
+            ->with('success', __('settings/appearance.success'));
     }
 }

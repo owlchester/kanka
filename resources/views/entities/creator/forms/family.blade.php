@@ -8,7 +8,11 @@
                 (isset($model) && $model->family ? $model->family : FormCopy::field('family')->select()),
                 App\Models\Family::class,
                 false,
-                'families.fields.family'
+                'families.fields.family',
+                null,
+                null,
+                null,
+                request()->ajax() ? '#entity-modal' : null,
             ) !!}
         </div>
     </div>

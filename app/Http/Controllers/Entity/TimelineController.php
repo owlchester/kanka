@@ -25,6 +25,8 @@ class TimelineController extends Controller
             abort(404);
         }
 
+        return redirect()->to($entity->url());
+
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
             $this->authorize('view', $entity->child);

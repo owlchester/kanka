@@ -1,33 +1,13 @@
 <?php
 
 return [
-    'appearance'                    => [
-        'helpers'   => [
-            'campaign-order'    => 'Change the order in which campaigns are listed in the campaign switcher.',
-            'date-format'       => 'Control the date format for real date.',
-            'pagination'        => 'Change the number of elements displayed in various lists.',
-        ],
-    ],
-    'avatar'                        => [
+    'avatar'        => [
         'success'   => 'Avatar updated.',
     ],
-    'campaign_switcher_order_by'    => [
-        'alphabetical'      => 'Alphabetically',
-        'date_created'      => 'Date Created',
-        'date_joined'       => 'Date Joined',
-        'default'           => 'Default',
-        'r_alphabetical'    => 'Alphabetically Reversed',
-        'r_date_created'    => 'Date Created Reversed',
-        'r_date_joined'     => 'Date Joined Reversed',
-    ],
-    'edit'                          => [
+    'edit'          => [
         'success'   => 'Profile updated',
     ],
-    'editors'                       => [
-        'legacy'        => 'Legacy (TinyMCE 4)',
-        'summernote'    => 'Summernote',
-    ],
-    'fields'                        => [
+    'fields'        => [
         'avatar'                    => 'Avatar',
         'bio'                       => 'Bio',
         'email'                     => 'Email',
@@ -42,10 +22,10 @@ return [
         'settings'                  => 'Settings',
         'theme'                     => 'Theme',
     ],
-    'helpers'                       => [
+    'helpers'       => [
         'profile-name'  => 'Change the way your name appears on your :profile and the :marketplace. If left blank, your account name will be used instead.',
     ],
-    'newsletter'                    => [
+    'newsletter'    => [
         'helpers'   => [
             'header'    => 'Subscribe to the following email newsletters to be notified of what\'s going on with Kanka.',
         ],
@@ -55,10 +35,10 @@ return [
         'title'     => 'Newsletters',
         'updated'   => 'Newsletter preferences updated.',
     ],
-    'password'                      => [
+    'password'      => [
         'success'   => 'Password updated',
     ],
-    'placeholders'                  => [
+    'placeholders'  => [
         'bio'                       => 'A short bio of yourself displayed on your public profile.',
         'email'                     => 'Your email address',
         'name'                      => 'Your name as displayed',
@@ -66,7 +46,7 @@ return [
         'new_password_confirmation' => 'Confirm your new password',
         'password'                  => 'Provide your current password for any changes',
     ],
-    'sections'                      => [
+    'sections'      => [
         'dangerzone'    => 'Danger Zone',
         'delete'        => [
             'confirm'       => 'Delete my account now',
@@ -81,30 +61,14 @@ return [
             'title' => 'Change your password',
         ],
     ],
-    'settings'                      => [
-        'fields'    => [
-            'advanced_mentions'             => 'Advanced mentions',
-            'campaign_switcher_order_by'    => 'Campaign list sorting order',
-            'date_format'                   => 'Date formatting',
-            'default_nested'                => 'Nested views as default',
-            'editor'                        => 'Text editor',
-            'new_entity_workflow'           => 'New entity workflow',
-            'pagination'                    => 'Pagination',
-        ],
+    'settings'      => [
         'helpers'   => [
             'bio'       => 'The biography is visible on your :link.',
-            'editor_v2' => 'Using the legacy text editor (TinyMCE) will not support mentions on mobile devices, and not have support for some features like the campaign gallery.',
             'profile'   => 'public profile',
-        ],
-        'hints'     => [
-            'advanced_mentions'     => 'If activated, mentions will always render as [entity:123] when editing an entity.',
-            'default_nested'        => 'Activate this option if you wish for the default lists to be Nested by default (when available).',
-            'new_entity_workflow'   => 'When creating a new entity, the default workflow is to go to the list of entities. You can change this to view the newly created entity instead.',
         ],
         'success'   => 'Settings changed.',
     ],
-    'theme'                         => [
-        'helper'    => 'A campaign with a set theme will override your preference.',
+    'theme'         => [
         'success'   => 'Theme changed.',
         'themes'    => [
             'dark'      => 'Dark',
@@ -113,9 +77,9 @@ return [
             'midnight'  => 'Midnight Blue',
         ],
     ],
-    'title'                         => 'Update your profile',
-    'workflows'                     => [
-        'created'   => 'Go to created entity',
-        'default'   => 'List of entities',
+    'title'         => 'Update your profile',
+    'workflows'     => [
+        'created'   => 'View the newly created entity',
+        'default'   => 'View the list of entities',
     ],
 ];

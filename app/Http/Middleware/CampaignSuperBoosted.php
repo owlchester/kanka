@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use App\Facades\CampaignLocalization;
-use App\Models\Campaign;
 use Closure;
 
 class CampaignSuperBoosted

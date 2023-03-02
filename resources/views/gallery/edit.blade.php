@@ -13,22 +13,18 @@ $imageCount = 0;
             @if($image->is_folder)
                 <i class="fa-solid fa-folder fa-4x"></i>
             @else
-                <img src="{{ Img::crop(300, 300)->url($image->path) }}" alt="{{ $image->name }}" />
+                <div class="text-center">
+                    <img src="{{ Img::crop(300, 300)->url($image->path) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
+                </div>
 
                 <hr />
                 <p>
                     {{ trans_choice('campaigns/gallery.fields.image_used_in', $image->inEntitiesCount(), ['count' => $image->inEntitiesCount()]) }}
                 </p>
                 @if($image->inEntitiesCount() > 0)
-                    <div class="row">
+                    <div class="grid grid-cols-2 gap-2">
                         @foreach($image->inEntities() as $entity)
-                            @if($imageCount % 2 === 0)
-                    </div><div class="row">
-                            @endif
-                            <div class="col-xs-6">
                             <a href="{{ $entity->url() }}">{{ $entity->name }}</a>
-                            </div>
-                            @php $imageCount++ @endphp
                         @endforeach
                     </div>
                     <hr class="visible-sm visible-xs"/>

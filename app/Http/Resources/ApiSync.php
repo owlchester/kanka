@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Resources;
-
 
 use App\Services\Api\ApiService;
 use Carbon\Carbon;

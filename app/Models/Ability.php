@@ -29,12 +29,12 @@ use Illuminate\Support\Arr;
  */
 class Ability extends MiscModel
 {
-    use CampaignTrait,
-        ExportableTrait,
-        Nested,
-        SoftDeletes,
-        Acl,
-        SortableTrait
+    use Acl;
+    use CampaignTrait;
+    use ExportableTrait;
+    use Nested;
+    use SoftDeletes;
+    use SortableTrait
     ;
 
     /** @var string[]  */
@@ -236,10 +236,7 @@ class Ability extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if ($this->type || $this->charges) {
-            return true;
-        }
-        return false;
+        return (bool) ($this->type || $this->charges);
     }
 
     /**

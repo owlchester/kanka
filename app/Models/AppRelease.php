@@ -1,12 +1,7 @@
 <?php
 
-
 namespace App\Models;
 
-
-use App\Models\Concerns\HasFilters;
-use App\Models\Concerns\Searchable;
-use App\Models\Concerns\Sortable;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -27,17 +22,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AppRelease extends Model
 {
-    const CATEGORY_RELEASE = 1;
-    const CATEGORY_EVENT = 2;
-    const CATEGORY_VOTE = 3;
-    const CATEGORY_OTHER = 4;
-    const CATEGORY_LIVESTREAM = 5;
+    public const CATEGORY_RELEASE = 1;
+    public const CATEGORY_EVENT = 2;
+    public const CATEGORY_VOTE = 3;
+    public const CATEGORY_OTHER = 4;
+    public const CATEGORY_LIVESTREAM = 5;
 
     public $table = 'releases';
 
-    public $dates = [
-        'published_at',
-        'end_at',
+    public $casts = [
+        'published_at' => 'date',
+        'end_at' => 'date',
     ];
 
     /**
@@ -56,17 +51,13 @@ class AppRelease extends Model
     {
         if ($this->category_id == self::CATEGORY_RELEASE) {
             return __('releases.categories.release');
-        }
-        elseif ($this->category_id == self::CATEGORY_EVENT) {
+        } elseif ($this->category_id == self::CATEGORY_EVENT) {
             return __('releases.categories.event');
-        }
-        elseif ($this->category_id == self::CATEGORY_VOTE) {
+        } elseif ($this->category_id == self::CATEGORY_VOTE) {
             return __('releases.categories.vote');
-        }
-        elseif ($this->category_id == self::CATEGORY_OTHER) {
+        } elseif ($this->category_id == self::CATEGORY_OTHER) {
             return __('releases.categories.other');
-        }
-        elseif ($this->category_id == self::CATEGORY_LIVESTREAM) {
+        } elseif ($this->category_id == self::CATEGORY_LIVESTREAM) {
             return __('releases.categories.livestream');
         }
         return '';
@@ -78,6 +69,11 @@ class AppRelease extends Model
      */
     public function alreadyRead(): bool
     {
+        // Don't show announcements that are older than the account itself
+        $firstVisibility = !empty($this->published_at) ? $this->published_at : $this->created_at;
+        if ($firstVisibility->isBefore(auth()->user()->created_at)) {
+            return true;
+        }
         $lastRelease = auth()->user()->settings()->get('releases_' . $this->category_id);
         return $lastRelease == $this->id;
     }

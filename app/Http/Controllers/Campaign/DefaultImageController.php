@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers\Campaign;
-
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
@@ -56,9 +54,10 @@ class DefaultImageController extends Controller
             ->labelledEntities(false, $campaign->existingDefaultImages());
 
         return view('campaigns.default-images.create', compact(
-            'campaign', 'ajax', 'entities'
+            'campaign',
+            'ajax',
+            'entities'
         ));
-
     }
 
     /**
@@ -102,5 +101,4 @@ class DefaultImageController extends Controller
                 __('campaigns/default-images.destroy.success', ['type' => __('entities.' . $request->post('entity_type'))])
             );
     }
-
 }

@@ -24,8 +24,8 @@ class ProfileResource extends JsonResource
             'avatar_thumb' => $model->getAvatarUrl(),
             'locale' => $model->locale,
             'timezone' => $model->timezone,
-            'date_format' => $model->date_format,
-            'default_pagination' => $model->default_pagination,
+            'date_format' => $model->dateformat,
+            'default_pagination' => $model->pagination,
             'last_campaign_id' => $model->last_campaign_id,
             'is_patreon' => $model->isSubscriber()
         ];

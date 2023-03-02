@@ -2,6 +2,8 @@
 
 namespace App\Services\Bragi;
 
+use App\Exceptions\OpenAiException;
+use Illuminate\Support\Arr;
 use Orhanerday\OpenAi\OpenAi;
 
 class OpenAiService
@@ -89,6 +91,11 @@ class OpenAiService
 
     public function result(): string
     {
+        if (!Arr::has($this->output, 'choices')) {
+            $excep = new OpenAiException();
+            $excep->setContext($this->output);
+            throw $excep;
+        }
         $return = '';
         $texts = explode("\n", $this->output["choices"][0]["text"]);
         foreach ($texts as $text) {

@@ -9,7 +9,11 @@
                 (isset($model) && $model->ability ? $model->ability : FormCopy::field('ability')->select(true, \App\Models\Ability::class)),
                 App\Models\Ability::class,
                 false,
-                'abilities.fields.ability'
+                'abilities.fields.ability',
+                null,
+                null,
+                null,
+                request()->ajax() ? '#entity-modal' : null,
             ) !!}
         </div>
     </div>

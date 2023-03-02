@@ -3,8 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\EntityAlias;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
 class EntityAliasResource extends EntityChild
 {

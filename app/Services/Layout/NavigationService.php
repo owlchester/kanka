@@ -10,17 +10,12 @@ use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Models\Pledge;
 use App\Notifications\Header;
+use App\Traits\UserAware;
 use App\User;
 
 class NavigationService
 {
-    protected User $user;
-
-    public function user(User $user): self
-    {
-        $this->user = $user;
-        return $this;
-    }
+    use UserAware;
 
     public function data(): array
     {
@@ -60,7 +55,7 @@ class NavigationService
             $data['subscription'] = [
                 'tier' => $this->user->pledge,
                 'created' => __('users/profile.fields.subscriber_since', ['date' => $this->user->subscription('kanka')->created_at->format('M d, Y')]),
-                'image' => 'https://kanka-app-assets.s3.amazonaws.com/images/tiers/' . strtolower($this->user->pledge) . '-325.png',
+                'image' => 'https://kanka-app-assets.s3.amazonaws.com/images/tiers/' . mb_strtolower($this->user->pledge) . '-325.png',
                 'boosters' => __('settings/boosters.available', [
                     'amount' => $this->user->availableBoosts(),
                     'total' => $this->user->maxBoosts()
@@ -75,6 +70,7 @@ class NavigationService
                     'amount' => $this->user->availableBoosts(),
                     'total' => $this->user->maxBoosts()
                 ]),
+                'call_to_action_2' => __('header.user.upgrade')
             ];
         }
         $data['subscription']['title'] = __('settings.menu.subscription');
@@ -157,7 +153,7 @@ class NavigationService
             'none' => __('header.notifications.no-unread')
         ];
 
-                $data['messages'] = $this->notifications();
+        $data['messages'] = $this->notifications();
         return $data;
     }
 
@@ -167,7 +163,7 @@ class NavigationService
         /** @var Header $not */
         foreach ($this->user->notifications()->unread()->take(5)->get() as $not) {
             $url = '';
-            if(\Illuminate\Support\Arr::has($not->data['params'], 'link')) {
+            if (\Illuminate\Support\Arr::has($not->data['params'], 'link')) {
                 $url = $not->data['params']['link'];
                 if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
                     $url = url(app()->getLocale() . '/' . $url);
@@ -240,16 +236,17 @@ class NavigationService
         $unreadReleases = [];
         /** @var AppRelease $release */
         foreach ($releases as $release) {
-            if (!$release->alreadyRead()) {
-                $unreadReleases[] = [
-                    'id' => $release->id,
-                    'url' => $release->link,
-                    'title' => $release->name,
-                    'text' => $release->excerpt,
-                    'dismiss' => route('settings.release', $release->id),
-                    'dismiss_text' => __('header.notifications.dismiss'),
-                ];
+            if ($release->alreadyRead()) {
+                continue;
             }
+            $unreadReleases[] = [
+                'id' => $release->id,
+                'url' => $release->link,
+                'title' => $release->name,
+                'text' => $release->excerpt,
+                'dismiss' => route('settings.release', $release->id),
+                'dismiss_text' => __('header.notifications.dismiss'),
+            ];
         }
         return $unreadReleases;
     }

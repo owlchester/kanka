@@ -15,7 +15,6 @@ return [
     'fields'            => [
         'icon'      => 'Ikona',
         'name'      => 'Nazwa',
-        'parent'    => 'Element źródłowy',
         'position'  => 'Kolejność',
         'url'       => 'URL',
     ],

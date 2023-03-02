@@ -13,7 +13,7 @@ $clipboardFilters = $filterService->clipboardFilters();
 @endphp
 
 <div class="box no-border datagrid-filters">
-    <div class="box-header" data-toggle="collapse" data-target="#datagrid-filters">
+    <div class="box-header cursor-pointer" data-toggle="collapse" data-target="#datagrid-filters">
 
         <i class="fa-solid fa-chevron-down pull-right"></i>
         <i class="fa-solid fa-filter"></i> {{ __('crud.filters.title') }}
@@ -102,7 +102,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                     </a>
                     @else
                         <div class="visible-lg-inline-block visible-md-inline-block visible-sm-inline-block mr-2" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
-                        <a href="#" class="btn btn-default" style="pointer-events: none;" disabled >
+                        <a href="#" class="btn btn-default cursor-none" disabled >
                             <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
                         </a>
                         </div>
@@ -147,7 +147,7 @@ $clipboardFilters = $filterService->clipboardFilters();
             </span>
             @endif
 
-            <br class="clear" />
+            <br class="clear-both" />
         </div>
     </div>
     {!! Form::close() !!}

@@ -1,37 +1,40 @@
+/**
+ * Layout tweaks for timelines
+ */
 :root {
-  --timeline-item-background: #fff;
-  --timeline-element-border: #ddd;
-  --timeline-item-header-border: #f4f4f4;
+    --timeline-item-background: #fff;
+    --timeline-element-border: #ddd;
+    --timeline-item-header-border: #f4f4f4;
 }
 
 .timeline > li > .ra, .timeline > li > .fab, .timeline > li > .far, .timeline > li > .fas, .timeline > li > .fa-solid, .timeline > li > .fa-brands, .timeline > li > .fa-light, .timeline > li > .fa-thin, .timeline > li > .fa-duotone {
-  width: 30px;
-  height: 30px;
-  font-size: 15px;
-  line-height: 30px;
-  position: absolute;
-  color: #666;
-  background: var(--timeline-element-border);
-  border-radius: 50%;
-  text-align: center;
-  left: 18px;
-  top: 0;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+    position: absolute;
+    color: #666;
+    background: var(--timeline-element-border);
+    border-radius: 50%;
+    text-align: center;
+    left: 18px;
+    top: 0;
 }
 
 
 
 .timeline > li > .timeline-item {
-  background: var(--timeline-item-background);
-  color: var(--body-text);
-  .timeline-header {
-    border-bottom-color: var(--timeline-item-header-border);
-  }
+    background: var(--timeline-item-background);
+    color: var(--body-text);
+    .timeline-header {
+        border-bottom-color: var(--timeline-item-header-border);
+    }
 }
 .timeline > li > .timeline-item > .timeline-header {
-  color: var(--header-text);
+    color: var(--header-text);
 }
 .timeline:before {
-  background: var(--timeline-element-border);
+    background: var(--timeline-element-border);
 }
 
 /*
@@ -40,14 +43,13 @@
  */
 .timeline {
     position: relative;
-    margin: 0 0 30px 0;
+    margin: 0 0 0 0;
     padding: 0;
     list-style: none;
 
     > li {
         position: relative;
         margin-right: 10px;
-        padding-bottom: 15px;
 
         &:before {
             content: '';

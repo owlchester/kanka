@@ -244,6 +244,10 @@ return [
         'learn_more'    => 'Learn more about this feature in our :documentation.',
         'linking'       => 'Linking to other entities',
         'nested_parent' => 'Displaying the children of :parent.',
+        'pagination'    => [
+            'settings'  => 'appearance settings',
+            'text'      => 'More results per page can be shown by changing your :settings.',
+        ],
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [
@@ -374,10 +378,10 @@ return [
     ],
     'view'                      => 'View',
     'visibilities'              => [
-        'admin'         => 'Admin',
-        'admin-self'    => 'Self & Admin',
+        'admin'         => 'Admins',
+        'admin-self'    => 'Only me & Admins',
         'all'           => 'All',
-        'members'       => 'Members',
-        'self'          => 'Self',
+        'members'       => 'Members of the campaign',
+        'self'          => 'Only me',
     ],
 ];

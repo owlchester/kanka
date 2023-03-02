@@ -4,6 +4,9 @@ return [
     'about'                 => [
         'title' => 'O Kanke',
     ],
+    'actions'               => [
+        'back-to-top'   => 'Návrat nahor',
+    ],
     'campaigns'             => [
         'description_full'  => 'Mnoho kampaní je v Kanke viditeľných pre verejnosť. Táto stránka obsahuje zoznam verejných kampaní ako aj niektorých komunitou zvýraznených kampaní.',
         'featured'          => [
@@ -14,6 +17,7 @@ return [
             'filters'   => [
                 'all'       => 'Stav otvorenia',
                 'closed'    => 'Uzavreté kampane',
+                'featured'  => 'Rýchli výhercovia',
                 'open'      => 'Otvorené kampane',
             ],
         ],
@@ -146,6 +150,7 @@ return [
             '2fa'               => 'Prístup na dvojstupňové overenie identity',
             'api_calls'         => 'Vyšší počet API volaní (90)',
             'boosts'            => 'Boosty pre kampane',
+            'bragi'             => 'Prístup ku Bragi, UI na tvorbu svetov v Kanke',
             'click-me'          => 'Zisti viac o tejto funkcionalite',
             'curation'          => 'Navrhuj komunitné hlasovania',
             'default_image'     => 'Pekné prednastavené obrázky pre objekty',
@@ -229,10 +234,11 @@ return [
         ],
     ],
     'master'                => [
-        'call_to_action'    => 'Registrácia',
-        'description'       => 'Kanka je jednoduchý, intuitívny a flexibilný nástroj pre ľudí, ktorí tvoria svety, píšu knihy, rozprávajú príbehy a hrajú hry na hrdinov (RPG), v ktorom môžu digitálne spravovať svoje svety a kampane. Tvor a organizuj postavy, miesta, organizácie, udalosti a oveľa viac zadarmo.',
-        'heading'           => 'Manažment RPG kampaní a tvorba svetov čo najjednoduchšie',
-        'title'             => 'Kanka',
+        'call_to_action'        => 'Registrácia',
+        'description'           => 'Kanka je jednoduchý, intuitívny a flexibilný nástroj pre ľudí, ktorí tvoria svety, píšu knihy, rozprávajú príbehy a hrajú hry na hrdinov (RPG), v ktorom môžu digitálne spravovať svoje svety a kampane. Tvor a organizuj postavy, miesta, organizácie, udalosti a oveľa viac zadarmo.',
+        'description_q1_2023'   => ':kanka je nástroj na zdieľanú tvorbu svetov, ktorý perfektne podporuje tvoje kreatívne myslenie. Vytvor si vlastný svet pomocou objektov ako vo wiki, komplexných kalendárov a prekrásnych máp. Čo len potrebuješ, :kanka je tu, aby ti pomohla vytvoriť a spravovať tvoju vlastnú RPG kampaň.',
+        'heading'               => 'Manažment RPG kampaní a tvorba svetov čo najjednoduchšie',
+        'title'                 => 'Kanka',
     ],
     'media'                 => [],
     'menu'                  => [
@@ -280,7 +286,12 @@ return [
             'unlimited'     => 'Neobmedzený počet kampaní a nahrávaných súborov',
             'updates'       => 'Časté aktualizácie a zlepšenia',
         ],
-        'description'   => 'Napriek tomu, že hlavné funkcie sú zadarmo, podpora Kanky nám pomáha prinášať častejšie aktualizácie a zlepšenia pre všetkých používateľov.',
+        'billed_yearly' => ':amount faktúrované ročne',
+        'lead'          => [
+            'obvious'   => 'jasná voľba',
+            'text'      => 'Je to :obvious pre zdieľanú tvorbu svetov a manažment kampaní stolových RPG hier, za prijateľnú cenu.',
+        ],
+        'refund'        => 'So 14-dennou možnosťou vrátenia peňazí pri ročnom predplatnom.',
         'tier'          => [
             'free'  => 'Zadarmo',
             'month' => 'Mesačne',

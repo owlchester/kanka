@@ -22,9 +22,10 @@ class CampaignStyleApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return Resource::collection($campaign
-            ->styles()
-            ->paginate()
+        return Resource::collection(
+            $campaign
+                ->styles()
+                ->paginate()
         );
     }
 

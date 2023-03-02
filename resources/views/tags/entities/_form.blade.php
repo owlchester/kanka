@@ -11,7 +11,8 @@
                 'crud.fields.entity',
                 'search.tag-children',
                 'entities/relations.placeholders.target',
-                $model
+                $model,
+                request()->ajax() ? '#entity-modal' : null
             ) !!}
         </div>
     </div>

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Jobs\Emails;
-
 
 use App\Mail\Subscription\Admin\NewSubscriptionMail;
 use App\User;
@@ -15,7 +13,10 @@ use Illuminate\Support\Facades\Mail;
 
 class SubscriptionCreatedEmailJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /** @var int user id */
     public $userId;

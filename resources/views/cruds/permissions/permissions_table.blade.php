@@ -137,18 +137,25 @@ $permissionService->campaign($campaignService->campaign());
         @foreach ($permissionService->users() as $member)
             <div class="row mb-5">
                 <div class="col-sm-4">
-                    <div class="entity-image pull-left" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
-                    </div>
-                    <div class="user-name">{{ $member->user->name }}</div>
+                    <div class="flex items-center gap-2">
+                        <div class="flex-none">
+                            <div class="entity-image" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
+                            </div>
+                        </div>
+                        <div class="flex-grow truncate">
+                            {{ $member->user->name }}
+                        </div>
                     @if (isset($entity))
                         @can('switch', $member)
-                            <br class="visible-xs visible-sm m-3" />
-                            <a class="btn btn-default btn-sm" href="{{ route('identity.switch-entity', [$member, $entity]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
-                                <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
-                                {{ __('campaigns.members.actions.switch-entity') }}
-                            </a>
+                            <div class="flex-none">
+                                <a class="btn btn-default btn-sm" href="{{ route('identity.switch-entity', [$member, $entity]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
+                                    <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
+                                    {{ __('campaigns.members.actions.switch-entity') }}
+                                </a>
+                            </div>
                         @endcan
                     @endif
+                    </div>
                 </div>
                 <div class="col-sm-2 text-center">
                     <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</span>

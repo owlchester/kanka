@@ -92,8 +92,8 @@ class StyleController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-            ->route('campaign_styles.edit', [$style])
-            ->with('success', __('campaigns/styles.create.success', ['name' => $style->name]));
+                ->route('campaign_styles.edit', [$style])
+                ->with('success', __('campaigns/styles.create.success', ['name' => $style->name]));
         }
         return redirect()
             ->route('campaign_styles.index')
@@ -119,8 +119,8 @@ class StyleController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-            ->route('campaign_styles.edit', [$campaignStyle])
-            ->with('success', __('campaigns/styles.update.success', ['name' => $campaignStyle->name]));
+                ->route('campaign_styles.edit', [$campaignStyle])
+                ->with('success', __('campaigns/styles.update.success', ['name' => $campaignStyle->name]));
         }
         return redirect()
             ->route('campaign_styles.index')
@@ -230,6 +230,6 @@ class StyleController extends Controller
         return redirect()
             ->route('campaign_styles.index')
             ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]))
-            ;
+        ;
     }
 }

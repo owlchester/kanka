@@ -67,6 +67,7 @@ return [
     'panels'        => [
         'groups'    => 'Groups',
         'layers'    => 'Layers',
+        'legend'    => 'Legend',
         'markers'   => 'Markers',
         'settings'  => 'Settings',
     ],

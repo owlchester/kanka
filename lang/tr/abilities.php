@@ -14,9 +14,7 @@ return [
         'ability'   => 'Ana Yetenek',
         'charges'   => 'Yük Sayısı',
     ],
-    'helpers'       => [
-        'descendants'   => 'Bu liste bu yetenekten gelen tüm yetenekleri içerir, yalnızca doğrudan altında olanları değil.',
-    ],
+    'helpers'       => [],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Yük miktarı. {Level}*{CHA} aracılığı ile özelliklere gönderme yapabilirsiniz.',

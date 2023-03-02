@@ -1,3 +1,7 @@
+/**
+ * Layout rendering for reorderable elements (posts, timeline elements)
+ * 95% can be migrated to tw
+ */
 .element-live-reorder {
     .element {
         display: flex;
@@ -10,10 +14,6 @@
         align-items: center;
         justify-content: center;
 
-        .dragger {
-            padding-right: 10px;
-            //align-self: flex-start;
-        }
         .rounded-icon {
             i {
                 border-radius: 50%;
@@ -27,25 +27,12 @@
         }
 
         .name {
-            overflow: hidden;
-            flex-grow: 1;
-            //align-self: flex-start;
-
             i {
                 min-width: 20px;
             }
             i.ra {
                 display: var(--fa-display,inline-block);
             }
-        }
-
-        .state {
-            padding: 0 10px;
-            align-self: flex-end;
-        }
-
-        .icons {
-            align-self: flex-end;
         }
 
         select {
@@ -55,7 +42,6 @@
 
         .children {
             flex: 0 0 100%;
-            margin-top: 15px;
         }
     }
 }

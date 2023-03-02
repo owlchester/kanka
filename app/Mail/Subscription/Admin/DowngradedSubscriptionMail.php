@@ -6,11 +6,11 @@ use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class DowngradedSubscriptionMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var User
@@ -39,8 +39,9 @@ class DowngradedSubscriptionMail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Admin'])
+            ->from(['address' => config('app.email'), 'name' => 'Kanka Admin'])
             ->subject('Subscription: Downgraded ' . $this->user->pledge)
+            ->tag('admin-downgrade')
             ->view('emails.subscriptions.changed.html');
     }
 }

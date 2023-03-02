@@ -1,13 +1,23 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group required">
-            {!! Form::select2('entity_id', !empty($model) && $model->entity ? $model->entity : null, App\Models\Entity::class, false, 'crud.fields.entity', 'search.entities-with-relations') !!}
+            {!! Form::select2(
+                'entity_id',
+                !empty($model) && $model->entity ? $model->entity : null,
+                App\Models\Entity::class,
+                false,
+                'crud.fields.entity',
+                'search.entities-with-relations',
+                null,
+                null,
+                request()->ajax() ? '#entity-modal' : null,
+            ) !!}
         </div>
     </div>
 </div>
 <div class="form-group">
     <label>{{ __('crud.fields.entry') }}</label>
-    {!! Form::textarea('entry', FormCopy::field('entry')->string(), ['class' => 'form-control', 'rows' => 5]) !!}
+    {!! Form::textarea('entry', FormCopy::field('entry')->string(), ['class' => 'form-control  resize-y', 'rows' => 5]) !!}
 </div>
 @include('cruds.fields.visibility_id')
 <div class="form-group">

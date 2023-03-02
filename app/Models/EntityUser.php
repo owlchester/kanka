@@ -31,7 +31,7 @@ class EntityUser extends Pivot
 {
     use MassPrunable;
 
-    const TYPE_KEEPALIVE = 1;
+    public const TYPE_KEEPALIVE = 1;
 
     public function user()
     {

@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'           => [
+        'customise' => 'Personnaliser la navigation',
+    ],
     'create'            => [
         'title' => 'Nouveau Lien de menu',
     ],
@@ -49,4 +52,7 @@ return [
         'title'     => 'Réorganiser les liens de menu',
     ],
     'show'              => [],
+    'visibilities'      => [
+        'is_active' => 'Afficher le liens dans la navigation',
+    ],
 ];

@@ -53,11 +53,13 @@ return [
         'success'   => 'Udalosť ":event" pridaná do kalendára.',
     ],
     'events'        => [
+        'end'       => '(koniec)',
         'filters'   => [
             'show_after'    => 'Zobraziť od dnes ďalej',
             'show_all'      => 'Zobraziť všetky',
             'show_before'   => 'Zobraziť do dnes',
         ],
+        'start'     => '(začiatok)',
         'title'     => 'Udalosti kalendára :name',
     ],
     'fields'        => [
@@ -89,6 +91,7 @@ return [
         'recurring_until'       => 'Opakujúce sa do roku',
         'reset'                 => 'Týždenný reset',
         'seasons'               => 'Ročné obdobia',
+        'skip_year_zero'        => 'Preskočiť Rok Nula',
         'start_offset'          => 'Posun prvého dňa',
         'suffix'                => 'Prípona',
         'week_names'            => 'Názvy týždňov',
@@ -112,6 +115,7 @@ return [
         'parent_calendar'   => 'Ak kalendáru priradíš nadradený kalendár, priradíš mu aj pripomienky a efekty počasia z tohto nadradeného kalendáru.',
         'reset'             => 'Začiatok mesiaca alebo roku začína stále na prvom dni týždňa.',
         'seasons'           => 'Vytvor v tvojom kalendári ročné obdobia tým, že označíš, kedy sa začínajú. O ostatné sa už postará Kanka.',
+        'skip_year_zero'    => 'Štandardne je prvý rok kalendára nultým rokom. Aktivovaním tohto nastavenia tento preskočíš.',
         'weekdays'          => 'Nastav názvy tvojich dní v týždni. Podmienkou je pridanie min. 2 dní v týždni.',
         'weeks'             => 'Definuj názvy pre najdôležitejšie týždne v tvojom kalendári.',
         'years'             => 'Niektoré roky sú tak dôležité, že dostali vlastné pomenovanie.',

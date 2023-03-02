@@ -2,15 +2,19 @@
 
 namespace App\Providers;
 
+use App\Support\HtmlPurifier\CalcStyleDefinition;
 use HTMLPurifier_HTMLDefinition;
 use HTMLPurifier_AttrDef_Enum;
+use HTMLPurifier_AttrDef_CSS_Composite;
+use HTMLPurifier_AttrDef_CSS_Length;
+use HTMLPurifier_AttrDef_CSS_Percentage;
 use Stevebauman\Purify\Facades\Purify;
 use Illuminate\Support\ServiceProvider;
 
 class PurifySetupProvider extends ServiceProvider
 {
-    const DEFINITION_ID = 'kanka';
-    const DEFINITION_REV = 1;
+    public const DEFINITION_ID = 'kanka';
+    public const DEFINITION_REV = 1;
 
     /**
      * Bootstrap the application services.
@@ -42,6 +46,19 @@ class PurifySetupProvider extends ServiceProvider
                 'break-word'
             ]
         );
+        $trusted_wh = new HTMLPurifier_AttrDef_CSS_Composite(
+            [
+                new HTMLPurifier_AttrDef_CSS_Length('0'),
+                new HTMLPurifier_AttrDef_CSS_Percentage(true),
+                new HTMLPurifier_AttrDef_Enum(['auto', 'initial', 'inherit']),
+                new CalcStyleDefinition(),
+            ]
+        );
+
+        $css->info['width'] =
+        $css->info['height'] =
+            $trusted_wh;
+
         //dd($css);
 
         $purifier->config = $config;
@@ -54,7 +71,6 @@ class PurifySetupProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**
@@ -82,9 +98,9 @@ class PurifySetupProvider extends ServiceProvider
             'Block',
             'Flow',
             'Common',
-            array(
+            [
                 'open' => new \HTMLPurifier_AttrDef_HTML_Bool(true)
-            )
+            ]
         );
         $def->addElement('summary', 'Inline', 'Inline', 'Common');
     }

@@ -28,6 +28,8 @@ class StoreNote extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
+            'entry' => 'nullable|string',
+            'type' => 'nullable|string|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',

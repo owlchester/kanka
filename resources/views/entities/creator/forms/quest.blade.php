@@ -10,7 +10,9 @@
                 false,
                 'quests.fields.quest',
                 null,
-                'quests.placeholders.quest'
+                'quests.placeholders.quest',
+                null,
+                request()->ajax() ? '#entity-modal' : null,
             ) !!}
         </div>
     </div>

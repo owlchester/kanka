@@ -56,7 +56,8 @@ return [
     ],
     'organisations' => [
         'actions'       => [
-            'add'   => 'Aggiungi organizzazione',
+            'add'       => 'Aggiungi organizzazione',
+            'submit'    => 'Aggiungi organizzazione',
         ],
         'create'        => [
             'success'   => 'Personaggio aggiunto all\'organizzazione.',

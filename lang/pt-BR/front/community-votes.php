@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'return'    => 'Voltar para todos Votos da Comunidade',
         'show'      => 'Mostrar resultado das votações',
+        'subscribe' => 'Inscreva-se para votar no Kanka',
         'vote'      => 'Votar',
     ],
     'description'   => 'Os usuários que apoiam o Kanka ajudam a moldar a evolução do aplicativo participando de votações frequentes da comunidade.',

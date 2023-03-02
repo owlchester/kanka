@@ -8,7 +8,11 @@
             null,
             App\Models\Map::class,
             false,
-            'maps.fields.map'
+            'maps.fields.map',
+            null,
+            null,
+            null,
+            request()->ajax() ? '#entity-modal' : null,
         ) !!}
     </div>
 </div>

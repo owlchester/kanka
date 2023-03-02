@@ -8,6 +8,10 @@ return [
         ],
         'learn-more'    => 'O que são impulsionamentos?',
         'limitation'    => 'Para acessar esse recurso, a campanha precisa ser impulsionada.',
+        'limitations'   => [
+            'boosted'       => 'Para acessar esse recurso, a campanha precisa ser impulsionada.',
+            'superboosted'  => 'Para acessar esse recurso, a campanha precisa ser super-impulsionada.',
+        ],
         'multiple'      => 'Para acessar esses recursos, a campanha precisa ser impulsionada.',
         'pitches'       => [
             'element-class' => 'Dê a este elemento uma classe CSS personalizada com uma :boosted-campaign.',

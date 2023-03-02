@@ -31,7 +31,10 @@ use Illuminate\Support\Str;
  */
 class Attribute extends Model
 {
-    use OrderableTrait, Paginatable, Starred, Privatable;
+    use OrderableTrait;
+    use Paginatable;
+    use Privatable;
+    use Starred;
 
     public const TYPE_CHECKBOX = 'checkbox';
     public const TYPE_SECTION = 'section';
@@ -123,7 +126,7 @@ class Attribute extends Model
             return $this->mappedName;
         }
 
-        return (string) $this->mappedName = Attributes::map($this, 'name');
+        return (string) $this->mappedName = Attributes::map($this);
     }
 
     /**
@@ -220,7 +223,7 @@ class Attribute extends Model
         $name = preg_replace('`\[icon:(.*?)\]`si', '<i class="$1"></i>', $this->name);
         $name = preg_replace($this->listRegexp, '', $name);
 
-        return (string) $name;
+        return Mentions::mapAttribute($this, $name);
     }
 
     /**
@@ -355,10 +358,10 @@ class Attribute extends Model
 
         preg_match($this->listRegexp, $this->mappedName(), $constraints);
         if (count($constraints) !== 2) {
-            //dd('Missing constraints');
             return $this;
         }
         $this->listRange = explode(',', $constraints[1]);
+
         //dump($constraints);
         //dd($this->listRange);
 
@@ -370,9 +373,15 @@ class Attribute extends Model
      */
     public function listRange(): array
     {
+        if (! is_array($this->listRange)) {
+            return [];
+        }
         return $this->listRange;
     }
 
+    /**
+     * @return string
+     */
     public function listRangeText(): string
     {
         return implode(', ', $this->listRange);

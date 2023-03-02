@@ -6,11 +6,11 @@ use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class WelcomeEmail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var User
@@ -35,8 +35,9 @@ class WelcomeEmail extends Mailable
     public function build()
     {
         return $this
-            ->from(['address' => 'no-reply@kanka.io', 'name' => 'Kanka.io'])
+            ->from(['address' => config('app.email'), 'name' => 'Kanka.io'])
             ->subject(__('emails/welcome.title'))
+            ->tag('welcome')
             ->view('emails.welcome.html')
             ->text('emails.welcome.text');
     }

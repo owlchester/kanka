@@ -2,6 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\Emails\SubscriptionCancelEmailJob;
+use App\Jobs\Emails\SubscriptionFailedEmailJob;
+use App\Jobs\Emails\Subscriptions\ExpiringCardAlert;
+use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
+use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use Illuminate\Console\Command;
 
@@ -12,14 +17,14 @@ class TestEmail extends Command
      *
      * @var string
      */
-    protected $signature = 'test:email {user}';
+    protected $signature = 'test:email {user} {template=welcome}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Send a test email to a user';
 
     /**
      * Execute the console command.
@@ -31,7 +36,26 @@ class TestEmail extends Command
         $userId = $this->argument('user');
         $user = \App\User::findOrFail($userId);
 
-        WelcomeEmailJob::dispatch($user, 'en');
+        $template = $this->argument('template');
+        if ($template === 'welcome') {
+            WelcomeEmailJob::dispatch($user, 'en');
+        } elseif ($template === 'cancelled') {
+            SubscriptionCancelEmailJob::dispatch($user, null, 'custom text');
+        } elseif ($template === 'elemental') {
+            WelcomeSubscriptionEmailJob::dispatch($user, 'elemental');
+        } elseif ($template === 'wyvern') {
+            WelcomeSubscriptionEmailJob::dispatch($user, 'wyvern');
+        } elseif ($template === 'owlbear') {
+            WelcomeSubscriptionEmailJob::dispatch($user, 'owlbear');
+        } elseif ($template === 'expiring') {
+            ExpiringCardAlert::dispatch($user);
+        } elseif ($template === 'failed') {
+            SubscriptionFailedEmailJob::dispatch($user);
+        } elseif ($template === 'upcoming') {
+            UpcomingYearlyAlert::dispatch($user);
+        } else {
+            $this->warn('Unknown template ' . $template);
+        }
         return 0;
     }
 }

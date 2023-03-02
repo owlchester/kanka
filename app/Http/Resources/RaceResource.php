@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\Race;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class RaceResource extends EntityResource
 {

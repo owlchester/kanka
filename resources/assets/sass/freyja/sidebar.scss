@@ -122,7 +122,6 @@
                 width: 70%;
                 cursor: pointer;
                 text-align: center;
-                color: var(--quick-creator-button-text);
                 mix-blend-mode: normal;
                 background-color: var(--quick-creator-button-background);
                 text-transform: uppercase;
@@ -130,6 +129,9 @@
 
                 i {
                     font-size: 1rem;
+                }
+                i, span {
+                    color: var(--quick-creator-button-text);
                 }
 
                 &:hover {

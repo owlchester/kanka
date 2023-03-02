@@ -40,7 +40,9 @@ use Illuminate\Support\Str;
  */
 class MenuLink extends MiscModel
 {
-    use Taggable, CampaignTrait, Privatable;
+    use CampaignTrait;
+    use Privatable;
+    use Taggable;
 
     /**
      * @var string
@@ -249,7 +251,7 @@ class MenuLink extends MiscModel
         $filters = $this->filters . '&_clean=true&_from=quicklink&quick-link=' . $this->id;
         $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] == '1' ? 'tree' : 'index');
 
-        $routeName = Str::plural($this->type) . ".$nestedType";
+        $routeName = Str::plural($this->type) . ".{$nestedType}";
         if ($nestedType === 'tree' && !Route::has($routeName)) {
             $routeName = Str::plural($this->type) . '.index';
         }
@@ -342,8 +344,7 @@ class MenuLink extends MiscModel
         }
 
         /** @var Entity|null $entity */
-        $entity = Entity::
-            inTags($this->tags->pluck('id')->toArray())
+        $entity = Entity::inTags($this->tags->pluck('id')->toArray())
             ->type($entityTypeID)
             ->inRandomOrder()
             ->first();

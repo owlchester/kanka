@@ -132,6 +132,9 @@ class EntityResource extends JsonResource
     {
         /** @var MiscModel|Item $misc */
         $misc = $this->resource;
+        if (!$misc->entity) {
+            return 'permission issue';
+        }
 
         $galleryImage = $misc->entity->image;
         $campaign = CampaignLocalization::getCampaign();
@@ -166,6 +169,8 @@ class EntityResource extends JsonResource
 
             'is_private' => (bool) $misc->is_private,
             'is_template' => (bool) $misc->entity->is_template,
+
+            'is_attributes_private' => (bool) $misc->entity->is_attributes_private,
 
             'entity_id' => $misc->entity->id,
             'tags' => $misc->entity->tags()->pluck('tags.id')->toArray(),

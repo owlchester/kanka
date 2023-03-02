@@ -7,7 +7,6 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 
 class DatalayerServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
      *

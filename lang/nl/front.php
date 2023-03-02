@@ -233,10 +233,10 @@ return [
         'title'         => 'Partners',
     ],
     'pricing'       => [
-        'actions'       => [
+        'actions'   => [
             'subscribe' => 'Word abonnee',
         ],
-        'benefits'      => [
+        'benefits'  => [
             'big_maps'      => 'Grote kaartgrootte (:size)',
             'bigger_maps'   => 'Grotere kaartgrootte (:size)',
             'boosters'      => 'Campaign Boosters',
@@ -247,12 +247,11 @@ return [
             'unlimited'     => 'Onbeperkt aantal campagnes en uploads',
             'updates'       => 'Regelmatige updates en verbeteringen',
         ],
-        'description'   => 'Alle kern functies zijn gratis, maar door Kanka te ondersteunen, kunnen we regelmatig updates en verbeteringen leveren voor alle gebruikers.',
-        'tier'          => [
+        'tier'      => [
             'free'  => 'Gratis',
             'month' => 'Maand',
         ],
-        'title'         => 'Prijzen',
+        'title'     => 'Prijzen',
     ],
     'privacy'       => [
         'description'   => 'Ingangsdatum: :date',

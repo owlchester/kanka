@@ -2,7 +2,11 @@
 
 return [
     'characters'    => [
-        'title' => 'Personaggi appartenenti alla Razza \':name\'',
+        'helpers'   => [
+            'all_characters'    => 'Visualizzazione di tutti i personaggi legati a questa razza e alle sue sotto-razze.',
+            'characters'        => 'Visualizzazione di tutti i personaggi legati direttamente a questa razza.',
+        ],
+        'title'     => 'Personaggi appartenenti alla Razza \':name\'',
     ],
     'create'        => [
         'title' => 'Nuova Razza',
@@ -11,10 +15,13 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Personaggi',
+        'locations'     => 'Luoghi',
         'race'          => 'Razza Genitore',
         'races'         => 'Sotto-Razze',
     ],
-    'helpers'       => [],
+    'helpers'       => [
+        'nested_without'    => 'Visualizzazione di tutte le razze che non hanno una razza genitore. Fai clic su una riga per vedere le razze figlie.',
+    ],
     'index'         => [],
     'placeholders'  => [
         'name'  => 'Nome della razza',

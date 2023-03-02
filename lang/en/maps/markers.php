@@ -13,6 +13,14 @@ return [
         'delete'    => '{1} Removed :count marker.|[2,*] Removed :count markers.',
         'patch'     => '{1} Updated :count marker.|[2,*] Updated :count markers.',
     ],
+    'circle_sizes'  => [
+        'custom'    => 'Custom',
+        'huge'      => 'Huge',
+        'large'     => 'Large',
+        'small'     => 'Small',
+        'standard'  => 'Standard',
+        'tiny'      => 'Tiny',
+    ],
     'create'        => [
         'success'   => 'Marker :name created.',
         'title'     => 'New Marker',
@@ -25,8 +33,8 @@ return [
         'title'     => 'Edit Marker :name',
     ],
     'fields'        => [
+        'bg_colour'     => 'Background colour',
         'circle_radius' => 'Circle radius',
-        'bg_colour'        => 'Background colour',
         'copy_elements' => 'Copy elements',
         'custom_icon'   => 'Custom Icon',
         'custom_shape'  => 'Custom Shape',
@@ -63,14 +71,6 @@ return [
         'exclamation'   => 'Exclamation icon',
         'marker'        => 'Marker icon',
         'question'      => 'Question icon',
-    ],
-    'circle_sizes'         => [
-        'custom'    => 'Custom',
-        'huge'      => 'Huge',
-        'large'     => 'Large',
-        'small'     => 'Small',
-        'standard'  => 'Standard',
-        'tiny'      => 'Tiny',
     ],
     'index'         => [
         'title' => 'Markers of :name',

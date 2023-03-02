@@ -81,6 +81,7 @@ TEXT
         'character_personality_visibility'  => 'Quando crei un nuovo personaggio come amministratore, seleziona l\'impostazione predefinita della privacy per i tratti della personalità.',
         'css'                               => 'Scrivi i tuoi CSS che saranno caricati all\'interno della pagina della tua campagna. Considera che qualsiasi abuso di questa funzionalità può portare alla rimozione dei tuoi CSS personalizzati.',
         'dashboard'                         => 'Per personalizzare la visualizzazione del widget della dashboard della campagna, compila i seguenti campi.',
+        'entity_count_v3'                   => 'Questo numero è ricalcolato ogni :amount ore.',
         'entity_privacy'                    => 'Quando crei una nuova entità come amministratore, seleziona l\'impostazione predefinita della privacy per la nuova entità.',
         'excerpt'                           => 'L\'estratto della campagna sarà mostrato sulla dashboard, quindi scrivi una breve introduzione al tuo mondo. Mantienila breve per un miglior risultato. Se questo campo rimane vuoto, verranno utilizzati i primi 1000 caratteri della descrizione della campagna.',
         'header_image'                      => 'Immagine visualizzata come sfondo nel widget dell\'intestazione della campagna.',
@@ -88,6 +89,7 @@ TEXT
         'hide_members'                      => 'Se abilitato, solo i membri del ruolo :admin della campagna avranno accesso alla lista dei membri della campagna.',
         'locale'                            => 'La lingua in cui la tua campagna è scritta. Questa specificazione è sfruttata per generare contenuti e raggruppare le campagne pubbliche.',
         'name'                              => 'La tua campagna/mondo può avere qualsiasi nome, a patto che che contenga almeno 4 lettere o numeri.',
+        'no_entry'                          => 'Sembra che la campagna non abbia ancora una descrizione! Risolviamo il problema.',
         'permissions_tab'                   => 'Controlla le impostazioni predefinite di privacy e visibilità dei nuovi elementi con le seguenti opzioni.',
         'public_campaign_filters'           => 'Aiuta altre persone a trovare la campagna tra altre campagne pubbliche fornendo le seguenti informazioni.',
         'public_no_visibility'              => 'Attenzione! La campagna è pubblica, ma il ruolo pubblico della campagna non può accedere a nulla. :fix.',
@@ -203,6 +205,13 @@ TEXT
             'removed'   => 'Ruolo :role rimosso da :user',
         ],
         'your_role'             => 'Il tuo ruolo: <i>:role</i>',
+    ],
+    'modules'                           => [
+        'permission-disabled'   => 'Questo modulo è disattivato.',
+    ],
+    'overview'                          => [
+        'entity-count'      => '{0} Nessuna entità|{1} :amount entità|[2,] :amount entità',
+        'follower-count'    => '{0} Nessun seguace|{1} :amount seguace|[2,] :amount seguaci',
     ],
     'panels'                            => [
         'boosted'   => 'Potenziata',
@@ -377,6 +386,11 @@ TEXT
             'timelines'     => 'Narra la storia del tuo mondo con le linee temporali',
         ],
     ],
+    'sharing'                           => [
+        'filters'   => 'Le campagne pubbliche sono visibili nella pagina :public-campaigns. La compilazione di questi campi aiuta la gente a trovare la campagna.',
+        'language'  => 'La lingua in cui sono scritti i contenuti della campagna.',
+        'system'    => 'Se si gioca a un TTRPG, il sistema utilizzato per giocare nella campagna.',
+    ],
     'show'                              => [
         'actions'   => [
             'boost' => 'Potenzia campagna',
@@ -435,8 +449,11 @@ TEXT
         'helpers'           => [
             'connections'       => 'Quando fai clic sulla sottopagina delle connessioni di un\'entità, seleziona l\'interfaccia predefinita mostrata.',
             'connections_mode'  => 'Quando visualizzi l\'esploratore di relazioni di un\'entità, seleziona l\'interfaccia predefinita mostrata.',
+            'entity-history'    => 'Controlla chi può vedere le modifiche recenti apportate alle singole entità della campagna.',
+            'member-list'       => 'Controlla chi può vedere chi partecipa alla campagna.',
             'other'             => 'Altre opzioni grafiche per la campagna',
             'post_collapsed'    => 'Quando crei un nuovo post in un\'entità, seleziona il valore predefinito del campo ripiegato.',
+            'theme'             => 'Visualizza la campagna nel tema dell\'utente o usa uno dei temi seguenti per tutti gli utenti.',
             'tooltip'           => 'Controlla quale informazione è visibile passando il mouse sul nome di un\'entità nella sua descrizione popup.',
         ],
         'members'           => [
@@ -445,6 +462,7 @@ TEXT
         ],
         'nested'            => [
             'nested'    => 'Annidato',
+            'user'      => 'Predefinito da utente',
         ],
         'other'             => 'Altro',
     ],

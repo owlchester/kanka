@@ -4,6 +4,9 @@ return [
     'about'                 => [
         'title' => 'A propos',
     ],
+    'actions'               => [
+        'back-to-top'   => 'Retourner en haut de la page',
+    ],
     'campaigns'             => [
         'description_full'  => 'Plusieurs campagnes sur Kanka sont publiques et accessibles à tous. Ci-dessous se trouve une liste de toutes les campagnes publiques, ainsi que des campagnes promues par la communauté.',
         'featured'          => [
@@ -14,6 +17,7 @@ return [
             'filters'   => [
                 'all'       => 'Status de la campagne',
                 'closed'    => 'Campagnes fermées',
+                'featured'  => 'Gagnants de concours',
                 'open'      => 'Campagnes ouvertes',
             ],
         ],
@@ -146,6 +150,7 @@ return [
             '2fa'               => 'Accès à l\'authentification à deux facteurs',
             'api_calls'         => 'Limite de requête API (90)',
             'boosts'            => 'Boosters de campagne',
+            'bragi'             => 'Accès à Bragi, l\'IA worldbuilding de Kanka',
             'click-me'          => 'En savoir plus sur cette fonctionnalité.',
             'curation'          => 'Aide à l\'établissement des votes communtaires',
             'default_image'     => 'Images par défaut pour les entités',
@@ -280,7 +285,12 @@ return [
             'unlimited'     => 'Nombre de campagne et upload illimité',
             'updates'       => 'Mises à jour et améliorations fréquentes',
         ],
-        'description'   => 'Toutes les fonctionnalités essentielles sont gratuites, mais ton soutien nous permet de travailler et d’améliorer Kanka de façon continue.',
+        'billed_yearly' => ':amount facturé annuellement',
+        'lead'          => [
+            'obvious'   => 'choix logique',
+            'text'      => 'Le :obvious pour créer des mondes de manière collaborative et gérer les campagnes de jeux de rôle, à un prix attractif.',
+        ],
+        'refund'        => 'Avec une politique de remboursement de 14 jours sur les abonnements annuels.',
         'tier'          => [
             'free'  => 'Gratuit',
             'month' => 'Mois',

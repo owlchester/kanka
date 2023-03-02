@@ -5,10 +5,9 @@ namespace App\Observers;
 use App\Facades\Mentions;
 use App\Models\EntityNotePermission;
 use App\Models\Post;
-use App\Models\PostPermission;
 use App\Services\EntityMappingService;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
+use App\Facades\Identity;
+use App\Models\EntityLog;
 
 class PostObserver
 {
@@ -16,12 +15,12 @@ class PostObserver
      * Purify trait
      */
     use PurifiableTrait;
+    use ReorderTrait;
 
     /**
      * Service used to build the map of the entity
-     * @var EntityMappingService
      */
-    protected $entityMappingService;
+    protected EntityMappingService $entityMappingService;
 
     /**
      * CharacterObserver constructor.
@@ -37,10 +36,6 @@ class PostObserver
      */
     public function saving(Post $post)
     {
-        if (!$post->savingObserver) {
-            return;
-        }
-
         $post->entry = $this->purify(Mentions::codify($post->entry));
 
         // Is private hook for non-admin (who can't set is_private)
@@ -62,16 +57,25 @@ class PostObserver
     /**
      * @param Post $post
      */
-    public function creating(Post $post)
+    public function created(Post $post)
     {
-        if (!$post->position == 1) {
-            // Make sure we're adding this note at the end of other posts
-            $last = $post->entity->posts()
-                ->where('id', '!=', $post->id)
-                ->orderBy('position', 'desc')
-                ->first();
-            $post->position = $last ? ($last->position + 1) : 1;
+        $this->log($post, EntityLog::ACTION_CREATE_POST);
+        //dd($log);
+
+        //$entity->is_created_now = true;
+    }
+
+    /**
+     * @param Post $post
+     */
+    public function updated(Post $post)
+    {
+        // Don't log updates if just did one (typically when creating, restoring or bulk editing)
+        if (!$post->entity->hasUpdateLog() || $post->updated_at == $post->created_at || !empty($post->getOriginal('deleted_at'))) {
+            return;
         }
+
+        $this->log($post, EntityLog::ACTION_UPDATE_POST);
     }
 
     /**
@@ -79,16 +83,13 @@ class PostObserver
      */
     public function saved(Post $post)
     {
-        if (!$post->savedObserver) {
-            return;
-        }
-
         $this->savePermissions($post);
+        $this->reorder($post);
 
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
-        $post->entity->child->savingObserver = false;
-        $post->entity->child->touch();
+        $post->entity->touchSilently();
+        $post->entity->child->touchSilently();
 
         // If the entity note's entry has changed, we need to re-build it's map.
         if ($post->isDirty('entry')) {
@@ -101,14 +102,32 @@ class PostObserver
      */
     public function deleted(Post $post)
     {
+        $this->log($post, EntityLog::ACTION_DELETE_POST);
+
         // When deleting an entity note, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
         if ($post->entity) {
-            $post->entity->child->touch();
+            $post->entity->touchSilently();
+            $post->entity->child->touchSilently();
         }
     }
-
+    /**
+     * @param Post $post
+     * @param int $action
+     */
+    private function log(Post $post, int $action)
+    {
+        $log = new EntityLog();
+        $log->entity_id = $post->entity->id;
+        $log->created_by = auth()->user()->id;
+        if ($action !=  EntityLog::ACTION_DELETE_POST) {
+            $log->post_id = $post->id;
+        }
+        $log->impersonated_by = Identity::getImpersonatorId();
+        $log->action = $action;
+        $log->save();
+    }
     /**
      * @param Post $post
      * @return bool
@@ -140,8 +159,7 @@ class PostObserver
                 $perm->save();
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;
-            }
-            elseif (!in_array($existingKey, $parsed)) {
+            } elseif (!in_array($existingKey, $parsed)) {
                 EntityNotePermission::create([
                     'post_id' => $post->id,
                     'user_id' => $user,
@@ -166,8 +184,7 @@ class PostObserver
                 $perm->save();
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;
-            }
-            elseif (!in_array($existingKey, $parsed)) {
+            } elseif (!in_array($existingKey, $parsed)) {
                 EntityNotePermission::create([
                     'post_id' => $post->id,
                     'role_id' => $user,

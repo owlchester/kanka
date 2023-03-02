@@ -21,7 +21,13 @@ $fromOrg = request()->get('from') === 'org';
     {!! Form::select2(
         'organisation_id',
         (!empty($member) && $member->organisation ? $member->organisation : null),
-        App\Models\Organisation::class
+        App\Models\Organisation::class,
+        false,
+        null,
+        null,
+        null,
+        null,
+        request()->ajax() ? '#entity-modal' : null,
     ) !!}
 </div>
 @endif
@@ -38,6 +44,7 @@ $fromOrg = request()->get('from') === 'org';
         'search.organisation-member',
         'organisations.members.placeholders.parent',
         $member->organisation,
+        request()->ajax() ? '#entity-modal' : null,
     ) !!}
 </div>
 @endif

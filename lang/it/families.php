@@ -15,7 +15,8 @@ return [
         'members'   => 'Membri',
     ],
     'helpers'       => [
-        'descendants'   => 'Questa lista contiene tutte le famiglie che sono discendenti di questa famiglia e non solamente quelle direttamente sotto di essa.',
+        'descendants'       => 'Questa lista contiene tutte le famiglie che sono discendenti di questa famiglia e non solamente quelle direttamente sotto di essa.',
+        'nested_without'    => 'Visualizzazione di tutte le famiglie che non hanno una famiglia genitore. Fai clic su una riga per vedere le famiglie dei figli.',
     ],
     'hints'         => [
         'members'   => 'I membri di una famiglia sono mostrati qui. Un personaggio può essere aggiunto alla famiglia modificando il personaggio, usando il selettore "Famiglia".',

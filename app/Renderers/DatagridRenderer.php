@@ -29,8 +29,6 @@ class DatagridRenderer
 
     protected FilterService|null $filterService = null;
 
-    protected DateRenderer $dateRenderer;
-
     /** @var Campaign|bool */
     protected $campaign;
 
@@ -40,12 +38,11 @@ class DatagridRenderer
     protected null|string $nestedFilter = null;
 
     /**
-     * @param DateRenderer $dateRenderer
+     *
      */
-    public function __construct(DateRenderer $dateRenderer)
+    public function __construct()
     {
         $this->user = auth()->user();
-        $this->dateRenderer = $dateRenderer;
     }
 
 
@@ -98,7 +95,7 @@ class DatagridRenderer
     public function __toString(): string
     {
         $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped' .
-            ($this->nestedFilter ? ' table-nested' : null). '">';
+            ($this->nestedFilter ? ' table-nested' : null) . '">';
         $html .= '<thead><tr>';
         $html .= $this->renderColumns();
         $html .=  '</tr></thead>';
@@ -156,8 +153,8 @@ class DatagridRenderer
             $type = $column['type'];
             $class = $column['type'];
             if ($type == 'avatar') {
-                $class = !empty($column['parent']) ? 'avatar hidden-xs hidden-sm' : $class;
-                //$html = null;
+                $class = !empty($column['parent']) ? 'hidden-xs hidden-sm' : $class . ' w-14';
+            //$html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route('location.name', __('entities.location'));
@@ -168,13 +165,13 @@ class DatagridRenderer
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route(
                     'character.name',
-                    !empty($column['label']) ? $column['label'] :  __('entities.character')
+                    !empty($column['label']) ? $column['label'] : __('entities.character')
                 );
             } elseif ($type == 'entity') {
                 $class .= '  hidden-xs hidden-sm';
                 $html = $this->route(
                     'entity.name',
-                    !empty($column['label']) ? $column['label'] :  __('crud.fields.entity')
+                    !empty($column['label']) ? $column['label'] : __('crud.fields.entity')
                 );
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
@@ -183,9 +180,9 @@ class DatagridRenderer
                 }
                 $html = $this->route(
                     'is_private',
-                    '<i class="fa-solid fa-lock" title="' .  __('crud.fields.is_private') . '"></i>'
+                    '<i class="fa-solid fa-lock" title="' . __('crud.fields.is_private') . '"></i>'
                 );
-                $class = 'icon';
+                $class = 'min-w-12';
             } elseif ($type == 'calendar_date') {
                 $class .= ' hidden-xs hidden-sm';
                 $html = $this->route('calendar_date', __('crud.fields.calendar_date'));
@@ -212,7 +209,7 @@ class DatagridRenderer
             }
         }
 
-        return "<th" . (!empty($class) ? " class=\"$class\"" : null) . ">$html</th>\n";
+        return "<th" . (!empty($class) ? " class=\"{$class}\"" : null) . ">{$html}</th>\n";
     }
 
     /**
@@ -260,7 +257,7 @@ class DatagridRenderer
         }
 
         return "<a href='" .
-            url()->route($this->getOption('route'), $routeOptions). "'>" . $label . $orderImg . "</a>";
+            url()->route($this->getOption('route'), $routeOptions) . "'>" . $label . $orderImg . "</a>";
     }
 
     /**
@@ -402,7 +399,7 @@ class DatagridRenderer
                     return null;
                 }
                 $content = $model->is_private ?
-                    '<i class="fa-solid fa-lock" title="' .  __('crud.is_private') . '"></i>' :
+                    '<i class="fa-solid fa-lock" title="' . __('crud.is_private') . '"></i>' :
                     '<br />';
             } elseif ($type == 'calendar_date') {
                 $class = 'hidden-xs hidden-sm';
@@ -411,7 +408,7 @@ class DatagridRenderer
                     $reminder = $model->calendarReminder();
                     $content = link_to_route(
                         'calendars.show',
-                        $this->dateRenderer->render($model->getDate()),
+                        $reminder->readableDate(),
                         [$reminder->calendar_id, 'month' => $reminder->month, 'year' => $reminder->year]
                     );
                 }
@@ -476,7 +473,7 @@ class DatagridRenderer
         if (!empty($actions)) {
             $content = '
         <div class="dropdown">
-            <a class="dropdown-toggle cursor" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+            <a class="dropdown-toggle cursor-pointer" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                 <i class="fa-solid fa-ellipsis-v" data-tree="escape"></i>
                 <span class="sr-only">' . __('crud.actions.actions') . '</span>
             </a>

@@ -6,7 +6,6 @@ use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
-use App\Models\PluginVersion;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 

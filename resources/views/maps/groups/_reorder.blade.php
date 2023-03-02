@@ -14,10 +14,10 @@
                 @foreach($rows as $group)
                     <div class="element" data-id="{{ $group->id }}">
                         {!! Form::hidden('group[]', $group->id) !!}
-                        <div class="dragger">
+                        <div class="dragger pr-3">
                             <span class="fa-solid fa-ellipsis-v"></span>
                         </div>
-                        <div class="name">
+                        <div class="name overflow-hidden flex-grow">
                             {!! $group->name !!}
                         </div>
                     </div>

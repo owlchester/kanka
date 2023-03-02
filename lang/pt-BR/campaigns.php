@@ -69,7 +69,7 @@ TEXT
         'public_campaign_filters'           => 'Filtros de Campanhas públicas',
         'related_visibility'                => 'Visibilidade dos elementos relacionados',
         'rpg_system'                        => 'SIstemas de RPG',
-        'superboosted'                      => 'Super Impulsionada por:',
+        'superboosted'                      => 'Super-impulsionada por',
         'system'                            => 'Sistema',
         'theme'                             => 'Tema',
         'visibility'                        => 'Visibilidade',
@@ -82,6 +82,7 @@ TEXT
         'character_personality_visibility'  => 'Ao criar um novo personagem como administrador, selecione a configuração de privacidade padrão para seus traços de personalidade.',
         'css'                               => 'Escreva seu próprio CSS que será carregado nas páginas de sua campanha. Observe que qualquer abuso desse recurso pode levar à remoção do seu CSS personalizado. Ofensas repetidas ou graves podem levar à remoção de sua campanha.',
         'dashboard'                         => 'Personalize a forma como o widget do dashboard da campanha é exibido preenchendo os campos a seguir.',
+        'entity_count_v3'                   => 'Este número é recalculado a cada :amount horas.',
         'entity_privacy'                    => 'Ao criar uma nova entidade como administrador, selecione a configuração de privacidade padrão da nova entidade.',
         'excerpt'                           => 'O resumo da campanha será exibido no painel, então escreva algumas frases apresentando o seu mundo. Mantenha-o curto para obter os melhores resultados.',
         'header_image'                      => 'Imagem exibida como plano de fundo no widget cabeçalho da campanha do dashboard.',
@@ -89,6 +90,7 @@ TEXT
         'hide_members'                      => 'Habilite esta opção para ocultar a lista de membros da campanha para membros não administradores.',
         'locale'                            => 'O idioma em que sua campanha está escrita. É usado para gerar conteúdo e agrupar campanhas públicas.',
         'name'                              => 'Sua campanha/mundo pode ter qualquer nome, desde que contenha pelo menos 4 letras ou números.',
+        'no_entry'                          => 'Parece que a campanha ainda não tem descrição! Vamos consertar isso.',
         'permissions_tab'                   => 'Controle as configurações padrão de privacidade e visibilidade de novos elementos com as seguintes opções.',
         'public_campaign_filters'           => 'Ajude outras pessoas a encontrar a campanha entre outras campanhas públicas, fornecendo as seguintes informações.',
         'public_no_visibility'              => 'Atenção! Sua campanha é pública, mas a função pública da campanha não pode acessar nada. :fix.',
@@ -205,8 +207,15 @@ TEXT
         ],
         'your_role'             => 'Você é  <i>:role</i>',
     ],
+    'modules'                           => [
+        'permission-disabled'   => 'Este módulo está desativado.',
+    ],
     'open_campaign'                     => [],
     'options'                           => [],
+    'overview'                          => [
+        'entity-count'      => '{0} Nenhuma entidade|{1} :amount entidade|[2,] :amount entidades',
+        'follower-count'    => '{0} Nenhum seguidor|{1} :amount seguidor|[2,] :amount seguidores',
+    ],
     'panels'                            => [
         'boosted'   => 'Impulsionada',
         'dashboard' => 'Dashboard',
@@ -380,6 +389,11 @@ TEXT
             'timelines'     => 'Represente a história do seu mundo com Linhas do Tempo.',
         ],
     ],
+    'sharing'                           => [
+        'filters'   => 'As campanhas públicas são visíveis na página :public-campaigns. O preenchimento desses campos facilita a descoberta da campanha.',
+        'language'  => 'O idioma no qual o conteúdo da campanha está escrito.',
+        'system'    => 'Se estiver jogando um TTRPG, o sistema usado para jogar na campanha.',
+    ],
     'show'                              => [
         'actions'   => [
             'boost' => 'Impulsionar campanha.',
@@ -439,8 +453,11 @@ TEXT
         'helpers'           => [
             'connections'       => 'Ao clicar na subpágina de conexões de uma entidade, selecione a interface padrão mostrada.',
             'connections_mode'  => 'Ao visualizar o gerenciador de relações de uma entidade, defina o modo padrão selecionado.',
+            'entity-history'    => 'Controle quem pode ver as alterações recentes feitas em entidades individuais da campanha.',
+            'member-list'       => 'Controle quem pode ver quem está na campanha.',
             'other'             => 'Outras opções visuais para a campanha.',
             'post_collapsed'    => 'Ao criar uma nova postagem em uma entidade, selecione o valor padrão do campo colapsado.',
+            'theme'             => 'Exiba a campanha no tema do usuário ou force-a a renderizar em um dos seguintes temas.',
             'tooltip'           => 'Controle quais informações ficam visíveis ao passar o mouse sobre o nome de uma entidade em sua dica de ferramenta.',
         ],
         'members'           => [
@@ -449,6 +466,7 @@ TEXT
         ],
         'nested'            => [
             'nested'    => 'Aninhado',
+            'user'      => 'Padrão do usuário',
         ],
         'other'             => 'Outro',
     ],

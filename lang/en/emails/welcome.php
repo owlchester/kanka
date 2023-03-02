@@ -1,6 +1,23 @@
 <?php
 
 return [
+    '2023'              => [
+        'basics'    => [
+            'text_1'    => 'With a tool as extensive as Kanka, it can be hard to know where to start or what to do. Our :kb covers the most basic questions you might have, and for more help, you can head over to our :doc.',
+            'title'     => 'The basics',
+        ],
+        'chat'      => [
+            'text_1'    => 'We love hearing from our users. We’re most active on :discord, where you will find plenty of our dedicated users, an onboarding team, as well as the founders of Kanka, who can answer any questions that you may have. You can also email us at :email.',
+            'title'     => 'Want to chat?',
+        ],
+        'intro'     => [
+            'header'    => 'Welcome to the best worldbuilding community, :name!',
+            'link'      => 'Go to your world!',
+            'text_1'    => 'Say hello to your new worldbuilding home, :name! Community is in our DNA, and we’re delighted to have you join us. Kanka is the brainchild of passionate RPG players who believe in a simplified and communal way to approach worldbuilding, without compromising on features.',
+            'text_2'    => 'We\'ve set up your first campaign and included two example characters and locations to help you get started.',
+        ],
+        'preview'   => 'Be part of the best worldbuilding community, :name!',
+    ],
     'header'            => 'Welcome to Kanka :name!',
     'header_sub'        => 'Congratulations, you have taken the first step in the creation of your world on :kanka!',
     'pricing'           => 'pricing',

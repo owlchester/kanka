@@ -6,7 +6,6 @@ use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-
 class StoreItem extends FormRequest
 {
     use ApiRequest;
@@ -30,7 +29,8 @@ class StoreItem extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'type' => 'nullable|max:191',
+            'entry' => 'nullable|string',
+            'type' => 'nullable|string|max:191',
             'location_id', 'nullable|integer|exists:locations,id',
             'character_id', 'nullable|integer|exists:character,id',
             'item_id' => 'nullable|integer|exists:items,id',
@@ -46,7 +46,7 @@ class StoreItem extends FormRequest
                 'nullable',
                 'integer',
                 'not_in:' . ((int) $self),
-                Rule::exists('items', 'id')->where(function ($query)  use ($self) {
+                Rule::exists('items', 'id')->where(function ($query) use ($self) {
                     return $query->whereNull('item_id')->orWhere('item_id', '!=', $self);
                 }),
             ];

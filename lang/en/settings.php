@@ -85,37 +85,15 @@ return [
         'netherlands'   => 'The Netherlands',
         'spain'         => 'Spain',
     ],
-    'invoices'      => [
-        'actions'   => [
-            'download'  => 'Download PDF',
-            'view_all'  => 'View all',
-        ],
-        'empty'     => 'No invoices',
-        'fields'    => [
-            'amount'    => 'Amount',
-            'date'      => 'Date',
-            'invoice'   => 'Invoice',
-            'status'    => 'Status',
-        ],
-        'header'    => 'Below is a list of your last 24 invoices which can be downloaded.',
-        'status'    => [
-            'paid'      => 'Paid',
-            'pending'   => 'Pending',
-        ],
-        'title'     => 'Invoices',
-    ],
     'layout'        => [
-        'success'   => 'Layout options updated.',
-        'title'     => 'Layout',
+        'title' => 'Layout',
     ],
     'menu'          => [
         'account'               => 'Account',
         'api'                   => 'API',
         'appearance'            => 'Appearance',
         'apps'                  => 'Apps',
-        'billing'               => 'Payment Method',
         'boosters'              => 'Boosters',
-        'invoices'              => 'Invoices',
         'notifications'         => 'Notifications',
         'other'                 => 'Other',
         'patreon'               => 'Patreon',
@@ -149,12 +127,11 @@ return [
         'actions'               => [
             'cancel_sub'        => 'Cancel subscription',
             'subscribe'         => 'Subscribe',
-            'update_currency'   => 'Save prefered currency',
+            'update_currency'   => 'Save preferred currency',
         ],
         'billing'               => [
             'helper'    => 'Your billing information is processed and stored safely through :stripe. This payment method is used for all of your subscriptions.',
             'saved'     => 'Saved payment method',
-            'title'     => 'Edit Payment Method',
         ],
         'cancel'                => [
             'options'   => [
@@ -206,6 +183,7 @@ return [
             'alternatives_warning'  => 'Upgrading your subscription when using this method is not possible. Please subscribe again when your current one ends.',
             'alternatives_yearly'   => 'Due to the restrictions surrounding recurring payments, :method is only available for yearly subscriptions',
             'paypal'                => 'Want to use Paypal instead? Contact us at :email if you wish to subscribe to a yearly plan using Paypal.',
+            'paypal_v2'             => 'We accept PayPal for yearly subscriptions. Contact us at :email with your Kanka account email, the tier you wish to subscribe to, and currency (USD or EUR) you want to be billed in.',
             'stripe'                => 'Your billing information is processed and stored safely through :stripe.',
         ],
         'manage_subscription'   => 'Manage subscription',

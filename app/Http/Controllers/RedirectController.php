@@ -2,13 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Character;
-use App\Models\Family;
-use App\Models\Item;
-use App\Models\Journal;
-use App\Models\Location;
-use App\Models\Note;
-use App\Models\Organisation;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 
@@ -61,12 +54,12 @@ class RedirectController extends Controller
             return redirect()->route('home')->withErrors(trans('redirects.unknown_entity', ['entity' => e($what)]));
         }
 
-        $modelClass = new $allowed[$what];
-        $model = $modelClass->where('name', 'like', "%$name%")->first();
+        $modelClass = new $allowed[$what]();
+        $model = $modelClass->where('name', 'like', "%{$name}%")->first();
         if ($model) {
-            return redirect()->route($what.'.show', $model->id);
+            return redirect()->route($what . '.show', $model->id);
         }
 
-        return redirect()->route($what.'.create', ['name' => $name]);
+        return redirect()->route($what . '.create', ['name' => $name]);
     }
 }

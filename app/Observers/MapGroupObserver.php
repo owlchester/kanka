@@ -1,12 +1,8 @@
 <?php
 
-
 namespace App\Observers;
 
-
-use App\Facades\Mentions;
 use App\Models\MapGroup;
-use App\Services\ImageService;
 
 class MapGroupObserver
 {
@@ -14,6 +10,7 @@ class MapGroupObserver
      * Purify trait
      */
     use PurifiableTrait;
+    use ReorderTrait;
 
     /**
      * @param MapGroup $mapGroup
@@ -49,7 +46,7 @@ class MapGroupObserver
      */
     public function saved(MapGroup $mapGroup)
     {
+        $this->reorder($mapGroup);
         $mapGroup->map->touch();
     }
-
 }

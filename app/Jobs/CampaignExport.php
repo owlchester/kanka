@@ -20,7 +20,10 @@ use Exception;
 
 class CampaignExport implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * The number of times the job may be attempted.
@@ -76,7 +79,7 @@ class CampaignExport implements ShouldQueue
         File::ensureDirectoryExists($saveFolder);
 
         // We want the full path for jobs running in the queue.
-        $zipName = 'campaign_' . $this->campaign->id . '_' .  uniqid() . '_' . date('Ymd_His') . '.zip';
+        $zipName = 'campaign_' . $this->campaign->id . '_' . uniqid() . '_' . date('Ymd_His') . '.zip';
         CampaignCache::campaign($this->campaign);
         $pathName = $saveFolder . $zipName;
         $zip = new ZipArchive();

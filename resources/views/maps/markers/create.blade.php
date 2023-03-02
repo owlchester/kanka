@@ -33,7 +33,7 @@
             @include('partials.errors')
 
             @if (!$ajax)
-                <div class="map map-form" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
+                <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @endif
 
             @include('maps.markers._form', ['model' => null])

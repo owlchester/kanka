@@ -53,23 +53,23 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  */
 class Entity extends Model
 {
+    use Acl;
+    use BlameableTrait;
     /**
      * Traits
      */
-    use CampaignTrait,
-        EntityRelations,
-        BlameableTrait,
-        EntityScopes,
-        EntityType,
-        Searchable,
-        TooltipTrait,
-        Picture,
-        SoftDeletes,
-        EntityLogs,
-        Paginatable,
-        LastSync,
-        SortableTrait,
-        Acl;
+    use CampaignTrait;
+    use EntityLogs;
+    use EntityRelations;
+    use EntityScopes;
+    use EntityType;
+    use LastSync;
+    use Paginatable;
+    use Picture;
+    use Searchable;
+    use SoftDeletes;
+    use SortableTrait;
+    use TooltipTrait;
 
     /** @var string[]  */
     protected $fillable = [
@@ -168,8 +168,8 @@ class Entity extends Model
      */
     public function shortName()
     {
-        if (strlen($this->name) > 30) {
-            return '<span title="' . e($this->name) . '">' . substr(e($this->name), 0, 28) . '...</span>';
+        if (mb_strlen($this->name) > 30) {
+            return '<span title="' . e($this->name) . '">' . mb_substr(e($this->name), 0, 28) . '...</span>';
         }
         return $this->name;
     }
@@ -338,11 +338,7 @@ class Entity extends Model
             return true;
         }
 
-        if ($superboosted && !empty($this->header_uuid) && !empty($this->header)) {
-            return true;
-        }
-
-        return false;
+        return (bool) ($superboosted && !empty($this->header_uuid) && !empty($this->header));
     }
 
     /**
@@ -439,9 +435,27 @@ class Entity extends Model
         if ($this->accessAttributes() && $this->starredAttributes()->isNotEmpty()) {
             return true;
         }
-        if ($this->pinnedFiles->isNotEmpty()) {
-            return true;
+        return (bool) ($this->pinnedFiles->isNotEmpty())
+
+
+        ;
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function postPositionOptions($position = null): array
+    {
+        $options = [1 => __('maps/layers.placeholders.position')];
+        $layers = $this->posts->sortBy('position');
+        foreach ($layers as $layer) {
+            $options[$layer->position + 1] = __('maps/layers.placeholders.position_list', ['name' => $layer->name]);
         }
-        return false;
+
+        //If is the last position remove last+1 position from the options array
+        if ($position == array_key_last($options) - 1 && count($options) > 1) {
+            array_pop($options);
+        }
+        return $options;
     }
 }

@@ -1,15 +1,16 @@
 <?php
 
 return [
-    'actions'       => [
+    'actions'   => [
         'boost_name'    => 'Boost :name',
     ],
-    'benefits'      => [
+    'available' => 'Verfügbare Booster :amount/:total',
+    'benefits'  => [
         'boosted'       => 'Durch das Boosten einer Kampagne mit :one Booster werden der Zugriff auf den :marketplace, Themenoptionen, größere Uploads für alle Mitglieder, die Wiederherstellung gelöschter Objekte und :more freigeschaltet.',
         'more'          => 'weitere erstaunliche Funktionen',
         'superboosted'  => 'Durch das Superboosten einer Kampagne mit :amount-Boostern werden alle Vorteile einer Booster-Kampagne freigeschaltet, sowie eine Kampagnengalerie, vollständige Protokolländerungen an Objekten und :more.',
     ],
-    'boost'         => [
+    'boost'     => [
         'actions'   => [
             'confirm'   => 'Booste es!',
             'remove'    => 'Stoppe boosten von :campaign',
@@ -27,17 +28,17 @@ return [
         'title'     => 'Boost :campaign',
         'upgrade'   => 'Aktualisieren Sie Ihr Abonnement',
     ],
-    'campaign'      => [
+    'campaign'  => [
         'boosted'       => 'Geboostet von :user seid :time',
         'superboosted'  => 'Supergeboostet von :user seid :time',
         'unboosted'     => 'boosten beenden',
     ],
-    'intro'         => [
+    'intro'     => [
         'anyone'    => 'Du bist nicht darauf beschränkt, nur von dir erstellte Kampagnen zu fördern. Du kannst jede Kampagne fördern, an der du teilnimmst oder die du sehen kannst. Dazu gehören Kampagnen, bei denen du ein Spieler bist, oder :public, die dir Spaß machen.',
         'data'      => 'Wenn eine Kampagne nicht mehr geboostet wird, wird der Zugriff auf geboosterte Funktionen entfernt. Es werden jedoch keine Inhalte gelöscht, sodass der Zugriff auf die Kampagne in der Zukunft wiederhergestellt wird.',
         'first'     => 'Erweiterte Funktionen werden freigeschaltet, indem du deine Booster einer Kampagne Boosten oder Superboosten zuweist. Die Anzahl der Booster, die du hast, wird durch dein :Abonnement bestimmt. Diese Nummer steht dir als Abonnent jederzeit zur Verfügung. Das Boosten einer Kampagne weist du einen deiner Booster zu, während das Superboosten einer Kampagne drei davon zuweist.',
     ],
-    'pitch'         => [
+    'pitch'     => [
         'benefits'      => [
             'backup'        => 'Stelle eine zuvor gelöschtest Objekt für bis zu :amount Tage wieder her',
             'customisable'  => 'Vollständige Anpassung des Aussehens einer Kampagne',
@@ -51,13 +52,13 @@ return [
         'more'          => 'Sehe dir die vollständige Liste der Vergünstigungen auf unserer :Booster-Seite an.',
         'title'         => 'Bringe eine Kampagne mit Anpassungen und Vorteilen für alle Mitglieder auf die nächste Stufe',
     ],
-    'ready'         => [
+    'ready'     => [
         'available'         => 'Deine verfügbaren Kampagnen-Booster.',
         'pricing'           => 'Alle deine Abonnementstufen beinhalten mindestens einen Kampagnen-Booster und einen Startbetrag pro Monat.',
         'pricing-amount'    => ':currency:amount',
         'title'             => 'Booste Kampagne',
     ],
-    'superboost'    => [
+    'superboost'=> [
         'actions'   => [
             'confirm'   => 'Superbooste es!',
             'remove'    => 'Stoppe superboosten :campaign',
@@ -70,8 +71,8 @@ return [
         'title'     => 'Superboost :campaign',
         'upgrade'   => 'Bereit für das ultimative Kanka-Erlebnis? Superboosting :campaign weist :cost zusätzliche Kampagnen-Booster zu.',
     ],
-    'title'         => 'Kampagnen-Booster',
-    'unboost'       => [
+    'title'     => 'Kampagnen-Booster',
+    'unboost'   => [
         'confirm'   => 'Ja, ich bin sicher',
         'status'    => [
             'boosting'      => 'boosting',

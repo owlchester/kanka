@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Models;
 
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Traits\VisibilityIDTrait;
 use App\User;
-use App\Models\EntityUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -38,8 +36,8 @@ use Illuminate\Support\Str;
  */
 class TimelineElement extends Model
 {
-    use VisibilityIDTrait,
-        Blameable;
+    use Blameable;
+    use VisibilityIDTrait;
 
     /** @var string[]  */
     protected $fillable = [

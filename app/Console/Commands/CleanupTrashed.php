@@ -3,14 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\Models\JobLog;
 use App\Services\RecoveryService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class CleanupTrashed extends Command
 {
@@ -63,7 +60,7 @@ class CleanupTrashed extends Command
                 ->allCampaigns()
                 // chunkById allows us to safely delete elements in a chunk
                 // see https://stackoverflow.com/questions/32700537/eloquent-chunk-missing-half-the-results
-                ->chunkById(1000, function ($entities) {
+                ->chunkById(1000, function ($entities): void {
                     $this->info('Chunk deleting ' . count($entities) . ' entities.');
                     foreach ($entities as $entity) {
                         //dump($entity->name . ' (' . $entity->type() . ')');

@@ -2,12 +2,12 @@
 
 return [
     'achievements'  => [
-        'wordsmith' => 'Справжній творець світів! Переможець перегонів із побудови світів.',
+        'wordsmith' => 'Справжній майстер слів! Переможець перегонів зі світобудови.',
     ],
     'fields'        => [
         'achievements'      => 'Досягнення',
         'banned'            => 'Цього користувача було забанено',
-        'entities_created'  => 'Створено сутностей :help :count',
+        'entities_created'  => 'Створено сутності :help :count',
         'member_since'      => 'Учасник від :date',
         'public_campaigns'  => 'Публічні кампанії',
         'subscriber_since'  => 'Передплатник від :date',

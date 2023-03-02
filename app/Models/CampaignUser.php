@@ -60,7 +60,7 @@ class CampaignUser extends Pivot
             'user_id',
             'campaign_role_id'
         )
-        ->where('campaign_id', $this->campaign_id);
+            ->where('campaign_id', $this->campaign_id);
     }
 
     /**
@@ -82,7 +82,7 @@ class CampaignUser extends Pivot
         return $builder
             ->select($this->getTable() . '.*')
             ->leftJoin('users as u', 'u.id', $this->getTable() . '.user_id')
-            ->where('u.name', 'like', "%$search%");
+            ->where('u.name', 'like', "%{$search}%");
     }
 
     /**

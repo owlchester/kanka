@@ -27,7 +27,10 @@
                         App\Models\Entity::class,
                         false,
                         'crud.fields.entity',
-                        'search.entities-with-reminders'
+                        'search.entities-with-reminders',
+                        null,
+                        null,
+                        request()->ajax() ? '#entity-modal' : null
                     ) !!}
                 </div>
             </div>
