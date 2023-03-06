@@ -7,7 +7,7 @@
                :placeholder="placeholder"
         />
 
-        <div class="search-drawer absolute top-0 left-0 h-screen bg-navbar mt-12 shadow-r w-sidebar" v-if="show_recent || show_loading || show_preview">
+        <div class="search-drawer absolute top-0 left-0 h-screen bg-navbar mt-12 shadow-r w-sidebar z-1010" v-if="show_recent || show_loading || show_preview">
             <div class="text-center mt-5" v-if="show_loading">
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" aria-label="Loading"></i>
             </div>

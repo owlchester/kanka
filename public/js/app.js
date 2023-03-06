@@ -20577,7 +20577,7 @@ var _hoisted_1 = {
 var _hoisted_2 = ["placeholder"];
 var _hoisted_3 = {
   key: 0,
-  "class": "search-drawer absolute top-0 left-0 h-screen bg-navbar mt-12 shadow-r w-sidebar"
+  "class": "search-drawer absolute top-0 left-0 h-screen bg-navbar mt-12 shadow-r w-sidebar z-1010"
 };
 var _hoisted_4 = {
   key: 0,

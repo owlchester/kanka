@@ -66,9 +66,9 @@ $specificTheme = null;
 <body id="map-body" class="map-page sidebar-collapse" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
 
-    <div id="app" class="wrapper">
+    <div id="app" class="wrapper mt-12">
         <!-- Header -->
-        @include('layouts.header')
+        @include('layouts.header', ['qq' => false])
 
         <aside class="main-sidebar overflow-hidden pt-0">
             <section class="sidebar" style="height: auto">

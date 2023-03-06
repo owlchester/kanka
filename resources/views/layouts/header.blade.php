@@ -20,7 +20,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
         @endif
         </div>
 
-        @if (auth()->check() && $currentCampaign->userIsMember())
+        @if (auth()->check() && $currentCampaign->userIsMember() && (!isset($qq) || $qq))
         <div class="flex-0">
             <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="bottom"></span>
             <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex justify-center text-center gap-2 rounded h-9 min-w-9 px-2 text-uppercase items-center"
