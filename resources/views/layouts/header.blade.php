@@ -4,7 +4,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
 <header id="header" class="">
     <nav class="flex gap-2 justify-center items-center fixed top-0 w-full bg-navbar h-12">
         <div class="flex-0 flex w-sidebar justify-items items-center">
-        @if ((auth()->check() && auth()->user()->hasCampaigns()) || !auth()->check())
+        @if (isset($toggle) && $toggle)
             <nav-toggler
                 text="{{ __('header.toggle_navigation') }}"
                 title="{{ __('crud.keyboard-shortcut', ['code' => '<code>]</code>']) }}"
@@ -20,7 +20,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
         @endif
         </div>
 
-        @if (auth()->check() && $currentCampaign->userIsMember() && (!isset($qq) || $qq))
+        @if (auth()->check() && !empty($currentCampaign) && $currentCampaign->userIsMember() && (!isset($qq) || $qq))
         <div class="flex-0">
             <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="bottom"></span>
             <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex justify-center text-center gap-2 rounded h-9 min-w-9 px-2 text-uppercase items-center"

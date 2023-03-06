@@ -80,19 +80,4 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
             @include('partials.ads.sidebar')
         </section>
     </aside>
-@elseif (auth()->check() && auth()->user()->hasCampaigns())
-    <aside class="main-sidebar">
-        <section class="sidebar">
-            <ul class="sidebar-menu tree" data-widget="tree">
-                @foreach (\App\Facades\UserCache::campaigns() as $userCampaign)
-                    <li class="section-campaign section-campaign-{{ $userCampaign->id }}">
-                        <a href="{{ url(app()->getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
-                            <i class="fa-solid fa-globe"></i>
-                            {!! $userCampaign->name !!}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        </section>
-    </aside>
 @endif
