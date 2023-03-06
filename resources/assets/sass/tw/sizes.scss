@@ -39,8 +39,18 @@
     max-width: none;
 }
 
+.min-h-full {
+    min-height: 100%;
+}
+.min-h-screen {
+    min-height: calc(100vh);
+}
+
 .max-h-50vh {
     max-height: 50vh;
+}
+.h-screen {
+    height: 100vh;
 }
 .max-h-70vh {
     max-height: 70vh;

@@ -124,6 +124,10 @@ $mapSidebarWidth: 380px;
         white-space: unset;
     }
 
+    .search-drawer, nav {
+        z-index: 1050;
+    }
+
 
 
     .main-sidebar {
