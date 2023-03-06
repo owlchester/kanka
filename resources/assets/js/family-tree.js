@@ -55,7 +55,7 @@ let childrenLineHeight = 50;
 let entityWidth = 140;
 let entityHeight = 60;
 
-let btnEdit, btnClear, btnReset, btnSave;
+let btnEdit, btnClear, btnReset, btnSave, btnFirst;
 
 
 let isEditing = false;
@@ -95,33 +95,33 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
     //app.stage.addChild(entityBox);
     viewport.addChild(entityBox);
     elements.push(entityBox);
-    if (uuid != 0) {
-        var circleMask = new Graphics();
-        circleMask.beginFill();
-        circleMask.drawCircle(x + 110, y + 30, 20);
-        circleMask.endFill();
-        //app.stage.addChild(circleMask);
-        viewport.addChild(circleMask);
-        elements.push(circleMask);
 
-        var entityImageTexture = Texture.from(entity.thumb);
+    var circleMask = new Graphics();
+    circleMask.beginFill();
+    circleMask.drawCircle(x + 110, y + 30, 20);
+    circleMask.endFill();
+    //app.stage.addChild(circleMask);
+    viewport.addChild(circleMask);
+    elements.push(circleMask);
 
-        var entityImage = new Sprite(entityImageTexture);
-        entityImage.x = x + 90;
-        entityImage.y = y + 10;
-        entityImage.height = 40;
-        entityImage.width = 40;
+    var entityImageTexture = Texture.from(entity.thumb);
 
-        //app.stage.addChild(entityImage);
-        viewport.addChild(entityImage);
-        elements.push(entityImage);
+    var entityImage = new Sprite(entityImageTexture);
+    entityImage.x = x + 90;
+    entityImage.y = y + 10;
+    entityImage.height = 40;
+    entityImage.width = 40;
 
-        entityImage.mask = circleMask;
-        if (name.length > 14) {
-            name = name.substring(0, 14);
-            name = name.concat('...');
-        }
+    //app.stage.addChild(entityImage);
+    viewport.addChild(entityImage);
+    elements.push(entityImage);
+
+    entityImage.mask = circleMask;
+    if (name.length > 14) {
+        name = name.substring(0, 14);
+        name = name.concat('...');
     }
+
     const entityName = new Text(name, entityNameStyle);
     entityName.x = x + 10;
     entityName.y = y + 10;
@@ -169,6 +169,7 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
         viewport.addChild(closeButton);
         elements.push(closeButton);
 
+        // Todo: make it translatable
         const editButton = new Text('edit', entityNameStyle);
         editButton.x = x + 35;
         editButton.y = y + 60;
@@ -180,19 +181,24 @@ const drawEntity = (entity, uuid, x, y, isRelation = false) => {
         viewport.addChild(editButton);
         elements.push(editButton);
 
-        const addRelationButton = new Text('+ relation', entityNameStyle);
-        addRelationButton.x = x + 140;
-        addRelationButton.y = y + 20;
-        addRelationButton.interactive = true;
-        addRelationButton.buttonMode = true;
-        addRelationButton.onclick = (event) => {
-            addRelation(uuid);
-        };
-        viewport.addChild(addRelationButton);
-        elements.push(addRelationButton);
+        // Only add a relation to "parent" nodes
+        if (!isRelation) {
+            // Todo: make it translatable
+            const addRelationButton = new Text('+ relation', entityNameStyle);
+            addRelationButton.x = x + 140;
+            addRelationButton.y = y + 20;
+            addRelationButton.interactive = true;
+            addRelationButton.buttonMode = true;
+            addRelationButton.onclick = (event) => {
+                addRelation(uuid);
+            };
+            viewport.addChild(addRelationButton);
+            elements.push(addRelationButton);
+        }
 
         if (isRelation) {
-            const addChildrenButton = new Text('+ children', entityNameStyle);
+            // Todo: make it translatable
+            const addChildrenButton = new Text('+ child', entityNameStyle);
             addChildrenButton.x = x + 75;
             addChildrenButton.y = y + 60;
             addChildrenButton.interactive = true;
@@ -239,7 +245,7 @@ const drawRelation = (relation, sourceX, sourceY, drawX, drawY, index) => {
         // First relation, start on the source
         drawChildren(relation.children, sourceX, sourceY, sourceX, drawY, index);
     } else {
-        // Otherwise start on the relation
+        // Otherwise, start on the relation
         drawChildren(relation.children, sourceX, sourceY, drawX, drawY, index);
     }
 };
@@ -401,8 +407,9 @@ const drawRelations = (relations, sourceX, sourceY, drawX, drawY) => {
         let tmpOffsetX = entityWidth + offsetIncrement;
         // However, if it's not, we need to add more padding, based on the previous node width
         if (index > 0) {
-            tmpOffsetX *= nodeOffset - 1;
+            tmpOffsetX *= nodeOffset;
         }
+        console.log('draw relation', index, tmpOffsetX);
 
         drawRelation(rel, drawX, sourceY, drawX + tmpOffsetX, drawY, index);
 
@@ -478,10 +485,13 @@ const drawNode = (node, sourceX, sourceY, drawX, drawY) => {
     drawRelations(node.relations, sourceX, sourceY, drawX, drawY);
 };
 
+const addFirstNode = () => {
+    editEntity(0);
+};
+
 const drawFamilyTree = () => {
-    console.log('Draw Family Tree');
-    if (nodes.length == 0 && isEditing){
-        clearTree();
+    //console.log('Draw Family Tree');
+    if (nodes.length === 0 && isEditing) {
         isUnchanged = true;
     }
     if (isUnchanged) {
@@ -507,16 +517,18 @@ const drawFamilyTree = () => {
         viewport.removeChild(text);
     });
 
-    nodes.forEach(node => {
-        drawNode(node, 0, 0, 0, 0);
-    });
+    if (nodes.length > 0) {
+        nodes.forEach(node => {
+            drawNode(node, 0, 0, 0, 0);
+        });
+    }
 
     viewport.addChild(graphics);
 };
 
 const renderPage = () => {
     if (typeof app.stage !== 'undefined'){
-        console.log('deleted','container.removeChild');
+        //console.log('deleted','container.removeChild');
         //app.stage.removeChild(1);
         //for (var i = app.stage.children.length - 1; i >= 0; i--) {	app.stage.removeChild(app.stage.children[i]);};
     }
@@ -527,7 +539,7 @@ const renderPage = () => {
         nodes = resp.data.nodes;
         originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
         originalEntities = JSON.parse(JSON.stringify(resp.data.entities));
-        console.log('original nodes', originalNodes, originalEntities);
+        //console.log('original nodes', originalNodes, originalEntities);
         drawFamilyTree();
     });
 };
@@ -540,27 +552,34 @@ function onPointerOut(object) {
 }
 
 const deleteUuidFromNodes = (uuid) => {
-    console.log('Remove uuid', uuid);
+    //console.log('Remove uuid', uuid);
     return filter(nodes, uuid);
 };
 
+const addEntity = (entity) => {
+    entities[entity.id] = entity;
+    nodes.push({entity_id: entity.id, uuid: stringify(newUuid), relations: []});
+    newUuid++;
+
+    btnFirst.hide();
+};
 const replaceEntity = (uuid, entity) => {
-    console.log('Change Entity', uuid);
+    //console.log('Change Entity', uuid);
     return entityEditor(nodes, uuid, entity);
 };
 
 const insertRelation = (uuid, entity, relation) => {
-    console.log('Add Relation', uuid);
+    //console.log('Add Relation', uuid);
     return relationCreator(nodes, uuid, entity, relation);
 };
 
 const insertChild = (uuid, entity) => {
-    console.log('Add Child', uuid);
+    //console.log('Add Child', uuid);
     return childCreator(nodes, uuid, entity);
 };
 
 const renameRelations = (uuid, role) => {
-    console.log('Rename relation', uuid, nodes);
+    //console.log('Rename relation', uuid, nodes);
     return relationFilter(nodes, uuid, role);
 };
 
@@ -590,22 +609,16 @@ function relationFilter(array, uuid, role) {
 
 function entityEditor(array, uuid, entity) {
     var entity_id = null;
-    if (uuid == 0) { 
-        delete entities[0];
-        entity_id = entity.id;
+    if (!entities[entity.id]) {
         entities[entity.id] = entity;
-    } else {
-        if (!entities[entity.id]) {
-            entities[entity.id] = entity;
-        }
-        entity_id = entity.id;
     }
+    entity_id = entity.id;
 
     const getRelationNodes = (result, object) => {
         if (object.uuid === uuid) {
-            if (object.uuid == 0) { 
+            if (object.uuid == 0) {
                 object.uuid = stringify(newUuid);
-                newUuid = newUuid + 1;
+                newUuid++;
             }
             object.entity_id = entity_id;
             result.push(object);
@@ -634,10 +647,10 @@ function relationCreator(array, uuid, entity, role) {
         entities[entity.id] = entity;
     }
     entity_id = entity.id;
-    
+
     const getRelationNodes = (result, object) => {
         if (object.uuid === uuid) {
-            console.log(object);
+            //console.log(object);
 
             if (Array.isArray(object.relations)) {
                 object.relations.push({entity_id: entity_id, role: role, uuid: stringify(newUuid)});
@@ -645,7 +658,7 @@ function relationCreator(array, uuid, entity, role) {
                 object.relations = [{entity_id: entity_id, role: role, uuid: stringify(newUuid)}];
             }
             newUuid = newUuid + 1;
-            console.log(object, 'ADDED RELATIONS');
+            //console.log(object, 'ADDED RELATIONS');
             result.push(object);
             return result;
         }
@@ -673,7 +686,7 @@ function childCreator(array, uuid, entity) {
 
     const getRelationNodes = (result, object) => {
         if (object.uuid === uuid) {
-            console.log(object);
+            //console.log(object);
 
             if (Array.isArray(object.children)) {
                 object.children.push({entity_id: entity_id, uuid: stringify(newUuid)});
@@ -681,7 +694,7 @@ function childCreator(array, uuid, entity) {
                 object.children = [{entity_id: entity_id, uuid: stringify(newUuid)}];
             }
             newUuid = newUuid + 1;
-            console.log(object, 'ADDED CHILDREN');
+            //console.log(object, 'ADDED CHILDREN');
             result.push(object);
             return result;
         }
@@ -696,7 +709,7 @@ function childCreator(array, uuid, entity) {
         result.push(object);
         return result;
     };
-    console.log(entities);
+    //console.log(entities);
     return array.reduce(getRelationNodes, []);
 }
 
@@ -729,7 +742,7 @@ function deleteUuid(uuid) {
     if (confirm("Do you want to remove this node?") == true) {
         viewport.removeChildren();
         deleteUuidFromNodes(uuid);
-        if (nodes.length == 0){
+        if (nodes.length === 0){
             clearTree();
         }
         isUnchanged = false;
@@ -738,18 +751,23 @@ function deleteUuid(uuid) {
 }
 
 function editEntity(uuid) {
-    document.getElementById("add-relation").style.display = "none";
+    $("#add-relation").hide();
     $('#add-entity').modal('show');
     $('#send').off('click').on('click', function () {
         var entity_id = $('select[name="character_id"]').val();
-        console.log(entity_id, uuid, container.dataset.entity, 'old');
+        //console.log(entity_id, uuid, container.dataset.entity, 'old');
 
         let url = container.dataset.entity.replace('/0', '/' + entity_id);
         axios.get(url).then(function (res) {
             var entity = res.data;
-            console.log('result', res.data);
+            //console.log('result', res.data);
             viewport.removeChildren();
-            replaceEntity(uuid, entity);
+            console.log(uuid, entity);
+            if (uuid === 0) {
+                addEntity(entity);
+            } else {
+                replaceEntity(uuid, entity);
+            }
             isUnchanged = false;
             drawFamilyTree();
         });
@@ -760,19 +778,19 @@ function editEntity(uuid) {
 }
 
 function addRelation(uuid) {
-    document.getElementById("add-relation").style.display = "";
+    $("#add-relation").show();
     $('#add-entity').modal('show');
     $('#send').off('click').on('click', function () {
         var entity_id = $('select[name="character_id"]').val();
         var relation = $('input[name="relation"]').val();
 
         //console.log(entity_id, uuid, container.dataset.entity, 'old');
-        console.log(entity_id, relation, 'ADDING RELATION');
+        //console.log(entity_id, relation, 'ADDING RELATION');
 
         let url = container.dataset.entity.replace('/0', '/' + entity_id);
         axios.get(url).then(function (res) {
             var entity = res.data;
-            console.log('Values from the API', res.data);
+            //console.log('Values from the API', res.data);
             viewport.removeChildren();
             insertRelation(uuid, entity, relation);
             //replaceEntity(uuid, entity, relation);
@@ -792,12 +810,12 @@ function addChildren(uuid) {
     $('#add-entity').modal('show');
     $('#send').off('click').on('click', function () {
         var entity_id = $('select[name="character_id"]').val();
-        console.log(entity_id, uuid, container.dataset.entity, 'old');
+        //console.log(entity_id, uuid, container.dataset.entity, 'old');
 
         let url = container.dataset.entity.replace('/0', '/' + entity_id);
         axios.get(url).then(function (res) {
             var entity = res.data;
-            console.log('result', res.data);
+            //console.log('result', res.data);
             viewport.removeChildren();
             insertChild(uuid, entity);
             isUnchanged = false;
@@ -819,14 +837,14 @@ function closeModal() {
         $('select.select2').
         val(null).trigger('change.select2');
     });
-    console.log($(this).select2);
+    //console.log($(this).select2);
 }
 
 function renameRelation(uuid) {
     let relation = prompt("Rename relation");
     if (relation) {
         viewport.removeChildren();
-        console.log(relation)
+        //console.log(relation)
         renameRelations(uuid, relation);
         isUnchanged = false;
         drawFamilyTree();
@@ -842,12 +860,13 @@ const resetTree = () => {
     btnClear.hide();
     btnSave.hide();
     btnReset.hide();
+    btnFirst.hide();
     btnEdit.show();
 
     // Reset the nodes as they were on page load
     nodes = JSON.parse(JSON.stringify(originalNodes));
     entities = JSON.parse(JSON.stringify(originalEntities));
-    console.log('original nodes', nodes);
+    //console.log('original nodes', nodes);
 
     // Edit edit mode and redraw the tree
     isEditing = false;
@@ -859,21 +878,27 @@ const resetTree = () => {
  * Clear the tree to start from a blank canvas
  */
 const clearTree = () => {
-    console.info('Clearing...');
-    nodes = [{entity_id: 0, uuid: stringify(0)}];
-    entities = [{id: 0, name: 'Click to add a Character', thumb: 'http://localhost:8081/images/defaults/patreon/characters_thumb.png', url: ''}];
+    //console.info('Clearing...');
+    nodes = [];
+    entities = [];
     isUnchanged = false;
     drawFamilyTree();
+
+    btnFirst.show();
 };
 
 const enterEditMode = () => {
-    console.info('Editing...');
+    //console.info('Editing...');
 
     // Change which buttons are available
     btnEdit.hide();
     btnSave.prop('disabled', true).show();
     btnClear.show();
     btnReset.show();
+
+    if (nodes.length === 0) {
+        btnFirst.show();
+    }
 
     // Redraw the tree in edit mode
     isEditing = true;
@@ -887,6 +912,7 @@ const initFamilyTree = () => {
     btnSave = $('#tree-save');
     btnClear = $('#tree-clear');
     btnReset = $('#tree-reset');
+    btnFirst = $('#first-entity');
 
     btnEdit.on('click', function (e) {
         e.preventDefault();
@@ -905,17 +931,21 @@ const initFamilyTree = () => {
             resetTree();
         }
     });
+    btnFirst.on('click', function (e) {
+        addFirstNode();
+    });
     btnSave.on('click', function (e) {
         e.preventDefault();
-        console.info('Saving...');
+        //console.info('Saving...');
         //console.log(container.dataset.api, 'api');
         axios.post(container.dataset.save, {data: nodes, entities: entities})
         .then((resp) => {
-            console.log('Saved Tree');
+            //console.log('Saved Tree');
         });
         renderPage();
         resetTree();
-        let toast = 'Saved Succesfully!';
+        // Todo: don't hardcode translations
+        let toast = 'Saved Successfully!';
         window.showToast(toast);
     });
 

@@ -5,6 +5,7 @@ return [
         'clear' => 'Clear tree',
         'reset' => 'Reset tree',
         'save' => 'Save tree',
+        'first' => 'Add a character',
     ],
     'title' => ':name Family Tree',
     'modal'   => [

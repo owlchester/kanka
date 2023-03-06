@@ -2120,7 +2120,7 @@ var offsetIncrement = 20;
 var childrenLineHeight = 50;
 var entityWidth = 140;
 var entityHeight = 60;
-var btnEdit, btnClear, btnReset, btnSave;
+var btnEdit, btnClear, btnReset, btnSave, btnFirst;
 var isEditing = false;
 var isUnchanged = false;
 /**
@@ -2150,30 +2150,27 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
 
   viewport.addChild(entityBox);
   elements.push(entityBox);
+  var circleMask = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
+  circleMask.beginFill();
+  circleMask.drawCircle(x + 110, y + 30, 20);
+  circleMask.endFill(); //app.stage.addChild(circleMask);
 
-  if (uuid != 0) {
-    var circleMask = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
-    circleMask.beginFill();
-    circleMask.drawCircle(x + 110, y + 30, 20);
-    circleMask.endFill(); //app.stage.addChild(circleMask);
+  viewport.addChild(circleMask);
+  elements.push(circleMask);
+  var entityImageTexture = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.from(entity.thumb);
+  var entityImage = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(entityImageTexture);
+  entityImage.x = x + 90;
+  entityImage.y = y + 10;
+  entityImage.height = 40;
+  entityImage.width = 40; //app.stage.addChild(entityImage);
 
-    viewport.addChild(circleMask);
-    elements.push(circleMask);
-    var entityImageTexture = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.from(entity.thumb);
-    var entityImage = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(entityImageTexture);
-    entityImage.x = x + 90;
-    entityImage.y = y + 10;
-    entityImage.height = 40;
-    entityImage.width = 40; //app.stage.addChild(entityImage);
+  viewport.addChild(entityImage);
+  elements.push(entityImage);
+  entityImage.mask = circleMask;
 
-    viewport.addChild(entityImage);
-    elements.push(entityImage);
-    entityImage.mask = circleMask;
-
-    if (name.length > 14) {
-      name = name.substring(0, 14);
-      name = name.concat('...');
-    }
+  if (name.length > 14) {
+    name = name.substring(0, 14);
+    name = name.concat('...');
   }
 
   var entityName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(name, entityNameStyle);
@@ -2221,7 +2218,8 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
     };
 
     viewport.addChild(closeButton);
-    elements.push(closeButton);
+    elements.push(closeButton); // Todo: make it translatable
+
     var editButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('edit', entityNameStyle);
     editButton.x = x + 35;
     editButton.y = y + 60;
@@ -2233,22 +2231,27 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
     };
 
     viewport.addChild(editButton);
-    elements.push(editButton);
-    var addRelationButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ relation', entityNameStyle);
-    addRelationButton.x = x + 140;
-    addRelationButton.y = y + 20;
-    addRelationButton.interactive = true;
-    addRelationButton.buttonMode = true;
+    elements.push(editButton); // Only add a relation to "parent" nodes
 
-    addRelationButton.onclick = function (event) {
-      addRelation(uuid);
-    };
+    if (!isRelation) {
+      // Todo: make it translatable
+      var addRelationButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ relation', entityNameStyle);
+      addRelationButton.x = x + 140;
+      addRelationButton.y = y + 20;
+      addRelationButton.interactive = true;
+      addRelationButton.buttonMode = true;
 
-    viewport.addChild(addRelationButton);
-    elements.push(addRelationButton);
+      addRelationButton.onclick = function (event) {
+        addRelation(uuid);
+      };
+
+      viewport.addChild(addRelationButton);
+      elements.push(addRelationButton);
+    }
 
     if (isRelation) {
-      var addChildrenButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ children', entityNameStyle);
+      // Todo: make it translatable
+      var addChildrenButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ child', entityNameStyle);
       addChildrenButton.x = x + 75;
       addChildrenButton.y = y + 60;
       addChildrenButton.interactive = true;
@@ -2295,7 +2298,7 @@ var drawRelation = function drawRelation(relation, sourceX, sourceY, drawX, draw
     // First relation, start on the source
     drawChildren(relation.children, sourceX, sourceY, sourceX, drawY, index);
   } else {
-    // Otherwise start on the relation
+    // Otherwise, start on the relation
     drawChildren(relation.children, sourceX, sourceY, drawX, drawY, index);
   }
 };
@@ -2424,9 +2427,10 @@ var drawRelations = function drawRelations(relations, sourceX, sourceY, drawX, d
     var tmpOffsetX = entityWidth + offsetIncrement; // However, if it's not, we need to add more padding, based on the previous node width
 
     if (index > 0) {
-      tmpOffsetX *= nodeOffset - 1;
+      tmpOffsetX *= nodeOffset;
     }
 
+    console.log('draw relation', index, tmpOffsetX);
     drawRelation(rel, drawX, sourceY, drawX + tmpOffsetX, drawY, index);
     nodeOffset += relationWidth(rel, 0);
   });
@@ -2499,11 +2503,13 @@ var drawNode = function drawNode(node, sourceX, sourceY, drawX, drawY) {
   drawRelations(node.relations, sourceX, sourceY, drawX, drawY);
 };
 
-var drawFamilyTree = function drawFamilyTree() {
-  console.log('Draw Family Tree');
+var addFirstNode = function addFirstNode() {
+  editEntity(0);
+};
 
-  if (nodes.length == 0 && isEditing) {
-    clearTree();
+var drawFamilyTree = function drawFamilyTree() {
+  //console.log('Draw Family Tree');
+  if (nodes.length === 0 && isEditing) {
     isUnchanged = true;
   }
 
@@ -2524,15 +2530,19 @@ var drawFamilyTree = function drawFamilyTree() {
   elements.forEach(function (text) {
     viewport.removeChild(text);
   });
-  nodes.forEach(function (node) {
-    drawNode(node, 0, 0, 0, 0);
-  });
+
+  if (nodes.length > 0) {
+    nodes.forEach(function (node) {
+      drawNode(node, 0, 0, 0, 0);
+    });
+  }
+
   viewport.addChild(graphics);
 };
 
 var renderPage = function renderPage() {
-  if (typeof app.stage !== 'undefined') {
-    console.log('deleted', 'container.removeChild'); //app.stage.removeChild(1);
+  if (typeof app.stage !== 'undefined') {//console.log('deleted','container.removeChild');
+    //app.stage.removeChild(1);
     //for (var i = app.stage.children.length - 1; i >= 0; i--) {	app.stage.removeChild(app.stage.children[i]);};
   }
 
@@ -2542,8 +2552,8 @@ var renderPage = function renderPage() {
     entities = resp.data.entities;
     nodes = resp.data.nodes;
     originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
-    originalEntities = JSON.parse(JSON.stringify(resp.data.entities));
-    console.log('original nodes', originalNodes, originalEntities);
+    originalEntities = JSON.parse(JSON.stringify(resp.data.entities)); //console.log('original nodes', originalNodes, originalEntities);
+
     drawFamilyTree();
   });
 };
@@ -2557,27 +2567,38 @@ function onPointerOut(object) {
 }
 
 var deleteUuidFromNodes = function deleteUuidFromNodes(uuid) {
-  console.log('Remove uuid', uuid);
+  //console.log('Remove uuid', uuid);
   return filter(nodes, uuid);
 };
 
+var addEntity = function addEntity(entity) {
+  entities[entity.id] = entity;
+  nodes.push({
+    entity_id: entity.id,
+    uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid),
+    relations: []
+  });
+  newUuid++;
+  btnFirst.hide();
+};
+
 var replaceEntity = function replaceEntity(uuid, entity) {
-  console.log('Change Entity', uuid);
+  //console.log('Change Entity', uuid);
   return entityEditor(nodes, uuid, entity);
 };
 
 var insertRelation = function insertRelation(uuid, entity, relation) {
-  console.log('Add Relation', uuid);
+  //console.log('Add Relation', uuid);
   return relationCreator(nodes, uuid, entity, relation);
 };
 
 var insertChild = function insertChild(uuid, entity) {
-  console.log('Add Child', uuid);
+  //console.log('Add Child', uuid);
   return childCreator(nodes, uuid, entity);
 };
 
 var renameRelations = function renameRelations(uuid, role) {
-  console.log('Rename relation', uuid, nodes);
+  //console.log('Rename relation', uuid, nodes);
   return relationFilter(nodes, uuid, role);
 };
 
@@ -2608,23 +2629,17 @@ function relationFilter(array, uuid, role) {
 function entityEditor(array, uuid, entity) {
   var entity_id = null;
 
-  if (uuid == 0) {
-    delete entities[0];
-    entity_id = entity.id;
+  if (!entities[entity.id]) {
     entities[entity.id] = entity;
-  } else {
-    if (!entities[entity.id]) {
-      entities[entity.id] = entity;
-    }
-
-    entity_id = entity.id;
   }
+
+  entity_id = entity.id;
 
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
       if (object.uuid == 0) {
         object.uuid = (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid);
-        newUuid = newUuid + 1;
+        newUuid++;
       }
 
       object.entity_id = entity_id;
@@ -2658,8 +2673,7 @@ function relationCreator(array, uuid, entity, role) {
 
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
-      console.log(object);
-
+      //console.log(object);
       if (Array.isArray(object.relations)) {
         object.relations.push({
           entity_id: entity_id,
@@ -2674,8 +2688,8 @@ function relationCreator(array, uuid, entity, role) {
         }];
       }
 
-      newUuid = newUuid + 1;
-      console.log(object, 'ADDED RELATIONS');
+      newUuid = newUuid + 1; //console.log(object, 'ADDED RELATIONS');
+
       result.push(object);
       return result;
     }
@@ -2706,8 +2720,7 @@ function childCreator(array, uuid, entity) {
 
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
-      console.log(object);
-
+      //console.log(object);
       if (Array.isArray(object.children)) {
         object.children.push({
           entity_id: entity_id,
@@ -2720,8 +2733,8 @@ function childCreator(array, uuid, entity) {
         }];
       }
 
-      newUuid = newUuid + 1;
-      console.log(object, 'ADDED CHILDREN');
+      newUuid = newUuid + 1; //console.log(object, 'ADDED CHILDREN');
+
       result.push(object);
       return result;
     }
@@ -2736,9 +2749,9 @@ function childCreator(array, uuid, entity) {
 
     result.push(object);
     return result;
-  };
+  }; //console.log(entities);
 
-  console.log(entities);
+
   return array.reduce(getRelationNodes, []);
 }
 
@@ -2775,7 +2788,7 @@ function deleteUuid(uuid) {
     viewport.removeChildren();
     deleteUuidFromNodes(uuid);
 
-    if (nodes.length == 0) {
+    if (nodes.length === 0) {
       clearTree();
     }
 
@@ -2785,17 +2798,24 @@ function deleteUuid(uuid) {
 }
 
 function editEntity(uuid) {
-  document.getElementById("add-relation").style.display = "none";
+  $("#add-relation").hide();
   $('#add-entity').modal('show');
   $('#send').off('click').on('click', function () {
-    var entity_id = $('select[name="character_id"]').val();
-    console.log(entity_id, uuid, container.dataset.entity, 'old');
+    var entity_id = $('select[name="character_id"]').val(); //console.log(entity_id, uuid, container.dataset.entity, 'old');
+
     var url = container.dataset.entity.replace('/0', '/' + entity_id);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
-      var entity = res.data;
-      console.log('result', res.data);
+      var entity = res.data; //console.log('result', res.data);
+
       viewport.removeChildren();
-      replaceEntity(uuid, entity);
+      console.log(uuid, entity);
+
+      if (uuid === 0) {
+        addEntity(entity);
+      } else {
+        replaceEntity(uuid, entity);
+      }
+
       isUnchanged = false;
       drawFamilyTree();
     });
@@ -2806,17 +2826,17 @@ function editEntity(uuid) {
 }
 
 function addRelation(uuid) {
-  document.getElementById("add-relation").style.display = "";
+  $("#add-relation").show();
   $('#add-entity').modal('show');
   $('#send').off('click').on('click', function () {
     var entity_id = $('select[name="character_id"]').val();
     var relation = $('input[name="relation"]').val(); //console.log(entity_id, uuid, container.dataset.entity, 'old');
+    //console.log(entity_id, relation, 'ADDING RELATION');
 
-    console.log(entity_id, relation, 'ADDING RELATION');
     var url = container.dataset.entity.replace('/0', '/' + entity_id);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
-      var entity = res.data;
-      console.log('Values from the API', res.data);
+      var entity = res.data; //console.log('Values from the API', res.data);
+
       viewport.removeChildren();
       insertRelation(uuid, entity, relation); //replaceEntity(uuid, entity, relation);
 
@@ -2834,12 +2854,12 @@ function addChildren(uuid) {
   document.getElementById("add-relation").style.display = "none";
   $('#add-entity').modal('show');
   $('#send').off('click').on('click', function () {
-    var entity_id = $('select[name="character_id"]').val();
-    console.log(entity_id, uuid, container.dataset.entity, 'old');
+    var entity_id = $('select[name="character_id"]').val(); //console.log(entity_id, uuid, container.dataset.entity, 'old');
+
     var url = container.dataset.entity.replace('/0', '/' + entity_id);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
-      var entity = res.data;
-      console.log('result', res.data);
+      var entity = res.data; //console.log('result', res.data);
+
       viewport.removeChildren();
       insertChild(uuid, entity);
       isUnchanged = false;
@@ -2855,16 +2875,15 @@ function closeModal() {
   $("#add-entity").on('hidden.bs.modal', function () {
     $(this).find("input,textarea,text").val('').end();
     $('select.select2').val(null).trigger('change.select2');
-  });
-  console.log($(this).select2);
+  }); //console.log($(this).select2);
 }
 
 function renameRelation(uuid) {
   var relation = prompt("Rename relation");
 
   if (relation) {
-    viewport.removeChildren();
-    console.log(relation);
+    viewport.removeChildren(); //console.log(relation)
+
     renameRelations(uuid, relation);
     isUnchanged = false;
     drawFamilyTree();
@@ -2880,11 +2899,12 @@ var resetTree = function resetTree() {
   btnClear.hide();
   btnSave.hide();
   btnReset.hide();
+  btnFirst.hide();
   btnEdit.show(); // Reset the nodes as they were on page load
 
   nodes = JSON.parse(JSON.stringify(originalNodes));
-  entities = JSON.parse(JSON.stringify(originalEntities));
-  console.log('original nodes', nodes); // Edit edit mode and redraw the tree
+  entities = JSON.parse(JSON.stringify(originalEntities)); //console.log('original nodes', nodes);
+  // Edit edit mode and redraw the tree
 
   isEditing = false;
   isUnchanged = true;
@@ -2896,28 +2916,26 @@ var resetTree = function resetTree() {
 
 
 var clearTree = function clearTree() {
-  console.info('Clearing...');
-  nodes = [{
-    entity_id: 0,
-    uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(0)
-  }];
-  entities = [{
-    id: 0,
-    name: 'Click to add a Character',
-    thumb: 'http://localhost:8081/images/defaults/patreon/characters_thumb.png',
-    url: ''
-  }];
+  //console.info('Clearing...');
+  nodes = [];
+  entities = [];
   isUnchanged = false;
   drawFamilyTree();
+  btnFirst.show();
 };
 
 var enterEditMode = function enterEditMode() {
-  console.info('Editing...'); // Change which buttons are available
-
+  //console.info('Editing...');
+  // Change which buttons are available
   btnEdit.hide();
   btnSave.prop('disabled', true).show();
   btnClear.show();
-  btnReset.show(); // Redraw the tree in edit mode
+  btnReset.show();
+
+  if (nodes.length === 0) {
+    btnFirst.show();
+  } // Redraw the tree in edit mode
+
 
   isEditing = true;
   isUnchanged = true;
@@ -2930,6 +2948,7 @@ var initFamilyTree = function initFamilyTree() {
   btnSave = $('#tree-save');
   btnClear = $('#tree-clear');
   btnReset = $('#tree-reset');
+  btnFirst = $('#first-entity');
   btnEdit.on('click', function (e) {
     e.preventDefault();
     enterEditMode();
@@ -2946,19 +2965,22 @@ var initFamilyTree = function initFamilyTree() {
       resetTree();
     }
   });
+  btnFirst.on('click', function (e) {
+    addFirstNode();
+  });
   btnSave.on('click', function (e) {
-    e.preventDefault();
-    console.info('Saving...'); //console.log(container.dataset.api, 'api');
+    e.preventDefault(); //console.info('Saving...');
+    //console.log(container.dataset.api, 'api');
 
     axios__WEBPACK_IMPORTED_MODULE_1___default().post(container.dataset.save, {
       data: nodes,
       entities: entities
-    }).then(function (resp) {
-      console.log('Saved Tree');
+    }).then(function (resp) {//console.log('Saved Tree');
     });
     renderPage();
-    resetTree();
-    var toast = 'Saved Succesfully!';
+    resetTree(); // Todo: don't hardcode translations
+
+    var toast = 'Saved Successfully!';
     window.showToast(toast);
   }); // Draw the page
 
