@@ -56,12 +56,9 @@ $clipboardFilters = $filterService->clipboardFilters();
                                     $modelclass = new $field['model'];
                                     $model = $modelclass->find($value);
                                 }
-                                if ($field['type'] == 'tag') {
-                                    $value = $filterService->filterValue('tags');
-                                }
                                 ?>
                                 @if ($field['type'] === 'tag')
-                                    @include('cruds.datagrids.filters._tag')
+                                    @include('cruds.datagrids.filters._tag', ['value' => $filterService->filterValue('tags')])
                                 @elseif ($field['type'] === 'select')
                                     @include('cruds.datagrids.filters._select')
                                 @else
