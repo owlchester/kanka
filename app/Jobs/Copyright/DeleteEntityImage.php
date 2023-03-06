@@ -68,14 +68,14 @@ class DeleteEntityImage implements ShouldQueue
         $service->removedImage($campaign, $entity);
         $child = $entity->child;
 
-        if (!empty($entity->child->image)) {
+        if ($campaign->superboosted() && $entity->image && $field == 'image') {
+            $entity->image->delete();
+        } elseif (!empty($entity->child->image) && $field == 'image') {
             ImageService::cleanup($child, $field);
             $child->update(['image' => $child->image]);
-        } elseif ($entity->image && $field == 'image') {
-            $entity->image->delete();
         }
 
-        if ($entity->header && $field == 'header_image') {
+        if ($campaign->superboosted() && $entity->header && $field == 'header_image') {
             $entity->header->delete();
         }
 
