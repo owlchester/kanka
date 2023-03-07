@@ -2,7 +2,6 @@
 
 namespace App\Models\Scopes;
 
-use App\Facades\CampaignLocalization;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -85,18 +84,13 @@ trait SubEntityScopes
             'entity',
             'entity.tags', 'entity.notes', 'entity.events',
             'entity.relationships', 'entity.attributes', 'entity.inventories',
-            'entity.assets'
+            'entity.assets',
+            'entity.header', 'entity.image',
         ];
 
         $with = !empty($this->apiWith) ? $this->apiWith : [];
         foreach ($with as $relation) {
             $relations[] = $relation;
-        }
-
-        $campaign = CampaignLocalization::getCampaign();
-        if ($campaign->superboosted()) {
-            $relations[] = 'entity.header';
-            $relations[] = 'entity.image';
         }
 
         return $query->with($relations);

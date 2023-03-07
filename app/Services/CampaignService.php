@@ -8,55 +8,10 @@ use App\Models\CampaignUser;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\User;
-use Illuminate\Session\Store;
 use Exception;
 
 class CampaignService
 {
-    /**
-     * @var integer
-     */
-    protected $id;
-
-    /**
-     * The user's current Campaign
-     * @var Campaign|bool
-     */
-    protected $campaign = false;
-
-    /**
-     * The Campaign model (DI)
-     * @var Campaign
-     */
-    protected $campaignModel;
-
-    /**
-     * @var Store
-     */
-    protected $session;
-
-    /**
-     * CampaignService constructor.
-     */
-    public function __construct(Store $session, Campaign $campaignModel)
-    {
-        $this->session = $session;
-        $this->campaignModel = $campaignModel;
-    }
-
-    public function campaign()
-    {
-        return \App\Facades\CampaignLocalization::getCampaign();
-    }
-
-    /**
-     * @return string
-     */
-    public function name()
-    {
-        return $this->campaign->name;
-    }
-
     /**
      * Switch campaigns
      * @param Campaign $campaign

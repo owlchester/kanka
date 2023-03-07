@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Layout;
 
 class CampaignRole extends Layout
@@ -46,7 +45,6 @@ class CampaignRole extends Layout
                 'label' => 'campaigns.roles.fields.permissions',
                 'render' => function ($model) {
                     $html = '';
-                    $campaign = CampaignLocalization::getCampaign();
 
                     /** @var \App\Models\CampaignRole $model */
                     if (!$model->is_admin) {
@@ -57,7 +55,7 @@ class CampaignRole extends Layout
                             . $model->permissions->whereNull('entity_id')->count()
                             . '</a>';
                     }
-                    if ($model->is_public && !$campaign->isPublic() && $model->permissions->whereNull('entity_id')->count() > 0) {
+                    if ($model->is_public && !$model->campaign->isPublic() && $model->permissions->whereNull('entity_id')->count() > 0) {
                         $html .= '<div class="hidden-xs"> <i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" title="'
                             . __('campaigns.roles.hints.campaign_not_public')
                             . '"></i></div> <div class="visible-xs">

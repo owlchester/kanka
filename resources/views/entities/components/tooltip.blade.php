@@ -28,6 +28,6 @@
         @endforeach
     </div>@endif
     <div class="tooltip-text">
-    {!! $entity->ajaxTooltip() !!}
+    {!! $entity->ajaxTooltip($campaign) !!}
     </div>
 </div>

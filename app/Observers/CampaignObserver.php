@@ -98,7 +98,7 @@ class CampaignObserver
             'user_id' => auth()->user()->id,
             'campaign_id' => $campaign->id,
         ]);
-        $campaignUser->saveQuietly();
+        $campaignUser->save();
 
         // Make sure we save the last campaign id to avoid infinite loops
         $user = auth()->user();
@@ -161,7 +161,7 @@ class CampaignObserver
         $this->saveRpgSystems($campaign);
 
         foreach ($campaign->members()->with('user')->get() as $member) {
-            UserCache::user($member->user)->clearCampaigns();
+            SingleUserCache::user($member->user)->clearCampaigns();
         }
 
         // Whenever a campaign is changed, clear the cache for followers.

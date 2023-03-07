@@ -578,9 +578,6 @@ class EntityService
             return $this->cachedNewEntityTypes = [];
         }
 
-        // Todo: move to CampaignAware
-        $campaign = CampaignLocalization::getCampaign();
-
         $newTypes = [
             'character' => Character::class,
             'location' => Location::class,
@@ -598,7 +595,7 @@ class EntityService
         ];
         $entities = [];
         foreach ($newTypes as $type => $class) {
-            if ($campaign->enabled(Str::plural($type)) && auth()->user()->can('create', $class)) {
+            if ($this->campaign->enabled(Str::plural($type)) && auth()->user()->can('create', $class)) {
                 $entities[$type] = $class;
             }
         }

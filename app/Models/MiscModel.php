@@ -460,10 +460,8 @@ abstract class MiscModel extends Model
             return e($this->name);
         }
 
-        $campaign = CampaignLocalization::getCampaign();
-
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
-            'data-url="' . route('entities.tooltip', ['campaign' => $campaign, 'entity' => $this->entity->id]) . '" href="' .
+            'data-url="' . route('entities.tooltip', ['campaign' => $this->campaign_id, 'entity' => $this->entity->id]) . '" href="' .
             $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .
         '</a>';
@@ -601,7 +599,7 @@ abstract class MiscModel extends Model
      * Generate the entity's body css classes
      * @return string
      */
-    public function bodyClasses(): string
+    public function bodyClasses(Campaign $campaign): string
     {
         $classes = [
             'kanka-entity-' . $this->entity->id,
@@ -633,9 +631,7 @@ abstract class MiscModel extends Model
         }
 
         // Entity header?
-        $campaign = CampaignLocalization::getCampaign();
         $superboosted = $campaign->superboosted();
-
         if ($campaign->boosted() && $this->entity->hasHeaderImage($superboosted)) {
             $classes[] = 'entity-with-banner';
         }

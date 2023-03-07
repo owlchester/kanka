@@ -31,8 +31,9 @@ class CharacterSubController extends CharacterController
             return $this->datagridAjax();
         }
 
+        $this->campaign = $campaign;
         return $this
-            ->menuView($character, 'organisations');
+            ->menuView($character,'organisations');
     }
 
     /**

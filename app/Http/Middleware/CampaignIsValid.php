@@ -35,7 +35,7 @@ class CampaignIsValid
 
         // If the user isn't a member of the campaign, show them a permission denied error
         if (auth()->guest() || !$campaign->userIsMember()) {
-            // todo: Save the url for a redirect after login in?
+            // Todo: Save the url for a redirect after login in?
             session()->put('campaign_id', $campaign->id);
             return abort(403);
         }

@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 <?php /** @var \App\Models\Timeline $model */?>
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->columns([
         // Avatar

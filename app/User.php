@@ -271,9 +271,7 @@ class User extends \Illuminate\Foundation\Auth\User
         if (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL) {
             return true;
         }
-        // We check the campaign and roles for 61105 because of a special Elemental subscriber.
-        $campaign = CampaignLocalization::getCampaign();
-        return (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
+        return false;
     }
 
     /**
@@ -386,15 +384,14 @@ class User extends \Illuminate\Foundation\Auth\User
      * Determine if ads should be shown for the user or campaign
      * @return bool
      */
-    public function showAds(): bool
+    public function showAds(Campaign $campaign = null): bool
     {
-        // Patrons and subs don't have ads
+        // Subs don't have ads
         if ($this->isSubscriber()) {
             return false;
         }
 
         // Campaigns that are boosted don't either
-        $campaign = CampaignLocalization::getCampaign();
         return !empty($campaign) && !$campaign->boosted();
     }
 

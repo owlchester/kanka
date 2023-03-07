@@ -10,10 +10,7 @@ use App\User;
 
 class BoostController extends Controller
 {
-    /**
-     * @var CampaignBoostService
-     */
-    protected $campaignBoostService;
+    protected CampaignBoostService $campaignBoostService;
 
     /**
      * Create a new controller instance.

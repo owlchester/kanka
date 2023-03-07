@@ -290,7 +290,7 @@ class MapMarker extends Model
      * Generate the marker's popup that is usually opened on hover
      * @return ?string
      */
-    protected function popup(): ?string
+    protected function popup(bool $boosted): ?string
     {
         if ($this->editing) {
             return null;
@@ -307,7 +307,8 @@ class MapMarker extends Model
             }
             // No entry field, include the entity tooltip
             if (!$this->isLabel()) {
-                $body .= $this->entity->mappedPreview();
+                $campaign = CampaignLocalization::getCampaign();
+                $body .= $this->entity->mappedPreview($campaign->boosted());
                 // Replace backslashes because javascript can think that things like \6e is an octogonal string
                 $body = str_replace('\\', '/', $body);
             }

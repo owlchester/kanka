@@ -54,7 +54,7 @@
 </div>
 <div class="hidden">
     <datalist id="position-list">
-        @foreach (\App\Models\Inventory::positionList() as $name)
+        @foreach (\App\Models\Inventory::positionList($campaign) as $name)
             <option value="{{ e($name) }}">{{ e($name) }}</option>
         @endforeach
     </datalist>

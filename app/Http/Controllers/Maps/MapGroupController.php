@@ -205,7 +205,7 @@ class MapGroupController extends Controller
         }
 
         if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.groups.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-group', $models);
+            return $this->bulkBatch($campaign, route('maps.groups.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-group', $models);
         }
 
         $count = $this->bulkProcess($request, MapGroup::class);

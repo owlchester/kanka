@@ -321,7 +321,7 @@ class MapMarkerController extends Controller
         }
 
         if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.markers.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-marker', $models, $map);
+            return $this->bulkBatch($campaign, route('maps.markers.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-marker', $models, $map);
         }
 
         $count = $this->bulkProcess($request, MapMarker::class);

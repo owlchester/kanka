@@ -5,7 +5,7 @@ namespace App\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class CampaignLocalization
+ * Class FrontCache
  * @package App\Facades
  *
  * @see \App\Services\Caches\FrontCacheService

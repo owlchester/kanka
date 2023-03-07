@@ -19,7 +19,7 @@ class Plugin extends Layout
                 'label' => 'campaigns/plugins.fields.name',
                 'render' => function ($model) {
                     return '<a href="' . config('marketplace.url') . '/plugins/' . $model->uuid . '" target="_blank">'
-                             . $model->name
+                            . $model->name
                             . '</a>';
                 },
             ],

@@ -764,7 +764,8 @@ class MentionsService
             return $name;
         }
 
-        $types = $this->entityService->newEntityTypes();
+        $campaign = CampaignLocalization::getCampaign();
+        $types = $this->entityService->campaign($campaign)->newEntityTypes();
 
         // Invalid type
         if (!isset($types[$type])) {
@@ -781,8 +782,7 @@ class MentionsService
         /** @var MiscModel $newMisc */
         $newMisc = new $types[$type]();
 
-        $campaign = \App\Facades\CampaignLocalization::getCampaign();
-        $new = $this->entityService->campaign($campaign)->makeNewMentionEntity($newMisc, $name);
+        $new = $this->entityService->makeNewMentionEntity($newMisc, $name);
         $this->newEntityMentions[$key] = $new->entity->id;
         $this->createdNewEntities = true;
 

@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
+use App\Models\Campaign;
 use App\Models\MiscModel;
 use Illuminate\Support\Str;
 
@@ -29,7 +30,7 @@ trait TooltipTrait
      * Full tooltip used for ajax calls
      * @return string
      */
-    public function ajaxTooltip(): string
+    public function ajaxTooltip(Campaign $campaign): string
     {
         if (empty($this->child)) {
             return '';
@@ -37,7 +38,6 @@ trait TooltipTrait
 
         $text = null;
 
-        $campaign = CampaignLocalization::getCampaign();
         if ($campaign->boosted()) {
             // If the campaign is boosted, entities can have a custom tooltip. This allows them to use some
             // html syntax, and thus a lot more control on what is displayed.

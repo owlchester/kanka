@@ -351,7 +351,7 @@ class SearchService
     {
         $options = [];
         $term = str_replace('_', ' ', $this->term);
-        foreach ($this->entityService->newEntityTypes() as $type => $class) {
+        foreach ($this->entityService->campaign($this->campaign)->newEntityTypes() as $type => $class) {
             $options[] = [
                 'new' => true,
                 'inject' => '[new:' . $type . '|' . $term . ']',

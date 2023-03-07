@@ -33,10 +33,6 @@ trait TreeControllerTrait
             );
         }
 
-        if (empty($this->campaign)) {
-            $this->campaign = CampaignLocalization::getCampaign();
-        }
-
         /**
          * Prepare a lot of variables that will be shared over to the view
          * @var MiscModel $model

@@ -35,7 +35,7 @@
                             <span class="fa-solid fa-ellipsis-v"></span>
                         </div>
                         <div class="name overflow-hidden flex-grow">
-                            <i class="{{ $link->icon() }}"></i> {!! $link->name !!}
+                            <i class="{{ $link->icon($campaign->boosted()) }}"></i> {!! $link->name !!}
                         </div>
                         <div class="self-end">
                             @if ($link->is_private)

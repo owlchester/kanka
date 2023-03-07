@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignCache;
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\DeleteCampaign;
@@ -84,6 +85,9 @@ class CampaignController extends Controller
             DB::rollBack();
             throw $e;
         }
+
+        // Clear the user's caches
+        UserCache::clearRoles();
 
         if ($request->has('submit-update')) {
             return redirect()

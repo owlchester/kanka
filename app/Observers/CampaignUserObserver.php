@@ -20,9 +20,6 @@ class CampaignUserObserver
         if ($follow) {
             $follow->delete();
         }
-
-        // Update the campaign members cache when a user was added to the campaign
-        CampaignCache::campaign($campaignUser->campaign)->clearMembers();
     }
 
     /**

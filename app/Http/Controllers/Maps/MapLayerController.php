@@ -226,7 +226,7 @@ class MapLayerController extends Controller
         }
 
         if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.layers.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-layer', $models);
+            return $this->bulkBatch($campaign, route('maps.layers.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-layer', $models);
         }
 
         $count = $this->bulkProcess($request, MapLayer::class);

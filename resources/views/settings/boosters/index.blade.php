@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\CampaignBoost $boost
- * @var \App\Models\Campaign $campaign
  */
 ?>
 @extends('layouts.app', [
@@ -103,8 +102,8 @@
             @foreach ($boosts as $boost)
                 @include('settings.boosters._campaign', ['campaign' => $boost->campaign])
             @endforeach
-            @foreach ($campaigns as $campaign)
-                @include('settings.boosters._campaign')
+            @foreach ($campaigns as $userCampaign)
+                @include('settings.boosters._campaign', ['campaign' => $userCampaign])
             @endforeach
         </div>
     </div>

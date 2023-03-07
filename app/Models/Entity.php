@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
@@ -178,15 +177,15 @@ class Entity extends Model
 
     /**
      * Preview of the entity with mapped mentions. For map markers
+     * @param  bool $boosted
      * @return string
      */
-    public function mappedPreview(): string
+    public function mappedPreview(bool $boosted): string
     {
         if (empty($this->child)) {
             return '';
         }
-        $campaign = CampaignLocalization::getCampaign();
-        if ($campaign->boosted()) {
+        if ($boosted) {
             $boostedTooltip = strip_tags($this->tooltip);
             if (!empty(trim($boostedTooltip))) {
                 $text = Mentions::mapEntity($this);
@@ -318,7 +317,6 @@ class Entity extends Model
     /*public function assets(): Collection
     {
         $assets = $this->files;
-        $campaign = CampaignLocalization::getCampaign();
         $links = $campaign->boosted() ? $this->links : [];
         $aliases = $campaign->boosted() ? $this->aliases : [];
         $assets = $assets->merge($aliases);

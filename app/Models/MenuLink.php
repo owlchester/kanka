@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\Privatable;
 use App\Models\Concerns\Taggable;
@@ -361,10 +360,9 @@ class MenuLink extends MiscModel
      * Icon HTML class
      * @return string
      */
-    public function icon(): string
+    public function icon(bool $boosted): string
     {
-        $campaign = CampaignLocalization::getCampaign();
-        if (!empty($this->icon) && $campaign->boosted()) {
+        if (!empty($this->icon) && $boosted) {
             return e($this->icon);
         } elseif ($this->target) {
             return 'fa-solid fa-arrow-circle-right';

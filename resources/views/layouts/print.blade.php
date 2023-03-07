@@ -64,7 +64,7 @@ $specificTheme = null;
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 
-<body class="@if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif  @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
+<body class="@if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses($campaign) }}@endif  @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
 
@@ -92,7 +92,7 @@ $specificTheme = null;
             <section class="content">
                 @include('partials.success')
 
-@if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
+@if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds($campaign ?? null)) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
                 <p class="text-center text-muted">
                     {!! __('misc.ads.remove_v2', [
     'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),

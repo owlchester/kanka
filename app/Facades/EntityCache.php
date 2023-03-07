@@ -5,7 +5,7 @@ namespace App\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class CampaignLocalization
+ * Class EntityCache
  * @package App\Facades
  *
  * @see \App\Services\Caches\EntityCacheService

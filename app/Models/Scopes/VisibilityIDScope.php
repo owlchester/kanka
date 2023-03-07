@@ -32,6 +32,7 @@ class VisibilityIDScope implements Scope
             $builder->where($model->getTable() . '.visibility_id', Visibility::VISIBILITY_ALL);
             return;
         }
+        // Todo: move to the user knowing about this
         $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->userIsMember()) {
             $builder->where($model->getTable() . '.visibility_id', Visibility::VISIBILITY_ALL);

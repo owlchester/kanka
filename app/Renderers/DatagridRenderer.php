@@ -2,7 +2,6 @@
 
 namespace App\Renderers;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Journal;
@@ -548,7 +547,7 @@ class DatagridRenderer
     protected function getCampaign(): Campaign
     {
         if ($this->campaign === null) {
-            $this->campaign = CampaignLocalization::getCampaign();
+            dd('Old datagrid missing campaign context');
         }
         return $this->campaign;
     }

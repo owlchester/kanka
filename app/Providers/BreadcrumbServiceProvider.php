@@ -19,6 +19,8 @@ class BreadcrumbServiceProvider extends ServiceProvider
             $service = new BreadcrumbService();
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
+            } else {
+                dd('Error B01: Breadcrumbs outside of a campaign');
             }
             return $service;
         });
