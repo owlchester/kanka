@@ -8,6 +8,10 @@ return [
         ],
         'learn-more'    => 'Was sind Booster?',
         'limitation'    => 'Um auf diese Funktion zugreifen zu können, muss die Kampagne geboostet werden.',
+        'limitations'   => [
+            'boosted'       => 'Um auf diese Funktion zugreifen zu können, muss die Kampagne geboostet werden.',
+            'superboosted'  => 'Um auf diese Funktion zugreifen zu können, muss die Kampagne supergeboostet werden.',
+        ],
         'multiple'      => 'Um auf diese Funktionen zugreifen zu können, muss die Kampagne geboostet werden.',
         'pitches'       => [
             'element-class' => 'Gib diesem Element eine benutzerdefinierte CSS-Klasse mit einer :boosted-campaign.',

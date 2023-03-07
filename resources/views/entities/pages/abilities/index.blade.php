@@ -12,7 +12,8 @@
     @can('update', $entity->child)
         <div class="header-buttons">
             <a href="{{ route('entities.entity_abilities.reorder', [$campaign, $entity]) }}" class="btn btn-sm btn-default">
-                <i class="fa-solid fa-sort" aria-hidden="true"></i> {{ __('entities/abilities.show.reorder') }}
+                <i class="fa-solid fa-sort" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.show.reorder') }}</span>
+                <span class="visible-xs visible-sm">{{ __('sidebar.campaign_switcher.reorder') }}</span>
             </a>
             <a href="{{ route('entities.entity_abilities.reset', [$campaign, $entity]) }}" class="btn btn-sm btn-default">
                 <i class="fa-solid fa-redo" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>

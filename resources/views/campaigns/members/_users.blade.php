@@ -57,7 +57,7 @@
                             </div>
                         </td>
                         <td class=" max-w-30">
-                            <a class="block text-break truncate" href="{{ route('users.profile', [$campaign, $relation->user_id]) }}" target="_blank">
+                            <a class="block text-break truncate" href="{{ route('users.profile', $relation->user_id) }}" target="_blank">
                                 {{ $relation->user->name }}
                             </a>
                             @if ($relation->user->isBanned())
@@ -72,7 +72,7 @@
                                 <form method='post' action='{{ route('campaign_users.update-roles', [$campaign, $relation, $role]) }}' class='user-role-update'>
     {!! str_replace('"', '\'', csrf_field()) !!}
 
-                                    <button class='btn btn-block btn-role-update mb-2'>
+                                    <button class='btn btn-default btn-block btn-role-update mb-2'>
                                     @if($relation->user->hasCampaignRole($campaign, $role->id))
                                         <span class='text-danger'><i class='fa-solid fa-times' aria-hidden='true'></i> {{ $role->name }}</span>
                                     @else

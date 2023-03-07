@@ -4,6 +4,9 @@ return [
     'about'                 => [
         'title' => 'Über Kanka',
     ],
+    'actions'               => [
+        'back-to-top'   => 'Zurück nach oben',
+    ],
     'campaigns'             => [
         'description_full'  => 'Viele Kampagnen auf Kanka sind öffentlich für jeden. Diese Seite enthält eine Liste aller öffentlichen Kampagnen sowie einige von der Community hervorgehobene Kampagnen.',
         'featured'          => [
@@ -14,6 +17,7 @@ return [
             'filters'   => [
                 'all'       => 'offener Status',
                 'closed'    => 'geschlossene Kampagnen',
+                'featured'  => 'Schnelle Gewinner',
                 'open'      => 'offene Kampagnen',
             ],
         ],
@@ -146,6 +150,7 @@ return [
             '2fa'               => 'Zugang zur Zwei-Faktor-Authentifizierung',
             'api_calls'         => 'Erhöhte API-Aufrufe (90)',
             'boosts'            => 'Kampagnen Booster',
+            'bragi'             => 'Zugang zu Bragi, Kankas weltbildender KI',
             'click-me'          => 'Erfahre mehr über diese Funktion.',
             'curation'          => 'Helfen Sie mit, die Community-Abstimmungselemente zu verwalten',
             'default_image'     => 'Schöne Standardbilder für Objekte',
@@ -229,10 +234,11 @@ return [
         ],
     ],
     'master'                => [
-        'call_to_action'    => 'Registrier dich jetzt, es ist kostenlos!',
-        'description'       => 'Kanka ist ein einfaches und flexibles Tool, um Welten zu bauen und deine Rollenspielkampagne online zu verwalten. Erstelle und organisiere Charaktere, Orte, Organisationen, Ereignisse und vieles mehr.',
-        'heading'           => 'RPG Campaign Management und Worldbuilding leicht gemacht',
-        'title'             => 'Kanka',
+        'call_to_action'        => 'Registrier dich jetzt, es ist kostenlos!',
+        'description'           => 'Kanka ist ein einfaches und flexibles Tool, um Welten zu bauen und deine Rollenspielkampagne online zu verwalten. Erstelle und organisiere Charaktere, Orte, Organisationen, Ereignisse und vieles mehr.',
+        'description_q1_2023'   => ':kanka ist ein kollaboratives Worldbuilding-Tool, mit dem du deiner Kreativität freien Lauf lassen kannst. Baue deine Welt mit Wiki-ähnlichen Objekten, komplexen Kalendern und wunderschönen Karten. Was auch immer du brauchst, :kanka ist hier, um dir bei der Erstellung und Durchführung deiner hausgemachten-RPG-Kampagne zu helfen.',
+        'heading'               => 'RPG Campaign Management und Worldbuilding leicht gemacht',
+        'title'                 => 'Kanka',
     ],
     'media'                 => [],
     'menu'                  => [
@@ -266,10 +272,10 @@ return [
         'title'         => 'Partner',
     ],
     'pricing'               => [
-        'actions'   => [
+        'actions'       => [
             'subscribe' => 'Abonnieren',
         ],
-        'benefits'  => [
+        'benefits'      => [
             'big_maps'      => 'große Kartengröße (:size)',
             'bigger_maps'   => 'größere Kartengröße (:size)',
             'boosters'      => 'Kampagnen-Booster',
@@ -280,11 +286,17 @@ return [
             'unlimited'     => 'Unbegrenzte Kampagnen und Uploads',
             'updates'       => 'Häufige Updates und Verbesserungen',
         ],
-        'tier'      => [
+        'billed_yearly' => ':amount jährlich abgerechnet',
+        'lead'          => [
+            'obvious'   => 'offensichtliche Wahl',
+            'text'      => 'Das :obvious für kollaboratives Worldbuilding und ttrpg-Kampagnenmanagement zu einem erschwinglichen Preis.',
+        ],
+        'refund'        => 'Mit einer 14-tägigen Rückerstattungsrichtlinie für Jahresabonnements.',
+        'tier'          => [
             'free'  => 'Kostenlos',
             'month' => 'Monat',
         ],
-        'title'     => 'Preisübersicht',
+        'title'         => 'Preisübersicht',
     ],
     'privacy'               => [
         'description'   => 'Datum des Inkrafttretens: :date',

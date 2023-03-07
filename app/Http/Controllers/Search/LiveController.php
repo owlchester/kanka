@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Search;
 use App\Http\Controllers\Controller;
 use App\Models\Ability;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\Tag;
@@ -13,7 +14,6 @@ use Illuminate\Http\Request;
 
 class LiveController extends Controller
 {
-    /** @var SearchService */
     protected SearchService $search;
 
     /**
@@ -45,6 +45,10 @@ class LiveController extends Controller
         $exclude = trim($request->get('exclude'));
         $new = request()->has('new');
 
+        if ($request->get('v2') === "true") {
+            $this->search->v2();
+        }
+
         return response()->json(
             $this->search
                 ->term($term)
@@ -55,6 +59,31 @@ class LiveController extends Controller
                 ->excludeIds($exclude)
                 ->find()
         );
+    }
+
+    /**
+     * Get a user's recent searches
+     * @return never|void
+     */
+    public function recent()
+    {
+        $recent = [];
+        if (auth()->check()) {
+            $campaign = CampaignLocalization::getCampaign();
+
+            $recent = $this->search
+                ->campaign($campaign)
+                ->user(auth()->user())
+                ->recent();
+        }
+
+        return response()->json([
+            'recent' => $recent,
+            'texts' => [
+                'recents' => __('search.lookup.recents'),
+                'hint' => __('search.lookup.hint')
+            ],
+        ]);
     }
 
     /**

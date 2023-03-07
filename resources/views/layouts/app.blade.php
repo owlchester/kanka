@@ -6,6 +6,7 @@
 $themeOverride = request()->get('_theme');
 $specificTheme = null;
 $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
+$showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign);
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -72,14 +73,14 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if(!app()->environment('prod')) env-{{ app()->environment() }} @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
+<body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if(!app()->environment('prod')) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif >
 @include('layouts._tracking-fallback')
 
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute py-2 px-4 top-0" tabindex="1">
     {{ __('crud.navigation.skip_to_content') }}
 </a>
-    <div id="app" class="wrapper">
-        @include('layouts.header')
+    <div id="app" class="wrapper mt-12">
+        @include('layouts.header', ['toggle' => $showSidebar])
 
         @include('layouts.sidebars.' . ($sidebar ?? 'app'))
 

@@ -11,6 +11,7 @@ use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class MapGroupController extends Controller
 {
@@ -83,7 +84,7 @@ class MapGroupController extends Controller
         }
         $model = new MapGroup();
         $data = $request->only('name', 'position', 'entry', 'visibility_id', 'is_shown');
-        if ($data['position']) {
+        if (Arr::exists($data, 'position')) {
             $map->groups()->where('position', '>', $data['position'] - 1)->increment('position');
         }
         $data['map_id'] = $map->id;

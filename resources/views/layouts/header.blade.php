@@ -1,37 +1,39 @@
-<header class="main-header @if(isset($startUI) && $startUI) main-header-start @endif">
-    <nav class="navbar navbar-static-top flex">
-        @if ((auth()->check() && auth()->user()->hasCampaigns()) || !auth()->check())
-            <button class="sidebar-toggle text-center" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>]</code>']) !!}" data-placement="right" data-html="true" tabindex="3">
-                <span class="sr-only">{{ __('header.toggle_navigation') }}</span>
-            </button>
+<header id="header" class="">
+    <nav class="flex gap-2 justify-center items-center fixed top-0 w-full bg-navbar h-12">
+        <div class="flex-0 flex w-sidebar justify-items items-center">
+        @if (isset($toggle) && $toggle)
+            <nav-toggler
+                text="{{ __('header.toggle_navigation') }}"
+                title="{{ __('crud.keyboard-shortcut', ['code' => '<code>]</code>']) }}"
+            ></nav-toggler>
         @endif
 
         @if (!empty($campaign))
-            {!! Form::open(['route' => ['search', $campaign], 'class' => 'visible-md visible-lg navbar-form live-search-form py-0', 'method'=>'GET']) !!}
-            <div class="form-group has-feedback flex-grow">
-                <div class="flex items-center">
-                    <input type="search" name="q" id="live-search" class="typeahead form-control" autocomplete="off"
-                           placeholder="{{ __('sidebar.search') }}" data-url="{{ route('search.live', $campaign) }}"
-                           data-empty="{{ __('search.no_results') }}"
-                           tabindex="2">
-                    <span class="keyboard-shortcut form-control-feedback hidden-xs hidden-sm" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) !!}" data-html="true" data-placement="bottom">K</span>
+            <nav-search
+                api_lookup="{{ route('search.live', [$campaign]) }}"
+                api_recent="{{ route('search.recent', [$campaign]) }}"
+                placeholder="{{ __('SEARCH') }}"
+            ></nav-search>
+        @endif
+        </div>
 
-                    <a href="#" role="button" class="live-search-close visible-xs visible-sm px-3" aria-label="Close search">
-                        <i class="fa-solid fa-close" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-            {!! Form::close() !!}
+        @if (auth()->check() && !empty($campaign) && $campaign->userIsMember() && (!isset($qq) || $qq))
+        <div class="flex-0">
+            <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="bottom"></span>
+            <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex justify-center text-center gap-2 rounded h-9 min-w-9 px-2 text-uppercase items-center"
+            tabindex="4">
+                <i class="flex-none fa-solid fa-plus ml-1" aria-hidden="true" ></i>
+                <span class="flex-grow hidden-xs">
+                    {{ __('crud.create') }}
+                </span>
+                <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true" data-placement="bottom" >N</span>
+            </a>
+        </div>
         @endif
 
         <div class="flex-1 navbar-actions">
-            <div class="flex justify-end px-3">
-                @if (!empty($campaign))
-                    <span href="#" role="button" class="visible-xs visible-sm mobile-search text-lg p-3" aria-label="{{ __('crud.search') }}">
-                        <span class="fa-solid fa-search" aria-hidden="true"></span>
-                    </span>
-                @endif
 
+            <div class="flex justify-end mr-3">
                 @guest
                         <a href="{{ route('login') }}" class="hidden-xs btn mt-1">
                             {{ __('front.menu.login') }}
@@ -44,18 +46,16 @@
                 @endguest
 
                 @auth()
-                    <div id="nav-switcher">
-                        <nav-switcher
-                            user_id="{{ auth()->user()->id }}"
-                            api="{{ route('layout.navigation') }}"
-                            fetch="{{ route('notifications.refresh') }}"
-                            initials="{{ auth()->user()->initials() }}"
-                            avatar="{{ auth()->user()->getAvatarUrl(36) }}"
-                            campaign_id="{{ !empty($campaign) ? $campaign->id : null }}"
-                            :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
-                            :pro="{{ config('fontawesome.kit') !== false ? 'true' : 'false' }}"
-                        ></nav-switcher>
-                    </div>
+                    <nav-switcher
+                        user_id="{{ auth()->user()->id }}"
+                        api="{{ route('layout.navigation') }}"
+                        fetch="{{ route('notifications.refresh') }}"
+                        initials="{{ auth()->user()->initials() }}"
+                        avatar="{{ auth()->user()->getAvatarUrl(36) }}"
+                        campaign_id="{{ $campaign->id ?? null }}"
+                        :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
+                        :pro="{{ config('fontawesome.kit') !== false ? 'true' : 'false' }}"
+                    ></nav-switcher>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                         {{ csrf_field() }}
                     </form>

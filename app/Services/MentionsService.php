@@ -387,13 +387,18 @@ class MentionsService
                     $tagClasses[] = 'id-' . $tag->id;
                     $tagClasses[] = Str::slug($tag->name);
                 }
-
                 // Referencing a custom field on the entity
                 if (!empty($data['field'])) {
                     $field = $data['field'];
                     // Mapping
                     if ($field == 'gender') {
                         $field = 'sex';
+                    }
+                    if ($field == 'family' && !$entity->child->families->isEmpty()) {
+                        $data['text'] = $entity->child->families()->reorder('name')->first()->name;
+                    }
+                    if ($field == 'race' && !$entity->child->races->isEmpty()) {
+                        $data['text'] = $entity->child->races()->reorder('name')->first()->name;
                     }
                     if ($field === 'entry') {
                         if ($this->enableEntryField) {

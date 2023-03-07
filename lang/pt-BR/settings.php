@@ -2,6 +2,17 @@
 
 return [
     'account'       => [
+        '2fa'               => [
+            'actions'       => [
+                'disable'   => 'Desativar autenticação de dois-fatores',
+            ],
+            'disable'       => [
+                'title' => 'Desativar autenticação de dois-fatores',
+            ],
+            'enabled'       => 'Autenticação de dois-fatores está atualmente ativada em sua conta.',
+            'error_enable'  => 'Código Inválido, tente novamente',
+            'title'         => 'Autenticação de dois-fatores',
+        ],
         'actions'           => [
             'social'            => 'Trocar para o login do Kanka',
             'update_email'      => 'Atualizar e-mail',
@@ -116,6 +127,7 @@ return [
                 'missing_features'  => 'Recursos ausentes',
                 'not_for'           => 'Assinatura não é para mim',
                 'not_using'         => 'Não estou usando o Kanka no momento',
+                'other'             => 'Outro',
             ],
             'text'      => 'Lamentamos ver você ir! O cancelamento de sua assinatura a manterá ativa até o próximo ciclo de faturamento, após o qual você perderá os impulsionamentos à sua campanha e outros benefícios relacionados ao suporte ao Kanka. Sinta-se à vontade para preencher o formulário a seguir para nos informar o que podemos fazer melhor ou o que levou à sua decisão.',
         ],
@@ -158,6 +170,7 @@ return [
             'alternatives_warning'  => 'Não é possível atualizar sua assinatura ao usar este método. Faça uma nova assinatura quando a atual terminar.',
             'alternatives_yearly'   => 'Devido às restrições em torno dos pagamentos recorrentes, :method está disponível apenas para assinaturas anuais',
             'paypal'                => 'Quer usar o Paypal em vez disso? Contate-nos em :email se pretender assinar um plano anual através do Paypal.',
+            'paypal_v2'             => 'Aceitamos PayPal para assinaturas anuais. Entre em contato conosco em :email com o e-mail da sua conta Kanka, o nível que deseja assinar e a moeda (USD ou EUR) na qual deseja ser cobrado.',
             'stripe'                => 'Suas informações de cobrança são processadas e armazenadas com segurança por meio de :stripe.',
         ],
         'manage_subscription'   => 'Gerenciar assinatura',

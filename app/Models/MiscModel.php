@@ -159,7 +159,7 @@ abstract class MiscModel extends Model
     public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
-            return $this->getImageFallback($width);
+            return $this->getImageFallback();
         }
 
         $img = Img::resetCrop()
@@ -188,10 +188,9 @@ abstract class MiscModel extends Model
 
     /**
      * Get the image fallback image
-     * @param int $width = 400
      * @return string
      */
-    protected function getImageFallback(int $width = 400): string
+    protected function getImageFallback(): string
     {
         // Campaign could have something set up
         $campaign = CampaignLocalization::getCampaign();
@@ -208,11 +207,11 @@ abstract class MiscModel extends Model
             return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {
             // Goblins and above have nicer icons
-            return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
+            return asset('/images/defaults/patreon/' . $this->getTable() . '_thumb.png');
         }
 
         // Default fallback
-        return asset('/images/defaults/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.jpg');
+        return asset('/images/defaults/' . $this->getTable() . '_thumb.jpg');
     }
 
     /**

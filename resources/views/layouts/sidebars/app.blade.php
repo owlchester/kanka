@@ -26,16 +26,6 @@ $defaultIndex = (isset($campaign) && $campaign->defaultToNested()) || auth()->ch
 
         <section class="sidebar" style="height: auto">
             <ul class="sidebar-menu">
-
-                @if (auth()->check() && $campaign->userIsMember())
-                <li class="quick-creator-element ab-testing-b" style="display: none" data-toggle="tooltip" title="{{ __('entities.creator.tooltip') }}">
-                    <div data-url="{{ route('entity-creator.selection', ['campaign' => $campaign]) }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button my-auto">
-                        <i class="fa-solid fa-plus"></i>
-                        <span>{{ __('sidebar.new-entity') }}</span>
-                    </div>
-                </li>
-                @endif
-
                 @foreach ($sidebar->campaign($campaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
                         @includeWhen($campaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])
@@ -88,31 +78,6 @@ $defaultIndex = (isset($campaign) && $campaign->defaultToNested()) || auth()->ch
             </ul>
 
             @include('partials.ads.sidebar')
-        </section>
-    </aside>
-    @if (auth()->check() && $campaign->userIsMember())
-        <section class="sidebar-creator">
-            <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="top"></span>
-            <a href="#" data-url="{{ route('entity-creator.selection', ['campaign' => $campaign]) }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex items-center justify-center px-2">
-                <i class="flex-none  fa-solid fa-plus" aria-hidden="true" ></i>
-                <span class="flex-grow" data-toggle="tooltip" title="{{ __('entities.creator.tooltip') }}">{{ __('sidebar.new-entity') }}</span>
-                <span class="flex-none keyboard-shortcut pull-right" id="qq-kb-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>N</code>']) !!}" data-html="true">N</span>
-            </a>
-        </section>
-    @endif
-@elseif (auth()->check() && auth()->user()->hasCampaigns())
-    <aside class="main-sidebar">
-        <section class="sidebar">
-            <ul class="sidebar-menu tree" data-widget="tree">
-                @foreach (\App\Facades\SingleUserCache::campaigns() as $userCampaign)
-                    <li class="section-campaign section-campaign-{{ $userCampaign->id }}">
-                        <a href="{{ route('dashboard', $userCampaign->id) }}">
-                            <i class="fa-solid fa-globe"></i>
-                            {!! $userCampaign->name !!}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
         </section>
     </aside>
 @endif

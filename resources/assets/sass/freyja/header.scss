@@ -1,42 +1,15 @@
-body .main-header {
-    box-shadow: unset;
-
-    .sidebar-toggle {
-        display: block;
-        text-align: center;
-        transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
-    }
-
-    .navbar {
-        margin-left: $sidebarWidth;
-
-        .dropdown-toggle {
-            height: 50px;
-
-            img {
-                width: 25px;
-                height: 25px;
-            }
-        }
-
-        .dropdown {
-            .avatar {
-                width: 150px;
-                height: 150px;
-            }
-
-            .profile-avatar-link {
-                padding: 0;
-            }
-        }
-    }
-
-    .navbar .sidebar-toggle {
-        border: unset;
-    }
+.bg-navbar {
+    background-color: var(--main-navbar-background);
+    z-index: 50;
 }
-body .main-header.main-header-start {
-    background-color: #fff;
+.bg-lookup {
+    background-color: var(--main-navbar-background);
+}
+.border-lookup {
+    border-color: var(--main-navbar-background);
+}
+.bg-entity-focus {
+    background-color: var(--lookup-entity-background, rgb(222 222 222));
 }
 
 .navigation-drawer {
@@ -140,19 +113,6 @@ body .main-header.main-header-start {
     }
 }
 
-/** Mobile **/
-@media (max-width: 767px) {
-  body .main-header .navbar {
-    margin-left: 0;
-  }
-  .main-header {
-    background-color: #fff;
-
-    .navbar {
-      margin-left: 0;
-    }
-  }
-}
 
 @media (min-width: 768px) {
     .sidebar-collapse .main-header .navbar {
@@ -195,3 +155,33 @@ body .main-header.main-header-start {
     }
 }
 
+
+/**
+ * Lookup
+ */
+.search-recent, .search-preview {
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
+    color: var(--lookup-text, #333);
+}
+.hover\:lookup-entity:hover {
+    background-color: var(--lookup-entity-hover, rgba(0, 0, 0, 0.1));
+}
+
+/**
+ * QQ button
+ */
+.quick-creator-button {
+    background-color: var(--quick-creator-button-background);
+
+    i {
+        font-size: 1rem;
+    }
+    i, span {
+        color: var(--quick-creator-button-text);
+    }
+
+    &:hover {
+        transition: all 0.5s ease-in-out;
+        background-color: var(--quick-creator-button-hover-background);
+    }
+}

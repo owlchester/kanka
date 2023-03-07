@@ -185,6 +185,7 @@ return [
             'alternatives_warning'  => 'Aktualizácia predplatného týmto spôsobom nie je možná. Prosím, vytvor nové predplatné, keď tvoje súčasné skončí.',
             'alternatives_yearly'   => 'Kvôli obmedzeniam ohľadom opakovaných platieb, :method je dostupný len pre ročné zúčtovanie.',
             'paypal'                => 'Chceš radšej použiť Paypal? Kontaktuj nás na :email, ak chceš platiť ročné predplatné cez Paypal.',
+            'paypal_v2'             => 'Akceptujeme PayPal pri ročnom predplatnom. Pošli nám mail na :email z tvojho mailu v Kanke, vrstvu, na ktorú sa chceš prihlásiť a menu (USD alebo EUR), v ktorej chceš obdržať faktúru.',
             'stripe'                => 'Tvoje platobné údaje sú spracované a uložené bezpečne prostredníctvom :stripe.',
         ],
         'manage_subscription'   => 'Spravovať predplatné',

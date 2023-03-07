@@ -50,7 +50,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $log->created_at->diffForHumans() }}
+                                    <span title="{{ $log->created_at }} UTC" data-toggle="tooltip">
+                                        {{ $log->created_at->diffForHumans() }}
+                                    </span>
                                 </td>
                                 <td class="text-right">
                                     @if ($campaign->superboosted())

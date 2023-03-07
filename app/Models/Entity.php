@@ -441,4 +441,22 @@ class Entity extends Model
 
         ;
     }
+
+    /**
+     * @return array|string[]
+     */
+    public function postPositionOptions($position = null): array
+    {
+        $options = [1 => __('maps/layers.placeholders.position')];
+        $layers = $this->posts->sortBy('position');
+        foreach ($layers as $layer) {
+            $options[$layer->position + 1] = __('maps/layers.placeholders.position_list', ['name' => $layer->name]);
+        }
+
+        //If is the last position remove last+1 position from the options array
+        if ($position == array_key_last($options) - 1 && count($options) > 1) {
+            array_pop($options);
+        }
+        return $options;
+    }
 }

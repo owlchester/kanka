@@ -43,6 +43,7 @@ return [
         'title'                 => 'Prihlásenie',
     ],
     'register'  => [
+        'already'                   => 'Máš už konto? :login',
         'already_account'           => 'Máš už vlastné konto?',
         'errors'                    => [
             'email_already_taken'   => 'Konto s touto e-mailovou adresou už existuje.',
@@ -54,11 +55,13 @@ return [
             'password'  => 'Heslo',
             'tos_clean' => 'Súhlasím s :privacy',
         ],
+        'log-in'                    => 'Prihlásenie',
         'register_with_facebook'    => 'Registrácia cez Facebook',
         'register_with_google'      => 'Registrácia cez Google',
         'register_with_twitter'     => 'Registrácia cez Twitter',
         'submit'                    => 'Registrovať',
         'title'                     => 'Registrácia',
+        'tos'                       => 'Registráciou konta súhlasíš s našimi :terms a :privacy.',
     ],
     'reset'     => [
         'fields'    => [

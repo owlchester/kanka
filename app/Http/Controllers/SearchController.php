@@ -8,7 +8,6 @@ use App\Models\MiscModel;
 use App\Services\CampaignService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Services\FilterService;
 
 class SearchController extends Controller

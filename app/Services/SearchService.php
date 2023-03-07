@@ -8,11 +8,15 @@ use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
+use App\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class SearchService
 {
     use CampaignAware;
+    use UserAware;
 
     /** @var string The search term */
     protected string $term;
@@ -34,6 +38,9 @@ class SearchService
 
     /** @var array List of the only entity types desired */
     protected array $onlyTypes = [];
+
+    /** @var bool If true, adds more info for the nav header lookup */
+    protected bool $v2 = false;
 
     /**
      * Set to true for a full result (rather than id => name)
@@ -64,6 +71,16 @@ class SearchService
     public function term(string $term = null): self
     {
         $this->term = $term;
+        return $this;
+    }
+
+    /**
+     * Sets the service to return data in the "v2" format, used for the header lookup
+     * @return $this
+     */
+    public function v2(): self
+    {
+        $this->v2 = true;
         return $this;
     }
 
@@ -221,6 +238,11 @@ class SearchService
             if ($child === null || in_array($model->id, $foundEntityIds)) {
                 continue;
             }
+
+            if ($this->v2) {
+                $searchResults[] = $this->formatForLookup($model);
+                continue;
+            }
             $img = '';
             if (!empty($child->image)) {
                 $img = '<span class="entity-image" style="background-image: url(\''
@@ -273,6 +295,15 @@ class SearchService
             }
         }
         if (!$this->new) {
+            if ($this->v2) {
+                return [
+                    'entities' => $searchResults,
+                    'texts' => [
+                        'results' => __('Results'),
+                        'empty_results' => __('No results'),
+                    ]
+                ];
+            }
             return $searchResults;
         } elseif (empty($searchResults)) {
             return $this->newOptions();
@@ -334,5 +365,74 @@ class SearchService
         }
 
         return $options;
+    }
+
+    public function recent(): array
+    {
+        $recentIds = $this->recentEntityIds();
+        if (empty($recentIds)) {
+            return [];
+        }
+
+        $orderedIds = implode(',', $recentIds);
+        $entities = Entity::whereIn('id', $recentIds)
+            ->orderByRaw("FIELD(id, $orderedIds)")
+            ->get();
+        $recent = [];
+
+        /** @var Entity $entity */
+        foreach ($entities as $entity) {
+            $recent[] = $this->formatForLookup($entity);
+        }
+
+        return $recent;
+    }
+
+    /**
+     * Format an entity for the lookup/search/recent dropdown
+     * @param Entity $entity
+     * @return array
+     */
+    protected function formatForLookup(Entity $entity): array
+    {
+        return [
+            'id' => $entity->id,
+            'name' => $entity->name,
+            'is_private' => $entity->is_private,
+            'image' => $entity->avatarSize(64)->avatar(),
+            'link' => $entity->url(),
+            'type' => __('entities.' . $entity->type()),
+            'preview' => route('entities.preview', $entity)
+        ];
+    }
+
+    public function logView(Entity $entity): void
+    {
+        $recents = $original = $this->recentEntityIds();
+        $recents = array_diff($recents, [$entity->id]);
+        $recents = [$entity->id, ...$recents];
+
+        // Limit the array to five
+        $recents = array_splice($recents, 0, 5);
+
+        if ($recents == $original) {
+            return;
+        }
+        $key = $this->recentEntityCacheKey();
+        cache()->put($key, $recents, 7 * 86400);
+    }
+
+    protected function recentEntityIds(): array
+    {
+        $key = $this->recentEntityCacheKey();
+        if (!cache()->has($key)) {
+            return [];
+        }
+        return (array) cache()->get($key);
+    }
+
+    protected function recentEntityCacheKey(): string
+    {
+        return 'recent_c' . $this->campaign->id . '_u' . $this->user->id;
     }
 }

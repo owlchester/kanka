@@ -4,6 +4,9 @@ return [
     'about'                 => [
         'title' => 'Sobre',
     ],
+    'actions'               => [
+        'back-to-top'   => 'Voltar ao topo',
+    ],
     'campaigns'             => [
         'description_full'  => 'Muitas campanhas em Kanka são públicas para que todos possam ver. Esta página contém uma lista de todas as campanhas públicas, bem como algumas campanhas em destaque da comunidade.',
         'featured'          => [
@@ -20,9 +23,13 @@ return [
         'public'            => [
             'description'   => 'Dê uma olhada nas Campanhas Públicas para se inspirar.',
             'filters'       => [
-                'all'       => 'Status de impulsionamento',
-                'boosted'   => 'Campanhas impulsionadas',
-                'unboosted' => 'Campanhas não impulsionadas',
+                'all'               => 'Status de impulsionamento',
+                'boosted'           => 'Campanhas impulsionadas',
+                'entities'          => 'Ordenar por quantidade de entidades',
+                'followers'         => 'Ordenar por seguidores',
+                'is-boosted'        => 'Essa campanha está impulsionada!',
+                'is-superboosted'   => 'Essa campanha está super-impulsionada!',
+                'unboosted'         => 'Campanhas não impulsionadas',
             ],
             'no-results'    => 'Nenhuma campanha pública com esses filtros foi encontrada. Por favor, tente novamente.',
             'title'         => 'Campanhas públicas',
@@ -85,7 +92,9 @@ return [
             'recovery'              => 'Recuperação de entidade por até 30 dias',
             'relation-visualiser'   => 'Explore as relações das entidades visualmente',
             'sidebar'               => 'Reordenar e customizar a barra lateral de uma campanha',
+            'standard'              => 'Campanha padrão',
             'theme'                 => 'Tema de campanha fixo',
+            'timeline_elements'     => 'Personalize o ícone e a cor dos elementos da linha do tempo',
             'title'                 => 'Campanhas impulsionadas',
             'tooltip'               => 'Dicas de entidades personalizadas: mostrar imagem, alterar texto',
             'upload'                => 'Tamanhos de upload maiores para todos os membros',
@@ -138,6 +147,7 @@ return [
         'patreon'           => [
             'api_calls'         => 'Aumento de chamadas de API (90 por minuto)',
             'boosts'            => 'Impulsos de campanha',
+            'click-me'          => 'Saiba mais sobre esse recurso.',
             'curation'          => 'Ajude a curar os itens da Votação da Comunidade',
             'default_image'     => 'Imagens padrão personalizadas para entidades',
             'description'       => 'Apoiar o Kanka com uma pequena taxa mensal nos permite continuar trabalhando no Kanka e desbloquear os seguintes benefícios para uma conta.',
@@ -244,6 +254,7 @@ return [
         'pricing'       => 'Preços',
         'privacy'       => 'Política de Privacidade',
         'register'      => 'Registrar',
+        'register_free' => 'Registre-se gratuitamente',
         'releases'      => 'Atualizações',
         'roadmap'       => 'Roadmap',
     ],
@@ -270,6 +281,10 @@ return [
             'unlimited'     => 'Campanhas e uploads ilimitados',
             'updates'       => 'Atualizações e melhorias frequentes',
         ],
+        'lead'      => [
+            'obvious'   => 'escolha óbvia',
+        ],
+        'refund'    => 'Com uma política de reembolso de 14 dias em assinaturas anuais.',
         'tier'      => [
             'free'  => 'Grátis',
             'month' => 'Mês',

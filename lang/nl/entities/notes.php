@@ -17,7 +17,6 @@ return [
         'title'     => 'Werk entiteit notitie bij voor :name',
     ],
     'fields'        => [
-        'collapsed' => 'Sluit standaard vastgezette entiteit notities',
         'creator'   => 'Maker',
         'entry'     => 'Invoer',
         'name'      => 'Naam',

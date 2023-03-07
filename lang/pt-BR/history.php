@@ -5,6 +5,7 @@ return [
         'show-old'  => 'Mudanças',
     ],
     'cta'       => 'Exiba um log de todas as alterações recentes na campanha.',
+    'empty'     => 'Sem valor',
     'filters'   => [
         'all-actions'   => 'Todas as ações',
         'all-users'     => 'Todos os membros',

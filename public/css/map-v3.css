@@ -178,6 +178,9 @@
   max-height: 100vh;
   white-space: unset;
 }
+#map-body .search-drawer, #map-body nav {
+  z-index: 1050;
+}
 #map-body .main-sidebar {
   color: #efefef;
   padding-top: 0;

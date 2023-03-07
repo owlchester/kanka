@@ -75,22 +75,6 @@ function initLiveSearch() {
     .on('typeahead:autocomplete', submitSuggestion)
     .on('keyup', submitEnter)
     ;
-
-    // Mobile search
-    liveSearchForm = $('.live-search-form');
-    liveSearchClose = $('.live-search-close');
-    $('.mobile-search').on('click', function(e) {
-        e.preventDefault();
-        liveSearchForm.removeClass('visible-md').removeClass('visible-lg');
-        $('.navbar-actions').hide();
-        $('#live-search').focus();
-    });
-
-    liveSearchClose.on('click', function(e) {
-        e.preventDefault();
-        liveSearchForm.addClass('visible-md').addClass('visible-lg');
-        $('.navbar-actions').show();
-    });
 }
 
 /**

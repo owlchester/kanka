@@ -82,6 +82,7 @@ TEXT
         'character_personality_visibility'  => 'Keď vytváraš ako admin novú postavu, tu môžeš zvoliť štandardné nastavenie pre jej osobnostné črty.',
         'css'                               => 'Napíš svoj vlastný CSS, ktorý sa nahrá do stránok tvojej kampane. Prosím, uvedom si, že hociktoré zneužitie tejto funkcionality môže viesť k odstráneniu tvojho užívateľského CSS kódu. Opakované alebo závažné porušenia môžu viesť k odstráneniu tvojej kampane.',
         'dashboard'                         => 'Prispôsob zobrazenie widgetu na nástenke vyplnením týchto údajov.',
+        'entity_count_v3'                   => 'Toto číslo je prepočítavané každých :amount hod.',
         'entity_privacy'                    => 'Keď vytváraš ako admin nový objekt, tu môžeš zvoliť jeho štandardné nastavenie súkromia.',
         'excerpt'                           => 'Krátky popis kampane sa zobrazí na nástenke, napíš teda pár pár viet ako úvod do tvojho sveta. Nemusíš sa rozpisovať, stačí pár slov.',
         'header_image'                      => 'Obrázok, ktorý sa bude zobrazovať na pozadí widgetu pre záhlavie kampane na nástenke.',
@@ -89,6 +90,7 @@ TEXT
         'hide_members'                      => 'Aktivuj toto nastavenie, ak chceš skryť zoznam členov kampane pre neadministrátorov.',
         'locale'                            => 'Regionálne nastavenie, ktoré sa vzťahuje na tvoju kampaň. Používa sa na vytváranie obsahu a filtrovanie verejných kampaní.',
         'name'                              => 'Tvoja kampaň / svet môže mať ľubovoľné meno, pokiaľ sa skladá z min. 4 písmen alebo čísel.',
+        'no_entry'                          => 'Vyzerá to tak, že kampaň ešte nemá žiaden popis! Zmeňme to.',
         'permissions_tab'                   => 'Kontroluj štandardné nastavenia súkromia a viditeľnosti nových objektov s nasledujúcimi možnosťami.',
         'public_campaign_filters'           => 'Pomôž iným nájsť tvoju kampaň medzi ostatnými verejnými doplnením týchto informácií.',
         'public_no_visibility'              => 'Hlavu hore! Tvoja kampaň je verejná, ale rola pre verejnosť nemá k ničomu prístup. :fix',
@@ -205,8 +207,15 @@ TEXT
         ],
         'your_role'             => 'Tvoja rola: <i>:role</i>',
     ],
+    'modules'                           => [
+        'permission-disabled'   => 'Tento modul je deaktivovaný.',
+    ],
     'open_campaign'                     => [],
     'options'                           => [],
+    'overview'                          => [
+        'entity-count'      => '{0} Žiadne objekty|{1} :amount objekt|[2,4] :amount objekty|[5,*] :amount objektov',
+        'follower-count'    => '{0} Žiadni sledovatelia|{1} :amount sledovateľ|[2,4] :amount sledovatelia|[5,*] :amount sledovateľov',
+    ],
     'panels'                            => [
         'boosted'   => 'Boostovaná',
         'dashboard' => 'Nástenka',
@@ -380,6 +389,11 @@ TEXT
             'timelines'     => 'Zobraz dejiny tvojho sveta pomocou časových osí.',
         ],
     ],
+    'sharing'                           => [
+        'filters'   => 'Verejné kampane sú viditeľné na :public-campaigns stránke. Vyplnením tohto formulára umožníš ľuďom rýchlejšie nájsť tvoju kampaň.',
+        'language'  => 'Jazyk, v ktorom je kampaň písaná.',
+        'system'    => 'Ak hráte stolovú RPG hru, systém, ktorý používate pri hraní.',
+    ],
     'show'                              => [
         'actions'   => [
             'boost' => 'Boostnuť kampaň',
@@ -439,8 +453,11 @@ TEXT
         'helpers'           => [
             'connections'       => 'Ak klikneš na podstránku so vzťahmi objektu, vyber si štandardné zobrazené rozhranie.',
             'connections_mode'  => 'Keď zobrazuješ prehliadač vzťahov objektu, definuj štandardný zvolený mód.',
+            'entity-history'    => 'Kontroluj, kto vidí posledné zmeny v jednotlivých objektoch kampane.',
+            'member-list'       => 'Kontroluj, kto vidí koho v kampani.',
             'other'             => 'Ďalšie možnosti zobrazenia kampane.',
             'post_collapsed'    => 'Keď vytváraš novú poznámku k objektu, zvoľ štandardnú hodnotu pre zbalené pole.',
+            'theme'             => 'Zobraz kampaň v téme užívateľa alebo vynúť zobrazenie v jednej z nasledujúcich tém.',
             'tooltip'           => 'Kontroluj, ktoré informácie budú viditeľné v bubline, ak sa kurzorom postavíš na názov objektu.',
         ],
         'members'           => [
@@ -449,6 +466,7 @@ TEXT
         ],
         'nested'            => [
             'nested'    => 'Vnorené',
+            'user'      => 'Užívateľský štandard',
         ],
         'other'             => 'Ostatné',
     ],

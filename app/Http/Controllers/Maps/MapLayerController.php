@@ -12,6 +12,7 @@ use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapLayer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class MapLayerController extends Controller
 {
@@ -92,7 +93,7 @@ class MapLayerController extends Controller
 
         $model = new MapLayer();
         $data = $request->only('name', 'position', 'entry', 'visibility_id', 'type_id');
-        if ($data['position']) {
+        if (Arr::exists($data, 'position')) {
             $map->layers()->where('position', '>', $data['position'] - 1)->increment('position');
         }
         $data['map_id'] = $map->id;

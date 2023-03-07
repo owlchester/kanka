@@ -11,23 +11,24 @@
 ])
 
 @section('content')
+    @can('update', $map)
+        <div class="map-actions absolute bottom-0 right-0 m-4">
+            <button class="btn btn-warning btn-mode-enable">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                {{ __('maps/explore.actions.enter-edit-mode') }}
+            </button>
+            <button class="btn btn-default btn-mode-disable">
+                <i class="fa-solid fa-ban" aria-hidden="true"></i>
+                {{ __('maps/explore.actions.exit-edit-mode') }}
+            </button>
+            <button class="btn btn-warning btn-mode-drawing">
+                <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                {{ __('maps/explore.actions.finish-drawing') }}
+            </button>
+        </div>
+    @endif
     <div class="map map-explore" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
-        @can('update', $map)
-            <div class="map-actions absolute bottom-0 right-0 m-4">
-                <button class="btn btn-warning btn-mode-enable">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                    {{ __('maps/explore.actions.enter-edit-mode') }}
-                </button>
-                <button class="btn btn-default btn-mode-disable">
-                    <i class="fa-solid fa-ban" aria-hidden="true"></i>
-                    {{ __('maps/explore.actions.exit-edit-mode') }}
-                </button>
-                <button class="btn btn-warning btn-mode-drawing">
-                    <i class="fa-solid fa-pencil" aria-hidden="true"></i>
-                    {{ __('maps/explore.actions.finish-drawing') }}
-                </button>
-            </div>
-        @endif
+
     </div>
 @endsection
 
@@ -87,7 +88,7 @@
     L.control.ruler(rulerOptions).addTo(window.map);
     @endif
 
-@if ($map->isClustered())
+    @if ($map->isClustered())
         map{{ $map->id }}.addLayer(clusterMarkers{{ $map->id }});
 
         /** Add the groups to the cluster **/
@@ -98,13 +99,13 @@
             @if (!$group->is_shown) @continue @endif
             group{{ $group->id }}.addTo(map{{ $map->id }});
         @endforeach
-@endif
+   @endif
 
-        @can('update', $map)
-            map{{ $map->id }}.on('click', function(ev) {
-                window.handleExploreMapClick(ev);
-            });
-        @endcan
+    @can('update', $map)
+        map{{ $map->id }}.on('click', function(ev) {
+            window.handleExploreMapClick(ev);
+        });
+    @endcan
 
     </script>
     <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
@@ -116,11 +117,6 @@
                 {{ $line[3] }}]], {color: 'grey', opacity: 0.5}).addTo(map{{ $map->id }});
             @endforeach
         @endif
-
-        {{-- @if (!empty($map->distance_measure)) --}}
-        {{-- // Distance calculator --}}
-        {{-- L.control.polylineMeasure({unit: 'meters', unitControlLabel: {custom: '{{ $map->distance_name ?? 'custom' }}'}, customUnitDistance: {{ $map->distance_measure }}}).addTo(map); --}}
-        {{-- @endif --}}
 
         // Map ticker to update markers every 20 seconds
         var tickerTimeout = 20000;

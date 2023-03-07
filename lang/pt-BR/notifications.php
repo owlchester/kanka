@@ -3,9 +3,11 @@
 return [
     'campaign'          => [
         'application'           => [
-            'approved'  => 'Sua solicitação para a campanha :campaign foi aprovada.',
-            'new'       => 'Nova solicitação para :campaign.',
-            'rejected'  => 'Sua solicitação para a campanha :campaign foi rejeitada. Razão fornecida: :reason',
+            'approved'              => 'Sua solicitação para a campanha :campaign foi aprovada.',
+            'approved_message'      => 'Sua inscrição para a campanha :campaign foi aprovada. Mensagem fornecida: :reason',
+            'new'                   => 'Nova solicitação para :campaign.',
+            'rejected'              => 'Sua solicitação para a campanha :campaign foi rejeitada. Razão fornecida: :reason',
+            'rejected_no_message'   => 'Sua inscrição para a campanha :campaign foi rejeitada.',
         ],
         'asset_export'          => 'Uma exportação de recursos da campanha está disponível. O link está disponível por :time minutos.',
         'asset_export_error'    => 'Ocorreu um erro ao exportar os recursos da campanha. Isso acontece em grandes campanhas.',
@@ -17,6 +19,7 @@ return [
         'deleted'               => 'A campanha :campaign foi excluída.',
         'export'                => 'A exportação da campanha está disponível. O link estará disponível por :time minutos.',
         'export_error'          => 'Ocorreu um erro enquanto sua campanha era exportada. Por favor, contate-nos se o problema persistir,',
+        'hidden'                => 'A campanha :campaign agora está oculta na página de campanhas públicas.',
         'join'                  => ':user se juntou à campanha :campaign',
         'leave'                 => ':user saiu da campanha :campaign',
         'plugin'                => [
@@ -26,6 +29,7 @@ return [
             'add'       => 'Você ganhou o cargo de :role na campanha :campaign',
             'remove'    => 'Você foi removido do cargo :role na campanha :campaign.',
         ],
+        'shown'                 => 'A campanha :campaign agora está visível na página de campanhas públicas.',
         'troubleshooting'       => [
             'joined'    => 'O membro da equipe Kanka :user juntou-se a campanha :campaign.',
         ],

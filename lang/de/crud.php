@@ -245,6 +245,10 @@ return [
         'learn_more'    => 'Erfahre mehr über diese Funktion in unserer :documentation.',
         'linking'       => 'Verknüpfung mit anderen Objekten',
         'nested_parent' => 'Anzeige der untergeordneten Objekte von :parent.',
+        'pagination'    => [
+            'settings'  => 'Darstellungseinstellungen',
+            'text'      => 'Durch Ändern deiner :settings können mehr Ergebnisse pro Seite angezeigt werden.',
+        ],
     ],
     'hidden'                    => 'Versteckt',
     'hints'                     => [

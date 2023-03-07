@@ -6,6 +6,10 @@ return [
         'add_role'  => 'Ajouter un rôle',
         'add_user'  => 'Ajouter un membre',
     ],
+    'collapsed'     => [
+        'closed'    => 'La note est fermée et seul le titre est visible',
+        'open'      => 'La note est pleinement visible',
+    ],
     'copy_mention'  => [
         'copy'              => 'Copier la mention avancée',
         'copy_with_name'    => 'Copier la mention avancées avec le nom',
@@ -23,8 +27,8 @@ return [
         'title'     => 'Modifier la note pour :name',
     ],
     'fields'        => [
-        'collapsed' => 'Fermer la note d\'entité par défault',
         'creator'   => 'Créé par',
+        'display'   => 'Affichage',
         'entry'     => 'Entrée',
         'name'      => 'Nom',
         'position'  => 'Position',

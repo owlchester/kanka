@@ -4,6 +4,9 @@ return [
     'about'                 => [
         'title' => 'O nas',
     ],
+    'actions'               => [
+        'back-to-top'   => 'Na górę',
+    ],
     'campaigns'             => [
         'description_full'  => 'Kanka posiada wiele kampanii, które każdy może obejrzeć. Na tej stronie znajduje się lista wszystkich kampanii publicznych oraz kampanie wyróżnione przez społeczność.',
         'featured'          => [

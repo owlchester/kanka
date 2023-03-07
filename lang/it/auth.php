@@ -42,6 +42,7 @@ return [
         'title'                 => 'Accedi',
     ],
     'register'  => [
+        'already'                   => 'Hai già un account? :login',
         'already_account'           => 'Hai già un account?',
         'errors'                    => [
             'email_already_taken'   => 'Un account con questa email è già stato registrato.',
@@ -53,11 +54,13 @@ return [
             'password'  => 'Password',
             'tos_clean' => 'Accetto le condizioni :privacy',
         ],
+        'log-in'                    => 'Accedi',
         'register_with_facebook'    => 'Registrati con Facebook',
         'register_with_google'      => 'Registrati con Google',
         'register_with_twitter'     => 'Registrati con Twitter',
         'submit'                    => 'Registrati',
         'title'                     => 'Registrati',
+        'tos'                       => 'Registrando un account, accetti i nostri :terms e la nostra :privacy.',
     ],
     'reset'     => [
         'fields'    => [

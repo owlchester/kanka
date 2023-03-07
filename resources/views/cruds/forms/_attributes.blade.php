@@ -38,7 +38,7 @@ foreach ($attributes as $attribute) {
 <input type="hidden" name="save-attributes" value="1" />
 
 @include('cruds.forms.attributes._blocks', ['existing' => count($attributes)])
-@include('cruds.forms.attributes._buttons', ['existing' => count($attributes)])
+@include('cruds.forms.attributes._buttons', ['model' => isset($entity) ? $entity->child : null, 'existing' => count($attributes)])
 
 @section('scripts')
     @parent

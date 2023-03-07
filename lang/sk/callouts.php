@@ -8,6 +8,10 @@ return [
         ],
         'learn-more'    => 'Čo sú boosty?',
         'limitation'    => 'Pre prístup k tejto funkcionalite je nutné boostnuť kampaň.',
+        'limitations'   => [
+            'boosted'       => 'Pre prístup k tejto funkcionalite je nutné boostnuť kampaň.',
+            'superboosted'  => 'Pre prístup k tejto funkcionalite je nutné superboostnuť kampaň.',
+        ],
         'multiple'      => 'Pre prístup k týmto funkcionalitám je nutné boostnuť kampaň.',
         'pitches'       => [
             'element-class' => 'Pridaj tomuto prvku vlastnú CSS triedu, ak máš :boosted-campaign.',

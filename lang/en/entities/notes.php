@@ -6,6 +6,10 @@ return [
         'add_role'  => 'Add role',
         'add_user'  => 'Add user',
     ],
+    'collapsed'     => [
+        'closed'    => 'Post is collapsed to just the header',
+        'open'      => 'Post is expanded',
+    ],
     'copy_mention'  => [
         'copy'              => 'Copy advanced mention',
         'copy_with_name'    => 'Copy advanced mention with post name',
@@ -23,8 +27,8 @@ return [
         'title'     => 'Update post for :name',
     ],
     'fields'        => [
-        'collapsed' => 'Collapse post by default',
         'creator'   => 'Creator',
+        'display'   => 'Display',
         'entry'     => 'Entry',
         'name'      => 'Name',
         'position'  => 'Position',
