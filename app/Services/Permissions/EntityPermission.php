@@ -21,11 +21,6 @@ class EntityPermission
     protected $model;
 
     /**
-     * @var \Illuminate\Foundation\Application|mixed
-     */
-    protected $app;
-
-    /**
      * @var array
      */
     protected $cached = [];
@@ -59,14 +54,6 @@ class EntityPermission
      * @var int campaign id of the loaded permissions (required for when moving entities between campaigns)
      */
     protected int $loadedCampaignId = 0;
-
-    /**
-     * Creates new instance.
-     */
-    public function __construct()
-    {
-        $this->app = app();
-    }
 
     /**
      * @param Entity $entity
@@ -211,35 +198,37 @@ class EntityPermission
      */
     protected function getRoleIds(Campaign $campaign, User $user = null)
     {
-        // If we haven't built a list of roles yet, build it.
-        if ($this->roleIds === false) {
-            $this->roles = false;
-            // If we have a user, get the user's role for this campaign
-            if ($user) {
-                $this->roles = UserCache::user($user)
-                    ->roles()
-                    ->where('campaign_id', $campaign->id);
-            }
-
-            // If we don't have a user, or our user has no specified role yet, use the public role.
-            if ($this->roles === false || $this->roles->count() == 0) {
-                // Use the campaign's public role
-                $this->roles = CampaignCache::campaign($campaign)
-                    ->roles()
-                    ->where('is_public', true);
-            }
-
-            // Save all the role ids. If one of them is an admin, stop there.
-            $this->roleIds = [];
-            /** @var CampaignRole $role */
-            foreach ($this->roles as $role) {
-                if ($role->is_admin) {
-                    $this->roleIds = true;
-                    return true;
-                }
-                $this->roleIds[] = $role->id;
-            }
+        if ($this->roleIds !== false) {
+            return $this->roleIds;
         }
+        // If we haven't built a list of roles yet, build it.
+        $this->roles = false;
+        // If we have a user, get the user's role for this campaign
+        if ($user) {
+            $this->roles = UserCache::user($user)
+                ->roles()
+                ->where('campaign_id', $campaign->id);
+        }
+
+        // If we don't have a user, or our user has no specified role yet, use the public role.
+        if ($this->roles === false || $this->roles->count() == 0) {
+            // Use the campaign's public role
+            $this->roles = CampaignCache::campaign($campaign)
+                ->roles()
+                ->where('is_public', true);
+        }
+
+        // Save all the role ids. If one of them is an admin, stop there.
+        $this->roleIds = [];
+        /** @var CampaignRole $role */
+        foreach ($this->roles as $role) {
+            if ($role->is_admin) {
+                $this->roleIds = true;
+                return true;
+            }
+            $this->roleIds[] = $role->id;
+        }
+
 
         return $this->roleIds;
     }
