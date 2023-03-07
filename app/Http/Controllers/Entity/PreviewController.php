@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Entity;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\PreviewService;
 use App\Services\SearchService;
@@ -33,16 +34,14 @@ class PreviewController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $entity->child);
         } else {
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
-
-        $campaign = CampaignLocalization::getCampaign();
 
         if (auth()->check()) {
             $service = app()->make(SearchService::class);

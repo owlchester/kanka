@@ -65,12 +65,12 @@ class LiveController extends Controller
      * Get a user's recent searches
      * @return never|void
      */
-    public function recent()
+    public function recent(Campaign $campaign)
     {
+        $this->authorize('access', $campaign);
+
         $recent = [];
         if (auth()->check()) {
-            $campaign = CampaignLocalization::getCampaign();
-
             $recent = $this->search
                 ->campaign($campaign)
                 ->user(auth()->user())

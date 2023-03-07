@@ -107,6 +107,8 @@ Route::post('/entities/{entity}/attribute-template', [AttributeTemplateControlle
 Route::get('/entities/{entity}/permissions', [PermissionController::class, 'view'])->name('entities.permissions');
 Route::post('/entities/{entity}/permissions', [PermissionController::class, 'store'])->name('entities.permissions');
 
+Route::get('/entities/{entity}/preview', 'Entity\PreviewController@index')->name('entities.preview');
+
 Route::get('/entities/{entity}/descendants', [DescendantController::class, 'index'])->name('entities.descendants');
 
 Route::resources([

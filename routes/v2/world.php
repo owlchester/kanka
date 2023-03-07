@@ -213,8 +213,13 @@ Route::get('/search/ability-entities', [\App\Http\Controllers\Search\LiveControl
 Route::get('/search/organisation-member', [\App\Http\Controllers\Search\LiveController::class, 'organisationMembers'])->name('search.organisation-member');
 Route::get('/search/months', [\App\Http\Controllers\Search\CalendarController::class, 'months'])->name('search.calendar-months');
 
+Route::get('/search/live', [\App\Http\Controllers\Search\LiveController::class, 'index'])->name('search.live');
+Route::get('/search/recent', [\App\Http\Controllers\Search\LiveController::class, 'recent'])->name('search.recent');
+
 // The good old search
 Route::get('/search', [\App\Http\Controllers\SearchController::class, 'index'])->name('search');
+
+
 
 Route::post('/bulk/process', [\App\Http\Controllers\BulkController::class, 'process'])->name('bulk.process');
 Route::get('/bulk/modal', [\App\Http\Controllers\BulkController::class, 'modal'])->name('bulk.modal');

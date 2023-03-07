@@ -402,7 +402,7 @@ class SearchService
             'image' => $entity->avatarSize(64)->avatar(),
             'link' => $entity->url(),
             'type' => __('entities.' . $entity->type()),
-            'preview' => route('entities.preview', $entity)
+            'preview' => route('entities.preview', [$this->campaign->id, $entity->id])
         ];
     }
 
