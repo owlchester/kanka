@@ -19,7 +19,8 @@
                             'id' => $field['field'],
                             'model' => null,
                             'enableNew' => false,
-                            'label' => false
+                            'label' => false,
+                            'campaign' => $campaign,
                         ]
                     ) !!}
                 @elseif ($field['type'] == 'select')

@@ -34,6 +34,7 @@ class PluginController extends Controller
         $this->authorize('access', $campaign);
 
         Datagrid::layout(\App\Renderers\Layouts\Campaign\Plugin::class)
+            ->campaign($campaign)
             ->route('campaign_plugins.index', ['campaign' => $campaign]);
 
         $highlight = request()->get('highlight');

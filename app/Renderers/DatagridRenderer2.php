@@ -9,6 +9,7 @@ use App\Renderers\Layouts\Columns\Checkbox;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Header;
 use App\Renderers\Layouts\Layout;
+use App\Traits\CampaignAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
@@ -16,8 +17,10 @@ use Closure;
 
 class DatagridRenderer2
 {
+    use CampaignAware;
+
     /** @var Layout */
-    protected $layout;
+    protected mixed $layout;
 
     /** @var array  */
     protected array $deleteForms = [];
@@ -28,22 +31,13 @@ class DatagridRenderer2
     /** @var bool If permissions are checked or not. If false, assume we are admin. */
     protected bool $permissions = true;
 
-    protected $routeName = null;
+    protected mixed $routeName = null;
     protected array $routeOptions = [];
 
     /** @var bool|array */
     protected bool|array $bulks = false;
 
-    /** @var \App\Models\Campaign */
-    protected $campaign;
-
     protected Closure $highlight;
-
-    public function __construct()
-    {
-        // Todo: remove this
-        $this->campaign = CampaignLocalization::getCampaign();
-    }
 
     /**
      * @param string|Layout $layout

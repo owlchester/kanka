@@ -30,6 +30,7 @@ class RecoveryController extends Controller
         $this->authorize('recover', $campaign);
 
         Datagrid::layout(\App\Renderers\Layouts\Campaign\Recovery::class)
+            ->campaign($campaign)
             ->route('recovery', ['campaign' => $campaign])
             ->permissions(false);
 

@@ -37,8 +37,7 @@ class Plugin extends Layout
                         return $base;
                     }
 
-                    $campaign = CampaignLocalization::getCampaign();
-                    if (!auth()->check() || !auth()->user()->can('recover', $campaign)) {
+                    if (!auth()->check() || !auth()->user()->can('update', $model)) {
                         return $base;
                     }
 

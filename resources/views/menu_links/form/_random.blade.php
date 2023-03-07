@@ -23,6 +23,7 @@ foreach ($entityService->getEnabledEntities($campaign) as $entity) {
                     [
                         'model' => isset($model) ? $model : null,
                         'enableNew' => false,
+                        'campaign' => $campaign,
                     ]
                 ) !!}
             <input type="hidden" name="save_tags" value="1" />

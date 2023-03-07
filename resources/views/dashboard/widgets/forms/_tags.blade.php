@@ -6,6 +6,7 @@
                 'enableNew' => false,
                 'helper' => __('dashboard.widgets.recent.tags'),
                 'enableAutoTags' => false,
+                'campaign' => $campaign,
             ]
         ) !!}
     <p class="help-block visible-xs visible-sm">

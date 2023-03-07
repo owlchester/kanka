@@ -5,14 +5,14 @@ use Illuminate\Support\Arr;
  */
 $selectedOption = [];
 
-$model = Arr::get($options, 'model', null);
+$model = Arr::get($options, 'model');
 $enableNew = Arr::get($options, 'enableNew', true);
 $enableAutoTags = Arr::get($options, 'enableAutoTags', true);
 $label = Arr::get($options, 'label', true);
 $filterOptions = Arr::get($options, 'filterOptions', []);
 $dropdownParent = Arr::get($options, 'dropdownParent', '#app');
-$helper = Arr::get($options, 'helper', null);
-$campaign = \App\Facades\CampaignLocalization::getCampaign();
+$helper = Arr::get($options, 'helper');
+$campaign = Arr::get($options, 'campaign');
 if (!is_array($filterOptions)) {
     $filterOptions = [$filterOptions];
 }

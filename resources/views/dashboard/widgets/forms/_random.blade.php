@@ -59,6 +59,7 @@
                                     'model' => isset($model) ? $model : null,
                                     'enableNew' => false,
                                     'enableAutoTags' => false,
+                                    'campaign' => $campaign,
                                 ]
                             ) !!}
                         <input type="hidden" name="save_tags" value="1" />

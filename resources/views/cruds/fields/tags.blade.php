@@ -10,7 +10,8 @@
             [
                 'model' => isset($model) ? $model : FormCopy::model(),
                 'enableNew' => isset($enableNew) ? $enableNew : auth()->user()->can('create', \App\Models\Tag::class),
-                'dropdownParent' => isset($dropdownParent) ? $dropdownParent : '#app'
+                'dropdownParent' => isset($dropdownParent) ? $dropdownParent : '#app',
+                'campaign' => $campaign,
             ]
         ) !!}
     </div>
