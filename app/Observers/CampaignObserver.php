@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
@@ -95,38 +94,42 @@ class CampaignObserver
      */
     public function created(Campaign $campaign)
     {
-        $role = new CampaignUser([
+        $campaignUser = new CampaignUser([
             'user_id' => auth()->user()->id,
             'campaign_id' => $campaign->id,
         ]);
-        $role->save();
+        $campaignUser->saveQuietly();
 
         // Make sure we save the last campaign id to avoid infinite loops
         $user = auth()->user();
         $user->last_campaign_id = $campaign->id;
-        $user->save();
+        $user->saveQuietly();
 
-        $role = CampaignRole::create([
+        $role = new CampaignRole([
             'campaign_id' => $campaign->id,
             'name' => __('campaigns.members.roles.owner'),
             'is_admin' => true,
         ]);
+        $role->saveQuietly();
 
-        $publicRole = CampaignRole::create([
+        $publicRole = new CampaignRole([
             'campaign_id' => $campaign->id,
             'name' => __('campaigns.members.roles.public'),
             'is_public' => true,
         ]);
+        $publicRole->saveQuietly();
 
-        $playerRole = CampaignRole::create([
+        $playerRole = new CampaignRole([
             'campaign_id' => $campaign->id,
             'name' => __('campaigns.members.roles.player'),
         ]);
+        $playerRole->saveQuietly();
 
-        CampaignRoleUser::create([
+        $campaignRoleUser = new CampaignRoleUser([
             'campaign_role_id' => $role->id,
             'user_id' => Auth::user()->id
         ]);
+        $campaignRoleUser->saveQuietly();
 
         // Settings
         $setting = new CampaignSetting([
@@ -134,7 +137,7 @@ class CampaignObserver
             'dice_rolls' => 0,
             'conversations' => 0,
         ]);
-        $setting->save();
+        $setting->saveQuietly();
 
         SingleUserCache::clearCampaigns();
 
@@ -144,7 +147,7 @@ class CampaignObserver
     /**
      * @param Campaign $campaign
      */
-    public function saved(Campaign $campaign)
+    public function updated(Campaign $campaign)
     {
         if (!$campaign->withObservers) {
             return;
@@ -156,11 +159,6 @@ class CampaignObserver
         }
 
         $this->saveRpgSystems($campaign);
-
-
-        if (!CampaignLocalization::hasCampaign()) {
-            return;
-        }
 
         foreach ($campaign->members()->with('user')->get() as $member) {
             UserCache::user($member->user)->clearCampaigns();

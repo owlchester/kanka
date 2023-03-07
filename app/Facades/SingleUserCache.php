@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Facade;
  * Class UserCache
  * @package App\Facades
  *
- * @see \App\Services\Caches\UserCacheService
- * @mixin \App\Services\Caches\UserCacheService
+ * @see \App\Services\Caches\SingleUserCacheService
+ * @mixin \App\Services\Caches\SingleUserCacheService
  */
 class SingleUserCache extends Facade
 {

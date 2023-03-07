@@ -1,4 +1,4 @@
-@php $currentCampaign = isset($campaign) && $campaign instanceof \App\Models\Campaign ? $campaign : $campaignService->campaign() @endphp
+@php $currentCampaign = isset($campaign) && $campaign instanceof \App\Models\Campaign ? $campaign : null @endphp
 <div class="@if (!isset($skipImage))grid gap-5 grid-cols-1 lg:grid-cols-2 booster-block mb-5"@endif>
     <div class="">
         <div class="booster-callout">

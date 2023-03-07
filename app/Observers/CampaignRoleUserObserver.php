@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
 use App\Jobs\CampaignRoleUserJob;
 use App\Models\CampaignRoleUser;
@@ -16,10 +15,7 @@ class CampaignRoleUserObserver
     public function created(CampaignRoleUser $campaignRoleUser)
     {
         CampaignRoleUserJob::dispatch($campaignRoleUser, true);
-
-        if (CampaignLocalization::hasCampaign()) {
-            UserCache::user($campaignRoleUser->user)->clearRoles();
-        }
+        UserCache::user($campaignRoleUser->user)->clearRoles();
     }
 
     /**
