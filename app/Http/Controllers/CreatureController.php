@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\CreatureFilter;
-use App\Facades\Datagrid;
 use App\Http\Requests\StoreCreature;
 use App\Models\Campaign;
 use App\Models\Creature;

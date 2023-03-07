@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Facades\CampaignLocalization;
 use App\Services\Caches\AdCacheService;
 use App\Services\Caches\CampaignCacheService;
 use App\Services\Caches\CharacterCacheService;
@@ -14,7 +13,6 @@ use App\Services\Caches\EntityCacheService;
 use App\Services\Caches\FrontCacheService;
 use App\Services\Caches\PostCacheService;
 use App\Services\Caches\UserCacheService;
-use App\Services\Caches\UserCampaignCacheService;
 use App\Services\Caches\SingleUserCacheService;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,9 +34,6 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->singleton(UserCacheService::class, function () {
             return new UserCacheService();
         });
-        /*$this->app->singleton(UserCampaignCacheService::class, function () {
-            return new UserCampaignCacheService();
-        });*/
         $this->app->singleton(SingleUserCacheService::class, function () {
             $service = new SingleUserCacheService();
             if (auth()->check()) {
@@ -68,7 +63,6 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->alias(EntityCacheService::class, 'entitycache');
         $this->app->alias(CampaignCacheService::class, 'campaigncache');
         $this->app->alias(UserCacheService::class, 'usercache');
-        //$this->app->alias(UserCampaignCacheService::class, 'usercampaigncache');
         $this->app->alias(SingleUserCacheService::class, 'singleusercache');
         $this->app->alias(PostCacheService::class, 'postcache');
         $this->app->alias(CharacterCacheService::class, 'charactercache');

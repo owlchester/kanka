@@ -15,7 +15,6 @@ class CampaignPluginObserver
      */
     public function created(CampaignPlugin $campaignPlugin)
     {
-
     }
 
     /**
@@ -57,7 +56,6 @@ class CampaignPluginObserver
      */
     public function restored(CampaignPlugin $campaignPlugin)
     {
-
     }
 
     /**
@@ -68,6 +66,5 @@ class CampaignPluginObserver
      */
     public function forceDeleted(CampaignPlugin $campaignPlugin)
     {
-
     }
 }

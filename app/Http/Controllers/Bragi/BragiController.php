@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Bragi;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BragiRequest;
 use App\Models\Campaign;

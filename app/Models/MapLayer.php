@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;

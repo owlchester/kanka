@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\TranslatableException;
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\BulkRequest;
 use App\Models\Campaign;
 use App\Services\AttributeService;

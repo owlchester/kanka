@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Search;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\SearchService;

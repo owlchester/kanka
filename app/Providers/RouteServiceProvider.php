@@ -2,12 +2,10 @@
 
 namespace App\Providers;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Api\v1\HealthController;
 use App\Models\Campaign;
 use App\Models\Plugin;
 use App\Models\Vanity;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;

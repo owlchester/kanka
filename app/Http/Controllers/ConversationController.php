@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\DeprecatedDatagridActions;
 use App\Datagrids\Filters\ConversationFilter;
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreConversation;
 use App\Models\Campaign;
 use App\Models\Conversation;

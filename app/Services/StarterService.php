@@ -6,7 +6,6 @@ use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
-use App\Models\Entity;
 use App\Models\Location;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -14,8 +13,8 @@ use Illuminate\Support\Str;
 
 class StarterService
 {
-    use UserAware;
     use CampaignAware;
+    use UserAware;
 
 
     /**

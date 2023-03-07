@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers\Calendar;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCalendarWeather;
 use App\Models\Calendar;

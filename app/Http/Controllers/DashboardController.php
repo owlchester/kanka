@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Facades\DataLayer;
 use App\Models\Campaign;

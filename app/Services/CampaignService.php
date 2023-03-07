@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Facades\SingleUserCache;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Models\UserLog;

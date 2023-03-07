@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\EntitySetup;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Models\CampaignRole;use Illuminate\Http\Request;
+use App\Models\CampaignRole;
+use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {

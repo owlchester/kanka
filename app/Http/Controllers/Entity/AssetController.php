@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Exceptions\EntityFileException;
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAsset;
 use App\Models\Campaign;
@@ -18,11 +17,11 @@ use Illuminate\Support\Str;
 
 class AssetController extends Controller
 {
+    use CampaignAware;
     /**
      * Guest Auth Trait
      */
     use GuestAuthTrait;
-    use CampaignAware;
 
     public function __construct()
     {

@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Facades\SingleUserCache;
-use App\Facades\UserCache;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
@@ -14,7 +13,6 @@ use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Illuminate\Support\Facades\Session;
 
 class UserObserver
 {

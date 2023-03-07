@@ -64,5 +64,4 @@ class OrganisationController extends CrudController
     {
         return $this->campaign($campaign)->crudDestroy($organisation);
     }
-
 }

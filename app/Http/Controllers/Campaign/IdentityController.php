@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Models\Entity;
-use App\Services\Campaign\MemberService;
 
 class IdentityController extends Controller
 {
@@ -45,7 +44,7 @@ class IdentityController extends Controller
 
         if (Identity::campaign($campaign)->switch($campaignUser)) {
             return redirect()
-                    ->to($entity->url());
+                ->to($entity->url());
         }
         return redirect()
             ->route('dashboard', [$campaign]);

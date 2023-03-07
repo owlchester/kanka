@@ -31,7 +31,7 @@ class DescendantController extends Controller
             if ($entity->isLocation()) {
                 $filters['parent_location_id'] = $entity->entity_id;
             } else {
-                $filters[strtolower($entity->entityType()) . '_id'] = $entity->entity_id;
+                $filters[mb_strtolower($entity->entityType()) . '_id'] = $entity->entity_id;
             }
         }
 

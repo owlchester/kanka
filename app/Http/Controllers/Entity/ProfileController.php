@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;

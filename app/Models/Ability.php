@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;

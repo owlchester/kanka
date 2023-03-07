@@ -12,7 +12,10 @@ use Spatie\Newsletter\NewsletterFacade as Newsletter;
 
 class UpdateEmail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected string $oldEmail;
     protected string $newEmail;

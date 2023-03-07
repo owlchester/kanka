@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\NoDatagridActions;
-use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\DiceRollResult;
 use Illuminate\Http\Request;

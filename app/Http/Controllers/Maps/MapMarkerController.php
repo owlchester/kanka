@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Maps;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;

@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\EntitySetup;
 use App\Models\Campaign;
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRole;
-use Illuminate\Http\Request;
 
 class CampaignRoleController extends Controller
 {

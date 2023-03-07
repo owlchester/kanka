@@ -9,12 +9,11 @@ use App\Models\Location;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
-use Illuminate\Support\Arr;
 
 class PreviewService
 {
-    use EntityAware;
     use CampaignAware;
+    use EntityAware;
 
     protected array $profile = [];
 
@@ -82,7 +81,7 @@ class PreviewService
     {
         $attributes = [];
         /** @var Attribute $attr */
-        foreach($this->entity->starredAttributes() as $attr) {
+        foreach ($this->entity->starredAttributes() as $attr) {
             if ($attr->isCheckbox()) {
                 $val = __('general.no');
                 if ($attr->value) {

@@ -3,7 +3,6 @@
 namespace App\Services\Caches;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class UserCacheService extends BaseCache
 {

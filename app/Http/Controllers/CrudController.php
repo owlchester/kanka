@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\DefaultDatagridActions;
 use App\Datagrids\Sorters\DatagridSorter;
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Facades\FormCopy;
 use App\Facades\Permissions;
@@ -28,8 +27,8 @@ use LogicException;
 class CrudController extends Controller
 {
     use BulkControllerTrait;
-    use GuestAuthTrait;
     use CampaignAware;
+    use GuestAuthTrait;
 
     /** @var string The view where to find the resources */
     protected string $view = '';
@@ -135,7 +134,8 @@ class CrudController extends Controller
         $filters = $this->filters;
         $filter = !empty($this->filter) ? new $this->filter() : null;
         if (!empty($filter)) {
-            $filter->campaign($this->campaign)->build();;
+            $filter->campaign($this->campaign)->build();
+            ;
         }
         $filterService = $this->filterService;
         $route = $this->route;
@@ -526,10 +526,6 @@ class CrudController extends Controller
         // Policies will always fail if they can't resolve the user.
         $this->authCheck($model);
 
-        if (empty($this->campaign)) {
-            dd('menu view...');
-            $this->campaign = CampaignLocalization::getCampaign();
-        }
         $name = $this->view;
         $fullview = $this->view . '.' . $view;
         if ($directView) {

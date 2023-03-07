@@ -49,5 +49,4 @@ class VisibilityController extends Controller
             ->with('success_raw', $success)
         ;
     }
-
 }

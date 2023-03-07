@@ -9,7 +9,6 @@ use App\Models\EntityAsset;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Services\TOC\TocSlugify;
-use App\Traits\CampaignAware;
 use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;

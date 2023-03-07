@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Facades\SingleUserCache;
-use App\Facades\UserCache;
 use App\Models\CampaignFollower;
 
 class CampaignFollowerObserver

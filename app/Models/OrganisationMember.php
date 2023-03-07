@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;

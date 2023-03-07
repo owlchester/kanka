@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
-use Illuminate\Http\Request;
 
 class CampaignUserController extends Controller
 {

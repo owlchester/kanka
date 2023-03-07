@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\DeleteCampaign;

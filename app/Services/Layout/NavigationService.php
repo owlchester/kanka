@@ -6,13 +6,11 @@ use App\Facades\Identity;
 use App\Facades\MarketplaceCache;
 use App\Facades\PostCache;
 use App\Facades\SingleUserCache;
-use App\Facades\UserCache;
 use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Models\Pledge;
 use App\Notifications\Header;
 use App\Traits\UserAware;
-use App\User;
 
 class NavigationService
 {

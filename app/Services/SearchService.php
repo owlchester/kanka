@@ -9,8 +9,6 @@ use App\Models\EntityAsset;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\User;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class SearchService
@@ -376,7 +374,7 @@ class SearchService
 
         $orderedIds = implode(',', $recentIds);
         $entities = Entity::whereIn('id', $recentIds)
-            ->orderByRaw("FIELD(id, $orderedIds)")
+            ->orderByRaw("FIELD(id, {$orderedIds})")
             ->get();
         $recent = [];
 

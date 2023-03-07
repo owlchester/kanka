@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Facades\AdCache;
-use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\User;
 use Carbon\Carbon;

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Maps;
 
 use App\Datagrids\Filters\MapFilter;
-use App\Facades\CampaignLocalization;
-use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMap;
 use App\Models\Campaign;

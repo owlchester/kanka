@@ -3,7 +3,6 @@
 namespace App\Services\Caches;
 
 use App\Models\AppRelease;
-use App\Traits\CampaignAware;
 use Carbon\Carbon;
 
 class PostCacheService
