@@ -47,15 +47,16 @@ class LiveController extends Controller
             $this->search->v2();
         }
 
+        $this->search
+            ->term($term)
+            ->type($type)
+            ->campaign($campaign)
+            ->new($new)
+            ->full()
+            ->excludeIds($exclude);
+
         return response()->json(
-            $this->search
-                ->term($term)
-                ->type($type)
-                ->campaign($campaign)
-                ->new($new)
-                ->full()
-                ->excludeIds($exclude)
-                ->find()
+            $this->search->find()
         );
     }
 

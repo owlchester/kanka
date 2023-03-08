@@ -221,6 +221,22 @@ class SearchService
                     $query->where('name', 'like', '%' . $this->term . '%');
                 }
             }
+
+            // Exact name match comes first
+            $query->orderByRaw('FIELD(entities.name, ?) DESC', $cleanTerm);
+            if ($this->campaign->boosted()) {
+                $query->orderByRaw('FIELD(ea.name, ?) DESC', $cleanTerm);
+            }
+            // Name word-start match, so when looking for 'Morley', entities named 'Momorley' appear at the end
+            $query->orderByRaw('entities.name RLIKE ? DESC', "[[:<:]]$cleanTerm");
+            if ($this->campaign->boosted()) {
+                $query->orderByRaw('ea.name RLIKE ? DESC', "[[:<:]]$cleanTerm");
+            }
+            // Partial name match
+            $query->orderByRaw('entities.name LIKE ? DESC', "%$cleanTerm%");
+            if ($this->campaign->boosted()) {
+                $query->orderByRaw('ea.name LIKE ? DESC', "%$cleanTerm%");
+            }
         }
 
         if (!empty($this->excludeIds)) {
