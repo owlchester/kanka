@@ -19740,7 +19740,7 @@ __webpack_require__.r(__webpack_exports__);
       return 'url(' + entity.image + ')';
     },
     preview: function preview(entity) {
-      console.log('preview', entity);
+      //console.log('preview', entity);
       this.emitter.emit('preview', entity);
     }
   }

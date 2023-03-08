@@ -31,7 +31,7 @@ export default {
             return 'url(' + entity.image + ')';
         },
         preview: function(entity) {
-            console.log('preview', entity);
+            //console.log('preview', entity);
             this.emitter.emit('preview', entity);
         }
     }
