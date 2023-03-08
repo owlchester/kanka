@@ -40,6 +40,9 @@ class LiveController extends Controller
             $type = (int) $type;
         }
         $exclude = trim($request->get('exclude'));
+        if ($exclude === 'undefined') {
+            $exclude = null;
+        }
         $campaign = CampaignLocalization::getCampaign();
         $new = request()->has('new');
 
