@@ -4,6 +4,7 @@
                id="entity-lookup"
                v-model="term"
                @focus="focus()"
+               @keydown.esc="escape()"
                :placeholder="placeholder"
         />
 
@@ -80,6 +81,7 @@ export default {
             show_results: false,
             recent: [],
             results: [],
+            cached: {},
             has_recent: false,
             texts: {},
             timeout_id: null,
@@ -97,6 +99,7 @@ export default {
             if (lookup.length < 3) {
                 return;
             }
+
             // Cancel previous timeout if it's set
             if (this.timeout_id !== undefined) {
                 clearTimeout(this.timeout_id);
@@ -107,18 +110,33 @@ export default {
         },
         lookup() {
             let term = this.term.trim();
+
+            let cacheKey = term.toLowerCase ().replace (/ /g,'-').replace (/ [^\w-]+/g,'');
+            console.log('check cache', cacheKey);
+            if (this.cached[cacheKey]) {
+                console.log('use cache');
+                return this.displayCached(cacheKey);
+            }
+
             axios.get(this.api_lookup, {params: {q: term, v2: true}}).then(response => {
-                this.parseLookupResponse(response);
+                this.parseLookupResponse(response, cacheKey);
             });
         },
         focus() {
             // Unlogged in users don't get a recent list pop out when focusing on the search field
             if (!this.api_recent) {
-                console.log('no recent');
+                //console.log('no recent');
                 return;
             }
             this.has_drawer = true;
             this.fetch();
+        },
+        escape() {
+            console.log('escape')
+            if (this.timeout_id !== undefined) {
+                clearTimeout(this.timeout_id);
+            }
+            this.close();
         },
         // Get the recent searches from the user
         fetch() {
@@ -143,11 +161,19 @@ export default {
             });
         },
         // Load results from a search
-        parseLookupResponse(response) {
-            this.timeout_id = null;
+        parseLookupResponse(response, cacheKey) {
             this.results = response.data.entities;
             this.texts.results = response.data.texts.results;
             this.texts.empty_results = response.data.texts.empty_results;
+            this.cached[cacheKey] = response.data.entities;
+            this.showResults();
+        },
+        displayCached(key) {
+            this.results = this.cached[key];
+            this.showResults();
+        },
+        showResults() {
+            this.timeout_id = null;
             this.show_preview = false;
             this.show_loading = false;
             this.show_results = true;
@@ -161,7 +187,7 @@ export default {
         },
         parsePreviewResponse(response) {
             this.preview_entity = response.data;
-            console.log('preview_entity', this.preview_entity);
+            //console.log('preview_entity', this.preview_entity);
             this.show_loading = false;
             this.show_preview = true;
             this.show_recent = false;
@@ -169,10 +195,13 @@ export default {
         // When clicking outside of the area, close the search pannel
         onClickOutside (event) {
             //console.log('Clicked outside. Event: ', event)
+            this.close();
+        },
+        close() {
             this.show_recent = false;
             this.show_loading = false;
             this.show_preview = false;
-        },
+        }
     },
     mounted() {
         this.emitter.on('preview', (entity) => {

@@ -19796,6 +19796,7 @@ __webpack_require__.r(__webpack_exports__);
       show_results: false,
       recent: [],
       results: [],
+      cached: {},
       has_recent: false,
       texts: {},
       timeout_id: null,
@@ -19832,24 +19833,41 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var term = this.term.trim();
+      var cacheKey = term.toLowerCase().replace(/ /g, '-').replace(/ [^\w-]+/g, '');
+      console.log('check cache', cacheKey);
+
+      if (this.cached[cacheKey]) {
+        console.log('use cache');
+        return this.displayCached(cacheKey);
+      }
+
       axios.get(this.api_lookup, {
         params: {
           q: term,
           v2: true
         }
       }).then(function (response) {
-        _this2.parseLookupResponse(response);
+        _this2.parseLookupResponse(response, cacheKey);
       });
     },
     focus: function focus() {
       // Unlogged in users don't get a recent list pop out when focusing on the search field
       if (!this.api_recent) {
-        console.log('no recent');
+        //console.log('no recent');
         return;
       }
 
       this.has_drawer = true;
       this.fetch();
+    },
+    escape: function escape() {
+      console.log('escape');
+
+      if (this.timeout_id !== undefined) {
+        clearTimeout(this.timeout_id);
+      }
+
+      this.close();
     },
     // Get the recent searches from the user
     fetch: function fetch() {
@@ -19876,11 +19894,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     // Load results from a search
-    parseLookupResponse: function parseLookupResponse(response) {
-      this.timeout_id = null;
+    parseLookupResponse: function parseLookupResponse(response, cacheKey) {
       this.results = response.data.entities;
       this.texts.results = response.data.texts.results;
       this.texts.empty_results = response.data.texts.empty_results;
+      this.cached[cacheKey] = response.data.entities;
+      this.showResults();
+    },
+    displayCached: function displayCached(key) {
+      this.results = this.cached[key];
+      this.showResults();
+    },
+    showResults: function showResults() {
+      this.timeout_id = null;
       this.show_preview = false;
       this.show_loading = false;
       this.show_results = true;
@@ -19895,8 +19921,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     parsePreviewResponse: function parsePreviewResponse(response) {
-      this.preview_entity = response.data;
-      console.log('preview_entity', this.preview_entity);
+      this.preview_entity = response.data; //console.log('preview_entity', this.preview_entity);
+
       this.show_loading = false;
       this.show_preview = true;
       this.show_recent = false;
@@ -19904,6 +19930,9 @@ __webpack_require__.r(__webpack_exports__);
     // When clicking outside of the area, close the search pannel
     onClickOutside: function onClickOutside(event) {
       //console.log('Clicked outside. Event: ', event)
+      this.close();
+    },
+    close: function close() {
       this.show_recent = false;
       this.show_loading = false;
       this.show_preview = false;
@@ -20644,6 +20673,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onFocus: _cache[1] || (_cache[1] = function ($event) {
       return $options.focus();
     }),
+    onKeydown: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function ($event) {
+      return $options.escape();
+    }, ["esc"])),
     placeholder: $props.placeholder
   }, null, 40
   /* PROPS, HYDRATE_EVENTS */
