@@ -6,6 +6,7 @@ use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Models\UserLog;
+use App\Models\Entity;
 use App\Notifications\Header;
 use App\User;
 use Illuminate\Session\Store;
@@ -151,6 +152,32 @@ class CampaignService
             [
                 'campaign' => $campaign->name,
                 'link' => $campaign->getMiddlewareLink()
+            ]
+        );
+    }
+
+    /**
+     * Notify the campaign admins that the image from an entity was forcibly deleted
+    * @param Campaign $campaign
+    * @param Campaign $campaign
+    * @throws Exception
+    */
+    public function removedImage(Campaign $campaign, Entity $entity)
+    {
+        $colour = 'yellow';
+        $icon = 'eye-slash';
+        $key = 'removed-image';
+
+        $link = str_replace('campaign/0', 'en/campaign/' . $campaign->id, $entity->url());
+
+        $this->notify(
+            $campaign,
+            $key,
+            $icon,
+            $colour,
+            [
+                'entity' => $entity->name,
+                'link' => $link,
             ]
         );
     }
