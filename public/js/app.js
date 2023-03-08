@@ -19834,10 +19834,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var term = this.term.trim();
       var cacheKey = term.toLowerCase().replace(/ /g, '-').replace(/ [^\w-]+/g, '');
-      console.log('check cache', cacheKey);
 
       if (this.cached[cacheKey]) {
-        console.log('use cache');
         return this.displayCached(cacheKey);
       }
 
@@ -19860,9 +19858,8 @@ __webpack_require__.r(__webpack_exports__);
       this.has_drawer = true;
       this.fetch();
     },
+    // User pressed ESC while focused on the search field
     escape: function escape() {
-      console.log('escape');
-
       if (this.timeout_id !== undefined) {
         clearTimeout(this.timeout_id);
       }

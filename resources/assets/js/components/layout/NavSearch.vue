@@ -112,9 +112,7 @@ export default {
             let term = this.term.trim();
 
             let cacheKey = term.toLowerCase ().replace (/ /g,'-').replace (/ [^\w-]+/g,'');
-            console.log('check cache', cacheKey);
             if (this.cached[cacheKey]) {
-                console.log('use cache');
                 return this.displayCached(cacheKey);
             }
 
@@ -131,8 +129,8 @@ export default {
             this.has_drawer = true;
             this.fetch();
         },
+        // User pressed ESC while focused on the search field
         escape() {
-            console.log('escape')
             if (this.timeout_id !== undefined) {
                 clearTimeout(this.timeout_id);
             }
