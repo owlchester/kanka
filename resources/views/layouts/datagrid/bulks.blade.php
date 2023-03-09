@@ -13,14 +13,14 @@ $hasOthers = false;
             @if ($bulk === \App\Renderers\Layouts\Layout::ACTION_EDIT)
                 <li>
                     <a href="#" class="datagrid-bulk" data-action="edit">
-                        <i class="fa-solid fa-pencil"></i> {{ __('crud.bulk.actions.edit') }}
+                        <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.bulk.actions.edit') }}
                     </a>
                 </li>
             @elseif ($bulk === \App\Renderers\Layouts\Layout::ACTION_DELETE)
                 @if ($hasOthers) <li class="divider"></li> @endif
             <li>
                 <a href="#" class="text-red datagrid-submit" data-action="delete">
-                    <i class="fa-solid fa-trash"></i> {{ __('crud.remove') }}
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
                 </a>
             </li>
             @elseif (is_array($bulk))
@@ -55,7 +55,7 @@ $hasOthers = false;
                     <div class="py-5">
                         <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                         <button type="button" class="btn btn-danger px-8 ml-5 rounded-full" id="datagrid-action-confirm">
-                            <span class="fa-solid fa-trash"></span>
+                            <span class="fa-solid fa-trash" aria-hidden="true"></span>
                             <span class="remove-button-label">{{ __('crud.remove') }}</span>
                         </button>
                     </div>

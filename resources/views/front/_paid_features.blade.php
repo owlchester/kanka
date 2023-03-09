@@ -258,7 +258,7 @@
             <div class="my-2">
 
                 <a href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}" class="btn btn-block btn-success text-uppercase">
-                    <i class="fa-solid fa-rocket"></i> {{ __('settings/boosters.actions.boost_name', ['name' => $campaign->name]) }}
+                    <i class="fa-solid fa-rocket" aria-hidden="true"></i> {{ __('settings/boosters.actions.boost_name', ['name' => $campaign->name]) }}
                 </a>
             </div>
         @endif

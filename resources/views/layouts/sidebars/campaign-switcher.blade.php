@@ -20,7 +20,7 @@
         @can('create', \App\Models\Campaign::class)
             <li class="bordered">
                 <a href="{{ route('start') }}">
-                    <i class="fa-solid fa-plus"></i> {{ __('sidebar.campaign_switcher.new_campaign') }}
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('sidebar.campaign_switcher.new_campaign') }}
                 </a>
             </li>
         @endcan

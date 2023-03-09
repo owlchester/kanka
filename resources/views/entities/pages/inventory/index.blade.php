@@ -19,7 +19,7 @@
                data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
             >
-                <i class="fa-solid fa-plus"></i>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
                 {{ __('entities/inventories.actions.add') }}
             </a>
         </div>
@@ -58,7 +58,7 @@
                            data-toggle="ajax-modal" data-target="#entity-modal"
                            data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
                         >
-                            <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i>
                             {{ __('entities/inventories.actions.add') }}
                         </a>
                         @endcan

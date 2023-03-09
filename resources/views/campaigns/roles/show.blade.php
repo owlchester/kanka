@@ -31,7 +31,7 @@
 
                     <div class="box-tools">
                         <button class="btn btn-box-tool" data-target="#permission-modal" data-toggle="modal">
-                            <i class="fa-solid fa-question-circle"></i> {{ __('campaigns.members.actions.help') }}
+                            <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('campaigns.members.actions.help') }}
                         </button>
                     </div>
                 </div>

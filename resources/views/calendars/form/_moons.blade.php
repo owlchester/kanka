@@ -63,7 +63,7 @@ if (!empty($moonNames)) {
                         {!! Form::number('moon_offset[]', $fullmoon['offset'], ['class' => 'form-control', 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
                         <span class="input-group-btn">
                             <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                <i class="fa-solid fa-trash"></i>
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                             </span>
                         </span>
                     </div>
@@ -105,7 +105,7 @@ if (!empty($moonNames)) {
                     {!! Form::number('moon_offset[]', 0, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.offset'), 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
                     <span class="input-group-btn">
                         <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                            <i class="fa-solid fa-trash"></i>
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
                         </span>
                     </span>
                 </div>

@@ -118,7 +118,7 @@
                 {!! Form::text('weekday[]', null, ['class' => 'form-control', 'aria-label' => __('calendars.parameters.weeks.name')]) !!}
                 <span class="input-group-btn">
                     <span href="#" class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                        <i class="fa-solid fa-trash"></i>
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
                     </span>
                 </span>
             </div>
@@ -143,7 +143,7 @@
                         {!! Form::text('week_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.name')]) !!}
                         <span class="input-group-btn">
                             <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                <i class="fa-solid fa-trash"></i>
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                             </span>
                         </span>
                     </div>

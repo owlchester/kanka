@@ -75,7 +75,7 @@ if (!empty($names)) {
                         ]) !!}
                         <span class="input-group-btn">
                             <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                <i class="fa-solid fa-trash"></i>
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                             </span>
                         </span>
                     </div>
@@ -123,7 +123,7 @@ if (!empty($names)) {
                         'aria-label' => __('calendars.parameters.month.type'),]) !!}
                     <span class="input-group-btn">
                         <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                            <i class="fa-solid fa-trash"></i>
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
                         </span>
                     </span>
                 </div>

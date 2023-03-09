@@ -73,7 +73,7 @@
                             <label></label>
                         @endif
                         <button class="btn btn-primary btn-info btn-flat btn-block">
-                            <i class="fa-solid fa-plus"></i> {{ __('crud.add') }}
+                            <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.add') }}
                         </button>
                     </div>
                 </div>

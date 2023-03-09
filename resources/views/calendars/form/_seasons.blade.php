@@ -51,7 +51,7 @@ if (!empty($seasonNames)) {
                         {!! Form::number('season_day[]', $season['day'], ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
                             <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                <i class="fa-solid fa-trash"></i>
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                             </span>
                         </span>
                     </div>
@@ -88,7 +88,7 @@ if (!empty($seasonNames)) {
                     {!! Form::number('season_day[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.day')]) !!}
                     <span class="input-group-btn">
                         <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                            <i class="fa-solid fa-trash"></i>
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
                         </span>
                     </span>
                 </div>

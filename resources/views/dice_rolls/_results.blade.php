@@ -5,7 +5,7 @@
     <div class="box-tools">
         @can('roll', $model)
             <a href="{{ route('dice_rolls.roll', ['dice_roll' => $model]) }}" class="btn btn-box-tool">
-                <i class="fa-solid fa-plus"></i> {{ __('dice_rolls.results.actions.add') }}
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('dice_rolls.results.actions.add') }}
             </a>
         @endcan
     </div>

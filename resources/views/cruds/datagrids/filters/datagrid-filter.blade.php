@@ -110,7 +110,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                     @endif
 
                     <a href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
-                        {{ __('helpers.filters.title') }} <i class="fa-solid fa-question-circle"></i>
+                        {{ __('helpers.filters.title') }} <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     </a>
                 @endif
             </div>
@@ -132,7 +132,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                     @endif
 
                     <a href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
-                        <i class="fa-solid fa-question-circle"></i>
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     </a>
                 @endif
             </div>

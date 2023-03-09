@@ -91,7 +91,7 @@
                 </div>
                 <div class="box-footer text-right">
                     <a href="#" class="btn btn-default pull-left" data-toggle="modal" data-target="#reset-confirm">
-                        <i class="fa-solid fa-trash"></i> {{ __('campaigns/sidebar.actions.reset') }}
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('campaigns/sidebar.actions.reset') }}
                     </a>
                     <button type="submit" class="btn btn-primary">
                         <i class="fa-solid fa-save"></i>

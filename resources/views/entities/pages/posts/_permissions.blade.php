@@ -72,7 +72,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button class="btn btn-primary post-perm-add" id="post-perm-user-add" data-type="user">
-                        <i class="fa-solid fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/notes.actions.add_user') }}
                     </button>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button class="btn btn-primary post-perm-add" id="post-perm-role-add" data-type="role">
-                        <i class="fa-solid fa-plus"></i> {{ __('entities/notes.actions.add_role') }}
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/notes.actions.add_role') }}
                     </button>
                 </div>
             </div>
