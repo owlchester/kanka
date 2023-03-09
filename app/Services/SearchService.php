@@ -205,14 +205,15 @@ class SearchService
             }
 
             // Exact name match comes first
+            $escapedTerm = preg_replace('/&/', '\\&', preg_quote($cleanTerm));
             $query->orderByRaw('FIELD(entities.name, ?) DESC', $cleanTerm);
             if ($this->campaign->boosted()) {
                 $query->orderByRaw('FIELD(ea.name, ?) DESC', $cleanTerm);
             }
             // Name word-start match, so when looking for 'Morley', entities named 'Momorley' appear at the end
-            $query->orderByRaw('entities.name RLIKE ? DESC', "[[:<:]]$cleanTerm");
+            $query->orderByRaw('entities.name RLIKE ? DESC', "[[:<:]]$escapedTerm");
             if ($this->campaign->boosted()) {
-                $query->orderByRaw('ea.name RLIKE ? DESC', "[[:<:]]$cleanTerm");
+                $query->orderByRaw('ea.name RLIKE ? DESC', "[[:<:]]$escapedTerm");
             }
             // Partial name match
             $query->orderByRaw('entities.name LIKE ? DESC', "%$cleanTerm%");
