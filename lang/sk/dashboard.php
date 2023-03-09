@@ -95,6 +95,7 @@ return [
             'random'        => 'Náhodný objekt',
             'recent'        => 'Nedávne',
             'unmentioned'   => 'Objekty bez referencií',
+            'welcome'       => 'Vitaj',
         ],
     ],
     'title'         => 'Nástenka',
@@ -177,6 +178,9 @@ return [
         ],
         'update'        => [
             'success'   => 'Widget bol upravený.',
+        ],
+        'welcome'       => [
+            'helper'    => 'Tento widget zobrazuje uvítaciu správu na nástenke, ktorá obsahuje nápomocné linky pre nových užívateľov/ky Kanky.',
         ],
         'widths'        => [
             '0' => 'Automatická',

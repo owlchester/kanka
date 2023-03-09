@@ -2,10 +2,10 @@
 
 return [
     'actions'   => [
-        'show-old'  => 'Mudanças',
+        'show-old'  => 'Alterações',
     ],
     'cta'       => 'Exiba um log de todas as alterações recentes na campanha.',
-    'empty'     => 'Sem valor',
+    'empty'     => 'Vazio',
     'filters'   => [
         'all-actions'   => 'Todas as ações',
         'all-users'     => 'Todos os membros',
@@ -16,10 +16,14 @@ return [
         'changes'   => 'Os campos a seguir tinham anteriormente esses valores.',
     ],
     'log'       => [
-        'create'    => ':user criou :entity',
-        'delete'    => ':user deletou :entity',
-        'restore'   => ':user restaurou :entity',
-        'update'    => ':user atualizou :entity',
+        'create'        => ':user criou :entity',
+        'create_post'   => ':user criou o post ":post" em :entity',
+        'delete'        => ':user removeu :entity',
+        'delete_post'   => ':user removeu um post em :entity',
+        'reorder_post'  => ':user reordenou os posts de :entity',
+        'restore'       => ':user restaurou :entity',
+        'update'        => ':user atualizou :entity',
+        'update_post'   => ':user atualizou o post ":post" em :entity',
     ],
     'title'     => 'Histórico',
     'unknown'   => [

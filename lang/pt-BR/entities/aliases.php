@@ -15,9 +15,9 @@ return [
         'name'  => 'Nome',
     ],
     'helpers'       => [
-        'primary'   => 'Configurar um ou vários pseudônimos sobre a entidade a tornará mais fácil de encontrar na busca global (barra superior) e através de menções.',
+        'primary'   => 'Definir um ou vários pseudônimos para a entidade fará com que ela seja encontrada mais facilmente na busca global (barra superior) e através de menções.',
     ],
-    'pitch'         => 'Crie pseudônimos para esta entidade para encontrá-la facilmente através da busca e através de menções.',
+    'pitch'         => 'Crie pseudônimos para esta entidade para encontrá-la facilmente através da busca e por meio de menções.',
     'placeholders'  => [
         'name'  => 'Novo pseudônimo',
     ],

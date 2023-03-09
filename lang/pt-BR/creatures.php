@@ -5,15 +5,15 @@ return [
         'title' => 'Nova Criatura',
     ],
     'creatures'     => [
-        'title' => ':name Sub-criaturas',
+        'title' => 'Sub-criaturas de :name',
     ],
     'fields'        => [
-        'creature'  => 'Criatura-pai',
+        'creature'  => 'Criatura Primária',
         'creatures' => 'Sub-criaturas',
-        'locations' => 'Localidades',
+        'locations' => 'Locais',
     ],
     'helpers'       => [
-        'nested_without'    => 'Mostrando todas as criaturas que não tem uma criatura-pai. Clique em uma linha para ver as criaturas-filhos.',
+        'nested_without'    => 'Exibindo todas as criaturas que não tem uma criatura primária. Clique em uma linha para ver as criaturas secundárias.',
     ],
     'placeholders'  => [
         'name'  => 'Nome da criatura',

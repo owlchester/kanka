@@ -95,6 +95,7 @@ return [
             'random'        => 'Losowy element',
             'recent'        => 'Ostatnie zmiany',
             'unmentioned'   => 'Elementy bez wzmianki',
+            'welcome'       => 'Witaj',
         ],
     ],
     'title'         => 'Pulpit',
@@ -177,6 +178,9 @@ return [
         ],
         'update'        => [
             'success'   => 'Zmodyfikowano widżet.',
+        ],
+        'welcome'       => [
+            'helper'    => 'Ten widżet zawiera komunikat powitalny oraz szereg odnośników, które przydadzą się nowym użytkownikom Kanki.',
         ],
         'widths'        => [
             '0' => 'Automatyczna',

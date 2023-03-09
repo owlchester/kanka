@@ -2,28 +2,28 @@
 
 return [
     'actions'       => [
-        'add_element'   => 'Adicionar novo elemento à era :era',
+        'add_element'   => 'Add elemento à era :era',
         'back'          => 'Voltar para :name',
         'edit'          => 'Editar linha do tempo',
         'save_order'    => 'Salvar nova ordem',
     ],
     'create'        => [
-        'title' => 'Nova linha do tempo',
+        'title' => 'Nova Linha do Tempo',
     ],
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'copy_elements' => 'Copiar elementos',
-        'copy_eras'     => 'Copiar eras',
+        'copy_elements' => 'Copiar Elementos',
+        'copy_eras'     => 'Copiar Eras',
         'eras'          => 'Eras',
-        'reverse_order' => 'Era em ordem reversa',
-        'timeline'      => 'Linha do Tempo primária',
+        'reverse_order' => 'Ordem reversa da era',
+        'timeline'      => 'Linha do Tempo Primária',
         'timelines'     => 'Linhas do Tempo',
     ],
     'helpers'       => [
-        'nested_without'    => 'Mostrando todas as linhas do tempo que não tem uma linha do tempo pai. Clique em uma linha para ver as linhas do tempo filhos.',
+        'nested_without'    => 'Exibindo todas as linhas do tempo que não tem uma linha do tempo primária. Clique em uma linha para ver as linhas do tempo secundárias.',
         'no_era_v2'         => 'Esta linha do tempo atualmente não tem nenhuma era. Adicione uma ou várias eras, após o qual você pode adicionar elementos às eras aqui.',
-        'reverse_order'     => 'Habilite para mostrar linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
+        'reverse_order'     => 'Habilite para exibir linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
     ],
     'index'         => [],
     'placeholders'  => [
@@ -41,6 +41,6 @@ return [
         ],
     ],
     'timelines'     => [
-        'title' => 'Linhas do tempo de :name',
+        'title' => 'Linhas do tempo da Linha do Tempo :name',
     ],
 ];

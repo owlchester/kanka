@@ -1,6 +1,23 @@
 <?php
 
 return [
+    '2023'              => [
+        'basics'    => [
+            'text_1'    => 'Otrzymując narzędzie tak obszerne, jak Kanka, czasem trudno zrozumieć, jak zacząć i co robić. Odpowiedzi na najbardziej podstawowe pytania znajdziesz w naszym :kb, a bardziej rozbudowaną pomoc w :doc.',
+            'title'     => 'Podstawy',
+        ],
+        'chat'      => [
+            'text_1'    => 'Lubimy słuchać użytkowników. Najłatwiej spotkać nas na :discord: tam spotkasz licznych aktywnych członków społeczności, osoby z zespołu oraz twórców Kanki - wszyscy chętnie odpowiedzą na twoje pytania. Możesz też do nas napisać na :email.',
+            'title'     => 'Chcesz pogadać?',
+        ],
+        'intro'     => [
+            'header'    => 'Witaj pośród światotwórców, :name!',
+            'link'      => 'Ruszaj do swojego śwata!',
+            'text_1'    => 'Witaj pośród światotwórców, :name! Wspólnota krąży w naszych żyłach i cieszymy cię, widząc cię pośród nas. Kanka to dzieło pasjonatów gier fabularnych, którym zamarzyła się prosta i wspólnotowa platforma tworzenia światów, posiadająca przy tym wszystkie ważne funkcje.',
+            'text_2'    => 'Przygotowaliśmy dla ciebie pierwszą kampanię, zawierającą dwie przykładowe postacie i dwa miejsca - żeby łatwiej ci było zacząć.',
+        ],
+        'preview'   => 'Zostań członkiem wspólnoty światotwórców, :name!',
+    ],
     'header'            => ':name, witaj na platformie Kanka!',
     'header_sub'        => 'Gratulujemy, oto za tobą pierwszy krok ku projektowaniu własnych światów za pomocą serwisu :kanka.',
     'pricing'           => 'cena',

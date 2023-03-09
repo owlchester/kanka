@@ -19,7 +19,7 @@ return [
             'link-parent'   => 'Coloque um link rápido exatamente onde você deseja na barra lateral com uma :boosted-campaign.',
         ],
         'titles'        => [
-            'boosted'       => 'Recurso impulsionado.',
+            'boosted'       => 'Recurso impulsionado',
             'superboosted'  => 'Recurso superimpulsionado',
         ],
     ],

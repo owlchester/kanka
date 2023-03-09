@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title' => 'Criar nova organização',
+        'title' => 'Nova Organização',
     ],
     'destroy'       => [],
     'edit'          => [],
@@ -14,7 +14,7 @@ return [
     ],
     'helpers'       => [
         'descendants'       => 'Esta lista contém todas organizações que descendem desta organização, e não apenas aquelas diretamente relacionadas a ela.',
-        'nested_without'    => 'Mostrando todas as organizações que não tem uma organização-pai. Clique em uma linha para ver as organizações-filhos.',
+        'nested_without'    => 'Exibindo todas as organizações que não tem uma organização primária. Clique em uma linha para ver as organizações secundárias.',
     ],
     'hints'         => [
         'is_defunct'    => 'Esta organização está extinta.',
@@ -22,15 +22,15 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'       => 'Adicionar um membro',
-            'submit'    => 'Adicionar membro',
+            'add'       => 'Add um membro',
+            'submit'    => 'Add membro',
         ],
         'create'        => [
-            'success'   => 'Membro adicionado à organização',
-            'title'     => 'Novo Membro da Organização para :name',
+            'success'   => 'Membro adicionado à organização.',
+            'title'     => 'Novo Membro',
         ],
         'destroy'       => [
-            'success'   => 'Membro removido da organização',
+            'success'   => 'Membro removido da organização.',
         ],
         'edit'          => [
             'success'   => 'Membro da organização atualizado.',
@@ -42,12 +42,12 @@ return [
             'parent'        => 'Superior',
             'pinned'        => 'Fixado',
             'role'          => 'Função',
-            'status'        => 'Status do Membro',
+            'status'        => 'Status de Afiliação',
         ],
         'helpers'       => [
-            'all_members'   => 'Todos personagens que são membros desta Organização e suas suborganizações',
-            'members'       => 'Todos personagens que são membros desta Organização.',
-            'pinned'        => 'Escolha se este membro deve ser mostrado na seção fixada da visão geral de suas entidades associadas.',
+            'all_members'   => 'Todos personagens que são membros desta organização e suas sub-organizações.',
+            'members'       => 'Todos personagens que são membros desta organização.',
+            'pinned'        => 'Escolha se este membro deve ser exibido na seção fixada da visão geral de suas entidades associadas.',
         ],
         'pinned'        => [
             'both'          => 'Ambos',

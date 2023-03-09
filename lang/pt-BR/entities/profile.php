@@ -6,6 +6,6 @@ return [
     ],
     'show'      => [
         'tab_name'  => 'Perfil',
-        'title'     => ':name Perfil',
+        'title'     => 'Perfil :name',
     ],
 ];

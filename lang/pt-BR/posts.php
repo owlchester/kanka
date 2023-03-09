@@ -2,13 +2,13 @@
 
 return [
     'create'        => [
-        'title' => 'Nova Postagem',
+        'title' => 'Novo Post',
     ],
     'fields'        => [
         'name'  => 'Nome',
     ],
     'placeholders'  => [
-        'name'  => 'Nome da postagem',
+        'name'  => 'Nome do post',
     ],
     'position'      => [
         'first' => 'Primeiro',

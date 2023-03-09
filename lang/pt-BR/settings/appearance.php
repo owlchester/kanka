@@ -46,7 +46,7 @@ return [
         'default'   => 'Menções como o nome da entidade',
     ],
     'nested'            => [
-        'default'   => 'Listas planas',
+        'default'   => 'Listas simples',
         'nested'    => 'Listas aninhadas',
     ],
     'success'           => 'Opções de aparência salvas.',

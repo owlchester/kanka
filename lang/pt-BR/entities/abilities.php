@@ -2,13 +2,13 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Adicionar uma habilidade',
-        'import_from_race'          => 'Adicionar habilidades de raça',
+        'add'                       => 'Add habilidades',
+        'import_from_race'          => 'Add habilidades de raça',
         'import_from_race_mobile'   => 'Habilidades de raça',
-        'reset'                     => 'Redefinir número de usos da habilidade',
+        'reset'                     => 'Redefinir usos da habilidade',
     ],
     'create'    => [
-        'success'           => 'Habilidade :ability adicionada a :entity',
+        'success'           => 'Habilidade :ability adicionada a :entity.',
         'success_multiple'  => 'Habilidades :abilities adicionadas a entidade.',
         'title'             => 'Adicionar habilidade a :name',
     ],
@@ -32,7 +32,7 @@ return [
         'title'         => 'Reordenar as habilidades',
     ],
     'show'      => [
-        'helper'    => 'Adicione habilidades a esta entidade. Você sempre pode editar a visibilidade ou remover uma habilidade. Habilidades pertencentes à mesma habilidade principal serão exibidas como caixas de filtro.',
+        'helper'    => 'Adicione habilidades a esta entidade. Você sempre pode editar a visibilidade ou remover uma habilidade. Habilidades pertencentes à mesma habilidade primária serão exibidas como caixas de filtro.',
         'reorder'   => 'Reordenar Habilidades',
         'title'     => 'Habilidades de :name',
     ],

@@ -46,7 +46,7 @@ return [
     ],
     'journals'      => [
         'description'   => 'Planeje sua sessão ou escreva uma recapitulação da sessão aos olhos de um personagem usando nosso módulo de jornais. Eles podem ser anexados a calendários para acompanhar uma data do mundo real e uma data no jogo em que algo aconteceu.',
-        'title'         => 'Jornais',
+        'title'         => 'Diários',
     ],
     'links'         => [
         'description'   => 'As entidades em uma campanha impulsionada têm um novo tipo de ativo que pode ser anexado a ela: links. Eles são exibidos na visão geral de uma entidade e permitem adicionar links externos, como ir para a página DNDBeyond de um personagem.',

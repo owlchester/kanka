@@ -2,30 +2,30 @@
 
 return [
     'actions'       => [
-        'add'   => 'Adicionar uma nova camada',
+        'add'   => 'Add uma nova camada',
     ],
-    'base'          => 'Camada base',
+    'base'          => 'Camada Base',
     'bulks'         => [
         'delete'    => '{1} Removida :count camada.|[2,*] Removidas :count camadas.',
         'patch'     => '{1} Atualizada :count camada.|[2,*] Atualizadas :count camadas.',
     ],
     'create'        => [
-        'success'   => 'Camada :name criada',
-        'title'     => 'Nova camada',
+        'success'   => 'Camada :name criada.',
+        'title'     => 'Nova Camada',
     ],
     'delete'        => [
-        'success'   => 'Camada :name deletada',
+        'success'   => 'Camada :name removida.',
     ],
     'edit'          => [
-        'success'   => 'Camada :name atualizada',
-        'title'     => 'Editar camada :name',
+        'success'   => 'Camada :name atualizada.',
+        'title'     => 'Editar Camada :name',
     ],
     'fields'        => [
         'position'  => 'Posição',
         'type'      => 'Tipo de camada',
     ],
     'helper'        => [
-        'amount_v2' => 'Carregue camadas em um mapa para alternar a imagem de fundo exibida abaixo dos marcadores.',
+        'amount_v2' => 'Carregue camadas em um mapa para alternar a imagem de plano de fundo exibida abaixo dos marcadores ou como sobreposições acima do mapa, mas abaixo dos marcadores.',
         'is_real'   => 'Camadas não estão disponíveis ao usar OpenStreetMaps.',
     ],
     'index'         => [
@@ -36,8 +36,8 @@ return [
         'until' => 'Carregue até :max camadas para cada mapa.',
     ],
     'placeholders'  => [
-        'name'          => 'Subterrãneo, segundo nível, navio naufragado',
-        'position'      => 'Campo opcional para definir a ordem em que as camadas aparecem.',
+        'name'          => 'Subterrãneo, Nível 2, Navio Naufragado',
+        'position'      => 'Primeiro',
         'position_list' => 'Depois de :name',
     ],
     'reorder'       => [
@@ -51,8 +51,8 @@ return [
         'standard'      => 'Padrão',
     ],
     'types'         => [
-        'overlay'       => 'Sobreposição (mostrado acima da camada ativa)',
-        'overlay_shown' => 'Sobreposição mostrada de modo padrão.',
+        'overlay'       => 'Sobreposição (exibido acima da camada ativa)',
+        'overlay_shown' => 'Sobreposição exibida por padrão',
         'standard'      => 'Camada padrão (alternar entre camadas)',
     ],
 ];

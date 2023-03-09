@@ -2,7 +2,7 @@
 
 return [
     'achievements'  => [
-        'wordsmith' => 'Um verdadeiro criador de palavras! Vencedor de um prompt de construção de mundo.',
+        'wordsmith' => 'Um verdadeiro forjador de palavras! Vencedor de um evento de construção de mundo.',
     ],
     'fields'        => [
         'achievements'      => 'Conquistas',
@@ -15,5 +15,5 @@ return [
     'helpers'       => [
         'entities_created'  => 'Esse valor é recalculado todo dia.',
     ],
-    'title'         => ':name Perfil',
+    'title'         => 'Perfil :name',
 ];

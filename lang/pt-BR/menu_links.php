@@ -5,7 +5,7 @@ return [
         'customise' => 'Personalizar barra lateral',
     ],
     'create'            => [
-        'title' => 'Novo link rápido',
+        'title' => 'Novo Link Rápido',
     ],
     'destroy'           => [],
     'edit'              => [
@@ -18,12 +18,12 @@ return [
         'entity'            => 'Entidade',
         'filters'           => 'Filtros',
         'is_nested'         => 'Aninhado',
-        'menu'              => 'Menu',
+        'menu'              => 'Sub-menu',
         'position'          => 'Posição',
         'random'            => 'Aleatório',
-        'random_type'       => 'Tipo aleatório de entidade',
+        'random_type'       => 'Tipo Aleatório de Entidade',
         'selector'          => 'Configuração do Link Rápido',
-        'type'              => 'Tipo de entidade',
+        'type'              => 'Lista de Entidade',
     ],
     'helpers'           => [
         'active'            => 'Links rápidos inativos não aparecerão na barra lateral.',

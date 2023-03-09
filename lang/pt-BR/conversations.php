@@ -2,11 +2,11 @@
 
 return [
     'create'        => [
-        'title' => 'Nova conversa',
+        'title' => 'Novo Diálogo',
     ],
     'destroy'       => [],
     'edit'          => [
-        'title' => 'Conversa :name',
+        'title' => 'Diálogo :name',
     ],
     'fields'        => [
         'is_closed'     => 'Fechado',
@@ -14,38 +14,38 @@ return [
         'participants'  => 'Participantes',
     ],
     'hints'         => [
-        'participants'  => 'Por favor, adicione participantes à sua conversa pressionando o ícone :icon no canto superior direito.',
+        'participants'  => 'Por favor, adicione participantes ao seu diálogo pressionando o ícone :icon no canto superior direito.',
     ],
     'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Mensagem removida',
         ],
-        'is_updated'    => 'Atualizada',
-        'load_previous' => 'Carregar mensagens mais antigas',
+        'is_updated'    => 'Atualizado',
+        'load_previous' => 'Carregar mensagens anteriores',
         'placeholders'  => [
             'message'   => 'Sua mensagem',
         ],
     ],
     'participants'  => [
         'create'    => [
-            'success'   => 'Participante :entity adicionado(a) à conversa',
+            'success'   => 'Participante :entity adicionado ao diálogo.',
         ],
         'destroy'   => [
-            'success'   => 'Participante :entity removido(a) da conversa',
+            'success'   => 'Participante :entity removido do diálogo.',
         ],
         'modal'     => 'Participantes',
         'title'     => 'Participantes de :name',
     ],
     'placeholders'  => [
-        'name'  => 'Nome da conversa',
-        'type'  => 'Dentro do jogo, Pré-mesa, Plot',
+        'name'  => 'Nome do diálogo',
+        'type'  => 'No Jogo, Preparação, Plot',
     ],
     'show'          => [
-        'is_closed' => 'Conversa está fechada.',
+        'is_closed' => 'Diálogo está fechado.',
     ],
     'tabs'          => [
-        'conversation'  => 'Conversa',
+        'conversation'  => 'Diálogo',
         'participants'  => 'Participantes',
     ],
     'targets'       => [
