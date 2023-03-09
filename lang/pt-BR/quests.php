@@ -2,21 +2,21 @@
 
 return [
     'create'        => [
-        'title' => 'Criar nova missão',
+        'title' => 'Nova Missão',
     ],
     'destroy'       => [],
     'edit'          => [],
     'elements'      => [
         'create'    => [
-            'success'   => 'Entidade :entity adicionada à missão.',
+            'success'   => 'Elemento :entity adicionado à missão.',
             'title'     => 'Novo elemento para :name',
         ],
         'destroy'   => [
-            'success'   => 'Elemento da missão :entity removido.',
+            'success'   => 'Elemento :entity removido.',
         ],
         'edit'      => [
-            'success'   => 'Elemento da missão :entity atualizado.',
-            'title'     => 'Atualizar elementos da missão para :name',
+            'success'   => 'Elemento :entity atualizado.',
+            'title'     => 'Atualizar elemento para :name',
         ],
         'fields'    => [
             'description'       => 'Descrição',
@@ -32,34 +32,34 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Quem deu a missão',
+        'character'     => 'Instigador',
         'copy_elements' => 'Copiar elementos anexados na missão',
         'date'          => 'Data',
-        'element_role'  => 'Função',
-        'is_completed'  => 'Completa',
+        'element_role'  => 'Cargo',
+        'is_completed'  => 'Concluída',
         'quest'         => 'Missão Primária',
-        'quests'        => 'Missões Secundárias',
-        'role'          => 'Função',
+        'quests'        => 'Sub Missões',
+        'role'          => 'Cargo',
     ],
     'helpers'       => [
-        'is_completed'      => 'Selecione se a missão estiver considerada como completa.',
-        'nested_without'    => 'Mostrando todas as missões que não tem uma missão-pai. Clique em uma linha para ver as missões-filhos.',
+        'is_completed'      => 'Selecione se a missão estiver considerada como concluída.',
+        'nested_without'    => 'Exibindo todas as missões que não tem uma missão primária. Clique em uma linha para ver as missões secundárias.',
     ],
     'hints'         => [
-        'quests'    => 'Uma "teia" de missões interligadas pode ser construída usando o campo de Missão Principal',
+        'quests'    => 'Uma rede de missões interligadas pode ser construída usando o campo de Missão Primária.',
     ],
     'index'         => [],
     'placeholders'  => [
-        'date'      => 'Data (mundo real) para a missão',
+        'date'      => 'Data do mundo real para a missão',
         'entity'    => 'Nome de um elemento da missão',
         'name'      => 'Nome da missão',
-        'quest'     => 'Missão Principal',
+        'quest'     => 'Missão Primária',
         'role'      => 'A função desta entidade na missão',
         'type'      => 'Arco de Personagem, Missão Secundária, Missão Principal',
     ],
     'show'          => [
         'actions'   => [
-            'add_element'   => 'Adicionar um elemento',
+            'add_element'   => 'Add um elemento',
         ],
         'tabs'      => [
             'elements'  => 'Elementos',

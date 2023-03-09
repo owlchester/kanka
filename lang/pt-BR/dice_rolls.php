@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'title' => 'Nova rolagem de dados',
+        'title' => 'Nova Rolagem de Dados',
     ],
     'destroy'       => [
         'dice_roll' => 'Rolagem de dados removida',
@@ -15,17 +15,17 @@ return [
         'rolls'         => 'Rolagens',
     ],
     'hints'         => [
-        'parameters'    => 'Quais são mimnhas opções de dados?',
+        'parameters'    => 'Quais opções de dados estão disponíveis?',
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Rolagem de dados',
+            'dice'      => 'Rolagem de Dados',
             'results'   => 'Resultados',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Rolagem de dados',
-        'name'      => 'Nome da rolagem de dados',
+        'dice_roll' => 'Rolagem de Dados',
+        'name'      => 'Nome da Rolagem de Dados',
         'parameters'=> '4d6+3',
     ],
     'results'       => [
@@ -39,7 +39,7 @@ return [
             'result'    => 'Resultado',
         ],
         'hint'      => 'Todas as rolagens feitas para este modelo de rolagem de dados.',
-        'success'   => 'Dados rolados',
+        'success'   => 'Dados rolados.',
     ],
     'show'          => [
         'tabs'  => [

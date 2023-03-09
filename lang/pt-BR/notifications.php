@@ -46,7 +46,7 @@ return [
     'map'               => [
         'chunked'   => 'Mapa :name terminou de fragmentar e agora está pronto para uso.',
     ],
-    'no_notifications'  => 'Não há notificações no momento.',
+    'no_notifications'  => 'As notificações aparecerão aqui assim que você tiver algumas.',
     'subscriptions'     => [
         'charge_fail'   => 'Ocorreu um erro ao tentar processar seu pagamento. Por favor, aguarde alguns momentos enquanto tentamos novamente. Se nada mudar, por favor entre em contato conosco.',
         'deleted'       => 'Sua assinatura do Kanka foi cancelada após muitas tentativas malsucedidas de cobrar seu cartão. Por favor, vá até suas configurações de Assinatura e tente atualizar os detalhes de sua forma de pagamento.',

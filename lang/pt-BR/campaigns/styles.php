@@ -17,7 +17,7 @@ return [
         'title'     => 'Nova estilo',
     ],
     'delete'    => [
-        'success'   => 'Estilo :name deletado.',
+        'success'   => 'Estilo :name removido.',
     ],
     'errors'    => [
         'max_content'   => 'A regra CSS não pode ter mais de :amount caracteres.',

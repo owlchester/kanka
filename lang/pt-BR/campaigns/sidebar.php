@@ -2,7 +2,7 @@
 
 return [
     'actions'           => [
-        'reset' => 'Restaurar ao padrão',
+        'reset' => 'Redefinir ao padrão',
     ],
     'call-to-action'    => 'Personalize a ordem, os ícones e os nomes dos elementos na barra lateral da campanha.',
     'helpers'           => [

@@ -2,34 +2,34 @@
 
 return [
     'create'        => [
-        'title' => 'Criar novo jornal',
+        'title' => 'Novo Diário',
     ],
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
         'author'    => 'Autor',
         'date'      => 'Data',
-        'journal'   => 'Jornal Principal',
-        'journals'  => 'Jornais secundários',
+        'journal'   => 'Diário Primário',
+        'journals'  => 'Sub-Diários',
     ],
     'helpers'       => [
-        'journals'          => 'Mostrar todos ou somente os jornais secundários deste Jornal',
-        'nested_without'    => 'Mostrando todos os jornais que não tem um jornal-pai. Clique em uma linha para ver os jornais-filhos.',
+        'journals'          => 'Exibir todos ou somente os sub-diários desse diário.',
+        'nested_without'    => 'Exibindo todos os diários que não tem um diário primário. Clique em uma linha para ver os diários secundários.',
     ],
     'index'         => [],
     'journals'      => [
-        'title' => 'Jornais secundários do Jornal :name',
+        'title' => 'Sub-diários do diário :name',
     ],
     'placeholders'  => [
-        'author'    => 'Quem escreveu o jornal',
-        'date'      => 'Data do jornal',
-        'journal'   => 'Escolha um Jornal Principal',
-        'name'      => 'Nome do jornal',
+        'author'    => 'Quem escreveu o diário',
+        'date'      => 'Data do mundo real do diário',
+        'journal'   => 'Escolha um diário primário',
+        'name'      => 'Nome do diário',
         'type'      => 'Sessão, One Shot, Rascunho',
     ],
     'show'          => [
         'tabs'  => [
-            'journals'  => 'Jornais',
+            'journals'  => 'Diários',
         ],
     ],
 ];

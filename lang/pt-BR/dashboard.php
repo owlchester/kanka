@@ -15,38 +15,38 @@ return [
     ],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Editar',
-            'new'       => 'Novo dashboard',
+            'edit'      => 'Editar nome & permissões',
+            'new'       => 'Novo Dashboard',
             'switch'    => 'Trocar para dashboard',
         ],
         'create'        => [
-            'success'   => 'Novo dashboard :name criado',
-            'title'     => 'Novo dashboard de campanha',
+            'success'   => 'Novo dashboard :name da campanha criado',
+            'title'     => 'Novo Dashboard de Campanha',
         ],
         'custom'        => [
-            'text'  => 'Atualmente, você está editando o dashboard :name da campanha',
+            'text'  => 'Atualmente você está editando o dashboard :name da campanha.',
         ],
         'default'       => [
-            'text'  => 'Atualmente, você está editando o dashboard padrão da campanha',
-            'title' => 'Dashboard padrão',
+            'text'  => 'Atualmente você está editando o dashboard padrão da campanha.',
+            'title' => 'Dashboard Padrão',
         ],
         'delete'        => [
-            'success'   => 'Dashboard :name removido',
+            'success'   => 'Dashboard :name removido.',
         ],
         'fields'        => [
             'copy_widgets'  => 'Copiar widgets',
-            'name'          => 'Nome do Dashboard',
+            'name'          => 'Nome do dashboard',
             'visibility'    => 'Visibilidade',
         ],
         'helpers'       => [
             'copy_widgets'  => 'Duplica os widgets do dashboard :name neste novo.',
         ],
-        'pitch'         => 'Crie vários dashboards com permissões personalizadas para cada função da campanha.',
+        'pitch'         => 'Crie vários dashboards com permissões personalizadas para cada cargo da campanha.',
         'placeholders'  => [
-            'name'  => 'Nome do Dashboard',
+            'name'  => 'Nome do dashboard',
         ],
         'update'        => [
-            'success'   => 'Dashboard :name da campanha atualizado',
+            'success'   => 'Dashboard :name da campanha atualizado.',
             'title'     => 'Atualizar dashboard :name da campanha',
         ],
         'visibility'    => [
@@ -62,27 +62,27 @@ return [
     ],
     'notifications' => [
         'modal' => [
-            'confirm'   => 'Entendi',
+            'confirm'   => 'Entendido',
             'title'     => 'Notificação Importante',
         ],
     ],
     'recent'        => [
-        'title' => ':name Modificados(as) Recentemente',
+        'title' => 'Lista de entidade :name',
     ],
     'settings'      => [
         'title' => 'Configurações do Dashboard',
     ],
     'setup'         => [
         'actions'   => [
-            'add'               => 'Adicionar um widget',
+            'add'               => 'Add um widget',
             'back_to_dashboard' => 'Voltar para o dashboard',
             'edit'              => 'Editar um widget',
-            'new'               => 'Novo widget :type',
+            'new'               => 'Novo widget de :type',
         ],
         'reorder'   => [
             'success'   => 'Widgets reordenados.',
         ],
-        'title'     => 'Configuração do dashboard da campanha',
+        'title'     => 'Configurar Dashboard',
         'tutorial'  => [
             'blog'  => 'nosso tutorial',
             'text'  => 'Precisa de ajuda para configurar o dashboard de sua campanha? Leia o :blog para alguma ajuda e inspiração.',
@@ -91,10 +91,11 @@ return [
             'calendar'      => 'Calendário',
             'campaign'      => 'Cabeçalho da campanha',
             'header'        => 'Cabeçalho',
-            'preview'       => 'Preview da entidade',
+            'preview'       => 'Pré-visualização da entidade',
             'random'        => 'Entidade aleatória',
-            'recent'        => 'Modificado recentemente',
-            'unmentioned'   => 'Entidades não mencionadas',
+            'recent'        => 'Lista de entidade',
+            'unmentioned'   => 'Lista de entidades não mencionadas',
+            'welcome'       => 'Boas-vindas',
         ],
     ],
     'title'         => 'Dashboard',
@@ -104,26 +105,26 @@ return [
         ],
         'calendar'      => [
             'actions'           => [
-                'next'      => 'Mudar data para o próximo dia',
-                'previous'  => 'Mudar data para o dia anterior',
+                'next'      => 'Alterar data para o dia seguinte',
+                'previous'  => 'Alterar data para o dia anterior',
             ],
             'events_today'      => 'Hoje',
             'previous_events'   => 'Anterior',
-            'upcoming_events'   => 'Próximo',
+            'upcoming_events'   => 'Posterior',
         ],
         'campaign'      => [
-            'helper'    => 'Este widget mostra o cabeçalho da campanha. Este widget é sempre mostrado no painel padrão.',
+            'helper'    => 'Este widget exibe o cabeçalho da campanha. Este widget é sempre exibido no dashboard padrão.',
         ],
         'create'        => [
-            'success'   => 'Widget adicionado ao dashboard',
+            'success'   => 'Widget adicionado ao dashboard.',
         ],
         'delete'        => [
-            'success'   => 'Widget removido so dashboard',
+            'success'   => 'Widget removido so dashboard.',
         ],
         'fields'        => [
-            'class'             => 'Classe CSS',
+            'class'             => 'Class CSS',
             'dashboard'         => 'Dashboard',
-            'name'              => 'Nome do widget personalizado',
+            'name'              => 'Nome personalizado do widget',
             'optional-entity'   => 'Link para entidade',
             'order'             => 'Ordenação',
             'size'              => 'Tamanho',
@@ -131,12 +132,12 @@ return [
             'width'             => 'Largura',
         ],
         'helpers'       => [
-            'class'     => 'Defina uma personalizada classe CSS adicionada ao widget.',
+            'class'     => 'Defina uma class CSS personalizada para adicionar ao widget.',
             'filters'   => 'Clique para aprender sobre as opções de filtro disponíveis.',
         ],
         'orders'        => [
-            'name_asc'  => 'Nome Ascendente',
-            'name_desc' => 'Nome Descendente',
+            'name_asc'  => 'Nome ascendente',
+            'name_desc' => 'Nome descendente',
             'recent'    => 'Recentemente modificado',
         ],
         'random'        => [
@@ -148,35 +149,38 @@ return [
             'advanced_filter'   => 'Filtro avançado',
             'advanced_filters'  => [
                 'mentionless'   => 'Sem Mencionar (entidades que não mencionam outras entidades)',
-                'unmentioned'   => 'Não Mencionado (entidades que não são mencionadas por outras entidades)',
+                'unmentioned'   => 'Sem Menção (entidades que não são mencionadas por outras entidades)',
             ],
             'entity-header'     => 'Use o cabeçalho da entidade como imagem',
             'filters'           => 'Filtros',
-            'full'              => 'Inteiro',
-            'help'              => 'Mostra apenas a última entidade atualizada, mas mostra uma visualização completa da entidade',
+            'full'              => 'Exibir entrada completa',
+            'help'              => 'Mostre apenas a primeira entidade como uma visualização em vez de uma lista.',
             'helpers'           => [
-                'entity-header'     => 'Se sua entidade tiver um cabeçalho de entidade (recurso de campanha impulsionada), defina este widget para usar essa imagem em vez da imagem da entidade.',
-                'full'              => 'Exibe a entrada da entidade inteira por padrão em vez de uma visualização.',
+                'entity-header'     => 'Se sua entidade tiver um cabeçalho de entidade (recurso de campanha aprimorada), defina este widget para usar essa imagem ao invés da imagem da entidade.',
+                'full'              => 'Exibe a entrada completa da entidade por padrão ao invés de uma pré-visualização.',
                 'show_attributes'   => 'Mostra os atributos fixados da entidade abaixo da entrada.',
                 'show_members'      => 'Se a entidade for uma família ou organização, mostra seus membros abaixo da entrada.',
                 'show_relations'    => 'Mostrar as relações fixadas da entidade abaixo da entrada.',
             ],
-            'show_attributes'   => 'Mostrar atributos fixos',
+            'show_attributes'   => 'Mostrar atributos fixados',
             'show_members'      => 'Mostrar membros',
             'show_relations'    => 'Mostrar relações fixadas',
-            'singular'          => 'Singular',
+            'singular'          => 'Pré-visualização',
             'tags'              => 'Filtre a lista de entidades modificadas recentemente em tags específicas.',
-            'title'             => 'Modificado recentemente',
+            'title'             => 'Lista de entidade',
         ],
         'tabs'          => [
             'advanced'  => 'Avançado',
             'setup'     => 'Configurações',
         ],
         'unmentioned'   => [
-            'title' => 'Entidades não mencionadas',
+            'title' => 'Entidades sem menções',
         ],
         'update'        => [
             'success'   => 'Widget modificado',
+        ],
+        'welcome'       => [
+            'helper'    => 'Este widget exibe uma mensagem de boas-vindas no painel que inclui links úteis para novos usuários do Kanka.',
         ],
         'widths'        => [
             '0' => 'Automático',

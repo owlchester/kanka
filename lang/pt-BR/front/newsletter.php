@@ -15,5 +15,5 @@ return [
         'newsletter'    => 'Newsletter',
     ],
     'headline'  => 'Assine uma ou todas nossas newsletter para se manter atualizado sobre  o Kanka.',
-    'title'     => 'Atualizações pelo e-mail',
+    'title'     => 'Atualizações pelo E-mail',
 ];

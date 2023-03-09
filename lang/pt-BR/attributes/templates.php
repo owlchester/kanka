@@ -4,7 +4,7 @@ return [
     'errors'    => [
         'marketplace'   => [
             'hint'      => 'Erro',
-            'rendering' => 'Ocorreu um erro ao instalar o plugin do Mercado. Entre em contato com o criador do plugin.',
+            'rendering' => 'Ocorreu um erro ao processar o plug-in do mercado. Entre em contato com o criador do plug-in.',
         ],
     ],
     'helpers'   => [],
@@ -13,5 +13,5 @@ return [
         'kanka'         => 'Modelos do Kanka',
         'marketplace'   => 'Modelos do Mercado',
     ],
-    'pitch'     => 'Encontre e adicione fichas de personagens do :marketplace em uma :boosted-campaign.',
+    'pitch'     => 'Encontre e adicione planilhas de personagens do :marketplace em uma :boosted-campaign.',
 ];

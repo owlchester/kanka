@@ -6,7 +6,7 @@ return [
     ],
     'bulk'      => [
         'errors'    => [
-            'unknown_type'  => 'Tipo de entidade desconhecido ou inválido.',
+            'unknown_type'  => 'Tipo de entidade desconhecida ou inválida.',
         ],
         'success'   => '{1} :count entidade transformada ao novo tipo: :type.|[2,*] :count entidades transformadas ao novo tipo: :type',
     ],

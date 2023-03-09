@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'deselect_all'  => 'Desmarcar todos',
+    'deselect_all'  => 'Desmarcar Todos',
     'no'            => 'Não',
-    'required'      => 'Requeridos',
-    'select_all'    => 'Selecionar todos',
+    'required'      => 'Obrigatório',
+    'select_all'    => 'Selecionar Todos',
     'success'       => [
         'created'   => ':name criado.',
         'deleted'   => ':name removido.',

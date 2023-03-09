@@ -8,13 +8,13 @@ return [
     ],
     'breadcrumb'    => 'Galeria',
     'destroy'       => [
-        'success'   => 'Imagem :name apagada.',
+        'success'   => 'Imagem :name removida.',
     ],
     'errors'        => [
-        'permissions'   => 'Suas funções de campanha não possuem a permissão :permission para fazer upload de imagens para a galeria da campanha.',
+        'permissions'   => 'Seu cargo de campanha não possui a permissão :permission para carregar imagens para a galeria da campanha.',
     ],
     'fields'        => [
-        'created_by'    => 'Imagem subida por',
+        'created_by'    => 'Carregada por',
         'ext'           => 'Sair',
         'folder'        => 'Pasta',
         'image_used_in' => '{1} usada como imagem de uma entidade.|[2,*] usada como imagem de :count entidades.',
@@ -25,18 +25,18 @@ return [
         'title' => 'Nova pasta',
     ],
     'no_folder'     => 'Sem pasta',
-    'pitch'         => 'Faça upload de imagens para a galeria da campanha diretamente do editor de texto.',
+    'pitch'         => 'Carregue imagens para a galeria da campanha diretamente do editor de texto.',
     'placeholders'  => [
         'search'    => 'Procurar nome da imagem...',
     ],
     'title'         => 'Galeria da Campanha :campaign',
     'update'        => [
-        'success'   => 'Imagem modificada',
+        'success'   => 'Imagem modificada.',
         'title'     => 'Detalhes da imagem',
     ],
     'uploader'      => [
-        'add'           => 'Adicionar nova',
-        'new_folder'    => 'Nova pasta',
+        'add'           => 'Add nova',
+        'new_folder'    => 'Nova Pasta',
         'or'            => 'ou',
         'select_file'   => 'Selecione um arquivo',
         'well'          => 'Solte o arquivo para fazer upload',

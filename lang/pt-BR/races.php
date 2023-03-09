@@ -3,10 +3,10 @@
 return [
     'characters'    => [
         'helpers'   => [
-            'all_characters'    => 'Mostrando todos os personagens relacionados a esta raça e suas sub-raças',
-            'characters'        => 'Mostrando todos os personagens relacionados diretamente a esta raça.',
+            'all_characters'    => 'Exibindo todos os personagens relacionados a esta raça e suas sub-raças.',
+            'characters'        => 'Exibindo todos os personagens relacionados diretamente a esta raça.',
         ],
-        'title'     => 'Raça :name Personagens',
+        'title'     => 'Personagens da Raça :name',
     ],
     'create'        => [
         'title' => 'Nova Raça',
@@ -16,11 +16,11 @@ return [
     'fields'        => [
         'characters'    => 'Personagens',
         'locations'     => 'Localizações',
-        'race'          => 'Raça Ancestral',
-        'races'         => 'Sub-raças',
+        'race'          => 'Raça Primária',
+        'races'         => 'Sub-Raças',
     ],
     'helpers'       => [
-        'nested_without'    => 'Mostrando todas as raças que não tem uma raça-pai. Clique em uma linha para ver as raças-filhos.',
+        'nested_without'    => 'Exibindo todas as raças que não tem uma raça primária. Clique em uma linha para ver as raças secundárias.',
     ],
     'index'         => [],
     'placeholders'  => [
@@ -28,7 +28,7 @@ return [
         'type'  => 'Humano, Fada, Ciborgue',
     ],
     'races'         => [
-        'title' => 'Raça :name sub-raças',
+        'title' => 'Sub-raças da Raça :name',
     ],
     'show'          => [
         'tabs'  => [

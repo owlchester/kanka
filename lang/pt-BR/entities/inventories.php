@@ -2,14 +2,14 @@
 
 return [
     'actions'       => [
-        'add'   => 'Adicionar item',
+        'add'   => 'Add item',
     ],
     'create'        => [
-        'success'   => 'Item :item adicionado a :entity',
-        'title'     => 'Adicionar um item a :name',
+        'success'   => 'Item :item adicionado a :entity.',
+        'title'     => 'Add um item a :name',
     ],
     'destroy'       => [
-        'success'   => 'Item :item removido de :entuty',
+        'success'   => 'Item :item removido de :entuty.',
     ],
     'fields'        => [
         'amount'            => 'Quantidade',
@@ -18,24 +18,24 @@ return [
         'is_equipped'       => 'Equipado',
         'name'              => 'Nome',
         'position'          => 'Posição',
-        'qty'               => 'QTD',
+        'qty'               => 'Qtd',
     ],
     'helpers'       => [
-        'copy_entity_entry' => 'Mostra a entrada do item ao invés da descrição customizada.',
+        'copy_entity_entry' => 'Exibe a entrada do item ao invés da descrição personalizada.',
     ],
     'placeholders'  => [
         'amount'        => 'Qualquer quantidade',
         'description'   => 'Usado, Danificado, Sintonizado',
-        'name'          => 'Necessário se nenhum item estiver selecionado',
-        'position'      => 'Equipado, na Mochila, Armazenamento, Banco',
+        'name'          => 'Obrigatório se nenhum item for selecionado',
+        'position'      => 'Equipado, Mochila, Estoque, Banco',
     ],
     'show'          => [
-        'helper'    => 'As entidades podem ter itens anexados a elas para criar um inventário.',
-        'title'     => 'Inventário da entidade :name',
+        'helper'    => 'Para criar o inventário desta entidade, comece adicionando um item a ele.',
+        'title'     => 'Inventário :name',
         'unsorted'  => 'Não classificado',
     ],
     'update'        => [
-        'success'   => 'Item :item de :entity atualizado',
-        'title'     => 'Atualizar o item em :name',
+        'success'   => 'Item :item de :entity atualizado.',
+        'title'     => 'Atualizar o item de :name',
     ],
 ];

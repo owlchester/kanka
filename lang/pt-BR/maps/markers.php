@@ -2,12 +2,12 @@
 
 return [
     'actions'       => [
-        'entry'             => 'Escrever um campo de entrada personalizado para esse marcador.',
+        'entry'             => 'Escreva um campo de entrada personalizado para esse marcador.',
         'remove'            => 'Remover marcador',
         'reset-polygon'     => 'Redefinir posições',
         'save_and_explore'  => 'Salvar e Explorar',
         'start-drawing'     => 'Começar a desenhar',
-        'update'            => 'Editar marcadoe',
+        'update'            => 'Editar marcador',
     ],
     'bulks'         => [
         'delete'    => '{1} Removido :count marcador.|[2,*] Removidos :count marcadores.',
@@ -22,30 +22,30 @@ return [
         'tiny'      => 'Minúsculo',
     ],
     'create'        => [
-        'success'   => 'Marcador :name criado',
-        'title'     => 'Novo marcador',
+        'success'   => 'Marcador :name criado.',
+        'title'     => 'Novo Marcador',
     ],
     'delete'        => [
-        'success'   => 'Marcador :name deletado.',
+        'success'   => 'Marcador :name removido.',
     ],
     'edit'          => [
         'success'   => 'Marcador :name atualizado.',
-        'title'     => 'Editar marcador :name',
+        'title'     => 'Editar Marcador :name',
     ],
     'fields'        => [
-        'bg_colour'     => 'Cor de fundo',
+        'bg_colour'     => 'Cor do Background',
         'circle_radius' => 'Raio do círculo',
         'copy_elements' => 'Copiar elementos',
         'custom_icon'   => 'Ícone personalizado',
         'custom_shape'  => 'Forma personalizada',
-        'font_colour'   => 'Cor do ícone',
-        'group'         => 'Grupo de marcadores',
+        'font_colour'   => 'Cor do Ícone',
+        'group'         => 'Grupo de Marcador',
         'icon'          => 'Ícone',
         'is_draggable'  => 'Arrastável',
         'latitude'      => 'Latitude',
         'longitude'     => 'Longitude',
         'opacity'       => 'Opacidade',
-        'pin_size'      => 'Tamanho do pino',
+        'pin_size'      => 'Tamanho do Pino',
         'polygon_style' => [
             'stroke'            => 'Cor do traço',
             'stroke-opacity'    => 'Opacidade do traço',
@@ -54,23 +54,23 @@ return [
         'size'          => 'Tamanho',
     ],
     'helpers'       => [
-        'base'                      => 'Adicione marcadores no mapa clicando em qulquer lugar',
+        'base'                      => 'Adicione marcadores no mapa clicando em qulquer lugar.',
         'copy_elements'             => 'Copiar grupos, camadas e marcadores.',
         'copy_elements_to_campaign' => 'Copie grupos, camadas e marcadores dos mapas. Os marcadores vinculados a uma entidade serão convertidos em um marcador padrão.',
         'custom_icon_v2'            => 'Use ícones de :fontawesome, :rpgawesome ou um ícone SVG personalizado. Descubra como em :docs.',
         'custom_radius'             => 'Selecione a opção de tamanho personalizado no menu suspenso para definir um tamanho.',
         'draggable'                 => 'Ative para permitir mover um marcador no modo de exploração.',
-        'label'                     => 'Um rótulo é exibido como um bloco de texto no mapa. O conteúdo será o nome do marcador do nome da entidade.',
+        'label'                     => 'Um rótulo é exibido como um bloco de texto no mapa. O conteúdo será o nome do marcador ou o nome da entidade.',
         'polygon'                   => [
             'edit'  => 'Clique no mapa para adicionar essa posição às coordenadas do polígono.',
         ],
     ],
     'icons'         => [
-        'custom'        => 'Personalizado',
-        'entity'        => 'Entidade',
-        'exclamation'   => 'Exclamação',
-        'marker'        => 'Marcador',
-        'question'      => 'Questão',
+        'custom'        => 'Ícone personalizado',
+        'entity'        => 'Imagem da entidade',
+        'exclamation'   => 'Ícone de exclamação',
+        'marker'        => 'Ícone de marcador',
+        'question'      => 'Ícone de interrogação',
     ],
     'index'         => [
         'title' => 'Marcadores de :name',
@@ -81,7 +81,7 @@ return [
     'placeholders'  => [
         'custom_icon'   => 'Tente :example1 ou :example2',
         'custom_shape'  => '100,100 200,240 340,110',
-        'name'          => 'Necessário se nenhuma entidade estiver selecionada',
+        'name'          => 'Obrigatório se nenhuma entidade estiver selecionada',
     ],
     'presets'       => [
         'helper'    => 'Clique sobre uma predefinição para carregá-la ou crie uma nova.',
@@ -104,6 +104,6 @@ return [
         'label'     => 'Letreiro',
         'marker'    => 'Marcador',
         'polygon'   => 'Polígono',
-        'preset'    => 'Predefinições',
+        'preset'    => 'Predefinir',
     ],
 ];
