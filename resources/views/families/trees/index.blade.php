@@ -36,6 +36,14 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
+<div id="clear" data-desc="{{ __('families/trees.helpers.clear') }}" data-text="xzy"></div>
+<div id="reset" data-desc="{{ __('families/trees.helpers.reset') }}" data-text="xzy"></div>
+<div id="relation" data-desc="{{ __('families/trees.helpers.relation') }}" data-text="xzy"></div>
+<div id="saved" data-desc="{{ __('families/trees.saved') }}" data-text="xzy"></div>
+<div id="rename" data-desc="{{ __('families/trees.actions.rename-relation') }}" data-text="xzy"></div>
+<div id="remove" data-desc="{{ __('families/trees.helpers.remove-node') }}" data-text="xzy"></div>
+<div id="unknown" data-desc="{{ __('families/trees.unknown') }}" data-text="xzy"></div>
+
     @include('partials.errors')
 
     <div class="entity-grid">
@@ -73,13 +81,19 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">
+                    <h4 class="modal-title" id="modalTitle">
                         {{ __('families/trees.modal.title') }}
+                    </h4>
+                    <h4 class="modal-title" id="firstTitle">
+                        {{ __('families/trees.modal.first-title') }}
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <p>
+                    <p id="modalHelper">
                         {{ __('families/trees.modal.helper') }}
+                    </p>
+                    <p id="firstHelper">
+                        {{ __('families/trees.modal.first-helper') }}
                     </p>
                     {!! Form::foreignSelect(
                         'character_id',
