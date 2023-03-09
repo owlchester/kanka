@@ -137,11 +137,19 @@ function initCharacterOrganisation() {
 
 function characterDeleteRowHandler() {
   $.each($('.member-delete'), function () {
-    $(this).unbind('click');
+    $(this).unbind('click').unbind('keydown');
     $(this).on('click', function (e) {
       e.preventDefault();
       $(this).closest('.form-group').remove();
+    }).on('keydown', function (e) {
+      // Support for pressing enter on a span
+      if (e.key !== 'Enter') {
+        return;
+      }
+
+      $(this).click();
     });
+    ;
   }); // Always re-calc the sortable traits
 
   window.initSortable();

@@ -109,7 +109,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
             @yield('content-header')
 
-            <section class="content">
+            <section class="content" role="main">
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
                     <div class="alert alert-warning">
                         <h4>

@@ -166,7 +166,8 @@
 
             <div id="language-switcher" class="language-switcher block text-lg py-2">
                 <a href="#" class="" data-toggle="dialog" data-target="language-select-modal">
-                    <i class="fa-solid fa-language"></i> {{ LaravelLocalization::getCurrentLocaleNative() }} (Switch)
+                    <i class="fa-solid fa-language" aria-hidden="true"></i>
+                    {{ LaravelLocalization::getCurrentLocaleNative() }} (Switch)
                 </a>
             </div>
         </div>
@@ -176,13 +177,15 @@
     </div>
 </footer>
 
-<dialog class="dialog rounded-2xl" id="language-select-modal">
+<dialog class="dialog rounded-2xl" id="language-select-modal" aria-modal="true" aria-labelledby="languageSwitcherTitle">
     <header>
-        <h4>
-            <i class="fa-solid fa-language"></i> {{ __('footer.language-switcher.title') }}
+        <h4 id="languageSwitcherTitle">
+            <i class="fa-solid fa-language" aria-hidden="true"></i>
+            {{ __('footer.language-switcher.title') }}
         </h4>
         <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
             <i class="fa-solid fa-times" aria-hidden="true"></i>
+            <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
         </button>
     </header>
     <article>

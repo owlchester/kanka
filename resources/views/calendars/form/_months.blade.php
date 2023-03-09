@@ -43,29 +43,41 @@ if (!empty($names)) {
                 <div class="col-md-6">
                     <div class="input-group">
                         <span class="input-group-addon cursor-pointer">
-                            <span class="fa-solid fa-arrows-alt-v"></span>
+                            <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
                         </span>
+                        <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
                         {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-2">
-                    {!! Form::number('month_length[]', $month['length'], ['class' => 'form-control', 'maxlength' => 4]) !!}
+                    <label class="sr-only">{{ __('calendars.parameters.month.length') }}</label>
+                    {!! Form::number('month_length[]', $month['length'], [
+                        'class' => 'form-control',
+                        'maxlength' => 4,
+                        'aria-label' => __('calendars.parameters.month.length'),
+                    ]) !!}
                 </div>
                 <div class="col-md-2">
+                    <label class="sr-only">{{ __('calendars.parameters.month.alias') }}</label>
                     {!! Form::text('month_alias[]', \Illuminate\Support\Arr::get($month, 'alias', ''), [
                         'class' => 'form-control',
                         'maxlength' => 191,
-                        'placeholder' => __('calendars.parameters.month.alias')
+                        'placeholder' => __('calendars.parameters.month.alias'),
+                        'aria-label' => __('calendars.parameters.month.name'),
                     ]) !!}
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
-                        {!! Form::select('month_type[]', __('calendars.month_types'), (!empty($month['type']) ? $month['type'] : 'standard'), ['class' => 'form-control']) !!}
+                        <label class="sr-only">{{ __('calendars.parameters.month.type') }}</label>
+                        {!! Form::select('month_type[]', __('calendars.month_types'), (!empty($month['type']) ? $month['type'] : 'standard'), [
+                            'class' => 'form-control',
+                            'aria-label' => __('calendars.parameters.month.type'),
+                        ]) !!}
                         <span class="input-group-btn">
-                                <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                    <i class="fa-solid fa-trash"></i>
-                                </span>
+                            <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                                <i class="fa-solid fa-trash"></i>
                             </span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -73,7 +85,7 @@ if (!empty($names)) {
     @endforeach
 </div>
 <a class="btn btn-default dynamic-row-add" data-template="template_month" data-target="calendar-months" href="#" title="{{ __('calendars.actions.add_month') }}">
-    <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_month') }}
+    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('calendars.actions.add_month') }}
 </a>
 
 @section('modals')
@@ -84,20 +96,31 @@ if (!empty($names)) {
             <div class="col-md-6">
                 <div class="input-group">
                     <span class="input-group-addon cursor-pointer">
-                        <span class="fa-solid fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
                     </span>
-                    {!! Form::text('month_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.name')]) !!}
+                    <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
+                    {!! Form::text('month_name[]', null, [
+                        'class' => 'form-control',
+                        'placeholder' => __('calendars.parameters.month.name'),
+                        'aria-label' => __('calendars.parameters.month.name'),
+                    ]) !!}
                 </div>
             </div>
             <div class="col-md-2">
-                {!! Form::number('month_length[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.length')]) !!}
+                <label class="sr-only">{{ __('calendars.parameters.month.length') }}</label>
+                {!! Form::number('month_length[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.length'),
+                        'aria-label' => __('calendars.parameters.month.length'),]) !!}
             </div>
             <div class="col-md-2">
-                {!! Form::text('month_alias[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.alias')]) !!}
+                <label class="sr-only">{{ __('calendars.parameters.month.alias') }}</label>
+                {!! Form::text('month_alias[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.alias'),
+                        'aria-label' => __('calendars.parameters.month.alias'),]) !!}
             </div>
             <div class="col-md-2">
                 <div class="input-group">
-                    {!! Form::select('month_type[]', __('calendars.month_types'), 'standard', ['class' => 'form-control']) !!}
+                    <label class="sr-only">{{ __('calendars.parameters.month.type') }}</label>
+                    {!! Form::select('month_type[]', __('calendars.month_types'), 'standard', ['class' => 'form-control',
+                        'aria-label' => __('calendars.parameters.month.type'),]) !!}
                     <span class="input-group-btn">
                         <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
                             <i class="fa-solid fa-trash"></i>

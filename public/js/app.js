@@ -23115,11 +23115,19 @@ function registerDynamicRows() {
 
 function registerDynamicRowDelete() {
   $.each($('.dynamic-row-delete'), function () {
-    $(this).unbind('click'); // remove previous bindings
+    // Todo: we can re-do this with adding an attribute on the element instead
+    $(this).unbind('click').unbind('keydown'); // remove previous bindings
 
     $(this).on('click', function (e) {
       e.preventDefault();
       $(this).closest('.parent-delete-row').remove();
+    }).on('keydown', function (e) {
+      // Support for pressing enter on a span
+      if (e.key !== 'Enter') {
+        return;
+      }
+
+      $(this).click();
     });
   });
 }

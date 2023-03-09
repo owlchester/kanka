@@ -46,17 +46,21 @@ $statuses = [
                     </select>
                 </div>
                 <div class="col-sm-3">
+                    <label class="sr-only">{{ __('organisations.members.fields.role') }}</label>
                     {!! Form::text('organisation_roles[' . $organisation->id . ']', $organisation->role, [
                         'class' => 'form-control',
                         'placeholder' => __('organisations.members.placeholders.role'),
                         'spellcheck' => 'true',
+                        'aria-label' => __('organisations.members.fields.role'),
                     ]) !!}
                 </div>
                 <div class="col-md-2">
-                    {!! Form::select('organisation_statuses[' . $organisation->id . ']', $statuses, $organisation->status_id, ['class' => 'form-control']) !!}
+                    <label class="sr-only">{{ __('organisations.members.fields.status') }}</label>
+                    {!! Form::select('organisation_statuses[' . $organisation->id . ']', $statuses, $organisation->status_id, ['class' => 'form-control', 'aria-label' => __('organisations.members.fields.status')]) !!}
                 </div>
                 <div class="col-md-2">
-                    {!! Form::select('organisation_pins[' . $organisation->id . ']', $options, $organisation->pin_id, ['class' => 'form-control']) !!}
+                    <label class="sr-only">{{ __('organisations.members.fields.pinned') }}</label>
+                    {!! Form::select('organisation_pins[' . $organisation->id . ']', $options, $organisation->pin_id, ['class' => 'form-control', 'aria-label' => __('organisations.members.fields.pinned')]) !!}
                 </div>
                 @if ($isAdmin)
                     <div class="col-sm-1 text-center">
@@ -65,8 +69,9 @@ $statuses = [
                     </div>
                 @endif
                 <div class="col-sm-1 text-center">
-                    <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                        <i class="fa-solid fa-trash"></i>
+                    <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        <span class="sr-only">{{ __('crud.remove') }}</span>
                     </span>
                 </div>
             </div>
@@ -76,7 +81,8 @@ $statuses = [
 </div>
 
 <button class="btn btn-default" id="add_organisation" href="#" title="{{ __('characters.actions.add_organisation') }}">
-    <i class="fa-solid fa-plus"></i> {{ __('characters.actions.add_organisation') }}
+    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+    {{ __('characters.actions.add_organisation') }}
 </button>
 
 
@@ -96,17 +102,21 @@ $statuses = [
                 </select>
             </div>
             <div class="col-sm-3">
+                <label class="sr-only">{{ __('organisations.members.fields.role') }}</label>
                 {!! Form::text('organisation_roles[]', null, [
                     'class' => 'form-control',
                     'placeholder' => __('organisations.members.placeholders.role'),
-                    'spellcheck' => 'true'
+                    'spellcheck' => 'true',
+                    'aria-label' => __('organisations.members.fields.role'),
                 ]) !!}
             </div>
             <div class="col-md-2">
-                {!! Form::select('organisation_statuses[]', $statuses, null, ['class' => 'form-control']) !!}
+                <label class="sr-only">{{ __('organisations.members.fields.status') }}</label>
+                {!! Form::select('organisation_statuses[]', $statuses, null, ['class' => 'form-control', 'aria-label' => __('organisations.members.fields.status')]) !!}
             </div>
             <div class="col-md-2">
-                {!! Form::select('organisation_pins[]', $options, null, ['class' => 'form-control']) !!}
+                <label class="sr-only">{{ __('organisations.members.fields.pinned') }}</label>
+                {!! Form::select('organisation_pins[]', $options, null, ['class' => 'form-control', 'aria-label' => __('organisations.members.fields.pinned')]) !!}
             </div>
             @if ($isAdmin)
                 <div class="col-sm-1 text-center">
@@ -115,9 +125,10 @@ $statuses = [
                 </div>
             @endif
             <div class="col-sm-1 text-center">
-            <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                <i class="fa-solid fa-trash"></i>
-            </span>
+                <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                </span>
             </div>
         </div>
         <hr class="visible-xs" />

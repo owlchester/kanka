@@ -13,8 +13,9 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
                     </span>
+                    <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
                     {!! Form::text('attr_name[$TMP_ID$]', null, [
                         'placeholder' => __('entities/attributes.placeholders.attribute'),
                         'class' => 'form-control',
@@ -23,6 +24,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 </div>
             </div>
             <div class="{{ $textBlock }}">
+                <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
                 {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live')]) !!}
             </div>
             <div class="{{ $actionBlock }}">
@@ -34,7 +36,10 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                     <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                 @endif
 
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                </a>
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_STANDARD_ID) !!}
         </div>
@@ -45,12 +50,14 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
                     </span>
+                    <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
             </div>
             <div class="{{ $textBlock }}">
+                <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
                 {!! Form::textarea('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 3, 'data-remote' => route('search.live')]) !!}
             </div>
             <div class="{{ $actionBlock }}">
@@ -61,7 +68,10 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
                 <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
     @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                </a>
             </div>
 
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_TEXT_ID) !!}
@@ -73,12 +83,14 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
                     </span>
+                    <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
             </div>
             <div class="{{ $textBlock }}">
+                <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
                 {!! Form::number('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control']) !!}
             </div>
             <div class="{{ $actionBlock }}">
@@ -89,7 +101,10 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
                 <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
     @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                </a>
             </div>
 
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_NUMBER_ID) !!}
@@ -100,8 +115,9 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
                     </span>
+                    <label class="sr-only">{{ __('entities/attributes.labels.checkbox') }}</label>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.checkbox'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
             </div>
@@ -117,7 +133,10 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
     @endif
 
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                </a>
             </div>
 
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_CHECKBOX_ID) !!}
@@ -129,8 +148,9 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
                     </span>
+                    <label class="sr-only">{{ __('entities/attributes.labels.section') }}</label>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.section'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
             </div>
@@ -145,7 +165,10 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
                 <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
     @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                </a>
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_SECTION_ID) !!}
         </div>
@@ -156,8 +179,9 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
             <div class="{{ $nameBlock }}">
                 <div class="input-group">
                     <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v"></span>
+                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
                     </span>
+                    <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
                     {!! Form::text('attr_name[$TMP_ID$]', null, [
                         'placeholder' => __('entities/attributes.placeholders.random.name'),
                         'class' => 'form-control',
@@ -166,6 +190,7 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                 </div>
             </div>
             <div class="{{ $textBlock }}">
+                <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
                 {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.random.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
             <div class="{{ $actionBlock }}">
@@ -176,7 +201,10 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
                     {!! Form::hidden('attr_is_private[$TMP_ID$]', false) !!}
                     <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                 @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}"><i class="fa-solid fa-trash fa-2x"></i></a>
+                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                </a>
             </div>
             {!! Form::hidden('attr_type[$TMP_ID$]', \App\Models\Attribute::TYPE_RANDOM_ID) !!}
         </div>

@@ -7,11 +7,11 @@
 <div class="row">
     <div class="col-lg-4 col-sm-6">
         <div class="form-group">
-            <label>
+            <label for="template_id">
                 {{ __('entities.attribute_template') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('crud.hints.attribute_template') }}"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" title="{{ __('crud.hints.attribute_template') }}"></i>
             </label>
-            {!! Form::select('template_id', $attributeTemplates, null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'form-control']) !!}
+            {!! Form::select('template_id', $attributeTemplates, null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'form-control', 'id' => 'template_id']) !!}
 
             <p class="help-block visible-xs visible-sm">{{ __('crud.hints.attribute_template') }}</p>
         </div>

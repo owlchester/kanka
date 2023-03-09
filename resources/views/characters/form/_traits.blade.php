@@ -13,24 +13,29 @@ $role = \App\Facades\CampaignCache::adminRole();
                                 <span class="input-group-addon">
                                     <span class="fa-solid fa-arrows-alt-v"></span>
                                 </span>
+                                <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
                                 {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
                                     'class' => 'form-control',
                                     'maxlength' => 191,
                                     'placeholder' => __('characters.placeholders.appearance_name'),
-                                    'spellcheck' => 'true'
+                                    'spellcheck' => 'true',
+                                    'aria-label' => __('characters.labels.appearance.name'),
                                 ]) !!}
                             </div>
                         </div>
                         <div class="col-md-8 col-xs-8">
                             <div class="input-group">
+                                <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
                                 {!! Form::text('appearance_entry[' . $trait->id . ']', $trait->entry, [
                                     'class' => 'form-control',
                                     'placeholder' => __('characters.placeholders.appearance_entry'),
-                                    'spellcheck' => 'true'
+                                    'spellcheck' => 'true',
+                                    'aria-label' => __('characters.labels.appearance.entry'),
                                 ]) !!}
                                 <span class="input-group-btn">
-                                    <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                        <i class="fa-solid fa-trash"></i>
+                                    <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                        <span class="sr-only">{{ __('crud.remove') }}</span>
                                     </span>
                                 </span>
                             </div>
@@ -40,7 +45,8 @@ $role = \App\Facades\CampaignCache::adminRole();
             @endforeach
         </div>
         <a class="btn btn-default btn-block dynamic-row-add" data-template="template_appearance" data-target="character-appearance" href="#" title="{{ __('characters.actions.add_appearance') }}">
-            <i class="fa-solid fa-plus"></i> {{ __('characters.actions.add_appearance') }}
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            {{ __('characters.actions.add_appearance') }}
         </a>
 
         <div class="form-group checkbox">
@@ -64,34 +70,40 @@ $role = \App\Facades\CampaignCache::adminRole();
                     <div class="parent-delete-row mb-5">
                         <div class="form-group">
                             <div class="input-group">
-                            <span class="input-group-addon">
-                                <span class="fa-solid fa-arrows-alt-v"></span>
-                            </span>
+                                <span class="input-group-addon">
+                                    <span class="fa-solid fa-arrows-alt-v"></span>
+                                </span>
+                                <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
                                 {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
                                     'class' => 'form-control',
                                     'placeholder' => __('characters.placeholders.personality_name'),
-                                    'spellcheck' => 'true'
+                                    'spellcheck' => 'true',
+                                    'aria-label' => __('characters.labels.personality.name'),
                                 ]) !!}
                                 <span class="input-group-btn">
-                                <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                    <i class="fa-solid fa-trash"></i>
+                                    <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0" >
+                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                        <span class="sr-only">{{ __('crud.remove') }}</span>
+                                    </span>
                                 </span>
-                            </span>
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="sr-only">{{ __('characters.labels.personality.entry') }}</label>
                             {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, [
                                 'class' => 'form-control',
                                 'placeholder' => __('characters.placeholders.personality_entry'),
                                 'spellcheck' => 'true',
-                                'rows' => 3
+                                'rows' => 3,
+                                'aria-label' => __('characters.labels.personality.entry'),
                             ]) !!}
                         </div>
                     </div>
                 @endforeach
             </div>
             <a class="btn btn-default btn-block dynamic-row-add" data-template="template_personality" data-target="character-personality" href="#" title="{{ __('characters.actions.add_personality') }}">
-                <i class="fa-solid fa-plus"></i> {{ __('characters.actions.add_personality') }}
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                {{ __('characters.actions.add_personality') }}
             </a>
 
 
@@ -137,28 +149,33 @@ $role = \App\Facades\CampaignCache::adminRole();
                 <div class="row">
                     <div class="col-md-4 col-xs-4">
                         <div class="input-group">
-                                <span class="input-group-addon">
-                                    <span class="fa-solid fa-arrows-alt-v"></span>
-                                </span>
+                            <span class="input-group-addon">
+                                <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
+                            </span>
+                            <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
                             {!! Form::text('appearance_name[]', null, [
                                 'class' => 'form-control',
                                 'placeholder' => __('characters.placeholders.appearance_name'),
-                                'spellcheck' => 'true'
+                                'spellcheck' => 'true',
+                                'aria-label' => __('characters.labels.appearance.name'),
                             ]) !!}
                         </div>
                     </div>
                     <div class="col-md-8 col-xs-8">
                         <div class="input-group">
+                            <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
                             {!! Form::text('appearance_entry[]', null, [
                                 'class' => 'form-control',
                                 'placeholder' => __('characters.placeholders.appearance_entry'),
-                                'spellcheck' => 'true'
+                                'spellcheck' => 'true',
+                                'aria-label' => __('characters.labels.appearance.entry'),
                             ]) !!}
                             <span class="input-group-btn">
-                                    <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </span>
+                                <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                <span class="sr-only">{{ __('crud.remove') }}</span>
                                 </span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -168,27 +185,32 @@ $role = \App\Facades\CampaignCache::adminRole();
             <div class="parent-delete-row mb-5">
                 <div class="form-group">
                     <div class="input-group">
-                                <span class="input-group-addon">
-                                    <span class="fa-solid fa-arrows-alt-v"></span>
-                                </span>
+                        <span class="input-group-addon">
+                            <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
+                        </span>
+                        <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
                         {!! Form::text('personality_name[]', null, [
                             'class' => 'form-control',
                             'placeholder' => __('characters.placeholders.personality_name'),
-                            'spellcheck' => 'true'
+                            'spellcheck' => 'true',
+                            'aria-label' => __('characters.labels.personality.name'),
                         ]) !!}
                         <span class="input-group-btn">
-                                    <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </span>
-                                </span>
+                            <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                <span class="sr-only">{{ __('crud.remove') }}</span>
+                            </span>
+                        </span>
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="sr-only">{{ __('characters.labels.personality.entry') }}</label>
                     {!! Form::textarea('personality_entry[]', null, [
                         'class' => 'form-control',
                         'placeholder' => __('characters.placeholders.personality_entry'),
                         'spellcheck' => 'true',
-                        'rows' => 3
+                        'rows' => 3,
+                        'aria-label' => __('characters.labels.personality.entry'),
                     ]) !!}
                 </div>
             </div>

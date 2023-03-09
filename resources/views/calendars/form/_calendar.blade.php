@@ -6,7 +6,7 @@
             <label>
                 {!! Form::checkbox('skip_year_zero', 1, !empty($model) ? $model->skip_year_zero : 0) !!}
                 {{ __('calendars.fields.skip_year_zero') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('calendars.hints.skip_year_zero') }}" data-toggle="tooltip"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" title="{{ __('calendars.hints.skip_year_zero') }}" data-toggle="tooltip"></i>
             </label>
             <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.skip_year_zero') }}</p>
         </div>
@@ -14,7 +14,7 @@
         <div class="form-group">
             <label>
                 {{ __('calendars.fields.start_offset') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.helpers.start_offset') }}"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" title="{{ __('calendars.helpers.start_offset') }}"></i>
             </label>
             {!! Form::number('start_offset', !empty($model) ? $model->start_offset : FormCopy::field('start_offset')->string(0), ['class' => 'form-control']) !!}
             <p class="help-block visible-xs visible-sm">{{ __('calendars.helpers.start_offset') }}</p>
@@ -25,7 +25,7 @@
         <div class="form-group">
             <label>
                 {{ __('calendars.fields.reset') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.reset') }}"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" title="{{ __('calendars.hints.reset') }}"></i>
             </label>
             {!! Form::select('reset', __('calendars.options.resets'), null, ['class' => 'form-control']) !!}
             <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.reset') }}</p>
@@ -59,7 +59,7 @@
             {!! Form::hidden('is_incrementing', 0) !!}
             <label>{!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
                 {{ __('calendars.fields.is_incrementing') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.is_incrementing') }}"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" title="{{ __('calendars.hints.is_incrementing') }}"></i>
             </label>
             <p class="help-block visible-xs visible-sm">{{ __('calendars.hints.is_incrementing') }}</p>
         </div>
@@ -70,7 +70,7 @@
         <div class="form-group">
             <label>
                 {{ __('calendars.fields.default_layout') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.helpers.default_layout') }}"></i>
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" title="{{ __('calendars.helpers.default_layout') }}"></i>
             </label>
             {!! Form::select('parameters[layout]', ['' => __('calendars.layouts.monthly'), 'yearly' => __('calendars.layouts.yearly')], null, ['class' => 'form-control'])!!}
             <p class="help-block visible-xs visible-sm">
@@ -108,13 +108,15 @@
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <span class="fa-solid fa-arrows-alt-v"></span>
+                                    <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
                                 </span>
-                                {!! Form::text('year_number[]', $year, ['class' => 'form-control']) !!}
+                                <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
+                                {!! Form::text('year_number[]', $year, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
                             </div>
                         </div>
                         <div class="col-sm-8">
                             <div class="input-group">
+                                <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
                                 {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
                                 <span class="input-group-btn">
                                     <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
@@ -128,7 +130,7 @@
             @endforeach
         </div>
         <a class="btn btn-default dynamic-row-add" data-template="template_year" data-target="calendar-years" href="#" title="{{ __('calendars.actions.add_year') }}">
-            <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_year') }}
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('calendars.actions.add_year') }}
         </a>
 
         <hr />
@@ -169,13 +171,15 @@
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <span class="fa-solid fa-arrows-alt-v"></span>
+                            <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
                         </span>
+                        <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
                         {!! Form::number('year_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="input-group">
+                        <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
                         {!! Form::text('year_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.name')]) !!}
                         <span class="input-group-btn">
                             <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
