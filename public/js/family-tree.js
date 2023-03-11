@@ -2072,34 +2072,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-// The application will create a renderer using WebGL, if possible,
+ // The application will create a renderer using WebGL, if possible,
 // with a fallback to a canvas render. It will also setup the ticker
 // and the root stage PIXI.Container
+
 var app = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Application({
   backgroundAlpha: 0,
   resizeTo: window
-});
-
-// The application will create a canvas element for you that you
+}); // The application will create a canvas element for you that you
 // can then insert into the DOM
-var container = document.getElementsByClassName('family-tree-setup')[0];
 
-// load the texture we need
+var container = document.getElementsByClassName('family-tree-setup')[0]; // load the texture we need
+
 var texture = await pixi_js__WEBPACK_IMPORTED_MODULE_0__.Assets.load('/images/family-trees/entity.png');
 var graphics = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
-var elements = [];
+var elements = []; // create viewport
 
-// create viewport
 var viewport = new pixi_viewport__WEBPACK_IMPORTED_MODULE_2__.Viewport({
   screenWidth: window.innerWidth,
   screenHeight: window.innerHeight,
   worldWidth: 1000,
   worldHeight: 1000,
   interaction: app.renderer.events // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
-});
 
+});
 var entityNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
   fontFamily: '"Roboto", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif',
   fontSize: 14,
@@ -2115,6 +2111,7 @@ var relationNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
   wordWrapWidth: 120
 });
 var newUuid = 1; // UUID
+
 var entities = null;
 var nodes = null;
 var originalNodes = null;
@@ -2126,41 +2123,38 @@ var entityHeight = 60;
 var btnEdit, btnClear, btnReset, btnSave, btnFirst;
 var isEditing = false;
 var isUnchanged = false;
-
 /**
  * Draw an entity box with their name, avatar, and click link
  * @param entity
  * @param x
  * @param y
  */
+
 var drawEntity = function drawEntity(entity, uuid, x, y) {
   var isRelation = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
   //console.log('Draw entity', entity.name, '>', offsetX, 'v', offsetY);
-  var name = entity.name;
+  var name = entity.name; // This creates a texture from a background image
 
-  // This creates a texture from a background image
   var entityPanel = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(texture);
   entityPanel.x = x;
   entityPanel.y = y;
   entityPanel.width = entityWidth;
-  entityPanel.height = entityHeight;
-
-  // Add the entityPanel to the scene we are building
+  entityPanel.height = entityHeight; // Add the entityPanel to the scene we are building
   //app.stage.addChild(entityPanel);
 
   var entityBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   entityBox.beginFill(0xffffff);
   entityBox.lineStyle(1, 0x0, .3);
   entityBox.drawRoundedRect(x, y, entityWidth, entityHeight, 20);
-  entityBox.endFill();
-  //app.stage.addChild(entityBox);
+  entityBox.endFill(); //app.stage.addChild(entityBox);
+
   viewport.addChild(entityBox);
   elements.push(entityBox);
   var circleMask = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   circleMask.beginFill();
   circleMask.drawCircle(x + 110, y + 30, 20);
-  circleMask.endFill();
-  //app.stage.addChild(circleMask);
+  circleMask.endFill(); //app.stage.addChild(circleMask);
+
   viewport.addChild(circleMask);
   elements.push(circleMask);
   var entityImageTexture = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.from(entity.thumb);
@@ -2168,23 +2162,23 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
   entityImage.x = x + 90;
   entityImage.y = y + 10;
   entityImage.height = 40;
-  entityImage.width = 40;
+  entityImage.width = 40; //app.stage.addChild(entityImage);
 
-  //app.stage.addChild(entityImage);
   viewport.addChild(entityImage);
   elements.push(entityImage);
   entityImage.mask = circleMask;
+
   if (name.length > 14) {
     name = name.substring(0, 14);
     name = name.concat('...');
   }
+
   var entityName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(name, entityNameStyle);
   entityName.x = x + 10;
   entityName.y = y + 10;
   viewport.addChild(entityName);
-  elements.push(entityName);
+  elements.push(entityName); // Add an invisible box on top
 
-  // Add an invisible box on top
   var hitBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   hitBox.beginFill(0xff0000, 1.0);
   hitBox.lineStyle(1, 0x22bbff, 1);
@@ -2192,6 +2186,7 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
   hitBox.endFill();
   hitBox.interactive = true;
   hitBox.buttonMode = true;
+
   hitBox.onclick = function (event) {
     if (!isEditing) {
       location.href = entity.url;
@@ -2199,41 +2194,45 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
       editEntity(uuid);
     }
   };
+
   hitBox.alpha = 0;
   hitBox.on('pointerover', function (event) {
     return onPointerOver(entityBox);
   });
   hitBox.on('pointerout', function (event) {
     return onPointerOut(entityBox);
-  });
-  //app.stage.addChild(hitBox);
+  }); //app.stage.addChild(hitBox);
+
   viewport.addChild(hitBox);
   elements.push(hitBox);
+
   if (isEditing && uuid != 0) {
     var closeButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('x', entityNameStyle);
     closeButton.x = x + 125;
     closeButton.y = y;
     closeButton.interactive = true;
     closeButton.buttonMode = true;
+
     closeButton.onclick = function (event) {
       deleteUuid(uuid);
     };
-    viewport.addChild(closeButton);
-    elements.push(closeButton);
 
-    // Todo: make it translatable
+    viewport.addChild(closeButton);
+    elements.push(closeButton); // Todo: make it translatable
+
     var editButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('edit', entityNameStyle);
     editButton.x = x + 35;
     editButton.y = y + 60;
     editButton.interactive = true;
     editButton.buttonMode = true;
+
     editButton.onclick = function (event) {
       editEntity(uuid);
     };
-    viewport.addChild(editButton);
-    elements.push(editButton);
 
-    // Only add a relation to "parent" nodes
+    viewport.addChild(editButton);
+    elements.push(editButton); // Only add a relation to "parent" nodes
+
     if (!isRelation) {
       // Todo: make it translatable
       var addRelationButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ relation', entityNameStyle);
@@ -2241,12 +2240,15 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
       addRelationButton.y = y + 20;
       addRelationButton.interactive = true;
       addRelationButton.buttonMode = true;
+
       addRelationButton.onclick = function (event) {
         addRelation(uuid);
       };
+
       viewport.addChild(addRelationButton);
       elements.push(addRelationButton);
     }
+
     if (isRelation) {
       // Todo: make it translatable
       var addChildrenButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ child', entityNameStyle);
@@ -2254,15 +2256,16 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
       addChildrenButton.y = y + 60;
       addChildrenButton.interactive = true;
       addChildrenButton.buttonMode = true;
+
       addChildrenButton.onclick = function (event) {
         addChildren(uuid);
       };
+
       viewport.addChild(addChildrenButton);
       elements.push(addChildrenButton);
     }
   }
 };
-
 /**
  * Draw the relation of a node as well as the "line" between the node's main entity and this relation
  * @param relation
@@ -2272,25 +2275,25 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
  * @param drawY
  * @param index
  */
+
+
 var drawRelation = function drawRelation(relation, sourceX, sourceY, drawX, drawY, index) {
   var entity = entities[relation.entity_id];
+
   if (!entity) {
     return;
-  }
+  } //console.log('Draw relation', entity.name, drawX);
 
-  //console.log('Draw relation', entity.name, drawX);
 
-  drawEntity(entity, relation.uuid, drawX, drawY, true);
+  drawEntity(entity, relation.uuid, drawX, drawY, true); // Draw the lines between the original and this relations
 
-  // Draw the lines between the original and this relations
-  drawRelationLine(relation, sourceX, sourceY, drawX, drawY);
+  drawRelationLine(relation, sourceX, sourceY, drawX, drawY); // No children, no problems
 
-  // No children, no problems
   if (relation.children === undefined) {
     return;
-  }
+  } // Now the fun starts, this relationship has children and a whole tree to draw!
 
-  // Now the fun starts, this relationship has children and a whole tree to draw!
+
   if (index === 0) {
     // First relation, start on the source
     drawChildren(relation.children, sourceX, sourceY, sourceX, drawY, index);
@@ -2299,7 +2302,6 @@ var drawRelation = function drawRelation(relation, sourceX, sourceY, drawX, draw
     drawChildren(relation.children, sourceX, sourceY, drawX, drawY, index);
   }
 };
-
 /**
  * Loop on the children and draw each as a new node
  * @param children
@@ -2309,29 +2311,28 @@ var drawRelation = function drawRelation(relation, sourceX, sourceY, drawX, draw
  * @param parentY
  * @param index
  */
+
+
 var drawChildren = function drawChildren(children, sourceX, sourceY, parentX, parentY, index) {
   //console.log('👩 Draw children');
   // If it's the first element of relations, push to the left
   var startX = sourceX;
   var startY = sourceY + entityHeight + childrenLineHeight;
   var drawX = parentX;
-  var drawY = startY;
+  var drawY = startY; // Draw a line between the parents and the children
 
-  // Draw a line between the parents and the children
   var lineX = index === 0 ? drawX + entityWidth + 20 : parentX;
   drawParentChildrenLine(lineX, drawY - 30, index);
   var nodeOffset = 1;
   children.forEach(function (node) {
     drawChildrenLine(lineX, drawY - 20, drawX, drawY);
-    drawNode(node, startX, startY, drawX, drawY);
+    drawNode(node, startX, startY, drawX, drawY); // When preparing to draw the next child, we need to figure out how large the current child was, width wise?
 
-    // When preparing to draw the next child, we need to figure out how large the current child was, width wise?
-    nodeOffset = childWidth(node);
-    //console.log('Looping children', nodeOffset, node);
+    nodeOffset = childWidth(node); //console.log('Looping children', nodeOffset, node);
+
     drawX += (entityWidth + offsetIncrement) * nodeOffset;
   });
 };
-
 /**
  * Draw a lin between the node's "main" entity and the current relation entity. This is impacted by the
  * nodeY and nodeX
@@ -2339,95 +2340,82 @@ var drawChildren = function drawChildren(children, sourceX, sourceY, parentX, pa
  * @param fromX
  * @param fromY
  */
+
+
 var drawRelationLine = function drawRelationLine(relation, originX, originY, targetX, targetY) {
   //console.log('Draw', relation.role, fromX, fromY);
   var offsetX = entityWidth / 2;
-  var path = [
-  // Origin top left
-  originX + offsetX, originY + entityHeight,
-  // Origin bottom left
-  originX + offsetX, originY + (entityHeight + 20),
-  // Current bottom right
-  targetX + offsetX, targetY + (entityHeight + 20),
-  // Current top right
-  targetX + offsetX, targetY + entityHeight,
-  // Current bottom right
-  targetX + offsetX, targetY + (entityHeight + 20),
-  // Origin bottom left
-  originX + offsetX, originY + (entityHeight + 20)];
-  //console.log('path', path);
+  var path = [// Origin top left
+  originX + offsetX, originY + entityHeight, // Origin bottom left
+  originX + offsetX, originY + (entityHeight + 20), // Current bottom right
+  targetX + offsetX, targetY + (entityHeight + 20), // Current top right
+  targetX + offsetX, targetY + entityHeight, // Current bottom right
+  targetX + offsetX, targetY + (entityHeight + 20), // Origin bottom left
+  originX + offsetX, originY + (entityHeight + 20)]; //console.log('path', path);
 
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
-  graphics.endFill();
+  graphics.endFill(); // Draw relation name
 
-  // Draw relation name
   var relationText = relation.role;
+
   if (isEditing && relation.role == null || relation.role == '') {
     var texts = $('#unknown');
     relationText = texts.data('desc');
   }
+
   var relationName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(relationText, relationNameStyle);
   relationName.x = targetX - 40;
   relationName.y = targetY + (entityHeight + 0);
   relationName.interactive = true;
   relationName.buttonMode = true;
+
   if (isEditing) {
     relationName.onclick = function (event) {
       renameRelation(relation.uuid);
     };
   }
+
   viewport.addChild(relationName);
   elements.push(relationName);
 };
+
 var drawChildrenLine = function drawChildrenLine(originX, originY, targetX, targetY) {
   //console.log('✏️ Draw children from', originX, originY, targetX, targetY);
   //console.info('Draw children line', startX, startY, toX);
-
   //let offset = (-1 + index) * ((entityWidth + offsetIncrement) * size);
   //let aboveX = startX + (entityWidth / 2) + offset + offsetIncrement;
-
   var offsetX = entityWidth / 2;
-  var path = [
-  // origin
-  originX, originY,
-  // target top
-  targetX + offsetX, targetY - 20,
-  // target bottom
-  targetX + offsetX, targetY,
-  // target top
+  var path = [// origin
+  originX, originY, // target top
+  targetX + offsetX, targetY - 20, // target bottom
+  targetX + offsetX, targetY, // target top
   targetX + offsetX, targetY - 20];
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
   graphics.endFill();
 };
-var drawParentChildrenLine = function drawParentChildrenLine(drawX, drawY, index) {
-  var path = [
-  // top
-  drawX, drawY,
-  // bottom
-  drawX, drawY + 10];
 
-  // We're not on the first element so everything is pushed around a bit
+var drawParentChildrenLine = function drawParentChildrenLine(drawX, drawY, index) {
+  var path = [// top
+  drawX, drawY, // bottom
+  drawX, drawY + 10]; // We're not on the first element so everything is pushed around a bit
+
   if (index > 0) {
-    path = [
-    // top
-    drawX, drawY,
-    // bottom
-    drawX, drawY + 10,
-    // bottom offset
-    drawX + entityWidth / 2, drawY + 10,
-    // bottom
+    path = [// top
+    drawX, drawY, // bottom
+    drawX, drawY + 10, // bottom offset
+    drawX + entityWidth / 2, drawY + 10, // bottom
     drawX, drawY + 10];
   }
+
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
   graphics.endFill();
 };
-
 /**
  *
  * @param relations
@@ -2436,57 +2424,64 @@ var drawParentChildrenLine = function drawParentChildrenLine(drawX, drawY, index
  * @param drawX
  * @param drawY
  */
+
+
 var drawRelations = function drawRelations(relations, sourceX, sourceY, drawX, drawY) {
-  var nodeOffset = 1;
-  //console.info('Draw Relations', relations);
+  var nodeOffset = 1; //console.info('Draw Relations', relations);
+
   relations.forEach(function (rel, index) {
     // If this is the first relation, we want to draw it next to the parent
-    var tmpOffsetX = entityWidth + offsetIncrement;
-    // However, if it's not, we need to add more padding, based on the previous node width
+    var tmpOffsetX = entityWidth + offsetIncrement; // However, if it's not, we need to add more padding, based on the previous node width
+
     if (index > 0) {
       tmpOffsetX *= nodeOffset;
     }
+
     console.log('draw relation', index, tmpOffsetX);
     drawRelation(rel, drawX, sourceY, drawX + tmpOffsetX, drawY, index);
     nodeOffset += relationWidth(rel, 0);
   });
 };
-var childWidth = function childWidth(child, index) {
-  var size = 1;
 
-  // If the child has relations, need to find those
+var childWidth = function childWidth(child, index) {
+  var size = 1; // If the child has relations, need to find those
+
   if (child.relations !== undefined) {
     var largestChild = 2; // At least two because this entity + relation = 2
+
     child.relations.forEach(function (rel) {
       var tmp = relationWidth(rel);
+
       if (tmp > largestChild) {
         largestChild = tmp;
       }
     });
     size = largestChild;
-  }
-
-  // If the child has children of its own? Is that possible?
+  } // If the child has children of its own? Is that possible?
   //console.log('child', child, largestChild);
-
   //console.log('- relation width', index, width);
+
+
   return size;
 };
-var relationWidth = function relationWidth(relation, index) {
-  var size = 1;
 
-  // No children, only relation, end it there
+var relationWidth = function relationWidth(relation, index) {
+  var size = 1; // No children, only relation, end it there
+
   if (relation.children === undefined) {
     return size;
   }
+
   relation.children.forEach(function (child) {
     if (child.relations === undefined) {
       size++;
       return;
     }
+
     var largestChild = 0;
     child.relations.forEach(function (rel) {
       var tmp = relationWidth(rel);
+
       if (tmp > largestChild) {
         largestChild = tmp;
       }
@@ -2495,24 +2490,26 @@ var relationWidth = function relationWidth(relation, index) {
   });
   return size;
 };
+
 var drawNode = function drawNode(node, sourceX, sourceY, drawX, drawY) {
   // Draw the main entity of the node
   var entity = entities[node.entity_id];
+
   if (!entity) {
     return;
-  }
+  } //console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
 
-  //console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
-  drawEntity(entity, node.uuid, drawX, drawY);
 
-  // No relations to draw, finished with the node
+  drawEntity(entity, node.uuid, drawX, drawY); // No relations to draw, finished with the node
+
   if (!node.relations) {
     return;
-  }
+  } // Loop the relations to draw them on the same line
 
-  // Loop the relations to draw them on the same line
+
   drawRelations(node.relations, sourceX, sourceY, drawX, drawY);
 };
+
 var addFirstNode = function addFirstNode() {
   var title = document.getElementById("modalTitle");
   var firstTitle = document.getElementById("firstTitle");
@@ -2524,63 +2521,71 @@ var addFirstNode = function addFirstNode() {
   firstHelper.style.display = "block";
   editEntity(0);
 };
+
 var drawFamilyTree = function drawFamilyTree() {
   //console.log('Draw Family Tree');
   if (nodes.length === 0 && isEditing) {
     isUnchanged = true;
   }
+
   if (isUnchanged) {
     btnSave.prop('disabled', true).addClass('disabled');
   } else {
     btnSave.prop('disabled', false).removeClass('disabled');
-  }
+  } // add the viewport to the stage
 
-  // add the viewport to the stage
-  app.stage.addChild(viewport);
 
-  // activate plugins
+  app.stage.addChild(viewport); // activate plugins
+
   viewport.drag().pinch().wheel().decelerate({
     friction: 0.50 //Percent to decelerate after movement
-  });
 
+  });
   graphics.clear();
   elements.forEach(function (text) {
     viewport.removeChild(text);
   });
+
   if (nodes.length > 0) {
     nodes.forEach(function (node) {
       drawNode(node, 0, 0, 0, 0);
     });
   }
+
   viewport.addChild(graphics);
 };
+
 var renderPage = function renderPage() {
-  if (typeof app.stage !== 'undefined') {
-    //console.log('deleted','container.removeChild');
+  if (typeof app.stage !== 'undefined') {//console.log('deleted','container.removeChild');
     //app.stage.removeChild(1);
     //for (var i = app.stage.children.length - 1; i >= 0; i--) {	app.stage.removeChild(app.stage.children[i]);};
   }
-  container.appendChild(app.view);
-  //console.log(container.dataset.api, 'api');
+
+  container.appendChild(app.view); //console.log(container.dataset.api, 'api');
+
   axios__WEBPACK_IMPORTED_MODULE_1___default().get(container.dataset.api).then(function (resp) {
     entities = resp.data.entities;
     nodes = resp.data.nodes;
     originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
-    originalEntities = JSON.parse(JSON.stringify(resp.data.entities));
-    //console.log('original nodes', originalNodes, originalEntities);
+    originalEntities = JSON.parse(JSON.stringify(resp.data.entities)); //console.log('original nodes', originalNodes, originalEntities);
+
     drawFamilyTree();
   });
 };
+
 var onPointerOver = function onPointerOver(object) {
   object.tint = 0x999999;
 };
+
 var onPointerOut = function onPointerOut(object) {
   object.tint = 0xFFFFFF;
 };
+
 var deleteUuidFromNodes = function deleteUuidFromNodes(uuid) {
   //console.log('Remove uuid', uuid);
   return filter(nodes, uuid);
 };
+
 var addEntity = function addEntity(entity) {
   entities[entity.id] = entity;
   nodes.push({
@@ -2591,22 +2596,27 @@ var addEntity = function addEntity(entity) {
   newUuid++;
   btnFirst.hide();
 };
+
 var replaceEntity = function replaceEntity(uuid, entity) {
   //console.log('Change Entity', uuid);
   return entityEditor(nodes, uuid, entity);
 };
+
 var insertRelation = function insertRelation(uuid, entity, relation) {
   //console.log('Add Relation', uuid);
   return relationCreator(nodes, uuid, entity, relation);
 };
+
 var insertChild = function insertChild(uuid, entity) {
   //console.log('Add Child', uuid);
   return childCreator(nodes, uuid, entity);
 };
+
 var renameRelations = function renameRelations(uuid, role) {
   //console.log('Rename relation', uuid, nodes);
   return relationFilter(nodes, uuid, role);
 };
+
 var relationFilter = function relationFilter(array, uuid, role) {
   //console.log('filter', array, uuid);
   var getRelationNodes = function getRelationNodes(result, object) {
@@ -2615,6 +2625,7 @@ var relationFilter = function relationFilter(array, uuid, role) {
       result.push(object);
       return result;
     }
+
     if (Array.isArray(object.children)) {
       var children = object.children.reduce(getRelationNodes, []);
       object.children = children;
@@ -2622,27 +2633,35 @@ var relationFilter = function relationFilter(array, uuid, role) {
       var relations = object.relations.reduce(getRelationNodes, []);
       object.relations = relations;
     }
+
     result.push(object);
     return result;
   };
+
   return array.reduce(getRelationNodes, []);
 };
+
 var entityEditor = function entityEditor(array, uuid, entity) {
   var entity_id = null;
+
   if (!entities[entity.id]) {
     entities[entity.id] = entity;
   }
+
   entity_id = entity.id;
+
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
       if (object.uuid == 0) {
         object.uuid = (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid);
         newUuid++;
       }
+
       object.entity_id = entity_id;
       result.push(object);
       return result;
     }
+
     if (Array.isArray(object.children)) {
       var children = object.children.reduce(getRelationNodes, []);
       object.children = children;
@@ -2650,21 +2669,26 @@ var entityEditor = function entityEditor(array, uuid, entity) {
       var relations = object.relations.reduce(getRelationNodes, []);
       object.relations = relations;
     }
+
     result.push(object);
     return result;
   };
+
   return array.reduce(getRelationNodes, []);
 };
+
 var relationCreator = function relationCreator(array, uuid, entity, role) {
   var entity_id = null;
+
   if (!entities[entity.id]) {
     entities[entity.id] = entity;
   }
+
   entity_id = entity.id;
+
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
       //console.log(object);
-
       if (Array.isArray(object.relations)) {
         object.relations.push({
           entity_id: entity_id,
@@ -2678,11 +2702,13 @@ var relationCreator = function relationCreator(array, uuid, entity, role) {
           uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
         }];
       }
-      newUuid = newUuid + 1;
-      //console.log(object, 'ADDED RELATIONS');
+
+      newUuid = newUuid + 1; //console.log(object, 'ADDED RELATIONS');
+
       result.push(object);
       return result;
     }
+
     if (Array.isArray(object.children)) {
       var children = object.children.reduce(getRelationNodes, []);
       object.children = children;
@@ -2690,21 +2716,26 @@ var relationCreator = function relationCreator(array, uuid, entity, role) {
       var relations = object.relations.reduce(getRelationNodes, []);
       object.relations = relations;
     }
+
     result.push(object);
     return result;
   };
+
   return array.reduce(getRelationNodes, []);
 };
+
 var childCreator = function childCreator(array, uuid, entity) {
   var entity_id = null;
+
   if (!entities[entity.id]) {
     entities[entity.id] = entity;
   }
+
   entity_id = entity.id;
+
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
       //console.log(object);
-
       if (Array.isArray(object.children)) {
         object.children.push({
           entity_id: entity_id,
@@ -2716,11 +2747,13 @@ var childCreator = function childCreator(array, uuid, entity) {
           uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
         }];
       }
-      newUuid = newUuid + 1;
-      //console.log(object, 'ADDED CHILDREN');
+
+      newUuid = newUuid + 1; //console.log(object, 'ADDED CHILDREN');
+
       result.push(object);
       return result;
     }
+
     if (Array.isArray(object.children)) {
       var children = object.children.reduce(getRelationNodes, []);
       object.children = children;
@@ -2728,12 +2761,15 @@ var childCreator = function childCreator(array, uuid, entity) {
       var relations = object.relations.reduce(getRelationNodes, []);
       object.relations = relations;
     }
+
     result.push(object);
     return result;
-  };
-  //console.log(entities);
+  }; //console.log(entities);
+
+
   return array.reduce(getRelationNodes, []);
 };
+
 var filter = function filter(array, uuid) {
   //console.log('filter', array, uuid);
   var getNodes = function getNodes(result, object) {
@@ -2741,6 +2777,7 @@ var filter = function filter(array, uuid) {
     if (object.uuid === uuid) {
       return result;
     }
+
     if (Array.isArray(object.children)) {
       var children = object.children.reduce(getNodes, []);
       object.children = children;
@@ -2748,45 +2785,54 @@ var filter = function filter(array, uuid) {
       var relations = object.relations.reduce(getNodes, []);
       object.relations = relations;
     }
+
     result.push(object);
     return result;
-  };
-  // If the first node is the uuid, delete everything
+  }; // If the first node is the uuid, delete everything
+
+
   if (array[0].uuid === uuid) {
     return array.splice(0, 1);
   }
+
   return array.reduce(getNodes, []);
 };
+
 var deleteUuid = function deleteUuid(uuid) {
   var texts = $('#remove');
+
   if (confirm(texts.data('desc')) == true) {
     viewport.removeChildren();
     deleteUuidFromNodes(uuid);
+
     if (nodes.length === 0) {
       clearTree();
     }
+
     isUnchanged = false;
     drawFamilyTree();
   }
 };
+
 var editEntity = function editEntity(uuid) {
   $("#add-relation").hide();
   $('#add-entity').modal('show');
   $('#send').off('click').on('click', function () {
-    var entity_id = $('select[name="character_id"]').val();
-    //console.log(entity_id, uuid, container.dataset.entity, 'old');
+    var entity_id = $('select[name="character_id"]').val(); //console.log(entity_id, uuid, container.dataset.entity, 'old');
 
     var url = container.dataset.entity.replace('/0', '/' + entity_id);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
-      var entity = res.data;
-      //console.log('result', res.data);
+      var entity = res.data; //console.log('result', res.data);
+
       viewport.removeChildren();
       console.log(uuid, entity);
+
       if (uuid === 0) {
         addEntity(entity);
       } else {
         replaceEntity(uuid, entity);
       }
+
       isUnchanged = false;
       drawFamilyTree();
     });
@@ -2795,23 +2841,22 @@ var editEntity = function editEntity(uuid) {
   });
   closeModal();
 };
+
 var addRelation = function addRelation(uuid) {
   $("#add-relation").show();
   $('#add-entity').modal('show');
   $('#send').off('click').on('click', function () {
     var entity_id = $('select[name="character_id"]').val();
-    var relation = $('input[name="relation"]').val();
-
-    //console.log(entity_id, uuid, container.dataset.entity, 'old');
+    var relation = $('input[name="relation"]').val(); //console.log(entity_id, uuid, container.dataset.entity, 'old');
     //console.log(entity_id, relation, 'ADDING RELATION');
 
     var url = container.dataset.entity.replace('/0', '/' + entity_id);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
-      var entity = res.data;
-      //console.log('Values from the API', res.data);
+      var entity = res.data; //console.log('Values from the API', res.data);
+
       viewport.removeChildren();
-      insertRelation(uuid, entity, relation);
-      //replaceEntity(uuid, entity, relation);
+      insertRelation(uuid, entity, relation); //replaceEntity(uuid, entity, relation);
+
       isUnchanged = false;
       drawFamilyTree();
     });
@@ -2821,17 +2866,17 @@ var addRelation = function addRelation(uuid) {
   });
   closeModal();
 };
+
 var addChildren = function addChildren(uuid) {
   document.getElementById("add-relation").style.display = "none";
   $('#add-entity').modal('show');
   $('#send').off('click').on('click', function () {
-    var entity_id = $('select[name="character_id"]').val();
-    //console.log(entity_id, uuid, container.dataset.entity, 'old');
+    var entity_id = $('select[name="character_id"]').val(); //console.log(entity_id, uuid, container.dataset.entity, 'old');
 
     var url = container.dataset.entity.replace('/0', '/' + entity_id);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
-      var entity = res.data;
-      //console.log('result', res.data);
+      var entity = res.data; //console.log('result', res.data);
+
       viewport.removeChildren();
       insertChild(uuid, entity);
       isUnchanged = false;
@@ -2842,6 +2887,7 @@ var addChildren = function addChildren(uuid) {
   });
   closeModal();
 };
+
 var closeModal = function closeModal() {
   $("#add-entity").on('hidden.bs.modal', function () {
     $(this).find("input,textarea,text").val('').end();
@@ -2856,44 +2902,45 @@ var closeModal = function closeModal() {
     firstHelper.style.display = "none";
   });
 };
+
 var renameRelation = function renameRelation(uuid) {
   var texts = $('#rename');
   var relation = prompt(texts.data('desc'));
+
   if (relation) {
-    viewport.removeChildren();
-    //console.log(relation)
+    viewport.removeChildren(); //console.log(relation)
+
     renameRelations(uuid, relation);
     isUnchanged = false;
     drawFamilyTree();
   }
 };
-
 /**
  * Reset the tree as it was when originally loaded, and exit the edit mode
  */
+
+
 var resetTree = function resetTree() {
   //console.info('Resetting...');
-
   btnClear.hide();
   btnSave.hide();
   btnReset.hide();
   btnFirst.hide();
-  btnEdit.show();
+  btnEdit.show(); // Reset the nodes as they were on page load
 
-  // Reset the nodes as they were on page load
   nodes = JSON.parse(JSON.stringify(originalNodes));
-  entities = JSON.parse(JSON.stringify(originalEntities));
-  //console.log('original nodes', nodes);
-
+  entities = JSON.parse(JSON.stringify(originalEntities)); //console.log('original nodes', nodes);
   // Edit edit mode and redraw the tree
+
   isEditing = false;
   isUnchanged = true;
   drawFamilyTree();
 };
-
 /**
  * Clear the tree to start from a blank canvas
  */
+
+
 var clearTree = function clearTree() {
   nodes = [];
   entities = [];
@@ -2901,21 +2948,24 @@ var clearTree = function clearTree() {
   drawFamilyTree();
   btnFirst.show();
 };
+
 var enterEditMode = function enterEditMode() {
   // Change which buttons are available
   btnEdit.hide();
   btnSave.prop('disabled', true).show();
   btnClear.show();
   btnReset.show();
+
   if (nodes.length === 0) {
     btnFirst.show();
-  }
+  } // Redraw the tree in edit mode
 
-  // Redraw the tree in edit mode
+
   isEditing = true;
   isUnchanged = true;
   drawFamilyTree();
 };
+
 var initFamilyTree = function initFamilyTree() {
   // Handle button modes
   btnEdit = $('#tree-edit');
@@ -2929,6 +2979,7 @@ var initFamilyTree = function initFamilyTree() {
   });
   btnClear.on('click', function (e) {
     var texts = $('#clear');
+
     if (confirm(texts.data('desc')) == true) {
       e.preventDefault();
       clearTree();
@@ -2936,6 +2987,7 @@ var initFamilyTree = function initFamilyTree() {
   });
   btnReset.on('click', function (e) {
     var texts = $('#reset');
+
     if (confirm(texts.data('desc')) == true) {
       e.preventDefault();
       resetTree();
@@ -2949,21 +3001,19 @@ var initFamilyTree = function initFamilyTree() {
     axios__WEBPACK_IMPORTED_MODULE_1___default().post(container.dataset.save, {
       data: nodes,
       entities: entities
-    }).then(function (resp) {
-      //console.log('Saved Tree');
+    }).then(function (resp) {//console.log('Saved Tree');
     });
     renderPage();
     resetTree();
     var texts = $('#saved');
     var toast = texts.data('desc');
     window.showToast(toast);
-  });
+  }); // Draw the page
 
-  // Draw the page
   renderPage();
-};
+}; // When jQuery is ready, draw the family tree
 
-// When jQuery is ready, draw the family tree
+
 $(document).ready(function () {
   initFamilyTree();
 });
@@ -12534,9 +12584,6 @@ class AssetsClass {
         this.resolver.add(url.src, url);
         return url.src;
       }
-      if (!this.resolver.hasKey(url)) {
-        this.resolver.add(url, url);
-      }
       return url;
     });
     const resolveResults = this.resolver.resolve(urlArray);
@@ -13089,14 +13136,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "checkDataUrl": () => (/* reexport safe */ _utils_checkDataUrl_mjs__WEBPACK_IMPORTED_MODULE_20__.checkDataUrl),
 /* harmony export */   "checkExtension": () => (/* reexport safe */ _utils_checkExtension_mjs__WEBPACK_IMPORTED_MODULE_21__.checkExtension),
 /* harmony export */   "convertToList": () => (/* reexport safe */ _utils_convertToList_mjs__WEBPACK_IMPORTED_MODULE_22__.convertToList),
-/* harmony export */   "copySearchParams": () => (/* reexport safe */ _utils_copySearchParams_mjs__WEBPACK_IMPORTED_MODULE_23__.copySearchParams),
-/* harmony export */   "createStringVariations": () => (/* reexport safe */ _utils_createStringVariations_mjs__WEBPACK_IMPORTED_MODULE_24__.createStringVariations),
+/* harmony export */   "createStringVariations": () => (/* reexport safe */ _utils_createStringVariations_mjs__WEBPACK_IMPORTED_MODULE_23__.createStringVariations),
 /* harmony export */   "createTexture": () => (/* reexport safe */ _loader_parsers_textures_utils_createTexture_mjs__WEBPACK_IMPORTED_MODULE_18__.createTexture),
 /* harmony export */   "detectAvif": () => (/* reexport safe */ _detections_parsers_detectAvif_mjs__WEBPACK_IMPORTED_MODULE_9__.detectAvif),
 /* harmony export */   "detectDefaults": () => (/* reexport safe */ _detections_parsers_detectDefaults_mjs__WEBPACK_IMPORTED_MODULE_11__.detectDefaults),
 /* harmony export */   "detectWebp": () => (/* reexport safe */ _detections_parsers_detectWebp_mjs__WEBPACK_IMPORTED_MODULE_10__.detectWebp),
 /* harmony export */   "getFontFamilyName": () => (/* reexport safe */ _loader_parsers_loadWebFont_mjs__WEBPACK_IMPORTED_MODULE_15__.getFontFamilyName),
-/* harmony export */   "isSingleItem": () => (/* reexport safe */ _utils_isSingleItem_mjs__WEBPACK_IMPORTED_MODULE_25__.isSingleItem),
+/* harmony export */   "isSingleItem": () => (/* reexport safe */ _utils_isSingleItem_mjs__WEBPACK_IMPORTED_MODULE_24__.isSingleItem),
 /* harmony export */   "loadImageBitmap": () => (/* reexport safe */ _loader_parsers_textures_loadTextures_mjs__WEBPACK_IMPORTED_MODULE_17__.loadImageBitmap),
 /* harmony export */   "loadJson": () => (/* reexport safe */ _loader_parsers_loadJson_mjs__WEBPACK_IMPORTED_MODULE_13__.loadJson),
 /* harmony export */   "loadSVG": () => (/* reexport safe */ _loader_parsers_textures_loadSVG_mjs__WEBPACK_IMPORTED_MODULE_16__.loadSVG),
@@ -13128,10 +13174,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_checkDataUrl_mjs__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./utils/checkDataUrl.mjs */ "./node_modules/@pixi/assets/lib/utils/checkDataUrl.mjs");
 /* harmony import */ var _utils_checkExtension_mjs__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./utils/checkExtension.mjs */ "./node_modules/@pixi/assets/lib/utils/checkExtension.mjs");
 /* harmony import */ var _utils_convertToList_mjs__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./utils/convertToList.mjs */ "./node_modules/@pixi/assets/lib/utils/convertToList.mjs");
-/* harmony import */ var _utils_copySearchParams_mjs__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./utils/copySearchParams.mjs */ "./node_modules/@pixi/assets/lib/utils/copySearchParams.mjs");
-/* harmony import */ var _utils_createStringVariations_mjs__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./utils/createStringVariations.mjs */ "./node_modules/@pixi/assets/lib/utils/createStringVariations.mjs");
-/* harmony import */ var _utils_isSingleItem_mjs__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./utils/isSingleItem.mjs */ "./node_modules/@pixi/assets/lib/utils/isSingleItem.mjs");
-
+/* harmony import */ var _utils_createStringVariations_mjs__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./utils/createStringVariations.mjs */ "./node_modules/@pixi/assets/lib/utils/createStringVariations.mjs");
+/* harmony import */ var _utils_isSingleItem_mjs__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./utils/isSingleItem.mjs */ "./node_modules/@pixi/assets/lib/utils/isSingleItem.mjs");
 
 
 
@@ -13652,6 +13696,9 @@ const loadWebFont = {
     return (0,_utils_checkDataUrl_mjs__WEBPACK_IMPORTED_MODULE_1__.checkDataUrl)(url, validFontMIMEs) || (0,_utils_checkExtension_mjs__WEBPACK_IMPORTED_MODULE_2__.checkExtension)(url, validFontExtensions);
   },
   async load(url, options) {
+    if (!globalThis.navigator.onLine) {
+      throw new Error("[loadWebFont] Cannot load font - navigator is offline");
+    }
     const fonts = _pixi_core__WEBPACK_IMPORTED_MODULE_0__.settings.ADAPTER.getFontFaceSet();
     if (fonts) {
       const fontFaces = [];
@@ -13942,14 +13989,9 @@ __webpack_require__.r(__webpack_exports__);
 
 class Resolver {
   constructor() {
-    this._defaultBundleIdentifierOptions = {
-      connector: "-",
-      createBundleAssetId: (bundleId, assetId) => `${bundleId}${this._bundleIdConnector}${assetId}`,
-      extractAssetIdFromBundle: (bundleId, assetBundleId) => assetBundleId.replace(`${bundleId}${this._bundleIdConnector}`, "")
-    };
-    this._bundleIdConnector = this._defaultBundleIdentifierOptions.connector;
-    this._createBundleAssetId = this._defaultBundleIdentifierOptions.createBundleAssetId;
-    this._extractAssetIdFromBundle = this._defaultBundleIdentifierOptions.extractAssetIdFromBundle;
+    this._bundleIdConnector = "-";
+    this._createBundleAssetId = (bundleId, assetId) => `${bundleId}${this._bundleIdConnector}${assetId}`;
+    this._extractAssetIdFromBundle = (bundleId, assetBundleId) => assetBundleId.replace(`${bundleId}${this._bundleIdConnector}`, "");
     this._assetMap = {};
     this._preferredOrder = [];
     this._parsers = [];
@@ -13989,15 +14031,12 @@ class Resolver {
     return this._parsers;
   }
   reset() {
-    this.setBundleIdentifier(this._defaultBundleIdentifierOptions);
-    this._assetMap = {};
     this._preferredOrder = [];
     this._resolverHash = {};
+    this._assetMap = {};
     this._rootPath = null;
     this._basePath = null;
     this._manifest = null;
-    this._bundles = {};
-    this._defaultSearchParams = null;
   }
   setDefaultSearchParams(searchParams) {
     if (typeof searchParams === "string") {
@@ -14023,7 +14062,7 @@ class Resolver {
         if (typeof asset.name === "string") {
           const bundleAssetId = this._createBundleAssetId(bundleId, asset.name);
           assetNames.push(bundleAssetId);
-          this.add([asset.name, bundleAssetId], asset.srcs, asset.data);
+          this.add([asset.name, bundleAssetId], asset.srcs);
         } else {
           const bundleIds = asset.name.map((name) => this._createBundleAssetId(bundleId, name));
           bundleIds.forEach((bundleId2) => {
@@ -14043,7 +14082,7 @@ class Resolver {
   add(keysIn, assetsIn, data) {
     const keys = (0,_utils_convertToList_mjs__WEBPACK_IMPORTED_MODULE_1__.convertToList)(keysIn);
     keys.forEach((key) => {
-      if (this.hasKey(key)) {
+      if (this._assetMap[key]) {
         console.warn(`[Resolver] already has key: ${key} overwriting`);
       }
     });
@@ -14156,12 +14195,6 @@ class Resolver {
       result[key] = this._resolverHash[key];
     });
     return singleAsset ? result[keys[0]] : result;
-  }
-  hasKey(key) {
-    return !!this._assetMap[key];
-  }
-  hasBundle(key) {
-    return !!this._bundles[key];
   }
   _getPreferredOrder(assets) {
     for (let i = 0; i < assets.length; i++) {
@@ -14360,31 +14393,6 @@ const convertToList = (input, transform) => {
 
 /***/ }),
 
-/***/ "./node_modules/@pixi/assets/lib/utils/copySearchParams.mjs":
-/*!******************************************************************!*\
-  !*** ./node_modules/@pixi/assets/lib/utils/copySearchParams.mjs ***!
-  \******************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "copySearchParams": () => (/* binding */ copySearchParams)
-/* harmony export */ });
-const copySearchParams = (targetUrl, sourceUrl) => {
-  const searchParams = sourceUrl.split("?")[1];
-  if (searchParams) {
-    targetUrl += `?${searchParams}`;
-  }
-  return targetUrl;
-};
-
-
-//# sourceMappingURL=copySearchParams.mjs.map
-
-
-/***/ }),
-
 /***/ "./node_modules/@pixi/assets/lib/utils/createStringVariations.mjs":
 /*!************************************************************************!*\
   !*** ./node_modules/@pixi/assets/lib/utils/createStringVariations.mjs ***!
@@ -14442,17 +14450,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "checkDataUrl": () => (/* reexport safe */ _checkDataUrl_mjs__WEBPACK_IMPORTED_MODULE_0__.checkDataUrl),
 /* harmony export */   "checkExtension": () => (/* reexport safe */ _checkExtension_mjs__WEBPACK_IMPORTED_MODULE_1__.checkExtension),
 /* harmony export */   "convertToList": () => (/* reexport safe */ _convertToList_mjs__WEBPACK_IMPORTED_MODULE_2__.convertToList),
-/* harmony export */   "copySearchParams": () => (/* reexport safe */ _copySearchParams_mjs__WEBPACK_IMPORTED_MODULE_3__.copySearchParams),
-/* harmony export */   "createStringVariations": () => (/* reexport safe */ _createStringVariations_mjs__WEBPACK_IMPORTED_MODULE_4__.createStringVariations),
-/* harmony export */   "isSingleItem": () => (/* reexport safe */ _isSingleItem_mjs__WEBPACK_IMPORTED_MODULE_5__.isSingleItem)
+/* harmony export */   "createStringVariations": () => (/* reexport safe */ _createStringVariations_mjs__WEBPACK_IMPORTED_MODULE_3__.createStringVariations),
+/* harmony export */   "isSingleItem": () => (/* reexport safe */ _isSingleItem_mjs__WEBPACK_IMPORTED_MODULE_4__.isSingleItem)
 /* harmony export */ });
 /* harmony import */ var _checkDataUrl_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./checkDataUrl.mjs */ "./node_modules/@pixi/assets/lib/utils/checkDataUrl.mjs");
 /* harmony import */ var _checkExtension_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checkExtension.mjs */ "./node_modules/@pixi/assets/lib/utils/checkExtension.mjs");
 /* harmony import */ var _convertToList_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./convertToList.mjs */ "./node_modules/@pixi/assets/lib/utils/convertToList.mjs");
-/* harmony import */ var _copySearchParams_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./copySearchParams.mjs */ "./node_modules/@pixi/assets/lib/utils/copySearchParams.mjs");
-/* harmony import */ var _createStringVariations_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./createStringVariations.mjs */ "./node_modules/@pixi/assets/lib/utils/createStringVariations.mjs");
-/* harmony import */ var _isSingleItem_mjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./isSingleItem.mjs */ "./node_modules/@pixi/assets/lib/utils/isSingleItem.mjs");
-
+/* harmony import */ var _createStringVariations_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createStringVariations.mjs */ "./node_modules/@pixi/assets/lib/utils/createStringVariations.mjs");
+/* harmony import */ var _isSingleItem_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./isSingleItem.mjs */ "./node_modules/@pixi/assets/lib/utils/isSingleItem.mjs");
 
 
 
@@ -15892,13 +15897,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Renderer": () => (/* binding */ Renderer)
 /* harmony export */ });
-/* harmony import */ var _pixi_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @pixi/constants */ "./node_modules/@pixi/constants/lib/index.mjs");
-/* harmony import */ var _pixi_extensions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @pixi/extensions */ "./node_modules/@pixi/extensions/lib/index.mjs");
-/* harmony import */ var _pixi_math__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @pixi/math */ "./node_modules/@pixi/math/lib/index.mjs");
-/* harmony import */ var _pixi_settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @pixi/settings */ "./node_modules/@pixi/settings/lib/index.mjs");
-/* harmony import */ var _pixi_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @pixi/utils */ "./node_modules/@pixi/utils/lib/index.mjs");
-/* harmony import */ var _shader_UniformGroup_mjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shader/UniformGroup.mjs */ "./node_modules/@pixi/core/lib/shader/UniformGroup.mjs");
-/* harmony import */ var _system_SystemManager_mjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./system/SystemManager.mjs */ "./node_modules/@pixi/core/lib/system/SystemManager.mjs");
+/* harmony import */ var _pixi_extensions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @pixi/extensions */ "./node_modules/@pixi/extensions/lib/index.mjs");
+/* harmony import */ var _pixi_math__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @pixi/math */ "./node_modules/@pixi/math/lib/index.mjs");
+/* harmony import */ var _pixi_settings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @pixi/settings */ "./node_modules/@pixi/settings/lib/index.mjs");
+/* harmony import */ var _pixi_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @pixi/utils */ "./node_modules/@pixi/utils/lib/index.mjs");
+/* harmony import */ var _shader_UniformGroup_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shader/UniformGroup.mjs */ "./node_modules/@pixi/core/lib/shader/UniformGroup.mjs");
+/* harmony import */ var _system_SystemManager_mjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./system/SystemManager.mjs */ "./node_modules/@pixi/core/lib/system/SystemManager.mjs");
 
 
 
@@ -15906,16 +15910,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-const _Renderer = class extends _system_SystemManager_mjs__WEBPACK_IMPORTED_MODULE_6__.SystemManager {
+const _Renderer = class extends _system_SystemManager_mjs__WEBPACK_IMPORTED_MODULE_5__.SystemManager {
   constructor(options) {
     super();
-    this.type = _pixi_constants__WEBPACK_IMPORTED_MODULE_0__.RENDERER_TYPE.WEBGL;
-    options = Object.assign({}, _pixi_settings__WEBPACK_IMPORTED_MODULE_3__.settings.RENDER_OPTIONS, options);
+    options = Object.assign({}, _pixi_settings__WEBPACK_IMPORTED_MODULE_2__.settings.RENDER_OPTIONS, options);
     this.gl = null;
     this.CONTEXT_UID = 0;
-    this.globalUniforms = new _shader_UniformGroup_mjs__WEBPACK_IMPORTED_MODULE_5__.UniformGroup({
-      projectionMatrix: new _pixi_math__WEBPACK_IMPORTED_MODULE_2__.Matrix()
+    this.globalUniforms = new _shader_UniformGroup_mjs__WEBPACK_IMPORTED_MODULE_4__.UniformGroup({
+      projectionMatrix: new _pixi_math__WEBPACK_IMPORTED_MODULE_1__.Matrix()
     }, true);
     const systemConfig = {
       runners: [
@@ -15957,7 +15959,7 @@ const _Renderer = class extends _system_SystemManager_mjs__WEBPACK_IMPORTED_MODU
     };
     this.setup(systemConfig);
     if ("useContextAlpha" in options) {
-      (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_4__.deprecation)("7.0.0", "options.useContextAlpha is deprecated, use options.premultipliedAlpha and options.backgroundAlpha instead");
+      (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_3__.deprecation)("7.0.0", "options.useContextAlpha is deprecated, use options.premultipliedAlpha and options.backgroundAlpha instead");
       options.premultipliedAlpha = options.useContextAlpha && options.useContextAlpha !== "notMultiplied";
       options.backgroundAlpha = options.useContextAlpha === false ? 1 : options.backgroundAlpha;
     }
@@ -15984,14 +15986,14 @@ const _Renderer = class extends _system_SystemManager_mjs__WEBPACK_IMPORTED_MODU
         preserveDrawingBuffer: options.preserveDrawingBuffer
       }
     };
-    this.options = options;
     this.startup.run(startupOptions);
+    this.options = options;
   }
   static test(options) {
     if (options?.forceCanvas) {
       return false;
     }
-    return (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_4__.isWebGLSupported)();
+    return (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_3__.isWebGLSupported)();
   }
   render(displayObject, options) {
     this.objectRenderer.render(displayObject, options);
@@ -16052,35 +16054,35 @@ const _Renderer = class extends _system_SystemManager_mjs__WEBPACK_IMPORTED_MODU
     return `WebGL ${this.context.webGLVersion}`;
   }
   get clearBeforeRender() {
-    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_4__.deprecation)("7.0.0", "renderer.clearBeforeRender has been deprecated, please use renderer.background.clearBeforeRender instead.");
+    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_3__.deprecation)("7.0.0", "renderer.clearBeforeRender has been deprecated, please use renderer.background.clearBeforeRender instead.");
     return this.background.clearBeforeRender;
   }
   get useContextAlpha() {
-    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_4__.deprecation)("7.0.0", "renderer.useContextAlpha has been deprecated, please use renderer.context.premultipliedAlpha instead.");
+    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_3__.deprecation)("7.0.0", "renderer.useContextAlpha has been deprecated, please use renderer.context.premultipliedAlpha instead.");
     return this.context.useContextAlpha;
   }
   get preserveDrawingBuffer() {
-    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_4__.deprecation)("7.0.0", "renderer.preserveDrawingBuffer has been deprecated, we cannot truly know this unless pixi created the context");
+    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_3__.deprecation)("7.0.0", "renderer.preserveDrawingBuffer has been deprecated, we cannot truly know this unless pixi created the context");
     return this.context.preserveDrawingBuffer;
   }
   get backgroundColor() {
-    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_4__.deprecation)("7.0.0", "renderer.backgroundColor has been deprecated, use renderer.background.color instead.");
+    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_3__.deprecation)("7.0.0", "renderer.backgroundColor has been deprecated, use renderer.background.color instead.");
     return this.background.color;
   }
   set backgroundColor(value) {
-    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_4__.deprecation)("7.0.0", "renderer.backgroundColor has been deprecated, use renderer.background.color instead.");
+    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_3__.deprecation)("7.0.0", "renderer.backgroundColor has been deprecated, use renderer.background.color instead.");
     this.background.color = value;
   }
   get backgroundAlpha() {
-    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_4__.deprecation)("7.0.0", "renderer.backgroundAlpha has been deprecated, use renderer.background.alpha instead.");
+    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_3__.deprecation)("7.0.0", "renderer.backgroundAlpha has been deprecated, use renderer.background.alpha instead.");
     return this.background.color;
   }
   set backgroundAlpha(value) {
-    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_4__.deprecation)("7.0.0", "renderer.backgroundAlpha has been deprecated, use renderer.background.alpha instead.");
+    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_3__.deprecation)("7.0.0", "renderer.backgroundAlpha has been deprecated, use renderer.background.alpha instead.");
     this.background.alpha = value;
   }
   get powerPreference() {
-    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_4__.deprecation)("7.0.0", "renderer.powerPreference has been deprecated, we can only know this if pixi creates the context");
+    (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_3__.deprecation)("7.0.0", "renderer.powerPreference has been deprecated, we can only know this if pixi creates the context");
     return this.context.powerPreference;
   }
   generateTexture(displayObject, options) {
@@ -16089,14 +16091,14 @@ const _Renderer = class extends _system_SystemManager_mjs__WEBPACK_IMPORTED_MODU
 };
 let Renderer = _Renderer;
 Renderer.extension = {
-  type: _pixi_extensions__WEBPACK_IMPORTED_MODULE_1__.ExtensionType.Renderer,
+  type: _pixi_extensions__WEBPACK_IMPORTED_MODULE_0__.ExtensionType.Renderer,
   priority: 1
 };
 Renderer.__plugins = {};
 Renderer.__systems = {};
-_pixi_extensions__WEBPACK_IMPORTED_MODULE_1__.extensions.handleByMap(_pixi_extensions__WEBPACK_IMPORTED_MODULE_1__.ExtensionType.RendererPlugin, Renderer.__plugins);
-_pixi_extensions__WEBPACK_IMPORTED_MODULE_1__.extensions.handleByMap(_pixi_extensions__WEBPACK_IMPORTED_MODULE_1__.ExtensionType.RendererSystem, Renderer.__systems);
-_pixi_extensions__WEBPACK_IMPORTED_MODULE_1__.extensions.add(Renderer);
+_pixi_extensions__WEBPACK_IMPORTED_MODULE_0__.extensions.handleByMap(_pixi_extensions__WEBPACK_IMPORTED_MODULE_0__.ExtensionType.RendererPlugin, Renderer.__plugins);
+_pixi_extensions__WEBPACK_IMPORTED_MODULE_0__.extensions.handleByMap(_pixi_extensions__WEBPACK_IMPORTED_MODULE_0__.ExtensionType.RendererSystem, Renderer.__systems);
+_pixi_extensions__WEBPACK_IMPORTED_MODULE_0__.extensions.add(Renderer);
 
 
 //# sourceMappingURL=Renderer.mjs.map
@@ -19617,7 +19619,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const VERSION = "7.1.4";
+const VERSION = "7.1.0";
 
 
 //# sourceMappingURL=index.mjs.map
@@ -19685,7 +19687,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MaskData": () => (/* binding */ MaskData)
 /* harmony export */ });
 /* harmony import */ var _pixi_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @pixi/constants */ "./node_modules/@pixi/constants/lib/index.mjs");
-/* harmony import */ var _filters_Filter_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../filters/Filter.mjs */ "./node_modules/@pixi/core/lib/filters/Filter.mjs");
+/* harmony import */ var _pixi_settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @pixi/settings */ "./node_modules/@pixi/settings/lib/index.mjs");
 
 
 
@@ -19697,7 +19699,7 @@ class MaskData {
     this.pooled = false;
     this.isMaskData = true;
     this.resolution = null;
-    this.multisample = _filters_Filter_mjs__WEBPACK_IMPORTED_MODULE_1__.Filter.defaultMultisample;
+    this.multisample = _pixi_settings__WEBPACK_IMPORTED_MODULE_1__.settings.FILTER_MULTISAMPLE;
     this.enabled = true;
     this.colorMask = 15;
     this._filters = null;
@@ -20859,7 +20861,7 @@ Object.defineProperties(_pixi_settings__WEBPACK_IMPORTED_MODULE_1__.settings, {
       return _textures_BaseTexture_mjs__WEBPACK_IMPORTED_MODULE_7__.BaseTexture.defaultOptions.wrapMode;
     },
     set(value) {
-      (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_2__.deprecation)("7.1.0", "settings.WRAP_MODE is deprecated, use BaseTexture.defaultOptions.wrapMode");
+      (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_2__.deprecation)("7.1.0", "settings.WRAP_MODE is deprecated, use BaseTeture.defaultOptions.wrapMode");
       _textures_BaseTexture_mjs__WEBPACK_IMPORTED_MODULE_7__.BaseTexture.defaultOptions.wrapMode = value;
     }
   },
@@ -20868,7 +20870,7 @@ Object.defineProperties(_pixi_settings__WEBPACK_IMPORTED_MODULE_1__.settings, {
       return _textures_BaseTexture_mjs__WEBPACK_IMPORTED_MODULE_7__.BaseTexture.defaultOptions.scaleMode;
     },
     set(value) {
-      (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_2__.deprecation)("7.1.0", "settings.SCALE_MODE is deprecated, use BaseTexture.defaultOptions.scaleMode");
+      (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_2__.deprecation)("7.1.0", "settings.SCALE_MODE is deprecated, use BaseTeture.defaultOptions.scaleMode");
       _textures_BaseTexture_mjs__WEBPACK_IMPORTED_MODULE_7__.BaseTexture.defaultOptions.scaleMode = value;
     }
   },
@@ -20877,7 +20879,7 @@ Object.defineProperties(_pixi_settings__WEBPACK_IMPORTED_MODULE_1__.settings, {
       return _textures_BaseTexture_mjs__WEBPACK_IMPORTED_MODULE_7__.BaseTexture.defaultOptions.mipmap;
     },
     set(value) {
-      (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_2__.deprecation)("7.1.0", "settings.MIPMAP_TEXTURES is deprecated, use BaseTexture.defaultOptions.mipmap");
+      (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_2__.deprecation)("7.1.0", "settings.MIPMAP_TEXTURES is deprecated, use BaseTeture.defaultOptions.mipmap");
       _textures_BaseTexture_mjs__WEBPACK_IMPORTED_MODULE_7__.BaseTexture.defaultOptions.mipmap = value;
     }
   },
@@ -20886,7 +20888,7 @@ Object.defineProperties(_pixi_settings__WEBPACK_IMPORTED_MODULE_1__.settings, {
       return _textures_BaseTexture_mjs__WEBPACK_IMPORTED_MODULE_7__.BaseTexture.defaultOptions.anisotropicLevel;
     },
     set(value) {
-      (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_2__.deprecation)("7.1.0", "settings.ANISOTROPIC_LEVEL is deprecated, use BaseTexture.defaultOptions.anisotropicLevel");
+      (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_2__.deprecation)("7.1.0", "settings.ANISOTROPIC_LEVEL is deprecated, use BaseTeture.defaultOptions.anisotropicLevel");
       _textures_BaseTexture_mjs__WEBPACK_IMPORTED_MODULE_7__.BaseTexture.defaultOptions.anisotropicLevel = value;
     }
   },
@@ -22756,7 +22758,7 @@ class StartupSystem {
     const renderer = this.renderer;
     renderer.emitWithCustomOptions(renderer.runners.init, options);
     if (options.hello) {
-      console.log(`PixiJS ${"7.1.4"} - ${renderer.rendererLogId} - https://pixijs.com`);
+      console.log(`PixiJS ${"7.1.0"} - ${renderer.rendererLogId} - https://pixijs.com`);
     }
     renderer.resize(this.renderer.screen.width, this.renderer.screen.height);
   }
@@ -23765,7 +23767,7 @@ class Texture extends _pixi_utils__WEBPACK_IMPORTED_MODULE_2__.EventEmitter {
   }
   static fromLoader(source, imageUrl, name, options) {
     const baseTexture = new _BaseTexture_mjs__WEBPACK_IMPORTED_MODULE_3__.BaseTexture(source, Object.assign({
-      scaleMode: _BaseTexture_mjs__WEBPACK_IMPORTED_MODULE_3__.BaseTexture.defaultOptions.scaleMode,
+      scaleMode: _pixi_settings__WEBPACK_IMPORTED_MODULE_1__.settings.SCALE_MODE,
       resolution: (0,_pixi_utils__WEBPACK_IMPORTED_MODULE_2__.getResolutionOfUrl)(imageUrl)
     }, options));
     const { resource } = baseTexture;
@@ -24886,18 +24888,17 @@ __webpack_require__.r(__webpack_exports__);
 
 class ImageBitmapResource extends _BaseImageResource_mjs__WEBPACK_IMPORTED_MODULE_2__.BaseImageResource {
   constructor(source, options) {
+    var __super = (...args) => {
+      super(...args);
+    };
     options = options || {};
-    let baseSource;
-    let url;
     if (typeof source === "string") {
-      baseSource = ImageBitmapResource.EMPTY;
-      url = source;
+      __super(ImageBitmapResource.EMPTY);
+      this.url = source;
     } else {
-      baseSource = source;
-      url = null;
+      __super(source);
+      this.url = null;
     }
-    super(baseSource);
-    this.url = url;
     this.crossOrigin = options.crossOrigin ?? true;
     this.alphaMode = typeof options.alphaMode === "number" ? options.alphaMode : null;
     this._load = null;
@@ -27297,7 +27298,7 @@ class EventBoundary {
     const isMouse = e.pointerType === "mouse" || e.pointerType === "pen";
     const trackingData = this.trackingData(from.pointerId);
     const outTarget = this.findMountedTarget(trackingData.overTargets);
-    if (trackingData.overTargets?.length > 0 && outTarget !== e.target) {
+    if (trackingData.overTargets && outTarget !== e.target) {
       const outType = from.type === "mousemove" ? "mouseout" : "pointerout";
       const outEvent = this.createPointerEvent(from, outType, outTarget);
       this.dispatchEvent(outEvent, "pointerout");
@@ -27346,14 +27347,10 @@ class EventBoundary {
     }
     const propagationMethod = this.moveOnAll ? "all" : "dispatchEvent";
     this[propagationMethod](e, "pointermove");
-    this.all(e, "globalpointermove");
-    if (e.pointerType === "touch") {
+    if (e.pointerType === "touch")
       this[propagationMethod](e, "touchmove");
-      this.all(e, "globaltouchmove");
-    }
     if (isMouse) {
       this[propagationMethod](e, "mousemove");
-      this.all(e, "globalmousemove");
       this.cursor = e.target?.cursor;
     }
     trackingData.overTargets = e.composedPath();
@@ -27467,8 +27464,7 @@ class EventBoundary {
       clickHistory.timeStamp = now;
       clickEvent.detail = clickHistory.clickCount;
       if (clickEvent.pointerType === "mouse") {
-        const isRightButton = clickEvent.button === 2;
-        this.dispatchEvent(clickEvent, isRightButton ? "rightclick" : "click");
+        this.dispatchEvent(clickEvent, "click");
       } else if (clickEvent.pointerType === "touch") {
         this.dispatchEvent(clickEvent, "tap");
       }
@@ -27638,13 +27634,9 @@ class EventBoundary {
     if (!listeners)
       return;
     if ("fn" in listeners) {
-      if (listeners.once)
-        e.currentTarget.removeListener(type, listeners.fn, void 0, true);
       listeners.fn.call(listeners.context, e);
     } else {
       for (let i = 0, j = listeners.length; i < j && !e.propagationImmediatelyStopped; i++) {
-        if (listeners[i].once)
-          e.currentTarget.removeListener(type, listeners[i].fn, void 0, true);
         listeners[i].fn.call(listeners[i].context, e);
       }
     }
@@ -28165,7 +28157,6 @@ const FederatedDisplayObject = {
   onmouseenter: null,
   onmouseleave: null,
   onmousemove: null,
-  onglobalmousemove: null,
   onmouseout: null,
   onmouseover: null,
   onmouseup: null,
@@ -28175,7 +28166,6 @@ const FederatedDisplayObject = {
   onpointerenter: null,
   onpointerleave: null,
   onpointermove: null,
-  onglobalpointermove: null,
   onpointerout: null,
   onpointerover: null,
   onpointertap: null,
@@ -28190,7 +28180,6 @@ const FederatedDisplayObject = {
   ontouchend: null,
   ontouchendoutside: null,
   ontouchmove: null,
-  onglobaltouchmove: null,
   ontouchstart: null,
   onwheel: null,
   interactive: false,
@@ -28359,14 +28348,11 @@ __webpack_require__.r(__webpack_exports__);
 class FederatedWheelEvent extends _FederatedMouseEvent_mjs__WEBPACK_IMPORTED_MODULE_0__.FederatedMouseEvent {
   constructor() {
     super(...arguments);
-    this.DOM_DELTA_PIXEL = 0;
-    this.DOM_DELTA_LINE = 1;
-    this.DOM_DELTA_PAGE = 2;
+    this.DOM_DELTA_LINE = 0;
+    this.DOM_DELTA_PAGE = 1;
+    this.DOM_DELTA_PIXEL = 2;
   }
 }
-FederatedWheelEvent.DOM_DELTA_PIXEL = 0;
-FederatedWheelEvent.DOM_DELTA_LINE = 1;
-FederatedWheelEvent.DOM_DELTA_PAGE = 2;
 
 
 //# sourceMappingURL=FederatedWheelEvent.mjs.map
@@ -28567,26 +28553,6 @@ const _Extract = class {
     throw new Error("Extract.base64() requires ICanvas.toDataURL or ICanvas.convertToBlob to be implemented");
   }
   canvas(target, frame) {
-    const { pixels, width, height, flipY } = this._rawPixels(target, frame);
-    let canvasBuffer = new _pixi_core__WEBPACK_IMPORTED_MODULE_0__.utils.CanvasRenderTarget(width, height, 1);
-    const canvasData = canvasBuffer.context.getImageData(0, 0, width, height);
-    _Extract.arrayPostDivide(pixels, canvasData.data);
-    canvasBuffer.context.putImageData(canvasData, 0, 0);
-    if (flipY) {
-      const target2 = new _pixi_core__WEBPACK_IMPORTED_MODULE_0__.utils.CanvasRenderTarget(canvasBuffer.width, canvasBuffer.height, 1);
-      target2.context.scale(1, -1);
-      target2.context.drawImage(canvasBuffer.canvas, 0, -height);
-      canvasBuffer.destroy();
-      canvasBuffer = target2;
-    }
-    return canvasBuffer.canvas;
-  }
-  pixels(target, frame) {
-    const { pixels } = this._rawPixels(target, frame);
-    _Extract.arrayPostDivide(pixels, pixels);
-    return pixels;
-  }
-  _rawPixels(target, frame) {
     const renderer = this.renderer;
     let resolution;
     let flipY = false;
@@ -28596,19 +28562,7 @@ const _Extract = class {
       if (target instanceof _pixi_core__WEBPACK_IMPORTED_MODULE_0__.RenderTexture) {
         renderTexture = target;
       } else {
-        const multisample = renderer.context.webGLVersion >= 2 ? renderer.multisample : _pixi_core__WEBPACK_IMPORTED_MODULE_0__.MSAA_QUALITY.NONE;
-        renderTexture = this.renderer.generateTexture(target, { multisample });
-        if (multisample !== _pixi_core__WEBPACK_IMPORTED_MODULE_0__.MSAA_QUALITY.NONE) {
-          const resolvedTexture = _pixi_core__WEBPACK_IMPORTED_MODULE_0__.RenderTexture.create({
-            width: renderTexture.width,
-            height: renderTexture.height
-          });
-          renderer.framebuffer.bind(renderTexture.framebuffer);
-          renderer.framebuffer.blit(resolvedTexture.framebuffer);
-          renderer.framebuffer.bind(null);
-          renderTexture.destroy(true);
-          renderTexture = resolvedTexture;
-        }
+        renderTexture = this.renderer.generateTexture(target);
         generated = true;
       }
     }
@@ -28629,13 +28583,61 @@ const _Extract = class {
     }
     const width = Math.round(frame.width * resolution);
     const height = Math.round(frame.height * resolution);
-    const pixels = new Uint8Array(BYTES_PER_PIXEL * width * height);
+    let canvasBuffer = new _pixi_core__WEBPACK_IMPORTED_MODULE_0__.utils.CanvasRenderTarget(width, height, 1);
+    const webglPixels = new Uint8Array(BYTES_PER_PIXEL * width * height);
     const gl = renderer.gl;
-    gl.readPixels(Math.round(frame.x * resolution), Math.round(frame.y * resolution), width, height, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+    gl.readPixels(Math.round(frame.x * resolution), Math.round(frame.y * resolution), width, height, gl.RGBA, gl.UNSIGNED_BYTE, webglPixels);
+    const canvasData = canvasBuffer.context.getImageData(0, 0, width, height);
+    _Extract.arrayPostDivide(webglPixels, canvasData.data);
+    canvasBuffer.context.putImageData(canvasData, 0, 0);
+    if (flipY) {
+      const target2 = new _pixi_core__WEBPACK_IMPORTED_MODULE_0__.utils.CanvasRenderTarget(canvasBuffer.width, canvasBuffer.height, 1);
+      target2.context.scale(1, -1);
+      target2.context.drawImage(canvasBuffer.canvas, 0, -height);
+      canvasBuffer.destroy();
+      canvasBuffer = target2;
+    }
     if (generated) {
       renderTexture.destroy(true);
     }
-    return { pixels, width, height, flipY };
+    return canvasBuffer.canvas;
+  }
+  pixels(target, frame) {
+    const renderer = this.renderer;
+    let resolution;
+    let renderTexture;
+    let generated = false;
+    if (target) {
+      if (target instanceof _pixi_core__WEBPACK_IMPORTED_MODULE_0__.RenderTexture) {
+        renderTexture = target;
+      } else {
+        renderTexture = this.renderer.generateTexture(target);
+        generated = true;
+      }
+    }
+    if (renderTexture) {
+      resolution = renderTexture.baseTexture.resolution;
+      frame = frame ?? renderTexture.frame;
+      renderer.renderTexture.bind(renderTexture);
+    } else {
+      resolution = renderer.resolution;
+      if (!frame) {
+        frame = TEMP_RECT;
+        frame.width = renderer.width;
+        frame.height = renderer.height;
+      }
+      renderer.renderTexture.bind(null);
+    }
+    const width = Math.round(frame.width * resolution);
+    const height = Math.round(frame.height * resolution);
+    const webglPixels = new Uint8Array(BYTES_PER_PIXEL * width * height);
+    const gl = renderer.gl;
+    gl.readPixels(Math.round(frame.x * resolution), Math.round(frame.y * resolution), width, height, gl.RGBA, gl.UNSIGNED_BYTE, webglPixels);
+    if (generated) {
+      renderTexture.destroy(true);
+    }
+    _Extract.arrayPostDivide(webglPixels, webglPixels);
+    return webglPixels;
   }
   destroy() {
     this.renderer = null;
@@ -28872,7 +28874,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class BlurFilterPass extends _pixi_core__WEBPACK_IMPORTED_MODULE_0__.Filter {
-  constructor(horizontal, strength = 8, quality = 4, resolution = _pixi_core__WEBPACK_IMPORTED_MODULE_0__.Filter.defaultResolution, kernelSize = 5) {
+  constructor(horizontal, strength = 8, quality = 4, resolution = _pixi_core__WEBPACK_IMPORTED_MODULE_0__.settings.FILTER_RESOLUTION, kernelSize = 5) {
     const vertSrc = (0,_generateBlurVertSource_mjs__WEBPACK_IMPORTED_MODULE_2__.generateBlurVertSource)(kernelSize, horizontal);
     const fragSrc = (0,_generateBlurFragSource_mjs__WEBPACK_IMPORTED_MODULE_1__.generateBlurFragSource)(kernelSize);
     super(vertSrc, fragSrc);
@@ -31774,7 +31776,8 @@ function square(x, y, nx, ny, innerWeight, outerWeight, clockwise, verts) {
   const eiy = iy + eyy;
   const eox = ox + exx;
   const eoy = oy + eyy;
-  verts.push(eix, eiy, eox, eoy);
+  verts.push(eix, eiy);
+  verts.push(eox, eoy);
   return 2;
 }
 function round(cx, cy, sx, sy, ex, ey, verts, clockwise) {
@@ -31795,17 +31798,23 @@ function round(cx, cy, sx, sy, ex, ey, verts, clockwise) {
   const angleInc = angleDiff / segCount;
   startAngle += angleInc;
   if (clockwise) {
-    verts.push(cx, cy, sx, sy);
+    verts.push(cx, cy);
+    verts.push(sx, sy);
     for (let i = 1, angle = startAngle; i < segCount; i++, angle += angleInc) {
-      verts.push(cx, cy, cx + Math.sin(angle) * radius, cy + Math.cos(angle) * radius);
+      verts.push(cx, cy);
+      verts.push(cx + Math.sin(angle) * radius, cy + Math.cos(angle) * radius);
     }
-    verts.push(cx, cy, ex, ey);
+    verts.push(cx, cy);
+    verts.push(ex, ey);
   } else {
-    verts.push(sx, sy, cx, cy);
+    verts.push(sx, sy);
+    verts.push(cx, cy);
     for (let i = 1, angle = startAngle; i < segCount; i++, angle += angleInc) {
-      verts.push(cx + Math.sin(angle) * radius, cy + Math.cos(angle) * radius, cx, cy);
+      verts.push(cx + Math.sin(angle) * radius, cy + Math.cos(angle) * radius);
+      verts.push(cx, cy);
     }
-    verts.push(ex, ey, cx, cy);
+    verts.push(ex, ey);
+    verts.push(cx, cy);
   }
   return segCount * 2;
 }
@@ -31865,7 +31874,8 @@ function buildNonNativeLine(graphicsData, graphicsGeometry) {
       indexCount += square(x0, y0, perpx, perpy, innerWeight, outerWeight, true, verts);
     }
   }
-  verts.push(x0 - perpx * innerWeight, y0 - perpy * innerWeight, x0 + perpx * outerWeight, y0 + perpy * outerWeight);
+  verts.push(x0 - perpx * innerWeight, y0 - perpy * innerWeight);
+  verts.push(x0 + perpx * outerWeight, y0 + perpy * outerWeight);
   for (let i = 1; i < length - 1; ++i) {
     x0 = points[(i - 1) * 2];
     y0 = points[(i - 1) * 2 + 1];
@@ -31895,14 +31905,16 @@ function buildNonNativeLine(graphicsData, graphicsGeometry) {
     const cross = dy0 * dx1 - dy1 * dx0;
     const clockwise = cross < 0;
     if (Math.abs(cross) < 1e-3 * Math.abs(dot)) {
-      verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 + perpx * outerWeight, y1 + perpy * outerWeight);
+      verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight);
+      verts.push(x1 + perpx * outerWeight, y1 + perpy * outerWeight);
       if (dot >= 0) {
         if (style.join === _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.ROUND) {
           indexCount += round(x1, y1, x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, verts, false) + 4;
         } else {
           indexCount += 2;
         }
-        verts.push(x1 - perp1x * outerWeight, y1 - perp1y * outerWeight, x1 + perp1x * innerWeight, y1 + perp1y * innerWeight);
+        verts.push(x1 - perp1x * outerWeight, y1 - perp1y * outerWeight);
+        verts.push(x1 + perp1x * innerWeight, y1 + perp1y * innerWeight);
       }
       continue;
     }
@@ -31919,60 +31931,59 @@ function buildNonNativeLine(graphicsData, graphicsGeometry) {
     const insideWeight = clockwise ? innerWeight : outerWeight;
     const smallerInsideDiagonalSq = smallerInsideSegmentSq + insideWeight * insideWeight * widthSquared;
     const insideMiterOk = pdist <= smallerInsideDiagonalSq;
-    let join = style.join;
-    if (join === _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.MITER && pdist / widthSquared > miterLimitSquared) {
-      join = _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.BEVEL;
-    }
     if (insideMiterOk) {
-      switch (join) {
-        case _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.MITER: {
-          verts.push(imx, imy, omx, omy);
-          break;
+      if (style.join === _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.BEVEL || pdist / widthSquared > miterLimitSquared) {
+        if (clockwise) {
+          verts.push(imx, imy);
+          verts.push(x1 + perpx * outerWeight, y1 + perpy * outerWeight);
+          verts.push(imx, imy);
+          verts.push(x1 + perp1x * outerWeight, y1 + perp1y * outerWeight);
+        } else {
+          verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight);
+          verts.push(omx, omy);
+          verts.push(x1 - perp1x * innerWeight, y1 - perp1y * innerWeight);
+          verts.push(omx, omy);
         }
-        case _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.BEVEL: {
-          if (clockwise) {
-            verts.push(imx, imy, x1 + perpx * outerWeight, y1 + perpy * outerWeight, imx, imy, x1 + perp1x * outerWeight, y1 + perp1y * outerWeight);
-          } else {
-            verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight, omx, omy, x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, omx, omy);
-          }
-          indexCount += 2;
-          break;
+        indexCount += 2;
+      } else if (style.join === _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.ROUND) {
+        if (clockwise) {
+          verts.push(imx, imy);
+          verts.push(x1 + perpx * outerWeight, y1 + perpy * outerWeight);
+          indexCount += round(x1, y1, x1 + perpx * outerWeight, y1 + perpy * outerWeight, x1 + perp1x * outerWeight, y1 + perp1y * outerWeight, verts, true) + 4;
+          verts.push(imx, imy);
+          verts.push(x1 + perp1x * outerWeight, y1 + perp1y * outerWeight);
+        } else {
+          verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight);
+          verts.push(omx, omy);
+          indexCount += round(x1, y1, x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, verts, false) + 4;
+          verts.push(x1 - perp1x * innerWeight, y1 - perp1y * innerWeight);
+          verts.push(omx, omy);
         }
-        case _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.ROUND: {
-          if (clockwise) {
-            verts.push(imx, imy, x1 + perpx * outerWeight, y1 + perpy * outerWeight);
-            indexCount += round(x1, y1, x1 + perpx * outerWeight, y1 + perpy * outerWeight, x1 + perp1x * outerWeight, y1 + perp1y * outerWeight, verts, true) + 4;
-            verts.push(imx, imy, x1 + perp1x * outerWeight, y1 + perp1y * outerWeight);
-          } else {
-            verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight, omx, omy);
-            indexCount += round(x1, y1, x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, verts, false) + 4;
-            verts.push(x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, omx, omy);
-          }
-          break;
-        }
+      } else {
+        verts.push(imx, imy);
+        verts.push(omx, omy);
       }
     } else {
-      verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 + perpx * outerWeight, y1 + perpy * outerWeight);
-      switch (join) {
-        case _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.MITER: {
-          if (clockwise) {
-            verts.push(omx, omy, omx, omy);
-          } else {
-            verts.push(imx, imy, imx, imy);
-          }
-          indexCount += 2;
-          break;
+      verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight);
+      verts.push(x1 + perpx * outerWeight, y1 + perpy * outerWeight);
+      if (style.join === _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.ROUND) {
+        if (clockwise) {
+          indexCount += round(x1, y1, x1 + perpx * outerWeight, y1 + perpy * outerWeight, x1 + perp1x * outerWeight, y1 + perp1y * outerWeight, verts, true) + 2;
+        } else {
+          indexCount += round(x1, y1, x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, verts, false) + 2;
         }
-        case _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.ROUND: {
-          if (clockwise) {
-            indexCount += round(x1, y1, x1 + perpx * outerWeight, y1 + perpy * outerWeight, x1 + perp1x * outerWeight, y1 + perp1y * outerWeight, verts, true) + 2;
-          } else {
-            indexCount += round(x1, y1, x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, verts, false) + 2;
-          }
-          break;
+      } else if (style.join === _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_JOIN.MITER && pdist / widthSquared <= miterLimitSquared) {
+        if (clockwise) {
+          verts.push(omx, omy);
+          verts.push(omx, omy);
+        } else {
+          verts.push(imx, imy);
+          verts.push(imx, imy);
         }
+        indexCount += 2;
       }
-      verts.push(x1 - perp1x * innerWeight, y1 - perp1y * innerWeight, x1 + perp1x * outerWeight, y1 + perp1y * outerWeight);
+      verts.push(x1 - perp1x * innerWeight, y1 - perp1y * innerWeight);
+      verts.push(x1 + perp1x * outerWeight, y1 + perp1y * outerWeight);
       indexCount += 2;
     }
   }
@@ -31987,7 +31998,8 @@ function buildNonNativeLine(graphicsData, graphicsGeometry) {
   perpy /= dist;
   perpx *= width;
   perpy *= width;
-  verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 + perpx * outerWeight, y1 + perpy * outerWeight);
+  verts.push(x1 - perpx * innerWeight, y1 - perpy * innerWeight);
+  verts.push(x1 + perpx * outerWeight, y1 + perpy * outerWeight);
   if (!closedShape) {
     if (style.cap === _const_mjs__WEBPACK_IMPORTED_MODULE_1__.LINE_CAP.ROUND) {
       indexCount += round(x1 - perpx * (innerWeight - outerWeight) * 0.5, y1 - perpy * (innerWeight - outerWeight) * 0.5, x1 - perpx * innerWeight, y1 - perpy * innerWeight, x1 + perpx * outerWeight, y1 + perpy * outerWeight, verts, false) + 2;
@@ -33803,7 +33815,6 @@ class RopeGeometry extends _pixi_mesh__WEBPACK_IMPORTED_MODULE_0__.MeshGeometry 
     let perpY = 0;
     const vertices = this.buffers[0].data;
     const total = points.length;
-    const halfWidth = this.textureScale > 0 ? this.textureScale * this._width / 2 : this._width / 2;
     for (let i = 0; i < total; i++) {
       const point = points[i];
       const index = i * 4;
@@ -33819,15 +33830,11 @@ class RopeGeometry extends _pixi_mesh__WEBPACK_IMPORTED_MODULE_0__.MeshGeometry 
         ratio = 1;
       }
       const perpLength = Math.sqrt(perpX * perpX + perpY * perpY);
-      if (perpLength < 1e-6) {
-        perpX = 0;
-        perpY = 0;
-      } else {
-        perpX /= perpLength;
-        perpY /= perpLength;
-        perpX *= halfWidth;
-        perpY *= halfWidth;
-      }
+      const num = this.textureScale > 0 ? this.textureScale * this._width / 2 : this._width / 2;
+      perpX /= perpLength;
+      perpY /= perpLength;
+      perpX *= num;
+      perpY *= num;
       vertices[index] = point.x + perpX;
       vertices[index + 1] = point.y + perpY;
       vertices[index + 2] = point.x - perpX;
@@ -35978,15 +35985,16 @@ const settings = {
   RESOLUTION: 1,
   RENDER_OPTIONS: {
     view: null,
-    width: 800,
-    height: 600,
+    antialias: false,
     autoDensity: false,
     backgroundColor: 0,
     backgroundAlpha: 1,
-    clearBeforeRender: true,
-    antialias: false,
     premultipliedAlpha: true,
+    clearBeforeRender: true,
     preserveDrawingBuffer: false,
+    width: 800,
+    height: 600,
+    legacy: false,
     hello: false
   },
   CREATE_IMAGE_BITMAP: false,
@@ -37115,8 +37123,7 @@ const spritesheetAsset = {
       if (basePath && basePath.lastIndexOf("/") !== basePath.length - 1) {
         basePath += "/";
       }
-      let imagePath = basePath + asset.meta.image;
-      imagePath = (0,_pixi_assets__WEBPACK_IMPORTED_MODULE_0__.copySearchParams)(imagePath, options.src);
+      const imagePath = basePath + asset.meta.image;
       const assets = await loader.load([imagePath]);
       const texture = assets[imagePath];
       const spritesheet = new _Spritesheet_mjs__WEBPACK_IMPORTED_MODULE_2__.Spritesheet(texture.baseTexture, asset, options.src);
@@ -37128,11 +37135,10 @@ const spritesheetAsset = {
           if (typeof item !== "string") {
             continue;
           }
-          let itemUrl = basePath + item;
+          const itemUrl = basePath + item;
           if (options.data?.ignoreMultiPack) {
             continue;
           }
-          itemUrl = (0,_pixi_assets__WEBPACK_IMPORTED_MODULE_0__.copySearchParams)(itemUrl, options.src);
           promises.push(loader.load({
             src: itemUrl,
             data: {
@@ -37369,7 +37375,7 @@ const _BitmapFont = class {
         height,
         xoffset: 0,
         yoffset: 0,
-        xadvance: width - (style.dropShadow ? style.dropShadowDistance : 0) - (style.stroke ? style.strokeThickness : 0)
+        xadvance: Math.ceil(width - (style.dropShadow ? style.dropShadowDistance : 0) - (style.stroke ? style.strokeThickness : 0))
       });
       positionX += (textureGlyphWidth + 2 * padding) * resolution;
       positionX = Math.ceil(positionX);
@@ -37567,8 +37573,8 @@ const _BitmapText = class extends _pixi_display__WEBPACK_IMPORTED_MODULE_1__.Con
       charRenderData.texture = charData.texture;
       charRenderData.line = line;
       charRenderData.charCode = charCode;
-      charRenderData.position.x = Math.round(pos.x + charData.xOffset + this._letterSpacing / 2);
-      charRenderData.position.y = Math.round(pos.y + charData.yOffset);
+      charRenderData.position.x = pos.x + charData.xOffset + this._letterSpacing / 2;
+      charRenderData.position.y = pos.y + charData.yOffset;
       charRenderData.prevSpaces = spaceCount;
       chars.push(charRenderData);
       lastLineWidth = charRenderData.position.x + Math.max(charData.xAdvance - charData.xOffset, charData.texture.orig.width);
@@ -38290,8 +38296,7 @@ const loadBitmapFont = {
     const textureUrls = [];
     for (let i = 0; i < pages.length; ++i) {
       const pageFile = pages[i].file;
-      let imagePath = _pixi_core__WEBPACK_IMPORTED_MODULE_1__.utils.path.join(_pixi_core__WEBPACK_IMPORTED_MODULE_1__.utils.path.dirname(src), pageFile);
-      imagePath = (0,_pixi_assets__WEBPACK_IMPORTED_MODULE_0__.copySearchParams)(imagePath, src);
+      const imagePath = _pixi_core__WEBPACK_IMPORTED_MODULE_1__.utils.path.join(_pixi_core__WEBPACK_IMPORTED_MODULE_1__.utils.path.dirname(src), pageFile);
       textureUrls.push(imagePath);
     }
     const loadedTextures = await loader.load(textureUrls);
@@ -42463,7 +42468,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "checkExtension": () => (/* reexport safe */ _pixi_assets__WEBPACK_IMPORTED_MODULE_6__.checkExtension),
 /* harmony export */   "checkMaxIfStatementsInShader": () => (/* reexport safe */ _pixi_core__WEBPACK_IMPORTED_MODULE_8__.checkMaxIfStatementsInShader),
 /* harmony export */   "convertToList": () => (/* reexport safe */ _pixi_assets__WEBPACK_IMPORTED_MODULE_6__.convertToList),
-/* harmony export */   "copySearchParams": () => (/* reexport safe */ _pixi_assets__WEBPACK_IMPORTED_MODULE_6__.copySearchParams),
 /* harmony export */   "createStringVariations": () => (/* reexport safe */ _pixi_assets__WEBPACK_IMPORTED_MODULE_6__.createStringVariations),
 /* harmony export */   "createTexture": () => (/* reexport safe */ _pixi_assets__WEBPACK_IMPORTED_MODULE_6__.createTexture),
 /* harmony export */   "createUBOElements": () => (/* reexport safe */ _pixi_core__WEBPACK_IMPORTED_MODULE_8__.createUBOElements),

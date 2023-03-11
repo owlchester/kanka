@@ -7,14 +7,15 @@ var summernoteConfig;
 var advancedRequest = false;
 $(document).ready(function () {
   summernoteConfig = $('#summernote-config');
+
   if (summernoteConfig.length > 0) {
     window.initSummernote();
   }
 });
-
 /**
  * Initialize summernote when available
  */
+
 window.initSummernote = function () {
   var $summernote = $('.html-editor').summernote({
     height: '300px',
@@ -23,8 +24,7 @@ window.initSummernote = function () {
     hintSelect: 'next',
     placeholder: summernoteConfig.data('placeholder'),
     dialogsInBody: summernoteConfig.data('dialogs') === 1,
-    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['kanka', ['aroba', summernoteConfig.data('bragi') !== undefined ? 'bragi' : null]], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table', 'spoiler', 'tableofcontent']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
-    //['dir', ['ltr', 'rtl']],
+    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['kanka', ['aroba', summernoteConfig.data('bragi') !== undefined ? 'bragi' : null]], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table', 'spoiler', 'tableofcontent']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
     ['view', ['fullscreen', 'codeview', 'prettify', 'help']], summernoteConfig.data('gallery') !== '' ? ['extensions', ['summernoteGallery']] : null],
     popover: {
       table: [['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']], ['delete', ['deleteRow', 'deleteCol', 'deleteTable']], ['custom', ['tableHeaders']], ['custom', ['tableStyles']]],
@@ -43,8 +43,8 @@ window.initSummernote = function () {
       /*onBlur: function() {
           console.log('blury');
       },*/
-    },
 
+    },
     summernoteGallery: {
       source: {
         // data: [],
@@ -75,6 +75,7 @@ window.initSummernote = function () {
         if (keyword.length < 3) {
           return [];
         }
+
         return hintEntities(keyword, callback);
       },
       template: function template(item) {
@@ -90,6 +91,7 @@ window.initSummernote = function () {
         if (keyword.length < 3) {
           return [];
         }
+
         return hintEntities(keyword, callback);
       },
       template: function template(item) {
@@ -187,12 +189,13 @@ window.initSummernote = function () {
     }
   });
 };
-
 /**
  * Search for entities
  * @param keyword
  * @param callback
  */
+
+
 function hintEntities(keyword, callback) {
   $.ajax({
     url: summernoteConfig.data('mention') + '?q=' + keyword + '&new=1',
@@ -205,12 +208,13 @@ function hintEntities(keyword, callback) {
     }
   });
 }
-
 /**
  * Search for months
  * @param keyword
  * @param callback
  */
+
+
 function hintMonths(keyword, callback) {
   $.ajax({
     url: summernoteConfig.data('months') + '?q=' + keyword,
@@ -219,17 +223,19 @@ function hintMonths(keyword, callback) {
     async: true
   }).done(callback);
 }
-
 /**
  * Search for attributes
  * @param keyword
  * @param callback
  */
+
+
 function attributeSearch(keyword, callback) {
   if (!summernoteConfig.data('attributes')) {
     //console.log('entity not yet created');
     return false;
   }
+
   $.ajax({
     url: summernoteConfig.data('attributes') + '?q=' + keyword,
     type: 'get',
@@ -237,49 +243,58 @@ function attributeSearch(keyword, callback) {
     async: true
   }).done(callback);
 }
-
 /**
  * Hint template (results displayed in dropdown)
  * @param item
  * @returns {string}
  */
+
+
 function hintTemplate(item) {
   var type = item.type ? ' (' + item.type + ')' : '';
+
   if (item.image) {
     return '<div class="entity-hint">' + item.image + '<div class="entity-hint-name">' + item.fullname + type + '</div>' + '</div>';
   }
+
   return item.fullname + type;
 }
-
 /**
  * Attribute template
  * @param item
  * @returns {string}
  */
+
+
 function attributeTemplate(item) {
   return item.name + (item.value ? ' (' + item.value + ')' : '');
 }
-
 /**
  * Hint content that is injected in the editor
  * @param item
  * @returns {string|*}
  */
+
+
 function hintContent(item) {
   if (item.id) {
     var mention = '[' + item.model_type + ':' + item.id + item.fullname + ']';
     var advancedMention = '[' + item.model_type + ':' + item.id + item.advanced_mention + ']';
+
     if (item.alias_id) {
       mention = '[' + item.model_type + ':' + item.id + item.advanced_mention + '|alias:' + item.alias_id + item.advanced_mention_alias + ']';
       return $('<span>' + mention + '</span>')[0];
     }
+
     if (summernoteConfig.data('advanced-mention')) {
       return $('<span>' + advancedMention + '</span>')[0];
     }
+
     if (advancedRequest) {
       return $('<span>' + advancedMention + '</span>')[0];
-    }
-    //console.log('standard');
+    } //console.log('standard');
+
+
     return $('<a />', {
       text: item.fullname,
       href: '#',
@@ -297,6 +312,7 @@ function hintContent(item) {
         'data-html': 'true'
       })[0];
     }
+
     return $('<a />', {
       text: item.fullname,
       href: item.url
@@ -304,18 +320,21 @@ function hintContent(item) {
   } else if (item.inject) {
     return item.inject;
   }
+
   return item.fullname;
 }
-
 /**
  *
  * @param item
  * @returns {jQuery|HTMLElement}
  */
+
+
 function attributeContent(item) {
   if (summernoteConfig.data('advanced-mention')) {
     return '{attribute:' + item.id + '}';
   }
+
   return $('<a />', {
     href: '#',
     "class": 'attribute attribute-mention',
@@ -323,16 +342,18 @@ function attributeContent(item) {
     'data-attribute': '{attribute:' + item.id + '}'
   })[0];
 }
-
 /**
  * Editor locale
  * @param locale
  * @returns {string}
  */
+
+
 function editorLang(locale) {
   if (!locale) {
     return 'en-US';
   }
+
   if (locale == 'he') {
     return 'he-IL';
   } else if (locale == 'ca') {
@@ -345,19 +366,21 @@ function editorLang(locale) {
     return locale + '-' + locale.toUpperCase();
   }
 }
-
 /**
  * Upload a file through summernote
  * @param file
  */
+
+
 function uploadImage($summernote, file) {
-  var modal = $('#campaign-imageupload-modal');
-  // Check if the campaign is superboosted
+  var modal = $('#campaign-imageupload-modal'); // Check if the campaign is superboosted
+
   if (!summernoteConfig.data('gallery-upload')) {
     modal.modal();
     console.warn('Campaign isn\'t superboosted');
     return;
   }
+
   formData = new FormData();
   formData.append("file", file);
   formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
@@ -384,31 +407,36 @@ function uploadImage($summernote, file) {
       error.hide();
       boosted.hide();
       permission.hide();
+
       if (jqXHR.status === 422) {
         error.text(buildErrors(jqXHR.responseJSON.errors)).show();
       } else if (jqXHR.status === 403) {
         permission.show();
       } else {
         boosted.show();
-      }
-      //$('#superboosted-error').text(buildErrors(jqXHR.responseJSON.errors));
+      } //$('#superboosted-error').text(buildErrors(jqXHR.responseJSON.errors));
+
+
       modal.modal();
     }
   });
 }
-
 /**
  *
  * @param data
  * @returns {string}
  */
+
+
 function buildErrors(data) {
   var errors = '';
+
   for (var key in data) {
     // skip loop if the property is from prototype
     if (!data.hasOwnProperty(key)) continue;
     errors += data[key] + "\n";
   }
+
   return errors;
 }
 /******/ })()

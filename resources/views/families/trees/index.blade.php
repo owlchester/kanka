@@ -58,12 +58,22 @@
         @include('families._menu', ['active' => 'tree', 'model' => $family])
 
         <div class="entity-main-block">
+            @if ($mode === 'pixi')
             <div class="family-tree-setup overflow-x overflow-y"
                 data-api="{{ route('families.family-tree.api', $family) }}"
                 data-save="{{ route('families.family-tree.api-save', $family) }}"
                 data-entity="{{ route('families.family-tree.entity-api', 0) }}"
             >
             </div>
+            @else
+            <div id="family-tree">
+                <family-tree
+                    api="{{ route('families.family-tree.api', $family) }}"
+                    save="{{ route('families.family-tree.api-save', $family) }}"
+                    entity="{{ route('families.family-tree.entity-api', 0) }}">
+                </family-tree>
+            </div>
+                @endif
         </div>
     </div>
 @endsection
@@ -71,7 +81,17 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/family-tree.js') }}" defer></script>
+    @if ($mode === 'pixi')
+        <script src="{{ mix('js/family-tree.js') }}" defer></script>
+    @else
+        <script src="{{ mix('js/family-tree-vue.js') }}" defer></script>
+    @endif
+@endsection
+@section('styles')
+    @parent
+    @if ($mode === 'vue')
+        <link href="{{ mix('css/family-tree.css') }}" rel="stylesheet">
+    @endif
 @endsection
 
 @section('modals')

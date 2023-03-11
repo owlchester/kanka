@@ -1,0 +1,24 @@
+#family-tree {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  border: 2px solid red;
+}
+
+.family-tree-node {
+  border: 1px solid blue;
+  display: inline-block;
+}
+
+.family-tree-entity {
+  border: 1px dashed yellowgreen;
+}
+
+.family-node-entity {
+  width: 200px;
+  border: 1px solid var(--input-border-color);
+  background-color: var(--input-background-color);
+}
+
+/*# sourceMappingURL=family-tree.css.map*/

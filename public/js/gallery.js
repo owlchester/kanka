@@ -2338,11 +2338,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 var loader, gallery, search;
 var fileDrop, fileProgress, fileUploadField, fileError;
@@ -2352,6 +2358,7 @@ $(document).ready(function () {
   initUploader();
   registerEvents();
 });
+
 function initGallery() {
   loader = $('#gallery-loader');
   gallery = $('#gallery-images');
@@ -2370,41 +2377,46 @@ function initGallery() {
       initSearch();
     }
   });
+
   galleryForm.ondrop = function (ev) {
     ev.preventDefault();
     ev.stopPropagation();
+
     if (ev.dataTransfer.items) {
-      var data = new FormData(galleryForm);
-      // Use DataTransferItemList interface to access the file(s)
+      var data = new FormData(galleryForm); // Use DataTransferItemList interface to access the file(s)
+
       _toConsumableArray(ev.dataTransfer.items).forEach(function (item, i) {
         // If dropped items aren't files, reject them
         if (item.kind === 'file') {
           data.append('file[]', item.getAsFile());
         }
       });
+
       uploadFiles(data);
       galleryForm.classList.remove('drop-shadow', 'dropping');
     } else {
       // Use DataTransfer interface to access the file(s)
-      _toConsumableArray(ev.dataTransfer.files).forEach(function (file, i) {
-        //console.log(`… file[${i}].name = ${file.name}`);
+      _toConsumableArray(ev.dataTransfer.files).forEach(function (file, i) {//console.log(`… file[${i}].name = ${file.name}`);
       });
     }
   };
+
   galleryForm.ondragover = function (e) {
     e.preventDefault();
     galleryForm.classList.add('drop-shadow', 'dropping');
     console.log('drag start');
   };
+
   galleryForm.ondragleave = function (e) {
     galleryForm.classList.remove('drop-shadow', 'dropping');
     console.log('drag end');
   };
 }
-
 /**
  *
  */
+
+
 function initSearch() {
   gallery.hide();
   loader.show();
@@ -2416,10 +2428,11 @@ function initSearch() {
     registerEvents();
   });
 }
-
 /**
  *
  */
+
+
 function initUploader() {
   galleryForm.onchange = function (event) {
     event.preventDefault();
@@ -2431,6 +2444,7 @@ function initUploader() {
     uploadFiles(data);
   };
 }
+
 var uploadFiles = function uploadFiles(data) {
   var config = {
     onUploadProgress: function onUploadProgress(progressEvent) {
@@ -2445,12 +2459,13 @@ var uploadFiles = function uploadFiles(data) {
     console.info('then', res);
     console.log('data', res.data);
     fileProgress.hide();
+
     if (res.data.success) {
       res.data.images.forEach(function (image) {
         //console.log('image', image);
-
         // Do we have a folder to add to?
         var last = $('li[data-folder]').last();
+
         if (last.length === 1) {
           console.log('last', last[0]);
           $(image).insertAfter($('li[data-folder]').last());
@@ -2462,19 +2477,24 @@ var uploadFiles = function uploadFiles(data) {
     }
   })["catch"](function (err) {
     fileProgress.hide();
+
     if (err.response && err.response.data.message) {
       fileError.text(err.response.data.message).fadeToggle();
     }
+
     registerEvents();
   });
 };
+
 function registerEvents() {
   $('#gallery-images li').unbind('click').on('click', function () {
     var folder = $(this).data('folder');
+
     if (folder) {
       window.location = folder;
       return;
     }
+
     $.ajax({
       url: $(this).data('url')
     }).done(function (data) {
