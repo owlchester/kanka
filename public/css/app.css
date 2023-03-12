@@ -1019,7 +1019,8 @@ button.dropdown-item:hover {
 }
 
 .keyboard-shortcut {
-  padding: 0.2rem 0.4rem;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.75rem;
   border: 1px solid var(--input-border-color);
   border-radius: 5px;
   margin-right: 5px;
@@ -1664,7 +1665,7 @@ img.note-float-right {
 }
 
 img.note-float-left {
-  float: right;
+  float: left;
 }
 
 .note-btn i.fa, .note-btn i.fas, .note-btn i.fa-brands, .note-btn i.far, .note-btn i.fa-solid {
