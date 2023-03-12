@@ -1,11 +1,11 @@
 <template>
-        <FamilyEntity
-            :entity="this.entity(relation.entity_id)"
-            :drawX="this.drawX"
-            :drawY="this.drawY"
-            :isRelation="true"
-        >
-        </FamilyEntity>
+    <FamilyEntity
+        :entity="this.entity(relation.entity_id)"
+        :drawX="this.drawX"
+        :drawY="this.drawY"
+        :isRelation="true"
+    >
+    </FamilyEntity>
 
     <FamilyChildren
         v-if="hasChildren()"

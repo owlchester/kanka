@@ -28,53 +28,53 @@ export default {
         index: 0,
     },
 
-    data() {
+    /*data() {
+        let nextDrawX = this.drawX;
+        let nodeOffset = 0;
+        let x = 0;
         return {
-            nodeOffset: 1,
-            offset: 0,
-            nextDrawX: false,
-            previous: [],
+            nextDrawX,
+            nodeOffset,
+            x
         };
-    },
+    },*/
     methods: {
         getChildren() {
-            console.log('get children', this.children);
+            //console.log('get children', this.children);
             return this.children;
         },
         getDrawX(node, index) {
-            console.log('getDrawX', index);
+            //console.log('getDrawX', index);
 
             // If this is the first relation, we want to draw it next to the parent
-            if (this.nextDrawX === false) {
-                this.nextDrawX = this.sourceX;
+            if (this.nextDrawX === undefined) {
+                this.nextDrawX = this.drawX;
             }
-            let x = this.nextDrawX;
+            //console.log('children', index, this.nextDrawX)
+            this.x = this.nextDrawX;
 
 
-            let nodeOffset = this.childWidth(node);
+            let childWidth
+            this.nodeOffset = this.childWidth(node) - 1;
 
-            //console.log('nodeOffset', nodeOffset);
-            //console.log('what', this.nextDrawX);
-            this.nextDrawX = nodeOffset * (200 + 20);
-            //this.previous.push(this.nextDrawX);
-            console.log('what', this.nextDrawX);
-            //this.nextDrawX += (200 + 20) * nodeOffset;
-            return x;
+            this.nextDrawX += this.nodeOffset * (200 + 20);
+            return this.x;
         },
         childWidth(el) {
-            let size = 1;
+            let size = 2;
 
             // If the child has relations, need to find those
-            if (el.relations !== undefined) {
-                let largestChild = 2; // At least two because this entity + relation = 2
-                el.relations.forEach(rel => {
-                    let tmp = this.relationWidth(rel);
-                    if (tmp > largestChild) {
-                        largestChild = tmp;
-                    }
-                });
-                size = largestChild;
+            if (el.relations === undefined) {
+                return size;
             }
+            let largestChild = 2; // At least two because this entity + relation = 2
+            el.relations.forEach(rel => {
+                let tmp = this.relationWidth(rel);
+                if (tmp > largestChild) {
+                    largestChild = tmp;
+                }
+            });
+            size = largestChild;
 
             // If the child has children of its own? Is that possible?
             //console.log('child', child, largestChild);

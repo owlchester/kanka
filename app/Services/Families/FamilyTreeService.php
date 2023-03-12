@@ -43,7 +43,7 @@ class FamilyTreeService
      */
     public function tree(): array
     {
-        return ['nodes' => $this->familyTree->config ?? [], 'entities' => $this->entities];
+        return ['nodes' => $this->fillNodes(), 'entities' => $this->entities];
     }
 
     /**
@@ -237,5 +237,34 @@ class FamilyTreeService
         // Loop on the data, adding a uuid on each element that is missing one
         //dd('ended recursive', $data);
         return $data;
+    }
+
+    protected function fillNodes(): array
+    {
+        $nodes = $this->familyTree->config;
+        if (empty($nodes)) {
+            return [];
+        }
+
+        foreach ($nodes[0]['relations'] as $i => $relation) {
+            $nodes[0]['relations'][$i] = $this->informRelation($relation);
+        }
+        return $nodes;
+    }
+
+    protected function informRelation(array $relation): array
+    {
+        // No children, single relation
+        if (empty($relation['children'])) {
+            $relation['width'] = 1;
+            return $relation;
+        }
+
+        $count = $max = 0;
+        foreach($relation['children'] as $i => $child) {
+            $count++;
+        }
+        $relation['width'] = $count;
+        return $relation;
     }
 }

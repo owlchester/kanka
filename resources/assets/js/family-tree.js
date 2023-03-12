@@ -417,7 +417,7 @@ const drawRelations = (relations, sourceX, sourceY, drawX, drawY) => {
         if (index > 0) {
             tmpOffsetX *= nodeOffset;
         }
-        console.log('draw relation', index, tmpOffsetX);
+        //console.log('draw relation', index, tmpOffsetX);
 
         drawRelation(rel, drawX, sourceY, drawX + tmpOffsetX, drawY, index);
 
@@ -504,7 +504,7 @@ const addFirstNode = () => {
 
     helper.style.display = "none";
     firstHelper.style.display = "block";
-    
+
     editEntity(0);
 
 };
@@ -982,4 +982,4 @@ const initFamilyTree = () => {
 // When jQuery is ready, draw the family tree
 $(document).ready(function () {
     initFamilyTree();
-}); 
+});

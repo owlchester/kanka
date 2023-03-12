@@ -31,22 +31,30 @@ export default {
 
     data() {
         return {
-            nodeOffset: 1,
         }
     },
 
     methods: {
 
         nextDrawX(rel, index) {
+            if (this.nodeOffset === undefined) {
+                this.nodeOffset = 1;
+            }
             // If this is the first relation, we want to draw it next to the parent
             let tmpOffsetX = 200 + 20;
-            return tmpOffsetX;
             // However, if it's not, we need to add more padding, based on the previous node width
+           // console.log('nextDrawX index', index);
             if (index > 0) {
                 tmpOffsetX *= this.nodeOffset;
+                //console.log('increment tmpOffsetX to', tmpOffsetX);
             }
 
-            this.nodeOffset += this.relationWidth(rel, 0);
+            let relWidth = this.relationWidth(rel, 0);
+            //console.log('Relation width', relWidth);
+            this.nodeOffset += relWidth - 1;
+            //console.log('Now the nodeOffset is at', this.nodeOffset);
+            //console.log('drawX', this.drawX);
+            //console.log('me', index, this.drawX, this.tmpOffsetX);
             return this.drawX + tmpOffsetX;
         },
 
