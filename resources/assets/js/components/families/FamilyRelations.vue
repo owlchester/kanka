@@ -8,6 +8,7 @@
         :sourceY="sourceY"
         :drawX="nextDrawX(relation, index)"
         :drawY="drawY"
+        :isEditing="this.isEditing"
     ></FamilyRelation>
 </template>
 
@@ -22,6 +23,7 @@ export default {
         sourceY: 0,
         drawX: 0,
         drawY: 0,
+        isEditing: undefined,
     },
 
     components: {
@@ -37,6 +39,9 @@ export default {
     methods: {
 
         nextDrawX(rel, index) {
+
+            return this.calcPreviousRelations(index);
+
             if (this.nodeOffset === undefined) {
                 this.nodeOffset = 1;
             }
@@ -55,6 +60,20 @@ export default {
             //console.log('Now the nodeOffset is at', this.nodeOffset);
             //console.log('drawX', this.drawX);
             //console.log('me', index, this.drawX, this.tmpOffsetX);
+            return this.drawX + tmpOffsetX;
+        },
+
+        calcPreviousRelations(index) {
+            let nodeOffset = 1;
+            let tmpOffsetX = 200 + 20;
+
+            for(let i = 0; i < index; i++) {
+                let rel = this.relations[i];
+                let relWidth = this.relationWidth(rel, 0);
+                nodeOffset += relWidth - 1;
+            }
+
+            tmpOffsetX *= nodeOffset;
             return this.drawX + tmpOffsetX;
         },
 

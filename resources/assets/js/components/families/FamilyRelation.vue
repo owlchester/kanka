@@ -4,8 +4,19 @@
         :drawX="this.drawX"
         :drawY="this.drawY"
         :isRelation="true"
+        :isEditing="this.isEditing"
     >
     </FamilyEntity>
+
+    <RelationLine
+        :drawX="this.drawX"
+        :drawY="this.drawY"
+        :sourceX="this.sourceX"
+        :sourceY="this.sourceY"
+        :relation="this.relationText()"
+        :isEditing="this.isEditing"
+    ></RelationLine>
+
 
     <FamilyChildren
         v-if="hasChildren()"
@@ -19,6 +30,7 @@
         :startX="sourceX"
         :startY="this.startY()"
         :lineX="this.lineX()"
+        :isEditing="this.isEditing"
     >
     </FamilyChildren>
 </template>
@@ -34,6 +46,7 @@ export default {
         drawX: 0,
         drawY: 0,
         index: 0,
+        isEditing: false,
     },
     methods: {
         entity(id) {
@@ -48,10 +61,13 @@ export default {
             return index === 0 ? this.sourceX : this.drawX;
         },
         startY() {
-            return this.sourceY + 60 + 30;
+            return this.sourceY + 60 + 60;
         },
         lineX() {
             return this.index === 0 ? this.drawX + 200 + 20 : this.sourceX;
+        },
+        relationText() {
+            return this.relation.role;
         }
     },
     mounted() {

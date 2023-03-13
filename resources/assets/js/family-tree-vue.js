@@ -10,4 +10,7 @@ app.component('FamilyEntity', require('./components/families/FamilyEntity.vue').
 app.component('FamilyRelations', require('./components/families/FamilyRelations.vue').default)
 app.component('FamilyRelation', require('./components/families/FamilyRelation.vue').default)
 app.component('FamilyChildren', require('./components/families/FamilyChildren.vue').default)
+app.component('RelationLine', require('./components/families/RelationLine.vue').default)
+app.component('ChildrenLine', require('./components/families/ChildrenLine.vue').default)
+app.component('FamilyParentChildrenLine', require('./components/families/FamilyParentChildrenLine.vue').default)
 app.mount('#family-tree');

@@ -21,3 +21,16 @@
     border: 1px solid var(--input-border-color);
     background-color: var(--input-background-color);
 }
+
+.family-tree-line {
+    background-color: #333;
+}
+.family-tree-child-line {
+    background-color: blue;
+}
+.family-tree-child-parent-line {
+    background-color: red;
+}
+.family-tree-relation {
+
+}

@@ -19,6 +19,7 @@ export default {
         drawX: 0,
         drawY: 0,
         isRelation: false,
+        isEditing: undefined,
     },
 
     methods: {
