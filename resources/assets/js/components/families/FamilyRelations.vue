@@ -102,7 +102,7 @@ export default {
             });
 
             return size;
-        }
+        },
     },
     mounted() {
         //console.info('FamilyRelations', this.relations);

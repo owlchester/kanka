@@ -1,6 +1,7 @@
 <template>
     <FamilyEntity
         :entity="this.entity(relation.entity_id)"
+        :uuid="relation.uuid"
         :drawX="this.drawX"
         :drawY="this.drawY"
         :isRelation="true"
@@ -14,6 +15,7 @@
         :sourceX="this.sourceX"
         :sourceY="this.sourceY"
         :relation="this.relationText()"
+        :uuid="relation.uuid"
         :isEditing="this.isEditing"
     ></RelationLine>
 

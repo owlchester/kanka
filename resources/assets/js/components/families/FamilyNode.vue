@@ -9,6 +9,7 @@
 
     <FamilyEntity
         :entity="this.entity(this.node.entity_id)"
+        :uuid="this.node.uuid"
         :drawX="this.drawX"
         :drawY="this.drawY"
         :isEditing="this.isEditing"

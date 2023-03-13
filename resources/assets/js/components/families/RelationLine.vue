@@ -3,7 +3,13 @@
     <div class="family-tree-line absolute" v-bind:style="horizontal()"></div>
     <div class="family-tree-line absolute" v-bind:style="verticalTarget()"></div>
     <div class="family-tree-relation text-center overflow-clip absolute" v-bind:style="relationBox()">
-        <span>{{ relationText() }}</span>
+        <a v-if="isEditing" v-on:click="editRelation(uuid, relation)" class="cursor-pointer">
+            {{ relationText() }}
+            <i class="fa-solid fa-pencil" aria-hidden="true">
+                <span class="sr-only">Edit relation</span>
+            </i>
+        </a>
+        <span v-else>{{ relationText() }}</span>
     </div>
 </template>
 
@@ -12,18 +18,20 @@
 export default {
     props: {
         relation: '',
+        uuid: undefined,
         sourceX: 0,
         sourceY: 0,
         drawX: 0,
         drawY: 0,
         isEditing: false,
+
         /*node: undefined,
         isRelation: false,*/
     },
 
     data() {
         return {
-            height: '15'
+            height: 15,
         }
     },
 
@@ -56,6 +64,9 @@ export default {
         },
         relationText() {
             return this.relation;
+        },
+        editRelation(uuid, relation) {
+            this.emitter.emit('editRelation', {uuid: uuid, relation: relation});
         },
     },
 };

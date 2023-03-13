@@ -5,6 +5,7 @@
     'miscModel' => $family,
 ])
 
+@if ($mode === 'pixi')
 @section('entity-header-actions')
     @can('update', $family)
         <div class="flex w-full">
@@ -31,6 +32,7 @@
         </div>
     @endcan
 @endsection
+@endif
 
 
 @inject('campaignService', 'App\Services\CampaignService')
@@ -69,8 +71,8 @@
             <div id="family-tree">
                 <family-tree
                     api="{{ route('families.family-tree.api', $family) }}"
-                    save="{{ route('families.family-tree.api-save', $family) }}"
-                    entity="{{ route('families.family-tree.entity-api', 0) }}">
+                    save_api="{{ route('families.family-tree.api-save', $family) }}"
+                    entity_api="{{ route('families.family-tree.entity-api', 0) }}">
                 </family-tree>
             </div>
                 @endif

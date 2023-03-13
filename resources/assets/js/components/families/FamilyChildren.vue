@@ -95,7 +95,7 @@ export default {
 
             // If the child has relations, need to find those
             if (el.relations === undefined) {
-                return size;
+                return 2;
             }
             let largestChild = 2; // At least two because this entity + relation = 2
             el.relations.forEach(rel => {
