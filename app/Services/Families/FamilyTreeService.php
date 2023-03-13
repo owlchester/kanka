@@ -43,7 +43,11 @@ class FamilyTreeService
      */
     public function tree(): array
     {
-        return ['nodes' => $this->fillNodes(), 'entities' => $this->entities];
+        return [
+            'nodes' => $this->fillNodes(),
+            'entities' => $this->entities,
+            'texts' => $this->texts(),
+        ];
     }
 
     /**
@@ -266,5 +270,64 @@ class FamilyTreeService
         }
         $relation['width'] = $count;
         return $relation;
+    }
+
+    protected function texts(): array
+    {
+        return [
+            'actions' => [
+                'edit' => __('crud.edit'),
+                'clear' => __('families/trees.actions.clear'),
+                'reset' => __('families/trees.actions.reset'),
+                'save' => __('families/trees.actions.save'),
+                'first' => __('families/trees.actions.first'),
+            ],
+            'modals' => [
+                'relation' => [
+                    'add' => [
+                        'title' => __('families/trees.modals.relations.add.title'),
+                    ],
+                    'edit' => [
+                        'title' => __('families/trees.modals.relations.edit.title'),
+                    ],
+                ],
+                'entity' => [
+                    'add' => [
+                        'title' => __('families/trees.modals.entity.add.title')
+                    ],
+                    'edit' => [
+                        'title' => __('families/trees.modals.entity.edit.title'),
+                    ],
+                    'child' => [
+                        'title' => __('families/trees.modals.entity.child.title'),
+                    ],
+                    'remove' => [
+                        'confirm' => __('families/trees.modals.entity.remove.confirm'),
+                    ],
+                ],
+                'reset' => [
+                    'confirm' => __('families/trees.modals.reset.confirm'),
+                ],
+                'fields' => [
+                    'relation' => __('entities/relations.fields.relation'),
+                    'character' => __('entities.character'),
+                ],
+            ],
+            'toasts' => [
+                'relations' => [
+                    'add' => __('families/trees.modals.relations.add.success'),
+                    'edit' => __('families/trees.modals.relations.edit.success'),
+                ],
+                'entity' => [
+                    'add' => __('families/trees.modals.entity.add.success'),
+                    'edit' => __('families/trees.modals.entity.edit.success'),
+                    'child' => __('families/trees.modals.entity.child.success'),
+                    'removed' => __('families/trees.modals.entity.remove.success'),
+                ],
+                'saved' => __('families/trees.success.saved'),
+                'cleared' => __('families/trees.success.cleared'),
+                'reseted' => __('families/trees.success.reseted'),
+            ],
+        ];
     }
 }

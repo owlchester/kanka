@@ -13,6 +13,7 @@
         :drawX="this.drawX"
         :drawY="this.drawY"
         :isEditing="this.isEditing"
+        :node="this.node"
     ></FamilyEntity>
 
     <FamilyRelations v-if="hasRelations()"
@@ -40,6 +41,7 @@ export default {
         drawLine: false,
         lineX: 0,
         isEditing: undefined,
+        offset: undefined,
     },
 
     methods: {

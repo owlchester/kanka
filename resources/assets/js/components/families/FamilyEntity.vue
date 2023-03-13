@@ -3,6 +3,7 @@
         <div class="flex items-center gap-1">
             <div class="grow justify-center">
                 <a v-bind:href="entity.url" class="block">
+                    #{{ entity.id }}
                     {{ entity.name }}
                 </a>
                 <div class="flex gap-1" v-if="isEditing">
@@ -41,6 +42,7 @@ export default {
         drawY: 0,
         isRelation: false,
         isEditing: undefined,
+        node: undefined,
     },
 
     methods: {

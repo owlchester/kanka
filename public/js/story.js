@@ -6,18 +6,16 @@ var __webpack_exports__ = {};
 $(document).ready(function () {
   initImageFocus();
 });
-
 function initImageFocus() {
   var target = $('.focus-image');
-
   if (target.length === 0) {
     return;
   }
-
   target.on('click', function (e) {
     var elm = $(this);
     var posX = e.pageX - elm.offset().left;
-    var posY = e.pageY - elm.offset().top; //console.log('where click', posX, posY);
+    var posY = e.pageY - elm.offset().top;
+    //console.log('where click', posX, posY);
 
     $('.focus').css('top', posY - 22).css('left', posX - 22).show();
     $('input[name="focus_x"]').val(parseInt(posX));

@@ -641,18 +641,18 @@ ul.pagination li span {
   padding: 0.6rem;
   font-size: 1.5rem;
   border-radius: 9999px;
-  background-color: hsl(35deg, 68%, 49%);
+  background-color: hsl(35, 68%, 49%);
   color: white;
 }
 .profile-badges .badge:hover, .profile-badges .badge:focus, .profile-badges .badge:active {
   transition: all 0.5s;
-  background-color: hsl(35deg, 96%, 38%);
+  background-color: hsl(35, 96%, 38%);
 }
 .profile-badges .badge-wordsmith {
-  background-color: hsl(209deg, 26%, 56%);
+  background-color: hsl(209, 26%, 56%);
 }
 .profile-badges .badge-wordsmith:hover, .profile-badges .badge-wordsmith:focus, .profile-badges .badge-wordsmith:active {
-  background-color: hsl(204deg, 32%, 42%);
+  background-color: hsl(204, 32%, 42%);
 }
 
 /* Hover Effects on Card */

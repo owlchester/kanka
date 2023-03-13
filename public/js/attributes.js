@@ -21,11 +21,9 @@ function dynamicMentions() {
   var SELECTOR = '.kanka-mentions'; //:not(.kanka-mentions-tribute)';
 
   fields = $(SELECTOR);
-
   if (fields.length === 0) {
     return;
   }
-
   remoteUrl = fields.first().data('remote');
   var tribute = new (tributejs__WEBPACK_IMPORTED_MODULE_0___default())({
     values: function values(text, cb) {
@@ -42,11 +40,11 @@ function dynamicMentions() {
       return null;
     }
   });
-  tribute.attach(document.querySelectorAll(SELECTOR)); //$(SELECTOR).addClass('kanka-mentions-tribute');
+  tribute.attach(document.querySelectorAll(SELECTOR));
+  //$(SELECTOR).addClass('kanka-mentions-tribute');
 
   function remoteSearch(text, cb) {
     var xhr = new XMLHttpRequest();
-
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
@@ -57,7 +55,6 @@ function dynamicMentions() {
         }
       }
     };
-
     var fullUrl = remoteUrl + '?q=' + text;
     xhr.open("GET", fullUrl, true);
     xhr.send();
@@ -3959,43 +3956,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
 /* harmony import */ var _mention__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mention */ "./resources/assets/js/mention.js");
 
+
 /**
  * When adding a new attribute, we give it a negative id to avoid issues with checkboxes losing information
  * @type {number}
  */
-
 var attribute_id_count = -1000;
 var maxFields = false;
 var maxFieldAlert;
 
 $(document).ready(function () {
   initLiveAttributes();
-
   if ($('#add_attribute_target').length === 0) {
     return;
   }
-
   initAttributeUI();
   var maxConfig = $('[data-max-fields]');
-
   if (maxConfig.length === 1) {
     maxFields = maxConfig.data('max-fields');
     maxFieldAlert = $('.alert-too-many-fields');
   }
 });
+
 /**
  * Initiate on click handles for attribute interface
  */
-
 function initAttributeUI() {
   var target = $('#add_attribute_target');
   initAttributeHandlers();
   $('.add_attribute').click(function (e) {
     e.preventDefault();
-
     if (maxFields !== false) {
-      var fieldCount = $('form :input').length + 4; //console.log('checking', fieldCount, 'vs', maxFields);
-
+      var fieldCount = $('form :input').length + 4;
+      //console.log('checking', fieldCount, 'vs', maxFields);
       if (fieldCount > maxFields) {
         maxFieldAlert.show();
         return;
@@ -4003,7 +3996,6 @@ function initAttributeUI() {
         maxFieldAlert.hide();
       }
     }
-
     attribute_id_count -= 1;
     var body = $($(this).data('template')).clone().removeClass('hidden').removeAttr('id');
     var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
@@ -4011,18 +4003,17 @@ function initAttributeUI() {
     initAttributeHandlers();
     (0,_mention__WEBPACK_IMPORTED_MODULE_1__["default"])();
     return false;
-  }); // Delete all visible attributes
+  });
 
+  // Delete all visible attributes
   $('#attributes-delete-all-confirm-submit').click(function (e) {
     e.preventDefault();
     $(this).siblings('input[name="delete-all-attributes"]').val(1);
     $('#entity-attributes-all .attribute_delete').click();
     $('#attributes-delete-all-confirm').modal('hide');
-
     if (maxFieldAlert) {
       maxFieldAlert.hide();
     }
-
     return false;
   });
   $.each($('[data-toggle="private"]'), function () {
@@ -4034,11 +4025,10 @@ function initAttributeUI() {
     }
   });
 }
+
 /**
  * This function rebinds the delete on all buttons
  */
-
-
 function initAttributeHandlers() {
   var el = document.querySelector('.entity-attributes');
   sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(el, {
@@ -4048,7 +4038,6 @@ function initAttributeHandlers() {
     $(this).unbind('click');
     $(this).on('click', function () {
       $(this).parent().parent().parent().remove();
-
       if (maxFieldAlert) {
         maxFieldAlert.hide();
       }
@@ -4075,21 +4064,21 @@ function initAttributeHandlers() {
       $(this).removeClass('fa-solid').addClass('fa-regular').prop('title', $(this).data('tab'));
       $(this).prev('input:hidden').val("0");
     }
-  }); //window.initSelect2();
+  });
+
+  //window.initSelect2();
 }
 
 var liveEditURL, liveEditModal, liveEditCurrentUID;
-
 function initLiveAttributes() {
   var config = $('[name="live-attribute-config"]');
-
   if (config.length === 0) {
     return;
   }
-
   liveEditURL = config.data('live');
-  liveEditModal = $('#live-attribute-modal'); // Add the live-edit-parsed attribute to variables to confirm that they are valid
+  liveEditModal = $('#live-attribute-modal');
 
+  // Add the live-edit-parsed attribute to variables to confirm that they are valid
   var uid = 1;
   $.each($('.live-edit'), function () {
     $(this).addClass('live-edit-parsed');
@@ -4098,6 +4087,7 @@ function initLiveAttributes() {
   });
   $('.live-edit-parsed').unbind('click').click(function () {
     //console.log('clicked on live edit parsed');
+
     var id = $(this).data('id');
     liveEditCurrentUID = $(this).data('uid');
     var url = liveEditURL + '?id=' + id + '&uid=' + $(this).data('uid');
@@ -4106,8 +4096,9 @@ function initLiveAttributes() {
     }).done(function (result) {
       var params = {};
       liveEditModal.find('.modal-content').html(result);
-      liveEditModal.modal(params); //console.log('child', liveEditModal.find('form'));
+      liveEditModal.modal(params);
 
+      //console.log('child', liveEditModal.find('form'));
       liveEditModal.find('form').submit(function (e) {
         e.preventDefault();
         $.ajax({
@@ -4118,16 +4109,14 @@ function initLiveAttributes() {
         }).done(function (result) {
           liveEditModal.find('.modal-content').html('');
           liveEditModal.modal('hide');
-          var target = $('[data-uid="' + result.uid + '"]'); //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
-
+          var target = $('[data-uid="' + result.uid + '"]');
+          //console.log('looking for', '[data-uid="' + result.uid + '"]', target);
           target.html(result.value);
-
           if (result.value) {
             target.removeClass('empty-value');
           } else {
             target.addClass('empty-value');
           }
-
           window.showToast(result.success);
         }).fail(function (result) {
           //alert('error! check console logs');

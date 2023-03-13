@@ -72,7 +72,9 @@
                 <family-tree
                     api="{{ route('families.family-tree.api', $family) }}"
                     save_api="{{ route('families.family-tree.api-save', $family) }}"
-                    entity_api="{{ route('families.family-tree.entity-api', 0) }}">
+                    entity_api="{{ route('families.family-tree.entity-api', 0) }}"
+                    search_api="{{ route('search.entities-with-relations', ['only' => config('entities.ids.character')]) }}"
+                >
                 </family-tree>
             </div>
                 @endif

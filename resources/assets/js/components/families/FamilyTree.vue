@@ -2,19 +2,19 @@
     <div class="flex w-full gap-1 mb-5 justify-end" v-if="!isLoading">
         <button class="btn btn-sm btn-warning" v-if="!isEditing" v-on:click="startEditing()">
             <i class="fa-solid fa-edit" aria-hidden="true"></i>
-            Edit
+            {{ this.texts.actions.edit }}
         </button>
         <button class="btn btn-sm btn-default" v-if="isEditing" v-on:click="resetTree()">
             <i class="fa-solid fa-redo" aria-hidden="true"></i>
-            Reset
+            {{ this.texts.actions.reset }}
         </button>
         <button class="btn btn-sm btn-default" v-if="isEditing" v-on:click="clearTree()">
             <i class="fa-solid fa-eraser" aria-hidden="true"></i>
-            Clear
+            {{ this.texts.actions.clear }}
         </button>
         <button class="btn btn-sm btn-primary" :disabled="!isDirty" v-if="isEditing" v-on:click="saveTree()">
             <i class="fa-solid fa-save" aria-hidden="true"></i>
-            Save
+            {{ this.texts.actions.save }}
         </button>
     </div>
     <div class="family-tree relative">
@@ -23,6 +23,10 @@
             <span class="sr-only">Loading...</span>
         </div>
         <div v-else>
+            <a class="btn btn-default rounded-2xl px-5 py-2 cursor-pointer" v-on:click="createNode()" v-if="showCreateNode()">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                {{ this.texts.actions.first }}
+            </a>
             <FamilyNode v-for="node in nodes"
                         :node="node"
                         :entities="entities"
@@ -35,26 +39,27 @@
             </FamilyNode>
         </div>
     </div>
-    <div class="modal fade" id="family-tree-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel" ref="modal">
+    <div class="modal fade" id="family-tree-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel" ref="modal" v-if="!isLoading">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" v-on:click="closeModal()">
                         <i class="fa-solid fa-times" aria-hidden="true"></i>
                     </button>
-                    <h4 class="modal-title" v-if="isAddingChild">Add a child</h4>
-                    <h4 class="modal-title" v-else-if="isEditingEntity">Change an entity</h4>
-                    <h4 class="modal-title" v-else-if="isAddingRelation">Add a relation</h4>
-                    <h4 class="modal-title" v-else-if="isEditingRelation">Change a relation</h4>
+                    <h4 class="modal-title" v-if="isAddingChild">{{ this.texts.modals.entity.child.title }}</h4>
+                    <h4 class="modal-title" v-else-if="isAddingCharacter">{{ this.texts.modals.entity.add.title }}</h4>
+                    <h4 class="modal-title" v-else-if="isEditingEntity">{{ this.texts.modals.entity.edit.title }}</h4>
+                    <h4 class="modal-title" v-else-if="isAddingRelation">{{ this.texts.modals.relation.add.title }}</h4>
+                    <h4 class="modal-title" v-else-if="isEditingRelation">{{ this.texts.modals.relation.edit.title }}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group" v-show="isAddingRelation || isAddingChild || isEditingEntity">
-                        <label>Entity</label>
-                        <select class="form-control select2" style="width: 100%" data-url="http://kanka.test:8081/en/campaign/2/search/relation-entities?only=1" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true" v-model="this.entity"></select>
+                    <div class="form-group" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter">
+                        <label>{{ this.texts.modals.fields.character }}</label>
+                        <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true" ></select>
                     </div>
                     <div class="form-group" v-show="isEditingRelation || isAddingRelation">
-                        <label>Relation</label>
-                        <input v-model="relation" type="text" maxlength="70" class="form-control" />
+                        <label>{{ this.texts.modals.fields.relation }}</label>
+                        <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -78,6 +83,7 @@ export default {
         api: undefined,
         save_api: undefined,
         entity_api: undefined,
+        search_api: undefined,
     },
     components: {
         FamilyNode,
@@ -87,6 +93,7 @@ export default {
         return {
             nodes: [],
             entities: [],
+            texts: undefined,
             isEditing: false,
             isLoading: true,
             isDirty: false,
@@ -97,13 +104,14 @@ export default {
             isAddingRelation: false,
             isAddingChild: false,
             isEditingEntity: false,
+            isAddingCharacter: false,
             isEditingRelation: false,
 
             relation: undefined,
             entity: undefined,
 
             modal: '#family-tree-modal',
-            entityField: 'select[name="character_id"]',
+            entityField: 'select[name="character_id_ft"]',
             newUuid: 1,
         }
     },
@@ -113,27 +121,33 @@ export default {
             this.isEditing = true;
         },
         resetTree() {
-            this.isEditing = false;
-            this.isDirty = false;
+            if (confirm(this.texts.modals.reset.confirm)) {
+                this.isEditing = false;
+                this.isDirty = false;
 
 
-            this.nodes = JSON.parse(JSON.stringify(this.originalNodes));
-            this.entities = JSON.parse(JSON.stringify(this.originalEntities));
+                this.nodes = JSON.parse(JSON.stringify(this.originalNodes));
+                this.entities = JSON.parse(JSON.stringify(this.originalEntities));
+
+                window.showToast(this.texts.toasts.reseted);
+            }
         },
         saveTree() {
             axios.post(this.save_api, {data: this.nodes, entities: this.entities})
                 .then((resp) => {
                     //console.log('Saved Tree');
-                    window.showToast('Yooo');
+                    window.showToast(this.texts.toasts.saved);
                     this.isDirty = false;
                 });
         },
         clearTree() {
             this.nodes = [];
+            window.showToast(this.texts.toasts.cleared);
         },
         deleteUuid(uuid) {
-            if (confirm('Are you sure you want to delete?')) {
+            if (confirm(this.texts.modals.entity.remove.confirm)) {
                 this.deleteUuidFromNodes(uuid);
+                window.showToast(this.texts.toasts.entity.remove);
                 this.isDirty = true;
             }
         },
@@ -169,6 +183,7 @@ export default {
             this.isAddingRelation = false;
             this.isEditingRelation = false;
             this.isEditingEntity = false;
+            this.isAddingCharacter = false;
             this.currentUuid = undefined;
             this.relation = undefined;
             this.entity = undefined;
@@ -188,11 +203,21 @@ export default {
                 this.addChild();
             } else if(this.isEditingEntity) {
                 this.editEntity();
+            } else if(this.isAddingCharacter) {
+                this.editEntity();
             }
+        },
+        showCreateNode() {
+            return this.nodes.length === 0 && this.isEditing;
+        },
+        createNode() {
+            this.isAddingCharacter = true;
+            this.currentUuid = 0;
+            this.showDialog();
         },
         editRelation() {
             this.isDirty = true;
-            console.log('edit relation', this.currentUuid, this.relation);
+            //console.log('edit relation', this.currentUuid, this.relation);
             const getRelationNodes = (result, object) => {
                 if (object.uuid === this.currentUuid) {
                     object.role = this.relation;
@@ -213,20 +238,26 @@ export default {
                 return result;
             };
             this.nodes = this.nodes.reduce(getRelationNodes, []);
+
+            window.showToast(this.texts.toasts.relations.edit);
             this.closeModal();
         },
         addRelation() {
             let entity_id = $(this.entityField).val();
+            //console.log('entity_id', entity_id);
             if (!entity_id) {
                 // Nothing, ignore
                 this.closeModal();
+                return;
             }
 
             let url = this.entity_api.replace('/0', '/' + entity_id);
             axios.get(url).then((res) => {
                 let entity = res.data;
+                //console.log('add relation then', entity);
                 this.insertRelation(entity);
                 this.isDirty = true;
+                window.showToast(this.texts.toasts.relations.add);
                 this.closeModal();
             });
         },
@@ -265,12 +296,14 @@ export default {
             if (!entity_id) {
                 // Nothing, ignore
                 this.closeModal();
+                return;
             }
 
             let url = this.entity_api.replace('/0', '/' + entity_id);
             axios.get(url).then((res) => {
                 let entity = res.data;
                 this.insertChild(entity);
+                window.showToast(this.texts.toasts.entity.child);
                 this.isDirty = true;
                 this.closeModal();
             });
@@ -312,15 +345,19 @@ export default {
             if (!entity_id) {
                 // Nothing, ignore
                 this.closeModal();
+                return;
             }
 
             let url = this.entity_api.replace('/0', '/' + entity_id);
             axios.get(url).then((res) => {
                 let entity = res.data;
                 if (this.currentUuid === 0) {
+                    this.newUuid = 1;
                     this.addEntity(entity);
+                    window.showToast(this.texts.toasts.entity.add);
                 } else {
                     this.replaceEntity(entity);
+                    window.showToast(this.texts.toasts.entity.edit);
                 }
                 this.isDirty = true;
                 this.closeModal();
@@ -368,6 +405,7 @@ export default {
         axios.get(this.api).then((resp) => {
             this.nodes = resp.data.nodes;
             this.entities = resp.data.entities;
+            this.texts = resp.data.texts;
 
             this.originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
             this.originalEntities = JSON.parse(JSON.stringify(resp.data.entities));
@@ -381,7 +419,7 @@ export default {
         });
 
         this.emitter.on('deleteEntity', (uuid) => {
-            this.deleteUuidFromNodes(uuid);
+            this.deleteUuid(uuid);
         });
 
         this.emitter.on('addRelation', (uuid) => {

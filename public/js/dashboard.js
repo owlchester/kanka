@@ -23,15 +23,14 @@ function ajaxModal() {
         var params = {};
         var target = $(ajaxModal).data('target');
         var backdrop = $(ajaxModal).data('backdrop');
-
         if (backdrop) {
           params.backdrop = backdrop;
         }
-
         $(target).find('.modal-content').html(result);
         $(target).modal(params);
       }
-    }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
+    }).fail(function (result, textStatus, xhr) {
+      //console.log('modal ajax error', result);
     });
     return false;
   });
@@ -3907,10 +3906,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
 
 
+
 /**
  * Dashboard
  */
-
 var newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
 var btnAddWidget;
 var modalContentButtons, modalContentTarget, modalContentSpinner;
@@ -3931,11 +3930,9 @@ $(document).ready(function () {
       }
     });
   }
-
   $('.preview-switch').click(function (e) {
     e.preventDefault();
     var preview = $('#widget-preview-body-' + $(this).data('widget'));
-
     if (preview.hasClass('preview')) {
       preview.removeClass('preview').addClass('full');
       $(this).html('<i class="fa-solid fa-chevron-up"></i>');
@@ -3952,28 +3949,25 @@ $(document).ready(function () {
     }).done(function () {
       $(this).closest('.box').fadeOut("normal", function () {
         $(this).remove();
-
         if ($('.dashboard-releases .box').length === 0) {
           $('.dashboard-releases').remove();
         }
       });
     });
   });
-
   if ($('.campaign-dashboard-widgets').length === 1) {
     initDashboardAdminUI();
   }
-
   initDashboardRecent();
   initDashboardCalendars();
   initFollow();
   removePreviewExpander();
   initWelcomePulse();
 });
+
 /**
  *
  */
-
 function initDashboardAdminUI() {
   newWidget = $('#new-widget');
   newWidgetPreview = $('#new-widget-preview');
@@ -3986,8 +3980,9 @@ function initDashboardAdminUI() {
   $('.widget-list > a').click(function (e) {
     e.preventDefault();
     loadModalForm($(this).data('url'));
-  }); // Reset the modal
+  });
 
+  // Reset the modal
   btnAddWidget.click(function () {
     modalContentSpinner.hide();
     modalContentTarget.html('');
@@ -3996,9 +3991,7 @@ function initDashboardAdminUI() {
   var el = document.getElementById('widgets');
   new sortablejs__WEBPACK_IMPORTED_MODULE_1__["default"](el, {
     handle: '.handle',
-    onEnd: function onEnd(
-    /**Event*/
-    evt) {
+    onEnd: function onEnd( /**Event*/evt) {
       // Allow ajax requests to use the X_CSRF_TOKEN for deletes
       $.post({
         url: $('#widgets').data('url'),
@@ -4013,11 +4006,9 @@ function initDashboardAdminUI() {
   });
   $(document).on('shown.bs.modal shown.bs.popover', function () {
     var summernoteConfig = $('#summernote-config');
-
     if (summernoteConfig.length > 0) {
       window.initSummernote();
     }
-
     $.each($('.img-delete'), function () {
       $(this).click(function (e) {
         e.preventDefault();
@@ -4026,14 +4017,14 @@ function initDashboardAdminUI() {
       });
     });
     initWidgetSubform();
-  }); //$('#widgets').disableSelection();
+  });
+  //$('#widgets').disableSelection();
 }
+
 /**
  * Load widget subform in modal
  * @param url
  */
-
-
 function loadModalForm(url) {
   // Remove content from any edit widget already loaded (to avoid having multiple fields with the tag id
   $('#edit-widget .modal-content').html('');
@@ -4047,7 +4038,6 @@ function loadModalForm(url) {
     initWidgetSubform();
   });
 }
-
 function initWidgetSubform() {
   // Recent entities: filter field dynamic display
   $('.recent-entity-type').change(function () {
@@ -4058,11 +4048,10 @@ function initWidgetSubform() {
     }
   });
 }
+
 /**
  *
  */
-
-
 function initDashboardRecent() {
   $('.widget-recent-more').click(function (e) {
     e.preventDefault();
@@ -4079,16 +4068,15 @@ function initDashboardRecent() {
     });
   });
 }
+
 /**
  *
  */
-
-
 function initDashboardCalendars() {
   $('.widget-calendar-switch').unbind('click').click(function (e) {
     e.preventDefault();
     var url = $(this).data('url'),
-        widget = $(this).data('widget');
+      widget = $(this).data('widget');
     $('#widget-body-' + widget).find('.widget-body').hide();
     $('#widget-body-' + widget).find('.widget-loading').show();
     $.ajax({
@@ -4108,27 +4096,22 @@ function initDashboardCalendars() {
     });
   });
 }
+
 /**
  * Follow / Unfollow a campaign
  */
-
-
 function initFollow() {
   var btn = $('#campaign-follow');
   var text = $('#campaign-follow-text');
-
   if (btn.length !== 1) {
     return;
   }
-
   var status = btn.data('following');
-
   if (status) {
     text.html(btn.data('unfollow'));
   } else {
     text.html(btn.data('follow'));
   }
-
   btn.show();
   btn.click(function (e) {
     e.preventDefault();
@@ -4144,7 +4127,6 @@ function initFollow() {
     });
   });
 }
-
 function removePreviewExpander() {
   $.each($('[data-toggle="preview"]'), function () {
     // If we are exactly the max-height, some content is hidden
@@ -4153,16 +4135,15 @@ function removePreviewExpander() {
       $(this).next().removeClass('hidden');
     } else {
       $(this).removeClass('pinned-entity preview');
-    } //$(this).next().removeClass('hidden');
-
+    }
+    //$(this).next().removeClass('hidden');
   });
 }
+
 /**
  * Render an deferred-rendering widget
  * @param widget
  */
-
-
 function renderWidget(widget) {
   widget = $(widget);
   $.ajax({
@@ -4176,7 +4157,6 @@ function renderWidget(widget) {
     initDashboardCalendars();
   });
 }
-
 function initWelcomePulse() {
   $('[data-pulse]').on('click', function (e) {
     e.preventDefault();

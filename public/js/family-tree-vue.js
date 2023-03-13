@@ -19733,15 +19733,15 @@ __webpack_require__.r(__webpack_exports__);
     horizontal: function horizontal() {
       // Calc width based on target to source
       var width = 110;
-      var left = this.targetX - 10; // Source if further along, we need to "go back" a bit
+      var left = this.targetX - 10;
 
+      // Source if further along, we need to "go back" a bit
       if (this.originX > this.targetX) {
         left = this.originX - 120;
-      } // If we're further than 1 away
+      }
 
-
+      // If we're further than 1 away
       var diff = this.targetX - this.originX;
-
       if (diff >= 220) {
         //width = 300;
         width = diff + 110;
@@ -19757,7 +19757,6 @@ __webpack_require__.r(__webpack_exports__);
             'top: ' + (this.sourceY + 100) + 'px'
         ;
     },*/
-
   }
 });
 
@@ -19790,7 +19789,6 @@ __webpack_require__.r(__webpack_exports__);
     index: 0,
     isEditing: false
   },
-
   /*data() {
       let nextDrawX = this.drawX;
       let nodeOffset = 0;
@@ -19810,84 +19808,30 @@ __webpack_require__.r(__webpack_exports__);
       if (index === 0) {
         return this.sourceX + 220;
       }
-
       return this.drawX;
     },
-    getDrawX: function getDrawX(node, index) {
-      return this.getRealDrawX(index); //console.log('getDrawX', index);
-      // If this is the first relation, we want to draw it next to the parent
-
-      if (this.nextDrawX === undefined) {
-        this.nextDrawX = this.drawX;
-      } //console.log('children', index, this.nextDrawX)
-
-
-      this.x = this.nextDrawX;
-      this.nodeOffset = this.childWidth(node) - 1;
-      this.nextDrawX += this.nodeOffset * (200 + 20);
-      return this.x;
+    getDrawX: function getDrawX(index) {
+      return this.getRealDrawX(index);
     },
     getRealDrawX: function getRealDrawX(index) {
       var x = this.drawX;
-
-      for (var i = 0; i < index; i++) {
-        var node = this.children[i];
-        var nodeOffset = this.childWidth(node) - 1;
-        x += nodeOffset * (200 + 20);
-      }
-
+      var offset = this.getNodeSize(index);
+      x += offset * (200 + 20);
       return x;
     },
-    childWidth: function childWidth(el) {
-      var _this = this;
-
-      var size = 2; // If the child has relations, need to find those
-
-      if (el.relations === undefined) {
-        return 2;
+    getNodeSize: function getNodeSize(index) {
+      var offset = 0;
+      if (index === 0) {
+        offset = 1;
       }
-
-      var largestChild = 2; // At least two because this entity + relation = 2
-
-      el.relations.forEach(function (rel) {
-        var tmp = _this.relationWidth(rel);
-
-        if (tmp > largestChild) {
-          largestChild = tmp;
-        }
-      });
-      size = largestChild; // If the child has children of its own? Is that possible?
-      //console.log('child', child, largestChild);
-      //console.log('- relation width', index, width);
-
-      return size;
-    },
-    relationWidth: function relationWidth(rel) {
-      var _this2 = this;
-
-      var size = 1; // No children, only relation, end it there
-
-      if (rel.children === undefined) {
-        return size;
+      for (var i = 0; i < index; i++) {
+        var node = this.children[i];
+        offset += window.familyTreeNodeWidth(node, i);
       }
-
-      rel.children.forEach(function (child) {
-        if (child.relations === undefined) {
-          size++;
-          return;
-        }
-
-        var largestChild = 0;
-        child.relations.forEach(function (rel) {
-          var tmp = _this2.relationWidth(rel);
-
-          if (tmp > largestChild) {
-            largestChild = tmp;
-          }
-        });
-        size += largestChild;
-      });
-      return size;
+      if (index === 0) {
+        offset--;
+      }
+      return offset;
     }
   }
 });
@@ -19912,7 +19856,8 @@ __webpack_require__.r(__webpack_exports__);
     drawX: 0,
     drawY: 0,
     isRelation: false,
-    isEditing: undefined
+    isEditing: undefined,
+    node: undefined
   },
   methods: {
     position: function position() {
@@ -19931,7 +19876,8 @@ __webpack_require__.r(__webpack_exports__);
       this.emitter.emit('addChild', uuid);
     }
   },
-  mounted: function mounted() {//console.log('entity', this.entity);
+  mounted: function mounted() {
+    //console.log('entity', this.entity);
   }
 });
 
@@ -19958,7 +19904,8 @@ __webpack_require__.r(__webpack_exports__);
     drawY: 0,
     drawLine: false,
     lineX: 0,
-    isEditing: undefined
+    isEditing: undefined,
+    offset: undefined
   },
   methods: {
     drawChildrenLine: function drawChildrenLine() {
@@ -20053,7 +20000,8 @@ __webpack_require__.r(__webpack_exports__);
       return this.relation.role;
     }
   },
-  mounted: function mounted() {//console.log('FamilyRelation', this.relation);
+  mounted: function mounted() {
+    //console.log('FamilyRelation', this.relation);
     //console.error('FamilyRelation', this.relation.children);
   }
 });
@@ -20092,69 +20040,23 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     nextDrawX: function nextDrawX(rel, index) {
       return this.calcPreviousRelations(index);
-
-      if (this.nodeOffset === undefined) {
-        this.nodeOffset = 1;
-      } // If this is the first relation, we want to draw it next to the parent
-
-
-      var tmpOffsetX = 200 + 20; // However, if it's not, we need to add more padding, based on the previous node width
-      // console.log('nextDrawX index', index);
-
-      if (index > 0) {
-        tmpOffsetX *= this.nodeOffset; //console.log('increment tmpOffsetX to', tmpOffsetX);
-      }
-
-      var relWidth = this.relationWidth(rel, 0); //console.log('Relation width', relWidth);
-
-      this.nodeOffset += relWidth - 1; //console.log('Now the nodeOffset is at', this.nodeOffset);
-      //console.log('drawX', this.drawX);
-      //console.log('me', index, this.drawX, this.tmpOffsetX);
-
-      return this.drawX + tmpOffsetX;
     },
     calcPreviousRelations: function calcPreviousRelations(index) {
-      var nodeOffset = 1;
-      var tmpOffsetX = 200 + 20;
-
-      for (var i = 0; i < index; i++) {
-        var rel = this.relations[i];
-        var relWidth = this.relationWidth(rel, 0);
-        nodeOffset += relWidth - 1;
+      var nodeOffset = 0;
+      if (index === 0) {
+        nodeOffset = 1;
       }
-
+      var tmpOffsetX = 200 + 20;
+      for (var i = 0; i < index; i++) {
+        var relWidth = window.familyTreeNodeWidth(this.relations[i], index);
+        nodeOffset += relWidth;
+      }
       tmpOffsetX *= nodeOffset;
       return this.drawX + tmpOffsetX;
-    },
-    relationWidth: function relationWidth(rel, index) {
-      var _this = this;
-
-      var size = 1; // No children, only relation, end it there
-
-      if (rel.children === undefined) {
-        return size;
-      }
-
-      rel.children.forEach(function (child) {
-        if (child.relations === undefined) {
-          size++;
-          return;
-        }
-
-        var largestChild = 0;
-        child.relations.forEach(function (rel) {
-          var tmp = _this.relationWidth(rel);
-
-          if (tmp > largestChild) {
-            largestChild = tmp;
-          }
-        });
-        size += largestChild;
-      });
-      return size;
     }
   },
-  mounted: function mounted() {//console.info('FamilyRelations', this.relations);
+  mounted: function mounted() {
+    //console.info('FamilyRelations', this.relations);
   }
 });
 
@@ -20183,7 +20085,8 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     api: undefined,
     save_api: undefined,
-    entity_api: undefined
+    entity_api: undefined,
+    search_api: undefined
   },
   components: {
     FamilyNode: _FamilyNode_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -20192,6 +20095,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       nodes: [],
       entities: [],
+      texts: undefined,
       isEditing: false,
       isLoading: true,
       isDirty: false,
@@ -20201,11 +20105,12 @@ __webpack_require__.r(__webpack_exports__);
       isAddingRelation: false,
       isAddingChild: false,
       isEditingEntity: false,
+      isAddingCharacter: false,
       isEditingRelation: false,
       relation: undefined,
       entity: undefined,
       modal: '#family-tree-modal',
-      entityField: 'select[name="character_id"]',
+      entityField: 'select[name="character_id_ft"]',
       newUuid: 1
     };
   },
@@ -20214,29 +20119,33 @@ __webpack_require__.r(__webpack_exports__);
       this.isEditing = true;
     },
     resetTree: function resetTree() {
-      this.isEditing = false;
-      this.isDirty = false;
-      this.nodes = JSON.parse(JSON.stringify(this.originalNodes));
-      this.entities = JSON.parse(JSON.stringify(this.originalEntities));
+      if (confirm(this.texts.modals.reset.confirm)) {
+        this.isEditing = false;
+        this.isDirty = false;
+        this.nodes = JSON.parse(JSON.stringify(this.originalNodes));
+        this.entities = JSON.parse(JSON.stringify(this.originalEntities));
+        window.showToast(this.texts.toasts.reseted);
+      }
     },
     saveTree: function saveTree() {
       var _this = this;
-
       axios__WEBPACK_IMPORTED_MODULE_1___default().post(this.save_api, {
         data: this.nodes,
         entities: this.entities
       }).then(function (resp) {
         //console.log('Saved Tree');
-        window.showToast('Yooo');
+        window.showToast(_this.texts.toasts.saved);
         _this.isDirty = false;
       });
     },
     clearTree: function clearTree() {
       this.nodes = [];
+      window.showToast(this.texts.toasts.cleared);
     },
     deleteUuid: function deleteUuid(uuid) {
-      if (confirm('Are you sure you want to delete?')) {
+      if (confirm(this.texts.modals.entity.remove.confirm)) {
         this.deleteUuidFromNodes(uuid);
+        window.showToast(this.texts.toasts.entity.remove);
         this.isDirty = true;
       }
     },
@@ -20250,7 +20159,6 @@ __webpack_require__.r(__webpack_exports__);
         if (object.uuid === uuid) {
           return result;
         }
-
         if (Array.isArray(object.children)) {
           var children = object.children.reduce(getNodes, []);
           object.children = children;
@@ -20258,16 +20166,13 @@ __webpack_require__.r(__webpack_exports__);
           var relations = object.relations.reduce(getNodes, []);
           object.relations = relations;
         }
-
         result.push(object);
         return result;
-      }; // If the first node is the uuid, delete everything
-
-
+      };
+      // If the first node is the uuid, delete everything
       if (array[0].uuid === uuid) {
         return array.splice(0, 1);
       }
-
       return array.reduce(getNodes, []);
     },
     closeModal: function closeModal() {
@@ -20275,6 +20180,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isAddingRelation = false;
       this.isEditingRelation = false;
       this.isEditingEntity = false;
+      this.isAddingCharacter = false;
       this.currentUuid = undefined;
       this.relation = undefined;
       this.entity = undefined;
@@ -20293,21 +20199,28 @@ __webpack_require__.r(__webpack_exports__);
         this.addChild();
       } else if (this.isEditingEntity) {
         this.editEntity();
+      } else if (this.isAddingCharacter) {
+        this.editEntity();
       }
+    },
+    showCreateNode: function showCreateNode() {
+      return this.nodes.length === 0 && this.isEditing;
+    },
+    createNode: function createNode() {
+      this.isAddingCharacter = true;
+      this.currentUuid = 0;
+      this.showDialog();
     },
     editRelation: function editRelation() {
       var _this2 = this;
-
       this.isDirty = true;
-      console.log('edit relation', this.currentUuid, this.relation);
-
+      //console.log('edit relation', this.currentUuid, this.relation);
       var getRelationNodes = function getRelationNodes(result, object) {
         if (object.uuid === _this2.currentUuid) {
           object.role = _this2.relation;
           result.push(object);
           return result;
         }
-
         if (Array.isArray(object.children)) {
           var children = object.children.reduce(getRelationNodes, []);
           object.children = children;
@@ -20315,44 +20228,38 @@ __webpack_require__.r(__webpack_exports__);
           var relations = object.relations.reduce(getRelationNodes, []);
           object.relations = relations;
         }
-
         result.push(object);
         return result;
       };
-
       this.nodes = this.nodes.reduce(getRelationNodes, []);
+      window.showToast(this.texts.toasts.relations.edit);
       this.closeModal();
     },
     addRelation: function addRelation() {
       var _this3 = this;
-
       var entity_id = $(this.entityField).val();
-
+      //console.log('entity_id', entity_id);
       if (!entity_id) {
         // Nothing, ignore
         this.closeModal();
+        return;
       }
-
       var url = this.entity_api.replace('/0', '/' + entity_id);
       axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
         var entity = res.data;
-
+        //console.log('add relation then', entity);
         _this3.insertRelation(entity);
-
         _this3.isDirty = true;
-
+        window.showToast(_this3.texts.toasts.relations.add);
         _this3.closeModal();
       });
     },
     insertRelation: function insertRelation(entity) {
       var _this4 = this;
-
       var entity_id = entity.id;
-
       if (!this.entities[entity.id]) {
         this.entities[entity.id] = entity;
       }
-
       var getRelationNodes = function getRelationNodes(result, object) {
         if (object.uuid === _this4.currentUuid) {
           if (Array.isArray(object.relations)) {
@@ -20368,12 +20275,10 @@ __webpack_require__.r(__webpack_exports__);
               uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__.stringify)(_this4.newUuid)
             }];
           }
-
           _this4.newUuid++;
           result.push(object);
           return result;
         }
-
         if (Array.isArray(object.children)) {
           var children = object.children.reduce(getRelationNodes, []);
           object.children = children;
@@ -20381,46 +20286,38 @@ __webpack_require__.r(__webpack_exports__);
           var relations = object.relations.reduce(getRelationNodes, []);
           object.relations = relations;
         }
-
         result.push(object);
         return result;
       };
-
       this.nodes = this.nodes.reduce(getRelationNodes, []);
     },
     addChild: function addChild() {
       var _this5 = this;
-
       var entity_id = $(this.entityField).val();
-
       if (!entity_id) {
         // Nothing, ignore
         this.closeModal();
+        return;
       }
-
       var url = this.entity_api.replace('/0', '/' + entity_id);
       axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
         var entity = res.data;
-
         _this5.insertChild(entity);
-
+        window.showToast(_this5.texts.toasts.entity.child);
         _this5.isDirty = true;
-
         _this5.closeModal();
       });
     },
     insertChild: function insertChild(entity) {
       var _this6 = this;
-
       var entity_id = entity.id;
-
       if (!this.entities[entity.id]) {
         this.entities[entity.id] = entity;
       }
-
       var getRelationNodes = function getRelationNodes(result, object) {
         if (object.uuid === _this6.currentUuid) {
           //console.log(object);
+
           if (Array.isArray(object.children)) {
             object.children.push({
               entity_id: entity_id,
@@ -20432,12 +20329,10 @@ __webpack_require__.r(__webpack_exports__);
               uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__.stringify)(_this6.newUuid)
             }];
           }
-
           _this6.newUuid++;
           result.push(object);
           return result;
         }
-
         if (Array.isArray(object.children)) {
           var children = object.children.reduce(getRelationNodes, []);
           object.children = children;
@@ -20445,35 +20340,31 @@ __webpack_require__.r(__webpack_exports__);
           var relations = object.relations.reduce(getRelationNodes, []);
           object.relations = relations;
         }
-
         result.push(object);
         return result;
       };
-
       return this.nodes = this.nodes.reduce(getRelationNodes, []);
     },
     editEntity: function editEntity() {
       var _this7 = this;
-
       var entity_id = $(this.entityField).val();
-
       if (!entity_id) {
         // Nothing, ignore
         this.closeModal();
+        return;
       }
-
       var url = this.entity_api.replace('/0', '/' + entity_id);
       axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
         var entity = res.data;
-
         if (_this7.currentUuid === 0) {
+          _this7.newUuid = 1;
           _this7.addEntity(entity);
+          window.showToast(_this7.texts.toasts.entity.add);
         } else {
           _this7.replaceEntity(entity);
+          window.showToast(_this7.texts.toasts.entity.edit);
         }
-
         _this7.isDirty = true;
-
         _this7.closeModal();
       });
     },
@@ -20488,25 +20379,20 @@ __webpack_require__.r(__webpack_exports__);
     },
     replaceEntity: function replaceEntity(entity) {
       var _this8 = this;
-
       var entity_id = entity.id;
-
       if (!this.entities[entity.id]) {
         this.entities[entity.id] = entity;
       }
-
       var getRelationNodes = function getRelationNodes(result, object) {
         if (object.uuid === _this8.currentUuid) {
           if (object.uuid === 0) {
             object.uuid = (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__.stringify)(_this8.newUuid);
             _this8.newUuid++;
           }
-
           object.entity_id = entity_id;
           result.push(object);
           return result;
         }
-
         if (Array.isArray(object.children)) {
           var children = object.children.reduce(getRelationNodes, []);
           object.children = children;
@@ -20514,20 +20400,18 @@ __webpack_require__.r(__webpack_exports__);
           var relations = object.relations.reduce(getRelationNodes, []);
           object.relations = relations;
         }
-
         result.push(object);
         return result;
       };
-
       return this.nodes = this.nodes.reduce(getRelationNodes, []);
     }
   },
   mounted: function mounted() {
     var _this9 = this;
-
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(this.api).then(function (resp) {
       _this9.nodes = resp.data.nodes;
       _this9.entities = resp.data.entities;
+      _this9.texts = resp.data.texts;
       _this9.originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
       _this9.originalEntities = JSON.parse(JSON.stringify(resp.data.entities));
       _this9.isLoading = false;
@@ -20535,29 +20419,25 @@ __webpack_require__.r(__webpack_exports__);
     this.emitter.on('editEntity', function (uuid) {
       _this9.currentUuid = uuid;
       _this9.isEditingEntity = true;
-
       _this9.showDialog();
     });
     this.emitter.on('deleteEntity', function (uuid) {
-      _this9.deleteUuidFromNodes(uuid);
+      _this9.deleteUuid(uuid);
     });
     this.emitter.on('addRelation', function (uuid) {
       _this9.currentUuid = uuid;
       _this9.isAddingRelation = true;
-
       _this9.showDialog();
     });
     this.emitter.on('editRelation', function (data) {
       _this9.currentUuid = data.uuid;
       _this9.relation = data.relation;
       _this9.isEditingRelation = true;
-
       _this9.showDialog();
     });
     this.emitter.on('addChild', function (uuid) {
       _this9.currentUuid = uuid;
       _this9.isAddingChild = true;
-
       _this9.showDialog();
     });
   }
@@ -20585,9 +20465,9 @@ __webpack_require__.r(__webpack_exports__);
     drawX: 0,
     drawY: 0,
     isEditing: false
+
     /*node: undefined,
     isRelation: false,*/
-
   },
   data: function data() {
     return {
@@ -20639,18 +20519,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-line family-tree-child-line family-tree-line-vertical absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.vertical())
-  }, null, 4
-  /* STYLE */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-line family-tree-child-line family-tree-line-horizontal absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.horizontal()),
     "data-ori-x": $props.originX,
     "data-tar-x": $props.targetX
-  }, null, 12
-  /* STYLE, PROPS */
-  , _hoisted_1)], 64
-  /* STABLE_FRAGMENT */
-  );
+  }, null, 12 /* STYLE, PROPS */, _hoisted_1)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20670,36 +20544,26 @@ __webpack_require__.r(__webpack_exports__);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
-
   var _component_FamilyParentChildrenLine = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FamilyParentChildrenLine");
-
   var _component_FamilyNode = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FamilyNode");
-
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FamilyParentChildrenLine, {
     sourceX: $options.getLineX($props.index),
     sourceY: $props.drawY,
     index: $props.index
-  }, null, 8
-  /* PROPS */
-  , ["sourceX", "sourceY", "index"]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(this.getChildren(), function (relation, i) {
+  }, null, 8 /* PROPS */, ["sourceX", "sourceY", "index"]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(this.getChildren(), function (relation, i) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyNode, {
       node: relation,
       entities: $props.entities,
       sourceX: _this.startX,
       sourceY: _this.startY,
-      drawX: $options.getDrawX(relation, i),
+      drawX: $options.getDrawX(i),
       drawY: _this.drawY,
       drawLine: true,
       lineX: $options.getLineX($props.index),
-      isEditing: _this.isEditing
-    }, null, 8
-    /* PROPS */
-    , ["node", "entities", "sourceX", "sourceY", "drawX", "drawY", "lineX", "isEditing"]);
-  }), 256
-  /* UNKEYED_FRAGMENT */
-  ))], 64
-  /* STABLE_FRAGMENT */
-  );
+      isEditing: _this.isEditing,
+      offset: $options.getNodeSize(i)
+    }, null, 8 /* PROPS */, ["node", "entities", "sourceX", "sourceY", "drawX", "drawY", "lineX", "isEditing", "offset"]);
+  }), 256 /* UNKEYED_FRAGMENT */))], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20728,65 +20592,37 @@ var _hoisted_4 = {
   key: 0,
   "class": "flex gap-1"
 };
-
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-pencil",
   "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
+}, null, -1 /* HOISTED */);
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
-}, "Edit", -1
-/* HOISTED */
-);
-
+}, "Edit", -1 /* HOISTED */);
 var _hoisted_7 = [_hoisted_5, _hoisted_6];
-
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-user-plus",
   "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
+}, null, -1 /* HOISTED */);
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
-}, "Add Relation", -1
-/* HOISTED */
-);
-
+}, "Add Relation", -1 /* HOISTED */);
 var _hoisted_10 = [_hoisted_8, _hoisted_9];
-
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-baby",
   "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
+}, null, -1 /* HOISTED */);
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
-}, "Add child", -1
-/* HOISTED */
-);
-
+}, "Add child", -1 /* HOISTED */);
 var _hoisted_13 = [_hoisted_11, _hoisted_12];
-
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-trash",
   "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
+}, null, -1 /* HOISTED */);
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
-}, "Delete", -1
-/* HOISTED */
-);
-
+}, "Delete", -1 /* HOISTED */);
 var _hoisted_16 = [_hoisted_14, _hoisted_15];
 var _hoisted_17 = {
   "class": "align-end"
@@ -20799,9 +20635,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.entity.url,
     "class": "block"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.name), 9
-  /* TEXT, PROPS */
-  , _hoisted_3), $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, " #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.id) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.name), 9 /* TEXT, PROPS */, _hoisted_3), $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.editEntity($props.uuid);
     }),
@@ -20826,11 +20660,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, _hoisted_16)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $props.entity.thumb,
     "class": "rounded-full entity-image"
-  }, null, 8
-  /* PROPS */
-  , _hoisted_18)])])], 4
-  /* STYLE */
-  );
+  }, null, 8 /* PROPS */, _hoisted_18)])])], 4 /* STYLE */);
 }
 
 /***/ }),
@@ -20850,27 +20680,21 @@ __webpack_require__.r(__webpack_exports__);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ChildrenLine = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ChildrenLine");
-
   var _component_FamilyEntity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FamilyEntity");
-
   var _component_FamilyRelations = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FamilyRelations");
-
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$options.drawChildrenLine() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ChildrenLine, {
     key: 0,
     originX: $props.lineX,
     originY: $props.sourceY,
     targetX: $props.drawX
-  }, null, 8
-  /* PROPS */
-  , ["originX", "originY", "targetX"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FamilyEntity, {
+  }, null, 8 /* PROPS */, ["originX", "originY", "targetX"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FamilyEntity, {
     entity: this.entity(this.node.entity_id),
     uuid: this.node.uuid,
     drawX: this.drawX,
     drawY: this.drawY,
-    isEditing: this.isEditing
-  }, null, 8
-  /* PROPS */
-  , ["entity", "uuid", "drawX", "drawY", "isEditing"]), $options.hasRelations() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyRelations, {
+    isEditing: this.isEditing,
+    node: this.node
+  }, null, 8 /* PROPS */, ["entity", "uuid", "drawX", "drawY", "isEditing", "node"]), $options.hasRelations() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyRelations, {
     key: 1,
     relations: $props.node.relations,
     entities: $props.entities,
@@ -20879,11 +20703,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     drawX: $props.drawX,
     drawY: $props.drawY,
     isEditing: this.isEditing
-  }, null, 8
-  /* PROPS */
-  , ["relations", "entities", "sourceX", "sourceY", "drawX", "drawY", "isEditing"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
-  /* STABLE_FRAGMENT */
-  );
+  }, null, 8 /* PROPS */, ["relations", "entities", "sourceX", "sourceY", "drawX", "drawY", "isEditing"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20905,9 +20725,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     "class": "family-tree-line family-tree-child-parent-line family-tree-line-vertical absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.vertical())
-  }, null, 4
-  /* STYLE */
-  );
+  }, null, 4 /* STYLE */);
 }
 
 /***/ }),
@@ -20927,21 +20745,17 @@ __webpack_require__.r(__webpack_exports__);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_FamilyEntity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FamilyEntity");
-
   var _component_RelationLine = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("RelationLine");
-
   var _component_FamilyChildren = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FamilyChildren");
-
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FamilyEntity, {
     entity: this.entity($props.relation.entity_id),
     uuid: $props.relation.uuid,
     drawX: this.drawX,
     drawY: this.drawY,
     isRelation: true,
-    isEditing: this.isEditing
-  }, null, 8
-  /* PROPS */
-  , ["entity", "uuid", "drawX", "drawY", "isEditing"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RelationLine, {
+    isEditing: this.isEditing,
+    node: $props.relation
+  }, null, 8 /* PROPS */, ["entity", "uuid", "drawX", "drawY", "isEditing", "node"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RelationLine, {
     drawX: this.drawX,
     drawY: this.drawY,
     sourceX: this.sourceX,
@@ -20949,9 +20763,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     relation: this.relationText(),
     uuid: $props.relation.uuid,
     isEditing: this.isEditing
-  }, null, 8
-  /* PROPS */
-  , ["drawX", "drawY", "sourceX", "sourceY", "relation", "uuid", "isEditing"]), $options.hasChildren() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyChildren, {
+  }, null, 8 /* PROPS */, ["drawX", "drawY", "sourceX", "sourceY", "relation", "uuid", "isEditing"]), $options.hasChildren() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyChildren, {
     key: 0,
     children: $props.relation.children,
     entities: $props.entities,
@@ -20964,11 +20776,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     startY: this.startY(),
     lineX: this.lineX(),
     isEditing: this.isEditing
-  }, null, 8
-  /* PROPS */
-  , ["children", "entities", "sourceX", "sourceY", "drawX", "drawY", "index", "startX", "startY", "lineX", "isEditing"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
-  /* STABLE_FRAGMENT */
-  );
+  }, null, 8 /* PROPS */, ["children", "entities", "sourceX", "sourceY", "drawX", "drawY", "index", "startX", "startY", "lineX", "isEditing"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20988,9 +20796,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
-
   var _component_FamilyRelation = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FamilyRelation");
-
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.relations, function (relation, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyRelation, {
       relation: relation,
@@ -21001,12 +20807,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       drawX: $options.nextDrawX(relation, index),
       drawY: $props.drawY,
       isEditing: _this.isEditing
-    }, null, 8
-    /* PROPS */
-    , ["relation", "index", "entities", "sourceX", "sourceY", "drawX", "drawY", "isEditing"]);
-  }), 256
-  /* UNKEYED_FRAGMENT */
-  );
+    }, null, 8 /* PROPS */, ["relation", "index", "entities", "sourceX", "sourceY", "drawX", "drawY", "isEditing"]);
+  }), 256 /* UNKEYED_FRAGMENT */);
 }
 
 /***/ }),
@@ -21028,37 +20830,23 @@ var _hoisted_1 = {
   key: 0,
   "class": "flex w-full gap-1 mb-5 justify-end"
 };
-
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-edit",
   "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
+}, null, -1 /* HOISTED */);
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-redo",
   "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
+}, null, -1 /* HOISTED */);
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-eraser",
   "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
+}, null, -1 /* HOISTED */);
 var _hoisted_5 = ["disabled"];
-
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-save",
   "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
+}, null, -1 /* HOISTED */);
 var _hoisted_7 = {
   "class": "family-tree relative"
 };
@@ -21066,25 +20854,23 @@ var _hoisted_8 = {
   key: 0,
   "class": "text-center px-5"
 };
-
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-spinner fa-spin fa-2x",
   "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
+}, null, -1 /* HOISTED */);
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
-}, "Loading...", -1
-/* HOISTED */
-);
-
+}, "Loading...", -1 /* HOISTED */);
 var _hoisted_11 = [_hoisted_9, _hoisted_10];
 var _hoisted_12 = {
   key: 1
 };
-var _hoisted_13 = {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa-solid fa-plus",
+  "aria-hidden": "true"
+}, null, -1 /* HOISTED */);
+var _hoisted_14 = {
+  key: 1,
   "class": "modal fade",
   id: "family-tree-modal",
   tabindex: "-1",
@@ -21092,96 +20878,88 @@ var _hoisted_13 = {
   "aria-labelledby": "deleteConfirmLabel",
   ref: "modal"
 };
-var _hoisted_14 = {
+var _hoisted_15 = {
   "class": "modal-dialog",
   role: "document"
 };
-var _hoisted_15 = {
+var _hoisted_16 = {
   "class": "modal-content"
 };
-var _hoisted_16 = {
+var _hoisted_17 = {
   "class": "modal-header"
 };
-
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-times",
   "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_18 = [_hoisted_17];
-var _hoisted_19 = {
+}, null, -1 /* HOISTED */);
+var _hoisted_19 = [_hoisted_18];
+var _hoisted_20 = {
   key: 0,
   "class": "modal-title"
 };
-var _hoisted_20 = {
+var _hoisted_21 = {
   key: 1,
   "class": "modal-title"
 };
-var _hoisted_21 = {
+var _hoisted_22 = {
   key: 2,
   "class": "modal-title"
 };
-var _hoisted_22 = {
+var _hoisted_23 = {
   key: 3,
   "class": "modal-title"
 };
-var _hoisted_23 = {
+var _hoisted_24 = {
+  key: 4,
+  "class": "modal-title"
+};
+var _hoisted_25 = {
   "class": "modal-body"
 };
-var _hoisted_24 = {
-  "class": "form-group"
-};
-
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Entity", -1
-/* HOISTED */
-);
-
 var _hoisted_26 = {
   "class": "form-group"
 };
-
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Relation", -1
-/* HOISTED */
-);
-
+var _hoisted_27 = ["data-url"];
 var _hoisted_28 = {
+  "class": "form-group"
+};
+var _hoisted_29 = {
   "class": "modal-footer"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _this = this;
-
   var _component_FamilyNode = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FamilyNode");
-
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [!$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [!$data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
     "class": "btn btn-sm btn-warning",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.startEditing();
     })
-  }, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  }, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.actions.edit), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 1,
     "class": "btn btn-sm btn-default",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.resetTree();
     })
-  }, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Reset ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  }, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.actions.reset), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 2,
     "class": "btn btn-sm btn-default",
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.clearTree();
     })
-  }, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Clear ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  }, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.actions.clear), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 3,
     "class": "btn btn-sm btn-primary",
     disabled: !$data.isDirty,
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.saveTree();
     })
-  }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Save ")], 8
-  /* PROPS */
-  , _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, _hoisted_11)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.nodes, function (node) {
+  }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.actions.save), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, _hoisted_11)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [$options.showCreateNode() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+    key: 0,
+    "class": "btn btn-default rounded-2xl px-5 py-2 cursor-pointer",
+    onClick: _cache[4] || (_cache[4] = function ($event) {
+      return $options.createNode();
+    })
+  }, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.actions.first), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.nodes, function (node) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyNode, {
       node: node,
       entities: $data.entities,
@@ -21190,58 +20968,40 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       drawX: 0,
       drawY: 0,
       isEditing: $data.isEditing
-    }, null, 8
-    /* PROPS */
-    , ["node", "entities", "isEditing"]);
-  }), 256
-  /* UNKEYED_FRAGMENT */
-  ))]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, null, 8 /* PROPS */, ["node", "entities", "isEditing"]);
+  }), 256 /* UNKEYED_FRAGMENT */))]))]), !$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": "close",
-    onClick: _cache[4] || (_cache[4] = function ($event) {
+    onClick: _cache[5] || (_cache[5] = function ($event) {
       return $options.closeModal();
     })
-  }, _hoisted_18), $data.isAddingChild ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h4", _hoisted_19, "Add a child")) : $data.isEditingEntity ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h4", _hoisted_20, "Change an entity")) : $data.isAddingRelation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h4", _hoisted_21, "Add a relation")) : $data.isEditingRelation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h4", _hoisted_22, "Change a relation")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, _hoisted_19), $data.isAddingChild ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h4", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.entity.child.title), 1 /* TEXT */)) : $data.isAddingCharacter ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h4", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.entity.add.title), 1 /* TEXT */)) : $data.isEditingEntity ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h4", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.entity.edit.title), 1 /* TEXT */)) : $data.isAddingRelation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h4", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.relation.add.title), 1 /* TEXT */)) : $data.isEditingRelation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h4", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.relation.edit.title), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.fields.character), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control select2",
     style: {
       "width": "100%"
     },
-    "data-url": "http://kanka.test:8081/en/campaign/2/search/relation-entities?only=1",
+    "data-url": this.search_api,
     "data-placeholder": "Choose a character",
     "data-language": "en",
     "data-allow-clear": "true",
-    name: "character_id",
+    name: "character_id_ft",
     "data-dropdown-parent": "#family-tree-modal",
     tabindex: "-1",
-    "aria-hidden": "true",
-    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-      return _this.entity = $event;
-    })
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, this.entity]])], 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isAddingRelation || $data.isAddingChild || $data.isEditingEntity]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "aria-hidden": "true"
+  }, null, 8 /* PROPS */, _hoisted_27)], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isAddingRelation || $data.isAddingChild || $data.isEditingEntity || $data.isAddingCharacter]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.fields.relation), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $data.relation = $event;
     }),
     type: "text",
     maxlength: "70",
-    "class": "form-control"
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.relation]])], 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isEditingRelation || $data.isAddingRelation]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "form-control",
+    id: "family_tree_relation"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.relation]])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isEditingRelation || $data.isAddingRelation]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-primary",
     onClick: _cache[7] || (_cache[7] = function ($event) {
       return $options.saveModal();
     })
-  }, " Save ")])])])], 512
-  /* NEED_PATCH */
-  )], 64
-  /* STABLE_FRAGMENT */
-  );
+  }, " Save ")])])])], 512 /* NEED_PATCH */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -21259,16 +21019,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-pencil",
   "aria-hidden": "true"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
-}, "Edit relation")], -1
-/* HOISTED */
-);
-
+}, "Edit relation")], -1 /* HOISTED */);
 var _hoisted_2 = {
   key: 1
 };
@@ -21276,19 +21032,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-line absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.verticalSource())
-  }, null, 4
-  /* STYLE */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-line absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.horizontal())
-  }, null, 4
-  /* STYLE */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-line absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.verticalTarget())
-  }, null, 4
-  /* STYLE */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-relation text-center overflow-clip absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.relationBox())
   }, [$props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
@@ -21297,15 +21047,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.editRelation($props.uuid, $props.relation);
     }),
     "class": "cursor-pointer"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()) + " ", 1
-  /* TEXT */
-  ), _hoisted_1])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()), 1
-  /* TEXT */
-  ))], 4
-  /* STYLE */
-  )], 64
-  /* STABLE_FRAGMENT */
-  );
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()) + " ", 1 /* TEXT */), _hoisted_1])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()), 1 /* TEXT */))], 4 /* STYLE */)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -22738,6 +22480,99 @@ app.component('RelationLine', (__webpack_require__(/*! ./components/families/Rel
 app.component('ChildrenLine', (__webpack_require__(/*! ./components/families/ChildrenLine.vue */ "./resources/assets/js/components/families/ChildrenLine.vue")["default"]));
 app.component('FamilyParentChildrenLine', (__webpack_require__(/*! ./components/families/FamilyParentChildrenLine.vue */ "./resources/assets/js/components/families/FamilyParentChildrenLine.vue")["default"]));
 app.mount('#family-tree');
+window.familyTreeNodeWidth = function (node, index) {
+  console.log(node.entity_id, 'checking node', index, node);
+
+  // There is nothing else in this node, finished
+  if (node.children === undefined && node.relations === undefined) {
+    console.log(node.entity_id, 'just one');
+    return 1;
+  }
+  var size = 0;
+  if (index === 0) {
+    //size = -1;
+  }
+  // If a node has relations, they each represent at least one extra
+  if (node.relations !== undefined && node.relations.length > 0) {
+    //size = index === 0 ? -1 : 0;
+    var largestRelation = 1;
+    node.relations.forEach(function (rel) {
+      var tmpSize = window.familyTreeRelationWidth(rel, index);
+      if (tmpSize > largestRelation) {
+        largestRelation = tmpSize;
+      }
+      //size += tmpSize;
+    });
+
+    size += largestRelation;
+    console.log(node.entity_id, 'had relations', 'largest', largestRelation, size);
+  }
+  if (node.children === undefined) {
+    if (index === 0) {
+      console.log(node.entity_id, 'just two, but one');
+      return Math.max(size, 1);
+    }
+    console.log(node.entity_id, 'just two');
+    return Math.max(size, 1);
+  }
+  console.log(node.entity_id, 'Going to look at the kids', node, size);
+  node.children.forEach(function (child) {
+    if (child.relations === undefined) {
+      size++;
+      console.log(node.entity_id, 'no-relation child', size);
+      //return size;
+    } else {
+      var largestChild = 1;
+      child.relations.forEach(function (rel) {
+        var tmp = window.familyTreeRelationWidth(rel, index);
+        if (tmp > largestChild) {
+          largestChild = tmp;
+        }
+      });
+      size += largestChild;
+      console.log(node.entity_id, 'has children', 'largest', largestChild, size);
+    }
+  });
+  console.log(node.entity_id, 'largest', size);
+  return Math.max(size, 1);
+};
+
+/**
+ * Looping on a relation, check its children
+ * @param relation
+ * @param index
+ * @returns {number}
+ */
+window.familyTreeRelationWidth = function (relation, index) {
+  var size = 1;
+  console.log('checking', relation);
+
+  // No children, only relation, end it there
+  if (relation.children === undefined || relation.children.length === 0) {
+    console.log('has no children', relation.children);
+    return 1;
+  }
+  relation.children.forEach(function (child) {
+    if (child.relations === undefined || child.relations.length === 0) {
+      size++;
+    } else {
+      var largestChild = 1;
+      child.relations.forEach(function (rel) {
+        var tmp = window.familyTreeRelationWidth(rel, index);
+        if (tmp > largestChild) {
+          largestChild = tmp;
+        }
+      });
+      size += largestChild;
+      /*if (size > 0 && index === 0) {
+          size--;
+      }*/
+    }
+  });
+
+  return Math.max(size, 1);
+};
+window.familyTreeChildWidth = function (child, index) {};
 })();
 
 /******/ })()

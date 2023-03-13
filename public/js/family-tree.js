@@ -2072,30 +2072,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // The application will create a renderer using WebGL, if possible,
+
+
+// The application will create a renderer using WebGL, if possible,
 // with a fallback to a canvas render. It will also setup the ticker
 // and the root stage PIXI.Container
-
 var app = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Application({
   backgroundAlpha: 0,
   resizeTo: window
-}); // The application will create a canvas element for you that you
+});
+
+// The application will create a canvas element for you that you
 // can then insert into the DOM
+var container = document.getElementsByClassName('family-tree-setup')[0];
 
-var container = document.getElementsByClassName('family-tree-setup')[0]; // load the texture we need
-
+// load the texture we need
 var texture = await pixi_js__WEBPACK_IMPORTED_MODULE_0__.Assets.load('/images/family-trees/entity.png');
 var graphics = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
-var elements = []; // create viewport
+var elements = [];
 
+// create viewport
 var viewport = new pixi_viewport__WEBPACK_IMPORTED_MODULE_2__.Viewport({
   screenWidth: window.innerWidth,
   screenHeight: window.innerHeight,
   worldWidth: 1000,
   worldHeight: 1000,
   interaction: app.renderer.events // the interaction module is important for wheel to work properly when renderer.view is placed or scaled
-
 });
+
 var entityNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
   fontFamily: '"Roboto", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif',
   fontSize: 14,
@@ -2111,7 +2115,6 @@ var relationNameStyle = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.TextStyle({
   wordWrapWidth: 120
 });
 var newUuid = 1; // UUID
-
 var entities = null;
 var nodes = null;
 var originalNodes = null;
@@ -2123,38 +2126,41 @@ var entityHeight = 60;
 var btnEdit, btnClear, btnReset, btnSave, btnFirst;
 var isEditing = false;
 var isUnchanged = false;
+
 /**
  * Draw an entity box with their name, avatar, and click link
  * @param entity
  * @param x
  * @param y
  */
-
 var drawEntity = function drawEntity(entity, uuid, x, y) {
   var isRelation = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
   //console.log('Draw entity', entity.name, '>', offsetX, 'v', offsetY);
-  var name = entity.name; // This creates a texture from a background image
+  var name = entity.name;
 
+  // This creates a texture from a background image
   var entityPanel = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Sprite(texture);
   entityPanel.x = x;
   entityPanel.y = y;
   entityPanel.width = entityWidth;
-  entityPanel.height = entityHeight; // Add the entityPanel to the scene we are building
+  entityPanel.height = entityHeight;
+
+  // Add the entityPanel to the scene we are building
   //app.stage.addChild(entityPanel);
 
   var entityBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   entityBox.beginFill(0xffffff);
   entityBox.lineStyle(1, 0x0, .3);
   entityBox.drawRoundedRect(x, y, entityWidth, entityHeight, 20);
-  entityBox.endFill(); //app.stage.addChild(entityBox);
-
+  entityBox.endFill();
+  //app.stage.addChild(entityBox);
   viewport.addChild(entityBox);
   elements.push(entityBox);
   var circleMask = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   circleMask.beginFill();
   circleMask.drawCircle(x + 110, y + 30, 20);
-  circleMask.endFill(); //app.stage.addChild(circleMask);
-
+  circleMask.endFill();
+  //app.stage.addChild(circleMask);
   viewport.addChild(circleMask);
   elements.push(circleMask);
   var entityImageTexture = pixi_js__WEBPACK_IMPORTED_MODULE_0__.Texture.from(entity.thumb);
@@ -2162,23 +2168,23 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
   entityImage.x = x + 90;
   entityImage.y = y + 10;
   entityImage.height = 40;
-  entityImage.width = 40; //app.stage.addChild(entityImage);
+  entityImage.width = 40;
 
+  //app.stage.addChild(entityImage);
   viewport.addChild(entityImage);
   elements.push(entityImage);
   entityImage.mask = circleMask;
-
   if (name.length > 14) {
     name = name.substring(0, 14);
     name = name.concat('...');
   }
-
   var entityName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(name, entityNameStyle);
   entityName.x = x + 10;
   entityName.y = y + 10;
   viewport.addChild(entityName);
-  elements.push(entityName); // Add an invisible box on top
+  elements.push(entityName);
 
+  // Add an invisible box on top
   var hitBox = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Graphics();
   hitBox.beginFill(0xff0000, 1.0);
   hitBox.lineStyle(1, 0x22bbff, 1);
@@ -2186,7 +2192,6 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
   hitBox.endFill();
   hitBox.interactive = true;
   hitBox.buttonMode = true;
-
   hitBox.onclick = function (event) {
     if (!isEditing) {
       location.href = entity.url;
@@ -2194,45 +2199,41 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
       editEntity(uuid);
     }
   };
-
   hitBox.alpha = 0;
   hitBox.on('pointerover', function (event) {
     return onPointerOver(entityBox);
   });
   hitBox.on('pointerout', function (event) {
     return onPointerOut(entityBox);
-  }); //app.stage.addChild(hitBox);
-
+  });
+  //app.stage.addChild(hitBox);
   viewport.addChild(hitBox);
   elements.push(hitBox);
-
   if (isEditing && uuid != 0) {
     var closeButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('x', entityNameStyle);
     closeButton.x = x + 125;
     closeButton.y = y;
     closeButton.interactive = true;
     closeButton.buttonMode = true;
-
     closeButton.onclick = function (event) {
       deleteUuid(uuid);
     };
-
     viewport.addChild(closeButton);
-    elements.push(closeButton); // Todo: make it translatable
+    elements.push(closeButton);
 
+    // Todo: make it translatable
     var editButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('edit', entityNameStyle);
     editButton.x = x + 35;
     editButton.y = y + 60;
     editButton.interactive = true;
     editButton.buttonMode = true;
-
     editButton.onclick = function (event) {
       editEntity(uuid);
     };
-
     viewport.addChild(editButton);
-    elements.push(editButton); // Only add a relation to "parent" nodes
+    elements.push(editButton);
 
+    // Only add a relation to "parent" nodes
     if (!isRelation) {
       // Todo: make it translatable
       var addRelationButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ relation', entityNameStyle);
@@ -2240,15 +2241,12 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
       addRelationButton.y = y + 20;
       addRelationButton.interactive = true;
       addRelationButton.buttonMode = true;
-
       addRelationButton.onclick = function (event) {
         addRelation(uuid);
       };
-
       viewport.addChild(addRelationButton);
       elements.push(addRelationButton);
     }
-
     if (isRelation) {
       // Todo: make it translatable
       var addChildrenButton = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text('+ child', entityNameStyle);
@@ -2256,16 +2254,15 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
       addChildrenButton.y = y + 60;
       addChildrenButton.interactive = true;
       addChildrenButton.buttonMode = true;
-
       addChildrenButton.onclick = function (event) {
         addChildren(uuid);
       };
-
       viewport.addChild(addChildrenButton);
       elements.push(addChildrenButton);
     }
   }
 };
+
 /**
  * Draw the relation of a node as well as the "line" between the node's main entity and this relation
  * @param relation
@@ -2275,25 +2272,25 @@ var drawEntity = function drawEntity(entity, uuid, x, y) {
  * @param drawY
  * @param index
  */
-
-
 var drawRelation = function drawRelation(relation, sourceX, sourceY, drawX, drawY, index) {
   var entity = entities[relation.entity_id];
-
   if (!entity) {
     return;
-  } //console.log('Draw relation', entity.name, drawX);
+  }
 
+  //console.log('Draw relation', entity.name, drawX);
 
-  drawEntity(entity, relation.uuid, drawX, drawY, true); // Draw the lines between the original and this relations
+  drawEntity(entity, relation.uuid, drawX, drawY, true);
 
-  drawRelationLine(relation, sourceX, sourceY, drawX, drawY); // No children, no problems
+  // Draw the lines between the original and this relations
+  drawRelationLine(relation, sourceX, sourceY, drawX, drawY);
 
+  // No children, no problems
   if (relation.children === undefined) {
     return;
-  } // Now the fun starts, this relationship has children and a whole tree to draw!
+  }
 
-
+  // Now the fun starts, this relationship has children and a whole tree to draw!
   if (index === 0) {
     // First relation, start on the source
     drawChildren(relation.children, sourceX, sourceY, sourceX, drawY, index);
@@ -2302,6 +2299,7 @@ var drawRelation = function drawRelation(relation, sourceX, sourceY, drawX, draw
     drawChildren(relation.children, sourceX, sourceY, drawX, drawY, index);
   }
 };
+
 /**
  * Loop on the children and draw each as a new node
  * @param children
@@ -2311,28 +2309,29 @@ var drawRelation = function drawRelation(relation, sourceX, sourceY, drawX, draw
  * @param parentY
  * @param index
  */
-
-
 var drawChildren = function drawChildren(children, sourceX, sourceY, parentX, parentY, index) {
   //console.log('👩 Draw children');
   // If it's the first element of relations, push to the left
   var startX = sourceX;
   var startY = sourceY + entityHeight + childrenLineHeight;
   var drawX = parentX;
-  var drawY = startY; // Draw a line between the parents and the children
+  var drawY = startY;
 
+  // Draw a line between the parents and the children
   var lineX = index === 0 ? drawX + entityWidth + 20 : parentX;
   drawParentChildrenLine(lineX, drawY - 30, index);
   var nodeOffset = 1;
   children.forEach(function (node) {
     drawChildrenLine(lineX, drawY - 20, drawX, drawY);
-    drawNode(node, startX, startY, drawX, drawY); // When preparing to draw the next child, we need to figure out how large the current child was, width wise?
+    drawNode(node, startX, startY, drawX, drawY);
 
-    nodeOffset = childWidth(node); //console.log('Looping children', nodeOffset, node);
-
+    // When preparing to draw the next child, we need to figure out how large the current child was, width wise?
+    nodeOffset = childWidth(node);
+    //console.log('Looping children', nodeOffset, node);
     drawX += (entityWidth + offsetIncrement) * nodeOffset;
   });
 };
+
 /**
  * Draw a lin between the node's "main" entity and the current relation entity. This is impacted by the
  * nodeY and nodeX
@@ -2340,82 +2339,95 @@ var drawChildren = function drawChildren(children, sourceX, sourceY, parentX, pa
  * @param fromX
  * @param fromY
  */
-
-
 var drawRelationLine = function drawRelationLine(relation, originX, originY, targetX, targetY) {
   //console.log('Draw', relation.role, fromX, fromY);
   var offsetX = entityWidth / 2;
-  var path = [// Origin top left
-  originX + offsetX, originY + entityHeight, // Origin bottom left
-  originX + offsetX, originY + (entityHeight + 20), // Current bottom right
-  targetX + offsetX, targetY + (entityHeight + 20), // Current top right
-  targetX + offsetX, targetY + entityHeight, // Current bottom right
-  targetX + offsetX, targetY + (entityHeight + 20), // Origin bottom left
-  originX + offsetX, originY + (entityHeight + 20)]; //console.log('path', path);
+  var path = [
+  // Origin top left
+  originX + offsetX, originY + entityHeight,
+  // Origin bottom left
+  originX + offsetX, originY + (entityHeight + 20),
+  // Current bottom right
+  targetX + offsetX, targetY + (entityHeight + 20),
+  // Current top right
+  targetX + offsetX, targetY + entityHeight,
+  // Current bottom right
+  targetX + offsetX, targetY + (entityHeight + 20),
+  // Origin bottom left
+  originX + offsetX, originY + (entityHeight + 20)];
+  //console.log('path', path);
 
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
-  graphics.endFill(); // Draw relation name
+  graphics.endFill();
 
+  // Draw relation name
   var relationText = relation.role;
-
   if (isEditing && relation.role == null || relation.role == '') {
     var texts = $('#unknown');
     relationText = texts.data('desc');
   }
-
   var relationName = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Text(relationText, relationNameStyle);
   relationName.x = targetX - 40;
   relationName.y = targetY + (entityHeight + 0);
   relationName.interactive = true;
   relationName.buttonMode = true;
-
   if (isEditing) {
     relationName.onclick = function (event) {
       renameRelation(relation.uuid);
     };
   }
-
   viewport.addChild(relationName);
   elements.push(relationName);
 };
-
 var drawChildrenLine = function drawChildrenLine(originX, originY, targetX, targetY) {
   //console.log('✏️ Draw children from', originX, originY, targetX, targetY);
   //console.info('Draw children line', startX, startY, toX);
+
   //let offset = (-1 + index) * ((entityWidth + offsetIncrement) * size);
   //let aboveX = startX + (entityWidth / 2) + offset + offsetIncrement;
+
   var offsetX = entityWidth / 2;
-  var path = [// origin
-  originX, originY, // target top
-  targetX + offsetX, targetY - 20, // target bottom
-  targetX + offsetX, targetY, // target top
+  var path = [
+  // origin
+  originX, originY,
+  // target top
+  targetX + offsetX, targetY - 20,
+  // target bottom
+  targetX + offsetX, targetY,
+  // target top
   targetX + offsetX, targetY - 20];
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
   graphics.endFill();
 };
-
 var drawParentChildrenLine = function drawParentChildrenLine(drawX, drawY, index) {
-  var path = [// top
-  drawX, drawY, // bottom
-  drawX, drawY + 10]; // We're not on the first element so everything is pushed around a bit
+  var path = [
+  // top
+  drawX, drawY,
+  // bottom
+  drawX, drawY + 10];
 
+  // We're not on the first element so everything is pushed around a bit
   if (index > 0) {
-    path = [// top
-    drawX, drawY, // bottom
-    drawX, drawY + 10, // bottom offset
-    drawX + entityWidth / 2, drawY + 10, // bottom
+    path = [
+    // top
+    drawX, drawY,
+    // bottom
+    drawX, drawY + 10,
+    // bottom offset
+    drawX + entityWidth / 2, drawY + 10,
+    // bottom
     drawX, drawY + 10];
   }
-
   graphics.lineStyle(1);
   graphics.beginFill(0x3500FA, 1);
   graphics.drawPolygon(path);
   graphics.endFill();
 };
+
 /**
  *
  * @param relations
@@ -2424,64 +2436,58 @@ var drawParentChildrenLine = function drawParentChildrenLine(drawX, drawY, index
  * @param drawX
  * @param drawY
  */
-
-
 var drawRelations = function drawRelations(relations, sourceX, sourceY, drawX, drawY) {
-  var nodeOffset = 1; //console.info('Draw Relations', relations);
-
+  var nodeOffset = 1;
+  //console.info('Draw Relations', relations);
   relations.forEach(function (rel, index) {
     // If this is the first relation, we want to draw it next to the parent
-    var tmpOffsetX = entityWidth + offsetIncrement; // However, if it's not, we need to add more padding, based on the previous node width
-
+    var tmpOffsetX = entityWidth + offsetIncrement;
+    // However, if it's not, we need to add more padding, based on the previous node width
     if (index > 0) {
       tmpOffsetX *= nodeOffset;
-    } //console.log('draw relation', index, tmpOffsetX);
-
+    }
+    //console.log('draw relation', index, tmpOffsetX);
 
     drawRelation(rel, drawX, sourceY, drawX + tmpOffsetX, drawY, index);
     nodeOffset += relationWidth(rel, 0);
   });
 };
-
 var childWidth = function childWidth(child, index) {
-  var size = 1; // If the child has relations, need to find those
+  var size = 1;
 
+  // If the child has relations, need to find those
   if (child.relations !== undefined) {
     var largestChild = 2; // At least two because this entity + relation = 2
-
     child.relations.forEach(function (rel) {
       var tmp = relationWidth(rel);
-
       if (tmp > largestChild) {
         largestChild = tmp;
       }
     });
     size = largestChild;
-  } // If the child has children of its own? Is that possible?
+  }
+
+  // If the child has children of its own? Is that possible?
   //console.log('child', child, largestChild);
+
   //console.log('- relation width', index, width);
-
-
   return size;
 };
-
 var relationWidth = function relationWidth(relation, index) {
-  var size = 1; // No children, only relation, end it there
+  var size = 1;
 
+  // No children, only relation, end it there
   if (relation.children === undefined) {
     return size;
   }
-
   relation.children.forEach(function (child) {
     if (child.relations === undefined) {
       size++;
       return;
     }
-
     var largestChild = 0;
     child.relations.forEach(function (rel) {
       var tmp = relationWidth(rel);
-
       if (tmp > largestChild) {
         largestChild = tmp;
       }
@@ -2490,26 +2496,24 @@ var relationWidth = function relationWidth(relation, index) {
   });
   return size;
 };
-
 var drawNode = function drawNode(node, sourceX, sourceY, drawX, drawY) {
   // Draw the main entity of the node
   var entity = entities[node.entity_id];
-
   if (!entity) {
     return;
-  } //console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
+  }
 
+  //console.log('⚡ Node:', entity.name, 'from', sourceX, sourceY, 'on', drawX, drawY);
+  drawEntity(entity, node.uuid, drawX, drawY);
 
-  drawEntity(entity, node.uuid, drawX, drawY); // No relations to draw, finished with the node
-
+  // No relations to draw, finished with the node
   if (!node.relations) {
     return;
-  } // Loop the relations to draw them on the same line
+  }
 
-
+  // Loop the relations to draw them on the same line
   drawRelations(node.relations, sourceX, sourceY, drawX, drawY);
 };
-
 var addFirstNode = function addFirstNode() {
   var title = document.getElementById("modalTitle");
   var firstTitle = document.getElementById("firstTitle");
@@ -2521,71 +2525,63 @@ var addFirstNode = function addFirstNode() {
   firstHelper.style.display = "block";
   editEntity(0);
 };
-
 var drawFamilyTree = function drawFamilyTree() {
   //console.log('Draw Family Tree');
   if (nodes.length === 0 && isEditing) {
     isUnchanged = true;
   }
-
   if (isUnchanged) {
     btnSave.prop('disabled', true).addClass('disabled');
   } else {
     btnSave.prop('disabled', false).removeClass('disabled');
-  } // add the viewport to the stage
+  }
 
+  // add the viewport to the stage
+  app.stage.addChild(viewport);
 
-  app.stage.addChild(viewport); // activate plugins
-
+  // activate plugins
   viewport.drag().pinch().wheel().decelerate({
     friction: 0.50 //Percent to decelerate after movement
-
   });
+
   graphics.clear();
   elements.forEach(function (text) {
     viewport.removeChild(text);
   });
-
   if (nodes.length > 0) {
     nodes.forEach(function (node) {
       drawNode(node, 0, 0, 0, 0);
     });
   }
-
   viewport.addChild(graphics);
 };
-
 var renderPage = function renderPage() {
-  if (typeof app.stage !== 'undefined') {//console.log('deleted','container.removeChild');
+  if (typeof app.stage !== 'undefined') {
+    //console.log('deleted','container.removeChild');
     //app.stage.removeChild(1);
     //for (var i = app.stage.children.length - 1; i >= 0; i--) {	app.stage.removeChild(app.stage.children[i]);};
   }
-
-  container.appendChild(app.view); //console.log(container.dataset.api, 'api');
-
+  container.appendChild(app.view);
+  //console.log(container.dataset.api, 'api');
   axios__WEBPACK_IMPORTED_MODULE_1___default().get(container.dataset.api).then(function (resp) {
     entities = resp.data.entities;
     nodes = resp.data.nodes;
     originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
-    originalEntities = JSON.parse(JSON.stringify(resp.data.entities)); //console.log('original nodes', originalNodes, originalEntities);
-
+    originalEntities = JSON.parse(JSON.stringify(resp.data.entities));
+    //console.log('original nodes', originalNodes, originalEntities);
     drawFamilyTree();
   });
 };
-
 var onPointerOver = function onPointerOver(object) {
   object.tint = 0x999999;
 };
-
 var onPointerOut = function onPointerOut(object) {
   object.tint = 0xFFFFFF;
 };
-
 var deleteUuidFromNodes = function deleteUuidFromNodes(uuid) {
   //console.log('Remove uuid', uuid);
   return filter(nodes, uuid);
 };
-
 var addEntity = function addEntity(entity) {
   entities[entity.id] = entity;
   nodes.push({
@@ -2596,27 +2592,22 @@ var addEntity = function addEntity(entity) {
   newUuid++;
   btnFirst.hide();
 };
-
 var replaceEntity = function replaceEntity(uuid, entity) {
   //console.log('Change Entity', uuid);
   return entityEditor(nodes, uuid, entity);
 };
-
 var insertRelation = function insertRelation(uuid, entity, relation) {
   //console.log('Add Relation', uuid);
   return relationCreator(nodes, uuid, entity, relation);
 };
-
 var insertChild = function insertChild(uuid, entity) {
   //console.log('Add Child', uuid);
   return childCreator(nodes, uuid, entity);
 };
-
 var renameRelations = function renameRelations(uuid, role) {
   //console.log('Rename relation', uuid, nodes);
   return relationFilter(nodes, uuid, role);
 };
-
 var relationFilter = function relationFilter(array, uuid, role) {
   //console.log('filter', array, uuid);
   var getRelationNodes = function getRelationNodes(result, object) {
@@ -2625,7 +2616,6 @@ var relationFilter = function relationFilter(array, uuid, role) {
       result.push(object);
       return result;
     }
-
     if (Array.isArray(object.children)) {
       var children = object.children.reduce(getRelationNodes, []);
       object.children = children;
@@ -2633,35 +2623,27 @@ var relationFilter = function relationFilter(array, uuid, role) {
       var relations = object.relations.reduce(getRelationNodes, []);
       object.relations = relations;
     }
-
     result.push(object);
     return result;
   };
-
   return array.reduce(getRelationNodes, []);
 };
-
 var entityEditor = function entityEditor(array, uuid, entity) {
   var entity_id = null;
-
   if (!entities[entity.id]) {
     entities[entity.id] = entity;
   }
-
   entity_id = entity.id;
-
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
       if (object.uuid == 0) {
         object.uuid = (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid);
         newUuid++;
       }
-
       object.entity_id = entity_id;
       result.push(object);
       return result;
     }
-
     if (Array.isArray(object.children)) {
       var children = object.children.reduce(getRelationNodes, []);
       object.children = children;
@@ -2669,26 +2651,21 @@ var entityEditor = function entityEditor(array, uuid, entity) {
       var relations = object.relations.reduce(getRelationNodes, []);
       object.relations = relations;
     }
-
     result.push(object);
     return result;
   };
-
   return array.reduce(getRelationNodes, []);
 };
-
 var relationCreator = function relationCreator(array, uuid, entity, role) {
   var entity_id = null;
-
   if (!entities[entity.id]) {
     entities[entity.id] = entity;
   }
-
   entity_id = entity.id;
-
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
       //console.log(object);
+
       if (Array.isArray(object.relations)) {
         object.relations.push({
           entity_id: entity_id,
@@ -2702,13 +2679,11 @@ var relationCreator = function relationCreator(array, uuid, entity, role) {
           uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
         }];
       }
-
-      newUuid = newUuid + 1; //console.log(object, 'ADDED RELATIONS');
-
+      newUuid = newUuid + 1;
+      //console.log(object, 'ADDED RELATIONS');
       result.push(object);
       return result;
     }
-
     if (Array.isArray(object.children)) {
       var children = object.children.reduce(getRelationNodes, []);
       object.children = children;
@@ -2716,26 +2691,21 @@ var relationCreator = function relationCreator(array, uuid, entity, role) {
       var relations = object.relations.reduce(getRelationNodes, []);
       object.relations = relations;
     }
-
     result.push(object);
     return result;
   };
-
   return array.reduce(getRelationNodes, []);
 };
-
 var childCreator = function childCreator(array, uuid, entity) {
   var entity_id = null;
-
   if (!entities[entity.id]) {
     entities[entity.id] = entity;
   }
-
   entity_id = entity.id;
-
   var getRelationNodes = function getRelationNodes(result, object) {
     if (object.uuid === uuid) {
       //console.log(object);
+
       if (Array.isArray(object.children)) {
         object.children.push({
           entity_id: entity_id,
@@ -2747,13 +2717,11 @@ var childCreator = function childCreator(array, uuid, entity) {
           uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_3__.stringify)(newUuid)
         }];
       }
-
-      newUuid = newUuid + 1; //console.log(object, 'ADDED CHILDREN');
-
+      newUuid = newUuid + 1;
+      //console.log(object, 'ADDED CHILDREN');
       result.push(object);
       return result;
     }
-
     if (Array.isArray(object.children)) {
       var children = object.children.reduce(getRelationNodes, []);
       object.children = children;
@@ -2761,15 +2729,12 @@ var childCreator = function childCreator(array, uuid, entity) {
       var relations = object.relations.reduce(getRelationNodes, []);
       object.relations = relations;
     }
-
     result.push(object);
     return result;
-  }; //console.log(entities);
-
-
+  };
+  //console.log(entities);
   return array.reduce(getRelationNodes, []);
 };
-
 var filter = function filter(array, uuid) {
   //console.log('filter', array, uuid);
   var getNodes = function getNodes(result, object) {
@@ -2777,7 +2742,6 @@ var filter = function filter(array, uuid) {
     if (object.uuid === uuid) {
       return result;
     }
-
     if (Array.isArray(object.children)) {
       var children = object.children.reduce(getNodes, []);
       object.children = children;
@@ -2785,54 +2749,45 @@ var filter = function filter(array, uuid) {
       var relations = object.relations.reduce(getNodes, []);
       object.relations = relations;
     }
-
     result.push(object);
     return result;
-  }; // If the first node is the uuid, delete everything
-
-
+  };
+  // If the first node is the uuid, delete everything
   if (array[0].uuid === uuid) {
     return array.splice(0, 1);
   }
-
   return array.reduce(getNodes, []);
 };
-
 var deleteUuid = function deleteUuid(uuid) {
   var texts = $('#remove');
-
   if (confirm(texts.data('desc')) == true) {
     viewport.removeChildren();
     deleteUuidFromNodes(uuid);
-
     if (nodes.length === 0) {
       clearTree();
     }
-
     isUnchanged = false;
     drawFamilyTree();
   }
 };
-
 var editEntity = function editEntity(uuid) {
   $("#add-relation").hide();
   $('#add-entity').modal('show');
   $('#send').off('click').on('click', function () {
-    var entity_id = $('select[name="character_id"]').val(); //console.log(entity_id, uuid, container.dataset.entity, 'old');
+    var entity_id = $('select[name="character_id"]').val();
+    //console.log(entity_id, uuid, container.dataset.entity, 'old');
 
     var url = container.dataset.entity.replace('/0', '/' + entity_id);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
-      var entity = res.data; //console.log('result', res.data);
-
+      var entity = res.data;
+      //console.log('result', res.data);
       viewport.removeChildren();
       console.log(uuid, entity);
-
       if (uuid === 0) {
         addEntity(entity);
       } else {
         replaceEntity(uuid, entity);
       }
-
       isUnchanged = false;
       drawFamilyTree();
     });
@@ -2841,22 +2796,23 @@ var editEntity = function editEntity(uuid) {
   });
   closeModal();
 };
-
 var addRelation = function addRelation(uuid) {
   $("#add-relation").show();
   $('#add-entity').modal('show');
   $('#send').off('click').on('click', function () {
     var entity_id = $('select[name="character_id"]').val();
-    var relation = $('input[name="relation"]').val(); //console.log(entity_id, uuid, container.dataset.entity, 'old');
+    var relation = $('input[name="relation"]').val();
+
+    //console.log(entity_id, uuid, container.dataset.entity, 'old');
     //console.log(entity_id, relation, 'ADDING RELATION');
 
     var url = container.dataset.entity.replace('/0', '/' + entity_id);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
-      var entity = res.data; //console.log('Values from the API', res.data);
-
+      var entity = res.data;
+      //console.log('Values from the API', res.data);
       viewport.removeChildren();
-      insertRelation(uuid, entity, relation); //replaceEntity(uuid, entity, relation);
-
+      insertRelation(uuid, entity, relation);
+      //replaceEntity(uuid, entity, relation);
       isUnchanged = false;
       drawFamilyTree();
     });
@@ -2866,17 +2822,17 @@ var addRelation = function addRelation(uuid) {
   });
   closeModal();
 };
-
 var addChildren = function addChildren(uuid) {
   document.getElementById("add-relation").style.display = "none";
   $('#add-entity').modal('show');
   $('#send').off('click').on('click', function () {
-    var entity_id = $('select[name="character_id"]').val(); //console.log(entity_id, uuid, container.dataset.entity, 'old');
+    var entity_id = $('select[name="character_id"]').val();
+    //console.log(entity_id, uuid, container.dataset.entity, 'old');
 
     var url = container.dataset.entity.replace('/0', '/' + entity_id);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(url).then(function (res) {
-      var entity = res.data; //console.log('result', res.data);
-
+      var entity = res.data;
+      //console.log('result', res.data);
       viewport.removeChildren();
       insertChild(uuid, entity);
       isUnchanged = false;
@@ -2887,7 +2843,6 @@ var addChildren = function addChildren(uuid) {
   });
   closeModal();
 };
-
 var closeModal = function closeModal() {
   $("#add-entity").on('hidden.bs.modal', function () {
     $(this).find("input,textarea,text").val('').end();
@@ -2902,45 +2857,44 @@ var closeModal = function closeModal() {
     firstHelper.style.display = "none";
   });
 };
-
 var renameRelation = function renameRelation(uuid) {
   var texts = $('#rename');
   var relation = prompt(texts.data('desc'));
-
   if (relation) {
-    viewport.removeChildren(); //console.log(relation)
-
+    viewport.removeChildren();
+    //console.log(relation)
     renameRelations(uuid, relation);
     isUnchanged = false;
     drawFamilyTree();
   }
 };
+
 /**
  * Reset the tree as it was when originally loaded, and exit the edit mode
  */
-
-
 var resetTree = function resetTree() {
   //console.info('Resetting...');
+
   btnClear.hide();
   btnSave.hide();
   btnReset.hide();
   btnFirst.hide();
-  btnEdit.show(); // Reset the nodes as they were on page load
+  btnEdit.show();
 
+  // Reset the nodes as they were on page load
   nodes = JSON.parse(JSON.stringify(originalNodes));
-  entities = JSON.parse(JSON.stringify(originalEntities)); //console.log('original nodes', nodes);
-  // Edit edit mode and redraw the tree
+  entities = JSON.parse(JSON.stringify(originalEntities));
+  //console.log('original nodes', nodes);
 
+  // Edit edit mode and redraw the tree
   isEditing = false;
   isUnchanged = true;
   drawFamilyTree();
 };
+
 /**
  * Clear the tree to start from a blank canvas
  */
-
-
 var clearTree = function clearTree() {
   nodes = [];
   entities = [];
@@ -2948,24 +2902,21 @@ var clearTree = function clearTree() {
   drawFamilyTree();
   btnFirst.show();
 };
-
 var enterEditMode = function enterEditMode() {
   // Change which buttons are available
   btnEdit.hide();
   btnSave.prop('disabled', true).show();
   btnClear.show();
   btnReset.show();
-
   if (nodes.length === 0) {
     btnFirst.show();
-  } // Redraw the tree in edit mode
+  }
 
-
+  // Redraw the tree in edit mode
   isEditing = true;
   isUnchanged = true;
   drawFamilyTree();
 };
-
 var initFamilyTree = function initFamilyTree() {
   // Handle button modes
   btnEdit = $('#tree-edit');
@@ -2979,7 +2930,6 @@ var initFamilyTree = function initFamilyTree() {
   });
   btnClear.on('click', function (e) {
     var texts = $('#clear');
-
     if (confirm(texts.data('desc')) == true) {
       e.preventDefault();
       clearTree();
@@ -2987,7 +2937,6 @@ var initFamilyTree = function initFamilyTree() {
   });
   btnReset.on('click', function (e) {
     var texts = $('#reset');
-
     if (confirm(texts.data('desc')) == true) {
       e.preventDefault();
       resetTree();
@@ -3001,19 +2950,21 @@ var initFamilyTree = function initFamilyTree() {
     axios__WEBPACK_IMPORTED_MODULE_1___default().post(container.dataset.save, {
       data: nodes,
       entities: entities
-    }).then(function (resp) {//console.log('Saved Tree');
+    }).then(function (resp) {
+      //console.log('Saved Tree');
     });
     renderPage();
     resetTree();
     var texts = $('#saved');
     var toast = texts.data('desc');
     window.showToast(toast);
-  }); // Draw the page
+  });
 
+  // Draw the page
   renderPage();
-}; // When jQuery is ready, draw the family tree
+};
 
-
+// When jQuery is ready, draw the family tree
 $(document).ready(function () {
   initFamilyTree();
 });

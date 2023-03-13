@@ -6,6 +6,7 @@
         :drawY="this.drawY"
         :isRelation="true"
         :isEditing="this.isEditing"
+        :node="relation"
     >
     </FamilyEntity>
 
@@ -70,7 +71,7 @@ export default {
         },
         relationText() {
             return this.relation.role;
-        }
+        },
     },
     mounted() {
         //console.log('FamilyRelation', this.relation);
