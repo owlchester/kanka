@@ -8,6 +8,7 @@ use App\Exceptions\Campaign\ExhaustedSuperboostsException;
 use App\Models\CampaignBoost;
 use App\Traits\CampaignAware;
 use App\User;
+use App\Models\UserLog;
 use Illuminate\Support\Facades\Auth;
 
 class CampaignBoostService
@@ -66,9 +67,13 @@ class CampaignBoostService
         if ($this->upgrade) {
             // Create two more
             $amount = 2;
+            auth()->user()->log(UserLog::TYPE_CAMPAIGN_UPGRADE_BOOST);
         } elseif ($this->action === 'superboost') {
             // Create three
             $amount = 3;
+            auth()->user()->log(UserLog::TYPE_CAMPAIGN_SUPERBOOST);
+        } else {
+            auth()->user()->log(UserLog::TYPE_CAMPAIGN_BOOST);
         }
 
         for ($i = 0; $i < $amount; $i++) {
@@ -98,6 +103,8 @@ class CampaignBoostService
                 $boost->delete();
             }
         }
+
+        auth()->user()->log(UserLog::TYPE_CAMPAIGN_UNBOOST);
 
         $this->campaign->boost_count = $this->campaign->boosts()->count();
         $this->campaign->withObservers = false;
