@@ -2,7 +2,7 @@
     <div class="family-node-entity rounded-2xl px-5 py-2 absolute inline-block" v-bind:style="position()">
         <div class="flex items-center gap-1">
             <div class="grow justify-center">
-                <a v-bind:href="entity.url" class="block">
+                <a v-bind:href="entity.url" class="block max-h-5 truncate">
                     #{{ entity.id }}
                     {{ entity.name }}
                 </a>

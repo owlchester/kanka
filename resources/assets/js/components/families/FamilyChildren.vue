@@ -7,8 +7,8 @@
     </FamilyParentChildrenLine>
 
     <FamilyNode
-        v-for="(relation, i) in this.getChildren()"
-        :node="relation"
+        v-for="(child, i) in children"
+        :node="child"
         :entities="entities"
         :sourceX="this.startX"
         :sourceY="this.startY"
@@ -52,11 +52,6 @@ export default {
         };
     },*/
     methods: {
-        getChildren() {
-            //console.log('get children', this.children);
-            return this.children;
-        },
-
         getLineX(index) {
             if (index === 0) {
                 return this.sourceX + 220;
@@ -75,15 +70,16 @@ export default {
         getNodeSize(index) {
             let offset = 0;
             if (index === 0) {
-                offset = 1;
+                offset = 0;
             }
+            // Get size of previous children
             for (let i = 0; i < index; i++) {
                 let node = this.children[i];
-                offset += window.familyTreeNodeWidth(node, i);
+                offset += window.familyTreeChildWidth(node, i);
             }
-            if (index === 0) {
+            /*if (index === 0) {
                 offset--;
-            }
+            }*/
             return offset;
         },
     },

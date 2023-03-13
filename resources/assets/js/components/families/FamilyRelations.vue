@@ -48,7 +48,7 @@ export default {
             let tmpOffsetX = 200 + 20;
 
             for(let i = 0; i < index; i++) {
-                let relWidth = window.familyTreeNodeWidth(this.relations[i], index);
+                let relWidth = window.familyTreeRelationWidth(this.relations[i], index);
                 nodeOffset += relWidth;
             }
 
