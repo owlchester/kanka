@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Families;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Models\Family;
@@ -31,9 +32,11 @@ class FamilyTreeController extends Controller
         }
 
         $mode = request()->has('pixi') ? 'pixi' : 'vue';
+        $campaign = CampaignLocalization::getCampaign();
 
         return view('families.trees.index')
             ->with('family', $family)
+            ->with('campaign', $campaign)
             ->with('mode', $mode)
         ;
     }

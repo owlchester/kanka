@@ -57,11 +57,11 @@ return [
         'relation'      => 'Relation',
         'remove-node'   => 'Do you want to remove this node?',
     ],
+    'pitch' => 'Create a detailed family tree for your families.',
     'unknown' => 'unknown',
     'success' => [
         'saved' => 'Family tree saved.',
         'cleared' => 'Family tree cleared.',
         'reseted' => 'Family tree has been reset.',
     ],
-    'saved' => 'Saved successfully',
 ];

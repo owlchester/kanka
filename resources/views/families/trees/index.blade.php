@@ -60,24 +60,30 @@
         @include('families._menu', ['active' => 'tree', 'model' => $family])
 
         <div class="entity-main-block">
-            @if ($mode === 'pixi')
-            <div class="family-tree-setup overflow-x overflow-y"
-                data-api="{{ route('families.family-tree.api', $family) }}"
-                data-save="{{ route('families.family-tree.api-save', $family) }}"
-                data-entity="{{ route('families.family-tree.entity-api', 0) }}"
-            >
-            </div>
+
+            @if (!$campaign->superboosted())
+                @include('layouts.callouts.boost', ['texts' => [
+            __('families/trees.pitch')], 'superboost' => true])
             @else
-            <div id="family-tree">
-                <family-tree
-                    api="{{ route('families.family-tree.api', $family) }}"
-                    save_api="{{ route('families.family-tree.api-save', $family) }}"
-                    entity_api="{{ route('families.family-tree.entity-api', 0) }}"
-                    search_api="{{ route('search.entities-with-relations', ['only' => config('entities.ids.character')]) }}"
+                @if ($mode === 'pixi')
+                <div class="family-tree-setup overflow-x overflow-y"
+                    data-api="{{ route('families.family-tree.api', $family) }}"
+                    data-save="{{ route('families.family-tree.api-save', $family) }}"
+                    data-entity="{{ route('families.family-tree.entity-api', 0) }}"
                 >
-                </family-tree>
-            </div>
+                </div>
+                @else
+                <div id="family-tree">
+                    <family-tree
+                        api="{{ route('families.family-tree.api', $family) }}"
+                        save_api="{{ route('families.family-tree.api-save', $family) }}"
+                        entity_api="{{ route('families.family-tree.entity-api', 0) }}"
+                        search_api="{{ route('search.entities-with-relations', ['only' => config('entities.ids.character')]) }}"
+                    >
+                    </family-tree>
+                </div>
                 @endif
+            @endif
         </div>
     </div>
 @endsection

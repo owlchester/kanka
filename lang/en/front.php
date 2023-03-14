@@ -190,6 +190,7 @@ return [
         ],
         'superboosts'       => [
             'boosted'   => 'Superboosted',
+            'family-tree' => 'Create family trees to track a family\'s history',
             'gallery'   => 'Campaign Gallery and integrations with the default text editor',
             'logs'      => 'Full change logs on entities (up to :amount days)',
             'stats'     => 'Campaign achievements page',
