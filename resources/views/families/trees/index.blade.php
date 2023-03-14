@@ -38,13 +38,6 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
-<div id="clear" data-desc="{{ __('families/trees.helpers.clear') }}" data-text="xzy"></div>
-<div id="reset" data-desc="{{ __('families/trees.helpers.reset') }}" data-text="xzy"></div>
-<div id="relation" data-desc="{{ __('families/trees.helpers.relation') }}" data-text="xzy"></div>
-<div id="saved" data-desc="{{ __('families/trees.saved') }}" data-text="xzy"></div>
-<div id="rename" data-desc="{{ __('families/trees.actions.rename-relation') }}" data-text="xzy"></div>
-<div id="remove" data-desc="{{ __('families/trees.helpers.remove-node') }}" data-text="xzy"></div>
-<div id="unknown" data-desc="{{ __('families/trees.unknown') }}" data-text="xzy"></div>
 
     @include('partials.errors')
 
@@ -91,65 +84,10 @@
 
 @section('scripts')
     @parent
-    @if ($mode === 'pixi')
-        <script src="{{ mix('js/family-tree.js') }}" defer></script>
-    @else
-        <script src="{{ mix('js/family-tree-vue.js') }}" defer></script>
-    @endif
+    <script src="{{ mix('js/family-tree-vue.js') }}" defer></script>
 @endsection
 @section('styles')
     @parent
-    @if ($mode === 'vue')
-        <link href="{{ mix('css/family-tree.css') }}" rel="stylesheet">
-    @endif
+    <link href="{{ mix('css/family-tree.css') }}" rel="stylesheet">
 @endsection
 
-@section('modals')
-    @parent
-    <div class="modal fade" id="add-entity" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="modalTitle">
-                        {{ __('families/trees.modal.title') }}
-                    </h4>
-                    <h4 class="modal-title" id="firstTitle">
-                        {{ __('families/trees.modal.first-title') }}
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <p id="modalHelper">
-                        {{ __('families/trees.modal.helper') }}
-                    </p>
-                    <p id="firstHelper">
-                        {{ __('families/trees.modal.first-helper') }}
-                    </p>
-                    {!! Form::foreignSelect(
-                        'character_id',
-                        [
-                            'class' => App\Models\Entity::class,
-                            'enableNew' => true,
-                            'labelKey' => __('crud.fields.entity'),
-                            'placeholderKey' => 'crud.placeholders.character',
-                            'searchRouteName' => 'search.entities-with-relations',
-                            'searchParams' => ['only' => config('entities.ids.character')]
-                        ]
-                    ) !!}
-
-                    <div class="form-group mt-5" style="display: none" id="add-relation">
-                        <label>{{ __('families/trees.modal.relation') }}</label>
-                        {!! Form::text('relation', null, ['placeholder' => __('events.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button id='send' type="button" class="btn btn-success" data-toast="{{ __('crud.alerts.copy_mention') }}">
-                        {{ __('crud.save') }}
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-@endsection

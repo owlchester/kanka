@@ -70,7 +70,7 @@ export default {
                 ;
         },
         relationText() {
-            return this.relation;
+            return this.relation ? this.relation : window.ftTexts.unknown;
         },
         editRelation(uuid, relation) {
             this.emitter.emit('editRelation', {uuid: uuid, relation: relation});

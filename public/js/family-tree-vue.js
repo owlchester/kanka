@@ -20085,9 +20085,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FamilyNode_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FamilyNode.vue */ "./resources/assets/js/components/families/FamilyNode.vue");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bloodhound-js/lib/utils */ "./node_modules/bloodhound-js/lib/utils.js");
-/* harmony import */ var bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__);
-
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -20279,13 +20276,13 @@ __webpack_require__.r(__webpack_exports__);
             object.relations.push({
               entity_id: entity_id,
               role: _this4.relation,
-              uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__.stringify)(_this4.newUuid)
+              uuid: stringify(_this4.newUuid)
             });
           } else {
             object.relations = [{
               entity_id: entity_id,
               role: _this4.relation,
-              uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__.stringify)(_this4.newUuid)
+              uuid: stringify(_this4.newUuid)
             }];
           }
           _this4.newUuid++;
@@ -20334,12 +20331,12 @@ __webpack_require__.r(__webpack_exports__);
           if (Array.isArray(object.children)) {
             object.children.push({
               entity_id: entity_id,
-              uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__.stringify)(_this6.newUuid)
+              uuid: stringify(_this6.newUuid)
             });
           } else {
             object.children = [{
               entity_id: entity_id,
-              uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__.stringify)(_this6.newUuid)
+              uuid: stringify(_this6.newUuid)
             }];
           }
           _this6.newUuid++;
@@ -20385,7 +20382,7 @@ __webpack_require__.r(__webpack_exports__);
       this.entities[entity.id] = entity;
       this.nodes.push({
         entity_id: entity.id,
-        uuid: (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__.stringify)(this.newUuid),
+        uuid: stringify(this.newUuid),
         relations: []
       });
       this.newUuid++;
@@ -20399,7 +20396,7 @@ __webpack_require__.r(__webpack_exports__);
       var getRelationNodes = function getRelationNodes(result, object) {
         if (object.uuid === _this8.currentUuid) {
           if (object.uuid === 0) {
-            object.uuid = (0,bloodhound_js_lib_utils__WEBPACK_IMPORTED_MODULE_2__.stringify)(_this8.newUuid);
+            object.uuid = stringify(_this8.newUuid);
             _this8.newUuid++;
           }
           object.entity_id = entity_id;
@@ -20502,7 +20499,7 @@ __webpack_require__.r(__webpack_exports__);
       return 'height: 10px;' + 'left: ' + (this.drawX - (this.entityWidth / 2 + 20)) + 'px; ' + 'width: ' + (this.entityWidth + 20) + 'px; ' + 'top: ' + (this.drawY + 57) + 'px';
     },
     relationText: function relationText() {
-      return this.relation;
+      return this.relation ? this.relation : window.ftTexts.unknown;
     },
     editRelation: function editRelation(uuid, relation) {
       this.emitter.emit('editRelation', {
@@ -21088,310 +21085,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: $options.i18n('entity', 'child')
   }, [_hoisted_7, _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'child')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_6)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 4 /* STYLE */)], 64 /* STABLE_FRAGMENT */);
 }
-
-/***/ }),
-
-/***/ "./node_modules/bloodhound-js/lib/utils.js":
-/*!*************************************************!*\
-  !*** ./node_modules/bloodhound-js/lib/utils.js ***!
-  \*************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-/*
- * typeahead.js
- * https://github.com/twitter/typeahead.js
- * Copyright 2013-2014 Twitter, Inc. and other contributors; Licensed MIT
- */
-
-var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
-
-var _ = {
-  isMsie: function() {
-    // from https://github.com/ded/bowser/blob/master/bowser.js
-    return (/(msie|trident)/i).test(navigator.userAgent) ?
-      navigator.userAgent.match(/(msie |rv:)(\d+(.\d+)?)/i)[2] : false;
-  },
-
-  isBlankString: function(str) { return !str || /^\s*$/.test(str); },
-
-  // http://stackoverflow.com/a/6969486
-  escapeRegExChars: function(str) {
-    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
-  },
-
-  isString: function(obj) { return typeof obj === 'string'; },
-
-  isNumber: function(obj) { return typeof obj === 'number'; },
-
-  isArray: Array.isArray,
-
-  isFunction: function(obj) {
-		return typeof obj === 'function';
-	},
-
-  isObject: function(obj) {
-    return typeof obj === 'object';
-  },
-
-  isUndefined: function(obj) { return typeof obj === 'undefined'; },
-
-  isElement: function(obj) { return !!(obj && obj.nodeType === 1); },
-
-  isJQuery: function(obj) { return obj instanceof $; },
-
-  toStr: function toStr(s) {
-    return (_.isUndefined(s) || s === null) ? '' : s + '';
-  },
-
-  bind: function(fn, context) {
-    return fn.bind(context);
-  },
-
-  each: function(collection, cb) {
-    collection.forEach(cb);
-  },
-
-  map: function(array, fn) {
-    return array.map(fn);
-  },
-
-  filter: function(array, fn) {
-    return array.filter(fn);
-  },
-
-  every: function(obj, test) {
-    var result = true;
-
-    if (!obj) { return result; }
-
-    // $.each(obj, function(key, val) {
-    //   if (!(result = test.call(null, val, key, obj))) {
-    //     return false;
-    //   }
-    // });
-
-    for(var key in obj) {
-      if(obj.hasOwnProperty(key)) {
-        var val = obj[key];
-        if (!(result = test.call(null, val, key, obj))) {
-          return false;
-        }
-      }
-    }
-
-    return !!result;
-  },
-
-  some: function(obj, test) {
-    var result = false;
-
-    if (!obj) { return result; }
-
-    // $.each(obj, function(key, val) {
-    //   if (result = test.call(null, val, key, obj)) {
-    //     return false;
-    //   }
-    // });
-
-    for(var key in obj) {
-      if(obj.hasOwnProperty(key)) {
-        var val = obj[key];
-        if (result = test.call(null, val, key, obj)) {
-          return false;
-        }
-      }
-    }
-
-    return !!result;
-  },
-
-  mixin: __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js"),
-
-  identity: function(x) { return x; },
-
-  clone: function(obj) { return assign({}, obj); },
-
-  getIdGenerator: function() {
-    var counter = 0;
-    return function() { return counter++; };
-  },
-
-  templatify: function templatify(obj) {
-    return _.isFunction(obj) ? obj : template;
-
-    function template() { return String(obj); }
-  },
-
-  defer: function(fn) { setTimeout(fn, 0); },
-
-  debounce: function(func, wait, immediate) {
-    var timeout, result;
-
-    return function() {
-      var context = this, args = arguments, later, callNow;
-
-      later = function() {
-        timeout = null;
-        if (!immediate) { result = func.apply(context, args); }
-      };
-
-      callNow = immediate && !timeout;
-
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-
-      if (callNow) { result = func.apply(context, args); }
-
-      return result;
-    };
-  },
-
-  throttle: function(func, wait) {
-    var context, args, timeout, result, previous, later;
-
-    previous = 0;
-    later = function() {
-      previous = new Date();
-      timeout = null;
-      result = func.apply(context, args);
-    };
-
-    return function() {
-      var now = new Date(),
-          remaining = wait - (now - previous);
-
-      context = this;
-      args = arguments;
-
-      if (remaining <= 0) {
-        clearTimeout(timeout);
-        timeout = null;
-        previous = now;
-        result = func.apply(context, args);
-      }
-
-      else if (!timeout) {
-        timeout = setTimeout(later, remaining);
-      }
-
-      return result;
-    };
-  },
-
-  stringify: function(val) {
-    return _.isString(val) ? val : JSON.stringify(val);
-  },
-
-  noop: function() {},
-
-  error: function(msg) {
-    throw new Error(msg);
-  }
-};
-
-module.exports = _;
-
-
-/***/ }),
-
-/***/ "./node_modules/object-assign/index.js":
-/*!*********************************************!*\
-  !*** ./node_modules/object-assign/index.js ***!
-  \*********************************************/
-/***/ ((module) => {
-
-"use strict";
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-
-/* eslint-disable no-unused-vars */
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-function toObject(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-function shouldUseNative() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !==
-				'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-	var from;
-	var to = toObject(target);
-	var symbols;
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = Object(arguments[s]);
-
-		for (var key in from) {
-			if (hasOwnProperty.call(from, key)) {
-				to[key] = from[key];
-			}
-		}
-
-		if (getOwnPropertySymbols) {
-			symbols = getOwnPropertySymbols(from);
-			for (var i = 0; i < symbols.length; i++) {
-				if (propIsEnumerable.call(from, symbols[i])) {
-					to[symbols[i]] = from[symbols[i]];
-				}
-			}
-		}
-	}
-
-	return to;
-};
-
 
 /***/ }),
 

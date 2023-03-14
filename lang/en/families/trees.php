@@ -51,12 +51,6 @@ return [
             'confirm' => 'Are you sure you want to reset the family tree?',
         ],
     ],
-    'helpers'   => [
-        'clear'         => 'Are you sure you want to clear the family tree?',
-        'reset'         => 'Are you sure you want to reset the family tree?',
-        'relation'      => 'Relation',
-        'remove-node'   => 'Do you want to remove this node?',
-    ],
     'pitch' => 'Create a detailed family tree for your families.',
     'unknown' => 'unknown',
     'success' => [

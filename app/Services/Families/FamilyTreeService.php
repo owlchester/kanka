@@ -332,6 +332,7 @@ class FamilyTreeService
                 'cleared' => __('families/trees.success.cleared'),
                 'reseted' => __('families/trees.success.reseted'),
             ],
+            'unknown' => __('families/trees.unknown'),
         ];
     }
 }

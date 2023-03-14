@@ -1,6 +1,4 @@
 let mix = require('laravel-mix');
-const tailwindcss = require('tailwindcss');
-//require('laravel-mix-brotli');
 
 /*
  |--------------------------------------------------------------------------
@@ -43,12 +41,9 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/gallery', 'public/js')
     .js('resources/assets/js/history', 'public/js')
     .js('resources/assets/js/editors/summernote', 'public/js/editors')
-    .js('resources/assets/js/family-tree', 'public/js')
     .js('resources/assets/js/family-tree-vue', 'public/js')
     .sourceMaps(true, 'source-map')
     .vue()
-    //.js('resources/assets/js/front', 'public/js')
-    //.sass('resources/assets/sass/bootstrap.scss', 'public/css')
     .sass('resources/assets/sass/vendor.scss', 'public/css')
     .sass('resources/assets/sass/app.scss', 'public/css')
     .sass('resources/assets/sass/abilities.scss', 'public/css')
@@ -67,49 +62,11 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/tinymce.scss', 'public/css')
     .sass('resources/assets/sass/freyja/freyja.scss', 'public/css')
     .sass('resources/assets/sass/print/print.scss', 'public/css')
-    /*.sass('resources/assets/sass/tailwind.scss', 'public/css')
-    .options({
-        processCssUrls: false,
-        postCss: [ tailwindcss('./tailwind.config.js') ],
-    })*/
 
-    /*.postCss("resources/assets/css/tailwind.css", "public/css", [
-        require("tailwindcss"),
-    ])*/
-    //.brotli({
-    //    enabled: mix.inProduction(),
-    //    asset: '[path].br[query]',
-    //    test: /\.(js|css|html|svg)$/,
-    //    threshold: 10240,
-    //    minRatio: 0.8
-    //})
-    // .options({
-    //     processCssUrls: false,
-    //     postCss:[
-    //         tailwindcss('./tailwind.config.js')
-    //     ]
-    // })
     .options({
         processCssUrls: false
     })
     .version()
 ;
 
-/*mix.postCss("resources/assets/css/tailwind.css", "public/css", [
-    require("tailwindcss"),
-]);*/
-
-/*mix.setPublicPath('./public/js/').extract([
-    'lodash',
-    'bootstrap',
-    'bootstrap-sass',
-    'admin-lte',
-    'select2',
-    'bootstrap-datepicker',
-    'eonasdan-bootstrap-datetimepicker',
-    'spectrum-colorpicker',
-    'jquery-ui/ui/widgets/draggable',
-    'jquery-ui/ui/widgets/sortable',
-    'axios',
-], 'vendor.js');*/
 

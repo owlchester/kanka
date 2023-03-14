@@ -78,7 +78,6 @@
 <script>
 import FamilyNode from './FamilyNode.vue';
 import axios from "axios";
-import {stringify} from "bloodhound-js/lib/utils";
 
 export default {
     props: {
