@@ -1,17 +1,17 @@
 <template>
-    <div class="flex w-full gap-1 mb-5 justify-end" v-if="!isLoading">
+    <div class="flex w-full gap-1 mb-3 justify-end items-center" v-if="!isLoading">
         <button class="btn btn-sm btn-warning" v-if="!isEditing" v-on:click="startEditing()">
             <i class="fa-solid fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
-        <button class="btn btn-sm btn-default" v-if="isEditing" v-on:click="resetTree()">
+        <a class="cursor-pointer mr-5" v-if="isEditing" v-on:click="resetTree()">
             <i class="fa-solid fa-redo" aria-hidden="true"></i>
             {{ this.texts.actions.reset }}
-        </button>
-        <button class="btn btn-sm btn-default" v-if="isEditing" v-on:click="clearTree()">
+        </a>
+        <a class="cursor-pointer mr-5" v-if="isEditing" v-on:click="clearTree()">
             <i class="fa-solid fa-eraser" aria-hidden="true"></i>
             {{ this.texts.actions.clear }}
-        </button>
+        </a>
         <button class="btn btn-sm btn-primary" :disabled="!isDirty" v-if="isEditing" v-on:click="saveTree()">
             <i class="fa-solid fa-save" aria-hidden="true"></i>
             {{ this.texts.actions.save }}
@@ -35,6 +35,7 @@
                         :drawX="0"
                         :drawY="0"
                         :isEditing="isEditing"
+                        :isFirst="true"
             >
             </FamilyNode>
         </div>
@@ -125,7 +126,6 @@ export default {
                 this.isEditing = false;
                 this.isDirty = false;
 
-
                 this.nodes = JSON.parse(JSON.stringify(this.originalNodes));
                 this.entities = JSON.parse(JSON.stringify(this.originalEntities));
 
@@ -141,8 +141,12 @@ export default {
                 });
         },
         clearTree() {
-            this.nodes = [];
-            window.showToast(this.texts.toasts.cleared);
+            if (confirm(this.texts.modals.clear.confirm)) {
+                this.nodes = [];
+                this.entities = [];
+                this.isDirty = this.originalNodes.length > 0;
+                window.showToast(this.texts.toasts.cleared);
+            }
         },
         deleteUuid(uuid) {
             if (confirm(this.texts.modals.entity.remove.confirm)) {
@@ -406,6 +410,7 @@ export default {
             this.nodes = resp.data.nodes;
             this.entities = resp.data.entities;
             this.texts = resp.data.texts;
+            window.ftTexts = this.texts;
 
             this.originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
             this.originalEntities = JSON.parse(JSON.stringify(resp.data.entities));

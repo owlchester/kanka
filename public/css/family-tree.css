@@ -15,9 +15,16 @@
 }
 
 .family-node-entity {
-  width: 200px;
   border: 1px solid var(--input-border-color);
   background-color: var(--input-background-color);
+}
+
+.family-node-entity-founder {
+  background-color: var(--family-tree-founder, #faf0ea);
+}
+
+.family-node-entity-relation {
+  background-color: var(--input-border-color);
 }
 
 .family-tree-line {

@@ -4,6 +4,8 @@ import mitt from 'mitt'
 const emitter = mitt()
 const app = createApp({})
 app.config.globalProperties.emitter = emitter
+app.config.globalProperties.entityHeight = 60
+app.config.globalProperties.entityWidth = 200
 app.component('family-tree', require('./components/families/FamilyTree.vue').default)
 app.component('FamilyNode', require('./components/families/FamilyNode.vue').default)
 app.component('FamilyEntity', require('./components/families/FamilyEntity.vue').default)
@@ -16,6 +18,7 @@ app.component('FamilyParentChildrenLine', require('./components/families/FamilyP
 app.mount('#family-tree');
 
 
+window.ftTexts = {};
 
 /**
  * Figure out the width of a child (when drawing a relation). This is used when calculating where to draw the next node

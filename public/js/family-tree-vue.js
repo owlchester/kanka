@@ -19742,21 +19742,14 @@ __webpack_require__.r(__webpack_exports__);
 
       // If we're further than 1 away
       var diff = this.targetX - this.originX;
-      if (diff >= 220) {
+      if (diff >= this.entityWidth + 20) {
         //width = 300;
-        width = diff + 110;
+        width = diff + (this.entityWidth + 20) / 2;
         left = this.originX - 10; // place it at the beginning
       }
 
       return 'height: 1px;' + 'width: ' + width + 'px;' + 'left: ' + left + 'px; ' + 'top: ' + (this.originY - 15) + 'px; ';
     }
-    /*horizontal() {
-        return 'height: 1px;' +
-            'left: ' + (this.drawX + 100) + 'px; ' +
-            'width: ' + 220 + 'px; ' +
-            'top: ' + (this.sourceY + 100) + 'px'
-        ;
-    },*/
   }
 });
 
@@ -19802,7 +19795,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getLineX: function getLineX(index) {
       if (index === 0) {
-        return this.sourceX + 220;
+        return this.sourceX + this.entityWidth + 20;
       }
       return this.drawX;
     },
@@ -19812,7 +19805,7 @@ __webpack_require__.r(__webpack_exports__);
     getRealDrawX: function getRealDrawX(index) {
       var x = this.drawX;
       var offset = this.getNodeSize(index);
-      x += offset * (200 + 20);
+      x += offset * (this.entityWidth + 20);
       return x;
     },
     getNodeSize: function getNodeSize(index) {
@@ -19853,12 +19846,23 @@ __webpack_require__.r(__webpack_exports__);
     drawX: 0,
     drawY: 0,
     isRelation: false,
+    isFounder: false,
     isEditing: undefined,
     node: undefined
   },
   methods: {
+    boxClasses: function boxClasses() {
+      var css = 'family-node-entity rounded-2xl px-2 py-2 absolute inline-block overflow-hidden';
+      if (this.isRelation) {
+        css += ' family-node-entity-relation';
+      }
+      if (this.isFounder) {
+        css += ' family-node-entity-founder';
+      }
+      return css;
+    },
     position: function position() {
-      return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px';
+      return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px; width:' + this.entityWidth + 'px;';
     },
     editEntity: function editEntity(uuid) {
       this.emitter.emit('editEntity', uuid);
@@ -19869,8 +19873,15 @@ __webpack_require__.r(__webpack_exports__);
     addRelation: function addRelation(uuid) {
       this.emitter.emit('addRelation', uuid);
     },
-    addChild: function addChild(uuid) {
-      this.emitter.emit('addChild', uuid);
+    cssClasses: function cssClasses() {
+      var classes = 'block max-h-5 truncate';
+      if (this.isEditing) {
+        classes += ' font-bold';
+      }
+      return classes;
+    },
+    i18n: function i18n(group, action) {
+      return window.ftTexts.modals[group][action].title;
     }
   },
   mounted: function mounted() {
@@ -19902,6 +19913,7 @@ __webpack_require__.r(__webpack_exports__);
     drawLine: false,
     lineX: 0,
     isEditing: undefined,
+    isFirst: false,
     offset: undefined
   },
   methods: {
@@ -19939,12 +19951,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      height: 30
+      height: 20
     };
   },
   methods: {
     vertical: function vertical() {
-      var top = this.sourceY - 45;
+      var top = this.sourceY - 35;
       var left = this.sourceX - 10;
       return 'width: 1px; height: ' + this.height + 'px;' + 'left: ' + left + 'px; ' + 'top: ' + top + 'px;';
     }
@@ -19988,10 +20000,10 @@ __webpack_require__.r(__webpack_exports__);
       return index === 0 ? this.sourceX : this.drawX;
     },
     startY: function startY() {
-      return this.sourceY + 60 + 60;
+      return this.sourceY + this.entityHeight + 50;
     },
     lineX: function lineX() {
-      return this.index === 0 ? this.drawX + 200 + 20 : this.sourceX;
+      return this.index === 0 ? this.drawX + this.entityWidth + 20 : this.sourceX;
     },
     relationText: function relationText() {
       return this.relation.role;
@@ -20043,7 +20055,7 @@ __webpack_require__.r(__webpack_exports__);
       if (index === 0) {
         nodeOffset = 1;
       }
-      var tmpOffsetX = 200 + 20;
+      var tmpOffsetX = this.entityWidth + 20;
       for (var i = 0; i < index; i++) {
         var relWidth = window.familyTreeRelationWidth(this.relations[i], index);
         nodeOffset += relWidth;
@@ -20136,8 +20148,12 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     clearTree: function clearTree() {
-      this.nodes = [];
-      window.showToast(this.texts.toasts.cleared);
+      if (confirm(this.texts.modals.clear.confirm)) {
+        this.nodes = [];
+        this.entities = [];
+        this.isDirty = this.originalNodes.length > 0;
+        window.showToast(this.texts.toasts.cleared);
+      }
     },
     deleteUuid: function deleteUuid(uuid) {
       if (confirm(this.texts.modals.entity.remove.confirm)) {
@@ -20409,6 +20425,7 @@ __webpack_require__.r(__webpack_exports__);
       _this9.nodes = resp.data.nodes;
       _this9.entities = resp.data.entities;
       _this9.texts = resp.data.texts;
+      window.ftTexts = _this9.texts;
       _this9.originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
       _this9.originalEntities = JSON.parse(JSON.stringify(resp.data.entities));
       _this9.isLoading = false;
@@ -20473,16 +20490,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     verticalSource: function verticalSource() {
-      return 'width: 1px; height: ' + this.height + 'px;' + 'left: ' + (this.sourceX + 100) + 'px; ' + 'top: ' + (this.sourceY + 60) + 'px;';
+      return 'width: 1px; height: ' + this.height + 'px;' + 'left: ' + (this.sourceX + this.entityWidth / 2) + 'px; ' + 'top: ' + (this.sourceY + this.entityHeight) + 'px;';
     },
     verticalTarget: function verticalTarget() {
-      return 'width: 1px; height: ' + this.height + 'px;' + 'left: ' + (this.drawX + 100) + 'px; ' + 'top: ' + (this.drawY + 60) + 'px; ';
+      return 'width: 1px; height: ' + this.height + 'px;' + 'left: ' + (this.drawX + this.entityWidth / 2) + 'px; ' + 'top: ' + (this.drawY + this.entityHeight) + 'px; ';
     },
     horizontal: function horizontal() {
-      return 'height: 1px;' + 'left: ' + (this.sourceX + 100) + 'px; ' + 'width: ' + (this.drawX - this.sourceX) + 'px; ' + 'top: ' + (this.drawY + 75) + 'px';
+      return 'height: 1px;' + 'left: ' + (this.sourceX + this.entityWidth / 2) + 'px; ' + 'width: ' + (this.drawX - this.sourceX) + 'px; ' + 'top: ' + (this.drawY + this.entityHeight + 15) + 'px';
     },
     relationBox: function relationBox() {
-      return 'height: 10px;' + 'left: ' + (this.drawX - 120) + 'px; ' + 'width: ' + 220 + 'px; ' + 'top: ' + (this.drawY + 60) + 'px';
+      return 'height: 10px;' + 'left: ' + (this.drawX - (this.entityWidth / 2 + 20)) + 'px; ' + 'width: ' + (this.entityWidth + 20) + 'px; ' + 'top: ' + (this.drawY + 55) + 'px';
     },
     relationText: function relationText() {
       return this.relation;
@@ -20492,6 +20509,12 @@ __webpack_require__.r(__webpack_exports__);
         uuid: uuid,
         relation: relation
       });
+    },
+    addChild: function addChild(uuid) {
+      this.emitter.emit('addChild', uuid);
+    },
+    i18n: function i18n(group, action) {
+      return window.ftTexts.modals[group][action].title;
     }
   }
 });
@@ -20582,82 +20605,75 @@ var _hoisted_1 = {
   "class": "flex items-center gap-1"
 };
 var _hoisted_2 = {
+  "class": "flex-0"
+};
+var _hoisted_3 = ["src"];
+var _hoisted_4 = {
   "class": "grow justify-center"
 };
-var _hoisted_3 = ["href"];
-var _hoisted_4 = {
+var _hoisted_5 = ["href"];
+var _hoisted_6 = {
   key: 0,
+  "class": "text-xs"
+};
+var _hoisted_7 = {
+  key: 1,
   "class": "flex gap-1"
 };
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_8 = ["title"];
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-pencil",
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_10 = {
   "class": "sr-only"
-}, "Edit", -1 /* HOISTED */);
-var _hoisted_7 = [_hoisted_5, _hoisted_6];
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+};
+var _hoisted_11 = ["title"];
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-user-plus",
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_13 = {
   "class": "sr-only"
-}, "Add Relation", -1 /* HOISTED */);
-var _hoisted_10 = [_hoisted_8, _hoisted_9];
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fa-solid fa-baby",
-  "aria-hidden": "true"
-}, null, -1 /* HOISTED */);
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "sr-only"
-}, "Add child", -1 /* HOISTED */);
-var _hoisted_13 = [_hoisted_11, _hoisted_12];
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+};
+var _hoisted_14 = ["title"];
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-trash",
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_16 = {
   "class": "sr-only"
-}, "Delete", -1 /* HOISTED */);
-var _hoisted_16 = [_hoisted_14, _hoisted_15];
-var _hoisted_17 = {
-  "class": "align-end"
 };
-var _hoisted_18 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-    "class": "family-node-entity rounded-2xl px-5 py-2 absolute inline-block",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.boxClasses()),
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.position())
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: $props.entity.thumb,
+    "class": "rounded-full entity-image"
+  }, null, 8 /* PROPS */, _hoisted_3)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.entity.url,
-    "class": "block max-h-5 truncate"
-  }, " #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.id) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.name), 9 /* TEXT, PROPS */, _hoisted_3), $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.cssClasses())
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.name), 11 /* TEXT, CLASS, PROPS */, _hoisted_5), !$props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_6, " (#" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.id) + ") ", 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.editEntity($props.uuid);
     }),
-    "class": "cursor-pointer"
-  }, _hoisted_7), !$props.isRelation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+    "class": "cursor-pointer",
+    title: $options.i18n('entity', 'edit')
+  }, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'edit')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_8), !$props.isRelation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 0,
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.addRelation($props.uuid);
     }),
-    "class": "grow cursor-pointer"
-  }, _hoisted_10)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
-    key: 1,
-    "class": "grow cursor-pointer",
+    "class": "cursor-pointer",
+    title: $options.i18n('relation', 'add')
+  }, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('relation', 'add')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
-      return $options.addChild($props.uuid);
-    })
-  }, _hoisted_13)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.deleteEntity($props.uuid);
     }),
-    "class": "align-end cursor-pointer"
-  }, _hoisted_16)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: $props.entity.thumb,
-    "class": "rounded-full entity-image"
-  }, null, 8 /* PROPS */, _hoisted_18)])])], 4 /* STYLE */);
+    "class": "align-end cursor-pointer",
+    title: $options.i18n('entity', 'remove')
+  }, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'remove')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_14)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 6 /* CLASS, STYLE */);
 }
 
 /***/ }),
@@ -20690,8 +20706,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     drawX: this.drawX,
     drawY: this.drawY,
     isEditing: this.isEditing,
-    node: this.node
-  }, null, 8 /* PROPS */, ["entity", "uuid", "drawX", "drawY", "isEditing", "node"]), $options.hasRelations() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyRelations, {
+    node: this.node,
+    isFounder: this.isFirst
+  }, null, 8 /* PROPS */, ["entity", "uuid", "drawX", "drawY", "isEditing", "node", "isFounder"]), $options.hasRelations() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyRelations, {
     key: 1,
     relations: $props.node.relations,
     entities: $props.entities,
@@ -20825,7 +20842,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   key: 0,
-  "class": "flex w-full gap-1 mb-5 justify-end"
+  "class": "flex w-full gap-1 mb-3 justify-end items-center"
 };
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-edit",
@@ -20931,15 +20948,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.startEditing();
     })
-  }, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.actions.edit), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  }, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.actions.edit), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 1,
-    "class": "btn btn-sm btn-default",
+    "class": "cursor-pointer mr-5",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.resetTree();
     })
-  }, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.actions.reset), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  }, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.actions.reset), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 2,
-    "class": "btn btn-sm btn-default",
+    "class": "cursor-pointer mr-5",
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.clearTree();
     })
@@ -20964,7 +20981,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       sourceY: 0,
       drawX: 0,
       drawY: 0,
-      isEditing: $data.isEditing
+      isEditing: $data.isEditing,
+      isFirst: true
     }, null, 8 /* PROPS */, ["node", "entities", "isEditing"]);
   }), 256 /* UNKEYED_FRAGMENT */))]))]), !$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
@@ -21016,14 +21034,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_1 = ["title"];
+var _hoisted_2 = {
   "class": "fa-solid fa-pencil",
   "aria-hidden": "true"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+};
+var _hoisted_3 = {
   "class": "sr-only"
-}, "Edit relation")], -1 /* HOISTED */);
-var _hoisted_2 = {
+};
+var _hoisted_4 = {
   key: 1
+};
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+var _hoisted_6 = ["title"];
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa-solid fa-baby",
+  "aria-hidden": "true"
+}, null, -1 /* HOISTED */);
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa-solid fa-plus",
+  "aria-hidden": "true"
+}, null, -1 /* HOISTED */);
+var _hoisted_9 = {
+  "class": "sr-only"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -21043,8 +21076,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.editRelation($props.uuid, $props.relation);
     }),
-    "class": "cursor-pointer"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()) + " ", 1 /* TEXT */), _hoisted_1])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()), 1 /* TEXT */))], 4 /* STYLE */)], 64 /* STABLE_FRAGMENT */);
+    "class": "cursor-pointer",
+    title: $options.i18n('relation', 'edit')
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('relation', 'edit')), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_1)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()), 1 /* TEXT */)), _hoisted_5, $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+    key: 2,
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $options.addChild($props.uuid);
+    }),
+    "class": "cursor-pointer",
+    title: $options.i18n('entity', 'child')
+  }, [_hoisted_7, _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'child')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_6)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 4 /* STYLE */)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -22467,6 +22508,8 @@ __webpack_require__.r(__webpack_exports__);
 var emitter = (0,mitt__WEBPACK_IMPORTED_MODULE_1__["default"])();
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
 app.config.globalProperties.emitter = emitter;
+app.config.globalProperties.entityHeight = 60;
+app.config.globalProperties.entityWidth = 200;
 app.component('family-tree', (__webpack_require__(/*! ./components/families/FamilyTree.vue */ "./resources/assets/js/components/families/FamilyTree.vue")["default"]));
 app.component('FamilyNode', (__webpack_require__(/*! ./components/families/FamilyNode.vue */ "./resources/assets/js/components/families/FamilyNode.vue")["default"]));
 app.component('FamilyEntity', (__webpack_require__(/*! ./components/families/FamilyEntity.vue */ "./resources/assets/js/components/families/FamilyEntity.vue")["default"]));
@@ -22477,6 +22520,7 @@ app.component('RelationLine', (__webpack_require__(/*! ./components/families/Rel
 app.component('ChildrenLine', (__webpack_require__(/*! ./components/families/ChildrenLine.vue */ "./resources/assets/js/components/families/ChildrenLine.vue")["default"]));
 app.component('FamilyParentChildrenLine', (__webpack_require__(/*! ./components/families/FamilyParentChildrenLine.vue */ "./resources/assets/js/components/families/FamilyParentChildrenLine.vue")["default"]));
 app.mount('#family-tree');
+window.ftTexts = {};
 
 /**
  * Figure out the width of a child (when drawing a relation). This is used when calculating where to draw the next node

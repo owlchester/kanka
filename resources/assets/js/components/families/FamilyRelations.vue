@@ -45,7 +45,7 @@ export default {
             if (index === 0) {
                 nodeOffset = 1;
             }
-            let tmpOffsetX = 200 + 20;
+            let tmpOffsetX = this.entityWidth + 20;
 
             for(let i = 0; i < index; i++) {
                 let relWidth = window.familyTreeRelationWidth(this.relations[i], index);

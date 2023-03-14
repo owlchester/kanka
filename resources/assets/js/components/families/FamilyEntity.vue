@@ -1,32 +1,30 @@
 <template>
-    <div class="family-node-entity rounded-2xl px-5 py-2 absolute inline-block" v-bind:style="position()">
+    <div v-bind:class="boxClasses()" v-bind:style="position()">
         <div class="flex items-center gap-1">
+            <div class="flex-0">
+                <img v-bind:src="entity.thumb" class="rounded-full entity-image" />
+            </div>
             <div class="grow justify-center">
-                <a v-bind:href="entity.url" class="block max-h-5 truncate">
-                    #{{ entity.id }}
+                <a v-bind:href="entity.url" v-bind:class="cssClasses()">
                     {{ entity.name }}
                 </a>
+                <span class="text-xs" v-if="!isEditing">
+                    (#{{ entity.id }})
+                </span>
                 <div class="flex gap-1" v-if="isEditing">
-                    <a v-on:click="editEntity(uuid)" class="cursor-pointer">
+                    <a v-on:click="editEntity(uuid)" class="cursor-pointer" v-bind:title="i18n('entity', 'edit')">
                         <i class="fa-solid fa-pencil" aria-hidden="true"></i>
-                        <span class="sr-only">Edit</span>
+                        <span class="sr-only">{{ i18n('entity', 'edit') }}</span>
                     </a>
-                    <a v-if="!isRelation" v-on:click="addRelation(uuid)" class="grow cursor-pointer">
+                    <a v-if="!isRelation" v-on:click="addRelation(uuid)" class="cursor-pointer" v-bind:title="i18n('relation', 'add')">
                         <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-                        <span class="sr-only">Add Relation</span>
+                        <span class="sr-only">{{ i18n('relation', 'add') }}</span>
                     </a>
-                    <a v-else class="grow cursor-pointer" v-on:click="addChild(uuid)">
-                        <i class="fa-solid fa-baby" aria-hidden="true"></i>
-                        <span class="sr-only">Add child</span>
-                    </a>
-                    <a v-on:click="deleteEntity(uuid)" class="align-end cursor-pointer">
+                    <a v-on:click="deleteEntity(uuid)" class="align-end cursor-pointer" v-bind:title="i18n('entity', 'remove')">
                         <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                        <span class="sr-only">Delete</span>
+                        <span class="sr-only">{{  i18n('entity', 'remove') }}</span>
                     </a>
                 </div>
-            </div>
-            <div class="align-end">
-                <img v-bind:src="entity.thumb" class="rounded-full entity-image" />
             </div>
         </div>
     </div>
@@ -41,13 +39,24 @@ export default {
         drawX: 0,
         drawY: 0,
         isRelation: false,
+        isFounder: false,
         isEditing: undefined,
         node: undefined,
     },
 
     methods: {
+        boxClasses() {
+            let css = 'family-node-entity rounded-2xl px-2 py-2 absolute inline-block overflow-hidden';
+            if (this.isRelation) {
+                css += ' family-node-entity-relation';
+            }
+            if (this.isFounder) {
+                css += ' family-node-entity-founder';
+            }
+            return css;
+        },
         position() {
-            return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px';
+            return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px; width:' + this.entityWidth + 'px;';
         },
         editEntity(uuid) {
             this.emitter.emit('editEntity', uuid);
@@ -58,8 +67,15 @@ export default {
         addRelation(uuid) {
             this.emitter.emit('addRelation', uuid);
         },
-        addChild(uuid) {
-            this.emitter.emit('addChild', uuid);
+        cssClasses() {
+            let classes = 'block max-h-5 truncate';
+            if (this.isEditing) {
+                classes += ' font-bold';
+            }
+            return classes;
+        },
+        i18n(group, action) {
+            return window.ftTexts.modals[group][action].title
         },
     },
 

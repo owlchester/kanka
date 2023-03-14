@@ -13,13 +13,13 @@ export default {
 
     data() {
         return {
-            height: 30,
+            height: 20,
         }
     },
 
     methods: {
         vertical() {
-            let top =  this.sourceY - 45;
+            let top =  this.sourceY - 35;
             let left = this.sourceX - 10;
 
             return 'width: 1px; height: ' + this.height + 'px;' +

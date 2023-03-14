@@ -64,10 +64,10 @@ export default {
             return index === 0 ? this.sourceX : this.drawX;
         },
         startY() {
-            return this.sourceY + 60 + 60;
+            return this.sourceY + this.entityHeight + 50;
         },
         lineX() {
-            return this.index === 0 ? this.drawX + 200 + 20 : this.sourceX;
+            return this.index === 0 ? this.drawX + this.entityWidth + 20 : this.sourceX;
         },
         relationText() {
             return this.relation.role;

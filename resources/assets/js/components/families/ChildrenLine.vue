@@ -39,9 +39,9 @@ export default {
 
             // If we're further than 1 away
             let diff = this.targetX - this.originX;
-            if (diff >= 220) {
+            if (diff >= (this.entityWidth + 20)) {
                 //width = 300;
-                width = diff + 110;
+                width = diff + ((this.entityWidth + 20) / 2);
                 left = this.originX - 10; // place it at the beginning
             }
 
@@ -51,13 +51,6 @@ export default {
                 'top: ' + (this.originY - 15) + 'px; '
             ;
         },
-        /*horizontal() {
-            return 'height: 1px;' +
-                'left: ' + (this.drawX + 100) + 'px; ' +
-                'width: ' + 220 + 'px; ' +
-                'top: ' + (this.sourceY + 100) + 'px'
-            ;
-        },*/
     },
 };
 </script>

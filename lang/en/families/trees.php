@@ -5,7 +5,7 @@ return [
         'clear' => 'Clear tree',
         'reset' => 'Reset tree',
         'save' => 'Save tree',
-        'first' => 'Add a character',
+        'first' => 'Add a founder',
         'rename-relation' => 'Rename relation',
     ],
     'title' => ':name Family Tree',
@@ -13,10 +13,12 @@ return [
         'title'         => 'Replace entity',
         'first-title'   => 'Select an entity',
         'helper'        => 'Replace the entity with another from your campaign',
-        'first-helper'  => 'Select an entity from your campaign',
         'relation'      => 'Relation',
     ],
     'modals' => [
+        'clear' => [
+            'confirm' => 'Are you sure you want to clear the family tree?',
+        ],
         'relations' => [
             'add' => [
                 'title' => 'Add a relation',

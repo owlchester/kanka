@@ -54,7 +54,7 @@ export default {
     methods: {
         getLineX(index) {
             if (index === 0) {
-                return this.sourceX + 220;
+                return this.sourceX + this.entityWidth + 20;
             }
             return this.drawX;
         },
@@ -64,7 +64,7 @@ export default {
         getRealDrawX(index) {
             let x = this.drawX;
             let offset = this.getNodeSize(index);
-            x += offset * (200 + 20);
+            x += offset * (this.entityWidth + 20);
             return x;
         },
         getNodeSize(index) {

@@ -283,6 +283,9 @@ class FamilyTreeService
                 'first' => __('families/trees.actions.first'),
             ],
             'modals' => [
+                'clear' => [
+                    'confirm' => __('families/trees.modals.clear.confirm'),
+                ],
                 'relation' => [
                     'add' => [
                         'title' => __('families/trees.modals.relations.add.title'),
@@ -302,6 +305,7 @@ class FamilyTreeService
                         'title' => __('families/trees.modals.entity.child.title'),
                     ],
                     'remove' => [
+                        'title' => __('crud.remove'),
                         'confirm' => __('families/trees.modals.entity.remove.confirm'),
                     ],
                 ],
