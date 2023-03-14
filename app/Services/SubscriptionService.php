@@ -184,9 +184,6 @@ class SubscriptionService
      * @param string $paymentID
      * @return $this
      * @throws \Laravel\Cashier\Exceptions\IncompletePayment
-     * @throws \Laravel\Cashier\Exceptions\PaymentActionRequired
-     * @throws \Laravel\Cashier\Exceptions\PaymentFailure
-     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function subscribe($planID, $paymentID): self
     {
@@ -389,11 +386,11 @@ class SubscriptionService
      */
     public function currentPlan(): string
     {
-        if ($this->user->subscribedToPlan($this->owlbearPlans(), 'kanka')) {
+        if ($this->user->subscribedToPrice($this->owlbearPlans(), 'kanka')) {
             return Pledge::OWLBEAR;
-        } elseif ($this->user->subscribedToPlan($this->wyvernPlans(), 'kanka')) {
+        } elseif ($this->user->subscribedToPrice($this->wyvernPlans(), 'kanka')) {
             return Pledge::WYVERN;
-        } elseif ($this->user->subscribedToPlan($this->elementalPlans(), 'kanka')) {
+        } elseif ($this->user->subscribedToPrice($this->elementalPlans(), 'kanka')) {
             return Pledge::ELEMENTAL;
         }
 

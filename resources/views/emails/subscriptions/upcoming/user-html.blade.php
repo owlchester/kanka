@@ -9,8 +9,8 @@
     </p>
     <p>
         {{ __('emails/subscriptions/upcoming.primary', [
-    'brand' => ucfirst($user->card_brand),
-    'last' => $user->card_last_four,
+    'brand' => ucfirst($user->pm_type),
+    'last' => $user->pm_last_four,
     'date' => $date->isoFormat('MMMM D, Y')
     ]) }}</p>
 

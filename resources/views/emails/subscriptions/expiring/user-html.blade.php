@@ -12,8 +12,8 @@
     </p>
     <p>
         {{ __('emails/subscriptions/expiring.primary', [
-    'brand' => ucfirst($user->card_brand),
-    'last' => $user->card_last_four,
+    'brand' => ucfirst($user->pm_type),
+    'last' => $user->pm_last_four,
     ]) }}</p>
 
     <p>{!! __('emails/subscriptions/expiring.valid', ['action' => link_to_route('billing.payment-method', __('emails/subscriptions/expiring.action'))]) !!}</p>

@@ -50,17 +50,17 @@
                         <dd>{{ $currentPlan }}</dd>
                         <dt>{{ __('settings.subscription.fields.billing') }}</dt>
                         <dd>
-                        @if ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
+                        @if ($user->subscribedToPrice($service->yearlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
                             {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
-                        @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
+                        @elseif ($user->subscribedToPrice($service->monthlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
                             {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
-                        @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
+                        @elseif ($user->subscribedToPrice($service->yearlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
                             {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
-                        @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
+                        @elseif ($user->subscribedToPrice($service->monthlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
                             {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
-                        @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
+                        @elseif ($user->subscribedToPrice($service->yearlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
                             {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
-                        @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
+                        @elseif ($user->subscribedToPrice($service->monthlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
                             {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
                         @else
                             {{ __('front.pricing.tier.free') }}
