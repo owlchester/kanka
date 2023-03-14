@@ -66,7 +66,7 @@ export default {
             return 'height: 10px;' +
                 'left: ' + (this.drawX - (this.entityWidth / 2 + 20)) + 'px; ' +
                 'width: ' + (this.entityWidth + 20) + 'px; ' +
-                'top: ' + (this.drawY + 55) + 'px'
+                'top: ' + (this.drawY + 57) + 'px'
                 ;
         },
         relationText() {

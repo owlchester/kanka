@@ -20499,7 +20499,7 @@ __webpack_require__.r(__webpack_exports__);
       return 'height: 1px;' + 'left: ' + (this.sourceX + this.entityWidth / 2) + 'px; ' + 'width: ' + (this.drawX - this.sourceX) + 'px; ' + 'top: ' + (this.drawY + this.entityHeight + 15) + 'px';
     },
     relationBox: function relationBox() {
-      return 'height: 10px;' + 'left: ' + (this.drawX - (this.entityWidth / 2 + 20)) + 'px; ' + 'width: ' + (this.entityWidth + 20) + 'px; ' + 'top: ' + (this.drawY + 55) + 'px';
+      return 'height: 10px;' + 'left: ' + (this.drawX - (this.entityWidth / 2 + 20)) + 'px; ' + 'width: ' + (this.entityWidth + 20) + 'px; ' + 'top: ' + (this.drawY + 57) + 'px';
     },
     relationText: function relationText() {
       return this.relation;
@@ -20862,7 +20862,7 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
 var _hoisted_7 = {
-  "class": "family-tree relative"
+  "class": "family-tree overflow-auto w-full h-full block"
 };
 var _hoisted_8 = {
   key: 0,
@@ -20877,7 +20877,8 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Loading...", -1 /* HOISTED */);
 var _hoisted_11 = [_hoisted_9, _hoisted_10];
 var _hoisted_12 = {
-  key: 1
+  key: 1,
+  "class": "relative pb-5"
 };
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-plus",
@@ -22532,8 +22533,9 @@ window.familyTreeChildWidth = function (child, index) {
   if (child.relations === undefined || child.relations.length === 0) {
     return 1;
   }
-  // The minimum width based on the topmost elements
-  var min = 1;
+  // The minimum width based on the topmost elements. Since the first child starts below the first parent, we go
+  // back 1
+  var size = -1;
 
   /**
    * Loop on each of the child's relations, making this node wider (for each relation's size)
@@ -22541,14 +22543,14 @@ window.familyTreeChildWidth = function (child, index) {
    */
   child.relations.forEach(function (rel) {
     // Relation ads at least 1 width
-    min++;
+    size++;
     if (rel.children !== undefined && rel.children.length > 0) {
       // If there are children, we start back at 0 because the node + rel already counts as two
-      if (rel.children.length > 1) {
-        min -= 2;
+      /*if (rel.children.length > 1) {
+          min -= 2;
       } else if (rel.children.length > 0 && index === 0) {
-        min -= 1;
-      }
+          min -= 1;
+      }*/
       /**
        * Loop each child of the relation, looking for the "widest" one
        * On each child, we need to get its total width (child + relation + children) and add it to the width
@@ -22559,49 +22561,48 @@ window.familyTreeChildWidth = function (child, index) {
         // Deduct one because each child starts on a new line and is pushed left
         var childWidth = window.familyTreeChildWidth(c, index);
         //console.log(c.entity_id, 'childWidth', childWidth);
-        min += childWidth;
+        size += childWidth;
       });
     }
   });
 
-  // Return the largest relation
-  return Math.max(1, min);
-};
-window.familyTreeNodeWidth = function (node, index) {
-  var size = 1;
-  return size;
+  // The minimum width, in case a child has two relations but no children, if the amount of relations + itself
+  var minWidth = child.relations.length + 1;
+  // Get the largest calculated size
+  return Math.max(minWidth, size);
 };
 
 /**
  * Count how wide a relation is, counting itself + all of its children
  */
 window.familyTreeRelationWidth = function (relation, index) {
+  // If a relation has no children, then it's simple
   if (relation.children === undefined || relation.children.length === 0) {
     return 1;
   }
 
-  // At least 1 wide for each relation
-  var min = relation.children.length > 1 ? -1 : 1;
+  // Each relation takes up at least 1 width
+  var size = 1;
 
   // Let's find out just how wide this relation is
   relation.children.forEach(function (child, i) {
-    // The first two children are below the parent and this entity
-    if (i > 0) {
-      min++;
+    // The first two children are below the parent and this entity, so they don't count as the minimum
+    if (i > 1) {
+      size++;
     }
     if (child.relations !== undefined && child.relations.length > 0) {
-      // If the relation has children, we need to figure out the largest child tree
-      child.relations.forEach(function (c, i) {
-        min++;
+      // For each of the relation's children, calculate their width, and add that to the current size
+      child.relations.forEach(function (c, i2) {
         var tmp = window.familyTreeRelationWidth(c);
         console.log(c.entity_id, 'relWidth', tmp);
-        min += tmp;
+        size += tmp;
       });
     }
   });
 
-  // Return the largest child
-  return Math.max(1, min);
+  // Return the size of the tree, or the size of the children,
+  // if none of the children have relations and their own children
+  return Math.max(relation.children.length, size);
 };
 })();
 

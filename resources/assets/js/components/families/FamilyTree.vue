@@ -17,16 +17,17 @@
             {{ this.texts.actions.save }}
         </button>
     </div>
-    <div class="family-tree relative">
+    <div class="family-tree overflow-auto w-full h-full block">
         <div class="text-center px-5" v-if="isLoading">
             <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
             <span class="sr-only">Loading...</span>
         </div>
-        <div v-else>
+        <div v-else class="relative pb-5">
             <a class="btn btn-default rounded-2xl px-5 py-2 cursor-pointer" v-on:click="createNode()" v-if="showCreateNode()">
                 <i class="fa-solid fa-plus" aria-hidden="true"></i>
                 {{ this.texts.actions.first }}
             </a>
+
             <FamilyNode v-for="node in nodes"
                         :node="node"
                         :entities="entities"

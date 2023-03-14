@@ -30,7 +30,7 @@ class FamilyTreeController extends Controller
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $family);
         }
 
-        $mode = request()->has('vue') ? 'vue' : 'pixi';
+        $mode = request()->has('pixi') ? 'pixi' : 'vue';
 
         return view('families.trees.index')
             ->with('family', $family)
