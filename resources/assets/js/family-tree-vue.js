@@ -39,7 +39,11 @@ window.familyTreeChildWidth = function(child, index) {
         min++;
         if (rel.children !== undefined && rel.children.length > 0) {
             // If there are children, we start back at 0 because the node + rel already counts as two
-            min -= 2;
+            if (rel.children.length > 1) {
+                min -= 2;
+            } else if (rel.children.length > 0 && index === 0) {
+                min -= 1;
+            }
             /**
              * Loop each child of the relation, looking for the "widest" one
              * On each child, we need to get its total width (child + relation + children) and add it to the width
@@ -48,7 +52,7 @@ window.familyTreeChildWidth = function(child, index) {
             rel.children.forEach((c, i) => {
                 // Get each child's width, (child + relations + their children) and add it to the size.
                 // Deduct one because each child starts on a new line and is pushed left
-                let childWidth = window.familyTreeChildWidth(c);
+                let childWidth = window.familyTreeChildWidth(c, index);
                 //console.log(c.entity_id, 'childWidth', childWidth);
                 min += childWidth;
             });
@@ -74,7 +78,7 @@ window.familyTreeRelationWidth = function(relation, index) {
     }
 
     // At least 1 wide for each relation
-    let min = 0;
+    let min = relation.children.length > 1 ? -1 : 1;
 
     // Let's find out just how wide this relation is
     relation.children.forEach((child, i) => {
