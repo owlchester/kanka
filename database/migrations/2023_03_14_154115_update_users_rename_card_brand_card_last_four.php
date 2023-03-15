@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('card_brand', 'pm_type');
-            $table->renameColumn('card_last_four', 'pm_last_four');
+            if (Schema::hasColumn('users', 'card_brand')) {
+                $table->renameColumn('card_brand', 'pm_type');
+            }
+            if (Schema::hasColumn('users', 'card_last_four')) {
+                $table->renameColumn('card_last_four', 'pm_last_four');
+            }
         });
     }
 
@@ -27,8 +31,12 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('pm_type', 'card_brand');
-            $table->renameColumn('pm_last_four', 'card_last_four');
+            if (Schema::hasColumn('users', 'pm_type')) {
+                $table->renameColumn('pm_type', 'card_brand');
+            }
+            if (Schema::hasColumn('users', 'pm_last_four')) {
+                $table->renameColumn('pm_last_four', 'card_last_four');
+            }
         });
     }
 };
