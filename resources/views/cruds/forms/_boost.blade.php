@@ -14,7 +14,7 @@
         <p class="help-block">
 @php
 $tooltipTags = [];
-foreach (config('purify.tooltips.allowed') as $tag) {
+foreach (config('purify.configs.tooltips.allowed') as $tag) {
     $tooltipTags[] = '<code>'. $tag . '</code> ';
 }
 $tooltipTags = implode(', ', $tooltipTags);
