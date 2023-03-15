@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
+        // New installs have the correct field name
         Schema::table('subscription_items', function (Blueprint $table) {
-            $table->renameColumn('stripe_plan', 'stripe_price');
-            $table->string('stripe_product')->nullable()->after('stripe_id');
+
+            if (Schema::hasColumn('subscription_items', 'stripe_plan')) {
+                $table->renameColumn('stripe_plan', 'stripe_price');
+            }
+            if (!Schema::hasColumn('subscription_items', 'stripe_product')) {
+                $table->string('stripe_product')->nullable()->after('stripe_id');
+            }
         });
     }
 
@@ -28,7 +34,7 @@ return new class extends Migration
     {
         Schema::table('subscription_items', function (Blueprint $table) {
             $table->renameColumn('stripe_price', 'stripe_plan');
-            $table->dropColumn('stripe_product');        
+            $table->dropColumn('stripe_product');
         });
     }
 };
