@@ -7907,26 +7907,27 @@
         },
         {
             "name": "stevebauman/purify",
-            "version": "v4.0.1",
+            "version": "v5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stevebauman/purify.git",
-                "reference": "e56289062ed8a25c78c88f35e9106f00d01369c1"
+                "reference": "639cf2fe17b45f2afaf0688be1316d4aad801f9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stevebauman/purify/zipball/e56289062ed8a25c78c88f35e9106f00d01369c1",
-                "reference": "e56289062ed8a25c78c88f35e9106f00d01369c1",
+                "url": "https://api.github.com/repos/stevebauman/purify/zipball/639cf2fe17b45f2afaf0688be1316d4aad801f9a",
+                "reference": "639cf2fe17b45f2afaf0688be1316d4aad801f9a",
                 "shasum": ""
             },
             "require": {
                 "ezyang/htmlpurifier": "^4.9.0",
-                "illuminate/support": "~5.5|~6.0|~7.0|~8.0|~9.0",
-                "php": ">=7.1"
+                "illuminate/contracts": "~7.0|~8.0|~9.0|~10.0",
+                "illuminate/support": "~7.0|~8.0|~9.0|~10.0",
+                "php": ">=7.4"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.7|~4.0|~5.0|~6.0|~7.0",
-                "phpunit/phpunit": "~7.0|~8.0|~9.0"
+                "orchestra/testbench": "~5.0|~6.0|~7.0",
+                "phpunit/phpunit": "~8.0|~9.0"
             },
             "type": "library",
             "extra": {
@@ -7966,9 +7967,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stevebauman/purify/issues",
-                "source": "https://github.com/stevebauman/purify/tree/v4.0.1"
+                "source": "https://github.com/stevebauman/purify/tree/v5.1.1"
             },
-            "time": "2022-01-21T21:41:41+00:00"
+            "time": "2023-02-04T16:54:22+00:00"
         },
         {
             "name": "stripe/stripe-php",

@@ -1,197 +1,218 @@
 <?php
 
+use Stevebauman\Purify\Definitions\Html5Definition;
+
 return [
 
     /*
     |--------------------------------------------------------------------------
-    | Settings
+    | Default Config
     |--------------------------------------------------------------------------
     |
-    | The configuration settings array is passed directly to HTMLPurifier.
-    |
-    | Feel free to add / remove / customize these attributes as you wish.
-    |
-    | Documentation: http://htmlpurifier.org/live/configdoc/plain.html
+    | This option defines the default config that is provided to HTMLPurifier.
     |
     */
 
-    'settings' => [
+    'default' => 'default',
 
-        /*
-        |--------------------------------------------------------------------------
-        | Core.Encoding
-        |--------------------------------------------------------------------------
-        |
-        | The encoding to convert input to.
-        |
-        | http://htmlpurifier.org/live/configdoc/plain.html#Core.Encoding
-        |
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | Config sets
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure various sets of configuration for differentiated use of HTMLPurifier.
+    | A specific set of configuration can be applied by calling the "config($name)" method on
+    | a Purify instance. Feel free to add/remove/customize these attributes as you wish.
+    |
+    | Documentation: http://htmlpurifier.org/live/configdoc/plain.html
+    |
+    |   Core.Encoding               The encoding to convert input to.
+    |   HTML.Doctype                Doctype to use during filtering.
+    |   HTML.Allowed                The allowed HTML Elements with their allowed attributes.
+    |   HTML.ForbiddenElements      The forbidden HTML elements. Elements that are listed in this
+    |                               string will be removed, however their content will remain.
+    |   CSS.AllowedProperties       The Allowed CSS properties.
+    |   AutoFormat.AutoParagraph    Newlines are converted in to paragraphs whenever possible.
+    |   AutoFormat.RemoveEmpty      Remove empty elements that contribute no semantic information to the document.
+    |
+    */
 
-        'Core.Encoding' => 'utf-8',
+    'configs' => [
 
-        /*
-        |--------------------------------------------------------------------------
-        | serializer
-        |--------------------------------------------------------------------------
-        |
-        | The HTML purifier serializer cache path.
-        |
-        | http://htmlpurifier.org/live/configdoc/plain.html#Cache.SerializerPath
-        |
-        */
+        'default' => [
+            'Core.Encoding' => 'utf-8',
+            'HTML.Doctype' => 'HTML 4.01 Transitional',
 
-        'Cache.SerializerPath' => storage_path('purify'),
+            /*
+            |--------------------------------------------------------------------------
+            | HTML.Allowed
+            |--------------------------------------------------------------------------
+            |
+            | The allowed HTML Elements with their allowed attributes.
+            |
+            | http://htmlpurifier.org/live/configdoc/plain.html#HTML.Allowed
+            |
+            */
 
-        /*
-        |--------------------------------------------------------------------------
-        | HTML.Doctype
-        |--------------------------------------------------------------------------
-        |
-        | Doctype to use during filtering.
-        |
-        | http://htmlpurifier.org/live/configdoc/plain.html#HTML.Doctype
-        |
-        */
+            'HTML.Allowed' =>
+                'big,small,h1[class|style|id],h2[class|style|id],h3[class|style|id],h4[class|style|id],h5[class|style|id],h6[class|style|id],'
+                . 'div[class|style|id|align],ins,del,pre[class],blockquote[cite|class|id],sup,sub,hr[style|class|id],caption,'
+                . 'strong,em,b,ul[class|style|id],ol[style|class],li[style|class],p,i[class],br,strike,u,'
+                . 'img[src|style|alt|width|height|class|title|id],'
+                . 'a[href|class|target|rel|title|data-toggle|data-html|id],'
+                . 'p[class|style|id|dir|align],span[class|style|id|dir],'
+                . 'table[class|summary|style|border|cellpadding|cellspacing|id],tbody,thead,tfoot,tr[class|style|id],td[class|style|abbr|colspan],th[class|style|abbr|colspan],'
+                . 'acronym[title|class],abbr[title|class],'
+                . 'code[style|class|id],'
+                . 'font[color|style],'
+                . 'summary[class|style|id],details[class|style|id|open],'
+                . 'iframe[src|width|height|style|class|scrolling|id],' // only use this with HTML.SafeIframe
+                . 'figure[class],figcaption[class]',
 
-        'HTML.Doctype' => 'XHTML 1.0 Transitional',
+            /*
+            |--------------------------------------------------------------------------
+            | HTML.ForbiddenElements
+            |--------------------------------------------------------------------------
+            |
+            | The forbidden HTML elements. Elements that are listed in
+            | this string will be removed, however their content will remain.
+            |
+            | For example if 'p' is inside the string, the string: '<p>Test</p>',
+            |
+            | Will be cleaned to: 'Test'
+            |
+            | http://htmlpurifier.org/live/configdoc/plain.html#HTML.ForbiddenElements
+            |
+            */
 
-        /*
-        |--------------------------------------------------------------------------
-        | HTML.Allowed
-        |--------------------------------------------------------------------------
-        |
-        | The allowed HTML Elements with their allowed attributes.
-        |
-        | http://htmlpurifier.org/live/configdoc/plain.html#HTML.Allowed
-        |
-        */
+            'HTML.ForbiddenElements' => '',
 
-        'HTML.Allowed' =>
-            'big,small,h1[class|style|id],h2[class|style|id],h3[class|style|id],h4[class|style|id],h5[class|style|id],h6[class|style|id],'
-            . 'div[class|style|id|align],ins,del,pre[class],blockquote[cite|class|id],sup,sub,hr[style|class|id],caption,'
-            . 'strong,em,b,ul[class|style|id],ol[style|class],li[style|class],p,i[class],br,strike,u,'
-            . 'img[src|style|alt|width|height|class|title|id],'
-            . 'a[href|class|target|rel|title|data-toggle|data-html|id],'
-            . 'p[class|style|id|dir|align],span[class|style|id|dir],'
-            . 'table[class|summary|style|border|cellpadding|cellspacing|id],tbody,thead,tfoot,tr[class|style|id],td[class|style|abbr|colspan],th[class|style|abbr|colspan],'
-            . 'acronym[title|class],abbr[title|class],'
-            . 'code[style|class|id],'
-            . 'font[color|style],'
-            . 'summary[class|style|id],details[class|style|id|open],'
-            . 'iframe[src|width|height|style|class|scrolling|id],' // only use this with HTML.SafeIframe
-            . 'figure[class],figcaption[class]',
+            /*
+            |--------------------------------------------------------------------------
+            | CSS.AllowedProperties
+            |--------------------------------------------------------------------------
+            |
+            | The Allowed CSS properties.
+            |
+            | http://htmlpurifier.org/live/configdoc/plain.html#CSS.AllowedProperties
+            |
+            */
 
-        /*
-        |--------------------------------------------------------------------------
-        | HTML.ForbiddenElements
-        |--------------------------------------------------------------------------
-        |
-        | The forbidden HTML elements. Elements that are listed in
-        | this string will be removed, however their content will remain.
-        |
-        | For example if 'p' is inside the string, the string: '<p>Test</p>',
-        |
-        | Will be cleaned to: 'Test'
-        |
-        | http://htmlpurifier.org/live/configdoc/plain.html#HTML.ForbiddenElements
-        |
-        */
+            'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
+                'color,background-color,text-align,width,height,border,border-collapse,max-width,max-height,' .
+                'border-style,border-color,margin-left,margin-right,margin,padding,' .
+                //'background-image,background-repeat,' .
+                'list-style-type',
 
-        'HTML.ForbiddenElements' => '',
+            /*
+            |--------------------------------------------------------------------------
+            | AutoFormat.AutoParagraph
+            |--------------------------------------------------------------------------
+            |
+            | The Allowed CSS properties.
+            |
+            | This directive turns on auto-paragraphing, where double
+            | newlines are converted in to paragraphs whenever possible.
+            |
+            | http://htmlpurifier.org/live/configdoc/plain.html#AutoFormat.AutoParagraph
+            |
+            */
 
-        /*
-        |--------------------------------------------------------------------------
-        | CSS.AllowedProperties
-        |--------------------------------------------------------------------------
-        |
-        | The Allowed CSS properties.
-        |
-        | http://htmlpurifier.org/live/configdoc/plain.html#CSS.AllowedProperties
-        |
-        */
+            'AutoFormat.AutoParagraph' => false,
 
-        'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
-            'color,background-color,text-align,width,height,border,border-collapse,max-width,max-height,' .
-            'border-style,border-color,margin-left,margin-right,margin,padding,' .
-            //'background-image,background-repeat,' .
-            'list-style-type',
+            /*
+            |--------------------------------------------------------------------------
+            | AutoFormat.RemoveEmpty
+            |--------------------------------------------------------------------------
+            |
+            | When enabled, HTML Purifier will attempt to remove empty
+            | elements that contribute no semantic information to the document.
+            |
+            | http://htmlpurifier.org/live/configdoc/plain.html#AutoFormat.RemoveEmpty
+            |
+            */
 
-        /*
-        |--------------------------------------------------------------------------
-        | AutoFormat.AutoParagraph
-        |--------------------------------------------------------------------------
-        |
-        | The Allowed CSS properties.
-        |
-        | This directive turns on auto-paragraphing, where double
-        | newlines are converted in to paragraphs whenever possible.
-        |
-        | http://htmlpurifier.org/live/configdoc/plain.html#AutoFormat.AutoParagraph
-        |
-        */
+            'AutoFormat.RemoveEmpty' => false,
+            //'AutoFormat.RemoveEmpty.Predicate' => ['iframe' => false],
 
-        'AutoFormat.AutoParagraph' => false,
+            // To allow max-width and max-height on images. This might cause imageattacks?
+            'HTML.MaxImgLength'   => null,
+            'CSS.MaxImgLength'   => null,
 
-        /*
-        |--------------------------------------------------------------------------
-        | AutoFormat.RemoveEmpty
-        |--------------------------------------------------------------------------
-        |
-        | When enabled, HTML Purifier will attempt to remove empty
-        | elements that contribute no semantic information to the document.
-        |
-        | http://htmlpurifier.org/live/configdoc/plain.html#AutoFormat.RemoveEmpty
-        |
-        */
+            // Allow links that target blank
+            'Attr.AllowedFrameTargets' => ['_blank'],
 
-        'AutoFormat.RemoveEmpty' => false,
-        //'AutoFormat.RemoveEmpty.Predicate' => ['iframe' => false],
+            // Allow setting IDs for anchors
+            'Attr.EnableID' => true,
 
-        // To allow max-width and max-height on images. This might cause imageattacks?
-        'HTML.MaxImgLength'   => null,
-        'CSS.MaxImgLength'   => null,
+            // Iframes to vimeo and youtube
+            //'HTML.SafeIframe' => true,
+            //'URI.SafeIframeRegexp' => '%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
+            'Filter.YouTube' => true,
 
-        // Allow links that target blank
-        'Attr.AllowedFrameTargets' => ['_blank'],
+            "HTML.SafeIframe" => true,
+            "URI.SafeIframeRegexp" => "%^(https?:)?//("
+                . "www\.youtube(?:-nocookie)?\.com/embed/|"
+                . "player\.vimeo\.com/video/|"
+                . "open\.spotify\.com/embed|"
+                . "docs.google.com/|"
+                . "drive.google.com/|"
+                . "www.google.com/maps/embed|"
+                . "calendar.google.com/calendar/embed|"
+                . "snazzymaps.com/embed|"
+                . "w.soundcloud.com/player/|"
+                . "www\.dndbeyond\.com/|"
+                . "www\.aonprd\.com/|"
+                . "2e\.aonprd\.com/|"
+                . "www\.aonsrd\.com/|"
+                . "p3d\.in/e/|"
+                . "api\.mapbox\.com/|"
+                . "app.box.com/embed/"
+                . "discord\.com/|"
+                . "discord\.gg/|"
+                . "bardly\.io/|"
+                . ")%",
+        ],
 
-        // Allow setting IDs for anchors
-        'Attr.EnableID' => true,
 
-        // Iframes to vimeo and youtube
-        //'HTML.SafeIframe' => true,
-        //'URI.SafeIframeRegexp' => '%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
-        'Filter.YouTube' => true,
-
-        "HTML.SafeIframe" => true,
-        "URI.SafeIframeRegexp" => "%^(https?:)?//("
-            . "www\.youtube(?:-nocookie)?\.com/embed/|"
-            . "player\.vimeo\.com/video/|"
-            . "open\.spotify\.com/embed|"
-            . "docs.google.com/|"
-            . "drive.google.com/|"
-            . "www.google.com/maps/embed|"
-            . "calendar.google.com/calendar/embed|"
-            . "snazzymaps.com/embed|"
-            . "w.soundcloud.com/player/|"
-            . "www\.dndbeyond\.com/|"
-            . "www\.aonprd\.com/|"
-            . "2e\.aonprd\.com/|"
-            . "www\.aonsrd\.com/|"
-            . "p3d\.in/e/|"
-            . "api\.mapbox\.com/|"
-            . "app.box.com/embed/"
-            . "discord\.com/|"
-            . "discord\.gg/|"
-            . "bardly\.io/|"
-            . ")%",
+        'tooltips' => [
+            //<p>', '<table>', '<tr>', '<th>', '<td>', '<i>', '<span>', '<div>', '<img>
+            'allowed' => [
+                'h1', 'h2', 'h3', 'p', 'table', 'tr', 'th', 'td', 'i', 'span', 'b', 'strong', 'div', 'img'
+            ],
+        ]
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | HTMLPurifier definitions
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify a class that augments the HTML definitions used by
+    | HTMLPurifier. Additional HTML5 definitions are provided out of the box.
+    | When specifying a custom class, make sure it implements the interface:
+    |
+    |   \Stevebauman\Purify\Definitions\Definition
+    |
+    | Note that these definitions are applied to every Purifier instance.
+    |
+    | Documentation: http://htmlpurifier.org/docs/enduser-customize.html
+    |
+    */
 
-    'tooltips' => [
-        //<p>', '<table>', '<tr>', '<th>', '<td>', '<i>', '<span>', '<div>', '<img>
-        'allowed' => [
-            'h1', 'h2', 'h3', 'p', 'table', 'tr', 'th', 'td', 'i', 'span', 'b', 'strong', 'div', 'img'
-        ],
-    ]
+    'definitions' => \App\Definitions\CustomDefinitions::class,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Serializer location
+    |--------------------------------------------------------------------------
+    |
+    | The location where HTMLPurifier can store its temporary serializer files.
+    | The filepath should be accessible and writable by the web server.
+    | A good place for this is in the framework's own storage path.
+    |
+    */
+
+    'serializer' => storage_path('app/purify'),
+
 ];

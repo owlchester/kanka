@@ -452,7 +452,7 @@ class AttributeService
      */
     protected function purifyConfig(): array
     {
-        $purifyConfig = config('purify.settings');
+        $purifyConfig = config('purify.configs.default');
         $purifyConfig['HTML.Allowed'] = preg_replace('`,a\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
         $purifyConfig['HTML.Allowed'] = preg_replace('`,iframe\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
         $purifyConfig['HTML.Allowed'] = preg_replace('`,summary\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
