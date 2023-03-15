@@ -17,38 +17,38 @@ $(document).ready(function () {
     initSubforms();
   });
 });
-
 function initSubforms() {
   //console.info('Init Ajax Subforms');
-  var subForms = $('.ajax-subform');
 
+  var subForms = $('.ajax-subform');
   if (subForms.length === 0) {
     //console.info('not ajax subforms');
     return;
-  } //remove current submit event just in case it isn't clear
-
-
+  }
+  //remove current submit event just in case it isn't clear
   subForms.off('submit');
   subForms.on('submit', function (e) {
     //console.log('Ajax subform submitted', $(this));
     //Get the validity status of the form
-    var formIsValid = $(this).attr('is-valid'); //console.log("Form validity", formIsValid);
-
+    var formIsValid = $(this).attr('is-valid');
+    //console.log("Form validity", formIsValid);
     if (formIsValid) {
       //console.log("Ajax subform already validated, sending", $(this));
       //do nothing and send form
       return true;
-    } //else form is not confirmed valid
+    }
+    //else form is not confirmed valid
+
     //disable global alert when redirection occurs
-
-
     window.entityFormHasUnsavedChanges = false;
-    e.preventDefault(); //show button animation
+    e.preventDefault();
 
+    //show button animation
     currentAjaxForm = $(this);
     currentAjaxForm.find('.submit-group').hide();
-    currentAjaxForm.find('.submit-animation').show(); //send request to server
+    currentAjaxForm.find('.submit-animation').show();
 
+    //send request to server
     var formData = new FormData(this);
     $.ajax({
       url: $(this).attr('action'),
@@ -61,37 +61,38 @@ function initSubforms() {
     }).done(function () {
       // If the validation succeeded, confirm its validity
       currentAjaxForm.attr('is-valid', true);
-      currentAjaxForm.off('submit'); //console.log('form is valid?', currentAjaxForm, currentAjaxForm.attr('is-valid'));
+      currentAjaxForm.off('submit');
+      //console.log('form is valid?', currentAjaxForm, currentAjaxForm.attr('is-valid'));
       // resubmit the form
-
       currentAjaxForm.submit();
     }).fail(function (err) {
       //console.log('error', err);
       // Reset any error fields
       currentAjaxForm.find('.input-error').removeClass('input-error');
-      currentAjaxForm.find('.text-danger').remove(); // /?\ how do the 503/403 error ids work ?
+      currentAjaxForm.find('.text-danger').remove();
+
+      // /?\ how do the 503/403 error ids work ?
       // If we have a 503 error status, let's assume it's from cloudflare and help the user
       // properly save their data.
-
       if (err.status === 503) {
         window.showToast(err.responseJSON.message, 'toast-error');
         resetSubformSubmitAnimation(currentAjaxForm);
         return;
-      } // If it's 403, the session is gone
+      }
 
-
+      // If it's 403, the session is gone
       if (err.status === 403) {
         $('#entity-form-403-error').show();
         resetSubformSubmitAnimation(currentAjaxForm);
-      } // Loop through the errors to add the class and error message
+      }
 
-
+      // Loop through the errors to add the class and error message
       var errors = err.responseJSON.errors;
       var errorKeys = Object.keys(errors);
       var foundAllErrors = true;
       errorKeys.forEach(function (i) {
-        var errorSelector = $('[name="' + i + '"]'); //console.log('error field', '[name="' + i + '"]');
-
+        var errorSelector = $('[name="' + i + '"]');
+        //console.log('error field', '[name="' + i + '"]');
         if (errorSelector.length > 0) {
           currentAjaxForm.find('[name="' + i + '"]').addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
         } else {
@@ -99,18 +100,18 @@ function initSubforms() {
         }
       });
       var firstItem = Object.keys(errors)[0];
-      var firstItemDom = currentAjaxForm.find('[name="' + firstItem + '"]'); // If we can actually find the first element, switch to it and the correct tab.
+      var firstItemDom = currentAjaxForm.find('[name="' + firstItem + '"]');
 
+      // If we can actually find the first element, switch to it and the correct tab.
       if (firstItemDom.length > 0) {
         firstItemDom.focus();
-      } // Reset submit buttons
+      }
 
-
+      // Reset submit buttons
       resetSubformSubmitAnimation(currentAjaxForm);
     });
   });
 }
-
 function resetSubformSubmitAnimation(form) {
   //console.log("Resetting ajax subform animation");
   //reset animation

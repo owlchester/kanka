@@ -37,7 +37,7 @@
     display: none;
   }
   tr,
-img {
+  img {
     page-break-inside: avoid;
   }
   img {

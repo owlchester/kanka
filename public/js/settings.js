@@ -7,10 +7,8 @@ var __webpack_exports__ = {};
 $(document).ready(function () {
   registerBoosters();
 });
-
 function registerBoosters() {
   var focusModal = $('#focus-modal');
-
   if (focusModal.length === 1) {
     focusModal.modal('show');
   }

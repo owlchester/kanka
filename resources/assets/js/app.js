@@ -295,7 +295,7 @@ function initPageHeight() {
 
     const heights = {
         window: $(window).height(),
-        header: $('.main-header').length > 0 ? $('.main-header').outerHeight() : 0,
+        header: $('header').length > 0 ? $('header').outerHeight() : 0,
         footer: $('.main-footer').length > 0 ? $('.main-footer').outerHeight() : 0,
         sidebar: $('.main-sidebar .sidebar').length > 0 ? $('.main-sidebar .sidebar').height() : 0,
         controlSidebar

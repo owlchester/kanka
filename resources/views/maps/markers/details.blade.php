@@ -13,12 +13,9 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
 }
 ?>
 @if (!request()->has('mobile'))
-<div class="marker-header {{ $class }}" style="{{ $backgroundImage }}">
-    <div class="marker-top text-right pull-right">
-        <span class="marker-close" title="{{ __('crud.click_modal.close') }}"><i class="fa-solid fa-close"></i></span>
-    </div>
+<div class="marker-header flex gap-2 {{ $class }}" style="{{ $backgroundImage }}">
 
-    <div class="marker-header-lower">
+    <div class="marker-header-lower grow">
         <div class="marker-name overflow-hidden text-2xl w-full text-bold {{ $markerNameCss }}">
         @if ($marker->entity)
             <a href="{{ $marker->entity->url() }}" target="_blank">
@@ -31,7 +28,10 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
         @else
                 {{ $marker->name }}
         @endif
+        </div>
     </div>
+    <div class="marker-top px-1 py-1">
+        <span class="marker-close" title="{{ __('crud.click_modal.close') }}"><i class="fa-solid fa-close"></i></span>
     </div>
 </div>
 

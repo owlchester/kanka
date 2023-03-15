@@ -23,15 +23,14 @@ function ajaxModal() {
         var params = {};
         var target = $(ajaxModal).data('target');
         var backdrop = $(ajaxModal).data('backdrop');
-
         if (backdrop) {
           params.backdrop = backdrop;
         }
-
         $(target).find('.modal-content').html(result);
         $(target).modal(params);
       }
-    }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
+    }).fail(function (result, textStatus, xhr) {
+      //console.log('modal ajax error', result);
     });
     return false;
   });
@@ -108,33 +107,33 @@ var characterAddOrganisation, characterTemplateOrganisation, characterOrganisati
 $(document).ready(function () {
   characterOrganisations = $('.character-organisations');
   characterAddOrganisation = $('#add_organisation');
-
   if (characterAddOrganisation.length === 1) {
     initCharacterOrganisation();
   }
 });
+
 /**
  *
  */
-
 function initCharacterOrganisation() {
   characterTemplateOrganisation = $('#template_organisation');
   characterAddOrganisation.on('click', function (e) {
     e.preventDefault();
-    $(characterOrganisations).append('<div class="form-group">' + characterTemplateOrganisation.html() + '</div>'); // Replace the temp class with the real class. We need this to avoid having two select2 fields
+    $(characterOrganisations).append('<div class="form-group">' + characterTemplateOrganisation.html() + '</div>');
 
-    characterOrganisations.find('.tmp-org').removeClass('tmp-org').addClass('select2'); // Handle deleting already loaded blocks
+    // Replace the temp class with the real class. We need this to avoid having two select2 fields
+    characterOrganisations.find('.tmp-org').removeClass('tmp-org').addClass('select2');
 
+    // Handle deleting already loaded blocks
     characterDeleteRowHandler();
     return false;
   });
   characterDeleteRowHandler();
 }
+
 /**
  *
  */
-
-
 function characterDeleteRowHandler() {
   $.each($('.member-delete'), function () {
     $(this).unbind('click').unbind('keydown');
@@ -146,12 +145,12 @@ function characterDeleteRowHandler() {
       if (e.key !== 'Enter') {
         return;
       }
-
       $(this).click();
     });
     ;
-  }); // Always re-calc the sortable traits
+  });
 
+  // Always re-calc the sortable traits
   window.initSortable();
   window.initForeignSelect();
 }

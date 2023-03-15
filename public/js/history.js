@@ -6,7 +6,6 @@ var __webpack_exports__ = {};
 $(document).ready(function () {
   initHistoryFilters();
 });
-
 function initHistoryFilters() {
   var form = $('form.history-filters');
   var filters = $('.history-filters select');

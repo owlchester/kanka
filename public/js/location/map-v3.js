@@ -20,13 +20,11 @@ function deleteConfirm() {
       var target = $(this).data('delete-target');
       var targetModal = $(this).data('target');
       $(targetModal).find('.target-name').text(name);
-
       if ($(this).data('mirrored')) {
         $('#delete-confirm-mirror').show();
       } else {
         $('#delete-confirm-mirror').hide();
       }
-
       if ($(this).data('recoverable')) {
         $(targetModal).find('.permanent').hide();
         $(targetModal).find('.recoverable').show();
@@ -34,21 +32,21 @@ function deleteConfirm() {
         $(targetModal).find('.recoverable').hide();
         $(targetModal).find('.permanent').show();
       }
-
       if (target) {
         $('.delete-confirm-submit').data('target', target);
       }
     });
-  }); // Submit modal form
+  });
 
+  // Submit modal form
   $.each($('.delete-confirm-submit'), function (index) {
     $(this).unbind('click');
     $(this).click(function (e) {
-      var target = $(this).data('target'); //console.log('Submit delete confirmation', target);
-
+      var target = $(this).data('target');
+      //console.log('Submit delete confirmation', target);
       if (target) {
-        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-checkbox').is(':checked') ? 1 : 0); //console.log('target', target, $('#' + target));
-
+        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-checkbox').is(':checked') ? 1 : 0);
+        //console.log('target', target, $('#' + target));
         $('#' + target).submit();
       } else {
         $('#delete-confirm-form').submit();
@@ -123,21 +121,27 @@ var __webpack_exports__ = {};
   \************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/delete-confirm */ "./resources/assets/js/components/delete-confirm.js");
- //require ('leaflet.markercluster/dist/leaflet.markercluster');
+
+
+//require ('leaflet.markercluster/dist/leaflet.markercluster');
 //require ('leaflet.markercluster.layersupport');
 
 var mapPageBody;
 var sidebarMap, sidebarMarker;
-var markerModal, markerModalContent, markerModalTitle; // Polygon layout style
+var markerModal, markerModalContent, markerModalTitle;
 
+// Polygon layout style
 var eraseTempPolygonBtn;
 var polygonStrokeWeight, polygonStrokeColour, polygonStrokeOpacity, polygonColour, polygonOpacity;
 $(document).ready(function () {
-  window.map.invalidateSize(); //deleteConfirm();
+  window.map.invalidateSize();
+  //deleteConfirm();
 
   window.map.on('popupopen', function (ev) {
     (0,_components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  }); // Event fired when clicking on an existing map point
+  });
+
+  // Event fired when clicking on an existing map point
 
   $('a[href="#marker-pin"]').click(function (e) {
     $('input[name="shape_id"]').val(1);
@@ -171,32 +175,27 @@ $(document).ready(function () {
   initPolygonDrawing();
   registerModes();
 });
+
 /**
  *
  */
-
 function initMapExplore() {
   //console.log('initMapExplore', '');
   mapPageBody = $('#map-body');
-
   if (mapPageBody.length === 0) {
     //console.log('initMapExplore', 'no explore mode');
     return;
   }
-
   sidebarMap = $('#sidebar-map');
   sidebarMarker = $('#sidebar-marker');
   markerModal = $('#map-marker-modal');
   markerModalTitle = $('#map-marker-modal-title');
   markerModalContent = $('#map-marker-modal-content');
-
   window.markerDetails = function (url) {
     showSidebar();
-
     if (window.kankaIsMobile.matches) {
       url = url + '?mobile=1';
     }
-
     $.ajax({
       url: url,
       type: 'GET',
@@ -212,21 +211,18 @@ function initMapExplore() {
             handleCloseMarker();
             mapPageBody.addClass('sidebar-open');
           }
-
           (0,_components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__["default"])();
         }
       }
     });
   };
-
   initLegend();
 }
+
 /**
  * When submitting the layer or marker form from the map modal, disable the map form unsaved changed
  * alert.
  */
-
-
 function initMapForms() {
   $('select[name="size_id"]').change(function (e) {
     if (this.value == 6) {
@@ -236,21 +232,19 @@ function initMapForms() {
       $('.map-marker-circle-radius').hide();
       $('.map-marker-circle-helper').show();
     }
-  }); //console.info('mapsv3', 'initMapForms');
+  });
 
+  //console.info('mapsv3', 'initMapForms');
   var markerForm = $('#map-marker-form');
-
   if ($('#entity-form').length === 0 && $('.map-marker-edit-form').length === 0) {
     //console.info('initMapForms empty');
     return;
   }
-
   markerForm.unbind('submit').on('submit', function () {
     window.entityFormHasUnsavedChanges = false;
   });
   initLegend();
 }
-
 function showSidebar() {
   // On mobile use the modal instead of the sidebar
   if (window.kankaIsMobile.matches) {
@@ -258,23 +252,21 @@ function showSidebar() {
     markerModalContent.find('.content').hide();
     markerModal.modal('toggle');
     return;
-  } //window.map.invalidateSize();
+  }
 
-
+  //window.map.invalidateSize();
   mapPageBody.removeClass('sidebar-collapse').addClass('sidebar-open');
   sidebarMap.hide();
   sidebarMarker.html('').show();
   sidebarMarker.parent().find('.spinner').show();
   invalidateMapOnSidebar();
 }
-
 function handleCloseMarker() {
   $('.marker-close').click(function (ev) {
     sidebarMarker.hide();
     sidebarMap.show();
   });
 }
-
 function initLegend() {
   $('.map-legend-marker').click(function (ev) {
     ev.preventDefault();
@@ -285,14 +277,12 @@ function initLegend() {
     invalidateMapOnSidebar();
   });
 }
-
 function invalidateMapOnSidebar() {
   setTimeout(function () {
     // Invalidate the map size when the sidebar is rendered/hidden
     window.map.invalidateSize();
   }, 500);
 }
-
 function initMapEntryClick() {
   $('.map-marker-entry-click').click(function (e) {
     e.preventDefault();
@@ -300,11 +290,10 @@ function initMapEntryClick() {
     $('.map-marker-entry-entry').show();
   });
 }
+
 /**
  * Register switching in and out of edit mode
  */
-
-
 function registerModes() {
   $('.btn-mode-enable').click(function (e) {
     e.preventDefault();
@@ -323,7 +312,6 @@ function registerModes() {
     $('#marker-modal').modal('show');
   });
 }
-
 function initPolygonDrawing() {
   $('#start-drawing-polygon').on('click', function (e) {
     e.preventDefault();
@@ -335,39 +323,36 @@ function initPolygonDrawing() {
   eraseTempPolygonBtn = $('#reset-polygon');
   eraseTempPolygonBtn.click(function (e) {
     e.preventDefault();
-
     if (window.polygon) {
       window.map.removeLayer(window.polygon);
     }
-
     $('textarea[name="custom_shape"]').val('');
     eraseTempPolygonBtn.hide();
   });
 }
-
 window.addPolygonPosition = function (lat, lng) {
   var shape = $('textarea[name="custom_shape"]');
   var current = shape.val();
-
   if (current.length > 0) {
     current += ' ';
   }
+  shape.val(current + lat + ',' + lng);
 
-  shape.val(current + lat + ',' + lng); // Redraw the polygon
-
+  // Redraw the polygon
   var coords = shape.val();
   var blocks = coords.trim(" ").split(" ");
   var coordsData = [];
   blocks.forEach(function (block) {
     var segments = block.split(',');
     coordsData.push([segments[0], segments[1]]);
-  }, coordsData); // Remove previous polygon if it was already drawn
+  }, coordsData);
 
+  // Remove previous polygon if it was already drawn
   if (window.polygon) {
     window.map.removeLayer(window.polygon);
-  } // Background colour as defined by the user if they are so far?
+  }
 
-
+  // Background colour as defined by the user if they are so far?
   getPolygonStyle();
   window.polygon = L.polygon(coordsData, {
     weight: polygonStrokeWeight,
@@ -381,56 +366,44 @@ window.addPolygonPosition = function (lat, lng) {
   window.polygon.addTo(window.map);
   eraseTempPolygonBtn.show();
 };
-
 function getPolygonStyle() {
   polygonStrokeColour = $('input[name="polygon_style[stroke]"]').val();
-
   if (!polygonStrokeColour || polygonStrokeColour.length < 7) {
     polygonStrokeColour = 'red';
   }
-
   polygonStrokeOpacity = $('input[name="polygon_style[stroke-opacity]"]').val();
-
   if (isNaN(polygonStrokeOpacity) || !polygonStrokeOpacity) {
     polygonStrokeOpacity = 1;
   } else {
     polygonStrokeOpacity = polygonStrokeOpacity / 100;
   }
-
   polygonColour = $('input[name="colour"]').val();
-
   if (!polygonColour || polygonColour.length < 7) {
     polygonColour = 'red';
   }
-
   polygonOpacity = $('input[name="opacity"]').val();
-
   if (isNaN(polygonOpacity)) {
     polygonOpacity = 0.5;
   } else {
     polygonOpacity = polygonOpacity / 100;
   }
-
   polygonStrokeWeight = $('input[name="polygon_style[stroke-width]"]').val();
-
   if (isNaN(polygonStrokeWeight) || !polygonStrokeWeight) {
     polygonStrokeWeight = 1;
   }
 }
-
 function showMainFields() {
   $('#marker-main-fields').show();
   $('#marker-footer').show();
 }
-
 function loadPresets(url) {
   $('#marker-main-fields').hide();
-  $('#marker-footer').hide(); // If presets have already been loaded, skip loading/rendering of the list
+  $('#marker-footer').hide();
 
+  // If presets have already been loaded, skip loading/rendering of the list
   if ($('.marker-preset-list .fa-spinner').length === 0) {
     return;
   }
-
   console.log('load from', url);
   $.ajax({
     url: url
@@ -439,7 +412,6 @@ function loadPresets(url) {
     handlePresetClick();
   });
 }
-
 function handlePresetClick() {
   $('.preset-use').on('click', function (e) {
     e.preventDefault();
@@ -454,12 +426,10 @@ function handlePresetClick() {
       Object.keys(result.preset).forEach(function (key) {
         var val = result.preset[key];
         var field = $('[name="' + key + '"]');
-
         if (field.length === 0) {
           console.info('markerPreset', 'unknown field', key);
           return;
         }
-
         if (key.endsWith('colour')) {
           field.spectrum("set", val);
         } else {

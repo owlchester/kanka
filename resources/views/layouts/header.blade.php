@@ -1,9 +1,9 @@
 <?php
 $currentCampaign = CampaignLocalization::getCampaign();
 ?>
-<header id="header" class="">
-    <nav class="flex gap-2 justify-center items-center fixed top-0 w-full bg-navbar h-12">
-        <div class="flex-0 flex w-sidebar justify-items items-center">
+<header id="header" class="fixed top-0 h-12 w-full bg-navbar">
+    <nav class="flex gap-2 justify-center items-center">
+        <div class="ml-1 flex-0 flex w-sidebar justify-items items-center">
         @if (isset($toggle) && $toggle)
             <nav-toggler
                 text="{{ __('header.toggle_navigation') }}"
