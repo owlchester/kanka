@@ -30,14 +30,17 @@
         'metadata[icon]',
         null,
         [
-            'placeholder' => 'fa-brands fa-d-and-d-beyond',
+            'placeholder' => 'fa-brands fa-d-and-d-beyond, ra ra-aura',
             'class' => 'form-control',
-            'maxlength' => 45
+            'maxlength' => 45,
+            'data-paste' => 'fontawesome',
         ]
     ) !!}
     <p class="help-block">
         {!! __('entities/links.helpers.icon', [
-            'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank'])
+            'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>',
+            'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
+            'docs' => link_to('https://docs.kanka.io/en/latest/features/campaigns/sidebar.html#what-fonts-are-available', __('front.menu.documentation', ['target' => '_blank']))
         ]) !!}
     </p>
 </div>
