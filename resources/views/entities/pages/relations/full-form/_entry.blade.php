@@ -39,7 +39,7 @@
                     {!! __('entities/relations.fields.target_relation') !!}
                     <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.target_relation') }}" data-toggle="tooltip"></i>
                 </label>
-                {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
                 <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.target_relation') }}</p>
             </div>
         </div>

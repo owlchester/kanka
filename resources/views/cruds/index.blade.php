@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => __('entities.' . $langKey),
-    'seoTitle' => __('entities.' . $langKey) . ' - ' . CampaignLocalization::getCampaign()->name,
+    'title' => $titleKey ?? __('entities.' . $langKey),
+    'seoTitle' => $titleKey ?? __('entities.' . $langKey) . ' - ' . CampaignLocalization::getCampaign()->name,
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $langKey)],
+        ['url' => Breadcrumb::index($name), 'label' => $titleKey ?? __('entities.' . $langKey)],
     ],
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,

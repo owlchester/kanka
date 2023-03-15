@@ -4,7 +4,7 @@
 <div class="box box-solid box-entity-relations box-entity-relations-table" id="entity-relations-table">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('crud.tabs.relations') }}
+            {{ __('sidebar.relations') }}
         </h3>
 
         <div class="box-tools">

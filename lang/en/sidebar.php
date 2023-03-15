@@ -21,7 +21,7 @@ return [
     'new-entity'        => 'New entity',
     'other'             => 'Other',
     'presets'           => 'Presets',
-    'relations'         => 'Relations',
+    'relations'         => 'Connections',
     'search'            => 'Search...',
     'world'             => 'World',
 ];
