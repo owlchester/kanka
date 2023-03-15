@@ -14,6 +14,8 @@ class EntityEventObserver
         $entityEvent->is_recurring = !empty($entityEvent->recurring_periodicity);
         if (!$entityEvent->is_recurring) {
             $entityEvent->recurring_until = null;
+            $entityEvent->recurring_until_day = null;
+            $entityEvent->recurring_until_month = null;
         }
     }
 }

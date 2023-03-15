@@ -872,6 +872,12 @@ class CalendarRenderer
                 if ($event->year > $this->getYear()) {
                     continue;
                 }
+                //Does the event end this month? if so, dont render it
+                if (!empty($event->recurring_until) && $event->recurring_until == $this->getYear() && !empty($event->recurring_until_month) && $event->recurring_until_month <= $this->getMonth()) {
+                    if (empty($event->recurring_until_day) || $event->recurring_until_month < $this->getMonth()) {
+                        continue;
+                    }
+                }
                 // Over max reoccurring year?
                 if (!empty($event->recurring_until) && $event->recurring_until < $this->getYear()) {
                     continue;
@@ -890,6 +896,12 @@ class CalendarRenderer
             if ($event->recurringMonthly()) {
                 $startingMonth = $event->year == $this->getYear() ? $event->month : 1;
                 for ($month = $startingMonth; $month <= $totalMonths; $month++) {
+                    //Does the event end this month? if so, dont render it
+                    if (!empty($event->recurring_until) && $event->recurring_until == $this->getYear() && !empty($event->recurring_until_month) && $event->recurring_until_month <= $month) {
+                        if (empty($event->recurring_until_day) || $event->recurring_until_month < $month) {
+                            continue;
+                        }
+                    }
                     $recurringDate = $this->getYear() . '-' . $month . '-' . $event->day;
                     $this->events[$recurringDate][] = $event;
                     $this->addMultidayEvent($event, $recurringDate);
@@ -928,6 +940,14 @@ class CalendarRenderer
             $extraDate = $this->addDay($extraDate);
 
             list($y, $m, $d) = $this->splitDate($extraDate);
+            //Does the event end this month? if so what day?
+            //dump($extraDate, $reminder->recurring_until_month);
+
+            if (!empty($reminder->recurring_until) && $reminder->recurring_until == $y && !empty($reminder->recurring_until_month) && $reminder->recurring_until_month <= $m) {
+                if (!empty($reminder->recurring_until_day) && $d > $reminder->recurring_until_day || $reminder->recurring_until_month < $m) {
+                    continue;
+                }
+            }
             if (!$this->calendar->hasYearZero() && $y == 0) {
                 $extraDate = '1-' . $m . '-' . $d;
             }

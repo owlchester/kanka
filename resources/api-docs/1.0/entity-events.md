@@ -37,6 +37,8 @@ You can get a list of all the entity-events of an entity by using the following 
             "recurring_periodicity": "yearly",
             "length": 1,
             "recurring_until": null,
+            "recurring_until_month": null,
+            "recurring_until_day": null,
             "type_id": null,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": null,
@@ -73,6 +75,8 @@ To get the details of a single entity-event, use the following endpoint.
         "recurring_periodicity": "yearly",
         "length": 1,
         "recurring_until": null,
+        "recurring_until_month": null,
+        "recurring_until_day": null,
         "type_id": null,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": null,
@@ -103,6 +107,8 @@ To create an entity-event, use the following endpoint.
 | `length` | `integer` (Required) | Duration in days of the event |
 | `recurring_periodicity` | `string` | Null if the event isn't recurring. `yearly`, `monthly` or `{moon.id}_(f|n)` where `f` is full moon and `n` is new moon |
 | `recurring_until` | `integer` | Year until the event reoccurs |
+| `recurring_until_month` | `integer` | Month until the event reoccurs |
+| `recurring_until_day` | `integer` | Day until the event reoccurs |
 | `colour` | `string` | Colour of the entity event in the calendar |
 | `comment` | `string` | Comment of the entity event |
 | `entity_id` | `integer` (Required) | The entity event's parent entity |

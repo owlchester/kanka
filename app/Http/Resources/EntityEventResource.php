@@ -26,6 +26,8 @@ class EntityEventResource extends EntityChild
             'comment' => $model->comment,
             'is_recurring' => (bool) $model->is_recurring,
             'recurring_until' => $model->recurring_until,
+            'recurring_until_month' => $model->recurring_until_month,
+            'recurring_until_day' => $model->recurring_until_day,
             'recurring_periodicity' => $model->recurring_periodicity,
             'colour' => $model->colour,
             'type_id' => $model->type_id,

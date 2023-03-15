@@ -24,6 +24,8 @@ use Illuminate\Support\Str;
  * @property integer $year
  * @property boolean $is_recurring
  * @property integer|null $recurring_until
+ * @property integer|null $recurring_until_day
+ * @property integer|null $recurring_until_month
  * @property string $recurring_periodicity
  * @property integer $type_id
  * @property integer $elapsed
@@ -62,6 +64,8 @@ class EntityEvent extends MiscModel
         'comment',
         'is_recurring',
         'recurring_until',
+        'recurring_until_day',
+        'recurring_until_month',
         'recurring_periodicity',
         'colour',
         'day',
@@ -403,12 +407,11 @@ class EntityEvent extends MiscModel
         $reminderYear = $this->year;
         $reminderMonth = $this->month;
         $reminderDay = $this->day;
-
+        $overDate = false;
         // Recurring? We need to switch around the data a bit to figure out the most recent date
         if (!empty($this->is_recurring)) {
             if ($this->recurringMonthly()) {
                 //dump('monthly');
-                $reminderMonth = $month;
                 $reminderYear = $year;
                 // If it repeats monthly, we need to see if it happened "last month" or "this month".
                 //dump('Reminder ' . $reminderDay . ' > ' . $day);
@@ -425,6 +428,9 @@ class EntityEvent extends MiscModel
                 //dump('yearly recurring');
                 $reminderYear = $year;
                 $reminderMonth = $month;
+            }
+            if ($this->recurring_until_day > $reminderDay && $this->recurring_until_month < $reminderMonth && $this->recurring_until <= $reminderYear || $this->recurring_until_month < $reminderMonth && $this->recurring_until <= $reminderYear || $this->recurring_until < $reminderYear) {
+                $overDate = true;
             }
         }
         // Diff in years between current year and reminder's year
@@ -478,7 +484,9 @@ class EntityEvent extends MiscModel
         if ($days > 1 && $this->length > 1) {
             $days -= $this->length - 1;
         }
-
+        if ($overDate) {
+            $days = -2;
+        }
         //dump($days);
         return $this->cachedLast = $days;
     }
@@ -505,6 +513,7 @@ class EntityEvent extends MiscModel
         $reminderDay = $this->day;
 
         //dump("Event #" . $this->id . " " . $this->entity->name . ": " . $this->year . "-" . $this->month . "-" . $this->day);
+        $overDate = false;
 
         // Recurring? We need to switch around the data a bit to figure out the most recent date
         if (!empty($this->is_recurring)) {
@@ -531,6 +540,9 @@ class EntityEvent extends MiscModel
                 if ($reminderMonth === $calendarMonth && $reminderDay < $day) {
                     $reminderYear++;
                 }
+            }
+            if ($this->recurring_until_day > $reminderDay && $this->recurring_until_month < $reminderMonth && $this->recurring_until <= $reminderYear || $this->recurring_until_month < $reminderMonth && $this->recurring_until <= $reminderYear || $this->recurring_until < $reminderYear) {
+                $overDate = true;
             }
         }
 
@@ -576,6 +588,10 @@ class EntityEvent extends MiscModel
         }
 
         $days += ($reminderDay - $day);
+
+        if ($overDate) {
+            $days = -2;
+        }
         return $this->cachedNext = $days;
     }
 

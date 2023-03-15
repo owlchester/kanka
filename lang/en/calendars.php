@@ -87,6 +87,8 @@ return [
         'parameters'            => 'Parameters',
         'recurring_periodicity' => 'Recurring Periodicity',
         'recurring_until'       => 'Recurring Until Year',
+        'recurring_until_month' => 'Recurring Until Month',
+        'recurring_until_day'   => 'Recurring Until Day',
         'reset'                 => 'Weekly Reset',
         'seasons'               => 'Seasons',
         'skip_year_zero'        => 'Skip Year Zero',
