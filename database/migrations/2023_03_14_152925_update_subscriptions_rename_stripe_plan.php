@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        // New installs have the correct field name
+        if (Schema::hasColumn('subscriptions', 'stripe_price')) {
+            return;
+        }
         Schema::table('subscriptions', function (Blueprint $table) {
             $table->renameColumn('stripe_plan', 'stripe_price');
         });

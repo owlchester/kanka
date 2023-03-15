@@ -7,12 +7,17 @@ use App\Models\Campaign;
 use App\Models\Image;
 use App\Http\Requests\Campaigns\GalleryImageStore as Request;
 use App\Http\Resources\ImageResource as Resource;
+use App\Services\Campaign\GalleryService;
+use Illuminate\Support\Arr;
 
 class CampaignImageApiController extends ApiController
 {
-    public function __construct()
+    protected GalleryService $service;
+
+    public function __construct(GalleryService $galleryService)
     {
         $this->middleware('campaign.superboosted');
+        $this->service = $galleryService;
     }
 
     /**
@@ -55,8 +60,10 @@ class CampaignImageApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
-        $model = Image::create($request->all());
-        return new Resource($model);
+        $images = $this->service
+            ->campaign($campaign)
+            ->store($request);
+        return new Resource(Arr::first($images));
     }
 
     /**

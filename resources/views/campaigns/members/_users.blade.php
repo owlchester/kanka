@@ -42,6 +42,7 @@
             <table id="campaign-members" class="table table-hover table-striped">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>{{ __('campaigns.members.fields.name') }}</th>
                         <th>{{ __('campaigns.members.fields.roles') }}</th>
                         <th class="hidden-xs hidden-md">{{ __('campaigns.members.fields.joined') }}</th>

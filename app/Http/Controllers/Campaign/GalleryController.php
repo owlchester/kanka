@@ -15,7 +15,7 @@ use Illuminate\Support\Arr;
 class GalleryController extends Controller
 {
     /** @var GalleryService */
-    protected $service;
+    protected GalleryService $service;
 
     public function __construct(GalleryService $service)
     {
