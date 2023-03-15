@@ -47,6 +47,7 @@
                         <th>{{ __('campaigns.members.fields.roles') }}</th>
                         <th class="hidden-xs hidden-md">{{ __('campaigns.members.fields.joined') }}</th>
                         <th class="hidden-xs hidden-md">{{ __('campaigns.members.fields.last_login') }}</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
