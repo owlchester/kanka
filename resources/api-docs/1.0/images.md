@@ -98,7 +98,7 @@ To create a image, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `folder_id` | `integer` | The image's folder id |
-| `image` | `stream` | Stream to file uploaded |
+| `file` | `stream` | Stream to file uploaded |
 
 
 ### Results

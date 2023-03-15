@@ -142,7 +142,7 @@ class Handler extends ExceptionHandler
             ->json([
                 'code' => 500,
                 'error' => 'Unhandled API error. Contact us on Discord',
-                'hint' => Str::limit($exception->getMessage(), 100)
+                'hint' => Str::limit($exception->getMessage(), 200)
             ], 500);
     }
 }
