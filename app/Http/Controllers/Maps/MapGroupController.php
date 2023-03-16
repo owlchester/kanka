@@ -237,7 +237,7 @@ class MapGroupController extends Controller
                 continue;
             }
             $group->position = $order;
-            $group->update();
+            $group->updateQuietly();
             $order++;
         }
         $order--;
