@@ -20598,79 +20598,86 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
+var _hoisted_1 = ["data-uuid", "data-entity"];
+var _hoisted_2 = {
   "class": "flex items-center gap-1"
 };
-var _hoisted_2 = {
+var _hoisted_3 = {
   "class": "flex-0"
 };
-var _hoisted_3 = ["src"];
-var _hoisted_4 = {
+var _hoisted_4 = ["href"];
+var _hoisted_5 = ["src", "alt"];
+var _hoisted_6 = {
   "class": "grow justify-center"
 };
-var _hoisted_5 = ["href"];
-var _hoisted_6 = {
+var _hoisted_7 = ["href"];
+var _hoisted_8 = {
   key: 0,
   "class": "text-xs"
 };
-var _hoisted_7 = {
+var _hoisted_9 = {
   key: 1,
   "class": "flex gap-1"
 };
-var _hoisted_8 = ["title"];
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_10 = ["title"];
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-pencil",
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
-var _hoisted_10 = {
+var _hoisted_12 = {
   "class": "sr-only"
 };
-var _hoisted_11 = ["title"];
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_13 = ["title"];
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-user-plus",
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
-var _hoisted_13 = {
+var _hoisted_15 = {
   "class": "sr-only"
 };
-var _hoisted_14 = ["title"];
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_16 = ["title"];
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-trash",
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
-var _hoisted_16 = {
+var _hoisted_18 = {
   "class": "sr-only"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.boxClasses()),
-    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.position())
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.position()),
+    "data-uuid": $props.uuid,
+    "data-entity": $props.entity.id
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: $props.entity.url
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $props.entity.thumb,
-    "class": "rounded-full entity-image"
-  }, null, 8 /* PROPS */, _hoisted_3)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "class": "rounded-full entity-image",
+    alt: $props.entity.name
+  }, null, 8 /* PROPS */, _hoisted_5)], 8 /* PROPS */, _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.entity.url,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.cssClasses())
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.name), 11 /* TEXT, CLASS, PROPS */, _hoisted_5), !$props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_6, " (#" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.id) + ") ", 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.name), 11 /* TEXT, CLASS, PROPS */, _hoisted_7), !$props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, " (#" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.id) + ") ", 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.editEntity($props.uuid);
     }),
     "class": "cursor-pointer",
     title: $options.i18n('entity', 'edit')
-  }, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'edit')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_8), !$props.isRelation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+  }, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'edit')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_10), !$props.isRelation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 0,
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.addRelation($props.uuid);
     }),
     "class": "cursor-pointer",
     title: $options.i18n('relation', 'add')
-  }, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('relation', 'add')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('relation', 'add')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_13)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.deleteEntity($props.uuid);
     }),
     "class": "align-end cursor-pointer",
     title: $options.i18n('entity', 'remove')
-  }, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'remove')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_14)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 6 /* CLASS, STYLE */);
+  }, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'remove')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_16)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 14 /* CLASS, STYLE, PROPS */, _hoisted_1);
 }
 
 /***/ }),

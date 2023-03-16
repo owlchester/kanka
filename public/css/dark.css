@@ -122,4 +122,8 @@
   --header-profile-background: var(--table-highlight);
 }
 
+.family-tree {
+  --family-tree-founder: #131212;
+}
+
 /*# sourceMappingURL=dark.css.map*/
