@@ -11,18 +11,18 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
         @include('entities.components.profile._location')
         @if ($model->date)
             <div class="element profile-date">
-                <div class="title">{{ __('journals.fields.date') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('journals.fields.date') }}</div>
                 {{ \App\Facades\UserDate::format($model->date) }}
             </div>
         @endif
 
         @if ($model->author && $model->author)
             <div class="element profile-character">
-                <div class="title">{{ __('journals.fields.author') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('journals.fields.author') }}</div>
                 {!! $model->author->tooltipedLink() !!}
             </div>
         @endif

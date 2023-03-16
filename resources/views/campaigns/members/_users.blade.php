@@ -39,7 +39,7 @@
 <div class="box box-solid mb-8">
     <div class="box-body no-padding">
         <div class="table-responsive">
-            <table id="campaign-members" class="table table-hover table-striped">
+            <table id="campaign-members" class="table table-hover table-striped mb-0">
                 <thead>
                     <tr>
                         <th></th>

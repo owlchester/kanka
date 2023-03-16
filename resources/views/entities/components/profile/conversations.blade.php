@@ -11,12 +11,12 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
 
         <div class="element profile-target">
-                <div class="title">{{ __('conversations.fields.target') }}</div>
-                {{ __('conversations.targets.' . ($model->forCharacters() ? 'characters' : 'members')) }}
-            </div>
+            <div class="title text-uppercase text-xs">{{ __('conversations.fields.target') }}</div>
+            {{ __('conversations.targets.' . ($model->forCharacters() ? 'characters' : 'members')) }}
+        </div>
 
 
         @include('entities.components.profile._type')

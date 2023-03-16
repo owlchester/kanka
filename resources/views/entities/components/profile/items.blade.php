@@ -11,17 +11,17 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
 
         @if ($model->price)
             <div class="element profile-price">
-                <div class="title">{{ __('items.fields.price') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('items.fields.price') }}</div>
                 {{ $model->price }}
             </div>
         @endif
         @if ($model->size)
             <div class="element profile-size">
-                <div class="title">{{ __('items.fields.size') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('items.fields.size') }}</div>
                 {{ $model->size }}
             </div>
         @endif
@@ -30,7 +30,7 @@
 
         @if ($model->character)
             <div class="element profile-character">
-                <div class="title">{{ __('items.fields.character') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('items.fields.character') }}</div>
                 {!! $model->character->tooltipedLink() !!}
             </div>
         @endif

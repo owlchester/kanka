@@ -11,10 +11,10 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
         @if (!empty($model->charges))
             <div class="element profile-charges">
-                <div class="title">{{ __('abilities.fields.charges') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('abilities.fields.charges') }}</div>
                 {{ $model->charges }}
             </div>
         @endif

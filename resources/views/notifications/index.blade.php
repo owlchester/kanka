@@ -22,7 +22,7 @@
         <div class="box-body">
 
             <div class=" table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover mb-0">
                 <tbody>
                 <?php /** @var \Illuminate\Notifications\DatabaseNotification $notification */?>
                 @foreach ($notifications as $notification)

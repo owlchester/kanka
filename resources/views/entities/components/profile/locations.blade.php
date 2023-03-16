@@ -11,13 +11,13 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
         @include('entities.components.profile._type')
         @include('entities.components.profile._events')
 
         @if (!$model->maps->isEmpty())
             <div class="profile-maps">
-                <div class="title">{{ __('entities.maps') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('entities.maps') }}</div>
                 @foreach ($model->maps as $map)
                     {!! $map->tooltipedLink() !!} {!! $map->exploreLink() !!}<br />
                 @endforeach

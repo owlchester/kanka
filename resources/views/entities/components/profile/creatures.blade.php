@@ -11,11 +11,11 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
 
         @if ($campaignService->enabled('locations') && !$model->locations->isEmpty())
             <div class="element profile-location">
-                <div class="title">
+                <div class="title text-uppercase text-xs">
                     {{ __('creatures.fields.locations') }}
                 </div>
                 @php $existingLocations = []; @endphp

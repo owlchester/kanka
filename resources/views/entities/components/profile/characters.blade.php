@@ -16,10 +16,10 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
         @if ($campaignService->enabled('families') && !$model->families->isEmpty())
             <div class="element profile-family">
-                <div class="title">{{ __('entities.families') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('entities.families') }}</div>
                 @php $existingFamilies = []; @endphp
                 @foreach ($model->families as $family)
                     @if(!empty($existingFamilies[$family->id]))
@@ -33,7 +33,7 @@
         @if (!$model->races->isEmpty() || $model->hasAge())
             @if (!$model->races->isEmpty() && !$model->hasAge())
             <div class="element profile-race">
-                <div class="title">{{ __('entities.races') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('entities.races') }}</div>
                 @php $existingRaces = []; @endphp
                 @foreach ($model->races as $race)
                     @if(!empty($existingRaces[$race->id]))
@@ -45,12 +45,12 @@
             </div>
             @elseif ($model->races->isEmpty() && $model->hasAge())
             <div class="element profile-age">
-                <div class="title">{{ __('characters.fields.age') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('characters.fields.age') }}</div>
                 <span>{{ $model->age }}</span>
             </div>
             @else
             <div class="element profile-race-age">
-                <div class="title">{{ __('entities.races') }}, {{ __('characters.fields.age') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('entities.races') }}, {{ __('characters.fields.age') }}</div>
                 @php $existingRaces = []; @endphp
                 @foreach ($model->races as $race)
                     @if(!empty($existingRaces[$race->id]))
@@ -68,17 +68,17 @@
         @if (!empty($model->sex) || !empty($model->pronouns))
             @if (!empty($model->sex) && empty($model->pronouns))
                 <div class="element profile-gender">
-                    <div class="title">{{ __('characters.fields.sex') }}</div>
+                    <div class="title text-uppercase text-xs">{{ __('characters.fields.sex') }}</div>
                     <span>{{ $model->sex }}</span>
                 </div>
             @elseif (empty($model->sex) && !empty($model->pronouns))
                 <div class="element profile-pronouns">
-                    <div class="title">{{ __('characters.fields.pronouns') }}</div>
+                    <div class="title text-uppercase text-xs">{{ __('characters.fields.pronouns') }}</div>
                     <span>{{ $model->pronouns }}</span>
                 </div>
             @else
                 <div class="element profile-gender-pronouns">
-                    <div class="title">{{ __('characters.fields.sex') }}, {{ __('characters.fields.pronouns') }}</div>
+                    <div class="title text-uppercase text-xs">{{ __('characters.fields.sex') }}, {{ __('characters.fields.pronouns') }}</div>
                     <span>{{ $model->sex }}</span>
                     <span>{{ $model->pronouns }}</span>
                 </div>

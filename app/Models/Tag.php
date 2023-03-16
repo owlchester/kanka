@@ -273,7 +273,7 @@ class Tag extends MiscModel
             $colour = $mappings[$this->colour];
         }
 
-        return 'bg-' . $colour . ' color-palette color-tag';
+        return 'bg-' . $colour . ' color-palette color-tag rounded-sm px-2 py-1';
     }
 
     /**
@@ -315,7 +315,7 @@ class Tag extends MiscModel
      */
     public function html(): string
     {
-        return '<span class="badge label ' . ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '">'
+        return '<span class="badge label ' . ($this->hasColour() ? $this->colourClass() : 'color-tag label-default rounded-sm px-2 py-1') . '">'
             . e($this->name) . '</span>';
     }
 
@@ -325,7 +325,7 @@ class Tag extends MiscModel
     public function bubble(): string
     {
         return '<span class="label label-tag-bubble overflow-hidden ' .
-            ($this->hasColour() ? $this->colourClass() : 'color-tag label-default') . '" title="' .
+            ($this->hasColour() ? $this->colourClass() : 'color-tag label-default rounded-sm px-2 py-1') . '" title="' .
             e($this->name) . '">' . ucfirst(mb_substr($this->slug, 0, 1)) . '</span>';
     }
 

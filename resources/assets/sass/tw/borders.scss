@@ -4,6 +4,9 @@
 .rounded-full {
     border-radius: 9999px;
 }
+.rounded-sm {
+    border-radius: 0.125rem; /* 2px */
+}
 .rounded {
     border-radius: 0.25rem; /* 4px */
 }

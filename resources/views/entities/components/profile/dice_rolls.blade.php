@@ -11,16 +11,16 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
         @if ($model->parameters)
             <div class="element profile-parameters">
-                <div class="title">{{ __('dice_rolls.fields.parameters') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('dice_rolls.fields.parameters') }}</div>
                 {{ $model->parameters }}
             </div>
         @endif
         @if ($model->character)
             <div class="element profile-parameters">
-                <div class="title">{{ __('entities.character') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('entities.character') }}</div>
                 {!! $model->character->tooltipedLink() !!}
             </div>
         @endif

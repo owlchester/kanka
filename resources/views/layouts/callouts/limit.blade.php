@@ -2,7 +2,7 @@
 <div class="@if (!isset($skipImage))grid gap-5 grid-cols-1 lg:grid-cols-2 booster-block mb-5"@endif>
     <div class="">
         <div class="booster-callout">
-            <div class="booster-icon">
+            <div class="booster-icon rounded-full">
                 <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
             </div>
 

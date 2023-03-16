@@ -190,30 +190,29 @@ tr.tr-hover {
 .input-error {
   border: 1px inset red;
 }
-.color-tag {
-  padding: 2px 5px;
-  border-radius: 2px;
-}
 
 // Private/Public
 .entity-attributes {
-  .fa-unlock-alt {
-    color: rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    &:hover {
-      color: rgba(0, 0, 0, 0.8);
+    .fa-unlock-alt {
+        color: rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+
+        &:hover {
+            color: rgba(0, 0, 0, 0.8);
+        }
     }
-  }
-  .fa-lock {
-    cursor: pointer;
-    &:hover {
-      color: rgba(0, 0, 0, 0.8);
+
+    .fa-lock {
+        cursor: pointer;
+
+        &:hover {
+            color: rgba(0, 0, 0, 0.8);
+        }
     }
-  }
 }
 
 #new-entity-modal, #entity-modal {
-  z-index: 9900;
+    z-index: 9900;
 }
 
 .entity-form {
@@ -299,24 +298,21 @@ tr.tr-hover {
 
 // Attributes in entities and text area
 .attribute, .note-editing-area > .attribute {
-  border-radius: 2px;
-  background-color: #ddd;
-  color: #333;
-  font-style: italic;
-  padding: 2px 3px;
+    border-radius: 2px;
+    background-color: #ddd;
+    color: #333;
+    font-style: italic;
+    padding: 2px 3px;
 }
 
 // Allow buttons to be multi-lined
 .btn {
-  white-space: normal;
+    white-space: normal;
 }
 .btn-app > .ra, .btn-app > .fas, .btn-app > .far, .btn-app > .fab, .btn-app > .fa, .btn-app > .fa-solid, .btn-app > .fa-regular {
-  font-size: 20px;
-  display: block;
-  line-height: 20px !important;
-}
-.btn-box-tool .fa-ellipsis-v {
-  padding: 0 7px;
+    font-size: 20px;
+    display: block;
+    line-height: 20px !important;
 }
 
 // Visual info on quick link forms for which mode is enabled
@@ -336,8 +332,8 @@ summary { display: list-item; }
 
 // RPG awesome dropdown icon margin
 .dropdown-menu > li > a > :is(.fas, .fab, .far, .ra, .fa-solid, .fa-light, .fa-thin, .fa-regular) {
-  margin-right: 10px;
-  width: 14px;
+    margin-right: 10px;
+    width: 14px;
 }
 button.dropdown-item {
     background: none;
@@ -358,97 +354,105 @@ button.dropdown-item {
 }
 
 .table-responsive {
-  overflow-x: unset;
-  .table {
-    margin-bottom: 0;
-  }
+    overflow-x: unset;
+}
+.table-compact {
+    width: auto;
+}
+.table-right {
+    width: auto;
+    float: right;
+}
+.table-centered {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .banner-notification {
-  a {
-    color: var(--banner-link);
-  }
+    a {
+        color: var(--banner-link);
+    }
 }
 
 // Relation colour "bubble" in the relations datagrid and tables
 .label-tag-bubble {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 8pt;
-  padding: 4px;
-  vertical-align: bottom;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 8pt;
+    padding: 4px;
+    vertical-align: bottom;
 }
 
 // UX
 .skip-nav-link {
-  border-radius: 0 0 0.25rem 0.25rem;
-  background-color: white;
-  color: blue;
-  transform: translateY(-120%);
-  transition: transform 325ms ease-in;
-  z-index: 1040;
+    border-radius: 0 0 0.25rem 0.25rem;
+    background-color: white;
+    color: blue;
+    transform: translateY(-120%);
+    transition: transform 325ms ease-in;
+    z-index: 1040;
 
-  &:focus {
-    transform: translateY(0);
-    color: var(--link-text);
-  }
+    &:focus {
+        transform: translateY(0);
+        color: var(--link-text);
+    }
 }
 
 
 .privacy-callout {
-  border-left: 2px solid #f6c9af;
+    border-left: 2px solid #f6c9af;
 }
 .booster-block {
-  > div {
-    text-align: center;
-  }
+    > div {
+        text-align: center;
+    }
 
-  .booster-callout, img {
-    max-width: 480px;
-  }
+    .booster-callout, img {
+        max-width: 480px;
+    }
 }
 .booster-icon {
-  border-radius: 9999px;
-  background-color: hsl(var(--kanka-boost-accent)/1);
-  display: inline-block;
-  padding: 0.5rem;
-  margin-bottom: 0.4rem;
-  color: white;
+    background-color: hsl(var(--kanka-boost-accent)/1);
+    display: inline-block;
+    padding: 0.5rem;
+    margin-bottom: 0.4rem;
+    color: white;
 }
 .booster-callout {
-  display: inline-block;
-  padding: 2rem 1.5rem;
-  border: 1px solid hsl(var(--kanka-boost-accent)/0.5);
-  border-radius: 0.5rem;
-  background-color: var(--box-background);
-  font-size: 1rem;
-  text-align: center;
-  line-height: 1.5;
-
-  h4 {
-    font-weight: 600;
-    font-size: 1.2rem;
-    margin: 0.8rem 0;
-  }
-  .btn {
-    display: block;
-  }
-
-  .column {
+    display: inline-block;
+    padding: 2rem 1.5rem;
+    border: 1px solid hsl(var(--kanka-boost-accent)/0.5);
+    border-radius: 0.5rem;
+    background-color: var(--box-background);
+    font-size: 1rem;
     text-align: center;
-    max-width: 450px;
-  }
+    line-height: 1.5;
+
+    h4 {
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin: 0.8rem 0;
+    }
+
+    .btn {
+        display: block;
+    }
+
+    .column {
+        text-align: center;
+        max-width: 450px;
+    }
 }
 
 // Helper block in forms, closer to field
 .form-group > .help-block {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .loading, .loading:hover {
-  pointer-events: none;
+    pointer-events: none;
 }
 .loading:before {
     margin-right: .5rem;

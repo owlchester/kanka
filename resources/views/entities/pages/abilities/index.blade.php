@@ -12,7 +12,7 @@
 
 @section('entity-header-actions')
     @can('update', $entity->child)
-        <div class="header-buttons">
+        <div class="header-buttons inline-block pull-right ml-auto">
             <a href="{{ route('entities.entity_abilities.reorder', $entity) }}" class="btn btn-sm btn-default">
                 <i class="fa-solid fa-sort" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.show.reorder') }}</span>
                 <span class="visible-xs visible-sm">{{ __('sidebar.campaign_switcher.reorder') }}</span>

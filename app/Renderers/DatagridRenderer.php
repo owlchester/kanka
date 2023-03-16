@@ -94,7 +94,7 @@ class DatagridRenderer
 
     public function __toString(): string
     {
-        $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped' .
+        $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped mb-0' .
             ($this->nestedFilter ? ' table-nested' : null) . '">';
         $html .= '<thead><tr>';
         $html .= $this->renderColumns();

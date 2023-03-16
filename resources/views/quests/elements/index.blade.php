@@ -12,7 +12,7 @@
 
 @section('entity-header-actions')
     @can('update', $model)
-        <div class="header-buttons">
+        <div class="header-buttons inline-block pull-right ml-auto">
 
             <a href="{{ route('quests.quest_elements.create', ['quest' => $model->id]) }}" class="btn btn-sm btn-warning">
                 <i class="fa-solid fa-plus" aria-hidden="true"></i>

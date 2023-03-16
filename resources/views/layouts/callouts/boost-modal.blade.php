@@ -1,5 +1,5 @@
 
-<div class="booster-icon">
+<div class="booster-icon rounded-full">
     <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
 </div>
 

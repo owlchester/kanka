@@ -41,14 +41,14 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
 
 ?>
 
-<div class="entity-header @if ($hasBanner) with-entity-banner @endif">
+<div class="entity-header pb-5 flex flex-wrap @if ($hasBanner) with-entity-banner m-0 @endif">
     @if ($hasBanner)
         <div class="entity-banner" style="background-image: url('{{ $headerImageUrl }}');">
         </div>
     @endif
 
     @if ($imageUrl)
-    <div class="entity-header-image">
+    <div class="entity-header-image relative">
 
         @can('update', $model)
             @if(isset($printing) && $printing)
@@ -95,14 +95,14 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
         @endcan
     </div>
     @endif
-    <div class="entity-header-text">
+    <div class="entity-header-text flex flex-col">
         <div class="entity-texts">
             @if (!empty($breadcrumb))
-                <ol class="entity-breadcrumb">
+                <ol class="entity-breadcrumb text-xs mb-2 p-0">
                     @foreach ($breadcrumb as $bcdata)
-                        <li>
+                        <li class="inline-block">
                         @if (is_array($bcdata))
-                        <a href="{{ $bcdata['url'] }}" title="{{ $bcdata['label'] }}">
+                        <a href="{{ $bcdata['url'] }}" class="no-underline" title="{{ $bcdata['label'] }}">
                             {{ $bcdata['label'] }}
                         </a>
                         @elseif(!empty($bcdata))
@@ -112,23 +112,23 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     @endforeach
                 </ol>
             @endif
-            <div class="entity-name-header">
-                <h1 class="entity-name">
+            <div class="entity-name-header flex items-center">
+                <h1 class="entity-name m-0 break-all">
                     {{ $model->name }}
                 </h1>
                 <div class="entity-name-icons entity-name-icons-{{ $buttonsClass }}">
                     @if ($model instanceof \App\Models\Character && $model->is_dead)
-                        <i role="button" tabindex="0" class="ra ra-skull entity-icons btn-popover" title="{{ __('characters.hints.is_dead') }}"></i>
+                        <i role="button" tabindex="0" class="ra ra-skull entity-icons cursor-pointer text-xl  btn-popover" title="{{ __('characters.hints.is_dead') }}"></i>
                     @endif
                     @if ($model instanceof \App\Models\Quest && $model->is_completed)
-                        <i role="button" tabindex="0" class="fa-solid fa-check-circle entity-icons btn-popover" title="{{ __('quests.fields.is_completed') }}"></i>
+                        <i role="button" tabindex="0" class="fa-solid fa-check-circle entity-icon scursor-pointer btn-popover text-xl" title="{{ __('quests.fields.is_completed') }}"></i>
                     @endif
                     @if ($model instanceof \App\Models\Organisation && $model->is_defunct)
-                        <i role="button" tabindex="0" class="fa-solid fa-shop-slash entity-icons btn-popover" title="{{ __('organisations.hints.is_defunct') }}"></i>
+                        <i role="button" tabindex="0" class="fa-solid fa-shop-slash entity-icons cursor-pointer btn-popover text-xl" title="{{ __('organisations.hints.is_defunct') }}"></i>
                     @endif
 
                     @if (auth()->check() && auth()->user()->isAdmin())
-                        <span role="button" tabindex="0" class="entity-icons entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy" aria-haspopup="dialog">
+                        <span role="button" tabindex="0" class="entity-icons cursor-pointer entity-privacy-icon text-xl" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy" aria-haspopup="dialog">
                             <i class="fa-solid fa-lock" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                             <i class="fa-solid fa-lock-open" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                             <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
@@ -137,7 +137,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
 
                     <div class="btn-group entity-actions">
                         <span role="button" tabindex="0" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
-                            <i class="fa-solid fa-cog entity-icons" aria-hidden="true"></i>
+                            <i class="fa-solid fa-cog entity-icons cursor-pointer text-xl" aria-hidden="true"></i>
                             <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                         </span>
                         <ul class="dropdown-menu dropdown-menu-right" role="menu" id="entity-submenu">
@@ -256,7 +256,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
         @endif
 
         @if($entityTags->count() > 0)
-        <div class="entity-tags entity-header-line">
+        <div class="entity-tags entity-header-line text-xs flex  flex-wrap gap-2 mb-1 mt-2">
             @foreach ($entityTags as $tag)
                 @if (!$tag->entity) @continue @endif
                 <a href="{{ route('tags.show', $tag) }}" data-toggle="tooltip-ajax"
