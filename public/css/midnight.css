@@ -120,4 +120,8 @@
   --campaign-switcher-text: var(--theme-input-text);
 }
 
+.family-tree {
+  --family-tree-founder: #222;
+}
+
 /*# sourceMappingURL=midnight.css.map*/
