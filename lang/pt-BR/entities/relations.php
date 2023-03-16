@@ -6,14 +6,14 @@ return [
         'mode-table'    => 'Tabela de relações e conexões',
     ],
     'bulk'              => [
-        'delete'            => '{1} :count relação deletada. |[2,*] :count relações deletadas.',
-        'delete_mirrored'   => 'Também deleta relações espelhadas.',
+        'delete'            => '{1} :count relação removida. |[2,*] :count relações removidas.',
+        'delete_mirrored'   => 'Também remove relações espelhadas.',
         'success'           => [
             'editing'           => '{1} :count relação foi atualizada. |[2,*] :count relações foram atualizadas.',
             'editing_partial'   => '{1} :count/:total relação foi atualizada. |[2,*] :count/:total relações foram atualizadas.',
         ],
         'unmirror'          => 'Desvincular relações espelhadas.',
-        'update_mirrored'   => 'Atualize também as relações espelhadas.',
+        'update_mirrored'   => 'Também atualiza as relações espelhadas.',
     ],
     'call-to-action'    => 'Explore visualmente as relações dessa entidade e como ela está conectada ao restante da campanha.',
     'connections'       => [
@@ -25,15 +25,15 @@ return [
     'create'            => [
         'new_title' => 'Nova relação',
         'success'   => 'Relação :target adicionada para :entity.',
-        'title'     => 'Criar relações',
+        'title'     => 'Nova relação para :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Essa relação está espelhada na entidade alvo. Selecione essa opção para também remover  a relação espelhada.',
-        'option'    => 'Deletar relação espelhada',
+        'option'    => 'Remover relação espelhada',
     ],
     'destroy'           => [
-        'mirrored'  => 'Isso também deletará a relação espelhada e é permanente.',
-        'success'   => 'Relação de :name removida.',
+        'mirrored'  => 'Isso também removerá a relação espelhada e é permanente.',
+        'success'   => 'Relação de :target removida para :entity.',
     ],
     'fields'            => [
         'attitude'          => 'Atitude',
@@ -49,33 +49,33 @@ return [
     'helper'            => 'Estabeleça relações entre entidades com atitudes e visibilidade. Relações também podem ser fixadas no menu da entidade.',
     'helpers'           => [
         'no_relations'  => 'Essa entidade atualmente não tem quaisquer outras relações com outras entidades da campanha.',
-        'popup'         => 'Entidades da campanha podem ser ligadas juntas usando relações. Elas podem ter uma descrição, uma avaliação de atitude, uma visibilidade para controlar quem vê a relação, e mais.',
+        'popup'         => 'Entidades da campanha podem ser vinculadas umas às outras usando relações. Elas podem ter uma descrição, uma avaliação de atitude, uma visibilidade para controlar quem vê a relação, e muito mais.',
     ],
     'hints'             => [
-        'attitude'          => 'Este campo opcional pode ser usado para definir a ordem na qual as relações aparecem, em ordem decrescente.',
+        'attitude'          => 'Este campo opcional pode ser usado para definir as relações de ordem padrão exibidas em ordem decrescente.',
         'mirrored'          => [
             'text'  => 'Esta relação é espelhada com :link',
             'title' => 'Espelhada',
         ],
-        'target_relation'   => 'A descrição da relação do alvo. Deixe em branco para usar esse texto da relação.',
+        'target_relation'   => 'A descrição da relação com o alvo. Deixe em branco para usar o texto desta relação.',
         'two_way'           => 'Se você selecionar para criar relação mútua, a mesma relação será criada no alvo. Entretanto, se você editar uma, a outra não será atualizada.',
     ],
     'index'             => [
         'title' => 'Relações',
     ],
     'options'           => [
-        'mentions'          => 'Relações + relacionados + menções',
+        'mentions'          => 'Padrão + relacionados + menções',
         'only_relations'    => 'Apenas relações diretas',
-        'related'           => 'Relações + relacionados',
-        'relations'         => 'Relações',
+        'related'           => 'Padrão + relacionados',
+        'relations'         => 'Padrão',
         'show'              => 'Mostrar',
     ],
     'panels'            => [
         'related'   => 'Relacionados',
     ],
     'placeholders'      => [
-        'attitude'  => 'De -100 a100, com 100 sendo muito positiva',
-        'relation'  => 'Natureza da relação',
+        'attitude'  => '-100 a 100, 100 sendo muito positiva',
+        'relation'  => 'Rival, Melhor Amigo, Irmão',
         'target'    => 'Escolha uma entidade',
     ],
     'show'              => [
@@ -86,7 +86,7 @@ return [
         'organisation_member'   => 'Membro da organização',
     ],
     'update'            => [
-        'success'   => 'Relação de :name atualizada.',
-        'title'     => 'Atualizar relações',
+        'success'   => 'Relação :target atualizada para :entity.',
+        'title'     => 'Atualizar relações para :name',
     ],
 ];

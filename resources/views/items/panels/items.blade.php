@@ -11,7 +11,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         <h3 class="box-title">{{ __('items.fields.items') }}</h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
             </a>
         </div>
     </div>

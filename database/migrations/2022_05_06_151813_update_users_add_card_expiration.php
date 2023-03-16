@@ -14,7 +14,11 @@ class UpdateUsersAddCardExpiration extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dateTime('card_expires_at')->after('card_last_four')->nullable();
+            $field = 'pm_last_four';
+            if (Schema::hasColumn('users', 'card_brand')) {
+                $field = 'card_last_four';
+            }
+            $table->dateTime('card_expires_at')->after($field)->nullable();
             $table->index(['card_expires_at'], 'idx_card_expires_at');
         });
     }

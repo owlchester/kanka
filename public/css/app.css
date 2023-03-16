@@ -502,39 +502,40 @@ body .main-header .navbar .nav .open > a.active {
   margin: 0;
 }
 
-.navbar {
-  margin-bottom: 0;
+/*.navbar {
+  .sidebar-toggle {
+    background-color: var(--main-navbar-background);
+    margin-left: -30px;
+    padding: 15px 20px;
+    border-radius: 9999px;
+    background-image: none;
+    float: left;
+    font-family: fontAwesome;
+    &:before {
+      content: "\f100";
+    }
+  }
+  .sidebar-toggle:focus {
+    color: var(--main-navbar-text);
+  }
+  // Desktop: default is sidebar is open
+  .fa-angles-right {
+    display: none;
+  }
 }
-.navbar .sidebar-toggle {
-  background-color: var(--main-navbar-background);
-  margin-left: -30px;
-  padding: 15px 20px;
-  border-radius: 9999px;
-  background-image: none;
-  float: left;
-  font-family: fontAwesome;
-}
-.navbar .sidebar-toggle:before {
-  content: "\f100";
-}
-.navbar .sidebar-toggle:focus {
-  color: var(--main-navbar-text);
-}
-.navbar .fa-angles-right {
-  display: none;
-}
-
+// On desktop, the sidebar gets collapsed
 .sidebar-collapse .navbar .sidebar-toggle {
   margin-left: 0;
+  &:before {
+    content: "\f101";
+  }
 }
-.sidebar-collapse .navbar .sidebar-toggle:before {
-  content: "\f101";
-}
-
-.sidebar-open .navbar .sidebar-toggle:before {
-  content: "\f100";
-}
-
+// On mobile, the sidebar get opened
+.sidebar-open .navbar .sidebar-toggle {
+  &:before {
+    content: "\f100";
+  }
+}*/
 .cover-background {
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -1018,7 +1019,8 @@ button.dropdown-item:hover {
 }
 
 .keyboard-shortcut {
-  padding: 0.2rem 0.4rem;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.75rem;
   border: 1px solid var(--input-border-color);
   border-radius: 5px;
   margin-right: 5px;
@@ -1147,12 +1149,6 @@ button.dropdown-item:hover {
 }
 
 @media (max-width: 767px) {
-  .navbar .sidebar-toggle {
-    margin-left: 0;
-  }
-  .navbar .sidebar-toggle:before {
-    content: "\f100";
-  }
   .content-header {
     padding-top: 5px;
   }
@@ -1669,7 +1665,7 @@ img.note-float-right {
 }
 
 img.note-float-left {
-  float: right;
+  float: left;
 }
 
 .note-btn i.fa, .note-btn i.fas, .note-btn i.fa-brands, .note-btn i.far, .note-btn i.fa-solid {
@@ -1994,8 +1990,8 @@ img.note-float-left {
 }
 
 .nativead.sidebar {
-  width: 280px;
-  height: 280px;
+  width: var(--sidebar-width);
+  height: var(--sidebar-width);
 }
 
 .nativead.nativead-banner {
@@ -5020,8 +5016,20 @@ body.ab-testing-second .ab-testing-a {
   max-width: none;
 }
 
+.min-h-full {
+  min-height: 100%;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .max-h-50vh {
   max-height: 50vh;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .max-h-70vh {
@@ -6026,6 +6034,22 @@ body.ab-testing-second .ab-testing-a {
 }
 
 /* border style */
+.border-t-0 {
+  border-top-width: 0;
+}
+
+.border-r-0 {
+  border-right-width: 0;
+}
+
+.border-b-0 {
+  border-bottom-width: 0;
+}
+
+.border-l-0 {
+  border-left-width: 0;
+}
+
 .border-solid {
   border-style: solid;
 }
@@ -6062,12 +6086,28 @@ body.ab-testing-second .ab-testing-a {
   border-width: 2px;
 }
 
+.border-b-1 {
+  border-bottom-width: 1px;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
 .border-box {
   border-color: var(--box-border);
 }
 
 .border-accent {
   border-color: var(--color-accent);
+}
+
+.border-slate-400 {
+  border-color: rgb(71, 85, 105);
+}
+
+.border-slate-600 {
+  border-color: rgb(148, 163, 184);
 }
 
 .shadow-lg {
@@ -6078,12 +6118,24 @@ body.ab-testing-second .ab-testing-a {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
+.shadow-r {
+  box-shadow: 3px 0 3px -10px rgba(0, 0, 0, 0.1);
+}
+
 .blur {
   filter: blur(8px);
 }
 
 .drop-shadow {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.06));
+}
+
+.drop-shadow-lg {
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+}
+
+.drop-shadow-2xl {
+  filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15));
 }
 
 .hover\:drop-shadow:hover {
@@ -6096,6 +6148,10 @@ body.ab-testing-second .ab-testing-a {
 
 .bg-white\/70 {
   background-color: rgba(255, 255, 255, 0.7);
+}
+
+.bg-white {
+  background-color: rgb(255, 255, 255);
 }
 
 .bg-black {
@@ -6118,6 +6174,19 @@ body.ab-testing-second .ab-testing-a {
   background-color: rgb(163, 163, 163);
 }
 
+/*.bg-slate-400 {
+    background-color: rgb(148 163 184);
+}
+.bg-slate-300 {
+    background-color: rgb(203 213 225);
+}
+.bg-gray-300 {
+    background-color: rgb(209 213 219);
+}
+
+.bg-neutral-300	{
+    background-color: rgb(212 212 212);
+}*/
 .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -6345,13 +6414,6 @@ dialog {
 
 html:has(dialog[open]) {
   overflow: hidden;
-}
-
-.main-header .navbar {
-  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
-}
-.main-header .sidebar-toggle {
-  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
 .bg-red,

@@ -89,6 +89,8 @@ class CrudController extends Controller
     {
         $this->middleware('campaign.member');
         $this->filterService = new FilterService();
+
+        $this->titleKey = __('sidebar.relations');
     }
 
     /**
@@ -177,7 +179,7 @@ class CrudController extends Controller
         }
         $actions = $this->navActions;
 
-        return view('cruds.index', compact(
+        $data = compact(
             'models',
             'name',
             'langKey',
@@ -192,7 +194,11 @@ class CrudController extends Controller
             'bulk',
             'templates',
             'datagridActions',
-        ));
+        );
+        if (!empty($this->titleKey)) {
+            $data['titleKey'] = $this->titleKey;
+        }
+        return view('cruds.index', $data);
     }
 
     /**

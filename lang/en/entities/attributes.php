@@ -37,6 +37,12 @@ return [
         'success'   => 'Attributes for :entity updated.',
         'title'     => 'Attributes for :name',
     ],
+    'labels' => [
+        'name' => 'Attribute name',
+        'checkbox' => 'Checkbox name',
+        'section' => 'Section name',
+        'value' => 'Attribute value',
+    ],
     'live'          => [
         'success'   => 'Attribute :attribute updated.',
         'title'     => 'Updating :attribute',

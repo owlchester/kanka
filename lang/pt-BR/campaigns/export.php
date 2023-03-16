@@ -13,5 +13,5 @@ return [
         'json'      => 'O conteúdo exportado é fornecido no formato de arquivo JSON. JSON é um formato baseado em texto e você pode abri-lo em um editor de texto ou no navegador.',
     ],
     'success'   => 'A exportação da campanha está sendo preparada. Você será notificado em Kanka assim que estiver pronto para download.',
-    'title'     => 'Exportação de campanha',
+    'title'     => 'Exportação da Campanha',
 ];

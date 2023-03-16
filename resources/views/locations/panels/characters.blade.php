@@ -6,7 +6,7 @@
 
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('parent_id'))
                 <a href="{{ route('locations.characters', $model) }}" class="btn btn-box-tool">

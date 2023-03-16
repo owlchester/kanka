@@ -17,6 +17,9 @@
     --main-navbar-hover-background: var(--theme-soft);
     --main-navbar-text: var(--theme-main-text);
 
+    --lookup-text: rgb(242, 242, 242);
+    --lookup-entity-background: rgb(16, 16, 16);
+
     --table-highlight: #0f1c2b;
     --table-border: var(--theme-border);
     --table-warning: var(--theme-soft);
@@ -150,8 +153,4 @@
     --notification-accent: var(--conversation-comment-background);
     --header-mode-inactive: var(--notification-accent);
     --campaign-switcher-text: var(--theme-input-text);
-}
-
-.family-tree {
-    --family-tree-founder: #222;
 }

@@ -11,7 +11,7 @@
             <li>
                 @if ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT)
                     <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : $model) }}">
-                        <i class="fa-solid fa-pencil"></i>
+                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                         {{ __('crud.edit') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_COPY)
@@ -24,7 +24,7 @@
                        data-toggle="ajax-modal" data-target="#entity-modal"
                        data-url="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : $model) }}"
                     >
-                        <i class="fa-solid fa-pencil"></i>
+                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                         {{ __('crud.edit') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_DELETE)

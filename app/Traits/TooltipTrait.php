@@ -66,7 +66,7 @@ trait TooltipTrait
     protected function allowedTooltipTags(): array
     {
         $html = [];
-        foreach (config('purify.tooltips.allowed') as $tag) {
+        foreach (config('purify.configs.tooltips.allowed') as $tag) {
             $html[] = "<{$tag}>";
         }
         $html[] = '<br>';

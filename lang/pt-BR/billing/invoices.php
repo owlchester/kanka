@@ -4,7 +4,7 @@ return [
     'actions'       => [
         'download'  => 'Download PDF',
     ],
-    'description'   => 'Mostrando faturas dentro dos últimos 24 meses.',
+    'description'   => 'Exibindo faturas dentro dos últimos 24 meses.',
     'empty'         => 'Nenhuma fatura encontrada',
     'fields'        => [
         'amount'    => 'Valor',

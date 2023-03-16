@@ -42,6 +42,7 @@
             <table id="campaign-members" class="table table-hover table-striped">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>{{ __('campaigns.members.fields.name') }}</th>
                         <th>{{ __('campaigns.members.fields.roles') }}</th>
                         <th class="hidden-xs hidden-md">{{ __('campaigns.members.fields.joined') }}</th>
@@ -182,7 +183,7 @@
                     <div class="py-5">
                         <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                         <button type="button" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
-                            <span class="fa-solid fa-trash"></span>
+                            <span class="fa-solid fa-trash" aria-hidden="true"></span>
                             <span class="remove-button-label">{{ __('crud.remove') }}</span>
                         </button>
                     </div>

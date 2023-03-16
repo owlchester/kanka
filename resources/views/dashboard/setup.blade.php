@@ -39,7 +39,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
                  data-target="#edit-widget"
                  data-url="{{ route('campaign_dashboards.create') }}"
                >
-                <i class="fa-solid fa-plus"></i>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
                 <span class="hidden-xs">{{ __('dashboard.dashboards.actions.new') }}</span>
             </a>
 

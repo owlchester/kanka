@@ -3,14 +3,14 @@
 return [
     '403'       => [
         'body'  => 'Parece que você não tem permissão para acessar esta páginaQ',
-        'title' => 'Acesso negado',
+        'title' => 'Acesso Negado.',
     ],
     '403-form'  => [
         'help'  => 'Isso pode ser devido  sua sessão ter atingido o tempo limite. Tente fazer login novamente em outra janela antes de salvar.',
     ],
     '404'       => [
         'body'  => 'Desculpe, a página que você está procurando não pode ser encotrada',
-        'title' => 'Página não encontrada',
+        'title' => 'Página Não Encontrada',
     ],
     '500'       => [
         'body'  => [
@@ -28,5 +28,5 @@ return [
         'title' => 'Em manutenção',
     ],
     '503-form'  => [],
-    'footer'    => 'Se precisar de mais ajuda, entre em contato conosco em hello@kanka.io ou no :discord',
+    'footer'    => 'Se precisar de mais ajuda, entre em contato conosco em :email ou no :discord',
 ];

@@ -6,6 +6,10 @@ return [
         'add_role'  => 'Pridať rolu',
         'add_user'  => 'Pridať užívateľa',
     ],
+    'collapsed'     => [
+        'closed'    => 'Poznámka je zbalená na jej hlavičku',
+        'open'      => 'Poznámka je rozbalená',
+    ],
     'copy_mention'  => [
         'copy'              => 'Kopírovať rozšírenú referenciu',
         'copy_with_name'    => 'Kopírovať rozšírenú referenciu s názvom príspevku',

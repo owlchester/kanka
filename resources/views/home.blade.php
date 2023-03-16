@@ -58,7 +58,7 @@
                         <li class="divider"></li>
                         <li>
                             <a href="{{ route('campaigns.edit') }}">
-                                <i class="fa-solid fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
+                                <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('campaigns.show.actions.edit') }}
                             </a>
                         </li>
                     @endcan

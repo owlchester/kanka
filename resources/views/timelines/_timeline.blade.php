@@ -70,7 +70,7 @@ $loadedElements = [];
             <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn btn-primary btn-sm"
                 title="{{ __('crud.create') }}"
             >
-                <i class="fa-solid fa-plus"></i>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
                 <span class="hidden-xs inline">{!! __('timelines.actions.add_element', ['era' => $era->name]) !!}</span>
             </a>
         </div>
@@ -81,7 +81,7 @@ $loadedElements = [];
         <div class = "mb-2" >{{ __('timelines.helpers.no_era_v2') }} </div>
         @can('update', $timeline)
         <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-warning btn-sm">
-            <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('timelines/eras.actions.add') }}
         </a>
         @endcan
     </div>
@@ -90,7 +90,7 @@ $loadedElements = [];
     @can('update', $timeline)
         <div class="text-center mb-5">
             <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-primary btn-sm">
-                <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('timelines/eras.actions.add') }}
             </a>
         </div>
     @endcan

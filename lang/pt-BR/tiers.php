@@ -10,7 +10,7 @@ return [
     'current'   => 'Sua assinatura atual',
     'features'  => [
         'api_requests'      => ':amount de solicitações de API / min',
-        'boosters'          => 'Impulsionamentos de campanha',
+        'boosters'          => 'Impulsionamentos de Campanha',
         'community_vote'    => 'Voto da Comunidade',
         'discord'           => 'Cargos do Discord',
         'feature_influence' => 'Influência em novos recursos',

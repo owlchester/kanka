@@ -46,7 +46,7 @@
                    data-url="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}"
                    data-backdrop="static"
                 >
-                    <i class="fa-solid fa-pencil"></i>
+                    <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                 </a>
 
                 <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $era->name }}"
@@ -70,7 +70,7 @@
        data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
        data-backdrop="static"
     >
-        <i class="fa-solid fa-plus"></i> {{ __('timelines/eras.actions.add') }}
+        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('timelines/eras.actions.add') }}
     </a>
 
     <hr />

@@ -138,11 +138,13 @@ class Handler extends ExceptionHandler
                     'error' => 'Invalid authentication token. Make sure you copy-pasted it correctly, or try using a new one at https://kanka.io/en-US/settings/api.',
                 ], 401);
         }
+
+        $limit = app()->environment('prod') ? 100 : 250;
         return response()
             ->json([
                 'code' => 500,
                 'error' => 'Unhandled API error. Contact us on Discord',
-                'hint' => Str::limit($exception->getMessage(), 100)
+                'hint' => Str::limit($exception->getMessage(), $limit)
             ], 500);
     }
 }

@@ -2,18 +2,18 @@
 
 return [
     'abilities'     => [
-        'title' => 'Habilidades relacionadas a :name',
+        'title' => 'Habilidades secundárias de :name',
     ],
     'children'      => [
         'actions'       => [
-            'add'   => 'Adicionar habilidade a entidade',
+            'add'   => 'Add habilidade para entidade',
         ],
         'create'        => [
-            'success'   => 'Adicionar a habilidade :name a entidade.',
+            'success'   => 'Habilidade :name adicionada para a entidade.',
             'title'     => 'Adicionar uma entidade a :name',
         ],
         'description'   => 'Entidades que possuem a habilidade',
-        'title'         => 'Habilidade :name Entidades',
+        'title'         => 'Entidades com a Habilidade :name',
     ],
     'create'        => [
         'title' => 'Nova Habilidade',
@@ -24,27 +24,27 @@ return [
         'title' => 'Entidades com a habilidade :name',
     ],
     'fields'        => [
-        'abilities' => 'Habilidades',
-        'ability'   => 'Habilidade Principal',
+        'abilities' => 'Sub habilidades',
+        'ability'   => 'Habilidade Primária',
         'charges'   => 'Cargas',
     ],
     'helpers'       => [
-        'nested_without'    => 'Mostrando todas as habilidades que não possuem uma habilidade-pai. Clique em uma linha para ver as habilidades-filhos.',
+        'nested_without'    => 'Exibindo todas as habilidades que não possuem uma habilidade primária. Clique em uma linha para ver as habilidades secundárias.',
     ],
     'index'         => [],
     'placeholders'  => [
         'charges'   => 'Quantidade de cargas. Atributos de referência com {Level} * {CHA}',
-        'name'      => 'Bola de fogo, alerta, ataque astuto',
-        'type'      => 'Feitiço, Talento, Ataque',
+        'name'      => 'Bola de Fogo, Alerta, Ataque Astuto',
+        'type'      => 'Magia, Talento, Ataque',
     ],
     'reorder'       => [
-        'parentless'    => 'Sem Pai',
+        'parentless'    => 'Sem Habilidade Primária',
         'success'       => 'Habilidades reordenadas com sucesso.',
         'title'         => 'Reordenar as habilidades',
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Habilidades',
+            'abilities' => 'Sub habilidades',
             'entities'  => 'Entidades',
             'reorder'   => 'Reordenar Habilidades',
         ],

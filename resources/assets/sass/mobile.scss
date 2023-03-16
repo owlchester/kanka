@@ -1,12 +1,4 @@
 @media (max-width: 767px) {
-  // On mobile, the default is for the sidebar to be closed
-  .navbar .sidebar-toggle {
-    margin-left: 0;
-    &:before {
-      content: "\f100";
-    }
-  }
-
   .content-header {
     padding-top: 5px;
   }

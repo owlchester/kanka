@@ -1,7 +1,7 @@
 
 <div class="btn-group mr-2">
     <button type="button" class="btn btn-default add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-        <i class="fa-solid fa-plus"></i> {{ __('entities/attributes.types.attribute') }}
+        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/attributes.types.attribute') }}
     </button>
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
         {{ __('entities/attributes.actions.more') }}
@@ -50,10 +50,10 @@
 </div>
 
 <a href="//docs.kanka.io/en/latest/features/attributes.html" target="_blank">
-    {{ __('helpers.attributes.link') }} <i class="fa-solid fa-question-circle"></i>
+    {{ __('helpers.attributes.link') }} <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
 </a>
 <a href="#" class="btn btn-danger pull-right" data-toggle="modal" data-target="#attributes-delete-all-confirm">
-    <i class="fa-solid fa-trash"></i> <span class="hidden-xs">{{ __('entities/attributes.actions.remove_all') }}</span>
+    <i class="fa-solid fa-trash" aria-hidden="true"></i> <span class="hidden-xs">{{ __('entities/attributes.actions.remove_all') }}</span>
 </a>
 
 <!-- Modal -->
@@ -72,7 +72,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                 <input type="hidden" name="delete-all-attributes" value="" />
-                <button type="button" class="btn btn-danger" id="attributes-delete-all-confirm-submit"><span class="fa-solid fa-trash"></span> {{ __('crud.delete_modal.delete') }}</button>
+                <button type="button" class="btn btn-danger" id="attributes-delete-all-confirm-submit"><span class="fa-solid fa-trash" aria-hidden="true"></span> {{ __('crud.delete_modal.delete') }}</button>
             </div>
         </div>
     </div>

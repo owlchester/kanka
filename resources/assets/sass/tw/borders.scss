@@ -26,6 +26,19 @@
 
 
 /* border style */
+.border-t-0 {
+    border-top-width: 0;
+}
+.border-r-0 {
+    border-right-width: 0;
+}
+.border-b-0 {
+    border-bottom-width: 0;
+}
+.border-l-0 {
+    border-left-width: 0;
+}
+
 .border-solid {
     border-style: solid;
 }
@@ -51,8 +64,15 @@
 .border-1	{
     border-width: 1px;
 }
-.border-2	{
+.border-2 {
     border-width: 2px;
+}
+
+.border-b-1 {
+    border-bottom-width: 1px;
+}
+.border-b-2 {
+    border-bottom-width: 2px;
 }
 
 .border-box {
@@ -62,3 +82,11 @@
 .border-accent {
     border-color: var(--color-accent);
 }
+
+.border-slate-400 {
+    border-color: rgb(71 85 105);
+}
+.border-slate-600 {
+    border-color: rgb(148 163 184);
+}
+

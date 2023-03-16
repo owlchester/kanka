@@ -12,36 +12,7 @@
 @section('content')
     <div class="row mb-5">
         <div class="col-md-12">
-            @include('layouts.datagrid.search', ['route' => route($name . '.tree')])
-
-            @can('create', $model)
-                <div class="btn-group pull-right">
-                    <a href="{{ route($name . '.create') }}" class="btn btn-primary btn-new-entity" data-entity-type="{{ $name }}">
-                        <i class="fa-solid fa-plus"></i>
-                        <span class="hidden-xs hidden-sm">{{ __('entities.' .  \Illuminate\Support\Str::singular($route)) }}</span>
-                    </a>
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        @if ($templates->isNotEmpty())
-                        @foreach ($templates as $entityTemplate)
-                            <li>
-                                <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $name }}">
-                                    <i class="fa-solid fa-star"></i> {{ $entityTemplate->name  }}</span>
-                                </a>
-                            </li>
-                        @endforeach
-                            <li class="divider"></li>
-                        @endif
-                        <li>
-                            <a href="//docs.kanka.io/en/latest/guides/templates.html" target="_blank">
-                                <i class="fa-solid fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            @endcan
+            @include('layouts.datagrid.search', ['route' => route($name . '.index')])
             @foreach ($actions as $action)
                 @if (empty($action['policy']) || (Auth::check() && Auth::user()->can($action['policy'], $model)))
                     <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} mr-2">

@@ -3,7 +3,7 @@
         @foreach ($presets as $preset)
             <div class="preset p-2">
                 <a href="{{ route('preset_types.presets.edit', [$presetType, $preset, 'from' => $from]) }}" class="pull-right preset-edit px-1">
-                    <i class="fa-solid fa-pencil"></i>
+                    <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                 </a>
 
                 <span role="button" class="preset-use cursor-pointer" data-url="{{ route('preset_types.presets.show', [$presetType, $preset]) }}">

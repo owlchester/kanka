@@ -2,42 +2,42 @@
 
 return [
     'characters'    => [
-        'title' => 'Personagens em :name',
+        'title' => 'Personagens no Local :name',
     ],
     'create'        => [
-        'title' => 'Criar um novo local',
+        'title' => 'Novo Local',
     ],
     'destroy'       => [],
     'edit'          => [],
     'events'        => [
-        'title' => 'Eventos em :name',
+        'title' => 'Eventos no Local :name',
     ],
     'families'      => [
-        'title' => 'Famílias de :name',
+        'title' => 'Famílias no Local :name',
     ],
     'fields'        => [
         'characters'    => 'Personagens',
-        'location'      => 'Local',
+        'location'      => 'Local Primário',
         'locations'     => 'Locais',
     ],
     'helpers'       => [
-        'characters'        => 'Ver todos personagens nesta localização e locais relacionados a ela, ou apenas aqueles localizados  diretamente nela.',
-        'descendants'       => 'Esta lista contém todos locais que estão relacionados a esta localização, e não apenas os diretamente relacionados a ela.',
-        'nested_without'    => 'Mostrando todos os locais que não tem um local-pai. Clique em uma linha para ver os locais-filhos.',
+        'characters'        => 'Ver todos personagens neste local e em seus locais secundários, ou apenas aqueles localizados diretamente aqui.',
+        'descendants'       => 'Esta lista contém todos locais que estão relacionados a este local, e não apenas os diretamente relacionados a ela.',
+        'nested_without'    => 'Exibindo todos os locais que não tem um local primário. Clique em uma linha para ver os locais secundários.',
     ],
     'hints'         => [],
     'index'         => [],
     'items'         => [],
     'journals'      => [],
     'locations'     => [
-        'title' => 'Lugares localizados em :name',
+        'title' => 'Locais do Local :name',
     ],
     'map'           => [],
     'maps'          => [],
     'organisations' => [],
     'panels'        => [],
     'placeholders'  => [
-        'location'  => 'Escolha uma localidade',
+        'location'  => 'Escolha um local primário',
         'name'      => 'Nome do local',
         'type'      => 'Cidade, Reino, Ruína',
     ],

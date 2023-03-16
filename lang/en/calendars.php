@@ -182,8 +182,8 @@ return [
             'name'  => 'Season Name',
         ],
         'weeks'         => [
-            'name'      => 'Week Name',
-            'number'    => 'Number',
+            'name'      => 'Week name',
+            'number'    => 'Week number',
         ],
         'year'          => [
             'name'      => 'Year Name',

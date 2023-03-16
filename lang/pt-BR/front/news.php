@@ -2,15 +2,15 @@
 
 return [
     'actions'       => [
-        'read'      => 'Ler o artigo',
+        'read'      => 'Ler artigo',
         'return'    => 'Voltar para a lista de artigos',
     ],
-    'description'   => 'Fique atualizado(a) das evoluções constantes do Kanka.',
+    'description'   => 'Fique atualizado das evoluções constantes do Kanka.',
     'index'         => [
-        'title' => 'Últimas novidades',
+        'title' => 'Últimas Novidades',
     ],
     'latest'        => [
-        'title' => 'Últmas novidades',
+        'title' => 'Últmas Novidades',
     ],
     'show'          => [
         'title' => 'Lançamento :name',

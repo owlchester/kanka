@@ -45,7 +45,7 @@ if (auth()->check() && auth()->user()->can('delete', $model)) {
     $dropdownActions[] = 'divider';
     $dropdownActions[] = '
         <a href="#" class="text-red bulk-delete" data-toggle="modal" data-target="#bulk-delete.modal" data-bulk-action="delete">
-            <i class="fa-solid fa-trash"></i> ' . __('crud.remove') . '
+            <i class="fa-solid fa-trash" aria-hidden="true"></i> ' . __('crud.remove') . '
         </a>';
 }
 

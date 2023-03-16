@@ -23,7 +23,7 @@ $existing = $model->allChildren()->count();
         </h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('tag_id'))
                 <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn btn-box-tool">
@@ -39,7 +39,7 @@ $existing = $model->allChildren()->count();
             @can('update', $model)
                 <a href="{{ $addEntityUrl }}" class="btn btn-primary btn-sm"
                    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
-                    <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
                 </a>
             @endcan
             @endif
@@ -54,7 +54,7 @@ $existing = $model->allChildren()->count();
         @can('update', $model)
             <a href="{{ $addEntityUrl }}" class="btn btn-primary"
                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
-                <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
             </a>
         @endcan
         </div>

@@ -3,11 +3,11 @@
 return [
     'appearance'                    => [],
     'avatar'                        => [
-        'success'   => 'Avatar atualizado',
+        'success'   => 'Avatar atualizado.',
     ],
     'campaign_switcher_order_by'    => [],
     'edit'                          => [
-        'success'   => 'Perfil atualizado',
+        'success'   => 'Perfil atualizado.',
     ],
     'editors'                       => [],
     'fields'                        => [
@@ -17,7 +17,7 @@ return [
         'hide_subscription'         => 'Esconder meu nome do :hall_of_fame.',
         'last_login_share'          => 'Mostrar a outros membros da campanha a última vez que estive online.',
         'name'                      => 'Nome',
-        'new_password'              => 'Nova senha (opcional)',
+        'new_password'              => 'Nova Senha',
         'new_password_confirmation' => 'Confirmação da Nova Senha',
         'newsletter'                => 'Eu desejo ser contatado via email esporadicamente.',
         'password'                  => 'Senha atual',
@@ -57,8 +57,8 @@ return [
             'goodbye'       => 'Em caso afirmativo, escreva :code na caixa abaixo.',
             'helper'        => 'Deletar sua conta também deletará quaisquer campanhas que você é o único membro dela. Essa ação é permanente e não pode ser desfeita.',
             'subscribed'    => 'Cancele sua :subscription antes de poder excluir sua conta.',
-            'title'         => 'Deletar sua conta',
-            'warning'       => 'Deletando sua conta, todos os seus dados serão perdidos. Você tem certeza?',
+            'title'         => 'Remover sua conta',
+            'warning'       => 'Ao remover sua conta todos os seus dados serão perdidos. Você tem certeza?',
         ],
         'password'      => [
             'title' => 'Alterar sua senha',
@@ -69,10 +69,10 @@ return [
             'bio'       => 'A biografia está visível no seu :link.',
             'profile'   => 'perfil público',
         ],
-        'success'   => 'Configurações alteradas com sucesso.',
+        'success'   => 'Configurações alteradas.',
     ],
     'theme'                         => [
-        'success'   => 'Tema alterado com sucesso.',
+        'success'   => 'Tema alterado.',
         'themes'    => [
             'dark'      => 'Escuro',
             'default'   => 'Padrão',
@@ -82,7 +82,7 @@ return [
     ],
     'title'                         => 'Atualizar seu perfil',
     'workflows'                     => [
-        'created'   => 'Ir para entidade recém-criada',
-        'default'   => 'Lista de entidades',
+        'created'   => 'Visualizar a entidade recém-criada',
+        'default'   => 'Visualizar a lista de entidades',
     ],
 ];

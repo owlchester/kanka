@@ -51,7 +51,7 @@ $all = $model->allMembers()->has('character')->count();
             @can('member', $model)
                 <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
                    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
-                    <i class="fa-solid fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
                 </a>
             @endcan
         </div>

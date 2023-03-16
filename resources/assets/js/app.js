@@ -295,7 +295,7 @@ function initPageHeight() {
 
     const heights = {
         window: $(window).height(),
-        header: $('.main-header').length > 0 ? $('.main-header').outerHeight() : 0,
+        header: $('header').length > 0 ? $('header').outerHeight() : 0,
         footer: $('.main-footer').length > 0 ? $('.main-footer').outerHeight() : 0,
         sidebar: $('.main-sidebar .sidebar').length > 0 ? $('.main-sidebar .sidebar').height() : 0,
         controlSidebar
@@ -337,7 +337,7 @@ require('./crud');
 require('./post');
 require('./calendar');
 require('./keep-alive');
-require('./search');
+//require('./search');
 //require('./notification');
 require('./quick-creator');
 //require('./tutorial')
@@ -354,5 +354,6 @@ require('./utility/sortable');
 require('./utility/formError');
 
 // VueJS elements
-require('./navigation');
+//require('./navigation');
+require('./header');
 //require('./ads');

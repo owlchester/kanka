@@ -8,11 +8,11 @@ $buttons = [];
 if (auth()->check()) {
     if (!$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost)) {
         $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn btn-block bg-maroon mb-5">
-            <i class="fa-solid fa-rocket"></i> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
+            <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
     }
     if (!$campaign->boosted()) {
         $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-maroon mb-5">
-            <i class="fa-solid fa-rocket"></i> ' . __('campaigns.show.actions.boost') . '</a>';
+            <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('campaigns.show.actions.boost') . '</a>';
     }
     if (auth()->user()->can('update', $campaign)) {
         $buttons[] = '<a href="'. route('campaigns.edit') .'" class="btn btn-primary btn-block">

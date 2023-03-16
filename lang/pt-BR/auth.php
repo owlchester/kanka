@@ -3,13 +3,13 @@
 return [
     'banned'    => [
         'permanent' => 'Você foi banido permanentemente.',
-        'temporary' => '{1} Você foi banido por :days dia|[2,*] Você foi banido por :days dias',
+        'temporary' => '{1} Você foi banido por :days dia.|[2,*] Você foi banido por :days dias.',
     ],
     'confirm'   => [
         'confirm'   => 'Confirmar',
         'error'     => 'Senha inválida, por favor tente novamente.',
         'helper'    => 'Por favor confirme sua senha antes de continuar.',
-        'title'     => 'Confirmação da Senha',
+        'title'     => 'Confirmação de senha',
     ],
     'failed'    => 'Essas credenciais não correspondem ao do nosso sistema.',
     'helpers'   => [
@@ -24,19 +24,19 @@ return [
         'login_with_facebook'   => 'Entrar com o Facebook',
         'login_with_google'     => 'Entrar com o Google',
         'login_with_twitter'    => 'Entrar com o Twitter',
-        'new_account'           => 'Cadastrar uma nova conta',
-        'or'                    => 'Ou',
+        'new_account'           => 'Registrar uma nova conta',
+        'or'                    => 'OU',
         'password_forgotten'    => 'Esqueceu sua senha?',
-        'remember_me'           => 'Lembrar',
+        'remember_me'           => 'Lembrar-me',
         'submit'                => 'Entrar',
         'title'                 => 'Entrar',
     ],
     'register'  => [
-        'already'                   => 'Já tem uma conta? :login',
+        'already'                   => 'Já possui uma conta? :login',
         'already_account'           => 'Já possui uma conta?',
         'errors'                    => [
             'email_already_taken'   => 'Já há uma conta registrada com esse email.',
-            'general_error'         => 'Um erro ocorreu enquanto sua conta era cadastrada. Por favor tente novamente.',
+            'general_error'         => 'Um erro ocorreu enquanto sua conta era registrada. Por favor tente novamente.',
         ],
         'fields'                    => [
             'email'     => 'Email',
@@ -45,16 +45,16 @@ return [
             'tos_clean' => 'Eu concordo com :privacy',
         ],
         'log-in'                    => 'Conectar-se',
-        'register_with_facebook'    => 'Cadastrar com o Facebook',
-        'register_with_google'      => 'Cadastrar com o Google',
-        'register_with_twitter'     => 'Cadastrar com o Twitter',
-        'submit'                    => 'Cadastrar',
-        'title'                     => 'Cadastrar',
+        'register_with_facebook'    => 'Registrar com o Facebook',
+        'register_with_google'      => 'Registrar com o Google',
+        'register_with_twitter'     => 'Registrar com o Twitter',
+        'submit'                    => 'Registrar',
+        'title'                     => 'Registrar',
         'tos'                       => 'Ao registrar uma conta, você concorda com nossos :terms e :privacy.',
     ],
     'reset'     => [
         'fields'    => [
-            'email'                 => 'Email',
+            'email'                 => 'Endereço de E-mail',
             'password'              => 'Senha',
             'password_confirmation' => 'Confirme sua senha',
         ],

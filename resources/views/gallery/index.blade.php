@@ -32,7 +32,7 @@ if ($folder) {
 
             @if(!empty($folder))
                 <button class="btn btn-default" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', $folder) }}">
-                    <i class="fa-solid fa-pencil"></i> {{ __('crud.edit') }}
+                    <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.edit') }}
                 </button>
             @endif
 
@@ -51,7 +51,7 @@ if ($folder) {
             <p>{{ __('campaigns/gallery.uploader.or') }}</p>
 
             <span class="btn btn-primary fileinput-button relative overflow-hidden inline-block">
-                <i class="fa-solid fa-plus"></i>
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
                 <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
                 <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer" multiple />
             </span>

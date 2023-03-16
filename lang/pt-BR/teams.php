@@ -13,7 +13,7 @@ return [
             'title' => 'Desenvolvedor Junior',
         ],
         'jay'       => [
-            'title' => 'Fundador e Desenvolvedor Líder',
+            'title' => 'Fundador & Desenvolvedor Líder',
         ],
         'jon'       => [
             'title' => 'Co-Fundador e Gerente de Negócios',

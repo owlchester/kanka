@@ -6,6 +6,10 @@ return [
         'add_role'  => 'Dodaj rolę',
         'add_user'  => 'Dodaj użytkownika',
     ],
+    'collapsed'     => [
+        'closed'    => 'Komentarz zwinięty, wyświetlany jest nagłówek',
+        'open'      => 'Komentarz rozwinięty',
+    ],
     'copy_mention'  => [
         'copy'              => 'Kopiuj wzmiankę zaawansowaną',
         'copy_with_name'    => 'Kopiuj wzmiankę zaawansowaną z tytułem wpisu',
@@ -24,6 +28,7 @@ return [
     ],
     'fields'        => [
         'creator'   => 'Twórca',
+        'display'   => 'Wyświetlanie',
         'entry'     => 'Szczegóły',
         'name'      => 'Nazwa',
         'position'  => 'Ustawienie',

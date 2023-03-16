@@ -1,9 +1,10 @@
 <template>
-    <div class="nav-switcher flex items-center justify-center">
-        <div class="campaigns inline cursor-pointer text-center px-5 text-2xl py-2" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
+    <div class="nav-switcher flex items-center justify-center h-12">
+        <div class="campaigns inline cursor-pointer text-center px-3 text-2xl" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
             <i v-bind:class="campaignIcon()" aria-hidden="true"></i>
+            <span class="sr-only">Campaigns</span>
         </div>
-        <div class="profile inline cursor-pointer text-center text-uppercase pt-2" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
+        <div class="profile inline cursor-pointer text-center text-uppercase pt-1" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
             <div class="indicator">
                 <span class="notification-badge" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">

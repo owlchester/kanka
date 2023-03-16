@@ -19,7 +19,7 @@ class Entity extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'entities.tag',
+                'label' => 'crud.fields.entity',
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [

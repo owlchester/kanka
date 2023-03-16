@@ -24,7 +24,7 @@
             <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-warning btn-sm"
                 data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
             >
-            <i class="fa-solid fa-plus"></i> {{ __('maps/layers.actions.add') }}
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('maps/layers.actions.add') }}
             </a>
         </div>
     @endcan

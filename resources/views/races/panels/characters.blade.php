@@ -21,7 +21,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
 
         <div class="box-tools pull-right">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <i class="fa-solid fa-question-circle"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
             </a>
 
             @if (request()->has('race_id'))

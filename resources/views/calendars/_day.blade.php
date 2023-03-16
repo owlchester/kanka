@@ -29,7 +29,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                             <a href="{{ route('calendars.event.create', $routeOptions) }}" data-toggle="ajax-modal"
                                data-target="#entity-modal" data-url="{{ route('calendars.event.create', $routeOptions) }}"
                                class="" data-date="{{ $day['date'] }}">
-                                <i class="fa-solid fa-plus"></i> {{ __('calendars.actions.add_reminder') }}
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('calendars.actions.add_reminder') }}
                             </a>
                         </li>
                         <li>

@@ -2,8 +2,8 @@
 
 return [
     'actions'       => [
-        'enter-edit-mode'   => 'Entre no modo de edição',
-        'exit-edit-mode'    => 'Saia do modo de edição',
+        'enter-edit-mode'   => 'Entrar no modo de edição',
+        'exit-edit-mode'    => 'Sair do modo de edição',
         'finish-drawing'    => 'Concluir o desenho do polígono',
     ],
     'notifications' => [

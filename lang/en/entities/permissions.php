@@ -14,6 +14,7 @@ return [
         ],
         'private'           => 'Only members of the campaign\'s admin role can currently see this entity.',
         'public'            => 'This entity is currently visible from any user or role with access to it.',
+        'screen-reader'     => 'Open privacy settings',
         'success'           => [
             'private'   => ':entity is now hidden.',
             'public'    => ':entity is now visible.',

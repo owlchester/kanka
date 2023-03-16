@@ -13,7 +13,7 @@ return [
     ],
     'edit'          => [
         'success'   => 'Predefinição :name modifcada.',
-        'title'     => 'Editar :name predefinição',
+        'title'     => 'Editar predefinição :name',
     ],
     'fields'        => [
         'name'  => 'Predefinir o nome',

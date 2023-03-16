@@ -44,21 +44,17 @@
                     {!! __('entities/relations.fields.target_relation') !!}
                     <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.target_relation') }}" data-toggle="tooltip"></i>
                 </label>
-                {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
                 <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.target_relation') }}</p>
             </div>
         </div>
     </div>
 @endif
 
-<div class="form-group">
-    {!! Form::hidden('is_star', 0) !!}
-    <label>
-        {!! Form::checkbox('is_star', 1, !empty($relation) ? $relation->is_star : 0) !!}
-        {{ __('crud.fields.is_star') }}
-        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('crud.hints.is_star') }}" data-toggle="tooltip"></i>
-    </label>
-    <p class="help-block visible-xs visible-sm">{{ __('crud.hints.is_star') }}</p>
+<div class="row">
+    <div class="col-md-6">
+        @include('cruds.fields.pinned', ['model' => $relation ?? null])
+    </div>
 </div>
 
 @if (!empty($relation) && !empty($relation->isMirrored()))

@@ -2,21 +2,21 @@
 
 return [
     'actions'           => [
-        'change_focus'  => 'Mudar o ponto do foco',
+        'change_focus'  => 'Alterar ponto de foco',
         'replace_image' => 'Substituir imagem',
         'save-replace'  => 'Substituir imagem',
-        'save_focus'    => 'Salvar ponto do foco',
-        'view'          => 'Ver imagem',
+        'save_focus'    => 'Salvar ponto de foco',
+        'view'          => 'Visualizar imagem',
     ],
     'call-to-action'    => 'Clique na imagem da entidade para definir seu ponto de foco ao invés de usar um palpite automatizado.',
     'focus'             => [
         'breadcrumb'    => 'Foco da imagem',
-        'helper'        => 'Clica na imagem para configurar o ponto do foco. Clicar no ponto do foco para removê-lo.',
+        'helper'        => 'Clique na imagem para configurar o ponto de foco. Clique no ponto de foco para removê-lo.',
         'panel_title'   => 'Foco da imagem',
         'success'       => 'Foco da imagem atualizado.',
         'title'         => 'Foco da imagem da entidade :name',
-        'unboosted'     => 'Configurar um ponto do foco da imagem é reservado a :boosted-campaigns.',
-        'warning'       => 'Configurar o ponto do foco não está disponível quando a imagem da entidade é configurada da galeria.',
+        'unboosted'     => 'Definir um ponto de foco da imagem é reservado a :boosted-campaigns.',
+        'warning'       => 'A definição do ponto de foco não está disponível quando a imagem da entidade é definida na galeria.',
     ],
     'replace'           => [
         'breadcrumb'    => 'Substituição da imagem',

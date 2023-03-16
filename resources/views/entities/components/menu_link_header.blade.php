@@ -66,7 +66,7 @@
 
                 @can('update', $model)
                     <a href="{{ route('menu_links.edit', $model) }}" class="btn btn-primary">
-                        <i class="fa-solid fa-pencil"></i> {{ __('crud.update') }}
+                        <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.update') }}
                     </a>
                 @endcan
             </div>

@@ -2,10 +2,10 @@
 
 return [
     'avatar'            => 'Imagem de Usuário',
-    'logout'            => 'Logout',
+    'logout'            => 'Sair',
     'member_since'      => 'Membro desde :date',
     'news'              => [
-        'title' => 'Notícias do Kanka',
+        'title' => 'Novidades do Kanka',
     ],
     'notifications'     => [
         'dismiss'   => 'Dispensar',

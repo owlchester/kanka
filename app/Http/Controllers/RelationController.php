@@ -13,6 +13,7 @@ class RelationController extends CrudController
     protected string $view = 'relations';
     protected string $route = 'relations';
     protected $langKey = 'entities/relations';
+    protected string $entityKey = 'relations.';
 
     protected bool $tabPermissions = false;
     protected bool $tabAttributes = false;

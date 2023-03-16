@@ -261,7 +261,7 @@ class MapLayerController extends Controller
                 continue;
             }
             $layer->position = $order;
-            $layer->update();
+            $layer->updateQuietly();
             $order++;
         }
         $order--;

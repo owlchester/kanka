@@ -2,10 +2,10 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Aplicar um Modelo de Atributo',
+        'apply_template'    => 'Aplicar um modelo de atributo',
         'manage'            => 'Gerenciar',
         'more'              => 'Mais opções',
-        'remove_all'        => 'Deletar tudo',
+        'remove_all'        => 'Remover Tudo',
         'save_and_edit'     => 'Aplicar e Editar',
         'save_and_story'    => 'Aplicar e Visualizar',
         'show_hidden'       => 'Mostrar atributos ocultos',
@@ -17,7 +17,7 @@ return [
     'fields'        => [
         'attribute'             => 'Atributo',
         'community_templates'   => 'Modelos da Comunidade',
-        'is_private'            => 'Atributos privados',
+        'is_private'            => 'Atributos Privados',
         'is_star'               => 'FIxado',
         'template'              => 'Modelo',
         'value'                 => 'Valor',
@@ -31,11 +31,11 @@ return [
         'setup'         => 'Você pode representar elementos como PV ou inteligência de uma entidade com atributos. Adicione atributos manualmente clicando no botão :manage, ou aplique aqueles de um modelo de atributo.',
     ],
     'hints'         => [
-        'is_private2'   => 'Se selecionado, apenas membros da função :admin-role podem ver os atributos dessa entidade.',
+        'is_private2'   => 'Se selecionado, apenas membros do cargo :admin-role podem ver os atributos dessa entidade.',
     ],
     'index'         => [
-        'success'   => 'Atributos de :entity atualizados.',
-        'title'     => 'Atributos de :name',
+        'success'   => 'Atributos para :entity atualizados.',
+        'title'     => 'Atributos para :name',
     ],
     'live'          => [
         'success'   => 'Atributo :attribute atualizado.',
@@ -49,12 +49,12 @@ return [
             'class' => 'FontAwesome ou RPG Awesome class: fas fa-users',
             'name'  => 'Nome do Ícone',
         ],
-        'number'    => 'Nome do número',
+        'number'    => 'Valor do número',
         'random'    => [
             'name'  => 'Nome do atributo',
             'value' => '1-100 ou lista de valores separados por vírgula',
         ],
-        'section'   => 'Nome da seleção',
+        'section'   => 'Nome da seção',
         'template'  => 'Selecione um modelo',
         'value'     => 'Valor do atributo',
     ],
@@ -67,7 +67,7 @@ return [
     ],
     'template'      => [
         'success'   => 'Modelo de Atributo :name aplicado em :entity',
-        'title'     => 'Aplicar um Modelo de Atributo a :name',
+        'title'     => 'Aplicar um modelo de atributo para :name',
     ],
     'types'         => [
         'attribute' => 'Atributo',
@@ -77,15 +77,15 @@ return [
         'number'    => 'Número',
         'random'    => 'Aleatório',
         'section'   => 'Seção',
-        'text'      => 'Texto multilinha',
+        'text'      => 'Texto Multilinha',
     ],
     'update'        => [
         'success'   => 'Atributos para :entity atualizados.',
     ],
     'visibility'    => [
         'entry'     => 'O atributo é exibido no menu da entidade.',
-        'private'   => 'Atributo visível apenas para membros da função de Admnistrador.',
-        'public'    => 'Atributos visíveis a todos os membros',
-        'tab'       => 'Atributos mostrados apenas na aba de atributos',
+        'private'   => 'Atributo visível apenas para membros do cargo de "Admin".',
+        'public'    => 'Atributo visível a todos os membros',
+        'tab'       => 'Atributo é exibido somente no menu Atributos.',
     ],
 ];

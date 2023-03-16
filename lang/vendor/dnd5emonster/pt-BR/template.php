@@ -3,7 +3,7 @@
 return [
     'actions'                       => 'Ações',
     'armor_class'                   => 'Classe de Armadura',
-    'at_will'                       => 'Á vontade',
+    'at_will'                       => 'Sem limite',
     'cha'                           => 'CAR',
     'challenge_rating'              => 'Nível de desafio',
     'con'                           => 'CON',

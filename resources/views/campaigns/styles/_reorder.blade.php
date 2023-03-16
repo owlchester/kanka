@@ -15,7 +15,7 @@
             @foreach($reorderStyles as $style)
                 <div class="element" data-id="{{ $style->id }}">
                     {!! Form::hidden('style[]', $style->id) !!}
-                    <div class="pt-3">
+                    <div class="pr-3">
                         <span class="fa-solid fa-ellipsis-v"></span>
                     </div>
                     <div class="name overflow-hidden flex-grow">

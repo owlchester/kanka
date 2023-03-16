@@ -55,9 +55,10 @@ $clipboardFilters = $filterService->clipboardFilters();
                                 if (!empty($value) && $field['type'] == 'select2') {
                                     $modelclass = new $field['model'];
                                     $model = $modelclass->find($value);
-                                }?>
+                                }
+                                ?>
                                 @if ($field['type'] === 'tag')
-                                    @include('cruds.datagrids.filters._tag')
+                                    @include('cruds.datagrids.filters._tag', ['value' => $filterService->filterValue('tags')])
                                 @elseif ($field['type'] === 'select')
                                     @include('cruds.datagrids.filters._select')
                                 @else
@@ -109,7 +110,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                     @endif
 
                     <a href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
-                        {{ __('helpers.filters.title') }} <i class="fa-solid fa-question-circle"></i>
+                        {{ __('helpers.filters.title') }} <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     </a>
                 @endif
             </div>
@@ -131,7 +132,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                     @endif
 
                     <a href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
-                        <i class="fa-solid fa-question-circle"></i>
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     </a>
                 @endif
             </div>

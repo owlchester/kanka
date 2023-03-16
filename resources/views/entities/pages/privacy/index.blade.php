@@ -11,11 +11,12 @@
 
 @section('content')
     <header>
-        <h4 id="myModalLabel">
+        <h4 id="privacyDialogTitle">
             {!! __('entities/permissions.quick.title', ['name' => $entity->name]) !!}
         </h4>
         <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
             <i class="fa-solid fa-times" aria-hidden="true"></i>
+            <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
         </button>
     </header>
     <article>

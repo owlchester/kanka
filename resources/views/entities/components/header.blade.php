@@ -128,15 +128,19 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     @endif
 
                     @if (auth()->check() && auth()->user()->isAdmin())
-                        <span role="button" tabindex="0" class="entity-icons entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy">
-                            <i class="fa-solid fa-lock" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip"></i>
-                            <i class="fa-solid fa-lock-open" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip"></i>
+                        <span role="button" tabindex="0" class="entity-icons entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy" aria-haspopup="dialog">
+                            <i class="fa-solid fa-lock" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <i class="fa-solid fa-lock-open" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                         </span>
                     @endif
 
                     <div class="btn-group entity-actions">
-                        <i class="fa-solid fa-cog entity-icons dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></i>
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <span role="button" tabindex="0" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
+                            <i class="fa-solid fa-cog entity-icons" aria-hidden="true"></i>
+                            <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
+                        </span>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu" id="entity-submenu">
                             @can('update', $model)
                                 <li>
                                     <a href="{{ route($entity->pluralType() . '.edit', $model->id) }}" data-keyboard="edit">
@@ -274,14 +278,15 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
 
 @section('modals')
     @parent
-    <dialog class="dialog rounded-2xl text-center" id="booster-cta">
+    <dialog class="dialog rounded-2xl text-center" id="booster-cta" aria-modal="true" aria-labelledby="boostedDialogTitle">
         <header>
-            <h4 id="myModalLabel">
+            <h4 id="boostedDialogTitle">
                 <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
                 {{ __('callouts.booster.titles.boosted') }}
             </h4>
             <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
                 <i class="fa-solid fa-times" aria-hidden="true"></i>
+                <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
             </button>
         </header>
         <article>
@@ -298,7 +303,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
             @endif
         </article>
     </dialog>
-    <dialog class="dialog rounded-2xl text-center" id="quick-privacy">
+    <dialog class="dialog rounded-2xl text-center" id="quick-privacy" aria-modal="true" aria-labelledby="privacyDialogTitle">
         <article class="loader text-center p-5">
             <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
         </article>
