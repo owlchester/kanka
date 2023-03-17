@@ -16,6 +16,7 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
 $options = $entity->postPositionOptions(!empty($model->position) ? $model->position : null);
 $last = array_key_last($options);
 
+$bragiName = $entity->isCharacter() ? $entity->name : null;
 ?>
 <div class="nav-tabs-custom">
     <div class="pull-right">
@@ -39,7 +40,7 @@ $last = array_key_last($options);
     <div class="tab-content">
         <div class="tab-pane active" id="form-entry">
             <div class="form-group required">
-                {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required']) !!}
+                {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
             </div>
             <div class="form-group">
                 {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
