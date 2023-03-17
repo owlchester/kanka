@@ -31,7 +31,7 @@
         "laravelcollective/html": "^6.0",
         "league/flysystem-aws-s3-v3": "^3.5",
         "mcamara/laravel-localization": "^1.7",
-        "orhanerday/open-ai": "^3.4",
+        "orhanerday/open-ai": "^4.7",
         "owlchester/laravel-translation-manager": "^9.0",
         "pragmarx/google2fa-laravel": "^2.0",
         "predis/predis": "^1.1",

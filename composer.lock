@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a254039034cc8a909b59f213123e3848",
+    "content-hash": "42da2c859a01e8a8e7e7de98efb8d6e4",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -5103,16 +5103,16 @@
         },
         {
             "name": "orhanerday/open-ai",
-            "version": "3.5",
+            "version": "4.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orhanerday/open-ai.git",
-                "reference": "04abf7a4b651556a6af900475de7bfeab75ec1d5"
+                "reference": "d2d96d0521ef3118cc4f33a5d54718b62aedd336"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orhanerday/open-ai/zipball/04abf7a4b651556a6af900475de7bfeab75ec1d5",
-                "reference": "04abf7a4b651556a6af900475de7bfeab75ec1d5",
+                "url": "https://api.github.com/repos/orhanerday/open-ai/zipball/d2d96d0521ef3118cc4f33a5d54718b62aedd336",
+                "reference": "d2d96d0521ef3118cc4f33a5d54718b62aedd336",
                 "shasum": ""
             },
             "require": {
@@ -5150,7 +5150,7 @@
             ],
             "support": {
                 "issues": "https://github.com/orhanerday/open-ai/issues",
-                "source": "https://github.com/orhanerday/open-ai/tree/3.5"
+                "source": "https://github.com/orhanerday/open-ai/tree/4.7.1"
             },
             "funding": [
                 {
@@ -5158,7 +5158,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-10T09:15:29+00:00"
+            "time": "2023-03-08T08:04:02+00:00"
         },
         {
             "name": "owlchester/laravel-translation-manager",

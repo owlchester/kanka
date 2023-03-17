@@ -69,10 +69,11 @@ class BragiService
         $data = [];
         $prompt = $request->get('prompt');
         $name = $request->get('name');
-
+        $gender = $request->get('gender');
+        $pronouns = $request->get('pronouns');
         // Call the service
         $openAI = $this->openAI
-            ->input($prompt, $name)
+            ->input($prompt, $name, $pronouns, $gender)
             ->generate();
 
         try {

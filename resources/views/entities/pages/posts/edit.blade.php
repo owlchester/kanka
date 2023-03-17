@@ -37,9 +37,15 @@
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
         <input type="hidden" id="editing-keep-alive" data-url="{{ route('posts.keep-alive', ['post' => $model, 'entity' => $entity]) }}" />
     @endif
+
+    {{-- For bragi --}}
+    @if ($entity->isCharacter())
+        <input type="hidden" name="name" value="{{ $entity->name }}" />
+    @endif
+    @dump($entity->name)
 @endsection
 
-@include('editors.editor')
+@include('editors.editor', $entity->isCharacter() ? ['name' => 'characters'] : [])
 
 @section('fullpage-form-end')
     @if(!empty($from))
