@@ -9,26 +9,26 @@ use Orhanerday\OpenAi\OpenAi;
 class OpenAiService
 {
     /** @var string */
-    protected $prompt;
+    protected string $prompt;
 
     /** @var string */
-    protected $name;
-    protected $pronouns;
-    protected $gender;
+    protected ?string $name;
+    protected ?string$pronouns;
+    protected ?string$gender;
 
-    protected $output;
+    protected mixed $output;
 
     /**
      * @param string $prompt
-     * @param string $name
+     * @param array $context
      * @return string
      */
-    public function input(string $prompt, string $name = null, string $pronouns = null, string $gender = null): self
+    public function input(string $prompt, array $context = []): self
     {
         $this->prompt = $prompt;
-        $this->name = $name;
-        $this->pronouns = $pronouns;
-        $this->gender = $gender;
+        foreach ($context as $key => $value) {
+            $this->$key = $value;
+        }
 
         return $this;
     }
@@ -50,10 +50,9 @@ class OpenAiService
         //Defining max tokens
         //1 token is almost 0.75 word
         $maxTokens = config('openai.tokens');
-        //A humanoid mutant rat that likes the smell of trash, uses a crossbow as a weapon and dresses like an italian mobster
 
         $complete = $open_ai->chat([
-            'model' => 'gpt-3.5-turbo',
+            'model' => $engine,
             'messages' => $prompt,
             'temperature' => 0.9,
             'max_tokens' => $maxTokens,
@@ -72,48 +71,40 @@ class OpenAiService
      */
     protected function preparePrompt(): array
     {
-        $system = __('openai.intro');
-
-        $prompt = '';
-        if (!empty($this->name)) {
-            $prompt .= __('openai.intro-named', ['name' => $this->name]);
-        }
-
-        if (!empty($this->pronouns)) {
-            $prompt .= ' ';
-            $prompt .= __('openai.intro-gender', ['gender' => $this->gender]);
-        }
-
-        if (!empty($this->gender)) {
-            $prompt .= ' ';
-            $prompt .= __('openai.intro-pronouns', ['pronouns' => $this->pronouns]);
-        }
-
-        $prompt .= ' ';
-        $option = mt_rand(0, count(config('openai.prompts.first')) - 1);
-        $prompt .= __('openai.paragraphs.first', ['option' => config('openai.prompts.first')[$option]]);
-
-        $prompt .= ' ';
-        $option = mt_rand(0, count(config('openai.prompts.second')) - 1);
-        $prompt .= __('openai.paragraphs.second', ['option' => config('openai.prompts.second')[$option]]);
-
-        $prompt .= ' ';
-        $option = mt_rand(0, count(config('openai.prompts.third')) - 1);
-        $prompt .= __('openai.paragraphs.third', ['option' => config('openai.prompts.third')[$option]]);
-
-        $prompt .= ' ';
-        $prompt .= __('openai.closing', ['prompt' => $this->prompt]);
-
         $prompts = [
             [
                 "role" => "system",
-                "content" => $system
+                "content" => __('openai.intro')
             ],
-            [
-                "role" => "user",
-            "content" => $prompt
-            ]
         ];
+
+        $roles = [];
+        if (!empty($this->name)) {
+            $roles[] = __('openai.intro-named', ['name' => $this->name]);
+        }
+
+        if (!empty($this->pronouns)) {
+            $roles[] = __('openai.intro-gender', ['gender' => $this->gender]);
+        }
+
+        if (!empty($this->gender)) {
+            $roles[] = __('openai.intro-pronouns', ['pronouns' => $this->pronouns]);
+        }
+
+        $option = mt_rand(0, count(config('openai.prompts.first')) - 1);
+        $roles[] = __('openai.paragraphs.first', ['option' => config('openai.prompts.first')[$option]]);
+
+        $option = mt_rand(0, count(config('openai.prompts.second')) - 1);
+        $roles[] = __('openai.paragraphs.second', ['option' => config('openai.prompts.second')[$option]]);
+
+        $option = mt_rand(0, count(config('openai.prompts.third')) - 1);
+        $roles[] = __('openai.paragraphs.third', ['option' => config('openai.prompts.third')[$option]]);
+
+        $roles[] = __('openai.closing', ['prompt' => $this->prompt]);
+
+        foreach ($roles as $role) {
+            $prompts[] = ['role' => 'user', 'content' => $role];
+        }
         return $prompts;
     }
 

@@ -68,12 +68,20 @@ class BragiService
         }
         $data = [];
         $prompt = $request->get('prompt');
-        $name = $request->get('name');
-        $gender = $request->get('gender');
-        $pronouns = $request->get('pronouns');
-        // Call the service
-        $openAI = $this->openAI
-            ->input($prompt, $name, $pronouns, $gender)
+        $context = [];
+        if ($request->filled('name')) {
+            $context['name'] = $request->get('name');
+        }
+        if ($request->filled('gender')) {
+            $context['gender'] = $request->get('gender');
+        }
+        if ($request->filled('pronouns')) {
+            $context['pronouns'] = $request->get('pronouns');
+        }
+
+        $openAI = $this
+            ->openAI
+            ->input($prompt, $context)
             ->generate();
 
         try {

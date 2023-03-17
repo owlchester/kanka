@@ -32,7 +32,7 @@ class BragiController extends Controller
 
         return response()->json(
             $this->service
-                ->user(auth()->user())
+                ->user($request->user())
                 ->campaign($campaign)
                 ->generate($request)
         );
