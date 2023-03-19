@@ -22278,6 +22278,7 @@ window.familyTreeChildWidth = function (child, index) {
 window.familyTreeRelationWidth = function (relation, index) {
   // If a relation has no children, then it's simple
   if (relation.children === undefined || relation.children.length === 0) {
+    // The first relation counts for 2 spaces (the source + itself), while any more relations could for just one
     return index === 0 ? 2 : 1;
   }
 
