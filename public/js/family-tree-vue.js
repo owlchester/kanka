@@ -22278,7 +22278,7 @@ window.familyTreeChildWidth = function (child, index) {
 window.familyTreeRelationWidth = function (relation, index) {
   // If a relation has no children, then it's simple
   if (relation.children === undefined || relation.children.length === 0) {
-    return 1;
+    return index === 0 ? 2 : 1;
   }
 
   // Each relation takes up at least 1 width
@@ -22293,7 +22293,7 @@ window.familyTreeRelationWidth = function (relation, index) {
     if (child.relations !== undefined && child.relations.length > 0) {
       // For each of the relation's children, calculate their width, and add that to the current size
       child.relations.forEach(function (c, i2) {
-        var tmp = window.familyTreeRelationWidth(c);
+        var tmp = window.familyTreeRelationWidth(c, i2);
         console.log(c.entity_id, 'relWidth', tmp);
         size += tmp;
       });
