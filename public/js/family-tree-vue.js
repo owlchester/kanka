@@ -20057,7 +20057,7 @@ __webpack_require__.r(__webpack_exports__);
       }
       var tmpOffsetX = this.entityWidth + 20;
       for (var i = 0; i < index; i++) {
-        var relWidth = window.familyTreeRelationWidth(this.relations[i], index);
+        var relWidth = window.familyTreeRelationWidth(this.relations[i], i);
         nodeOffset += relWidth;
       }
       tmpOffsetX *= nodeOffset;
@@ -20276,13 +20276,13 @@ __webpack_require__.r(__webpack_exports__);
             object.relations.push({
               entity_id: entity_id,
               role: _this4.relation,
-              uuid: stringify(_this4.newUuid)
+              uuid: JSON.stringify(_this4.newUuid)
             });
           } else {
             object.relations = [{
               entity_id: entity_id,
               role: _this4.relation,
-              uuid: stringify(_this4.newUuid)
+              uuid: JSON.stringify(_this4.newUuid)
             }];
           }
           _this4.newUuid++;
@@ -20331,12 +20331,12 @@ __webpack_require__.r(__webpack_exports__);
           if (Array.isArray(object.children)) {
             object.children.push({
               entity_id: entity_id,
-              uuid: stringify(_this6.newUuid)
+              uuid: JSON.stringify(_this6.newUuid)
             });
           } else {
             object.children = [{
               entity_id: entity_id,
-              uuid: stringify(_this6.newUuid)
+              uuid: JSON.stringify(_this6.newUuid)
             }];
           }
           _this6.newUuid++;
@@ -20382,7 +20382,7 @@ __webpack_require__.r(__webpack_exports__);
       this.entities[entity.id] = entity;
       this.nodes.push({
         entity_id: entity.id,
-        uuid: stringify(this.newUuid),
+        uuid: JSON.stringify(this.newUuid),
         relations: []
       });
       this.newUuid++;
@@ -20396,7 +20396,7 @@ __webpack_require__.r(__webpack_exports__);
       var getRelationNodes = function getRelationNodes(result, object) {
         if (object.uuid === _this8.currentUuid) {
           if (object.uuid === 0) {
-            object.uuid = stringify(_this8.newUuid);
+            object.uuid = JSON.stringify(_this8.newUuid);
             _this8.newUuid++;
           }
           object.entity_id = entity_id;
@@ -22276,14 +22276,15 @@ window.familyTreeChildWidth = function (child, index) {
  * Count how wide a relation is, counting itself + all of its children
  */
 window.familyTreeRelationWidth = function (relation, index) {
+  // The first relation counts for 2 spaces (the source + itself), while any more relations could for just one
+  var min = index === 0 ? 2 : 1;
   // If a relation has no children, then it's simple
   if (relation.children === undefined || relation.children.length === 0) {
-    // The first relation counts for 2 spaces (the source + itself), while any more relations could for just one
-    return index === 0 ? 2 : 1;
+    return min;
   }
 
   // Each relation takes up at least 1 width
-  var size = 1;
+  var size = min;
 
   // Let's find out just how wide this relation is
   relation.children.forEach(function (child, i) {

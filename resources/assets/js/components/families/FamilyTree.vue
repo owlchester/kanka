@@ -274,9 +274,9 @@ export default {
             const getRelationNodes = (result, object) => {
                 if (object.uuid === this.currentUuid) {
                     if (Array.isArray(object.relations)) {
-                        object.relations.push({entity_id: entity_id, role: this.relation, uuid: stringify(this.newUuid)});
+                        object.relations.push({entity_id: entity_id, role: this.relation, uuid: JSON.stringify(this.newUuid)});
                     } else {
-                        object.relations = [{entity_id: entity_id, role: this.relation, uuid: stringify(this.newUuid)}];
+                        object.relations = [{entity_id: entity_id, role: this.relation, uuid: JSON.stringify(this.newUuid)}];
                     }
                     this.newUuid++;
                     result.push(object);
@@ -323,9 +323,9 @@ export default {
                     //console.log(object);
 
                     if (Array.isArray(object.children)) {
-                        object.children.push({entity_id: entity_id, uuid: stringify(this.newUuid)});
+                        object.children.push({entity_id: entity_id, uuid: JSON.stringify(this.newUuid)});
                     } else {
-                        object.children = [{entity_id: entity_id, uuid: stringify(this.newUuid)}];
+                        object.children = [{entity_id: entity_id, uuid: JSON.stringify(this.newUuid)}];
                     }
                     this.newUuid++;
                     result.push(object);
@@ -369,7 +369,7 @@ export default {
         },
         addEntity(entity) {
             this.entities[entity.id] = entity;
-            this.nodes.push({entity_id: entity.id, uuid: stringify(this.newUuid), relations: []});
+            this.nodes.push({entity_id: entity.id, uuid: JSON.stringify(this.newUuid), relations: []});
             this.newUuid++;
         },
         replaceEntity(entity) {
@@ -381,7 +381,7 @@ export default {
             const getRelationNodes = (result, object) => {
                 if (object.uuid === this.currentUuid) {
                     if (object.uuid === 0) {
-                        object.uuid = stringify(this.newUuid);
+                        object.uuid = JSON.stringify(this.newUuid);
                         this.newUuid++;
                     }
                     object.entity_id = entity_id;
