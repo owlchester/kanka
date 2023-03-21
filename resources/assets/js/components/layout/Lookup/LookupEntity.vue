@@ -29,7 +29,7 @@ export default {
 
     methods: {
         backgroundImage: function(entity) {
-            return 'url(' + entity.image + ')';
+            return 'url(\'' + entity.image + '\')';
         },
         preview: function(entity) {
             //console.log('preview', entity);

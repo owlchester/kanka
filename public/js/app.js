@@ -19764,7 +19764,7 @@ __webpack_require__.r(__webpack_exports__);
       return cls;
     },
     backgroundImage: function backgroundImage() {
-      return 'url(' + this.entity.image + ')';
+      return 'url(\'' + this.entity.image + '\')';
     },
     tabClass: function tabClass(tab) {
       var cls = 'p-1 px-1 mx-1 pt-2 select-none text-center truncate border-b-2 border-solid border-r-0 border-t-0 border-l-0';
@@ -19810,7 +19810,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['entity'],
   methods: {
     backgroundImage: function backgroundImage(entity) {
-      return 'url(' + entity.image + ')';
+      return 'url(\'' + entity.image + '\')';
     },
     preview: function preview(entity) {
       //console.log('preview', entity);
@@ -20676,7 +20676,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_LookupEntity, {
       entity: entity
     }, null, 8 /* PROPS */, ["entity"]);
-  }), 256 /* UNKEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), !_ctx.is_loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  }), 256 /* UNKEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), !$data.show_loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "italic text-xs text-center",
     innerHTML: $data.texts.keyboard
   }, null, 8 /* PROPS */, _hoisted_21)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.show_preview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_EntityPreview, {

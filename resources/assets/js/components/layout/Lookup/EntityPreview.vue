@@ -103,7 +103,7 @@ export default {
             return cls;
         },
         backgroundImage: function() {
-            return 'url(' + this.entity.image + ')';
+            return 'url(\'' + this.entity.image + '\')';
         },
         tabClass: function(tab) {
             let cls = 'p-1 px-1 mx-1 pt-2 select-none text-center truncate border-b-2 border-solid border-r-0 border-t-0 border-l-0';

@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="flex-0 text-xs text-center" v-if="!is_loading">
+                <div class="flex-0 text-xs text-center" v-if="!show_loading">
                     <hr />
                     <p class="italic text-xs text-center" v-html="texts.keyboard" />
                 </div>
