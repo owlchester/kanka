@@ -13,25 +13,27 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
 }
 ?>
 @if (!request()->has('mobile'))
-<div class="marker-header flex gap-2 {{ $class }}" style="{{ $backgroundImage }}">
+<div class="marker-header flex {{ $class }}" style="{{ $backgroundImage }}">
 
-    <div class="marker-header-lower grow">
-        <div class="marker-name overflow-hidden text-2xl w-full text-bold {{ $markerNameCss }}">
-        @if ($marker->entity)
-            <a href="{{ $marker->entity->url() }}" target="_blank">
-                @if (!empty($marker->name))
-                    {!! $marker->name !!}
-                @else
-                    {!! $marker->entity->name !!}
-                @endif
-            </a>
-        @else
-                {{ $marker->name }}
-        @endif
+    <div class="marker-header-fade grow flex gap-2">
+        <div class="marker-header-lower grow self-end">
+            <div class="marker-name overflow-hidden text-2xl text-bold grow p-2 {{ $markerNameCss }}">
+            @if ($marker->entity)
+                <a href="{{ $marker->entity->url() }}" target="_blank">
+                    @if (!empty($marker->name))
+                        {!! $marker->name !!}
+                    @else
+                        {!! $marker->entity->name !!}
+                    @endif
+                </a>
+            @else
+                    {{ $marker->name }}
+            @endif
+            </div>
         </div>
-    </div>
-    <div class="marker-top px-1 py-1">
-        <span class="marker-close" title="{{ __('crud.click_modal.close') }}"><i class="fa-solid fa-close"></i></span>
+        <div class="marker-top px-1 py-1">
+            <span class="marker-close" title="{{ __('crud.click_modal.close') }}"><i class="fa-solid fa-close"></i></span>
+        </div>
     </div>
 </div>
 
