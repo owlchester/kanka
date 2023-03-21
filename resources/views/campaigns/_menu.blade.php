@@ -18,9 +18,11 @@ if (auth()->check()) {
         $buttons[] = '<a href="'. route('campaigns.edit') .'" class="btn btn-primary btn-block">
             <i class="fa-solid fa-edit" aria-hidden="true"></i> '. __('campaigns.show.actions.edit') .'</a>';
     }
+    if ($campaign->userIsMember()) {
     $buttons[] = '<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#leave-confirm">
             <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i> ' . __('campaigns.show.actions.leave') . '
         </button>';
+    }
     if (auth()->user()->can('roles', $campaign)) {
         $buttons[] = '<button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#campaign-delete-confirm">
             <i class="fa-solid fa-trash" aria-hidden="true"></i> ' . __('campaigns.destroy.action') . '
@@ -227,7 +229,7 @@ if (auth()->check()) {
 @section('modals')
     @parent
 
-    @if (auth()->check())
+    @if (auth()->check() && $campaign->userIsMember())
     <div class="modal fade" id="leave-confirm" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl text-center">
