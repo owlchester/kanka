@@ -17,8 +17,7 @@ class MoveController extends Controller
      */
     use GuestAuthTrait;
 
-    /** @var EntityService */
-    protected $service;
+    protected EntityService $service;
 
     /**
      * AbilityController constructor.
@@ -65,7 +64,7 @@ class MoveController extends Controller
 
             return redirect()
                 ->route($entity->pluralType() . '.index')
-                ->with('success', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name]));
+                ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => $this->service->targetCampaign()->name]));
         } catch (TranslatableException $ex) {
             return redirect()
                 ->route($entity->pluralType() . '.show', $entity->entity_id)

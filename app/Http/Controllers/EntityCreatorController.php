@@ -12,6 +12,7 @@ use App\Models\Post;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Stevebauman\Purify\Facades\Purify;
 
 class EntityCreatorController extends Controller
 {
@@ -85,8 +86,8 @@ class EntityCreatorController extends Controller
     {
         // Make sure the user is allowed to create this kind of entity
         $class = null;
+        $campaign = CampaignLocalization::getCampaign();
         if ($type == 'posts') {
-            $campaign = CampaignLocalization::getCampaign();
             $this->authorize('recover', $campaign);
         } else {
             $class = $this->entityService->getClass($type);
@@ -127,10 +128,12 @@ class EntityCreatorController extends Controller
                 // Create the tag if the user has permission to do so
                 if (empty($tag) && $canCreateTags) {
                     $tag = new Tag([
-                        'name' => $id
+                        'name' => Purify::clean($id),
                     ]);
-                    $tag->saveImageObserver = false;
-                    $tag->save();
+                    $tag->campaign_id = $campaign->id;
+                    $tag->slug = Str::slug($tag->name);
+                    $tag->saveQuietly();
+                    $tag->createEntity();
                     $tags[$number] = strval($tag->id);
                 } elseif (empty($tag) && !$canCreateTags) {
                     unset($tags[$number]);

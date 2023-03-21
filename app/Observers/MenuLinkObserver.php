@@ -19,10 +19,6 @@ class MenuLinkObserver
      */
     public function saving(MenuLink $model)
     {
-        if (!$model->savingObserver) {
-            return;
-        }
-
         // Handle empty or wrong positions
         if (empty($model->position)) {
             $model->position = MenuLink::max('position') + 1;

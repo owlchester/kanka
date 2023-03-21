@@ -35,9 +35,6 @@ class MapLayer extends Model
     use SortableTrait;
     use VisibilityIDTrait;
 
-    /** @var bool If set to false, skip the saving observer */
-    public $savingObserver = true;
-
     /** @var string[]  */
     protected $fillable = [
         'map_id',
@@ -117,7 +114,7 @@ class MapLayer extends Model
      */
     public function patch(array $data): bool
     {
-        return $this->update($data);
+        return $this->updateQuietly($data);
     }
 
     /**

@@ -17,10 +17,6 @@ class MapGroupObserver
      */
     public function saving(MapGroup $mapGroup)
     {
-        if ($mapGroup->savingObserver === false) {
-            return;
-        }
-
         if (!empty($mapGroup->position)) {
             $mapGroup->position = (int) $mapGroup->position;
         } else {

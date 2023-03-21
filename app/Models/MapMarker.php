@@ -92,9 +92,6 @@ class MapMarker extends Model
         'polygon_style' => 'array',
     ];
 
-    /** @var bool If set to false, skip the saving observer */
-    public $savingObserver = true;
-
     /** @var bool Editing the map */
     protected $editing = false;
 
@@ -676,7 +673,7 @@ class MapMarker extends Model
         if (isset($data['group_id']) && $data['group_id'] == -1) {
             $data['group_id'] = null;
         }
-        return $this->update($data);
+        return $this->updateQuietly($data);
     }
 
     /**

@@ -12,6 +12,7 @@ use App\Services\AttributeService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
 use Illuminate\Support\Str;
+use Stevebauman\Purify\Facades\Purify;
 
 class EntityObserver
 {
@@ -90,11 +91,14 @@ class EntityObserver
                 $tag = Tag::find($id);
                 // Create the tag if the user has permission to do so
                 if (empty($tag) && $canCreateTags) {
+
                     $tag = new Tag([
-                        'name' => $id
+                        'name' => Purify::clean($id),
                     ]);
-                    $tag->saveImageObserver = false;
-                    $tag->save();
+                    $tag->campaign_id = $entity->campaign_id;
+                    $tag->slug = Str::slug($tag->name);
+                    $tag->saveQuietly();
+                    $tag->createEntity();
                 }
 
                 if (!empty($tag)) {

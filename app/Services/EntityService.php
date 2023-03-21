@@ -59,6 +59,8 @@ class EntityService
         'organisations',
     ];
 
+    protected Campaign $targetCampaign;
+
     /**
      * EntityService constructor.
      */
@@ -115,6 +117,11 @@ class EntityService
     public function copied(): bool
     {
         return $this->copied;
+    }
+
+    public function targetCampaign(): Campaign
+    {
+        return $this->targetCampaign;
     }
 
     /**
@@ -254,16 +261,13 @@ class EntityService
 
             // Update Entity first, as there are no hooks on the Entity model.
             CampaignLocalization::forceCampaign($campaign);
+            $this->targetCampaign = $campaign;
             $entity->campaign_id = $campaign->id;
-            $entity->save();
-
-            // Finally, we can change and save the child. Should be all good. But tell the app not
-            // to create the entity to avoid silly duplicates and new entities.
-            $child->savingObserver = false;
+            $entity->saveQuietly();
 
             // Update child second. We do this otherwise we'll have an old entity and a new one
             $child->campaign_id = $campaign->id; // Technically don't need this since it's in MiscObserver::saving()
-            $child->save();
+            $child->saveQuietly();
 
             DB::commit();
         } catch (\Exception $e) {
@@ -289,10 +293,12 @@ class EntityService
 
         // Update Entity first, as there are no hooks on the Entity model.
         CampaignLocalization::forceCampaign($newCampaign);
+        $this->targetCampaign = $newCampaign;
 
         DB::beginTransaction();
         try {
-            $newModel = $entity->child->replicate();
+            $newModel = $entity->child->replicate(['campaign_id']);
+            $newModel->campaign_id = $newCampaign->id;
             // Remove any foreign keys that wouldn't make any sense in the new campaign
             foreach ($newModel->getAttributes() as $attribute) {
                 if (str_contains($attribute, '_id')) {
@@ -310,15 +316,8 @@ class EntityService
                 }
             }
 
-            // Remove map stuff from locations
-            if ($newModel instanceof Location) {
-                $newModel->map = null;
-            }
-
             // The model is ready to be saved.
-            $newModel->savingObserver = false;
-            $newModel->saveObserver = false;
-            $newModel->save();
+            $newModel->saveQuietly();
             $newModel->createEntity();
 
             // Copy entity notes over
@@ -427,10 +426,8 @@ class EntityService
             }
         }
 
-        // Finally, we can save. Should be all good. But tell the app not to create the entity
-        $new->savingObserver = false;
-        $new->forceSavedObserver = false;
-        $new->save();
+        // Finally, we can save. Should be all good.
+        $new->saveQuietly();
 
         // If switching from an organisation to a family, we need to move the members?
         /** @var Organisation|Family $old */
@@ -686,10 +683,10 @@ class EntityService
             $defaultPrivate = true;
         }
         $model->name = $name;
-        $model->savingObserver = false;
-        $model->forceSavedObserver = true;
         $model->is_private = $defaultPrivate;
-        $model->save();
+        $model->campaign_id = $campaign->id;
+        $model->saveQuietly();
+        $model->createEntity();
         if (!$model->entity->isTag()) {
             $allTags = $this->getAutoApplyTags();
             $model->entity->tags()->attach($allTags);

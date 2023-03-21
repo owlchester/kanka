@@ -58,31 +58,9 @@ abstract class MiscModel extends Model
     use SubEntityScopes;
 
     /**
-     * If set to false, the saving observer in MiscObserver will be skipped
-     * @var bool
-     */
-    public $savingObserver = true;
-
-    /**
      * @var bool|Entity Performance based entity
      */
     protected $cachedEntity = false;
-
-    /**
-     * @var bool
-     */
-    public $forceSavedObserver = false;
-
-    /**
-     * If set to false, the save observer in MiscObserver will be skipped
-     * @var bool
-     */
-    public $saveObserver = true;
-
-    /**
-     * @var bool Define to false to skip the Image upload handling
-     */
-    public $saveImageObserver = true;
 
     /**
      * @var string Entity type

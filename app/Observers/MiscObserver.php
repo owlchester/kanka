@@ -51,8 +51,7 @@ abstract class MiscObserver
 
         // If we're from the "move" service, we can skip this part.
         // Or if we are deleting, we don't want to re-do the whole set foreign ids to null
-        if (request()->isMethod('delete') === true ||
-            $model->savingObserver === false) {
+        if (request()->isMethod('delete') === true) {
             return;
         }
 
@@ -89,11 +88,6 @@ abstract class MiscObserver
      */
     public function saved(MiscModel $model)
     {
-        // If we're from the "move" service, we can skip this part.
-        if ($model->savingObserver === false && $model->forceSavedObserver === false) {
-            return;
-        }
-
         // Whenever an misc model is saved, we need to make sure it has an associated entity with it.
         // If none exists, we need to create one. Otherwise, we need to update it.
         $entity = $model->entity;
@@ -123,11 +117,6 @@ abstract class MiscObserver
      */
     public function created(MiscModel $model)
     {
-        // If we're from the "move" service, we can skip this part.
-        if ($model->savingObserver === false) {
-            return;
-        }
-
         // Created a new sub entity? Create the parent entity.
         $entity = $model->createEntity();
 
@@ -251,9 +240,6 @@ abstract class MiscObserver
      */
     protected function syncMentions(MiscModel $model, Entity $entity)
     {
-        if (!$model->saveObserver) {
-            return;
-        }
         //$this->entityMappingService->verbose = true;
         // If the entity's entry has changed, we need to re-build it's map.
         if ($model->isDirty('entry')) {

@@ -46,12 +46,6 @@ class EntityAbility extends Model
     ];
 
     /**
-     * Set to false to skip save observers
-     * @var bool
-     */
-    public $savedObserver = true;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity(): \Illuminate\Database\Eloquent\Relations\BelongsTo

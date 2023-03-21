@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 use App\Models\MiscModel;
 use Exception;
 use Illuminate\Support\Str;
+use Stevebauman\Purify\Facades\Purify;
 
 class BulkService
 {
@@ -210,9 +211,14 @@ class BulkService
         $filledFields = [];
         $filledForeigns = [];
         foreach ($fillableFields as $field => $value) {
-            if (!empty($value)) {
+            if (!empty(trim($value))) {
                 $filledFields[$field] = $value;
             }
+        }
+
+        // Purify name
+        if (Arr::has($filledFields, 'name')) {
+            $filledFields['name'] = Purify::clean($filledFields['name']);
         }
 
         // Loop on boolean fields that can be true, false or null
@@ -279,7 +285,6 @@ class BulkService
                 // for admins, but better safe than sorry
                 continue;
             }
-            $entity->savingObserver = false;
             $entityFields = $filledFields;
 
             // Handle math fields
@@ -293,10 +298,7 @@ class BulkService
                     }
                 }
             }
-
-            // Age can be manage differently (math)
-
-            $entity->update($entityFields);
+            $entity->updateQuietly($entityFields);
 
             // Foreign belongsTo loop
             foreach ($filledForeigns as $relation => $ids) {
@@ -337,10 +339,12 @@ class BulkService
                         // Create the tag if the user has permission to do so
                         if (empty($tag) && $canCreateTags) {
                             $tag = new Tag([
-                                'name' => $id
+                                'name' => Purify::clear($id),
                             ]);
-                            $tag->saveImageObserver = false;
-                            $tag->save();
+                            $tag->campaign_id = $entity->campaign_id;
+                            $tag->slug = Str::slug($tag->name);
+                            $tag->saveQuietly();
+                            $tag->createEntity();
                             $tagIds[$number] = $tag->id;
                         }
 
