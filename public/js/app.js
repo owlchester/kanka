@@ -19941,8 +19941,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.api_recent).then(function (response) {
         _this3.recent = response.data.recent;
         _this3.texts.recents = response.data.texts.recents;
+        _this3.texts.results = response.data.texts.results;
         _this3.texts.hint = response.data.texts.hint;
         _this3.texts.keyboard = response.data.texts.keyboard;
+        _this3.texts.empty_results = response.data.texts.empty_results;
         _this3.show_loading = false;
         _this3.show_recent = true;
         _this3.has_recent = true;
@@ -19956,8 +19958,6 @@ __webpack_require__.r(__webpack_exports__);
     // Load results from a search
     parseLookupResponse: function parseLookupResponse(response, cacheKey) {
       this.results = response.data.entities;
-      this.texts.results = response.data.texts.results;
-      this.texts.empty_results = response.data.texts.empty_results;
       this.cached[cacheKey] = response.data.entities;
       this.showResults();
     },
@@ -20614,11 +20614,11 @@ var _hoisted_14 = {
   "class": "search-results mb-2"
 };
 var _hoisted_15 = {
-  "class": "text-sm text-uppercase mb-2"
+  "class": "text-sm text-uppercase mb-2 my-2 mx-1"
 };
 var _hoisted_16 = {
   key: 0,
-  "class": "italic"
+  "class": "italic m-2"
 };
 var _hoisted_17 = {
   key: 1,

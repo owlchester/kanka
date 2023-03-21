@@ -26,9 +26,9 @@
                 </div>
                 <div class="grow">
                     <div class="search-results mb-2" v-if="show_results">
-                        <div class="text-sm text-uppercase mb-2">{{ texts.results }}</div>
+                        <div class="text-sm text-uppercase mb-2 my-2 mx-1">{{ texts.results }}</div>
 
-                        <div class="italic" v-if="results.length === 0">
+                        <div class="italic m-2" v-if="results.length === 0">
                             {{ texts.empty_results }}
                         </div>
                         <LookupEntity v-else v-for="entity in results"
@@ -161,8 +161,10 @@ export default {
             axios.get(this.api_recent).then(response => {
                 this.recent = response.data.recent;
                 this.texts.recents = response.data.texts.recents;
+                this.texts.results = response.data.texts.results;
                 this.texts.hint = response.data.texts.hint;
                 this.texts.keyboard = response.data.texts.keyboard;
+                this.texts.empty_results = response.data.texts.empty_results;
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = true;
@@ -176,8 +178,6 @@ export default {
         // Load results from a search
         parseLookupResponse(response, cacheKey) {
             this.results = response.data.entities;
-            this.texts.results = response.data.texts.results;
-            this.texts.empty_results = response.data.texts.empty_results;
             this.cached[cacheKey] = response.data.entities;
             this.showResults();
         },
