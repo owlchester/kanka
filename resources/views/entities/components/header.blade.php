@@ -112,132 +112,138 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     @endforeach
                 </ol>
             @endif
-            <div class="entity-name-header flex items-center">
+            <div class="entity-name-header flex gap-3 items-center">
                 <h1 class="entity-name m-0 break-all">
                     {{ $model->name }}
                 </h1>
-                <div class="entity-name-icons entity-name-icons-{{ $buttonsClass }}">
-                    @if ($model instanceof \App\Models\Character && $model->is_dead)
-                        <i role="button" tabindex="0" class="ra ra-skull entity-icons cursor-pointer text-xl  btn-popover" title="{{ __('characters.hints.is_dead') }}"></i>
-                    @endif
-                    @if ($model instanceof \App\Models\Quest && $model->is_completed)
-                        <i role="button" tabindex="0" class="fa-solid fa-check-circle entity-icon scursor-pointer btn-popover text-xl" title="{{ __('quests.fields.is_completed') }}"></i>
-                    @endif
-                    @if ($model instanceof \App\Models\Organisation && $model->is_defunct)
-                        <i role="button" tabindex="0" class="fa-solid fa-shop-slash entity-icons cursor-pointer btn-popover text-xl" title="{{ __('organisations.hints.is_defunct') }}"></i>
-                    @endif
+                @if ($model instanceof \App\Models\Character && $model->is_dead)
+                    <span class="entity-name-icon entity-char-dead cursor-pointer" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}">
+                        <i class="ra ra-skull entity-icons text-xl" aria-hidden="true" ></i>
+                        <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
+                    </span>
+                @endif
+                @if ($model instanceof \App\Models\Quest && $model->is_completed)
+                    <span class="entity-name-icon entity-quest-complete cursor-pointer" data-toggle="tooltip" title="{{ __('quests.fields.is_completed') }}">
+                        <i class="fa-solid fa-check-circle entity-icons text-xl" aria-hidden="true" ></i>
+                        <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
+                    </span>
+                @endif
+                @if ($model instanceof \App\Models\Organisation && $model->is_defunct)
+                    <span class="entity-name-icon entity-org-defunct cursor-pointer" data-toggle="tooltip" title="{{ __('organisations.hints.is_defunct') }}">
+                        <i class="fa-solid fa-shop-slash entity-icons text-xl" aria-hidden="true" ></i>
+                        <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
+                    </span>
+                @endif
 
-                    @if (auth()->check() && auth()->user()->isAdmin())
-                        <span role="button" tabindex="0" class="entity-icons cursor-pointer entity-privacy-icon text-xl" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy" aria-haspopup="dialog">
-                            <i class="fa-solid fa-lock" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                            <i class="fa-solid fa-lock-open" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                @if (auth()->check() && auth()->user()->isAdmin())
+                    <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy" aria-haspopup="dialog">
+                            <i class="fa-solid fa-lock entity-icons text-xl" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <i class="fa-solid fa-lock-open entity-icons text-xl" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                             <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                         </span>
-                    @endif
+                @endif
+                <div class="btn-group entity-actions">
+                    <span role="button" tabindex="0" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
+                        <i class="fa-solid fa-cog entity-icons cursor-pointer text-xl" aria-hidden="true"></i>
+                        <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
+                    </span>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu" id="entity-submenu">
+                        @can('update', $model)
+                            <li>
+                                <a href="{{ route($entity->pluralType() . '.edit', $model->id) }}" data-keyboard="edit">
+                                    <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.edit') }}
 
-                    <div class="btn-group entity-actions">
-                        <span role="button" tabindex="0" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
-                            <i class="fa-solid fa-cog entity-icons cursor-pointer text-xl" aria-hidden="true"></i>
-                            <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
-                        </span>
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu" id="entity-submenu">
-                            @can('update', $model)
+                                    <span class="keyboard-shortcut pull-right" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>E</code>']) !!}" data-html="true">E</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('create', $model)
+                            <li>
+                                <a href="{{ route($entity->pluralType() . '.create') }}">
+                                    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new') }}
+                                </a>
+                            </li>
+                            @if (\Illuminate\Support\Facades\Route::has($entity->pluralType() . '.tree'))
                                 <li>
-                                    <a href="{{ route($entity->pluralType() . '.edit', $model->id) }}" data-keyboard="edit">
-                                        <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.edit') }}
-
-                                        <span class="keyboard-shortcut pull-right" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>E</code>']) !!}" data-html="true">E</span>
+                                    <a href="{{ route($entity->pluralType() . '.create', ['parent_id' => $model->id]) }}">
+                                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new_child') }}
                                     </a>
                                 </li>
-                            @endcan
-                            @can('create', $model)
-                                <li>
-                                    <a href="{{ route($entity->pluralType() . '.create') }}">
-                                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new') }}
-                                    </a>
-                                </li>
-                                @if (\Illuminate\Support\Facades\Route::has($entity->pluralType() . '.tree'))
+                            @endif
+                            <li>
+                                <a href="{{ route($entity->pluralType() . '.create', ['copy' => $model->id]) }}">
+                                    <i class="fa-solid fa-copy" aria-hidden="true"></i> {{ __('crud.actions.copy') }}
+                                </a>
+                            </li>
+                        @endcan
+
+                        @if ($model->entity)
+                            @if(auth()->check())
+                                @can('update', $model)
                                     <li>
-                                        <a href="{{ route($entity->pluralType() . '.create', ['parent_id' => $model->id]) }}">
-                                            <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new_child') }}
+                                        <a href="{{ route('entities.story.reorder', $model->entity->id) }}">
+                                            <i class="fa-solid fa-list-ol"></i> {{ __('entities/story.reorder.icon_tooltip') }}
                                         </a>
                                     </li>
-                                @endif
-                                <li>
-                                    <a href="{{ route($entity->pluralType() . '.create', ['copy' => $model->id]) }}">
-                                        <i class="fa-solid fa-copy" aria-hidden="true"></i> {{ __('crud.actions.copy') }}
-                                    </a>
-                                </li>
-                            @endcan
-
-                    @if ($model->entity)
-                        @if(auth()->check())
-                            @can('update', $model)
-                                <li>
-                                    <a href="{{ route('entities.story.reorder', $model->entity->id) }}">
-                                        <i class="fa-solid fa-list-ol"></i> {{ __('entities/story.reorder.icon_tooltip') }}
-                                    </a>
-                                </li>
-                            @endcan
+                                @endcan
                                 <li>
                                     <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toggle="tooltip"
                                        data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toast="{{ __('crud.alerts.copy_mention') }}">
                                         <i class="fa-solid fa-link"></i> {{ __('crud.actions.copy_mention') }}
                                     </a>
                                 </li>
-                        @if (auth()->user()->isAdmin())
-                                <li>
-                                    <a href="{{ route('entities.template', $entity) }}">
-                                        @if($entity->is_template)
-                                            <i class="fa-regular fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.unset') }}
-                                        @else
-                                            <i class="fa-solid fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.set') }}
-                                        @endif
-                                    </a>
-                                </li>
+                                @if (auth()->user()->isAdmin())
+                                    <li>
+                                        <a href="{{ route('entities.template', $entity) }}">
+                                            @if($entity->is_template)
+                                                <i class="fa-regular fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.unset') }}
+                                            @else
+                                                <i class="fa-solid fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.set') }}
+                                            @endif
+                                        </a>
+                                    </li>
+                                @endif
+                                <li class="divider"></li>
+                            @endif
+                            <li>
+                                <a href="{{ route('entities.html-export', $entity) }}">
+                                    <i class="fa-solid fa-print" aria-hidden="true"></i> {{ __('crud.actions.print') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('entities.json-export', $entity) }}">
+                                    <i class="fa-solid fa-download" aria-hidden="true"></i> {{ __('crud.actions.json-export') }}
+                                </a>
+                            </li>
                         @endif
-                                <li class="divider"></li>
-                    @endif
-                                <li>
-                                    <a href="{{ route('entities.html-export', $entity) }}">
-                                        <i class="fa-solid fa-print" aria-hidden="true"></i> {{ __('crud.actions.print') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('entities.json-export', $entity) }}">
-                                        <i class="fa-solid fa-download" aria-hidden="true"></i> {{ __('crud.actions.json-export') }}
-                                    </a>
-                                </li>
-                            @endif
-                            @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="{{ route('entities.move', $entity->id) }}">
-                                        <i class="fa-solid fa-clone" aria-hidden="true"></i> {{ __('crud.actions.move') }}
-                                    </a>
-                                </li>
-                            @endif
+                        @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
+                            <li class="divider"></li>
+                            <li>
+                                <a href="{{ route('entities.move', $entity->id) }}">
+                                    <i class="fa-solid fa-clone" aria-hidden="true"></i> {{ __('crud.actions.move') }}
+                                </a>
+                            </li>
+                        @endif
 
-                            @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
-                                <li>
-                                    <a href="{{ route('entities.transform', $entity->id) }}">
-                                        <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.transform') }}
-                                    </a>
-                                </li>
-                            @endif
+                        @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
+                            <li>
+                                <a href="{{ route('entities.transform', $entity->id) }}">
+                                    <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.transform') }}
+                                </a>
+                            </li>
+                        @endif
 
-                            @can('delete', $model)
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm" data-recoverable="1">
-                                        <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
-                                    </a>
-                                    {!! Form::open(['method' => 'DELETE','route' => [$entity->pluralType() . '.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
-                                    {!! Form::close() !!}
-                                </li>
-                            @endcan
-                        </ul>
-                    </div>
+                        @can('delete', $model)
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm" data-recoverable="1">
+                                    <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                                </a>
+                                {!! Form::open(['method' => 'DELETE','route' => [$entity->pluralType() . '.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
+                                {!! Form::close() !!}
+                            </li>
+                        @endcan
+                    </ul>
                 </div>
             </div>
         </div>

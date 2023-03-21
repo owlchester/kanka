@@ -1260,15 +1260,6 @@ button.dropdown-item:hover {
   padding: 0 5px;
   color: #ccc;
 }
-.entity-header .entity-name-header .entity-name-icons-2 {
-  min-width: 70px;
-}
-.entity-header .entity-name-header .entity-name-icons-3 {
-  min-width: 100px;
-}
-.entity-header .entity-name-header .entity-icons {
-  margin-left: 10px;
-}
 .entity-header .entity-name-header .btn-group.open .dropdown-toggle {
   box-shadow: unset;
 }
