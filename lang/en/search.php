@@ -11,5 +11,6 @@ return [
     'lookup' => [
         'recents' => 'Recents',
         'hint' => 'Type at least 3 letters to search for entities in the campaign.',
+        'keyboard' => 'press :k to search, :esc to dismiss',
     ]
 ];

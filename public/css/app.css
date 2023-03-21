@@ -579,7 +579,6 @@ table tbody td {
 }
 
 tr.tr-hover {
-  cursor: pointer;
   font-weight: 700;
 }
 tr.tr-hover:hover {
@@ -589,42 +588,25 @@ tr.tr-hover:hover {
 /**
  * Search
  */
-.live-search-results {
+/*.live-search-results {
   background-color: white;
   position: absolute;
   z-index: 1;
   min-width: 190px;
   overflow: auto;
-}
-.live-search-results .loading {
-  text-align: center;
-  padding: 15px;
-}
-.live-search-results .list-group-item:first-child {
-  border-top-right-radius: 0 !important;
-  border-top-left-radius: 0 !important;
-}
 
-.search-results-dropdown {
-  margin-bottom: 0;
-}
+  .loading {
+    text-align: center;
+    padding: 15px;
+  }
 
+  .list-group-item:first-child {
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+  }
+}*/
 .input-error {
   border: 1px inset red;
-}
-
-.entity-attributes .fa-unlock-alt {
-  color: rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-.entity-attributes .fa-unlock-alt:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-.entity-attributes .fa-lock {
-  cursor: pointer;
-}
-.entity-attributes .fa-lock:hover {
-  color: rgba(0, 0, 0, 0.8);
 }
 
 #new-entity-modal, #entity-modal {
@@ -5014,6 +4996,10 @@ body.ab-testing-second .ab-testing-a {
 
 .items-center {
   align-items: center;
+}
+
+.items-stretch {
+  align-items: stretch;
 }
 
 .content-center {

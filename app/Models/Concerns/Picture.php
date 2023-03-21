@@ -31,7 +31,6 @@ trait Picture
     {
         $size = $thumb ? '_thumb' : ($this->avatarSize != 40 ? '_mid' : null);
         $avatar = Cache::get($this->avatarCacheKey($field, $size), false);
-        $avatar = false;
         if ($avatar === false) {
             $avatar = $this->cacheAvatar($field, $size);
         }
@@ -90,8 +89,9 @@ trait Picture
             $image = $this->avatarCacheKey($field);
             Cache::forget($image);
 
-            // Thumb
+            // Thumbs
             $image = $this->avatarCacheKey($field, '_thumb');
+            Cache::forget($image);
             $image = $this->avatarCacheKey($field, '_mid');
             Cache::forget($image);
         }

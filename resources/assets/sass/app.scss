@@ -155,7 +155,6 @@ table {
 }
 
 tr.tr-hover {
-  cursor: pointer;
   font-weight: 700;
 
   &:hover {
@@ -166,7 +165,7 @@ tr.tr-hover {
 /**
  * Search
  */
-.live-search-results {
+/*.live-search-results {
   background-color: white;
   position: absolute;
   z-index: 1;
@@ -182,34 +181,12 @@ tr.tr-hover {
     border-top-right-radius: 0 !important;
     border-top-left-radius: 0 !important;
   }
-}
-.search-results-dropdown {
-  margin-bottom: 0;
-}
+}*/
 
 .input-error {
   border: 1px inset red;
 }
 
-// Private/Public
-.entity-attributes {
-    .fa-unlock-alt {
-        color: rgba(0, 0, 0, 0.3);
-        cursor: pointer;
-
-        &:hover {
-            color: rgba(0, 0, 0, 0.8);
-        }
-    }
-
-    .fa-lock {
-        cursor: pointer;
-
-        &:hover {
-            color: rgba(0, 0, 0, 0.8);
-        }
-    }
-}
 
 #new-entity-modal, #entity-modal {
     z-index: 9900;
@@ -463,8 +440,6 @@ button.dropdown-item {
     animation: fa-spin 2s linear infinite;
     content: "\f110";
 }
-
-
 
 @import "calendar";
 @import "tooltip";

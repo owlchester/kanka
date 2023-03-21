@@ -19850,7 +19850,9 @@ __webpack_require__.r(__webpack_exports__);
     /* API used to load recently viewed entities from the user */
     api_recent: String,
     /* Placeholder text for the search field */
-    placeholder: String
+    placeholder: String,
+    /** Tooltip for the keyboard shortcut **/
+    keyboard_tooltip: String
   },
   components: {
     LookupEntity: _Lookup_LookupEntity_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -19940,6 +19942,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.recent = response.data.recent;
         _this3.texts.recents = response.data.texts.recents;
         _this3.texts.hint = response.data.texts.hint;
+        _this3.texts.keyboard = response.data.texts.keyboard;
         _this3.show_loading = false;
         _this3.show_recent = true;
         _this3.has_recent = true;
@@ -20526,19 +20529,19 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = ["href", "title"];
 var _hoisted_4 = {
-  "class": "flex-grow pl-1"
+  "class": "flex-grow truncate pl-1"
 };
 var _hoisted_5 = {
-  "class": "font-extrabold entity-name truncate max-w-50 mb-0"
+  "class": "font-extrabold entity-name truncate"
 };
 var _hoisted_6 = {
   "class": "entity-type text-xs"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-    "class": "flex justify-center gap-1 mb-1 cursor-pointer hover:lookup-entity rounded p-1",
+    "class": "flex justify-center gap-1 mb-1 cursor-pointer hover:lookup-entity rounded p-1 w-full",
     "data-id": $props.entity.id,
-    onClick: _cache[0] || (_cache[0] = function ($event) {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.preview($props.entity);
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
@@ -20546,6 +20549,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
       backgroundImage: $options.backgroundImage($props.entity)
     }),
+    onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["stop"])),
     title: $props.entity.name,
     "class": "rounded cover-background block h-16 w-16"
   }, null, 12 /* STYLE, PROPS */, _hoisted_3)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.type), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_1);
@@ -20567,53 +20571,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex-grow mr-2"
+  "class": "flex grow mr-2"
 };
-var _hoisted_2 = ["placeholder"];
-var _hoisted_3 = {
-  key: 0,
-  "class": "search-drawer absolute top-0 left-0 h-screen bg-navbar mt-12 shadow-r w-sidebar z-1010"
+var _hoisted_2 = {
+  "class": "relative grow"
 };
+var _hoisted_3 = ["placeholder"];
 var _hoisted_4 = {
-  key: 0,
-  "class": "text-center mt-5"
+  "class": "form-control-feedback hidden-xs hidden-sm"
 };
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_5 = ["title"];
+var _hoisted_6 = {
+  key: 0,
+  "class": "search-drawer absolute top-0 left-0 mt-12 h-sidebar w-sidebar bg-navbar shadow-r"
+};
+var _hoisted_7 = {
+  key: 0,
+  "class": "text-center"
+};
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-spinner fa-spin",
   "aria-hidden": "true",
   "aria-label": "Loading"
 }, null, -1 /* HOISTED */);
-var _hoisted_6 = [_hoisted_5];
-var _hoisted_7 = {
-  key: 1,
-  "class": "search-recent bg-lookup p-2 overflow-y h-screen shadow-r mb-5"
-};
-var _hoisted_8 = {
-  key: 0,
-  "class": "mb-5"
-};
-var _hoisted_9 = {
-  "class": "italic text-xs text-center"
-};
+var _hoisted_9 = [_hoisted_8];
 var _hoisted_10 = {
   key: 1,
-  "class": "search-results mb-5"
+  "class": "search-recent bg-lookup p-2 min-h-full overflow-y shadow-r flex flex-col items-stretch"
 };
 var _hoisted_11 = {
-  "class": "text-sm text-uppercase mb-2"
+  key: 0,
+  "class": "flex-0"
 };
 var _hoisted_12 = {
+  "class": "italic text-xs text-center"
+};
+var _hoisted_13 = {
+  "class": "grow"
+};
+var _hoisted_14 = {
+  key: 0,
+  "class": "search-results mb-2"
+};
+var _hoisted_15 = {
+  "class": "text-sm text-uppercase mb-2"
+};
+var _hoisted_16 = {
   key: 0,
   "class": "italic"
 };
-var _hoisted_13 = {
-  key: 2,
+var _hoisted_17 = {
+  key: 1,
   "class": "recent-searches"
 };
-var _hoisted_14 = {
+var _hoisted_18 = {
   "class": "text-sm text-uppercase my-2 mx-1"
 };
-var _hoisted_15 = {
+var _hoisted_19 = {
+  key: 1,
+  "class": "flex-0 text-xs text-center"
+};
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+var _hoisted_21 = ["innerHTML"];
+var _hoisted_22 = {
   key: 2,
   "class": "search-preview bg-lookup h-screen overflow-y shadow-r pb-5"
 };
@@ -20621,7 +20641,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_LookupEntity = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("LookupEntity");
   var _component_EntityPreview = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("EntityPreview");
   var _directive_click_outside = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("click-outside");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "class": "form-control",
     maxlength: "25",
@@ -20629,24 +20649,37 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.term = $event;
     }),
-    onFocus: _cache[1] || (_cache[1] = function ($event) {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.focus();
     }),
-    onKeydown: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function ($event) {
+    onFocus: _cache[2] || (_cache[2] = function ($event) {
+      return $options.focus();
+    }),
+    onKeydown: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function ($event) {
       return $options.escape();
     }, ["esc"])),
     placeholder: $props.placeholder
-  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_2), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.term]]), $data.show_recent || $data.show_loading || $data.show_preview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [$data.show_loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, _hoisted_6)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.show_recent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [!$data.show_results ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.texts.hint), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.show_results ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.texts.results), 1 /* TEXT */), $data.results.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.texts.empty_results), 1 /* TEXT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.term]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "flex-none keyboard-shortcut py-1",
+    id: "lookup-kb-shortcut",
+    "data-toggle": "tooltip",
+    title: $props.keyboard_tooltip,
+    "data-html": "true",
+    "data-placement": "bottom"
+  }, "K", 8 /* PROPS */, _hoisted_5)])]), $data.show_recent || $data.show_loading || $data.show_preview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", _hoisted_6, [$data.show_loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, _hoisted_9)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.show_recent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [!$data.show_results ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.texts.hint), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [$data.show_results ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.texts.results), 1 /* TEXT */), $data.results.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.texts.empty_results), 1 /* TEXT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 1
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.results, function (entity) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_LookupEntity, {
       entity: entity
     }, null, 8 /* PROPS */, ["entity"]);
-  }), 256 /* UNKEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.recent.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.texts.recents), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.recent, function (entity) {
+  }), 256 /* UNKEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.recent.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.texts.recents), 1 /* TEXT */), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.recent, function (entity) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_LookupEntity, {
       entity: entity
     }, null, 8 /* PROPS */, ["entity"]);
-  }), 256 /* UNKEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.show_preview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_EntityPreview, {
+  }), 256 /* UNKEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), !_ctx.is_loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+    "class": "italic text-xs text-center",
+    innerHTML: $data.texts.keyboard
+  }, null, 8 /* PROPS */, _hoisted_21)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.show_preview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_EntityPreview, {
     entity: $data.preview_entity
   }, null, 8 /* PROPS */, ["entity"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])), [[_directive_click_outside, $options.onClickOutside]]);
 }
@@ -21367,7 +21400,7 @@ function treeViewInit() {
   $.each($('.table-nested > tbody > tr'), function () {
     var children = $(this).data('children');
     if (parseInt(children) > 0) {
-      $(this).addClass('tr-hover');
+      $(this).addClass('tr-hover cursor-pointer');
       $(this).on('click', function (e) {
         var target = $(e.target);
         // Don't trigger the click on the checkbox (used for bulk actions)
@@ -23526,7 +23559,7 @@ function quickCreatorSubformHandler() {
       context: this
     }).done(function (result) {
       // New entity was created, let's follow that redirect
-      console.log('result', result);
+      //console.log('result', result);
       if (_typeof(result) === 'object') {
         if (result.redirect) {
           window.location.replace(result.redirect);
@@ -23545,11 +23578,13 @@ function quickCreatorSubformHandler() {
         $(quickCreatorModalID).find('.modal-content').html('').show();
         $(quickCreatorModalID).find('.modal-spinner').hide();
         $(quickCreatorModalID).modal('toggle');
+        quickCreatorHandleEvents();
         return;
       }
       $(quickCreatorModalID).find('.modal-content').html(result).show();
       $(quickCreatorModalID).find('.modal-spinner').hide();
       quickCreatorUI();
+      quickCreatorHandleEvents();
     }).fail(function (err) {
       /** @property {string} responseJSON - json errors from response  */
       if (err.responseJSON.errors) {
@@ -23616,12 +23651,7 @@ function quickCreatorToggles() {
       url: $(this).data('url')
     }).done(function (result) {
       $('#entity-modal').find('.modal-content').html(result).show();
-      quickCreatorToggles();
-      quickCreatorDuplicateName();
-      quickCreatorBackButton();
-      quickCreatorSubformHandler();
-      window.initForeignSelect();
-      window.initTags();
+      quickCreatorHandleEvents();
     });
   });
   $('.qq-action-more').unbind('click').on('click', function (e) {
@@ -23630,6 +23660,14 @@ function quickCreatorToggles() {
     $('.qq-more-fields').show();
   });
   quickCreatorUI();
+}
+function quickCreatorHandleEvents() {
+  quickCreatorToggles();
+  quickCreatorDuplicateName();
+  quickCreatorBackButton();
+  quickCreatorSubformHandler();
+  window.initForeignSelect();
+  window.initTags();
 }
 
 /***/ }),

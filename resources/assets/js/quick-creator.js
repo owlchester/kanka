@@ -126,7 +126,7 @@ function quickCreatorSubformHandler() {
             context: this
         }).done(function (result) {
             // New entity was created, let's follow that redirect
-            console.log('result', result);
+            //console.log('result', result);
             if (typeof result === 'object') {
                 if (result.redirect) {
                     window.location.replace(result.redirect);
@@ -147,12 +147,15 @@ function quickCreatorSubformHandler() {
                 $(quickCreatorModalID).find('.modal-spinner').hide();
                 $(quickCreatorModalID).modal('toggle');
 
+                quickCreatorHandleEvents();
+
                 return;
             }
 
             $(quickCreatorModalID).find('.modal-content').html(result).show();
             $(quickCreatorModalID).find('.modal-spinner').hide();
             quickCreatorUI();
+            quickCreatorHandleEvents();
 
         }).fail(function (err) {
             /** @property {string} responseJSON - json errors from response  */
@@ -232,13 +235,7 @@ function quickCreatorToggles() {
         })
             .done(function (result) {
                 $('#entity-modal').find('.modal-content').html(result).show();
-
-                quickCreatorToggles();
-                quickCreatorDuplicateName();
-                quickCreatorBackButton();
-                quickCreatorSubformHandler();
-                window.initForeignSelect();
-                window.initTags();
+                quickCreatorHandleEvents();
             })
         ;
     });
@@ -250,4 +247,14 @@ function quickCreatorToggles() {
     });
 
     quickCreatorUI();
+}
+
+function quickCreatorHandleEvents() {
+
+    quickCreatorToggles();
+    quickCreatorDuplicateName();
+    quickCreatorBackButton();
+    quickCreatorSubformHandler();
+    window.initForeignSelect();
+    window.initTags();
 }

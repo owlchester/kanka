@@ -83,7 +83,8 @@ class LiveController extends Controller
             'recent' => $recent,
             'texts' => [
                 'recents' => __('search.lookup.recents'),
-                'hint' => __('search.lookup.hint')
+                'hint' => __('search.lookup.hint'),
+                'keyboard' => __('search.lookup.keyboard', ['k' => '<strong>k</strong>', 'esc' => '<strong>esc</strong>'])
             ],
         ]);
     }
