@@ -1,5 +1,5 @@
 <template>
-    <div v-click-outside="onClickOutside" class="flex grow mr-2 ">
+    <div v-click-outside="onClickOutside" class="flex grow mr-2">
         <div class="relative grow">
             <input type="text" class="form-control" maxlength="25"
                 id="entity-lookup"

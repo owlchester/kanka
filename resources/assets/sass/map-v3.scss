@@ -136,6 +136,9 @@ $mapSidebarWidth: 380px;
         padding-top: 0;
         z-index: 1040;
     }
+    header {
+        z-index: 1050;
+    }
 
     .marker-header {
         .marker-top {

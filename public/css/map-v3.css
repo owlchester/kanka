@@ -186,6 +186,9 @@
   padding-top: 0;
   z-index: 1040;
 }
+#map-body header {
+  z-index: 1050;
+}
 #map-body .marker-header .marker-top {
   float: right;
 }

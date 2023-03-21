@@ -11,7 +11,7 @@
 
 @section('entity-header-actions')
     @can('update', $model)
-        <div class="header-buttons">
+        <div class="header-buttons inline-block pull-right ml-auto">
             <a href="{{ route('abilities.entity-add', $model) }}" class="btn btn-warning btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('abilities.entity-add', $model) }}">
                 <i class="fa-solid fa-plus" aria-hidden="true"></i> <span class="hidden-sm hidden-xs">{{ __('abilities.children.actions.add') }}</span>
