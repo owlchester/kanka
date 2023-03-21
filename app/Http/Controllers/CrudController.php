@@ -89,8 +89,6 @@ class CrudController extends Controller
     {
         $this->middleware('campaign.member');
         $this->filterService = new FilterService();
-
-        $this->titleKey = __('sidebar.relations');
     }
 
     /**

@@ -33,6 +33,8 @@ class RelationController extends CrudController
     {
         parent::__construct();
         $this->middleware('auth');
+
+        $this->titleKey = __('sidebar.relations');
     }
 
     /**
