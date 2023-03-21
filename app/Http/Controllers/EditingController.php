@@ -58,7 +58,7 @@ class EditingController extends Controller
 
     public function confirmPost(Entity $entity, Post $post)
     {
-        $this->authorize('entity-note', [$entity->child, 'edit', $post]);
+        $this->authorize('post', [$entity->child, 'edit', $post]);
 
         return $this->confirmHandle($post);
     }
@@ -93,7 +93,7 @@ class EditingController extends Controller
 
     public function keepAlivePost(Entity $entity, Post $post)
     {
-        $this->authorize('entity-note', [$entity->child, 'edit', $post]);
+        $this->authorize('post', [$entity->child, 'edit', $post]);
 
         return $this->keepAliveHandle($post);
     }
