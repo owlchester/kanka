@@ -20200,7 +20200,12 @@ __webpack_require__.r(__webpack_exports__);
     showDialog: function showDialog() {
       $(this.modal).modal('show');
     },
+    saveSuggestion: function saveSuggestion(character) {
+      this.emitter.emit('saveModal', [character]);
+      this.saveModal(character);
+    },
     saveModal: function saveModal() {
+      var character = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       if (this.isEditingRelation) {
         this.editRelation();
       } else if (this.isAddingRelation) {
@@ -20210,7 +20215,7 @@ __webpack_require__.r(__webpack_exports__);
       } else if (this.isEditingEntity) {
         this.editEntity();
       } else if (this.isAddingCharacter) {
-        this.editEntity();
+        this.editEntity(character);
       }
     },
     showCreateNode: function showCreateNode() {
@@ -20357,7 +20362,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     editEntity: function editEntity() {
       var _this7 = this;
+      var character = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       var entity_id = $(this.entityField).val();
+      if (character) {
+        entity_id = character;
+      }
       if (!entity_id) {
         // Nothing, ignore
         this.closeModal();
@@ -20422,6 +20431,7 @@ __webpack_require__.r(__webpack_exports__);
       _this9.nodes = resp.data.nodes;
       _this9.entities = resp.data.entities;
       _this9.texts = resp.data.texts;
+      _this9.suggestions = resp.data.suggestions;
       window.ftTexts = _this9.texts;
       _this9.originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));
       _this9.originalEntities = JSON.parse(JSON.stringify(resp.data.entities));
@@ -20942,10 +20952,18 @@ var _hoisted_27 = ["data-url"];
 var _hoisted_28 = {
   "class": "form-group"
 };
-var _hoisted_29 = {
+var _hoisted_29 = ["onClick"];
+var _hoisted_30 = {
+  href: "#"
+};
+var _hoisted_31 = {
+  "class": "form-group"
+};
+var _hoisted_32 = {
   "class": "modal-footer"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _this = this;
   var _component_FamilyNode = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FamilyNode");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [!$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [!$data.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
@@ -21008,7 +21026,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "data-dropdown-parent": "#family-tree-modal",
     tabindex: "-1",
     "aria-hidden": "true"
-  }, null, 8 /* PROPS */, _hoisted_27)], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isAddingRelation || $data.isAddingChild || $data.isEditingEntity || $data.isAddingCharacter]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.fields.relation), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, null, 8 /* PROPS */, _hoisted_27)], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isAddingRelation || $data.isAddingChild || $data.isEditingEntity || $data.isAddingCharacter]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(this.suggestions, function (suggestion, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      onClick: function onClick($event) {
+        return _this.saveSuggestion(index);
+      }
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(suggestion), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_29);
+  }), 256 /* UNKEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isAddingCharacter]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.fields.relation), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $data.relation = $event;
     }),
@@ -21016,7 +21040,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     maxlength: "70",
     "class": "form-control",
     id: "family_tree_relation"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.relation]])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isEditingRelation || $data.isAddingRelation]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.relation]])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isEditingRelation || $data.isAddingRelation]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-primary",
     onClick: _cache[7] || (_cache[7] = function ($event) {
       return $options.saveModal();

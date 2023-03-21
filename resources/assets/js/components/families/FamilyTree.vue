@@ -59,6 +59,13 @@
                         <label>{{ this.texts.modals.fields.character }}</label>
                         <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true" ></select>
                     </div>
+                    <div class="form-group" v-show="isAddingCharacter">
+                        <li v-for="(suggestion, index) in this.suggestions"
+                            v-on:click="this.saveSuggestion(index)"
+                        >
+                        <a href="#"> {{ suggestion }} </a>
+                        </li>
+                    </div>
                     <div class="form-group" v-show="isEditingRelation || isAddingRelation">
                         <label>{{ this.texts.modals.fields.relation }}</label>
                         <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" />
@@ -198,7 +205,11 @@ export default {
         showDialog() {
             $(this.modal).modal('show')
         },
-        saveModal() {
+        saveSuggestion: function(character) {
+            this.emitter.emit('saveModal', [character]);
+            this.saveModal(character);
+        },
+        saveModal(character = null) {
             if (this.isEditingRelation) {
                 this.editRelation();
             } else if(this.isAddingRelation) {
@@ -208,7 +219,7 @@ export default {
             } else if(this.isEditingEntity) {
                 this.editEntity();
             } else if(this.isAddingCharacter) {
-                this.editEntity();
+                this.editEntity(character);
             }
         },
         showCreateNode() {
@@ -344,8 +355,11 @@ export default {
             };
             return this.nodes = this.nodes.reduce(getRelationNodes, []);
         },
-        editEntity() {
+        editEntity(character = null) {
             let entity_id = $(this.entityField).val();
+            if (character) {
+                entity_id = character;
+            }
             if (!entity_id) {
                 // Nothing, ignore
                 this.closeModal();
@@ -410,6 +424,7 @@ export default {
             this.nodes = resp.data.nodes;
             this.entities = resp.data.entities;
             this.texts = resp.data.texts;
+            this.suggestions = resp.data.suggestions;
             window.ftTexts = this.texts;
 
             this.originalNodes = JSON.parse(JSON.stringify(resp.data.nodes));

@@ -23,6 +23,7 @@ class FamilyTreeService
     protected array $config = [];
 
     protected array $configEntityIds = [];
+    protected array $characterSuggestions = [];
 
     public function family(Family $family): self
     {
@@ -46,6 +47,7 @@ class FamilyTreeService
         return [
             'nodes' => $this->fillNodes(),
             'entities' => $this->entities,
+            'suggestions' => $this->characterSuggestions,
             'texts' => $this->texts(),
         ];
     }
@@ -67,14 +69,22 @@ class FamilyTreeService
     protected function loadSetup(): void
     {
         $this->loadFamilyTree();
+        $this->loadFamily();
 
         // Get all the entity ids
         if (empty($this->familyTree->config)) {
             return;
         }
-
         $this->prepareEntities();
         //foreach ()
+    }
+
+    protected function loadFamily(): void
+    {
+        $familyMembers = $this->family->allMembers()->orderBy('name')->take(10)->get();
+        foreach ($familyMembers as $member) {
+            $this->characterSuggestions[$member->entity->id] = $member->name;
+        }
     }
 
     protected function loadFamilyTree(): void
@@ -124,6 +134,7 @@ class FamilyTreeService
             $this->familyTree->config = [];
             //$this->generatePlaceholder();
         }
+        //dd($this->characterSuggestions);
         //dump($this->missingIds);
     }
 
