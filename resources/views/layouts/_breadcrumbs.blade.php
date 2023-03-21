@@ -26,16 +26,16 @@
                 @if (!empty($breadcrumb['url']))
                     <a href="{{ $breadcrumb['url'] }}" title="{{ $breadcrumb['label'] }}">
                         @if (strlen($breadcrumb['label']) > 22)
-                            {!! substr($breadcrumb['label'], 0, 20) . '...' !!}
+                            {!! \Illuminate\Support\Str::limit(e($breadcrumb['label']), 20) !!}
                         @else
-                            {!! $breadcrumb['label'] !!}
+                            {!! e($breadcrumb['label']) !!}
                         @endif
                     </a>
                 @else
                     @if (strlen($breadcrumb) > 22)
-                        <span title="{{ $breadcrumb }}">{!! substr($breadcrumb, 0, 20) . '...' !!}</span>
+                        <span title="{{ $breadcrumb }}">{!! \Illuminate\Support\Str::limit(e($breadcrumb), 20) !!}</span>
                     @else
-                        {!! $breadcrumb !!}
+                        {!! e($breadcrumb) !!}
                     @endif
                 @endif
             </li>

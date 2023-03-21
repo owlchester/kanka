@@ -56,8 +56,7 @@ class EntityAbilityObserver
 
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
-        $entityAbility->entity->child->savingObserver = false;
-        $entityAbility->entity->child->touch();
+        $entityAbility->entity->child->touchQuietly();
     }
 
     /**

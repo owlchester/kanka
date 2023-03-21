@@ -38,8 +38,6 @@ class ChunkingService
     public function map(Map $map): self
     {
         $this->map = $map;
-        $this->map->saveObserver = false;
-        $this->map->savingObserver = false;
         return $this;
     }
 
@@ -54,7 +52,7 @@ class ChunkingService
 
         // Set the map chunking process
         $this->map->chunking_status = Map::CHUNKING_RUNNING;
-        $this->map->save();
+        $this->map->saveQuietly();
 
         // Get original image and load it into memory
         $this->log('File ' . $this->map->image);
@@ -234,7 +232,7 @@ class ChunkingService
         if ($this->map->initial_zoom > $this->maxZoom || $this->map->initial_zoom < $this->minZoom) {
             $this->map->initial_zoom = max($this->minZoom, min($this->maxZoom, $this->map->initial_zoom));
         }
-        $this->map->save();
+        $this->map->saveQuietly();
         Log::info('Saved map #' . $this->map->id);
         if ($this->map->entity->creator) {
             /** @var User $user */

@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Inventory;
-use Illuminate\Support\Facades\Auth;
 
 class InventoryObserver
 {
@@ -17,7 +16,7 @@ class InventoryObserver
      */
     public function creating(Inventory $inventory)
     {
-        $inventory->created_by = Auth::user()->id;
+        $inventory->created_by = auth()->user()->id;
     }
 
     /**
@@ -40,8 +39,7 @@ class InventoryObserver
     {
         // When adding or changing an inventory to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
-        $inventory->entity->child->savingObserver = false;
-        $inventory->entity->child->touch();
+        $inventory->entity->child->touchQuietly();
     }
 
     /**
@@ -53,7 +51,7 @@ class InventoryObserver
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
         if ($inventory->entity) {
-            $inventory->entity->child->touch();
+            $inventory->entity->child->touchQuietly();
         }
     }
 }

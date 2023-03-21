@@ -9,6 +9,11 @@ class MenuLinkObserver
 {
     use PurifiableTrait;
 
+    public function creating(MenuLink $model)
+    {
+        $model->campaign_id = CampaignLocalization::getCampaign()->id;
+    }
+
     /**
      * @param MenuLink $model
      */
@@ -17,10 +22,6 @@ class MenuLinkObserver
         if (!$model->savingObserver) {
             return;
         }
-
-        $model->campaign_id = CampaignLocalization::getCampaign()->id;
-        //$model->icon = $this->purify($model->icon);
-        //$model->tab = strtolower(trim($model->tab, '#'));
 
         // Handle empty or wrong positions
         if (empty($model->position)) {

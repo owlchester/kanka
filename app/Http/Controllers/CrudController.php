@@ -12,6 +12,7 @@ use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\MenuLink;
 use App\Models\MiscModel;
+use App\Sanitizers\MiscSanitizer;
 use App\Services\MultiEditingService;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
@@ -62,6 +63,9 @@ class CrudController extends Controller
     /** @var array List of navigation actions on top of the datagrids */
     protected array $navActions = [];
 
+    /** @var string Make the request play nice with the model */
+    protected string $sanitizer = MiscSanitizer::class;
+
     /**
      * A sorter object for subviews
      * @var null|DatagridSorter
@@ -71,8 +75,8 @@ class CrudController extends Controller
     /** @var bool If the auth check was already performed on this controller */
     protected bool $alreadyAuthChecked = false;
 
-    /** @var string|null */
-    protected $datagridActions = DefaultDatagridActions::class;
+    /** @var string The datagrid actions, set to null to disable */
+    protected string $datagridActions = DefaultDatagridActions::class;
 
     /** @var array|LengthAwarePaginator|\Illuminate\Contracts\Pagination\LengthAwarePaginator */
     protected $rows = [];
@@ -266,6 +270,13 @@ class CrudController extends Controller
         }
 
         try {
+            // Sanitize the data
+            if (!empty($this->sanitizer)) {
+                /** @var MiscSanitizer $sanitizer */
+                $sanitizer = app()->make($this->sanitizer);
+                $request->merge($sanitizer->request($request)->sanitize());
+            }
+
             /** @var MiscModel $model */
             $model = new $this->model();
             /** @var MiscModel $new */
@@ -425,6 +436,13 @@ class CrudController extends Controller
         }
 
         try {
+            // Sanitize the data
+            if (!empty($this->sanitizer)) {
+                /** @var MiscSanitizer $sanitizer */
+                $sanitizer = app()->make($this->sanitizer);
+                $request->merge($sanitizer->request($request)->sanitize());
+            }
+
             /** @var MiscModel $model */
             $data = $this->prepareData($request, $model);
             $model->update($data);
