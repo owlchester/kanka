@@ -326,6 +326,7 @@ class FamilyTreeService
                 'fields' => [
                     'relation' => __('entities/relations.fields.relation'),
                     'character' => __('entities.character'),
+                    'member' => __('families/trees.modals.entity.add.member')
                 ],
             ],
             'toasts' => [

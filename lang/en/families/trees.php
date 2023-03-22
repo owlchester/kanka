@@ -32,6 +32,7 @@ return [
         'entity' => [
             'add' => [
                 'title' => 'Add a character',
+                'member' => 'Member',
                 'success' => 'Character added.',
             ],
             'edit' => [

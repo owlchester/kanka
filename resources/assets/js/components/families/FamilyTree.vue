@@ -60,11 +60,14 @@
                         <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
                     </div>
                     <div class="form-group" v-show="isAddingCharacter">
-                        <li v-for="(suggestion, index) in this.suggestions"
-                            v-on:click="this.saveSuggestion(index)"
-                        >
-                        <a href="#"> {{ suggestion }} </a>
-                        </li>
+                        <label>{{ this.texts.modals.fields.member }}</label>
+                        <ul>
+                            <li v-for="(suggestion, index) in this.suggestions"
+                                v-on:click="this.saveSuggestion(index)"
+                            >
+                                <a href="#"> {{ suggestion }} </a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="form-group" v-show="isEditingRelation || isAddingRelation">
                         <label>{{ this.texts.modals.fields.relation }}</label>
