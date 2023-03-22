@@ -61,15 +61,8 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="form-group">
-                        <label for="config[class]">
-                            {{ __('dashboard.widgets.fields.class') }}
-                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
-                        </label>
-                        {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
-                        <p class="help-block visible-xs visible-sm">
-                            {{ __('dashboard.widgets.helpers.class') }}
-                        </p>
-                        @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
+                        <label>{{ __('crud.fields.position') }}</label>
+                        {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
@@ -86,11 +79,20 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
                         {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => 'form-control']) !!}
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="form-group">
+                        <label for="config[class]">
+                            {{ __('dashboard.widgets.fields.class') }}
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+                        </label>
+                        {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
+                        <p class="help-block visible-xs visible-sm">
+                            {{ __('dashboard.widgets.helpers.class') }}
+                        </p>
+                        @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label>{{ __('crud.fields.position') }}</label>
-            {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
         </div>
 
         @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.posts._permissions')
