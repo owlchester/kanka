@@ -10,6 +10,9 @@ return [
     ],
     'lookup' => [
         'recents' => 'Recents',
+        'results' => 'Results',
         'hint' => 'Type at least 3 letters to search for entities in the campaign.',
+        'keyboard' => 'press :k to search, :esc to dismiss',
+        'empty' => 'No results',
     ]
 ];

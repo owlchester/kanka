@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $entity_id
  * @property integer|null $item_id
+ * @property integer|null $created_by
  * @property string $name
  * @property integer $amount
  * @property string $position

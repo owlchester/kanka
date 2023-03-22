@@ -8,14 +8,6 @@ use App\Models\Note;
 class NoteObserver extends MiscObserver
 {
     /**
-     * @param MiscModel $model
-     */
-    public function saving(MiscModel $model)
-    {
-        parent::saving($model);
-    }
-
-    /**
      * @param Note $note
      */
     public function deleting(MiscModel $note)

@@ -4,8 +4,6 @@
  */
 .entity-menu {
     li {
-        display: flex;
-
         a {
             max-height: 53px;
         }
@@ -44,15 +42,6 @@
         }
     }
 }
-
-.post .box-header.with-border {
-    display: flex;
-}
-
-.post > .box-header > h3.box-title {
-    flex-grow: 5;
-}
-
 
 /** Collapsed / Expanded elements **/
 .element-toggle {

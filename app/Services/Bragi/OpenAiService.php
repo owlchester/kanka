@@ -9,22 +9,27 @@ use Orhanerday\OpenAi\OpenAi;
 class OpenAiService
 {
     /** @var string */
-    protected $prompt;
+    protected string $prompt;
 
     /** @var string */
-    protected $name;
+    protected ?string $name;
+    protected ?string$pronouns;
+    protected ?string$gender;
 
-    protected $output;
+    protected mixed $output;
 
     /**
      * @param string $prompt
-     * @param string $name
+     * @param array $context
      * @return string
      */
-    public function input(string $prompt, string $name = null): self
+    public function input(string $prompt, array $context = []): self
     {
         $this->prompt = $prompt;
-        $this->name = $name;
+        foreach ($context as $key => $value) {
+            $this->$key = $value;
+        }
+
         return $this;
     }
 
@@ -46,15 +51,14 @@ class OpenAiService
         //1 token is almost 0.75 word
         $maxTokens = config('openai.tokens');
 
-        //Generating NPC
-        $complete = $open_ai->completion([
+        $complete = $open_ai->chat([
             'model' => $engine,
-            'prompt' => $prompt,
+            'messages' => $prompt,
             'temperature' => 0.9,
             'max_tokens' => $maxTokens,
             'frequency_penalty' => 0,
             'presence_penalty' => 0.6,
-        ]);
+         ]);
 
         $this->output = json_decode($complete, true);
 
@@ -63,30 +67,45 @@ class OpenAiService
 
     /**
      * Generate the prompt to send to ChatGTP
-     * @return string
+     * @return array
      */
-    protected function preparePrompt(): string
+    protected function preparePrompt(): array
     {
-        $prompt = __('openai.intro');
+        $prompts = [
+            [
+                "role" => "system",
+                "content" => __('openai.intro')
+            ],
+        ];
 
+        $roles = [];
         if (!empty($this->name)) {
-            $prompt = __('openai.intro-named', ['name' => $this->name]);
+            $roles[] = __('openai.intro-named', ['name' => $this->name]);
         }
 
-        $prompt .= ' ';
+        if (!empty($this->pronouns)) {
+            $roles[] = __('openai.intro-gender', ['gender' => $this->gender]);
+        }
+
+        if (!empty($this->gender)) {
+            $roles[] = __('openai.intro-pronouns', ['pronouns' => $this->pronouns]);
+        }
+
         $option = mt_rand(0, count(config('openai.prompts.first')) - 1);
-        $prompt .= __('openai.paragraphs.first', ['option' => config('openai.prompts.first')[$option]]);
+        $roles[] = __('openai.paragraphs.first', ['option' => config('openai.prompts.first')[$option]]);
 
-        $prompt .= ' ';
         $option = mt_rand(0, count(config('openai.prompts.second')) - 1);
-        $prompt .= __('openai.paragraphs.second', ['option' => config('openai.prompts.second')[$option]]);
+        $roles[] = __('openai.paragraphs.second', ['option' => config('openai.prompts.second')[$option]]);
 
-        $prompt .= ' ';
         $option = mt_rand(0, count(config('openai.prompts.third')) - 1);
-        $prompt .= __('openai.paragraphs.third', ['option' => config('openai.prompts.third')[$option]]);
+        $roles[] = __('openai.paragraphs.third', ['option' => config('openai.prompts.third')[$option]]);
 
-        $prompt .= __('openai.closing', ['prompt' => $this->prompt]);
-        return $prompt;
+        $roles[] = __('openai.closing', ['prompt' => $this->prompt]);
+
+        foreach ($roles as $role) {
+            $prompts[] = ['role' => 'user', 'content' => $role];
+        }
+        return $prompts;
     }
 
     public function result(): string
@@ -97,7 +116,7 @@ class OpenAiService
             throw $excep;
         }
         $return = '';
-        $texts = explode("\n", $this->output["choices"][0]["text"]);
+        $texts = explode("\n", $this->output["choices"][0]["message"]["content"]);
         foreach ($texts as $text) {
             $striped = trim(htmlentities($text));
             if (empty($striped) || $striped == '.') {

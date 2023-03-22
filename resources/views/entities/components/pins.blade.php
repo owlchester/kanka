@@ -20,9 +20,9 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
                 <i class="fa-solid fa-question-circle pull-right" ></i>
             </a>
         </div>
-        <div class="sidebar-elements collapse in" id="sidebar-pinned-elements">
+        <div class="sidebar-elements grid my-1 collapse in" id="sidebar-pinned-elements">
 
-            <ul class="pins m-0 p-0">
+            <ul class="pins m-0 p-0 list-none">
                 @includeWhen(!$model->entity->pinnedFiles->isEmpty(), 'entities.components.assets')
                 @include('entities.components.relations')
                 @includeWhen(method_exists($model, 'pinnedMembers') && !$model->pinnedMembers->isEmpty(), 'entities.components.members')

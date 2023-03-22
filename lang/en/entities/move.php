@@ -21,7 +21,7 @@ return [
         'description_bulk_copy' => 'Select a campaign you want to copy the selected entities to.',
         'title'                 => 'Move or copy an entity to another campaign',
     ],
-    'success'       => 'Entity :name moved.',
-    'success_copy'  => 'Entity :name copied.',
+    'success'       => 'Entity :name moved to the :campaign campaign.',
+    'success_copy'  => 'Entity :name copied to the :campaign campaign.',
     'title'         => 'Move :name',
 ];

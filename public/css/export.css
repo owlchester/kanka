@@ -58,9 +58,6 @@ td {
   -webkit-border-radius: 50%;
   width: 40px;
   height: 40px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
   display: block;
 }
 

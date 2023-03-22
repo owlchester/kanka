@@ -21,10 +21,6 @@ class EntityAbilityObserver
      */
     public function saved(EntityAbility $entityAbility)
     {
-        if (!$entityAbility->savedObserver) {
-            return;
-        }
-
         // Position isn't empty, move the rest
         if ($entityAbility->position !== null) {
             $position = $entityAbility->position;
@@ -48,16 +44,14 @@ class EntityAbilityObserver
                     continue;
                 }
                 $position++;
-                $next->savedObserver = false;
                 $next->position = $position;
-                $next->save();
+                $next->saveQuietly();
             }
         }
 
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
-        $entityAbility->entity->child->savingObserver = false;
-        $entityAbility->entity->child->touch();
+        $entityAbility->entity->child->touchQuietly();
     }
 
     /**

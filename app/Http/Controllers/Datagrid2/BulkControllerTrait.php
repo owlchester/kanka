@@ -35,6 +35,8 @@ trait BulkControllerTrait
         }
         foreach ($models as $id) {
             /** @var mixed|MapGroup|Model|null $mapGroup */
+
+            /** @var MapGroup $modelClass */
             $modelClass = new $className();
             $model = $modelClass->find($id);
             if (empty($model)) {

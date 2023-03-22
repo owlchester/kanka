@@ -78,7 +78,7 @@
                                     @foreach ($log->changes as $attribute => $value)
                                         @if (is_array($value)) @continue @endif
                                         <dt>{!! $log->attributeKey($transKey, $attribute) !!}</dt>
-                                        <dd class="text-break">{{ $value }}</dd>
+                                        <dd class="break-all">{{ $value }}</dd>
                                     @endforeach
                                 </dl>
                             </td>

@@ -125,14 +125,15 @@ class TimelineElement extends Model
      */
     public function htmlIcon(): string
     {
+        $min = 'absolute top-0 text-center w-8 h-8 rounded-full';
         if (!empty($this->icon)) {
             if (Str::startsWith($this->icon, '<i class=')) {
                 return str_replace('<i class="', '<i class="bg-' . $this->colour . ' ', $this->icon);
             }
-            return '<i class="bg-' . $this->colour . ' ' . $this->icon . '"></i>';
+            return '<i class="bg-' . $this->colour . ' ' . $this->icon . ' ' . $min . '" aria-hidden="true"></i>';
         }
 
-        return '<i class="fa fa-solid fa-hourglass-half bg-' . $this->colour . '"></i>';
+        return '<i class="fa fa-solid fa-hourglass-half bg-' . $this->colour . ' ' . $min . '" aria-hidden="true"></i>';
     }
 
     /**

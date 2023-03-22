@@ -27,11 +27,12 @@
             'field' => 'relation',
             'label' => __('entities/relations.fields.relation'),
             'render' => function($model) {
-                $colour = null;
-                if (!empty($model->colour)) {
-                    $colour = '<div class="label-tag-bubble" style="background-color: ' . $model->colour . '; "></div> ';
+                if (empty($model->colour)) {
+                    return $model->relation;
                 }
-                return $colour . $model->relation;
+                $html = '<div class="flex items-center gap-1">';
+                $colour = '<div class="flex-0 w-5 h-5 inline-block rounded-2xl items-center justify-center" style="background-color: ' . $model->colour . '; "></div>';
+                return $html . $colour . '<div class="grow">' . $model->relation . '</div></div>';
             }
         ],
         [

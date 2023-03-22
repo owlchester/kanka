@@ -11,7 +11,7 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
         @include('entities.components.profile._location')
         @include('entities.components.profile._type')
     </div>

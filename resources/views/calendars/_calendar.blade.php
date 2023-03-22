@@ -72,7 +72,7 @@ $weekNumber = 1;
                 @if (!empty($day) && !empty($day['week']))
                     @if ($renderer->isNamedWeek($day['week']))
                         <tr class="named_week italic h-4 week-nr-{{ $day['week'] }}">
-                            <td colspan="{{ count($model->weekdays()) }}" class="h-4">
+                            <td colspan="{{ count($model->weekdays()) }}" class="bg-week h-1">
                                 {{ $renderer->namedWeek($day['week']) }}
                             </td>
                         </tr>

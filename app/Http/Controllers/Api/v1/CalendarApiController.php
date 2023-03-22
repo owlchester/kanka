@@ -6,9 +6,17 @@ use App\Models\Campaign;
 use App\Models\Calendar;
 use App\Http\Requests\StoreCalendar as Request;
 use App\Http\Resources\CalendarResource as Resource;
+use App\Sanitizers\CalendarSanitizer;
 
 class CalendarApiController extends ApiController
 {
+    protected CalendarSanitizer $sanitizer;
+
+    public function __construct(CalendarSanitizer $sanitizer)
+    {
+        $this->sanitizer = $sanitizer;
+    }
+
     /**
      * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -49,6 +57,7 @@ class CalendarApiController extends ApiController
         $this->authorize('create', Calendar::class);
 
         /** @var Calendar $model */
+        $request->merge($this->sanitizer->request($request)->sanitize());
         $model = Calendar::create($request->all());
         $this->crudSave($model);
         return new Resource($model);
@@ -64,6 +73,7 @@ class CalendarApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $calendar);
+        $request->merge($this->sanitizer->request($request)->sanitize());
         $calendar->update($request->all());
         $this->crudSave($calendar);
 

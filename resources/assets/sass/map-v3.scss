@@ -136,6 +136,9 @@ $mapSidebarWidth: 380px;
         padding-top: 0;
         z-index: 1040;
     }
+    header {
+        z-index: 1050;
+    }
 
     .marker-header {
         .marker-top {
@@ -148,21 +151,16 @@ $mapSidebarWidth: 380px;
         background-repeat: no-repeat;
         background-position: 50% 50%;
         aspect-ratio: var(--map-hero-ratio);
-        display: flex;
-        flex-flow: column wrap;
-        flex-direction: column;
+        background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
 
         .marker-header-lower {
-            align-self: end;
-            display: flex;
-            align-items: flex-end;
-            width: 100%;
-            flex-grow: 1;
-
             .marker-name {
                 padding: 2.0rem 0.5rem 0.8rem 0.5rem;
-                background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
             }
+        }
+
+        .marker-header-fade {
+            background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
         }
     }
 

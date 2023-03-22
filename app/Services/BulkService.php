@@ -6,11 +6,13 @@ use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
 use App\Models\Relation;
 use App\Models\Tag;
+use App\Services\Entity\TagService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use App\Models\MiscModel;
 use Exception;
 use Illuminate\Support\Str;
+use Stevebauman\Purify\Facades\Purify;
 
 class BulkService
 {
@@ -210,9 +212,14 @@ class BulkService
         $filledFields = [];
         $filledForeigns = [];
         foreach ($fillableFields as $field => $value) {
-            if (!empty($value)) {
+            if (!empty(trim($value))) {
                 $filledFields[$field] = $value;
             }
+        }
+
+        // Purify name
+        if (Arr::has($filledFields, 'name')) {
+            $filledFields['name'] = Purify::clean($filledFields['name']);
         }
 
         // Loop on boolean fields that can be true, false or null
@@ -279,7 +286,6 @@ class BulkService
                 // for admins, but better safe than sorry
                 continue;
             }
-            $entity->savingObserver = false;
             $entityFields = $filledFields;
 
             // Handle math fields
@@ -293,10 +299,7 @@ class BulkService
                     }
                 }
             }
-
-            // Age can be manage differently (math)
-
-            $entity->update($entityFields);
+            $entity->updateQuietly($entityFields);
 
             // Foreign belongsTo loop
             foreach ($filledForeigns as $relation => $ids) {
@@ -326,7 +329,10 @@ class BulkService
                 $entity->entity->tags()->detach($tagIds);
             } else {
                 $existingTags = $entity->entity->tags->pluck('id')->toArray();
-                $canCreateTags = auth()->user()->can('create', Tag::class);
+
+                /** @var TagService $tagService */
+                $tagService = app()->make(TagService::class);
+                $tagService->user(auth()->user());
 
                 // Exclude existing tags to avoid adding a tag several times
                 $addTagIds = [];
@@ -335,12 +341,8 @@ class BulkService
                         /** @var Tag|null $tag */
                         $tag = Tag::find($id);
                         // Create the tag if the user has permission to do so
-                        if (empty($tag) && $canCreateTags) {
-                            $tag = new Tag([
-                                'name' => $id
-                            ]);
-                            $tag->saveImageObserver = false;
-                            $tag->save();
+                        if (empty($tag) && $tagService->isAllowed()) {
+                            $tag = $tagService->create($id, $entity->campaign_id);
                             $tagIds[$number] = $tag->id;
                         }
 

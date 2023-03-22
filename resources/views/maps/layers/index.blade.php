@@ -11,9 +11,10 @@
 
 @section('entity-header-actions')
     @can('update', $model)
-        <div class="header-buttons">
+        <div class="header-buttons inline-block pull-right ml-auto">
             <a href="https://docs.kanka.io/en/latest/entities/maps/layers.html" class="btn btn-default btn-sm" target="_blank">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
+                <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                {{ __('crud.actions.help') }}
             </a>
             @if ($model->explorable())
                 <a href="{{ route('maps.explore', ['map' => $model]) }}" class="btn btn-primary btn-sm">
@@ -24,7 +25,8 @@
             <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-warning btn-sm"
                 data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
             >
-            <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('maps/layers.actions.add') }}
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                {{ __('maps/layers.actions.add') }}
             </a>
         </div>
     @endcan

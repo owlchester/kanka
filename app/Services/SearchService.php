@@ -319,10 +319,6 @@ class SearchService
             if ($this->v2) {
                 return [
                     'entities' => $searchResults,
-                    'texts' => [
-                        'results' => __('Results'),
-                        'empty_results' => __('No results'),
-                    ]
                 ];
             }
             return $searchResults;

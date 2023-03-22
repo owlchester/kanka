@@ -15,8 +15,9 @@ return [
      * "text-curie-001"
      * "text-ada-001"
      * "text-davinci-003"
+     * "gpt-3.5-turbo"
      */
-    'engine' => env('OPEN_AI_ENGINE', 'text-davinci-003'),
+    'engine' => env('OPEN_AI_ENGINE', 'gpt-3.5-turbo'),
 
     /**
      * Number of tokens to use for prompt generation.
@@ -30,16 +31,26 @@ return [
         'first' => [
             'appearance',
             'clothing',
-            'fashion style',
+            'tame fashion style',
+            'flashy fashion style',
+            'questionable fashion style',
             'popularity',
+            'unpopularity',
+            'physical condition',
+            'injury',
         ],
         'second' => [
-            'origins',
+            'origin',
             'upbringing',
             'education',
             'childhood',
             'childhood home',
             'craft',
+            'childhood friends',
+            'parents',
+            'children',
+            'partner',
+            'partners',
         ],
         'third' => [
             'routine',
@@ -49,6 +60,17 @@ return [
             'travels',
             'successes',
             'failures',
+            'accident',
+            'lies',
+            'crimes',
+            'dreams',
+            'mistakes',
+            'successful gambles',
+            'endeavours',
+            'risks',
+            'fall from grace',
+            'rise to riches',
+            'ingenuity',
         ],
     ],
 ];

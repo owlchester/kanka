@@ -12,13 +12,13 @@
 
 
 @section('entity-header-actions')
-        <div class="header-buttons">
+        <div class="header-buttons inline-block pull-right ml-auto">
             <div class="btn-group">
                 <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
-                    <i class="fa-solid fa-list-ul"></i>
+                    <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
                 </a>
                 <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'map']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
-                    <i class="fa-solid fa-map"></i>
+                    <i class="fa-solid fa-map" aria-hidden="true"></i>
                 </a>
             </div>
 

@@ -40,17 +40,13 @@
     }
 
     .sidebar-elements {
-        display: grid;
         grid-template-columns: 100%;
-        margin: 5px 0;
 
         .element {
             margin: 10px 0;
             font-size: 14px;
 
             .title {
-                text-transform: uppercase;
-                font-size: 11px;
                 line-height: 1.1;
             }
 
@@ -62,8 +58,6 @@
         }
 
         ul.pins {
-            list-style: none;
-
             li.list-group-item {
                 background: none;
                 border-left: 0;
@@ -86,27 +80,15 @@
 }
 
 .entity-header {
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: cover;
-    padding-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-
     .entity-header-text {
-        display: flex;
-        flex-direction: column;
-
         .entity-header-line {
             &:nth-last-child(2) {
                 display: inline-block;
             }
         }
-
     }
 
     .entity-header-image {
-        position: relative;
         padding-right: 30px;
     }
 
@@ -118,12 +100,6 @@
         //background-size: contain;
         cursor: pointer;
         z-index: 10;
-    }
-
-    .entity-image.no-thumbor {
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
     }
 
     .tooltip {
@@ -154,18 +130,8 @@
     }
 
     .entity-breadcrumb {
-        margin-bottom: 10px;
-        font-size: 12px;
-        float: none;
-        top: 0;
-        padding: 0;
-        display: block;
-
         li {
-            display: inline-block;
-
             a {
-                text-decoration: none;
                 color: var(--breadcrumb-text);
             }
         }
@@ -178,77 +144,20 @@
     }
 
     .entity-name-header {
-        display: flex;
-        //align-items: center;
-
-        .entity-name {
-            margin: 0;
-            overflow: visible;
-            max-height: unset;
-            word-break: break-all;
-        }
-
-        .entity-name-icons {
-            padding-top: 8px;
-            //margin-left: 5px;
-        }
-
-        .entity-name-icons-2 {
-            min-width: 70px;
-        }
-
-        .entity-name-icons-3 {
-            min-width: 100px;
-        }
-
-        .entity-icons {
-            margin-left: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            //margin-bottom: 15px;
-        }
 
         .btn-group.open .dropdown-toggle {
             box-shadow: unset;
         }
     }
 
-    .header-buttons {
-        display: inline-block;
-        float: right;
-        //margin-left: auto;
-        //order: 2;
-    }
-
-    .entity-tags {
-        margin-top: 10px;
-
-        .label {
-            margin-right: 6px;
-            font-size: 80%;
-            line-height: 20px;
-        }
-    }
-
-    .entity-title {
-    }
-
     .entity-type {
         display: none;
     }
-
-    .entity-header-locations {
-    }
 }
 .entity-grid > .entity-header.with-entity-banner {
-    margin: 0;
 
     .entity-header-image, .entity-header-text {
         padding: 20px 15px;
-    }
-
-    .entity-header-image {
-        //padding-right: 0;
     }
 
     .entity-header-text {
@@ -290,19 +199,6 @@
         }
     }
 }
-.entity-links {
-    margin: 5px 0;
-
-    li > a {
-        font-size: 16px;
-        display: block;
-        line-height: 1.6;
-
-        i {
-            font-size: 20px;
-        }
-    }
-}
 
 .box .nav-stacked > li {
     word-break: break-all;
@@ -321,29 +217,10 @@
             display: block;
         }
 
-        .entity-name-header {
-            //display: block;
-
-            .entity-name-icons {
-                //float: right;
-            }
-
-            .entity-icons {
-                margin-bottom: 0;
-            }
-        }
-
         .entity-name {
             display: block;
             max-height: unset;
             word-break: initial;
-        }
-
-        .header-buttons {
-            margin: 0;
-            display: inline-block;
-            float: right;
-            margin-left: auto;
         }
     }
 }

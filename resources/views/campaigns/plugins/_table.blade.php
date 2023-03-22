@@ -8,7 +8,7 @@
 @endif
 
 <div class="box-body no-padding">
-    <table class="table table-hover" data-render="datagrid2">
+    <table class="table table-hover mb-0" data-render="datagrid2">
         <thead>
         <tr>
             @foreach (Datagrid::headers() as $header)

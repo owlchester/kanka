@@ -4,7 +4,7 @@
         <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
     </button>
 @else
-    <div class="form-group">
+    <div class="form-group mb-0">
         <div class="btn-group">
             <input id="submit-mode" type="hidden" value="true"/>
             <button class="btn btn-success btn-{{ !isset($model) ? 'save' : 'edit' }}-{{ isset($entityType) ? 'entity' : 'other' }}" id="form-submit-main" @if (isset($entityType))data-entity-type="{{ $entityType }}"@endif data-target="{{ isset($target) ? $target : null }}">

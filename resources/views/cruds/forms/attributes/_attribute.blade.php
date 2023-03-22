@@ -78,7 +78,7 @@ if ($attribute->isSection()) {
 
             @if ($isAdmin)
             {!! Form::hidden('attr_is_private[' . $id . ']', $attribute->is_private) !!}
-            <i class="fa-solid @if($attribute->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+            <i class="cursor-pointer fa-solid @if($attribute->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
             @endif
             @if (!isset($model) || auth()->user()->can('attribute', [$model, 'delete']))
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">

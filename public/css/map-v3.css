@@ -186,6 +186,9 @@
   padding-top: 0;
   z-index: 1040;
 }
+#map-body header {
+  z-index: 1050;
+}
 #map-body .marker-header .marker-top {
   float: right;
 }
@@ -194,19 +197,12 @@
   background-repeat: no-repeat;
   background-position: 50% 50%;
   aspect-ratio: var(--map-hero-ratio);
-  display: flex;
-  flex-flow: column wrap;
-  flex-direction: column;
-}
-#map-body .marker-header.with-image .marker-header-lower {
-  align-self: end;
-  display: flex;
-  align-items: flex-end;
-  width: 100%;
-  flex-grow: 1;
+  background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
 }
 #map-body .marker-header.with-image .marker-header-lower .marker-name {
   padding: 2rem 0.5rem 0.8rem 0.5rem;
+}
+#map-body .marker-header.with-image .marker-header-fade {
   background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
 }
 #map-body .marker-actions {

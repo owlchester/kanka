@@ -78,9 +78,7 @@ class ChunkMapJob implements ShouldQueue
             return;
         }
         $map->chunking_status = Map::CHUNKING_ERROR;
-        $map->savingObserver = false;
-        $map->saveObserver = false;
-        $map->save();
+        $map->saveQuietly();
 
         Log::error('Saved error for #' . $this->mapID);
 

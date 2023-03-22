@@ -58,31 +58,9 @@ abstract class MiscModel extends Model
     use SubEntityScopes;
 
     /**
-     * If set to false, the saving observer in MiscObserver will be skipped
-     * @var bool
-     */
-    public $savingObserver = true;
-
-    /**
      * @var bool|Entity Performance based entity
      */
     protected $cachedEntity = false;
-
-    /**
-     * @var bool
-     */
-    public $forceSavedObserver = false;
-
-    /**
-     * If set to false, the save observer in MiscObserver will be skipped
-     * @var bool
-     */
-    public $saveObserver = true;
-
-    /**
-     * @var bool Define to false to skip the Image upload handling
-     */
-    public $saveImageObserver = true;
 
     /**
      * @var string Entity type
@@ -158,7 +136,7 @@ abstract class MiscModel extends Model
     public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
-            return $this->getImageFallback();
+            return $this->getImageFallback($width);
         }
 
         $img = Img::resetCrop()
@@ -189,7 +167,7 @@ abstract class MiscModel extends Model
      * Get the image fallback image
      * @return string
      */
-    protected function getImageFallback(): string
+    protected function getImageFallback(int $size = 40): string
     {
         // Campaign could have something set up
         $campaign = CampaignLocalization::getCampaign();
@@ -201,9 +179,9 @@ abstract class MiscModel extends Model
 
         $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
         if ($campaign->superboosted() && !empty($entity->image)) {
-            return Img::crop(40, 40)->url($entity->image->path);
+            return Img::crop($size, $size)->url($entity->image->path);
         } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
-            return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
+            return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {
             // Goblins and above have nicer icons
             return asset('/images/defaults/patreon/' . $this->getTable() . '_thumb.png');

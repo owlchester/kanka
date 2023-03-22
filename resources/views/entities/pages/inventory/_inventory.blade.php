@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Inventory $item */?>
 <div class="table-responsive">
-<table class="table table-striped table-entity-inventory">
+<table class="table table-striped table-entity-inventory mb-0">
     <thead>
     <tr>
         <th colspan="2">{{ __('entities.item') }}</th>

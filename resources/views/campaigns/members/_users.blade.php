@@ -16,30 +16,25 @@
     </h3>
 </div>
 
-@if (!$campaign->canHaveMoreMembers())
-<div class="m-2">
-    <div class="">
-        <div class="booster-callout">
-
-            <p>{{ __('campaigns/limits.members') }}</p>
-            @subscriber()
-                <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-maroon btn-lg">
-                    {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
-                </a>
-            @else
-                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon btn-lg">
-                    {!! __('callouts.booster.learn-more') !!}
-                </a>
-            @endif
-        </div>
+@if (true || !$campaign->canHaveMoreMembers())
+    <div class="p-5 rounded-xl text-center mb-5 text-base border-boost border-1 border-solid bg-box">
+        <p>{{ __('campaigns/limits.members') }}</p>
+        @subscriber()
+            <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-maroon btn-lg btn-block">
+                {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
+            </a>
+        @else
+            <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon btn-lg">
+                {!! __('callouts.booster.learn-more') !!}
+            </a>
+        @endif
     </div>
-</div>
 @endif
 
 <div class="box box-solid mb-8">
     <div class="box-body no-padding">
         <div class="table-responsive">
-            <table id="campaign-members" class="table table-hover table-striped">
+            <table id="campaign-members" class="table table-hover table-striped mb-0">
                 <thead>
                     <tr>
                         <th></th>
@@ -58,7 +53,7 @@
                             </div>
                         </td>
                         <td class=" max-w-30">
-                            <a class="block text-break truncate" href="{{ route('users.profile', $relation->user_id) }}" target="_blank">
+                            <a class="block break-all truncate" href="{{ route('users.profile', $relation->user_id) }}" target="_blank">
                                 {{ $relation->user->name }}
                             </a>
                             @if ($relation->user->isBanned())

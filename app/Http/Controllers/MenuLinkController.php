@@ -24,7 +24,7 @@ class MenuLinkController extends CrudController
     protected $model = \App\Models\MenuLink::class;
 
     /** @var string */
-    protected $datagridActions = MenuLinkDatagridActions::class;
+    protected string $datagridActions = MenuLinkDatagridActions::class;
 
     /**
      * ItemController constructor.

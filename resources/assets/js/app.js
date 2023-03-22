@@ -104,7 +104,7 @@ function treeViewInit() {
     $.each($('.table-nested > tbody > tr'), function () {
         let children = $(this).data('children');
         if (parseInt(children) > 0) {
-            $(this).addClass('tr-hover');
+            $(this).addClass('tr-hover cursor-pointer');
             $(this).on('click', function (e) {
                 let target = $(e.target);
                 // Don't trigger the click on the checkbox (used for bulk actions)

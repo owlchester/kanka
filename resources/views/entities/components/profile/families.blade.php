@@ -11,10 +11,10 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
         @if (!empty($model->family))
             <div class="element profile-family">
-                <div class="title">{{ __('families.fields.family') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('families.fields.family') }}</div>
                 {!! $model->family->tooltipedLink() !!}
             </div>
         @endif

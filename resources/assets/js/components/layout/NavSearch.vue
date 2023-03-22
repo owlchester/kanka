@@ -1,51 +1,63 @@
 <template>
-    <div v-click-outside="onClickOutside" class="flex-grow mr-2">
-        <input type="text" class="form-control" maxlength="25"
-               id="entity-lookup"
-               v-model="term"
-               @focus="focus()"
-               @keydown.esc="escape()"
-               :placeholder="placeholder"
-        />
+    <div v-click-outside="onClickOutside" class="flex grow mr-2">
+        <div class="relative grow">
+            <input type="text" class="form-control" maxlength="25"
+                id="entity-lookup"
+                v-model="term"
+                v-on:click="focus()"
+                @focus="focus()"
+                @keydown.esc="escape()"
+                :placeholder="placeholder"
+            />
+            <span class="form-control-feedback hidden-xs hidden-sm">
+                <span class="flex-none keyboard-shortcut py-1" id="lookup-kb-shortcut" data-toggle="tooltip" v-bind:title="keyboard_tooltip" data-html="true" data-placement="bottom" >K</span>
+            </span>
+        </div>
 
-        <div class="search-drawer absolute top-0 left-0 h-screen bg-navbar mt-12 shadow-r w-sidebar z-1010" v-if="show_recent || show_loading || show_preview">
-            <div class="text-center mt-5" v-if="show_loading">
+        <aside class="search-drawer absolute top-0 left-0 mt-12 h-sidebar w-sidebar bg-navbar shadow-r " v-if="show_recent || show_loading || show_preview">
+            <div class="text-center" v-if="show_loading">
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" aria-label="Loading"></i>
             </div>
-            <div class="search-recent bg-lookup p-2 overflow-y h-screen shadow-r mb-5" v-if="show_recent">
-                <div class="mb-5" v-if="!show_results">
+            <div class="search-recent bg-lookup p-2 min-h-full overflow-y shadow-r flex flex-col items-stretch" v-if="show_recent">
+                <div class="flex-0" v-if="!show_results">
                     <p class="italic text-xs text-center">
                         {{ texts.hint}}
                     </p>
                 </div>
-                <div class="search-results mb-5" v-if="show_results">
-                    <div class="text-sm text-uppercase mb-2">{{ texts.results }}</div>
+                <div class="grow">
+                    <div class="search-results mb-2" v-if="show_results">
+                        <div class="text-sm text-uppercase mb-2 my-2 mx-1">{{ texts.results }}</div>
 
-                    <div class="italic" v-if="results.length === 0">
-                        {{ texts.empty_results }}
+                        <div class="italic m-2" v-if="results.length === 0">
+                            {{ texts.empty_results }}
+                        </div>
+                        <LookupEntity v-else v-for="entity in results"
+                                      :entity="entity"
+                        >
+                        </LookupEntity>
                     </div>
-                    <LookupEntity v-else v-for="entity in results"
-                                  :entity="entity"
-                    >
-                    </LookupEntity>
+
+                    <div class="recent-searches" v-if="recent.length > 0">
+                        <div class="text-sm text-uppercase my-2 mx-1">{{ texts.recents }}</div>
+
+                        <LookupEntity v-for="entity in recent"
+                                      :entity="entity"
+                        >
+                        </LookupEntity>
+                    </div>
                 </div>
 
-                <div class="recent-searches" v-if="recent.length > 0">
-                    <div class="text-sm text-uppercase my-2 mx-1">{{ texts.recents }}</div>
-
-                    <LookupEntity v-for="entity in recent"
-                                  :entity="entity"
-                    >
-                    </LookupEntity>
+                <div class="flex-0 text-xs text-center" v-if="!show_loading">
+                    <hr />
+                    <p class="italic text-xs text-center" v-html="texts.keyboard" />
                 </div>
-
             </div>
             <div class="search-preview bg-lookup h-screen overflow-y shadow-r pb-5" v-if="show_preview">
                 <EntityPreview
                     :entity="preview_entity">
                 </EntityPreview>
             </div>
-        </div>
+        </aside>
     </div>
 
 </template>
@@ -66,6 +78,8 @@ export default {
         api_recent: String,
         /* Placeholder text for the search field */
         placeholder: String,
+        /** Tooltip for the keyboard shortcut **/
+        keyboard_tooltip: String,
     },
     components: {
         LookupEntity,
@@ -147,7 +161,10 @@ export default {
             axios.get(this.api_recent).then(response => {
                 this.recent = response.data.recent;
                 this.texts.recents = response.data.texts.recents;
+                this.texts.results = response.data.texts.results;
                 this.texts.hint = response.data.texts.hint;
+                this.texts.keyboard = response.data.texts.keyboard;
+                this.texts.empty_results = response.data.texts.empty_results;
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = true;
@@ -161,8 +178,6 @@ export default {
         // Load results from a search
         parseLookupResponse(response, cacheKey) {
             this.results = response.data.entities;
-            this.texts.results = response.data.texts.results;
-            this.texts.empty_results = response.data.texts.empty_results;
             this.cached[cacheKey] = response.data.entities;
             this.showResults();
         },

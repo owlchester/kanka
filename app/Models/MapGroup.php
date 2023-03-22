@@ -45,12 +45,6 @@ class MapGroup extends Model
     ];
 
     /**
-     * If set to false, skip the saving observer
-     * @var bool
-     */
-    public $savingObserver = true;
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function map()
@@ -114,7 +108,7 @@ class MapGroup extends Model
      */
     public function patch(array $data): bool
     {
-        return $this->update($data);
+        return $this->updateQuietly($data);
     }
 
     /**

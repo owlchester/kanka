@@ -8,19 +8,6 @@ use App\Models\MiscModel;
 class LocationObserver extends MiscObserver
 {
     /**
-     * @param MiscModel $model
-     */
-    public function saving(MiscModel $model)
-    {
-        parent::saving($model);
-
-        // Skipping observer (for example when BULK or COPY)
-        if ($model->savingObserver === false) {
-            return;
-        }
-    }
-
-    /**
      * @param Location $location
      */
     public function deleting(Location $location)

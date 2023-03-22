@@ -50,7 +50,7 @@ foreach ($elapsed as $event) {
     @php $birth = $calendarEvents['birth'] ?? null; $death = $calendarEvents['death'] ?? null; @endphp
     @if (!empty($birth) && !empty($death))
         <div class="element profile-life">
-            <div class="title">{{ __('characters.fields.life') }}</div>
+            <div class="title text-uppercase text-xs">{{ __('characters.fields.life') }}</div>
             <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" title="{{ $birth->calendar->name }}" data-toggle="tooltip">
                 {{ $birth->readableDate() }}
             </a> &#10013; <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
@@ -62,9 +62,9 @@ foreach ($elapsed as $event) {
         @php $yearsAgo = $birth->calcElapsed() @endphp
         <div class="element profile-life profile-birth">
             @if ($event->isBirth())
-                <div class="title">{{ __('entities/events.types.birth') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('entities/events.types.birth') }}</div>
             @else
-                <div class="title">{{ __('entities/events.types.founded') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('entities/events.types.founded') }}</div>
             @endif
             <a href="{{ $birth->calendar->getLink() }}?year={{ $birth->year }}&month={{ $birth->month }}" title="{{ $birth->calendar->name }}" data-toggle="tooltip">
             {{ $birth->readableDate() }}
@@ -73,7 +73,7 @@ foreach ($elapsed as $event) {
 
     @elseif (!empty($death))
         <div class="element profile-life">
-            <div class="title">{{ __('entities/events.types.death') }}</div>
+            <div class="title text-uppercase text-xs">{{ __('entities/events.types.death') }}</div>
             <a href="{{ $death->calendar->getLink() }}?year={{ $death->year }}&month={{ $death->month }}" title="{{ $death->calendar->name }}" data-toggle="tooltip">
             {{ $death->readableDate() }}
             </a> (&#10013;{{ $death->calcElapsed() }})

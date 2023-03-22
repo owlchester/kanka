@@ -12,6 +12,10 @@
   width: var(--sidebar-width, 280px);
 }
 
+.h-sidebar {
+  height: calc(100vh - 3rem);
+}
+
 .main-sidebar {
   width: var(--sidebar-width);
   background-color: var(--sidebar-background);

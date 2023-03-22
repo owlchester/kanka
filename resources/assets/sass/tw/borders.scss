@@ -4,6 +4,9 @@
 .rounded-full {
     border-radius: 9999px;
 }
+.rounded-sm {
+    border-radius: 0.125rem; /* 2px */
+}
 .rounded {
     border-radius: 0.25rem; /* 4px */
 }
@@ -81,6 +84,9 @@
 
 .border-accent {
     border-color: var(--color-accent);
+}
+.border-boost {
+    border-color: hsl(var(--kanka-boost-accent)/0.5);
 }
 
 .border-slate-400 {

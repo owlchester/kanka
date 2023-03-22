@@ -16,12 +16,13 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
 $options = $entity->postPositionOptions(!empty($model->position) ? $model->position : null);
 $last = array_key_last($options);
 
+$bragiName = $entity->isCharacter() ? $entity->name : null;
 ?>
 <div class="nav-tabs-custom">
     <div class="pull-right">
         @include('entities.pages.posts._save-options')
     </div>
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs border-none overflow-hidden">
         <li class="active">
             <a href="#form-entry" title="{{ __('crud.fields.entry') }}">
                 {{ __('crud.fields.entry') }}
@@ -39,7 +40,7 @@ $last = array_key_last($options);
     <div class="tab-content">
         <div class="tab-pane active" id="form-entry">
             <div class="form-group required">
-                {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required']) !!}
+                {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
             </div>
             <div class="form-group">
                 {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
@@ -60,15 +61,8 @@ $last = array_key_last($options);
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="form-group">
-                        <label for="config[class]">
-                            {{ __('dashboard.widgets.fields.class') }}
-                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
-                        </label>
-                        {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
-                        <p class="help-block visible-xs visible-sm">
-                            {{ __('dashboard.widgets.helpers.class') }}
-                        </p>
-                        @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
+                        <label>{{ __('crud.fields.position') }}</label>
+                        {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
@@ -85,11 +79,20 @@ $last = array_key_last($options);
                         {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => 'form-control']) !!}
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="form-group">
+                        <label for="config[class]">
+                            {{ __('dashboard.widgets.fields.class') }}
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+                        </label>
+                        {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
+                        <p class="help-block visible-xs visible-sm">
+                            {{ __('dashboard.widgets.helpers.class') }}
+                        </p>
+                        @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label>{{ __('crud.fields.position') }}</label>
-            {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
         </div>
 
         @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.posts._permissions')

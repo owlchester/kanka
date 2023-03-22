@@ -23,8 +23,11 @@ class RelationController extends CrudController
     /** @var string */
     protected $model = \App\Models\Relation::class;
 
-    /** @var string|null The datagrid controlling the bulk actions*/
-    protected $datagridActions = RelationDatagridActions::class;
+    /** @var string The datagrid controlling the bulk actions */
+    protected string $datagridActions = RelationDatagridActions::class;
+
+    /** @var string Disable the sanitizer, handled by the observer */
+    protected string $sanitizer = '';
 
     /** @var string  */
     protected $filter = RelationFilter::class;
@@ -33,6 +36,8 @@ class RelationController extends CrudController
     {
         parent::__construct();
         $this->middleware('auth');
+
+        $this->titleKey = __('sidebar.relations');
     }
 
     /**

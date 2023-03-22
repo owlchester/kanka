@@ -17,20 +17,4 @@ class ConversationObserver extends MiscObserver
             $model->participants()->delete();
         }
     }
-
-    /**
-     * @param MiscModel $model
-     */
-    public function saving(MiscModel $model)
-    {
-        parent::saving($model);
-    }
-
-    /**
-     * @param MiscModel $model
-     */
-    public function creating(MiscModel $model)
-    {
-        //$model->created_by = auth()->user()->id;
-    }
 }

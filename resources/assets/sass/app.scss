@@ -10,23 +10,23 @@
 @import "variables";
 
 :root {
-  --banner-link: white;
-  --campaign-selector-link: white;
-  --campaign-selector-background: #ddd;
-  --input-required-text: red;
-  --table-filters-background: #eee;
-  --quick-creator-button-text: #fff;
-  --quick-creator-button-background: #144c93;
-  --quick-creator-button-hover-background: rgb(45, 127, 237);
-  --quick-creator-button-hover-text: #fff;
+    --banner-link: white;
+    --campaign-selector-link: white;
+    --campaign-selector-background: #ddd;
+    --input-required-text: red;
+    --table-filters-background: #eee;
+    --quick-creator-button-text: #fff;
+    --quick-creator-button-background: #144c93;
+    --quick-creator-button-hover-background: rgb(45, 127, 237);
+    --quick-creator-button-hover-text: #fff;
 
-  --bg-default-link: unset;
+    --bg-default-link: unset;
 
-  --gallery-folder-text: unset;
-  --gallery-background: #f5f8fa;
-  --gallery-hover-text: #124964;
+    --gallery-folder-text: unset;
+    --gallery-background: #f5f8fa;
+    --gallery-hover-text: #124964;
 
-  --kanka-boost-accent: 338 78% 48%;
+    --kanka-boost-accent: 338 78% 48%;
 }
 
 @import "theming";
@@ -41,13 +41,13 @@
     // AdminLTE wants this but it becomes weird with the min-height computed on firefox
     //overflow: unset !important;
 }
+
 .content {
     min-height: 250px;
     padding: 15px;
     margin-right: auto;
     margin-left: auto;
 }
-
 
 .content-header {
     padding: 15px 15px 0 15px;
@@ -59,264 +59,100 @@
             content: ">";
         }
     }
-
-    h1 {
-        display: block;
-        font-size: 1.3em;
-        margin: 0;
-    }
 }
-
-// I hate my life
-/*.navbar {
-  .sidebar-toggle {
-    background-color: var(--main-navbar-background);
-    margin-left: -30px;
-    padding: 15px 20px;
-    border-radius: 9999px;
-    background-image: none;
-    float: left;
-    font-family: fontAwesome;
-    &:before {
-      content: "\f100";
-    }
-  }
-  .sidebar-toggle:focus {
-    color: var(--main-navbar-text);
-  }
-  // Desktop: default is sidebar is open
-  .fa-angles-right {
-    display: none;
-  }
-}
-// On desktop, the sidebar gets collapsed
-.sidebar-collapse .navbar .sidebar-toggle {
-  margin-left: 0;
-  &:before {
-    content: "\f101";
-  }
-}
-// On mobile, the sidebar get opened
-.sidebar-open .navbar .sidebar-toggle {
-  &:before {
-    content: "\f100";
-  }
-}*/
 
 .cover-background {
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background-position: 50% 50% !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 }
-
 
 /** required form fields **/
 div.required label:after {
-  content: " *";
-  color: var(--input-required-text);
+    content: " *";
+    color: var(--input-required-text);
 }
 
 table {
-  tbody {
-    td {
-      vertical-align: middle !important;
+    tbody {
+        td {
+            vertical-align: middle !important;
+        }
     }
-  }
 }
 .tab-content, .box-body {
-  table {
-    max-width: 100% !important;
-  }
-  img {
-    max-width: 100%;
-  }
+    table {
+        max-width: 100% !important;
+    }
+
+    img {
+        max-width: 100%;
+    }
 }
 
 .preview-v2 {
-  a.img-delete {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.3);
-    max-height: 48px;
+    a.img-delete {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.3);
+        max-height: 48px;
 
-    &:hover {
-      background-color: rgba(31, 0, 4, 0.7);
+        &:hover {
+            background-color: rgba(31, 0, 4, 0.7);
+        }
     }
-  }
 }
 
 .entity-image {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  display: block;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: block;
 }
 
 tr.tr-hover {
-  cursor: pointer;
-  font-weight: 700;
+    font-weight: 700;
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1) !important;
-  }
-}
-
-/**
- * Search
- */
-.live-search-results {
-  background-color: white;
-  position: absolute;
-  z-index: 1;
-  min-width: 190px;
-  overflow: auto;
-
-  .loading {
-    text-align: center;
-    padding: 15px;
-  }
-
-  .list-group-item:first-child {
-    border-top-right-radius: 0 !important;
-    border-top-left-radius: 0 !important;
-  }
-}
-.search-results-dropdown {
-  margin-bottom: 0;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+    }
 }
 
 .input-error {
-  border: 1px inset red;
-}
-.color-tag {
-  padding: 2px 5px;
-  border-radius: 2px;
+    border: 1px inset red;
 }
 
-// Private/Public
-.entity-attributes {
-  .fa-unlock-alt {
-    color: rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    &:hover {
-      color: rgba(0, 0, 0, 0.8);
-    }
-  }
-  .fa-lock {
-    cursor: pointer;
-    &:hover {
-      color: rgba(0, 0, 0, 0.8);
-    }
-  }
-}
 
 #new-entity-modal, #entity-modal {
-  z-index: 9900;
+    z-index: 9900;
 }
 
-.entity-form {
-    // Old AdminLTE stuff
-    ul.nav {
-        z-index: 2;
-        min-height: 40px;
-        overflow: hidden;
-        border-top-right-radius: 0;
-        border-top-left-radius: 0;
-        border-bottom-color: #fff;
-        border-bottom: none;
-    }
-}
 .bg-pink {
-  color: #fff !important;
-  background-color: #ebbde9 !important;
+    color: #fff !important;
+    background-color: #ebbde9 !important;
 }
 .bg-brown {
-  color: #fff !important;
-  background-color: #a35831 !important;
-}
-
-.text-pink {
-  color: #ebbde9 !important;
-}
-.text-brown {
-  color: #a35831 !important;
-}
-.text-break {
-  word-break: break-word!important;
-  overflow-wrap: break-word!important;
-}
-.text-red {
-    color:#dd4b39 !important
-}
-.text-yellow {
-    color:#f39c12 !important
-}
-.text-aqua {
-    color:#00c0ef !important
-}
-.text-blue {
-    color:#0073b7 !important
-}
-.text-black {
-    color:#111 !important
-}
-.text-light-blue {
-    color:#3c8dbc !important
-}
-.text-green {
-    color:#00a65a !important
-}
-.text-gray {
-    color:#d2d6de !important
-}
-.text-navy {
-    color:#001F3F !important
-}
-.text-teal {
-    color:#39CCCC !important
-}
-.text-olive {
-    color:#3D9970 !important
-}
-.text-lime {
-    color:#01FF70 !important
-}
-.text-orange {
-    color:#FF851B !important
-}
-.text-fuchsia {
-    color:#F012BE !important
-}
-.text-purple {
-    color:#605ca8 !important
-}
-.text-maroon {
-    color:#D81B60 !important
+    color: #fff !important;
+    background-color: #a35831 !important;
 }
 
 
 // Attributes in entities and text area
 .attribute, .note-editing-area > .attribute {
-  border-radius: 2px;
-  background-color: #ddd;
-  color: #333;
-  font-style: italic;
-  padding: 2px 3px;
+    border-radius: 2px;
+    background-color: #ddd;
+    color: #333;
+    font-style: italic;
+    padding: 2px 3px;
 }
 
 // Allow buttons to be multi-lined
 .btn {
-  white-space: normal;
+    white-space: normal;
 }
 .btn-app > .ra, .btn-app > .fas, .btn-app > .far, .btn-app > .fab, .btn-app > .fa, .btn-app > .fa-solid, .btn-app > .fa-regular {
-  font-size: 20px;
-  display: block;
-  line-height: 20px !important;
-}
-.btn-box-tool .fa-ellipsis-v {
-  padding: 0 7px;
+    font-size: 20px;
+    display: block;
+    line-height: 20px !important;
 }
 
 // Visual info on quick link forms for which mode is enabled
@@ -336,8 +172,8 @@ summary { display: list-item; }
 
 // RPG awesome dropdown icon margin
 .dropdown-menu > li > a > :is(.fas, .fab, .far, .ra, .fa-solid, .fa-light, .fa-thin, .fa-regular) {
-  margin-right: 10px;
-  width: 14px;
+    margin-right: 10px;
+    width: 14px;
 }
 button.dropdown-item {
     background: none;
@@ -358,97 +194,61 @@ button.dropdown-item {
 }
 
 .table-responsive {
-  overflow-x: unset;
-  .table {
-    margin-bottom: 0;
-  }
+    overflow-x: unset;
+}
+.table-compact {
+    width: auto;
+}
+.table-right {
+    width: auto;
+    float: right;
+}
+.table-centered {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .banner-notification {
-  a {
-    color: var(--banner-link);
-  }
-}
-
-// Relation colour "bubble" in the relations datagrid and tables
-.label-tag-bubble {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 8pt;
-  padding: 4px;
-  vertical-align: bottom;
+    a {
+        color: var(--banner-link);
+    }
 }
 
 // UX
 .skip-nav-link {
-  border-radius: 0 0 0.25rem 0.25rem;
-  background-color: white;
-  color: blue;
-  transform: translateY(-120%);
-  transition: transform 325ms ease-in;
-  z-index: 1040;
+    border-radius: 0 0 0.25rem 0.25rem;
+    background-color: white;
+    color: blue;
+    transform: translateY(-120%);
+    transition: transform 325ms ease-in;
+    z-index: 1040;
 
-  &:focus {
-    transform: translateY(0);
-    color: var(--link-text);
-  }
+    &:focus {
+        transform: translateY(0);
+        color: var(--link-text);
+    }
 }
 
 
 .privacy-callout {
-  border-left: 2px solid #f6c9af;
+    border-left: 2px solid #f6c9af;
 }
 .booster-block {
-  > div {
-    text-align: center;
-  }
-
-  .booster-callout, img {
-    max-width: 480px;
-  }
+    .booster-callout, img {
+        max-width: 480px;
+    }
 }
 .booster-icon {
-  border-radius: 9999px;
-  background-color: hsl(var(--kanka-boost-accent)/1);
-  display: inline-block;
-  padding: 0.5rem;
-  margin-bottom: 0.4rem;
-  color: white;
-}
-.booster-callout {
-  display: inline-block;
-  padding: 2rem 1.5rem;
-  border: 1px solid hsl(var(--kanka-boost-accent)/0.5);
-  border-radius: 0.5rem;
-  background-color: var(--box-background);
-  font-size: 1rem;
-  text-align: center;
-  line-height: 1.5;
-
-  h4 {
-    font-weight: 600;
-    font-size: 1.2rem;
-    margin: 0.8rem 0;
-  }
-  .btn {
-    display: block;
-  }
-
-  .column {
-    text-align: center;
-    max-width: 450px;
-  }
+    background-color: hsl(var(--kanka-boost-accent)/1);
 }
 
 // Helper block in forms, closer to field
 .form-group > .help-block {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .loading, .loading:hover {
-  pointer-events: none;
+    pointer-events: none;
 }
 .loading:before {
     margin-right: .5rem;
@@ -459,8 +259,6 @@ button.dropdown-item {
     animation: fa-spin 2s linear infinite;
     content: "\f110";
 }
-
-
 
 @import "calendar";
 @import "tooltip";
@@ -486,3 +284,4 @@ button.dropdown-item {
 @import "adminlte";
 @import "print/general";
 @import "toast";
+@import "colour";

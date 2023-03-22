@@ -11,17 +11,17 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
         @if (!empty($model->character))
             <div class="element profile-instigator">
-                <div class="title">{{ __('quests.fields.character') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('quests.fields.character') }}</div>
                 {!! $model->character->tooltipedLink() !!}
             </div>
         @endif
 
         @if ($model->date)
             <div class="element profile-date">
-                <div class="title">{{ __('journals.fields.date') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('journals.fields.date') }}</div>
                 {{ \App\Facades\UserDate::format($model->date) }}
             </div>
         @endif

@@ -30,7 +30,7 @@
         @if($invitations->count() > 0)
             <div class="box-body no-padding">
                 <div class="table-responsive">
-                    <table id="campaign-invites" class="table table-hover table-striped">
+                    <table id="campaign-invites" class="table table-hover table-striped mb-0">
                         <thead>
                         <tr>
                             <th>{{ __('campaigns.invites.fields.token') }}</th>

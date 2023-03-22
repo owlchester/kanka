@@ -7,9 +7,10 @@ use App\Facades\Datagrid;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
+use App\Sanitizers\CalendarSanitizer;
 use App\Services\CalendarService;
 use App\Traits\TreeControllerTrait;
-use Response;
+use Illuminate\Http\Request;
 
 class CalendarController extends CrudController
 {
@@ -29,6 +30,8 @@ class CalendarController extends CrudController
 
     /** @var string */
     protected $filter = CalendarFilter::class;
+
+    protected string $sanitizer = CalendarSanitizer::class;
 
     /**
      * CalendarController constructor.
@@ -123,18 +126,18 @@ class CalendarController extends CrudController
 
         if ($link !== false) {
             return redirect()->route($this->route . '.show', $routeOptions)
-                ->with('success', trans('calendars.event.success', ['event' => $link->entity->name]));
+                ->with('success', __('calendars.event.success', ['event' => $link->entity->name]));
         }
 
         return redirect()->route($this->route . '.show', $routeOptions)
-            ->with('success', trans('calendars.event.create.success'));
+            ->with('success', __('calendars.event.create.success'));
     }
 
     /**
      */
     public function monthList(Calendar $calendar)
     {
-        return Response::json([
+        return response()->json([
             'months' => $calendar->months(),
             'current' => [
                 'year' => $calendar->currentDate('year'),
@@ -201,6 +204,6 @@ class CalendarController extends CrudController
         }
 
         return redirect()->back()
-            ->with('success', trans('calendars.edit.today'));
+            ->with('success', __('calendars.edit.today'));
     }
 }

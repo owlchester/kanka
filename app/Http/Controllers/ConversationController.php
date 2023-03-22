@@ -23,7 +23,7 @@ class ConversationController extends CrudController
     protected $filter = ConversationFilter::class;
 
     /** @var string  */
-    protected $datagridActions = DeprecatedDatagridActions::class;
+    protected string $datagridActions = DeprecatedDatagridActions::class;
 
     /**
      * Controller constructor.

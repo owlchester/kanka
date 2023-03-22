@@ -39,7 +39,7 @@
     @endif
 @endsection
 
-@include('editors.editor')
+@include('editors.editor', $entity->isCharacter() ? ['name' => 'characters'] : [])
 
 @section('fullpage-form-end')
     @if(!empty($from))

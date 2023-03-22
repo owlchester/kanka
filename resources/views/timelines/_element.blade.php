@@ -5,13 +5,13 @@
  * @var \App\Models\TimelineElement $element
  */
 ?>
-<li id="timeline-element-{{ $element->id }}">
+<li id="timeline-element-{{ $element->id }}" class="relative mr-2">
     {!! $element->htmlIcon() !!}
 
-    <div class="timeline-item">
+    <div class="timeline-item p-0 relative rounded-sm mt-0 ml-15 mr-4">
         <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
+            <div class="box-header flex with-border">
+                <h3 class="box-title grow cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
 
                     <i class="fa-solid fa-chevron-up icon-show"></i>
                     <i class="fa-solid fa-chevron-down icon-hide"></i>
