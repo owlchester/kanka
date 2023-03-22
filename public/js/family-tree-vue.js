@@ -21137,13 +21137,13 @@ var _hoisted_9 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "family-tree-line absolute",
+    "class": "family-tree-line family-tree-relation-line family-tree-line-vertical absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.verticalSource())
   }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "family-tree-line absolute",
+    "class": "family-tree-line family-tree-relation-line family-tree-line-horizontal absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.horizontal())
   }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "family-tree-line absolute",
+    "class": "family-tree-line family-tree-relation-line family-tree-line-vertical absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.verticalTarget())
   }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-relation text-center overflow-clip absolute",
