@@ -4,11 +4,11 @@
          v-on:click="preview(entity)">
         <div class="flex-none">
             <a
-            v-bind:href="entity.link"
-            v-bind:style="{backgroundImage: backgroundImage(entity)}"
-            v-on:click.stop
-            :title="entity.name"
-            class="rounded cover-background block h-16 w-16"></a>
+                v-bind:href="entity.link"
+                v-bind:style="{backgroundImage: backgroundImage(entity)}"
+                v-on:click.stop
+                :title="entity.name"
+                class="rounded cover-background block h-16 w-16" />
         </div>
         <div class="flex-grow truncate pl-1">
             <div class="font-extrabold entity-name truncate">
