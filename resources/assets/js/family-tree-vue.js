@@ -75,32 +75,42 @@ window.familyTreeChildWidth = function(child, index) {
 window.familyTreeRelationWidth = function(relation, index) {
     // The first relation counts for 2 spaces (the source + itself), while any more relations could for just one
     let min = index === 0 ? 2 : 1;
-    // If a relation has no children, then it's simple
+    // If a relation has no children, then it's simple, we use the "min" size of the relation
     if (relation.children === undefined || relation.children.length === 0) {
         return min;
     }
 
-    // Each relation takes up at least 1 width
-    let size = min;
+    // Since we have a minimum size, we start at that value as a negative
+    let size = -min + 1;
+
 
     // Let's find out just how wide this relation is
     relation.children.forEach((child, i) => {
-        // The first two children are below the parent and this entity, so they don't count as the minimum
-        if (i > 1) {
+        // Each relation increases the size by at least one
+        if (i > 0) {
             size++;
         }
         if (child.relations !== undefined && child.relations.length > 0) {
             // For each of the relation's children, calculate their width, and add that to the current size
             child.relations.forEach((c, i2) => {
                 let tmp = window.familyTreeRelationWidth(c, i2);
-                console.log(c.entity_id, 'relWidth', tmp);
-                size += tmp;
+                //console.log(i2, c.entity_id, 'relWidth', tmp, '(min: ', min, ')');
+                // If the size of the relation is larger than the minimum, increment
+                //if (tmp > 1) {
+                    size += tmp;
+                //}
+                //size += tmp;
             });
         }
     });
 
+    let childWidth = relation.children.length ;
+    min = Math.max(childWidth, min);
+
+    //console.log('min vs size', min, size);
+
     // Return the size of the tree, or the size of the children,
     // if none of the children have relations and their own children
-    return Math.max(relation.children.length, size);
+    return Math.max(min, size);
 };
 

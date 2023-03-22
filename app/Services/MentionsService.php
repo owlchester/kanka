@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Facades\Attributes;
 use App\Models\Attribute;
 use App\Models\Entity;
-use App\Models\EntityAlias;
 use App\Models\EntityAsset;
 use App\Models\MiscModel;
 use App\Models\Post;
