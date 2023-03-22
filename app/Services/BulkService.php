@@ -6,6 +6,7 @@ use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
 use App\Models\Relation;
 use App\Models\Tag;
+use App\Services\Entity\TagService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use App\Models\MiscModel;
@@ -328,7 +329,10 @@ class BulkService
                 $entity->entity->tags()->detach($tagIds);
             } else {
                 $existingTags = $entity->entity->tags->pluck('id')->toArray();
-                $canCreateTags = auth()->user()->can('create', Tag::class);
+
+                /** @var TagService $tagService */
+                $tagService = app()->make(TagService::class);
+                $tagService->user(auth()->user());
 
                 // Exclude existing tags to avoid adding a tag several times
                 $addTagIds = [];
@@ -337,14 +341,8 @@ class BulkService
                         /** @var Tag|null $tag */
                         $tag = Tag::find($id);
                         // Create the tag if the user has permission to do so
-                        if (empty($tag) && $canCreateTags) {
-                            $tag = new Tag([
-                                'name' => Purify::clear($id),
-                            ]);
-                            $tag->campaign_id = $entity->campaign_id;
-                            $tag->slug = Str::slug($tag->name);
-                            $tag->saveQuietly();
-                            $tag->createEntity();
+                        if (empty($tag) && $tagService->isAllowed()) {
+                            $tag = $tagService->create($id, $entity->campaign_id);
                             $tagIds[$number] = $tag->id;
                         }
 

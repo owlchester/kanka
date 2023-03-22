@@ -9,6 +9,7 @@ use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\Tag;
 use App\Services\AttributeService;
+use App\Services\Entity\TagService;
 use App\Services\ImageService;
 use App\Services\PermissionService;
 use Illuminate\Support\Str;
@@ -81,26 +82,16 @@ class EntityObserver
             }
         }
         $new = [];
-        $canCreateTags = auth()->user()->can('create', Tag::class);
+
+        /** @var TagService $tagService */
+        $tagService = app()->make(TagService::class);
+        $tagService->user(auth()->user());
 
         foreach ($ids as $id) {
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
-                /** @var Tag|null $tag */
-                $tag = Tag::find($id);
-                // Create the tag if the user has permission to do so
-                if (empty($tag) && $canCreateTags) {
-
-                    $tag = new Tag([
-                        'name' => Purify::clean($id),
-                    ]);
-                    $tag->campaign_id = $entity->campaign_id;
-                    $tag->slug = Str::slug($tag->name);
-                    $tag->saveQuietly();
-                    $tag->createEntity();
-                }
-
+                $tag = $tagService->fetch($id, $entity->campaign_id);
                 if (!empty($tag)) {
                     $new[] = $tag->id;
                 }

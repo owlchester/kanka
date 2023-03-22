@@ -9,6 +9,7 @@ use App\Models\MiscModel;
 use App\Models\Entity;
 use App\Models\Tag;
 use App\Models\Post;
+use App\Services\Entity\TagService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -120,21 +121,19 @@ class EntityCreatorController extends Controller
         if (request()->has('tags') && request()->has('save-tags')) {
             $canCreateTags = auth()->user()->can('create', Tag::class);
 
+            /** @var TagService $tagService */
+            $tagService = app()->make(TagService::class);
+            $tagService->user(auth()->user());
+
             // Exclude existing tags to avoid adding a tag several times
             $tags = $values['tags'];
             foreach ($tags as $number => $id) {
                 /** @var Tag|null $tag */
                 $tag = Tag::find($id);
                 // Create the tag if the user has permission to do so
-                if (empty($tag) && $canCreateTags) {
-                    $tag = new Tag([
-                        'name' => Purify::clean($id),
-                    ]);
-                    $tag->campaign_id = $campaign->id;
-                    $tag->slug = Str::slug($tag->name);
-                    $tag->saveQuietly();
-                    $tag->createEntity();
-                    $tags[$number] = strval($tag->id);
+                if (empty($tag) && $tagService->isAllowed()) {
+                    $tag = $tagService->create($id, $campaign->id);
+                    $tags[$number] = (int) $tag->id;
                 } elseif (empty($tag) && !$canCreateTags) {
                     unset($tags[$number]);
                 }
