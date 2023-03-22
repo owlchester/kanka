@@ -22,7 +22,7 @@
             <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
             <span class="sr-only">Loading...</span>
         </div>
-        <div v-else class="relative pb-5" v-drag>
+        <div v-else class="relative" v-drag v-bind:style="{height: this.dragHeight(), width: this.dragWidth()}">
             <a class="btn btn-default rounded-2xl px-5 py-2 cursor-pointer" v-on:click="createNode()" v-if="showCreateNode()">
                 <i class="fa-solid fa-plus" aria-hidden="true"></i>
                 {{ this.texts.actions.first }}
@@ -120,6 +120,9 @@ export default {
 
             relation: undefined,
             entity: undefined,
+
+            maxX: 0,
+            maxY: 0,
 
             modal: '#family-tree-modal',
             entityField: 'select[name="character_id_ft"]',
@@ -434,6 +437,12 @@ export default {
             };
             return this.nodes = this.nodes.reduce(getRelationNodes, []);
         },
+        dragHeight() {
+            return this.maxY + 80 + 'px';
+        },
+        dragWidth() {
+            return this.maxX + 200 + 'px';
+        },
     },
 
     mounted() {
@@ -480,6 +489,16 @@ export default {
             this.currentUuid = uuid;
             this.isAddingChild = true;
             this.showDialog();
+        });
+        this.emitter.on('trackX', (x) => {
+            if (x > this.maxX) {
+                this.maxX = x;
+            }
+        });
+        this.emitter.on('trackY', (y) => {
+            if (y > this.maxY) {
+                this.maxY = y;
+            }
         });
     },
 };

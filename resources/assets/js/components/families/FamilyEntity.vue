@@ -10,7 +10,7 @@
                 <a v-bind:href="entity.url" v-bind:class="cssClasses()">
                     {{ entity.name }}
                 </a>
-                <span class="text-xs" v-if="!isEditing">
+                <span class="text-xs" v-if="!isEditing && false">
                     (#{{ entity.id }})
                 </span>
                 <div class="flex gap-1" v-if="isEditing">
@@ -82,6 +82,8 @@ export default {
     },
 
     mounted() {
+        this.emitter.emit('trackX', this.drawX);
+        this.emitter.emit('trackY', this.drawY);
         //console.log('entity', this.entity);
     }
 };
