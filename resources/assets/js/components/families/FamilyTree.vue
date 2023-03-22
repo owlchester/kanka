@@ -17,7 +17,7 @@
             {{ this.texts.actions.save }}
         </button>
     </div>
-    <div class="family-tree overflow-auto w-full h-full block">
+    <div class="family-tree overflow-auto w-full h-full min-h-50 block">
         <div class="text-center px-5" v-if="isLoading">
             <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
             <span class="sr-only">Loading...</span>
