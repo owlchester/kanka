@@ -83,7 +83,7 @@ class FamilyTreeService
     {
         $familyMembers = $this->family->allMembers()->orderBy('name')->take(10)->get();
         foreach ($familyMembers as $member) {
-            $this->characterSuggestions[$member->entity->id] = $member->name;
+            $this->characterSuggestions[] = ['id' => $member->entity->id, 'name' => $member->name];
         }
     }
 

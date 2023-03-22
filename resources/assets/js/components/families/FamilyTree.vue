@@ -59,13 +59,12 @@
                         <label>{{ this.texts.modals.fields.character }}</label>
                         <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
                     </div>
-                    <div class="form-group" v-show="isAddingCharacter && this.suggestions.length > 0">
+                    <div class="form-group" v-show="isAddingCharacter && this.showMembers()">
                         <label>{{ this.texts.modals.fields.member }}</label>
                         <ul>
-                            <li v-for="(suggestion, index) in this.suggestions"
-                                v-on:click="this.saveSuggestion(index)"
+                            <li v-for="(suggestion) in this.suggestions"
                             >
-                                <a href="#"> {{ suggestion }} </a>
+                                <a class="cursor-pointer" v-on:click="this.saveSuggestion(suggestion.id)"> {{ suggestion.name }} </a>
                             </li>
                         </ul>
                     </div>
@@ -105,6 +104,7 @@ export default {
             nodes: [],
             entities: [],
             texts: undefined,
+            suggestions: [],
             isEditing: false,
             isLoading: true,
             isDirty: false,
@@ -165,7 +165,7 @@ export default {
         deleteUuid(uuid) {
             if (confirm(this.texts.modals.entity.remove.confirm)) {
                 this.deleteUuidFromNodes(uuid);
-                window.showToast(this.texts.toasts.entity.remove);
+                window.showToast(this.texts.toasts.entity.removed);
                 this.isDirty = true;
             }
         },
@@ -244,6 +244,10 @@ export default {
         },
         showCreateNode() {
             return this.nodes.length === 0 && this.isEditing;
+        },
+        showMembers() {
+            console.log('this', this.suggestions.length, this.suggestions)
+            return this.suggestions.length > 0;
         },
         createNode() {
             this.isAddingCharacter = true;

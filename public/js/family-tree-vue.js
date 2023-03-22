@@ -20104,6 +20104,7 @@ __webpack_require__.r(__webpack_exports__);
       nodes: [],
       entities: [],
       texts: undefined,
+      suggestions: [],
       isEditing: false,
       isLoading: true,
       isDirty: false,
@@ -20160,7 +20161,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteUuid: function deleteUuid(uuid) {
       if (confirm(this.texts.modals.entity.remove.confirm)) {
         this.deleteUuidFromNodes(uuid);
-        window.showToast(this.texts.toasts.entity.remove);
+        window.showToast(this.texts.toasts.entity.removed);
         this.isDirty = true;
       }
     },
@@ -20237,6 +20238,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     showCreateNode: function showCreateNode() {
       return this.nodes.length === 0 && this.isEditing;
+    },
+    showMembers: function showMembers() {
+      console.log('this', this.suggestions.length, this.suggestions);
+      return this.suggestions.length > 0;
     },
     createNode: function createNode() {
       this.isAddingCharacter = true;
@@ -20988,12 +20993,9 @@ var _hoisted_27 = {
 };
 var _hoisted_28 = ["onClick"];
 var _hoisted_29 = {
-  href: "#"
-};
-var _hoisted_30 = {
   "class": "form-group"
 };
-var _hoisted_31 = {
+var _hoisted_30 = {
   "class": "modal-footer"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -21068,13 +21070,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "data-dropdown-parent": "#family-tree-modal",
     tabindex: "-1",
     "aria-hidden": "true"
-  }, null, 8 /* PROPS */, _hoisted_26)], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isAddingRelation || $data.isAddingChild || $data.isEditingEntity || $data.isAddingCharacter]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.fields.member), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(this.suggestions, function (suggestion, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+  }, null, 8 /* PROPS */, _hoisted_26)], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isAddingRelation || $data.isAddingChild || $data.isEditingEntity || $data.isAddingCharacter]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.fields.member), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(this.suggestions, function (suggestion) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      "class": "cursor-pointer",
       onClick: function onClick($event) {
-        return _this.saveSuggestion(index);
+        return _this.saveSuggestion(suggestion.id);
       }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(suggestion), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_28);
-  }), 256 /* UNKEYED_FRAGMENT */))])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isAddingCharacter && this.suggestions.length > 0]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.fields.relation), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(suggestion.name), 9 /* TEXT, PROPS */, _hoisted_28)]);
+  }), 256 /* UNKEYED_FRAGMENT */))])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isAddingCharacter && this.showMembers()]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.modals.fields.relation), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $data.relation = $event;
     }),
@@ -21085,7 +21088,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onKeyup: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function ($event) {
       return $options.saveModal();
     }, ["enter"]))
-  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.relation]])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isEditingRelation || $data.isAddingRelation]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.relation]])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isEditingRelation || $data.isAddingRelation]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-primary",
     onClick: _cache[8] || (_cache[8] = function ($event) {
       return $options.saveModal();
