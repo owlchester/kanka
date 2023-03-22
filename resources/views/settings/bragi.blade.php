@@ -31,7 +31,7 @@
                             <span class="text-xs" data-toggle="tooltip" title="{{ $log->created_at }} UTC">{{ $log->created_at->diffForHumans() }}</span>
                         </div>
                     </div>
-                    <div class="col-span-2 text-break" style="text-align: justify">{!! $log->result !!}</div>
+                    <div class="col-span-2 break-all" style="text-align: justify">{!! $log->result !!}</div>
                     @if ($isAdmin)
                         <div class="grid gap-2 grid-cols-{{ count($log->data) }} alert alert-warning">
                             @foreach($log->data as $key => $value)

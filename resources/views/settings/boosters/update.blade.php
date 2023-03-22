@@ -13,7 +13,7 @@
     </h4>
 
 
-    <div class="booster-icon rounded-full">
+    <div class="booster-icon rounded-full inline-block text-white mb-2 p-2">
         <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
     </div>
 

@@ -1,9 +1,16 @@
 .break-all {
     word-break: break-all;
 }
+.break-words {
+    overflow-wrap: break-word;
+}
 
 .hover\:text-red:hover {
     color: red;
+}
+
+.text-left {
+    text-align: left;
 }
 
 @import "font";

@@ -99,6 +99,9 @@ export default {
             let cls = 'inline-block rounded-xl px-3 py-1 mr-2 bg-neutral-400 text-black text-xs mb-1';
             if (tag.colour) {
                 cls += ' bg-' + tag.colour;
+                if (tag.colour === 'black') {
+                    cls += ' text-white';
+                }
             }
             return cls;
         },

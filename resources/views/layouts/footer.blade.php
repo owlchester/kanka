@@ -1,5 +1,5 @@
 <!-- Main Footer -->
-<footer id="footer" class="main-footer">
+<footer id="footer" class="main-footer pt-10 pb-8">
     @ads('footer')
     <div class="ads-space overflow-hidden">
         <ins class="adsbygoogle"
@@ -29,22 +29,27 @@
 
                 <ul class="list-none m-0 p-0">
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.features') }}">{{ __('front.menu.features') }}</a>
+                        <a href="{{ route('front.features') }}">
+                            {{ __('front.menu.features') }}
+                        </a>
                     </li>
                     @if (config('services.stripe.enabled'))
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.boosters') }}">{{ __('footer.boosters') }}</a>
+                        <a href="{{ route('front.boosters') }}">
+                            {{ __('footer.boosters') }}
+                        </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.pricing') }}">{{ __('front.menu.pricing') }}</a>
+                        <a href="{{ route('front.pricing') }}">
+                            {{ __('front.menu.pricing') }}
+                        </a>
                     </li>
                     @endif
                     <li class="px-0 py-1 text-sm">
-                        <a href="//marketplace.kanka.io" target="_blank">{{ __('front.menu.marketplace') }}</a>
+                        <a href="//marketplace.kanka.io" target="_blank">
+                            {{ __('front.menu.marketplace') }}
+                        </a>
                     </li>
-                    <!--<li>
-                        <a href="//loot.kanka.io" target="_blank">{{ __('front.menu.merch') }}</a>
-                    </li>-->
                 </ul>
             </div>
             <div class="cell text-center truncate mb-1">
@@ -53,29 +58,43 @@
                 </h5>
                 <ul class="list-none m-0 p-0">
                     @if(config('app.admin'))<li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.faqs.index') }}">{{ __('front.menu.kb') }}</a>
+                        <a href="{{ route('front.faqs.index') }}">
+                            {{ __('front.menu.kb') }}
+                        </a>
                     </li>@endif
                     <li class="px-0 py-1 text-sm">
-                        <a href="//docs.kanka.io/en/latest/index.html" target="_blank">{{ __('front.menu.documentation') }}</a>
+                        <a href="//docs.kanka.io/en/latest/index.html" target="_blank">
+                            {{ __('front.menu.documentation') }}
+                        </a>
                     </li>
                     @if(config('app.admin'))
                     <li class="px-0 py-1 text-sm">
-                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview">{{ __('front.features.api.link') }}</a>
+                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview">
+                            {{ __('front.features.api.link') }}
+                        </a>
                     </li>
                     @endif
                         <li class="px-0 py-1 text-sm">
-                            <a href="//blog.kanka.io/category/news" target="_blank">{{ __('footer.whats-new') }}</a>
+                            <a href="//blog.kanka.io/category/news" target="_blank">
+                                {{ __('footer.whats-new') }}
+                            </a>
                         </li>
                         <li class="px-0 py-1 text-sm">
-                            <a href="//blog.kanka.io" target="_blank">{{ __('footer.blog') }}</a>
+                            <a href="//blog.kanka.io" target="_blank">
+                                {{ __('footer.blog') }}
+                            </a>
                         </li>
 
                     @if (config('services.stripe.enabled'))
                     <li class="px-0 py-1 text-sm">
-                        <a href="//status.kanka.io" target="_blank">{{ __('footer.status') }}</a>
+                        <a href="//status.kanka.io" target="_blank">
+                            {{ __('footer.status') }}
+                        </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
+                        <a href="{{ route('front.newsletter') }}">
+                            {{ __('front.menu.newsletter') }}
+                        </a>
                     </li>
                     @endif
 
@@ -88,19 +107,27 @@
                 </h5>
                 <ul class="list-none m-0 p-0">
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.public_campaigns') }}">{{ __('front.menu.campaigns') }}</a>
+                        <a href="{{ route('front.public_campaigns') }}">
+                            {{ __('front.menu.campaigns') }}
+                        </a>
                     </li>
                     @if(config('app.admin'))
                         <li class="px-0 py-1 text-sm">
-                            <a href="{{ route('community-votes.index') }}">{{ __('front/community-votes.title') }}</a>
+                            <a href="{{ route('community-votes.index') }}">
+                                {{ __('front/community-votes.title') }}
+                            </a>
                         </li>
                     @endif
                     @if(config('app.admin'))
                         <li class="px-0 py-1 text-sm">
-                            <a href="{{ route('community-events.index') }}">{{ __('front/community-events.title') }}</a>
+                            <a href="{{ route('community-events.index') }}">
+                                {{ __('front/community-events.title') }}
+                            </a>
                         </li>
                         <li class="px-0 py-1 text-sm">
-                            <a href="{{ route('front.hall-of-fame') }}">{{ __('front/hall-of-fame.title') }}</a>
+                            <a href="{{ route('front.hall-of-fame') }}">
+                                {{ __('front/hall-of-fame.title') }}
+                            </a>
                         </li>
                     @endif
                     <li class="px-0 py-1 text-sm">
@@ -117,22 +144,34 @@
                 </h5>
                 <ul class="list-none m-0 p-0">
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.about') }}">{{ __('front.menu.about') }}</a>
+                        <a href="{{ route('front.about') }}">
+                            {{ __('front.menu.about') }}
+                        </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>
+                        <a href="{{ route('front.contact') }}">
+                            {{ __('front.menu.contact') }}
+                        </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.press-kit') }}">{{ __('footer.press-kit') }}</a>
+                        <a href="{{ route('front.press-kit') }}">
+                            {{ __('footer.press-kit') }}
+                        </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.security') }}">{{ __('footer.security') }}</a>
+                        <a href="{{ route('front.security') }}">
+                            {{ __('footer.security') }}
+                        </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.privacy') }}">{{ __('footer.privacy') }}</a>
+                        <a href="{{ route('front.privacy') }}">
+                            {{ __('footer.privacy') }}
+                        </a>
                     </li>
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.terms') }}">{{ __('footer.terms') }}</a>
+                        <a href="{{ route('front.terms') }}">
+                            {{ __('footer.terms') }}
+                        </a>
                     </li>
                 </ul>
             </div>

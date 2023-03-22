@@ -97,7 +97,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                         @if (isset($mainTitle))
                             @yield('header-extra')
                         @else
-                            <h1 class="truncate">
+                            <h1 class="truncate m-0 text-lg">
                                 @yield('header-extra')
                                 {!! $title ?? "Page Title" !!}
                                 <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
@@ -162,7 +162,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
     @yield('modals')
 
-    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-5 right-5"></div>
+    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full"></div>
 
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>

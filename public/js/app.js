@@ -19760,6 +19760,9 @@ __webpack_require__.r(__webpack_exports__);
       var cls = 'inline-block rounded-xl px-3 py-1 mr-2 bg-neutral-400 text-black text-xs mb-1';
       if (tag.colour) {
         cls += ' bg-' + tag.colour;
+        if (tag.colour === 'black') {
+          cls += ' text-white';
+        }
       }
       return cls;
     },
@@ -23060,7 +23063,7 @@ window.ajaxTooltip = function () {
     delay: 500,
     trigger: 'hover',
     placement: 'auto',
-    template: '<div class="tooltip" role="tooltip">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner tooltip-ajax"></div>' + '</div>',
+    template: '<div class="tooltip" role="tooltip">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner tooltip-ajax text-left p-1 min-w-96"></div>' + '</div>',
     html: true,
     sanitize: false
   });

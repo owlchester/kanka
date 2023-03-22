@@ -1,12 +1,12 @@
 
-<div class="booster-icon rounded-full">
+<div class="booster-icon rounded-full inline-block text-white mb-2 p-2">
     <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
 </div>
 
 @if (isset($superboost))
-    <h4>{{ __('callouts.booster.titles.superboosted') }}</h4>
+    <h4 class="text-2xl my-3">{{ __('callouts.booster.titles.superboosted') }}</h4>
 @else
-    <h4>{{ __('callouts.booster.titles.boosted') }}</h4>
+    <h4 class="text-2xl my-3">{{ __('callouts.booster.titles.boosted') }}</h4>
 @endif
 
 @foreach ($texts as $text)

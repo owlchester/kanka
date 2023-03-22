@@ -146,7 +146,7 @@ $specificTheme = null;
         </div>
     </div>
 
-    <div class="toast-container fixed overflow-y-auto overflow-x-hidden"></div>
+    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full"></div>
 
     <!-- Modal -->
     @includeWhen(auth()->check(), 'layouts.modals.delete')

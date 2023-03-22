@@ -33,7 +33,7 @@
         <div class="pull-right">
             @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form', 'cost' => 6])
         </div>
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs border-none overflow-hidden" role="tablist">
             <li role="presentation" class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                 <a href="#form-entry" title="{{ __('crud.fields.entry') }}" role="tab" aria-controls="form-entry">
                     {{ __('crud.fields.entry') }}

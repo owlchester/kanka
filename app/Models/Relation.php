@@ -177,7 +177,7 @@ class Relation extends Model
     public function scopePreparedSelect(Builder $query): Builder
     {
         return $query
-            ->select(['id', 'target_id', 'owner_id', 'relation', 'mirror_id', 'is_star', 'attitude', 'visibility_id'])
+            ->select(['id', 'target_id', 'owner_id', 'relation', 'mirror_id', 'is_star', 'attitude', 'visibility_id', 'colour'])
         ;
     }
 

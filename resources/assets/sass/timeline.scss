@@ -8,17 +8,10 @@
 }
 
 .timeline > li > .ra, .timeline > li > .fab, .timeline > li > .far, .timeline > li > .fas, .timeline > li > .fa-solid, .timeline > li > .fa-brands, .timeline > li > .fa-light, .timeline > li > .fa-thin, .timeline > li > .fa-duotone {
-    width: 30px;
-    height: 30px;
-    font-size: 15px;
     line-height: 30px;
-    position: absolute;
     color: #666;
     background: var(--timeline-element-border);
-    border-radius: 50%;
-    text-align: center;
     left: 18px;
-    top: 0;
 }
 
 
@@ -42,14 +35,7 @@
  * -------------------
  */
 .timeline {
-    position: relative;
-    margin: 0 0 0 0;
-    padding: 0;
-    list-style: none;
-
     > li {
-        position: relative;
-        margin-right: 10px;
 
         &:before {
             content: '';
@@ -77,41 +63,8 @@
         }
 
         .timeline-item {
-            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-            border-radius: 3px;
-            margin-top: 0;
-            margin-left: 60px;
-            margin-right: 15px;
-            padding: 0;
-            position: relative;
 
-            .time {
-                color: #999;
-                float: right;
-                padding: 10px;
-                font-size: 12px;
-            }
-
-            .box-header {
-                display: flex;
-                > h3.box-title {
-                    flex-grow: 5;
-                }
-            }
-        }
-        > .ra, > .fab, > .far,  > .fas, > .fa-solid, > .fa-brands, > .fa-light, > .fa-thin, > .fa-duotone {
-            width: 30px;
-            height: 30px;
-            font-size: 15px;
-            line-height: 30px;
-            position: absolute;
-            color: #666;
-            background: var(--timeline-element-border);
-            border-radius: 50%;
-            text-align: center;
-            left: 18px;
-            top: 0;
         }
     }
 }

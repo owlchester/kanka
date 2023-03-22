@@ -6,7 +6,7 @@
     </div>
 @endif
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs border-none overflow-hidden">
     <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
         <a href="#form-entry" title="{{ __('crud.fields.entry') }}" data-toggle="tooltip">
             {{ __('crud.fields.entry') }}

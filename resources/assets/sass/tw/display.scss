@@ -19,6 +19,9 @@
 .flex {
     display: flex;
 }
+.\!flex {
+    display: flex !important;
+}
 
 
 @media (min-width: 768px) {

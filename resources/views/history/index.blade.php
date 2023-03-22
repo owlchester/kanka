@@ -105,7 +105,7 @@
                                 <div class="flex-initial w-32 font-bold" data-attribute="{{ $attribute }}">
                                     {!! $log->attributeKey($log->entity->pluralType(), $attribute) !!}
                                 </div>
-                                <div class="flex-1 text-break">
+                                <div class="flex-1 break-all">
                                     @if (\Illuminate\Support\Str::contains($attribute, ['has_', 'is_']))
                                         @if ($value) {{ __('general.yes') }} @else {{ __('general.no') }} @endif
                                     @elseif (is_array($value))

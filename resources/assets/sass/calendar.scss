@@ -1,13 +1,22 @@
 :root {
-  --calendar-today: #FFFDE2;
-  --calendar-week: #FFFDE2;
-  --calendar-weather: #ddd;
-  --calendar-season: var(--calendar-weather);
-  --calendar-season-text: #444;
-  --calendar-event-text: white;
+    --calendar-season-text: #444;
+    --calendar-event-text: white;
 
-  --calendar-julian: none;
-  --calendar-monthday: inline;
+    --calendar-julian: none;
+    --calendar-monthday: inline;
+}
+
+.bg-weather {
+    background-color: var(--calendar-weather, #ddd);
+}
+.bg-season {
+    background-color: var(--calendar-season, #ddd);
+}
+.bg-today {
+    background-color: var(--calendar-today, #FFFDE2);
+}
+.bg-week {
+    background-color: var(--calendar-week, #FFFDE2);
 }
 
 .calendar {
@@ -15,7 +24,6 @@
 
     tbody {
         td {
-            height: 100px;
             vertical-align: top !important;
             word-wrap: break-word;
 
@@ -33,13 +41,9 @@
                 clear: both;
             }
 
-            .weather {
-                background-color: var(--calendar-weather);
-            }
-
             .calendar-season {
                 color: var(--calendar-season-text);
-                background-color: var(--calendar-season);
+                //background-color: var(--calendar-season);
             }
 
             .calendar-event-block {
@@ -63,14 +67,7 @@
         }
 
         td.today {
-            background-color: var(--calendar-today);
-        }
-
-        tr.named_week {
-            td {
-                height: 1rem;
-                background-color: var(--calendar-week);
-            }
+            //background-color: var(--calendar-today);
         }
     }
 }

@@ -2,66 +2,70 @@
  * Copied from old AdminLTE. Replacing this with tailwind will be a massive PITA.
  */
 .box {
-  position: relative;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  width: 100%;
-  box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
-
-  .box-header.with-border {
-    border-bottom: 1px solid var(--box-with-border-bottom-border);
-  }
-  .box-header {
-    display: block;
-    padding: 10px;
     position: relative;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
 
-    .box-title {
-      display: inline-block;
-      font-size: 18px;
-      margin: 0;
-      line-height: 1;
+    .box-header.with-border {
+        border-bottom: 1px solid var(--box-with-border-bottom-border);
     }
-    > .box-tools {
-      float: right;
-      margin-top: -5px;
-      margin-bottom: -5px;
 
-      .btn {
-        border: 0;
-        box-shadow: none;
-      }
-      .btn-box-tool {
-        padding: 5px;
-        font-size: 12px;
-        background: transparent;
-        color: #97a0b3;
-      }
-      [data-toggle="tooltip"] {
+    .box-header {
+        display: block;
+        padding: 10px;
         position: relative;
-      }
+
+        .box-title {
+            display: inline-block;
+            font-size: 18px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        > .box-tools {
+            float: right;
+            margin-top: -5px;
+            margin-bottom: -5px;
+
+            .btn {
+                border: 0;
+                box-shadow: none;
+            }
+
+            .btn-box-tool {
+                padding: 5px;
+                font-size: 12px;
+                background: transparent;
+                color: #97a0b3;
+            }
+
+            [data-toggle="tooltip"] {
+                position: relative;
+            }
+        }
     }
-  }
 
-  .box-body {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    padding: 10px;
-  }
+    .box-body {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+        padding: 10px;
+    }
 
-  .box-footer {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    padding: 10px;
-  }
+    .box-footer {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+        padding: 10px;
+    }
 }
 
 .box-footer, .panel-footer, .modal-footer {
-  .pagination {
-    margin: 0;
-  }
+    .pagination {
+        margin: 0;
+    }
 }

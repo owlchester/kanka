@@ -80,17 +80,12 @@
 }
 
 .entity-header {
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: cover;
-
     .entity-header-text {
         .entity-header-line {
             &:nth-last-child(2) {
                 display: inline-block;
             }
         }
-
     }
 
     .entity-header-image {

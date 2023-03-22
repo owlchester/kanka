@@ -2,21 +2,21 @@
  * Rules for specific campaign interfaces
  */
 .public-permission {
-  border: 1px solid var(--box-border);
-  background-color: var(--box-background);
-  transition: all 0.3s ease-in-out;
+    border: 1px solid var(--box-border);
+    background-color: var(--box-background);
+    transition: all 0.3s ease-in-out;
 
-  flex-flow: row wrap;
-  flex-direction: column;
+    flex-flow: row wrap;
+    flex-direction: column;
 
-  &:hover {
-    background-color: var(--quick-creator-button-hover-background);
-    color: var(--quick-creator-button-hover-text);
-  }
+    &:hover {
+        background-color: var(--quick-creator-button-hover-background);
+        color: var(--quick-creator-button-hover-text);
+    }
 }
 .public-permission.enabled {
-  background-color: var(--quick-creator-button-background);
-  color: var(--quick-creator-button-text);
+    background-color: var(--quick-creator-button-background);
+    color: var(--quick-creator-button-text);
 }
 
 .campaign-settings {
@@ -31,10 +31,10 @@
 
 @media(max-width: 767px) {
     // Campaign sidebar setup UI
-  .form-mobile-inline {
-    .form-control {
-      display: inline;
-      width: auto;
+    .form-mobile-inline {
+        .form-control {
+            display: inline;
+            width: auto;
+        }
     }
-  }
 }

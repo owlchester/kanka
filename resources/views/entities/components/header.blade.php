@@ -43,7 +43,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
 
 <div class="entity-header pb-5 flex flex-wrap @if ($hasBanner) with-entity-banner m-0 @endif">
     @if ($hasBanner)
-        <div class="entity-banner" style="background-image: url('{{ $headerImageUrl }}');">
+        <div class="entity-banner cover-image" style="background-image: url('{{ $headerImageUrl }}');">
         </div>
     @endif
 
@@ -56,9 +56,9 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
             @endif
 
             @if (!isset($printing))
-            <a class="entity-image visible-xs" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
+            <a class="entity-image cover-background visible-xs" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
             @endif
-            <div class="entity-image dropdown-toggle hidden-xs" data-toggle="dropdown" aria-expanded="false" style="background-image: url('{{ $imagePath }}');"></div>
+            <div class="entity-image cover-background dropdown-toggle hidden-xs" data-toggle="dropdown" aria-expanded="false" style="background-image: url('{{ $imagePath }}');"></div>
 
 
             <ul class="dropdown-menu dropdown-menu-right" role="menu">

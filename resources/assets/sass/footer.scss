@@ -15,9 +15,6 @@
 }
 
 footer {
-    padding-top: 40px;
-    padding-bottom: 30px;
-
     img.logo-white {
         display: var(--footer-logo-white);
     }
@@ -29,8 +26,6 @@ footer {
     ul {
         li {
             a {
-                word-break: break-all;
-
                 &:hover {
                     transition: all 0.2s ease;
                     text-decoration: none;

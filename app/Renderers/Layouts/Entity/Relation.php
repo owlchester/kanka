@@ -52,10 +52,12 @@ class Relation extends Layout
                 'class' => 'hidden-xs hidden-sm',
                 'render' => function ($relation) {
                     $icon = '';
-                    if (!empty($relation->colour)) {
-                        $icon = '<div class="label-tag-bubble" style="background-color: ' . $relation->colour . '; "></div> ';
+                    if (empty($relation->colour)) {
+                        return $relation->attribute;
                     }
-                    return $icon . $relation->attitude;
+                    $html = '<div class="flex items-center gap-1">';
+                    $icon = '<div class="flex-0 inline-block p-1 rounded-2xl w-5 h-5" style="background-color: ' . $relation->colour . '; "></div>';
+                    return $html . $icon . '<div class="grow">' . $relation->attitude . '</div></div>';
                 }
             ],
             'visibility' => [
