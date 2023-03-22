@@ -16,7 +16,7 @@
     </h3>
 </div>
 
-@if (true || !$campaign->canHaveMoreMembers())
+@if (!$campaign->canHaveMoreMembers())
     <div class="p-5 rounded-xl text-center mb-5 text-base border-boost border-1 border-solid bg-box">
         <p>{{ __('campaigns/limits.members') }}</p>
         @subscriber()
