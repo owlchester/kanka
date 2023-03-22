@@ -57,7 +57,7 @@
                 <div class="modal-body">
                     <div class="form-group" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter">
                         <label>{{ this.texts.modals.fields.character }}</label>
-                        <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true" ></select>
+                        <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
                     </div>
                     <div class="form-group" v-show="isAddingCharacter">
                         <li v-for="(suggestion, index) in this.suggestions"
@@ -68,7 +68,7 @@
                     </div>
                     <div class="form-group" v-show="isEditingRelation || isAddingRelation">
                         <label>{{ this.texts.modals.fields.relation }}</label>
-                        <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" />
+                        <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" @keyup.enter="saveModal()"/>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -152,6 +152,7 @@ export default {
                 this.nodes = [];
                 this.entities = [];
                 this.isDirty = this.originalNodes.length > 0;
+                this.resetVariables();
                 window.showToast(this.texts.toasts.cleared);
             }
         },
@@ -204,6 +205,19 @@ export default {
         },
         showDialog() {
             $(this.modal).modal('show')
+        },
+        resetVariables() {
+            this.isAddingChild = false;
+            this.isAddingRelation = false;
+            this.isEditingRelation = false;
+            this.isEditingEntity = false;
+            this.isAddingCharacter = false;
+            this.currentUuid = undefined;
+            this.relation = undefined;
+            this.entity = undefined;
+
+            $(this.modal).modal('hide');
+            $(this.entityField).val(null).trigger('change');
         },
         saveSuggestion: function(character) {
             this.emitter.emit('saveModal', [character]);
@@ -433,21 +447,25 @@ export default {
         });
 
         this.emitter.on('editEntity', (uuid) => {
+            this.resetVariables();
             this.currentUuid = uuid;
             this.isEditingEntity = true;
             this.showDialog();
         });
 
         this.emitter.on('deleteEntity', (uuid) => {
+            this.resetVariables();
             this.deleteUuid(uuid);
         });
 
         this.emitter.on('addRelation', (uuid) => {
+            this.resetVariables();
             this.currentUuid = uuid;
             this.isAddingRelation = true;
             this.showDialog();
         });
         this.emitter.on('editRelation', (data) => {
+            this.resetVariables();
             this.currentUuid = data.uuid;
             this.relation = data.relation;
             this.isEditingRelation = true;
@@ -455,6 +473,7 @@ export default {
         });
 
         this.emitter.on('addChild', (uuid) => {
+            this.resetVariables();
             this.currentUuid = uuid;
             this.isAddingChild = true;
             this.showDialog();

@@ -20149,6 +20149,7 @@ __webpack_require__.r(__webpack_exports__);
         this.nodes = [];
         this.entities = [];
         this.isDirty = this.originalNodes.length > 0;
+        this.resetVariables();
         window.showToast(this.texts.toasts.cleared);
       }
     },
@@ -20199,6 +20200,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     showDialog: function showDialog() {
       $(this.modal).modal('show');
+    },
+    resetVariables: function resetVariables() {
+      this.isAddingChild = false;
+      this.isAddingRelation = false;
+      this.isEditingRelation = false;
+      this.isEditingEntity = false;
+      this.isAddingCharacter = false;
+      this.currentUuid = undefined;
+      this.relation = undefined;
+      this.entity = undefined;
+      $(this.modal).modal('hide');
+      $(this.entityField).val(null).trigger('change');
     },
     saveSuggestion: function saveSuggestion(character) {
       this.emitter.emit('saveModal', [character]);
@@ -20438,25 +20451,30 @@ __webpack_require__.r(__webpack_exports__);
       _this9.isLoading = false;
     });
     this.emitter.on('editEntity', function (uuid) {
+      _this9.resetVariables();
       _this9.currentUuid = uuid;
       _this9.isEditingEntity = true;
       _this9.showDialog();
     });
     this.emitter.on('deleteEntity', function (uuid) {
+      _this9.resetVariables();
       _this9.deleteUuid(uuid);
     });
     this.emitter.on('addRelation', function (uuid) {
+      _this9.resetVariables();
       _this9.currentUuid = uuid;
       _this9.isAddingRelation = true;
       _this9.showDialog();
     });
     this.emitter.on('editRelation', function (data) {
+      _this9.resetVariables();
       _this9.currentUuid = data.uuid;
       _this9.relation = data.relation;
       _this9.isEditingRelation = true;
       _this9.showDialog();
     });
     this.emitter.on('addChild', function (uuid) {
+      _this9.resetVariables();
       _this9.currentUuid = uuid;
       _this9.isAddingChild = true;
       _this9.showDialog();
@@ -21039,10 +21057,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     maxlength: "70",
     "class": "form-control",
-    id: "family_tree_relation"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.relation]])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isEditingRelation || $data.isAddingRelation]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    id: "family_tree_relation",
+    onKeyup: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function ($event) {
+      return $options.saveModal();
+    }, ["enter"]))
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.relation]])], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isEditingRelation || $data.isAddingRelation]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-primary",
-    onClick: _cache[7] || (_cache[7] = function ($event) {
+    onClick: _cache[8] || (_cache[8] = function ($event) {
       return $options.saveModal();
     })
   }, " Save ")])])])], 512 /* NEED_PATCH */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */);
