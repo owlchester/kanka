@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import mitt from 'mitt'
+import drag from "v-drag"
 
 const emitter = mitt()
 const app = createApp({})
@@ -15,6 +16,9 @@ app.component('FamilyChildren', require('./components/families/FamilyChildren.vu
 app.component('RelationLine', require('./components/families/RelationLine.vue').default)
 app.component('ChildrenLine', require('./components/families/ChildrenLine.vue').default)
 app.component('FamilyParentChildrenLine', require('./components/families/FamilyParentChildrenLine.vue').default)
+app.use(drag, {
+    // global configuration
+  });
 app.mount('#family-tree');
 
 

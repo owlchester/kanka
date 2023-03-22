@@ -22,7 +22,7 @@
             <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
             <span class="sr-only">Loading...</span>
         </div>
-        <div v-else class="relative pb-5">
+        <div v-else class="relative pb-5" v-drag>
             <a class="btn btn-default rounded-2xl px-5 py-2 cursor-pointer" v-on:click="createNode()" v-if="showCreateNode()">
                 <i class="fa-solid fa-plus" aria-hidden="true"></i>
                 {{ this.texts.actions.first }}

@@ -43,6 +43,7 @@
         "select2": "^4.0.8",
         "sortablejs": "^1.15.0",
         "spectrum-colorpicker": "^1.8.1",
-        "tributejs": "^5.1.3"
+        "tributejs": "^5.1.3",
+        "v-drag": "^3.0.9"
     }
 }
