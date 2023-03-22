@@ -70,7 +70,7 @@ export default {
             this.emitter.emit('addRelation', uuid);
         },
         cssClasses() {
-            let classes = 'block max-h-5 truncate';
+            let classes = 'block truncate';
             if (this.isEditing) {
                 classes += ' font-bold';
             }

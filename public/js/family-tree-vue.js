@@ -19874,7 +19874,7 @@ __webpack_require__.r(__webpack_exports__);
       this.emitter.emit('addRelation', uuid);
     },
     cssClasses: function cssClasses() {
-      var classes = 'block max-h-5 truncate';
+      var classes = 'block truncate';
       if (this.isEditing) {
         classes += ' font-bold';
       }
