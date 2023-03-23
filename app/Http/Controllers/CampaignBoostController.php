@@ -61,12 +61,16 @@ class CampaignBoostController extends Controller
         $this->authorize('access', $campaign);
 
         try {
+            $action = $request->post('action');
+            if ($request->has('superboost')) {
+                $action = 'superboost';
+            }
             $this->campaignBoostService
                 ->campaign($campaign)
-                ->action($request->post('action'))
+                ->action($action)
                 ->boost();
 
-            $superboost = $request->post('action') == 'superboost';
+            $superboost = $action == 'superboost';
 
             $this->campaignService->notify(
                 $campaign,

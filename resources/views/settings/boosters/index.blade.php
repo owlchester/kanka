@@ -125,7 +125,8 @@
                     @include('settings.boosters.create', [
                         'campaign' => $focus,
                         'superboost' => $superboost,
-                        'cost' => $superboost ? 3 : 1
+                        'cost' => $superboost ? 3 : 1,
+                        'canSuperboost' => auth()->user()->availableBoosts() >= 3
                     ])
                 </div>
             </div>

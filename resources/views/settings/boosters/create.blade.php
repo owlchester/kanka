@@ -60,14 +60,20 @@
         <p class="my-5">{{ __('settings/boosters.boost.duration') }}</p>
 
        {!! Form::open(['route' => ['campaign_boosts.store']]) !!}
-        <div class="pb-5">
-            <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">
+        <div class="pb-5 flex gap-5 justify-center">
+            <button type="button" class="btn px-8 rounded-full " data-dismiss="modal">
                 {{ __('crud.cancel') }}
             </button>
-            <button type="submit" class="btn bg-boost text-white px-8 ml-5 rounded-full">
+            <button type="submit" class="btn bg-boost text-white px-8 rounded-full">
                 <span class="fa-solid fa-rocket" aria-hidden="true"></span>
                 <span class="">{{ __('settings/boosters.' . ($superboost ? 'superboost' : 'boost') . '.actions.confirm') }}</span>
             </button>
+            @if (isset($canSuperboost) && $canSuperboost)
+                <button type="submit" class="btn bg-boost text-white px-8 rounded-full" name="superboost">
+                    <span class="fa-solid fa-rocket" aria-hidden="true"></span>
+                    <span class="">{!! __('settings/boosters.superboost.actions.instead', ['count' => '<strong>3</strong>']) !!}</span>
+                </button>
+            @endif
         </div>
         {!! Form::hidden('action', $superboost ? 'superboost' : 'boost') !!}
         {!! Form::hidden('campaign_id', $campaign->id) !!}
