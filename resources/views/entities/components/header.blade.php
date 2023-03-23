@@ -298,12 +298,12 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
         <article>
             <p class="mb-1 text-justify">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
-            <a href="{{ route('settings.boost', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-maroon btn-block">
+            <a href="{{ route('settings.boost', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-boost text-white btn-block">
                 {!! __('callouts.booster.actions.boost', ['campaign' => $campaignService->campaign()->name]) !!}
             </a>
             @else
                 <p class="mb-1 text-justify">{{ __('callouts.booster.limitation') }}</p>
-                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon btn-block">
+                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-block">
                     {!! __('callouts.booster.learn-more') !!}
                 </a>
             @endif

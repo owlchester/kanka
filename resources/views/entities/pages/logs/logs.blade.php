@@ -92,11 +92,11 @@
 'amount' => config('entities.logs'),
 ]) !!}</p>
                                 @subscriber()
-                                <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-maroon">
+                                <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-boost text-white">
                                     {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->name]) !!}
                                 </a>
                             @else
-                                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon">
+                                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white">
                                     {!! __('callouts.booster.learn-more') !!}
                                 </a>
                             @endif

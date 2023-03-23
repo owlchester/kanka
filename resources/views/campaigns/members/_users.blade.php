@@ -20,11 +20,11 @@
     <div class="p-5 rounded-xl text-center mb-5 text-base border-boost border-1 border-solid bg-box">
         <p>{{ __('campaigns/limits.members') }}</p>
         @subscriber()
-            <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-maroon btn-lg btn-block">
+            <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-boost text-white btn-lg btn-block">
                 {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
             </a>
         @else
-            <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon btn-lg">
+            <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-lg">
                 {!! __('callouts.booster.learn-more') !!}
             </a>
         @endif

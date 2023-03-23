@@ -84,7 +84,7 @@
             {{ __('settings/boosters.ready.title') }}
 
             @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
-                <div class="label bg-maroon ml-3" data-toggle="tooltip" title="{{ __('settings/boosters.ready.available') }}">
+                <div class="label bg-boost text-white ml-3" data-toggle="tooltip" title="{{ __('settings/boosters.ready.available') }}">
                     <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                     {{ auth()->user()->availableBoosts() }}
                 </div>

@@ -12,10 +12,7 @@
         {!! __('settings/boosters.' . ($superboost ? 'superboost' : 'boost') . '.title', ['campaign' => $campaign->name]) !!}
     </h4>
 
-
-    <div class="booster-icon rounded-full inline-block text-white mb-2 p-2">
-        <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
-    </div>
+    @include ('partials.boost_icon')
 
     @if ($campaign->boosted())
         <p>{!! __('settings/boosters.boost.errors.boosted', ['campaign' => $campaign->name])!!}</p>
@@ -33,7 +30,7 @@
                 <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">
                     {{ __('crud.cancel') }}
                 </button>
-                <a href="{{ route('settings.subscription') }}" class="btn bg-maroon rounded-full px-8">
+                <a href="{{ route('settings.subscription') }}" class="btn bg-boost text-white rounded-full px-8">
                     {!! __('settings/boosters.boost.actions.upgrade') !!}
                 </a>
             </div>
@@ -43,10 +40,10 @@
             </p>
 
             <div class="text-center my-5">
-                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon rounded-full px-8 mr-5">
+                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white rounded-full px-8 mr-5">
                     {!! __('callouts.booster.learn-more') !!}
                 </a>
-                <a href="{{ route('settings.subscription') }}" class="btn bg-maroon rounded-full px-8">
+                <a href="{{ route('settings.subscription') }}" class="btn bg-boost text-white rounded-full px-8">
                     {!! __('settings/boosters.boost.actions.subscribe') !!}
                 </a>
             </div>
@@ -67,7 +64,7 @@
             <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">
                 {{ __('crud.cancel') }}
             </button>
-            <button type="submit" class="btn bg-maroon px-8 ml-5 rounded-full">
+            <button type="submit" class="btn bg-boost text-white px-8 ml-5 rounded-full">
                 <span class="fa-solid fa-rocket" aria-hidden="true"></span>
                 <span class="">{{ __('settings/boosters.' . ($superboost ? 'superboost' : 'boost') . '.actions.confirm') }}</span>
             </button>

@@ -1,7 +1,5 @@
 
-<div class="booster-icon rounded-full inline-block text-white mb-2 p-2">
-    <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
-</div>
+@include ('partials.boost_icon')
 
 @if (isset($superboost))
     <h4 class="text-2xl my-3">{{ __('callouts.booster.titles.superboosted') }}</h4>
@@ -22,16 +20,16 @@
 
 @subscriber()
     @if (isset($superboost))
-        <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-maroon rounded-full px-8">
+        <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-boost text-white rounded-full px-8">
             {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->name]) !!}
         </a>
     @else
-        <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-maroon rounded-full px-8">
+        <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-boost text-white rounded-full px-8">
             {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
         </a>
     @endif
 @else
-    <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-maroon rounded-full px-8">
+    <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white rounded-full px-8">
         {!! __('callouts.booster.learn-more') !!}
     </a>
 @endif
