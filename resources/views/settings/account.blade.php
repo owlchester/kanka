@@ -90,7 +90,7 @@
                 </h3>
             </div>
             <div class="box-body">
-                @if (!auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->cancelled())
+                @if (!auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->canceled())
                 <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#delete-account">
                     <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i> {{ __('profiles.sections.delete.delete') }}
                 </button>
@@ -102,7 +102,7 @@
                 <p>{{ __('profiles.sections.delete.helper') }}</p>
 
 
-                @if (auth()->user()->subscribed('kanka') && !auth()->user()->subscription('kanka')->cancelled())
+                @if (auth()->user()->subscribed('kanka') && !auth()->user()->subscription('kanka')->canceled())
                     <p class="text-red">
                         {!! __('profiles.sections.delete.subscribed', [
         'subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))

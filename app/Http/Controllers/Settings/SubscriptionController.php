@@ -123,7 +123,7 @@ class SubscriptionController extends Controller
 
             $flash = 'subscribed';
             $routeOptions = ['success' => 1];
-            if ($this->subscription->cancelled()) {
+            if ($this->subscription->canceled()) {
                 $flash = 'cancel';
                 $routeOptions = ['cancelled' => 1];
                 SubscriptionCancellation::create([

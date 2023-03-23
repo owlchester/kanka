@@ -429,7 +429,7 @@ class SubscriptionService
     /**
      * @return bool
      */
-    public function cancelled(): bool
+    public function canceled(): bool
     {
         return $this->cancelled;
     }

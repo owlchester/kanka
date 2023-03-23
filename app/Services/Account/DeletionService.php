@@ -27,7 +27,7 @@ class DeletionService
 
         // If the user has no active or invalid payment
         $sub = $this->user->subscription('kanka');
-        if (empty($sub) || $sub->cancelled()) {
+        if (empty($sub) || $sub->canceled()) {
             return;
         }
 

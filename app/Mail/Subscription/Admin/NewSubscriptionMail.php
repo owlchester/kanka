@@ -49,7 +49,7 @@ class NewSubscriptionMail extends Mailable
         if ($this->new) {
             // Auto-cancelled subs due to credit card issues don't trigger a cancellation, so we need to check previous
             // subs instead.
-            $cancelled = Subscription::where('user_id', $this->user->id)->cancelled()->count();
+            $cancelled = Subscription::where('user_id', $this->user->id)->canceled()->count();
             if ($cancelled > 0) {
                 $action = 'Renewed';
             }
