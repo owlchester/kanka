@@ -98,6 +98,10 @@ class FamilyTreeService
         $this->familyTree = $familyTree;
     }
 
+    /**
+     * Get all the unique entity ids from the family tree
+     * @return void
+     */
     protected function prepareEntities(): void
     {
         $data = $this->familyTree->config;
@@ -256,7 +260,7 @@ class FamilyTreeService
 
     protected function fillNodes(): array
     {
-        $nodes = $this->familyTree->config;
+        $nodes = $this->config;
         if (empty($nodes)) {
             return [];
         }

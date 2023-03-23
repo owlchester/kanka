@@ -18,7 +18,7 @@ app.component('ChildrenLine', require('./components/families/ChildrenLine.vue').
 app.component('FamilyParentChildrenLine', require('./components/families/FamilyParentChildrenLine.vue').default)
 app.use(drag, {
     // global configuration
-  });
+});
 app.mount('#family-tree');
 
 
