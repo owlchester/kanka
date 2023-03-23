@@ -350,7 +350,7 @@ class SubscriptionService
             return self::STATUS_UNSUBSCRIBED;
         } elseif ($this->user->subscription('kanka')->onGracePeriod()) {
             return self::STATUS_GRACE;
-        } elseif ($this->user->subscription('kanka')->cancelled()) {
+        } elseif ($this->user->subscription('kanka')->canceled()) {
             return self::STATUS_CANCELLED;
         }
 
