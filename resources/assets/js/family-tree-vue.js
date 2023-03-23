@@ -117,13 +117,9 @@ window.familyTreeRelationWidth = function(relation, index) {
         return Math.max(directSize, min);
     }
 
-    let childWidth = relation.children.length ;
-    min = Math.max(childWidth, min);
-
-    //console.log('min vs size', min, size);
-
     // Return the size of the tree, or the size of the children,
     // if none of the children have relations and their own children
+    min = Math.max(directSize, min);
     return Math.max(min, size);
 };
 
