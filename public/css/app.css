@@ -5863,6 +5863,10 @@ body.ab-testing-second .ab-testing-a {
   text-align: left;
 }
 
+.leading-none {
+  line-height: 1;
+}
+
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;

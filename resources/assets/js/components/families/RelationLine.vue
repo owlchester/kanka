@@ -2,7 +2,7 @@
     <div class="family-tree-line family-tree-relation-line family-tree-line-vertical absolute" v-bind:style="verticalSource()"></div>
     <div class="family-tree-line family-tree-relation-line family-tree-line-horizontal absolute" v-bind:style="horizontal()"></div>
     <div class="family-tree-line family-tree-relation-line family-tree-line-vertical absolute" v-bind:style="verticalTarget()"></div>
-    <div class="family-tree-relation text-center overflow-clip absolute" v-bind:style="relationBox()">
+    <div class="family-tree-relation text-center overflow-clip absolute text-sm" v-bind:style="relationBox()">
         <a v-if="isEditing" v-on:click="editRelation(uuid, relation)" class="cursor-pointer" v-bind:title="i18n('relation', 'edit')">
             {{ relationText() }}
             <i class="fa-solid fa-pencil" aria-hidden="true">

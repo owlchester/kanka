@@ -19852,7 +19852,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     boxClasses: function boxClasses() {
-      var css = 'family-node-entity rounded-2xl px-2 py-2 absolute inline-block overflow-hidden';
+      var css = 'family-node-entity rounded-2xl px-2 flex items-center absolute inline-block overflow-hidden text-base leading-none';
       if (this.isRelation) {
         css += ' family-node-entity-relation';
       }
@@ -19862,7 +19862,7 @@ __webpack_require__.r(__webpack_exports__);
       return css;
     },
     position: function position() {
-      return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px; width:' + this.entityWidth + 'px;';
+      return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px; width:' + this.entityWidth + 'px; height: ' + this.entityHeight + 'px';
     },
     editEntity: function editEntity(uuid) {
       this.emitter.emit('editEntity', uuid);
@@ -20130,7 +20130,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isEditing = true;
     },
     resetTree: function resetTree() {
-      if (confirm(this.texts.modals.reset.confirm)) {
+      if (!this.isDirty || confirm(this.texts.modals.reset.confirm)) {
         this.isEditing = false;
         this.isDirty = false;
         this.nodes = JSON.parse(JSON.stringify(this.originalNodes));
@@ -21146,7 +21146,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "family-tree-line family-tree-relation-line family-tree-line-vertical absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.verticalTarget())
   }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "family-tree-relation text-center overflow-clip absolute",
+    "class": "family-tree-relation text-center overflow-clip absolute text-sm",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.relationBox())
   }, [$props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 0,

@@ -135,7 +135,7 @@ export default {
             this.isEditing = true;
         },
         resetTree() {
-            if (confirm(this.texts.modals.reset.confirm)) {
+            if (!this.isDirty || confirm(this.texts.modals.reset.confirm)) {
                 this.isEditing = false;
                 this.isDirty = false;
 

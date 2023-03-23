@@ -48,7 +48,7 @@ export default {
 
     methods: {
         boxClasses() {
-            let css = 'family-node-entity rounded-2xl px-2 py-2 absolute inline-block overflow-hidden';
+            let css = 'family-node-entity rounded-2xl px-2 flex items-center absolute inline-block overflow-hidden text-base leading-none';
             if (this.isRelation) {
                 css += ' family-node-entity-relation';
             }
@@ -58,7 +58,7 @@ export default {
             return css;
         },
         position() {
-            return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px; width:' + this.entityWidth + 'px;';
+            return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px; width:' + this.entityWidth + 'px; height: ' + this.entityHeight + 'px';
         },
         editEntity(uuid) {
             this.emitter.emit('editEntity', uuid);
