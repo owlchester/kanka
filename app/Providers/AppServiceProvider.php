@@ -77,6 +77,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Laravel\Cashier\Cashier;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -91,6 +92,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         $this->registerWebObservers();
+        Cashier::useCustomerModel(User::class);
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new HashValidator($translator, $data, $rules, $messages);

@@ -32,7 +32,7 @@
             <div class="box-body">
                 <p>{{ __('settings.account.2fa.social') }}</p>
             </div>
-        @elseif(empty($user->passwordSecurity) && (auth()->user()->isSubscriber() || auth()->user()->subscription('kanka')->cancelled()))
+        @elseif(empty($user->passwordSecurity) && (auth()->user()->isSubscriber() || auth()->user()->subscription('kanka')->canceled()))
             <div class="box-body">
                 <p>
                     {{ __('settings.account.2fa.helper') }} {!! link_to('https://docs.kanka.io/en/latest/account/security/two-factor-authentication.html', __('settings.account.2fa.learn_more')) !!}
@@ -48,7 +48,7 @@
                     <button type="submit" class="btn btn-primary" name="button">{{ __('settings.account.2fa.generate_qr') }}</button>
                 </div>
             {!! Form::close() !!}
-        @elseif(!$user->passwordSecurity->google2fa_enable && auth()->user()->isSubscriber() || auth()->user()->subscription('kanka')->cancelled())
+        @elseif(!$user->passwordSecurity->google2fa_enable && auth()->user()->isSubscriber() || auth()->user()->subscription('kanka')->canceled())
             {!! Form::open(['route' => 'settings.security.enable-2fa', 'method' => 'POST']) !!}
             <div class="box-body">
                 <p>{{ __('settings.account.2fa.activation_helper') }}</p>
