@@ -2,9 +2,9 @@
 
 return [
     'actions' => [
-        'clear' => 'Clear tree',
-        'reset' => 'Reset tree',
-        'save' => 'Save tree',
+        'clear' => 'Erase all',
+        'reset' => 'Discard changes',
+        'save' => 'Save',
         'first' => 'Add a founder',
         'rename-relation' => 'Rename relation',
     ],
@@ -17,7 +17,7 @@ return [
     ],
     'modals' => [
         'clear' => [
-            'confirm' => 'Are you sure you want to clear the family tree?',
+            'confirm' => 'Are you sure you want to clear all the data from the family tree?',
         ],
         'relations' => [
             'add' => [
@@ -49,7 +49,7 @@ return [
             ],
         ],
         'reset' => [
-            'confirm' => 'Are you sure you want to reset the family tree?',
+            'confirm' => 'Are you sure you want to discard any changes made to the family tree?',
         ],
     ],
     'pitch' => 'Create a detailed family tree for your families.',

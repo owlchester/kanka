@@ -103,6 +103,7 @@ return [
         'actions'       => [
             'advanced-options'  => 'Advanced options',
         ],
+        'advanced_options_boosted' => 'Enable more options like showing pins with a :boosted_campaign.',
         'calendar'      => [
             'actions'           => [
                 'next'      => 'Change date to next day',

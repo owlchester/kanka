@@ -36,7 +36,7 @@ $boosted = $campaignService->campaign()->boosted()
                         <label>
                             {{ __('dashboard.widgets.recent.filters') }}
                             <a href="//docs.kanka.io/en/latest/guides/dashboard.html" target="_blank">
-                                <i class="fa-solid fa-question-circle" title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip"></i>
+                                <i class="fa-solid fa-question-circle" title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip" aria-hidden="true"></i>
                             </a>
 
                         </label>
@@ -62,7 +62,7 @@ $boosted = $campaignService->campaign()->boosted()
                         {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null)) !!}
 
                         {{ __('dashboard.widgets.recent.singular') }}
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('dashboard.widgets.recent.help') }}" data-toggle="tooltip"></i>
+                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('dashboard.widgets.recent.help') }}" data-toggle="tooltip" aria-hidden="true"></i>
                     </label>
                 </div>
                 <p class="help-block hidden-md hidden-lg">
@@ -78,18 +78,16 @@ $boosted = $campaignService->campaign()->boosted()
                             {!! Form::checkbox('config[entity-header]', 1, (!empty($model) ? $model->conf('entity-header') : null), ['id' => 'config-entity-header']) !!}
                             {{ __('dashboard.widgets.recent.entity-header') }}
 
-                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.entity-header') }}"></i>
+                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.entity-header') }}" aria-hidden="true"></i>
                         </label>
                     </div>
                     <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.entity-header') }}</p>
 
-
                     @include('dashboard.widgets.forms._related')
-
                 @else
                     <p class="help-block">{!! __('dashboard.widgets.advanced_options_boosted', [
-                'boosted_campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost', ['target' => '_blank'])
-            ]) !!}"</p>
+                'boosted_campaign' => link_to_route('front.pricing', __('concept.boosted-campaign'), '#boost', ['target' => '_blank'])
+            ]) !!}</p>
                 @endif
             </div>
 
