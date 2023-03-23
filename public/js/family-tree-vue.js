@@ -20653,7 +20653,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = ["data-uuid", "data-entity"];
 var _hoisted_2 = {
-  "class": "flex items-center gap-1"
+  "class": "flex items-center gap-1 max-w-full"
 };
 var _hoisted_3 = {
   "class": "flex-0"
@@ -20661,9 +20661,9 @@ var _hoisted_3 = {
 var _hoisted_4 = ["href"];
 var _hoisted_5 = ["src", "alt"];
 var _hoisted_6 = {
-  "class": "grow justify-center"
+  "class": "grow justify-center truncate"
 };
-var _hoisted_7 = ["href"];
+var _hoisted_7 = ["href", "title"];
 var _hoisted_8 = {
   key: 0,
   "class": "text-xs"
@@ -20710,7 +20710,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     alt: $props.entity.name
   }, null, 8 /* PROPS */, _hoisted_5)], 8 /* PROPS */, _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.entity.url,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.cssClasses())
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.cssClasses()),
+    title: $props.entity.name
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.name), 11 /* TEXT, CLASS, PROPS */, _hoisted_7), !$props.isEditing && false ? (0) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.editEntity($props.uuid);

@@ -1,13 +1,13 @@
 <template>
     <div v-bind:class="boxClasses()" v-bind:style="position()" v-bind:data-uuid="uuid" v-bind:data-entity="entity.id">
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1 max-w-full">
             <div class="flex-0">
                 <a v-bind:href="entity.url">
                     <img v-bind:src="entity.thumb" class="rounded-full entity-image" v-bind:alt="entity.name" />
                 </a>
             </div>
-            <div class="grow justify-center">
-                <a v-bind:href="entity.url" v-bind:class="cssClasses()">
+            <div class="grow justify-center truncate">
+                <a v-bind:href="entity.url" v-bind:class="cssClasses()" v-bind:title="entity.name">
                     {{ entity.name }}
                 </a>
                 <span class="text-xs" v-if="!isEditing && false">
