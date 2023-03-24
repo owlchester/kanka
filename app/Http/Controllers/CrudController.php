@@ -215,6 +215,7 @@ class CrudController extends Controller
     public function crudCreate($params = [])
     {
         $this->authorize('create', $this->model);
+        $campaign = CampaignLocalization::getCampaign();
 
         if ($this->hasLimitCheck) {
             // @phpstan-ignore-next-line
@@ -241,7 +242,7 @@ class CrudController extends Controller
 
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
-        $params['tabAttributes'] = $this->tabAttributes;
+        $params['tabAttributes'] = $this->tabAttributes && $campaign->enabled('entity_attributes');
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
         $params['entityAttributeTemplates'] = $templates;
@@ -406,7 +407,7 @@ class CrudController extends Controller
             'name' => $this->view,
             'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && auth()->user()->can('permission', $model),
-            'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity),
+            'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity) && $campaign->enabled('entity_attributes'),
             'tabBoosted' => $this->tabBoosted,
             'tabCopy' => $this->tabCopy,
             'entityType' => $model->getEntityType(),

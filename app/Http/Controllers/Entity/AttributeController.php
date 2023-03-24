@@ -37,6 +37,16 @@ class AttributeController extends Controller
      */
     public function index(Entity $entity)
     {
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->enabled('entity_attributes')) {
+            return redirect()->route('dashboard')->with(
+                'error_raw',
+                __('campaigns.settings.errors.module-disabled', [
+                    // @phpstan-ignore-next-line
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
+                ])
+            );
+        }
         if (empty($entity->child)) {
             abort(404);
         }
@@ -81,6 +91,16 @@ class AttributeController extends Controller
      */
     public function edit(Entity $entity)
     {
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->enabled('entity_attributes')) {
+            return redirect()->route('dashboard')->with(
+                'error_raw',
+                __('campaigns.settings.errors.module-disabled', [
+                    // @phpstan-ignore-next-line
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
+                ])
+            );
+        }
         if (empty($entity->child)) {
             abort(404);
         }
