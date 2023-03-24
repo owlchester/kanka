@@ -8,23 +8,32 @@
     ></ChildrenLine>
 
     <FamilyEntity
-        :entity="this.entity(this.node.entity_id)"
-        :uuid="this.node.uuid"
-        :drawX="this.drawX"
-        :drawY="this.drawY"
-        :isEditing="this.isEditing"
-        :node="this.node"
-        :isFounder="this.isFirst"
+        :entity="entity(node.entity_id)"
+        :uuid="node.uuid"
+        :drawX="drawX"
+        :drawY="drawY"
+        :column="column"
+        :row="row"
+        :isEditing="isEditing"
+        :node="node"
+        :isFounder="isFirst"
     ></FamilyEntity>
 
     <FamilyRelations v-if="hasRelations()"
         :relations="node.relations"
         :entities="entities"
+
         :sourceX="sourceX"
         :sourceY="sourceY"
         :drawX="drawX"
         :drawY="drawY"
-        :isEditing="this.isEditing"
+
+        :sourceColumn="sourceColumn"
+        :sourceRow="sourceRow"
+        :column="column"
+        :row="row"
+
+        :isEditing="isEditing"
     >
     </FamilyRelations>
 </template>
@@ -35,10 +44,17 @@ export default {
     props: {
         node: undefined,
         entities: undefined,
+
+        sourceColumn: 0,
+        sourceRow: 0,
+        column: 0,
+        row: 0,
+
         sourceX: 0,
         sourceY: 0,
         drawX: 0,
         drawY: 0,
+
         drawLine: false,
         lineX: 0,
         isEditing: undefined,

@@ -4,6 +4,8 @@
         :uuid="relation.uuid"
         :drawX="this.drawX"
         :drawY="this.drawY"
+        :column="column"
+        :row="row"
         :isRelation="true"
         :isEditing="this.isEditing"
         :node="relation"
@@ -25,13 +27,22 @@
         v-if="hasChildren()"
         :children="relation.children"
         :entities="entities"
+
         :sourceX="sourceX"
         :sourceY="sourceY"
         :drawX="this.nextX(index)"
         :drawY="this.startY()"
-        :index="index"
         :startX="sourceX"
         :startY="this.startY()"
+
+        :sourceColumn="sourceColumn"
+        :sourceRow="sourceRow"
+        :column="this.nextCol(index)"
+        :row="this.startRow()"
+        :startColumn="sourceColumn"
+        :startRow="this.startRow()"
+
+        :index="index"
         :lineX="this.lineX()"
         :isEditing="this.isEditing"
     >
@@ -44,10 +55,17 @@ export default {
     props: {
         relation: undefined,
         entities: undefined,
+
         sourceX: 0,
         sourceY: 0,
         drawX: 0,
         drawY: 0,
+
+        sourceColumn: 0,
+        sourceRow: 0,
+        column: 0,
+        row: 0,
+
         index: 0,
         isEditing: false,
     },
@@ -65,6 +83,12 @@ export default {
         },
         startY() {
             return this.sourceY + this.entityHeight + 50;
+        },
+        nextCol(index) {
+            return index === 0 ? this.sourceColumn : this.column;
+        },
+        startRow() {
+            return this.sourceRow + 1;
         },
         lineX() {
             return this.index === 0 ? this.drawX + this.entityWidth + 20 : this.sourceX;

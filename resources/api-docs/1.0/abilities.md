@@ -2,15 +2,15 @@
 
 ---
 
-- [All Abilities](#all-abilities)
+- [All abilities](#all-abilities)
 
-- [Single Ability](#ability)
-- [Create a Ability](#create-ability)
-- [Update a Ability](#update-ability)
-- [Delete a Ability](#delete-ability)
+- [Single ability](#ability)
+- [Create an ability](#create-ability)
+- [Update an ability](#update-ability)
+- [Delete an ability](#delete-ability)
 
 <a name="all-abilities"></a>
-## All Abilities
+## All abilities
 
 You can get a list of all the abilities of a campaign by using the following endpoint.
 
@@ -21,7 +21,7 @@ You can get a list of all the abilities of a campaign by using the following end
 | :- |   :-   |  :-  |
 | GET/HEAD | `abilities` | Default |
 
-### URL Parameters
+### URL parameters
 
 The list of returned abilities can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=ability" target="_blank">API filters</a>.
 
@@ -56,7 +56,7 @@ The list of returned abilities can be filtered. The available filters are availa
 
 
 <a name="ability"></a>
-## Ability
+## Single ability
 
 To get the details of a single ability, use the following endpoint.
 
@@ -94,9 +94,9 @@ To get the details of a single ability, use the following endpoint.
 
 
 <a name="create-ability"></a>
-## Create a Ability
+## Create an ability
 
-To create a ability, use the following endpoint.
+To create an ability, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
@@ -107,6 +107,7 @@ To create a ability, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the ability |
+| `entry` | `string` | The html description of the ability |
 | `type` | `string` | The ability's type |
 | `ability_id` | `integer` | The ability's parent ability |
 | `charges` | `string` | How many charges the ability has |
@@ -121,9 +122,9 @@ To create a ability, use the following endpoint.
 
 
 <a name="update-ability"></a>
-## Update a Ability
+## Update an ability
 
-To update a ability, use the following endpoint.
+To update an ability, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
@@ -131,7 +132,7 @@ To update a ability, use the following endpoint.
 
 ### Body
 
-The same body parameters are available as for when creating a ability.
+The same body parameters are available as for when creating an ability.
 
 ### Results
 
@@ -139,9 +140,9 @@ The same body parameters are available as for when creating a ability.
 
 
 <a name="delete-ability"></a>
-## Delete a Ability
+## Delete an ability
 
-To delete a ability, use the following endpoint.
+To delete an ability, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |

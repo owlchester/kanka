@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:class="boxClasses()" v-bind:style="position()" v-bind:data-uuid="uuid" v-bind:data-entity="entity.id">
+    <div v-bind:class="boxClasses()" v-bind:style="position()" v-bind:data-uuid="uuid" v-bind:data-entity="entity.id" v-bind:data-tags="tags()">
         <div class="flex items-center gap-1 max-w-full">
             <div class="flex-0">
                 <a v-bind:href="entity.url">
@@ -8,7 +8,12 @@
             </div>
             <div class="grow justify-center truncate">
                 <a v-bind:href="entity.url" v-bind:class="cssClasses()" v-bind:title="entity.name">
-                    {{ entity.name }}
+                    <span class="truncate">
+                        {{ entity.name }}
+                    </span>
+                    <span class="self-end" v-show="entity.is_dead">
+                        <i class="fa-solid fa-skull" v-bind:title="tooltip('is_dead')" aria-hidden="true"/>
+                    </span>
                 </a>
                 <span class="text-xs" v-if="!isEditing && false">
                     (#{{ entity.id }})
@@ -40,6 +45,8 @@ export default {
         uuid: undefined,
         drawX: 0,
         drawY: 0,
+        column: 0,
+        row: 0,
         isRelation: false,
         isFounder: false,
         isEditing: undefined,
@@ -48,17 +55,26 @@ export default {
 
     methods: {
         boxClasses() {
-            let css = 'family-node-entity rounded-2xl px-2 flex items-center absolute inline-block overflow-hidden text-base leading-none';
+            let css = 'family-node-entity rounded-2xl px-2 flex items-center absolute inline-block overflow-hidden ' +
+                'text-base leading-none ft-col-' + this.column + ' ft-row-' + this.row;
             if (this.isRelation) {
                 css += ' family-node-entity-relation';
             }
             if (this.isFounder) {
                 css += ' family-node-entity-founder';
             }
+            if (this.entity.is_dead) {
+                css += ' character-dead';
+            }
+            this.entity.tags.forEach(function (tag) {
+                css += ' ' + tag;
+            });
             return css;
         },
         position() {
-            return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px; width:' + this.entityWidth + 'px; height: ' + this.entityHeight + 'px';
+            return '';
+            /*return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px;' +
+                'width:' + this.entityWidth + 'px; height: ' + this.entityHeight + 'px';*/
         },
         editEntity(uuid) {
             this.emitter.emit('editEntity', uuid);
@@ -70,14 +86,25 @@ export default {
             this.emitter.emit('addRelation', uuid);
         },
         cssClasses() {
-            let classes = 'block truncate';
+            let classes = '';
+            if (this.entity.is_dead) {
+                classes += 'flex grid-cols-2 items-center'
+            } else {
+                classes += 'block'
+            }
             if (this.isEditing) {
                 classes += ' font-bold';
             }
             return classes;
         },
+        tags() {
+            return '';
+        },
         i18n(group, action) {
             return window.ftTexts.modals[group][action].title
+        },
+        tooltip(key) {
+            return window.ftTexts.tooltips[key]
         },
     },
 

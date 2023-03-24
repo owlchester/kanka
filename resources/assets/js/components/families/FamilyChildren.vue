@@ -10,10 +10,17 @@
         v-for="(child, i) in children"
         :node="child"
         :entities="entities"
+
         :sourceX="this.startX"
         :sourceY="this.startY"
         :drawX="getDrawX(i)"
         :drawY="this.drawY"
+
+        :sourceColumn="startColumn"
+        :sourceRow="startRow"
+        :column="getColumn(i)"
+        :row="row"
+
         :drawLine="true"
         :lineX="getLineX(index)"
         :isEditing="this.isEditing"
@@ -30,12 +37,21 @@ export default {
             type: Array
         },
         entities: undefined,
+
         sourceX: 0,
         sourceY: 0,
         drawX: 0,
         drawY: 0,
         startX: 0,
         startY: 0,
+
+        sourceColumn: 0,
+        sourceRow: 0,
+        row: 0,
+        column: 0,
+        startColumn: 0,
+        startRow: 0,
+
         lineX: 0,
         index: 0,
         isEditing: false,
@@ -58,6 +74,11 @@ export default {
             }
             return this.drawX;
         },
+        getColumn(index) {
+            let x = this.column;
+            let offset = this.getNodeSize(index);
+            return x + offset;
+        },
         getDrawX(index) {
             return this.getRealDrawX(index);
         },
@@ -69,17 +90,11 @@ export default {
         },
         getNodeSize(index) {
             let offset = 0;
-            if (index === 0) {
-                offset = 0;
-            }
             // Get size of previous children
             for (let i = 0; i < index; i++) {
                 let node = this.children[i];
                 offset += window.familyTreeChildWidth(node, i);
             }
-            /*if (index === 0) {
-                offset--;
-            }*/
             return offset;
         },
     },

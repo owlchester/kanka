@@ -125,6 +125,12 @@ class FamilyTreeService
 
         // Prepare entities
         $entities = Entity::inTypes([config('entities.ids.character')])
+            ->with([
+                'character' => function ($sub) {
+                    return $sub->select('id', 'is_dead');
+                },
+                'tags'
+            ])
             ->find($this->entityIds);
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $this->formatEntity($entity);
@@ -149,11 +155,18 @@ class FamilyTreeService
      */
     protected function formatEntity(Entity $entity): array
     {
+        $tags = [];
+        foreach ($entity->tags as $tag) {
+            $tags[] = 'kanka-tag-' . $tag->id;
+            $tags[] = 'kanka-tag-' . $tag->slug;
+        }
         return [
             'id' => $entity->id,
             'name' => $entity->name,
             'url' => $entity->url(),
             'thumb' => $entity->avatar(),
+            'is_dead' => (bool) $entity->character->is_dead,
+            'tags' => $tags,
         ];
     }
 
@@ -164,36 +177,59 @@ class FamilyTreeService
             return;
         }
 
-        $config = $this->familyTree->config;
+        $config = [];
         // Loop everything and remove entities that match
-        foreach ($config as $key => $node) {
-            $this->cleanupNode($config, $node, $key);
+        foreach ($this->familyTree->config as $key => $node) {
+            $config[$key] = $this->cleanupNode($node, $key);
         }
 
         // Save the config now that its clean?
         $this->config = $config;
     }
 
-    protected function cleanupNode(&$parent, $node, $key)
+    protected function cleanupNode($node, $key): mixed
     {
         if (in_array($node['entity_id'], $this->missingIds)) {
-            unset($parent[$key]);
-            return;
+            return null;
         }
+        if (!isset($node['relations'])) {
+            return null;
+        }
+        $relations = [];
         foreach ($node['relations'] as $k => $rel) {
             if (in_array($rel['entity_id'], $this->missingIds)) {
-                unset($node['relations'][$k]);
                 continue;
             }
             if (!isset($rel['children'])) {
                 continue;
             }
+            $children = [];
             foreach ($rel['children'] as $ck => $child) {
-                $this->cleanupNode($node['relations'][$k]['children'], $child, $ck);
+                $child = $this->cleanupNode($child, $ck);
+                if (!$child) {
+                    continue;
+                }
+                $children[] = $child;
             }
-            //$node['relations'][$k] = $rel;
+            unset($rel['children']);
+            if (!empty($children)) {
+                $rel['children'] = $children;
+            }
+
+            $relations[] = $rel;
         }
-        $parent[$key]['relations'] = $node['relations'];
+        unset($node['relations']);
+        if (!empty($relations)) {
+            $node['relations'] = $relations;
+        }
+
+        /*if (!empty($node['relations'])) {
+            $parent[$key]['relations'] = $node['relations'];
+        } elseif (isset($node['relations'])) {
+            unset($parent[$key]['relations']);
+        }*/
+
+        return $node;
     }
 
     protected function emptyNode(): array
@@ -262,6 +298,10 @@ class FamilyTreeService
     {
         $nodes = $this->config;
         if (empty($nodes)) {
+            return [];
+        }
+
+        if (!isset($nodes[0]['relations'])) {
             return [];
         }
 
@@ -347,6 +387,9 @@ class FamilyTreeService
                 'saved' => __('families/trees.success.saved'),
                 'cleared' => __('families/trees.success.cleared'),
                 'reseted' => __('families/trees.success.reseted'),
+            ],
+            'tooltips' => [
+                'is_dead' => __('characters.hints.is_dead')
             ],
             'unknown' => __('families/trees.unknown'),
         ];

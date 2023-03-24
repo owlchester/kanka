@@ -19778,6 +19778,12 @@ __webpack_require__.r(__webpack_exports__);
     drawY: 0,
     startX: 0,
     startY: 0,
+    sourceColumn: 0,
+    sourceRow: 0,
+    row: 0,
+    column: 0,
+    startColumn: 0,
+    startRow: 0,
     lineX: 0,
     index: 0,
     isEditing: false
@@ -19799,6 +19805,11 @@ __webpack_require__.r(__webpack_exports__);
       }
       return this.drawX;
     },
+    getColumn: function getColumn(index) {
+      var x = this.column;
+      var offset = this.getNodeSize(index);
+      return x + offset;
+    },
     getDrawX: function getDrawX(index) {
       return this.getRealDrawX(index);
     },
@@ -19810,17 +19821,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     getNodeSize: function getNodeSize(index) {
       var offset = 0;
-      if (index === 0) {
-        offset = 0;
-      }
       // Get size of previous children
       for (var i = 0; i < index; i++) {
         var node = this.children[i];
         offset += window.familyTreeChildWidth(node, i);
       }
-      /*if (index === 0) {
-          offset--;
-      }*/
       return offset;
     }
   }
@@ -19845,6 +19850,8 @@ __webpack_require__.r(__webpack_exports__);
     uuid: undefined,
     drawX: 0,
     drawY: 0,
+    column: 0,
+    row: 0,
     isRelation: false,
     isFounder: false,
     isEditing: undefined,
@@ -19852,17 +19859,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     boxClasses: function boxClasses() {
-      var css = 'family-node-entity rounded-2xl px-2 flex items-center absolute inline-block overflow-hidden text-base leading-none';
+      var css = 'family-node-entity rounded-2xl px-2 flex items-center absolute inline-block overflow-hidden ' + 'text-base leading-none ft-col-' + this.column + ' ft-row-' + this.row;
       if (this.isRelation) {
         css += ' family-node-entity-relation';
       }
       if (this.isFounder) {
         css += ' family-node-entity-founder';
       }
+      if (this.entity.is_dead) {
+        css += ' character-dead';
+      }
+      this.entity.tags.forEach(function (tag) {
+        css += ' ' + tag;
+      });
       return css;
     },
     position: function position() {
-      return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px; width:' + this.entityWidth + 'px; height: ' + this.entityHeight + 'px';
+      return '';
+      /*return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px;' +
+          'width:' + this.entityWidth + 'px; height: ' + this.entityHeight + 'px';*/
     },
     editEntity: function editEntity(uuid) {
       this.emitter.emit('editEntity', uuid);
@@ -19874,14 +19889,25 @@ __webpack_require__.r(__webpack_exports__);
       this.emitter.emit('addRelation', uuid);
     },
     cssClasses: function cssClasses() {
-      var classes = 'block truncate';
+      var classes = '';
+      if (this.entity.is_dead) {
+        classes += 'flex grid-cols-2 items-center';
+      } else {
+        classes += 'block';
+      }
       if (this.isEditing) {
         classes += ' font-bold';
       }
       return classes;
     },
+    tags: function tags() {
+      return '';
+    },
     i18n: function i18n(group, action) {
       return window.ftTexts.modals[group][action].title;
+    },
+    tooltip: function tooltip(key) {
+      return window.ftTexts.tooltips[key];
     }
   },
   mounted: function mounted() {
@@ -19908,6 +19934,10 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     node: undefined,
     entities: undefined,
+    sourceColumn: 0,
+    sourceRow: 0,
+    column: 0,
+    row: 0,
     sourceX: 0,
     sourceY: 0,
     drawX: 0,
@@ -19986,6 +20016,10 @@ __webpack_require__.r(__webpack_exports__);
     sourceY: 0,
     drawX: 0,
     drawY: 0,
+    sourceColumn: 0,
+    sourceRow: 0,
+    column: 0,
+    row: 0,
     index: 0,
     isEditing: false
   },
@@ -20003,6 +20037,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     startY: function startY() {
       return this.sourceY + this.entityHeight + 50;
+    },
+    nextCol: function nextCol(index) {
+      return index === 0 ? this.sourceColumn : this.column;
+    },
+    startRow: function startRow() {
+      return this.sourceRow + 1;
     },
     lineX: function lineX() {
       return this.index === 0 ? this.drawX + this.entityWidth + 20 : this.sourceX;
@@ -20036,11 +20076,15 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     relations: undefined,
     entities: undefined,
+    isEditing: undefined,
     sourceX: 0,
     sourceY: 0,
     drawX: 0,
     drawY: 0,
-    isEditing: undefined
+    sourceColumn: 0,
+    sourceRow: 0,
+    column: 0,
+    row: 0
   },
   components: {
     FamilyRelation: _FamilyRelation__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -20064,6 +20108,20 @@ __webpack_require__.r(__webpack_exports__);
       }
       tmpOffsetX *= nodeOffset;
       return this.drawX + tmpOffsetX;
+    },
+    nextColumn: function nextColumn(rel, index) {
+      return this.calcPreviousRelationsCol(index);
+    },
+    calcPreviousRelationsCol: function calcPreviousRelationsCol(index) {
+      var nodeOffset = 0;
+      if (index === 0) {
+        nodeOffset = 1;
+      }
+      for (var i = 0; i < index; i++) {
+        var relWidth = window.familyTreeRelationWidth(this.relations[i], i);
+        nodeOffset += relWidth;
+      }
+      return this.column + nodeOffset;
     }
   },
   mounted: function mounted() {
@@ -20628,11 +20686,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       sourceY: _this.startY,
       drawX: $options.getDrawX(i),
       drawY: _this.drawY,
+      sourceColumn: $props.startColumn,
+      sourceRow: $props.startRow,
+      column: $options.getColumn(i),
+      row: $props.row,
       drawLine: true,
       lineX: $options.getLineX($props.index),
       isEditing: _this.isEditing,
       offset: $options.getNodeSize(i)
-    }, null, 8 /* PROPS */, ["node", "entities", "sourceX", "sourceY", "drawX", "drawY", "lineX", "isEditing", "offset"]);
+    }, null, 8 /* PROPS */, ["node", "entities", "sourceX", "sourceY", "drawX", "drawY", "sourceColumn", "sourceRow", "column", "row", "lineX", "isEditing", "offset"]);
   }), 256 /* UNKEYED_FRAGMENT */))], 64 /* STABLE_FRAGMENT */);
 }
 
@@ -20651,7 +20713,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = ["data-uuid", "data-entity"];
+var _hoisted_1 = ["data-uuid", "data-entity", "data-tags"];
 var _hoisted_2 = {
   "class": "flex items-center gap-1 max-w-full"
 };
@@ -20665,24 +20727,23 @@ var _hoisted_6 = {
 };
 var _hoisted_7 = ["href", "title"];
 var _hoisted_8 = {
+  "class": "truncate"
+};
+var _hoisted_9 = {
+  "class": "self-end"
+};
+var _hoisted_10 = ["title"];
+var _hoisted_11 = {
   key: 0,
   "class": "text-xs"
 };
-var _hoisted_9 = {
+var _hoisted_12 = {
   key: 1,
   "class": "flex gap-1"
 };
-var _hoisted_10 = ["title"];
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fa-solid fa-pencil",
-  "aria-hidden": "true"
-}, null, -1 /* HOISTED */);
-var _hoisted_12 = {
-  "class": "sr-only"
-};
 var _hoisted_13 = ["title"];
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fa-solid fa-user-plus",
+  "class": "fa-solid fa-pencil",
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
 var _hoisted_15 = {
@@ -20690,10 +20751,18 @@ var _hoisted_15 = {
 };
 var _hoisted_16 = ["title"];
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fa-solid fa-trash",
+  "class": "fa-solid fa-user-plus",
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
 var _hoisted_18 = {
+  "class": "sr-only"
+};
+var _hoisted_19 = ["title"];
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa-solid fa-trash",
+  "aria-hidden": "true"
+}, null, -1 /* HOISTED */);
+var _hoisted_21 = {
   "class": "sr-only"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -20701,7 +20770,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.boxClasses()),
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.position()),
     "data-uuid": $props.uuid,
-    "data-entity": $props.entity.id
+    "data-entity": $props.entity.id,
+    "data-tags": $options.tags()
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.entity.url
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
@@ -20712,26 +20782,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     href: $props.entity.url,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.cssClasses()),
     title: $props.entity.name
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.name), 11 /* TEXT, CLASS, PROPS */, _hoisted_7), !$props.isEditing && false ? (0) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.entity.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "fa-solid fa-skull",
+    title: $options.tooltip('is_dead'),
+    "aria-hidden": "true"
+  }, null, 8 /* PROPS */, _hoisted_10)], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $props.entity.is_dead]])], 10 /* CLASS, PROPS */, _hoisted_7), !$props.isEditing && false ? (0) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.editEntity($props.uuid);
     }),
     "class": "cursor-pointer",
     title: $options.i18n('entity', 'edit')
-  }, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'edit')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_10), !$props.isRelation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+  }, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'edit')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_13), !$props.isRelation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 0,
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.addRelation($props.uuid);
     }),
     "class": "cursor-pointer",
     title: $options.i18n('relation', 'add')
-  }, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('relation', 'add')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_13)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('relation', 'add')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_16)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.deleteEntity($props.uuid);
     }),
     "class": "align-end cursor-pointer",
     title: $options.i18n('entity', 'remove')
-  }, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'remove')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_16)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 14 /* CLASS, STYLE, PROPS */, _hoisted_1);
+  }, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'remove')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_19)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 14 /* CLASS, STYLE, PROPS */, _hoisted_1);
 }
 
 /***/ }),
@@ -20759,14 +20833,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     originY: $props.sourceY,
     targetX: $props.drawX
   }, null, 8 /* PROPS */, ["originX", "originY", "targetX"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FamilyEntity, {
-    entity: this.entity(this.node.entity_id),
-    uuid: this.node.uuid,
-    drawX: this.drawX,
-    drawY: this.drawY,
-    isEditing: this.isEditing,
-    node: this.node,
-    isFounder: this.isFirst
-  }, null, 8 /* PROPS */, ["entity", "uuid", "drawX", "drawY", "isEditing", "node", "isFounder"]), $options.hasRelations() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyRelations, {
+    entity: $options.entity($props.node.entity_id),
+    uuid: $props.node.uuid,
+    drawX: $props.drawX,
+    drawY: $props.drawY,
+    column: $props.column,
+    row: $props.row,
+    isEditing: $props.isEditing,
+    node: $props.node,
+    isFounder: $props.isFirst
+  }, null, 8 /* PROPS */, ["entity", "uuid", "drawX", "drawY", "column", "row", "isEditing", "node", "isFounder"]), $options.hasRelations() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyRelations, {
     key: 1,
     relations: $props.node.relations,
     entities: $props.entities,
@@ -20774,8 +20850,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     sourceY: $props.sourceY,
     drawX: $props.drawX,
     drawY: $props.drawY,
-    isEditing: this.isEditing
-  }, null, 8 /* PROPS */, ["relations", "entities", "sourceX", "sourceY", "drawX", "drawY", "isEditing"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */);
+    sourceColumn: $props.sourceColumn,
+    sourceRow: $props.sourceRow,
+    column: $props.column,
+    row: $props.row,
+    isEditing: $props.isEditing
+  }, null, 8 /* PROPS */, ["relations", "entities", "sourceX", "sourceY", "drawX", "drawY", "sourceColumn", "sourceRow", "column", "row", "isEditing"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20824,10 +20904,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     uuid: $props.relation.uuid,
     drawX: this.drawX,
     drawY: this.drawY,
+    column: $props.column,
+    row: $props.row,
     isRelation: true,
     isEditing: this.isEditing,
     node: $props.relation
-  }, null, 8 /* PROPS */, ["entity", "uuid", "drawX", "drawY", "isEditing", "node"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RelationLine, {
+  }, null, 8 /* PROPS */, ["entity", "uuid", "drawX", "drawY", "column", "row", "isEditing", "node"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RelationLine, {
     drawX: this.drawX,
     drawY: this.drawY,
     sourceX: this.sourceX,
@@ -20843,12 +20925,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     sourceY: $props.sourceY,
     drawX: this.nextX($props.index),
     drawY: this.startY(),
-    index: $props.index,
     startX: $props.sourceX,
     startY: this.startY(),
+    sourceColumn: $props.sourceColumn,
+    sourceRow: $props.sourceRow,
+    column: this.nextCol($props.index),
+    row: this.startRow(),
+    startColumn: $props.sourceColumn,
+    startRow: this.startRow(),
+    index: $props.index,
     lineX: this.lineX(),
     isEditing: this.isEditing
-  }, null, 8 /* PROPS */, ["children", "entities", "sourceX", "sourceY", "drawX", "drawY", "index", "startX", "startY", "lineX", "isEditing"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */);
+  }, null, 8 /* PROPS */, ["children", "entities", "sourceX", "sourceY", "drawX", "drawY", "startX", "startY", "sourceColumn", "sourceRow", "column", "row", "startColumn", "startRow", "index", "lineX", "isEditing"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20878,8 +20966,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       sourceY: $props.sourceY,
       drawX: $options.nextDrawX(relation, index),
       drawY: $props.drawY,
+      sourceColumn: $props.column,
+      sourceRow: $props.sourceRow,
+      column: $options.nextColumn(relation, index),
+      row: $props.row,
       isEditing: _this.isEditing
-    }, null, 8 /* PROPS */, ["relation", "index", "entities", "sourceX", "sourceY", "drawX", "drawY", "isEditing"]);
+    }, null, 8 /* PROPS */, ["relation", "index", "entities", "sourceX", "sourceY", "drawX", "drawY", "sourceColumn", "sourceRow", "column", "row", "isEditing"]);
   }), 256 /* UNKEYED_FRAGMENT */);
 }
 
@@ -21049,6 +21141,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       sourceY: 0,
       drawX: 0,
       drawY: 0,
+      column: 0,
+      row: 0,
+      sourceColumn: 0,
+      sourceRow: 0,
       isEditing: $data.isEditing,
       isFirst: true
     }, null, 8 /* PROPS */, ["node", "entities", "isEditing"]);

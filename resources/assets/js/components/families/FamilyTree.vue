@@ -35,6 +35,10 @@
                         :sourceY="0"
                         :drawX="0"
                         :drawY="0"
+                        :column="0"
+                        :row="0"
+                        :sourceColumn="0"
+                        :sourceRow="0"
                         :isEditing="isEditing"
                         :isFirst="true"
             >
