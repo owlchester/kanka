@@ -19,6 +19,17 @@
             'disableSort' => true,
         ],
         [
+            'label' => __('entities.locations'),
+            'render' => function($model) {
+                $locations = [];
+                foreach ($model->locations as $location) {
+                    $locations[] = $location->tooltipedLink();
+                }
+                return implode( ', ', $locations);
+            },
+            'disableSort' => true,
+        ],
+        [
             'type' => 'is_private',
         ]
     ])
