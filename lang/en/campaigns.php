@@ -369,7 +369,7 @@ TEXT
             'conversations' => 'Fictional conversations between characters or between campaign users.',
             'creatures'     => 'Build your world\'s creatures, animals, and monsters with the creatures module.',
             'dice_rolls'    => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls.',
-            'entity_attributes'    => 'Manage attributes on your entities.',
+            'entity_attributes'    => 'Keep track of attributes on entities of the campaign, for example HP or SPEED.',
             'events'        => 'Holidays, festivals, disasters, birthdays, wars.',
             'families'      => 'Clans or families, their relations and their members.',
             'inventories'   => 'Manage inventories on your entities.',

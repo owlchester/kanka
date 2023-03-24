@@ -230,18 +230,17 @@ class Campaign extends MiscModel
     /**
      * Determine if a campaign has a module enabled or not
      *
-     * @param string $entity
+     * @param string $module
      * @return bool
      */
-    public function enabled(string $entity): bool
+    public function enabled(string $module): bool
     {
-        // Can't disable attribute templates
-        if ($entity == 'attribute_templates') {
-            return true;
+        if ($module === 'attribute_templates') {
+            $module = 'entity_attributes';
         }
 
         $settings = CampaignCache::settings();
-        return (bool) $settings->$entity;
+        return (bool) $settings->$module;
     }
 
     /**

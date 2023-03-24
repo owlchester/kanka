@@ -260,7 +260,6 @@ class SidebarService
         'attribute_templates' => [
             'icon' => 'fa-solid fa-copy',
             'label' => 'entities.attribute_templates',
-            'module' => false,
         ],
         /*'search' => [
             'icon' => 'fa fa-search',

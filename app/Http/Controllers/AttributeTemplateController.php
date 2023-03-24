@@ -8,15 +8,10 @@ use App\Http\Requests\StoreAttributeTemplate;
 
 class AttributeTemplateController extends CrudController
 {
-    /**
-     * @var string
-     */
     protected string $view = 'attribute_templates';
     protected string $route = 'attribute_templates';
+    protected string $module = 'entity_attributes';
 
-    /**
-     * @var string
-     */
     protected $model = \App\Models\AttributeTemplate::class;
 
     /** @var string */
