@@ -107,7 +107,7 @@ class Creature extends MiscModel
                 $sub->select('id', 'name', 'creature_id');
             },
             'locations' => function ($sub) {
-                $sub->select('locations.id', 'locations.name');
+                $sub->select('id', 'name');
             },
             'descendants'
         ]);
@@ -217,7 +217,8 @@ class Creature extends MiscModel
      */
     public function locations()
     {
-        return $this->belongsToMany('App\Models\Location', 'creature_location');
+        return $this->belongsToMany('App\Models\Location', 'creature_location')
+        ->with('entity');
     }
 
     /**
