@@ -72,5 +72,8 @@
     <div class="cell col-span-1 flex">
         @include('campaigns.settings.box', ['icon' => 'fa-solid fa-suitcase', 'module' => 'inventories'])
     </div>
+    <div class="cell col-span-1 flex">
+        @include('campaigns.settings.box', ['icon' => 'fa-solid fa-suitcase', 'module' => 'entity_attributes'])
+    </div>
 </div>
 

@@ -32,6 +32,16 @@ class AttributeTemplateController extends Controller
      */
     public function apply(Entity $entity)
     {
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->enabled('entity_attributes')) {
+            return redirect()->route('dashboard')->with(
+                'error_raw',
+                __('campaigns.settings.errors.module-disabled', [
+                    // @phpstan-ignore-next-line
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
+                ])
+            );
+        }
         $this->authorize('update', $entity->child);
         $this->authorize('attributes', $entity);
 

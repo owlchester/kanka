@@ -16,6 +16,7 @@ class CampaignSetting extends Model
         'abilities',
         'campaign_id',
         'characters',
+        'entity_attributes',
         'events',
         'families',
         'items',

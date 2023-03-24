@@ -406,6 +406,12 @@ class Entity extends Model
      */
     public function accessAttributes(): bool
     {
+        $campaign = CampaignLocalization::getCampaign();
+
+        if (!$campaign->enabled('entity_attributes')) {
+            return false;
+        }
+
         if (!$this->is_attributes_private) {
             return true;
         }

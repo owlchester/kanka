@@ -1,4 +1,6 @@
-<?php /** @var \App\Datagrids\Actions\DatagridActions $datagridActions */?>
+<?php /** @var \App\Datagrids\Actions\DatagridActions $datagridActions */
+    $campaign = CampaignLocalization::getCampaign();
+?>
 
 @php
 $dropdownActions = [];
@@ -15,7 +17,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
                 <i class="fa-solid fa-cog" aria-hidden="true"></i> ' .  __('crud.bulk.actions.permissions') . '
             </a>';
     }
-    if ($datagridActions->hasBulkTemplate()) {
+    if ($datagridActions->hasBulkTemplate() && $campaign->enabled('entity_attributes')) {
     //if (isset($bulk) && (!isset($bulkTemplates) || $bulkTemplates)) {
         $dropdownActions[] = '
             <a href="#" class="bulk-templates" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', ['view' => 'templates']) . '" data-bulk-action="ajax">
