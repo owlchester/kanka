@@ -84,8 +84,8 @@ window.familyTreeRelationWidth = function(relation, index) {
         return min;
     }
 
-    // Since we have a minimum size, we start at that value as a negative
-    let size = index === 0 ? -1 : 0;
+    // Since we have a minimum size, we start at 0
+    let size = 0;
 
     let directSize = 0;
     let hasSubBranch = false;
@@ -101,11 +101,21 @@ window.familyTreeRelationWidth = function(relation, index) {
             // For each of the relation's children, calculate their width, and add that to the current size
             child.relations.forEach((c, i2) => {
                 directSize++;
-                //console.log(i2, c.entity_id, 'relWidth', tmp, '(min: ', min, ')');
+
+
                 if (c.children !== undefined && c.children.length > 0) {
                     hasSubBranch = true;
                 }
                 let tmp = window.familyTreeRelationWidth(c, i2);
+
+                //console.log(i2, c.entity_id, 'relWidth', '(min: ', min, ')', 'tmp', tmp);
+
+                // No idea why this works, but it does. It sometimes makes too much space
+                if (i === 0 && tmp > 2) {
+                    directSize += (tmp - 2);
+                } /*else if (i > 0 && tmp > 1) {
+                    directSize += (tmp - 1);
+                }*/
                 size += tmp;
                 //size += tmp;
             });
@@ -120,6 +130,8 @@ window.familyTreeRelationWidth = function(relation, index) {
     // Return the size of the tree, or the size of the children,
     // if none of the children have relations and their own children
     min = Math.max(directSize, min);
+
+    let final = Math.max(min, size);
     return Math.max(min, size);
 };
 
