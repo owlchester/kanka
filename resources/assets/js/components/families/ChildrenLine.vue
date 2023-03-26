@@ -1,6 +1,6 @@
 <template>
-    <div class="family-tree-line family-tree-child-line family-tree-line-vertical absolute" v-bind:style="vertical()"></div>
-    <div class="family-tree-line family-tree-child-line family-tree-line-horizontal absolute" v-bind:style="horizontal()" v-bind:data-ori-x="originX" v-bind:data-tar-x="targetX"></div>
+    <div class="family-tree-line family-tree-child-line family-tree-line-vertical absolute" v-bind:style="vertical()" v-bind:data-row="row" v-bind:data-col="column"></div>
+    <div class="family-tree-line family-tree-child-line family-tree-line-horizontal absolute" v-bind:style="horizontal()" v-bind:data-ori-x="originX" v-bind:data-tar-x="targetX" v-bind:data-row="row" v-bind:data-col="column"></div>
 </template>
 
 <script>
@@ -11,6 +11,8 @@ export default {
         originX: 0,
         originY: 0,
         targetX: 0,
+        column: 0,
+        row: 0,
     },
 
     data() {

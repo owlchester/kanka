@@ -19718,7 +19718,9 @@ __webpack_require__.r(__webpack_exports__);
     index: 0,
     originX: 0,
     originY: 0,
-    targetX: 0
+    targetX: 0,
+    column: 0,
+    row: 0
   },
   data: function data() {
     return {
@@ -19979,7 +19981,9 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     sourceX: 0,
     sourceY: 0,
-    index: 0
+    index: 0,
+    column: undefined,
+    row: undefined
   },
   data: function data() {
     return {
@@ -20586,6 +20590,10 @@ __webpack_require__.r(__webpack_exports__);
     sourceY: 0,
     drawX: 0,
     drawY: 0,
+    sourceColumn: 0,
+    sourceRow: 0,
+    column: 0,
+    row: 0,
     isEditing: false
 
     /*node: undefined,
@@ -20597,6 +20605,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    cssClass: function cssClass(type) {
+      var css = 'family-tree-line family-tree-relation-line absolute';
+      if (type === 'vertical') {
+        css += ' family-tree-line-vertical';
+      } else if (type === 'horizontal') {
+        css += ' family-tree-line-horizontal';
+      }
+      return css;
+    },
     verticalSource: function verticalSource() {
       return 'width: 1px; height: ' + this.height + 'px;' + 'left: ' + (this.sourceX + this.entityWidth / 2) + 'px; ' + 'top: ' + (this.sourceY + this.entityHeight) + 'px;';
     },
@@ -20642,17 +20659,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = ["data-ori-x", "data-tar-x"];
+var _hoisted_1 = ["data-row", "data-col"];
+var _hoisted_2 = ["data-ori-x", "data-tar-x", "data-row", "data-col"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-line family-tree-child-line family-tree-line-vertical absolute",
-    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.vertical())
-  }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.vertical()),
+    "data-row": $props.row,
+    "data-col": $props.column
+  }, null, 12 /* STYLE, PROPS */, _hoisted_1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-line family-tree-child-line family-tree-line-horizontal absolute",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.horizontal()),
     "data-ori-x": $props.originX,
-    "data-tar-x": $props.targetX
-  }, null, 12 /* STYLE, PROPS */, _hoisted_1)], 64 /* STABLE_FRAGMENT */);
+    "data-tar-x": $props.targetX,
+    "data-row": $props.row,
+    "data-col": $props.column
+  }, null, 12 /* STYLE, PROPS */, _hoisted_2)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20677,8 +20699,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FamilyParentChildrenLine, {
     sourceX: $options.getLineX($props.index),
     sourceY: $props.drawY,
-    index: $props.index
-  }, null, 8 /* PROPS */, ["sourceX", "sourceY", "index"]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.children, function (child, i) {
+    index: $props.index,
+    column: $props.column,
+    row: $props.row
+  }, null, 8 /* PROPS */, ["sourceX", "sourceY", "index", "column", "row"]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.children, function (child, i) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyNode, {
       node: child,
       entities: $props.entities,
@@ -20831,8 +20855,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     originX: $props.lineX,
     originY: $props.sourceY,
-    targetX: $props.drawX
-  }, null, 8 /* PROPS */, ["originX", "originY", "targetX"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FamilyEntity, {
+    targetX: $props.drawX,
+    column: $props.column,
+    row: $props.row
+  }, null, 8 /* PROPS */, ["originX", "originY", "targetX", "column", "row"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FamilyEntity, {
     entity: $options.entity($props.node.entity_id),
     uuid: $props.node.uuid,
     drawX: $props.drawX,
@@ -20873,11 +20899,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = ["data-row", "data-col"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     "class": "family-tree-line family-tree-child-parent-line family-tree-line-vertical absolute",
-    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.vertical())
-  }, null, 4 /* STYLE */);
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.vertical()),
+    "data-row": $props.row,
+    "data-col": $props.column
+  }, null, 12 /* STYLE, PROPS */, _hoisted_1);
 }
 
 /***/ }),
@@ -20900,39 +20929,43 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_RelationLine = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("RelationLine");
   var _component_FamilyChildren = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FamilyChildren");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FamilyEntity, {
-    entity: this.entity($props.relation.entity_id),
+    entity: $options.entity($props.relation.entity_id),
     uuid: $props.relation.uuid,
-    drawX: this.drawX,
-    drawY: this.drawY,
+    drawX: $props.drawX,
+    drawY: $props.drawY,
     column: $props.column,
     row: $props.row,
     isRelation: true,
-    isEditing: this.isEditing,
+    isEditing: $props.isEditing,
     node: $props.relation
   }, null, 8 /* PROPS */, ["entity", "uuid", "drawX", "drawY", "column", "row", "isEditing", "node"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RelationLine, {
-    drawX: this.drawX,
-    drawY: this.drawY,
-    sourceX: this.sourceX,
-    sourceY: this.sourceY,
-    relation: this.relationText(),
+    drawX: $props.drawX,
+    drawY: $props.drawY,
+    sourceX: $props.sourceX,
+    sourceY: $props.sourceY,
+    column: $props.column,
+    row: $props.row,
+    sourceColumn: $props.sourceColumn,
+    sourceRow: $props.sourceRow,
+    relation: $options.relationText(),
     uuid: $props.relation.uuid,
-    isEditing: this.isEditing
-  }, null, 8 /* PROPS */, ["drawX", "drawY", "sourceX", "sourceY", "relation", "uuid", "isEditing"]), $options.hasChildren() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyChildren, {
+    isEditing: $props.isEditing
+  }, null, 8 /* PROPS */, ["drawX", "drawY", "sourceX", "sourceY", "column", "row", "sourceColumn", "sourceRow", "relation", "uuid", "isEditing"]), $options.hasChildren() ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FamilyChildren, {
     key: 0,
     children: $props.relation.children,
     entities: $props.entities,
     sourceX: $props.sourceX,
     sourceY: $props.sourceY,
-    drawX: this.nextX($props.index),
-    drawY: this.startY(),
+    drawX: $options.nextX($props.index),
+    drawY: $options.startY(),
     startX: $props.sourceX,
-    startY: this.startY(),
+    startY: $options.startY(),
     sourceColumn: $props.sourceColumn,
     sourceRow: $props.sourceRow,
-    column: this.nextCol($props.index),
-    row: this.startRow(),
+    column: $options.nextCol($props.index),
+    row: $options.startRow(),
     startColumn: $props.sourceColumn,
-    startRow: this.startRow(),
+    startRow: $options.startRow(),
     index: $props.index,
     lineX: this.lineX(),
     isEditing: this.isEditing
@@ -21208,43 +21241,55 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = ["title"];
-var _hoisted_2 = {
+var _hoisted_1 = ["data-row", "data-col"];
+var _hoisted_2 = ["data-row", "data-col"];
+var _hoisted_3 = ["data-row", "data-col"];
+var _hoisted_4 = ["data-row", "data-col"];
+var _hoisted_5 = ["title"];
+var _hoisted_6 = {
   "class": "fa-solid fa-pencil",
   "aria-hidden": "true"
 };
-var _hoisted_3 = {
+var _hoisted_7 = {
   "class": "sr-only"
 };
-var _hoisted_4 = {
+var _hoisted_8 = {
   key: 1
 };
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-var _hoisted_6 = ["title"];
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+var _hoisted_10 = ["title"];
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-baby",
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-plus",
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
-var _hoisted_9 = {
+var _hoisted_13 = {
   "class": "sr-only"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.cssClass('vertical')),
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.verticalSource()),
+    "data-row": $props.row,
+    "data-col": $props.column
+  }, null, 14 /* CLASS, STYLE, PROPS */, _hoisted_1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($options.cssClass('horizontal')),
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.horizontal()),
+    "data-row": $props.row,
+    "data-col": $props.column
+  }, null, 14 /* CLASS, STYLE, PROPS */, _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-line family-tree-relation-line family-tree-line-vertical absolute",
-    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.verticalSource())
-  }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "family-tree-line family-tree-relation-line family-tree-line-horizontal absolute",
-    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.horizontal())
-  }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "family-tree-line family-tree-relation-line family-tree-line-vertical absolute",
-    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.verticalTarget())
-  }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.verticalTarget()),
+    "data-row": $props.row,
+    "data-col": $props.column
+  }, null, 12 /* STYLE, PROPS */, _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "family-tree-relation text-center overflow-clip absolute text-sm",
-    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.relationBox())
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($options.relationBox()),
+    "data-row": $props.row,
+    "data-col": $props.column
   }, [$props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 0,
     onClick: _cache[0] || (_cache[0] = function ($event) {
@@ -21252,14 +21297,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": "cursor-pointer",
     title: $options.i18n('relation', 'edit')
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('relation', 'edit')), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_1)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()), 1 /* TEXT */)), _hoisted_5, $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('relation', 'edit')), 1 /* TEXT */)])], 8 /* PROPS */, _hoisted_5)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.relationText()), 1 /* TEXT */)), _hoisted_9, $props.isEditing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 2,
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.addChild($props.uuid);
     }),
     "class": "cursor-pointer",
     title: $options.i18n('entity', 'child')
-  }, [_hoisted_7, _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'child')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_6)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 4 /* STYLE */)], 64 /* STABLE_FRAGMENT */);
+  }, [_hoisted_11, _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.i18n('entity', 'child')), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 12 /* STYLE, PROPS */, _hoisted_4)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),

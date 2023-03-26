@@ -1,8 +1,8 @@
 <template>
-    <div class="family-tree-line family-tree-relation-line family-tree-line-vertical absolute" v-bind:style="verticalSource()"></div>
-    <div class="family-tree-line family-tree-relation-line family-tree-line-horizontal absolute" v-bind:style="horizontal()"></div>
-    <div class="family-tree-line family-tree-relation-line family-tree-line-vertical absolute" v-bind:style="verticalTarget()"></div>
-    <div class="family-tree-relation text-center overflow-clip absolute text-sm" v-bind:style="relationBox()">
+    <div v-bind:class="cssClass('vertical')" v-bind:style="verticalSource()" v-bind:data-row="row" v-bind:data-col="column"></div>
+    <div v-bind:class="cssClass('horizontal')" v-bind:style="horizontal()" v-bind:data-row="row" v-bind:data-col="column"></div>
+    <div class="family-tree-line family-tree-relation-line family-tree-line-vertical absolute" v-bind:style="verticalTarget()" v-bind:data-row="row" v-bind:data-col="column"></div>
+    <div class="family-tree-relation text-center overflow-clip absolute text-sm" v-bind:style="relationBox()" v-bind:data-row="row" v-bind:data-col="column">
         <a v-if="isEditing" v-on:click="editRelation(uuid, relation)" class="cursor-pointer" v-bind:title="i18n('relation', 'edit')">
             {{ relationText() }}
             <i class="fa-solid fa-pencil" aria-hidden="true">
@@ -30,6 +30,10 @@ export default {
         sourceY: 0,
         drawX: 0,
         drawY: 0,
+        sourceColumn: 0,
+        sourceRow: 0,
+        column: 0,
+        row: 0,
         isEditing: false,
 
         /*node: undefined,
@@ -43,6 +47,15 @@ export default {
     },
 
     methods: {
+        cssClass(type) {
+            let css = 'family-tree-line family-tree-relation-line absolute';
+            if (type === 'vertical') {
+                css += ' family-tree-line-vertical';
+            } else if(type === 'horizontal') {
+                css += ' family-tree-line-horizontal';
+            }
+            return css;
+        },
         verticalSource() {
             return 'width: 1px; height: ' + this.height + 'px;' +
                 'left: ' + (this.sourceX + (this.entityWidth / 2)) + 'px; ' +

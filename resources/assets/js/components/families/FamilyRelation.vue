@@ -1,25 +1,33 @@
 <template>
     <FamilyEntity
-        :entity="this.entity(relation.entity_id)"
+        :entity="entity(relation.entity_id)"
         :uuid="relation.uuid"
-        :drawX="this.drawX"
-        :drawY="this.drawY"
+        :drawX="drawX"
+        :drawY="drawY"
+
         :column="column"
         :row="row"
+
         :isRelation="true"
-        :isEditing="this.isEditing"
+        :isEditing="isEditing"
         :node="relation"
     >
     </FamilyEntity>
 
     <RelationLine
-        :drawX="this.drawX"
-        :drawY="this.drawY"
-        :sourceX="this.sourceX"
-        :sourceY="this.sourceY"
-        :relation="this.relationText()"
+        :drawX="drawX"
+        :drawY="drawY"
+        :sourceX="sourceX"
+        :sourceY="sourceY"
+
+        :column="column"
+        :row="row"
+        :sourceColumn="sourceColumn"
+        :sourceRow="sourceRow"
+
+        :relation="relationText()"
         :uuid="relation.uuid"
-        :isEditing="this.isEditing"
+        :isEditing="isEditing"
     ></RelationLine>
 
 
@@ -30,17 +38,17 @@
 
         :sourceX="sourceX"
         :sourceY="sourceY"
-        :drawX="this.nextX(index)"
-        :drawY="this.startY()"
+        :drawX="nextX(index)"
+        :drawY="startY()"
         :startX="sourceX"
-        :startY="this.startY()"
+        :startY="startY()"
 
         :sourceColumn="sourceColumn"
         :sourceRow="sourceRow"
-        :column="this.nextCol(index)"
-        :row="this.startRow()"
+        :column="nextCol(index)"
+        :row="startRow()"
         :startColumn="sourceColumn"
-        :startRow="this.startRow()"
+        :startRow="startRow()"
 
         :index="index"
         :lineX="this.lineX()"

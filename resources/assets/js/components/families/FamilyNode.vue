@@ -5,6 +5,8 @@
         :originX="lineX"
         :originY="sourceY"
         :targetX="drawX"
+        :column="column"
+        :row="row"
     ></ChildrenLine>
 
     <FamilyEntity

@@ -1,5 +1,9 @@
 <template>
-    <div class="family-tree-line family-tree-child-parent-line family-tree-line-vertical absolute" v-bind:style="vertical()"></div>
+    <div
+        class="family-tree-line family-tree-child-parent-line family-tree-line-vertical absolute"
+        v-bind:style="vertical()"
+        v-bind:data-row="row"
+        v-bind:data-col="column" />
 </template>
 
 <script>
@@ -9,6 +13,8 @@ export default {
         sourceX: 0,
         sourceY: 0,
         index: 0,
+        column: undefined,
+        row: undefined,
     },
 
     data() {

@@ -3,7 +3,10 @@
     <FamilyParentChildrenLine
         :sourceX="getLineX(index)"
         :sourceY="drawY"
-        :index="index">
+        :index="index"
+        :column="column"
+        :row="row"
+    >
     </FamilyParentChildrenLine>
 
     <FamilyNode
