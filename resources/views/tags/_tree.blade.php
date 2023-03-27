@@ -20,7 +20,7 @@
                 if (!$model->hasColour()) {
                     return '';
                 }
-                return '<span class="' . $model->colourClass() . '">' . __('colours.' . $model->colour) . '</span>';
+                return '<span class="p-1 rounded text-xs ' . $model->colourClass() . '">' . __('colours.' . $model->colour) . '</span>';
             }
         ],
         [

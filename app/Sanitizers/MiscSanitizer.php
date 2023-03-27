@@ -23,7 +23,7 @@ class MiscSanitizer
     public function sanitize(): array
     {
         $this->data['name'] = $this->purify(trim($this->request->get('name', '')));
-        $this->data['slug'] = Str::slug($this->data['name']);
+        $this->data['slug'] = Str::slug($this->data['name'], '');
 
         return $this->data;
     }
