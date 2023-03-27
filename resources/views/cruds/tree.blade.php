@@ -10,16 +10,13 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
-    <div class="row mb-5">
-        <div class="col-md-12">
+    <div class="mb-5 flex gap-2">
+        <div class="grow">
             @include('layouts.datagrid.search', ['route' => route($name . '.index')])
-            @foreach ($actions as $action)
-                @if (empty($action['policy']) || (Auth::check() && Auth::user()->can($action['policy'], $model)))
-                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} mr-2">
-                        {!! $action['label'] !!}
-                    </a>
-                @endif
-            @endforeach
+        </div>
+        <div>
+            @include('cruds.lists._actions')
+            @includeWhen(auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
         </div>
     </div>
 

@@ -11,25 +11,13 @@
 
 
 @section('content')
-    <div class="row mb-5">
-        <div class="col-md-12">
+    <div class="mb-5 flex gap-2">
+        <div class="grow">
             @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index')])
-            @if(in_array($name, ['menu_links', 'relations']))
-                @can('create', $model)
-                <div class="btn-group pull-right">
-                    <a href="{{ route($route . '.create') }}" class="btn btn-primary btn-new-entity" data-entity-type="{{ $name }}">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">{{ __('entities.' .  \Illuminate\Support\Str::singular($route)) }}</span>
-                    </a>
-                </div>
-                @endcan
-            @endif
-            @foreach ($actions as $action)
-                @if (empty($action['policy']) || (auth()->check() && auth()->user()->can($action['policy'], $model)))
-                    <a href="{{ $action['route'] }}" class="btn pull-right btn-{{ $action['class'] }} mr-2" @if ($action['blank'])target="_blank"@endif>
-                        {!! $action['label'] !!}
-                    </a>
-                @endif
-            @endforeach
+        </div>
+        <div>
+            @include('cruds.lists._actions')
+            @includeWhen(auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
         </div>
     </div>
 
