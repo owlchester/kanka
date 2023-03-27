@@ -383,7 +383,7 @@ class MentionsService
                 // Add tags as a class
                 foreach ($entity->tags as $tag) {
                     $tagClasses[] = 'id-' . $tag->id;
-                    $tagClasses[] = Str::slug($tag->name);
+                    $tagClasses[] = $tag->slug;
                 }
                 // Referencing a custom field on the entity
                 if (!empty($data['field'])) {
