@@ -38292,6 +38292,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     dragWidth: function dragWidth() {
       return this.maxX + 200;
+    },
+    pincherWidth: function pincherWidth() {
+      var drag = this.dragWidth();
+      var me = this.$refs.familytree.clientWidth;
+      return Math.max(drag, me);
+    },
+    pincherHeight: function pincherHeight() {
+      var drag = this.dragHeight();
+      var me = this.$refs.familytree.clientHeight;
+      return Math.max(drag, me);
     }
   },
   mounted: function mounted() {
@@ -38824,7 +38834,8 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "aria-hidden": "true"
 }, null, -1 /* HOISTED */);
 var _hoisted_7 = {
-  "class": "family-tree overflow-auto w-full h-full min-h-50 block"
+  "class": "family-tree overflow-auto w-full h-full min-h-50 block",
+  ref: "familytree"
 };
 var _hoisted_8 = {
   key: 0,
@@ -38941,8 +38952,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.texts.actions.save), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, _hoisted_11)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PinchScrollZoom, {
     ref: "zoomer",
-    width: $options.dragWidth() + 200,
-    height: $options.dragHeight() + 100,
+    width: $options.pincherWidth(),
+    height: $options.pincherHeight(),
     contentWidth: $options.dragWidth(),
     contentHeight: $options.dragHeight(),
     scale: 1,
@@ -38982,7 +38993,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
 
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["width", "height", "contentWidth", "contentHeight"])]))]), !$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, 8 /* PROPS */, ["width", "height", "contentWidth", "contentHeight"])]))], 512 /* NEED_PATCH */), !$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
     "class": "close",
     onClick: _cache[5] || (_cache[5] = function ($event) {

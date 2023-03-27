@@ -17,7 +17,7 @@
             {{ this.texts.actions.save }}
         </button>
     </div>
-    <div class="family-tree overflow-auto w-full h-full min-h-50 block">
+    <div class="family-tree overflow-auto w-full h-full min-h-50 block" ref="familytree">
         <div class="text-center px-5" v-if="isLoading">
             <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
             <span class="sr-only">Loading...</span>
@@ -25,8 +25,8 @@
         <div v-else class="relative" v-bind:style="{width: '100%'}">
             <PinchScrollZoom
                 ref="zoomer"
-                :width="dragWidth() + 200"
-                :height="dragHeight() + 100"
+                :width="pincherWidth()"
+                :height="pincherHeight()"
                 :contentWidth="dragWidth()"
                 :contentHeight="dragHeight()"
                 :scale="1"
@@ -467,6 +467,16 @@ export default {
         },
         dragWidth() {
             return this.maxX + 200;
+        },
+        pincherWidth() {
+            let drag = this.dragWidth();
+            let me = this.$refs.familytree.clientWidth;
+            return Math.max(drag, me);
+        },
+        pincherHeight() {
+            let drag = this.dragHeight();
+            let me = this.$refs.familytree.clientHeight;
+            return Math.max(drag, me);
         },
     },
 
