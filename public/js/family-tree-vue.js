@@ -38946,6 +38946,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     contentWidth: $options.dragWidth(),
     contentHeight: $options.dragHeight(),
     scale: 1,
+    maxScale: 3,
     within: 0,
     "class": "!cursor-move"
   }, {

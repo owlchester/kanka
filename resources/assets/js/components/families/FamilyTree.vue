@@ -30,6 +30,7 @@
                 :contentWidth="dragWidth()"
                 :contentHeight="dragHeight()"
                 :scale="1"
+                :maxScale="3"
                 :within="0"
                 class="!cursor-move"
                 >
