@@ -5,9 +5,15 @@
 .cursor-pointer {
     cursor: pointer;
 }
+.\!cursor-pointer {
+    cursor: pointer !important;
+}
 .cursor-not-allowed	{
     cursor: not-allowed;
 }
 .cursor-move {
     cursor: move;
+}
+.\!cursor-move {
+    cursor: move !important;
 }

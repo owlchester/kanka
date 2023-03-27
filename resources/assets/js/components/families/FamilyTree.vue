@@ -22,7 +22,7 @@
             <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
             <span class="sr-only">Loading...</span>
         </div>
-        <div v-else class="relative" v-bind:style="{width: '100%', border: '1px solid red'}">
+        <div v-else class="relative" v-bind:style="{width: '100%'}">
             <PinchScrollZoom
                 ref="zoomer"
                 :width="dragWidth() + 200"
@@ -31,6 +31,7 @@
                 :contentHeight="dragHeight()"
                 :scale="1"
                 :within="0"
+                class="!cursor-move"
                 >
                 <div class="relative" v-bind:style="{width: dragWidth() + 'px', height: dragHeight() + 'px'}">
                     <a class="btn btn-default rounded-2xl px-5 py-2 cursor-pointer" v-on:click="createNode()" v-if="showCreateNode()">
