@@ -20,12 +20,12 @@ return [
         'export'                => 'An export of a campaign is available. The link is available for :time minutes.',
         'export_error'          => 'An error occurred while exporting your campaign entities. Please contact us if this problem persists.',
         'hidden'                => 'The campaign :campaign is now hidden from the public campaigns page.',
-        'removed-image'         => 'The image or header of :entity was removed due to a copyright claim.',
         'join'                  => ':user joined the campaign :campaign.',
         'leave'                 => ':user left the campaign :campaign.',
         'plugin'                => [
             'deleted'   => 'The plugin :plugin was deleted from the marketplace and removed from your campaign :campaign.',
         ],
+        'removed-image'         => 'The image or header of :entity was removed due to a copyright claim.',
         'role'                  => [
             'add'       => 'You have been added to the :role role in the :campaign campaign.',
             'remove'    => 'You have been removed from the :role role in the :campaign campaign.',

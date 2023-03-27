@@ -1,62 +1,62 @@
 <?php
 
 return [
-    'actions' => [
-        'clear' => 'Erase all',
-        'reset' => 'Discard changes',
-        'save' => 'Save',
-        'first' => 'Add a founder',
-        'rename-relation' => 'Rename relation',
+    'actions'   => [
+        'clear'             => 'Erase all',
+        'first'             => 'Add a founder',
+        'rename-relation'   => 'Rename relation',
+        'reset'             => 'Discard changes',
+        'save'              => 'Save',
     ],
-    'title' => ':name Family Tree',
-    'modal'   => [
-        'title'         => 'Replace entity',
+    'modal'     => [
         'first-title'   => 'Select an entity',
-        'helper'        => 'Replace the entity with another from your campaign',
+        'helper'        => 'Replace the entity with another from the campaign',
         'relation'      => 'Relation',
+        'title'         => 'Replace entity',
     ],
-    'modals' => [
-        'clear' => [
-            'confirm' => 'Are you sure you want to clear all the data from the family tree?',
+    'modals'    => [
+        'clear'     => [
+            'confirm'   => 'Are you sure you want to reinitialise all the data from the family tree?',
         ],
-        'relations' => [
-            'add' => [
-                'title' => 'Add a relation',
-                'success' => 'Relation added',
-            ],
-            'edit' => [
-                'title' => 'Update a relation',
-                'success' => 'Relation updated',
-            ],
-        ],
-        'entity' => [
-            'add' => [
-                'title' => 'Add a character',
-                'member' => 'Member',
-                'success' => 'Character added.',
-            ],
-            'edit' => [
-                'title' => 'Update a character',
-                'success' => 'Character updated.',
+        'entity'    => [
+            'add'   => [
+                'member'    => 'Member',
+                'success'   => 'Entity added.',
+                'title'     => 'Add an entity',
             ],
             'child' => [
-                'title' => 'Add a child',
-                'success' => 'Child added',
+                'success'   => 'Child added.',
+                'title'     => 'Add a child',
             ],
-            'remove' => [
-                'confirm' => 'Are you sure you want to remove this character from the family tree?',
-                'success' => 'Character removed.',
+            'edit'  => [
+                'success'   => 'Entity updated.',
+                'title'     => 'Update an entity',
+            ],
+            'remove'=> [
+                'confirm'   => 'Are you sure you want to remove this entity from the family tree?',
+                'success'   => 'Entity removed.',
             ],
         ],
-        'reset' => [
-            'confirm' => 'Are you sure you want to discard any changes made to the family tree?',
+        'relations' => [
+            'add'   => [
+                'success'   => 'Relation added.',
+                'title'     => 'Add a relation',
+            ],
+            'edit'  => [
+                'success'   => 'Relation updated.',
+                'title'     => 'Update a relation',
+            ],
+        ],
+        'reset'     => [
+            'confirm'   => 'Are you sure you want to discard any changes made to the family tree?',
         ],
     ],
-    'pitch' => 'Create a detailed family tree for your families.',
-    'unknown' => 'unknown',
-    'success' => [
-        'saved' => 'Family tree saved.',
-        'cleared' => 'Family tree cleared.',
-        'reseted' => 'Family tree has been reset.',
+    'pitch'     => 'Create a detailed family tree for the families of the campaign.',
+    'success'   => [
+        'cleared'   => 'Family tree erased.',
+        'reseted'   => 'Family tree has been reset.',
+        'saved'     => 'Family tree saved.',
     ],
+    'title'     => ':name Family Tree',
+    'unknown'   => 'unestablished',
 ];

@@ -48,14 +48,14 @@ return [
     'journals'      => [
         'title' => 'Character :name Journals',
     ],
-    'labels' => [
-        'appearance' => [
-            'name' => 'Appearance name',
+    'labels'        => [
+        'appearance'    => [
             'entry' => 'Appearance description',
+            'name'  => 'Appearance name',
         ],
-        'personality' => [
-            'name' => 'Personality trait name',
+        'personality'   => [
             'entry' => 'Personality trait description',
+            'name'  => 'Personality trait name',
         ],
     ],
     'maps'          => [

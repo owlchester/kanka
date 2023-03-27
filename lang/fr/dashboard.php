@@ -101,10 +101,11 @@ return [
     'title'         => 'Tableau de bord',
     'welcome'       => [],
     'widgets'       => [
-        'actions'       => [
+        'actions'                   => [
             'advanced-options'  => 'Options avancées',
         ],
-        'calendar'      => [
+        'advanced_options_boosted'  => 'Activer plus d\'options comme afficher les épingles avec une :boosted_campaign.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Changer la date au prochain jour',
                 'previous'  => 'Changer la date au jour précédent',
@@ -113,16 +114,16 @@ return [
             'previous_events'   => 'Précédents',
             'upcoming_events'   => 'Prochainement',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Ce widget affiche l\'entête de campagne. Ce widget est tout le temps visible sur le tableau de bord de défaut.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Widget ajouté au tableau de bord.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Widget retiré du tableau de bord.',
         ],
-        'fields'        => [
+        'fields'                    => [
             'class'             => 'Classe CSS',
             'dashboard'         => 'Tableau de bord',
             'name'              => 'Nom de widget personnalisé',
@@ -132,21 +133,21 @@ return [
             'text'              => 'Texte',
             'width'             => 'Largeur',
         ],
-        'helpers'       => [
+        'helpers'                   => [
             'class'     => 'Définition d\'une classe css ajoutée au widget.',
             'filters'   => 'Cliquer pour en savoir plus sur les options de filtrage.',
         ],
-        'orders'        => [
+        'orders'                    => [
             'name_asc'  => 'Nom ascendant',
             'name_desc' => 'Nom descendant',
             'recent'    => 'Récemment modifié',
         ],
-        'random'        => [
+        'random'                    => [
             'helpers'   => [
                 'name'  => 'Le nom de l\'entité au hasard peut être référencé avec {name}',
             ],
         ],
-        'recent'        => [
+        'recent'                    => [
             'advanced_filter'   => 'Filtre avancé',
             'advanced_filters'  => [
                 'mentionless'   => 'Sans mention (entités qui ne mentionnent pas d\'autres entités)',
@@ -170,20 +171,20 @@ return [
             'tags'              => 'Filtrer la liste des entités récemment modifiées sur une ou plusieurs étiquettes.',
             'title'             => 'Récemment modifié',
         ],
-        'tabs'          => [
+        'tabs'                      => [
             'advanced'  => 'Avancé',
             'setup'     => 'Général',
         ],
-        'unmentioned'   => [
+        'unmentioned'               => [
             'title' => 'Entité non mentionnées',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Widget modifié.',
         ],
-        'welcome'       => [
+        'welcome'                   => [
             'helper'    => 'Ce widget affiche un message de bienvenue sur le tableau de bord qui comprend des liens utiles pour les nouveaux utilisateurs de Kanka.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Automatique',
             '12'=> 'Complet (100%)',
             '3' => 'Minuscule (25%)',

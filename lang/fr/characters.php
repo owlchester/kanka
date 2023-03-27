@@ -51,6 +51,16 @@ return [
     'journals'      => [
         'title' => 'Journaux de :name',
     ],
+    'labels'        => [
+        'appearance'    => [
+            'entry' => 'Description de l\'apparance',
+            'name'  => 'Nom de l\'apparance',
+        ],
+        'personality'   => [
+            'entry' => 'Description du trait de personnalité',
+            'name'  => 'Nom du trait de personnalité',
+        ],
+    ],
     'maps'          => [
         'title' => 'Carte relationnelle de :name',
     ],

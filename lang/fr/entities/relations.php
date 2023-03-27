@@ -74,9 +74,10 @@ return [
         'related'   => 'Liés',
     ],
     'placeholders'      => [
-        'attitude'  => 'de -100 à 100, 100 étant très positif.',
-        'relation'  => 'Nature de la relation',
-        'target'    => 'Choix d\'un élément',
+        'attitude'          => 'de -100 à 100, 100 étant très positif.',
+        'relation'          => 'Nature de la relation',
+        'target'            => 'Choix d\'un élément',
+        'target_relation'   => 'Laisser vide pour utiliser la description',
     ],
     'show'              => [
         'title' => 'Relations de :name',

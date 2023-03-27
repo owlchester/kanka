@@ -74,10 +74,10 @@ return [
         'related'   => 'Related',
     ],
     'placeholders'      => [
-        'attitude'  => '-100 to 100, 100 being very positive',
-        'relation'  => 'Rival, Best Friend, Sibling',
-        'target'    => 'Choose an entity',
-        'target_relation' => 'Leave blank to use the description',
+        'attitude'          => '-100 to 100, 100 being very positive',
+        'relation'          => 'Rival, Best Friend, Sibling',
+        'target'            => 'Choose an entity',
+        'target_relation'   => 'Leave blank to use the description',
     ],
     'show'              => [
         'title' => ':name Connections',

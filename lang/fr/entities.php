@@ -45,6 +45,7 @@ return [
     'creatures'             => 'Créatures',
     'dice_roll'             => 'Jet de dés',
     'dice_rolls'            => 'Jets de dés',
+    'entity_attributes'     => 'Attributs',
     'event'                 => 'Événement',
     'events'                => 'Événements',
     'families'              => 'Familles',

@@ -1,18 +1,17 @@
 <?php
 
 return [
-    'no_results'    => 'No results.',
-    'title'         => 'Search',
-
-    'preview' => [
-        'no-connections' => 'No pinned relations to display',
-        'links' => 'Links',
+    'lookup'        => [
+        'empty'     => 'No results',
+        'hint'      => 'Type at least 3 letters to search for entities in the campaign.',
+        'keyboard'  => 'press :k to search, :esc to dismiss',
+        'recents'   => 'Recents',
+        'results'   => 'Results',
     ],
-    'lookup' => [
-        'recents' => 'Recents',
-        'results' => 'Results',
-        'hint' => 'Type at least 3 letters to search for entities in the campaign.',
-        'keyboard' => 'press :k to search, :esc to dismiss',
-        'empty' => 'No results',
-    ]
+    'no_results'    => 'No results.',
+    'preview'       => [
+        'links'             => 'Links',
+        'no-connections'    => 'No pinned relations to display',
+    ],
+    'title'         => 'Search',
 ];

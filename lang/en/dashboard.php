@@ -56,7 +56,7 @@ return [
         ],
     ],
     'helpers'       => [
-        'follow'    => 'Following a campaign will make it appear in the campaign switcher (top-left) below your campaigns.',
+        'follow'    => 'Following a campaign will make it appear in the campaign switcher below your campaigns.',
         'join'      => 'This campaign is open to new members. Click to apply to join it.',
         'setup'     => 'Setup your campaign\'s dashboard.',
     ],
@@ -100,11 +100,11 @@ return [
     ],
     'title'         => 'Dashboard',
     'widgets'       => [
-        'actions'       => [
+        'actions'                   => [
             'advanced-options'  => 'Advanced options',
         ],
-        'advanced_options_boosted' => 'Enable more options like showing pins with a :boosted_campaign.',
-        'calendar'      => [
+        'advanced_options_boosted'  => 'Enable more options like showing pins with a :boosted_campaign.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Change date to next day',
                 'previous'  => 'Change date to previous day',
@@ -113,16 +113,16 @@ return [
             'previous_events'   => 'Previous',
             'upcoming_events'   => 'Upcoming',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'This widget displays the campaign header. This widget is always shown on the default dashboard.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Widget added to the dashboard.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Widget removed from the dashboard.',
         ],
-        'fields'        => [
+        'fields'                    => [
             'class'             => 'CSS class',
             'dashboard'         => 'Dashboard',
             'name'              => 'Custom widget name',
@@ -132,21 +132,21 @@ return [
             'text'              => 'Text',
             'width'             => 'Width',
         ],
-        'helpers'       => [
+        'helpers'                   => [
             'class'     => 'Define a custom css class added to the widget.',
             'filters'   => 'Click to learn about the available filter options.',
         ],
-        'orders'        => [
+        'orders'                    => [
             'name_asc'  => 'Name ascending',
             'name_desc' => 'Name descending',
             'recent'    => 'Recently modified',
         ],
-        'random'        => [
+        'random'                    => [
             'helpers'   => [
                 'name'  => 'You can reference the random entity\'s name with {name}',
             ],
         ],
-        'recent'        => [
+        'recent'                    => [
             'advanced_filter'   => 'Advanced filter',
             'advanced_filters'  => [
                 'mentionless'   => 'Mentionless (entities that don\'t mention other entities)',
@@ -170,20 +170,20 @@ return [
             'tags'              => 'Filter the list of entities on specified tags.',
             'title'             => 'Entity list',
         ],
-        'tabs'          => [
+        'tabs'                      => [
             'advanced'  => 'Advanced',
             'setup'     => 'Setup',
         ],
-        'unmentioned'   => [
+        'unmentioned'               => [
             'title' => 'Unmentioned entities',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Widget modified.',
         ],
-        'welcome'       => [
+        'welcome'                   => [
             'helper'    => 'This widget displays a welcome message on the dashboard that includes helpful links for new users to Kanka.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Auto',
             '12'=> 'Full (100%)',
             '3' => 'Tiny (25%)',

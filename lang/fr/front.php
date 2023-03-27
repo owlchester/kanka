@@ -190,10 +190,11 @@ return [
             'title'         => 'Gérer les secrets',
         ],
         'superboosts'       => [
-            'boosted'   => 'Superboosté',
-            'gallery'   => 'Galerie de campagne et intégration avec l\'éditeur de texte Summernote',
-            'logs'      => 'Historique complet des modifications d\'une entité (jusqu\'à 30 jours)',
-            'stats'     => 'Accomplissements de campagne',
+            'boosted'       => 'Superboosté',
+            'family-tree'   => 'Créer des arbres généalogiques pour suivre l\'histoire d\'une famille',
+            'gallery'       => 'Galerie de campagne et intégration avec l\'éditeur de texte Summernote',
+            'logs'          => 'Historique complet des modifications d\'une entité (jusqu\'à 30 jours)',
+            'stats'         => 'Accomplissements de campagne',
         ],
         'timelines'         => [
             'description'   => 'Représenter visuellement les chronologies des mondes, empires, familles, ou d\'un personnage.',

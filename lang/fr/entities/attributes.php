@@ -37,6 +37,12 @@ return [
         'success'   => 'Attributs modifiés pour :entity.',
         'title'     => 'Attributs pour :name',
     ],
+    'labels'        => [
+        'checkbox'  => 'Nom de la case à cocher',
+        'name'      => 'Nom de l\'attribut',
+        'section'   => 'Nom de la section',
+        'value'     => 'Valeur de l\'attribut',
+    ],
     'live'          => [
         'success'   => 'Attribut :attribute modifié.',
         'title'     => 'Modification de :attribute',

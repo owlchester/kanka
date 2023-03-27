@@ -61,6 +61,7 @@ return [
     'superboost'=> [
         'actions'   => [
             'confirm'   => 'Superbooste-la!',
+            'instead'   => 'Superbooste-la pour :count!',
             'remove'    => 'Ne plus superbooster :campaign',
         ],
         'confirm'   => 'Oooh! Tu es le point de booster :campagne. Cela attribuera trois (:cost) de tes boosters de campagne disponibles.',
