@@ -45,7 +45,7 @@ class TagService
             'name' => Purify::clean($name),
         ]);
         $tag->campaign_id = $campaignID;
-        $tag->slug = Str::slug($tag->name);
+        $tag->slug = Str::slug($tag->name, '');
         $tag->is_private = false;
         $tag->saveQuietly();
         $tag->createEntity();
