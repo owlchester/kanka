@@ -922,6 +922,11 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@coddicat/vue3-pinch-scroll-zoom@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@coddicat/vue3-pinch-scroll-zoom/-/vue3-pinch-scroll-zoom-0.2.1.tgz#7ad3c4be7adab71b2e35df66dd1e2f86c9195d0f"
+  integrity sha512-JzM3Bo2/0YBrI0DJOxH1muoun2P0V3a0lwhZ79H/DPO7oUd34RQ9cusdp/6u7jRi5CX12o10KvDZJYuXs3Ra0g==
+
 "@colors/colors@1.5.0":
   version "1.5.0"
   resolved "https://registry.npmjs.org/@colors/colors/-/colors-1.5.0.tgz"

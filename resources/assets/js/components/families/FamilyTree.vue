@@ -22,27 +22,40 @@
             <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
             <span class="sr-only">Loading...</span>
         </div>
-        <div v-else class="relative" v-drag v-bind:style="{height: this.dragHeight(), width: this.dragWidth()}">
-            <a class="btn btn-default rounded-2xl px-5 py-2 cursor-pointer" v-on:click="createNode()" v-if="showCreateNode()">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                {{ this.texts.actions.first }}
-            </a>
+        <div v-else class="relative" v-bind:style="{width: '100%', border: '1px solid red'}">
+            <PinchScrollZoom
+                ref="zoomer"
+                :width="dragWidth() + 200"
+                :height="dragHeight() + 100"
+                :contentWidth="dragWidth()"
+                :contentHeight="dragHeight()"
+                :scale="1"
+                :within="0"
+                >
+                <div class="relative" v-bind:style="{width: dragWidth() + 'px', height: dragHeight() + 'px'}">
+                    <a class="btn btn-default rounded-2xl px-5 py-2 cursor-pointer" v-on:click="createNode()" v-if="showCreateNode()">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        {{ this.texts.actions.first }}
+                    </a>
 
-            <FamilyNode v-for="node in nodes"
-                        :node="node"
-                        :entities="entities"
-                        :sourceX="0"
-                        :sourceY="0"
-                        :drawX="0"
-                        :drawY="0"
-                        :column="0"
-                        :row="0"
-                        :sourceColumn="0"
-                        :sourceRow="0"
-                        :isEditing="isEditing"
-                        :isFirst="true"
-            >
-            </FamilyNode>
+                    <FamilyNode v-for="node in nodes"
+                                :node="node"
+                                :entities="entities"
+                                :sourceX="0"
+                                :sourceY="0"
+                                :drawX="0"
+                                :drawY="0"
+                                :column="0"
+                                :row="0"
+                                :sourceColumn="0"
+                                :sourceRow="0"
+                                :isEditing="isEditing"
+                                :isFirst="true"
+                    >
+                    </FamilyNode>
+                </div>
+            </PinchScrollZoom>
+
         </div>
     </div>
     <div class="modal fade" id="family-tree-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel" ref="modal" v-if="!isLoading">
@@ -91,6 +104,7 @@
 <script>
 import FamilyNode from './FamilyNode.vue';
 import axios from "axios";
+import PinchScrollZoom, { PinchScrollZoomEmitData } from "@coddicat/vue3-pinch-scroll-zoom";
 
 export default {
     props: {
@@ -100,6 +114,7 @@ export default {
         search_api: undefined,
     },
     components: {
+        PinchScrollZoom,
         FamilyNode,
     },
 
@@ -446,10 +461,10 @@ export default {
             return this.nodes = this.nodes.reduce(getRelationNodes, []);
         },
         dragHeight() {
-            return this.maxY + 80 + 'px';
+            return this.maxY + 80;
         },
         dragWidth() {
-            return this.maxX + 200 + 'px';
+            return this.maxX + 200;
         },
     },
 

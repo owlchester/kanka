@@ -16,6 +16,7 @@ app.component('FamilyChildren', require('./components/families/FamilyChildren.vu
 app.component('RelationLine', require('./components/families/RelationLine.vue').default)
 app.component('ChildrenLine', require('./components/families/ChildrenLine.vue').default)
 app.component('FamilyParentChildrenLine', require('./components/families/FamilyParentChildrenLine.vue').default)
+
 app.use(drag, {
     // global configuration
 });
