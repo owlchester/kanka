@@ -23,4 +23,5 @@ yarn-error.log
 .phpunit.result.cache
 *.sql
 /.sail
+package-lock.json
 
