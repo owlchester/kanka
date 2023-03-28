@@ -535,7 +535,7 @@ class CrudController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function menuView($model, $view, $directView = false)
+    protected function menuView($model, $view, $directView = false, $show = false)
     {
         // Policies will always fail if they can't resolve the user.
         $this->authCheck($model);
@@ -550,7 +550,17 @@ class CrudController extends Controller
         $datagridSorter = $this->datagridSorter;
 
         $rows = $this->rows;
-
+        if ($show) {
+            return view('cruds.show', compact(
+                'fullview',
+                'model',
+                'name',
+                'datagridSorter',
+                'data',
+                'view',
+                'rows'
+            ));
+        }
         return view('cruds.subview', compact(
             'fullview',
             'model',

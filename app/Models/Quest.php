@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
+use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
@@ -31,6 +32,7 @@ class Quest extends MiscModel
     use CalendarDateTrait;
     use CampaignTrait;
     use ExportableTrait;
+    use Nested;
     use SoftDeletes;
     use SortableTrait;
 
@@ -114,6 +116,7 @@ class Quest extends MiscModel
             //'elements',
             'quest',
             'quest.entity',
+            'quests',
         ]);
     }
 
@@ -188,7 +191,7 @@ class Quest extends MiscModel
      */
     public function quest()
     {
-        return $this->belongsTo('App\Models\Quest', 'quest_id', 'id');
+        return $this->belongsTo(Quest::class);
     }
 
     /**
@@ -203,7 +206,39 @@ class Quest extends MiscModel
      */
     public function quests()
     {
-        return $this->hasMany('App\Models\Quest', 'quest_id', 'id');
+        return $this->hasMany(Quest::class);
+    }
+
+    /**
+     * Specify parent id attribute mutator
+     * @param int $value
+     */
+    public function setQuestIdAttribute($value)
+    {
+        $this->setParentIdAttribute($value);
+    }
+
+    /**
+     * Get all quests in the quests and descendants
+     */
+    public function allQuests()
+    {
+        $questIds = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $questIds[] = $descendant->id;
+        };
+
+        $table = new Quest();
+        return Quest::whereIn($table->getTable() . '.quest_id', $questIds)->with('quest');
+    }
+
+    /**
+     * Parent ID field for the Node trait
+     * @return string
+     */
+    public function getParentIdName()
+    {
+        return 'quest_id';
     }
 
     /**

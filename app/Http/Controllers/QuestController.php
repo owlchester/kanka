@@ -68,15 +68,21 @@ class QuestController extends CrudController
 
         $options = ['quest' => $quest];
         $filters = [];
+        if (request()->has('parent_id')) {
+            $options['parent_id'] = $quest->id;
+            $filters['quest_id'] = $quest->id;
+        }
 
         Datagrid::layout(\App\Renderers\Layouts\Quest\Quest::class)
             ->route('quests.quests', $options);
 
+        //dd($quest->quests()->get(), $quest->descendants()->get());
         $this->rows = $quest
-            ->quests()
+            ->descendants()
             ->sort(request()->only(['o', 'k']))
+            ->with(['entity', 'entity.image', 'quest', 'quest.entity'])
+            ->has('entity')
             ->filter($filters)
-            ->with(['entity', 'entity.image'])
             ->paginate(15);
 
         //return $this->datagridAjax();
@@ -86,6 +92,6 @@ class QuestController extends CrudController
             return $this->datagridAjax();
         }
         return $this
-            ->menuView($quest, 'quests');
+            ->menuView($quest, 'quests', show: true);
     }
 }
