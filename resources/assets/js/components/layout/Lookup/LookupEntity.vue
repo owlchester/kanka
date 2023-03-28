@@ -11,7 +11,7 @@
                 class="rounded cover-background block h-16 w-16" />
         </div>
         <div class="flex-grow truncate pl-1">
-            <div class="font-extrabold entity-name truncate">
+            <div class="font-extrabold entity-name truncate" :title="entity.name">
                 {{ entity.name }}
             </div>
             <div class="entity-type text-xs">
