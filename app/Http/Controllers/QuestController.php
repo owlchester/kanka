@@ -76,7 +76,6 @@ class QuestController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Quest\Quest::class)
             ->route('quests.quests', $options);
 
-        //dd($quest->quests()->get(), $quest->descendants()->get());
         $this->rows = $quest
             ->descendants()
             ->sort(request()->only(['o', 'k']))
