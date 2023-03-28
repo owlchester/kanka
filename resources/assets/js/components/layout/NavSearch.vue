@@ -2,6 +2,7 @@
     <div v-click-outside="onClickOutside" class="flex grow mr-2">
         <div class="relative grow">
             <input type="text" class="form-control" maxlength="25"
+                ref="searchField"
                 id="entity-lookup"
                 v-model="term"
                 v-on:click="focus()"
@@ -14,11 +15,11 @@
             </span>
         </div>
 
-        <aside class="search-drawer absolute top-0 left-0 mt-12 h-sidebar w-sidebar bg-navbar shadow-r " v-if="show_recent || show_loading || show_preview">
+        <aside class="search-drawer absolute top-0 left-0 mt-12 h-sidebar w-sidebar bg-navbar shadow-r overflow-y  " v-if="show_recent || show_loading || show_preview">
             <div class="text-center" v-if="show_loading">
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" aria-label="Loading"></i>
             </div>
-            <div class="search-recent bg-lookup p-2 min-h-full overflow-y shadow-r flex flex-col items-stretch" v-if="show_recent">
+            <div class="search-recent bg-lookup p-2 min-h-full shadow-r flex flex-col items-stretch" v-if="show_recent">
                 <div class="flex-0" v-if="!show_results">
                     <p class="italic text-xs text-center">
                         {{ texts.hint}}
@@ -214,6 +215,7 @@ export default {
             this.show_recent = false;
             this.show_loading = false;
             this.show_preview = false;
+            this.$refs.searchField.blur();
         }
     },
     mounted() {
