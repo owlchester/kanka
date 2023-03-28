@@ -112,6 +112,15 @@ class InventoryController extends Controller
     }
 
     /**
+     * Unhandled page, redirect
+     */
+    public function show(Entity $entity, Inventory $inventory)
+    {
+        $this->authorize('update', $entity->child);
+        return redirect()->route('entities.inventory', $entity);
+    }
+
+    /**
      */
     public function edit(Entity $entity, Inventory $inventory)
     {
