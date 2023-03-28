@@ -37,11 +37,6 @@ class ResetCssCache implements ShouldQueue
      */
     public function handle()
     {
-        //$service = app()->make(\App\Services\CampaignService::class);
-        //$campaign = Campaign::find($this->campaign);
-        
-        Log::info('campaign_' . $this->campaign . '_theme');
-
         cache()->clear('campaign_' . $this->campaign . '_theme');
         Log::info('Campaign #' . $this->campaign . ' cleared css cache (job)');
     }
