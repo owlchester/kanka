@@ -287,7 +287,7 @@ class FamilyTreeService
             //echo "The key $key has the value $value <br>";
         };
 
-        array_walk_recursive($data, $assingUuid, );
+        array_walk_recursive($data, $assingUuid);
         // Loop on the data, adding a uuid on each element that is missing one
         //dd('ended recursive', $data);
         return $data;
