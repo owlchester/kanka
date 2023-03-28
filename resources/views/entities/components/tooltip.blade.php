@@ -9,7 +9,7 @@
     <div class="flex gap-2 items-center mb-1">
         @if ($campaign->boosted() && $campaign->tooltip_image && $entity->hasImage($campaign->superboosted()))
         <div class="flex-0">
-            <div class="entity-image w-15 h-15" style="background-image: url('{{ $entity->avatar(true) }} ');"></div>
+            <div class="entity-image w-15 h-15 cover-background" style="background-image: url('{{ $entity->avatarSize(64)->avatar(false) }} ');"></div>
         </div>
         @endif
         <div class="grow entity-names">
