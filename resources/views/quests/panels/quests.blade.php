@@ -3,6 +3,9 @@ $datagridOptions = [
     $model,
     'init' => 1
 ];
+if (request()->has('parent_id')) {
+    $datagridOptions['parent_id'] = (int) request()->get('parent_id');
+}
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 
