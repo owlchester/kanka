@@ -53,7 +53,7 @@
                     <p class="italic text-xs text-center" v-html="texts.keyboard" />
                 </div>
             </div>
-            <div class="search-preview bg-lookup h-screen overflow-y shadow-r pb-5" v-if="show_preview">
+            <div class="search-preview bg-lookup min-h-screen shadow-r" v-if="show_preview">
                 <EntityPreview
                     :entity="preview_entity">
                 </EntityPreview>
