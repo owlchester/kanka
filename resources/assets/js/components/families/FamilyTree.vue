@@ -31,7 +31,7 @@
                 :contentHeight="dragHeight()"
                 :scale="1"
                 :maxScale="3"
-                :within="0"
+                :within="false"
                 class="!cursor-move"
                 >
                 <div class="relative" v-bind:style="{width: dragWidth() + 'px', height: dragHeight() + 'px'}">
@@ -167,7 +167,7 @@ export default {
             }
         },
         saveTree() {
-            axios.post(this.save_api, {data: this.nodes, entities: this.entities})
+            axios.post(this.save_api, {data: this.nodes})
                 .then((resp) => {
                     //console.log('Saved Tree');
                     window.showToast(this.texts.toasts.saved);
@@ -267,7 +267,7 @@ export default {
             return this.nodes.length === 0 && this.isEditing;
         },
         showMembers() {
-            console.log('this', this.suggestions.length, this.suggestions)
+            //console.log('this', this.suggestions.length, this.suggestions)
             return this.suggestions.length > 0;
         },
         createNode() {
@@ -304,7 +304,6 @@ export default {
         },
         addRelation() {
             let entity_id = $(this.entityField).val();
-            //console.log('entity_id', entity_id);
             if (!entity_id) {
                 // Nothing, ignore
                 this.closeModal();
@@ -324,7 +323,9 @@ export default {
         insertRelation(entity) {
             let entity_id = entity.id;
             if (!this.entities[entity.id]) {
+                console.log('adding entity', entity);
                 this.entities[entity.id] = entity;
+                console.log('entities', this.entities);
             }
 
             const getRelationNodes = (result, object) => {
@@ -408,17 +409,21 @@ export default {
             if (!entity_id) {
                 // Nothing, ignore
                 this.closeModal();
+                console.log('asdasd', entity_id);
                 return;
             }
 
             let url = this.entity_api.replace('/0', '/' + entity_id);
             axios.get(url).then((res) => {
                 let entity = res.data;
+                console.log('a', this.currentUuid);
                 if (this.currentUuid === 0) {
+                    console.log('new?', entity_id);
                     this.newUuid = 1;
                     this.addEntity(entity);
                     window.showToast(this.texts.toasts.entity.add);
                 } else {
+                    console.log('waaa', entity_id);
                     this.replaceEntity(entity);
                     window.showToast(this.texts.toasts.entity.edit);
                 }
@@ -427,7 +432,9 @@ export default {
             });
         },
         addEntity(entity) {
-            this.entities[entity.id] = entity;
+            console.log('adding', entity);
+            this.entities[entity.id] = Object.freeze(entity);
+            console.log('entities', this.entities);
             this.nodes.push({entity_id: entity.id, uuid: JSON.stringify(this.newUuid), relations: []});
             this.newUuid++;
         },
