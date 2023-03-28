@@ -89,12 +89,14 @@ class PreviewService
                     $val = '<i class="fa-solid fa-check" aria-hidden="true"></i>';
                 }
                 $attributes[] = [
+                    'id' => $attr->id,
                     'name' => $attr->name(),
                     'value' => $val,
                 ];
                 continue;
             }
             $attributes[] = [
+                'id' => $attr->id,
                 'name' => $attr->name(),
                 'value' => $attr->mappedValue()
             ];
