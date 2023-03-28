@@ -280,9 +280,8 @@ class FamilyTreeService
      */
     protected function prepareForSave(array $data)//: array
     {
-        //dd('data', $data);
         $assingUuid = function (&$value, $key) {
-            if ($key == 'uuid' && (!is_string($value) || (preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/', $value) !== 1))) {
+            if ($key == 'uuid' && (!is_string($value) || !Str::isUuid($value))) {
                 $value = (string) Str::uuid();
             }
             //echo "The key $key has the value $value <br>";
