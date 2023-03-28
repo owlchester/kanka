@@ -15,7 +15,7 @@ return [
     'edit'          => [],
     'fields'        => [
         'characters'    => 'Personagens',
-        'locations'     => 'Localizações',
+        'locations'     => 'Locais',
         'race'          => 'Raça Primária',
         'races'         => 'Sub-Raças',
     ],

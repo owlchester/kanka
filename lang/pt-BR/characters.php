@@ -2,9 +2,9 @@
 
 return [
     'actions'       => [
-        'add_appearance'    => 'Add uma aparência',
-        'add_organisation'  => 'Add uma organização',
-        'add_personality'   => 'Add uma personalidade',
+        'add_appearance'    => 'Adicionar uma aparência',
+        'add_organisation'  => 'Adicionar uma organização',
+        'add_personality'   => 'Adicionar uma personalidade',
     ],
     'conversations' => [
         'title' => 'Diálogos de :name',
@@ -36,9 +36,9 @@ return [
         'age'   => 'Você pode vincular essa entidade a um calendário de sua campanha para calcular automaticamente sua idade. :more.',
     ],
     'hints'         => [
-        'is_appearance_pinned'      => 'Se selecionado, os traços de aparência do personagem aparecerão abaixo da entrada na página de visão geral.',
-        'is_dead'                   => 'Esse personagem está morto',
-        'is_personality_pinned'     => 'Se selecionado, os traços de personalidade do personagem aparecerão abaixo da entrada na página de visão geral.',
+        'is_appearance_pinned'      => 'Se selecionado, os traços de aparência do personagem aparecerão abaixo da introdução na página de visão geral.',
+        'is_dead'                   => 'Este personagem está morto',
+        'is_personality_pinned'     => 'Se selecionado, os traços de personalidade do personagem aparecerão abaixo da introdução na página de visão geral.',
         'is_personality_visible'    => 'Desmarque esta opção para ocultar toda a seção de personalidade dos membros fora do cargo de :admin.',
         'personality_not_visible'   => 'Os traços de personalidade deste personagem estão visíveis apenas para os  usários Administradores.',
         'personality_visible'       => 'Os traços de personalidade deste personagem estão visíveis para todos.',
@@ -56,8 +56,8 @@ return [
     ],
     'organisations' => [
         'actions'       => [
-            'add'       => 'Add uma organização',
-            'submit'    => 'Add organização',
+            'add'       => 'Adicionar uma organização',
+            'submit'    => 'Adicionar organização',
         ],
         'create'        => [
             'success'   => 'Personagem adicionado à organização.',
@@ -72,7 +72,7 @@ return [
         ],
         'fields'        => [
             'organisation'  => 'Organização',
-            'role'          => 'Cargo',
+            'role'          => 'Função',
         ],
         'hint'          => 'Personagens podem ser parte de diversas organizações, representando para quem eles trabalham ou qual sociedade secreta eles fazem parte.',
         'placeholders'  => [

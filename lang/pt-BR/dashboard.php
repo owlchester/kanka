@@ -70,11 +70,11 @@ return [
         'title' => 'Lista de entidade :name',
     ],
     'settings'      => [
-        'title' => 'Configurações do Dashboard',
+        'title' => 'Configurar Dashboard',
     ],
     'setup'         => [
         'actions'   => [
-            'add'               => 'Add um widget',
+            'add'               => 'Adicionar um widget',
             'back_to_dashboard' => 'Voltar para o dashboard',
             'edit'              => 'Editar um widget',
             'new'               => 'Novo widget de :type',
@@ -122,7 +122,7 @@ return [
             'success'   => 'Widget removido so dashboard.',
         ],
         'fields'        => [
-            'class'             => 'Class CSS',
+            'class'             => 'Classe CSS',
             'dashboard'         => 'Dashboard',
             'name'              => 'Nome personalizado do widget',
             'optional-entity'   => 'Link para entidade',
@@ -132,7 +132,7 @@ return [
             'width'             => 'Largura',
         ],
         'helpers'       => [
-            'class'     => 'Defina uma class CSS personalizada para adicionar ao widget.',
+            'class'     => 'Defina uma classe CSS personalizada para adicionar ao widget.',
             'filters'   => 'Clique para aprender sobre as opções de filtro disponíveis.',
         ],
         'orders'        => [
@@ -153,14 +153,14 @@ return [
             ],
             'entity-header'     => 'Use o cabeçalho da entidade como imagem',
             'filters'           => 'Filtros',
-            'full'              => 'Exibir entrada completa',
+            'full'              => 'Exibir introdução completa',
             'help'              => 'Mostre apenas a primeira entidade como uma visualização em vez de uma lista.',
             'helpers'           => [
                 'entity-header'     => 'Se sua entidade tiver um cabeçalho de entidade (recurso de campanha aprimorada), defina este widget para usar essa imagem ao invés da imagem da entidade.',
-                'full'              => 'Exibe a entrada completa da entidade por padrão ao invés de uma pré-visualização.',
-                'show_attributes'   => 'Mostra os atributos fixados da entidade abaixo da entrada.',
-                'show_members'      => 'Se a entidade for uma família ou organização, mostra seus membros abaixo da entrada.',
-                'show_relations'    => 'Mostrar as relações fixadas da entidade abaixo da entrada.',
+                'full'              => 'Exibe a introdução completa da entidade por padrão ao invés de uma pré-visualização.',
+                'show_attributes'   => 'Mostra os atributos fixados da entidade abaixo da introdução.',
+                'show_members'      => 'Se a entidade for uma família ou organização, mostra seus membros abaixo da introdução.',
+                'show_relations'    => 'Mostrar as relações fixadas da entidade abaixo da introdução.',
             ],
             'show_attributes'   => 'Mostrar atributos fixados',
             'show_members'      => 'Mostrar membros',

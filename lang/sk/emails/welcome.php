@@ -1,6 +1,23 @@
 <?php
 
 return [
+    '2023'              => [
+        'basics'    => [
+            'text_1'    => 'Nástroj tak rôznorodý ako Kanka môže byť na prvý pohľad príliš komplexný. Naša :kb ti poskytne odpovede na základné otázky a pre ďalšiu pomoc sa môžeš obrátiť na našu :doc.',
+            'title'     => 'Základné info',
+        ],
+        'chat'      => [
+            'text_1'    => 'Radi počúvame názory a pripomienky nášho užívateľstva. Sme aktívni na :discor, kde nájdeš mnohé aktívne osoby, tím moderátorov ale aj zakladateľov Kanky, ktorí zodpovedajú otázky, ktoré môžeš mať. Taktiež nám môžeš napísať e-mail na :email.',
+            'title'     => 'Chceš si pokecať?',
+        ],
+        'intro'     => [
+            'header'    => 'Vitaj v najlepšej komunite pre tvorbu svetov, :name!',
+            'link'      => 'Vstúp do tvojho sveta!',
+            'text_1'    => 'Pozdrav tvoju nový domov pre tvorbu svetov, :name! Komunitu nosíme v našej DNA a sme radi, že si jej súčasťou. Kanka je dieťa nadšených RPG hráčov, ktorí veria v zjednodušený a zdieľaný spôsob prístupu k tvorbe svetov, bez kompromisov ohľadom potrebných funkcionalít.',
+            'text_2'    => 'Nastavili sme tvoju prvú kampaň a pridali do nej vzorové postavy a miesta, aby sme ti uľahčili začiatočnú prácu.',
+        ],
+        'preview'   => 'Buď súčasťou najlepšej komunity tvorby svetov, :name!',
+    ],
     'header'            => 'Vitaj v Kanke, :name!',
     'header_sub'        => 'Gratulujeme, prvé kroky vo vytváraní vlastného sveta v :kanka máš za sebou!',
     'pricing'           => 'Cenník',

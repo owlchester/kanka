@@ -3,8 +3,8 @@
 return [
     'actions'       => [
         'add'       => 'Novo Post',
-        'add_role'  => 'Add cargo',
-        'add_user'  => 'Add usuário',
+        'add_role'  => 'Adicionar cargo',
+        'add_user'  => 'Adicionar usuário',
     ],
     'collapsed'     => [
         'closed'    => 'Post recolhido no cabeçalho',
@@ -29,7 +29,7 @@ return [
     'fields'        => [
         'creator'   => 'Criador',
         'display'   => 'Exibir',
-        'entry'     => 'Entrada',
+        'entry'     => 'Introdução',
         'name'      => 'Nome',
         'position'  => 'Posição',
     ],

@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'entry'             => 'Escreva um campo de entrada personalizado para esse marcador.',
+        'entry'             => 'Escreva um campo de introdução personalizado para esse marcador.',
         'remove'            => 'Remover marcador',
         'reset-polygon'     => 'Redefinir posições',
         'save_and_explore'  => 'Salvar e Explorar',

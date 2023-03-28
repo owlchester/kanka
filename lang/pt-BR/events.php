@@ -31,6 +31,6 @@ return [
         ],
     ],
     'tabs'          => [
-        'calendars' => 'Entradas de Calendário',
+        'calendars' => 'Introduções de Calendário',
     ],
 ];

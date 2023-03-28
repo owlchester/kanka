@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'add'   => 'Add uma nova camada',
+        'add'   => 'Adicionar uma nova camada',
     ],
     'base'          => 'Camada Base',
     'bulks'         => [

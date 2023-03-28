@@ -14,7 +14,7 @@ return [
         'title'         => 'Reordenando post da entidade :name',
     ],
     'update'    => [
-        'title' => 'Atualizar entrada da :entity',
+        'title' => 'Atualizar introdução da :entity',
     ],
     'warning'   => [
         'editing'   => [

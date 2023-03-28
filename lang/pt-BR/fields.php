@@ -22,6 +22,6 @@ return [
         'boosted-description'   => 'Substitua a dica de contexto gerada automaticamente da entidade com uma :boosted-campaign.',
         'description'           => 'Substitua a dica de contexto gerada automaticamente da entidade pelo texto a seguir.',
         'helper'                => 'Os seguintes elementos HTML são permitidos nas dicas de contextos: :tags',
-        'name'                  => 'Dica de contexto',
+        'name'                  => 'Dica de Contexto',
     ],
 ];

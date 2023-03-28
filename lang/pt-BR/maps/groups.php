@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'add'   => 'Add um novo grupo',
+        'add'   => 'Adicionar um novo grupo',
     ],
     'bulks'         => [
         'delete'    => '{1} Removido :count grupo.|[2,*] Removidos :count grupos.',

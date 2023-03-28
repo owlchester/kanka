@@ -9,7 +9,7 @@ return [
     ],
     'fields'        => [
         'creature'  => 'Criatura Primária',
-        'creatures' => 'Sub-criaturas',
+        'creatures' => 'Sub-Criaturas',
         'locations' => 'Locais',
     ],
     'helpers'       => [
@@ -21,7 +21,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'creatures' => 'Sub-criaturas',
+            'creatures' => 'Sub-Criaturas',
         ],
     ],
 ];

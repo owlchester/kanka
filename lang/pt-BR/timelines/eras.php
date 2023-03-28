@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'add'   => 'Add uma nova era',
+        'add'   => 'Adicionar uma nova era',
     ],
     'bulks'         => [
         'delete'    => '{0} Removida :count era.|{1} Removida :count era.|[2,*] Removidas :count eras.',

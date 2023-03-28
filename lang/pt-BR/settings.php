@@ -191,7 +191,7 @@ return [
         'manage_subscription'   => 'Gerenciar assinatura',
         'payment_method'        => [
             'actions'       => [
-                'add_new'           => 'Add um novo método de pagamento',
+                'add_new'           => 'Adicionar um novo método de pagamento',
                 'change'            => 'Alterar método de pagamento',
                 'save'              => 'Salvar método de pagamento',
                 'show_alternatives' => 'Métodos de pagamento alternativos',
@@ -203,7 +203,7 @@ return [
             'country'       => 'País de moradia',
             'ending'        => 'Válido até',
             'helper'        => 'Este cartão será usado para todas suas assinaturas.',
-            'new_card'      => 'Add um novo método de pagamento',
+            'new_card'      => 'Adicionar um novo método de pagamento',
             'saved'         => ':brand terminando em :last4',
         ],
         'periods'               => [

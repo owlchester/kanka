@@ -2,11 +2,11 @@
 
 return [
     'actions'       => [
-        'add'   => 'Add item',
+        'add'   => 'Adicionar item',
     ],
     'create'        => [
         'success'   => 'Item :item adicionado a :entity.',
-        'title'     => 'Add um item a :name',
+        'title'     => 'Adicionar um item a :name',
     ],
     'destroy'       => [
         'success'   => 'Item :item removido de :entuty.',

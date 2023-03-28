@@ -3,7 +3,7 @@
 return [
     'campaign'          => [
         'application'           => [
-            'approved'              => 'Sua solicitação para a campanha :campaign foi aprovada.',
+            'approved'              => 'Sua inscrição para a campanha :campaign foi aprovada.',
             'approved_message'      => 'Sua inscrição para a campanha :campaign foi aprovada. Mensagem fornecida: :reason',
             'new'                   => 'Nova solicitação para :campaign.',
             'rejected'              => 'Sua solicitação para a campanha :campaign foi rejeitada. Razão fornecida: :reason',
@@ -12,7 +12,7 @@ return [
         'asset_export'          => 'Uma exportação de recursos da campanha está disponível. O link está disponível por :time minutos.',
         'asset_export_error'    => 'Ocorreu um erro ao exportar os recursos da campanha. Isso acontece em grandes campanhas.',
         'boost'                 => [
-            'add'           => 'A campanha :campaign  está sendo impulsionada por :user',
+            'add'           => 'A campanha :campaign está sendo impulsionada por :user',
             'remove'        => ':user não está mais impulsionando a campanha :campaign',
             'superboost'    => 'A campanha :campaign está sendo super-impulsionada por :user',
         ],

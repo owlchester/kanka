@@ -9,7 +9,7 @@ return [
     'fields'        => [
         'character' => 'Criador',
         'item'      => 'Item Primário',
-        'items'     => 'Sub-itens',
+        'items'     => 'Sub-Itens',
         'price'     => 'Preço',
         'size'      => 'Tamanho',
     ],

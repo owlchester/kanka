@@ -47,5 +47,5 @@ return [
         'participants'  => '{1} :number de entradas enviadas. | [2, *] :number de entradas enviadas.',
         'title'         => 'Evento :name',
     ],
-    'title'         => 'Eventos de Construção do Mundo',
+    'title'         => 'Eventos',
 ];

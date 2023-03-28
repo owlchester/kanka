@@ -2,7 +2,7 @@
 
 return [
     'actions'           => [
-        'add'   => 'Add um link',
+        'add'   => 'Adicionar um link',
     ],
     'call-to-action'    => 'Adicione links para fontes externas nesta entidade, como DnDBeyond, e eles serão exibidos diretamente na visão geral da entidade.',
     'create'            => [

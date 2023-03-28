@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'add_element'   => 'Add elemento à era :era',
+        'add_element'   => 'Adicionar elemento à era :era',
         'back'          => 'Voltar para :name',
         'edit'          => 'Editar linha do tempo',
         'save_order'    => 'Salvar nova ordem',
@@ -28,7 +28,7 @@ return [
     'index'         => [],
     'placeholders'  => [
         'name'  => 'Nome da linha do tempo',
-        'type'  => 'Primária, crônica Mundial, legado de um Reino',
+        'type'  => 'Primária, Crônica Mundial, Legado do Reino',
     ],
     'reorder'       => [
         'success'   => 'Linha do tempo reordenada com sucesso.',

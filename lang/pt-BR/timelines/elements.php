@@ -20,7 +20,7 @@ return [
         'date'              => 'Data',
         'era'               => 'Era',
         'icon'              => 'Ícone',
-        'use_entity_entry'  => 'Exiba a entrada da entidade anexada abaixo. O texto deste elemento será exibido primeiro se estiver presente.',
+        'use_entity_entry'  => 'Exiba a introdução da entidade anexada abaixo. O texto deste elemento será exibido primeiro se estiver presente.',
         'use_event_date'    => 'Use a data do evento vinculado.',
     ],
     'helpers'       => [

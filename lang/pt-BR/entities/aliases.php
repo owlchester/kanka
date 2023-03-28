@@ -2,11 +2,11 @@
 
 return [
     'actions'       => [
-        'add'   => 'Add um pseudônimo',
+        'add'   => 'Adicionar um pseudônimo',
     ],
     'create'        => [
         'success'   => 'Pseudônimo :name adicionado a :entity.',
-        'title'     => 'Add um pseudônimo ao :name',
+        'title'     => 'Adicionar um pseudônimo ao :name',
     ],
     'destroy'       => [
         'success'   => 'Pseudônimo :name removido.',

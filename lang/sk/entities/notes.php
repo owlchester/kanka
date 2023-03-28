@@ -28,6 +28,7 @@ return [
     ],
     'fields'        => [
         'creator'   => 'Autor/ka',
+        'display'   => 'Displej',
         'entry'     => 'Hodnota',
         'name'      => 'Názov',
         'position'  => 'Pozícia',

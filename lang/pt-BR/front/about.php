@@ -58,11 +58,11 @@ return [
         'plugins'   => 'Explorar plugins',
     ],
     'stats'     => [
-        'api'       => 'chamadas diárias da API',
+        'api'       => 'requisições diárias na API',
         'campaigns' => 'campanhas',
         'countries' => 'países',
         'entities'  => 'entidades',
-        'missed'    => 'ganchos de enredo perdidos',
+        'missed'    => 'ganchos de enredo',
         'plugins'   => 'plugins do mercado',
         'ruined'    => 'sessões arruinadas',
         'users'     => 'usuários em',

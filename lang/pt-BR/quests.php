@@ -35,11 +35,11 @@ return [
         'character'     => 'Instigador',
         'copy_elements' => 'Copiar elementos anexados na missão',
         'date'          => 'Data',
-        'element_role'  => 'Cargo',
+        'element_role'  => 'Função',
         'is_completed'  => 'Concluída',
         'quest'         => 'Missão Primária',
-        'quests'        => 'Sub Missões',
-        'role'          => 'Cargo',
+        'quests'        => 'Sub-Missões',
+        'role'          => 'Função',
     ],
     'helpers'       => [
         'is_completed'      => 'Selecione se a missão estiver considerada como concluída.',
@@ -59,7 +59,7 @@ return [
     ],
     'show'          => [
         'actions'   => [
-            'add_element'   => 'Add um elemento',
+            'add_element'   => 'Adicionar um elemento',
         ],
         'tabs'      => [
             'elements'  => 'Elementos',

@@ -10,7 +10,7 @@ return [
         'is_defunct'    => 'Extinta',
         'members'       => 'Membros',
         'organisation'  => 'Organização Primária',
-        'organisations' => 'Suborganizações',
+        'organisations' => 'Sub-Organizações',
     ],
     'helpers'       => [
         'descendants'       => 'Esta lista contém todas organizações que descendem desta organização, e não apenas aquelas diretamente relacionadas a ela.',
@@ -22,8 +22,8 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'       => 'Add um membro',
-            'submit'    => 'Add membro',
+            'add'       => 'Adicionar um membro',
+            'submit'    => 'Adicionar membro',
         ],
         'create'        => [
             'success'   => 'Membro adicionado à organização.',

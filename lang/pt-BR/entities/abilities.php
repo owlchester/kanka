@@ -2,8 +2,8 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Add habilidades',
-        'import_from_race'          => 'Add habilidades de raça',
+        'add'                       => 'Adicionar habilidades',
+        'import_from_race'          => 'Adicionar habilidades de raça',
         'import_from_race_mobile'   => 'Habilidades de raça',
         'reset'                     => 'Redefinir usos da habilidade',
     ],

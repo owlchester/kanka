@@ -84,7 +84,7 @@ return [
     ],
     'visibility'    => [
         'entry'     => 'O atributo é exibido no menu da entidade.',
-        'private'   => 'Atributo visível apenas para membros do cargo de "Admin".',
+        'private'   => 'Atributo visível apenas para membros do cargo de "Administrador".',
         'public'    => 'Atributo visível a todos os membros',
         'tab'       => 'Atributo é exibido somente no menu Atributos.',
     ],

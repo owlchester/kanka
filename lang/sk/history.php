@@ -16,10 +16,14 @@ return [
         'changes'   => 'Nasledujúce polia obsahovali predtým tieto hodnoty.',
     ],
     'log'       => [
-        'create'    => ':user vytvorili :entity',
-        'delete'    => ':user zmazali :entity',
-        'restore'   => ':user obnovili :entity',
-        'update'    => ':user aktualizovali :entity',
+        'create'        => ':user vytvorili :entity',
+        'create_post'   => ':user vytvorili poznámku ":post" v :entity',
+        'delete'        => ':user zmazali :entity',
+        'delete_post'   => ':user zmazali poznámku v :entity',
+        'reorder_post'  => ':user zmenili poradie poznámok v :entity',
+        'restore'       => ':user obnovili :entity',
+        'update'        => ':user aktualizovali :entity',
+        'update_post'   => ':user aktualizovali poznámku ":post" v :entity',
     ],
     'title'     => 'História',
     'unknown'   => [

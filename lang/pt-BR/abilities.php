@@ -6,7 +6,7 @@ return [
     ],
     'children'      => [
         'actions'       => [
-            'add'   => 'Add habilidade para entidade',
+            'add'   => 'Adicionar habilidade para entidade',
         ],
         'create'        => [
             'success'   => 'Habilidade :name adicionada para a entidade.',
@@ -24,8 +24,8 @@ return [
         'title' => 'Entidades com a habilidade :name',
     ],
     'fields'        => [
-        'abilities' => 'Sub habilidades',
-        'ability'   => 'Habilidade Primária',
+        'abilities' => 'Sub-Habilidades',
+        'ability'   => 'Habilidade primária',
         'charges'   => 'Cargas',
     ],
     'helpers'       => [
@@ -44,7 +44,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Sub habilidades',
+            'abilities' => 'Sub-Habilidades',
             'entities'  => 'Entidades',
             'reorder'   => 'Reordenar Habilidades',
         ],

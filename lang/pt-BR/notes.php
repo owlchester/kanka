@@ -9,7 +9,7 @@ return [
     'fields'        => [
         'is_pinned' => 'Fixada',
         'note'      => 'Nota Primária',
-        'notes'     => 'Sub Notas',
+        'notes'     => 'Sub-Notas',
     ],
     'helpers'       => [
         'nested_without'    => 'Exibindo todas as notas que não tem uma nota primária. Clique em uma linha para ver as notas secundárias.',

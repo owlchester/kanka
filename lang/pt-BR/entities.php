@@ -17,16 +17,16 @@ return [
         'actions'           => [
             'create'    => 'Criar :type',
             'full'      => 'Acesse o formulário completo',
-            'more'      => 'Add mais detalhes',
+            'more'      => 'Adicionar mais detalhes',
         ],
         'back'              => 'Voltar à seleção',
-        'bulk_names'        => 'Add um nome por linha',
+        'bulk_names'        => 'Adicione um nome por linha',
         'duplicate'         => 'Atenção! Já existem outras entidades deste tipo com um nome semelhante.',
         'helper_v2'         => 'Crie rapidamente a base de uma nova entidade sem interromper seu fluxo atual.',
         'missing_v2'        => 'Apenas os módulos habilitados e que você tem permissão para criar estão disponíveis nesta interface. :learn-more.',
         'modes'             => [
-            'bulk'      => 'Add em massa',
-            'default'   => 'Add rápido',
+            'bulk'      => 'Adição em massa',
+            'default'   => 'Adição rápida',
             'templates' => 'Selecionar modelo',
         ],
         'name'              => [

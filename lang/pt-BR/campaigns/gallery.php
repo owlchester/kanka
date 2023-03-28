@@ -35,7 +35,7 @@ return [
         'title'     => 'Detalhes da imagem',
     ],
     'uploader'      => [
-        'add'           => 'Add nova',
+        'add'           => 'Adicionar nova',
         'new_folder'    => 'Nova Pasta',
         'or'            => 'ou',
         'select_file'   => 'Selecione um arquivo',
