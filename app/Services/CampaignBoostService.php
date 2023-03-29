@@ -67,13 +67,13 @@ class CampaignBoostService
         if ($this->upgrade) {
             // Create two more
             $amount = 2;
-            auth()->user()->log(UserLog::TYPE_CAMPAIGN_UPGRADE_BOOST);
+            $user->log(UserLog::TYPE_CAMPAIGN_UPGRADE_BOOST);
         } elseif ($this->action === 'superboost') {
             // Create three
             $amount = 3;
-            auth()->user()->log(UserLog::TYPE_CAMPAIGN_SUPERBOOST);
+            $user->log(UserLog::TYPE_CAMPAIGN_SUPERBOOST);
         } else {
-            auth()->user()->log(UserLog::TYPE_CAMPAIGN_BOOST);
+            $user->log(UserLog::TYPE_CAMPAIGN_BOOST);
         }
 
         for ($i = 0; $i < $amount; $i++) {
@@ -102,9 +102,8 @@ class CampaignBoostService
             foreach (auth()->user()->boosts()->where('campaign_id', $campaignBoost->campaign_id)->get() as $boost) {
                 $boost->delete();
             }
+            auth()->user()->log(UserLog::TYPE_CAMPAIGN_UNBOOST);
         }
-
-        auth()->user()->log(UserLog::TYPE_CAMPAIGN_UNBOOST);
 
         $this->campaign->boost_count = $this->campaign->boosts()->count();
         $this->campaign->withObservers = false;
