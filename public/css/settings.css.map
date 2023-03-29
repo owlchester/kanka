@@ -1,1 +1,0 @@
-{"version":3,"file":"css/settings.css","mappings":"AAGE;EACE;AAFJ,C","sources":["webpack:///./resources/assets/sass/settings.scss"],"sourcesContent":["\n\n.campaign-list {\n  .campaign {\n    background-color: var(--box-background);\n  }\n}\n"],"names":[],"sourceRoot":""}
