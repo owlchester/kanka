@@ -1,5 +1,3 @@
-import ajaxModal from "../components/ajax-modal";
-
 var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
 
 

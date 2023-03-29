@@ -48,7 +48,7 @@
     "file": "assets/rpgawesome-webfont-5f012787.woff",
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
-  "resources/assets/js/abilities.js": {
+  "resources/js/abilities.js": {
     "file": "assets/abilities-89f9ea75.js",
     "imports": [
       "__plugin-vue_export-helper-de6cf830.js",
@@ -57,30 +57,30 @@
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/abilities.js"
+    "src": "resources/js/abilities.js"
   },
-  "resources/assets/js/ajax-subforms.js": {
+  "resources/js/ajax-subforms.js": {
     "file": "assets/ajax-subforms-5a7de65d.js",
     "isEntry": true,
-    "src": "resources/assets/js/ajax-subforms.js"
+    "src": "resources/js/ajax-subforms.js"
   },
-  "resources/assets/js/api.css": {
-    "file": "assets/api-2d9ff3e2.css",
-    "src": "resources/assets/js/api.css"
+  "resources/js/api.css": {
+    "file": "assets/api-02adc42a.css",
+    "src": "resources/js/api.css"
   },
-  "resources/assets/js/api.js": {
+  "resources/js/api.js": {
     "css": [
-      "assets/api-2d9ff3e2.css"
+      "assets/api-02adc42a.css"
     ],
-    "file": "assets/api-c799842c.js",
+    "file": "assets/api-a3ea4cad.js",
     "imports": [
       "__plugin-vue_export-helper-de6cf830.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/api.js"
+    "src": "resources/js/api.js"
   },
-  "resources/assets/js/app.js": {
-    "file": "assets/app-16d5fed9.js",
+  "resources/js/app.js": {
+    "file": "assets/app-b7ee1259.js",
     "imports": [
       "_delete-confirm-fec6aa52.js",
       "_mention-5d95822d.js",
@@ -92,31 +92,31 @@
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/app.js"
+    "src": "resources/js/app.js"
   },
-  "resources/assets/js/attributes.js": {
+  "resources/js/attributes.js": {
     "file": "assets/attributes-a1fe93cd.js",
     "imports": [
       "_sortable.esm-be94e56d.js",
       "_mention-5d95822d.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/attributes.js"
+    "src": "resources/js/attributes.js"
   },
-  "resources/assets/js/auth.js": {
+  "resources/js/auth.js": {
     "file": "assets/auth-6e2e9504.js",
     "isEntry": true,
-    "src": "resources/assets/js/auth.js"
+    "src": "resources/js/auth.js"
   },
-  "resources/assets/js/billing.js": {
+  "resources/js/billing.js": {
     "file": "assets/billing-49114967.js",
     "imports": [
       "__plugin-vue_export-helper-de6cf830.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/billing.js"
+    "src": "resources/js/billing.js"
   },
-  "resources/assets/js/conversation.js": {
+  "resources/js/conversation.js": {
     "file": "assets/conversation-5e9d8056.js",
     "imports": [
       "__plugin-vue_export-helper-de6cf830.js",
@@ -125,24 +125,24 @@
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/conversation.js"
+    "src": "resources/js/conversation.js"
   },
-  "resources/assets/js/dashboard.js": {
+  "resources/js/dashboard.js": {
     "file": "assets/dashboard-9bdcae2f.js",
     "imports": [
       "_ajax-modal-1230002e.js",
       "_sortable.esm-be94e56d.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/dashboard.js"
+    "src": "resources/js/dashboard.js"
   },
-  "resources/assets/js/editors/summernote.js": {
+  "resources/js/editors/summernote.js": {
     "file": "assets/summernote-e72705ab.js",
     "isEntry": true,
-    "src": "resources/assets/js/editors/summernote.js"
+    "src": "resources/js/editors/summernote.js"
   },
-  "resources/assets/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-3a144423.js",
+  "resources/js/family-tree-vue.js": {
+    "file": "assets/family-tree-vue-f6013b57.js",
     "imports": [
       "__plugin-vue_export-helper-de6cf830.js",
       "_mitt-f7ef348c.js",
@@ -150,169 +150,169 @@
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/family-tree-vue.js"
+    "src": "resources/js/family-tree-vue.js"
   },
-  "resources/assets/js/forms/calendar.js": {
+  "resources/js/forms/calendar.js": {
     "file": "assets/calendar-56ecfa9e.js",
     "isEntry": true,
-    "src": "resources/assets/js/forms/calendar.js"
+    "src": "resources/js/forms/calendar.js"
   },
-  "resources/assets/js/forms/character.js": {
+  "resources/js/forms/character.js": {
     "file": "assets/character-bd252692.js",
     "isEntry": true,
-    "src": "resources/assets/js/forms/character.js"
+    "src": "resources/js/forms/character.js"
   },
-  "resources/assets/js/front.js": {
+  "resources/js/front.js": {
     "file": "assets/front-99153365.js",
     "isEntry": true,
-    "src": "resources/assets/js/front.js"
+    "src": "resources/js/front.js"
   },
-  "resources/assets/js/gallery.js": {
+  "resources/js/gallery.js": {
     "file": "assets/gallery-fe391042.js",
     "imports": [
       "_index-0b481a1e.js",
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/gallery.js"
+    "src": "resources/js/gallery.js"
   },
-  "resources/assets/js/history.js": {
+  "resources/js/history.js": {
     "file": "assets/history-92453eba.js",
     "isEntry": true,
-    "src": "resources/assets/js/history.js"
+    "src": "resources/js/history.js"
   },
-  "resources/assets/js/location/map-v3.js": {
+  "resources/js/location/map-v3.js": {
     "file": "assets/map-v3-d5406176.js",
     "imports": [
       "_delete-confirm-fec6aa52.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/location/map-v3.js"
+    "src": "resources/js/location/map-v3.js"
   },
-  "resources/assets/js/profile.js": {
+  "resources/js/profile.js": {
     "file": "assets/profile-c6ddbc37.js",
     "isEntry": true,
-    "src": "resources/assets/js/profile.js"
+    "src": "resources/js/profile.js"
   },
-  "resources/assets/js/relations.js": {
+  "resources/js/relations.js": {
     "file": "assets/relations-37344bef.js",
     "imports": [
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/relations.js"
+    "src": "resources/js/relations.js"
   },
-  "resources/assets/js/settings.js": {
+  "resources/js/settings.js": {
     "file": "assets/settings-6e27b904.js",
     "isEntry": true,
-    "src": "resources/assets/js/settings.js"
+    "src": "resources/js/settings.js"
   },
-  "resources/assets/js/story.js": {
+  "resources/js/story.js": {
     "file": "assets/story-98cff7b1.js",
     "isEntry": true,
-    "src": "resources/assets/js/story.js"
+    "src": "resources/js/story.js"
   },
-  "resources/assets/js/subscription.js": {
+  "resources/js/subscription.js": {
     "file": "assets/subscription-ad14b51a.js",
     "isEntry": true,
-    "src": "resources/assets/js/subscription.js"
+    "src": "resources/js/subscription.js"
   },
-  "resources/assets/js/timeline.js": {
+  "resources/js/timeline.js": {
     "file": "assets/timeline-39548315.js",
     "imports": [
       "_sortable.esm-be94e56d.js"
     ],
     "isEntry": true,
-    "src": "resources/assets/js/timeline.js"
+    "src": "resources/js/timeline.js"
   },
-  "resources/assets/sass/abilities.scss": {
+  "resources/sass/abilities.scss": {
     "file": "assets/abilities-86710e7e.css",
     "isEntry": true,
-    "src": "resources/assets/sass/abilities.scss"
+    "src": "resources/sass/abilities.scss"
   },
-  "resources/assets/sass/app.scss": {
-    "file": "assets/app-8eb7c078.css",
+  "resources/sass/app.scss": {
+    "file": "assets/app-e2ee176d.css",
     "isEntry": true,
-    "src": "resources/assets/sass/app.scss"
+    "src": "resources/sass/app.scss"
   },
-  "resources/assets/sass/auth.scss": {
+  "resources/sass/auth.scss": {
     "file": "assets/auth-9a8f5f73.css",
     "isEntry": true,
-    "src": "resources/assets/sass/auth.scss"
+    "src": "resources/sass/auth.scss"
   },
-  "resources/assets/sass/dashboard.scss": {
+  "resources/sass/dashboard.scss": {
     "file": "assets/dashboard-ca1c2851.css",
     "isEntry": true,
-    "src": "resources/assets/sass/dashboard.scss"
+    "src": "resources/sass/dashboard.scss"
   },
-  "resources/assets/sass/export.scss": {
+  "resources/sass/export.scss": {
     "file": "assets/export-70aeed75.css",
     "isEntry": true,
-    "src": "resources/assets/sass/export.scss"
+    "src": "resources/sass/export.scss"
   },
-  "resources/assets/sass/family-tree.scss": {
+  "resources/sass/family-tree.scss": {
     "file": "assets/family-tree-872c9ebb.css",
     "isEntry": true,
-    "src": "resources/assets/sass/family-tree.scss"
+    "src": "resources/sass/family-tree.scss"
   },
-  "resources/assets/sass/freyja/freyja.scss": {
-    "file": "assets/freyja-aeddfdc9.css",
+  "resources/sass/freyja/freyja.scss": {
+    "file": "assets/freyja-09ffdb52.css",
     "isEntry": true,
-    "src": "resources/assets/sass/freyja/freyja.scss"
+    "src": "resources/sass/freyja/freyja.scss"
   },
-  "resources/assets/sass/front.scss": {
+  "resources/sass/front.scss": {
     "file": "assets/front-10e1661c.css",
     "isEntry": true,
-    "src": "resources/assets/sass/front.scss"
+    "src": "resources/sass/front.scss"
   },
-  "resources/assets/sass/gallery.scss": {
+  "resources/sass/gallery.scss": {
     "file": "assets/gallery-343b3fc0.css",
     "isEntry": true,
-    "src": "resources/assets/sass/gallery.scss"
+    "src": "resources/sass/gallery.scss"
   },
-  "resources/assets/sass/map-v3.scss": {
+  "resources/sass/map-v3.scss": {
     "file": "assets/map-v3-578fc08e.css",
     "isEntry": true,
-    "src": "resources/assets/sass/map-v3.scss"
+    "src": "resources/sass/map-v3.scss"
   },
-  "resources/assets/sass/print/print.scss": {
-    "file": "assets/print-f1a6d069.css",
+  "resources/sass/print/print.scss": {
+    "file": "assets/print-c41d4490.css",
     "isEntry": true,
-    "src": "resources/assets/sass/print/print.scss"
+    "src": "resources/sass/print/print.scss"
   },
-  "resources/assets/sass/relations.scss": {
+  "resources/sass/relations.scss": {
     "file": "assets/relations-7efbf77a.css",
     "isEntry": true,
-    "src": "resources/assets/sass/relations.scss"
+    "src": "resources/sass/relations.scss"
   },
-  "resources/assets/sass/settings.scss": {
+  "resources/sass/settings.scss": {
     "file": "assets/settings-4ed993c7.js",
     "isEntry": true,
-    "src": "resources/assets/sass/settings.scss"
+    "src": "resources/sass/settings.scss"
   },
-  "resources/assets/sass/subscription.scss": {
+  "resources/sass/subscription.scss": {
     "file": "assets/subscription-88aee360.css",
     "isEntry": true,
-    "src": "resources/assets/sass/subscription.scss"
+    "src": "resources/sass/subscription.scss"
   },
-  "resources/assets/sass/themes/dark.scss": {
+  "resources/sass/themes/dark.scss": {
     "file": "assets/dark-3a30552e.css",
     "isEntry": true,
-    "src": "resources/assets/sass/themes/dark.scss"
+    "src": "resources/sass/themes/dark.scss"
   },
-  "resources/assets/sass/themes/midnight.scss": {
+  "resources/sass/themes/midnight.scss": {
     "file": "assets/midnight-692e9813.css",
     "isEntry": true,
-    "src": "resources/assets/sass/themes/midnight.scss"
+    "src": "resources/sass/themes/midnight.scss"
   },
-  "resources/assets/sass/tinymce.scss": {
+  "resources/sass/tinymce.scss": {
     "file": "assets/tinymce-b4121fac.css",
     "isEntry": true,
-    "src": "resources/assets/sass/tinymce.scss"
+    "src": "resources/sass/tinymce.scss"
   },
-  "resources/assets/sass/vendor.scss": {
+  "resources/sass/vendor.scss": {
     "file": "assets/vendor-01142ec6.css",
     "isEntry": true,
-    "src": "resources/assets/sass/vendor.scss"
+    "src": "resources/sass/vendor.scss"
   }
 }
