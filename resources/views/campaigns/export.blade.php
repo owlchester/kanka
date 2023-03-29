@@ -28,17 +28,13 @@
             @if ($campaign->exportable())
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-md-offset-3 text-center my-5">
-                    <i class="fa-solid fa-spinner fa-spin fa-2x campaign-export-spinner" aria-hidden="true"></i>
-
-                    <button class="btn btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process') }}" style="display: none">
+                    <button class="btn btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process') }}">
                         <i class="fa-solid fa-download" aria-hidden="true"></i>
                         {{ __('campaigns/export.actions.export') }}
                     </button>
 
                 </div>
             </div>
-            <div class="alert alert-success" id="campaign-export-success" style="display: none"></div>
-            <div class="alert alert-danger " id="campaign-export-error" style="display: none"></div>
             @else
             <div class="alert alert-warning">
                 {{ __('campaigns/export.errors.limit') }}

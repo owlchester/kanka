@@ -146,24 +146,20 @@ function registerCampaignExport() {
         return;
     }
 
-    let spinner = $('.campaign-export-spinner');
-    spinner.hide();
-    exportBtn.show();
-
     exportBtn.click(function (e) {
         e.preventDefault();
-        spinner.show();
-        exportBtn.hide();
+        $(this).addClass('loading');
 
         $.ajax({
             url: exportBtn.data('url'),
             method: 'POST',
+            context: this,
         }).done (function (res) {
-            spinner.hide();
+            $(this).removeClass('loading').hide();
             if (res.error) {
-                $('#campaign-export-error').html(res.error).show();
+                window.showToast(res.error, 'toast-error');
             } else {
-                $('#campaign-export-success').html(res.success).show();
+                window.showToast(res.success);
             }
         }).fail (function (res) {
             console.error('campaign export call', res);
