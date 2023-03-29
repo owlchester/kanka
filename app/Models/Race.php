@@ -185,7 +185,6 @@ class Race extends MiscModel
         return $this->hasMany('App\Models\Race', 'race_id', 'id');
     }
 
-
     /**
      * Get all characters in the location and descendants
      */
@@ -238,7 +237,8 @@ class Race extends MiscModel
     {
         return [
             'race_id',
-            'location_id'
+            'location_id',
+            'parent'
         ];
     }
 
