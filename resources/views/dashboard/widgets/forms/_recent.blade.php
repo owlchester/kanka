@@ -70,7 +70,7 @@ $boosted = $campaignService->campaign()->boosted()
                 </p>
             </div>
 
-            <div class="collapse {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
+            <div class="collapse !visible {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
                 @if($campaignService->campaign()->boosted())
                     {!! Form::hidden('config[entity-header]', 0) !!}
                     <div class="form-group checkbox">

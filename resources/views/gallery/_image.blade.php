@@ -17,7 +17,7 @@
         </div>
     @else
     <div class="w-full image-preview ">
-        <div class="w-25 h-25 inline-block rounded cover-background"
+        <div class="w-24 h-24 inline-block rounded cover-background"
             style="background-image: url('{{ Img::crop(100, 100)->url($image->path) }}')">
         </div>
         <div class="w-full thumbnail-text text-left inline-block truncate">

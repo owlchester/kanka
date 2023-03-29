@@ -39,5 +39,5 @@
 
 
 @section('scripts')
-    <script src="{{ mix('js/api.js') }}" defer></script>
+    @vite('resources/js/api.js')
 @endsection

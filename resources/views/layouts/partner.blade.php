@@ -13,8 +13,10 @@
 
     <!-- Styles -->
     <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @vite([
+    'resources/sass/vendor.scss',
+    'resources/sass/app.scss',
+    ])
     @yield('styles')
 </head>
 <body class="">
@@ -97,9 +99,9 @@
 
 @yield('modals')
 
-
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="/js/vendor.js" defer></script>
+    @vite('resources/js/app.js')
     @yield('scripts')
 </body>
 </html>

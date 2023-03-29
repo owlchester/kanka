@@ -62,7 +62,7 @@
                 @endif
             </div>
         </div>
-        <div class="entity-content box-body collapse @if(!$post->collapsed()) in @endif" id="post-body-{{ $post->id }}">
+        <div class="entity-content box-body collapse !visible @if(!$post->collapsed()) in @endif" id="post-body-{{ $post->id }}">
             <div class="post-details mb-2 entity-note-details">
 
                 @if ($post->location)

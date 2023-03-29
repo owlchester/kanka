@@ -57,7 +57,7 @@ __('timelines/elements.edit.title', ['name' => $model->name])
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
+    @vite(['resources/js/ajax-subforms.js'])
 @endsection
 
 @section('modals')

@@ -22,7 +22,7 @@
             branding: false,
             media_live_embeds: true,
             menubar: false,
-            content_css: '{{ mix('css/tinymce.css') }}',
+            content_css: '{{ Vite::asset('resources/sass/tinymce.scss') }}',
             extended_valid_elements: "+@[data-mention]",
             mentions: {
                 delimiter: ['@', '#', '['@if(!empty($model) && method_exists($model, 'hasEntity') && $model->hasEntity()), '{'@endif],

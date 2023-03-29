@@ -71,5 +71,5 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/story.js') }}" defer></script>
+    @vite('resources/js/story.js')
 @endsection

@@ -65,9 +65,9 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('js/relations.js') }}" defer></script>
+    @vite('resources/js/relations.js')
 @endsection
 
 @section('styles')
-    <link href="{{ mix('css/relations.css') }}" rel="stylesheet">
+    @vite('resources/sass/relations.scss')
 @endsection

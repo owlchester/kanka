@@ -15,7 +15,8 @@
     <link rel="icon" type="image/png" href="/favicon.ico">
 
     <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    <link href="{{ mix('css/auth.css') }}" rel="stylesheet">
+
+    @vite('resources/sass/auth.scss')
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
 </head>
 <body  class="hold-transition register-page">
@@ -35,7 +36,8 @@
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
-    <script src="{{ mix('js/auth.js') }}" defer></script>
+    <script src="/js/vendor.js" defer></script>
+    @vite('resources/js/auth.js')
 @yield('scripts')
 </body>
 </html>

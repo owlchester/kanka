@@ -150,7 +150,8 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('js/dashboard.js') }}" defer></script>
+
+    @vite('resources/js/dashboard.js')
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
@@ -160,8 +161,11 @@
 
 @section('styles')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-    <link href="{{ mix('css/dashboard.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
+
+    @vite([
+        'resources/sass/dashboard.scss',
+        'resources/sass/map-v3.scss'
+    ])
 @endsection
 
 @section('modals')

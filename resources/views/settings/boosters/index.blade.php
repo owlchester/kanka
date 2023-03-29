@@ -113,7 +113,7 @@
 
 @section('styles')
     @parent
-    <link href="{{ mix('css/settings.css') }}" rel="stylesheet">
+    @vite('resources/sass/settings.scss')
 @endsection
 
 @section('modals')
@@ -136,5 +136,5 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/settings.js') }}" defer></script>
+    @vite('resources/js/settings.js')
 @endsection

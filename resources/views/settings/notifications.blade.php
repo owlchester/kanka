@@ -38,5 +38,5 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/profile.js') }}" defer></script>
+    @vite('resources/js/profile.js')
 @endsection

@@ -55,5 +55,5 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/billing.js') }}" defer></script>
+    @vite('resources/js/billing.js')
 @endsection

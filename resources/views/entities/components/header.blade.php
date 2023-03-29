@@ -113,7 +113,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                 </ol>
             @endif
             <div class="entity-name-header flex gap-3 items-center">
-                <h1 class="entity-name m-0 break-all">
+                <h1 class="entity-name text-4xl m-0 break-all">
                     {{ $model->name }}
                 </h1>
                 @if ($model instanceof \App\Models\Character && $model->is_dead)

@@ -7,7 +7,7 @@
 
         {{ __('entities/pins.links') }}
     </div>
-    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-link-elements">
+    <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-link-elements">
         <ul class="list-none m-0 p-0 pt-2">
             @foreach ($model->entity->assets->where('type_id', \App\Models\EntityAsset::TYPE_LINK) as $asset)
                 <li data-target="{{ $asset->id }}" data-visibility="{{ $asset->visibility_id }}" class="p-0 m-0 mb-2 ">

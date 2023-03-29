@@ -15,7 +15,7 @@
     @endads
 
     <div class="footer-links">
-        <div class="grid gap-2 grid-cols-2 md:grid-cols-5 my-auto max-w-5xl">
+        <div class="grid gap-2 grid-cols-2 md:grid-cols-5 mx-auto max-w-5xl">
             <div class="col-span-2 md:col-auto text-center">
                 <a href="{{ route('home') }}" class="logo mb-5">
                     <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png" alt="Kanka logo blue" title="Kanka" width="48" height="48" />
