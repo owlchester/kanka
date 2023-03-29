@@ -176,7 +176,7 @@ section.sidebar-campaign {
     }
 }
 
-body .main-sidebar, body .left-side {
+body .main-sidebar/*, body .left-side*/ {
     background-color: var(--sidebar-background);
 }
 .main-sidebar .sidebar li {
