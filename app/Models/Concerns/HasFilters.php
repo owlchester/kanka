@@ -159,6 +159,8 @@ trait HasFilters
                     $this->filterHasAttributes($query, $value);
                 } elseif ($key == 'has_entity_files') {
                     $this->filterHasFiles($query, $value);
+                } elseif ($key == 'parent') {
+                    $this->filterParent($query);
                 } elseif (in_array($key, ['created_by', 'updated_by'])) {
                     $query = $this->joinEntity($query);
                     $query->where('e.' . $key, (int) $value);
@@ -697,5 +699,10 @@ trait HasFilters
             default => $filter = FilterOption::INCLUDE,
         };
         return $filter;
+    }
+
+    protected function filterParent(Builder $query): void
+    {
+        $query->where($this->getTable() . '.' . $this->getParentIdName(), $this->filterValue);
     }
 }

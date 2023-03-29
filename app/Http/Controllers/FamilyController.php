@@ -63,7 +63,7 @@ class FamilyController extends CrudController
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $family->id;
-            $filters['family_id'] = $family->id;
+            $filters['parent'] = $family->id;
         }
 
         Datagrid::layout(\App\Renderers\Layouts\Family\Family::class)

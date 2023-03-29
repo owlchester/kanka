@@ -5,7 +5,7 @@
             {{ __('families.show.tabs.families') }}
         </h3>
         <div class="box-tools">
-            @if (request()->has('parent'))
+            @if (request()->has('parent_id'))
                 <a href="{{ route('families.families', [$model]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                 </a>
