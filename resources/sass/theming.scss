@@ -59,7 +59,7 @@ body {
   --link-hover: #296282;
   --link-focus: #72afd2;
 }
-a {
+a, .text-link {
   color: var(--link-text);
   &:hover {
     color: var(--link-hover);
