@@ -101,14 +101,7 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
     ],
 ) !!}
 
-@if ($allowNew)
-    <div class="input-group-btn">
-        <a class="new-entity-selector btn btn-tab-form" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="{{ $fieldUniqIdentifier }}" data-entity="{{ $pluralField }}">
-            <span class="glyphicon glyphicon-plus"></span>
-        </a>
-    </div>
-</div>
-@elseif(!empty($quickCreator))
+@if(!empty($quickCreator))
     <div class="input-group-btn">
         <a class="quick-creator-subform btn btn-tab-form" data-url="{{ route('entity-creator.form', ['type' => $pluralField, 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier]) }}">
             <span class="glyphicon glyphicon-plus"></span>

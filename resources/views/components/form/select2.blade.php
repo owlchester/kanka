@@ -56,9 +56,6 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 @if ($labelKey !== false)
 <label>{{ __($labelKey) }}</label>
 @endif
-@if ($allowNew)
-    <div class="input-group input-group-sm">
-@endif
 {!! Form::select(
     $fieldId,
     $selectedOption,
@@ -74,11 +71,3 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
     ]
 ) !!}
 
-@if ($allowNew)
-    <div class="input-group-btn">
-        <a class="new-entity-selector btn btn-tab-form" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="{{ $fieldUniqIdentifier }}" data-entity="{{ $pluralField }}">
-            <span class="glyphicon glyphicon-plus"></span>
-        </a>
-    </div>
-</div>
-@endif

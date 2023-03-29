@@ -4,7 +4,7 @@ if (isset($privacyToggle)) {
     $data['data-toggle'] = 'entity-privacy';
 }
 @endphp
-<div class="privacy-callout px-3 py-1 mb-1">
+<div class="privacy-callout border-l-2 border-orange-200 px-3 py-1 mb-1">
     <div class="my-1">
         <i class="fa-solid fa-lock mr-1" aria-hidden="true"></i>
         <label class="">{{ __('crud.fields.privacy') }}</label>
