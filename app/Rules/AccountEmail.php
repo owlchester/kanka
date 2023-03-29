@@ -26,7 +26,7 @@ class AccountEmail implements Rule
      */
     public function passes($attribute, $value)
     {
-        return !Str::contains($value, ['@boxmail.lol']);
+        return !Str::contains($value, ['@boxmail.lol', '@fireboxmail.lol']);
     }
 
     /**

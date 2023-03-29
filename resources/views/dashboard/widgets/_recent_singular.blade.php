@@ -13,7 +13,7 @@ if (empty($entity->child)) {
         <i class="far fa-clock"></i> {{ $entity->child->updated_at->diffForHumans() }}
     </span>
 
-    <a class="entity-image" style="background-image: url('{{ $entity->avatar(true) }}');"
+    <a class="entity-image cover-background" style="background-image: url('{{ $entity->avatar(true) }}');"
        title="{{ $entity->name }}"
        href="{{ $entity->url() }}"></a>
 
