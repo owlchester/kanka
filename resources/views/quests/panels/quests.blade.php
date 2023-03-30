@@ -17,11 +17,11 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
                 <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('parent_id'))
-                <a href="{{ route('quests.quests', [$model]) }}" class="btn btn-box-tool">
+                <a href="{{ route('quests.show', [$model]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                 </a>
             @else
-                <a href="{{ route('quests.quests', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
+                <a href="{{ route('quests.show', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->quests()->count() }})
                 </a>
             @endif

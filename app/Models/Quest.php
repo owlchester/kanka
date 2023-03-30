@@ -219,20 +219,6 @@ class Quest extends MiscModel
     }
 
     /**
-     * Get all quests in the quests and descendants
-     */
-    public function allQuests()
-    {
-        $questIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $questIds[] = $descendant->id;
-        };
-
-        $table = new Quest();
-        return Quest::whereIn($table->getTable() . '.quest_id', $questIds)->with('quest');
-    }
-
-    /**
      * Parent ID field for the Node trait
      * @return string
      */
