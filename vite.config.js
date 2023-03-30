@@ -8,6 +8,14 @@ export default defineConfig({
         hmr: {
             host: 'kanka.test',
         },
+        watch: {
+            ignored: [
+                '**/vendor/**',
+                '**/lang/**',
+                '**/public/**',
+                '**/storage/debugbar/**'
+            ],
+        },
     },
     plugins: [
         laravel([

@@ -7,14 +7,19 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="max-w-3xl">
-        <div class="alert alert-info">
-            <p>{{ __('settings.api.helper') }}</p>
-            <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" class="btn btn-info" target="_blank">
+    <div class="max-w-4xl">
+        <h1 class="mb-3">
+            {{ __('settings.api.title') }}
+
+            <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" class="btn btn-info float-right" target="_blank">
                 <i class="fa-solid fa-external-link-square" aria-hidden="true"></i>
                 {{ __('front.features.api.link') }}
             </a>
-        </div>
+        </h1>
+        <p class="text-lg">
+            {{ __('settings.api.helper') }}
+        </p>
+
         <div class="grid md:grid-cols-2 gap-2" id="api">
                 <div class="box box-solid">
                     <div class="box-body">

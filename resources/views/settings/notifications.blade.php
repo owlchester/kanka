@@ -8,18 +8,15 @@
 
 @section('content')
     @include('partials.errors')
-
-    <div class="max-w-3xl">
+    <div class="max-w-4xl">
+        <h1 class="mb-3">
+            {{ __('profiles.newsletter.title') }}
+        </h1>
+        <p class="text-lg">
+            {{ __('profiles.newsletter.helpers.header') }}
+        </p>
         <div class="box box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title">
-                    {{ __('profiles.newsletter.title') }}
-                </h3>
-            </div>
             <div class="box-body">
-                <p class="help-block">
-                 {{ __('profiles.newsletter.helpers.header') }}
-                </p>
                 <div class="form-group checkbox">
                     <label>
                         {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}

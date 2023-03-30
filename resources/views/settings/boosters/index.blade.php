@@ -14,13 +14,12 @@
     @include('partials.errors')
 
     <div class="max-w-3xl">
-        <h1>
+        <h1 class="mb-3">
             <i class="fa-solid fa-rocket" aria-hidden="true"></i>
             {{ __('settings/boosters.title') }}
         </h1>
 
-        <div style="" class=" box">
-            <div class="box-body">
+        <div style="" class="rounded p-4 shadow-sm bg-box mb-5">
                 <h3 class="my-1">{{ __('settings/boosters.pitch.title') }}</h3>
                 <p class="my-5">{{ __('settings/boosters.pitch.description') }}</p>
 
@@ -76,11 +75,11 @@
                     </div>
                 </div>
                 <p>{!! __('settings/boosters.pitch.more', ['boosters' => link_to_route('front.boosters', __('footer.boosters'))]) !!}</p>
-            </div>
+
         </div>
 
 
-        <h2 class="mt-5">
+        <h2 class="my-5">
             {{ __('settings/boosters.ready.title') }}
 
             @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))

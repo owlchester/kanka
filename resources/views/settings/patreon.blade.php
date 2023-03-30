@@ -7,20 +7,30 @@
 ])
 
 @section('content')
-    <h1>
-        {{ __('settings.patreon.title') }}
-    </h1>
-    @include('partials.errors')
+    <div class="max-w-4xl">
+        <h1 class="mb-3">
+            {{ __('settings.patreon.title') }}
+        </h1>
+        @include('partials.errors')
 
-    @if(auth()->user()->isLegacyPatron())
-        @includeIf('settings._' . strtolower(auth()->user()->pledge ?: 'kobold'))
+        @if(auth()->user()->isLegacyPatron())
+            @includeIf('settings.tiers._' . strtolower(auth()->user()->pledge ?: 'kobold'))
 
-    <div class="text-center">
-        <button class="btn btn-danger" data-toggle="modal"
-                data-target="#remove-patreon">{{ __('settings.patreon.remove.button') }}</button>
+            <div class="text-center">
+                <button class="btn btn-danger" data-toggle="modal"
+                        data-target="#remove-patreon">{{ __('settings.patreon.remove.button') }}</button>
+            </div>
+        @else
+            <div class="alert alert-warning">
+                <p>
+                    {!! __('settings.patreon.deprecated', ['subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))]) !!}
+                </p>
+            </div>
+        @endif
     </div>
+@endsection
 
-
+@section('modals')
     <div class="modal fade" id="remove-patreon" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -42,11 +52,4 @@
             </div>
         </div>
     </div>
-    @else
-        <div class="alert alert-warning">
-            <p>
-                {!! __('settings.patreon.deprecated', ['subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))]) !!}
-            </p>
-        </div>
-    @endif
 @endsection

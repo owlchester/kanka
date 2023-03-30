@@ -3,28 +3,26 @@
  * @var \App\Models\CampaignBoost $boost
  */
 $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
-<div class="flex rounded-2xl gap-2 px-3 bg-box">
-    <div class="flex-none py-5">
+<div class="flex rounded-2xl gap-3 px-3 bg-box py-3 flex-nowrap">
+    <div class="flex-none">
         @if ($campaign->image)
             <img src="{{ $campaign->thumbnail(60) }}" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-12 h-12" />
         @else
             <img src="https://images.kanka.io/app/Cs0miUCBJiBcn7lSp89KhwoNBFo=/60x60/smart/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-12 h-12" />
         @endif
      </div>
-    <div class="py-5 flex-1">
-        <a class="name truncate font-bold h-8 text-lg" href="{{ url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()) }}">
-            {!! $campaign->name !!}
+    <div class="grow">
+        <a class="name inline-block font-bold text-lg" href="{{ url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()) }}">
+            {!! \Illuminate\Support\Str::limit($campaign->name, 28) !!}
         </a>
 
-        <p class="my-1">
+        <p class="mb-0">
             @if ($campaign->superboosted())
-                <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                 {!! __('settings/boosters.campaign.superboosted', [
     'user' => link_to_route('users.profile', $boost->user->displayName(), $boost->user_id, ['target' => '_blank']),
     'time' => $boost->created_at->format('M Y')
     ]) !!}
             @elseif ($campaign->boosted())
-                <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                 {!! __('settings/boosters.campaign.boosted', [
         'user' => link_to_route('users.profile', $boost->user->displayName(), $boost->user_id, ['target' => '_blank']),
     'time' => $boost->created_at->format('M Y')
@@ -34,7 +32,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
             @endif
         </p>
     </div>
-    <div class="py-5 flex-none">
+    <div class="flex-none">
         <div class="dropdown">
             <a class="dropdown-toggle cursor-pointer p-2" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                 <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
