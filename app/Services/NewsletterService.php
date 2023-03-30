@@ -4,20 +4,12 @@ namespace App\Services;
 
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
-use Spatie\Newsletter\NewsletterFacade as Newsletter;
 use Exception;
 use MailerLite\MailerLite;
 
 class NewsletterService
 {
     use UserAware;
-
-    /** @var string interest-ids */
-    public string $releaseID = '3cbff83812';
-
-    /** @var string List name */
-    public string $listName = 'subscribers';
 
     /** @var string */
     public string $email;
@@ -88,7 +80,7 @@ class NewsletterService
             // Build the interests of the user
             $interests = [];
             if (Arr::has($options, 'releases')) {
-                $interests[] = 84086713298715839;
+                $interests[] = config('mailerlite.groups.all');
             }
 
             $email = $this->user ? $this->user->email : $this->email;
