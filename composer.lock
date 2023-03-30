@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a095891d68efe603d9f40d4dfe3d967",
+    "content-hash": "e32791873b6db68414c38a8ed557e25d",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -4290,6 +4290,70 @@
                 }
             ],
             "time": "2021-06-28T04:27:21+00:00"
+        },
+        {
+            "name": "mailerlite/mailerlite-php",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mailerlite/mailerlite-php.git",
+                "reference": "2e1f96c84d0e80dcdc37862acb8ba3e8ddf9641d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mailerlite/mailerlite-php/zipball/2e1f96c84d0e80dcdc37862acb8ba3e8ddf9641d",
+                "reference": "2e1f96c84d0e80dcdc37862acb8ba3e8ddf9641d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4|^8.0",
+                "php-http/client-common": "^2.2",
+                "php-http/discovery": "^1.9",
+                "php-http/httplug": "^2.1",
+                "psr/http-client-implementation": "^1.0",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.18",
+                "guzzlehttp/psr7": "^1.5.2",
+                "http-interop/http-factory-guzzle": "^1.0",
+                "mockery/mockery": "^0.9.4",
+                "php-http/guzzle7-adapter": "^0.1",
+                "php-http/message": "^1.0",
+                "php-http/mock-client": "^1.0",
+                "phpunit/phpunit": "^7.5.15 || ^8.4 || ^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MailerLite\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Remigijus Rekerta",
+                    "email": "remigijus.rekerta@mailerlite.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "MailerLite PHP SDK",
+            "homepage": "https://github.com/mailerlite/mailerlite-php",
+            "keywords": [
+                "email",
+                "mailerlite",
+                "marketing",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/mailerlite/mailerlite-php/issues",
+                "source": "https://github.com/mailerlite/mailerlite-php/tree/v1.0.0"
+            },
+            "time": "2023-01-27T07:54:48+00:00"
         },
         {
             "name": "masterminds/html5",

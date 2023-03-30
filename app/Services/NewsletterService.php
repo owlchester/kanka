@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Spatie\Newsletter\NewsletterFacade as Newsletter;
 use Exception;
+use MailerLite\MailerLite;
 
 class NewsletterService
 {
@@ -20,6 +21,16 @@ class NewsletterService
 
     /** @var string */
     public string $email;
+
+    public int $userID;
+
+    protected mixed $mailerlite;
+
+    public function __construct()
+    {
+        $key = (string) config('mailerlite.api_key');
+        $this->mailerlite = new MailerLite(['api_key' => $key]);
+    }
 
     /**
      * @param string $email
@@ -37,7 +48,13 @@ class NewsletterService
      */
     public function isSubscribed(): bool
     {
-        return Newsletter::isSubscribed($this->user->email);
+        try {
+            $email = $this->user? $this->user->email : $this->email;
+            $this->userID = $this->fetch($email);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -45,7 +62,20 @@ class NewsletterService
      */
     public function remove()
     {
-        return Newsletter::unsubscribe($this->user->email, $this->listName);
+        $this->mailerlite->subscribers->delete($this->userID);
+        return true;
+    }
+
+    /**
+     * Unsubscribe a user
+     */
+    public function delete()
+    {
+        if (!$this->isSubscribed()) {
+            return false;
+        }
+        $this->mailerlite->subscribers->delete($this->userID);
+        return true;
     }
 
     /**
@@ -58,29 +88,40 @@ class NewsletterService
             // Build the interests of the user
             $interests = [];
             if (Arr::has($options, 'releases')) {
-                $interests[$this->releaseID] = Arr::get($options, 'releases');
+                $interests[] = 84086713298715839;
             }
 
-            $res = Newsletter::subscribeOrUpdate(
-                $this->user ? $this->user->email : $this->email,
-                $this->user ? ['FNAME' => $this->user->name, 'LNAME' => ''] : [],
-                $this->listName,
-                [
-                    'interests' => $interests
-                ]
-            );
+            $email = $this->user ? $this->user->email : $this->email;
 
-            if (!empty($res)) {
+            $data = [
+                'email' => $email,
+                    'fields' => [
+                    'name' => $this->user?->name
+                ],
+                'groups' => $interests
+            ];
+            if (empty($this->userID)) {
+                echo "Subbing";
+                $this->mailerlite->subscribers->create($data);
+                return true;
+            } else {
+                echo "Removing";
+                $this->mailerlite->subscribers->update($this->userID, $data);
                 return true;
             }
 
-            // Log error?
-            $error = Newsletter::getLastError();
-            Log::warning($error);
+            echo 'what';
 
             return false;
         } catch (Exception $e) {
+            throw $e;
             return false;
         }
+    }
+
+    protected function fetch(string $email): int
+    {
+        $response = $this->mailerlite->subscribers->find($email);
+        return (int) Arr::get($response, 'body.data.id');
     }
 }

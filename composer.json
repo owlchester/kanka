@@ -30,6 +30,7 @@
         "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.0",
         "league/flysystem-aws-s3-v3": "^3.5",
+        "mailerlite/mailerlite-php": "^1.0",
         "mcamara/laravel-localization": "^1.7",
         "orhanerday/open-ai": "^4.7",
         "owlchester/laravel-translation-manager": "^9.0",
@@ -94,7 +95,8 @@
         "sort-packages": true,
         "optimize-autoloader": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     }
 }
