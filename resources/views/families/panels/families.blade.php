@@ -16,8 +16,7 @@
             @endif
         </div>
     </div>
-        <div id="datagrid-parent" class="table-responsive">
-            @include('layouts.datagrid._table')
-        </div>
+    <div id="datagrid-parent" class="table-responsive">
+        @include('layouts.datagrid._table')
     </div>
 </div>

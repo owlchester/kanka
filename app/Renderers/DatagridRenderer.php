@@ -364,7 +364,7 @@ class DatagridRenderer
                             : $column['parent_route']($model))
                         : $this->getOption('baseRoute');
                     $route = route($whoRoute . '.show', [$who]);
-                    $content = '<a class="entity-image" style="background-image: url(\'' . $who->thumbnail() .
+                    $content = '<a class="entity-image cover-background" style="background-image: url(\'' . $who->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
             } elseif ($type == 'location') {

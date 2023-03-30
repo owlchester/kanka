@@ -17,7 +17,7 @@
 
 <div class="form-group">
     <label>{{ __('crud.fields.entry') }}</label>
-    {!! Form::textarea('entry', null, ['class' => 'form-control html-editor', 'id' => 'era-entry', 'name' => 'entry']) !!}
+    {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'era-entry', 'name' => 'entry']) !!}
 </div>
 
 <div class="row">
