@@ -49,7 +49,7 @@ class SubscriptionService
     protected $method;
 
     /** @var bool set to true if the request comes from a webhook */
-    protected $webhook = false;
+    protected bool $webhook = false;
 
     /** @var bool if the user has cancelled */
     protected $cancelled = false;
@@ -263,13 +263,16 @@ class SubscriptionService
             return $this;
         }
 
-        SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
-        if ($plan == Pledge::ELEMENTAL) {
-            WelcomeSubscriptionEmailJob::dispatch($this->user, 'elemental');
-        } elseif ($plan == Pledge::WYVERN) {
-            WelcomeSubscriptionEmailJob::dispatch($this->user, 'wyvern');
-        } elseif ($plan == Pledge::OWLBEAR) {
-            WelcomeSubscriptionEmailJob::dispatch($this->user, 'owlbear');
+        // Don't send emails when called from the webhook
+        if (!$this->webhook) {
+            SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
+            if ($plan == Pledge::ELEMENTAL) {
+                WelcomeSubscriptionEmailJob::dispatch($this->user, 'elemental');
+            } elseif ($plan == Pledge::WYVERN) {
+                WelcomeSubscriptionEmailJob::dispatch($this->user, 'wyvern');
+            } elseif ($plan == Pledge::OWLBEAR) {
+                WelcomeSubscriptionEmailJob::dispatch($this->user, 'owlbear');
+            }
         }
 
         // Save the new sub value
@@ -408,15 +411,17 @@ class SubscriptionService
     {
         $this->user->subscription('kanka')->cancel();
 
-        // Anything that can fail, send to a queue
-        SubscriptionCancelEmailJob::dispatch($this->user, $reason, $custom);
+        if (!$this->webhook) {
+            // Anything that can fail, send to a queue
+            SubscriptionCancelEmailJob::dispatch($this->user, $reason, $custom);
 
-        // Dispatch the job when the subscription actually ends
-        SubscriptionEndJob::dispatch($this->user)
-            ->delay(
+            // Dispatch the job when the subscription actually ends
+            SubscriptionEndJob::dispatch($this->user)
+                ->delay(
                 // @phpstan-ignore-next-line
-                $this->user->subscription('kanka')->ends_at
-            );
+                    $this->user->subscription('kanka')->ends_at
+                );
+        }
 
         // Log on the user that they cancelled
         $this->user->log(UserLog::TYPE_SUB_CANCEL);

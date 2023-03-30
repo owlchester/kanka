@@ -13,14 +13,11 @@ use App\Services\SubscriptionService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Cashier\Exceptions\IncompletePayment;
-use Laravel\Cashier\Subscription;
 
 class SubscriptionController extends Controller
 {
-    /** @var SubscriptionService */
-    protected $subscription;
+    protected SubscriptionService $subscription;
 
     /**
      * SubscriptionController constructor.
@@ -37,12 +34,13 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
+        /** @var User $user */
+        $user = auth()->user();
+
         $stripeApiToken = config('cashier.key', null);
-        $status = $this->subscription->user(auth()->user())->status();
+        $status = $this->subscription->user($user)->status();
         $currentPlan = $this->subscription->currentPlan();
         $service = $this->subscription;
-        /** @var User $user */
-        $user = Auth::user();
         $currency = $user->currencySymbol();
         $invoices = !empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
         $tracking = session()->get('sub_tracking');
@@ -79,17 +77,17 @@ class SubscriptionController extends Controller
      */
     public function change(Request $request)
     {
+        $user = $request->user();
         $tier = $request->get('tier');
         $period = $request->get('period', 'monthly');
 
         $amount = $this->subscription->user($request->user())->tier($tier)->period($period)->amount();
-        $card = $request->user()->hasPaymentMethod() ? Arr::first($request->user()->paymentMethods()) : null;
-        if (empty($request->user()->stripe_id)) {
-            $request->user()->createAsStripeCustomer();
+        $card = $user->hasPaymentMethod() ? Arr::first($user->paymentMethods()) : null;
+        if (empty($user->stripe_id)) {
+            $user->createAsStripeCustomer();
         }
-        $intent = $request->user()->createSetupIntent();
+        $intent = $user->createSetupIntent();
         $cancel = $tier == Pledge::KOBOLD;
-        $user = $request->user();
         $isDowngrading = $this->subscription->downgrading();
         $hasPromo = $period == 'yearly' && \Carbon\Carbon::create(2022, 10, 31)->isFuture();
         $limited = $this->subscription->isLimited();
