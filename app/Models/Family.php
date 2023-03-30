@@ -290,6 +290,7 @@ class Family extends MiscModel
             'location_id',
             'family_id',
             'member_id',
+            'parent'
         ];
     }
 }

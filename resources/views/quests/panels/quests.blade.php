@@ -3,6 +3,9 @@ $datagridOptions = [
     $model,
     'init' => 1
 ];
+if (request()->has('parent_id')) {
+    $datagridOptions['parent_id'] = (int) request()->get('parent_id');
+}
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 
@@ -13,6 +16,15 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
                 <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
             </a>
+            @if (request()->has('parent_id'))
+                <a href="{{ route('quests.show', [$model]) }}" class="btn btn-box-tool">
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
+                </a>
+            @else
+                <a href="{{ route('quests.show', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
+                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->quests()->count() }})
+                </a>
+            @endif
         </div>
     </div>
     <div id="datagrid-parent" class="table-responsive">

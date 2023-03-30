@@ -549,8 +549,6 @@ class CrudController extends Controller
         $data = $markers = [];
         $datagridSorter = $this->datagridSorter;
 
-        $rows = $this->rows;
-
         return view('cruds.subview', compact(
             'fullview',
             'model',

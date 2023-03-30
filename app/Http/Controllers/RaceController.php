@@ -111,7 +111,7 @@ class RaceController extends CrudController
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $race->id;
-            $filters['race_id'] = $race->id;
+            $filters['parent'] = $race->id;
         }
 
         Datagrid::layout(\App\Renderers\Layouts\Race\Race::class)
