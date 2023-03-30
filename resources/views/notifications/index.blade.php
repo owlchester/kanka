@@ -5,73 +5,70 @@
 ])
 
 @section('content')
-    @include('partials.errors')
+    <div class="max-w-4xl mx-auto">
+        <h1 class="mb-3">{{ __('notifications.index.title') }}</h1>
 
-    @if ($notifications->count() === 0)
-        <p class="help-block">{{ __('notifications.no_notifications') }}</p>
-    @else
-    <div class="box box-solid">
-        <div class="box-header">
-            <div class="box-tools">
+        <div class="rounded p-4 bg-box">
+            @if ($notifications->count() === 0)
+                <p class="help-block">{{ __('notifications.no_notifications') }}</p>
+            @else
+
+            <div class="text-right mb-5">
                 <button class="btn btn-danger delete-confirm btn-sm" data-toggle="modal"
                         data-target="#delete-confirm-notifications" data-delete-target="notifications-clear">
                     <i class="fa-solid fa-trash-o"></i> {{ __('notifications.clear.action') }}
                 </button>
             </div>
-        </div>
-        <div class="box-body">
-
             <div class=" table-responsive">
-            <table class="table table-hover mb-0">
-                <tbody>
-                <?php /** @var \Illuminate\Notifications\DatabaseNotification $notification */?>
-                @foreach ($notifications as $notification)
-                    <tr class="@if(!$notification->read()) info @endif">
-                        <td>
-                        @if (!empty($notification->data['icon']))
-                            <i class="fa-solid fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
-                                @if(\Illuminate\Support\Arr::has($notification->data['params'], 'link'))
-@php
-    $url = $notification->data['params']['link'];
-    if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
-        $url = url(app()->getLocale() . '/' . $url);
-    }
-@endphp
-                                    <a href="{{ $url }}">
+                <table class="table table-hover mb-0">
+                    <tbody>
+                    <?php /** @var \Illuminate\Notifications\DatabaseNotification $notification */?>
+                    @foreach ($notifications as $notification)
+                        <tr class="@if(!$notification->read()) info @endif">
+                            <td>
+                            @if (!empty($notification->data['icon']))
+                                <i class="fa-solid fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
+                                    @if(\Illuminate\Support\Arr::has($notification->data['params'], 'link'))
+        @php
+        $url = $notification->data['params']['link'];
+        if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
+            $url = url(app()->getLocale() . '/' . $url);
+        }
+        @endphp
+                                        <a href="{{ $url }}">
+                                            {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
+                                        </a>
+                                    @else
                                         {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
-                                    </a>
+                                    @endif
                                 @else
-                                    {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
+                                    <p>{!! __('notifications.' . $notification->data['key'] . '.body')!!}</p>
                                 @endif
-                            @else
-                                <p>{!! __('notifications.' . $notification->data['key'] . '.body')!!}</p>
-                            @endif
-                        </td>
-                        <td class="text-right">
-                            <span class="text-muted " title="{{ $notification->created_at }}">
-                                {{ $notification->created_at->diffForHumans() }}
-                            </span>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                            </td>
+                            <td class="text-right">
+                                <span class="text-muted " title="{{ $notification->created_at }}">
+                                    {{ $notification->created_at->diffForHumans() }}
+                                </span>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-        </div>
-        @if ($notifications->hasPages())
-        <div class="box-footer text-right">
-            {!! $notifications->links() !!}
-        </div>
+            @if ($notifications->hasPages())
+                <div class="text-right">
+                    {!! $notifications->links() !!}
+                </div>
+           @endif
+        {!! Form::open([
+    'method' => 'POST',
+    'route' => 'notifications.clear-all',
+    'id' => 'notifications-clear'
+    ]) !!}
+        {!! Form::close() !!}
         @endif
+        </div>
     </div>
-    {!! Form::open([
-'method' => 'POST',
-'route' => 'notifications.clear-all',
-'id' => 'notifications-clear'
-]) !!}
-    {!! Form::close() !!}
-    @endif
-
     <input type="hidden" id="notification-clear" />
 @endsection
 
