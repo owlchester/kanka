@@ -15,13 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!app()->runningInConsole() || $this->shouldLoadPolicies()) {
-            $this->registerPolicies();
-        }
         if (!app()->runningInConsole()) {
-            Passport::routes(null, [
-                'prefix' => LaravelLocalization::setLocale() . '/oauth',
-            ]);
             Passport::enableImplicitGrant();
         }
     }
