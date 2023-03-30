@@ -90,7 +90,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
             @if(isset($printing) && $printing)
                 <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $model->name }}"/>
             @else
-            <a class="entity-image" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
+            <a class="entity-image cover-background" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
             @endif
         @endcan
     </div>
