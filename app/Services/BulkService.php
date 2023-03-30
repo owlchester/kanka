@@ -212,8 +212,10 @@ class BulkService
         $filledFields = [];
         $filledForeigns = [];
         foreach ($fillableFields as $field => $value) {
-            if (!empty(trim($value))) {
+            if (is_array($value) && !empty($value)) {
                 $filledFields[$field] = $value;
+            } elseif (!empty($value)) {
+                $filledFields[$field] = trim($value);
             }
         }
 
