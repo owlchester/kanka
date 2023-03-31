@@ -427,6 +427,7 @@ class EntityService
         }
 
         // Finally, we can save. Should be all good.
+        $new->campaign_id = $old->campaign_id;
         $new->saveQuietly();
 
         // If switching from an organisation to a family, we need to move the members?
