@@ -30,6 +30,7 @@
         "laravel/ui": "^4.2.1",
         "laravelcollective/html": "^6.0",
         "league/flysystem-aws-s3-v3": "^3.5",
+        "mailerlite/mailerlite-php": "^1.0",
         "mcamara/laravel-localization": "^1.7",
         "orhanerday/open-ai": "^4.7",
         "owlchester/laravel-translation-manager": "^10.0",
@@ -40,7 +41,6 @@
         "sergej-kurakin/diceroller": "^2.0",
         "spatie/laravel-backup": "^8.0",
         "spatie/laravel-feed": "^4.0",
-        "spatie/laravel-newsletter": "^5.1.1",
         "stevebauman/purify": "5.1.1",
         "symfony/http-client": "^6.1",
         "symfony/mailgun-mailer": "^6.1"

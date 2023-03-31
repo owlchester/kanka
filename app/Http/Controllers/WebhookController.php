@@ -31,6 +31,7 @@ class WebhookController extends CashierController
             $status = Arr::get($data, 'status', false);
 
             Log::debug('Customer Sub Updated Status ' . $status);
+
             // If the status is past_due, we need to remind the user to update their credit card info.
             // Also if the user is cancelling, we've already handled that in Kanka, we don't need to handle it here, but
             // stripe will still tell us about it.
@@ -122,7 +123,7 @@ class WebhookController extends CashierController
      */
     protected function isCancelling(array $data): bool
     {
-        Log::debug('data', $data);
+        //Log::debug('data', $data);
         $cancel = Arr::get($data, 'object.canceled_at', null);
         $previousCancel = Arr::get($data, 'previous_attributes.canceled_at', null);
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Mentions;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -158,5 +159,14 @@ class TimelineEra extends Model
         return '<a href="' . $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .
             '</a>';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEntryForEditionAttribute()
+    {
+        $text = Mentions::parseForEdit($this);
+        return $text;
     }
 }

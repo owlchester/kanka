@@ -1,0 +1,9 @@
+<?php
+
+return [
+    'api_key' => env('MAILERLITE_API_TOKEN'),
+
+    'groups' => [
+        'all' => 84086713298715839,
+    ]
+];

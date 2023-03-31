@@ -63,7 +63,7 @@ class UpcomingYearlyCommand extends Command
          */
 
         /** @var Subscription[] $subscriptions */
-        $subscriptions = Subscription::whereIn('stripe_plan', $plans)
+        $subscriptions = Subscription::whereIn('stripe_price', $plans)
             ->where('stripe_status', 'active')
             ->whereRaw('month(updated_at) = ' . $now->month)
             ->whereRaw('day(updated_at) = ' . $now->day)
