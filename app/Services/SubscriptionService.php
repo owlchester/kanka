@@ -496,7 +496,7 @@ class SubscriptionService
                 'name' => 'kanka',
                 'stripe_id' => $source->method . '_' . $source->id,
                 'stripe_status' => 'active',
-                'stripe_plan' => $source->plan(),
+                'stripe_price' => $source->plan(),
                 'quantity' => 1,
                 'ends_at' => $end
             ]);
