@@ -11,7 +11,6 @@ class NewsletterService
 {
     use UserAware;
 
-    /** @var string */
     public string $email;
 
     public int $userID;
@@ -93,24 +92,24 @@ class NewsletterService
                 'groups' => $interests
             ];
             if (empty($this->userID)) {
-                echo "Subbing";
                 $this->mailerlite->subscribers->create($data);
                 return true;
             } else {
-                echo "Removing";
                 $this->mailerlite->subscribers->update($this->userID, $data);
                 return true;
             }
 
-            echo 'what';
-
             return false;
         } catch (Exception $e) {
-            throw $e;
             return false;
         }
     }
 
+    /**
+     * Get the user's id based on their email
+     * @param string $email
+     * @return int
+     */
     protected function fetch(string $email): int
     {
         $response = $this->mailerlite->subscribers->find($email);
