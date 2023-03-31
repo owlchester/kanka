@@ -28,6 +28,7 @@ class Handler extends ExceptionHandler
         \Symfony\Component\Console\Exception\CommandNotFoundException::class,
         \Symfony\Component\Mailer\Exception\HttpTransportException::class,
         \Symfony\Component\ErrorHandler\Error\FatalError::class,
+        \Laravel\Passport\Exceptions\OAuthServerException::class,
         NotFoundHttpException::class,
     ];
 
