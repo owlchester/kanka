@@ -685,6 +685,12 @@ class EntityService
         $model->name = $name;
         $model->is_private = $defaultPrivate;
         $model->campaign_id = $campaign->id;
+
+        // If the modal is a tree, it needs to be placed in its own bounds
+        if (method_exists($model, 'makeRoot')) {
+            $model->recalculateTreeBounds();
+        }
+
         $model->saveQuietly();
         $model->createEntity();
         if (!$model->entity->isTag()) {
