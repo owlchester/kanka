@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
+use App\Facades\Datagrid;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
@@ -30,16 +31,49 @@ class MentionController extends Controller
         } else {
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
+        $options = ['entity' => $entity];
 
         $ajax = request()->ajax();
-        $mentions = $entity
+
+        Datagrid::layout(\App\Renderers\Layouts\Mention\Mention::class)
+            ->route('entities.mentions', $options);
+        $rows = $entity
             ->targetMentions()
-            ->with(['campaign', 'post', 'post.entity', 'entity'])
+            ->datagridElements(request()->only(['o', 'k']))
+            ->with(['campaign', 'post', 'post.entity', 'entity', 'entity.image'])
             ->paginate();
+
+        // Ajax Datagrid
+        if ($ajax) {
+            return $this->datagridAjax($rows);
+        }
+
         return view('entities.pages.mentions.mentions', compact(
-            'ajax',
             'entity',
-            'mentions'
+            'rows',
+            'ajax',
         ));
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function datagridAjax($rows)
+    {
+        $html = view('layouts.datagrid._table')
+            ->with('rows', $rows)
+            ->render();
+        $deletes = view('layouts.datagrid.delete-forms')
+            ->with('models', Datagrid::deleteForms())
+            ->with('params', Datagrid::getActionParams())
+            ->render();
+
+        $data = [
+            'success' => true,
+            'html' => $html,
+            'deletes' => $deletes,
+        ];
+
+        return response()->json($data);
     }
 }

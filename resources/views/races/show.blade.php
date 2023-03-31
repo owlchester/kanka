@@ -13,7 +13,6 @@
         @include('entities.components.posts', ['withEntry' => true])
         @include('races.panels.characters')
 
-        @include('cruds.partials.mentions')
         @include('entities.pages.logs.history')
     </div>
 

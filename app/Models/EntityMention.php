@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Concerns\SortableTrait;
+use Illuminate\Support\Arr;
 
 /**
  * Class EntityMention
@@ -26,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EntityMention extends Model
 {
+    use SortableTrait;
+
     public $fillable = [
         'entity_id',
         'entity_note_id',
@@ -33,6 +37,11 @@ class EntityMention extends Model
         'quest_element_id',
         'campaign_id',
         'target_id'
+    ];
+
+    protected $sortable = [
+        'name',
+        'type',
     ];
 
     /**
@@ -207,5 +216,24 @@ class EntityMention extends Model
     public function scopeCampaign(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.campaign_id');
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeDatagridElements(Builder $query, array $options): Builder
+    {
+        $column = Arr::get($options, 'k', 'name');
+        $order = Arr::get($options, 'o', 'ASC');
+        $query->select('entity_mentions.*')
+            ->leftJoin('entities as e', 'e.id', 'entity_mentions.entity_id');
+
+        if ($column == 'name') {
+            return $query->orderBy('e.name', $order);
+        } elseif ($column == 'type') {
+            return $query->orderBy('e.type_id', $order);
+        }  
+        return $query;
     }
 }

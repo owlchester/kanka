@@ -19,7 +19,6 @@
                 @include('dice_rolls._results')
         </div>
 
-        @include('cruds.partials.mentions')
         @include('entities.pages.logs.history')
     </div>
 

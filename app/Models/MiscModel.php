@@ -346,6 +346,17 @@ abstract class MiscModel extends Model
         }
 
         // Permissions for the admin?
+        if (auth()->check() && $this->entity->mentionsCount() > 0) {
+            $items['fourth']['mentions'] = [
+                'name' => 'crud.tabs.mentions',
+                'route' => 'entities.mentions',
+                'entity' => true,
+                'count' => $this->entity->mentionsCount(),
+                'icon' => 'fa-solid fa-lock',
+            ];
+        }
+
+        // Permissions for the admin?
         if (auth()->check() && auth()->user()->can('permission', $this)) {
             $items['fourth']['permissions'] = [
                 'name' => 'crud.tabs.permissions',

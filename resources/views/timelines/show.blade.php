@@ -41,7 +41,6 @@
         @include('entities.components.posts', ['withEntry' => true])
         @include('timelines._timeline', ['timeline' => $model])
 
-        @include('cruds.partials.mentions')
         @include('entities.pages.logs.history')
     </div>
 
