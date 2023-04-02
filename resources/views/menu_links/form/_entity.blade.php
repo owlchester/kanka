@@ -40,7 +40,7 @@ $menus = [
             'journals' => __('entities.journals')
         ],
         __('entities.quests') => [
-            'quest_elements' => __('quests.show.tabs.elements')
+            'quest_elements.index' => __('quests.show.tabs.elements')
         ],
 
         'inventory' => __('crud.tabs.inventory'),
