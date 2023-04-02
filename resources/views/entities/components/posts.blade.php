@@ -43,12 +43,19 @@ $first = $pinnedPosts->first();
     @endif
 
     @if ($pinnedPosts->currentPage() < $pinnedPosts->lastPage())
-        <div class="text-center">
-            <a href="#" class="btn btn-default btn-sm mb-5 story-load-more" data-url="{{ route('entities.story.load-more', [$entity, 'page' => $pinnedPosts->currentPage() + 1]) }}">
-                <i class="fa-solid fa-arrows-rotate"></i> {{ __('entities/story.actions.load_more') }}
+        <div class="text-center mb-5">
+            @if (auth()->check())
+            <a href="#" class="btn btn-default btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$entity, 'page' => $pinnedPosts->currentPage() + 1]) }}">
+                <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 
             <i class="fa-solid fa-spinner fa-spin fa-2x" id="story-more-spinner" style="display: none"></i>
+            @else
+            <a href="{{ route('login') }}" class="btn btn-default btn-sm">
+                {{ __('entities/story.actions.login_for_more') }}
+            </a>
+
+            @endif
         </div>
     @endif
 
