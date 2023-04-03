@@ -215,9 +215,9 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('js/dashboard.js') }}" defer></script>
+    @vite('resources/js/dashboard.js')
 @endsection
 
 @section('styles')
-    <link href="{{ mix('css/dashboard.css') }}" rel="stylesheet">
+    @vite('resources/sass/dashboard.scss')
 @endsection

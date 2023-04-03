@@ -1,2 +1,0 @@
-$(document).ready((function(){var n;0!==(n=$(".focus-image")).length&&(n.on("click",(function(n){var c=$(this),o=n.pageX-c.offset().left,s=n.pageY-c.offset().top;$(".focus").css("top",s-22).css("left",o-22).show(),$('input[name="focus_x"]').val(parseInt(o)),$('input[name="focus_y"]').val(parseInt(s))})),$(".focus").click((function(){$(".focus").hide(),$('input[name="focus_x"]').val(),$('input[name="focus_y"]').val()})))}));
-//# sourceMappingURL=story.js.map

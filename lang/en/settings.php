@@ -57,6 +57,7 @@ return [
         ],
         'benefits'  => 'Kanka provides a few integrations to third party services. More third party integrations are planned for the future.',
         'discord'   => [
+            'confirm' => 'Are you sure you want to disconnect your account from Discord? This will remove any roles you have been synced with.',
             'errors'    => [
                 'add'   => 'An error occurred linking up your Discord account with Kanka. Please try again. If this keeps happening, please be aware that Discord has a limit on 100 joined servers when using their APIs.',
             ],

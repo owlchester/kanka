@@ -26,7 +26,7 @@
             </tr>
             <?php $previousPosition = $item->position; ?>
         @endif
-        <tr class="collapse inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }} in">
+        <tr class="collapse !visible inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }} in">
             <td style="width: 50px">
                 @if ($item->is_equipped)
                     <i class="fa-solid fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip"></i>

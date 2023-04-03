@@ -31,7 +31,7 @@ $inSection = false;
                     {!! $attribute->name() !!}
                 </h4>
             </div>
-            <div class="panel-body collapse in" id="attribute-section-body-{{ $attribute->id }}">
+            <div class="panel-body collapse  !visible in" id="attribute-section-body-{{ $attribute->id }}">
                 <dl class="dl-horizontal">
         @continue
     @endif

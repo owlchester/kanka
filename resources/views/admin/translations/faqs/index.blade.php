@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="box-body collapse @if ($category->untranslated($lang)) in @endif" id="category-{{ $category->id }}">
+            <div class="box-body collapse !visible @if ($category->untranslated($lang)) in @endif" id="category-{{ $category->id }}">
                 @foreach ($category->sortedFaqs() as $faq)
                     <div class="row">
                         <div class="col-sm-6">
@@ -101,5 +101,5 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/admin/admin.js') }}" async></script>
+    @vite('resources/js/admin/admin.js')
 @endsection

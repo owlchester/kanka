@@ -61,5 +61,5 @@ $translations = json_encode([
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/conversation.js') }}" defer></script>
+    @vite('resources/js/conversation.js')
 @endsection

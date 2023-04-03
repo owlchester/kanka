@@ -58,5 +58,5 @@ $isAdmin = Auth::user()->isAdmin();
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('js/attributes.js') }}" defer></script>
+    @vite('resources/js/attributes.js')
 @endsection

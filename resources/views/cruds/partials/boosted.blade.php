@@ -1,5 +1,5 @@
 
-<strong class="text-maroon">
+<strong class="text-boost">
     <i class="fa-solid fa-rocket" aria-hidden="true"></i> {{ __('crud.boosted') }}
 </strong><br />
 <p class="help-block">

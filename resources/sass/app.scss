@@ -1,0 +1,284 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+@font-face {
+  font-family: Verdana, sans-serif;
+  font-display: fallback;
+}
+
+// Variables
+@import "variables";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --banner-link: white;
+    --campaign-selector-link: white;
+    --campaign-selector-background: #ddd;
+    --input-required-text: red;
+    --table-filters-background: #eee;
+    --quick-creator-button-text: #fff;
+    --quick-creator-button-background: #144c93;
+    --quick-creator-button-hover-background: rgb(45, 127, 237);
+    --quick-creator-button-hover-text: #fff;
+
+    --bg-default-link: unset;
+
+    --gallery-folder-text: unset;
+    --gallery-background: #f5f8fa;
+    --gallery-hover-text: #124964;
+
+    --kanka-boost-accent: 338 78% 48%;
+}
+
+@import "theming";
+
+// Surrounds the whole body
+.wrapper {
+    background: none;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    // AdminLTE wants this but it becomes weird with the min-height computed on firefox
+    //overflow: unset !important;
+}
+
+.content {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.content-header {
+    padding: 15px 15px 0 15px;
+
+    .breadcrumb {
+        background: transparent;
+
+        > li + li:before {
+            content: ">";
+        }
+    }
+}
+
+
+/** required form fields **/
+div.required label:after {
+    content: " *";
+    color: var(--input-required-text);
+}
+
+table {
+    tbody {
+        td {
+            vertical-align: middle !important;
+        }
+    }
+}
+.tab-content, .box-body {
+    table {
+        max-width: 100% !important;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.entity-image {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+.cover-background {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+tr.tr-hover {
+    font-weight: 700;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+}
+
+.input-error {
+    border: 1px inset red;
+}
+
+
+
+.bg-pink {
+    color: #fff !important;
+    background-color: #ebbde9 !important;
+}
+.bg-brown {
+    color: #fff !important;
+    background-color: #a35831 !important;
+}
+
+
+// Attributes in entities and text area
+.attribute, .note-editing-area > .attribute {
+    border-radius: 2px;
+    background-color: #ddd;
+    color: #333;
+    font-style: italic;
+    padding: 2px 3px;
+}
+
+// Allow buttons to be multi-lined
+.btn {
+    white-space: normal;
+}
+.btn-app > .ra, .btn-app > .fas, .btn-app > .far, .btn-app > .fab, .btn-app > .fa, .btn-app > .fa-solid, .btn-app > .fa-regular {
+    font-size: 20px;
+    display: block;
+    line-height: 20px !important;
+}
+
+// Visual info on quick link forms for which mode is enabled
+.menu-link-selector {
+    .btn-app > .badge {
+        display: none;
+    }
+
+    .btn-app.btn-active > .badge {
+        display: unset !important;
+    }
+}
+
+
+// Bootstrap3 sets summary to display:block which isn't correct
+summary { display: list-item; }
+
+// RPG awesome dropdown icon margin
+.dropdown-menu > li > a > :is(.fas, .fab, .far, .ra, .fa-solid, .fa-light, .fa-thin, .fa-regular) {
+    margin-right: 10px;
+    width: 14px;
+}
+button.dropdown-item {
+    background: none;
+    border: none;
+    padding: 3px 20px;
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    line-height: 1.6;
+    white-space: nowrap;
+    color: var(--dropdown-link);
+    text-align: left;
+
+    &:hover {
+        background-color: var(--dropdown-hover-background);
+        color: var(--dropdown-hover-text);
+    }
+}
+
+.table-responsive {
+    overflow-x: unset;
+}
+.table-compact {
+    width: auto;
+}
+.table-right {
+    width: auto;
+    float: right;
+}
+.table-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.banner-notification {
+    a {
+        color: var(--banner-link);
+    }
+}
+
+// UX
+.skip-nav-link {
+    border-radius: 0 0 0.25rem 0.25rem;
+    background-color: white;
+    color: blue;
+    transform: translateY(-120%);
+    transition: transform 325ms ease-in;
+    z-index: 1040;
+
+    &:focus {
+        transform: translateY(0);
+        color: var(--link-text);
+    }
+}
+
+
+.booster-block {
+    .booster-callout, img {
+        max-width: 480px;
+    }
+}
+.bg-boost {
+    background-color: hsl(var(--kanka-boost-accent)/1);
+}
+.text-boost {
+    color: hsl(var(--kanka-boost-accent)/1);
+}
+
+// Helper block in forms, closer to field
+.form-group > .help-block {
+    margin-top: 0;
+}
+
+.loading, .loading:hover {
+    pointer-events: none;
+}
+.loading:before {
+    margin-right: .5rem;
+    display: inline-block;
+    font-family: "Font Awesome 6 Pro";
+    font-weight: 900;
+    animation: fa-spin 2s linear infinite;
+    content: "\f110";
+}
+
+.bg-box {
+    background-color: var(--box-background);
+}
+
+hr {
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+@import "calendar";
+@import "tooltip";
+@import "timeline";
+@import "mobile";
+@import "boosted";
+@import "entity";
+@import "footer";
+@import "editor";
+@import "box";
+//@import "tutorial";
+@import "conversation";
+@import "quest";
+@import "quick-creator";
+@import "ads";
+@import "sortable";
+@import "campaign";
+@import "attributes/attributes";
+@import "ab-testing";
+@import "toggle";
+//@import "tw/tailwind";
+@import "dialog";
+@import "adminlte";
+@import "print/general";
+@import "toast";
+@import "colour";

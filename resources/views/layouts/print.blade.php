@@ -32,36 +32,17 @@ $specificTheme = null;
 
     <!-- Styles -->
     <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
+    @vite([
+    'resources/sass/vendor.scss',
+    'resources/sass/app.scss',
+    'resources/sass/freyja/freyja.scss'
+    ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @yield('styles')
-
-@if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
-    @php $specificTheme = $themeOverride; @endphp
-    @if($themeOverride != 'base')
-    <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
-    @endif
-@else
-    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
-        @if ($campaign->theme_id !== 1)
-            <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
-            @php $specificTheme = $campaign->theme->name @endphp
-        @endif
-    @elseif (auth()->check() && !empty(auth()->user()->theme))
-        <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
-        @php $specificTheme = auth()->user()->theme @endphp
-    @endif
-@endif
-
-@if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme())
-    <link href="{{ route('campaign_plugins.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
-@endif
-@if (!empty($campaign) && $campaign->boosted())
-    <link href="{{ route('campaign.css', ['ts' => \App\Facades\CampaignCache::stylesTimestamp()]) }}" rel="stylesheet">
-@endif
-    <link href="{{ mix('css/print.css') }}" rel="stylesheet">
+    @include('layouts._theme')
+    @vite([
+    'resources/sass/print/print.scss',
+    ])
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 
@@ -113,8 +94,8 @@ $specificTheme = null;
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
-    <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="/js/select2/i18n/{{ LaravelLocalization::getCurrentLocale() == 'en-US' ? 'en' : LaravelLocalization::getCurrentLocale() }}.js" defer></script>
+    <script src="/js/vendor.js" defer></script>
+    @vite(['resources/js/app.js'])
     @yield('scripts')
 </body>
 </html>

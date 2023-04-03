@@ -84,10 +84,10 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/family-tree-vue.js') }}" defer></script>
+    @vite('resources/js/family-tree-vue.js')
 @endsection
 @section('styles')
     @parent
-    <link href="{{ mix('css/family-tree.css') }}" rel="stylesheet">
+    @vite('resources/sass/family-tree.scss')
 @endsection
 

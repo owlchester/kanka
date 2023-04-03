@@ -1,0 +1,1 @@
+function a(){$('[data-toggle="ajax-modal"]').unbind("click").click(function(o){return o.preventDefault(),a=$(this),$.ajax({url:$(this).data("url")}).done(function(t,d,r){if(t){let e={},l=$(a).data("target"),n=$(a).data("backdrop");n&&(e.backdrop=n),$(l).find(".modal-content").html(t),$(l).modal(e)}}).fail(function(t,d,r){}),!1})}export{a};

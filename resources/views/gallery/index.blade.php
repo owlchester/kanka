@@ -118,9 +118,9 @@ if ($folder) {
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('js/gallery.js') }}" defer></script>
+    @vite('resources/js/gallery.js')
 @endsection
 
 @section('styles')
-    <link href="{{ mix('css/gallery.css') }}" rel="stylesheet">
+    @vite('resources/sass/gallery.scss')
 @endsection

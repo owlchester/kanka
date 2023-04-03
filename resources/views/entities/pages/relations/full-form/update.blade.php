@@ -46,10 +46,10 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/relations.js') }}" defer></script>
+    @vite('resources/js/relations.js')
 @endsection
 
 @section('styles')
     @parent
-    <link href="{{ mix('css/relations.css') }}" rel="stylesheet">
+    @vite('resources/sass/relations.scss')
 @endsection

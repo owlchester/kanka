@@ -68,10 +68,10 @@
 
 @section('styles')
     @parent
-    <link href="{{ mix('css/abilities.css') }}" rel="stylesheet">
+    @vite('resources/sass/abilities.scss')
 @endsection
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/abilities.js') }}" defer></script>
+    @vite('resources/js/abilities.js')
 @endsection

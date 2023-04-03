@@ -19,7 +19,8 @@ mix.webpackConfig({
     }
 });
 
-mix.js('resources/assets/js/app.js', 'public/js')
+mix.js('resources/assets/js/vendor.js', 'public/js')
+    /*.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/auth.js', 'public/js')
     .js('resources/assets/js/ajax-subforms.js', 'public/js')
     .js('resources/assets/js/location/map-v3.js', 'public/js/location')
@@ -66,7 +67,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .options({
         processCssUrls: false
     })
-    .version()
+    .version()*/
 ;
 
 

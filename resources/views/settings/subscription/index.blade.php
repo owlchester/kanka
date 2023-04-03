@@ -361,7 +361,7 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/subscription.js') }}" defer></script>
+    @vite('resources/js/subscription.js')
     <script src="https://js.stripe.com/v3/"></script>
 
 @if($tracking == 'subscribed')
@@ -375,5 +375,5 @@
 @endsection
 
 @section('styles')
-    <link href="{{ mix('css/subscription.css') }}" rel="stylesheet">
+    @vite('resources/sass/subscription.scss')
 @endsection

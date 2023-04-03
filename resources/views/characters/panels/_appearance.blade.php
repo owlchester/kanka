@@ -11,7 +11,7 @@ $appearances = $model->characterTraits()->appearance()->orderBy('default_order')
                 {{ __('characters.sections.appearance') }}
             </h3>
         </div>
-        <div class="box-body collapse in" id="character-appearance-body">
+        <div class="box-body collapse !visible in" id="character-appearance-body">
             <div class="row">
         @foreach ($appearances as $trait)
             <div class="col-sm-6">

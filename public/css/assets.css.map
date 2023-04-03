@@ -1,1 +1,0 @@
-{"version":3,"file":"css/assets.css","mappings":"AAEQ;EACI;AADZ,C","sources":["webpack:///./resources/assets/sass/assets.scss"],"sourcesContent":[".entity-assets {\n    .entity-asset {\n        .icon {\n            background-color: rgba(0, 0, 0, 0.1);\n        }\n\n    }\n}\n"],"names":[],"sourceRoot":""}

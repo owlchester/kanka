@@ -54,9 +54,10 @@
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
-    <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
-
+    @vite([
+        'resources/js/location/map-v3.js',
+        'resources/js/ajax-subforms.js'
+    ])
     @if (!$ajax && !empty($source))
         @include('maps._setup', ['single' => true, 'model' => $source])
         <script type="text/javascript">
@@ -78,5 +79,5 @@
 @section('styles')
     @parent
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-    <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
+    @vite('resources/sass/map-v3.scss')
 @endsection

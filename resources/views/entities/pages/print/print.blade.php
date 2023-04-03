@@ -23,8 +23,9 @@
 
 @section('content')
 
-    <button class="btn btn-lg btn-warning btn-print" onclick="javascript:window.print();">
-        <i class="fa-solid fa-print"></i> {{ __('crud.actions.print') }}
+    <button class="btn btn-lg btn-warning btn-print fixed top-5 right-5" onclick="javascript:window.print();">
+        <i class="fa-solid fa-print" aria-hidden="true"></i>
+        {{ __('crud.actions.print') }}
     </button>
 
     @if(view()->exists($name . '.show'))
@@ -54,5 +55,5 @@
 
 @section('styles')
     @parent
-    <link href="{{ mix('css/abilities.css') }}" rel="stylesheet">
+    @vite('resources/sass/abilities.scss')
 @endsection
