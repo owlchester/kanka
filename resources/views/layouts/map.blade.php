@@ -49,12 +49,12 @@ $specificTheme = null;
 
     <div id="app" class="wrapper mt-12">
         <!-- Header -->
-        @include('layouts.header', ['qq' => false])
+        @include('layouts.header', ['qq' => false, 'toggle' => true])
 
         <aside class="main-sidebar overflow-hidden pt-0">
             <section class="sidebar" style="height: auto">
 
-                <div id="sidebar-content" class="p-0 overflow-auto max-h-screen">
+                <div id="sidebar-content" class="p-0 overflow-auto h-sidebar">
                     <!-- The legend / overview default sidebar of the map -->
                     <div id="sidebar-map">
                         <div class="marker-header">

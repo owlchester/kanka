@@ -216,6 +216,7 @@ class Family extends MiscModel
             ->leftJoin('character_family as cf', function ($join) {
                 $join->on('cf.character_id', '=', 'characters.id');
             })
+            ->has('entity')
             ->whereIn('cf.family_id', $familyId);
     }
 
@@ -247,10 +248,13 @@ class Family extends MiscModel
             'route' => 'families.families',
             'count' => $this->descendants()->count()
         ];
-        $items['second']['tree'] = [
-            'name' => 'families.show.tabs.tree',
-            'route' => 'families.family-tree',
-        ];
+
+        if (config('services.stripe.enabled')) {
+            $items['second']['tree'] = [
+                'name' => 'families.show.tabs.tree',
+                'route' => 'families.family-tree',
+            ];
+        }
 
         return parent::menuItems($items);
     }
