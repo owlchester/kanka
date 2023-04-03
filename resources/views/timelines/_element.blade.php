@@ -13,8 +13,8 @@
             <div class="box-header flex with-border">
                 <h3 class="box-title grow cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
 
-                    <i class="fa-solid fa-chevron-up icon-show"></i>
-                    <i class="fa-solid fa-chevron-down icon-hide"></i>
+                    <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
+                    <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
                     {!! $element->htmlName() !!}
                     @if (isset($element->date) || $element->use_event_date && isset($element->entity->event->date))
                         <span class="text-muted">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
@@ -28,14 +28,14 @@
 
                     @can('update', $timeline)
                         <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
-                            <i class="fa-solid fa-ellipsis-v"></i>
+                            <i class="fa-solid fa-ellipsis-v" aria-hidden="true"></i>
                             <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
                             <li>
                                 <a href="{{ route('timelines.timeline_elements.edit', [$timeline, $element, 'from' => 'view']) }}" title="{{ __('crud.edit') }}"
                                 >
-                                    <i class="fa-solid fa-edit"></i> {{ __('crud.edit') }}
+                                    <i class="fa-solid fa-edit" aria-hidden="true"></i> {{ __('crud.edit') }}
                                 </a>
                             </li>
                             <li class="text-red">
@@ -49,14 +49,14 @@
                             <li>
                                 <a href="#" title="[timeline:{{ $timeline->entity->id }}|anchor:timeline-element-{{ $element->id }}]" data-toggle="tooltip"
                                    data-clipboard="[timeline:{{ $timeline->entity->id }}|anchor:timeline-element-{{ $element->id }}]" data-toast="{{ __('timelines/elements.copy_mention.success') }}">
-                                    <i class="fa-solid fa-link"></i> {{ __('entities/notes.copy_mention.copy') }}
+                                    <i class="fa-solid fa-link" aria-hidden="true"></i> {{ __('entities/notes.copy_mention.copy') }}
                                 </a>
                             </li>
                             @php $mentionName = $element->mentionName() @endphp
                             <li>
                                 <a href="#" title="[timeline:{{ $timeline->entity->id }}|anchor:timeline-element-{{ $element->id }}]|{{ $mentionName }}" data-toggle="tooltip"
                                    data-clipboard="[timeline:{{ $timeline->entity->id }}|anchor:timeline-element-{{ $element->id }}|{{ $mentionName }}]" data-toast="{{ __('timelines/elements.copy_mention.success') }}">
-                                    <i class="fa-solid fa-link"></i> {{ __('timelines/elements.copy_mention.copy_with_name') }}
+                                    <i class="fa-solid fa-link" aria-hidden="true"></i> {{ __('timelines/elements.copy_mention.copy_with_name') }}
                                 </a>
                             </li>
                         </ul>

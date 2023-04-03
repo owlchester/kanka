@@ -75,7 +75,7 @@
                                                data-toggle="ajax-modal" data-target="#entity-modal"
                                                data-url="{{ route('entities.entity_assets.edit', ['entity' => $entity, 'entity_alias' => $link->id]) }}"
                                                title="{{ __('crud.edit') }}" class="btn btn-primary btn-xs">
-                                                <i class="fa-solid fa-edit"></i>
+                                                <i class="fa-solid fa-edit" aria-hidden="true"></i>
                                             </a>
 
                                             <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $link->name }}"

@@ -29,33 +29,33 @@
                         @can('post', [$model, 'edit', $post])
                         <li>
                             <a href="{{ route('entities.posts.edit', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
-                                <i class="fa-solid fa-edit"></i> {{ __('crud.edit') }}
+                                <i class="fa-solid fa-edit" aria-hidden="true"></i> {{ __('crud.edit') }}
                             </a>
                         </li>
                         @endcan
                         <li>
                             <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
-                                <i class="fa-solid fa-link"></i> {{ __('entities/notes.copy_mention.copy') }}
+                                <i class="fa-solid fa-link" aria-hidden="true"></i> {{ __('entities/notes.copy_mention.copy') }}
                             </a>
                         </li>
                         <li>
                             <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
-                                <i class="fa-solid fa-link"></i> {{ __('entities/notes.copy_mention.copy_with_name') }}
+                                <i class="fa-solid fa-link" aria-hidden="true"></i> {{ __('entities/notes.copy_mention.copy_with_name') }}
                             </a>
                         </li>
                         @if(auth()->user()->isAdmin())
                         <li>
                             <a href="{{ route('posts.move', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
-                                <i class="fa-solid fa-arrows-left-right"></i> {{ __('entities/notes.move.move') }}
+                                <i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i> {{ __('entities/notes.move.move') }}
                             </a>
                         </li>
                         @endif
                         <li class="divider"></li>
                         <li>
                             <a href="{{ route('entities.story.reorder', ['entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
-                                <i class="fa-solid fa-arrows-v"></i> {{ __('entities/story.reorder.icon_tooltip') }}
+                                <i class="fa-solid fa-arrows-v" aria-hidden="true"></i> {{ __('entities/story.reorder.icon_tooltip') }}
                             </a>
                         </li>
                     </ul>

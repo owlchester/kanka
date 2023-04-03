@@ -9,7 +9,7 @@ $specificTheme = null;
 $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign);
 ?><!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" class="scroll-pt-16 overflow-auto">
 <head>
 @include('layouts._tracking')
     <meta charset="utf-8">
