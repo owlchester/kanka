@@ -30,10 +30,13 @@
                 </div>
                 <div class="flex-0">
                     @if(!$discord = auth()->user()->apps()->app('discord')->first())
-                        <button class="rounded px-6 py-2 border text-red-500 border-red-500 hover:bg-red-500 hover:text-white hover:shadow-xs" data-toggle="dialog" data-target="remove-discord"
-                                title="{{ __('settings.apps.actions.remove') }}">
-                            {{ __('settings.apps.actions.remove') }} @if (!empty($discord->settings)) {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }} @endif
-                        </button>
+                        <x-buttons.confirm type="danger" target="remove-discord" outline="true">
+                            <i class="fa-solid fa-link-slash" aria-hidden="true"></i>
+                            <span>
+                                {{ __('settings.apps.actions.remove') }}
+                                @if (!empty($discord->settings)) {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }} @endif
+                            </span>
+                        </x-buttons.confirm>
                     @else
 
                         <a href="https://discord.com/api/oauth2/authorize?client_id={{ config('discord.client_id') }}&redirect_uri={{ url('/settings/discord-callback') }}&response_type=code&scope=identify+guilds+guilds.join" class="inline-block rounded px-6 py-2 border hover:shadow-xs bg-blue-600 text-white uppercase hover:bg-blue-800">
@@ -48,32 +51,27 @@
 
 @section('modals')
     @parent
-    <dialog class="dialog rounded-2xl " id="remove-discord" aria-modal="true" aria-labelledby="helpModalLabelremove-discord">
-        <header>
-            <h4 id="helpModalLabelremove-discord">
-                {!! __('crud.delete_modal.title') !!}
-            </h4>
-            <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
-                <i class="fa-solid fa-times" aria-hidden="true"></i>
-                <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
-            </button>
-        </header>
-        <article>
+
+    <x-dialog id="remove-discord" :title="__('crud.delete_modal.title')">
+        <p class="my-4">{{ __('settings.apps.discord.confirm') }}</p>
+
+        <div class="grid grid-cols-2 gap-2 w-full">
+            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                {{ __('crud.cancel') }}
+            </x-buttons.confirm>
+
             {!! Form::open([
-                'method' => 'DELETE',
-                'route' => [
-                    'settings.discord.destroy'
-                ],
-                'style' => 'display:inline',
-                'id' => 'delete-form-discord'
-            ]) !!}
-            <p class="my-4">{{ __('settings.apps.discord.confirm') }}</p>
-
-            <button class="rounded w-full px-6 py-2 border text-red-500 border-red-500 hover:bg-red-500 hover:text-white hover:shadow-xs">
-                {{ __('crud.click_modal.confirm') }}
-            </button>
+                    'method' => 'DELETE',
+                    'route' => [
+                        'settings.discord.destroy'
+                    ],
+                    'style' => 'display:inline',
+                    'id' => 'delete-form-discord'
+                ]) !!}
+                <x-buttons.confirm type="danger" outline="true" full="true">
+                    {{ __('crud.click_modal.confirm') }}
+                </x-buttons.confirm>
             {!! Form::close() !!}
-        </article>
-    </dialog>
-
+        </div>
+    </x-dialog>
 @endsection

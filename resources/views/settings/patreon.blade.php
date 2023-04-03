@@ -14,11 +14,15 @@
         @include('partials.errors')
 
         @if(auth()->user()->isLegacyPatron())
-            @includeIf('settings.tiers._' . strtolower(auth()->user()->pledge ?: 'kobold'))
+            <div class="rounded p-4 bg-box mb-5">
+                @includeIf('settings.tiers._' . strtolower(auth()->user()->pledge ?: 'kobold'))
 
-            <div class="text-center">
-                <button class="btn btn-danger" data-toggle="modal"
-                        data-target="#remove-patreon">{{ __('settings.patreon.remove.button') }}</button>
+                <x-buttons.confirm type="danger" outline="true" target="remove-patreon">
+                    <i class="fa-solid fa-link-slash" aria-hidden="true"></i>
+                    <span>
+                        {{ __('settings.patreon.remove.button') }}
+                    </span>
+                </x-buttons.confirm>
             </div>
         @else
             <div class="alert alert-warning">
@@ -31,25 +35,14 @@
 @endsection
 
 @section('modals')
-    <div class="modal fade" id="remove-patreon" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ __('settings.patreon.remove.title') }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="text-muted">
-                        {{ __('settings.patreon.remove.text') }}
-                    </p>
-                    {!! Form::model(auth()->user(), ['method' => 'DELETE', 'route' => ['settings.patreon.unlink']]) !!}
-
-                    <button class="btn btn-danger mb-5">
-                        {{ __('crud.click_modal.confirm') }}
-                    </button>
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-dialog id="remove-patreon" :title="__('settings.patreon.remove.title')">
+        <p class="mb-2">
+            {{ __('settings.patreon.remove.text') }}
+        </p>
+        {!! Form::model(auth()->user(), ['method' => 'DELETE', 'route' => ['settings.patreon.unlink'], 'class' => 'text-center mb-5 w-full']) !!}
+        <x-buttons.confirm type="danger" outline="true" full="true">
+            {{ __('crud.click_modal.confirm') }}
+        </x-buttons.confirm>
+        {!! Form::close() !!}
+    </x-dialog>
 @endsection

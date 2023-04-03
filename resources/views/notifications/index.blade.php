@@ -6,7 +6,16 @@
 
 @section('content')
     <div class="max-w-4xl mx-auto">
-        <h1 class="mb-3">{{ __('notifications.index.title') }}</h1>
+        <div class="flex gap-2 mb-3">
+            <h1 class="grow">{{ __('notifications.index.title') }}</h1>
+
+            <div class="flex-0 self-end">
+                <x-buttons.confirm type="danger" target="delete-confirm-notifications" size="sm">
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <span>{{ __('notifications.clear.action') }}</span>
+                </x-buttons.confirm>
+            </div>
+        </div>
 
         <div class="rounded p-4 bg-box">
             @if ($notifications->count() === 0)
@@ -14,10 +23,6 @@
             @else
 
             <div class="text-right mb-5">
-                <button class="btn btn-danger delete-confirm btn-sm" data-toggle="modal"
-                        data-target="#delete-confirm-notifications" data-delete-target="notifications-clear">
-                    <i class="fa-solid fa-trash-o"></i> {{ __('notifications.clear.action') }}
-                </button>
             </div>
             <div class=" table-responsive">
                 <table class="table table-hover mb-0">
@@ -60,12 +65,7 @@
                     {!! $notifications->links() !!}
                 </div>
            @endif
-        {!! Form::open([
-    'method' => 'POST',
-    'route' => 'notifications.clear-all',
-    'id' => 'notifications-clear'
-    ]) !!}
-        {!! Form::close() !!}
+
         @endif
         </div>
     </div>
@@ -73,26 +73,25 @@
 @endsection
 
 @section('modals')
-    <div class="modal fade" id="delete-confirm-notifications" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl">
-                <div class="modal-body text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{{ __('notifications.clear.title') }}</h4>
+    <x-dialog id="delete-confirm-notifications" :title="__('notifications.clear.title')">
+        <p class="mb-2">
+            {{ __('crud.delete_modal.permanent') }}
+        </p>
 
-                    <p class="mt-3">
-                        {{ __('crud.delete_modal.permanent') }}
-                    </p>
-
-                    <div class="py-5">
-                        <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                        <button type="button" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
-                            <span class="fa-solid fa-trash" aria-hidden="true"></span>
-                            <span class="remove-button-label">{{ __('crud.remove') }}</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="grid grid-cols-2 gap-2">
+            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                {{ __('crud.cancel') }}
+            </x-buttons.confirm>
+            {!! Form::open([
+                'method' => 'POST',
+                'route' => 'notifications.clear-all',
+                'id' => 'notifications-clear'
+            ]) !!}
+                <x-buttons.confirm type="danger" full="true" ouline="true">
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <span>{{ __('crud.remove') }}</span>
+                </x-buttons.confirm>
+            {!! Form::close() !!}
         </div>
-    </div>
+    </x-dialog>
 @endsection

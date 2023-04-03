@@ -6,9 +6,11 @@
         <p class="hep-block">{{ __('settings.account.2fa.enabled') }}</p>
 
         <div class="text-right">
-            <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#deactivate-2fa">
+
+            <x-buttons.confirm type="danger" outline="true" target="deactivate-2fa">
+
                 {{ __('settings.account.2fa.actions.disable') }}
-            </button>
+            </x-buttons.confirm>
         </div>
     @elseif (!auth()->user()->isSubscriber())
             <p>
@@ -35,7 +37,10 @@
                 ]) !!}</p>
             {!! Form::open(['route' => 'settings.security.generate-2fa', 'method' => 'POST']) !!}
                 <div class="text-right">
-                    <button type="submit" class="btn btn-primary" name="button">{{ __('settings.account.2fa.generate_qr') }}</button>
+
+                    <x-buttons.confirm type="primary" outline="true">
+                        {{ __('settings.account.2fa.generate_qr') }}
+                    </x-buttons.confirm>
                 </div>
             {!! Form::close() !!}
         @elseif(!$user->passwordSecurity->google2fa_enable && auth()->user()->isSubscriber() || auth()->user()->subscription('kanka')->canceled())
@@ -52,7 +57,9 @@
                 </div>
 
                 <div class="text-right">
-                    <button type="submit" class="btn btn-primary" name="button">{{ __('settings.account.2fa.actions.finish') }}</button>
+                    <x-buttons.confirm type="primary" outline="true">
+                        {{ __('settings.account.2fa.actions.finish') }}
+                    </x-buttons.confirm>
                 </div>
             {!! Form::close() !!}
        @endif
@@ -62,28 +69,18 @@
 @section('modals')
     @parent
     @if($user->passwordSecurity?->google2fa_enable))
-        <div class="modal fade" id="deactivate-2fa" tabindex="-1" role="dialog" aria-labelledby="deactivate2FALabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-2xl">
-                    <div class="modal-body text-center">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                        <h4>
-                            {{ __('settings.account.2fa.disable.title') }}
-                        </h4>
-
-                        <p class="mt-3">
-                            {{ __('settings.account.2fa.disable.helper') }}                    </p>
-                        <div class="py-5">
-                            {!! Form::model($user, ['method' => 'POST', 'route' => ['settings.security.disable-2fa']]) !!}
-                            <button type="submit" class="btn btn-danger rounded-full px-8">
-                                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
-                                {{ __('crud.click_modal.confirm') }}
-                            </button>
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
-                </div>
-            </div>
+    {!! Form::model($user, ['method' => 'POST', 'route' => ['settings.security.disable-2fa']]) !!}
+    <x-dialog id="deactivate-2fa" :title="__('settings.account.2fa.disable.title')">
+        <p class="mb-2">
+            {{ __('settings.account.2fa.disable.helper') }}
+        </p>
+        <div class="w-full">
+            <x-buttons.confirm type="danger" outline="true" full="true">
+                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                {{ __('crud.click_modal.confirm') }}
+            </x-buttons.confirm>
         </div>
+    </x-dialog>
+    {!! Form::close() !!}
     @endif
 @endsection

@@ -191,11 +191,10 @@ $boxClass = "rounded p-4 bg-box flex flex-col";
         </div>
     </div>
 
-        <button class="btn btn-primary btn-block">
+        <x-buttons.confirm type="primary" full="true">
             <i class="fa-solid fa-save" aria-hidden="true"></i>
-            {{ __('settings/appearance.actions.save') }}
-        </button>
-    </div>
+            <span>{{ __('settings/appearance.actions.save') }}</span>
+        </x-buttons.confirm>
     @if (!empty($from))
         <input type="hidden" name="from" value="{{ $from }}" />
     @endif

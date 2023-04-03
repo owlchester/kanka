@@ -39,9 +39,13 @@
                 <label>{{ __('settings.subscription.fields.currency') }}</label>
                 {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], auth()->user()->currency(), ['class' => 'form-control']) !!}
             </div>
-            <button class="btn btn-primary mb-5">
-                {{ __('settings.subscription.actions.update_currency') }}
-            </button>
+            <div class="text-right">
+                <x-buttons.confirm type="primary" outline="true">
+                    <i class="fa-solid fa-save" aria-hidden="true"></i>
+                    <span>
+                {{ __('settings.subscription.actions.update_currency') }}</span>
+                </x-buttons.confirm>
+            </div>
             {!! Form::close() !!}
 
         </div>

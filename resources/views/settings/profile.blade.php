@@ -80,9 +80,9 @@
                 </div>
             </div>
             <div class="text-right">
-                <button class="btn btn-primary">
+                <x-buttons.confirm type="primary" outline="true">
                     {{ __('settings.profile.actions.update_profile') }}
-                </button>
+                </x-buttons.confirm>
             </div>
         </div>
         {!! Form::close() !!}

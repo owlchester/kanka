@@ -128,7 +128,7 @@ return [
         'actions'               => [
             'cancel_sub'        => 'Cancel subscription',
             'subscribe'         => 'Subscribe',
-            'update_currency'   => 'Save preferred currency',
+            'update_currency'   => 'Save billing currency',
         ],
         'billing'               => [
             'helper'    => 'Your billing information is processed and stored safely through :stripe. This payment method is used for all of your subscriptions.',

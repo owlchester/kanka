@@ -3,7 +3,8 @@ module.exports = {
       "./resources/views/**/*.blade.php",
       "./resources/js/components/**/*.vue",
       "./resources/js/*.js",
-      "./app/Models/*.php"
+      "./app/Models/*.php",
+      "./app/View/Components/**/*.php",
   ],
   theme: {
     extend: {},
