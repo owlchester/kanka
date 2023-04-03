@@ -20,7 +20,8 @@
                         </div>
                         <div class="col-xs-3 text-right">
                             <span v-on:click.stop="removePaymentMethod( method.id )" title="Remove" class="text-red">
-                                <i class="fa-solid fa-trash"></i>
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                <span class="sr-only">Remove card</span>
                             </span>
                         </div>
                     </div>
@@ -31,45 +32,45 @@
             <p class="help-block">
                 {{ translate('add_one') }}
                 <a href="#" v-on:click.close="toggleShowNewPaymentMethod">
-                    <i class="far fa-credit-card"></i> {{ translate('actions.add_new') }}
+                    <i class="far fa-credit-card" aria-hidden="true"></i> {{ translate('actions.add_new') }}
                 </a>
             </p>
         </div>
+        <dialog class="dialog rounded-2xl text-center" id="modal-card" ref="cardModal" aria-modal="true" aria-labelledby="modal-card-label">
+            <header>
+                <h4 id="modal-card-label">
+                    {{ translate('new_card') }}
+                </h4>
+                <button type="button" class="rounded-full" @click="closeModal('accessModal')" title="Close">
+                    <i class="fa-solid fa-times" aria-hidden="true"></i>
+                    <span class="sr-only">Close</span>
+                </button>
+            </header>
+            <article class="text-justify">
+                <div class="mb-2 w-full">
+                    <label>{{ translate('card_name') }}</label>
+                    <input id="card-holder-name" type="text" v-model="name" class="form-control">
+                </div>
 
-        <div class="showNewCard" v-show="showNewPaymentMethod">
-            <div class="modal" tabindex="-1" role="dialog" style="display: block">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" v-on:click="toggleShowNewPaymentMethod"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="clickModalLabel">
-                                <h4 class="box-title">{{ translate('new_card') }}</h4>
-                            </h4>
-                        </div>
-                        <div class="modal-body">
-                            <label>{{ translate('card_name') }}</label>
-                            <input id="card-holder-name" type="text" v-model="name" class="form-control mb-2">
-
-                            <label>{{ translate('card') }}</label>
-                            <div id="card-element">
-
-                            </div>
-                            <p class="help-block">
-                                {{ translate('helper') }}
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" id="add-card-button" v-on:click="submitPaymentMethod()" v-show="savePaymentMethodStatus == 0">
-                                {{ translate('actions.save') }}
-                            </button>
-                            <button class="btn btn-primary" v-show="savePaymentMethodStatus != 0" disabled="disabled">
-                                <i class="fa-solid fa-spin fa-spinner"></i>
-                            </button>
-                        </div>
+                <div class="mb-2 w-full">
+                    <label>{{ translate('card') }}</label>
+                    <div id="card-element">
                     </div>
                 </div>
-            </div>
-        </div>
+
+                <p class="help-block mb-2">
+                    {{ translate('helper') }}
+                </p>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <button type="button" class="w-full rounded px-6 py-2.5 uppercase font-extrabold hover:bg-gray-200 hover:shadow-sm" @click="closeModal('cardModal')">Close</button>
+
+                    <button type="button" v-bind:class="saveBtnClass()" @click="submitPaymentMethod" ref="formBtn">
+                        {{ translate('actions.save') }}
+                    </button>
+                </div>
+            </article>
+        </dialog>
     </div>
 </template>
 
@@ -99,6 +100,8 @@
                 savePaymentMethodStatus: 0,
                 deletingPaymentMethodStatus: 0,
                 json_trans: [],
+
+                isLoading: false,
             }
         },
 
@@ -159,6 +162,7 @@
             submitPaymentMethod() {
                 this.addPaymentStatus = 1;
                 this.savePaymentMethodStatus = 1;
+                this.isLoading = true;
 
                 this.stripe.confirmCardSetup(
                     this.intentToken.client_secret, {
@@ -171,6 +175,8 @@
                     }
                 ).then(function (result) {
                     this.savePaymentMethodStatus = 0;
+
+                    this.isLoading = false;
                     if (result.error) {
                         this.addPaymentStatus = 3;
                         this.addPaymentStatusError = result.error.message;
@@ -217,11 +223,35 @@
             },
 
             toggleShowNewPaymentMethod() {
+                this.openModal('cardModal');
                 this.showNewPaymentMethod = !this.showNewPaymentMethod;
             },
 
             translate(key) {
                 return this.json_trans[key] ?? 'unknown';
+            },
+
+            openModal(ref) {
+                this.$refs[ref].showModal();
+                this.$refs[ref].addEventListener('click', function (event) {
+                    let rect = this.getBoundingClientRect();
+                    let isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+                        rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+                    if (!isInDialog && event.target.tagName === 'DIALOG') {
+                        this.close();
+                    }
+                });
+            },
+            closeModal(ref) {
+                this.$refs[ref].close();
+            },
+
+            saveBtnClass() {
+                let cls = 'w-full rounded px-6 py-2.5 uppercase border border-blue-500 bg-white text-blue-500 font-extrabold hover:bg-blue-500 hover:text-white hover:shadow-sm';
+                if (this.isLoading) {
+                    cls += ' loading';
+                }
+                return cls;
             }
         },
     }
