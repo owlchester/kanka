@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-b7ee1259.js",
+    "file": "assets/app-2a112a4d.js",
     "imports": [
       "_delete-confirm-fec6aa52.js",
       "_mention-5d95822d.js",
@@ -231,7 +231,7 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-e2ee176d.css",
+    "file": "assets/app-91a6e6f5.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
@@ -256,7 +256,7 @@
     "src": "resources/sass/family-tree.scss"
   },
   "resources/sass/freyja/freyja.scss": {
-    "file": "assets/freyja-09ffdb52.css",
+    "file": "assets/freyja-1c61b471.css",
     "isEntry": true,
     "src": "resources/sass/freyja/freyja.scss"
   },
