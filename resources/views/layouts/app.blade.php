@@ -131,7 +131,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     </div>
 
     <!-- Extra-large modal on desktop for more data -->
-    <div class="modal fade" id="large-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
+    <div class="modal fade z-[9900]" id="large-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content rounded-2xl" id="large-modal-content"></div>
         </div>
