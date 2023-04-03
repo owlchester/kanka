@@ -2,7 +2,7 @@
 /** @var \App\Models\Campaign $campaign */
 ?>
 @section('content-header')
-<div class="campaign-header @if(!empty($campaign->header_image))campaign-imaged-header" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif ">
+<div class="campaign-header relative z-[10] @if(!empty($campaign->header_image))campaign-imaged-header" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif">
 
 
     <div class="campaign-header-content">

@@ -35,7 +35,7 @@ window.ajaxTooltip = function() {
         placement: 'auto',
         template: '<div class="tooltip" role="tooltip">' +
             '<div class="tooltip-arrow"></div>' +
-            '<div class="tooltip-inner tooltip-ajax text-left p-1 min-w-96"></div>' +
+            '<div class="tooltip-inner tooltip-ajax text-left p-1"></div>' +
             '</div>',
         html: true,
         sanitize: false

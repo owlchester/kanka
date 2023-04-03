@@ -24,11 +24,10 @@ $conversation = $entity->child;
         <h3 class="panel-title">
             <a href="{{ $conversation->getLink() }}">
                 @if ($conversation->is_private)
-                    <i class="fa-solid fa-lock pull-right" title="{{ __('crud.is_private') }}"></i>
+                    <i class="fa-solid fa-lock pull-right" title="{{ __('crud.is_private') }}" aria-hidden="true"></i>
                 @endif
 
                 <span class="pull-right" data-toggle="tooltip" title="{{ __('conversations.tabs.participants') }}">
-
                     <span class="label label-default"><i class="fa-solid fa-users"></i> {{ $conversation->participants()->count() }}</span>
                 </span>
                 @if(!empty($customName))

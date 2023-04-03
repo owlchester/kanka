@@ -2,6 +2,7 @@
  * Control the way tooltips appear. Boosted campaigns can have entity images displayed in tooltips.
  */
 .tooltip-ajax {
+    max-width: 378px !important;
     .tooltip-text {
         // Boosted campaigns can set a custom tooltip WITH html, including headers, so we need to make them way smaller here
         h1, h2, h3 {
