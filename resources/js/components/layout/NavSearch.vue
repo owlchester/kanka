@@ -15,7 +15,7 @@
             </span>
         </div>
 
-        <aside class="search-drawer absolute top-0 left-0 mt-12 h-sidebar w-sidebar bg-navbar shadow-r overflow-y  " v-if="show_recent || show_loading || show_preview">
+        <aside class="search-drawer absolute top-0 left-0 mt-12 h-sidebar w-sidebar bg-navbar shadow-r overflow-y-auto  " v-if="show_recent || show_loading || show_preview">
             <div class="text-center" v-if="show_loading">
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" aria-label="Loading"></i>
             </div>

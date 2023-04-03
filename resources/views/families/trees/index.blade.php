@@ -59,7 +59,7 @@
             __('families/trees.pitch')], 'superboost' => true])
             @else
                 @if ($mode === 'pixi')
-                <div class="family-tree-setup overflow-x overflow-y"
+                <div class="family-tree-setup overflow-auto"
                     data-api="{{ route('families.family-tree.api', $family) }}"
                     data-save="{{ route('families.family-tree.api-save', $family) }}"
                     data-entity="{{ route('families.family-tree.entity-api', 0) }}"
