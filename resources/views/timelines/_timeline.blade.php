@@ -52,7 +52,7 @@ $loadedElements = [];
         </div>
     </div>
 
-    <ul class="timeline reative m-0 p-0 list-none collapse {{ $era->is_collapsed ? 'out' : 'in' }}" id="era-items-{{ $era->id }}">
+    <ul class="timeline relative m-0 p-0 list-none collapse {{ $era->is_collapsed ? 'out' : 'in' }} !visible" id="era-items-{{ $era->id }}">
     @foreach($era->orderedElements as $element)
         @php
             $position = $element->position + 1;

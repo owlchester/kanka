@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     @if (!empty($log->changes) && $superboosted)
-                    <div id="log-{{ $log->id }}" class="collapse my-5 !visible">
+                    <div id="log-{{ $log->id }}" class="collapse !visible my-5">
                         <p class="text-muted">{{ __('history.helpers.changes') }}</p>
                         @foreach ($log->changes as $attribute => $value)
                             @if (is_array($value)) @continue @endif

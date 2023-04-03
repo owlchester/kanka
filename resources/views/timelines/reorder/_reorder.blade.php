@@ -32,11 +32,11 @@
                             @endif
                             <div class="element" data-id="element-{{ $element->id }}">
                                 {!! Form::hidden('timeline_element[' . $era->id . '][]', $element->id) !!}
-                                <div class="dragger dragger pr-3 rounded-icon">
-                                    {!! $element->htmlIcon() !!}
+                                <div class="dragger relative dragger pr-3 rounded-icon">
+                                    {!! $element->htmlIcon(false) !!}
                                 </div>
                                 <div class="name overflow-hidden flex-grow">
-                                    {!! $element->htmlName() !!}
+                                    {!! $element->htmlName(false) !!}
                                     @if (isset($element->date))<span class="text-sm">({{ $element->date }})</span>@endif
                                 </div>
                             </div>

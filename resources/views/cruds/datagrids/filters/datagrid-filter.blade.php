@@ -29,7 +29,7 @@ $clipboardFilters = $filterService->clipboardFilters();
     </div>
 
     {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
-    <div class="collapse out" id="datagrid-filters">
+    <div class="collapse out !visible" id="datagrid-filters">
         <div class="box-body">
             @if (auth()->guest())
                 <p class="help-block">{{ __('filters.helpers.guest') }}</p>

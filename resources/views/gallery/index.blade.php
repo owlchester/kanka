@@ -44,7 +44,7 @@ if ($folder) {
 
     <form id="gallery-form" method="post" action="{{ route('images.store') }}" enctype="multipart/form-data" class="file-upload-form mb-5">
         {{ csrf_field() }}
-        <div class="uploader collapse out well text-center border-dotted border-1 " id="uploader">
+        <div class="uploader collapse !visible out well text-center border-dotted border-1 " id="uploader">
 
             <h4>{{ __('campaigns/gallery.uploader.well') }}</h4>
 

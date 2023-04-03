@@ -123,9 +123,9 @@ class TimelineElement extends Model
     /**
      * @return string
      */
-    public function htmlIcon(): string
+    public function htmlIcon(bool $absolute = true): string
     {
-        $min = 'absolute top-0 text-center w-8 h-8 rounded-full';
+        $min = $absolute ? 'absolute top-0 text-center w-8 h-8 rounded-full' : 'rounded-full';
         if (!empty($this->icon)) {
             if (Str::startsWith($this->icon, '<i class=')) {
                 return str_replace('<i class="', '<i class="bg-' . $this->colour . ' ', $this->icon);

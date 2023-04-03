@@ -8,10 +8,10 @@
 <li id="timeline-element-{{ $element->id }}" class="relative mr-2">
     {!! $element->htmlIcon() !!}
 
-    <div class="timeline-item p-0 relative rounded-sm mt-0 ml-15 mr-4">
+    <div class="timeline-item p-0 relative rounded-sm mt-0 ml-16 mr-4">
         <div class="box">
             <div class="box-header flex with-border">
-                <h3 class="box-title grow cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
+                <h3 class="box-title grow cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }} !visible" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
 
                     <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
                     <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
@@ -63,7 +63,7 @@
                     @endcan
                 </div>
             </div>
-            <div class="box-body entity-content collapse {{ $element->collapsed() ? 'out' : 'in' }}" id="timeline-element-body-{{ $element->id }}">
+            <div class="box-body entity-content collapse {{ $element->collapsed() ? 'out' : 'in' }} !visible" id="timeline-element-body-{{ $element->id }}">
                 {!! \App\Facades\Mentions::mapAny($element) !!}
 
                 @if ($element->use_entity_entry && $element->entity && $element->entity->child->hasEntry())
