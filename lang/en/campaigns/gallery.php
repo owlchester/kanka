@@ -11,6 +11,7 @@ return [
         'success'   => 'Image :name deleted.',
     ],
     'errors'        => [
+        'max' => 'Please only select up to :count files at a time.',
         'permissions'   => 'Your campaign roles are missing the :permission permission to be allowed to upload images to the campaign gallery.',
     ],
     'fields'        => [

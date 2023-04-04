@@ -76,6 +76,7 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
+
         $images = $this->service
             ->campaign($campaign)
             ->store($request);

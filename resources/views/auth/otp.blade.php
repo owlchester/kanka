@@ -10,10 +10,10 @@
 
     {!! Form::open(['route' => 'auth.verify-2fa', 'method' => 'POST', 'class' => 'w-full']) !!}
         <div class="mb-3 {{ $errors->has('one_time_password') ? ' has-error' : '' }}">
-            <input id="one_time_password" type="password" class="form-control" name="one_time_password" required autofocus>
+            <input id="one_time_password" type="password" class="rounded border p-4 w-full" name="one_time_password" required autofocus>
 
             @if ($errors->has('password'))
-                <span class="help-block text-red">
+                <span class="text-sm text-red-500">
                     <strong>{{ __('auth.confirm.error') }}</strong>
                 </span>
             @endif

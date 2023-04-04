@@ -4,7 +4,7 @@
             <i v-bind:class="campaignIcon()" aria-hidden="true"></i>
             <span class="sr-only">Campaigns</span>
         </div>
-        <div class="profile inline cursor-pointer text-center text-uppercase pt-1" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
+        <div class="profile inline cursor-pointer text-center uppercase pt-1" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
             <div class="indicator">
                 <span class="notification-badge" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
@@ -36,7 +36,7 @@
                 </div>
                 <div :class="blockClass(view_profile)" v-on:click="openProfile()" tabindex="0" role="button" aria-label="Profile pane">
                     <div class="full flex items-center" v-if="view_profile">
-                        <div class="flex-none mr-4 profile-box rounded-lg p-2 text-center text-uppercase font-bold" v-if="showInitials()">
+                        <div class="flex-none mr-4 profile-box rounded-lg p-2 text-center uppercase font-bold" v-if="showInitials()">
                             {{ initials }}
                         </div>
                         <div class="flex-none mr-4 w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="" v-else :title="profile.your_profile">
-                        <div class="flex-none profile-box rounded-lg p-2 text-center text-uppercase font-bold" v-if="showInitials()">
+                        <div class="flex-none profile-box rounded-lg p-2 text-center uppercase font-bold" v-if="showInitials()">
                             {{ initials }}
                         </div>
                         <div class="flex-none w-9 h-9 rounded-lg cover-background" v-bind:style="{backgroundImage: profilePictureUrl()}" v-else></div>
@@ -57,7 +57,7 @@
             <div class="profile p-5" v-if="view_profile">
                 <div class="notifications mb-5" v-if="notifications.title">
                     <div class="flex w-full py-2">
-                        <div class="flex-grow text-uppercase font-bold">
+                        <div class="flex-grow uppercase font-bold">
                             {{ notifications.title }}
                         </div>
                         <div class="flex-grow text-right">
@@ -77,7 +77,7 @@
 
                 <div class="releases mb-5" v-if="releases.title && releases.releases.length > 0">
                     <div class="flex w-full py-2">
-                        <div class="flex-grow text-uppercase font-bold">
+                        <div class="flex-grow uppercase font-bold">
                             {{ releases.title }}
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                 <div class="marketplace mb-5" v-if="!profile.is_impersonating && marketplace.title">
 
                     <div class="flex w-full py-2">
-                        <div class="flex-grow text-uppercase font-bold">
+                        <div class="flex-grow uppercase font-bold">
                             {{ marketplace.title }}
                         </div>
                         <div class="flex-grow text-right">
@@ -126,7 +126,7 @@
                 </div>
 
                 <div class="subscription mb-5" v-if="!profile.is_impersonating">
-                    <div class="text-uppercase font-bold py-2">{{ profile.subscription.title }}</div>
+                    <div class="uppercase font-bold py-2">{{ profile.subscription.title }}</div>
                     <a class="bordered border-solid rounded-lg flex justify-center items-center hover:drop-shadow" v-bind:href="profile.urls.subscription">
                         <div class="flex-none p-2">
                             <img class="w-16 h-16" v-bind:src="profile.subscription.image" v-bind:alt="profile.subscription.tier">
@@ -186,7 +186,7 @@
                 <div v-if="!profile.is_impersonating">
 
                     <div class="flex w-full py-2">
-                        <div class="flex-grow text-uppercase font-bold">{{campaigns.texts.campaigns }}
+                        <div class="flex-grow uppercase font-bold">{{campaigns.texts.campaigns }}
                         </div>
                         <div class="flex-grow text-right" v-if="campaigns.member.length > 0">
                             <a v-bind:href="campaigns.urls.reorder">
@@ -201,7 +201,7 @@
                         </Campaign>
 
                         <a v-bind:href="campaigns.urls.new" class="new-campaign flex items-center text-center border-dashed bordered rounded-lg h-24 p-2 overflow-hidden">
-                            <span class="text-xs text-break text-uppercase">
+                            <span class="text-xs text-break uppercase">
                                 <i class="fa-solid fa-plus" aria-hidden="true" style="display: none"></i>
                                 {{ campaigns.texts.new }}
                             </span>
@@ -210,7 +210,7 @@
 
                     <div class="following" v-if="!profile.is_impersonating">
                         <hr />
-                        <p class="text-uppercase">{{ campaigns.texts.followed }}</p>
+                        <p class="uppercase">{{ campaigns.texts.followed }}</p>
 
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
                             <Campaign v-for="campaign in campaigns.following"
@@ -219,7 +219,7 @@
 
 
                             <a v-bind:href="campaigns.urls.follow" class="new-campaign flex items-center text-center border-dashed bordered rounded-lg h-24 p-2 overflow-hidden">
-                            <span class="text-xs text-uppercase text-break">
+                            <span class="text-xs uppercase text-break">
                                 {{ campaigns.texts.follow }}
                             </span>
                             </a>

@@ -47,7 +47,7 @@
         <div class="tab-profile p-5" v-if="focus_profile">
             <div class="entity-pinned-attributes" v-if="entity.attributes.length > 0">
                 <div v-for="attribute in entity.attributes" class="mb-3" v-bind:data-attribute="attribute.name" v-bind:data-target="attribute.id">
-                    <span class="inline-block text-uppercase font-extrabold mr-1">
+                    <span class="inline-block uppercase font-extrabold mr-1">
                         {{ attribute.name }}
                     </span>
                     <span v-html="attribute.value"></span>
@@ -55,7 +55,7 @@
                 <hr />
             </div>
             <div v-for="profile in entity.profile" class="mb-3" v-bind:class="profileClass(profile)">
-                <div class="text-uppercase font-extrabold truncate">
+                <div class="uppercase font-extrabold truncate">
                     {{ profile.field }}
                 </div>
                 <div>

@@ -3,6 +3,8 @@ import axios from "axios";
 var loader, gallery, search;
 var fileDrop, fileProgress, fileUploadField, fileError;
 var galleryForm;
+var maxFiles;
+var maxError;
 
 $(document).ready(function() {
     initGallery();
@@ -22,6 +24,10 @@ function initGallery() {
     fileUploadField = $('#file-upload');
     fileError = $('.gallery-error');
 
+    let config = $('#gallery-config');
+    maxFiles = config.data('max');
+    maxError = config.data('error');
+
     search.on('blur', function(e) {
         e.preventDefault();
         initSearch();
@@ -38,14 +44,21 @@ function initGallery() {
 
 
         if (ev.dataTransfer.items) {
-            var data = new FormData(galleryForm);
+            let data = new FormData();
+            let fileCount = 0;
             // Use DataTransferItemList interface to access the file(s)
             [...ev.dataTransfer.items].forEach((item, i) => {
                 // If dropped items aren't files, reject them
                 if (item.kind === 'file') {
                     data.append('file[]', item.getAsFile());
+                    fileCount++;
                 }
             });
+
+            if (fileCount > maxFiles) {
+                alertTooManyFiles();
+                return;
+            }
             uploadFiles(data);
             galleryForm.classList.remove('drop-shadow', 'dropping');
         } else {
@@ -93,7 +106,16 @@ function initUploader() {
 
         let galleryFiles = document.getElementById('file-upload');
 
-        var data = new FormData(galleryForm);
+        if (galleryFiles.files.length > maxFiles) {
+            alertTooManyFiles();
+            return;
+        }
+
+        var data = new FormData();
+        /*for (const i in galleryFiles.files) {
+            let key = 'file[]';
+            data.append(key, galleryFiles.files[i]);
+        }*/
         Array.from(galleryFiles.files).forEach(file => {
             data.append('file[]', file);
         });
@@ -102,8 +124,15 @@ function initUploader() {
     };
 }
 
+const alertTooManyFiles = () => {
+    window.showToast(maxError, 'toast-error');
+};
+
 const uploadFiles = (data) => {
     var config = {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        },
         onUploadProgress: function (progressEvent) {
             let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
             $('.progress .progress-bar').css(
@@ -114,6 +143,11 @@ const uploadFiles = (data) => {
     };
 
     fileProgress.show();
+
+    console.log('data', data);
+    data.forEach((i) => {
+        console.log('foreach', i);
+    });
 
     axios
         .post(galleryForm.action, data, config)

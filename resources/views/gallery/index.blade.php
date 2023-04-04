@@ -115,6 +115,8 @@ if ($folder) {
             {!! Form::close() !!}
         </div>
     </div>
+
+    <input type="hidden" id="gallery-config" data-max="{{ ini_get('max_file_uploads') }}" data-error="{{ __('campaigns/gallery.errors.max', ['count' => ini_get('max_file_uploads')]) }}" />
 @endsection
 
 @section('scripts')
