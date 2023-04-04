@@ -50,7 +50,6 @@
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
-    <script src="/js/vendor.js" defer></script>
     @vite('resources/js/auth.js')
 @yield('scripts')
 </body>

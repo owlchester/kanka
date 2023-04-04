@@ -3,10 +3,27 @@
 ])
 
 @section('content')
-    <h1 class="text-2xl leading-tight mb-3">{{ __('auth.register.title') }}
+    <h1 class="text-2xl leading-tight mb-3">
+        {{ __('auth.register.title') }}
     </h1>
 
-    @include('partials.errors')
+
+    @if (session()->has('info'))
+        <div class="p-4 rounded bg-blue-200 text-blue-800 mb-2">
+            {{ session()->get('info') }}
+        </div>
+    @endif
+    @if (count($errors) > 0)
+        <div class="p-4 rounded bg-red-200 text-red-800 mb-2">
+            <strong>{{ trans('partials.errors.title') }}</strong>
+            {{ trans('partials.errors.description') }}<br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <form method="POST" action="{{ route('register') }}" class="submit-lock w-full">
         {{ csrf_field() }}
@@ -32,8 +49,9 @@
         <div class="mb-3{{ $errors->has('password') ? ' has-error' : '' }}">
             <div class="flex items-stretch w-full">
                 <input id="password" type="password" class="rounded border p-2 w-full" name="password" required placeholder="{{ __('auth.register.fields.password') }}">
-                <a href="#" class="toggle-password input-group-addon p-2" tabindex="-1" title="{{ __('auth.helpers.password') }}">
-                    <i class="toggle-password-icon fa-solid fa-eye"></i>
+                <a href="#" id="toggle-password" class="p-2" tabindex="-1" title="{{ __('auth.helpers.password') }}">
+                    <i id="toggle-password-icon" class="fa-solid fa-eye" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('auth.helpers.password') }}</span>
                 </a>
             </div>
 
@@ -57,11 +75,11 @@
     ]) !!}
             </div>
             <div class="flex-0">
-                <div class="rounded border border-gray btn-wait disabled" style="display: none;">
-                    <i class="fa-solid fa-spinner fa-spin"></i>
+                <div id="btn-wait" class="rounded border border-gray-200 px-6 py-2 bg-gray-200 disabled" style="display: none;">
+                    <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
                 </div>
 
-                <button type="submit" class="rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white btn-save">
+                <button id="btn-save" type="submit" class="rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white">
                     {{ __('auth.register.submit') }}
                 </button>
             </div>
@@ -75,21 +93,21 @@
         <div class="flex flex-col gap-2">
             @if(config('services.facebook.client_id'))
                 <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="rounded border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.register.register_with_facebook') }}">
-                    <i class="fab fa-facebook-f mb-1" aria-hidden="true"></i>
+                    <i class="fa-brands fa-facebook-f mb-1" aria-hidden="true"></i>
                     Facebook
                 </a>
             @endif
 
             @if(config('services.google.client_id'))
                 <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="rounded border border-red-400 text-red-400 hover:text-white hover:bg-red-400 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.register.register_with_google') }}">
-                    <i class="fab fa-google" aria-hidden="true"></i>
+                    <i class="fa-brands fa-google" aria-hidden="true"></i>
                     Google
                 </a>
             @endif
 
             @if(config('services.twitter.client_id'))
                 <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="rounded border border-blue-300 text-blue-300 hover:text-white hover:bg-blue-300 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.register.register_with_twitter') }}">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                    <i class="fa-brands fa-twitter" aria-hidden="true"></i>
                     Twitter
                 </a>
             @endif
