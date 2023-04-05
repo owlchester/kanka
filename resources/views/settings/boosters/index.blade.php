@@ -25,7 +25,7 @@
 
                 <h4 class="mt-5">{{ __('settings/boosters.pitch.benefits.title') }}</h4>
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-1 mb-3">
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-palette fa-2x" aria-hidden="true"></i>
                         </div>
@@ -33,7 +33,7 @@
                             {{ __('settings/boosters.pitch.benefits.customisable') }}
                         </div>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-image-portrait fa-2x" aria-hidden="true"></i>
                         </div>
@@ -41,7 +41,7 @@
                             {{ __('settings/boosters.pitch.benefits.entities') }}
                         </div>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-hourglass-half fa-2x" aria-hidden="true"></i>
                         </div>
@@ -49,7 +49,7 @@
                             {{ __('settings/boosters.pitch.benefits.backup', ['amount' => config('entities.hard_delete')]) }}
                         </div>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-horse-head fa-2x" aria-hidden="true"></i>
                         </div>
@@ -57,7 +57,7 @@
                             {{ __('settings/boosters.pitch.benefits.icons') }}
                         </div>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-camera fa-2x" aria-hidden="true"></i>
                         </div>
@@ -65,7 +65,7 @@
                             {{ __('settings/boosters.pitch.benefits.upload') }}
                         </div>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-user-group fa-2x" aria-hidden="true"></i>
                         </div>
