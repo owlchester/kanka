@@ -19,7 +19,7 @@
         @include('cruds.fields.races')
     </div>
     <div class="col-sm-6">
-        @include('cruds.fields.location')
+        @include('cruds.fields.location', ['quickCreator' => true])
     </div>
 </div>
 

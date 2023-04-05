@@ -54,7 +54,7 @@ if (!empty($from)) {
 $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>
 @if ($labelKey !== false)
-<label>{{ __($labelKey) }}</label>
+<label data-view="select2">{{ __($labelKey) }}</label>
 @endif
 {!! Form::select(
     $fieldId,

@@ -29,7 +29,7 @@ if (isset($from)) {
     $data['from'] = $from;
 }
 if (isset($quickCreator)) {
-    $data['quickCreator'] = true;
+    $data['quickCreator'] = $quickCreator;
 }
 @endphp
 <div class="form-group">
