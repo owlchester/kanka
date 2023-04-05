@@ -4,6 +4,7 @@
  * @var \App\Services\SubscriptionService $service
  * @var \App\User $user
  */
+
 ?>
 @extends('layouts.app', [
     'title' => __('settings.subscription.manage_subscription'),
@@ -40,62 +41,7 @@
                 </p>
             </div>
         @endif
-        <div class="rounded p-4 bg-box mb-5">
-            <dl class="dl-horizontal">
-                @if ($user->isLegacyPatron())
-                    <dt>{{ __('settings.subscription.fields.plan') }}</dt>
-                    <dd>{{ $user->pledge }}</dd>
-                    <dt>{{ __('settings.subscription.fields.billing') }}</dt>
-                    <dd>By Patreon</dd>
-                @else
-                    <dt>{{ __('settings.subscription.fields.plan') }}</dt>
-                    <dd>{{ $currentPlan }}</dd>
-                    <dt>{{ __('settings.subscription.fields.billing') }}</dt>
-                    <dd>
-                    @if ($user->subscribedToPrice($service->yearlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPrice($service->monthlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPrice($service->yearlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPrice($service->monthlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPrice($service->yearlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
-                    @elseif ($user->subscribedToPrice($service->monthlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
-                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
-                    @else
-                        {{ __('front.pricing.tier.free') }}
-                    @endif
-                    <dt>{{ __('settings.subscription.fields.currency') }}</dt>
-                    <dd>
-                        <span class="mr-2">{{ $user->billedInEur() ? 'EUR' : 'USD' }}</span>
-                        <a href="#" data-toggle="modal"
-                           data-target="#change-currency">
-                            <i class="fa-solid fa-pencil-alt"></i> {{ __('crud.edit') }}
-                        </a>
-                    </dd>
-                    @if ($user->subscribed('kanka'))
-                        <dt>{{ __('settings.subscription.fields.active_since') }}</dt>
-                        <dd>{{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}</dd>
-                        @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
-                            <dt>{{ __('settings.subscription.fields.active_until') }}</dt>
-                            <dd>{{ $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y') }}</dd>
-                        @endif
-                    @endif
-
-                @endif
-                <dt>{{ __('settings.subscription.fields.payment_method') }}</dt>
-                <dd>
-                    @if ($user->hasPaymentMethod())
-                        @php $method = $user->defaultPaymentMethod(); @endphp
-                        {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card->brand), 'last4' => $method->card->last4]) }}
-                    @else
-                        {{ link_to_route('billing.payment-method', __('settings.subscription.payment_method.new_card' )) }}
-                    @endif
-                </dd>
-            </dl>
-        </div>
+        @include('settings.subscription._recap')
 
         <div class="flex gap-2 mb-2">
             <h2 class="grow">

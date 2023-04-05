@@ -190,6 +190,7 @@ return [
         'manage_subscription'   => 'Manage subscription',
         'payment_method'        => [
             'actions'       => [
+                'add'               => 'Add',
                 'add_new'           => 'Add a new payment method',
                 'change'            => 'Change payment method',
                 'save'              => 'Save payment method',
@@ -203,7 +204,7 @@ return [
             'ending'        => 'Ending in',
             'helper'        => 'This card will be used for all of your subscriptions.',
             'new_card'      => 'Add a new payment method',
-            'saved'         => ':brand ending with :last4',
+            'saved'         => ':brand **** :last4',
         ],
         'periods'               => [
             'monthly'   => 'Monthly',
