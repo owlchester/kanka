@@ -1,17 +1,23 @@
-<?php /** @var \App\Models\Campaign $campaign */?>
-<div class="grid grid-cols-2 md:grid-cols-5 gap-5 mb-5">
+<?php /** @var \App\Models\Campaign $campaign */
+$boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-center gap-3 flex-col';
+?>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-5">
 
     @can ('update', $campaign)
-        <a href="#" role="button" class="block rounded-xl p-5 text-center overflow-hidden bg-box drop-shadow" data-url="{{ route('campaign-visibility', ['from' => 'overview']) }}" data-target="#entity-modal" data-toggle="ajax-modal">
+        <a href="#" role="button" class="{{ $boxClass }}" data-url="{{ route('campaign-visibility', ['from' => 'overview']) }}" data-target="#entity-modal" data-toggle="ajax-modal">
     @else
-        <div class="rounded-xl p-5 text-center bg-box drop-shadow">
+        <div class="{{ $boxClass }}">
     @endcan
         @if ($campaign->isPublic())
             <i class="fa-solid fa-eye fa-2x" aria-hidden="true"></i>
-            <span class="block mt-2">{{ __('campaigns.visibilities.public') }}</span>
+            <div class="break-all">
+                {{ __('campaigns.visibilities.public') }}
+            </div>
         @else
             <i class="fa-solid fa-lock fa-2x" aria-hidden="true"></i>
-            <span class="block mt-2">{{ __('campaigns.visibilities.private') }}</span>
+            <div class="break-all">
+                {{ __('campaigns.visibilities.private') }}
+            </div>
         @endif
     @can ('update', $campaign)
         </a>
@@ -19,37 +25,39 @@
         </div>
     @endcan
 
-    <div class="rounded-xl p-5 text-center bg-box drop-shadow cursor-pointer text-link" data-toggle="dialog"
+    <a href="#" class="{{ $boxClass }}" data-toggle="dialog"
          data-target="entity-count">
         <i class="fa-solid fa-globe fa-2x" aria-hidden="true"></i>
-        <span class="block mt-2">
+        <div class="break-all">
             {{ trans_choice('campaigns.overview.entity-count', \App\Facades\CampaignCache::entityCount(), ['amount' => number_format(\App\Facades\CampaignCache::entityCount())]) }}
-        </span>
-    </div>
+        </div>
+    </a>
 
     @if ($campaign->isPublic())
-        <div class="rounded-xl p-5 text-center bg-box drop-shadow">
+        <div class="{{ $boxClass }}">
             <i class="fa-solid fa-users fa-2x" aria-hidden="true"></i>
-            <span class="block mt-2">
+            <div class="break-all">
                 {{ trans_choice('campaigns.overview.follower-count', $campaign->follower(), ['amount' => number_format($campaign->follower())]) }}
-            </span>
+            </div>
         </div>
     @endif
 
     @if ($campaign->boosted())
-        <div class="rounded-xl p-5 text-center bg-box drop-shadow">
+        <div class="{{ $boxClass }}">
             <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
-            <span class="block mt-2">
+            <div class="break-all">
                 {{ __('campaigns.fields.' . ($campaign->superboosted() ? 'superboosted' : 'boosted')) }}
                 {{ $campaign->boosts->first()->user->name }}
-            </span>
+            </div>
         </div>
     @endif
 
     @if (!empty($campaign->locale))
-        <div class="rounded-xl p-5 text-center bg-box drop-shadow">
+        <div class="{{ $boxClass }}">
             <i class="fa-solid fa-language fa-2x" aria-hidden="true"></i>
-            <span class="block mt-2">{{ __('languages.codes.' . $campaign->locale) }}</span>
+            <div class="break-all">
+                {{ __('languages.codes.' . $campaign->locale) }}
+            </div>
         </div>
     @endif
 </div>
