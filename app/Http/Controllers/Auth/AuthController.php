@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\ReferralService;
 use App\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -122,15 +123,18 @@ class AuthController extends Controller
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->logout();
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         // We also need to flush the session (campaign_id and other things) since this could cause
         // weird behaviour if the user registers a new account.
-        session()->flush();
 
-        return redirect()->route('home');
+        $request->session()->flush();
+        return redirect()->route('login');
     }
 
     /**
