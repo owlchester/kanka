@@ -115,6 +115,8 @@ class EntityObserver
             return;
         } elseif (request()->has('copy_source_permissions') && request()->filled('copy_source_permissions')) {
             return;
+        } elseif (request()->get('quick-creator') === '1') {
+            return;
         }
         $data = request()->only('role', 'user', 'is_attributes_private', 'permissions_too_many');
 
@@ -191,8 +193,6 @@ class EntityObserver
             $permission->entity_type_id = $entity->type_id;
             $permission->campaign_id = $entity->campaign_id;
             $permission->user_id = auth()->user()->id;
-            //$permission->key = $entity->type() . '_read_' . $entity->entity_id;
-            //$permission->table_name = $entity->pluralType();
             $permission->action = CampaignPermission::ACTION_READ;
             $permission->access = true;
             $permission->save();
@@ -205,8 +205,6 @@ class EntityObserver
             $permission->entity_type_id = $entity->type_id;
             $permission->campaign_id = $entity->campaign_id;
             $permission->user_id = auth()->user()->id;
-            //$permission->key = $entity->type() . '_edit_' . $entity->entity_id;
-            //$permission->table_name = $entity->pluralType();
             $permission->action = CampaignPermission::ACTION_EDIT;
             $permission->access = true;
             $permission->save();
