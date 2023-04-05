@@ -284,36 +284,29 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
 
 @section('modals')
     @parent
-    <dialog class="dialog rounded-2xl text-center" id="booster-cta" aria-modal="true" aria-labelledby="boostedDialogTitle">
-        <header>
-            <h4 id="boostedDialogTitle">
-                <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
-                {{ __('callouts.booster.titles.boosted') }}
-            </h4>
-            <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
-                <i class="fa-solid fa-times" aria-hidden="true"></i>
-                <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
-            </button>
-        </header>
-        <article>
-            <p class="mb-1 text-justify">{{ __('entities/image.call-to-action') }}</p>
+
+
+    @if (!$campaignService->campaign()->boosted())
+        <x-dialog id="booster-cta" :title="__('callouts.booster.titles.boosted')">
+            <p class="mb-2">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
-            <a href="{{ route('settings.boost', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-boost text-white btn-block">
+            <a href="{{ route('settings.boost', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-boost text-white btn-block mb-2">
                 {!! __('callouts.booster.actions.boost', ['campaign' => $campaignService->campaign()->name]) !!}
             </a>
             @else
-                <p class="mb-1 text-justify">{{ __('callouts.booster.limitation') }}</p>
-                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-block">
+                <p class="mb-2">{{ __('callouts.booster.limitation') }}</p>
+                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-block mb-2">
                     {!! __('callouts.booster.learn-more') !!}
                 </a>
             @endif
-        </article>
-    </dialog>
-    <dialog class="dialog rounded-2xl text-center" id="quick-privacy" aria-modal="true" aria-labelledby="privacyDialogTitle">
-        <article class="loader text-center p-5">
-            <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
-        </article>
-    </dialog>
+        </x-dialog>
+    @endif
+
+    <x-dialog id="quick-privacy" :title="__('Loading')">
+        <div class="p-5 text-center">
+            <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+        </div>
+    </x-dialog>
 @endsection
 
 
