@@ -116,6 +116,7 @@ class EntityObserver
         } elseif (request()->has('copy_source_permissions') && request()->filled('copy_source_permissions')) {
             return;
         } elseif (request()->get('quick-creator') === '1') {
+            // If we're creating an entity from the quick creator, there is no form for permissions.
             return;
         }
         $data = request()->only('role', 'user', 'is_attributes_private', 'permissions_too_many');
