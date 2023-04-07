@@ -236,6 +236,11 @@ class Calendar extends MiscModel
         return $query->get();
     }
 
+    public function getParentIdName(): string
+    {
+        return 'calendar_id';
+    }
+
     /**
      * Get the months decoded from the json into a usable array
      * @return array

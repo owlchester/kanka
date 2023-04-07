@@ -122,6 +122,12 @@ class Item extends MiscModel
         return implode('<br />', $extra);
     }
 
+
+    public function getParentIdName(): string
+    {
+        return 'item_id';
+    }
+
     /**
      * Performance with for datagrids
      * @param Builder $query

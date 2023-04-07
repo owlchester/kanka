@@ -17,7 +17,7 @@
                     <i class="fa-regular fa-lock absolute top-1 right-1 text-gray-800 text-base" aria-hidden="true" title="{{ __('crud.is_private') }}"></i>
                 @endif
             </a>
-            <a href="{{ $model->getLink() }}" class="block text-center truncate h-12 p-4 border-t bg-box">
+            <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 p-4 border-t bg-box"">
                 {{ $model->name }}
             </a>
         </div>
@@ -32,11 +32,12 @@
     <a href="{{ $model->getLink() }}" class="entity block border overflow-hidden rounded shadow-xs hover:shadow-md w-48 @if (isset($isParent)) shadow-lg stacking-parent font-bold @endif" title="{{ $model->name }}">
         <div class="avatar h-36 relative cover-background" style="background-image: url('{{ $model->entity->avatarSize(190, 144)->avatarV2($model) }}')">
             @if ($model->is_private)
-                <div class="bg-box w-16 h-16 absolute -left-8 -bottom-8 rotate-45 banner-private"></div>
+                <div class="bg-box w-16 h-16 absolute -right-8 -top-8 rotate-45 banner-private"></div>
                 <i class="fa-regular fa-lock absolute top-1 right-1 text-gray-800 text-base" aria-hidden="true" title="{{ __('crud.is_private') }}"></i>
             @endif
         </div>
-        <div class="truncate text-center p-4 border-t bg-box h-12">
+        <div class="truncate text-center p-4 border-t bg-box h-12" data-toggle="tooltip-ajax" data-id="{{ $model->entity->id }}"
+        data-url="{{ route('entities.tooltip', $model->entity->id) }}">
             {{ $model->name }}
         </div>
     </a>
