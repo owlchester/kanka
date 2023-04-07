@@ -39,6 +39,7 @@
 <input type="hidden" name="datagrid-action" value="batch" />
 <input type="hidden" name="entity" value="{{ $name }}" />
 
+{!! Form::hidden('mode', $mode) !!}
 {!! Form::hidden('models', null, ['id' => 'datagrid-bulk-batch-models']) !!}
 {!! Form::close() !!}
 

@@ -104,7 +104,10 @@ class Organisation extends MiscModel
                 'location.entity',
                 'organisation',
                 'members',
-                'organisations'
+                'organisations',
+                'children' => function ($sub) {
+                    $sub->select('id', 'organisation_id');
+                },
             ]);
     }
 

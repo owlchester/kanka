@@ -643,4 +643,16 @@ abstract class MiscModel extends Model
     {
         return 0;
     }
+
+    /**
+     * Boilerplate for sortable columns in the datagrid dropdowns
+     * @return array
+     */
+    public function datagridSortableColumns(): array
+    {
+        return [
+            'name' => __('crud.fields.name'),
+            'type' => __('crud.fields.type'),
+        ];
+    }
 }

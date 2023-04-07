@@ -231,7 +231,7 @@ return [
             'desc'      => ':field Descending',
             'helper'    => 'Control in which order results appear.',
         ],
-        'title'                     => 'Filters',
+        'title'                     => 'Advanced filters',
     ],
     'fix-this-issue'            => 'Fix this issue',
     'forms'                     => [

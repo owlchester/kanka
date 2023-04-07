@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-xs-8">
+<div class="grid grid-cols-4 gap-2">
+    <div class="col-span-3">
         {!! Form::select($field['field'], (!empty($model) ? [$model->id => $model->name] : []),
             null,
             [
@@ -10,7 +10,7 @@
             ]
         ) !!}
     </div>
-    <div class="col-xs-4">
+    <div class="col-span-1">
         @php
             $options = [
                 '' => __('crud.filters.options.include'),

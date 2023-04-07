@@ -22,6 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use LogicException;
 
 class CrudController extends Controller
@@ -147,6 +148,14 @@ class CrudController extends Controller
             ->order($this->filterService->order())
         ;
 
+        $parent = null;
+        if (request()->has('parent_id')) {
+            $parentKey = $model->getParentIdName();
+            $base->where([$parentKey => request()->get('parent_id')]);
+
+            $parent = $model->where('id', request()->get('parent_id'))->first();
+        }
+
         // Do this to avoid an extra sql query when no filters are selected
         if ($this->filterService->hasFilters()) {
             $unfilteredCount = $base->count();
@@ -172,10 +181,16 @@ class CrudController extends Controller
             ]);
         }
 
+        // Switch between the new explore/grid mode and the old table
+        $mode = request()->get('m', 'grid');
+        if (!in_array($mode, ['grid', 'table'])) {
+            $mode = 'grid';
+        }
+
         // Add a button to the tree view if the controller has it
-        if (method_exists($this, 'tree')) {
+        if (method_exists($this, 'tree') && $mode === 'table') {
             $this->addNavAction(
-                route($this->route . '.tree'),
+                route($this->route . '.tree', ['m' => 'table']),
                 '<i class="fa-solid fa-share-nodes" aria-hidden="true"></i> ' . __('crud.actions.explore_view')
             );
         }
@@ -196,6 +211,8 @@ class CrudController extends Controller
             'bulk',
             'templates',
             'datagridActions',
+            'mode',
+            'parent',
         );
         if (!empty($this->titleKey)) {
             $data['titleKey'] = $this->titleKey;

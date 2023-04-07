@@ -156,7 +156,12 @@ class Map extends MiscModel
             'entity',
             'map',
             'map.entity',
-            'maps',
+            'maps' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'children' => function ($sub) {
+                $sub->select('id', 'map_id');
+            },
         ]);
     }
 

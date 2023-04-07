@@ -88,6 +88,9 @@ input, textarea, .select2, select, .input-group .input-group-addon  {
   background-color: var(--input-background-color);
   color: var(--input-text-color);
 }
+* {
+    border-color: var(--input-border-color);
+}
 input[type=checkbox], input[type=file] {
   filter: var(--input-file-filter);
 }

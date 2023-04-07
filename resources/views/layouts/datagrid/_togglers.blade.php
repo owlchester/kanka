@@ -1,0 +1,55 @@
+<div class="dropdown">
+    <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true" data-tree="escape"></i>
+        <span class="sr-only">Order by</span>
+
+    </a>
+    <ul class="dropdown-menu min-w-0" role="menu">
+        @foreach ($model->datagridSortableColumns() as $field => $translation)
+            @php
+                $options = ['m' => $mode, 'order' => $field];
+                $icon = null;
+                if (request()->get('order') === $field) {
+                    if (request()->get('desc') === '1') {
+                        $icon = '<i class="fa-solid fa-arrow-down-a-z" aria-hidden="true"></i>';
+                    } else {
+                        $options['desc'] = 1;
+                        $icon = '<i class="fa-solid fa-arrow-up-a-z" aria-hidden="true"></i>';
+                    }
+                }
+            @endphp
+            <li class="dropdown-item">
+                <a href="{{ route($name . '.' . $route, $options) }}" title="{{ $translation }}" class="{{ request()->get('order') === $field ? "font-bold" : null }}">
+                    {!! $icon !!}
+                    {{ $translation }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</div>
+
+<div class="dropdown">
+    <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false">
+        @if (!isset($mode) || $mode === 'grid')
+            <i class="fa-solid fa-grid" aria-hidden="true" data-tree="escape"></i>
+            <span class="sr-only">Grid</span>
+        @else
+            <i class="fa-solid fa-list-ul" aria-hidden="true" data-tree="escape"></i>
+            <span class="sr-only">Table</span>
+        @endif
+    </a>
+    <ul class="dropdown-menu min-w-0" role="menu">
+        <li class="dropdown-item">
+            <a href="{{ route($name . '.' . $route, ['m' => 'grid']) }}" title="{{ __('datagrids.modes.grid') }}">
+                <i class="fa-solid fa-grid" aria-hidden="true"></i>
+                <span class="sr-only">Grid</span>
+            </a>
+        </li>
+        <li class="dropdown-item">
+            <a href="{{ route($name . '.' . $route, ['m' => 'table']) }}" title="{{ __('datagrids.modes.table') }}">
+                <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
+                <span class="sr-only">Table</span>
+            </a>
+        </li>
+    </ul>
+</div>

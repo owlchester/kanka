@@ -5,49 +5,51 @@
  */
 use Illuminate\Support\Arr;
 $filters = $filter->filters();
+//$highlights = $filter->highlighted();
 $activeFilters = $filterService->activeFiltersCount();
 $entityModel = $model;
 $count = 0;
 $clipboardFilters = $filterService->clipboardFilters();
+$hasAttributeFilters = false;
 
 @endphp
 
-<div class="box no-border datagrid-filters">
-    <div class="box-header cursor-pointer" data-toggle="collapse" data-target="#datagrid-filters">
+@if (auth()->guest())
+    <div class="text-muted grow">{{ __('filters.helpers.guest') }}</div>
+    <?php return; ?>
+@endif
 
-        <i class="fa-solid fa-chevron-down pull-right"></i>
-        <i class="fa-solid fa-filter"></i> {{ __('crud.filters.title') }}
-
+<div class="grow flex gap-2">
+    <div class="inline-block cursor-pointer btn btn-default" data-toggle="dialog" data-target="datagrid-filters">
+        <i class="fa-solid fa-filter" aria-hidden="true"></i> {{ __('crud.filters.title') }}
         @if ($activeFilters > 0)
             <span class="label label-danger">{{ $activeFilters }}</span>
-            <div class="box-tools">
-                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.clear') }}
-                </a>
-            </div>
         @endif
     </div>
 
-    {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
-    <div class="collapse out !visible" id="datagrid-filters">
-        <div class="box-body">
+    @if ($activeFilters > 0)
+        <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="p-1.5">
+            <i class="fa-solid fa-eraser" aria-hidden="true"></i> {{ __('crud.filters.clear') }}
+        </a>
+    @endif
+</div>
+
+@section('modals')
+    @parent()
+    <x-dialog id="datagrid-filters" title="{{ __('crud.filters.title') }}">
+        {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
             @if (auth()->guest())
                 <p class="help-block">{{ __('filters.helpers.guest') }}</p>
             @else
-            <div class="row">
-                @foreach ($filters as $field)
-                    @if ($count % 2 === 0 || (is_string($field) && $field == 'attributes'))
-                </div>
-                <div class="row">
-                    @endif
-                    @php $count++ @endphp
+                <div class="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-5 mb-5 max-w-3xl">
+                    @foreach ($filters as $field)
+                        @php $count++ @endphp
 
-                    @if ($field === 'attributes')
-                        @include('cruds.datagrids.filters._attributes')
-                        @continue
-                    @endif
-                    <div class="col-md-6">
-                        <div class="form-group">
+                        @if ($field === 'attributes')
+                            @php $hasAttributeFilters = true @endphp
+                            @continue
+                        @endif
+                        <div class="form-group m-0">
                             @if (is_array($field))
                                 <label>{{ Arr::get($field, 'label', __('crud.fields.' . $field['field'])) }}</label>
                                 <?php $model = null;
@@ -85,71 +87,40 @@ $clipboardFilters = $filterService->clipboardFilters();
                                 @endif
                             @endif
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
+                @includeWhen($hasAttributeFilters, 'cruds.datagrids.filters._attributes')
             @endif
-        </div>
-        <div class="box-footer text-center">
-            <div class="pull-left hidden-xs">
-                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default">
-                    <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.clear') }}
-                </a>
-
-                @if (auth()->check())
-                    @if ($activeFilters > 0)
-                    <a href="#" class="btn btn-default mr-2" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}" data-toast="{{ __('filters.alerts.copy') }}">
-                        <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
-                    </a>
-                    @else
-                        <div class="visible-lg-inline-block visible-md-inline-block visible-sm-inline-block mr-2" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
-                        <a href="#" class="btn btn-default cursor-none" disabled >
-                            <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
-                        </a>
-                        </div>
-                    @endif
-
-                    <a href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
-                        {{ __('helpers.filters.title') }} <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                    </a>
-                @endif
-            </div>
-
-            <div class="visible-xs pull-left block">
-                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default mr-2">
-                    <i class="fa-solid fa-eraser"></i> {{ __('crud.filters.mobile.clear') }}
-                </a>
-
-                @if (auth()->check())
-                    @if ($activeFilters > 0)
-                    <a href="#" class="btn btn-default mr-2" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip">
-                        <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
-                    </a>
-                    @else
-                    <a href="#" class="btn btn-default mr-2" disabled="disabled" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
-                        <i class="fa-solid fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
-                    </a>
-                    @endif
-
-                    <a href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                    </a>
-                @endif
-            </div>
-
-            @if (auth()->check())
-            <span class="pull-right">
-                <button type="submit" class="btn btn-primary mr-2">
-                    <i class="fa-solid fa-filter"></i> {{ __('crud.filter') }}
-                </button>
-                <span data-toggle="collapse" data-target="#datagrid-filters">
-                    <i class="fa-solid fa-chevron-up"></i>
-                </span>
-            </span>
-            @endif
-
             <br class="clear-both" />
-        </div>
-    </div>
-    {!! Form::close() !!}
-</div>
+            <hr />
+            <div class="flex items-center gap-2 md:gap-5">
+                @if (auth()->check())
+                    <a href="#" class="flex-0 btn btn-default flex gap-2 items-center"
+                       @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false" @else disabled @endif data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
+                        <i class="fa-solid fa-clipboard" aria-hidden="true"></i>
+                        <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
+                        <span class="visible md:hidden">{{ __('crud.filters.mobile.copy') }}</span>
+                    </a>
+
+                    <a class="grow" href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        {{ __('helpers.filters.title') }}
+                    </a>
+
+                    @if ($activeFilters > 0)
+                        <a href="{{ route($route, ['reset-filter' => 'true', 'm' => $mode]) }}" class="text-center">
+                            <i class="fa-solid fa-eraser mr-1" aria-hidden="true"></i>
+                            {{ __('crud.filters.mobile.clear') }}
+                        </a>
+                    @endif
+
+                    <button type="submit" class="btn btn-primary flex-0">
+                        <i class="fa-solid fa-filter" aria-hidden="true"></i>
+                        {{ __('crud.filter') }}
+                    </button>
+                @endif
+            </div>
+        <input type="hidden" name="mode" value="{{ $mode }}" />
+        {!! Form::close() !!}
+    </x-dialog>
+@endsection

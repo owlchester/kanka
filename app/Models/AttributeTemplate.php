@@ -129,6 +129,26 @@ class AttributeTemplate extends MiscModel
             ->select([$this->getTable() . '.id', $this->getTable() . '.name', $this->getTable() . '.is_private', 'attribute_template_id', 'entity_type_id']);
     }
 
+    /**
+     * Performance with for datagrids
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopePreparedWith(Builder $query): Builder
+    {
+        return $query->with([
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'children' => function ($sub) {
+                $sub->select('id', 'attribute_template_id');
+            }
+        ]);
+    }
+
 
     /**
      * Apply a template to an entity

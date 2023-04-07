@@ -151,6 +151,9 @@ class Item extends MiscModel
             'items' => function ($sub) {
                 $sub->select('id', 'name', 'item_id');
             },
+            'children' => function ($sub) {
+                $sub->select('id', 'item_id');
+            }
         ]);
     }
 
@@ -201,6 +204,14 @@ class Item extends MiscModel
     public function items()
     {
         return $this->hasMany('App\Models\Item', 'item_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children()
+    {
+        return $this->items();
     }
 
     /**

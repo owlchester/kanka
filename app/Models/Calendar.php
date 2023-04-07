@@ -131,7 +131,10 @@ class Calendar extends MiscModel
             },
             'calendars' => function ($sub) {
                 $sub->select('id', 'name', 'calendar_id');
-            }
+            },
+            'children' => function ($sub) {
+                $sub->select('id', 'calendar_id');
+            },
         ]);
     }
 
@@ -171,6 +174,14 @@ class Calendar extends MiscModel
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function calendars()
+    {
+        return $this->hasMany(Calendar::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children()
     {
         return $this->hasMany(Calendar::class);
     }

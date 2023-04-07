@@ -124,6 +124,9 @@ class Journal extends MiscModel
             'journals' => function ($sub) {
                 $sub->select('id', 'journal_id');
             },
+            'children' => function ($sub) {
+                $sub->select('id', 'journal_id');
+            }
         ]);
     }
 

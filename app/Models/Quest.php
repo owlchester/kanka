@@ -117,6 +117,9 @@ class Quest extends MiscModel
             'quest',
             'quest.entity',
             'quests',
+            'children' => function ($sub) {
+                $sub->select('id', 'quest_id');
+            }
         ]);
     }
 

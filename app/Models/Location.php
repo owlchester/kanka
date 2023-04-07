@@ -108,6 +108,9 @@ class Location extends MiscModel
             'parentLocation' => function ($sub) {
                 $sub->select('id', 'name');
             },
+            'children' => function ($sub) {
+                $sub->select('id', 'parent_location_id');
+            },
             'parentLocation.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },

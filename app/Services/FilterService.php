@@ -314,6 +314,9 @@ class FilterService
             $options['quick-link'] = (int) $quickLinkID;
         }
 
+        if (request()->get('m') === 'legacy') {
+            $options['m'] = 'legacy';
+        }
 
         return $options;
     }

@@ -116,6 +116,7 @@ class Family extends MiscModel
             'location.entity',
             'families',
             'members',
+            'children',
         ]);
     }
 
