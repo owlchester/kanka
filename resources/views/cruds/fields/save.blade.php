@@ -1,7 +1,7 @@
 @if (isset($onlySave))
     <button class="btn btn-success" id="form-submit-main" data-target="{{ isset($target) ? $target : null }}">
         <span>{{ __('crud.save') }}</span>
-        <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
+        <i class="fa-solid fa-spinner fa-spin spinner" aria-hidden="true" style="display: none"></i>
     </button>
 @else
     <div class="form-group mb-0">
@@ -9,7 +9,7 @@
             <input id="submit-mode" type="hidden" value="true"/>
             <button class="btn btn-success btn-{{ !isset($model) ? 'save' : 'edit' }}-{{ isset($entityType) ? 'entity' : 'other' }}" id="form-submit-main" @if (isset($entityType))data-entity-type="{{ $entityType }}"@endif data-target="{{ isset($target) ? $target : null }}">
                 <span>{{ __('crud.save') }}</span>
-                <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
+                <i class="fa-solid fa-spinner fa-spin spinner" aria-hidden="true" style="display: none"></i>
             </button>
             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <span class="caret"></span>

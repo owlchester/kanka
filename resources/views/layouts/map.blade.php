@@ -115,7 +115,7 @@ $specificTheme = null;
                     <!-- When clicking on a marker, this menu pops up -->
                     <div id="sidebar-marker"></div>
                     <div class="spinner text-center" style="display: none; margin-top: 10px;">
-                        <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+                        <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
                     </div>
                 </div>
 

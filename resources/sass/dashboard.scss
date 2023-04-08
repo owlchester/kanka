@@ -1,7 +1,4 @@
 
-// Variables
-@import "variables";
-
 :root {
     --dashboard-preview-gradient: white;
     --dashboard-widget-admin-border: #ccc;
@@ -21,18 +18,6 @@
 
     .btn {
         padding: 4px 10px;
-    }
-}
-
-
-.cover-background {
-    .campaign-link {
-        background: rgba(0, 0, 0, 0.6) !important;
-
-        &:hover {
-            //background: rgba(0, 0, 0, 0.9) !important;
-            background: $link-color !important;
-        }
     }
 }
 
@@ -104,14 +89,6 @@
         .full {
             max-height: unset;
         }
-
-        .preview-switch {
-            width: 100%;
-            padding-left: auto;
-            padding-right: auto;
-            display: block;
-            text-align: center;
-        }
     }
 
     ul {
@@ -135,14 +112,6 @@
         border: 1px solid var(--dashboard-widget-admin-border);
     }
     .widget {
-        .handle {
-            //border: 1px solid var(--input-border-color);
-            top: 10px;
-            left: 10px;
-            cursor: move;
-            background-color: var(--box-background);
-        }
-
         &:hover {
             background-color: var(--dashboard-setup-widget-hover);
         }
@@ -150,36 +119,6 @@
         .widget-overlay {
             background-color: var(--dashboard-setup-widget-background);
         }
-
-        .custom-name {
-            font-size: 10pt;
-        }
-    }
-
-    .widget-header, .widget-campaign {
-        height: auto;
-
-        .widget-overlay {
-            height: auto;
-            padding: 10px 20px;
-
-            h3, .widget-type {
-                margin: 10px 0;
-            }
-        }
-    }
-}
-
-.widget-calendar {
-    .current-date {
-        text-align: center;
-        font-size: 22px;
-    }
-}
-
-.widget-map {
-    .panel-body {
-        padding: 0;
     }
 }
 
@@ -192,64 +131,8 @@
         border-bottom: 1px solid #ccc;
     }
 
-    .entity-image {
-        display: inline-block;
-        margin-right: 8px;
-        width: 35px;
-        height: 35px;
-        vertical-align: middle;
-    }
-
     .elapsed {
-        font-size: 11px;
         color: #888;
-    }
-
-    .entity {
-        padding: 5px;
-
-
-        .entity-image {
-            display: inline-block;
-            margin-right: 8px;
-            width: 25px;
-            height: 25px;
-            vertical-align: middle;
-        }
-        .name {
-            padding-top: 2px;
-        }
-    }
-}
-
-.widget-recent-list {
-    overflow: auto;
-    max-height: 400px;
-
-    .flex {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        min-height: 45px;
-        padding: 3px;
-
-        &:hover {
-            background-color: rgba(50, 50, 50, 0.05);
-        }
-
-        .entity-image {
-            min-width: 35px;
-        }
-
-        .fa, .far, .fas, .fab, .ra {
-            margin-left: 5px;
-        }
-
-        .blame {
-            margin-left: auto;
-            font-size: 10pt;
-            text-align: right;
-        }
     }
 }
 
@@ -280,61 +163,7 @@
     }*/
 }
 
-.box {
-    .box-tools {
-        position: absolute;
-        right: 10px;
-        top: 5px;
-    }
-}
-
-.campaign-header {
-    padding: 20px;
-    margin-bottom: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    .social-bar {
-        text-align: right;
-    }
-    .action-bar {
-        line-height: 1.8em;
-        margin-left: auto;
-
-        .btn {
-            font-style: normal;
-            font-size: 14px;
-            line-height: 16px;
-        }
-        .dropdown-menu {
-
-            i {
-                text-align: center;
-                width: 20px;
-            }
-        }
-    }
-
-    .campaign-content .campaign-head {
-        display: flex;
-
-        .campaign-link {
-            margin: 0;
-            flex: 1;
-            margin-right: 30px;
-        }
-        .campaign-title {
-            font-size: 24px;
-            line-height: 32px;
-            margin: 0;
-            padding: 0;
-        }
-    }
-}
-
 .campaign-header.campaign-imaged-header {
-    padding: 60px 40px;
     .campaign-header-content {
         margin-top: 5px;
         padding: 20px;
@@ -372,51 +201,4 @@
         float: unset;
         display: block;
     }
-    .campaign-header .social-bar {
-        text-align: unset;
-    }
 }
-
-.dashboard-releases {
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    margin-bottom: 20px;
-    .box {
-        display: inline-block;
-        vertical-align:top;
-        width: calc(80% - 2px);
-        margin-bottom: 0;
-
-        .release-excerpt {
-            .overflow-wrap {
-                overflow-wrap: break-word;
-                word-wrap: break-word;
-                hyphens: auto;
-                word-break: break-all;
-                white-space: normal;
-            }
-        }
-
-        &:only-child {
-            width: calc(100% - 2px);
-        }
-    }
-}
-@media (min-width: 992px) {
-    .dashboard-releases .box {
-        width: calc(50% - 2px);
-    }
-}
-
-/*.campaign-dashboard-widgets {
-  .widget {
-    .widget-overlay {
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-  }
-}*/

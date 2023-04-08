@@ -27,7 +27,7 @@ $weather = $calendar->calendarWeather()
 
 /** @var \App\Models\EntityEvent $event */
 ?>
-<div class="current-date" id="widget-date-{{ $widget->id }}">
+<div class="current-date text-center text-2xl" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
         <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', $widget) }}" data-widget="{{ $widget->id }}">
             <i class="fa-solid fa-chevron-circle-left" data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" ></i>

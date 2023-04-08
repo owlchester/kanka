@@ -1,23 +1,26 @@
 <?php /** @var \App\Models\Entity[]|\Illuminate\Pagination\LengthAwarePaginator $entities */?>
 @foreach ($entities as $entity)
-    <div class="flex">
-        <a class="entity-image cover-background" style="background-image: url('{{ ($campaign->superboosted() && !empty($entity->image_uuid) && !empty($entity->image) ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatar(true)) }}');"
-           title="{{ $entity->name }}"
-           href="{{ $entity->url() }}">
-
+    <div class="flex items-center align-items-center gap-2 p-1 hover:bg-gray-400/10">
+        <a class="inline-block rounded-full cover-background w-9 h-9" style="background-image: url('{{ $entity->avatarSize(36)->avatarV2() }}');"
+            title="{{ $entity->name }}"
+            href="{{ $entity->url() }}">
         </a>
 
-        {!! $entity->tooltipedLink() !!}
+        <div class="grow">
+            {!! $entity->tooltipedLink($entity->name, false) !!}
 
-        @if ($entity->is_private)
-            <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}"></i>
-        @endif
+            @if ($entity->is_private)
+                <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" aria-hidden="true"></i>
+            @endif
+        </div>
 
-        <div class="blame">
-            {{ !empty($entity->updated_by) ? \App\Facades\UserCache::name($entity->updated_by) : trans('crud.history.unknown') }}<br class="hidden-xs" />
+        <div class="blame flex-0 text-right text-xs">
+            <span class="author block">
+                {{ !empty($entity->updated_by) ? \App\Facades\UserCache::name($entity->updated_by) : __('crud.history.unknown') }}
+            </span>
 @can('history', [$entity, $campaign])
             @if (!empty($entity->updated_at))
-            <span class="elapsed" title="{{ $entity->updated_at }}">
+            <span class="elapsed" title="{{ $entity->updated_at }} UTC">
                 {{ $entity->updated_at->diffForHumans() }}
             </span>
             @endif

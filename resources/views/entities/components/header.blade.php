@@ -1,4 +1,5 @@
-<?php /**
+<?php
+/**
  * @var \App\Services\CampaignService $campaign
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
@@ -9,13 +10,13 @@ if (!isset($entity)) {
     $entity = $model->entity;
 }
 
-$imageUrl = $imagePath = $headerImageUrl =null;
+$imageUrl = $imagePath = $headerImageUrl = null;
 if ($model->image) {
     $imageUrl = $model->getOriginalImageUrl();
-    $imagePath = $model->thumbnail(250);
+    $imagePath = $model->thumbnail(170);
 } elseif ($campaignService->campaign()->superboosted() && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
-    $imagePath = Img::crop(250, 250)->url($entity->image->path);
+    $imagePath = Img::crop(170, 170)->url($entity->image->path);
 }
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();

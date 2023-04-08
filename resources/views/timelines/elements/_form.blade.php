@@ -52,7 +52,7 @@
             <label>
                 {!! Form::checkbox('use_event_date') !!}
                 {{ __('timelines/elements.fields.use_event_date') }}
-                <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('timelines/elements.helpers.date') }}"></i>
+                <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('timelines/elements.helpers.date') }}" aria-hidden="true"></i>
             </label>
         </div>
     </div>

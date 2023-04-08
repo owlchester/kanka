@@ -15,6 +15,8 @@ trait Picture
     private int $avatarWidth = 40;
     private int $avatarHeight = 40;
 
+    private bool $hasNoImage;
+
     /**
      * Set the avatar size (defaults to 40)
      */
@@ -152,13 +154,15 @@ trait Picture
             $avatar = Arr::get($cached, 'url');
             $focus = Arr::get($cached, 'focus');
         }
+        $this->hasNoImage = false;
 
         // If the image is empty, look if the user has a nice picture
         if (empty($avatar)) {
-            if (auth()->check() && auth()->user()->isGoblin()) {
+            if (true || auth()->check() && auth()->user()->isGoblin()) {
                 // Goblins and above have nicer icons
                 return asset('/images/defaults/patreon/' . $this->pluralType() . '_thumb.png');
             }
+            $this->hasNoImage = true;
             return asset('/images/defaults/' . $this->pluralType() . '_thumb.jpg');
         }
 
@@ -166,5 +170,10 @@ trait Picture
             Img::focus($focus[0], $focus[1]);
         }
         return Img::crop($this->avatarWidth, $this->avatarHeight)->url($avatar);
+    }
+
+    public function hasNoImage(): bool
+    {
+        return $this->hasNoImage;
     }
 }

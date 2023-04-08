@@ -99,7 +99,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                             {{ __('campaigns.members.impersonating.message') }}
 
                             <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm switch-back">
-                                <i class="fa-solid fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
+                                <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i> {{ __('campaigns.members.actions.switch-back') }}
                             </a>
                         </p>
                     </div>
@@ -124,7 +124,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
             <div class="modal-content rounded-2xl"></div>
             <div class="modal-spinner" style="display: none">
                 <div class="modal-body text-center">
-                    <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+                    <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
                 </div>
             </div>
         </div>

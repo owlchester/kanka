@@ -26,7 +26,7 @@
                         <div class="element" data-id="{{ $ability->id }}">
                             {!! Form::hidden('ability[]', $ability->id) !!}
                             <div class="dragger pr-3">
-                                <span class="fa-solid fa-sort"></span>
+                                <span class="fa-solid fa-sort" aria-hidden="true"></span>
                             </div>
                             <div class="name">
                                 {!! $ability->ability->name !!}

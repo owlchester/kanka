@@ -8,7 +8,7 @@
 @if ($stacked > 0)
     <div class="stack inline-grid items-center align-items-end" data-stack="{{ $stacked }}">
         <div class="entity block border overflow-hidden rounded shadow-xs hover:shadow-md w-48" title="{{ $model->name }}">
-            <a href="{{ route($route . '.' . $sub, ['m' => $mode ?? 'grid', 'parent_id' => $model->id]) }}"  class="block avatar h-36 relative cover-background overflow-hidden" style="background-image: url('{{ $model->entity->avatarSize(190, 144)->avatarV2($model) }}')">
+            <a href="{{ route($route . '.' . $sub, ['m' => $mode ?? 'grid', 'parent_id' => $model->id]) }}"  class="block avatar h-36 relative cover-background overflow-hidden text-center" style="background-image: url('{{ $model->entity->avatarSize(190, 144)->avatarV2($model) }}')">
                 <div class="bg-box w-16 h-16 absolute -left-8 -top-8 rotate-45 banner-stacked"></div>
                 <i class="fa-regular fa-folders absolute top-1 left-1 text-gray-800 text-base" aria-hidden="true" title="{{ __('datagrids.tooltips.nested') }}"></i>
 
