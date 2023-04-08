@@ -18,7 +18,7 @@
                 @if ($inventory->entity->child)
                 <tr data-entity-id="{{ $inventory->entity->id }}" data-entity-type="{{ $inventory->entity->type() }}" class="@if($inventory->entity->is_private) entity-private @endif">
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $inventory->entity->child->thumbnail() }}');" title="{{ $inventory->entity->name }}" href="{{ $inventory->entity->url() }}"></a>
+                        <x-entities.thumbnail :entity="$inventory->entity" :title="$inventory->entity->name"></x-entities.thumbnail>
                     </td>
                     <td>
                         @if ($inventory->entity->is_private)

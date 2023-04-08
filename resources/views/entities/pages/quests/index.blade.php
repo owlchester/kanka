@@ -63,7 +63,7 @@
                         @foreach ($quests as $element)
                             <tr>
                                 <td>
-                                    <a class="entity-image" style="background-image: url('{{ $element->quest->thumbnail() }}');" title="{{ $element->quest->name }}" href="{{ route('quests.show', $element->quest_id) }}"></a>
+                                    <a class="entity-image cover-background" style="background-image: url('{{ $element->quest->thumbnail() }}');" title="{{ $element->quest->name }}" href="{{ route('quests.show', $element->quest_id) }}"></a>
                                 </td>
                                 <td>
                                     {!! $element->quest->tooltipedLink() !!}

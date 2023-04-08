@@ -41,7 +41,7 @@
             @foreach ($connections as $connection)
                 <tr data-entity-id="{{ $connection->id }}" data-entity-type="{{ $connection->type() }}">
                     <td class="w-14">
-                        <a class="entity-image" style="background-image: url('{{ $connection->avatar(40) }}');" title="{{ $connection->name }}" href="{{ $connection->url() }}"></a>
+                        <x-entities.thumbnail :entity="$connection" :title="$connection->name"></x-entities.thumbnail>
                     </td>
                     <td>
                         {!! $connection->tooltipedLink() !!}

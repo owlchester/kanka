@@ -143,7 +143,7 @@ $permissionService->campaign($campaignService->campaign());
                 <div class="col-sm-4">
                     <div class="flex items-center gap-2">
                         <div class="flex-none">
-                            <div class="entity-image" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
+                            <div class="entity-image cover-background" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
                             </div>
                         </div>
                         <div class="flex-grow truncate">

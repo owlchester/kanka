@@ -35,7 +35,7 @@
     @foreach ($reminders as $relation)
         <tr>
             <td>
-                <a class="entity-image" style="background-image: url('{{ $relation->calendar->thumbnail() }}');" title="{{ $relation->calendar->name }}" href="{{ route('calendars.show', $relation->calendar->id) }}"></a>
+                <x-entities.thumbnail :entity="$relation->calendar->entity" :title="$relation->calendar->name"></x-entities.thumbnail>
             </td>
             <td>
                 {!! $relation->calendar->tooltipedLink() !!}
