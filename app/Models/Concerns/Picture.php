@@ -67,7 +67,7 @@ trait Picture
     {
         // If it's a default image, subscribers have the nicer pictures.
         // Why do we do this here? Because it's based on the user, so it can't go in cache
-        if (Str::contains($avatar, '/images/defaults/') && !Str::contains($avatar, '/patreon/')) {
+        if (Str::contains($avatar, '/images/defaults/') && !Str::contains($avatar, '/subscribers/')) {
             // Check if the campaign has a default image first
             $campaign = CampaignLocalization::getCampaign();
             if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
@@ -77,7 +77,7 @@ trait Picture
 
             if (auth()->check() && auth()->user()->isGoblin()) {
                 $avatar = Str::before($avatar, '_thumb');
-                return Str::replace(['defaults/', '.jpg'], ['defaults/patreon/', '.jpeg'], $avatar);
+                return Str::replace(['defaults/', '.jpg'], ['defaults/subscribers/', '.jpeg'], $avatar);
             }
         }
 
@@ -161,7 +161,7 @@ trait Picture
         if (empty($avatar)) {
             if (auth()->check() && auth()->user()->isGoblin()) {
                 // Goblins and above have nicer icons
-                return asset('/images/defaults/patreon/' . $this->pluralType() . '.jpeg');
+                return asset('/images/defaults/subscribers/' . $this->pluralType() . '.jpeg');
             }
             $this->hasNoImage = true;
             return asset('/images/defaults/' . $this->pluralType() . '_thumb.jpg');
