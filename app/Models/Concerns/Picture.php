@@ -76,7 +76,8 @@ trait Picture
             }
 
             if (auth()->check() && auth()->user()->isGoblin()) {
-                return str_replace(['defaults/', '.jpg'], ['defaults/patreon/', '.png'], $avatar);
+                $avatar = Str::before($avatar, '_thumb');
+                return Str::replace(['defaults/', '.jpg'], ['defaults/patreon/', '.jpeg'], $avatar);
             }
         }
 
@@ -158,9 +159,9 @@ trait Picture
 
         // If the image is empty, look if the user has a nice picture
         if (empty($avatar)) {
-            if (true || auth()->check() && auth()->user()->isGoblin()) {
+            if (auth()->check() && auth()->user()->isGoblin()) {
                 // Goblins and above have nicer icons
-                return asset('/images/defaults/patreon/' . $this->pluralType() . '_thumb.png');
+                return asset('/images/defaults/patreon/' . $this->pluralType() . '.jpeg');
             }
             $this->hasNoImage = true;
             return asset('/images/defaults/' . $this->pluralType() . '_thumb.jpg');
