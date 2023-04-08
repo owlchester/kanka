@@ -6,6 +6,7 @@
  */
 $currentCampaign = CampaignLocalization::getCampaign();
 $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
+$defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m' => 'table'] : null;
 ?>
 @if (!empty($currentCampaign))
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
@@ -41,7 +42,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                 $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                             }
                             @endphp
-                            <a href="{{ route($route) }}">
+                            <a href="{{ route($route, (\Illuminate\Support\Arr::get($element, 'mode') === true ? $defaultOptions : [])) }}">
                                 <i class="{{ $element['custom_icon'] ?: $element['icon']  }}"></i>
                                 {!! $element['custom_label'] ?: $element['label']  !!}
                             </a>
@@ -62,7 +63,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                         $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                                     }
                                 @endphp
-                                <a href="{{ route($route) }}">
+                                <a href="{{ route($route, \Illuminate\Support\Arr::get($child, 'mode') === true ? $defaultOptions : []) }}">
                                     <i class="{{ $child['custom_icon'] ?: $child['icon'] }}"></i>
                                     {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>

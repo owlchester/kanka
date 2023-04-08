@@ -47,7 +47,7 @@ trait UserSetting
      */
     public function getReleaseAttribute()
     {
-        return Arr::get($this->settings, 'app_release', null);
+        return Arr::get($this->settings, 'app_release');
     }
 
     /**
@@ -63,7 +63,7 @@ trait UserSetting
      */
     public function getEditorAttribute()
     {
-        return Arr::get($this->settings, 'editor', null);
+        return Arr::get($this->settings, 'editor');
     }
 
     /**
@@ -79,7 +79,7 @@ trait UserSetting
      */
     public function getNewEntityWorkflowAttribute()
     {
-        return Arr::get($this->settings, 'new_entity_workflow', null);
+        return Arr::get($this->settings, 'new_entity_workflow');
     }
 
     /**
@@ -95,7 +95,15 @@ trait UserSetting
      */
     public function getDefaultNestedAttribute()
     {
-        return Arr::get($this->settings, 'default_nested', null);
+        return Arr::get($this->settings, 'default_nested');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEntityExploreAttribute()
+    {
+        return Arr::get($this->settings, 'entity_explore');
     }
 
     /**
@@ -111,7 +119,7 @@ trait UserSetting
      */
     public function getCampaignSwitcherOrderByAttribute()
     {
-        return Arr::get($this->settings, 'campaign_switcher_order_by', null);
+        return Arr::get($this->settings, 'campaign_switcher_order_by');
     }
 
     /**
@@ -208,7 +216,7 @@ trait UserSetting
             if (!Arr::has($data, $field)) {
                 continue;
             }
-            $this->$field = Arr::get($data, $field, null);
+            $this->$field = Arr::get($data, $field);
         }
 
         return $this;

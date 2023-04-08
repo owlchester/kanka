@@ -53,7 +53,7 @@ class AppearanceController extends Controller
         $user = $request->user();
         $settingFields = $request->only([
             'editor', 'default_nested', 'advanced_mentions', 'new_entity_workflow',
-            'campaign_switcher_order_by', 'pagination', 'date_format'
+            'campaign_switcher_order_by', 'pagination', 'date_format', 'entity_explore'
         ]);
         $user
             ->saveSettings($settingFields)

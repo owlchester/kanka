@@ -79,11 +79,8 @@ class InventoryController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $ajax = request()->ajax();
-
         return view('entities.pages.inventory.create', compact(
             'entity',
-            'ajax'
         ));
     }
 
@@ -98,14 +95,13 @@ class InventoryController extends Controller
         }
 
         $data = $request->only($this->fillable);
-        $ajax = $request->ajax();
 
         $inventory = new Inventory();
         $inventory = $inventory->create($data);
 
         return redirect()
             ->route('entities.inventory', $entity)
-            ->with('success', __('entities/inventories.create.success', [
+            ->with('success_raw', __('entities/inventories.create.success', [
                 'item' => $inventory->itemName(),
                 'entity' => $entity->name
             ]));
@@ -126,12 +122,9 @@ class InventoryController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $ajax = request()->ajax();
-
         return view('entities.pages.inventory.update', compact(
             'entity',
             'inventory',
-            'ajax'
         ));
     }
 
@@ -142,14 +135,13 @@ class InventoryController extends Controller
         $this->authorize('update', $entity->child);
 
         $data = $request->only($this->fillable);
-        $ajax = $request->ajax();
 
         $inventory->update($data);
         $inventory->refresh();
 
         return redirect()
             ->route('entities.inventory', $entity)
-            ->with('success', __('entities/inventories' . '.update.success', [
+            ->with('success_raw', __('entities/inventories' . '.update.success', [
                 'item' => $inventory->itemName(),
                 'entity' => $entity->name
             ]));
@@ -165,7 +157,7 @@ class InventoryController extends Controller
 
         return redirect()
             ->route('entities.inventory', [$entity->id])
-            ->with('success', __('entities/inventories.destroy.success', [
+            ->with('success_raw', __('entities/inventories.destroy.success', [
                 'item' => $inventory->itemName(),
                 'entity' => $entity->name
             ]));
