@@ -114,7 +114,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
             @endif
             <div class="entity-name-header flex gap-3 items-center">
                 <h1 class="entity-name text-4xl m-0 break-all">
-                    {{ $model->name }}
+                    {!! $model->name !!}
                 </h1>
                 @if ($model instanceof \App\Models\Character && $model->is_dead)
                     <span class="entity-name-icon entity-char-dead cursor-pointer" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}">

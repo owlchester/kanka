@@ -18,7 +18,7 @@
                 @endif
             </a>
             <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 p-4 border-t bg-box"">
-                {{ $model->name }}
+                {!! $model->name !!}
             </a>
         </div>
         @for ($s = 0; $s < $stacked; $s++)
@@ -38,7 +38,7 @@
         </div>
         <div class="truncate text-center p-4 border-t bg-box h-12" data-toggle="tooltip-ajax" data-id="{{ $model->entity->id }}"
         data-url="{{ route('entities.tooltip', $model->entity->id) }}">
-            {{ $model->name }}
+            {!! $model->name !!}
         </div>
     </a>
 @endif

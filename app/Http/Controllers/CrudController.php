@@ -311,7 +311,7 @@ class CrudController extends Controller
             $success = __('general.success.created', [
                 'name' => link_to_route(
                     $this->view . '.show',
-                    e($new->name),
+                    $new->name,
                     [$new->id]
                 )
             ]);
@@ -476,7 +476,7 @@ class CrudController extends Controller
             $success = __('general.success.updated', [
                 'name' => link_to_route(
                     $this->route . '.show',
-                    e($model->name),
+                    $model->name,
                     [$model]
                 )
             ]);
