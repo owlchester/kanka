@@ -15,20 +15,22 @@
                         <div class="box-footer">
                             <a class="btn btn-xl btn-primary"
                                href="#"
-                               data-toggle="ajax-modal"
+                               data-toggle="dialog-ajax"
                                data-url="{{ route('campaign_submissions.edit', [$submission->id, 'action' => 'approve']) }}"
-                               data-target="#entity-modal"
+                               data-target="submission-dialog"
                                title="{{ __('campaigns/submissions.actions.accept') }}">
-                                <i class="fa-solid fa-check"></i>
+                                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                                <span class="sr-only">{{ __('campaigns/submissions.actions.accept') }}</span>
                             </a>
 
                             <a class="btn btn-xl btn-danger pull-right"
                                href="#"
-                               data-toggle="ajax-modal"
+                               data-toggle="dialog-ajax"
                                data-url="{{ route('campaign_submissions.edit', [$submission->id, 'action' => 'reject']) }}"
-                               data-target="#entity-modal"
+                               data-target="submission-dialog"
                                title="{{ __('campaigns/submissions.actions.reject') }}">
-                                <i class="fa-solid fa-times"></i>
+                                <i class="fa-solid fa-times" aria-hidden="true"></i>
+                                <span class="sr-only">{{ __('campaigns/submissions.actions.reject') }}</span>
                             </a>
                         </div>
                     </div>

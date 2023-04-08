@@ -1,11 +1,8 @@
-{!! Form::model($campaign, ['route' => 'campaign-applications.save', 'method' => 'POST']) !!}
-
-
-<div class="modal-body">
-    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title mb-5" id="myModalLabel">
-        {{ __('campaigns/submissions.toggle.title') }}
-    </h4>
+<x-dialog.header>
+    {{ __('campaigns/submissions.actions.accept') }}
+</x-dialog.header>
+<article>
+    {!! Form::model($campaign, ['route' => 'campaign-applications.save', 'method' => 'POST', 'class' => 'text-left w-full max-w-lg']) !!}
 
     <div class="form-group required">
         <label for="status">
@@ -17,13 +14,15 @@
         </p>
     </div>
 
-    <div class="text-center py-5">
-        <button type="button" class="btn btn-default mr-5 rounded-full px-8" data-dismiss="modal">
+    <div class="grid grid-cols-2 gap-2 mt-5">
+        <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
             {{ __('crud.cancel') }}
-        </button>
-
-        <button class="btn btn-success ml-5 rounded-full px-8">{{ __('crud.actions.apply') }}</button>
+        </x-buttons.confirm>
+        <x-buttons.confirm type="primary" outline="true" full="true">
+            <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+            {{ __('crud.actions.apply') }}
+        </x-buttons.confirm>
 
     </div>
-</div>
-{!! Form::close() !!}
+    {!! Form::close() !!}
+</article>

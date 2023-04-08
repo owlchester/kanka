@@ -46,16 +46,12 @@
 
 @section('modals')
     @parent
-    @include('partials.helper-modal', [
-        'id' => 'export-help',
-        'title' => __('campaigns.show.tabs.export'),
-        'textes' => [
-            __('campaigns/export.helpers.intro'),
-            __('campaigns/export.helpers.json'),
-            __('campaigns/export.helpers.import', [
+    <x-dialog id="export-help" :title="__('campaigns.show.tabs.export')">
+        <p>{{ __('campaigns/export.helpers.intro') }}</p>
+        <p>{{ __('campaigns/export.helpers.json') }}</p>
+        <p>{!! __('campaigns/export.helpers.import', [
                 'api' => link_to('/' . app()->getLocale() . config('larecipe.docs.route') . '/1.0/overview', __('front.features.api.link'), null, ['target' => '_blank'])
-])
-        ]
-    ])
+        ]) !!}</p>
+    </x-dialog>
 
 @endsection

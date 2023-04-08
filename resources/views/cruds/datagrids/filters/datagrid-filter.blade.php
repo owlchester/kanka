@@ -36,7 +36,7 @@ $hasAttributeFilters = false;
 
 @section('modals')
     @parent()
-    <x-dialog id="datagrid-filters" title="{{ __('crud.filters.title') }}">
+    <x-dialog id="datagrid-filters" title="{{ __('crud.filters.title') }}" full="true">
         {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
             @if (auth()->guest())
                 <p class="help-block">{{ __('filters.helpers.guest') }}</p>

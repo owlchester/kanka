@@ -41,12 +41,9 @@
 
 @section('modals')
     @parent
-    @include('partials.helper-modal', [
-        'id' => 'recovery-help',
-        'title' => __('campaigns.show.tabs.recovery'),
-        'textes' => [
-            __('campaigns/recovery.helper', ['count' => '<code>' . config('entities.hard_delete') . '</code>'])
-        ]
-    ])
+    <x-dialog id="recovery-help" :title="__('campaigns.show.tabs.recovery')">
+        <p>{!! __('campaigns/recovery.helper', ['count' => '<code>' . config('entities.hard_delete') . '</code>']) !!}</p>
+    </x-dialog>
+
 @endsection
 

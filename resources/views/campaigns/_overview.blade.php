@@ -64,13 +64,9 @@ $boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-
 
 @section('modals')
     @parent
-    @include('partials.helper-modal', [
-            'id' => 'entity-count',
-            'title' => __('campaigns.fields.entity_count'),
-            'textes' => [
-                __('campaigns.helpers.entity_count_v3', ['amount' => 6])
-            ]
-        ])
-
-
+    <x-dialog id="entity-count" :title="__('campaigns.fields.entity_count')">
+        <p>
+            {{ __('campaigns.helpers.entity_count_v3', ['amount' => 6]) }}
+        </p>
+    </x-dialog>
 @endsection

@@ -77,12 +77,7 @@
 
 @section('modals')
     @parent
-
-    @include('partials.helper-modal', [
-        'id' => 'default-images-help',
-        'title' => __('campaigns.show.tabs.default-images'),
-        'textes' => [
-            __('campaigns/default-images.helper'),
-    ]])
-
+    <x-dialog id="default-images-help" :title="__('campaigns.show.tabs.default-images')">
+        <p>{{ __('campaigns/default-images.helper') }}</p>
+    </x-dialog>
 @endsection

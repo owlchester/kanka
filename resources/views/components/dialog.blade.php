@@ -8,7 +8,7 @@
             <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
         </button>
     </header>
-    <article class="text-justify">
+    <article class="text-justify @if (!$full) max-w-2xl @endif">
         {{ $slot }}
     </article>
 </dialog>

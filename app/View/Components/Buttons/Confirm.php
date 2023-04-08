@@ -47,6 +47,7 @@ class Confirm extends Component
         return view('components.buttons.confirm')
             ->with('colours', $this->colour())
             ->with('sizes', $this->size())
+            ->with('element', $this->dismiss == 'dialog' ? 'a' : 'button')
             ;
     }
 
