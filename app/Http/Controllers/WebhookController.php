@@ -55,11 +55,9 @@ class WebhookController extends CashierController
             /** @var User $user */
             // Notify admin
             SubscriptionDeletedEmailJob::dispatch($user);
-
-            // Set the subscription to end when it's supposed to end (admittedly, this is already passed)
-            SubscriptionEndJob::dispatch($user)->delay(
-                $user->subscription('kanka')->ends_at // @phpstan-ignore-line
-            );
+            // Cleanup the user "now". This used to have a delay, but if Stripe is calling this endpoint,
+            // it's that the user's sub has ended.
+            SubscriptionEndJob::dispatch($user);
         }
 
         return $response;

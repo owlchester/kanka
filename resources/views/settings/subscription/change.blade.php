@@ -8,6 +8,12 @@
         </div>
     </div>
 
+    @if ($user->isFrauding())
+        <div class="alert alert-warning">
+            {{ __('settings.subscription.errors.failed', ['email' => config('app.email')]) }}
+        </div></div><?php return; ?>
+    @endif
+
     @if (!$cancel)
         <h4>{!! __('settings.subscription.change.text.' . $period, ['tier' => "<strong>$tier</strong>", 'amount' => "<strong>$amount</strong>"]) !!}</h4>
     @else
