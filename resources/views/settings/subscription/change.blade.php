@@ -9,8 +9,8 @@
     </div>
 
     @if ($user->isFrauding())
-        <div class="alert alert-danger">
-            We're having issues charging your card. Please contact us at {{ config('app.email') }} for assistance.
+        <div class="alert alert-warning">
+            {{ __('settings.subscription.errors.failed', ['email' => config('app.email')]) }}
         </div></div><?php return; ?>
     @endif
 
