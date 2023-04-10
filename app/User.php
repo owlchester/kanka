@@ -605,4 +605,12 @@ class User extends \Illuminate\Foundation\Auth\User
 
         return $this->unreadNotifications()->count() > 0;
     }
+
+    public function isFrauding(): bool
+    {
+        return $this->logs()
+            ->where('type_id', UserLog::TYPE_FAILED_CHARGE_EMAIL)
+            ->whereDate('created_at', '>=', Carbon::yesterday()->toDateString())
+            ->count() >= 3;
+    }
 }
