@@ -11,10 +11,10 @@
                 $icon = null;
                 if (request()->get('order') === $field) {
                     if (request()->get('desc') === '1') {
-                        $icon = '<i class="fa-solid fa-arrow-down-a-z" aria-hidden="true"></i>';
+                        $icon = '<i class="fa-solid fa-arrow-down-a-z !mr-0" aria-hidden="true"></i>';
                     } else {
                         $options['desc'] = 1;
-                        $icon = '<i class="fa-solid fa-arrow-up-a-z" aria-hidden="true"></i>';
+                        $icon = '<i class="fa-solid fa-arrow-up-a-z !mr-0" aria-hidden="true"></i>';
                     }
                 }
             @endphp
@@ -41,13 +41,13 @@
     <ul class="dropdown-menu min-w-0" role="menu">
         <li class="dropdown-item">
             <a href="{{ route($name . '.' . $route, ['m' => 'grid']) }}" title="{{ __('datagrids.modes.grid') }}">
-                <i class="fa-solid fa-grid" aria-hidden="true"></i>
+                <i class="fa-solid fa-grid !mr-0" aria-hidden="true"></i>
                 <span class="sr-only">Grid</span>
             </a>
         </li>
         <li class="dropdown-item">
             <a href="{{ route($name . '.' . $route, ['m' => 'table']) }}" title="{{ __('datagrids.modes.table') }}">
-                <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
+                <i class="fa-solid fa-list-ul !mr-0" aria-hidden="true"></i>
                 <span class="sr-only">Table</span>
             </a>
         </li>
