@@ -109,7 +109,7 @@ return [
         'is_incrementing'   => 'Advancing calendars will automatically have their current date incremented at 00:00 UTC.',
         'is_recurring'      => 'An event can be set to recurring. It will reappear every year on the same date.',
         'months'            => 'Your calendar should have at least 2 months.',
-        'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, thirst and third quarter moons will also be displayed.',
+        'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, first and third quarter moons will also be displayed.',
         'parent_calendar'   => 'Giving the calendar a parent calendar will include the reminders and weather effects of the parent calendar.',
         'reset'             => 'Always start the beginning of the month or year on the first week day.',
         'seasons'           => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',

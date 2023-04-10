@@ -167,6 +167,7 @@ return [
             'title' => 'Change your preferred billing currency',
         ],
         'errors'                => [
+            'failed' => 'We are currently experiencing issues with our billing system. Please contact us at :email for assistance.',
             'callback'      => 'Our payment provider reported an error. Please try again or contact us if the problem persists.',
             'subscribed'    => 'Couldn\'t process your subscription. Stripe provided the following hint.',
         ],

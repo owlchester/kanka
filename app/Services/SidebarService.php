@@ -423,8 +423,7 @@ class SidebarService
     {
         $key = $this->cacheKey();
         if (!$this->withDisabled && Cache::has($key)) {
-            //dump('read from cache ' . $key);
-            //return Cache::get($key);
+            return Cache::get($key);
         }
         $layout = [];
         foreach ($this->customLayout() as $name => $children) {
@@ -453,9 +452,13 @@ class SidebarService
             foreach ($children as $childName) {
                 $child = $this->customElement($childName);
                 // Child has a module, check that the campaign has it enabled
-                if (!isset($child['module']) && !$this->withDisabled) {
+                if (!isset($child['module'])) {
                     if (!$this->campaign->enabled($childName)) {
-                        continue;
+                        if ($this->withDisabled) {
+                            $child['disabled'] = true;
+                        } else {
+                            continue;
+                        }
                     }
                 }
                 // Child has permission check?

@@ -111,6 +111,11 @@ class SubscriptionController extends Controller
      */
     public function subscribe(UserSubscribeStore $request)
     {
+        if ($request->user()->isFrauding()) {
+            return redirect()
+                ->route('settings.subscription')
+                ->withError(__('settings.subscription.errors.failed', ['email' => config('app.email')]));
+        }
         try {
             $this->subscription->user($request->user())
                 ->tier($request->get('tier'))

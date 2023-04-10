@@ -43,9 +43,16 @@ class SubscriptionDeletedEmailJob implements ShouldQueue
     public function handle()
     {
         // User deleted their account already? Sure thing
+        /** @var User|null $user */
         $user = User::find($this->userId);
         if (empty($user)) {
             Log::warning('Subscription Deleted Email Job: unknown user id', ['userId' => $this->userId]);
+            return;
+        }
+
+        // Don't notify if the user was banned
+        if ($user->isBanned()) {
+            Log::warning('Subscription Deleted Email Job: banned user id', ['userId' => $this->userId]);
             return;
         }
 
