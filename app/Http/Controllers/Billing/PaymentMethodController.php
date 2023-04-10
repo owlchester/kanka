@@ -49,11 +49,11 @@ class PaymentMethodController extends Controller
      */
     public function save(UserBillingStore $request)
     {
-        $user = Auth::user();
-        $settings = $user->saveSettings($request->only('currency'));
-        $user->save();
+        $user = $request->user();
 
         $from = $request->get('from', 'billing.payment-method');
+        $settings = $user->saveSettings($request->only('currency'));
+        $user->save();
 
         return redirect()
             ->route($from)
