@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\MiscModel $model */?>
-<div class="entities-grid flex flex-wrap gap-2 lg:gap-5">
+<div class="entities-grid flex flex-wrap gap-3 lg:gap-5">
     @if (!empty($parent))
         <a href="{{ route($route . '.' . $sub, $parent->parent ? ['parent_id' => $parent->parent->id] : []) }}" class="entity block border w-48 overflow-hidden rounded">
             <div class="block h-36 flex items-center justify-center">

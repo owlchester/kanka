@@ -312,4 +312,13 @@ class Quest extends MiscModel
             'element_role',
         ];
     }
+
+    /**
+     * Get the value of the is_complete variable
+     * @return bool
+     */
+    public function isCompleted(): bool
+    {
+        return (bool) $this->is_completed;
+    }
 }

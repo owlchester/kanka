@@ -1,8 +1,8 @@
-<div class="dropdown">
+@if ($mode === 'grid')
+    <div class="dropdown">
     <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false">
         <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true" data-tree="escape"></i>
         <span class="sr-only">Order by</span>
-
     </a>
     <ul class="dropdown-menu min-w-0" role="menu">
         @foreach ($model->datagridSortableColumns() as $field => $translation)
@@ -27,7 +27,9 @@
         @endforeach
     </ul>
 </div>
+@endif
 
+@if (empty($forceMode))
 <div class="dropdown">
     <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false">
         @if (!isset($mode) || $mode === 'grid')
@@ -53,3 +55,4 @@
         </li>
     </ul>
 </div>
+@endif

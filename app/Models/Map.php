@@ -671,7 +671,7 @@ class Map extends MiscModel
      */
     public function isReal(): bool
     {
-        return $this->is_real;
+        return (bool) $this->is_real;
     }
 
     /**

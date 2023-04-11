@@ -186,8 +186,9 @@ class CrudController extends Controller
         if (!in_array($mode, ['grid', 'table'])) {
             $mode = 'grid';
         }
+        $forceMode = null;
         if (property_exists($this, 'forceMode')) {
-            $mode = $this->forceMode;
+            $mode = $forceMode = $this->forceMode;
         }
 
         // Add a button to the tree view if the controller has it
@@ -216,6 +217,7 @@ class CrudController extends Controller
             'datagridActions',
             'mode',
             'parent',
+            'forceMode',
         );
         if (!empty($this->titleKey)) {
             $data['titleKey'] = $this->titleKey;

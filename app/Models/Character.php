@@ -436,7 +436,7 @@ class Character extends MiscModel
     public function rowClasses(): string
     {
         $classes = parent::rowClasses();
-        if (!$this->is_dead) {
+        if (!$this->isDead()) {
             return $classes;
         }
         return $classes . ' character-dead';
@@ -479,5 +479,14 @@ class Character extends MiscModel
             $columns['is_private'] = __('crud.fields.is_private');
         }
         return $columns;
+    }
+
+    /**
+     * Get the value of the is_dead variable
+     * @return bool
+     */
+    public function isDead(): bool
+    {
+        return (bool) $this->is_dead;
     }
 }
