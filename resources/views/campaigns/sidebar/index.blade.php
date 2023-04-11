@@ -28,6 +28,12 @@
                     <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     {{ __('campaigns.members.actions.help') }}
                 </button>
+
+                <x-tutorial code="sidebar_reorder">
+                    <p>
+                        {{ __('campaigns/sidebar.helpers.reordering') }}
+                    </p>
+                </x-tutorial>
             {!! Form::open([
     'route' => 'campaign-sidebar-save',
     'method' => 'POST',
@@ -36,16 +42,6 @@
 ]) !!}
             <div class="box box-solid">
                 <div class="box-body">
-                    @if (auth()->check() && !auth()->user()->settings()->get('tutorial_sidebar_reorder'))
-                        <div class="alert alert-info tutorial">
-                            <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'sidebar_reorder', 'type' => 'tutorial']) }}">×</button>
-
-                            <p>
-                                {{ __('campaigns/sidebar.helpers.reordering') }}
-                            </p>
-                        </div>
-                    @endif
-
                     <ul class="list-none m-0 p-0 sidebar-sortable nested-sortable">
                     @foreach ($layout as $name => $setup)
                         <li class="p-1 @if (isset($setup['fixed'])) fixed-position @endif" id="{{ $name }}">

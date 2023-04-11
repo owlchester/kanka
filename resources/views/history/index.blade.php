@@ -11,24 +11,20 @@
 @section('content')
     @if (!$superboosted)
         @include('layouts.callouts.boost', ['superboost' => true, 'texts' => [__('history.cta')]])
-    @elseif(!auth()->user()->settings()->get('tutorial_history'))
-        <div class="alert alert-info tutorial">
-            <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'history', 'type' => 'tutorial']) }}">×</button>
-
+    @else
+        <x-tutorial code="history" doc="https://docs.kanka.io/en/latest/features/history.html">
             <p>{!! __('history.helpers.base', ['amount' => 3]) !!}</p>
-
-            <p>{!!  __('crud.helpers.learn_more', ['documentation' => link_to('https://docs.kanka.io/en/latest/features/history.html', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front.menu.documentation'), ['target' => '_blank'], null, false)])!!}</p>
-        </div>
+        </x-tutorial>
     @endif
 
 
     @if ($superboosted)
         {!! Form::open(['method' => 'GET', 'route' => 'history.index', 'class' => 'history-filters']) !!}
-        <div class="flex items-center flex-row-reverse mb-5">
+        <div class="flex items-center flex-row-reverse mb-5 gap-2">
             <div class="flex-none">
                 {!! Form::select('action', $actions, $action, ['class' => 'form-control']) !!}
             </div>
-            <div class="flex-none mr-2">
+            <div class="flex-none">
                 <select class="form-control" name="user">
                     <option value="">{{ __('history.filters.all-users') }}</option>
                     @foreach ($users as $member)
@@ -37,11 +33,11 @@
                 </select>
             </div>
             @if (count($filters) > 0)
-                <div class="flex-none mr-2">
+                <div class="flex-none">
                     <a href="{{ route('history.index') }}" role="button" class="btn btn-default">{{ __('crud.actions.reset') }}</a>
                 </div>
             @endif
-            <div class="flex-none filters-loading mr-2" style="display: none">
+            <div class="flex-none filters-loading" style="display: none">
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
             </div>
         </div>
@@ -57,11 +53,11 @@
                     <ul class="list-group">
                 @endif
                 <li class="list-group-item {{ !$superboosted ? 'blur' : null }}">
-                    <div class="flex justify-center items-center">
+                    <div class="flex justify-center items-center gap-2">
                         <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
                             <i class="fa-solid {{ $log->actionIcon() }}" aria-hidden="true"></i>
                         </div>
-                        <div class="flex-grow pl-2">
+                        <div class="flex-grow">
                             @if ($superboosted)
                                 {!! __('history.log.' . $log->actionCode(), [
                                     'user' => $log->userLink(),
@@ -79,7 +75,7 @@
                             @endif
                         </div>
                         @if(!empty($log->changes))
-                            <div class="flex-end mr-2">
+                            <div class="flex-end">
                                 <a href="#log-{{ $log->id }}" data-toggle="collapse">
                                     <i class="fa-solid fa-eye" aria-hidden="true"></i>
                                     {{ __('history.actions.show-old') }}
@@ -133,9 +129,9 @@
     @endif
 
     @if ($superboosted)
-    <div class="text-right">
-        {!! $models->appends($filters)->links() !!}
-    </div>
+        <div class="text-right">
+            {!! $models->appends($filters)->links() !!}
+        </div>
     @endif
 @endsection
 

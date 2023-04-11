@@ -43,7 +43,7 @@
                     @include($name . '.datagrid')
                 </div>
 
-                @includeWhen($models->hasPages() && auth()->check() && !auth()->user()->settings()->get('tutorial_pagination'), 'cruds.helpers.pagination', ['action' => 'index'])
+                @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'index'])
             </div>
             <div class="box-footer">
                 @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')

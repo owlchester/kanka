@@ -49,7 +49,7 @@
                     @include($name . '._tree')
                 </div>
 
-                @includeWhen($models->hasPages() && auth()->check() && !auth()->user()->settings()->get('tutorial_pagination'), 'cruds.helpers.pagination', ['action' => 'tree'])
+                @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'tree'])
             </div>
             <div class="box-footer">
 

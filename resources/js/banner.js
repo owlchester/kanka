@@ -7,13 +7,17 @@ function initBannerPromoDismiss()
 {
     $('.banner-notification-dismiss').click(function (e) {
         e.preventDefault();
-        console.log('click');
-        //$('.banner-notification').fadeOut();
-
         $.post({
             url: $(this).data('url'),
             method: 'POST',
+            context: this,
         }).done(function() {
+            // We can either have bootstrap handle the dismiss, or do it ourselves
+            let target = $(this).data('dismiss');
+            if (!target || target !== 'tutorial') {
+                return;
+            }
+            $(this).closest('.' + target).fadeOut();
         });
     });
 }

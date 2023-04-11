@@ -22,26 +22,22 @@ $permission->role($role);
     {{ __('crud.permissions.title') }}
 </h1>
 
-@if (auth()->check() && !auth()->user()->settings()->get('tutorial_public_permissions'))
-    <div class="alert alert-info tutorial">
-        <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'public_permissions', 'type' => 'tutorial']) }}">×</button>
+<x-tutorial code="public_permissions">
+    <p>
+        {!! __('campaigns/roles.public.description', ['name' => $role->name]) !!}
+    </p>
 
-        <p class="mb-5">
-            {!! __('campaigns/roles.public.description', ['name' => $role->name]) !!}
-        </p>
+    <p>
+        {!! __('campaigns/roles.public.test', [
+'url' => link_to_route('dashboard')]) !!}
+    </p>
 
-        <p class="mb-5">
-            {!! __('campaigns/roles.public.test', [
-    'url' => link_to_route('dashboard')]) !!}
-        </p>
-
-        <p class="mb-5">
-            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i>
-                {{ __('helpers.public') }}
-            </a>
-        </p>
-    </div>
-@endif
+    <p>
+        <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i>
+            {{ __('helpers.public') }}
+        </a>
+    </p>
+</x-tutorial>
 
 <div class="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
     @foreach ($permission->entityTypes() as $name => $id)

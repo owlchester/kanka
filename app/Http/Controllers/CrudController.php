@@ -186,6 +186,9 @@ class CrudController extends Controller
         if (!in_array($mode, ['grid', 'table'])) {
             $mode = 'grid';
         }
+        if (property_exists($this, 'forceMode')) {
+            $mode = $this->forceMode;
+        }
 
         // Add a button to the tree view if the controller has it
         if (method_exists($this, 'tree') && $mode === 'table') {

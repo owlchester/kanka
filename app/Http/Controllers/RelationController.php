@@ -20,6 +20,8 @@ class RelationController extends CrudController
     protected bool $tabBoosted = false;
     protected bool $tabCopy = false;
 
+    protected string $forceMode = 'table';
+
     /** @var string */
     protected $model = \App\Models\Relation::class;
 
