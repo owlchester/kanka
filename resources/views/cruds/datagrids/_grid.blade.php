@@ -11,7 +11,7 @@
         $dataAttributes[] = 'dead';
     } elseif ($model instanceof \App\Models\Organisation && $model->isDefunct()) {
         $dataAttributes[] = 'defunct';
-    } elseif ($model instanceof \App\Models\Quest && $model->isComplete()) {
+    } elseif ($model instanceof \App\Models\Quest && $model->isCompleted()) {
         $dataAttributes[] = 'defunct';
     }
 @endphp

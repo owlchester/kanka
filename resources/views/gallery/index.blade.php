@@ -27,10 +27,10 @@ if ($folder) {
     <div class="box no-border box-gallery">
         <div class="box-body">
             <button class="btn btn-primary" data-toggle="collapse" data-target="#uploader">
-                <i class="fa-solid fa-upload"></i> {{ __('campaigns/gallery.uploader.add') }}
+                <i class="fa-solid fa-upload" aria-hidden="true"></i> {{ __('campaigns/gallery.uploader.add') }}
             </button>
             <button class="btn btn-default" data-toggle="modal" data-target="#modal-new-folder">
-                <i class="fa-solid fa-folder"></i> {{ __('campaigns/gallery.uploader.new_folder') }}
+                <i class="fa-solid fa-folder" aria-hidden="true"></i> {{ __('campaigns/gallery.uploader.new_folder') }}
             </button>
 
             @if(!empty($folder))
@@ -78,10 +78,10 @@ if ($folder) {
 
     <div class="gallery">
         <div id="gallery-loader" class="text-center" style="display: none">
-            <i class="fa-solid fa-spinner fa-spin fa-4x"></i>
+            <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
         </div>
         <div id="gallery-content">
-            <ul id="gallery-images" class="m-0 p-0 list-none">
+            <ul id="gallery-images" class="m-0 p-0 list-none flex gap-2 md:gap-5 flex-wrap">
                 @include('gallery.images')
             </ul>
         </div>

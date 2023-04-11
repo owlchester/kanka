@@ -2,14 +2,16 @@
 
 
 @if(!empty($folder))
-    <li tabindex="0" data-folder="{{ empty($folder->folder_id) ? route('campaign.gallery.index') : route('campaign.gallery.index', ['folder_id' => $folder->folder_id]) }}" class="pull-left h-36 w-32 p-2 m-2 rounded drop-shadow cursor-pointer flex flex-col items-center justify-center text-center select-none">
-        <i class="fa-solid fa-arrow-left fa-2x mb-3" aria-hidden="true"></i>
-        <div class="w-full truncate">
-            @if (empty($folder->folder_id))
-                {{ __('crud.actions.back') }}
-            @else
-                {{ $folder->imageFolder->name }}
-            @endif
+    <li tabindex="0" data-folder="{{ empty($folder->folder_id) ? route('campaign.gallery.index') : route('campaign.gallery.index', ['folder_id' => $folder->folder_id]) }}" class="w-40 p-2 rounded shadow-sm cursor-pointer flex flex-col items-center justify-center text-center select-none gap-2">
+        <div class="w-full flex flex-col items-center gap-2 text-4xl">
+            <i class="fa-regular fa-arrow-left" aria-hidden="true"></i>
+            <div class="text-base overflow-hidden">
+                @if (empty($folder->folder_id))
+                    {{ __('crud.actions.back') }}
+                @else
+                    {{ $folder->imageFolder->name }}
+                @endif
+            </div>
         </div>
     </li>
 @endif

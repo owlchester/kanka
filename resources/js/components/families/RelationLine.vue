@@ -2,9 +2,9 @@
     <div v-bind:class="cssClass('vertical')" v-bind:style="verticalSource()" v-bind:data-row="row" v-bind:data-col="column"></div>
     <div v-bind:class="cssClass('horizontal')" v-bind:style="horizontal()" v-bind:data-row="row" v-bind:data-col="column"></div>
     <div class="family-tree-line family-tree-relation-line family-tree-line-vertical absolute" v-bind:style="verticalTarget()" v-bind:data-row="row" v-bind:data-col="column"></div>
-    <div class="family-tree-relation text-center overflow-clip absolute text-sm" v-bind:style="relationBox()" v-bind:data-row="row" v-bind:data-col="column">
+    <div class="family-tree-relation text-center absolute text-sm" v-bind:style="relationBox()" v-bind:data-row="row" v-bind:data-col="column">
         <a v-if="isEditing" v-on:click="editRelation(uuid, relation)" class="cursor-pointer" v-bind:title="i18n('relation', 'edit')">
-            {{ relationText() }}
+            <span class="truncate">{{ relationText() }}</span>
             <i class="fa-solid fa-pencil" aria-hidden="true">
                 <span class="sr-only">{{ i18n('relation', 'edit') }}</span>
             </i>

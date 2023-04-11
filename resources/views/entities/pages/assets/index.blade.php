@@ -56,14 +56,14 @@
                         @includeWhen($asset->isAlias(), 'entities.pages.assets._alias')
                     @empty
                         @can('update', $entity->child)
-                            <a href="#" class="btn btn-app py-5" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_ALIAS]) }}">
-                                <i class="fa-solid fa-plus mb-2" aria-hidden="true"></i> {{ __('entities/assets.actions.alias') }}
+                            <a href="#" class="btn btn-app py-5 flex flex-col gap-3" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_ALIAS]) }}">
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/assets.actions.alias') }}
                             </a>
-                            <a href="#" class="btn btn-app py-5" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_FILE]) }}">
-                                <i class="fa-solid fa-plus mb-2" aria-hidden="true"></i> {{ __('entities/assets.actions.file') }}
+                            <a href="#" class="btn btn-app py-5 flex flex-col gap-3" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_FILE]) }}">
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/assets.actions.file') }}
                             </a>
-                            <a href="#" class="btn btn-app py-5" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_LINK]) }}">
-                                <i class="fa-solid fa-plus mb-2" aria-hidden="true"></i> {{ __('entities/assets.actions.link') }}
+                            <a href="#" class="btn btn-app py-5 flex flex-col gap-3" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_LINK]) }}">
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/assets.actions.link') }}
                             </a>
                         @endcan
                     @endforelse
