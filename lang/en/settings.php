@@ -65,7 +65,7 @@ return [
                 'add'       => 'Your Discord account has been linked.',
                 'remove'    => 'Your Discord account has been unlinked.',
             ],
-            'text'      => 'Access your subscription roles automatically.',
+            'text'      => 'Link your Discord account with Kanka to automatically get access to your subscription roles and private channels.',
             'unlock'    => 'Unlock Discord roles',
         ],
         'title'     => 'App Integration',
