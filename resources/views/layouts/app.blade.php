@@ -92,7 +92,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
                     <div class="alert alert-warning">
                         <h4>
-                            <i class="icon fa-solid fa-exclamation-triangle"></i>
+                            <i class="icon fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
                             {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
                         </h4>
                         <p>

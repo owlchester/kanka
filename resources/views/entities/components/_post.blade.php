@@ -10,8 +10,8 @@
     <div class="box box-solid post entity-note" id="post-{{ $post->id }}">
         <div class="box-header with-border">
             <h3 class="box-title cursor-pointer element-toggle {{ $post->collapsed() ? "collapsed" : null }}" data-toggle="collapse" data-target="#post-body-{{ $post->id }}" data-short="post-toggle-{{ $post->id }}" >
-                <i class="fa-solid fa-chevron-up icon-show"></i>
-                <i class="fa-solid fa-chevron-down icon-hide"></i>
+                <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
+                <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
                 {{ $post->name  }}
                 @if (app()->environment('local'))
                     <sup>({{ $post->position }})</sup>
@@ -22,7 +22,7 @@
                     {!! $post->visibilityIcon('btn-box-tool') !!}
 
                     <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
-                        <i class="fa-solid fa-ellipsis-v"></i>
+                        <i class="fa-solid fa-ellipsis-v" aria-hidden="true"></i>
                         <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -67,7 +67,7 @@
 
                 @if ($post->location)
                 <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
-                    <i class="ra ra-tower"></i> {!! $post->location->tooltipedLink() !!}
+                    <i class="ra ra-tower" aria-hidden="true"></i> {!! $post->location->tooltipedLink() !!}
                 </span>
                 @endif
             </div>

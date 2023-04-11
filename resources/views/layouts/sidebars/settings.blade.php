@@ -14,39 +14,39 @@
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="{{ $sidebar->settings('profile') }}">
                 <a href="{{ route('settings.profile') }}">
-                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-user" aria-hidden="true"></i>
                     {{ __('settings.menu.profile') }}
                 </a>
             </li>
             <li class="{{ $sidebar->settings('account') }}">
                 <a href="{{ route('settings.account') }}">
-                    <i class="fa-solid fa-cog"></i>
+                    <i class="fa-solid fa-cog" aria-hidden="true"></i>
                     {{ __('settings.menu.account') }}
                 </a>
             </li>
             <li class="{{ $sidebar->settings('appearance') }}">
                 <a href="{{ route('settings.appearance') }}">
-                    <i class="fa-solid fa-brush"></i>
+                    <i class="fa-solid fa-brush" aria-hidden="true"></i>
                     {{ __('settings.menu.appearance') }}
                 </a>
             </li>
             <li class="{{ $sidebar->settings('notification') }}">
                 <a href="{{ route('settings.notifications') }}">
-                    <i class="fa-solid fa-bell"></i>
+                    <i class="fa-solid fa-bell" aria-hidden="true"></i>
                     {{ __('settings.menu.notifications') }}
                 </a>
             </li>
 
             <li class=" ">
                 <span>
-                    <i class="fa-solid fa-bolt"></i>
+                    <i class="fa-solid fa-bolt" aria-hidden="true"></i>
                     {{ __('settings.menu.subscription') }}
                 </span>
                 <ul class="sidebar-submenu">
                     @if (config('services.stripe.enabled'))
                         <li class="{{ $sidebar->settings('subscription') }} subsection">
                             <a href="{{ route('settings.subscription') }}">
-                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-solid fa-heart" aria-hidden="true"></i>
                                 {{ __('billing/menu.overview') }}
                             </a>
                         </li>
@@ -61,13 +61,13 @@
                     @if (config('services.stripe.enabled'))
                         <li class="{{ $sidebar->settings('payment-method', 4) }} subsection">
                             <a href="{{ route('billing.payment-method') }}">
-                                <i class="fa-solid fa-credit-card"></i>
+                                <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
                                 {{ __('billing/menu.payment-method') }}
                             </a>
                         </li>
                         <li class="{{ $sidebar->settings('history', 4) }} subsection">
                             <a href="{{ route('billing.history') }}">
-                                <i class="fa-solid fa-receipt"></i>
+                                <i class="fa-solid fa-receipt" aria-hidden="true"></i>
                                 {{ __('billing/menu.history') }}
                             </a>
                         </li>
@@ -85,20 +85,20 @@
                 <ul class="sidebar-submenu">
                     @if (auth()->user()->isLegacyPatron())<li class="{{ $sidebar->settings('patreon') }} subsection">
                         <a href="{{ route('settings.patreon') }}">
-                            <i class="fa-brands fa-patreon"></i>
+                            <i class="fa-brands fa-patreon" aria-hidden="true"></i>
                             {{ __('settings.menu.patreon') }}
                         </a>
                     </li>@endif
 
                     <li class="{{ $sidebar->settings('apps') }} subsection">
                         <a href="{{ route('settings.apps') }}">
-                            <i class="fa-brands fa-discord"></i>
+                            <i class="fa-brands fa-discord" aria-hidden="true"></i>
                             {{ __('settings.menu.apps') }}
                         </a>
                     </li>
                     <li class="{{ $sidebar->settings('api') }} subsection">
                         <a href="{{ route('settings.api') }}">
-                            <i class="fa-solid fa-code"></i>
+                            <i class="fa-solid fa-code" aria-hidden="true"></i>
                             {{ __('settings.menu.api') }}
                         </a>
                     </li>

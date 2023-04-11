@@ -20,7 +20,7 @@
     <div class="pagination-ajax-body">
         <div class="modal-body no-padding">
             <div class="loading text-center" style="display: none">
-                <i class="fa-solid fa-spinner fa-spin fa-4x"></i>
+                <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
             </div>
             <div class="pagination-ajax-content">
                 <table class="table table-hover break-all">
