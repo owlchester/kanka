@@ -302,9 +302,9 @@ class DatagridRenderer
         }
         $html .= '>';
 
-        // Delete
+        // Bulk
         if (auth()->check()) {
-            $html .= '<td>' . Form::checkbox('model[]', $model->id, false) . '</td>';
+            $html .= '<td class="w-8">' . Form::checkbox('model[]', $model->id, false) . '</td>';
         }
 
         foreach ($this->columns as $column) {

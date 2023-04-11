@@ -50,7 +50,8 @@
                                         {{ substr($relation->token, 0, 6) . '...' }}
                                     </a>
                                     <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
-                                        <i class="fa-solid fa-copy"></i>
+                                        <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                                        <span class="sr-only">{{ __('Copy') }}</span>
                                     </a>
                                 </td>
                                 <td class="hidden-xs hidden-sm">
