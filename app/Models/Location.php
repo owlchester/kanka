@@ -192,7 +192,7 @@ class Location extends MiscModel
     public function maps()
     {
         return $this->hasMany('App\Models\Map', 'location_id', 'id')
-            ->select(['id', 'name']);
+            ->select(['id', 'name', 'image', 'is_real']);
     }
 
     /**
