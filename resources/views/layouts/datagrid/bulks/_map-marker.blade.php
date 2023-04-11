@@ -70,7 +70,7 @@ $groups[-1] = __('crud.filters.options.none');
     {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : null)), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0, 'id' => 'opacity'] ) !!}
 </div>
 <div class="form-group">
-    <label>{{ __('locations.map.points.fields.colour') }}</label><br />
+    <label>{{ __('maps/markers.fields.bg_colour') }}</label><br />
     {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
 </div>
 <div class="form-group">
