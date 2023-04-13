@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Pledge;
+use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\DiscordService;
 use App\User;
@@ -58,8 +59,11 @@ class SubscriptionEndJob implements ShouldQueue
 
         // Cleanup the campaign boosts
         $boostService = app()->make('App\Services\CampaignBoostService');
-        foreach ($user->boosts()->with('campaign')->get() as $boost) {
-            $boostService->campaign($boost->campaign)->unboost($boost);
+        foreach ($user->boosts()->with(['campaign', 'user'])->get() as $boost) {
+            $boostService
+                ->campaign($boost->campaign)
+                ->unboost($boost);
+            $boost->user->log(UserLog::TYPE_CAMPAIGN_UNBOOST_AUTO);
         }
 
         // Cleanup the subscriber role
