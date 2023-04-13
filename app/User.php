@@ -396,8 +396,7 @@ class User extends \Illuminate\Foundation\Auth\User
             Pledge::ELEMENTAL => 10,
         ];
 
-        // Default 3 for admins and owlbears
-        return Arr::get($levels, $this->pledge, 0) + $base;
+        return Arr::get($levels, $this->pledge ?? 'unknown', 0) + $base;
     }
 
     /**
