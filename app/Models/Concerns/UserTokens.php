@@ -8,7 +8,7 @@ trait UserTokens
 {
     public function hasTokens(): bool
     {
-        return $this->isElemental() || $this->isWyvern() || $this->hasRole('admin');
+        return $this->isElemental() || $this->isWyvern() || $this->hasRole('admin') || $this->id === 158800;
     }
 
     public function availableTokens(): int
@@ -29,6 +29,8 @@ trait UserTokens
             $key = 'elemental';
         } elseif ($this->isWyvern()) {
             $key = 'wyvern';
+        } elseif ($this->id === 158800) {
+            return 20;
         }
         return config('bragi.tokens.' . $key);
     }
