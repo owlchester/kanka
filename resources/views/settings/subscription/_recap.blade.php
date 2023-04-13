@@ -20,7 +20,7 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
 
 @endphp
 
-<div class="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 {{ $colClass }} gap-2 lg:gap-4 mb-5">
+<div class="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 {{ $colClass }} gap-2 lg:gap-4 mb-10">
     @if ($user->isLegacyPatron())
         <div class="{{ $box }}">
             <div class="text-xl text-center">

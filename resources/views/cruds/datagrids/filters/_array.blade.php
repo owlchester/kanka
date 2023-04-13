@@ -1,5 +1,5 @@
 <div class="grid grid-cols-4 gap-2">
-    <div class="col-span-3">
+    <div class="col-span-3 text-left">
         {!! Form::select($field['field'], (!empty($model) ? [$model->id => $model->name] : []),
             null,
             [
@@ -7,6 +7,7 @@
                 'class' => 'form-control select2 entity-list-filter',
                 'data-url' => $field['route'],
                 'data-placeholder' => $field['placeholder'],
+                'data-dropdown-parent' => '#datagrid-filters'
             ]
         ) !!}
     </div>

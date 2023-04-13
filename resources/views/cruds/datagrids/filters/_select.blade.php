@@ -6,5 +6,6 @@
     [
         'id' => $field['field'],
         'class' => 'form-control select2 entity-list-filter',
+        'data-dropdown-parent' => '#datagrid-filters'
     ]
 ) !!}

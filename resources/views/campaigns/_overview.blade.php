@@ -48,7 +48,7 @@ $boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-
             <div class="break-all">
                 {{ __('campaigns.fields.' . ($campaign->superboosted() ? 'superboosted' : 'boosted')) }}
                 {{ $campaign->boosts->first()?->user->name }}
-            </span>
+            </div>
         </div>
     @endif
 

@@ -50,8 +50,8 @@ $(document).ready(function() {
                 templateResult: function (item) {
                     var $span = '';
                     if (item.image) {
-                        $span = $("<span class='flex gap-2 items-center'>" +
-                            "<img src='" + item.image + "' width='24' height='24' class='rounded-full flex-0'/>" +
+                        $span = $("<span class='flex gap-2 items-center text-left'>" +
+                            "<img src='" + item.image + "' class='rounded-full flex-0 w-6 h-6'/>" +
                             "<span class='grow'>" + item.text + "</span>" +
                             "</span>");
                     } else {
