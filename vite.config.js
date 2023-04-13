@@ -86,5 +86,8 @@ export default defineConfig({
         alias: {
             'vue': 'vue/dist/vue.esm-bundler',
         },
-    }
+    },
+    build: {
+        chunkSizeWarningLimit: 700,
+    },
 });
