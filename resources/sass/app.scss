@@ -262,17 +262,14 @@ hr {
     grid-row-start: 1;
     transform: translateY(10%) translateX(10%) scale(0.9);
     z-index: 1;
-    opacity: 1;
 }
 .stack > :nth-child(1) {
     transform: translateY(0) translateX(0) scale(1);
     z-index: 3;
-    opacity: 1;
 }
 .stack > :nth-child(2) {
-    transform: translateY(5%) translateX(5%) scale(0.95);
+    transform: translateY(05%) translateX(05%) scale(0.95);
     z-index: 2;
-    opacity: 1;
 }
 
 @import "calendar";
