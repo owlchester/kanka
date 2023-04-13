@@ -85,6 +85,6 @@ trait UserTokens
             return $this->created_at->format('d');
         }
         $data = $this->subscription('kanka');
-        return $data->created_at->format('d');
+        return !empty($data) ? $data->created_at->format('d') : 1;
     }
 }
