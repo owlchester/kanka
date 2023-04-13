@@ -41,7 +41,7 @@
             <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
             <span class="block mt-2">
                 {{ __('campaigns.fields.' . ($campaign->superboosted() ? 'superboosted' : 'boosted')) }}
-                {{ $campaign->boosts->first()->user->name }}
+                {{ $campaign->boosts->first()?->user->name }}
             </span>
         </div>
     @endif
