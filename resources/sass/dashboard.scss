@@ -2,9 +2,6 @@
 :root {
     --dashboard-preview-gradient: white;
     --dashboard-widget-admin-border: #ccc;
-
-    --dashboard-setup-widget-background: rgba(255, 255, 255, 0.9);
-    --dashboard-setup-widget-hover: rgba(255, 255, 255, 0.8);
 }
 
 .campaign-dashboard {
@@ -104,21 +101,6 @@
     .list-group-item.list-group-item-repeat {
         padding-top: 0;
         border-top: unset;
-    }
-}
-
-.campaign-dashboard-widgets {
-    .border-dashboard {
-        border: 1px solid var(--dashboard-widget-admin-border);
-    }
-    .widget {
-        &:hover {
-            background-color: var(--dashboard-setup-widget-hover);
-        }
-
-        .widget-overlay {
-            background-color: var(--dashboard-setup-widget-background);
-        }
     }
 }
 

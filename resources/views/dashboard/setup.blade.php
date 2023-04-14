@@ -4,18 +4,17 @@
     'breadcrumbs' => [
         __('dashboard.setup.title')
     ],
-
 ])
 
 @php
-$widgetClass = 'widget relative mb-5 rounded-md text-xl text-center h-40 overflow-hidden hover:drop-shadow cursor' ;
-$overlayClass = 'widget-overlay rounded flex gap-3 p-2 flex-col justify-center h-full';
+$widgetClass = 'widget relative mb-5 rounded text-xl text-center h-40 overflow-hidden shadow-xs hover:shadow-md cursor-pointer bg-box' ;
+$overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-center h-full';
 $newWidgetListClass = 'btn btn-block btn-default text-xl';
 @endphp
 
 @inject('campaignService', 'App\Services\CampaignService')
 @section('content')
-
+<div class="max-w-5xl">
     <div class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">
@@ -131,7 +130,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
 
     @include('partials.errors')
 
-    <div class="campaign-dashboard-widgets max-w-4xl">
+    <div class="campaign-dashboard-widgets">
         <div class="row" id="widgets" data-url="{{ route('dashboard.reorder') }}">
             @if (empty($dashboard))
             <div class="col-md-12">
@@ -151,8 +150,8 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
             @endforeach
 
             <div class="col-md-4">
-                <div class="{{ $widgetClass }} cursor-pointer hover:shadow border-dashed border-2" data-toggle="modal" data-target="#new-widget" id="btn-add-widget">
-                    <div class="{{ $overlayClass }} text-3xl">
+                <div class="{{ $widgetClass }} cursor-pointer shadow-xs hover:shadow-md" data-toggle="modal" data-target="#new-widget" id="btn-add-widget">
+                    <div class="{{ $overlayClass }} text-2xl">
                         <i class="fa-solid fa-plus" aria-hidden="true"></i>
                         <span class="block">{{ __('dashboard.setup.actions.add') }}</span>
                     </div>
@@ -160,8 +159,14 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
             </div>
         </div>
     </div>
+</div>
+    {{ csrf_field() }}
 
-    <div class="modal fade" id="new-widget" role="dialog" aria-labelledby="deleteConfirmLabel">
+    @include('editors.editor', ['dialogsInBody' => true])
+@endsection
+
+@section('modals')
+    <div class="modal fade" id="new-widget" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl">
                 <div class="modal-body text-center" id="modal-content-buttons">
@@ -217,10 +222,6 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
             </div>
         </div>
     </div>
-
-    {{ csrf_field() }}
-
-    @include('editors.editor', ['dialogsInBody' => true])
 @endsection
 
 @section('scripts')

@@ -90,18 +90,20 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
             <section class="content" role="main">
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
-                    <div class="alert alert-warning">
-                        <h4>
+                    <div class="alert alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5">
+                        <div class="m-0 p-0 text-lg">
                             <i class="icon fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
                             {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
-                        </h4>
-                        <p>
+                        </div>
+                        <div class="grow text-justify">
                             {{ __('campaigns.members.impersonating.message') }}
-
+                        </div>
+                        <div>
                             <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm switch-back">
-                                <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i> {{ __('campaigns.members.actions.switch-back') }}
+                                <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+                                {{ __('campaigns.members.actions.switch-back') }}
                             </a>
-                        </p>
+                        </div>
                     </div>
                 @endif
                 @include('partials.success')

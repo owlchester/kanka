@@ -229,11 +229,20 @@
  * Everything is a grid now
  */
 body.entity-with-banner .content-wrapper > .content {
-  padding-top: 0;
+    padding-top: 0;
+
+    .alert {
+        margin: 0 !important;
+    }
 }
 body[class*="kanka-entity"] .content-wrapper > .content {
-  padding-left: 0;
-  padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    .alert {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }
 
 .entity-grid {
