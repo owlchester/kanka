@@ -64,7 +64,7 @@ $boxClass = "rounded p-4 bg-box flex flex-col";
             <div class="flex gap-2 mb-2">
                 <h2 class="text-base mt-0 grow">
                     <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-                    <span class="sr-only">{{ __('settings/appearance.fields.date-format') }}</span>
+                    {{ __('settings/appearance.fields.date-format') }}
                 </h2>
                 <a href="https://docs.kanka.io/en/latest/profile/appearance.html#date-formatting" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
                     <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
@@ -90,7 +90,7 @@ $boxClass = "rounded p-4 bg-box flex flex-col";
             <div class="flex gap-2 mb-2">
                 <h2 class="text-base mt-0 grow">
                     <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true"></i>
-                    <span class="sr-only">{{ __('settings/appearance.fields.date-format') }}</span>
+                    {{ __('settings/appearance.fields.date-format') }}
                 </h2>
                 <a href="https://docs.kanka.io/en/latest/profile/appearance.html#campaign-order" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
                     <i class="fa-solid fa-question-circle" aria-hidden="true" aria-label="{{ __('front.menu.documentation') }}"></i>
