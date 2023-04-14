@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Http\Requests\HistoryRequest;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,7 @@ use Illuminate\Support\Str;
  * @property User $user
  * @property User $impersonator
  * @property Campaign $campaign
+ * @property Carbon $created_at
  */
 class EntityLog extends Model
 {
@@ -217,7 +219,7 @@ class EntityLog extends Model
         if (!$this->entity) {
             return link_to_route('recovery', __('history.unknown.entity'));
         }
-        return $this->entity->tooltipedLink();
+        return $this->entity->tooltipedLink($this->entity->name, false);
     }
 
     public function actions($action): array
