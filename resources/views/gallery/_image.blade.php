@@ -4,17 +4,17 @@
 */
 ?>
 
-<li tabindex="0" class="w-40 p-2 rounded shadow-sm cursor-pointer flex flex-col items-center justify-center text-center select-none gap-2"
+<li tabindex="0" class="w-40 p-2 rounded shadow-xs cursor-pointer flex flex-col items-center justify-center text-center select-none gap-2 hover:shadow-md focus:shadow-md bg-box"
     role="checkbox" aria-label="{{ $image->name }}" aria-checked="false" data-id="{{ $image->id }}"
     data-url="{{ route('images.edit', $image) }}" @if ($image->is_folder) data-folder="{{ route('campaign.gallery.index', ['folder_id' => $image->id]) }}" @endif title="{{ $image->name }}">
     @if ($image->is_folder)
-        <div class="w-full flex flex-col items-center gap-2 text-4xl">
-            @if ($image->visibility_id == \App\Models\Visibility::VISIBILITY_ALL)
-                <i class="fa-regular fa-folder" aria-hidden="true"></i>
-            @else
-                {!! $image->visibilityIcon('') !!}
-            @endif
+        <div class="w-full flex flex-col items-center gap-2">
+            <i class="fa-regular fa-folder text-4xl" aria-hidden="true"></i>
             <div class="text-base overflow-hidden">
+
+                @if ($image->visibility_id != \App\Models\Visibility::VISIBILITY_ALL)
+                    {!! $image->visibilityIcon() !!}
+                @endif
                 {{ $image->name }}
             </div>
         </div>

@@ -50,7 +50,6 @@ export default defineConfig({
             'resources/sass/export.scss',
             'resources/sass/map-v3.scss',
             'resources/sass/subscription.scss',
-            'resources/sass/gallery.scss',
             'resources/sass/front.scss',
             'resources/sass/auth.scss',
             'resources/sass/relations.scss',

@@ -150,6 +150,11 @@
     --header-profile-background: var(--table-highlight);
 }
 
+.hover\:shadow-md:hover {
+    --tw-shadow-color: var(--input-border-color);
+    --tw-shadow: var(--tw-shadow-colored);
+}
+
 .family-tree {
     --family-tree-founder: #131212;
 }

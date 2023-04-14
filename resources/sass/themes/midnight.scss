@@ -152,6 +152,11 @@
     --campaign-switcher-text: var(--theme-input-text);
 }
 
+.hover\:shadow-md:hover {
+    --tw-shadow-color: var(--theme-link);
+    --tw-shadow: var(--tw-shadow-colored);
+}
+
 .family-tree {
     --family-tree-founder: var(--theme-link-hover);
 }
