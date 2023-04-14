@@ -10,44 +10,27 @@ use Illuminate\Support\Str;
 
 class FilterService
 {
-    /**
-     * The filters as saved in the session
-     * @var array
-     */
+    /** @var array The filters as saved in the session */
     protected array $filters = [];
 
-    /**
-     * The order as saved in the session
-     * @var array|null
-     */
+    /** @var array|null The order as saved in the session */
     protected array|null $order = [];
 
-    /**
-     * The request data
-     * @var array
-     */
+    /** @var array The request data */
     protected array $data = [];
 
-    /**
-     * The index crud for session keys
-     * @var string
-     */
+    /** @var string The index crud for session keys */
     protected string $crud = '';
 
-    /**
-     * Search option
-     * @var string
-     */
+    /** @var string Search option */
     protected string $search = '';
 
-    /**
-     * If the filters are stored in the session
-     * @var bool
-     */
+    /** @var bool If the filters are stored in the session */
     protected bool $session = true;
 
     /** @var Request The request object */
     protected Request $request;
+    protected bool $hasRequest = false;
 
     /** @var Model|MiscModel The entity sub model */
     protected Model|MiscModel $model;
@@ -60,6 +43,16 @@ class FilterService
     {
         $this->request = $request;
         $this->data = $request->all();
+        $this->hasRequest = true;
+        return $this;
+    }
+    /**
+     * @param array $data
+     * @return $this
+     */
+    public function options(array $data): self
+    {
+        $this->data = $data;
         return $this;
     }
 
@@ -104,14 +97,14 @@ class FilterService
 
         // Load the filters from the session if we're revisiting a page
         $sessionKey = 'filterService-filter-' . $this->crud;
-        if ($this->request->get('_from', false) == 'quicklink') {
+        if ($this->hasRequest && $this->request->get('_from', false) == 'quicklink') {
             $sessionKey .= '-quicklink';
         }
         $this->filters = $this->sessionLoad($sessionKey);
 
 
         // If the request has _clean, we only want filters that are set in the url
-        if ($this->request->get('_clean', false)) {
+        if ($this->hasRequest && $this->request->get('_clean', false)) {
             $this->filters = [];
         }
 
@@ -330,6 +323,10 @@ class FilterService
             $options['search'] = $this->search;
         }
 
+        if (!$this->hasRequest) {
+            return $options;
+        }
+
         if ($this->request->get('_from', false) == 'quicklink') {
             $options['_from'] = 'quicklink';
         }
@@ -340,15 +337,6 @@ class FilterService
 
         if (in_array($this->request->get('m'), ['table', 'grid'])) {
             $options['m'] = $this->request->get('m');
-        }
-
-        if (!empty($this->order)) {
-            foreach ($this->order as $order => $dir) {
-                $options['order'] = $order;
-                if ($dir === 'DESC') {
-                    $options['desc'] = '1';
-                }
-            }
         }
 
         return $options;

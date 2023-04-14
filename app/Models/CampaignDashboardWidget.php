@@ -295,7 +295,9 @@ class CampaignDashboardWidget extends Model
             $filterService = app()->make('App\Services\FilterService');
             $filterService
                 ->session(false)
-                ->make($entityType, $this->filterOptions(), $model);
+                ->options($this->filterOptions())
+                ->model($model)
+                ->make($entityType);
 
             $models = $model
                 ->select($model->getTable() . '.id')
@@ -339,7 +341,9 @@ class CampaignDashboardWidget extends Model
             $filterService = app()->make('App\Services\FilterService');
             $filterService
                 ->session(false)
-                ->make($entityType, $this->filterOptions(), $model);
+                ->options($this->filterOptions())
+                ->model($model)
+                ->make($entityType);
 
             $models = $model
                 ->select($model->getTable() . '.id')
