@@ -462,6 +462,10 @@ class Character extends MiscModel
         ];
     }
 
+    /**
+     * Available sorting on the grid view
+     * @return array
+     */
     public function datagridSortableColumns(): array
     {
         $columns = [

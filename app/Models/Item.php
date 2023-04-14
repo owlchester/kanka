@@ -283,4 +283,23 @@ class Item extends MiscModel
             'item_id',
         ];
     }
+
+    /**
+     * Grid mode sortable fields
+     * @return array
+     */
+    public function datagridSortableColumns(): array
+    {
+        $columns = [
+            'name' => __('crud.fields.name'),
+            'type' => __('crud.fields.type'),
+            'price' => __('items.fields.price'),
+            'size' => __('items.fields.size'),
+        ];
+
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            $columns['is_private'] = __('crud.fields.is_private');
+        }
+        return $columns;
+    }
 }

@@ -110,7 +110,7 @@ function treeViewInit() {
                 // Don't trigger the click on the checkbox (used for bulk actions)
                 //console.log('click tr', target);
                 if (e.target.type !== 'checkbox' && target.data('tree') !== 'escape') {
-                    window.location = link + '?parent_id=' + $(this).data('id');
+                    window.location = link + '?parent_id=' + $(this).data('id') + '&m=table';
                 }
             });
         }

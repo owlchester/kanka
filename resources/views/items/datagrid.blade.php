@@ -4,14 +4,11 @@
     ->service($filterService)
     ->models($models)
     ->columns([
-        // Avatar
         [
             'type' => 'avatar'
         ],
-        // Name
         'name',
         'type',
-        //Item_id
         [
             'label' => __('items.fields.item'),
             'field' => 'item_id',
@@ -35,12 +32,10 @@
                 return $model->size;
             }
         ],
-        // Location
         [
             'type' => 'location',
             'visible' => $campaignService->enabled('locations'),
         ],
-        // Character
         [
             'type' => 'character',
             'visible' => $campaignService->enabled('characters'),

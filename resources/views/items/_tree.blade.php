@@ -9,7 +9,6 @@
         [
             'type' => 'avatar'
         ],
-        // Name
         'name',
         'type',
         [
@@ -26,13 +25,10 @@
                 return $model->size;
             }
         ],
-        'size',
-        // Location
         [
             'type' => 'location',
             'visible' => $campaignService->enabled('locations'),
         ],
-        // Character
         [
             'type' => 'character',
             'visible' => $campaignService->enabled('characters'),
