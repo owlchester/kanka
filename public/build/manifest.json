@@ -231,17 +231,17 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-9a6c0fce.css",
+    "file": "assets/app-30363732.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-65156ba2.css",
+    "file": "assets/auth-9f4f2d47.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
   "resources/sass/dashboard.scss": {
-    "file": "assets/dashboard-15d06e59.css",
+    "file": "assets/dashboard-e64de9a7.css",
     "isEntry": true,
     "src": "resources/sass/dashboard.scss"
   },
@@ -264,11 +264,6 @@
     "file": "assets/front-10e1661c.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
-  },
-  "resources/sass/gallery.scss": {
-    "file": "assets/gallery-343b3fc0.css",
-    "isEntry": true,
-    "src": "resources/sass/gallery.scss"
   },
   "resources/sass/map-v3.scss": {
     "file": "assets/map-v3-2d03a450.css",
@@ -296,12 +291,12 @@
     "src": "resources/sass/subscription.scss"
   },
   "resources/sass/themes/dark.scss": {
-    "file": "assets/dark-3a30552e.css",
+    "file": "assets/dark-91098256.css",
     "isEntry": true,
     "src": "resources/sass/themes/dark.scss"
   },
   "resources/sass/themes/midnight.scss": {
-    "file": "assets/midnight-692e9813.css",
+    "file": "assets/midnight-e50803c9.css",
     "isEntry": true,
     "src": "resources/sass/themes/midnight.scss"
   },
