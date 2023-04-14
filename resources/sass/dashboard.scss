@@ -86,16 +86,11 @@
         .full {
             max-height: unset;
         }
-    }
-
-    ul {
-        padding-left: 25px;
-        li {
+        .entity-content {
+            ul {
+                padding-left: 25px;
+            }
         }
-    }
-
-    ul.list-unstyled {
-        padding-left: 10px;
     }
 
     .list-group-item.list-group-item-repeat {

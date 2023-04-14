@@ -27,15 +27,17 @@ $weather = $calendar->calendarWeather()
 
 /** @var \App\Models\EntityEvent $event */
 ?>
-<div class="current-date text-center text-2xl" id="widget-date-{{ $widget->id }}">
+<div class="current-date text-center text-2xl flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
-        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', $widget) }}" data-widget="{{ $widget->id }}">
-            <i class="fa-solid fa-chevron-circle-left" data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" ></i>
+        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', $widget) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" role="button">
+            <i class="fa-solid fa-chevron-circle-left" aria-hidden="true"></i>
+            <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.previous') }}</span>
         </a>
         <span>{{ $calendar->niceDate() }}</span>
 
-        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.add', $widget) }}" data-widget="{{ $widget->id }}">
-            <i class="fa-solid fa-chevron-circle-right" data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.next') }}" ></i>
+        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.add', $widget) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.next') }}" role="button">
+            <i class="fa-solid fa-chevron-circle-right" aria-hidden="true"></i>
+            <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.next') }}</span>
         </a>
     @else
         {{ $calendar->niceDate() }}
@@ -55,16 +57,17 @@ $weather = $calendar->calendarWeather()
 <div class="row">
     @if ($previousEvents->isNotEmpty())
         <div class="col-md-12 col-lg-6">
-            <h4>
+            <div class="text-lg mb-2">
                 {{ __('dashboard.widgets.calendar.previous_events') }}
-                <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank">
-                    <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}"></i>
+                <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}">
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('helpers.calendar-widget.info') }}</span>
                 </a>
-            </h4>
-            <ul class="list-unstyled">
+            </div>
+            <ul class="style-none p-0">
                 @foreach ($previousEvents->take(5) as $reminder)
                     @if (!$reminder->entity) @continue @endif
-                    <li data-ago="{{ $reminder->daysAgo() }}">
+                    <li data-ago="{{ $reminder->daysAgo() }}" class="">
                         <div class="pull-right">
                             @if (!empty($reminder->comment))
                                 <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
@@ -77,7 +80,7 @@ $weather = $calendar->calendarWeather()
                         {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
 
                         @if (app()->environment('local'))
-                            ({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)
+                            <span class="text-xs">({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)</span>
                         @endif
                     </li>
                 @endforeach
@@ -87,13 +90,14 @@ $weather = $calendar->calendarWeather()
 
     @if ($upcomingEvents->isNotEmpty())
         <div class="col-lg-6 col-md-12">
-            <h4>
+            <div class="text-lg mb-2">
                 {{ __('dashboard.widgets.calendar.upcoming_events') }}
-                <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank">
-                    <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}"></i>
+                <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}">
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('helpers.calendar-widget.info') }}</span>
                 </a>
-            </h4>
-            <ul class="list-unstyled">
+            </div>
+            <ul class="style-none p-0">
                 @foreach ($upcomingEvents->take(5) as $reminder)
                     @if (!$reminder->entity) @continue @endif
                     <li data-in="{{ $reminder->inDays() }}">
@@ -112,7 +116,7 @@ $weather = $calendar->calendarWeather()
                         </div>
                         {{ link_to($reminder->entity->url(), $reminder->entity->name, ['title' => $reminder->comment, 'data-toggle' => 'tooltip']) }}
                         @if (app()->environment('local'))
-                        ({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)
+                            <span class="text-xs">({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)</span>
                         @endif
                     </li>
                 @endforeach

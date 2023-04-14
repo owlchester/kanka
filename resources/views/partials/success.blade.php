@@ -1,5 +1,5 @@
 @if (session('success') or session('success_raw'))
-    <div class="alert alert-success alert-dismissable mb-5 flex items-center p-4">
+    <div class="alert alert-success alert-dismissable border-0 shadow-xs mb-5 flex items-center p-4">
         <div class="grow">
             @if (session('success_raw'))
                 {!! session('success_raw') !!}
@@ -16,7 +16,7 @@
     </div>
 @endif
 @if (session('warning'))
-    <div class="alert alert-warning alert-dismissable mb-5 flex items-center p-4">
+    <div class="alert alert-warning alert-dismissable border-0 shadow-xs mb-5 flex items-center p-4">
         <div class="grow">
             {{ session('warning') }}
         </div>
@@ -29,7 +29,7 @@
     </div>
 @endif
 @if (session('error') or session('error_raw'))
-    <div class="alert alert-danger alert-dismissable mb-5 flex items-center p-4">
+    <div class="alert alert-danger alert-dismissable border-0 shadow-xs mb-5 flex items-center p-4">
         <div class="grow">
             @if (session('error_raw'))
                 {!! session('error_raw') !!}
