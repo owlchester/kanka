@@ -33,7 +33,10 @@ trait TreeControllerTrait
          * @var MiscModel $model
          */
         $model = new $this->model();
-        $this->filterService->make($this->view . 'tree', request()->all(), $model);
+        $this->filterService
+            ->request($request)
+            ->model($model)
+            ->make($this->view . 'tree');
         $name = $this->view;
         $filters = $this->filters;
         $filterService = $this->filterService;

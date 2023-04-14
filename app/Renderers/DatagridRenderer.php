@@ -230,6 +230,7 @@ class DatagridRenderer
         }
 
         $routeOptions = [
+            'm' => 'table',
             'order' => $field ,
             'page' => request()->get('page')
         ];
@@ -246,14 +247,14 @@ class DatagridRenderer
 
         // Order by
         $order = $this->filterService->order();
-        $orderImg = ' <i class="fa-solid fa-sort"></i>';
+        $orderImg = ' <i class="fa-solid fa-sort" aria-hidden="true"></i>';
         if (!empty($order) && isset($order[$field])) {
             $direction = 'down';
             if ($order[$field] != 'DESC') {
                 $routeOptions['desc'] = true;
                 $direction = 'up';
             }
-            $orderImg = ' <i class="fa-solid fa-sort-' . $direction . '"></i>';
+            $orderImg = ' <i class="fa-solid fa-sort-' . $direction . '" aria-hidden="true"></i>';
         }
 
         return "<a href='" .

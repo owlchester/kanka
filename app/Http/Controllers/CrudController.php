@@ -96,23 +96,11 @@ class CrudController extends Controller
         $this->filterService = new FilterService();
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
     public function index(Request $request)
     {
         return $this->crudIndex($request);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
     public function crudIndex(Request $request)
     {
         if (!$this->moduleEnabled()) {
@@ -130,7 +118,10 @@ class CrudController extends Controller
          * @var MiscModel $model
          */
         $model = new $this->model();
-        $this->filterService->make($this->view, request()->all(), $model);
+        $this->filterService
+            ->request($request)
+            ->model($model)
+            ->make($this->view);
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
         $filters = $this->filters;

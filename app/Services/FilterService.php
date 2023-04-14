@@ -4,9 +4,8 @@ namespace App\Services;
 
 use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class FilterService
@@ -47,22 +46,47 @@ class FilterService
      */
     protected bool $session = true;
 
+    /** @var Request The request object */
+    protected Request $request;
+
+    /** @var Model|MiscModel The entity sub model */
+    protected Model|MiscModel $model;
+
     /**
-     * @param string $crud
-     * @param array $requestData
-     * @param Model|MiscModel $model
+     * @param Request $request
+     * @return $this
+     */
+    public function request(Request $request): self
+    {
+        $this->request = $request;
+        $this->data = $request->all();
+        return $this;
+    }
+
+    /**
+     * @param Model $model
+     * @return $this
      * @throws \Exception
      */
-    public function make(string $crud, array $requestData, Model $model)
+    public function model(Model $model): self
     {
-        $this->data = $requestData;
-        $this->crud = $crud;
-
         if (!method_exists($model, 'getFilterableColumns')) {
             throw new \Exception('Model ' . $model . ' doesn\'t implement the Filterable trait.');
         }
-        $this->prepareFilters($model->getFilterableColumns())
-            ->prepareOrder($model->sortableColumns()) // @phpstan-ignore-line
+        $this->model = $model;
+        return $this;
+    }
+
+
+    /**
+     * @param string $crud
+     */
+    public function make(string $crud)
+    {
+        $this->crud = $crud;
+
+        $this->prepareFilters($this->model->getFilterableColumns())
+            ->prepareOrder($this->model->sortableColumns()) // @phpstan-ignore-line
             ->prepareSearch();
     }
 
@@ -71,7 +95,7 @@ class FilterService
      * @param array $availableFilters
      * @return self
      */
-    protected function prepareFilters($availableFilters = []): self
+    protected function prepareFilters(array $availableFilters = []): self
     {
         // No point in doing any work if the model has no fields to filter.
         if (empty($availableFilters)) {
@@ -80,14 +104,14 @@ class FilterService
 
         // Load the filters from the session if we're revisiting a page
         $sessionKey = 'filterService-filter-' . $this->crud;
-        if (request()->get('_from', false) == 'quicklink') {
+        if ($this->request->get('_from', false) == 'quicklink') {
             $sessionKey .= '-quicklink';
         }
         $this->filters = $this->sessionLoad($sessionKey);
 
 
         // If the request has _clean, we only want filters that are set in the url
-        if (request()->get('_clean', false)) {
+        if ($this->request->get('_clean', false)) {
             $this->filters = [];
         }
 
@@ -211,7 +235,7 @@ class FilterService
      * @return mixed
      * @throws \Exception
      */
-    public function filterValue($key, $default = null)
+    public function filterValue(mixed $key, $default = null)
     {
         if (is_array($key)) {
             throw new \Exception('Key for FilterService can\'t be an array');
@@ -306,16 +330,25 @@ class FilterService
             $options['search'] = $this->search;
         }
 
-        if (request()->get('_from', false) == 'quicklink') {
+        if ($this->request->get('_from', false) == 'quicklink') {
             $options['_from'] = 'quicklink';
         }
 
-        if ($quickLinkID = request()->get('quick-link')) {
+        if ($quickLinkID = $this->request->get('quick-link')) {
             $options['quick-link'] = (int) $quickLinkID;
         }
 
-        if (request()->get('m') === 'legacy') {
-            $options['m'] = 'legacy';
+        if (in_array($this->request->get('m'), ['table', 'grid'])) {
+            $options['m'] = $this->request->get('m');
+        }
+
+        if (!empty($this->order)) {
+            foreach ($this->order as $order => $dir) {
+                $options['order'] = $order;
+                if ($dir === 'DESC') {
+                    $options['desc'] = '1';
+                }
+            }
         }
 
         return $options;
