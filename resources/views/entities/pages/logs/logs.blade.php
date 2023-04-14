@@ -72,7 +72,7 @@
                             </tr>
                         @endif
                         @if ($campaign->superboosted() && !empty($log->changes))
-                        <tr id="log-{{ $log->id }}" class="collapse">
+                        <tr id="log-{{ $log->id }}" class="collapse !visible">
                             <td colspan="4">
                                 <dl class="dl-horizontal">
                                     @foreach ($log->changes as $attribute => $value)
