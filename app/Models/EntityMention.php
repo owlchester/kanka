@@ -239,7 +239,6 @@ class EntityMention extends Model
 
     /**
      * @return string
-     * @throws Exception
      */
     public function getLink(): string
     {
@@ -262,37 +261,41 @@ class EntityMention extends Model
     public function mentionLink(): string
     {
         if ($this->isQuestElement()) {
-            return $this->questElement->quest->entity->tooltipedLink() .
-            ' - ' . $this->questElement->visibilityIcon(null, true) .
-            ' <a class="name" href="' .
-            $this->getLink() . '">' .
-            $this->questElement->name .
-            '</a>';
+            if ($this->questElement && $this->questElement->quest) {
+                return $this->questElement->quest->entity->tooltipedLink() .
+                    ' - ' . $this->questElement->visibilityIcon(null, true) .
+                    ' <a class="name" href="' .
+                    $this->getLink() . '">' .
+                    $this->questElement->name .
+                    '</a>';
+            }
         } elseif ($this->isTimelineElement()) {
-            return $this->timelineElement->timeline->entity->tooltipedLink() .
-            ' - ' . $this->timelineElement->visibilityIcon(null, true) .
-            ' <a class="name" href="' .
-            $this->getLink() . '">' .
-            $this->timelineElement->name .
-            '</a>';
-
+            if ($this->timelineElement && $this->timelineElement->timeline) {
+                return $this->timelineElement->timeline->entity->tooltipedLink() .
+                    ' - ' . $this->timelineElement->visibilityIcon(null, true) .
+                    ' <a class="name" href="' .
+                    $this->getLink() . '">' .
+                    $this->timelineElement->name .
+                    '</a>';
+            }
         } elseif ($this->isPost()) {
-            return $this->post->entity->tooltipedLink() .
-            ' - ' . $this->post->visibilityIcon(null, true) .
-            ' <a class="name" href="' .
-            $this->getLink() . '">' .
-            $this->post->name .
-            '</a>';
-
-        } elseif ($this->isEntity()) {
+            if ($this->post && $this->post->entity) {
+                return $this->post->entity->tooltipedLink() .
+                    ' - ' . $this->post->visibilityIcon(null, true) .
+                    ' <a class="name" href="' .
+                    $this->getLink() . '">' .
+                    $this->post->name .
+                    '</a>';
+            }
+        } elseif ($this->entity) {
             return $this->entity->tooltipedLink();
 
         } elseif ($this->isCampaign()) {
             return '<a class="name" href="' .
-            route('campaign') . '">' .
-            $this->campaign->name .
-            '</a>';
+                route('campaign') . '">' .
+                $this->campaign->name .
+                '</a>';
         }
-        return '#';
+        return __('crud.hidden');
     }
 }
