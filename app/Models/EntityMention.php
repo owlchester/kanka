@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Support\Arr;
-use Exception;
 
 /**
  * Class EntityMention
