@@ -178,28 +178,34 @@
         </div>
 
         <div class="footer-socials text-center px-0 my-2 md:flex justify-center gap-5 items-center">
-            <div class="email py-2">
-                <i class="fa-solid fa-envelope hidden-xs"></i> {{ config('app.email') }}
+            <div class="email py-2 text-base">
+                <i class="fa-solid fa-envelope hidden-xs" aria-hidden="true"></i> {{ config('app.email') }}
             </div>
 
             <div class="socials py-2 text-xl">
                 <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer" class="mr-1">
-                    <i class="fab fa-discord" aria-hidden="true" aria-label="Discord"></i>
+                    <i class="fa-brands fa-discord" aria-hidden="true" aria-label="Discord"></i>
+                    <span class="sr-only">Discord</span>
                 </a>
                 <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer" class="mr-1">
-                    <i class="fab fa-facebook" aria-hidden="true" aria-label="Kanka Facebook"></i>
+                    <i class="fa-brands fa-facebook" aria-hidden="true" aria-label="Kanka Facebook"></i>
+                    <span class="sr-only">Facebook</span>
                 </a>
                 <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer" class="mr-1">
-                    <i class="fab fa-instagram" aria-hidden="true" aria-label="Kanka Instagram"></i>
+                    <i class="fa-brands fa-instagram" aria-hidden="true" aria-label="Kanka Instagram"></i>
+                    <span class="sr-only">Instagram</span>
                 </a>
                 <a href="{{ config('social.youtube') }}" target="youtube" title="Youtube" rel="noreferrer" class="mr-1">
-                    <i class="fab fa-youtube" aria-hidden="true" aria-label="Kanka Youtube"></i>
+                    <i class="fa-brands fa-youtube" aria-hidden="true" aria-label="Kanka Youtube"></i>
+                    <span class="sr-only">Youtube</span>
                 </a>
                 <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer" class="mr-1">
-                    <i class="fab fa-reddit" aria-hidden="true" aria-label="Kanka Subreddit"></i>
+                    <i class="fa-brands fa-reddit" aria-hidden="true" aria-label="Kanka Subreddit"></i>
+                    <span class="sr-only">Reddit</span>
                 </a>
                 <a href="{{ config('social.twitter') }}" target="twitter" title="Twitter" rel="noreferrer">
-                    <i class="fab fa-twitter" aria-hidden="true" aria-label="Kanka Twitter"></i>
+                    <i class="fa-brands fa-twitter" aria-hidden="true" aria-label="Kanka Twitter"></i>
+                    <span class="sr-only">Twitter</span>
                 </a>
             </div>
 

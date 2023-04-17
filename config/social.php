@@ -3,6 +3,7 @@
 /**
  * Social config
  */
+
 return [
     'instagram' => '//www.instagram.com/kanka.io/',
     'discord' => '//discord.gg/rhsyZJ4',

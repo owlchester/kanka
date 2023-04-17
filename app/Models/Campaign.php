@@ -244,19 +244,19 @@ class Campaign extends MiscModel
     }
 
     /**
-     * Get the is public checkbox for the campaign form.
-     */
-    public function getIsPublicAttribute()
-    {
-        return $this->visibility_id == self::VISIBILITY_PUBLIC;
-    }
-
-    /**
      * @return string
      */
     public function getMiddlewareLink(): string
     {
         return 'campaign/' . $this->id;
+    }
+
+    /**
+     * Get the is public attribute for forms
+     */
+    public function getIsPublicAttribute()
+    {
+        return $this->visibility_id == self::VISIBILITY_PUBLIC;
     }
 
     /**
