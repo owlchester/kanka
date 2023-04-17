@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Support\Arr;
+use Exception;
 
 /**
  * Class EntityMention
@@ -235,5 +236,64 @@ class EntityMention extends Model
             return $query->orderBy('e.type_id', $order);
         }  
         return $query;
+    }
+
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function getLink(): string
+    {
+        if ($this->isQuestElement()) {
+            return route('quests.quest_elements.index', [$this->questElement->quest->id, '#quest-element-' . $this->quest_element_id]);
+        } elseif ($this->isTimelineElement()) {
+            return route('timelines.show', [$this->timelineElement->timeline->id, '#timeline-element-' . $this->timeline_element_id]);
+        } elseif ($this->isPost()) {
+            return route($this->post->entity->pluralType() . '.show', [$this->post->entity->child->id, '#post-' . $this->entity_note_id]);
+        }
+        return '#';
+        
+    }
+
+    /**
+     * Get the entity link with ajax tooltip.
+     * When coming from an entity first, call this method on the entity. It avoids some back and worth.
+     * @return string
+     */
+    public function mentionLink(): string
+    {
+        if ($this->isQuestElement()) {
+            return $this->questElement->quest->entity->tooltipedLink() .
+            ' - ' . $this->questElement->visibilityIcon(null, true) .
+            ' <a class="name" href="' .
+            $this->getLink() . '">' .
+            $this->questElement->name .
+            '</a>';
+        } elseif ($this->isTimelineElement()) {
+            return $this->timelineElement->timeline->entity->tooltipedLink() .
+            ' - ' . $this->timelineElement->visibilityIcon(null, true) .
+            ' <a class="name" href="' .
+            $this->getLink() . '">' .
+            $this->timelineElement->name .
+            '</a>';
+
+        } elseif ($this->isPost()) {
+            return $this->post->entity->tooltipedLink() .
+            ' - ' . $this->post->visibilityIcon(null, true) .
+            ' <a class="name" href="' .
+            $this->getLink() . '">' .
+            $this->post->name .
+            '</a>';
+
+        } elseif ($this->isEntity()) {
+            return $this->entity->tooltipedLink();
+
+        } elseif ($this->isCampaign()) {
+            return '<a class="name" href="' .
+            route('campaign') . '">' .
+            $this->campaign->name .
+            '</a>';
+        }
+        return '#';
     }
 }

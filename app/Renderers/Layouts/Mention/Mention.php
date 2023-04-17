@@ -23,7 +23,17 @@ class Mention extends Layout
                 'key' => 'type',
                 'label' => 'crud.fields.type',
                 'render' => function ($model) {
-                    return __('entities.' . $model->entity->type());
+                    if ($model->isEntity()) {
+                        return __('entities.' . $model->entity->type());
+                    } elseif ($model->isCampaign()){
+                        return __('entities.campaign');
+                    } elseif ($model->isTimelineElement()){
+                        return __('entities.timeline_element');
+                    } elseif ($model->isQuestElement()){
+                        return __('entities.quest_element');
+                    } elseif ($model->isPost()){
+                        return __('entities.post');
+                    }
                 },
             ],
         ];
