@@ -29,7 +29,7 @@
             </div>
 
             <x-buttons.confirm type="danger" full="true">
-                <i class="fa-solid fa-minus-circle" aria-hidden="true"></i>
+                <i class="fa-solid fa-times" aria-hidden="true"></i>
                 {{ __('campaigns/submissions.actions.reject') }}
             </x-buttons.confirm>
         @endif

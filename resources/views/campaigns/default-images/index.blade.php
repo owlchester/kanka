@@ -16,32 +16,54 @@
             @include('campaigns._menu', ['active' => 'default-images'])
         </div>
         <div class="col-md-9">
-            <h3 class="mt-0 inline-block">
-                {{ __('campaigns.show.tabs.default-images') }}
-            </h3>
+            <div class="flex gap-2 mb-5 items-center">
+                <h1 class="m-0 grow">
+                    {{ __('campaigns.show.tabs.default-images') }}
+                </h1>
+                @if ($campaign->boosted())
+                    <button class="btn btn-default btn-sm" data-toggle="dialog"
+                            data-target="default-images-help">
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        {{ __('campaigns.members.actions.help') }}
+                    </button>
+
+                    <a href="{{ route('campaign.default-images.create') }}" class="btn btn-primary btn-sm"
+                       data-toggle="ajax-modal" data-target="#entity-modal"
+                       data-url="{{ route('campaign.default-images.create') }}">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        {{ __('campaigns/default-images.actions.add') }}
+                    </a>
+                @endif
+            </div>
             @if ($campaign->boosted())
-                <button class="btn btn-default btn-small pull-right" data-toggle="dialog"
-                        data-target="default-images-help">
-                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                    {{ __('campaigns.members.actions.help') }}
-                </button>
-                <div class="box no-border mt-1">
+                <div class="box no-border">
                     <div class="box-body no-padding">
+                        @if (empty($campaign->defaultImages()))
+                            <div class="p-4">
+                                <a href="{{ route('campaign.default-images.create') }}" class="btn btn-primary"
+                                   data-toggle="ajax-modal" data-target="#entity-modal"
+                                   data-url="{{ route('campaign.default-images.create') }}">
+                                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                                    {{ __('campaigns/default-images.actions.add') }}
+                                </a>
+                            </div>
+                        @endif
                         <table class="table table-borderless">
                             <tbody>
                             @foreach ($campaign->defaultImages() as $image)
                                 <tr>
-                                    <td style="width: 60px">
-                                        <div class="entity-image pull-left" style="background-image: url({{ Img::crop(40, 40)->url($image['path']) }})"></div>
+                                    <td class="w-16">
+                                        <div class="entity-image cover-background" style="background-image: url({{ Img::crop(40, 40)->url($image['path']) }})"></div>
                                     </td>
                                     <td>
                                         {{ __('entities.' . $image['type']) }}
                                     </td>
                                     <td class="text-right">
-                                        <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('entities.' . $image['type']) }}"
+                                        <button class="btn btn-sm btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('entities.' . $image['type']) }}"
                                                 data-target="#delete-confirm" data-delete-target="delete-form-{{ $image['uuid'] }}"
                                                 title="{{ __('crud.remove') }}">
                                             <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                            <span>{{ __('crud.remove') }}</span>
                                         </button>
                                         {!! Form::open([
                                             'method' => 'DELETE',
@@ -58,13 +80,6 @@
                             @endforeach
                             </tbody>
                         </table>
-                    </div>
-                    <div class="box-footer no-border">
-                        <a href="{{ route('campaign.default-images.create') }}" class="btn btn-primary"
-                           data-toggle="ajax-modal" data-target="#entity-modal"
-                           data-url="{{ route('campaign.default-images.create') }}">
-                            {{ __('campaigns/default-images.actions.add') }}
-                        </a>
                     </div>
                 </div>
             @else
