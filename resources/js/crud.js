@@ -109,6 +109,11 @@ function registerEntityFormActions() {
 
     // Register click on each sub action
     $.each(entityFormActions, function () {
+        if ($(this).data('loaded') === 1) {
+            return;
+        }
+        $(this).data('loaded', 1);
+
         $(this).unbind('click').on('click', function () {
             //console.log('setting the submit name to ' + $(this).data('action'));
             entityFormSubmitMode.attr('name', $(this).data('action'));
