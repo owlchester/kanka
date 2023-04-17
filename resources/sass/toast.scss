@@ -1,17 +1,12 @@
 /** Toast **/
-:root {
-    --toast-background: #00a65a;
-    --toast-background-error: #d73925;
-    --toast-text: white;
-}
 .toast-container {
     .toast-success, .toast-error {
         .toast-message {
-            background-color: var(--toast-background);
-            color: var(--toast-text);
+            background-color: var(--toast-background, #00a65a);
+            color: var(--toast-text, white);
         }
     }
     .toast-error .toast-message {
-        background-color: var(--toast-background-error);
+        background-color: var(--toast-background-error, #d73925);
     }
 }

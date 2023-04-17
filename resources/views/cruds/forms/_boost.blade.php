@@ -30,11 +30,17 @@ $tooltipTags = implode(', ', $tooltipTags);
 
 <div class="form-group">
     <label>
-        <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+        <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip" aria-hidden="true"></i>
         {{ __('fields.header-image.title') }}
     </label>
 
     @if($campaignService->campaign()->boosted())
+        @php
+        $headerUrlPreset = null;
+        if (!empty($source) && $source->entity && $source->entity->header_image) {
+            $headerUrlPreset = Storage::url($source->entity->header_image);
+        }
+        @endphp
         <div class="row">
             <div class="col-lg-6">
             <p class="help-block">{{ __('fields.header-image.description') }}</p>
@@ -47,7 +53,7 @@ $tooltipTags = implode(', ', $tooltipTags);
                         {!! Form::file('header_image', array('class' => 'image form-control')) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::text('header_image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
+                        {!! Form::text('header_image_url', $headerUrlPreset, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
 
                         <p class="help-block">
                             {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => auth()->user()->maxUploadSize(true)]) }}

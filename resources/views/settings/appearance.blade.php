@@ -6,6 +6,7 @@
 ])
 @php
 $boxClass = "rounded p-4 bg-box flex flex-col";
+$highlightClass = 'drop-shadow border-accent border-solid border-2 !bg-blue-100';
 @endphp
 
 @section('content')
@@ -42,7 +43,7 @@ $boxClass = "rounded p-4 bg-box flex flex-col";
             ], null, ['class' => 'form-control self-end w-full border rounded p-2']) !!}
         </div>
 
-        <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? 'drop-shadow border-accent border-solid border-2 !bg-blue-100' : '' }}">
+        <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? $highlightClass : '' }}">
             <div class="flex gap-2 mb-2">
                 <h2 class="text-base mt-0 grow">
                     <i class="fa-solid fa-list" aria-hidden="true"></i>
@@ -86,7 +87,7 @@ $boxClass = "rounded p-4 bg-box flex flex-col";
 
         </div>
 
-        <div class="{{ $boxClass }} {{ $highlight === 'campaign-switcher' ? 'drop-shadow border-accent border-solid border-2 !bg-blue-100' : '' }}">
+        <div class="{{ $boxClass }} {{ $highlight === 'campaign-switcher' ? $highlightClass : '' }}">
             <div class="flex gap-2 mb-2">
                 <h2 class="text-base mt-0 grow">
                     <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true"></i>
@@ -149,7 +150,7 @@ $boxClass = "rounded p-4 bg-box flex flex-col";
             </div>
         @endif
 
-            <div class="{{ $boxClass }}">
+            <div class="{{ $boxClass }} {{ $highlight === 'explore' ? $highlightClass : '' }}">
                 <div class="flex gap-2 mb-2">
                     <h2 class="text-base mt-0 grow">
                         <i class="fa-solid fa-grid" aria-hidden="true"></i>

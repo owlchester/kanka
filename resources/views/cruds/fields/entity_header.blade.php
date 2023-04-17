@@ -3,10 +3,8 @@
     $preset = null;
     if (isset($model) && $model->entity && $model->entity->header_uuid) {
         $preset = $model->entity->header;
-    } elseif (isset($parent) && $parent) {
-        $preset = FormCopy::field('entity_header_uuid')->select(true, \App\Models\Image::class);
     } else {
-        $preset = FormCopy::field('entity_header_uuid')->select();
+        $preset = FormCopy::field('header')->entity()->select();
     }
     @endphp
 

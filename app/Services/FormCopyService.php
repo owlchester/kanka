@@ -253,6 +253,7 @@ class FormCopyService
             // @phpstan-ignore-next-line
             return $this->source->entity->{$this->field};
         }
+
         return $this->source->{$this->field};
     }
 }

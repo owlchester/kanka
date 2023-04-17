@@ -12,16 +12,16 @@ return [
     'editors'                       => [],
     'fields'                        => [
         'avatar'                    => 'Avatar',
-        'bio'                       => 'Bigraphie',
+        'bio'                       => 'Biographie',
         'email'                     => 'Email',
         'hide_subscription'         => 'Cacher mon nom du :hall_of_fame.',
-        'last_login_share'          => 'Partager la date de ma dernière connexion avec les autres membres de la campagne.',
+        'last_login_share'          => 'Partager la date de ma dernière connexion avec les autres membres de mes campagnes.',
         'name'                      => 'Nom',
         'new_password'              => 'Nouveau mot de passe',
         'new_password_confirmation' => 'Confirmation du nouveau mot de passe',
         'newsletter'                => 'Je souhaite être contacté par email de temps en temps.',
         'password'                  => 'Mot de passe actuel',
-        'profile-name'              => 'Nom de profile',
+        'profile-name'              => 'Nom de profil',
         'settings'                  => 'Paramètres',
         'theme'                     => 'Thème',
     ],
@@ -42,7 +42,7 @@ return [
         'success'   => 'Mot de passe modifié.',
     ],
     'placeholders'                  => [
-        'bio'                       => 'Une courte bio affichée sur le profile publique.',
+        'bio'                       => 'Une courte bio affichée sur le profil public.',
         'email'                     => 'Adresse email',
         'name'                      => 'Nom tel qu\'affiché',
         'new_password'              => 'Nouveau mot de passe',
@@ -67,7 +67,7 @@ return [
     'settings'                      => [
         'helpers'   => [
             'bio'       => 'La biographie est visible sur ton :link.',
-            'profile'   => 'profile publique',
+            'profile'   => 'profil public',
         ],
         'success'   => 'Paramètres modifiés.',
     ],

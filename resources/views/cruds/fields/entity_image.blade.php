@@ -7,10 +7,8 @@
     $preset = null;
     if (isset($model) && $model->entity && $model->entity->image_uuid) {
         $preset = $model->entity->image;
-    } elseif (isset($parent) && $parent) {
-        $preset = FormCopy::field('entity_image_uuid')->select(true, \App\Models\Image::class);
     } else {
-        $preset = FormCopy::field('entity_image_uuid')->select();
+        $preset = FormCopy::field('image')->entity()->select();
     }
     @endphp
 
