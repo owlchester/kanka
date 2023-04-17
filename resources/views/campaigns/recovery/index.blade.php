@@ -15,17 +15,16 @@
             @include('campaigns._menu', ['active' => 'recovery'])
         </div>
         <div class="col-md-9">
-            <div class="mb-1">
-                <h3 class="mt-0 inline-block">
+            <div class="flex gap-2 items-center mb-5">
+                <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.recovery') }}
                 </h3>
-                <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                <button class="btn btn-sm btn-default" data-toggle="dialog"
                         data-target="recovery-help">
                     <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     {{ __('campaigns.members.actions.help') }}
                 </button>
             </div>
-
             @includeWhen(session()->get('boosted-pitch'), 'layouts.callouts.boost', ['texts' => []])
 
             <div class="box box-recovery">

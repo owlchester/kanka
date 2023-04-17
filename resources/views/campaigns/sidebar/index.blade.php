@@ -16,30 +16,36 @@
             @include('campaigns._menu', ['active' => 'sidebar'])
         </div>
         <div class="col-md-9">
-            <h3 class="mt-0 inline-block">
-                {{ __('campaigns.show.tabs.sidebar') }}
-            </h3>
+
+            <div class="flex gap-2 mb-5 items-center">
+                <h3 class="m-0 inline-block grow">
+                    {{ __('campaigns.show.tabs.sidebar') }}
+                </h3>
+
+                @if ($campaign->boosted())
+                    <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                            data-target="sidebar-help">
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        {{ __('campaigns.members.actions.help') }}
+                    </button>
+              @endif
+            </div>
 
             @if (!$campaign->boosted())
                 @include('layouts.callouts.boost', ['texts' => [__('campaigns/sidebar.call-to-action')]])
             @else
-                <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
-                        data-target="sidebar-help">
-                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                    {{ __('campaigns.members.actions.help') }}
-                </button>
 
                 <x-tutorial code="sidebar_reorder">
                     <p>
                         {{ __('campaigns/sidebar.helpers.reordering') }}
                     </p>
                 </x-tutorial>
-            {!! Form::open([
-    'route' => 'campaign-sidebar-save',
-    'method' => 'POST',
-    'class' => 'sidebar-setup form-inline form-mobile-inline',
-    'data-shortcut' => 1
-]) !!}
+                {!! Form::open([
+                    'route' => 'campaign-sidebar-save',
+                    'method' => 'POST',
+                    'class' => 'sidebar-setup form-inline form-mobile-inline',
+                    'data-shortcut' => 1
+                ]) !!}
             <div class="box box-solid">
                 <div class="box-body">
                     <ul class="list-none m-0 p-0 sidebar-sortable nested-sortable">

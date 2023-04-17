@@ -15,7 +15,7 @@
             @include('campaigns._menu', ['active' => 'settings'])
         </div>
         <div class="col-md-9 campaign-settings">
-            @include('campaigns._settings')
+            @include('campaigns.settings.index')
         </div>
     </div>
 @endsection

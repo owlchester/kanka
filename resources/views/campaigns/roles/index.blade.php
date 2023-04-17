@@ -1,23 +1,21 @@
-<div class="mb-2">
-    <div class="pull-right">
-        <button class="btn btn-default btn-sm" data-toggle="dialog"
-                data-target="roles-help">
-            <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-            {{ __('campaigns.members.actions.help') }}
-        </button>
-        @if (auth()->user()->can('update', $campaign))
-            <a href="{{ route('campaign_roles.create') }}" class="btn btn-primary btn-sm"
-               data-toggle="ajax-modal" data-target="#entity-modal"
-               data-url="{{ route('campaign_roles.create') }}"
-            >
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                {{ __('campaigns.roles.actions.add') }}
-            </a>
-        @endif
-    </div>
-    <h3 class="mt-0 inline-block">
-        {{ __('campaigns.show.tabs.roles') }} <small>({{ $roles->total() }} / @if ($limit = $campaign->roleLimit()){{ $limit }}@else<i class="fa-solid fa-infinity"></i>@endif)</small>
+<div class="flex gap-2 mb-5 items-center">
+    <h3 class="m-0 inline-block grow">
+        {{ __('campaigns.show.tabs.roles') }} <small>({{ $roles->total() }} / @if ($limit = $campaign->roleLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</small>
     </h3>
+    <button class="btn btn-default btn-sm" data-toggle="dialog"
+            data-target="roles-help">
+        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+        {{ __('campaigns.members.actions.help') }}
+    </button>
+    @if (auth()->user()->can('update', $campaign))
+        <a href="{{ route('campaign_roles.create') }}" class="btn btn-primary btn-sm"
+           data-toggle="ajax-modal" data-target="#entity-modal"
+           data-url="{{ route('campaign_roles.create') }}"
+        >
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            {{ __('campaigns.roles.actions.add') }}
+        </a>
+    @endif
 </div>
 
 <?php /** @var \App\Models\Campaign $campaign

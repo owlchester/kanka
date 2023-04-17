@@ -37,26 +37,27 @@
 
             @include('campaigns._overview')
 
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
+                <div class="flex gap-2 mb-2 items-center">
+                    <h3 class="m-0 inline-block grow">
                         {{ __('campaigns.fields.entry') }}
                     </h3>
-                    <div class="box-tools pull-right">
-                        @can('update', $campaign)
-                            <a href="{{ route('campaigns.edit') }}" class="btn btn-box-tool" title="{{ __('campaigns.show.actions.edit') }}">
-                                <i class="fa-solid fa-edit" aria-hidden="true"></i>
-                            </a>
-                        @endcan
-                    </div>
+                    @can('update', $campaign)
+                        <a href="{{ route('campaigns.edit') }}" class="btn btn-default btn-sm" title="{{ __('campaigns.show.actions.edit') }}">
+                            <i class="fa-solid fa-edit" aria-hidden="true"></i>
+                            {{ __('campaigns.show.actions.edit') }}
+                        </a>
+                    @endcan
                 </div>
+            <div class="box box-solid">
                 <div class="box-body">
                     @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry()))
                         <a href="{{ route('campaigns.edit') }}">
                             {{ __('campaigns.helpers.no_entry') }}
                         </a>
                     @else
-                    <p>{!! $campaign->entry() !!}</p>
+                    <div class="entity-content">
+                        {!! $campaign->entry() !!}
+                    </div>
                     @endif
                 </div>
             </div>

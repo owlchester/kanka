@@ -17,25 +17,28 @@ use App\Facades\Datagrid ?>
             @include('campaigns._menu', ['active' => 'styles'])
         </div>
         <div class="col-md-9">
-            <h3 class="mt-0 inline-block">
-                {{ __('campaigns.show.tabs.styles') }}
-            </h3>
+            <div class="flex gap-2 mb-5 items-center">
+                <h3 class="m-0 inline-block grow">
+                    {{ __('campaigns.show.tabs.styles') }}
+                </h3>
+                @if ($campaign->boosted())
+                    <button class="btn btn-sm btn-default pull-right ml-1" data-toggle="dialog"
+                            data-target="theming-help">
+                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        {{ __('campaigns.members.actions.help') }}
+                    </button>
+                    <a href="#" data-url="{{ route('campaign-theme') }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn btn-default btn-sm pull-right ml-1">
+                        <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
+                    </a>
+
+                    <a href="{{ route('campaign_styles.create') }}" class="btn btn-primary btn-sm pull-right ml-1">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('campaigns/styles.actions.new') }}
+                    </a>
+                @endif
+            </div>
             @if (!$campaign->boosted())
                 @include('layouts.callouts.boost', ['texts' => [__('campaigns/styles.pitch')]])
             @else
-                <button class="btn btn-sm btn-default pull-right ml-1" data-toggle="dialog"
-                        data-target="theming-help">
-                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                    {{ __('campaigns.members.actions.help') }}
-                </button>
-                <a href="#" data-url="{{ route('campaign-theme') }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn btn-default btn-sm pull-right ml-1">
-                    <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
-                </a>
-
-                <a href="{{ route('campaign_styles.create') }}" class="btn btn-primary btn-sm pull-right ml-1">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('campaigns/styles.actions.new') }}
-                </a>
-
             <div class="box box-solid">
                 @if ($styles->count() === 0)
                     <div class="box-body">

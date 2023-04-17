@@ -19,22 +19,20 @@
         </div>
         <div class="col-md-9">
 
-            <div class="mb-1">
-                <div class="pull-right">
-                    <button class="btn btn-sm btn-default" data-toggle="dialog"
-                            data-target="submissions-help">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                        {{ __('campaigns.members.actions.help') }}
-                    </button>
-
-                    <a href="#" data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn btn-default btn-sm">
-                        <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
-                        {{ __('campaigns/submissions.actions.applications', ['status' => ($campaign->isOpen() ? __('campaigns/submissions.statuses.open') : __('campaigns/submissions.statuses.closed'))]) }}
-                    </a>
-                </div>
-                <h3 class="mt-0 inline-block">
+            <div class="flex gap-2 mb-5 items-center">
+                <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.applications') }}
                 </h3>
+                <button class="btn btn-sm btn-default" data-toggle="dialog"
+                        data-target="submissions-help">
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    {{ __('campaigns.members.actions.help') }}
+                </button>
+
+                <a href="#" data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn btn-default btn-sm">
+                    <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
+                    {{ __('campaigns/submissions.actions.applications', ['status' => ($campaign->isOpen() ? __('campaigns/submissions.statuses.open') : __('campaigns/submissions.statuses.closed'))]) }}
+                </a>
             </div>
 
             @if (!$campaign->isOpen() || !$campaign->isPublic() || $submissions->isEmpty())

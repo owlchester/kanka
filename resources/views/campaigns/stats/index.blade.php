@@ -18,8 +18,8 @@ use \Illuminate\Support\Arr;
             @include('campaigns._menu', ['active' => 'stats'])
         </div>
         <div class="col-md-9 achievements">
-            <div class="mb-1">
-                <h3 class="mt-0 inline-block">
+            <div class="flex gap-2 items-center mb-5">
+                <h3 class="m-0 inline-block grow">
                 {{ __('campaigns.show.tabs.achievements') }}
                 </h3>
 

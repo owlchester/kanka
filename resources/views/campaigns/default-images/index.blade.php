@@ -17,9 +17,9 @@
         </div>
         <div class="col-md-9">
             <div class="flex gap-2 mb-5 items-center">
-                <h1 class="m-0 grow">
+                <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.default-images') }}
-                </h1>
+                </h3>
                 @if ($campaign->boosted())
                     <button class="btn btn-default btn-sm" data-toggle="dialog"
                             data-target="default-images-help">

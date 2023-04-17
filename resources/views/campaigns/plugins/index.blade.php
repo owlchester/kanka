@@ -1,13 +1,13 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Plugin $plugin
  */?>
-<div class="mb-3">
-    <a href="{{ config('marketplace.url') }}" target="_blank" class="btn pull-right btn-primary">
-        {{ __('campaigns/plugins.actions.go_to_marketplace') }} <i class="fa-solid fa-external-link-alt"></i>
-    </a>
-    <h3 class="mt-0 inline-block">
+<div class="flex gap-2 items-center mb-5">
+    <h3 class="m-0 inline-block grow">
         {{ __('campaigns.show.tabs.plugins') }}
     </h3>
+    <a href="{{ config('marketplace.url') }}" target="_blank" class="btn btn-sm btn-primary">
+        {{ __('campaigns/plugins.actions.go_to_marketplace') }} <i class="fa-solid fa-external-link-alt"></i>
+    </a>
 </div>
 
 @if($campaign->boosted())

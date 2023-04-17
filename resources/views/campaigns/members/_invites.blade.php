@@ -7,23 +7,21 @@
 ?>
 @if (auth()->user()->can('invite', $campaign))
 
-    <div class="mb-1">
-        <div class="pull-right">
-            <button class="btn btn-default btn-sm" data-toggle="dialog"
-                    data-target="invite-help">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>
-            </button>
-
-            <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
-               data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create') }}">
-                <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-                <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
-            </a>
-        </div>
-        <h3 class="mt-0 inline-block">
+    <div class="flex gap-2 items-center mb-5">
+        <h3 class="m-0 inline-block grow">
             {{ __('campaigns.members.invite.title') }}
         </h3>
+        <button class="btn btn-default btn-sm" data-toggle="dialog"
+                data-target="invite-help">
+            <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+            <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>
+        </button>
+
+        <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
+           data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create') }}">
+            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+            <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
+        </a>
     </div>
 
     <div class="box box-solid">

@@ -2,10 +2,13 @@
 @php
     $role = \App\Facades\CampaignCache::adminRole();
 @endphp
-<div class="text-right mb-5">
+<div class="flex gap-2 mb-5 items-center">
+    <h3 class="m-0 inline-block grow">
+        {{ __('campaigns.show.tabs.settings') }}
+    </h3>
 
     <a href="//docs.kanka.io/en/latest/features/campaigns/modules.html"
-       target="_blank" class="btn btn-default">
+       target="_blank" class="btn btn-default btn-sm">
         <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
         {!! __('campaigns.members.actions.help') !!}
     </a>
