@@ -40,7 +40,6 @@ return [
     'contact'               => [
         'description'   => 'Need help, have a suggestion, or just want to share your love for :kanka? Our team will reply whatever the occasion!',
         'email'         => 'Send all inquiries to',
-        'other'         => 'Or on one of the following social media platforms:',
         'title'         => 'We\'re here for you',
     ],
     'cookie'                => [

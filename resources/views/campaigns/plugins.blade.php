@@ -36,7 +36,7 @@
         <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'plugins'])
         </div>
-        <div class="grow campaign-plugins">
+        <div class="grow campaign-plugins max-w-7xl">
             @include('campaigns.plugins.index')
         </div>
     </div>

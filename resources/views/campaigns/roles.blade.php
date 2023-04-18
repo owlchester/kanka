@@ -14,7 +14,7 @@
         <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'roles'])
         </div>
-        <div class="grow">
+        <div class="grow max-w-7xl">
             @include('campaigns.roles.index')
         </div>
     </div>

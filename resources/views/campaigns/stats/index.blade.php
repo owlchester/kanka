@@ -17,7 +17,7 @@ use \Illuminate\Support\Arr;
         <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'stats'])
         </div>
-        <div class="grow achievements">
+        <div class="grow max-w-7xl achievements">
             <div class="flex gap-2 items-center mb-5">
                 <h3 class="m-0 inline-block grow">
                 {{ __('campaigns.show.tabs.achievements') }}

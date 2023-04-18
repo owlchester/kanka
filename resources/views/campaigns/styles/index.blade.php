@@ -16,7 +16,7 @@ use App\Facades\Datagrid ?>
         <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'styles'])
         </div>
-        <div class="grow">
+        <div class="grow max-w-7xl">
             <div class="flex gap-2 mb-5 items-center">
                 <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.styles') }}

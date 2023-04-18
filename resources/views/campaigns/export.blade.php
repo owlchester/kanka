@@ -14,7 +14,7 @@
         <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'export'])
         </div>
-        <div class="grow">
+        <div class="grow max-w-7xl">
             <h3 class="mt-0">
                 <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
                         data-target="export-help">

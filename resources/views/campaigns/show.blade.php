@@ -24,7 +24,7 @@
         <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'campaign'])
         </div>
-        <div class="grow">
+        <div class="grow max-w-7xl">
             @can('update', $campaign)
                 @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
                     <div class="alert alert-warning">
