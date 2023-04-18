@@ -61,7 +61,7 @@ foreach ($elapsed as $event) {
     @elseif (!empty($birth))
         @php $yearsAgo = $birth->calcElapsed() @endphp
         <div class="element profile-life profile-birth">
-            @if ($event->isBirth())
+            @if ($birth->isBirth())
                 <div class="title text-uppercase text-xs">{{ __('entities/events.types.birth') }}</div>
             @else
                 <div class="title text-uppercase text-xs">{{ __('entities/events.types.founded') }}</div>
