@@ -261,7 +261,7 @@ class EntityMention extends Model
     public function mentionLink(): string
     {
         if ($this->isQuestElement()) {
-            if ($this->questElement && $this->questElement->quest) {
+            if ($this->questElement && $this->questElement->quest && $this->questElement->quest->entity) {
                 return $this->questElement->quest->entity->tooltipedLink() .
                     ' - ' . $this->questElement->visibilityIcon(null, true) .
                     ' <a class="name" href="' .
@@ -270,7 +270,7 @@ class EntityMention extends Model
                     '</a>';
             }
         } elseif ($this->isTimelineElement()) {
-            if ($this->timelineElement && $this->timelineElement->timeline) {
+            if ($this->timelineElement && $this->timelineElement->timeline && $this->timelineElement->timeline->entity) {
                 return $this->timelineElement->timeline->entity->tooltipedLink() .
                     ' - ' . $this->timelineElement->visibilityIcon(null, true) .
                     ' <a class="name" href="' .

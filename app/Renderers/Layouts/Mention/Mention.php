@@ -20,10 +20,10 @@ class Mention extends Layout
                 'render' => function ($model) {
                     $row = '<i class="fa-solid fa-lock" title="' . __('crud.is_private') . '" data-toggle="tooltip"></i> ';
 
-                    if ($model->entity && !$model->entity->is_private || 
-                        $model->questElement && $model->questElement->quest && !$model->questElement->quest->entity->is_private || 
-                        $model->timelineElement && $model->timelineElement->timeline && !$model->timelineElement->timeline->entity->is_private || 
-                        $model->post && $model->post->entity && !$model->post->entity->is_private ||
+                    if (($model->entity && !$model->entity->is_private) || 
+                        ($model->questElement && $model->questElement->quest && $model->questElement->quest->entity && !$model->questElement->quest->entity->is_private) || 
+                        ($model->timelineElement && $model->timelineElement->timeline && $model->timelineElement->timeline->entity && !$model->timelineElement->timeline->entity->is_private) || 
+                        ($model->post && $model->post->entity && !$model->post->entity->is_private) ||
                         $model->campaign) {
                             $row = '';
                     }
