@@ -9,15 +9,9 @@
         <p>{{ __('maps.helpers.missing_image') }}</p>
     </div>
 @else
-    @if (auth()->check() && !auth()->user()->settings()->get('tutorial_map_markers'))
-        <div class="alert alert-info tutorial">
-            <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'map_markers', 'type' => 'tutorial']) }}">×</button>
-
-            <p>{{ __('maps/markers.helpers.base') }}</p>
-
-            <p>{!!  __('crud.helpers.learn_more', ['documentation' => link_to('https://docs.kanka.io/en/latest/entities/maps/markers.html', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front.menu.documentation'), ['target' => '_blank'], null, false)])!!}</p>
-        </div>
-    @endif
+    <x-tutorial code="map_markers" doc="https://docs.kanka.io/en/latest/entities/maps/markers.html">
+        <p>{{ __('maps/markers.helpers.base') }}</p>
+    </x-tutorial>
 
     <div class="map" id="map{{ $model->id }}" style="width: 100%; height: 50%;">
         <div class="map-actions absolute bottom-0 right-0 m-4">
@@ -34,8 +28,10 @@
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
     <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
-    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
-    <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
+    @vite([
+        'resources/js/location/map-v3.js',
+        'resources/js/ajax-subforms.js'
+    ])
 
     <script type="text/javascript">
         var labelShapeIcon = new L.Icon({
@@ -113,7 +109,7 @@
 @section('styles')
     @parent
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-    <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
+    @vite('resources/sass/map-v3.scss')
 
     <style>
         @foreach ($model->markers as $marker)

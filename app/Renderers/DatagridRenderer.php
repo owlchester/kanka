@@ -153,7 +153,7 @@ class DatagridRenderer
             $type = $column['type'];
             $class = $column['type'];
             if ($type == 'avatar') {
-                $class = !empty($column['parent']) ? 'hidden-xs hidden-sm' : $class . ' w-14';
+                $class = (!empty($column['parent']) ? 'hidden-xs hidden-sm' : $class) . ' w-14';
             //$html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
@@ -180,9 +180,9 @@ class DatagridRenderer
                 }
                 $html = $this->route(
                     'is_private',
-                    '<i class="fa-solid fa-lock" title="' . __('crud.fields.is_private') . '"></i>'
+                    '<i class="fa-solid fa-lock" title="' . __('crud.fields.is_private') . '" aria-hidden="true"></i> <span class="sr-only">' . __('crud.fields.is_private') . '</span>'
                 );
-                $class = 'min-w-12';
+                $class = 'w-14 text-center';
             } elseif ($type == 'calendar_date') {
                 $class .= ' hidden-xs hidden-sm';
                 $html = $this->route('calendar_date', __('crud.fields.calendar_date'));
@@ -230,6 +230,7 @@ class DatagridRenderer
         }
 
         $routeOptions = [
+            'm' => 'table',
             'order' => $field ,
             'page' => request()->get('page')
         ];
@@ -246,14 +247,14 @@ class DatagridRenderer
 
         // Order by
         $order = $this->filterService->order();
-        $orderImg = ' <i class="fa-solid fa-sort"></i>';
+        $orderImg = ' <i class="fa-solid fa-sort" aria-hidden="true"></i>';
         if (!empty($order) && isset($order[$field])) {
             $direction = 'down';
             if ($order[$field] != 'DESC') {
                 $routeOptions['desc'] = true;
                 $direction = 'up';
             }
-            $orderImg = ' <i class="fa-solid fa-sort-' . $direction . '"></i>';
+            $orderImg = ' <i class="fa-solid fa-sort-' . $direction . '" aria-hidden="true"></i>';
         }
 
         return "<a href='" .
@@ -302,9 +303,9 @@ class DatagridRenderer
         }
         $html .= '>';
 
-        // Delete
+        // Bulk
         if (auth()->check()) {
-            $html .= '<td>' . Form::checkbox('model[]', $model->id, false) . '</td>';
+            $html .= '<td class="w-8">' . Form::checkbox('model[]', $model->id, false) . '</td>';
         }
 
         foreach ($this->columns as $column) {
@@ -340,7 +341,7 @@ class DatagridRenderer
                 }
                 $class = 'hidden-xs hidden-sm';
             }
-            return '<td' . (!empty($class) ? ' class="' . $class . '"' : null) . '>' . $content . '</td>';
+            return '<td class="truncated max-w-fit ' . ($class ?? null) . '">' . $content . '</td>';
         }
 
         // Check visibility
@@ -364,7 +365,7 @@ class DatagridRenderer
                             : $column['parent_route']($model))
                         : $this->getOption('baseRoute');
                     $route = route($whoRoute . '.show', [$who]);
-                    $content = '<a class="entity-image" style="background-image: url(\'' . $who->thumbnail() .
+                    $content = '<a class="entity-image cover-background" style="background-image: url(\'' . $who->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
             } elseif ($type == 'location') {
@@ -399,8 +400,9 @@ class DatagridRenderer
                     return null;
                 }
                 $content = $model->is_private ?
-                    '<i class="fa-solid fa-lock" title="' . __('crud.is_private') . '"></i>' :
-                    '<br />';
+                    '<i class="fa-solid fa-lock" title="' . __('crud.is_private') . '" aria-hidden="true"></i> <span class="sr-only">' . __('crud.is_private') . '</span>' :
+                    null;
+                $class = ' text-center';
             } elseif ($type == 'calendar_date') {
                 $class = 'hidden-xs hidden-sm';
                 /** @var Journal $model */
@@ -484,7 +486,7 @@ class DatagridRenderer
         ';
         }
 
-        return '<td class="text-center table-actions">' . $content . '</td>';
+        return '<td class="text-center table-actions w-14">' . $content . '</td>';
     }
 
     private function renderActionRow($model): string

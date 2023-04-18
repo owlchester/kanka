@@ -122,6 +122,12 @@ class Item extends MiscModel
         return implode('<br />', $extra);
     }
 
+
+    public function getParentIdName(): string
+    {
+        return 'item_id';
+    }
+
     /**
      * Performance with for datagrids
      * @param Builder $query
@@ -151,6 +157,9 @@ class Item extends MiscModel
             'items' => function ($sub) {
                 $sub->select('id', 'name', 'item_id');
             },
+            'children' => function ($sub) {
+                $sub->select('id', 'item_id');
+            }
         ]);
     }
 
@@ -201,6 +210,14 @@ class Item extends MiscModel
     public function items()
     {
         return $this->hasMany('App\Models\Item', 'item_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children()
+    {
+        return $this->items();
     }
 
     /**
@@ -265,5 +282,24 @@ class Item extends MiscModel
             'size',
             'item_id',
         ];
+    }
+
+    /**
+     * Grid mode sortable fields
+     * @return array
+     */
+    public function datagridSortableColumns(): array
+    {
+        $columns = [
+            'name' => __('crud.fields.name'),
+            'type' => __('crud.fields.type'),
+            'price' => __('items.fields.price'),
+            'size' => __('items.fields.size'),
+        ];
+
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            $columns['is_private'] = __('crud.fields.is_private');
+        }
+        return $columns;
     }
 }

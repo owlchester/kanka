@@ -58,6 +58,11 @@ class SubscriptionApiController extends Controller
             $user->createAsStripeCustomer();
         }
 
+        if ($user->isFrauding()) {
+            return response()
+                ->json(null, 429);
+        }
+
         $user->addPaymentMethod($paymentMethodID);
         $user->updateDefaultPaymentMethod($paymentMethodID);
 

@@ -117,6 +117,9 @@ class Quest extends MiscModel
             'quest',
             'quest.entity',
             'quests',
+            'children' => function ($sub) {
+                $sub->select('id', 'quest_id');
+            }
         ]);
     }
 
@@ -308,5 +311,33 @@ class Quest extends MiscModel
             'quest_element_id',
             'element_role',
         ];
+    }
+
+    /**
+     * Get the value of the is_complete variable
+     * @return bool
+     */
+    public function isCompleted(): bool
+    {
+        return (bool) $this->is_completed;
+    }
+
+    /**
+     * Grid mode sortable fields
+     * @return array
+     */
+    public function datagridSortableColumns(): array
+    {
+        $columns = [
+            'name' => __('crud.fields.name'),
+            'type' => __('crud.fields.type'),
+            'is_completed' => __('quests.fields.is_completed'),
+            'calendar_date' => __('crud.fields.calendar_date'),
+        ];
+
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            $columns['is_private'] = __('crud.fields.is_private');
+        }
+        return $columns;
     }
 }

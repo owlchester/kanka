@@ -1,6 +1,6 @@
 <p>
     <strong>
-        <i class="icon fa-solid fa-rocket mr-2"></i> {{ __('crud.delete_modal.callout') }}
+        <i class="icon fa-solid fa-rocket mr-2" aria-hidden="true"></i> {{ __('crud.delete_modal.callout') }}
     </strong><br />
 
     {!! __('crud.delete_modal.recoverable', [

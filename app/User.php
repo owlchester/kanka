@@ -41,7 +41,7 @@ use App\Models\Concerns\LastSync;
  * @property string $last_login_at
  * @property integer $welcome_campaign_id
  * @property boolean $newsletter
- * @property boolean $has_last_login_sharingw
+ * @property boolean $has_last_login_sharing
  * @property string|null $pledge
  * @property string|null $timezone
  * @property string|null $currency
@@ -49,6 +49,7 @@ use App\Models\Concerns\LastSync;
  * @property int $referral_id
  * @property Carbon|string|null $card_expires_at
  * @property Carbon|string|null $banned_until
+ * @property Carbon|string|null $created_at
  * @property Collection|array $settings
  * @property Collection|array $profile
  *
@@ -395,8 +396,7 @@ class User extends \Illuminate\Foundation\Auth\User
             Pledge::ELEMENTAL => 10,
         ];
 
-        // Default 3 for admins and owlbears
-        return Arr::get($levels, $this->pledge, 0) + $base;
+        return Arr::get($levels, $this->pledge ?? 'unknown', 0) + $base;
     }
 
     /**
@@ -604,5 +604,35 @@ class User extends \Illuminate\Foundation\Auth\User
         }
 
         return $this->unreadNotifications()->count() > 0;
+    }
+
+    /**
+     * Fraud detection system
+     * @return bool
+     */
+    public function isFrauding(): bool
+    {
+        // Someone with a provider (twitter, fb) login is always considered safe
+        if (!empty($this->provider)) {
+            return false;
+        }
+        // If the account was created recently, add some small checks
+        if ($this->created_at->isAfter(Carbon::now()->subHour())) {
+            // User's name is directly in the campaign name
+            if (Str::startsWith($this->email, $this->name . '@')) {
+                return true;
+            } elseif ($this->campaigns()->count() === 1) {
+                $campaign = $this->campaigns()->first();
+                // Only the 4 starting entities
+                if ($campaign->entities()->withInvisible()->count() === 4) {
+                    return true;
+                }
+            }
+        }
+        // Recent fails are a clear indicator of someone cycling through cards
+        return $this->logs()
+            ->where('type_id', UserLog::TYPE_FAILED_CHARGE_EMAIL)
+            ->whereDate('created_at', '>=', Carbon::now()->subHour()->toDateString())
+            ->count() >= 2;
     }
 }

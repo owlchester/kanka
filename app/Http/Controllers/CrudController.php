@@ -22,6 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use LogicException;
 
 class CrudController extends Controller
@@ -95,23 +96,11 @@ class CrudController extends Controller
         $this->filterService = new FilterService();
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
     public function index(Request $request)
     {
         return $this->crudIndex($request);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
     public function crudIndex(Request $request)
     {
         if (!$this->moduleEnabled()) {
@@ -129,7 +118,10 @@ class CrudController extends Controller
          * @var MiscModel $model
          */
         $model = new $this->model();
-        $this->filterService->make($this->view, request()->all(), $model);
+        $this->filterService
+            ->request($request)
+            ->model($model)
+            ->make($this->view);
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
         $filters = $this->filters;
@@ -146,6 +138,14 @@ class CrudController extends Controller
             ->search($this->filterService->search())
             ->order($this->filterService->order())
         ;
+
+        $parent = null;
+        if (request()->has('parent_id')) {
+            $parentKey = $model->getParentIdName();
+            $base->where([$parentKey => request()->get('parent_id')]);
+
+            $parent = $model->where('id', request()->get('parent_id'))->first();
+        }
 
         // Do this to avoid an extra sql query when no filters are selected
         if ($this->filterService->hasFilters()) {
@@ -172,10 +172,20 @@ class CrudController extends Controller
             ]);
         }
 
+        // Switch between the new explore/grid mode and the old table
+        $mode = request()->get('m', 'grid');
+        if (!in_array($mode, ['grid', 'table'])) {
+            $mode = 'grid';
+        }
+        $forceMode = null;
+        if (property_exists($this, 'forceMode')) {
+            $mode = $forceMode = $this->forceMode;
+        }
+
         // Add a button to the tree view if the controller has it
-        if (method_exists($this, 'tree')) {
+        if (method_exists($this, 'tree') && $mode === 'table') {
             $this->addNavAction(
-                route($this->route . '.tree'),
+                route($this->route . '.tree', ['m' => 'table']),
                 '<i class="fa-solid fa-share-nodes" aria-hidden="true"></i> ' . __('crud.actions.explore_view')
             );
         }
@@ -196,6 +206,9 @@ class CrudController extends Controller
             'bulk',
             'templates',
             'datagridActions',
+            'mode',
+            'parent',
+            'forceMode',
         );
         if (!empty($this->titleKey)) {
             $data['titleKey'] = $this->titleKey;
@@ -294,7 +307,7 @@ class CrudController extends Controller
             $success = __('general.success.created', [
                 'name' => link_to_route(
                     $this->view . '.show',
-                    e($new->name),
+                    $new->name,
                     [$new->id]
                 )
             ]);
@@ -459,7 +472,7 @@ class CrudController extends Controller
             $success = __('general.success.updated', [
                 'name' => link_to_route(
                     $this->route . '.show',
-                    e($model->name),
+                    $model->name,
                     [$model]
                 )
             ]);

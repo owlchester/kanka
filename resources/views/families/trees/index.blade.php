@@ -59,7 +59,7 @@
             __('families/trees.pitch')], 'superboost' => true])
             @else
                 @if ($mode === 'pixi')
-                <div class="family-tree-setup overflow-x overflow-y"
+                <div class="family-tree-setup overflow-auto"
                     data-api="{{ route('families.family-tree.api', $family) }}"
                     data-save="{{ route('families.family-tree.api-save', $family) }}"
                     data-entity="{{ route('families.family-tree.entity-api', 0) }}"
@@ -84,10 +84,10 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/family-tree-vue.js') }}" defer></script>
+    @vite('resources/js/family-tree-vue.js')
 @endsection
 @section('styles')
     @parent
-    <link href="{{ mix('css/family-tree.css') }}" rel="stylesheet">
+    @vite('resources/sass/family-tree.scss')
 @endsection
 

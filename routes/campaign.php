@@ -244,7 +244,7 @@ Route::post('/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\
 Route::get('/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
 
 Route::get('/entities/{entity}/entity_assets/{entity_asset}/go', 'Entity\AssetController@go')->name('entities.entity_assets.go');
-Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
+//Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
 
 Route::get('/entities/{entity}/profile', 'Entity\ProfileController@index')
     ->name('entities.profile');

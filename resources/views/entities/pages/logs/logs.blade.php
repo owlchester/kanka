@@ -20,7 +20,7 @@
     <div class="pagination-ajax-body">
         <div class="modal-body no-padding">
             <div class="loading text-center" style="display: none">
-                <i class="fa-solid fa-spinner fa-spin fa-4x"></i>
+                <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
             </div>
             <div class="pagination-ajax-content">
                 <table class="table table-hover break-all">
@@ -72,7 +72,7 @@
                             </tr>
                         @endif
                         @if ($campaign->superboosted() && !empty($log->changes))
-                        <tr id="log-{{ $log->id }}" class="collapse">
+                        <tr id="log-{{ $log->id }}" class="collapse !visible">
                             <td colspan="4">
                                 <dl class="dl-horizontal">
                                     @foreach ($log->changes as $attribute => $value)

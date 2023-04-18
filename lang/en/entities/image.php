@@ -14,7 +14,7 @@ return [
         'helper'        => 'Click on the image to set the focus point. Click on the focus point to remove it.',
         'panel_title'   => 'Image focus',
         'success'       => 'Image focus updated.',
-        'title'         => 'Entity :name image focus',
+        'title'         => 'Image Focus for :name',
         'unboosted'     => 'Setting an image focus point is reserverd to :boosted-campaigns.',
         'warning'       => 'Setting the focus point is not available when the entity\'s image is set from the gallery.',
     ],

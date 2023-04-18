@@ -13,7 +13,7 @@ if ($widget->entity) {
 
 
 <div class="col-md-{{ $widget->colSize() }}">
-    <div class="{{ $widgetClass }} {{ !empty($background) ? 'p-5' : null }} border-dashboard widget-{{ $widget->widget }} cover-background"
+    <div class="{{ $widgetClass }} cursor-pointer {{ !empty($background) ? 'p-5' : null }} widget-{{ $widget->widget }} cover-background {{ $widget->widget ===  \App\Models\CampaignDashboardWidget::WIDGET_HEADER ? 'h-auto' : null }}"
          data-toggle="ajax-modal"
     @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
          data-target="#large-modal"
@@ -29,7 +29,7 @@ if ($widget->entity) {
     @endif
     >
         <div class="{{ $overlayClass }}">
-            <div class="handle rounded-md px-2 py-1 text-center cursor-pointer absolute w-10 border-dashboard background">
+            <div class="handle rounded px-2 py-1 top-1 left-1 text-center absolute w-10 border cursor-move background bg-box">
                 <i class="fa-solid fa-arrows" aria-hidden="true"></i>
             </div>
             @if ($widget->widget != \App\Models\CampaignDashboardWidget::WIDGET_HEADER)
@@ -47,11 +47,11 @@ if ($widget->entity) {
 
             @if ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_HEADER)
                 @if (!empty($widget->conf('text')))
-                    <h3>{{ $widget->conf('text') }}</h3>
+                    <h3 class="m-0">{{ $widget->conf('text') }}</h3>
                 @endif
             @elseif (!empty($widget->conf('text')))
-                <span class="custom-name" title="{{ __('dashboard.widgets.fields.name') }}">
-                    <i class="fa-solid fa-paragraph"></i> {{ $widget->conf('text') }}
+                <span class="text-xs" title="{{ __('dashboard.widgets.fields.name') }}">
+                    <i class="fa-solid fa-paragraph" aria-hidden="true"></i> {{ $widget->conf('text') }}
                 </span>
             @endif
 

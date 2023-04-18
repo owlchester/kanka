@@ -26,13 +26,13 @@
         @if(!empty($dashboards))
             <div class="btn-group pull-right">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-th-large"></i>
+                    <i class="fa-solid fa-th-large" aria-hidden="true"></i>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     @if (!empty($dashboard))
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
-                                <i class="fa-solid fa-th-large"></i> {{ __('dashboard.dashboards.default.title')}}
+                                <i class="fa-solid fa-th-large" aria-hidden="true"></i> {{ __('dashboard.dashboards.default.title')}}
                             </a>
                         </li>
                     @endif
@@ -42,7 +42,7 @@
                         @endif
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
-                                <i class="fa-solid fa-th-large"></i> {!! $dash->name !!}
+                                <i class="fa-solid fa-th-large" aria-hidden="true"></i> {!! $dash->name !!}
                             </a>
                         </li>
                     @endforeach
@@ -50,7 +50,7 @@
                     @can('dashboard', $campaign)
                         <li>
                             <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
-                                <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
+                                <i class="fa-solid fa-cog" aria-hidden="true"></i> {{ __('dashboard.settings.title') }}
                             </a>
                         </li>
                     @endcan
@@ -67,7 +67,8 @@
         @else
             @can('update', $campaign)
             <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
-                <i class="fa-solid fa-th-large"></i>
+                <i class="fa-solid fa-th-large" aria-hidden="true"></i>
+                <span class="sr-only">{{ __('dashboard.settings.title') }}</span>
             </a>
             @endcan
         @endif
@@ -81,7 +82,7 @@
                     data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
                     data-placement="bottom"
             >
-                <i class="fa-regular fa-star"></i> <span id="campaign-follow-text"></span>
+                <i class="fa-regular fa-star" aria-hidden="true"></i> <span id="campaign-follow-text"></span>
             </button>
         @endcan
         @can('apply', $campaign)
@@ -91,7 +92,7 @@
                     data-target="#large-modal"
                     data-placement="bottom"
             >
-                <i class="fa-solid fa-door-open"></i> {{ __('dashboard.actions.join') }}
+                <i class="fa-solid fa-door-open" aria-hidden="true"></i> {{ __('dashboard.actions.join') }}
             </button>
         @endcan
     </div>
@@ -150,7 +151,8 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('js/dashboard.js') }}" defer></script>
+
+    @vite('resources/js/dashboard.js')
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
@@ -160,8 +162,11 @@
 
 @section('styles')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-    <link href="{{ mix('css/dashboard.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
+
+    @vite([
+        'resources/sass/dashboard.scss',
+        'resources/sass/map-v3.scss'
+    ])
 @endsection
 
 @section('modals')

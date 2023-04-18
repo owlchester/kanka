@@ -1,0 +1,360 @@
+/**
+ * Contains all the stuff for the entity's overview and subpages.
+ */
+:root {
+    --sidebar-section-background: none;
+    --sidebar-section-padding: none;
+}
+
+// Dynamically control which privacy status icon is shown based on the page's class
+.entity-privacy-icon {
+    .fa-lock-open {
+        display: inline-block;
+    }
+
+    .fa-lock {
+        display: none;
+    }
+}
+.kanka-entity-private {
+    .entity-privacy-icon {
+        .fa-lock-open {
+            display: none;
+        }
+
+        .fa-lock {
+            display: inline-block;
+        }
+    }
+}
+
+.sidebar-section-box {
+    margin-bottom: 30px;
+    background: var(--sidebar-section-background);
+    padding: var(--sidebar-section-padding);
+    overflow: hidden;
+
+    .sidebar-section-title {
+        color: var(--header-text);
+        border-bottom: 1px solid var(--input-border-color);
+    }
+
+    .sidebar-elements {
+        grid-template-columns: 100%;
+
+        .element {
+            margin: 10px 0;
+            font-size: 14px;
+
+            .title {
+                line-height: 1.1;
+            }
+
+            a:not(:last-of-type), span:not(:last-of-type) {
+                &:after {
+                    content: ', ';
+                }
+            }
+        }
+
+        ul.pins {
+            li.list-group-item {
+                background: none;
+                border-left: 0;
+                border-right: 0;
+                border-bottom: 0;
+                word-break: break-word;
+                padding-left: 0;
+                padding-right: 0;
+
+                &:first-child {
+                    border-top: none;
+                }
+            }
+        }
+    }
+
+    .list-group-unbordered .list-group-item {
+        background-color: transparent;
+    }
+}
+
+.entity-header {
+    .entity-header-text {
+        .entity-header-line {
+            &:nth-last-child(2) {
+                display: inline-block;
+            }
+        }
+    }
+
+    .entity-header-image {
+        padding-right: 30px;
+    }
+
+    .entity-image {
+        width: 100%;
+        padding-top: 100%;
+        position: relative;
+        border-radius: 2px;
+        //background-size: contain;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .tooltip {
+        .entity-image {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: unset;
+            padding-top: 0;
+        }
+    }
+
+    .entity-header-text {
+        align-self: flex-end;
+        display: flex;
+
+        .entity-texts {
+        }
+
+        .entity-header-sub {
+            display: inline-block;
+            padding-top: 12px;
+
+            .entity-header-sub-element {
+                display: inline-block;
+            }
+        }
+    }
+
+    .entity-breadcrumb {
+        li {
+            a {
+                color: var(--breadcrumb-text);
+            }
+        }
+
+        li + li:before {
+            content: ">\A0";
+            padding: 0 5px;
+            color: #ccc;
+        }
+    }
+
+    .entity-name-header {
+
+        .btn-group.open .dropdown-toggle {
+            box-shadow: unset;
+        }
+    }
+
+    .entity-type {
+        display: none;
+    }
+}
+.entity-grid > .entity-header.with-entity-banner {
+
+    .entity-header-image, .entity-header-text {
+        padding: 20px 15px;
+    }
+
+    .entity-header-text {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .entity-name, .entity-title {
+        text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
+        color: white;
+    }
+
+    .entity-icons {
+        color: white;
+    }
+
+    .entity-header-sub {
+        color: white;
+
+        a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .entity-header-sub-element {
+            display: inline-block;
+
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .entity-breadcrumb {
+        color: white;
+
+        a {
+            color: white;
+        }
+    }
+}
+
+.box .nav-stacked > li {
+    word-break: break-all;
+}
+
+@media (max-width: 991px) {
+    .entity-header {
+        display: block;
+
+        .col-md-2 {
+            display: block;
+            float: left;
+        }
+
+        .entity-header-text {
+            display: block;
+        }
+
+        .entity-name {
+            display: block;
+            max-height: unset;
+            word-break: initial;
+        }
+    }
+}
+
+/**
+ * Everything is a grid now
+ */
+body.entity-with-banner .content-wrapper > .content {
+    padding-top: 0;
+
+    .alert {
+        margin: 0 !important;
+    }
+}
+body[class*="kanka-entity"] .content-wrapper > .content {
+    padding-left: 0;
+    padding-right: 0;
+
+    .alert {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+.entity-grid {
+    display: grid;
+    grid-template-columns: 200px minmax(auto, calc(100% - 400px)) 200px;
+    grid-template-areas:
+    "header header header"
+    "menu main side"
+    "footer footer footer";
+
+    .entity-header {
+        grid-area: header;
+        display: grid;
+        grid-template-columns: 200px auto;
+
+        // Magic grid stuff to make stuff look nice even without an image
+        .entity-header-text {
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 1;
+            padding: 0 15px;
+        }
+
+        .entity-header-image + .entity-header-text {
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 1;
+            padding-left: 10px;
+        }
+
+        .entity-header-image {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 1;
+            align-self: flex-end;
+            display: flex;
+            padding: 0 15px;
+            //margin-right: 25px;
+        }
+
+        .entity-banner {
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 1;
+            height: auto;
+            width: 100%;
+            min-height: 250px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+        }
+    }
+
+    .entity-header.without-entity-image {
+        grid-template-columns: auto;
+    }
+
+
+    .entity-submenu, .entity-sidebar {
+        padding: 0 15px;
+    }
+
+    .entity-main-block {
+        padding: 0 15px;
+        grid-column: 2 / span 2;
+    }
+
+    .entity-story-block {
+        grid-column: 2 / span 1;
+        padding: 0 10px;
+    }
+}
+
+
+
+/** Grid fullscreen **/
+@media (max-width: 991px) {
+    .entity-grid {
+        grid-template-columns: 120px minmax(auto, calc(100% - 280px)) 160px;
+
+        .entity-header {
+            grid-template-columns: 120px auto;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .entity-grid {
+        display: block;
+
+        .entity-header {
+            grid-template-columns: 120px minmax(auto, calc(100% - 120px));
+
+            .entity-banner {
+                min-height: 200px;
+            }
+
+            .entity-header-image {
+                width: 120px;
+                align-self: flex-start;
+
+                .entity-image {
+                    height: 100px;
+                }
+            }
+
+            .entity-name {
+                font-size: 20px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap
+            }
+        }
+
+        .entity-story-block, .entity-main-block {
+            margin: 0 5px;
+        }
+    }
+}

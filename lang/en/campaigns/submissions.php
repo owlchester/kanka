@@ -29,7 +29,7 @@ return [
     'helpers'       => [
         'filter-helper'     => 'This campaign is open to applications!',
         'modal'             => 'A campaign which is open to applications and public can have users apply to join the campaign.',
-        'no_applications'   => 'There are currently no pending applications to join your campaign. Users can apply to join your campaign by visiting it\'s dashboard and clicking on the :button button.',
+        'no_applications'   => 'There are currently no pending applications to join the campaign. Users can apply to join the campaign by visiting it\'s dashboard and clicking on the :button button.',
         'not_open'          => 'The campaign isn\'t currently accepting applications.',
         'open_not_public'   => 'The campaign is open to applications, but not public, meaning no one can apply to join it. This can be changed by editing the campaign\'s settings.',
     ],
@@ -48,7 +48,7 @@ return [
         'title'     => 'Application status',
     ],
     'update'        => [
-        'approve'   => 'Select the role the user will be added as in your campaign.',
+        'approve'   => 'Select the role the user will be added as in the campaign.',
         'approved'  => 'Application approved.',
         'reject'    => 'Write an optional message to the user as to why you are rejecting their application.',
         'rejected'  => 'Application rejected',

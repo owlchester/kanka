@@ -14,19 +14,18 @@
     @include('partials.errors')
 
     <div class="max-w-3xl">
-        <h1>
+        <h1 class="mb-3">
             <i class="fa-solid fa-rocket" aria-hidden="true"></i>
             {{ __('settings/boosters.title') }}
         </h1>
 
-        <div style="" class=" box">
-            <div class="box-body">
+        <div style="" class="rounded p-4 shadow-sm bg-box mb-5">
                 <h3 class="my-1">{{ __('settings/boosters.pitch.title') }}</h3>
                 <p class="my-5">{{ __('settings/boosters.pitch.description') }}</p>
 
                 <h4 class="mt-5">{{ __('settings/boosters.pitch.benefits.title') }}</h4>
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-1 mb-3">
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-palette fa-2x" aria-hidden="true"></i>
                         </div>
@@ -34,7 +33,7 @@
                             {{ __('settings/boosters.pitch.benefits.customisable') }}
                         </div>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-image-portrait fa-2x" aria-hidden="true"></i>
                         </div>
@@ -42,7 +41,7 @@
                             {{ __('settings/boosters.pitch.benefits.entities') }}
                         </div>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-hourglass-half fa-2x" aria-hidden="true"></i>
                         </div>
@@ -50,7 +49,7 @@
                             {{ __('settings/boosters.pitch.benefits.backup', ['amount' => config('entities.hard_delete')]) }}
                         </div>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-horse-head fa-2x" aria-hidden="true"></i>
                         </div>
@@ -58,7 +57,7 @@
                             {{ __('settings/boosters.pitch.benefits.icons') }}
                         </div>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-camera fa-2x" aria-hidden="true"></i>
                         </div>
@@ -66,7 +65,7 @@
                             {{ __('settings/boosters.pitch.benefits.upload') }}
                         </div>
                     </div>
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="p-1 w-12 flex-none">
                             <i class="fa-solid fa-user-group fa-2x" aria-hidden="true"></i>
                         </div>
@@ -76,11 +75,11 @@
                     </div>
                 </div>
                 <p>{!! __('settings/boosters.pitch.more', ['boosters' => link_to_route('front.boosters', __('footer.boosters'))]) !!}</p>
-            </div>
+
         </div>
 
 
-        <h2 class="mt-5">
+        <h2 class="my-5">
             {{ __('settings/boosters.ready.title') }}
 
             @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
@@ -113,7 +112,7 @@
 
 @section('styles')
     @parent
-    <link href="{{ mix('css/settings.css') }}" rel="stylesheet">
+    @vite('resources/sass/settings.scss')
 @endsection
 
 @section('modals')
@@ -136,5 +135,5 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/settings.js') }}" defer></script>
+    @vite('resources/js/settings.js')
 @endsection

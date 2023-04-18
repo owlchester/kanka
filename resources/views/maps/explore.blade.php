@@ -108,7 +108,7 @@
     @endcan
 
     </script>
-    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
+    @vite(['resources/js/ajax-subforms.js'])
     <script type="text/javascript">
         @if (!empty($map->grid))
             // Leaflet grid

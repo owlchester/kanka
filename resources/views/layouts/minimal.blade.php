@@ -13,12 +13,13 @@
 
     <link rel="icon" type="image/png" href="/favicon.ico">
     <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @vite([
+    'resources/sass/vendor.scss',
+    'resources/sass/app.scss',
+    ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
-@if (auth()->check() && !empty(auth()->user()->theme))
-    <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
-@endif
+
+    @include('layouts._theme')
     @yield('styles')
 </head>
 <body class="layout-top-nav">
@@ -38,7 +39,8 @@
 
     </div>
 
-    <script src="{{ mix('js/app.js') }}"></script>
+<script src="/js/vendor.js" defer></script>
+    @vite('resources/js/app.js')
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif    @yield('scripts')

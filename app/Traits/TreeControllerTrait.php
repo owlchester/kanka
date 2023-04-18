@@ -33,7 +33,10 @@ trait TreeControllerTrait
          * @var MiscModel $model
          */
         $model = new $this->model();
-        $this->filterService->make($this->view . 'tree', request()->all(), $model);
+        $this->filterService
+            ->request($request)
+            ->model($model)
+            ->make($this->view . 'tree');
         $name = $this->view;
         $filters = $this->filters;
         $filterService = $this->filterService;
@@ -41,10 +44,18 @@ trait TreeControllerTrait
         $langKey = $this->langKey ?? $name;
         $templates = $this->loadTemplates($model);
 
-        $this->addNavAction(
-            route($this->route . '.index'),
-            '<i class="fa-solid fa-list"></i> ' . __('entities.' . $this->view)
-        );
+
+        $mode = request()->get('m', 'grid');
+        if (!in_array($mode, ['grid', 'table'])) {
+            $mode = 'grid';
+        }
+
+        if ($mode === 'table') {
+            $this->addNavAction(
+                route($this->route . '.index', ['m' => 'table']),
+                '<i class="fa-solid fa-list" aria-hidden="true"></i> ' . __('entities.' . $this->view)
+            );
+        }
 
         $base = $model
             ->preparedSelect()
@@ -53,28 +64,29 @@ trait TreeControllerTrait
             ->order($this->filterService->order())
             ->distinct();
 
-        $singularModel = Str::singular($this->view);
-
         /** @var Tag $model **/
-        $parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ?
-                $this->treeControllerParentKey : $singularModel . '_id');
+        //$parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ?
+        //        $this->treeControllerParentKey : $singularModel . '_id');
+        $parentKey = $model->getParentIdName();
         $parent = null;
         if (request()->has('parent_id')) {
             $base->where([$parentKey => request()->get('parent_id')]);
 
-            $parent = $model->with($singularModel)->where('id', request()->get('parent_id'))->first();
-            if (!empty($parent) && !empty($parent->$singularModel)) {
-                // Go back to previous parent
-                $this->addNavAction(
-                    route($this->route . '.tree', ['parent_id' => $parent->$singularModel->id]),
-                    '<i class="fa-solid fa-arrow-left"></i> ' . $parent->$singularModel->name
-                );
-            } else {
-                // Go back to first level
-                $this->addNavAction(
-                    route($this->route . '.tree'),
-                    '<i class="fa-solid fa-arrow-left"></i> ' . __('crud.actions.back')
-                );
+            $parent = $model->where('id', request()->get('parent_id'))->first();
+            if (request()->get('m') === 'table') {
+                if (!empty($parent) && !empty($parent->child)) {
+                    // Go back to previous parent
+                    $this->addNavAction(
+                        route($this->route . '.tree', ['parent_id' => $parent->child->id]),
+                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . $parent->child->name
+                    );
+                } else {
+                    // Go back to first level
+                    $this->addNavAction(
+                        route($this->route . '.tree'),
+                        '<i class="fa-solid fa-arrow-left" aria-hidden="true"></i> ' . __('crud.actions.back')
+                    );
+                }
             }
         } else {
             $base->whereNull($parentKey);
@@ -121,7 +133,8 @@ trait TreeControllerTrait
             'bulk',
             'templates',
             'datagridActions',
-            'parent'
+            'parent',
+            'mode',
         ));
     }
 }

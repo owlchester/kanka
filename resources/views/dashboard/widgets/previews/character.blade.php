@@ -28,10 +28,10 @@ $model = $entity->child;
         <h3 class="panel-title">
             <a href="{{ $entity->child->getLink() }}">
                 @if ($entity->child->is_private)
-                    <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                    <i class="fa-solid fa-lock pull-right" title="{{ trans('crud.is_private') }}" aria-hidden="true"></i>
                 @endif
                 @if ($entity->child->is_dead)
-                    <i class="ra ra-skull pull-right mr-2" title="{{ trans('characters.fields.is_dead') }}"></i>
+                    <i class="ra ra-skull pull-right mr-2" title="{{ trans('characters.fields.is_dead') }}" aria-hidden="true"></i>
                 @endif
 
                 @if(!empty($customName))
@@ -64,9 +64,10 @@ $model = $entity->child;
                 @include('dashboard.widgets.previews._relations')
                 @include('dashboard.widgets.previews._attributes')
             </div>
-            <a href="#" class="preview-switch hidden"
+            <a href="#" class="preview-switch w-full inline-block text-center hidden hidden"
                id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
-                <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <span class="sr-only">{{ __('Show more') }}</span>
             </a>
         @endif
 

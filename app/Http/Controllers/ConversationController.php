@@ -25,6 +25,8 @@ class ConversationController extends CrudController
     /** @var string  */
     protected string $datagridActions = DeprecatedDatagridActions::class;
 
+    protected string $forceMode = 'table';
+
     /**
      * Controller constructor.
      */
@@ -34,7 +36,7 @@ class ConversationController extends CrudController
 
         $this->addNavAction(
             '//docs.kanka.io/en/latest/entities/conversations.html',
-            '<i class="fa-solid fa-question-circle"></i> ' . __('crud.actions.help'),
+            '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> ' . __('crud.actions.help'),
             'default',
             true
         );

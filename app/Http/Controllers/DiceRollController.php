@@ -27,6 +27,8 @@ class DiceRollController extends CrudController
     /** @var string  */
     protected string $datagridActions = DeprecatedDatagridActions::class;
 
+    protected string $forceMode = 'table';
+
     /**
      * Controller constructor.
      */

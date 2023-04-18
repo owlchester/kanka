@@ -9,7 +9,8 @@
                 'allowClear' => 'false',
                 'label' => false,
                 'filterOptions' => $value,
-                'class' => 'entity-list-filter'
+                'class' => 'entity-list-filter',
+                'dropdownParent' => '#datagrid-filters',
             ]
         ) !!}
     </div>

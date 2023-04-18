@@ -156,7 +156,12 @@ class Map extends MiscModel
             'entity',
             'map',
             'map.entity',
-            'maps',
+            'maps' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'children' => function ($sub) {
+                $sub->select('id', 'map_id');
+            },
         ]);
     }
 
@@ -625,15 +630,15 @@ class Map extends MiscModel
      */
     public function exploreLink(): string
     {
-        if (empty($this->image)) {
+        if (!$this->explorable()) {
             return '';
         }
         if ($this->isChunked()) {
             if ($this->chunkingError()) {
-                return '<i class="fas fa-exclamation-triangle" data-toggle="tooltip" title="' .
+                return '<i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" title="' .
                     __('maps.errors.chunking.error', ['discord' => 'Discord']) . '"></i>';
             } elseif ($this->chunkingRunning()) {
-                return '<i class="fas fa-spin fa-spinner" data-toggle="tooltip" title="' .
+                return '<i class="fa-solid fa-spin fa-spinner" data-toggle="tooltip" title="' .
                     __('maps.tooltips.chunking.running') . '"></i>';
             }
         }
@@ -666,7 +671,7 @@ class Map extends MiscModel
      */
     public function isReal(): bool
     {
-        return $this->is_real;
+        return (bool) $this->is_real;
     }
 
     /**

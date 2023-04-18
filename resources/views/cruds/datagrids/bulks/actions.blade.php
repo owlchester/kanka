@@ -8,7 +8,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     if ($datagridActions->hasBulkEditing()) {
         $dropdownActions[] = '
         <a href="#" class="bulk-edit" data-toggle="modal" data-target="#bulk-edit.modal" data-bulk-action="batch">
-            <i class="fa-solid fa-edit"></i> ' . __('crud.bulk.actions.edit') . '
+            <i class="fa-solid fa-edit" aria-hidden="true"></i> ' . __('crud.bulk.actions.edit') . '
         </a>';
     }
     if ($datagridActions->hasBulkPermissions()) {

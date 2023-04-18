@@ -5,97 +5,93 @@
 ])
 
 @section('content')
-    @include('partials.errors')
+    <div class="max-w-4xl mx-auto">
+        <div class="flex gap-2 mb-3">
+            <h1 class="grow">{{ __('notifications.index.title') }}</h1>
 
-    @if ($notifications->count() === 0)
-        <p class="help-block">{{ __('notifications.no_notifications') }}</p>
-    @else
-    <div class="box box-solid">
-        <div class="box-header">
-            <div class="box-tools">
-                <button class="btn btn-danger delete-confirm btn-sm" data-toggle="modal"
-                        data-target="#delete-confirm-notifications" data-delete-target="notifications-clear">
-                    <i class="fa-solid fa-trash-o"></i> {{ __('notifications.clear.action') }}
-                </button>
+            <div class="flex-0 self-end">
+                <x-buttons.confirm type="danger" target="delete-confirm-notifications" size="sm">
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <span>{{ __('notifications.clear.action') }}</span>
+                </x-buttons.confirm>
             </div>
         </div>
-        <div class="box-body">
 
+        <div class="rounded p-4 bg-box">
+            @if ($notifications->count() === 0)
+                <p class="help-block">{{ __('notifications.no_notifications') }}</p>
+            @else
+
+            <div class="text-right mb-5">
+            </div>
             <div class=" table-responsive">
-            <table class="table table-hover mb-0">
-                <tbody>
-                <?php /** @var \Illuminate\Notifications\DatabaseNotification $notification */?>
-                @foreach ($notifications as $notification)
-                    <tr class="@if(!$notification->read()) info @endif">
-                        <td>
-                        @if (!empty($notification->data['icon']))
-                            <i class="fa-solid fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
-                                @if(\Illuminate\Support\Arr::has($notification->data['params'], 'link'))
-@php
-    $url = $notification->data['params']['link'];
-    if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
-        $url = url(app()->getLocale() . '/' . $url);
-    }
-@endphp
-                                    <a href="{{ $url }}">
+                <table class="table table-hover mb-0">
+                    <tbody>
+                    <?php /** @var \Illuminate\Notifications\DatabaseNotification $notification */?>
+                    @foreach ($notifications as $notification)
+                        <tr class="@if(!$notification->read()) info @endif">
+                            <td>
+                            @if (!empty($notification->data['icon']))
+                                <i class="fa-solid fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
+                                    @if(\Illuminate\Support\Arr::has($notification->data['params'], 'link'))
+        @php
+        $url = $notification->data['params']['link'];
+        if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
+            $url = url(app()->getLocale() . '/' . $url);
+        }
+        @endphp
+                                        <a href="{{ $url }}">
+                                            {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
+                                        </a>
+                                    @else
                                         {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
-                                    </a>
+                                    @endif
                                 @else
-                                    {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
+                                    <p>{!! __('notifications.' . $notification->data['key'] . '.body')!!}</p>
                                 @endif
-                            @else
-                                <p>{!! __('notifications.' . $notification->data['key'] . '.body')!!}</p>
-                            @endif
-                        </td>
-                        <td class="text-right">
-                            <span class="text-muted " title="{{ $notification->created_at }}">
-                                {{ $notification->created_at->diffForHumans() }}
-                            </span>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                            </td>
+                            <td class="text-right">
+                                <span class="text-muted " title="{{ $notification->created_at }}">
+                                    {{ $notification->created_at->diffForHumans() }}
+                                </span>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-        </div>
-        @if ($notifications->hasPages())
-        <div class="box-footer text-right">
-            {!! $notifications->links() !!}
-        </div>
-        @endif
-    </div>
-    {!! Form::open([
-'method' => 'POST',
-'route' => 'notifications.clear-all',
-'id' => 'notifications-clear'
-]) !!}
-    {!! Form::close() !!}
-    @endif
+            @if ($notifications->hasPages())
+                <div class="text-right">
+                    {!! $notifications->links() !!}
+                </div>
+           @endif
 
+        @endif
+        </div>
+    </div>
     <input type="hidden" id="notification-clear" />
 @endsection
 
 @section('modals')
-    <div class="modal fade" id="delete-confirm-notifications" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl">
-                <div class="modal-body text-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">{{ __('notifications.clear.title') }}</h4>
+    <x-dialog id="delete-confirm-notifications" :title="__('notifications.clear.title')">
+        <p class="mb-2">
+            {{ __('crud.delete_modal.permanent') }}
+        </p>
 
-                    <p class="mt-3">
-                        {{ __('crud.delete_modal.permanent') }}
-                    </p>
-
-                    <div class="py-5">
-                        <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                        <button type="button" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
-                            <span class="fa-solid fa-trash" aria-hidden="true"></span>
-                            <span class="remove-button-label">{{ __('crud.remove') }}</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="grid grid-cols-2 gap-2">
+            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                {{ __('crud.cancel') }}
+            </x-buttons.confirm>
+            {!! Form::open([
+                'method' => 'POST',
+                'route' => 'notifications.clear-all',
+                'id' => 'notifications-clear'
+            ]) !!}
+                <x-buttons.confirm type="danger" full="true" ouline="true">
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <span>{{ __('crud.remove') }}</span>
+                </x-buttons.confirm>
+            {!! Form::close() !!}
         </div>
-    </div>
+    </x-dialog>
 @endsection

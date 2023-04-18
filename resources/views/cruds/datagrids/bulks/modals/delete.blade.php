@@ -36,4 +36,5 @@
 </div>
 {!! Form::hidden('entity', $name) !!}
 {!! Form::hidden('models', null, ['id' => 'datagrid-bulk-delete-models']) !!}
+{!! Form::hidden('mode', $mode) !!}
 {!! Form::close() !!}

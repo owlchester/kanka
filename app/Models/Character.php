@@ -436,7 +436,7 @@ class Character extends MiscModel
     public function rowClasses(): string
     {
         $classes = parent::rowClasses();
-        if (!$this->is_dead) {
+        if (!$this->isDead()) {
             return $classes;
         }
         return $classes . ' character-dead';
@@ -460,5 +460,37 @@ class Character extends MiscModel
             'family_id',
             'races',
         ];
+    }
+
+    /**
+     * Available sorting on the grid view
+     * @return array
+     */
+    public function datagridSortableColumns(): array
+    {
+        $columns = [
+            'name' => __('crud.fields.name'),
+            'type' => __('crud.fields.type'),
+            'title' => __('characters.fields.title'),
+            'sex' => __('characters.fields.sex'),
+            'is_dead' => __('characters.fields.is_dead'),
+            'location_id' => __('entities.location'),
+            'family_id' => __('entities.family'),
+            'race_id' => __('entities.race'),
+        ];
+
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            $columns['is_private'] = __('crud.fields.is_private');
+        }
+        return $columns;
+    }
+
+    /**
+     * Get the value of the is_dead variable
+     * @return bool
+     */
+    public function isDead(): bool
+    {
+        return (bool) $this->is_dead;
     }
 }

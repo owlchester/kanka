@@ -16,7 +16,7 @@
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_COPY)
                     <a href="{{ route($model->url('create'), method_exists($model, 'routeCopyParams') ? $model->routeCopyParams($params) : $model) }}">
-                        <i class="fa-solid fa-copy"></i>
+                        <i class="fa-solid fa-copy" aria-hidden="true"></i>
                         {{ __('crud.actions.copy') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT_AJAX)

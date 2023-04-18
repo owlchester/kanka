@@ -4,14 +4,11 @@
     ->service($filterService)
     ->models($models)
     ->columns([
-        // Avatar
         [
             'type' => 'avatar'
         ],
-        // Name
         'name',
         'type',
-        //Item_id
         [
             'label' => __('items.fields.item'),
             'field' => 'item_id',
@@ -21,14 +18,24 @@
                 }
             }
         ],
-        'price',
-        'size',
-        // Location
+        [
+            'label' => '<i class="fa-solid fa-coins" aria-hidden="true" title="' . __('items.fields.price') . '"></i> <span class="sr-only">' . __('items.fields.price') . '</span>',
+            'field' => 'price',
+            'render' => function($model) {
+                return $model->price;
+            }
+        ],
+        [
+            'label' => '<i class="fa-solid fa-ruler-combined" aria-hidden="true" title="' . __('items.fields.size') . '"></i> <span class="sr-only">' . __('items.fields.size') . '</span>',
+            'field' => 'size',
+            'render' => function($model) {
+                return $model->size;
+            }
+        ],
         [
             'type' => 'location',
             'visible' => $campaignService->enabled('locations'),
         ],
-        // Character
         [
             'type' => 'character',
             'visible' => $campaignService->enabled('characters'),

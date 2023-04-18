@@ -655,4 +655,21 @@ abstract class MiscModel extends Model
     {
         return 0;
     }
+
+    /**
+     * Boilerplate for sortable columns in the datagrid dropdowns
+     * @return array
+     */
+    public function datagridSortableColumns(): array
+    {
+        $columns = [
+            'name' => __('crud.fields.name'),
+            'type' => __('crud.fields.type'),
+        ];
+
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            $columns['is_private'] = __('crud.fields.is_private');
+        }
+        return $columns;
+    }
 }

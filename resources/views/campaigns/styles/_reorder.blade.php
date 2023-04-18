@@ -1,14 +1,12 @@
 
+<h3 class="m-0 inline-block mb-5">
+    {{ __('campaigns/styles.reorder.title') }}
+</h3>
 {!! Form::open([
     'route' => ['campaign_styles.reorder-save'],
     'method' => 'POST',
 ]) !!}
 <div class="box box-solid box-entity-story-reorder">
-    <div class="box-header with-border">
-        <h3 class="box-title">
-            {{ __('campaigns/styles.reorder.title') }}
-        </h3>
-    </div>
     <div class="box-body">
 
         <div class="element-live-reorder sortable-elements">

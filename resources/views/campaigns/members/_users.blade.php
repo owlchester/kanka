@@ -5,15 +5,15 @@
  */
 
 ?>
-<div class="mb-2">
-    <button class="btn btn-default btn-sm pull-right" data-toggle="dialog"
+<div class="flex gap-2 items-center mb-5">
+    <h3 class="m-0 inline-block grow">
+        {{ __('campaigns.show.tabs.members') }} <small>({{ $users->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</small>
+    </h3>
+    <button class="btn btn-default btn-sm" data-toggle="dialog"
             data-target="members-help">
         <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
         {{ __('campaigns.members.actions.help') }}
     </button>
-    <h3 class="mt-0 inline-block">
-        {{ __('campaigns.show.tabs.members') }} <small>({{ $users->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else<i class="fa-solid fa-infinity"></i>@endif)</small>
-    </h3>
 </div>
 
 @if (!$campaign->canHaveMoreMembers())
@@ -31,7 +31,7 @@
     </div>
 @endif
 
-<div class="box box-solid mb-8">
+<div class="box box-solid">
     <div class="box-body no-padding">
         <div class="table-responsive">
             <table id="campaign-members" class="table table-hover table-striped mb-0">

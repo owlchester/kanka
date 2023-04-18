@@ -4,24 +4,30 @@
     'breadcrumbs' => [
         __('dashboard.setup.title')
     ],
-
 ])
 
 @php
-$widgetClass = 'widget relative mb-5 rounded-md text-xl text-center h-40 overflow-hidden hover:drop-shadow cursor' ;
-$overlayClass = 'widget-overlay rounded flex gap-3 flex-col justify-center h-full';
+$widgetClass = 'widget relative mb-5 rounded text-xl text-center h-40 overflow-hidden shadow-xs hover:shadow-md cursor-pointer bg-box' ;
+$overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-center h-full';
 $newWidgetListClass = 'btn btn-block btn-default text-xl';
 @endphp
 
 @inject('campaignService', 'App\Services\CampaignService')
 @section('content')
-
+<div class="max-w-5xl">
     <div class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">@if ($dashboard) {!! $dashboard->name !!} @else {{ __('dashboard.dashboards.default.title') }} @endif</h3>
+            <h3 class="box-title">
+                @if ($dashboard)
+                    {!! $dashboard->name !!}
+                @else
+                    {{ __('dashboard.dashboards.default.title') }}
+                @endif
+            </h3>
             <div class="box-tools">
                 <a href="{{ route('dashboard', isset($dashboard) ? ['dashboard' => $dashboard->id] : null) }}" class="btn btn-box-tool" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{ __('dashboard.setup.actions.back_to_dashboard') }}
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    {{ __('dashboard.setup.actions.back_to_dashboard') }}
                 </a>
             </div>
         </div>
@@ -47,7 +53,9 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <span class="hidden-xs">{{ __('dashboard.dashboards.actions.switch') }}</span>
-                        <span class="visible-xs-inline"><i class="fa-solid fa-exchange-alt"></i></span> <span class="caret"></span>
+                        <span class="visible-xs-inline">
+                            <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
+                        </span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         @if (!empty($dashboard))
@@ -77,7 +85,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => $dashboard->id]) }}" target="_blank"
                                >
-                                <i class="fa-solid fa-external-link-alt"></i>
+                                <i class="fa-solid fa-external-link-alt" aria-hidden="true"></i>
                                 {{ __('crud.view') }}
                             </a>
                         </li>
@@ -88,7 +96,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
                                data-target="#edit-widget"
                                data-url="{{ route('campaign_dashboards.edit', $dashboard) }}"
                             >
-                                <i class="fa-solid fa-pencil-alt"></i>
+                                <i class="fa-solid fa-pencil-alt" aria-hidden="true"></i>
                                 {{ __('dashboard.dashboards.actions.edit') }}
                             </a>
                         </li>
@@ -99,7 +107,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
                                     data-target="#edit-widget"
                                     data-url="{{ route('campaign_dashboards.create', ['source' => $dashboard]) }}"
                             >
-                                <i class="fa-solid fa-copy"></i>
+                                <i class="fa-solid fa-copy" aria-hidden="true"></i>
                                 {{ __('crud.actions.copy') }}
                             </a>
                         </li>
@@ -126,12 +134,12 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
         <div class="row" id="widgets" data-url="{{ route('dashboard.reorder') }}">
             @if (empty($dashboard))
             <div class="col-md-12">
-                <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background" @if($campaignService->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }})" @endif
+                <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto" @if($campaignService->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }})" @endif
                     data-toggle="ajax-modal"
                      data-target="#large-modal"
                      data-url="{{ route('campaigns.dashboard-header.edit', $campaignService->campaign()) }}"
                 >
-                    <div class="widget-overlay">
+                    <div class="{{ $overlayClass }}">
                         <span class="widget-type">{{ __('dashboard.setup.widgets.campaign') }}</span>
                     </div>
                 </div>
@@ -142,8 +150,8 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
             @endforeach
 
             <div class="col-md-4">
-                <div class="{{ $widgetClass }} cursor-pointer hover:shadow border-dashed border-2" data-toggle="modal" data-target="#new-widget" id="btn-add-widget">
-                    <div class="{{ $overlayClass }} text-3xl">
+                <div class="{{ $widgetClass }} cursor-pointer shadow-xs hover:shadow-md" data-toggle="modal" data-target="#new-widget" id="btn-add-widget">
+                    <div class="{{ $overlayClass }} text-2xl">
                         <i class="fa-solid fa-plus" aria-hidden="true"></i>
                         <span class="block">{{ __('dashboard.setup.actions.add') }}</span>
                     </div>
@@ -151,8 +159,14 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
             </div>
         </div>
     </div>
+</div>
+    {{ csrf_field() }}
 
-    <div class="modal fade" id="new-widget" role="dialog" aria-labelledby="deleteConfirmLabel">
+    @include('editors.editor', ['dialogsInBody' => true])
+@endsection
+
+@section('modals')
+    <div class="modal fade" id="new-widget" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl">
                 <div class="modal-body text-center" id="modal-content-buttons">
@@ -192,7 +206,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
 
                 <div class="modal-body" id="modal-content-spinner" style="display: none">
                     <div class="text-center">
-                        <i class="fa-solid fa-spin fa-spinner fa-2x"></i>
+                        <i class="fa-solid fa-spin fa-spinner fa-2x" aria-hidden="true"></i>
                     </div>
                 </div>
 
@@ -208,16 +222,12 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
             </div>
         </div>
     </div>
-
-    {{ csrf_field() }}
-
-    @include('editors.editor', ['dialogsInBody' => true])
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('js/dashboard.js') }}" defer></script>
+    @vite('resources/js/dashboard.js')
 @endsection
 
 @section('styles')
-    <link href="{{ mix('css/dashboard.css') }}" rel="stylesheet">
+    @vite('resources/sass/dashboard.scss')
 @endsection

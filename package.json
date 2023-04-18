@@ -1,7 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
+        "dev": "vite",
+        "build": "vite build",
         "development": "mix",
         "watch": "mix watch",
         "watch-poll": "npm run watch -- --watch-options-poll=1000",
@@ -11,18 +12,23 @@
         "compress": "bread-compressor -s public/css/*.css public/js/*.js"
     },
     "devDependencies": {
+        "@rollup/plugin-inject": "^5.0.3",
+        "@vitejs/plugin-vue": "^4.1.0",
         "autoprefixer": "^10.4.7",
         "axios": "^0.21",
         "bootstrap-sass": "^3.4.3",
         "bread-compressor-cli": "^1.1.0",
         "jquery": "^3.4.1",
         "laravel-mix": "^6.0.6",
+        "laravel-vite-plugin": "^0.7.4",
         "lodash": "^4.17.21",
         "postcss": "^8.4.13",
         "resolve-url-loader": "^5.0.0",
+        "saas": "^1.0.0",
         "sass": "^1.22.9",
         "sass-loader": "^8.0.0",
         "tailwindcss": "^3.0.24",
+        "vite": "^4.2.1",
         "vue": "^3.0",
         "vue-loader": "^16.2.0"
     },

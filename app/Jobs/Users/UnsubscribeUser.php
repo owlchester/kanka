@@ -2,13 +2,13 @@
 
 namespace App\Jobs\Users;
 
+use App\Services\NewsletterService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use Spatie\Newsletter\NewsletterFacade as Newsletter;
 
 class UnsubscribeUser implements ShouldQueue
 {
@@ -33,7 +33,9 @@ class UnsubscribeUser implements ShouldQueue
      */
     public function handle()
     {
-        Newsletter::deletePermanently($this->email);
+        /** @var NewsletterService $service */
+        $service = app()->make(NewsletterService::class);
+        $service->email($this->email)->delete();
         Log::info('Newsletter', ['action' => 'delete', 'email' => $this->email]);
     }
 }

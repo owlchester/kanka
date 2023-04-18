@@ -27,9 +27,9 @@ $translations = json_encode([
         <div class="box box-solid">
             <div class="box-header">
                 <div class="box-tools">
-                    <button class="btn btn-default" data-toggle="ajax-modal" data-target="#entity-modal"
+                    <button class="btn btn-box-tool" data-toggle="ajax-modal" data-target="#entity-modal"
                             data-url="{{ route('conversations.conversation_participants.index', $model) }}">
-                        <i class="fa-solid fa-users"> {{ $model->participants->count() }}</i>
+                        <i class="fa-solid fa-users" aria-hidden="true"></i> {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}
                     </button>
                 </div>
             </div>
@@ -60,5 +60,5 @@ $translations = json_encode([
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/conversation.js') }}" defer></script>
+    @vite('resources/js/conversation.js')
 @endsection

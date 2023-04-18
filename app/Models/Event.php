@@ -103,6 +103,9 @@ class Event extends MiscModel
             'events' => function ($sub) {
                 $sub->select('id', 'name', 'event_id');
             },
+            'children' => function ($sub) {
+                $sub->select('id', 'event_id');
+            }
         ]);
     }
 
@@ -217,5 +220,23 @@ class Event extends MiscModel
             'location_id',
             'event_id',
         ];
+    }
+
+    /**
+     * Grid mode sortable fields
+     * @return array
+     */
+    public function datagridSortableColumns(): array
+    {
+        $columns = [
+            'name' => __('crud.fields.name'),
+            'type' => __('crud.fields.type'),
+            'date' => __('events.fields.date'),
+        ];
+
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            $columns['is_private'] = __('crud.fields.is_private');
+        }
+        return $columns;
     }
 }

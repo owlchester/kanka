@@ -9,7 +9,7 @@ $specificTheme = null;
 $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign);
 ?><!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" class="scroll-pt-16 overflow-auto">
 <head>
 @include('layouts._tracking')
     <meta charset="utf-8">
@@ -42,35 +42,14 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
     <!-- Styles -->
     <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
+    @vite([
+        'resources/sass/vendor.scss',
+        'resources/sass/app.scss',
+        'resources/sass/freyja/freyja.scss'
+    ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @yield('styles')
-
-@if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
-    @php $specificTheme = $themeOverride; @endphp
-    @if($themeOverride != 'base')
-    <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
-    @endif
-@else
-    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id))
-    @if ($campaign->theme_id !== 1)
-        <link href="{{ mix('css/' . ($campaign->theme_id === 2 ? 'dark' : 'midnight') . '.css') }}" rel="stylesheet">
-        @php $specificTheme = ($campaign->theme_id === 2 ? 'dark' : 'midnight') @endphp
-    @endif
-    @elseif (auth()->check() && !empty(auth()->user()->theme))
-        <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
-        @php $specificTheme = auth()->user()->theme @endphp
-    @endif
-@endif
-
-@if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme() && request()->get('_plugins') !== '0')
-    <link href="{{ route('campaign_plugins.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
-@endif
-@if (!empty($campaign) && $campaign->boosted() && request()->get('_styles') !== '0')
-    <link href="{{ route('campaign.css', ['ts' => \App\Facades\CampaignCache::stylesTimestamp()]) }}" rel="stylesheet">
-@endif
+    @include('layouts._theme')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
@@ -111,18 +90,20 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
             <section class="content" role="main">
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
-                    <div class="alert alert-warning">
-                        <h4>
-                            <i class="icon fa-solid fa-exclamation-triangle"></i>
+                    <div class="alert alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5">
+                        <div class="m-0 p-0 text-lg">
+                            <i class="icon fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
                             {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
-                        </h4>
-                        <p>
+                        </div>
+                        <div class="grow text-justify">
                             {{ __('campaigns.members.impersonating.message') }}
-
+                        </div>
+                        <div>
                             <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm switch-back">
-                                <i class="fa-solid fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
+                                <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+                                {{ __('campaigns.members.actions.switch-back') }}
                             </a>
-                        </p>
+                        </div>
                     </div>
                 @endif
                 @include('partials.success')
@@ -140,19 +121,19 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     </div>
 
     <!-- Default modal used throughout the app -->
-    <div class="modal fade" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
+    <div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl"></div>
             <div class="modal-spinner" style="display: none">
                 <div class="modal-body text-center">
-                    <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+                    <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Extra-large modal on desktop for more data -->
-    <div class="modal fade" id="large-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
+    <div class="modal fade z-[9900]" id="large-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content rounded-2xl" id="large-modal-content"></div>
         </div>
@@ -167,8 +148,8 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
-    <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="/js/select2/i18n/{{ LaravelLocalization::getCurrentLocale() == 'en-US' ? 'en' : LaravelLocalization::getCurrentLocale() }}.js" defer></script>
+    <script src="/js/vendor.js" defer></script>
+    @vite('resources/js/app.js')
     @yield('scripts')
 </body>
 </html>

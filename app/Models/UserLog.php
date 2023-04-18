@@ -59,6 +59,7 @@ class UserLog extends Model
     public const TYPE_CAMPAIGN_UPGRADE_BOOST = 91;
     public const TYPE_CAMPAIGN_SUPERBOOST = 92;
     public const TYPE_CAMPAIGN_UNBOOST = 93;
+    public const TYPE_CAMPAIGN_UNBOOST_AUTO = 94;
 
     /**
      * @var string

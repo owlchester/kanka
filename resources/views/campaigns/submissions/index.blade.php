@@ -13,28 +13,25 @@
 @section('content')
     @include('partials.errors')
 
-    <div class="row">
-        <div class="col-md-3">
+    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
+        <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'submissions'])
         </div>
-        <div class="col-md-9">
-
-            <div class="mb-1">
-                <div class="pull-right">
-                    <button class="btn btn-sm btn-default" data-toggle="dialog"
-                            data-target="submissions-help">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                        {{ __('campaigns.members.actions.help') }}
-                    </button>
-
-                    <a href="#" data-url="{{ route('campaign-applications') }}" data-target="#small-modal" data-toggle="ajax-modal" class="btn btn-default btn-sm">
-                        <i class="fa-solid fa-users-gear"></i>
-                        {{ __('campaigns/submissions.actions.applications', ['status' => ($campaign->isOpen() ? __('campaigns/submissions.statuses.open') : __('campaigns/submissions.statuses.closed'))]) }}
-                    </a>
-                </div>
-                <h3 class="mt-0 inline-block">
+        <div class="grow">
+            <div class="flex gap-2 mb-5 items-center">
+                <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.applications') }}
                 </h3>
+                <button class="btn btn-sm btn-default" data-toggle="dialog"
+                        data-target="submissions-help">
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    {{ __('campaigns.members.actions.help') }}
+                </button>
+
+                <a href="#" data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn btn-default btn-sm">
+                    <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
+                    {{ __('campaigns/submissions.actions.applications', ['status' => ($campaign->isOpen() ? __('campaigns/submissions.statuses.open') : __('campaigns/submissions.statuses.closed'))]) }}
+                </a>
             </div>
 
             @if (!$campaign->isOpen() || !$campaign->isPublic() || $submissions->isEmpty())
@@ -42,8 +39,8 @@
                     <div class="alert alert-warning">
                         <p>{!! __('campaigns/submissions.helpers.not_open') !!}</p>
                         <p>
-                            <button data-url="{{ route('campaign-applications') }}" data-target="#small-modal" data-toggle="ajax-modal" class="btn btn-warning">
-                                <i class="fa-solid fa-users-gear"></i>
+                            <button data-url="{{ route('campaign-applications') }}" data-target="ajax-dialog" data-toggle="dialog-ajax" class="btn btn-warning">
+                                <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
                                 {{ __('campaigns/submissions.actions.change') }}
                             </button>
                         </p>
@@ -60,7 +57,7 @@
                         </div>
                     @elseif ($submissions->isEmpty())
                         <div class="alert alert-info">
-                            {!! __('campaigns/submissions.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open"></i> ' . __('dashboard.actions.join') . '</code>']) !!}
+                            {!! __('campaigns/submissions.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open" aria-hidden="true"></i> ' . __('dashboard.actions.join') . '</code>']) !!}
                         </div>
                     @endif
                 @endif
@@ -81,9 +78,9 @@
             __('campaigns/submissions.helpers.modal')
     ]])
 
-    <div class="modal fade" id="small-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content rounded-2xl" id="small-modal-content"></div>
+    <x-dialog id="submission-dialog" title="{{ __('Loading') }}">
+        <div class="p-5 text-center">
+            <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
         </div>
-    </div>
+    </x-dialog>
 @endsection

@@ -13,13 +13,13 @@ use \Illuminate\Support\Arr;
 @section('content')
     @include('partials.errors')
 
-    <div class="row">
-        <div class="col-md-3">
+    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
+        <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'stats'])
         </div>
-        <div class="col-md-9 achievements">
-            <div class="mb-1">
-                <h3 class="mt-0 inline-block">
+        <div class="grow achievements">
+            <div class="flex gap-2 items-center mb-5">
+                <h3 class="m-0 inline-block grow">
                 {{ __('campaigns.show.tabs.achievements') }}
                 </h3>
 
@@ -37,8 +37,8 @@ use \Illuminate\Support\Arr;
             @else
 
             @foreach ($stats as $key => $stat)
-                <div class="info-box drop-shadow h-22 block w-full rounded mb-4 flex align-center items-stretch level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-gray @elseif ($stat['level'] == 5) bg-yellow @else bg-aqua @endif">
-                    <div class="flex items-center justify-center flex-0 info-box-icon text-4xl w-22">
+                <div class="info-box drop-shadow h-24 block w-full rounded mb-4 flex align-center items-stretch level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-gray @elseif ($stat['level'] == 5) bg-yellow @else bg-aqua @endif">
+                    <div class="flex items-center justify-center flex-0 info-box-icon text-4xl w-20">
                         <i class="{{ $stat['icon'] }}"></i><br />
                     </div>
 

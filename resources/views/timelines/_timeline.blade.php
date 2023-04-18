@@ -16,8 +16,8 @@ $loadedElements = [];
         <div class="box-header with-border">
             <h3 class="box-title cursor-pointer element-toggle {{ $era->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}">
 
-                <i class="fa-solid fa-chevron-up icon-show"></i>
-                <i class="fa-solid fa-chevron-down icon-hide"></i>
+                <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
+                <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
 
                 {!! $era->name !!} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif
 
@@ -33,7 +33,7 @@ $loadedElements = [];
                        class="btn btn-box-tool" role="button"
                        title="{{ __('crud.edit') }}"
                     >
-                        <i class="fa-solid fa-edit"></i>
+                        <i class="fa-solid fa-edit" aria-hidden="true"></i>
                     </a>
 
                     <a href="#" class="btn btn-box-tool text-red delete-confirm"
@@ -52,7 +52,7 @@ $loadedElements = [];
         </div>
     </div>
 
-    <ul class="timeline reative m-0 p-0 list-none collapse {{ $era->is_collapsed ? 'out' : 'in' }}" id="era-items-{{ $era->id }}">
+    <ul class="timeline relative m-0 p-0 list-none collapse {{ $era->is_collapsed ? 'out' : 'in' }} !visible" id="era-items-{{ $era->id }}">
     @foreach($era->orderedElements as $element)
         @php
             $position = $element->position + 1;

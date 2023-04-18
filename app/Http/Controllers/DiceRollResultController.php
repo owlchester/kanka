@@ -20,6 +20,8 @@ class DiceRollResultController extends CrudController
     /** @var string Filter */
     protected $filter = DiceRollResult::class;
 
+    protected string $forceMode = 'table';
+
     /**
      * Controller constructor.
      */
@@ -40,7 +42,9 @@ class DiceRollResultController extends CrudController
         //$this->authorize('browse', $this->model);
 
         $model = new $this->model();
-        $this->filterService->make($this->view, request()->all(), $model);
+        $this->filterService->request($request)
+            ->model($model)
+            ->make($this->view);
         $name = $this->view;
         $langKey = $name;
         $actions = $this->navActions;
@@ -57,6 +61,8 @@ class DiceRollResultController extends CrudController
         $filteredCount =  $base->count();
         $filter = false; //new $this->filter;
         $route = 'dice_roll_results';
+        $mode = 'table';
+        $forceMode = $this->forceMode;
 
         $models = $base->paginate();
         return view('cruds.index', compact(
@@ -71,7 +77,9 @@ class DiceRollResultController extends CrudController
             'filteredCount',
             'unfilteredCount',
             'langKey',
-            'datagridActions'
+            'datagridActions',
+            'mode',
+            'forceMode',
         ));
     }
 

@@ -4,7 +4,7 @@
         <div class="row mb-5">
             <div class="col-sm-6">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="fa-solid fa-users"></i></span>
+                    <span class="input-group-addon"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
                     <input type="text" value="{!! $perm->role->name !!}" disabled="disabled" class="form-control" />
                 </div>
             </div>
@@ -14,19 +14,20 @@
 
                     <span class="input-group-btn">
                         <button class="btn btn-danger btn-flat post-delete-perm">
-                            <i class='fa-solid fa-trash'></i>
+                            <i class='fa-solid fa-trash' aria-hidden="true"></i>
+                            <span class="sr-only">{{ __('crud.remove') }}</span>
                         </button>
                     </span>
                 </div>
             </div>
             <input type="hidden" name="perm_role[]" value="{{ $perm->role_id }}" />
         </div>
-    @endforeach
+        @endforeach
         @foreach ($model->permissions()->onlyUsers()->with('user')->get() as $perm)
             <div class="row mb-5">
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
+                        <span class="input-group-addon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
                         <input type="text" value="{!! $perm->user->name !!}" disabled="disabled" class="form-control" />
                     </div>
                 </div>
@@ -36,7 +37,7 @@
 
                         <span class="input-group-btn">
                             <button class="btn btn-danger btn-flat post-delete-perm">
-                                <i class='fa-solid fa-trash'></i>
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                             </button>
                         </span>
                     </div>
@@ -48,10 +49,10 @@
     <div id="post-perm-target" class="mb-5"></div>
     <div class="btn-group">
         <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#post-new-user">
-            <i class="fa-solid fa-user"></i> {{ __('entities/notes.actions.add_user') }}
+            <i class="fa-solid fa-user" aria-hidden="true"></i> {{ __('entities/notes.actions.add_user') }}
         </a>
         <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#post-new-role">
-            <i class="fa-solid fa-users"></i> {{ __('entities/notes.actions.add_role') }}
+            <i class="fa-solid fa-users" aria-hidden="true"></i> {{ __('entities/notes.actions.add_role') }}
         </a>
     </div>
     {!! Form::hidden('permissions', true) !!}
@@ -109,7 +110,7 @@
     <div class="hidden row mb-5" id="post-perm-user-template">
         <div class="col-sm-6">
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
+                <span class="input-group-addon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control" />
             </div>
         </div>
@@ -120,7 +121,7 @@
                 ]) !!}
                 <span class="input-group-btn">
                     <button class="btn btn-danger btn-flat post-delete-perm">
-                        <i class='fa-solid fa-trash'></i>
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
                     </button>
                 </span>
             </div>
@@ -130,7 +131,7 @@
     <div class="hidden row mb-5" id="post-perm-role-template">
         <div class="col-sm-6">
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa-solid fa-users"></i></span>
+                <span class="input-group-addon"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control" />
             </div>        </div>
         <div class="col-sm-6">
@@ -140,7 +141,7 @@
                 ]) !!}
                 <span class="input-group-btn">
                 <button class="btn btn-danger btn-flat post-delete-perm">
-                    <i class='fa-solid fa-trash'></i>
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
                 </button>
             </span>
             </div>

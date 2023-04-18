@@ -12,15 +12,15 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
 @if ($forceShow || $model->entity->hasPins())
     <div class="sidebar-section-box entity-pins {{ $model->entity->hasPins() ? '' : 'entity-empty-pin' }}">
         <div class="sidebar-section-title cursor-pointer text-lg user-select" data-toggle="collapse" data-target="#sidebar-pinned-elements">
-            <i class="fa-solid fa-chevron-right" style="display: none"></i>
-            <i class="fa-solid fa-chevron-down"></i>
+            <i class="fa-solid fa-chevron-right" aria-hidden="true" style="display: none"></i>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
 
             {{ __('entities/pins.title') }}
             <a href="//docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank">
-                <i class="fa-solid fa-question-circle pull-right" ></i>
+                <i class="fa-solid fa-question-circle pull-right" aria-hidden="true" ></i>
             </a>
         </div>
-        <div class="sidebar-elements grid my-1 collapse in" id="sidebar-pinned-elements">
+        <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-pinned-elements">
 
             <ul class="pins m-0 p-0 list-none">
                 @includeWhen(!$model->entity->pinnedFiles->isEmpty(), 'entities.components.assets')

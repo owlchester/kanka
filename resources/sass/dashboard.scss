@@ -1,0 +1,181 @@
+
+:root {
+    --dashboard-preview-gradient: white;
+    --dashboard-widget-admin-border: #ccc;
+}
+
+.campaign-dashboard {
+    .content-header {
+        min-height: 28px;
+    }
+}
+.dashboard-actions {
+    display: inline-block;
+    float: right;
+
+    .btn {
+        padding: 4px 10px;
+    }
+}
+
+.panel {
+
+    h1 {
+        font-size: 20pt;
+    }
+    h2 {
+        font-size: 18pt;
+    }
+    h3, h4, h5, h6 {
+        font-size: 12pt;
+    }
+
+    .panel-heading-entity {
+        transition: all 3s ease;
+        padding: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 10%;
+
+        &:hover {
+            background-position: 50% 50%;
+        }
+
+        h3 {
+            transition: none;
+            background-color: rgba(0, 0, 0, 0.2);
+
+            a {
+                padding: 30px 20px;
+                display: inline-block;
+                width: 100%;
+                color: white !important;
+                text-shadow: rgba(0, 0, 0, 0.9) 0 1px 4px;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .panel-body {
+        .pinned-entity {
+            transition: all 0.5s ease;
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+        .preview {
+            max-height: 200px;
+            position: relative;
+            overflow: hidden;
+            padding-top: 0;
+
+            &:before {
+                content: '';
+                width: 100%;
+                height: 30%;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient));
+
+            }
+        }
+
+        .full {
+            max-height: unset;
+        }
+        .entity-content {
+            ul {
+                padding-left: 25px;
+            }
+        }
+    }
+
+    .list-group-item.list-group-item-repeat {
+        padding-top: 0;
+        border-top: unset;
+    }
+}
+
+.widget-recent, .widget-unmentioned {
+    .panel-body {
+        padding: 5px;
+    }
+    .row {
+        margin: 4px 0;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .elapsed {
+        color: #888;
+    }
+}
+
+.widget-preview {
+    .panel-title {
+        vertical-align: middle;
+        .entity-image {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+    }
+    .panel-body {
+        overflow: hidden;
+    }
+
+    table {
+        max-width: 100% !important;
+        word-break: break-all;
+    }
+    iframe, img {
+        max-width: 100% !important;
+    }
+
+    /* can we remove this?
+    div[data-toggle="preview"] {
+      max-height: 200px;
+    }*/
+}
+
+.campaign-header.campaign-imaged-header {
+    .campaign-header-content {
+        margin-top: 5px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        border-radius: 5px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+/** mobile **/
+
+@media (max-width: 767px) {
+    .campaign-header {
+        padding: 10px;
+        margin-bottom: 0;
+    }
+    .campaign-header .campaign-content > .campaign-head {
+    }
+
+    .campaign-header .campaign-content > .campaign-head a.campaign-link {
+        margin-right: 0;
+    }
+
+    .campaign-header.campaign-imaged-header {
+        padding: 20px 10px;
+    }
+
+    .campaign-header.campaign-imaged-header .campaign-header-content {
+        padding: 10px;
+    }
+
+    .dashboard-actions {
+        float: unset;
+        display: block;
+    }
+}

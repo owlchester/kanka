@@ -71,9 +71,10 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
             @include('dashboard.widgets.previews._relations')
             @include('dashboard.widgets.previews._attributes')
         </div>
-        <a href="#" class="preview-switch hidden"
+        <a href="#" class="preview-switch w-full inline-block text-center hidden"
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
-            <i class="fa-solid fa-chevron-down"></i>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            <span class="sr-only">{{ __('Show more') }}</span>
         </a>
         @endif
 

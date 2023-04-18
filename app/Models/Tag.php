@@ -106,6 +106,10 @@ class Tag extends MiscModel
     {
         return $this->hasMany('App\Models\Tag', 'tag_id', 'id');
     }
+    public function children()
+    {
+        return $this->tags();
+    }
 
     /**
      * @return string
@@ -154,6 +158,9 @@ class Tag extends MiscModel
                 $sub->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.type_id');
             },
             'entities',
+            'children' => function ($sub) {
+                $sub->select('id', 'tag_id');
+            }
         ]);
     }
 

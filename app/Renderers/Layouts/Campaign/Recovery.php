@@ -14,7 +14,7 @@ class Recovery extends Layout
     {
         $columns = [
             'image' => [
-                'class' => 'avatar',
+                'class' => 'avatar w-14',
                 'label' => '',
                 'render' => function ($entity) {
                     $child = $entity->child()->withTrashed()->first();

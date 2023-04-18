@@ -66,13 +66,13 @@
         @if (empty($origin))
 
             <div class="btn-group mr-4">
-                <button type="submit" class="btn btn-success quick-creator-submit px-5" data-entity-type="{{ $singularType }}">
+                <button type="submit" class="btn btn-success quick-creator-submit px-5" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.create') }}">
                     <span>
                         {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
                     </span>
                     <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
                 </button>
-                <button type="submit" class="btn btn-success quick-creator-submit" data-entity-type="{{ $singularType }}" data-action="more">
+                <button type="submit" class="btn btn-success quick-creator-submit" data-entity-type="{{ $singularType }}" data-action="more" title="{{ __('entities.creator.tooltips.create_more') }}">
                     <span>
                         <i class="fa-solid fa-plus-square" aria-hidden="true"></i>
                     </span>
@@ -81,7 +81,7 @@
             </div>
 
             @if ($mode !== 'bulk')
-                <button type="submit" class="btn btn-default quick-creator-submit mr-4 px-5" data-entity-type="{{ $singularType }}" data-action="edit">
+                <button type="submit" class="btn btn-default quick-creator-submit mr-4 px-5" data-entity-type="{{ $singularType }}" data-action="edit" title="{{ __('entities.creator.tooltips.edit') }}">
                     <span>
                         {{ __('crud.edit') }}
                     </span>

@@ -101,6 +101,9 @@ class Timeline extends MiscModel
             },
             'timelines' => function ($sub) {
                 $sub->select('id', 'name', 'timeline_id');
+            },
+            'children' => function ($sub) {
+                $sub->select('id', 'timeline_id');
             }
         ]);
     }

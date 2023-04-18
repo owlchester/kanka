@@ -6,6 +6,7 @@
  */
 $currentCampaign = CampaignLocalization::getCampaign();
 $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
+$defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m' => 'table'] : null;
 ?>
 @if (!empty($currentCampaign))
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
@@ -41,13 +42,13 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                 $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                             }
                             @endphp
-                            <a href="{{ route($route) }}">
-                                <i class="{{ $element['custom_icon'] ?: $element['icon']  }}"></i>
+                            <a href="{{ route($route, (\Illuminate\Support\Arr::get($element, 'mode') === true ? $defaultOptions : [])) }}">
+                                <i class="{{ $element['custom_icon'] ?: $element['icon']  }}" aria-hidden="true"></i>
                                 {!! $element['custom_label'] ?: $element['label']  !!}
                             </a>
                         @else
                             <span>
-                                <i class="{{ $element['custom_icon'] ?: $element['icon'] }}"></i>
+                                <i class="{{ $element['custom_icon'] ?: $element['icon'] }}" aria-hidden="true"></i>
                                 {!! $element['custom_label'] ?: $element['label'] !!}
                             </span>
                         @endif
@@ -62,8 +63,8 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                                         $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                                     }
                                 @endphp
-                                <a href="{{ route($route) }}">
-                                    <i class="{{ $child['custom_icon'] ?: $child['icon'] }}"></i>
+                                <a href="{{ route($route, \Illuminate\Support\Arr::get($child, 'mode') === true ? $defaultOptions : []) }}">
+                                    <i class="{{ $child['custom_icon'] ?: $child['icon'] }}" aria-hidden="true"></i>
                                     {!! $child['custom_label'] ?: $child['label'] !!}
                                 </a>
                             </li>

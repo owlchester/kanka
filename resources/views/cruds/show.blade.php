@@ -26,10 +26,10 @@ $headerImage = true;
     <div class="header-buttons inline-block pull-right ml-auto">
         <div class="btn-group">
             <div class="btn btn-default btn-sm btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
-                <i class="fa-solid fa-grip-lines"></i>
+                <i class="fa-solid fa-grip-lines" aria-hidden="true"></i>
             </div>
             <div class="btn btn-default btn-sm btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
             </div>
         </div>
         @can('update', $model)

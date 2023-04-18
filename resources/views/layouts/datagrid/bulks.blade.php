@@ -5,7 +5,7 @@ $hasOthers = false;
 <div class="dropdown datagrid-bulk-actions">
     <a class="dropdown-toggle btn btn-default disabled" data-toggle="dropdown" aria-expanded="false" data-tree="escape">
         {{ __('crud.bulk.buttons.label') }}
-        <i class="fa-solid fa-caret-down"></i>
+        <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
     </a>
     <ul class="dropdown-menu" role="menu">
 
@@ -36,7 +36,7 @@ $hasOthers = false;
     </ul>
 </div>
 <a href="#" class="btn btn-default btn-disabled datagrid-spinner" style="display:none">
-    <i class="fa-solid fa-spinner fa-spin"></i>
+    <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
 </a>
 <input type="hidden" name="action" value="" />
 

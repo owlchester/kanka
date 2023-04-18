@@ -7,7 +7,10 @@
         <th colspan="2">{{ __('entities.item') }}</th>
         <th>{{ __('entities/inventories.fields.qty') }}</th>
         @if (auth()->check())
-            <th><i class="fa-solid fa-user-lock" title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip"></i></th>
+            <th>
+                <i class="fa-solid fa-user-lock" title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                <span class="sr-only">{{ __('crud.fields.visibility') }}</span>
+            </th>
             <th><br /></th>
         @endif
     </tr>
@@ -26,10 +29,11 @@
             </tr>
             <?php $previousPosition = $item->position; ?>
         @endif
-        <tr class="collapse inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }} in">
+        <tr class="collapse !visible inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }} in">
             <td style="width: 50px">
                 @if ($item->is_equipped)
-                    <i class="fa-solid fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip"></i>
+                    <i class="fa-solid fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                    <span class="sr-only">{{ __('entities/inventories.fields.is_equipped') }}</span>
                 @endif
             </td>
             <td>
@@ -57,7 +61,7 @@
                     <td class="text-right">
                         <div class="dropdown">
                             <a class="dropdown-toggle btn btn-xs btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
-                                <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
+                                <i class="fa-solid fa-ellipsis-h" data-tree="escape" aria-hidden="true"></i>
                                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -66,7 +70,7 @@
                                        data-toggle="ajax-modal" data-target="#entity-modal"
                                        data-url="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
                                        title="{{ __('crud.edit') }}">
-                                        <i class="fa-solid fa-edit"></i> {{ __('crud.edit') }}
+                                        <i class="fa-solid fa-edit" aria-hidden="true"></i> {{ __('crud.edit') }}
                                     </a>
                                 </li>
                                 <li>

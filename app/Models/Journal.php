@@ -124,6 +124,9 @@ class Journal extends MiscModel
             'journals' => function ($sub) {
                 $sub->select('id', 'journal_id');
             },
+            'children' => function ($sub) {
+                $sub->select('id', 'journal_id');
+            }
         ]);
     }
 
@@ -258,5 +261,24 @@ class Journal extends MiscModel
             'date_start',
             'date_end',
         ];
+    }
+
+    /**
+     * Grid mode sortable fields
+     * @return array
+     */
+    public function datagridSortableColumns(): array
+    {
+        $columns = [
+            'name' => __('crud.fields.name'),
+            'type' => __('crud.fields.type'),
+            'date' => __('journals.fields.date'),
+            'calendar_date' => __('crud.fields.calendar_date'),
+        ];
+
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            $columns['is_private'] = __('crud.fields.is_private');
+        }
+        return $columns;
     }
 }

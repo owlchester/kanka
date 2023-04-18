@@ -19,12 +19,6 @@ Route::group([
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::post('/logout', 'Auth\AuthController@logout')->name('logout');
-    Route::get('/login-as-user/{user}', 'Auth\AuthController@loginAsUser')->name('login-as-user');
-
-    // OAuth Routes
-    Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
-
     Route::get('/start', 'StartController@index')->name('start');
     //Route::post('/start', 'StartController@store')->name('start.save');
     Route::post('/create-campaign', 'CampaignController@store')->name('create-campaign');

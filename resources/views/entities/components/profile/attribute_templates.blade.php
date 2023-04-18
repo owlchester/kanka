@@ -11,7 +11,7 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-profile-elements">
         @if (!empty($model->attributeTemplate))
             <div class="element profile-attribute-template">
                 <div class="title text-uppercase text-xs">{{ __('attribute_templates.fields.attribute_template') }}</div>

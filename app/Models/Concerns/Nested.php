@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Arr;
 use Kalnoy\Nestedset\AncestorsRelation;
 use Kalnoy\Nestedset\Collection;
@@ -1231,7 +1232,12 @@ trait Nested
     protected function assertNotDescendant(self $node)
     {
         if ($node == $this || $node->isDescendantOf($this)) {
-            throw new LogicException('Node must not be a descendant.');
+            $field = $node->getParentIdName();
+            $error = \Illuminate\Validation\ValidationException::withMessages([
+                $field => [__('crud.errors.node_must_not_be_a_descendant')]
+            ]);
+            throw $error;
+            //throw new LogicException('Node must not be a descendant.');
         }
 
         return $this;
@@ -1245,7 +1251,11 @@ trait Nested
     protected function assertNodeExists(self $node)
     {
         if (! $node->getLft() || ! $node->getRgt()) {
-            throw new LogicException('Node must exists.');
+            $field = $node->getParentIdName();
+            $error = \Illuminate\Validation\ValidationException::withMessages([
+                $field => [__('crud.errors.invalid_node')]
+            ]);
+            throw $error;
         }
 
         return $this;

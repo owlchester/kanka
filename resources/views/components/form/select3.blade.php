@@ -78,10 +78,10 @@ if (!empty($from)) {
 
 $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>
-<label>{{ __($labelKey) }} {!! $labelHelper !!}</label>
+<label data-view="select3">{{ __($labelKey) }} {!! $labelHelper !!}</label>
 
-@if ($allowNew || !empty($quickCreator))
-    <div class="input-group input-group-sm">
+@if ($allowNew || empty($quickCreator) || $quickCreator !== true)
+    <div class="input-group input-group-sm w-full">
 @endif
 
 {!! Form::select(
@@ -101,19 +101,14 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
     ],
 ) !!}
 
-@if ($allowNew)
-    <div class="input-group-btn">
-        <a class="new-entity-selector btn btn-tab-form" style="" data-toggle="modal" data-target="#new-entity-modal" data-parent="{{ $fieldUniqIdentifier }}" data-entity="{{ $pluralField }}">
-            <span class="glyphicon glyphicon-plus"></span>
-        </a>
-    </div>
-</div>
-@elseif(!empty($quickCreator))
+@if(empty($quickCreator) || $quickCreator !== true)
     <div class="input-group-btn">
         <a class="quick-creator-subform btn btn-tab-form" data-url="{{ route('entity-creator.form', ['type' => $pluralField, 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier]) }}">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>
+@endif
+@if ($allowNew || empty($quickCreator) || $quickCreator !== true)
     </div>
 @endif
 

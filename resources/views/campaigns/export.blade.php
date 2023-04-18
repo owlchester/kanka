@@ -10,11 +10,11 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
+        <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'export'])
         </div>
-        <div class="col-md-9">
+        <div class="grow">
             <h3 class="mt-0">
                 <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
                         data-target="export-help">
@@ -28,17 +28,13 @@
             @if ($campaign->exportable())
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-md-offset-3 text-center my-5">
-                    <i class="fa-solid fa-spinner fa-spin fa-2x campaign-export-spinner" aria-hidden="true"></i>
-
-                    <button class="btn btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process') }}" style="display: none">
+                    <button class="btn btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process') }}">
                         <i class="fa-solid fa-download" aria-hidden="true"></i>
                         {{ __('campaigns/export.actions.export') }}
                     </button>
 
                 </div>
             </div>
-            <div class="alert alert-success" id="campaign-export-success" style="display: none"></div>
-            <div class="alert alert-danger " id="campaign-export-error" style="display: none"></div>
             @else
             <div class="alert alert-warning">
                 {{ __('campaigns/export.errors.limit') }}
@@ -50,16 +46,12 @@
 
 @section('modals')
     @parent
-    @include('partials.helper-modal', [
-        'id' => 'export-help',
-        'title' => __('campaigns.show.tabs.export'),
-        'textes' => [
-            __('campaigns/export.helpers.intro'),
-            __('campaigns/export.helpers.json'),
-            __('campaigns/export.helpers.import', [
+    <x-dialog id="export-help" :title="__('campaigns.show.tabs.export')">
+        <p>{{ __('campaigns/export.helpers.intro') }}</p>
+        <p>{{ __('campaigns/export.helpers.json') }}</p>
+        <p>{!! __('campaigns/export.helpers.import', [
                 'api' => link_to('/' . app()->getLocale() . config('larecipe.docs.route') . '/1.0/overview', __('front.features.api.link'), null, ['target' => '_blank'])
-])
-        ]
-    ])
+        ]) !!}</p>
+    </x-dialog>
 
 @endsection

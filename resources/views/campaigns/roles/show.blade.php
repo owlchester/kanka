@@ -20,43 +20,40 @@
     @if ($role->is_public)
         @include('campaigns.roles._public')
     @else
-    <div class="row">
-        <div class="col-md-12 col-lg-3">
+    <div class="flex gap-2 lg:gap-5 flex-col lg:flex-row max-w-7xl">
+        <div class="lg:flex-none lg:w-60">
         @include('campaigns.roles._members')
         </div>
-        <div class="col-md-12 col-lg-9">
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{ __('crud.permissions.title') }}</h3>
-
-                    <div class="box-tools">
-                        <button class="btn btn-box-tool" data-target="#permission-modal" data-toggle="modal">
-                            <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('campaigns.members.actions.help') }}
-                        </button>
-                    </div>
+        <div class="grow">
+            <div class="flex gap-2 items-center mb-5">
+                <h3 class="m-0 grow">{{ __('crud.permissions.title') }}</h3>
+                <button class="btn btn-default btn-sm" data-target="permission-modal" data-toggle="dialog">
+                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('campaigns.members.actions.help') }}
+                </button>
+            </div>
+            <div class="rounded bg-box shadow-xs p-4 mb-5">
+                @if (!$role->isAdmin())
+                    <p class="help-block">
+                        {!! __('campaigns.roles.hints.role_permissions', ['name' => '<strong>' . $role->name . '</strong>']) !!}
+                    </p>
+                @else
+                    <p class="help-block">{!! __('campaigns.roles.hints.role_admin', ['name' => '<code>' . $role->name . '</code>']) !!} </p>
+                @endif
+                @can('permission', $role)
+                {{ Form::open(['route' => ['campaign_roles.savePermissions', 'campaign_role' => $role], 'data-shortcut' => '1']) }}
+                        <div class="w-full overflow-y-auto">
+                    @include('campaigns.roles._pretty')
+                        </div>
+                @endif
+                @can('permission', $role)
+                <div class="text-right mt-5">
+                    <button class="btn btn-success">
+                        <i class="fa-solid fa-save" aria-hidden="true"></i>
+                        {{ __('crud.save') }}
+                    </button>
                 </div>
-                <div class="box-body" style="overflow-y: auto">
-                    @if (!$role->isAdmin())
-                        <p class="help-block">{!! __('campaigns.roles.hints.role_permissions', ['name' => '<strong>' . $role->name . '</strong>']) !!}</p>
-                    @else
-                        <p class="help-block">{!! __('campaigns.roles.hints.role_admin', ['name' => '<strong>' . $role->name . '</strong>']) !!} </p>
-                    @endif
-                    @can('permission', $role)
-                    {{ Form::open(['route' => ['campaign_roles.savePermissions', 'campaign_role' => $role], 'data-shortcut' => '1']) }}
-
-                        @include('campaigns.roles._pretty')
-                    @endif
-                </div>
-                <div class="box-footer text-right">
-                    @can('permission', $role)
-                        <button class="btn btn-success">
-                            <i class="fa-solid fa-save" aria-hidden="true"></i>
-                            {{ __('crud.save') }}
-                        </button>
-                        {{ Form::close() }}
-
-                    @endif
-                </div>
+                    {{ Form::close() }}
+                @endif
             </div>
         </div>
     </div>
@@ -64,81 +61,68 @@
 @endsection
 
 @section('modals')
+    <x-dialog id="permission-modal" :title="__('campaigns.roles.modals.details.title')">
+        <p>
+            {!! __('campaigns.roles.modals.details.entities') !!}
+        </p>
 
-    <div class="modal fade" id="permission-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        {{ __('campaigns.roles.modals.details.title') }}
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {!! __('campaigns.roles.modals.details.entities') !!}
-                    </p>
+        <ul>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.read') }}</code>:
+                {{ __('campaigns.roles.permissions.helpers.read') }}
+            </li>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.edit') }}</code>:
+                {{ __('campaigns.roles.permissions.helpers.edit') }}
+            </li>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.add') }}</code>:
+                {{ __('campaigns.roles.permissions.helpers.add') }}
+            </li>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.delete') }}</code>:
+                {{ __('campaigns.roles.permissions.helpers.delete') }}
+            </li>
+            <li>
+                <code>{{ __('entities.posts') }}</code>:
+                {{ __('campaigns.roles.permissions.helpers.entity_note') }}
+            </li>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.permission') }}</code>:
+                {{ __('campaigns.roles.permissions.helpers.permission') }}
+            </li>
+        </ul>
 
-                    <ul>
-                        <li>
-                            <code>{{ __('campaigns.roles.permissions.actions.read') }}</code>:
-                            {{ __('campaigns.roles.permissions.helpers.read') }}
-                        </li>
-                        <li>
-                            <code>{{ __('campaigns.roles.permissions.actions.edit') }}</code>:
-                            {{ __('campaigns.roles.permissions.helpers.edit') }}
-                        </li>
-                        <li>
-                            <code>{{ __('campaigns.roles.permissions.actions.add') }}</code>:
-                            {{ __('campaigns.roles.permissions.helpers.add') }}
-                        </li>
-                        <li>
-                            <code>{{ __('campaigns.roles.permissions.actions.delete') }}</code>:
-                            {{ __('campaigns.roles.permissions.helpers.delete') }}
-                        </li>
-                        <li>
-                            <code>{{ __('entities.posts') }}</code>:
-                            {{ __('campaigns.roles.permissions.helpers.entity_note') }}
-                        </li>
-                        <li>
-                            <code>{{ __('campaigns.roles.permissions.actions.permission') }}</code>:
-                            {{ __('campaigns.roles.permissions.helpers.permission') }}
-                        </li>
-                    </ul>
-
-                    <p>
-                        {!! __('campaigns.roles.modals.details.campaign') !!}
-                    </p>
+        <p>
+            {!! __('campaigns.roles.modals.details.campaign') !!}
+        </p>
 
 
-                    <ul>
-                        <li>
-                            <code>{{ __('campaigns.roles.permissions.actions.manage') }}</code>:
-                            {{ __('campaigns.roles.permissions.helpers.manage') }}
-                        </li>
-                        <li>
-                            <code>{{ __('campaigns.roles.permissions.actions.dashboard') }}</code>:
-                            {{ __('campaigns.roles.permissions.helpers.dashboard') }}
-                        </li>
-                        <li>
-                            <code>{{ __('campaigns.roles.permissions.actions.members') }}</code>:
-                            {{ __('campaigns.roles.permissions.helpers.members') }}
-                        </li>
-                        <li>
-                            <code>{{ __('campaigns.roles.permissions.actions.gallery') }}</code>:
-                            {{ __('campaigns.roles.permissions.helpers.gallery') }}
-                        </li>
-                    </ul>
+        <ul>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.manage') }}</code>:
+                {{ __('campaigns.roles.permissions.helpers.manage') }}
+            </li>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.dashboard') }}</code>:
+                {{ __('campaigns.roles.permissions.helpers.dashboard') }}
+            </li>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.members') }}</code>:
+                {{ __('campaigns.roles.permissions.helpers.members') }}
+            </li>
+            <li>
+                <code>{{ __('campaigns.roles.permissions.actions.gallery') }}</code>:
+                {{ __('campaigns.roles.permissions.helpers.gallery') }}
+            </li>
+        </ul>
 
-                    <p>
-                        <a href="https://www.youtube.com/watch?v=ikNPzNgjYmg" target="_blank">
-                            {{ __('campaigns.roles.modals.details.more') }}
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+        <p>
+            <a href="https://www.youtube.com/watch?v=ikNPzNgjYmg" target="_blank" class="inline-block py-5">
+                {{ __('campaigns.roles.modals.details.more') }}
+            </a>
+        </p>
+    </x-dialog>
 @endsection
 
 @section('styles')

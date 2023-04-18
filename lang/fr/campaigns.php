@@ -202,10 +202,9 @@ TEXT
         'switch_back_success'   => 'Tu es de retour à ton compte.',
         'title'                 => 'Membres de la campagne :name',
         'updates'               => [
-            'added'     => 'Le rôle :role a été ajouté à :user.',
-            'removed'   => 'Le rôle :role a été retiré de :user.',
+            'added'     => ':user a été ajouté au rôle :role.',
+            'removed'   => ':user a été retiré du rôle :role.',
         ],
-        'your_role'             => 'Rôle: \'<i>:rôle</i>\'',
     ],
     'modules'                           => [
         'permission-disabled'   => 'Ce module est désactivé',
@@ -279,7 +278,7 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'Le rôle Public a des permissions mais la campagne est privée. La campagne peut être rendue publique sous l\'onglet Partager en modifiant la campagne.',
             'empty_role'            => 'Ce rôle n\'a pas encore de membre.',
-            'role_admin'            => 'Le rôle :name automatiquement donne accès à tous ses membres à tout le contenu de la campagne.',
+            'role_admin'            => 'Les membres du rôle :name ont automatiquement accès à tout le contenu et toutes les fonctionnalités de la campagne.',
             'role_permissions'      => 'Permettre au rôle \':name\' les actions suivantes sur toutes les entités.',
         ],
         'members'       => 'Membres',

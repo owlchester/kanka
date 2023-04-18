@@ -11,7 +11,7 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-profile-elements">
 
         <div class="element profile-target">
             <div class="title text-uppercase text-xs">{{ __('conversations.fields.target') }}</div>

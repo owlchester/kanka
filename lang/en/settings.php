@@ -57,6 +57,7 @@ return [
         ],
         'benefits'  => 'Kanka provides a few integrations to third party services. More third party integrations are planned for the future.',
         'discord'   => [
+            'confirm' => 'Are you sure you want to disconnect your account from Discord? This will remove any roles you have been synced with.',
             'errors'    => [
                 'add'   => 'An error occurred linking up your Discord account with Kanka. Please try again. If this keeps happening, please be aware that Discord has a limit on 100 joined servers when using their APIs.',
             ],
@@ -64,7 +65,7 @@ return [
                 'add'       => 'Your Discord account has been linked.',
                 'remove'    => 'Your Discord account has been unlinked.',
             ],
-            'text'      => 'Access your subscription roles automatically.',
+            'text'      => 'Link your Discord account with Kanka to automatically get access to your subscription roles and private channels.',
             'unlock'    => 'Unlock Discord roles',
         ],
         'title'     => 'App Integration',
@@ -127,7 +128,7 @@ return [
         'actions'               => [
             'cancel_sub'        => 'Cancel subscription',
             'subscribe'         => 'Subscribe',
-            'update_currency'   => 'Save preferred currency',
+            'update_currency'   => 'Save billing currency',
         ],
         'billing'               => [
             'helper'    => 'Your billing information is processed and stored safely through :stripe. This payment method is used for all of your subscriptions.',
@@ -166,6 +167,7 @@ return [
             'title' => 'Change your preferred billing currency',
         ],
         'errors'                => [
+            'failed' => 'We are currently experiencing issues with our billing system. Please contact us at :email for assistance.',
             'callback'      => 'Our payment provider reported an error. Please try again or contact us if the problem persists.',
             'subscribed'    => 'Couldn\'t process your subscription. Stripe provided the following hint.',
         ],
@@ -189,6 +191,7 @@ return [
         'manage_subscription'   => 'Manage subscription',
         'payment_method'        => [
             'actions'       => [
+                'add'               => 'Add',
                 'add_new'           => 'Add a new payment method',
                 'change'            => 'Change payment method',
                 'save'              => 'Save payment method',
@@ -202,7 +205,7 @@ return [
             'ending'        => 'Ending in',
             'helper'        => 'This card will be used for all of your subscriptions.',
             'new_card'      => 'Add a new payment method',
-            'saved'         => ':brand ending with :last4',
+            'saved'         => ':brand **** :last4',
         ],
         'periods'               => [
             'monthly'   => 'Monthly',

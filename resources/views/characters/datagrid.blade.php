@@ -10,6 +10,18 @@
         ],
         'name',
         'title',
+        'type',
+        [
+            'label' => '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '" aria-hidden="true"></i> <span class="sr-only">' . __('characters.fields.is_dead') . '</span>',
+            'field' => 'is_dead',
+            'render' => function($model) {
+                if ($model->is_dead) {
+                    return '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '"></i>';
+                }
+                return '';
+            },
+            'class' => 'icon w-14'
+        ],
         [
             'label' => __('entities.families'),
             'visible' => $campaignService->enabled('families'),
@@ -38,25 +50,13 @@
                 return implode( ', ', $races);
             }
         ],
-        'type',
-        [
-            'label' => '<i class="fa-solid fa-transgender-alt" title="' . __('characters.fields.sex') . '"></i>',
-            'field' => 'sex',
-        ],
-        [
-            'label' => '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '"></i>',
-            'field' => 'is_dead',
-            'render' => function($model) {
-                if ($model->is_dead) {
-                    return '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '"></i>';
-                }
-                return '';
-            },
-            'class' => 'icon'
-        ],
         [
             'type' => 'is_private',
-        ]
+        ],
+        /*[
+            'label' => '<i class="fa-solid fa-transgender-alt" title="' . __('characters.fields.sex') . '"></i>',
+            'field' => 'sex',
+        ],*/
     ])
     ->options([
         'route' => 'characters.index',

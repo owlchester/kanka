@@ -1,13 +1,13 @@
 <?php /** @var \App\Models\QuestElement[] $elements */?>
 @php $count = 0; @endphp
 
-<div class="row">
+<div class="row mb-5">
     <div class="col-md-6">
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-main-block'])
     </div>
 </div>
 
-<div class="mt-6" id="quest-elements">
+<div class="" id="quest-elements">
     <div class="row">
     @foreach ($elements as $element)
         @if ($element->entity_id && !$element->entity)
@@ -19,22 +19,22 @@
         @php $count++; @endphp
         <div class="col-md-6">
             <div class="box box-widget widget-user-2 box-quest-element" id="quest-element-{{ $element->id }}" @if ($element->entity)data-entity-id="{{ $element->entity->id }}" data-entity-type="{{ $element->entity->type() }}"@endif>
-                <div class="flex p-5 gap-3 items-center {{ $element->colourClass() }}">
+                <div class="flex p-4 gap-2 items-center {{ $element->colourClass() }}">
                     @if ($element->entity)
                         <div class="widget-user-image">
-                            <img class="flex-none entity-image rounded-full pull-left" src="{{ $element->entity->avatar(true) }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
+                            <img class="flex-none entity-image rounded-full pull-left" src="{{ $element->entity->avatarSize(40)->avatarV2() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
                         </div>
                     @endif
 
-                    <div class="flex-grow">
-                        <h3 class="widget-user-username m-0 text-2xl">
+                    <div class="grow">
+                        <h3 class="widget-user-username m-0 text-2xl ">
                             @if($element->entity)
                                 @if ($element->entity->is_private)
                                     <i class="fa-solid fa-lock" aria-hidden="true" aria-label="{{ __('crud.is_private') }}" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i>
                                 @endif
                                 {!! $element->entity->tooltipedLink($element->name) !!}
                             @else
-                                <span class="name">
+                                <span class="name truncate">
                                     {!! $element->name !!}
                                 </span>
                             @endif

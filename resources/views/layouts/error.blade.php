@@ -40,7 +40,8 @@
 <body id="page-top">
 @include('layouts._tracking-fallback')
 <!-- Custom styles for this template -->
-<link href="{{ mix('css/front.css') }}" rel="stylesheet">
+
+@vite('resources/sass/front.scss')
 <noscript id="deferred-styles">
 </noscript>
 

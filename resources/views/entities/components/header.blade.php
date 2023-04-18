@@ -1,4 +1,5 @@
-<?php /**
+<?php
+/**
  * @var \App\Services\CampaignService $campaign
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
@@ -9,13 +10,13 @@ if (!isset($entity)) {
     $entity = $model->entity;
 }
 
-$imageUrl = $imagePath = $headerImageUrl =null;
+$imageUrl = $imagePath = $headerImageUrl = null;
 if ($model->image) {
     $imageUrl = $model->getOriginalImageUrl();
-    $imagePath = $model->thumbnail(250);
+    $imagePath = $model->thumbnail(170);
 } elseif ($campaignService->campaign()->superboosted() && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
-    $imagePath = Img::crop(250, 250)->url($entity->image->path);
+    $imagePath = Img::crop(170, 170)->url($entity->image->path);
 }
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();
@@ -90,7 +91,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
             @if(isset($printing) && $printing)
                 <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $model->name }}"/>
             @else
-            <a class="entity-image" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
+            <a class="entity-image cover-background" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
             @endif
         @endcan
     </div>
@@ -113,8 +114,8 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                 </ol>
             @endif
             <div class="entity-name-header flex gap-3 items-center">
-                <h1 class="entity-name m-0 break-all">
-                    {{ $model->name }}
+                <h1 class="entity-name text-4xl m-0 break-all">
+                    {!! $model->name !!}
                 </h1>
                 @if ($model instanceof \App\Models\Character && $model->is_dead)
                     <span class="entity-name-icon entity-char-dead cursor-pointer" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}">
@@ -284,36 +285,29 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
 
 @section('modals')
     @parent
-    <dialog class="dialog rounded-2xl text-center" id="booster-cta" aria-modal="true" aria-labelledby="boostedDialogTitle">
-        <header>
-            <h4 id="boostedDialogTitle">
-                <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
-                {{ __('callouts.booster.titles.boosted') }}
-            </h4>
-            <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
-                <i class="fa-solid fa-times" aria-hidden="true"></i>
-                <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
-            </button>
-        </header>
-        <article>
-            <p class="mb-1 text-justify">{{ __('entities/image.call-to-action') }}</p>
+
+
+    @if (!$campaignService->campaign()->boosted())
+        <x-dialog id="booster-cta" :title="__('callouts.booster.titles.boosted')">
+            <p class="mb-2">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
-            <a href="{{ route('settings.boost', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-boost text-white btn-block">
+            <a href="{{ route('settings.boost', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-boost text-white btn-block mb-2">
                 {!! __('callouts.booster.actions.boost', ['campaign' => $campaignService->campaign()->name]) !!}
             </a>
             @else
-                <p class="mb-1 text-justify">{{ __('callouts.booster.limitation') }}</p>
-                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-block">
+                <p class="mb-2">{{ __('callouts.booster.limitation') }}</p>
+                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-block mb-2">
                     {!! __('callouts.booster.learn-more') !!}
                 </a>
             @endif
-        </article>
-    </dialog>
-    <dialog class="dialog rounded-2xl text-center" id="quick-privacy" aria-modal="true" aria-labelledby="privacyDialogTitle">
-        <article class="loader text-center p-5">
-            <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
-        </article>
-    </dialog>
+        </x-dialog>
+    @endif
+
+    <x-dialog id="quick-privacy" :title="__('Loading')">
+        <div class="p-5 text-center">
+            <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+        </div>
+    </x-dialog>
 @endsection
 
 

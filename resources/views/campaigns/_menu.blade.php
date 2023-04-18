@@ -7,11 +7,11 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();
 $buttons = [];
 if (auth()->check()) {
     if (!$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost)) {
-        $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn btn-block bg-maroon mb-5">
+        $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn btn-block bg-boost text-white">
             <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
     }
     if (!$campaign->boosted()) {
-        $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-maroon mb-5">
+        $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-boost text-white mb-5">
             <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('campaigns.show.actions.boost') . '</a>';
     }
     if (auth()->user()->can('update', $campaign)) {
@@ -19,12 +19,12 @@ if (auth()->check()) {
             <i class="fa-solid fa-edit" aria-hidden="true"></i> '. __('campaigns.show.actions.edit') .'</a>';
     }
     if ($campaign->userIsMember()) {
-    $buttons[] = '<button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#leave-confirm">
+    $buttons[] = '<button type="button" class="btn btn-warning btn-block" data-toggle="dialog" data-target="leave-confirm">
             <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i> ' . __('campaigns.show.actions.leave') . '
         </button>';
     }
     if (auth()->user()->can('roles', $campaign)) {
-        $buttons[] = '<button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#campaign-delete-confirm">
+        $buttons[] = '<button type="button" class="btn btn-danger btn-block" data-toggle="dialog" data-target="campaign-delete-confirm">
             <i class="fa-solid fa-trash" aria-hidden="true"></i> ' . __('campaigns.destroy.action') . '
         </button>';
     }
@@ -38,7 +38,7 @@ if (auth()->check()) {
 </div>
 @endif
 
-    <div class="hidden-xs hidden-sm">
+    <div class="hidden lg:!block ">
         <div class="box box-solid entity-submenu">
             <div class="box-body no-padding">
                 <ul class="nav nav-pills nav-stacked">
@@ -213,7 +213,7 @@ if (auth()->check()) {
         ];
     }
     @endphp
-    <div class="hidden-md hidden-lg" id="sm-a">
+    <div class="lg:hidden" id="sm-a">
         <div class="form-group">
             <select name="menu-switcher" class="form-control submenu-switcher">
                 @foreach ($menuOptions as $key => $option)
@@ -230,71 +230,62 @@ if (auth()->check()) {
     @parent
 
     @if (auth()->check() && $campaign->userIsMember())
-    <div class="modal fade" id="leave-confirm" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl text-center">
-                <div class="modal-body">
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="clickModalLabel">{{ __('campaigns.leave.title') }}</h4>
-
-                    @if(auth()->user()->can('leave', $campaign))
-                        <p class="mt-5">{!! __('campaigns.leave.confirm', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}
-
-                        {!! Form::open(['method' => 'GET', 'route' => ['campaigns.leave', $campaign->id]]) !!}
-                        <div class="py-5">
-                            <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                            <button type="submit" class="btn btn-danger px-8 ml-5 rounded-full">
-                                <span class="fa-solid fa-sign-out-alt"></span>
-                                {{ __('campaigns.leave.confirm-button') }}
-                            </button>
-                        </div>
-                        {!! Form::close() !!}
-                    @else
-                        <p class="mt-5">{{ __('campaigns.leave.no-admin-left') }}</p>
-                        <a href="{{ route('campaign_users.index') }}" class="btn btn-default px-8 rounded-full">
-                            {{ __('campaigns.leave.fix') }}
-                        </a>
-                    @endif
+        <x-dialog id="leave-confirm" :title="__('campaigns.leave.title')">
+            @if(auth()->user()->can('leave', $campaign))
+                <p class="">
+                {!! __('campaigns.leave.confirm', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}
+                </p>
+                <div class="grid grid-cols-2 gap-2 w-full">
+                    <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                        {{ __('crud.cancel') }}
+                    </x-buttons.confirm>
+                    {!! Form::open(['method' => 'GET', 'route' => ['campaigns.leave', $campaign->id], 'class' => 'w-full']) !!}
+                    <x-buttons.confirm type="danger" outline="true" full="true">
+                        <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+                        {{ __('campaigns.leave.confirm-button') }}
+                    </x-buttons.confirm>
+                    {!! Form::close() !!}
                 </div>
-            </div>
-        </div>
+            @else
+                <p class="mt-5">{{ __('campaigns.leave.no-admin-left') }}</p>
+                <a href="{{ route('campaign_users.index') }}" class="btn btn-default px-8 rounded-full">
+                    {{ __('campaigns.leave.fix') }}
+                </a>
+            @endif
+        </x-dialog>
     </div>
     @endif
 
     @if (auth()->check() && auth()->user()->can('roles', $campaign))
-        <div class="modal fade" id="campaign-delete-confirm" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-2xl text-center">
-                    <div class="modal-body">
+        <x-dialog id="campaign-delete-confirm" :title="__('campaigns.destroy.title')">
+            @if (auth()->user()->can('delete', $campaign))
+                {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy']]) !!}
+                <p class="mt-5">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
+                <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
 
-                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="clickModalLabel">{{ __('campaigns.destroy.title') }}</h4>
-
-                        @if (auth()->user()->can('delete', $campaign))
-                            <p class="mt-5">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
-                            <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy']]) !!}
-                            <div class="form-group required">
-                                {!! Form::text('delete', null, ['class' => 'form-control', 'required', 'id' => 'campaign-delete-form']) !!}
-                            </div>
-                            <div class="py-5">
-                                <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                                <button type="submit" class="btn btn-danger px-8 ml-5 rounded-full">
-                                    <span class="fa-solid fa-sign-out-alt"></span>
-                                    {{ __('campaigns.destroy.confirm-button') }}
-                                </button>
-                            </div>
-                            {!! Form::close() !!}
-                        @else
-                            <p class="mt-5">{{ __('campaigns.destroy.helper-v2') }}</p>
-                            <a href="{{ route('campaign_users.index') }}" class="btn btn-default px-8 rounded-full">
-                                {{ __('campaigns.leave.fix') }}
-                            </a>
-                        @endif
-                    </div>
+                <div class="form-group required">
+                    {!! Form::text('delete', null, ['class' => 'form-control', 'required', 'id' => 'campaign-delete-form']) !!}
                 </div>
-            </div>
-        </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                        {{ __('crud.cancel') }}
+                    </x-buttons.confirm>
+                    {!! Form::open(['method' => 'GET', 'route' => ['campaigns.leave', $campaign->id], 'class' => 'w-full']) !!}
+                    <x-buttons.confirm type="danger" outline="true" full="true">
+                        <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+                        {{ __('campaigns.destroy.confirm-button') }}
+                    </x-buttons.confirm>
+                </div>
+                {!! Form::close() !!}
+            @else
+                <div class="max-w-lg text-justify">
+                    <p class="mt-5">{{ __('campaigns.destroy.helper-v2') }}</p>
+                    <a href="{{ route('campaign_users.index') }}" class="py-2">
+                        {{ __('campaigns.leave.fix') }}
+                    </a>
+                </div>
+            @endif
+        </x-dialog>
     @endif
 @endsection

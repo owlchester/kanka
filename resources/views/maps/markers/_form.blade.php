@@ -15,31 +15,31 @@ $sizeOptions = [
     <ul class="nav nav-tabs">
         <li role="presentation" @if($activeTab == 1) class="active" @endif>
             <a href="#marker-pin" data-nohash="true" data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.marker') }}">
-                <i class="fa-solid fa-2x fa-map-pin"></i><br />
+                <i class="fa-solid fa-2x fa-map-pin" aria-hidden="true"></i><br />
                 {{ __('maps/markers.tabs.marker') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 2) class="active" @endif>
             <a href="#marker-label" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.label') }}">
-                <i class="fa-solid fa-2x fa-font"></i><br />
+                <i class="fa-solid fa-2x fa-font" aria-hidden="true"></i><br />
                 {{ __('maps/markers.tabs.label') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 3) class="active" @endif>
             <a href="#marker-circle" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.circle') }}">
-                <i class="fa-regular fa-2x fa-circle"></i><br />
+                <i class="fa-regular fa-2x fa-circle" aria-hidden="true"></i><br />
                 {{ __('maps/markers.tabs.circle') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 5) class="active" @endif>
             <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.polygon') }}">
-                <i class="fa-solid fa-2x fa-draw-polygon"></i><br />
+                <i class="fa-solid fa-2x fa-draw-polygon" aria-hidden="true"></i><br />
                 {{ __('maps/markers.tabs.polygon') }}
             </a>
         </li>
         <li role="presentation">
             <a href="#presets" data-nohash="true" class="text-center" data-presets="{{ route('preset_types.presets.index', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}">
-                <i class="fa-solid fa-2x fa-wand-magic-sparkles"></i><br />
+                <i class="fa-solid fa-2x fa-wand-magic-sparkles" aria-hidden="true"></i><br />
                 {{ __('maps/markers.tabs.preset') }}
             </a>
         </li>

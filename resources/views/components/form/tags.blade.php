@@ -54,7 +54,7 @@ elseif(!empty($model) && !empty($model->entity)) {
 @if ($label)
 <label>{{ __('entities.tags') }}
 @if(!empty($helper))
-    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}"></i>
+    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}" aria-hidden="true"></i>
 @endif
 </label>
 @endif

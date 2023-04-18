@@ -11,7 +11,7 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements grid my-1 collapse in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-profile-elements">
         @if ($model->parameters)
             <div class="element profile-parameters">
                 <div class="title text-uppercase text-xs">{{ __('dice_rolls.fields.parameters') }}</div>

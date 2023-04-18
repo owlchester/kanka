@@ -427,6 +427,7 @@ class EntityService
         }
 
         // Finally, we can save. Should be all good.
+        $new->campaign_id = $old->campaign_id;
         $new->saveQuietly();
 
         // If switching from an organisation to a family, we need to move the members?
@@ -685,6 +686,12 @@ class EntityService
         $model->name = $name;
         $model->is_private = $defaultPrivate;
         $model->campaign_id = $campaign->id;
+
+        // If the modal is a tree, it needs to be placed in its own bounds
+        if (method_exists($model, 'makeRoot')) {
+            $model->recalculateTreeBounds();
+        }
+
         $model->saveQuietly();
         $model->createEntity();
         if (!$model->entity->isTag()) {

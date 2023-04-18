@@ -10,8 +10,8 @@
     <div class="box box-solid post entity-note" id="post-{{ $post->id }}">
         <div class="box-header with-border">
             <h3 class="box-title cursor-pointer element-toggle {{ $post->collapsed() ? "collapsed" : null }}" data-toggle="collapse" data-target="#post-body-{{ $post->id }}" data-short="post-toggle-{{ $post->id }}" >
-                <i class="fa-solid fa-chevron-up icon-show"></i>
-                <i class="fa-solid fa-chevron-down icon-hide"></i>
+                <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
+                <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
                 {{ $post->name  }}
                 @if (app()->environment('local'))
                     <sup>({{ $post->position }})</sup>
@@ -22,52 +22,52 @@
                     {!! $post->visibilityIcon('btn-box-tool') !!}
 
                     <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
-                        <i class="fa-solid fa-ellipsis-v"></i>
+                        <i class="fa-solid fa-ellipsis-v" aria-hidden="true"></i>
                         <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                         @can('post', [$model, 'edit', $post])
                         <li>
                             <a href="{{ route('entities.posts.edit', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
-                                <i class="fa-solid fa-edit"></i> {{ __('crud.edit') }}
+                                <i class="fa-solid fa-edit" aria-hidden="true"></i> {{ __('crud.edit') }}
                             </a>
                         </li>
                         @endcan
                         <li>
                             <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
-                                <i class="fa-solid fa-link"></i> {{ __('entities/notes.copy_mention.copy') }}
+                                <i class="fa-solid fa-link" aria-hidden="true"></i> {{ __('entities/notes.copy_mention.copy') }}
                             </a>
                         </li>
                         <li>
                             <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}|{{ $post->name }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
-                                <i class="fa-solid fa-link"></i> {{ __('entities/notes.copy_mention.copy_with_name') }}
+                                <i class="fa-solid fa-link" aria-hidden="true"></i> {{ __('entities/notes.copy_mention.copy_with_name') }}
                             </a>
                         </li>
                         @if(auth()->user()->isAdmin())
                         <li>
                             <a href="{{ route('posts.move', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
-                                <i class="fa-solid fa-arrows-left-right"></i> {{ __('entities/notes.move.move') }}
+                                <i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i> {{ __('entities/notes.move.move') }}
                             </a>
                         </li>
                         @endif
                         <li class="divider"></li>
                         <li>
                             <a href="{{ route('entities.story.reorder', ['entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
-                                <i class="fa-solid fa-arrows-v"></i> {{ __('entities/story.reorder.icon_tooltip') }}
+                                <i class="fa-solid fa-arrows-v" aria-hidden="true"></i> {{ __('entities/story.reorder.icon_tooltip') }}
                             </a>
                         </li>
                     </ul>
                 @endif
             </div>
         </div>
-        <div class="entity-content box-body collapse @if(!$post->collapsed()) in @endif" id="post-body-{{ $post->id }}">
+        <div class="entity-content box-body collapse !visible @if(!$post->collapsed()) in @endif" id="post-body-{{ $post->id }}">
             <div class="post-details mb-2 entity-note-details">
 
                 @if ($post->location)
                 <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
-                    <i class="ra ra-tower"></i> {!! $post->location->tooltipedLink() !!}
+                    <i class="ra ra-tower" aria-hidden="true"></i> {!! $post->location->tooltipedLink() !!}
                 </span>
                 @endif
             </div>

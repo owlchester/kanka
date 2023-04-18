@@ -31,36 +31,17 @@ $specificTheme = null;
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
     <link href="/css/bootstrap.css?v={{ config('app.version') }}" rel="stylesheet">
-    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
+
+    @vite([
+        'resources/sass/vendor.scss',
+        'resources/sass/app.scss',
+        'resources/sass/freyja/freyja.scss',
+        'resources/sass/map-v3.scss',
+    ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
 
-
-@if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
-    @php $specificTheme = $themeOverride; @endphp
-    @if(request()->get('_theme') != 'base')
-        <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
-    @endif
-@else
-    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
-        @if ($campaign->theme_id !== 1)
-            <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
-            @php $specificTheme = $campaign->theme->name @endphp
-        @endif
-    @elseif (auth()->check() && !empty(auth()->user()->theme))
-        <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
-        @php $specificTheme = auth()->user()->theme @endphp
-    @endif
-@endif
-@if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme())
-    <link href="{{ route('campaign_plugins.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
-@endif
-@if (!empty($campaign) && $campaign->boosted())
-    <link href="{{ route('campaign.css', ['ts' => \App\Facades\CampaignCache::stylesTimestamp()]) }}" rel="stylesheet">
-@endif
+    @include('layouts._theme')
 @yield('styles')
 </head>
 <body id="map-body" class="map-page sidebar-collapse @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
@@ -68,12 +49,12 @@ $specificTheme = null;
 
     <div id="app" class="wrapper mt-12">
         <!-- Header -->
-        @include('layouts.header', ['qq' => false])
+        @include('layouts.header', ['qq' => false, 'toggle' => true])
 
         <aside class="main-sidebar overflow-hidden pt-0">
             <section class="sidebar" style="height: auto">
 
-                <div id="sidebar-content" class="p-0 overflow-auto max-h-screen">
+                <div id="sidebar-content" class="p-0 overflow-auto h-sidebar">
                     <!-- The legend / overview default sidebar of the map -->
                     <div id="sidebar-map">
                         <div class="marker-header">
@@ -134,7 +115,7 @@ $specificTheme = null;
                     <!-- When clicking on a marker, this menu pops up -->
                     <div id="sidebar-marker"></div>
                     <div class="spinner text-center" style="display: none; margin-top: 10px;">
-                        <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+                        <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
                     </div>
                 </div>
 
@@ -151,7 +132,8 @@ $specificTheme = null;
     <!-- Modal -->
     @includeWhen(auth()->check(), 'layouts.modals.delete')
 
-<script src="{{ mix('js/app.js') }}"></script>
+<script src="/js/vendor.js"></script>
+@vite('resources/js/app.js')
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
@@ -166,7 +148,7 @@ $specificTheme = null;
     <script src="/js/vendor/leaflet/leaflet.ruler-kanka.js"></script>
 @endif
 
-<script src="{{ mix('js/location/map-v3.js') }}" defer></script>
+@vite('resources/js/location/map-v3.js')
 @yield('scripts')
 
 @yield('modals')

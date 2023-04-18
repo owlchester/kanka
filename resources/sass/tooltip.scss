@@ -1,0 +1,53 @@
+/**
+ * Control the way tooltips appear. Boosted campaigns can have entity images displayed in tooltips.
+ */
+.tooltip-ajax {
+    max-width: 378px !important;
+    .tooltip-text {
+        // Boosted campaigns can set a custom tooltip WITH html, including headers, so we need to make them way smaller here
+        h1, h2, h3 {
+            font-size: 1.05rem;
+            margin: 0.3rem 0;
+        }
+        h4, h5, h6 {
+            font-size: 0.95rem;
+            margin: 0.3rem 0;
+        }
+    }
+}
+
+/** Change positioning of various elements so tooltips can extend beyond overflow:hidden containers **/
+
+/* Entity sidebar */
+.entity-sidebar {
+    position: relative;
+}
+.list-group-item {
+    position: unset;
+}
+
+/* Dashboard widgets */
+.panel .panel-body .preview {
+    position: unset;
+}
+
+.keyboard-shortcut {
+    padding: 0.1rem 0.4rem;
+    font-size: 0.75rem;
+    border: 1px solid var(--input-border-color);
+    border-radius: 5px;
+    margin-right: 5px;
+    pointer-events: unset;
+}
+.keyboard-shortcut.form-control-feedback {
+    //padding: 0.1rem 0.2rem;
+    line-height: 24px;
+    height: 30px;
+    width: 30px;
+    margin-top: 3px;
+}
+.dropdown-menu .keyboard-shortcut {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    margin-right: 0;
+}

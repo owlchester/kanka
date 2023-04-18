@@ -38,7 +38,7 @@ class CampaignUserController extends Controller
             ->paginate();
 
         $roles = $campaign->roles->where('is_public', false)->all();
-        return view('campaigns.users', [
+        return view('campaigns.members.index', [
             'campaign' => $campaign,
             'roles' => $roles,
             'users' => $users,

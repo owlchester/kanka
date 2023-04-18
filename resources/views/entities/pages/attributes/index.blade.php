@@ -61,7 +61,7 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/attributes.js') }}" defer></script>
+    @vite('resources/js/attributes.js')
 @endsection
 
 @section('modals')

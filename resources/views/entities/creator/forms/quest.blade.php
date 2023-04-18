@@ -17,6 +17,6 @@
         </div>
     </div>
     <div class="col-sm-6">
-        @include('cruds.fields.character')
+        @include('cruds.fields.character', ['quickCreator' => true])
     </div>
 </div>

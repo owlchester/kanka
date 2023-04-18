@@ -10,22 +10,21 @@
 @section('content')
     @include('partials.errors')
 
-    <div class="row">
-        <div class="col-md-3">
+    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
+        <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'recovery'])
         </div>
-        <div class="col-md-9">
-            <div class="mb-1">
-                <h3 class="mt-0 inline-block">
+        <div class="grow">
+            <div class="flex gap-2 items-center mb-5">
+                <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.recovery') }}
                 </h3>
-                <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                <button class="btn btn-sm btn-default" data-toggle="dialog"
                         data-target="recovery-help">
                     <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
                     {{ __('campaigns.members.actions.help') }}
                 </button>
             </div>
-
             @includeWhen(session()->get('boosted-pitch'), 'layouts.callouts.boost', ['texts' => []])
 
             <div class="box box-recovery">
@@ -41,12 +40,9 @@
 
 @section('modals')
     @parent
-    @include('partials.helper-modal', [
-        'id' => 'recovery-help',
-        'title' => __('campaigns.show.tabs.recovery'),
-        'textes' => [
-            __('campaigns/recovery.helper', ['count' => '<code>' . config('entities.hard_delete') . '</code>'])
-        ]
-    ])
+    <x-dialog id="recovery-help" :title="__('campaigns.show.tabs.recovery')">
+        <p>{!! __('campaigns/recovery.helper', ['count' => '<code>' . config('entities.hard_delete') . '</code>']) !!}</p>
+    </x-dialog>
+
 @endsection
 

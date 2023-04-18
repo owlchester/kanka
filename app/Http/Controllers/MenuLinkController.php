@@ -26,6 +26,8 @@ class MenuLinkController extends CrudController
     /** @var string */
     protected string $datagridActions = MenuLinkDatagridActions::class;
 
+    protected string $forceMode = 'table';
+
     /**
      * ItemController constructor.
      */

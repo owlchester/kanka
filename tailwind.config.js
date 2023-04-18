@@ -1,8 +1,11 @@
 module.exports = {
   content: [
-      "./resources/**/*.blade.php"
+      "./resources/views/**/*.blade.php",
+      "./resources/js/components/**/*.vue",
+      "./resources/js/*.js",
+      "./app/Models/*.php",
+      "./app/View/Components/**/*.php",
   ],
-  darkMode: false,
   theme: {
     extend: {},
   },

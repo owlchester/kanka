@@ -77,8 +77,10 @@
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
     <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
-    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
-    <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
+    @vite([
+        'resources/js/location/map-v3.js',
+        'resources/js/ajax-subforms.js'
+    ])
 
     @include('maps._setup', ['single' => true])
     <script type="text/javascript">
@@ -92,15 +94,18 @@
         var marker{{ $model->id }} = {!! $model->editing()->multiplier($map->is_real)->marker() !!}.addTo(map{{ $map->id }});
         window.polygon = marker{{ $model->id }};
 
-        @if ($model->shape_id == 5)
-            map{{ $map->id }}.on('click', function(ev) {
-                window.map.removeLayer(window.polygon);
-                let position = ev.latlng;
-                let lat = position.lat.toFixed(3);
-                let lng = position.lng.toFixed(3);
-                window.addPolygonPosition(lat, lng);
-            });
-        @endif
+        let shape = document.getElementsByName('shape_id');
+        map{{ $map->id }}.on('click', function(ev) {
+            // Only do this is the map is a polygon
+            if (shape[0].value != 5) {
+                return;
+            }
+            window.map.removeLayer(window.polygon);
+            let position = ev.latlng;
+            let lat = position.lat.toFixed(3);
+            let lng = position.lng.toFixed(3);
+            window.addPolygonPosition(lat, lng);
+        });
 
         window.map = map{{ $map->id }};
 
@@ -112,7 +117,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
-    <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
+    @vite('resources/sass/map-v3.scss')
 
     <style>
         .marker-{{ $model->id }} {

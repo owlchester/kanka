@@ -1,2 +1,0 @@
-(()=>{var e;$(document).ready((function(){var n;1===$("#newsletter-api").length&&(e=$("#newsletter-api").val(),n=$('input[name="mail_release"]'),$(n).change((function(){var n={};n[this.name]=this.checked?1:0,$.post(e,n).done((function(e){window.showToast(e.message)}))})))}))})();
-//# sourceMappingURL=profile.js.map

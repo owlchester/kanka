@@ -1,44 +1,40 @@
-<?php /** @var \App\Models\CampaignSubmission $submission */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => __('campaigns/submissions.edit.title', ['name' => $submission->user->name]),
-    'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
-        ['url' => route('campaign_submissions.index'), 'label' => __('campaigns.show.tabs.applications')],
-        $submission->user->name,
-    ],
-    'mainTitle' => false,
-])
+<x-dialog.header>
+    @if($action === 'approve')
+        {{ __('campaigns/submissions.actions.accept') }}
+    @else
+        {{ __('campaigns/submissions.actions.reject') }}
+    @endif
+</x-dialog.header>
+<article>
+    {!! Form::model($submission, ['method' => 'PATCH', 'route' => ['campaign_submissions.update', $submission->id], 'data-shortcut' => 1, 'class' => 'entity-form w-full max-w-lg']) !!}
+        @if($action === 'approve')
+            <p>{{ __('campaigns/submissions.update.approve') }}</p>
+            <div class="form-group text-left">
+                <label>{{ __('campaigns.members.fields.role') }}</label>
+                {!! Form::select('role_id', $campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group text-left">
+                <label>{{ __('campaigns/submissions.fields.approval') }}</label>
+                {!! Form::text('message', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+            </div>
+            <x-buttons.confirm type="primary" full="true">
+                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                {{ __('campaigns/submissions.actions.accept') }}
+            </x-buttons.confirm>
+        @else
+            <p>{{ __('campaigns/submissions.update.reject') }}</p>
+            <div class="form-group text-left">
+                <label>{{ __('campaigns/submissions.fields.rejection') }}</label>
+                {!! Form::text('rejection', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+            </div>
 
-@section('content')
-    <div class="panel panel-default">
-        <div class="panel-body">
-            @include('partials.errors')
+            <x-buttons.confirm type="danger" full="true">
+                <i class="fa-solid fa-times" aria-hidden="true"></i>
+                {{ __('campaigns/submissions.actions.reject') }}
+            </x-buttons.confirm>
+        @endif
 
-            {!! Form::model($submission, ['method' => 'PATCH', 'route' => ['campaign_submissions.update', $submission->id], 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
+    <input type="hidden" name="action" value="{{ $action }}" />
+    {!! Form::close() !!}
+</article>
 
-            @if($action === 'approve')
-                <p>{{ __('campaigns/submissions.update.approve') }}</p>
-                <div class="form-group">
-                    <label>{{ __('campaigns.members.fields.role') }}</label>
-                    {!! Form::select('role_id', $campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    <label>{{ __('campaigns/submissions.fields.approval') }}</label>
-                    {!! Form::text('message', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
-                <input type="submit" class="btn btn-primary" value="{{ __('campaigns/submissions.actions.accept') }}" />
-            @else
-                <p>{{ __('campaigns/submissions.update.reject') }}</p>
-                <div class="form-group">
-                    <label>{{ __('campaigns/submissions.fields.rejection') }}</label>
-                    {!! Form::text('rejection', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
-
-                <input type="submit" class="btn btn-danger" value="{{ __('campaigns/submissions.actions.reject') }}" />
-            @endif
-
-            <input type="hidden" name="action" value="{{ $action }}" />
-            {!! Form::close() !!}
-        </div>
-    </div>
-@endsection

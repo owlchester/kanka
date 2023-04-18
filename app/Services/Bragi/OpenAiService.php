@@ -13,8 +13,8 @@ class OpenAiService
 
     /** @var string */
     protected ?string $name;
-    protected ?string$pronouns;
-    protected ?string$gender;
+    protected ?string $pronouns = null;
+    protected ?string $gender = null;
 
     protected mixed $output;
 

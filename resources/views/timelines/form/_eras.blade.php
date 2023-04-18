@@ -102,6 +102,5 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/timeline.js') }}" defer></script>
-    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
+    @vite(['resources/js/timeline.js', resources/js/ajax-subforms.js'])
 @endsection

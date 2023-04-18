@@ -80,5 +80,5 @@
 
 @section('scripts')
     @parent
-    <script src="{{ mix('js/forms/character.js') }}" defer></script>
+    @vite('resources/js/forms/character.js')
 @endsection

@@ -115,9 +115,10 @@ return [
     'errors'                    => [
         'boosted'                       => 'This feature is only available to boosted campaigns.',
         'boosted_campaigns'             => 'This feature is only available for :boosted.',
-        'cannot_move_node_into_itself'  => 'The selected parent entity is invalid. This could be due to it having this entity as the parent.',
-        'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
+        //'cannot_move_node_into_itself'  => 'The selected parent is invalid. This could be due to it having this entity as the parent.',
+        'node_must_not_be_a_descendant' => 'The selected parent is invalid. It would be a descendant of itself.',
         'unavailable_feature'           => 'Unavailable feature',
+        'invalid_node'                  => 'The selected parent is invalid. This can usually be fixed by giving the selected parent a parent of its own, then removing it.',
     ],
     'export'                    => 'Export',
     'fields'                    => [
@@ -230,7 +231,7 @@ return [
             'desc'      => ':field Descending',
             'helper'    => 'Control in which order results appear.',
         ],
-        'title'                     => 'Filters',
+        'title'                     => 'Advanced filters',
     ],
     'fix-this-issue'            => 'Fix this issue',
     'forms'                     => [

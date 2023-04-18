@@ -1,7 +1,8 @@
 @section('scripts')
     @parent
     <script src="/vendor/summernote/summernote.min.js?v={{ config('app.version') }}" defer></script>
-    <script src="{{ mix('js/editors/summernote.js') }}" defer></script>
+
+    @vite('resources/js/editors/summernote.js')
     <script src="/vendor/summernote/plugin/embed/summernote-embed-plugin.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-gallery-kanka.min.js" defer></script>

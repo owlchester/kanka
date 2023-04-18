@@ -147,46 +147,55 @@ class SidebarService
         'characters' => [
             'icon' => 'fa-solid fa-user',
             'label' => 'entities.characters',
+            'mode' => true,
         ],
         'locations' => [
             'icon' => 'ra ra-tower',
             'label' => 'entities.locations',
             'tree' => true,
+            'mode' => true,
         ],
         'maps' => [
             'icon' => 'fa-solid fa-map',
             'label' => 'entities.maps',
             'tree' => true,
+            'mode' => true,
         ],
         'organisations' => [
             'icon' => 'ra ra-hood',
             'label' => 'entities.organisations',
             'tree' => true,
+            'mode' => true,
         ],
         'families' => [
             'icon' => 'ra ra-double-team',
             'label' => 'entities.families',
             'tree' => true,
+            'mode' => true,
         ],
         'calendars' => [
             'icon' => 'fa-solid fa-calendar',
             'label' => 'entities.calendars',
             'tree' => true,
+            'mode' => true,
         ],
         'timelines' => [
             'icon' => 'fa-solid fa-hourglass-half',
             'label' => 'entities.timelines',
             'tree' => true,
+            'mode' => true,
         ],
         'races' => [
             'icon' => 'ra ra-wyvern',
             'label' => 'entities.races',
             'tree' => true,
+            'mode' => true,
         ],
         'creatures' => [
             'icon' => 'ra ra-raven',
             'label' => 'entities.creatures',
             'tree' => true,
+            'mode' => true,
         ],
         'campaign' => [
             'icon' => 'fa-solid fa-globe',
@@ -198,31 +207,37 @@ class SidebarService
             'icon' => 'ra ra-wooden-sign',
             'label' => 'entities.quests',
             'tree' => true,
+            'mode' => true,
         ],
         'journals' => [
             'icon' => 'ra ra-quill-ink',
             'label' => 'entities.journals',
             'tree' => true,
+            'mode' => true,
         ],
         'items' => [
             'icon' => 'ra ra-gem-pendant',
             'label' => 'entities.items',
             'tree' => true,
+            'mode' => true,
         ],
         'events' => [
             'icon' => 'fa-solid fa-bolt',
             'label' => 'entities.events',
             'tree' => true,
+            'mode' => true,
         ],
         'abilities' => [
             'icon' => 'ra ra-fire-symbol',
             'label' => 'entities.abilities',
             'tree' => true,
+            'mode' => true,
         ],
         'notes' => [
             'icon' => 'fa-solid fa-book-open',
             'label' => 'entities.notes',
             'tree' => true,
+            'mode' => true,
         ],
         'other' => [
             'icon' => 'fa-solid fa-cubes',
@@ -235,6 +250,7 @@ class SidebarService
             'icon' => 'fa-solid fa-tags',
             'label' => 'entities.tags',
             'tree' => true,
+            'mode' => true,
         ],
         'conversations' => [
             'icon' => 'fa-solid fa-comment',
@@ -407,8 +423,7 @@ class SidebarService
     {
         $key = $this->cacheKey();
         if (!$this->withDisabled && Cache::has($key)) {
-            //dump('read from cache ' . $key);
-            //return Cache::get($key);
+            return Cache::get($key);
         }
         $layout = [];
         foreach ($this->customLayout() as $name => $children) {
@@ -437,9 +452,13 @@ class SidebarService
             foreach ($children as $childName) {
                 $child = $this->customElement($childName);
                 // Child has a module, check that the campaign has it enabled
-                if (!isset($child['module']) && !$this->withDisabled) {
+                if (!isset($child['module'])) {
                     if (!$this->campaign->enabled($childName)) {
-                        continue;
+                        if ($this->withDisabled) {
+                            $child['disabled'] = true;
+                        } else {
+                            continue;
+                        }
                     }
                 }
                 // Child has permission check?

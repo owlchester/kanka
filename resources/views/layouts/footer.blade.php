@@ -15,7 +15,7 @@
     @endads
 
     <div class="footer-links">
-        <div class="grid gap-2 grid-cols-2 md:grid-cols-5 my-auto max-w-5xl">
+        <div class="grid gap-2 grid-cols-2 md:grid-cols-5 mx-auto max-w-5xl">
             <div class="col-span-2 md:col-auto text-center">
                 <a href="{{ route('home') }}" class="logo mb-5">
                     <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png" alt="Kanka logo blue" title="Kanka" width="48" height="48" />
@@ -178,28 +178,34 @@
         </div>
 
         <div class="footer-socials text-center px-0 my-2 md:flex justify-center gap-5 items-center">
-            <div class="email py-2">
-                <i class="fa-solid fa-envelope hidden-xs"></i> {{ config('app.email') }}
+            <div class="email py-2 text-base">
+                <i class="fa-solid fa-envelope hidden-xs" aria-hidden="true"></i> {{ config('app.email') }}
             </div>
 
             <div class="socials py-2 text-xl">
                 <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer" class="mr-1">
-                    <i class="fab fa-discord" aria-hidden="true" aria-label="Discord"></i>
+                    <i class="fa-brands fa-discord" aria-hidden="true" aria-label="Discord"></i>
+                    <span class="sr-only">Discord</span>
                 </a>
                 <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer" class="mr-1">
-                    <i class="fab fa-facebook" aria-hidden="true" aria-label="Kanka Facebook"></i>
+                    <i class="fa-brands fa-facebook" aria-hidden="true" aria-label="Kanka Facebook"></i>
+                    <span class="sr-only">Facebook</span>
                 </a>
                 <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer" class="mr-1">
-                    <i class="fab fa-instagram" aria-hidden="true" aria-label="Kanka Instagram"></i>
+                    <i class="fa-brands fa-instagram" aria-hidden="true" aria-label="Kanka Instagram"></i>
+                    <span class="sr-only">Instagram</span>
                 </a>
                 <a href="{{ config('social.youtube') }}" target="youtube" title="Youtube" rel="noreferrer" class="mr-1">
-                    <i class="fab fa-youtube" aria-hidden="true" aria-label="Kanka Youtube"></i>
+                    <i class="fa-brands fa-youtube" aria-hidden="true" aria-label="Kanka Youtube"></i>
+                    <span class="sr-only">Youtube</span>
                 </a>
                 <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer" class="mr-1">
-                    <i class="fab fa-reddit" aria-hidden="true" aria-label="Kanka Subreddit"></i>
+                    <i class="fa-brands fa-reddit" aria-hidden="true" aria-label="Kanka Subreddit"></i>
+                    <span class="sr-only">Reddit</span>
                 </a>
                 <a href="{{ config('social.twitter') }}" target="twitter" title="Twitter" rel="noreferrer">
-                    <i class="fab fa-twitter" aria-hidden="true" aria-label="Kanka Twitter"></i>
+                    <i class="fa-brands fa-twitter" aria-hidden="true" aria-label="Kanka Twitter"></i>
+                    <span class="sr-only">Twitter</span>
                 </a>
             </div>
 
@@ -216,118 +222,106 @@
     </div>
 </footer>
 
-<dialog class="dialog rounded-2xl" id="language-select-modal" aria-modal="true" aria-labelledby="languageSwitcherTitle">
-    <header>
-        <h4 id="languageSwitcherTitle">
-            <i class="fa-solid fa-language" aria-hidden="true"></i>
-            {{ __('footer.language-switcher.title') }}
-        </h4>
-        <button type="button" class="rounded-full" onclick="this.closest('dialog').close('close')">
-            <i class="fa-solid fa-times" aria-hidden="true"></i>
-            <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
-        </button>
-    </header>
-    <article>
+<x-dialog id="language-select-modal" :title="__('footer.language-switcher.title')">
+    <div class="grid grid-cols-2 gap-4">
+        <ul class="list-unstyled">
+            <li class="py-2">
+                @php $url = LaravelLocalization::getLocalizedURL('en-US', null, [], true); @endphp
+                <a rel="alternate" hreflang="en-US" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    US English
+                </a>
+            </li>
+            <li class="py-2">
+                @php $url = LaravelLocalization::getLocalizedURL('en', null, [], true); @endphp
+                <a rel="alternate" hreflang="en" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    UK English
+                </a>
+            </li>
+            <li class="py-2">
+                @php $url = LaravelLocalization::getLocalizedURL('pt-BR', null, [], true); @endphp
+                <a rel="alternate" hreflang="pt-BR" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    Português do Brasil
+                </a>
+            </li>
+            <li class="py-2">
+                @php $url = LaravelLocalization::getLocalizedURL('de', null, [], true); @endphp
+                <a rel="alternate" hreflang="de" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    Deutsch
+                </a>
+            </li>
+            <li class="py-2">
+                @php $url = LaravelLocalization::getLocalizedURL('es', null, [], true); @endphp
+                <a rel="alternate" hreflang="es" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    Español
+                </a>
+            </li>
+        </ul>
+        <ul class="list-unstyled">
+            <li class="py-2">
+                @php $url = LaravelLocalization::getLocalizedURL('fr', null, [], true); @endphp
+                <a rel="alternate" hreflang="fr" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    Français
+                </a>
+            </li>
+            <li class="py-2">
+                @php $url = LaravelLocalization::getLocalizedURL('it', null, [], true); @endphp
+                <a rel="alternate" hreflang="it" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    Italiano
+                </a>
+            </li>
+            <li class="py-2">
+                @php $url = LaravelLocalization::getLocalizedURL('ru', null, [], true); @endphp
+                <a rel="alternate" hreflang="ru" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    Pусский
+                </a>
+            </li>
+            <li class="py-2">
+                @php $url = LaravelLocalization::getLocalizedURL('pl', null, [], true); @endphp
+                <a rel="alternate" hreflang="pl" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    Polska
+                </a>
+            </li>
+            <li class="py-2">
+                @php $url = LaravelLocalization::getLocalizedURL('nl', null, [], true); @endphp
+                <a rel="alternate" hreflang="nl" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    Nederlands
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="text-center w-full">
+        {{ __('footer.language-switcher.other') }}
+    </div>
+    <div class="w-full">
         <div class="grid grid-cols-2 gap-4">
             <ul class="list-unstyled">
                 <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('en-US', null, [], true); @endphp
-                    <a rel="alternate" hreflang="en-US" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                        US English
+                    @php $url = LaravelLocalization::getLocalizedURL('hu', null, [], true); @endphp
+                    <a rel="alternate" hreflang="hu" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                        Magyar
                     </a>
                 </li>
                 <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('en', null, [], true); @endphp
-                    <a rel="alternate" hreflang="en" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                        UK English
-                    </a>
-                </li>
-                <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('pt-BR', null, [], true); @endphp
-                    <a rel="alternate" hreflang="pt-BR" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                        Português do Brasil
-                    </a>
-                </li>
-                <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('de', null, [], true); @endphp
-                    <a rel="alternate" hreflang="de" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                        Deutsch
-                    </a>
-                </li>
-                <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('es', null, [], true); @endphp
-                    <a rel="alternate" hreflang="es" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                        Español
+                    @php $url = LaravelLocalization::getLocalizedURL('ca', null, [], true); @endphp
+                    <a rel="alternate" hreflang="ca" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                        Català
                     </a>
                 </li>
             </ul>
             <ul class="list-unstyled">
                 <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('fr', null, [], true); @endphp
-                    <a rel="alternate" hreflang="fr" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                        Français
+                    @php $url = LaravelLocalization::getLocalizedURL('sk', null, [], true); @endphp
+                    <a rel="alternate" hreflang="sk" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                        Slovenský
                     </a>
                 </li>
                 <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('it', null, [], true); @endphp
-                    <a rel="alternate" hreflang="it" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                        Italiano
-                    </a>
-                </li>
-                <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('ru', null, [], true); @endphp
-                    <a rel="alternate" hreflang="ru" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                        Pусский
-                    </a>
-                </li>
-                <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('pl', null, [], true); @endphp
-                    <a rel="alternate" hreflang="pl" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                        Polska
-                    </a>
-                </li>
-                <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('nl', null, [], true); @endphp
-                    <a rel="alternate" hreflang="nl" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                        Nederlands
+                    @php $url = LaravelLocalization::getLocalizedURL('gl', null, [], true); @endphp
+                    <a rel="alternate" hreflang="gl" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                        Galego
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="text-center w-full">
-            {{ __('footer.language-switcher.other') }}
-        </div>
-        <div class="w-full">
-            <div class="grid grid-cols-2 gap-4">
-                <ul class="list-unstyled">
-                    <li class="py-2">
-                        @php $url = LaravelLocalization::getLocalizedURL('hu', null, [], true); @endphp
-                        <a rel="alternate" hreflang="hu" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                            Magyar
-                        </a>
-                    </li>
-                    <li class="py-2">
-                        @php $url = LaravelLocalization::getLocalizedURL('ca', null, [], true); @endphp
-                        <a rel="alternate" hreflang="ca" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                            Català
-                        </a>
-                    </li>
-                </ul>
-                <ul class="list-unstyled">
-                    <li class="py-2">
-                        @php $url = LaravelLocalization::getLocalizedURL('sk', null, [], true); @endphp
-                        <a rel="alternate" hreflang="sk" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                            Slovenský
-                        </a>
-                    </li>
-                    <li class="py-2">
-                        @php $url = LaravelLocalization::getLocalizedURL('gl', null, [], true); @endphp
-                        <a rel="alternate" hreflang="gl" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
-                            Galego
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </article>
-</dialog>
+    </div>
+</x-dialog>
