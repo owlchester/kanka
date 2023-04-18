@@ -203,7 +203,6 @@ TEXT
             'added'     => 'Role :role added to :user.',
             'removed'   => 'Role :role removed from :user.',
         ],
-        'your_role'             => 'Your role: <i>:role</i>',
     ],
     'modules'                           => [
         'permission-disabled'   => 'This module is disabled.',
@@ -275,7 +274,7 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
             'empty_role'            => 'The role doesn\'t have any members in it yet.',
-            'role_admin'            => 'The :name role automatically grants access to everything in the campaign to its members.',
+            'role_admin'            => 'Members of the :name role can automatically access every entity and feature in the campaign.',
             'role_permissions'      => 'Enable the :name role to do the following actions on all entities',
         ],
         'members'       => 'Members',

@@ -35,7 +35,7 @@ return [
     ],
     'intro'     => [
         'anyone'    => 'Tu n\'es pas limité à seulement booster des campagnes que tu as créé. Tu peux booster n\'importe quelle campagne dont tu es membre ou que tu peux voir. Cela inclus les campagnes où tu es un joueur, ou une :public que tu apprécies.',
-        'data'      => 'Quand une campagne n\'est plus boostée, l\'accès aux fonctionalités boostées est retiré. Par contre, aucune information est supprimée, du coups booster la campagne à nouveau dans le future restaure l\'accès aux données.',
+        'data'      => 'Quand une campagne n\'est plus boostée, l\'accès aux fonctionnalités boostées est retiré. Par contre, aucune information est supprimée, du coups booster la campagne à nouveau dans le future restaure l\'accès aux données.',
         'first'     => 'Les fonctionnalités avancées sont déverrouillées en affectant tes boosters pour booster ou superbooster une campagne. Le nombre de boosters dont tu disposes est déterminé par ton abonnement. Ce numéro est à votre disposition à tout moment tant que tu es et restes abonné. Booster une campagne assignera l\'un de tes boosters, tandis que superbooster une campagne en assignera trois.',
     ],
     'pitch'     => [

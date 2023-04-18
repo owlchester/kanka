@@ -15,19 +15,19 @@
                     <span class="input-group-btn">
                         <button class="btn btn-danger btn-flat post-delete-perm">
                             <i class='fa-solid fa-trash' aria-hidden="true"></i>
-                            <span class="sr-only">{{ __('crud.remove) }}</span>
+                            <span class="sr-only">{{ __('crud.remove') }}</span>
                         </button>
                     </span>
                 </div>
             </div>
             <input type="hidden" name="perm_role[]" value="{{ $perm->role_id }}" />
         </div>
-    @endforeach
+        @endforeach
         @foreach ($model->permissions()->onlyUsers()->with('user')->get() as $perm)
             <div class="row mb-5">
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa-solid fa-user"></i></span>
+                        <span class="input-group-addon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
                         <input type="text" value="{!! $perm->user->name !!}" disabled="disabled" class="form-control" />
                     </div>
                 </div>
@@ -37,7 +37,7 @@
 
                         <span class="input-group-btn">
                             <button class="btn btn-danger btn-flat post-delete-perm">
-                                <i class='fa-solid fa-trash' aria-hidden="true"></i>
+                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
                             </button>
                         </span>
                     </div>
@@ -121,7 +121,7 @@
                 ]) !!}
                 <span class="input-group-btn">
                     <button class="btn btn-danger btn-flat post-delete-perm">
-                        <i class='fa-solid fa-trash' aria-hidden="true"></i>
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
                     </button>
                 </span>
             </div>
@@ -141,7 +141,7 @@
                 ]) !!}
                 <span class="input-group-btn">
                 <button class="btn btn-danger btn-flat post-delete-perm">
-                    <i class='fa-solid fa-trash' aria-hidden="true"></i>
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
                 </button>
             </span>
             </div>

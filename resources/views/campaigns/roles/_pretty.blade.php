@@ -5,7 +5,7 @@
  */
 $first = true;
 ?>
-<div class="grid grid-cols-6 md:grid-cols-7 gap-2 mb-5">
+<div class="grid grid-cols-6 md:grid-cols-7 gap-2 mb-5 min-w-min">
 @foreach ($permission->permissions($role) as $entity => $permissions)
     @if ($first)
         <div class="visible-sm visible-md visible-lg">
@@ -13,10 +13,14 @@ $first = true;
         @foreach ($permissions as $perm)
             <div class="text-center tooltip-wide">
                 <label>
-                    <span class="hidden-xs">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}<br /></span>
+                    <span class="hidden-xs">
+                        {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
+                        <i class="fa-solid fa-question-circle text-link cursor-pointer" aria-hidden="true" data-target="permission-modal" data-toggle="dialog"></i>
+                        <br />
+                    </span>
                     <input type="checkbox" class="permission-toggle" data-action="{{ $perm['action'] }}" title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" />
 
-                        <span class="visible-xs-inline">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}</span>
+                    <span class="visible-xs-inline">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}</span>
                 </label>
             </div>
         @endforeach

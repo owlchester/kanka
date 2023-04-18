@@ -6,7 +6,7 @@ return [
         'title'         => 'Pouvoirs',
     ],
     'attributes'    => [
-        'description'   => 'La fonctionalité la plus complexe et qui cause le plus de confusion par rapport aux entités sont probablement leurs attributs. Il peut s\'agir de petites informations telles que le suivi des HP d\'un personnage, la population d\'un lieu, le nombre de sanctuaires d\'une religion (organisation), etc. Les attributs d\'une entité peuvent se référencer pour calculer des valeurs, par exemple les HP d\'un personnage, où HP = Niveau * Constitution.',
+        'description'   => 'La fonctionnalité la plus complexe et qui cause le plus de confusion par rapport aux entités sont probablement leurs attributs. Il peut s\'agir de petites informations telles que le suivi des HP d\'un personnage, la population d\'un lieu, le nombre de sanctuaires d\'une religion (organisation), etc. Les attributs d\'une entité peuvent se référencer pour calculer des valeurs, par exemple les HP d\'un personnage, où HP = Niveau * Constitution.',
         'secondary'     => 'Les attributs d\'une entité peuvent également être stylisés pour ressembler à une feuille de personnage TTRPG en utilisant notre :marketplace.',
         'title'         => 'Attributs',
     ],
@@ -73,7 +73,7 @@ return [
         'secondary'     => ':boosted-campaigns ont accès à un explorateur visuel pour les relations d\'une entité.',
     ],
     'sections'      => [
-        'boosted'       => 'Fonctionalités Boostées',
+        'boosted'       => 'Fonctionnalités Boostées',
         'general'       => 'Général',
         'rpg'           => 'JDR',
         'worldbuilding' => 'Création de monde',
