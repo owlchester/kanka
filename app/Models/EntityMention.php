@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Concerns\SortableTrait;
+use Illuminate\Support\Arr;
 
 /**
  * Class EntityMention
@@ -26,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EntityMention extends Model
 {
+    use SortableTrait;
+
     public $fillable = [
         'entity_id',
         'entity_note_id',
@@ -33,6 +37,11 @@ class EntityMention extends Model
         'quest_element_id',
         'campaign_id',
         'target_id'
+    ];
+
+    protected $sortable = [
+        'name',
+        'type',
     ];
 
     /**
@@ -207,5 +216,86 @@ class EntityMention extends Model
     public function scopeCampaign(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.campaign_id');
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeDatagridElements(Builder $query, array $options): Builder
+    {
+        $column = Arr::get($options, 'k', 'name');
+        $order = Arr::get($options, 'o', 'ASC');
+        $query->select('entity_mentions.*')
+            ->leftJoin('entities as e', 'e.id', 'entity_mentions.entity_id');
+
+        if ($column == 'name') {
+            return $query->orderBy('e.name', $order);
+        } elseif ($column == 'type') {
+            return $query->orderBy('e.type_id', $order);
+        }  
+        return $query;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink(): string
+    {
+        if ($this->isQuestElement()) {
+            return route('quests.quest_elements.index', [$this->questElement->quest->id, '#quest-element-' . $this->quest_element_id]);
+        } elseif ($this->isTimelineElement()) {
+            return route('timelines.show', [$this->timelineElement->timeline->id, '#timeline-element-' . $this->timeline_element_id]);
+        } elseif ($this->isPost()) {
+            return route($this->post->entity->pluralType() . '.show', [$this->post->entity->child->id, '#post-' . $this->entity_note_id]);
+        }
+        return '#';
+        
+    }
+
+    /**
+     * Get the entity link with ajax tooltip.
+     * When coming from an entity first, call this method on the entity. It avoids some back and worth.
+     * @return string
+     */
+    public function mentionLink(): string
+    {
+        if ($this->isQuestElement()) {
+            if ($this->questElement && $this->questElement->quest && $this->questElement->quest->entity) {
+                return $this->questElement->quest->entity->tooltipedLink() .
+                    ' - ' . $this->questElement->visibilityIcon(null, true) .
+                    ' <a class="name" href="' .
+                    $this->getLink() . '">' .
+                    $this->questElement->name .
+                    '</a>';
+            }
+        } elseif ($this->isTimelineElement()) {
+            if ($this->timelineElement && $this->timelineElement->timeline && $this->timelineElement->timeline->entity) {
+                return $this->timelineElement->timeline->entity->tooltipedLink() .
+                    ' - ' . $this->timelineElement->visibilityIcon(null, true) .
+                    ' <a class="name" href="' .
+                    $this->getLink() . '">' .
+                    $this->timelineElement->name .
+                    '</a>';
+            }
+        } elseif ($this->isPost()) {
+            if ($this->post && $this->post->entity) {
+                return $this->post->entity->tooltipedLink() .
+                    ' - ' . $this->post->visibilityIcon(null, true) .
+                    ' <a class="name" href="' .
+                    $this->getLink() . '">' .
+                    $this->post->name .
+                    '</a>';
+            }
+        } elseif ($this->entity) {
+            return $this->entity->tooltipedLink();
+
+        } elseif ($this->isCampaign()) {
+            return '<a class="name" href="' .
+                route('campaign') . '">' .
+                $this->campaign->name .
+                '</a>';
+        }
+        return __('crud.hidden');
     }
 }

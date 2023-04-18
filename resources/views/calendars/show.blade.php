@@ -56,7 +56,6 @@ if (!empty($redirect)) {
         @include('calendars._calendar')
         @include('entities.components.posts')
 
-        @include('cruds.partials.mentions')
         @include('entities.pages.logs.history')
     </div>
 </div>

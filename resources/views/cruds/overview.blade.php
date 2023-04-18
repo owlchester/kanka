@@ -14,7 +14,6 @@
 
         @include('entities.components.posts', ['withEntry' => true])
 
-        @include('cruds.partials.mentions')
         @include('entities.pages.logs.history')
     </div>
 

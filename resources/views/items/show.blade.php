@@ -13,7 +13,6 @@
     <div class="entity-story-block">
         @include('entities.components.posts', ['withEntry' => true])
         @includeWhen($model->items()->has('item')->count() > 0, 'items.panels.items')
-        @include('cruds.partials.mentions')
         @include('entities.pages.logs.history')
     </div>
 

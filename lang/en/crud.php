@@ -359,6 +359,7 @@ return [
         'inventory'     => 'Inventory',
         'links'         => 'Links',
         'map-points'    => 'Map Points',
+        'mentions'      => 'Mentions',
         'overview'      => 'Overview',
         'permissions'   => 'Permissions',
         'profile'       => 'Profile',

@@ -345,6 +345,18 @@ abstract class MiscModel extends Model
             ];
         }
 
+        // Check if and how many times entity has been mentioned
+        $mentionsCount = $this->entity->mentionsCount();
+        if (auth()->check() && $mentionsCount > 0) {
+            $items['fourth']['mentions'] = [
+                'name' => 'crud.tabs.mentions',
+                'route' => 'entities.mentions',
+                'entity' => true,
+                'count' => $mentionsCount,
+                'icon' => 'fa-solid fa-lock',
+            ];
+        }
+
         // Permissions for the admin?
         if (auth()->check() && auth()->user()->can('permission', $this)) {
             $items['fourth']['permissions'] = [
