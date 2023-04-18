@@ -42,7 +42,7 @@ abstract class Column
     {
         $default = null;
         if (Arr::get($this->config, 'render') === Standard::IMAGE) {
-            $default = 'avatar';
+            $default = 'avatar w-14';
         }
         if (empty($this->config['class'])) {
             return $default;

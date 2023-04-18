@@ -38,7 +38,7 @@ if (auth()->check()) {
 </div>
 @endif
 
-    <div class="hidden-xs hidden-sm">
+    <div class="hidden lg:!block ">
         <div class="box box-solid entity-submenu">
             <div class="box-body no-padding">
                 <ul class="nav nav-pills nav-stacked">
@@ -213,7 +213,7 @@ if (auth()->check()) {
         ];
     }
     @endphp
-    <div class="hidden-md hidden-lg" id="sm-a">
+    <div class="lg:hidden" id="sm-a">
         <div class="form-group">
             <select name="menu-switcher" class="form-control submenu-switcher">
                 @foreach ($menuOptions as $key => $option)

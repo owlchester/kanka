@@ -11,11 +11,11 @@
 @section('content')
     @include('partials.errors')
 
-    <div class="row">
-        <div class="col-md-3">
+    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
+        <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'sidebar'])
         </div>
-        <div class="col-md-9">
+        <div class="grow">
 
             <div class="flex gap-2 mb-5 items-center">
                 <h3 class="m-0 inline-block grow">

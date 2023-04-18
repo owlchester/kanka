@@ -10,11 +10,11 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
+        <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'export'])
         </div>
-        <div class="col-md-9">
+        <div class="grow">
             <h3 class="mt-0">
                 <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
                         data-target="export-help">

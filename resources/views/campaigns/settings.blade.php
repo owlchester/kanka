@@ -10,11 +10,11 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
+        <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'settings'])
         </div>
-        <div class="col-md-9 campaign-settings">
+        <div class="grow campaign-settings">
             @include('campaigns.settings.index')
         </div>
     </div>

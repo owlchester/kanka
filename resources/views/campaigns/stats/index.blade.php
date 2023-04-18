@@ -13,11 +13,11 @@ use \Illuminate\Support\Arr;
 @section('content')
     @include('partials.errors')
 
-    <div class="row">
-        <div class="col-md-3">
+    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
+        <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'stats'])
         </div>
-        <div class="col-md-9 achievements">
+        <div class="grow achievements">
             <div class="flex gap-2 items-center mb-5">
                 <h3 class="m-0 inline-block grow">
                 {{ __('campaigns.show.tabs.achievements') }}

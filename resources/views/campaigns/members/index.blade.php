@@ -10,11 +10,11 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
+        <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'users'])
         </div>
-        <div class="col-md-9">
+        <div class="grow">
             @include('campaigns.members._users')
 
             @include('campaigns.members._invites')

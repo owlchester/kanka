@@ -20,11 +20,11 @@
     @include('partials.errors')
     @include('partials.ads.top')
 
-    <div class="row">
-        <div class="col-md-3">
+    <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
+        <div class="lg:flex-none lg:w-60">
             @include('campaigns._menu', ['active' => 'campaign'])
         </div>
-        <div class="col-md-9">
+        <div class="grow">
             @can('update', $campaign)
                 @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
                     <div class="alert alert-warning">
