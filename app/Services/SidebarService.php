@@ -676,7 +676,9 @@ class SidebarService
         if (!$this->campaign->enabled('menu_links')) {
             return;
         }
-        $quickLinks = $this->campaign->menuLinks()->active()->ordered()->with(['target'])->get();
+        $quickLinks = $this->campaign->menuLinks()->active()->ordered()->with(['target' => function ($sub) {
+            return $sub->select('id', 'type_id', 'entity_id');
+        }])->get();
         foreach ($quickLinks as $quickLink) {
             $parent = 'menu_links';
             if (!empty($quickLink->parent) && $this->campaign->boosted()) {

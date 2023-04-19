@@ -18,16 +18,15 @@ class Mention extends Layout
                 'key' => 'name',
                 'label' => 'entities/mentions.fields.element',
                 'render' => function ($model) {
-                    $row = '<i class="fa-solid fa-lock" title="' . __('crud.is_private') . '" data-toggle="tooltip"></i> ';
+                    $private = null;
 
-                    if (($model->entity && !$model->entity->is_private) || 
-                        ($model->questElement && $model->questElement->quest && $model->questElement->quest->entity && !$model->questElement->quest->entity->is_private) || 
-                        ($model->timelineElement && $model->timelineElement->timeline && $model->timelineElement->timeline->entity && !$model->timelineElement->timeline->entity->is_private) || 
-                        ($model->post && $model->post->entity && !$model->post->entity->is_private) ||
-                        $model->campaign) {
-                            $row = '';
+                    if (($model->entity && !$model->entity->is_private) ||
+                        ($model->isQuestElement() && $model->questElement && $model->questElement->quest && $model->questElement->quest->entity && !$model->questElement->quest->entity->is_private) ||
+                        ($model->isTimelineElement() && $model->timelineElement && $model->timelineElement->timeline && $model->timelineElement->timeline->entity && !$model->timelineElement->timeline->entity->is_private) ||
+                        ($model->isPost() && $model->post && $model->post->entity && !$model->post->entity->is_private)) {
+                            $private = '<i class="fa-solid fa-lock mr-1" title="' . __('crud.is_private') . '" data-toggle="tooltip" aria-hidden="true"></i>';
                     }
-                    return $row . $model->mentionLink();
+                    return $private . $model->mentionLink();
                 },
             ],
             'type' => [

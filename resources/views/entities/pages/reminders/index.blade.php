@@ -49,6 +49,8 @@
             <x-tutorial code="events" doc="https://docs.kanka.io/en/latest/features/reminders.html">
                 <p>{{ __('entities/events.helpers.no_events_v2') }}</p>
             </x-tutorial>
+            <div class="mb-5"></div>
+
             @if ($reminders->count() > 0)
                 <div class="box box-solid box-entity-reminders">
                     <div class="box-body no-padding">
