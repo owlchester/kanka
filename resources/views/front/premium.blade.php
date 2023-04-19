@@ -159,7 +159,7 @@
 
             <h2>{{ __('front/boosters.table.title', ['kanka' => config('app.name')]) }}</h2>
             <p class="my-3">{{ __('front/premium.details') }}</p>
-            @include('front.features._booster_table')
+            @include('front.features._premium_table')
         </div>
     </section>
 

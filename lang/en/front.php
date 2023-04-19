@@ -97,6 +97,12 @@ return [
             'tooltip'               => 'Custom tooltips for entities (text, show image)',
             'upload'                => 'Increased upload sizes for all members',
         ],
+        'boosts_v2'         => [
+            'description'       => 'Our pledge levels give you access to boosters, which you can use to boost or superboost campaigns. Doing so unlocks the following benefits for a campaign.',
+            'description-count' => 'Boosting a campaign uses :boost-count booster. Superboosting a campaign uses :superboost-count boosters.',
+            'moving'            => 'Boosts can be moved around campaigns. For example if a campaign is over, you can unboost it and boost or superboost another campaign instead. Unboosting a campaign doesn\'t delete any data related to boosted features, but simply hides them until the campaign is boosted again.',
+            'title'             => 'Boosted and Superboosted campaigns',
+        ],
         'calendars'         => [
             'description'   => 'Create fully custom calendars with the weeks and months you want. Add seasons, weather, moons for flavour and knowing how the world is. Attach entities to the calendar as a reminder with control on how long they last, and how often they occur.',
             'title'         => 'Calendars',

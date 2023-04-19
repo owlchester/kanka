@@ -60,6 +60,7 @@ TEXT
         'open'                              => 'Open to applications',
         'past_featured'                     => 'Previously featured campaign',
         'post_collapsed'                    => 'New posts on entities are collapsed by default.',
+        'premium'                           => 'Premium unlocked by :name',
         'public'                            => 'Campaign visibility',
         'public_campaign_filters'           => 'Public Campaign Filters',
         'related_visibility'                => 'Related Elements Visibility',

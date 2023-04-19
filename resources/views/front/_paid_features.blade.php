@@ -251,7 +251,7 @@
             <p class="my-3">{{ __('front/premium.details') }}</p>
         </div>
 
-        @include('front.features._booster_table')
+        @include('front.features._premium_table')
         @if (isset($campaign))
             <div class="my-2">
                 <a href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" class="btn btn-block btn-success text-uppercase">
