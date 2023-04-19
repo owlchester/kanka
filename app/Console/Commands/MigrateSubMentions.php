@@ -74,7 +74,7 @@ class MigrateSubMentions extends Command
             ->has('timelineElement.timeline.entity')
             ->chunk(500, function ($mentions) {
                 foreach ($mentions as $mention) {
-                    $mention->entity_id = $mention->timelineElement->timeline->id;
+                    $mention->entity_id = $mention->timelineElement->timeline->entity->id;
                     $mention->saveQuietly();
                     $this->count++;
                 }
@@ -84,7 +84,7 @@ class MigrateSubMentions extends Command
         $this->count = 0;
         EntityMention::with([
             'post' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id');
+                $sub->select('id', 'entity_id');
             }])
             ->whereNotNull('entity_note_id')
             ->whereNull('entity_id')

@@ -33,19 +33,22 @@ class Mention extends Layout
                 'key' => 'type',
                 'label' => 'crud.fields.type',
                 'render' => function ($model) {
-                    if ($model->entity) {
-                        return __('entities.' . $model->entity->type());
-                    } elseif ($model->isCampaign()){
+                    if ($model->isCampaign()) {
                         return __('entities.campaign');
-                    } elseif ($model->isTimelineElement()){
-                        return __('entities.timeline_element');
-                    } elseif ($model->isQuestElement()){
-                        return __('entities.quest_element');
-                    } elseif ($model->isPost()){
-                        return __('entities.post');
-                    } else {
-                        return __('crud.hidden');
                     }
+                    $base = __('crud.hidden');
+                    if ($model->entity) {
+                        $base = __('entities.' . $model->entity->type());
+                    }
+
+                    if ($model->isTimelineElement()) {
+                        return $base . ' (' . __('entities.timeline_element') . ')';
+                    } elseif ($model->isQuestElement()) {
+                        return $base . ' (' . __('entities.quest_element') . ')';
+                    } elseif ($model->isPost()) {
+                        return $base . ' (' . __('entities.post') . ')';
+                    }
+                    return $base;
                 },
             ],
         ];
