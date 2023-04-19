@@ -19,7 +19,7 @@
         <p class="text-lg">
             {!! __('subscription.benefits.main', [
                 'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank']),
-                'boosters' => link_to_route('front.boosters', __('subscription.benefits.boosters'), '', ['target' => '_blank']),
+                'boosters' => link_to_route('front.premium', __('concept.premium-campaigns'), '', ['target' => '_blank']),
                 'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
             ]) !!}
         </p>
@@ -28,9 +28,9 @@
         @if (session('sub_value'))
             <div class="text-center">
                 <p>
-                    <a  href="{{ route('settings.boost') }}" class="btn btn-primary btn-lg mr-4" target="blank">
+                    <a  href="{{ route('settings.premium') }}" class="btn btn-primary btn-lg mr-4" target="blank">
                         <i class="fa-solid fa-rocket mr-1" aria-hidden="true"></i>
-                        {{ __('settings/boosters.ready.title') }}
+                        {{ __('settings/premium.ready.title') }}
                     </a>
                     @if (!$user->discord())
                         <a  href="{{ route('settings.apps') }}" class="btn btn-primary btn-lg ml-4" target="blank">
@@ -256,7 +256,7 @@
         <ul>
             <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.kobold') }}</li>
             <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.bonuses') }}</li>
-            <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.boosts') }}</li>
+            <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.premium') }}</li>
         </ul>
     </x-dialog>
 

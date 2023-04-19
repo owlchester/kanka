@@ -44,8 +44,8 @@ class SubmissionController extends Controller
 
         if (!$campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
+                ->with('campaign', $campaign)
                 ->with('key', 'members')
-                ->with('skipImage', true)
                 ->with('name', 'campaign_roles');
         }
 

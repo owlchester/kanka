@@ -33,8 +33,6 @@ return [
         'copy_invite'       => 'The campaign invite link was copied to your clipboard.',
         'copy_mention'      => 'The entity\'s advanced mention was copied to your clipboard.',
     ],
-    'boosted'                   => 'Boosted',
-    'boosted_campaigns'         => 'Boosted Campaigns',
     'bulk'                      => [
         'actions'       => [
             'edit'          => 'Edit & tagging',
@@ -113,8 +111,8 @@ return [
     ],
     'edit'                      => 'Edit',
     'errors'                    => [
-        'boosted'                       => 'This feature is only available to boosted campaigns.',
-        'boosted_campaigns'             => 'This feature is only available for :boosted.',
+        'boosted'                       => 'This feature is only available to premium campaigns.',
+        'boosted_campaigns'             => 'This feature is only available to :boosted.',
         //'cannot_move_node_into_itself'  => 'The selected parent is invalid. This could be due to it having this entity as the parent.',
         'node_must_not_be_a_descendant' => 'The selected parent is invalid. It would be a descendant of itself.',
         'unavailable_feature'           => 'Unavailable feature',
@@ -362,6 +360,7 @@ return [
         'mentions'      => 'Mentions',
         'overview'      => 'Overview',
         'permissions'   => 'Permissions',
+        'premium'       => 'Premium',
         'profile'       => 'Profile',
         'relations'     => 'Relations',
         'reminders'     => 'Reminders',
@@ -371,7 +370,6 @@ return [
         'editing'   => 'Editing :name',
     ],
     'tooltips'                  => [
-        'boosted_feature'   => 'Boosted campaign feature',
         'new_post'          => 'Add a new post to this entity.',
     ],
     'update'                    => 'Update',

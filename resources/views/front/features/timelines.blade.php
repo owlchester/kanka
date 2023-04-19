@@ -31,7 +31,7 @@
 
 
                         <p>{!! __('front/features/timelines.fourth', [
-    'boosted_campaigns' => link_to_route('front.boosters', __('crud.boosted_campaigns'))
+    'boosted_campaigns' => link_to_route('front.premium', __('concept.premium-campaigns'))
 ]) !!}</p>
 
 

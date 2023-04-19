@@ -19,6 +19,20 @@
             {{ __('settings/boosters.title') }}
         </h1>
 
+        @if (auth()->user()->hasBoosterNomenclature())
+            <div class="alert alert-warning">
+                <strong class="inline-block mb-2">Legacy boosters</strong>
+                <p>
+                    Dear user, you are still using our legacy campaign boosters concept. Switching to premium campaigns will unboost your campaigns and give you a number of premium campaigns based on your subscription.
+                </p>
+                <p>This action cannot be reverted.</p>
+
+                <a href="{{ route('settings.switch-to-premium') }}" class="btn btn-block btn-primary">
+                    Switch to premium
+                </a>
+            </div>
+        @endif
+
         <div style="" class="rounded p-4 shadow-sm bg-box mb-5">
                 <h3 class="my-1">{{ __('settings/boosters.pitch.title') }}</h3>
                 <p class="my-5">{{ __('settings/boosters.pitch.description') }}</p>

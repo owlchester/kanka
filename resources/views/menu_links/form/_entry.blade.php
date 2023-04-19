@@ -50,11 +50,11 @@ if (isset($model)) {
             @else
                 @subscriber()
                 <p class="help-block">
-                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
                 </p>
                 @else
                     <p class="help-block">
-                        {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                        {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
                     </p>
                 @endsubscriber
 
@@ -78,11 +78,11 @@ if (isset($model)) {
             @else
                 @subscriber()
                     <p class="help-block">
-                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
                     </p>
                 @else
                     <p class="help-block">
-                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
                     </p>
                 @endsubscriber
             @endif
@@ -102,11 +102,11 @@ if (isset($model)) {
             @else
                 @subscriber()
                     <p class="help-block">
-                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
                     </p>
                 @else
                     <p class="help-block">
-                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
                     </p>
                 @endsubscriber
             @endif

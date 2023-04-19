@@ -9,5 +9,7 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
-    @include('layouts.callouts.limit', ['texts' => [__('campaigns/limits.' . $key)]])
+    <x-cta :campaign="$campaign" image="0">
+        <p>{{ __('campaigns/limits.' . $key) }}</p>
+    </x-cta>
 @endsection

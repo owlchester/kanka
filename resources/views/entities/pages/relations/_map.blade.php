@@ -11,7 +11,9 @@ $options = [
 
 ?>
 @if(!$campaignService->campaign()->boosted())
-    @include('layouts.callouts.boost', ['texts' => [__('entities/relations.call-to-action')]])
+    <x-cta :campaign="$campaignService->campaign()">
+        <p>{{ __('entities/relations.call-to-action') }}</p>
+    </x-cta>
     <?php return ?>
 @endif
 

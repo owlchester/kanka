@@ -17,16 +17,15 @@ if (!isset($model) || !$model->boosted()) {
 <div class="tab-pane" id="form-ui">
 
     <h4>
-        <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
-        {{ __('campaigns.ui.boosted') }}
+        {{ ucfirst(__('concept.premium-campaign')) }}
     </h4>
     @if (isset($model) && $model->boosted())
         <p class="help-block">
-            {!! __('campaigns.helpers.boosted', ['settings' => link_to_route('front.boosters', __('footer.boosters'))]) !!}
+            {!! __('campaigns.helpers.premium', ['settings' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}
         </p>
     @else
         <p class="help-block">
-            {!! __('campaigns.helpers.boost_required_multi', ['settings' => link_to_route('front.boosters', __('footer.boosters'))]) !!}
+            {!! __('campaigns.helpers.premium', ['settings' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}
         </p>
     @endif
 
@@ -88,15 +87,12 @@ if (!isset($model) || !$model->boosted()) {
         <div class="col-md-6 col-lg-4">
             <div class="form-group">
                 <label>
-                    <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
                     {{ __('campaigns.ui.fields.entity_image') }}
                 </label>
                 {!! Form::select('ui_settings[tooltip_image]', [0 => __('campaigns.privacy.hidden'), 1 => __('campaigns.privacy.visible')], null, $boostedFormFields) !!}
                 @if (!isset($model) || !$model->boosted())
                     {!! Form::hidden('ui_settings[tooltip_image]', 0) !!}
-                    <p class="help-block">{!! __('campaigns.helpers.boost_required', [
-                    'settings' => link_to_route('front.boosters', __('footer.boosters'))
-                ]) !!}</p>
+                    <p class="help-block">{!! __('callouts.premium.limitation') !!}</p>
                 @endif
             </div>
         </div>

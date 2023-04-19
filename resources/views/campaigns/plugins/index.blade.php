@@ -19,7 +19,9 @@
         @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
     </div>
 @else
-    @include('layouts.callouts.boost', ['texts' => [__('campaigns/plugins.pitch', ['marketplace' => link_to(config('marketplace.url'), __('front.menu.marketplace'), null, ['target' => '_blank'])])]])
+    <x-cta :campaign="$campaign">
+        <p>{!! __('campaigns/plugins.pitch', ['marketplace' => link_to(config('marketplace.url'), __('front.menu.marketplace'), null, ['target' => '_blank'])]) !!}</p>
+    </x-cta>
 @endif
 
 

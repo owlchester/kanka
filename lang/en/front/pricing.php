@@ -11,7 +11,7 @@ return [
         ],
         'description'   => 'Here are answers to the most frequent questions we get regarding our subscriptions.',
         'gift'          => [
-            'answer'    => 'Gifting subscriptions isn\'t possible, but you can boost any campaign you have access to, even if you aren\'t the campaign\'s admin.',
+            'answer'    => 'Gifting subscriptions isn\'t possible, but you can upgrade any campaign you have access to campaign to premium status, even if you aren\'t the campaign\'s admin.',
             'title'     => 'Can I gift subscriptions?',
         ],
         'methods'       => [

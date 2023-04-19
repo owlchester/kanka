@@ -1,1 +1,1 @@
-<img src="/images/svgs/boosted.svg" alt="Boosted image" />
+<img src="/images/svgs/boosted.svg" alt="Premium campaign CTA" />

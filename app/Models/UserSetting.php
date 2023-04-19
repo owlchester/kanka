@@ -266,4 +266,16 @@ trait UserSetting
     {
         return !empty($this->mail_release);
     }
+
+    /**
+     * Determine if a user has the old booster nomenclature
+     * @return bool
+     */
+    public function hasBoosterNomenclature(): bool
+    {
+        if (app()->environment('local') && request()->get('_legacy') == 1) {
+            return true;
+        }
+        return Arr::get($this->settings, 'grandfathered_boost') === 1;
+    }
 }

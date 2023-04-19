@@ -11,8 +11,13 @@ if (auth()->check()) {
             <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
     }
     if (!$campaign->boosted()) {
+        if (auth()->check() && auth()->user()->hasBoosterNomenclature()) {
         $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-boost text-white mb-5">
-            <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('campaigns.show.actions.boost') . '</a>';
+            <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('callouts.booster.actions.boost') . '</a>';
+        } else {
+        $buttons[] = '<a href="' . route('settings.premium', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-boost text-white mb-5">
+            <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('settings/premium.actions.unlock') . '</a>';
+        }
     }
     if (auth()->user()->can('update', $campaign)) {
         $buttons[] = '<a href="'. route('campaigns.edit') .'" class="btn btn-primary btn-block">

@@ -37,10 +37,14 @@
             @includeIf($name . '.form._tabs', ['source' => $source])
 
             @if ($tabBoosted)
-                <li class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
-                    <a href="#form-boost" title="{{ __('crud.tabs.boost') }}">
-                        <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-                        <span class="hidden-xs hidden-sm">{{ __('crud.tabs.boost') }}</span>
+                <li class="{{ (request()->get('tab') == 'premium' ? ' active' : '') }}">
+                    <a href="#form-premium" title="{{ __('crud.tabs.premium') }}">
+                        @if (auth()->check() && auth()->user()->hasBoosterNomenclature())
+                            <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                            <span class="hidden-xs hidden-sm">{{ __('crud.tabs.boost') }}</span>
+                        @else
+                            <span>{{ __('crud.tabs.premium') }}</span>
+                        @endif
                     </a>
                 </li>
             @endif
@@ -77,8 +81,8 @@
             @includeIf($name . '.form._panes', ['source' => $source])
 
             @if ($tabBoosted)
-                <div class="tab-pane {{ (request()->get('tab') == 'boost' ? ' active' : '') }}" id="form-boost">
-                    @include('cruds.forms._boost', ['source' => $source])
+                <div class="tab-pane {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">
+                    @include('cruds.forms._premium', ['source' => $source])
                 </div>
             @endif
             @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)

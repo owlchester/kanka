@@ -32,7 +32,7 @@
                         <p>{{ __('front/features/relations.third') }}</p>
 
                         <p>{!! __('front/features/relations.fourth', [
-    'boosted_campaigns' => link_to_route('front.boosters', __('crud.boosted_campaigns'))
+    'boosted_campaigns' => link_to_route('front.premium', __('concept.premium-campaigns'))
 ]) !!}</p>
 
                         <div class="text-center">

@@ -10,7 +10,9 @@
 
 @section('content')
     @if (!$superboosted)
-        @include('layouts.callouts.boost', ['superboost' => true, 'texts' => [__('history.cta')]])
+        <x-cta :campaign="$campaign" superboost="true">
+            <p>{{ __('history.cta') }}</p>
+        </x-cta>
     @else
         <x-tutorial code="history" doc="https://docs.kanka.io/en/latest/features/history.html">
             <p>{!! __('history.helpers.base', ['amount' => 3]) !!}</p>

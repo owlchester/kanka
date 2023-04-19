@@ -235,6 +235,7 @@ class CrudController extends Controller
             if ($this->limitCheckReached()) {
                 $key = $this->view == 'menu_links' ? 'quick-links' : 'entities';
                 return view('cruds.forms.limit')
+                    ->with('campaign', $campaign)
                     ->with('key', $key)
                     ->with('name', $this->view);
             }

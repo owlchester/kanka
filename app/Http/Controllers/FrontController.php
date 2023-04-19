@@ -131,6 +131,13 @@ class FrontController extends Controller
     {
         return $this->cachedResponse('front.boosters');
     }
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function premium()
+    {
+        return $this->cachedResponse('front.premium');
+    }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

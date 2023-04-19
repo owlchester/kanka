@@ -12,7 +12,7 @@ return [
         'update_post'   => 'Updated post ":post"',
         'view'          => 'View changes',
     ],
-    'call-to-action'    => 'Full change logs for up to :amount day are available to superboosted campaigns.',
+    'call-to-action'    => 'Full change logs for up to :amount day on premium campaigns.',
     'fields'            => [
         'action'    => 'Action',
         'date'      => 'Date',

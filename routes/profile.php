@@ -15,6 +15,16 @@ Route::get('/boosters/boost/{campaign}', 'Settings\BoostController@boost')
 Route::get('/boosters/unboost/{campaign}', 'Settings\BoostController@unboost')
     ->name('settings.campaign-unboost');
 
+Route::get('/switch-to-premium', 'Settings\PremiumController@migrate')
+    ->name('settings.switch-to-premium');
+Route::get('/premium', 'Settings\PremiumController@index')
+    ->name('settings.premium');
+Route::get('/boosters/premium/{campaign}', 'Settings\PremiumController@premium')
+    ->name('settings.campaign-premium');
+Route::get('/boosters/unpremium/{campaign}', 'Settings\PremiumController@unpremium')
+    ->name('settings.campaign-unpremium');
+
+
 Route::post('/release/{app_release}', 'Settings\ReleaseController@read')
     ->name('settings.release');
 Route::post('/banner', 'Settings\ReleaseController@banner')

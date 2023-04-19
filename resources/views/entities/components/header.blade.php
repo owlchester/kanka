@@ -291,13 +291,13 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
         <x-dialog id="booster-cta" :title="__('callouts.booster.titles.boosted')">
             <p class="mb-2">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
-            <a href="{{ route('settings.boost', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-boost text-white btn-block mb-2">
-                {!! __('callouts.booster.actions.boost', ['campaign' => $campaignService->campaign()->name]) !!}
+            <a href="{{ route('settings.premium', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-boost text-white btn-block mb-2">
+                {!! __('callouts.premium.unlock', ['campaign' => $campaignService->campaign()->name]) !!}
             </a>
             @else
                 <p class="mb-2">{{ __('callouts.booster.limitation') }}</p>
-                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-block mb-2">
-                    {!! __('callouts.booster.learn-more') !!}
+                <a href="{{ route('front.premium') }}" class="btn bg-boost text-white btn-block mb-2">
+                    {!! __('callouts.premium.learn-more') !!}
                 </a>
             @endif
         </x-dialog>

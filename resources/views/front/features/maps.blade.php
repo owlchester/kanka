@@ -36,7 +36,7 @@
                         </p>
 
                         <p>{!! __('front/features/maps.fourth', [
-    'boosted_campaigns' => link_to_route('front.boosters', __('crud.boosted_campaigns'))
+    'boosted_campaigns' => link_to_route('front.premium', __('concept.premium-campaigns'))
 ]) !!}</p>
 
                         <img src="/images/features/maps.png" alt="Kanka map" class="m-2" style="max-width: 100%" loading="lazy" />

@@ -37,7 +37,9 @@ use App\Facades\Datagrid ?>
                 @endif
             </div>
             @if (!$campaign->boosted())
-                @include('layouts.callouts.boost', ['texts' => [__('campaigns/styles.pitch')]])
+                <x-cta :campaign="$campaign">
+                    <p>{!! __('campaigns/styles.pitch') !!}</p>
+                </x-cta>
             @else
             <div class="box box-solid">
                 @if ($styles->count() === 0)

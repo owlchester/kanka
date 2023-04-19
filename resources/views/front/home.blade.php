@@ -46,7 +46,7 @@
                         <h3>{{ __('front/features.dashboards.title') }}</h3>
                         <p class="text-muted">
                             {!! __('front/features.dashboards.description', [
-        'boosted-campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost'),
+        'boosted-campaigns' => link_to_route('front.pricing', __('concept.premium-campaigns'), '#premium'),
     ]) !!}
                         </p>
                         <a href="{{ route('front.features.dashboards') }}">

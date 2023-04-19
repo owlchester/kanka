@@ -25,10 +25,10 @@ class CampaignSuperBoosted
         if (!$campaign->superboosted()) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'error' => 'This feature is reserved to superboosted campaigns.'
+                    'error' => 'This feature is reserved to premium campaign.'
                 ]);
             }
-            return redirect()->route('dashboard')->withErrors(__('campaigns.errors.superboosted'));
+            return redirect()->route('dashboard')->withErrors(__('campaigns.errors.premium'));
         }
 
         return $next($request);

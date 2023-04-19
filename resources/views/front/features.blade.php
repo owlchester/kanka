@@ -90,10 +90,10 @@
                     </ul>
                 </div>
                 <div class="col-md-3 col-6">
-                    <strong>{{ __('front/features.sections.boosted') }}</strong>
+                    <strong>{{ __('front/features.sections.premium') }}</strong>
                     <ul class="list-unstyled m-0 p-0">
                         <li class="py-1">
-                            <a href="#boosters">{{ __('front/features.boosters.title') }}</a>
+                            <a href="#premium">{{ __('footer.premium') }}</a>
                         </li>
                         <li class="py-1">
                             <a href="#marketplace">{{ __('front/features.marketplace.title') }}</a>
@@ -134,9 +134,7 @@
                 <div class="col-12 col-xl-3">
                     <h3>{{ __('front/features.dashboards.title') }}</h3>
                     <p class="text-muted">
-                        {!! __('front/features.dashboards.description', [
-    'boosted-campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost'),
-]) !!}
+                        {!! __('front/features.dashboards.description') !!}
                     </p>
                     <a href="{{ route('front.features.dashboards') }}">
                         <i class="fa-solid fa-chevron-right"></i>
@@ -285,7 +283,7 @@
                     </p>
                     <p class="text-muted">
                         {!! __('front/features.relations.secondary', [
-    'boosted-campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost')
+    'boosted-campaigns' => link_to_route('front.pricing', __('footer.premium'), '#premium')
     ]
 ) !!}
                     </p>
@@ -385,18 +383,18 @@
     <section class="p-5">
         <div class="container">
             <h2 class="text-center mb-5">
-                {{ __('front/features.sections.boosted') }}
-                <a href="#top"><i class="fa-solid fa-arrow-up"></i></a>
+                {{ __('front/features.sections.premium') }}
+                <a href="#top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
             </h2>
 
             <div class="row mb-5">
-                <div class="col-12 col-md-6" id="boosters">
-                    <h3>{{ __('front/features.boosters.title') }}</h3>
+                <div class="col-12 col-md-6" id="premium">
+                    <h3>{{ __('footer.premium') }}</h3>
                     <p class="text-muted">
-                        {{ __('front/features.boosters.description') }}
+                        {{ __('front/features.premium.description') }}
                     </p>
-                    <a href="{{ route('front.boosters') }}">
-                        <i class="fa-solid fa-chevron-right"></i> {{ __('front/features.boosters.link') }}
+                    <a href="{{ route('front.premium') }}">
+                        <i class="fa-solid fa-chevron-right"></i> {{ __('front/features.premium.link') }}
                     </a>
                 </div>
                 <div class="col-12 col-md-6" id="marketplace">

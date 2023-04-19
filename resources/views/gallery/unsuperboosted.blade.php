@@ -9,10 +9,7 @@
 
 
 @section('content')
-    <div class="row">
-        <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-            @include('partials.superboosted', ['callout' => true])
-            @include('partials.images.boosted-image')
-        </div>
-    </div>
+    <x-cta :campaign="$campaign" superboost="true">
+        <p>{{ __('campaigns/gallery.cta') }}</p>
+    </x-cta>
 @endsection

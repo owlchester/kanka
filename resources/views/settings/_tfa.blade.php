@@ -19,8 +19,7 @@
 
             <p>
                 {!! __('callouts.subscribe.pitch-2fa', [
-                    'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank']),
-                    'boosters' => link_to_route('front.boosters', __('subscription.benefits.boosters'), '', ['target' => '_blank'])
+                    'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank'])
                 ]) !!}
             </p>
     @elseif (auth()->user()->isSubscriber())

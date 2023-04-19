@@ -32,8 +32,9 @@ use \Illuminate\Support\Arr;
                 @endif
             </div>
             @if (!$campaign->superboosted())
-                @include('layouts.callouts.boost', ['texts' => [
-            __('campaigns/stats.pitch')], 'superboost' => true])
+                <x-cta :campaign="$campaign" superboost="true">
+                    <p>{{ __('campaigns/stats.pitch') }}</p>
+                </x-cta>
             @else
 
             @foreach ($stats as $key => $stat)

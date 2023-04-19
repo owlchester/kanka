@@ -20,7 +20,7 @@
                     </li>
                     @if (config('services.stripe.enabled'))
                     <li>
-                        <a href="{{ route('front.boosters') }}">{{ __('footer.boosters') }}</a>
+                        <a href="{{ route('front.premium') }}">{{ __('footer.premium') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('front.pricing') }}">{{ __('front.menu.pricing') }}</a>

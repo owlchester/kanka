@@ -50,13 +50,22 @@
                                 {{ __('billing/menu.overview') }}
                             </a>
                         </li>
+                        @if (auth()->user()->hasBoosterNomenclature())
+                            <li class="{{ $sidebar->settings('boosters') }} subsection">
+                                <a href="{{ route('settings.boost') }}">
+                                    <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                                    {{ __('settings.menu.boosters') }}
+                                </a>
+                            </li>
+                        @else
+                            <li class="{{ $sidebar->settings('premium') }} subsection">
+                                <a href="{{ route('settings.premium') }}">
+                                    <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                                    {{ __('settings.menu.premium') }}
+                                </a>
+                            </li>
+                        @endif
                     @endif
-                    <li class="{{ $sidebar->settings('boosters') }} subsection">
-                        <a href="{{ route('settings.boost') }}">
-                            <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-                            {{ __('settings.menu.boosters') }}
-                        </a>
-                    </li>
 
                     @if (config('services.stripe.enabled'))
                         <li class="{{ $sidebar->settings('payment-method', 4) }} subsection">

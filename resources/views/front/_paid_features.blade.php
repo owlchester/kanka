@@ -2,7 +2,7 @@
     <div class="container">
         <div class="my-auto">
             <div class="header-content mx-auto">
-                <h2 class="">{{ __('front.features.patreon.title') }}</h2>
+                <h2 class="text-uppercase">{{ __('front.features.patreon.title') }}</h2>
                 <p class="my-3">{{ __('front.features.patreon.description', ['kanka' => config('app.name')]) }}</p>
             </div>
         </div>
@@ -35,14 +35,14 @@
             </tr>
             <tr>
                 <td class="text">
-                    <a href="{{ route('front.boosters') }}">
-                    {{ __('front.features.patreon.boosts') }}
+                    <a href="{{ route('front.premium') }}">
+                    {{ __('footer.premium') }}
                     </a>
                 </td>
                 <td></td>
+                <td>1</td>
                 <td>3</td>
-                <td>6</td>
-                <td>10</td>
+                <td>7</td>
             </tr>
             <tr>
                 <td class="text">
@@ -243,22 +243,19 @@
     </div>
 </section>
 
-<section class="minimal-padding" id="boost" style="">
+<section class="minimal-padding" id="premium" style="">
     <div class="container">
         <div class="header-content mx-auto">
-            <h2>{{ __('front.features.boosts_v2.title') }}</h2>
-            <p class="my-3">{{ __('front.features.boosts_v2.description') }} {!! __('front.features.boosts_v2.description-count', [
-'boost-count' => '<strong>1</strong>', 'superboost-count' => '<strong>3</strong>',
-]) !!} {{ __('front.features.boosts_v2.moving') }}
-            </p>
+
+            <h2 class="text-uppercase">{{ __('footer.premium') }}</h2>
+            <p class="my-3">{{ __('front/premium.details') }}</p>
         </div>
 
         @include('front.features._booster_table')
         @if (isset($campaign))
             <div class="my-2">
-
-                <a href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}" class="btn btn-block btn-success text-uppercase">
-                    <i class="fa-solid fa-rocket" aria-hidden="true"></i> {{ __('settings/boosters.actions.boost_name', ['name' => $campaign->name]) }}
+                <a href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" class="btn btn-block btn-success text-uppercase">
+                    <i class="fa-solid fa-rocket" aria-hidden="true"></i> {{ __('callouts.premium.unlock', ['campaign' => $campaign->name]) }}
                 </a>
             </div>
         @endif

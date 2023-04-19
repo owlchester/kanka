@@ -34,4 +34,16 @@ trait Boosted
     {
         return $this->boosted(true);
     }
+
+    /**
+     * Determine if a campaign is premium
+     * @return bool
+     */
+    public function premium(): bool
+    {
+        if (request()->get('_boosted') === '0') {
+            return false;
+        }
+        return $this->boost_count >= 4;
+    }
 }

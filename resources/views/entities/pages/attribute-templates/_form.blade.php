@@ -17,14 +17,14 @@
 
         <p class="help-block">
         {!! __('attributes/templates.pitch', [
-    'boosted-campaign' => link_to_route('front.boosters', __('concept.boosted-campaign')),
+    'boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaigns')),
     'marketplace' => link_to(config('marketplace.url') . '/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
     ]) !!}
         </p>
         <div class="my-5 text-center">
             <button type="button" class="btn btn-default mr-5 rounded-full px-8" data-dismiss="modal">
                 {{ __('crud.cancel') }}
-            </button> 
+            </button>
             @include('entities.pages.attribute-templates._actions')
         </div>
         {!! Form::close() !!}

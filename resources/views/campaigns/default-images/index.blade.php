@@ -83,7 +83,9 @@
                     </div>
                 </div>
             @else
-                @include('layouts.callouts.boost', ['texts' => [__('campaigns/default-images.call-to-action')]])
+                <x-cta :campaign="$campaign">
+                    <p>{{ __('campaigns/default-images.call-to-action') }}</p>
+                </x-cta>
             @endif
         </div>
     </div>

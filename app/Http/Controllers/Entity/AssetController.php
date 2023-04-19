@@ -209,7 +209,7 @@ class AssetController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $max = $campaign->maxEntityFiles();
-        if ($entity->files->count() >= $max) {
+        if ($entity->assets()->file()->count() >= $max) {
             return view('entities.pages.files.max')
                 ->with('campaign', $campaign)
                 ->with('max', $max);

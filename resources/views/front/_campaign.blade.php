@@ -10,12 +10,10 @@ $width = $featured ? 350 : 200;
             <h4 class="campaign-title mb-1">
                 <div class="float-right">
                     @if ($campaign->is_open)
-                        <i class="fa-solid fa-door-open" title="{{ __('campaigns/submissions.helpers.filter-helper') }}" data-toggle="tooltip"></i>
+                        <i class="fa-solid fa-door-open" title="{{ __('campaigns/submissions.helpers.filter-helper') }}" data-toggle="tooltip" aria-hidden="true"></i>
                     @endif
                     @if ($campaign->boosted())
-                        <i class="fa-solid fa-rocket" title="{{ __('front.campaigns.public.filters.is-boosted') }}" data-toggle="tooltip"></i>
-                    @elseif ($campaign->superboosted())
-                        <i class="fa-solid fa-rocket" title="{{ __('front.campaigns.public.filters.is-superboosted') }}" data-toggle="tooltip"></i>
+                        <i class="fa-solid fa-rocket" title="{{ __('front.campaigns.public.filters.is-premium') }}" data-toggle="tooltip" aria-hidden="true"></i>
                     @endif
                 </div>
                 {!! $campaign->name !!}

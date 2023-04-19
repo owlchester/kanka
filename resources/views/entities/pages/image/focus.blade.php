@@ -53,7 +53,7 @@
         @else
             <p class="alert alert-warning">
                 {!! __('entities/image.focus.unboosted', [
-        'boosted-campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), ['#boost'], ['target' => '_blank'])
+        'boosted-campaigns' => link_to_route('front.pricing', __('concept.premium-campaigns'), ['#premium'])
     ]) !!}
             </p>
             <a href="{{ $model->getLink() }}">

@@ -17,6 +17,7 @@
     <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
     <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
 </tr>
+@if (auth()->user()->hasBoosterNomenclature())
 <tr>
     <td></td>
     <td><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
@@ -29,6 +30,20 @@
         {!! link_to_route('front.boosters', 10 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
     </td>
 </tr>
+@else
+<tr>
+    <td></td>
+    <td><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
+        {!! link_to_route('front.premium', 1 . ' ' . __('concept.premium-campaign'), '', ['target' => '_blank']) !!}
+    </td>
+    <td><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
+        {!! link_to_route('front.premium', 3 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
+    </td>
+    <td><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
+        {!! link_to_route('front.premium', 7 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
+    </td>
+</tr>
+@endif
 <tr>
     <td></td>
     <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</td>

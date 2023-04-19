@@ -25,19 +25,7 @@ $label = $imageLabel ?? 'crud.fields.image';
         {!! Form::text('image_url', ((!empty($source) && $source->image) ? $source->getOriginalImageUrl() : ''), ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
             <p class="help-block">
                 {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? auth()->user()->mapUploadSize(true) : auth()->user()->maxUploadSize(true))]) }}
-@php $currentCampaign = \App\Facades\CampaignLocalization::getCampaign(false); @endphp
-                @subscriber()
-                    @if ($currentCampaign && !$currentCampaign->boosted())
-                        <p>
-                            <a href="{{ route('settings.boost', ['campaign' => $currentCampaign]) }}">
-                                <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-                                {!! __('callouts.subscribe.share-booster', ['campaign' => $currentCampaign->name]) !!}
-                            </a>
-                        </p>
-                    @endif
-                @else
-                    <a href="{{ route('front.pricing') }}">{{ __('callouts.subscribe.pitch-image', ['max' => $max]) }}</a>
-                @endif
+                @include('cruds.fields.helpers.share')
             </p>
         </div>
     </div>

@@ -26,11 +26,11 @@ $horizontalForm = isset($horizontalForm) ? $horizontalForm : false;
             @else
                 @subscriber()
                 <p class="help-block">
-                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.boost', __('concept.boosted-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaignService->campaign()])]) !!}
                 </p>
             @else
                 <p class="help-block">
-                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('front.boosters', __('concept.boosted-campaign'))]) !!}
+                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}
                 </p>
                 @endsubscriber
 
