@@ -135,7 +135,15 @@ class CampaignBoostService
      */
     public function migrate(): void
     {
+        if ($this->user->isLegacyPatron()) {
+            throw new TranslatableException('As a Patreon supporter, your account cannot switch to the new premium campaigns system. Please switch to supporting Kanka directly through the app to migrate to premium campaigns.');
+        }
+
         $settings = $this->user->settings;
+
+        if (!isset($settings['grandfathered_boost'])) {
+            throw new TranslatableException('Your account has already switched to the premium campaign system.');
+        }
         unset($settings['grandfathered_boost']);
         $this->user->settings = $settings;
         $this->user->saveQuietly();

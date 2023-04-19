@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="rounded p-4 bg-box">
+        <x-box>
             @if ($notifications->count() === 0)
                 <p class="help-block">{{ __('notifications.no_notifications') }}</p>
             @else
@@ -67,7 +67,7 @@
            @endif
 
         @endif
-        </div>
+        </x-box>
     </div>
     <input type="hidden" id="notification-clear" />
 @endsection

@@ -7,10 +7,10 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="max-w-4xl" id="api">
-        <h1 class="mb-3">
-            {{ __('settings.api.title') }}
-        </h1>
+    <h1 class="mb-3">
+        {{ __('settings.api.title') }}
+    </h1>
+    <div id="api">
         <p class="text-lg">
             {{ __('settings.api.helper') }}
             <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" class="" target="_blank">
@@ -19,15 +19,15 @@
             </a>.
         </p>
 
-        <div class="rounded p-2 bg-box mb-5">
+        <x-box>
             <passport-authorized-clients></passport-authorized-clients>
             <passport-personal-access-tokens></passport-personal-access-tokens>
-        </div>
+        </x-box>
 
         @if (request()->has('clients'))
-        <div class="rounded p-2 bg-box mb-5">
+        <x-box>
             <passport-clients></passport-clients>
-        </div>
+        </x-box>
         @endif
     </div>
 @endsection

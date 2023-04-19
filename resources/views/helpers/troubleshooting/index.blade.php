@@ -9,7 +9,7 @@
         <h1 class="mb-3">{{ __('helpers.troubleshooting.subtitle') }}</h1>
 
         {!! Form::open(['route' => 'troubleshooting.generate', 'method' => 'POST']) !!}
-        <div class="rounded shadow-xs p-4 bg-box">
+        <x-box>
             <p class="mb-5">
                 {{ __('helpers.troubleshooting.description') }}
             </p>
@@ -34,7 +34,7 @@
                     <input type="submit" class="btn btn-primary" value="{{ __('helpers.troubleshooting.save_btn') }}" />
                 </div>
             @endif
-        </div>
+        </x-box>
         {!! Form::close() !!}
     </div>
 @endsection

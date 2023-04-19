@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
@@ -10,11 +11,18 @@ use App\User;
 
 class PremiumController extends Controller
 {
-    /**
-     * @var CampaignBoostService
-     */
     protected CampaignBoostService $service;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(CampaignBoostService $campaignBoostService)
+    {
+        $this->middleware(['auth', 'identity']);
+        $this->service = $campaignBoostService;
+    }
 
     public function index()
     {
@@ -53,22 +61,22 @@ class PremiumController extends Controller
     }
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Migrate a user to the new system
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function __construct(CampaignBoostService $campaignBoostService)
-    {
-        $this->middleware(['auth', 'identity']);
-        $this->service = $campaignBoostService;
-    }
     public function migrate()
     {
-        $this->service
-            ->user(auth()->user())
-            ->migrate();
+        try {
+            $this->service
+                ->user(auth()->user())
+                ->migrate();
 
-        return redirect()->route('settings.premium')
-            ->with('success', __('Thanks for switching to our premium campaigns!'));
+            return redirect()->route('settings.premium')
+                ->with('success', __('Thanks for switching to our premium campaigns!'));
+        } catch (TranslatableException $ex) {
+            return redirect()
+                ->route('settings.boost')
+                ->with('error', __($ex->getMessage()));
+        }
     }
 }

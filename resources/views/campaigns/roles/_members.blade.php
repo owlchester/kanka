@@ -17,7 +17,7 @@
     @endcan
 </div>
 @if ($members->isNotEmpty())
-<div class="rounded bg-box shadow-xs p-4 mb-5">
+<x-box>
     @foreach ($members as $relation)
         <div class="flex items-center gap-2 mb-2">
             <div class="grow">
@@ -41,7 +41,7 @@
             {{ $members->links() }}
         </div>
     @endif
-</div>
+</x-box>
 @else
     <div class="alert alert-info">
         <div class="mb-5">{{__('campaigns.roles.hints.empty_role')}}</div>

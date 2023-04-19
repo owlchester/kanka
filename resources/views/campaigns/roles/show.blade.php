@@ -31,7 +31,7 @@
                     <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('campaigns.members.actions.help') }}
                 </button>
             </div>
-            <div class="rounded bg-box shadow-xs p-4 mb-5">
+            <x-box>
                 @if (!$role->isAdmin())
                     <p class="help-block">
                         {!! __('campaigns.roles.hints.role_permissions', ['name' => '<strong>' . $role->name . '</strong>']) !!}
@@ -54,7 +54,7 @@
                 </div>
                     {{ Form::close() }}
                 @endif
-            </div>
+            </x-box>
         </div>
     </div>
     @endif

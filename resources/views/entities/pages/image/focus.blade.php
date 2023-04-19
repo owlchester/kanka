@@ -15,7 +15,8 @@
 @section('content')
 
     @include('partials.errors')
-    <div class="rounded p-4 bg-box max-w-4xl">
+    <div class="max-w-4xl">
+        <x-box>
         @if ($campaignService->campaign()->boosted())
             @if($campaignService->campaign()->superboosted() && empty($model->image) && !empty($entity->image_uuid))
                 <p class="alert alert-warning">
@@ -61,6 +62,7 @@
                 {{ __('crud.actions.back') }}
             </a>
         @endif
+        </x-box>
     </div>
 @endsection
 
