@@ -110,19 +110,6 @@ class CampaignDashboardWidget extends Model
             'widget_id',
             'tag_id'
         )->using(CampaignDashboardWidgetTag::class);
-
-
-        /*return $this->belongsToMany(MarketplaceTag::class, 'plugin_tag', 'plugin_id', 'tag_id')->using(PluginTag::class);
-
-
-        return $this->belongsToMany(
-            'App\Models\Tag',
-            'campaign_dashboard_widget_tags',
-            'widget_id',
-            'tag_id',
-            'id',
-            'id'
-        )->*/
     }
 
     /**
