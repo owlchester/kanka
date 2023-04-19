@@ -398,6 +398,9 @@ class MentionsService
                     if ($field == 'race' && !$entity->child->races->isEmpty()) {
                         $data['text'] = $entity->child->races()->reorder('name')->first()->name;
                     }
+                    if ($field == 'calendar_date' && $entity->child->calendar_id) {
+                        $data['text'] = $entity->child->calendarReminder()->readableDate();
+                    }
                     if ($field === 'entry') {
                         if ($this->enableEntryField) {
                             $this->lockEntryRendering();
@@ -432,6 +435,9 @@ class MentionsService
                             }
                         } elseif (is_string($foreign)) {
                             $data['text'] = $foreign;
+                        }
+                        if ($field == 'date' && $entity->child instanceof \App\Models\Calendar) {
+                                $data['text'] = $entity->child->niceDate();
                         }
                     } elseif (isset($entity->$field) && is_string($entity->$field)) {
                         $data['text'] = $entity->$field;
