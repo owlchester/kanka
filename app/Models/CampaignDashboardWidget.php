@@ -126,6 +126,14 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function dashboardWidgetTags()
+    {
+        return $this->hasMany(CampaignDashboardWidgetTag::class, 'widget_id', 'id');
+    }
+
+    /**
      * Get the column size
      * @return int
      */
@@ -174,14 +182,20 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * Copy an dashboard to another target
+     * Copy a dashboard to another target
      * @param CampaignDashboard $target
      */
     public function copyTo(CampaignDashboard $target)
     {
         $new = $this->replicate(['dashboard_id']);
         $new->dashboard_id = $target->id;
-        return $new->save();
+        $new->save();
+        foreach ($this->dashboardWidgetTags as $tag) {
+            $newTag = $tag->replicate(['widget_id']);
+            $newTag->widget_id = $new->id;
+            $newTag->save();
+        }
+        return;
     }
 
     /**
