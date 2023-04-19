@@ -398,7 +398,7 @@ class MentionsService
                     if ($field == 'race' && !$entity->child->races->isEmpty()) {
                         $data['text'] = $entity->child->races()->reorder('name')->first()->name;
                     }
-                    if ($field == 'calendar_date' && $entity->child && $entity->child->calendar_id) {
+                    if ($field == 'calendar_date' && $entity->child->calendar_id) {
                         $data['text'] = $entity->child->calendarReminder()->readableDate();
                     }
                     if ($field === 'entry') {
