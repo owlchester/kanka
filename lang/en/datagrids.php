@@ -5,8 +5,8 @@ return [
         'back_to' => 'Back to :name'
     ],
     'modes' => [
-        'table' => 'Table view',
-        'grid' => 'Grid view',
+        'table' => 'Switch to the table view',
+        'grid' => 'Switch to the grid view',
     ],
     'tooltips' => [
         'nested' => 'This entity has children. Click on the image to view them.',
