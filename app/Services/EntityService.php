@@ -426,6 +426,12 @@ class EntityService
             }
         }
 
+        // When transforming to a nested model, we need to recalculate the tree bounds to
+        // place it correctly in the overall campaign tree.
+        if (method_exists($new, 'getParentIdName')) {
+            $new->recalculateTreeBounds();
+        }
+
         // Finally, we can save. Should be all good.
         $new->campaign_id = $old->campaign_id;
         $new->saveQuietly();
