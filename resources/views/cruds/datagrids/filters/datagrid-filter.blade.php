@@ -95,7 +95,7 @@ $hasAttributeFilters = false;
             <hr />
             <div class="flex items-center gap-2 md:gap-5">
                 @if (auth()->check())
-                    <a href="#" class="flex-0 btn btn-default flex gap-2 items-center"
+                    <a href="#" class="flex-none btn btn-default flex gap-2 items-center"
                        @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false" @else disabled @endif data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
                         <i class="fa-solid fa-clipboard" aria-hidden="true"></i>
                         <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
@@ -114,7 +114,7 @@ $hasAttributeFilters = false;
                         </a>
                     @endif
 
-                    <button type="submit" class="btn btn-primary flex-0">
+                    <button type="submit" class="btn btn-primary flex-none">
                         <i class="fa-solid fa-filter" aria-hidden="true"></i>
                         {{ __('crud.filter') }}
                     </button>
