@@ -265,6 +265,7 @@ class EntityService
             $entity->campaign_id = $campaign->id;
             $entity->saveQuietly();
 
+            $this->fixTree($child);
             // Update child second. We do this otherwise we'll have an old entity and a new one
             $child->campaign_id = $campaign->id; // Technically don't need this since it's in MiscObserver::saving()
             $child->saveQuietly();
@@ -315,6 +316,8 @@ class EntityService
                     Storage::copy($entity->child->image, $newPath);
                 }
             }
+
+            $this->fixTree($newModel);
 
             // The model is ready to be saved.
             $newModel->saveQuietly();
@@ -426,11 +429,7 @@ class EntityService
             }
         }
 
-        // When transforming to a nested model, we need to recalculate the tree bounds to
-        // place it correctly in the overall campaign tree.
-        if (method_exists($new, 'getParentIdName')) {
-            $new->recalculateTreeBounds();
-        }
+        $this->fixTree($new);
 
         // Finally, we can save. Should be all good.
         $new->campaign_id = $old->campaign_id;
@@ -738,5 +737,29 @@ class EntityService
     public function popularEntityTypes(): array
     {
         return $this->popularEntityTypes;
+    }
+
+    /**
+     * When transforming or moving an entity, we need to fix its tree
+     * @param MiscModel $model
+     * @return void
+     */
+    protected function fixTree(MiscModel $model): void
+    {
+        // When transforming to a nested model, we need to recalculate the tree bounds to
+        // place it correctly in the overall campaign tree.
+        if (!method_exists($model, 'getParentIdName')) {
+            return;
+        }
+        $model->setParentId(null);
+        $model->{$model->getRgtName()} = 0;
+        $model->{$model->getLftName()} = 0;
+        if ($model->exists) {
+            $model->exists = false;
+            $model->recalculateTreeBounds();
+            $model->exists = true;
+        } else {
+            $model->recalculateTreeBounds();
+        }
     }
 }

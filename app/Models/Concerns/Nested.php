@@ -142,9 +142,20 @@ trait Nested
         if ($value) {
             $this->appendToNode($this->newScopedQuery()->findOrFail($value));
         } else {
-            //dump('make ' . $this->name . ' root');
             $this->actionRoot();
         }
+    }
+
+    /**
+     * Force a node as root. Useful when moving an entity to another campaign
+     * @return void
+     */
+    public function forceAsRoot(): void
+    {
+        if (!$this->exists) {
+            dd('forcing an existing entity as root?');
+        }
+        $this->actionRoot();
     }
 
     /**
