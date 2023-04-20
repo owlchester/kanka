@@ -53,7 +53,7 @@ class Relation extends Layout
                 'render' => function ($relation) {
                     $icon = '';
                     if (empty($relation->colour)) {
-                        return $relation->attribute;
+                        return $relation->attitude;
                     }
                     $html = '<div class="flex items-center gap-1">';
                     $icon = '<div class="flex-0 inline-block p-1 rounded-2xl w-5 h-5" style="background-color: ' . $relation->colour . '; "></div>';
