@@ -21,8 +21,8 @@ return [
         'legacy'    => 'Legacy (:name)',
     ],
     'explore'           => [
-        'grid'   => 'Grid (default)',
-        'table'    => 'Table',
+        'grid'  => 'Grid (default)',
+        'table' => 'Table',
     ],
     'fields'            => [
         'campaign-order'        => 'Campaign list order',
@@ -41,7 +41,7 @@ return [
         'date-format'           => 'When available, control the format in which to display real world dates.',
         'default-nested'        => 'Control how lists which support nesting to be displayed by default.',
         'editor'                => 'Using the legacy text editor (TinyMCE) doesn\'t support mentions on mobile devices, campaign galleries or other advanced features.',
-        'entity-explore'        => 'When viewing the entities of a campaign, decide if they are displayed as a grid or a table.',
+        'entity-explore'        => 'Control the way in which entity lists are displayed on campaigns.',
         'new-entity-workflow'   => 'Control which interface you are taken to after creating a new entity.',
         'overridable'           => 'Individual campaigns can override this preference.',
         'pagination'            => 'For lists that span multiple pages, define how many are visible on each page.',

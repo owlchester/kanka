@@ -2,9 +2,10 @@
 
 return [
     'actions'   => [
-        'collapse_all'  => 'Tout réduir',
-        'expand_all'    => 'Tout étendre',
-        'load_more'     => 'Voir plus',
+        'collapse_all'      => 'Tout réduir',
+        'expand_all'        => 'Tout étendre',
+        'load_more'         => 'Voir plus',
+        'login_for_more'    => 'Se connecter pour voir plus d\'entrées',
     ],
     'reorder'   => [
         'icon_tooltip'  => 'Réordonner',

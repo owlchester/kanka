@@ -57,6 +57,7 @@ return [
         ],
         'benefits'  => 'Kanka supporte quelques intégrations avec d\'autres services. D\'autres services seront ajoutés dans le futur.',
         'discord'   => [
+            'confirm'   => 'Es-tu sûr de vouloir déconnecter ton compte de Discord? Cela retirera tous tes rôles synchronisés.',
             'errors'    => [
                 'add'   => 'Une erreur est survenue lors du liage de Discord avec le compte Kanka.',
             ],
@@ -169,6 +170,7 @@ return [
         ],
         'errors'                => [
             'callback'      => 'Notre gestionnaire de paiement nous a remonté une erreur. Prière de réessayer et nous contacter si le problème persiste.',
+            'failed'        => 'Nous rencontrons actuellement des problèmes avec notre système de facturation. Prière de nous contacter à :email pour obtenir de l\'aide.',
             'subscribed'    => 'Erreur lors de la gestion de l\'abonnement. Stripe nous a fourni l\'erreur suivante.',
         ],
         'fields'                => [
@@ -191,6 +193,7 @@ return [
         'manage_subscription'   => 'Gérer l\'abonnement',
         'payment_method'        => [
             'actions'       => [
+                'add'               => 'Ajouter',
                 'add_new'           => 'Ajouter une méthode de paiement',
                 'change'            => 'Modifier la méthode de paiement',
                 'save'              => 'Enregister la méthode de paiement',

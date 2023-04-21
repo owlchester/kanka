@@ -11,6 +11,7 @@ return [
         'success'   => 'Image :name supprimée.',
     ],
     'errors'        => [
+        'max'           => 'Prière de ne que sélectionner jusqu\'à :count fichiers à la fois.',
         'permissions'   => 'Tes rôles de campagne n\'ont pas la permission :permission pour pouvoir télécharger des images à la galerie de la campagne.',
     ],
     'fields'        => [

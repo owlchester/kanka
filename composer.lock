@@ -5183,16 +5183,16 @@
         },
         {
             "name": "owlchester/laravel-translation-manager",
-            "version": "10.0.0",
+            "version": "10.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/owlchester/laravel-translation-manager.git",
-                "reference": "676b16aefa8f3df93d37c3aaa641bfac927d0128"
+                "reference": "9ef9cb7a7b3057ce42be6a4a6b8014716e75bc69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/owlchester/laravel-translation-manager/zipball/676b16aefa8f3df93d37c3aaa641bfac927d0128",
-                "reference": "676b16aefa8f3df93d37c3aaa641bfac927d0128",
+                "url": "https://api.github.com/repos/owlchester/laravel-translation-manager/zipball/9ef9cb7a7b3057ce42be6a4a6b8014716e75bc69",
+                "reference": "9ef9cb7a7b3057ce42be6a4a6b8014716e75bc69",
                 "shasum": ""
             },
             "require": {
@@ -5240,9 +5240,9 @@
                 "translator"
             ],
             "support": {
-                "source": "https://github.com/owlchester/laravel-translation-manager/tree/10.0.0"
+                "source": "https://github.com/owlchester/laravel-translation-manager/tree/10.0.1"
             },
-            "time": "2023-03-30T17:38:07+00:00"
+            "time": "2023-04-21T14:12:36+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
