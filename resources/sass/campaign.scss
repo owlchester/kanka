@@ -19,12 +19,11 @@
     color: var(--quick-creator-button-text);
 }
 
-.campaign-settings {
-    .box-success {
-        border: 1px solid #00a65a;
-        .box-header {
-            color: #fff;
+#campaign-modules {
+    .module-enabled {
+        .header {
             background-color: #00a65a;
+            color: white;
         }
     }
 }

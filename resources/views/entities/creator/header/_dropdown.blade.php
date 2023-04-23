@@ -1,3 +1,14 @@
+@php
+$entityTypeKey = 'entities.ids.' . $trans;
+$id = config('entities.ids.' . \Illuminate\Support\Str::singular($dropType));
+if (!empty($id)) {
+    if ($campaign->hasModuleName($id)) {
+        $trans = $campaign->moduleName($id);
+    }
+}
+
+@endphp
+
 <li class="@if ($dropType == $type) disabled @endif">
     @if ($dropType == $type)
         <a href="#">

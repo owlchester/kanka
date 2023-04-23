@@ -22,28 +22,7 @@ class EntityCreatorController extends Controller
      */
     protected EntityService $entityService;
 
-    protected array $entityTypes = [
-        'characters' => 'character',
-        'locations' => 'location',
-        'maps' => 'map',
-        'organisations' => 'organisation',
-        'families' => 'family',
-        'calendars' => 'calendar',
-        'timelines' => 'timeline',
-        'items' => 'item',
-        'notes' => 'note',
-        'events' => 'event',
-        'creatures' => 'creature',
-        'races' => 'race',
-        'quests' => 'quest',
-        'journals' => 'journal',
-        'abilities' => 'ability',
-        'tags' => 'tag',
-        'posts' => 'post',
-        'attribute_templates' => 'attribute_template',
-        'dice_rolls' => 'dice_roll',
-        'conversations' => 'conversation',
-    ];
+    protected Campaign $campaign;
 
     /**
      * Create a new controller instance.
@@ -62,12 +41,14 @@ class EntityCreatorController extends Controller
      */
     public function selection()
     {
+        $campaign = CampaignLocalization::getCampaign();
         $entities = $this->creatableEntities();
-        $orderedEntityTypes = $this->orderedEntityTypes($this->entityTypes);
+        $orderedEntityTypes = $this->orderedEntityTypes();
         return view('entities.creator.selection', [
             'entities' => $entities,
             'types' => $orderedEntityTypes,
-            'popular' => $this->entityService->popularEntityTypes()
+            'popular' => $this->entityService->popularEntityTypes(),
+            'campaign' => $campaign
         ]);
     }
 
@@ -87,9 +68,9 @@ class EntityCreatorController extends Controller
     {
         // Make sure the user is allowed to create this kind of entity
         $class = null;
-        $campaign = CampaignLocalization::getCampaign();
+        $this->campaign = CampaignLocalization::getCampaign();
         if ($type == 'posts') {
-            $this->authorize('recover', $campaign);
+            $this->authorize('recover', $this->campaign);
         } else {
             $class = $this->entityService->getClass($type);
             $this->authorize('create', $class);
@@ -132,7 +113,7 @@ class EntityCreatorController extends Controller
                 $tag = Tag::find($id);
                 // Create the tag if the user has permission to do so
                 if (empty($tag) && $tagService->isAllowed()) {
-                    $tag = $tagService->create($id, $campaign->id);
+                    $tag = $tagService->create($id, $this->campaign->id);
                     $tags[$number] = (int) $tag->id;
                 } elseif (empty($tag) && !$canCreateTags) {
                     unset($tags[$number]);
@@ -216,13 +197,14 @@ class EntityCreatorController extends Controller
         }
         // Content for the selector
         $entities = $this->creatableEntities();
-        $orderedEntityTypes = $this->orderedEntityTypes($this->entityTypes);
+        $orderedEntityTypes = $this->orderedEntityTypes();
 
         return view('entities.creator.selection', [
             'entities' => $entities,
             'types' => $orderedEntityTypes,
             'new' => $success,
-            'popular' => $this->entityService->popularEntityTypes()
+            'popular' => $this->entityService->popularEntityTypes(),
+            'campaign' => $this->campaign,
         ]);
     }
 
@@ -234,21 +216,21 @@ class EntityCreatorController extends Controller
     {
         $entities = [];
         /** @var Campaign $campaign */
-        $campaign = CampaignLocalization::getCampaign();
+        $this->campaign = CampaignLocalization::getCampaign();
 
         // Loop through the entities, check those enabled in the campaign, and where the user has create access.
         $ignoredTypes = [
             'menu_links'
         ];
         foreach ($this->entityService->entities($ignoredTypes) as $name => $class) {
-            if ($campaign->enabled($name)) {
+            if ($this->campaign->enabled($name)) {
                 if (auth()->user()->can('create', $class)) {
                     $entities[$name] = $class;
                 }
             }
         }
 
-        if (auth()->user()->can('recover', $campaign)) {
+        if (auth()->user()->can('recover', $this->campaign)) {
             $entities['posts'] = 'App\Models\Post';
         }
 
@@ -284,9 +266,9 @@ class EntityCreatorController extends Controller
     protected function renderForm(Request $request, string $type, string $success = null)
     {
         // Make sure the user is allowed to create this kind of entity
+        $this->campaign = CampaignLocalization::getCampaign();
         if ($type == 'posts') {
-            $campaign = CampaignLocalization::getCampaign();
-            $this->authorize('recover', $campaign);
+            $this->authorize('recover', $this->campaign);
         } else {
             $model = $this->entityService->getClass($type);
             $this->authorize('create', $model);
@@ -312,7 +294,7 @@ class EntityCreatorController extends Controller
         $entityType = __('entities.' . $singularType);
         $entities = $this->creatableEntities();
 
-        $orderedEntityTypes = $this->orderedEntityTypes($this->entityTypes);
+        $orderedEntityTypes = $this->orderedEntityTypes();
 
         return view('entities.creator.' . $view, compact(
             'type',
@@ -328,19 +310,21 @@ class EntityCreatorController extends Controller
             //'entityTypes',
             'orderedEntityTypes',
             'success',
-        ));
+        ))
+            ->with('campaign', $this->campaign);
     }
 
     /**
      * Ordered entity types alphabetically to the user's local
-     * @param array $types
      * @return array
      */
-    protected function orderedEntityTypes(array $types): array
+    protected function orderedEntityTypes(): array
     {
         $orderedTypes = [];
-        foreach ($types as $plural => $singular) {
-            $orderedTypes[$plural] = __('entities.' . $singular);
+        $types = config('entities.ids');
+        foreach ($types as $singular => $id) {
+            $plural = Str::plural($singular);
+            $orderedTypes[$plural] = $this->campaign->hasModuleName($id) ? $this->campaign->moduleName($id) : __('entities.' . $singular);
         }
 
         $collator = new \Collator(app()->getLocale());

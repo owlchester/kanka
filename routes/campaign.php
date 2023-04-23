@@ -421,16 +421,9 @@ Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('
 
 Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
 
-//Route::get('/entities/copy-to-campaign/{entity}', 'EntityController@copyToCampaign')->name('entities.copy_to_campaign');
-//Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
-
 // Entity files
-//Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
 Route::get('/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
 Route::get('/entities/{entity}/mentions', 'Entity\MentionController@index')->name('entities.mentions');
-//Route::get('/entities/{entity}/timelines', 'Entity\TimelineController@index')->name('entities.timelines');
-//Route::get('/entities/{entity}/map-markers', 'DashboardController@index')->name('entities.map-markers');
-//Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
 
 // Inventory
 Route::get('/entities/{entity}/inventory', 'Entity\InventoryController@index')->name('entities.inventory');
@@ -463,6 +456,9 @@ Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 Route::get('/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');
+
+Route::get('/modules/{entity_type}/edit', [\App\Http\Controllers\Campaign\ModuleController::class, 'edit'])->name('modules.edit');
+Route::patch('/modules/{entity_type}/update', [\App\Http\Controllers\Campaign\ModuleController::class, 'update'])->name('modules.update');
 
 Route::get('/campaign-applications', 'Campaign\SubmissionController@toggle')->name('campaign-applications');
 Route::post('/campaign-applications', 'Campaign\SubmissionController@toggleSave')->name('campaign-applications.save');

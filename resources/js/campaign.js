@@ -28,17 +28,16 @@ function initRpgSystems() {
  * Register Modules change for campaign settings
  */
 function registerModules() {
-    if ($('.campaign-settings').length === 0) {
+    if ($('#campaign-modules').length === 0) {
         return;
     }
-    $('.box-module').unbind('click').click(function (e) {
+    $('.box-module .body').click(function (e) {
         e.preventDefault();
-        if ($(this).hasClass('box-loading')) {
+        let header = $(this).parent().find('h3');
+        if (header.hasClass('loading')) {
             return;
         }
-        $(this).addClass('box-loading');
-        $(this).find('.loading').show();
-        $(this).find('p').hide();
+        header.addClass('loading');
 
         $.ajax({
             method: 'post',
@@ -47,17 +46,14 @@ function registerModules() {
         }).done(function (res) {
             if (res.success) {
                 if (res.status) {
-                    $(this).addClass('box-success').removeClass('box-default');
+                    $(this).parent().addClass('module-enabled');
                 } else {
-                    $(this).removeClass('box-success').addClass('box-default');
+                    $(this).parent().removeClass('module-enabled');
                 }
 
                 window.showToast(res.toast);
             }
-
-            $(this).find('.loading').hide();
-            $(this).find('p').show();
-            $(this).removeClass('box-loading');
+            $(this).parent().find('h3').removeClass('loading');
         });
     });
 }

@@ -23,7 +23,7 @@ class CampaignSettingController extends Controller
     public function index()
     {
         $campaign = CampaignLocalization::getCampaign();
-        return view('campaigns.settings', compact('campaign'));
+        return view('campaigns.modules.index', compact('campaign'));
     }
 
 

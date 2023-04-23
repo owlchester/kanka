@@ -580,4 +580,30 @@ class Campaign extends MiscModel
     {
         return (int) $this->follower;
     }
+
+    public function hasModuleName(int $type, bool $plural = false): bool
+    {
+        $key = 'modules.' . $type . '.' . ($plural ? 'p' : 's');
+        return Arr::has($this->settings, $key);
+    }
+
+    public function moduleName(int $type, bool $plural = false): string|null
+    {
+        $key = 'modules.' . $type . '.' . ($plural ? 'p' : 's');
+        $val = Arr::get($this->settings, $key);
+        return $val;
+    }
+
+    public function hasModuleIcon(int $type): bool
+    {
+        $key = 'modules.' . $type . '.i';
+        return Arr::has($this->settings, $key);
+    }
+
+    public function moduleIcon(int $type): string|null
+    {
+        $key = 'modules.' . $type . '.i';
+        $val = Arr::get($this->settings, $key);
+        return $val;
+    }
 }
