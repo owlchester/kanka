@@ -47,7 +47,9 @@ class UserEventSubscriber
             $default = UserLog::TYPE_AUTOLOGIN;
         }
         $userLogType = session()->get('kanka.userLog', $default);
-        $event->user->log($userLogType);
+        if (!$event->user->isBanned()) {
+            $event->user->log($userLogType);
+        }
         session()->remove('kanka.userLog');
         $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
 
@@ -88,7 +90,9 @@ class UserEventSubscriber
         if (!$event->user) {
             return;
         }
-        $event->user->log(UserLog::TYPE_LOGOUT);
+        if (!$event->user->isBanned()) {
+            $event->user->log(UserLog::TYPE_LOGOUT);
+        }
     }
 
     /**

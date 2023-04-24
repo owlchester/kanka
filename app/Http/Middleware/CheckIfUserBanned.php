@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\UserLog;
 
 class CheckIfUserBanned
 {
@@ -20,6 +21,9 @@ class CheckIfUserBanned
         if (auth()->guest() || !auth()->user()->isBanned()) {
             return $next($request);
         }
+
+        $userLogType = session()->get('kanka.userLog', UserLog::TYPE_BANNED_LOGIN);
+        auth()->user()->log($userLogType);
 
         // If banned for less than 7 days, tell the user as much
         if (auth()->user()->banned_until < Carbon::now()->addDays(7)) {
