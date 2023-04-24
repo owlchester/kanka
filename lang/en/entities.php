@@ -50,6 +50,7 @@ return [
     'creatures'             => 'Creatures',
     'dice_roll'             => 'Dice Roll',
     'dice_rolls'            => 'Dice Rolls',
+    'dont_change'           => 'Don\'t change',
     'entity_attributes'     => 'Attributes',
     'event'                 => 'Event',
     'events'                => 'Events',

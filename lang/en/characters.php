@@ -100,7 +100,6 @@ return [
         'title'             => 'Title',
         'traits'            => 'Traits',
         'type'              => 'NPC, Player Character, Deity',
-        'dont_change'       => 'Don\'t change'
     ],
     'quests'        => [
         'helpers'   => [
