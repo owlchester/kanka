@@ -83,8 +83,7 @@ class CampaignBoostService
             ]);
         }
         $this->campaign->boost_count = $this->campaign->boosts()->count();
-        $this->campaign->withObservers = false;
-        $this->campaign->save();
+        $this->campaign->saveQuietly();
     }
 
     /**

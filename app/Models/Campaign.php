@@ -107,13 +107,6 @@ class Campaign extends MiscModel
     ];
 
     /**
-     * If set to false, skip many of the observers
-     * @var bool
-     */
-    public $withObservers = true;
-
-
-    /**
      * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
      * @return bool
      */
