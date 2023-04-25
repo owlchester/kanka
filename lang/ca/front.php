@@ -33,7 +33,6 @@ return [
     'contact'       => [
         'description'   => 'Necessiteu ajuda, teniu un suggeriment o voleu compartir el vostre amor per Kanka? El nostre equip us respondrà en qualsevol moment!',
         'email'         => 'Envieu qualsevol consulta a',
-        'other'         => 'O contacteu-nos des d\'una de les nostres xarxes socials:',
         'title'         => 'Estem aquí per ajudar',
     ],
     'cookie'        => [

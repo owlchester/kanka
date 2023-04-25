@@ -203,7 +203,6 @@ TEXT
             'added'     => 'Роль :role додана до :user.',
             'removed'   => 'Роль :role знята з :user.',
         ],
-        'your_role'             => 'Ваша роль: <i>:role</i>',
     ],
     'modules'                           => [
         'permission-disabled'   => 'Цей модуль вимкнено.',

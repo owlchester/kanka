@@ -41,7 +41,6 @@ return [
     'contact'               => [
         'description'   => 'Potrzebujesz pomocy, masz sugestię albo chcesz podzielić się podziwem dla Kanki? Nasz zespół odpowie niezależnie od tematu!',
         'email'         => 'Ślij zapytania na adres',
-        'other'         => 'Albo użyj jednego z serwisów społecznościowych:',
         'title'         => 'W czym możemy pomóc?',
     ],
     'cookie'                => [

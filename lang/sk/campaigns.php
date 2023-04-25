@@ -205,7 +205,6 @@ TEXT
             'added'     => 'Rola :role pridaná užívateľovi :user.',
             'removed'   => 'Rola :role odňatá užívateľovi :user.',
         ],
-        'your_role'             => 'Tvoja rola: <i>:role</i>',
     ],
     'modules'                           => [
         'permission-disabled'   => 'Tento modul je deaktivovaný.',

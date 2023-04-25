@@ -41,7 +41,6 @@ return [
     'contact'               => [
         'description'   => 'Potrebuješ pomoc, máš nápad alebo sa chceš iba podeliť o tvoju lásku ku Kanke? Náš tím ti odpovie na každú správu!',
         'email'         => 'Všetky pripomienky nám zasielaj na e-mail:',
-        'other'         => 'Alebo nás kontaktuj na jednej z týchto sociálnych sietí:',
         'title'         => 'Sme tu pre teba',
     ],
     'cookie'                => [

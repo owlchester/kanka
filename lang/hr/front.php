@@ -33,7 +33,6 @@ return [
     'contact'       => [
         'description'   => 'Trebaš pomoć, imaš prijedlog ili samo želiš podijeliti svoju ljubav prema Kanki? Naš tim će odgovoriti bez obzira na prigodu!',
         'email'         => 'Sve upite pošalji na naš email:',
-        'other'         => 'Ili nam se obrati na neku od sljedećih platformi društvenih medija:',
         'title'         => 'Tu smo za tebe',
     ],
     'cookie'        => [

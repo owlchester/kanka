@@ -205,7 +205,6 @@ TEXT
             'added'     => 'Cargo :role adicionado ao :user.',
             'removed'   => 'Cargo :role removido do :user.',
         ],
-        'your_role'             => 'Seu cargo: <i>:role</i>',
     ],
     'modules'                           => [
         'permission-disabled'   => 'Este módulo está desativado.',

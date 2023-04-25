@@ -115,7 +115,6 @@ return [
     'errors'                    => [
         'boosted'                       => 'Ta funkcja jest dostępna wyłącznie w doładowanych kampaniach.',
         'boosted_campaigns'             => 'By korzystać z tej funkcji, kampania musi być :boosted.',
-        'cannot_move_node_into_itself'  => 'Wybrano niewłaściwy element źródłowy. Przyczyną może być fakt posiadania tego właśnie elementu za źródło.',
         'node_must_not_be_a_descendant' => 'Niewłaściwy węzeł (etykieta, miejsce źródłowe): pochodziłby sam od siebie.',
         'unavailable_feature'           => 'Funkcja niedostępna',
     ],

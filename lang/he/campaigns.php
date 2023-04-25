@@ -146,7 +146,6 @@ TEXT
         ],
         'switch_back_success'   => 'חזרת למשתמש המקורי שלך.',
         'title'                 => 'המשתתפים במערכה :name',
-        'your_role'             => 'התפקיד שלך: <i>:role</i>',
     ],
     'panels'                            => [
         'boosted'   => 'מוגבר',

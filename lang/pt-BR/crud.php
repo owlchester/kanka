@@ -115,7 +115,6 @@ return [
     'errors'                    => [
         'boosted'                       => 'Este recurso está disponível apenas para campanhas impulsionadas.',
         'boosted_campaigns'             => 'Esse recurso está somente disponível para :boosted.',
-        'cannot_move_node_into_itself'  => 'A entidade primária selecionada é inválida. Isso pode ser devido a ela ter essa entidade como a primária.',
         'node_must_not_be_a_descendant' => 'Nódulo inválido (tag, localização principal): seria um descendente de si mesmo.',
         'unavailable_feature'           => 'Recurso indisponível',
     ],

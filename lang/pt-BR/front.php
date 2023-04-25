@@ -41,7 +41,6 @@ return [
     'contact'               => [
         'description'   => 'Precisa de ajuda, tem uma sugestão ou apenas quer compartilhar seu amor por :kanka? Nossa equipe responderá em qualquer ocasião!',
         'email'         => 'Envie todas as perguntas para',
-        'other'         => 'Ou em uma das seguintes plataformas sociais:',
         'title'         => 'Estamos aqui por você',
     ],
     'cookie'                => [

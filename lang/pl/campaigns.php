@@ -205,7 +205,6 @@ TEXT
             'added'     => 'Uczestnikowi :user przyznano rolę :role.',
             'removed'   => 'Uczestnikowi :user odebrano rolę :role.',
         ],
-        'your_role'             => 'Twoja rola: <i>:role</i>',
     ],
     'modules'                           => [
         'permission-disabled'   => 'Moduł jest wyłączony.',
