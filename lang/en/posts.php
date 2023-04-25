@@ -11,7 +11,8 @@ return [
         'name'  => 'Name of the post',
     ],
     'position'      => [
-        'first' => 'First',
-        'last'  => 'Last',
+        'first'         => 'First',
+        'last'          => 'Last',
+        'dont_change'   => 'Don\'t change',
     ],
 ];
