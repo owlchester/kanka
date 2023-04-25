@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Facades\CampaignCache;
 use App\Models\Image;
 use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
@@ -67,6 +68,8 @@ class DefaultImageService
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
+        CampaignCache::clearDefaultImages();
+
         return true;
     }
 
@@ -91,6 +94,8 @@ class DefaultImageService
         unset($images[$this->type]);
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
+
+        CampaignCache::clearDefaultImages();
 
         return true;
     }
