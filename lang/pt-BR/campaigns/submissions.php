@@ -27,7 +27,7 @@ return [
         'rejection'     => 'Motivo da rejeição',
     ],
     'helpers'       => [
-        'filter-helper'     => 'Essa campanha é aberta a solicitações!',
+        'filter-helper'     => 'Essa campanha é aberta a inscrições!',
         'modal'             => 'Uma campanha aberta a solicitações e ao público pode fazer com que os usuários se inscrevam para participar da campanha.',
         'no_applications'   => 'No momento, não há solicitações pendentes para participar de sua campanha. Os usuários podem solicitar para participar de sua campanha visitando seu painel e clicando no botão :button.',
         'not_open'          => 'A campanha atualmente não está aceitando inscrições.',

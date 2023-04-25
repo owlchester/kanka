@@ -37,6 +37,12 @@ return [
         'success'   => 'Atribúty pre :entity upravené.',
         'title'     => 'Atribúty pre :name',
     ],
+    'labels'        => [
+        'checkbox'  => 'Názov zaškrtávacieho políčka',
+        'name'      => 'Názov atribútu',
+        'section'   => 'Názov sekcie',
+        'value'     => 'Hodnota atribútu',
+    ],
     'live'          => [
         'success'   => 'Atribút :attribute aktualizovaný.',
         'title'     => 'Aktualizácia :attribute',

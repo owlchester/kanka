@@ -45,6 +45,7 @@ return [
     'creatures'             => 'Istoty',
     'dice_roll'             => 'Rzut kośćmi',
     'dice_rolls'            => 'Rzuty kośćmi',
+    'entity_attributes'     => 'Cechy',
     'event'                 => 'Wydarzenie',
     'events'                => 'Wydarzenia',
     'families'              => 'Rodziny',

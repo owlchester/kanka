@@ -70,7 +70,7 @@ return [
     'panels'        => [
         'groups'    => 'Grupos',
         'layers'    => 'Camadas',
-        'legend'    => 'Lenda',
+        'legend'    => 'Legenda',
         'markers'   => 'Marcadores',
         'settings'  => 'Configurações',
     ],

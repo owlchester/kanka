@@ -39,6 +39,7 @@ return [
             'all_members'   => 'Todos os Membros',
             'families'      => 'Famílias',
             'members'       => 'Membros',
+            'tree'          => 'Árvore genealógica',
         ],
     ],
 ];

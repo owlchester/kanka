@@ -61,6 +61,7 @@ return [
     'superboost'=> [
         'actions'   => [
             'confirm'   => 'Turbodoładuj!',
+            'instead'   => 'Turbodoładuj za :count!',
             'remove'    => 'Wycofaj turbodoładnie :campaign',
         ],
         'confirm'   => 'Wspaniale, zamierzasz turbodoładować :campaign. To działanie wymaga wykorzystania trzech (:cost) spośród twoich dostępnych doładowań.',
@@ -80,6 +81,6 @@ return [
         ],
         'success'   => 'Kampania :campaign nie jest już turbodoładowana, odzyskujesz swoje doładowania.',
         'title'     => 'Usuwanie doładowania',
-        'warning'   => 'Czy na pewno chcesz zakończyć :action : campaign? Odzyskasz w ten sposób wydane doładowania, a elementy kampanii związane z doładowaniem zostaną ukryte aż do ponownego doładowania.',
+        'warning'   => 'Czy na pewno chcesz zakończyć :action :campaign? Odzyskasz w ten sposób wydane doładowania, a elementy kampanii związane z doładowaniem zostaną ukryte aż do ponownego doładowania.',
     ],
 ];

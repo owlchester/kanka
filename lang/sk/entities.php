@@ -45,6 +45,7 @@ return [
     'creatures'             => 'Bytosti',
     'dice_roll'             => 'Hod kockou',
     'dice_rolls'            => 'Hody kockou',
+    'entity_attributes'     => 'Atribúty',
     'event'                 => 'Udalosť',
     'events'                => 'Udalosti',
     'families'              => 'Rody',

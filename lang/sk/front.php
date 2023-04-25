@@ -190,10 +190,11 @@ return [
             'title'         => 'Spravovať tajomstvá',
         ],
         'superboosts'       => [
-            'boosted'   => 'Superboostnutie',
-            'gallery'   => 'Galéria obrázkov kampane a jej integrácia v rámci textového editora Summernote',
-            'logs'      => 'Plnohodnotné logy zmien v objektoch (30 dní dozadu)',
-            'stats'     => 'Stránka s Úspechmi v kampani',
+            'boosted'       => 'Superboostnutie',
+            'family-tree'   => 'Tvorba rodokmeňov na sledovanie rodinnej histórie',
+            'gallery'       => 'Galéria obrázkov kampane a jej integrácia v rámci textového editora Summernote',
+            'logs'          => 'Plnohodnotné logy zmien v objektoch (30 dní dozadu)',
+            'stats'         => 'Stránka s Úspechmi v kampani',
         ],
         'timelines'         => [
             'description'   => 'Vizuálne zobrazujú časové osy tvojho sveta, krajín, šľachtických rodov alebo hoci aj jednotlivých postáv.',

@@ -51,6 +51,16 @@ return [
     'journals'      => [
         'title' => 'Denníky postavy :name',
     ],
+    'labels'        => [
+        'appearance'    => [
+            'entry' => 'Opis výzoru',
+            'name'  => 'Názov výzoru',
+        ],
+        'personality'   => [
+            'entry' => 'Opis osobnostnej črty',
+            'name'  => 'Názov osobnostnej črty',
+        ],
+    ],
     'maps'          => [
         'title' => 'Mapa vzťahov postavy :name',
     ],

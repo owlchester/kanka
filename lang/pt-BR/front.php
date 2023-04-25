@@ -190,10 +190,11 @@ return [
             'title'         => 'Gerencie Segredos',
         ],
         'superboosts'       => [
-            'boosted'   => 'Super-Impulsionada',
-            'gallery'   => 'Galeria de Campanha e integrações com o editor de texto padrão',
-            'logs'      => 'Logs completos de alterações em entidades (por até :amount dias)',
-            'stats'     => 'Página de conquistas de campanha',
+            'boosted'       => 'Super-Impulsionada',
+            'family-tree'   => 'Crie árvores genealógicas para rastrear a história de uma família',
+            'gallery'       => 'Galeria de Campanha e integrações com o editor de texto padrão',
+            'logs'          => 'Logs completos de alterações em entidades (por até :amount dias)',
+            'stats'         => 'Página de conquistas de campanha',
         ],
         'timelines'         => [
             'description'   => 'Represente visualmente as linhas do tempo de seus mundos, impérios, famílias nobres ou até mesmo de um único personagem.',

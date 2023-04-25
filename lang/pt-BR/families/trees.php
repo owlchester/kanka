@@ -1,0 +1,62 @@
+<?php
+
+return [
+    'actions'   => [
+        'clear'             => 'Apaga tudo',
+        'first'             => 'Adiconar um fundador',
+        'rename-relation'   => 'Renomear relação',
+        'reset'             => 'Descartar mudanças',
+        'save'              => 'Salvar',
+    ],
+    'modal'     => [
+        'first-title'   => 'Selecione uma entidade',
+        'helper'        => 'Substitua a entidade por outra da campanha',
+        'relation'      => 'Relação',
+        'title'         => 'Substituir entidade',
+    ],
+    'modals'    => [
+        'clear'     => [
+            'confirm'   => 'Tem certeza de que deseja reinicializar todos os dados da árvore genealógica?',
+        ],
+        'entity'    => [
+            'add'   => [
+                'member'    => 'Membro',
+                'success'   => 'Entidade adicionada.',
+                'title'     => 'Adicionar uma entidade',
+            ],
+            'child' => [
+                'success'   => 'Filho adicionado.',
+                'title'     => 'Adicionar um filho',
+            ],
+            'edit'  => [
+                'success'   => 'Entidade atualizada.',
+                'title'     => 'Atualizar uma entidade',
+            ],
+            'remove'=> [
+                'confirm'   => 'Tem certeza que deseja remover essa entidade da árvore genealógica?',
+                'success'   => 'Entidade removida.',
+            ],
+        ],
+        'relations' => [
+            'add'   => [
+                'success'   => 'Relação adicionada.',
+                'title'     => 'Adicionar uma relação',
+            ],
+            'edit'  => [
+                'success'   => 'Relação atualizada.',
+                'title'     => 'Atualizar uma relação',
+            ],
+        ],
+        'reset'     => [
+            'confirm'   => 'Tem certeza que deseja descartar quaisquer mudanças feitas na árvore genealógica?',
+        ],
+    ],
+    'pitch'     => 'Crie uma árvore genealógica detalhada para as famílias da campanha.',
+    'success'   => [
+        'cleared'   => 'Árvore genealógica apagada.',
+        'reseted'   => 'Árvore genealógica foi redefinida.',
+        'saved'     => 'Árvore genealógica salva.',
+    ],
+    'title'     => 'Árvore Genealógica :name',
+    'unknown'   => 'não estabelecido',
+];
