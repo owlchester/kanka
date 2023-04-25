@@ -22,9 +22,6 @@ class CheckIfUserBanned
             return $next($request);
         }
 
-        $userLogType = session()->get('kanka.userLog', UserLog::TYPE_BANNED_LOGIN);
-        auth()->user()->log($userLogType);
-
         // If banned for less than 7 days, tell the user as much
         if (auth()->user()->banned_until < Carbon::now()->addDays(7)) {
             $days = auth()->user()->banned_until->diffInDays(Carbon::now());
