@@ -268,6 +268,7 @@ Route::resources([
     'locations' => 'LocationController',
     //'locations.map_points' => 'LocationMapPointController',
     'families' => 'FamilyController',
+    'families.character_family' => 'CharacterFamilyController',
     'items' => 'ItemController',
     'journals' => 'JournalController',
     'maps' => 'Maps\MapController',

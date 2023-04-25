@@ -29,6 +29,12 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
                     <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->count() }})
                 </a>
             @endif
+            @can('update', $model)
+                <a href="{{ route('families.character_family.create', ['family' => $model->id]) }}" class="btn btn-primary btn-sm"
+                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('families.character_family.create', $model->id) }}">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
+                </a>
+            @endcan
         </div>
     </div>
     <div id="datagrid-parent" class="table-responsive">
