@@ -47,7 +47,7 @@ class MigrateSubMentions extends Command
             ->has('questElement')
             ->has('questElement.quest')
             ->has('questElement.quest.entity')
-            ->chunk(500, function ($mentions) {
+            ->chunkById(500, function ($mentions) {
             foreach ($mentions as $mention) {
                 $mention->entity_id = $mention->questElement->quest->entity->id;
                 $mention->saveQuietly();
@@ -72,7 +72,7 @@ class MigrateSubMentions extends Command
             ->has('timelineElement')
             ->has('timelineElement.timeline')
             ->has('timelineElement.timeline.entity')
-            ->chunk(500, function ($mentions) {
+            ->chunkById(500, function ($mentions) {
                 foreach ($mentions as $mention) {
                     $mention->entity_id = $mention->timelineElement->timeline->entity->id;
                     $mention->saveQuietly();
@@ -90,7 +90,7 @@ class MigrateSubMentions extends Command
             ->whereNull('entity_id')
             ->has('post')
             ->has('post.entity')
-            ->chunk(5000, function ($mentions) {
+            ->chunkById(5000, function ($mentions) {
                 foreach ($mentions as $mention) {
                     $mention->entity_id = $mention->post->entity_id;
                     $mention->saveQuietly();
