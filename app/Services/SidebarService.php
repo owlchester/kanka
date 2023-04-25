@@ -423,7 +423,7 @@ class SidebarService
     {
         $key = $this->cacheKey();
         if (!$this->withDisabled && Cache::has($key)) {
-            return Cache::get($key);
+            //return Cache::get($key);
         }
         $layout = [];
         foreach ($this->customLayout() as $name => $children) {
