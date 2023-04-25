@@ -101,6 +101,7 @@ return [
         'payment_options'       => 'Payment Options',
         'personal_settings'     => 'Personal Settings',
         'profile'               => 'Public profile',
+        'premium'               => 'Premium campaigns',
         'settings'              => 'Settings',
         'subscription'          => 'Subscription',
         'subscription_status'   => 'Subscription Status',
@@ -111,7 +112,7 @@ return [
         'remove'        => [
             'button'    => 'Unlink your Patreon account',
             'success'   => 'Your Patreon account has been unlinked.',
-            'text'      => 'Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your boosted content will be lost (e.g. entity headers). By subscribing again, you will have access to all your previous data, including the ability to boost your previously boosted campaigns.',
+            'text'      => 'Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your boosted content will be lost (e.g. entity headers). By subscribing again, you will have access to all your previous data, including the ability to unlock your previously premium campaigns.',
             'title'     => 'Unlink your Patreon account with Kanka',
         ],
         'title'         => 'Patreon',
@@ -244,6 +245,7 @@ return [
                 'bullets'   => [
                     'bonuses'   => 'Your bonuses stay enabled until the end of your payment period.',
                     'boosts'    => 'The same happens for your boosted campaigns. Boosted features become invisible but aren\'t deleted when a campaign is no longer boosted.',
+                    'premium'    => 'The same happens for your premium campaigns. Premium features become invisible but aren\'t deleted when a campaign is no longer premium.',
                     'kobold'    => 'To cancel your subscription, change to the Kobold tier.',
                 ],
                 'title'     => 'When cancelling your subscription',

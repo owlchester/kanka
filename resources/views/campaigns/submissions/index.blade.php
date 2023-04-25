@@ -39,7 +39,7 @@
                     <div class="alert alert-warning">
                         <p>{!! __('campaigns/submissions.helpers.not_open') !!}</p>
                         <p>
-                            <button data-url="{{ route('campaign-applications') }}" data-target="ajax-dialog" data-toggle="dialog-ajax" class="btn btn-warning">
+                            <button data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn btn-warning">
                                 <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
                                 {{ __('campaigns/submissions.actions.change') }}
                             </button>

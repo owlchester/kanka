@@ -63,7 +63,9 @@
                     <div id="campaign-imageupload-boosted">
                         <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
 
-                        @include('layouts.callouts.boost-modal', ['texts' => [__('campaigns/gallery.pitch')], 'superboost' => true, 'campaign' => $campaignService->campaign()])
+                        <x-cta :campaign="$campaignService->campaign()" image="0" superboost="1">
+                            <p>{{ __('campaigns/gallery.pitch') }}</p>
+                        </x-cta>
                     </div>
                     <p class="alert alert-danger" id="campaign-imageupload-error" style="display:none"></p>
                     <p class="alert alert-danger" id="campaign-imageupload-permission" style="display:none">

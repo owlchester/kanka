@@ -36,14 +36,22 @@ class CampaignBoostController extends Controller
     {
         $campaignID = request()->get('campaign');
         $campaign = Campaign::findOrFail($campaignID);
-        $superboost = request()->has('superboost');
-        $cost = $superboost ? 3 : 1;
+        $user = auth()->user();
+        if ($user->hasBoosterNomenclature()) {
+            $superboost = request()->has('superboost');
+            $cost = $superboost ? 3 : 1;
 
-        return view('settings.boosters.create')
+            return view('settings.boosters.create')
+                ->with('campaign', $campaign)
+                ->with('superboost', $superboost)
+                ->with('cost', $cost)
+                ->with('user', $user)
+                ;
+        }
+
+        return view('settings.premium.create')
             ->with('campaign', $campaign)
-            ->with('superboost', $superboost)
-            ->with('cost', $cost)
-            ->with('user', auth()->user())
+            ->with('user', $user)
         ;
     }
 
@@ -60,21 +68,50 @@ class CampaignBoostController extends Controller
         CampaignCache::campaign($campaign);
         $this->authorize('access', $campaign);
 
-        try {
-            $action = $request->post('action');
-            if ($request->has('superboost')) {
-                $action = 'superboost';
-            }
-            $this->campaignBoostService
-                ->campaign($campaign)
-                ->action($action)
-                ->boost();
+        if (auth()->user()->hasBoosterNomenclature()) {
+            try {
+                $action = $request->post('action');
+                if ($request->has('superboost')) {
+                    $action = 'superboost';
+                }
+                $this->campaignBoostService
+                    ->user(auth()->user())
+                    ->campaign($campaign)
+                    ->action($action)
+                    ->boost();
 
-            $superboost = $action == 'superboost';
+                $superboost = $action == 'superboost';
+
+                $this->campaignService->notify(
+                    $campaign,
+                    'boost.' . ($superboost ? 'superboost' : 'add'),
+                    'rocket',
+                    'maroon',
+                    [
+                        'user' => auth()->user()->name,
+                        'campaign' => $campaign->name
+                    ]
+                );
+
+                return redirect()
+                    ->route('settings.boost')
+                    ->with('success_raw', __('settings/boosters.' . ($superboost ? 'superboost' : 'boost') . '.success', ['campaign' => $campaign->name]));
+            } catch (TranslatableException $e) {
+                return redirect()
+                    ->route('settings.boost')
+                    ->with('error', $e->getTranslatedMessage());
+            }
+        }
+
+        try {
+            $this->campaignBoostService
+                ->user(auth()->user())
+                ->campaign($campaign)
+                ->premium();
 
             $this->campaignService->notify(
                 $campaign,
-                'boost.' . ($superboost ? 'superboost' : 'add'),
+                'premium.add',
                 'rocket',
                 'maroon',
                 [
@@ -84,11 +121,11 @@ class CampaignBoostController extends Controller
             );
 
             return redirect()
-                ->route('settings.boost')
-                ->with('success_raw', __('settings/boosters.' . ($superboost ? 'superboost' : 'boost') . '.success', ['campaign' => $campaign->name]));
+                ->route('settings.premium')
+                ->with('success_raw', __('settings/premium.create.success', ['campaign' => $campaign->name]));
         } catch (TranslatableException $e) {
             return redirect()
-                ->route('settings.boost')
+                ->route('settings.premium')
                 ->with('error', $e->getTranslatedMessage());
         }
     }
@@ -107,6 +144,10 @@ class CampaignBoostController extends Controller
     {
         $this->authorize('destroy', $campaignBoost);
 
+        if (!auth()->user()->hasBoosterNomenclature()) {
+            return redirect()->route('settings.premium');
+        }
+
         return view('settings.boosters.update')
             ->with('boost', $campaignBoost)
             ->with('campaign', $campaignBoost->campaign)
@@ -122,6 +163,9 @@ class CampaignBoostController extends Controller
      */
     public function update(\Illuminate\Http\Request $request, CampaignBoost $campaignBoost)
     {
+        if (!auth()->user()->hasBoosterNomenclature()) {
+            return redirect()->route('settings.premium');
+        }
         $campaign = $campaignBoost->campaign;
 
         // If the user created the boost, allow them to update it. We don't check the campaign because there is
@@ -166,10 +210,14 @@ class CampaignBoostController extends Controller
     {
         $this->authorize('destroy', $campaignBoost);
 
-        return view('settings.boosters.unboost')
+        if (auth()->user()->hasBoosterNomenclature()) {
+            return view('settings.boosters.unboost')
+                ->with('campaign', $campaignBoost->campaign)
+                ->with('boost', $campaignBoost);
+        }
+        return view('settings.premium.remove')
             ->with('campaign', $campaignBoost->campaign)
-            ->with('boost', $campaignBoost)
-        ;
+            ->with('boost', $campaignBoost);
     }
 
     /**
@@ -180,12 +228,31 @@ class CampaignBoostController extends Controller
     public function destroy(CampaignBoost $campaignBoost)
     {
         $this->authorize('destroy', $campaignBoost);
+        $this->campaignBoostService
+            ->user(auth()->user())
+            ->campaign($campaignBoost->campaign)
+            ->unboost($campaignBoost);
 
-        $this->campaignBoostService->campaign($campaignBoost->campaign)->unboost($campaignBoost);
+        if (auth()->user()->hasBoosterNomenclature()) {
+            $this->campaignService->notify(
+                $campaignBoost->campaign,
+                'boost.remove',
+                'rocket',
+                'red',
+                [
+                    'user' => auth()->user()->name,
+                    'campaign' => $campaignBoost->campaign->name
+                ]
+            );
+
+            return redirect()
+                ->route('settings.boost')
+                ->with('success_raw', __('settings/boosters.unboost.success', ['campaign' => $campaignBoost->campaign->name]));
+        }
 
         $this->campaignService->notify(
             $campaignBoost->campaign,
-            'boost.remove',
+            'premium.remove',
             'rocket',
             'red',
             [
@@ -194,9 +261,8 @@ class CampaignBoostController extends Controller
             ]
         );
 
-
         return redirect()
-            ->route('settings.boost')
-            ->with('success_raw', __('settings/boosters.unboost.success', ['campaign' => $campaignBoost->campaign->name]));
+            ->route('settings.premium')
+            ->with('success_raw', __('settings/premium.remove.success', ['campaign' => $campaignBoost->campaign->name]));
     }
 }

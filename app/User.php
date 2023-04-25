@@ -12,6 +12,7 @@ use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
 use App\Models\Concerns\Tutorial;
+use App\Models\Concerns\UserBoosters;
 use App\Models\Concerns\UserTokens;
 use App\Models\Pledge;
 use App\Models\Scopes\UserScope;
@@ -45,7 +46,6 @@ use App\Models\Concerns\LastSync;
  * @property string|null $pledge
  * @property string|null $timezone
  * @property string|null $currency
- * @property int $booster_count
  * @property int $referral_id
  * @property Carbon|string|null $card_expires_at
  * @property Carbon|string|null $banned_until
@@ -70,8 +70,9 @@ class User extends \Illuminate\Foundation\Auth\User
     use UserRelations;
     use UserScope;
     use UserSetting;
-    use UserTokens
-    ;
+    use UserTokens;
+    use UserBoosters;
+
 
     protected static $currentCampaign = false;
 
@@ -338,65 +339,6 @@ class User extends \Illuminate\Foundation\Auth\User
     public function isWyvern(): bool
     {
         return !empty($this->pledge) && $this->pledge == Pledge::WYVERN;
-    }
-
-    /**
-     * Determine if a user has access to campaign boosters to boost a campaign
-     * @return bool
-     */
-    public function hasBoosters(): bool
-    {
-        return $this->isGoblin();
-    }
-
-
-    /**
-     * Get available boosts for the user
-     * @return int
-     */
-    public function availableBoosts(): int
-    {
-        return $this->maxBoosts() - $this->boosting();
-    }
-
-    /**
-     * Get amount of campaigns the user is boosting
-     * @return int
-     */
-    public function boosting(): int
-    {
-        return $this->boosts->count();
-    }
-
-    /**
-     * Get max number of boosts a user can give
-     * @return int
-     */
-    public function maxBoosts(): int
-    {
-        // Allows admins to give boosters to members of the community
-        $base = 0;
-        if (!empty($this->booster_count)) {
-            $base += $this->booster_count;
-        }
-
-        if (!$this->isSubscriber()) {
-            return $base;
-        }
-
-        if ($this->hasRole('admin')) {
-            return max(3, $base);
-        }
-
-        $levels = [
-            Pledge::KOBOLD => 0,
-            Pledge::GOBLIN => 1,
-            Pledge::OWLBEAR => 3,
-            Pledge::WYVERN => 6,
-            Pledge::ELEMENTAL => 10,
-        ];
-
-        return Arr::get($levels, $this->pledge ?? 'unknown', 0) + $base;
     }
 
     /**

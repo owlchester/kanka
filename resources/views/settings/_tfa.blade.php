@@ -1,7 +1,7 @@
 <h3 class="mb-3">
     {{ __('settings.account.2fa.title') }}
 </h3>
-<div class="rounded p-4 mb-5 bg-box">
+<x-box>
     @if ($user->passwordSecurity?->google2fa_enable)
         <p class="hep-block">{{ __('settings.account.2fa.enabled') }}</p>
 
@@ -19,8 +19,7 @@
 
             <p>
                 {!! __('callouts.subscribe.pitch-2fa', [
-                    'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank']),
-                    'boosters' => link_to_route('front.boosters', __('subscription.benefits.boosters'), '', ['target' => '_blank'])
+                    'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank'])
                 ]) !!}
             </p>
     @elseif (auth()->user()->isSubscriber())
@@ -64,7 +63,7 @@
             {!! Form::close() !!}
        @endif
   @endif
-</div>
+</x-box>
 
 @section('modals')
     @parent

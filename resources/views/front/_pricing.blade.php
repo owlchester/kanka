@@ -20,19 +20,21 @@
                 </div>
                 <ul class="fa-ul">
                     <li>
-                        <span class="fa-li"><i class="fa-regular fa-circle-xmark text-danger"></i></span>
-                        <a href="{{ route('front.boosters') }}">
-                            <strong>{{ __('front.pricing.benefits.no_boosters') }}</strong>
+                        <span class="fa-li">
+                            <i class="fa-regular fa-circle-xmark text-danger" aria-hidden="true"></i>
+                        </span>
+                        <a href="{{ route('front.premium') }}">
+                            <strong>{{ trans_choice('concept.premium-campaign-count', 0, ['count' => 0]) }}</strong>
                         </a>
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.unlimited') }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.pricing.benefits.unlimited') }}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.core') }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.pricing.benefits.core') }}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.updates') }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.pricing.benefits.updates') }}
                     </li>
 
 {{--                    <li class="text-muted">--}}
@@ -65,22 +67,22 @@
                 </div>
                 <ul class="fa-ul">
                     <li>
-                        <span class="fa-li"><i class="fa-regular fa-check-circle"></i></span>
-                        <a href="{{ route('front.boosters') }}">
-                            <strong>3 {{ __('front.pricing.benefits.boosters') }}</strong>
+                        <span class="fa-li"><i class="fa-regular fa-check-circle" aria-hidden="true"></i></span>
+                        <a href="{{ route('front.premium') }}">
+                            <strong>{{ trans_choice('concept.premium-campaign-count', 1, ['count' => 1]) }}</strong>
                         </a>
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.big_maps', ['size' => '10 MB']) }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.pricing.benefits.big_maps', ['size' => '10 MB']) }}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
 
 {{--                    <li class="text-muted">--}}
@@ -112,22 +114,22 @@
                 </div>
                 <ul class="fa-ul">
                     <li>
-                        <span class="fa-li"><i class="fa-regular fa-check-circle"></i></span>
-                        <a href="{{ route('front.boosters') }}">
-                            <strong>6 {{ __('front.pricing.benefits.boosters') }}</strong>
+                        <span class="fa-li"><i class="fa-regular fa-check-circle" aria-hidden="true"></i></span>
+                        <a href="{{ route('front.premium') }}">
+                            <strong>{{ trans_choice('concept.premium-campaign-count', 3, ['count' => 3]) }}</strong>
                         </a>
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.bigger_maps', ['size' => '20 MB']) }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.pricing.benefits.bigger_maps', ['size' => '20 MB']) }}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
 
 {{--                    <li class="text-muted">--}}
@@ -157,25 +159,25 @@
                 </div>
                 <ul class="fa-ul">
                     <li>
-                        <span class="fa-li"><i class="fa-regular fa-check-circle"></i></span>
-                        <a href="{{ route('front.boosters') }}">
-                            <strong>10 {{ __('front.pricing.benefits.boosters') }}</strong>
+                        <span class="fa-li"><i class="fa-regular fa-check-circle" aria-hidden="true"></i></span>
+                        <a href="{{ route('front.premium') }}">
+                            <strong>{{ trans_choice('concept.premium-campaign-count', 7, ['count' => 7]) }}</strong>
                         </a>
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.pricing.benefits.huge_maps', ['size' => '50 MB']) }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.pricing.benefits.huge_maps', ['size' => '50 MB']) }}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
                     <li class="small">
-                        <span class="fa-li"><i class="fa-solid fa-check"></i></span> {{ __('front.features.patreon.impact') }}
+                        <span class="fa-li"><i class="fa-solid fa-check" aria-hidden="true"></i></span> {{ __('front.features.patreon.impact') }}
                     </li>
                 </ul>
 

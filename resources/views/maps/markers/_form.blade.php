@@ -126,7 +126,9 @@ $sizeOptions = [
                     </p>
                     {!! Form::textarea('custom_shape', \App\Facades\FormCopy::field('custom_shape')->string(), ['class' => 'form-control', 'rows' => 2, 'placeholder' => __('maps/markers.placeholders.custom_shape')]) !!}
                 @else
-                    @include('layouts.callouts.boost', ['texts' => [__('maps/markers.pitches.poly')], 'campaign' => $campaignService->campaign()])
+                    <x-cta :campaign="$campaignService->campaign()" image="0">
+                        <p>{{ __('maps/markers.pitches.poly') }}</p>
+                    </x-cta>
                 @endif
             </div>
 

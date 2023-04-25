@@ -26,6 +26,13 @@ return [
     'subscribe' => [
         'pitch-2fa'     => 'Subscribe to unlock secure logins with two-factor authentication and many :more.',
         'pitch-image'   => 'Subscribe to unlock up to :max MB file upload sizes.',
+        'share-premium' => 'Increase the file upload size for all members of the campaign with a premium campaign.',
         'share-booster' => 'Boost :campaign to increase the file upload size for all members of the campaign.',
     ],
+    'premium' => [
+        'title' => 'Premium campaign feature',
+        'unlock' => 'Unlock premium features for :campaign',
+        'learn-more' => 'What are premium campaigns?',
+        'limitation'       => 'To access this feature, premium features need to be enabled.',
+    ]
 ];

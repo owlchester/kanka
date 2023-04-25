@@ -35,8 +35,8 @@
                     </li>
                     @if (config('services.stripe.enabled'))
                     <li class="px-0 py-1 text-sm">
-                        <a href="{{ route('front.boosters') }}">
-                            {{ __('footer.boosters') }}
+                        <a href="{{ route('front.premium') }}">
+                            {{ __('footer.premium') }}
                         </a>
                     </li>
                     <li class="px-0 py-1 text-sm">

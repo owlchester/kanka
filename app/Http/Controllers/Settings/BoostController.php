@@ -5,25 +5,18 @@ namespace App\Http\Controllers\Settings;
 use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Services\CampaignBoostService;
 use App\User;
 
 class BoostController extends Controller
 {
     /**
-     * @var CampaignBoostService
-     */
-    protected CampaignBoostService $campaignBoostService;
-
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CampaignBoostService $campaignBoostService)
+    public function __construct()
     {
         $this->middleware(['auth', 'identity']);
-        $this->campaignBoostService = $campaignBoostService;
     }
 
     /**
@@ -34,6 +27,9 @@ class BoostController extends Controller
      */
     public function index()
     {
+        if (!auth()->user()->hasBoosterNomenclature()) {
+            return redirect()->route('settings.premium');
+        }
         // If a campaign was provided, make sure we have access to it
         $campaignId = request()->get('campaign');
         $campaign = null;

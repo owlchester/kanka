@@ -92,12 +92,12 @@
 'amount' => config('entities.logs'),
 ]) !!}</p>
                                 @subscriber()
-                                <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-boost text-white">
-                                    {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->name]) !!}
+                                <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn bg-boost text-white">
+                                    {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
                                 </a>
                             @else
-                                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white">
-                                    {!! __('callouts.booster.learn-more') !!}
+                                <a href="{{ route('front.premium') }}" class="btn bg-boost text-white">
+                                    {!! __('callouts.premium.learn-more') !!}
                                 </a>
                             @endif
                         </td>

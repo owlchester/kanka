@@ -6,7 +6,7 @@ foreach (\App\Facades\Dashboard::campaign($campaignService->campaign())->getDash
 }
 ?>
 <p class="help-block">
-    {!! __('menu_links.helpers.dashboard', ['boosted' => link_to_route('front.boosters', __('crud.boosted_campaigns'))]) !!}
+    {!! __('menu_links.helpers.dashboard') !!}
 </p>
 
 @if($campaignService->campaign()->boosted())
@@ -29,5 +29,7 @@ foreach (\App\Facades\Dashboard::campaign($campaignService->campaign())->getDash
     </div>
 </div>
 @else
-    @include('partials.boosted')
+    <x-cta :campaign="$campaign" minimal="1" image="0">
+        <p>{{ __('dashboard.dashboards.pitch') }}</p>
+    </x-cta>
 @endif

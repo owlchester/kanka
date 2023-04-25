@@ -18,7 +18,9 @@
         @if ($campaign->boosted())
             {{ __('maps/groups.pitch.error') }}
         @else
-            @include('layouts.callouts.boost-modal', ['texts' => [__('maps/groups.pitch.until', ['max' => $max])]])
+            <x-cta :campaign="$campaign">
+                <p>{{ __('maps/groups.pitch.until', ['max' => $max]) }}</p>
+            </x-cta>
         @endif
     </div>
 @endsection

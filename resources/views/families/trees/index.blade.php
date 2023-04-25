@@ -55,8 +55,9 @@
         <div class="entity-main-block">
 
             @if (!$campaign->superboosted())
-                @include('layouts.callouts.boost', ['texts' => [
-            __('families/trees.pitch')], 'superboost' => true])
+                <x-cta :campaign="$campaignService->campaign()" superboost="1">
+                    <p>{{ __('families/trees.pitch') }}</p>
+                </x-cta>
             @else
                 @if ($mode === 'pixi')
                 <div class="family-tree-setup overflow-auto"

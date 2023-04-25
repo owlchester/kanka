@@ -52,7 +52,7 @@
                     </div>
                     <div class="m-1">
                         {!! Form::select('is_boosted', ['' => __('front.campaigns.public.filters.all'),
- 0 => __('front.campaigns.public.filters.unboosted'), 1 => __('front.campaigns.public.filters.boosted')], request()->get('is_boosted'), ['class' => 'form-control']) !!}
+ 0 => __('front.campaigns.public.filters.standard'), 1 => __('front.campaigns.public.filters.premium')], request()->get('is_boosted'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="m-1">
                         {!! Form::select('is_open', ['' => __('front.campaigns.open.filters.all'),

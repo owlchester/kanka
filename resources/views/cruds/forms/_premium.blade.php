@@ -1,6 +1,5 @@
 <div class="form-group">
     <label>
-        <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
         {{ __('fields.tooltip.name') }}
     </label>
 
@@ -30,7 +29,6 @@ $tooltipTags = implode(', ', $tooltipTags);
 
 <div class="form-group">
     <label>
-        <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip" aria-hidden="true"></i>
         {{ __('fields.header-image.title') }}
     </label>
 

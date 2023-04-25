@@ -1,5 +1,4 @@
 <label>
-    <i class="fa-solid fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
     {{ __('fields.gallery-image.title') }}
 </label>
 @if ($campaignService->campaign()->superboosted())

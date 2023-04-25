@@ -5,8 +5,8 @@
 <p class="text-center text-muted">
     @php $subscribingUrl = auth()->check() ? 'settings.subscription' : 'front.pricing'; @endphp
 {!! __('misc.ads.remove_v3', [
-    'subscribing' => link_to_route($subscribingUrl, __('misc.ads.subscribing'), [], ['target' => '_blank']),
-    'boosting' => link_to_route('front.boosters', __('misc.ads.boosting'), [], ['target' => '_blank']),
+    'subscribing' => link_to_route($subscribingUrl, __('misc.ads.subscribing')),
+    'boosting' => link_to_route('front.premium', __('misc.ads.premium')),
 ]) !!}
 </p>
 @else
@@ -25,8 +25,8 @@
 </div>
 <p class="text-center text-muted">
 {!! __('misc.ads.remove_v3', [
-    'subscribing' => link_to_route('settings.subscription', __('misc.ads.subscribing'), [], ['target' => '_blank']),
-    'boosting' => link_to_route('front.boosters', __('misc.ads.boosting'), [], ['target' => '_blank']),
+    'subscribing' => link_to_route('settings.subscription', __('misc.ads.subscribing')),
+    'boosting' => link_to_route('front.premium', __('misc.ads.premium')),
 ]) !!}
 </p>
 @endads

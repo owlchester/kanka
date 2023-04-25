@@ -3,15 +3,15 @@
         @include ('partials.boost_icon')
     </div>
     <div>
-        <p class="">{{ __('callouts.booster.multiple') }}</p>
+        <p class="">{{ __('callouts.premium.limitation') }}</p>
 
         @subscriber()
-        <a href="{{ route('settings.boost', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-boost text-white btn-sm" target="_blank">
-            {!! __('callouts.booster.actions.boost', ['campaign' => $campaignService->campaign()->name]) !!}
+        <a href="{{ route('settings.premium', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-boost text-white btn-sm" target="_blank">
+            {!! __('settings/premium.actions.unlock', ['campaign' => $campaignService->campaign()->name]) !!}
         </a>
         @else
-            <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-sm">
-                {!! __('callouts.booster.learn-more') !!}
+            <a href="{{ route('front.premium') }}" target="_blank" class="btn bg-boost text-white btn-sm">
+                {!! __('callouts.premium.learn-more') !!}
             </a>
         @endif
     </div>

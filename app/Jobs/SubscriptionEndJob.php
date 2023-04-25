@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\CampaignBoost;
 use App\Models\Pledge;
 use App\Models\UserLog;
 use App\Notifications\Header;
@@ -55,15 +56,23 @@ class SubscriptionEndJob implements ShouldQueue
 
         // Cleanup the user
         $user->pledge = null;
-        $user->save();
+        $settings = $user->settings;
+        unset($settings['grandfathered_boost']);
+        $user->settings = $settings;
+        $user->saveQuietly();
 
         // Cleanup the campaign boosts
         $boostService = app()->make('App\Services\CampaignBoostService');
-        foreach ($user->boosts()->with(['campaign', 'user'])->get() as $boost) {
+        $unboostedCampaigns = [];
+        /** @var CampaignBoost $boost */
+        foreach ($user->boosts()->with(['campaign'])->get() as $boost) {
             $boostService
                 ->campaign($boost->campaign)
                 ->unboost($boost);
-            $boost->user->log(UserLog::TYPE_CAMPAIGN_UNBOOST_AUTO);
+            if (!in_array($unboostedCampaigns, $boost->campaign_id)) {
+                $boost->user->log(UserLog::TYPE_CAMPAIGN_UNBOOST_AUTO);
+                $unboostedCampaigns[] = $boost->campaign_id;
+            }
         }
 
         // Cleanup the subscriber role

@@ -32,7 +32,9 @@
             </div>
 
             @if (!$campaign->boosted())
-                @include('layouts.callouts.boost', ['texts' => [__('campaigns/sidebar.call-to-action')]])
+                <x-cta :campaign="$campaign">
+                    <p>{{ __('campaigns/sidebar.call-to-action') }}</p>
+                </x-cta>
             @else
 
                 <x-tutorial code="sidebar_reorder">

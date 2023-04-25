@@ -35,7 +35,7 @@ return [
         'url'   => 'https://dndbeyond.com/character-url',
     ],
     'show'              => [
-        'helper'    => 'Boosted campaigns can add links to entities that point to external websites.',
+        'helper'    => 'Premium campaigns can add links to entities that point to external websites.',
         'title'     => 'Links for :name',
     ],
     'update'            => [

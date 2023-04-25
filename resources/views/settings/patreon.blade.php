@@ -7,31 +7,29 @@
 ])
 
 @section('content')
-    <div class="max-w-4xl">
-        <h1 class="mb-3">
-            {{ __('settings.patreon.title') }}
-        </h1>
-        @include('partials.errors')
+    <h1 class="mb-3">
+        {{ __('settings.patreon.title') }}
+    </h1>
+    @include('partials.errors')
 
-        @if(auth()->user()->isLegacyPatron())
-            <div class="rounded p-4 bg-box mb-5">
-                @includeIf('settings.tiers._' . strtolower(auth()->user()->pledge ?: 'kobold'))
+    @if(auth()->user()->isLegacyPatron())
+        <x-box>
+            @includeIf('settings.tiers._' . strtolower(auth()->user()->pledge ?: 'kobold'))
 
-                <x-buttons.confirm type="danger" outline="true" target="remove-patreon">
-                    <i class="fa-solid fa-link-slash" aria-hidden="true"></i>
-                    <span>
-                        {{ __('settings.patreon.remove.button') }}
-                    </span>
-                </x-buttons.confirm>
-            </div>
-        @else
-            <div class="alert alert-warning">
-                <p>
-                    {!! __('settings.patreon.deprecated', ['subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))]) !!}
-                </p>
-            </div>
-        @endif
-    </div>
+            <x-buttons.confirm type="danger" outline="true" target="remove-patreon">
+                <i class="fa-solid fa-link-slash" aria-hidden="true"></i>
+                <span>
+                    {{ __('settings.patreon.remove.button') }}
+                </span>
+            </x-buttons.confirm>
+        </x-box>
+    @else
+        <div class="alert alert-warning">
+            <p>
+                {!! __('settings.patreon.deprecated', ['subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))]) !!}
+            </p>
+        </div>
+    @endif
 @endsection
 
 @section('modals')

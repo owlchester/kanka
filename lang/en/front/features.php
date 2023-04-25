@@ -14,10 +14,9 @@ TEXT
         'secondary'     => 'An entity\'s attributes can also be styled to look like a TTRPG character sheet by using our  :marketplace.',
         'title'         => 'Attributes',
     ],
-    'boosters'      => [
-        'description'   => 'Some features are only available to boosted campaigns. When a user subscribes to Kanka, they gain a set number of boosts that they can attribute to one or several campaigns. These boosts can be moved around from one campaign to another, such as when a campaign ends. As long as a user stays a subscriber, they keep their boosts.',
-        'link'          => 'See all boosted features on our pricing page.',
-        'title'         => 'Campaign Boosters',
+    'premium'      => [
+        'description'   => 'Some features are only available to premium campaigns. When a user subscribes to Kanka, they can upgrade a set number of campaigns. These premium campaigns can be moved around from one campaign to another, such as when a campaign ends. As long as a user stays a subscriber, their premium campaigns will stay that way.',
+        'link'          => 'See all premium features on our pricing page.',
     ],
     'calendars'     => [
         'description'   => 'Create one or several calendars of your world, fully controlling the number of days in a year, the months, length of weeks, seasons, moons and their phases, and more. Attach events to your calendars linked to other entities, such as automatically calculating a character\'s age based on the calendar.',
@@ -26,7 +25,7 @@ TEXT
         'description'   => 'We\'ve built Kanka to support worlds with multiple members and multiple campaigns. Add your friends to the campaign, assign them to one or several roles, and control what features and information they have access to. You can also  view the campaign as a member at any time, just to make sure you haven\'t left content visible that shouldn\'t be.',
     ],
     'dashboards'    => [
-        'description'   => 'The dashboard is the central hub where you control your campaign. Each campaign can fully customise the dashboard, adding widgets from a long list of available options. For large campaigns with multiple groups, Boosted Campaigns can create multiple dashboards tailored to each role.',
+        'description'   => 'The dashboard is the central hub where you control your campaign. Each campaign can fully customise the dashboard, adding widgets from a long list of available options. For large campaigns with multiple groups, premium campaigns can create multiple dashboards tailored to each role.',
         'title'         => 'Campaign Dashboards',
     ],
     'discover-all'  => 'Discover our amazing features',
@@ -53,14 +52,14 @@ TEXT
         'title'         => 'Journals',
     ],
     'links'         => [
-        'description'   => 'Entities in a boosted campaign have a new type of asset that can be attached to it: links. These are displayed in the overview of an entity and allow to add external links, such as going to a character\'s DNDBeyond page.',
+        'description'   => 'Entities in a premium campaign have a new type of asset that can be attached to it: links. These are displayed in the overview of an entity and allow to add external links, such as going to a character\'s DNDBeyond page.',
         'title'         => 'Links',
     ],
     'maps'          => [
         'description'   => 'Upload your beautiful maps to your Kanka campaign, and add layers and pins to them. Control who can see which pin, to avoid revealing the secret location of an infamous city to your players.',
     ],
     'marketplace'   => [
-        'description'   => 'Boosted campaigns can install plugins from the :marketplace. These are themes, attribute templates or content packs, which are created by the community for the community.',
+        'description'   => 'Premium campaigns can install plugins from the :marketplace. These are themes, attribute templates or content packs, which are created by the community for the community.',
         'title'         => 'Marketplace',
     ],
     'modular'       => [
@@ -77,13 +76,13 @@ TEXT
         'secondary'     => ':boosted-campaigns have access to a visual explorer for the relations of an entity.',
     ],
     'sections'      => [
-        'boosted'       => 'Boosted features',
+        'premium'       => 'Premium campaign features',
         'general'       => 'General',
         'rpg'           => 'RPGs',
         'worldbuilding' => 'Worldbuilding',
     ],
     'theming'       => [
-        'description'   => 'Boosted campaigns can force the theme users see when viewing it, but also write their own CSS to fully customise the campaign\'s look and feel.',
+        'description'   => 'Premium campaigns can force the theme users see when viewing it, but also write their own CSS to fully customise the campaign\'s look and feel.',
         'title'         => 'Theming',
     ],
     'timelines'     => [

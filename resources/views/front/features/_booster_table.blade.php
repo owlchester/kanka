@@ -4,8 +4,8 @@
         <tr>
             <th></th>
             <th>{{ __('front.features.boosts.standard') }}</th>
-            <th>{{ __('front.features.boosts.boosted') }}</th>
-            <th>{{ __('front.features.superboosts.boosted') }}</th>
+            <th>{{ ucfirst(__('concept.boosted-campaign')) }}</th>
+            <th>{{ ucfirst(__('concept.superboosted-campaign')) }}</th>
         </tr>
         </thead>
         <tbody>

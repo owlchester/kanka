@@ -1,9 +1,6 @@
 <?php
 
 return [
-    'actions'                           => [
-        'boost' => 'Boost :name',
-    ],
     'create'                            => [
         'description'           => 'Create a new campaign',
         'helper'                => [
@@ -40,13 +37,13 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'You don\'t have access to this campaign.',
-        'superboosted'  => 'This feature is only available to superboosted campaigns.',
+        'premium'  => 'This feature is only available to premium campaigns.',
         'unknown_id'    => 'Unknown Campaign.',
     ],
     'fields'                            => [
         'boosted'                           => 'Boosted by',
         'character_personality_visibility'  => 'Default character personality visibility',
-        'connections'                       => 'Show an entity\'s connection table by default (instead of relation explorer for boosted campaigns)',
+        'connections'                       => 'Show an entity\'s connection table by default (instead of relation explorer for premium campaigns)',
         'css'                               => 'CSS',
         'description'                       => 'Description',
         'entity_count'                      => 'Entity Count',
@@ -63,6 +60,7 @@ TEXT
         'open'                              => 'Open to applications',
         'past_featured'                     => 'Previously featured campaign',
         'post_collapsed'                    => 'New posts on entities are collapsed by default.',
+        'premium'                           => 'Premium unlocked by :name',
         'public'                            => 'Campaign visibility',
         'public_campaign_filters'           => 'Public Campaign Filters',
         'related_visibility'                => 'Related Elements Visibility',
@@ -74,9 +72,8 @@ TEXT
     ],
     'following'                         => 'Following',
     'helpers'                           => [
-        'boost_required'                    => 'This feature requires the campaign to be boosted. More info on the :settings page.',
-        'boost_required_multi'              => 'These features require the campaign to be boosted. More info on the :settings page.',
         'boosted'                           => 'Some features are unlocked because this campaign is being boosted. Find out more on the :settings page.',
+        'premium'                           => 'Some features are unlocked because this campaign\'s premium features are unlocked. Find out more on the :settings page.',
         'character_personality_visibility'  => 'When creating a new character as an admin, select the default privacy setting for its personality traits.',
         'css'                               => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
         'dashboard'                         => 'Customise the way the campaign dashboard widget is displayed by filling out the following fields.',
@@ -212,7 +209,6 @@ TEXT
         'follower-count'    => '{0} No followers|{1} :amount follower|[2,*] :amount followers',
     ],
     'panels'                            => [
-        'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permission',
         'setup'     => 'Setup',
@@ -269,7 +265,7 @@ TEXT
             '1' => 'A campaign is split up into several roles. The :admin role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
             '2' => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
             '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entity to be visible individually.',
-            '4' => 'Boosted campaigns can have an unlimited amount of roles.',
+            '4' => 'Premium campaigns can have an unlimited amount of roles.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
@@ -306,7 +302,7 @@ TEXT
                 'delete'        => 'Allow removing all entities of this type.',
                 'edit'          => 'Allow editing all entities of this type.',
                 'entity_note'   => 'Allows adding and editing posts even if the member can\'t edit the entity.',
-                'gallery'       => 'Allow managing the superboosted campaign\'s gallery.',
+                'gallery'       => 'Allow managing the campaign\'s gallery.',
                 'manage'        => 'Allow editing the campaign as a campaign admin would, without allowing the members to delete the campaign.',
                 'members'       => 'Allow inviting new members to the campaign.',
                 'permission'    => 'Allow setting permissions on entities of this type they can edit.',
@@ -392,7 +388,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Boost campaign',
             'edit'  => 'Edit Campaign',
             'leave' => 'Leave campaign',
         ],
@@ -422,13 +417,12 @@ TEXT
         'none'  => 'None (defaults to user settings)',
     ],
     'ui'                                => [
-        'boosted'           => 'Boosted',
         'collapsed'         => [
             'collapsed' => 'Collapsed',
             'default'   => 'Default',
         ],
         'connections'       => [
-            'explorer'  => 'Relations explorer (if available, for boosted campaigns)',
+            'explorer'  => 'Relations explorer (if available, for premium campaigns)',
             'list'      => 'List interface',
         ],
         'entity_history'    => [

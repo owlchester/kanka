@@ -7,6 +7,7 @@ return [
         'save'  => 'Save',
     ],
     'breadcrumb'    => 'Gallery',
+    'cta'       => 'Manage and reuse images throughout the campaign.',
     'destroy'       => [
         'success'   => 'Image :name deleted.',
     ],

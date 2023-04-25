@@ -74,7 +74,7 @@ class CampaignRoleController extends Controller
         if (!$campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
-                ->with('skipImage', true)
+                ->with('campaign', $campaign)
                 ->with('name', 'campaign_roles');
         }
         $ajax = request()->ajax();
@@ -93,7 +93,7 @@ class CampaignRoleController extends Controller
         if (!$campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
-                ->with('skipImage', true)
+                ->with('campaign', $campaign)
                 ->with('name', 'campaign_roles');
         }
         $this->authorize('create', CampaignRole::class);

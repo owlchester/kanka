@@ -31,7 +31,9 @@ return [
     'campaign'  => [
         'boosted'       => 'Boosted by :user since :time',
         'superboosted'  => 'Superboosted by :user since :time',
+        'premium'       => 'Premium thanks to :user since :time',
         'unboosted'     => 'Unboosted',
+        'standard'      => 'Standard',
     ],
     'intro'     => [
         'anyone'    => 'You aren\'t limited to only boosting campaigns you\'ve created. You can boost any campaign you are a part of or can see. This includes campaigns where you are a player, or :public you enjoy.',

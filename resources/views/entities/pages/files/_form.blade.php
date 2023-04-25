@@ -7,19 +7,7 @@
 
         <p class="help-block">
             {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, ogg, json', 'size' => auth()->user()->maxUploadSize(true)]) }}
-            @php $currentCampaign = \App\Facades\CampaignLocalization::getCampaign(false); @endphp
-            @subscriber()
-                @if ($currentCampaign && !$currentCampaign->boosted())
-                    <p>
-                        <a href="{{ route('settings.boost', ['campaign' => $currentCampaign]) }}">
-                            <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-                            {!! __('callouts.subscribe.share-booster', ['campaign' => $currentCampaign->name]) !!}
-                        </a>
-                    </p>
-                @endif
-            @else
-                <a href="{{ route('front.pricing') }}">{{ __('callouts.subscribe.pitch-image', ['max' => 25]) }}</a>
-            @endif
+            @include('cruds.fields.helpers.share', ['max' => 25])
         </p>
     </div>
 @endif

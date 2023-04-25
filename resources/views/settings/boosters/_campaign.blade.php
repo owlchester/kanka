@@ -17,7 +17,12 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         </a>
 
         <p class="mb-0">
-            @if ($campaign->superboosted())
+            @if ($campaign->premium())
+                {!! __('settings/boosters.campaign.premium', [
+    'user' => link_to_route('users.profile', $boost->user->displayName(), $boost->user_id, ['target' => '_blank']),
+    'time' => $boost->created_at->format('M Y')
+    ]) !!}
+            @elseif ($campaign->superboosted())
                 {!! __('settings/boosters.campaign.superboosted', [
     'user' => link_to_route('users.profile', $boost->user->displayName(), $boost->user_id, ['target' => '_blank']),
     'time' => $boost->created_at->format('M Y')
@@ -28,11 +33,12 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
     'time' => $boost->created_at->format('M Y')
         ]) !!}
             @else
-                {{ __('settings/boosters.campaign.unboosted') }}
+                {{ __('settings/boosters.campaign.standard') }}
             @endif
         </p>
     </div>
     <div class="flex-none">
+        @if (auth()->user()->hasBoosterNomenclature())
         <div class="dropdown">
             <a class="dropdown-toggle cursor-pointer p-2" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                 <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
@@ -41,7 +47,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                 @if (!$campaign->boosted())
                     <li>
-                        <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
+                        <a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign, 'boost' => 1]) }}">
                             {!! __('settings/boosters.boost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
                         </a>
                     </li>
@@ -73,5 +79,16 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
                 @endif
             </ul>
         </div>
+        @else
+            @if (!$campaign->premium())
+                <a href="#" class="shadow-xs rounded border text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white px-4 py-2" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
+                    {!! __('settings/premium.actions.unlock', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
+                </a>
+            @elseif (auth()->user()->can('destroy', $boost))
+                <a href="#" class="shadow-xs rounded border text-red-500 border-red-500 hover:bg-red-500 hover:text-white px-4 py-2" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boost.confirm-destroy', $boost) }}">
+                    {!! __('settings/premium.actions.remove', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
+                </a>
+            @endif
+        @endif
     </div>
 </div>

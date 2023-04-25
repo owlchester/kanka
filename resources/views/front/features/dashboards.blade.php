@@ -32,7 +32,7 @@
                         </div>
 
                         <p>{!! __('front/features/dashboards.third', [
-    'boosted-campaigns' => link_to_route('front.boosters', __('crud.boosted_campaigns')),
+    'boosted-campaigns' => link_to_route('front.premium', __('concept.premium-campaigns')),
     'new-dashboard' => '<code>' . __('dashboard.dashboards.actions.new') . '</code>',
     'actions' => '<code>' . __('crud.actions.actions') . '</code>'
     ]) !!}</p>
