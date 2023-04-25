@@ -90,7 +90,7 @@ class MigrateSubMentions extends Command
             ->whereNull('entity_id')
             ->has('post')
             ->has('post.entity')
-            ->chunk(500, function ($mentions) {
+            ->chunk(5000, function ($mentions) {
                 foreach ($mentions as $mention) {
                     $mention->entity_id = $mention->post->entity_id;
                     $mention->saveQuietly();
