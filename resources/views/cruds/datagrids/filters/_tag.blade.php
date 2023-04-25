@@ -1,18 +1,11 @@
 <div class="row">
     <div class="col-xs-8">
-        {!! Form::tags(
-            $field['field'],
-            [
-                'id' => $field['field'] . '_' . uniqid(),
-                'model' => null,
-                'enableNew' => false,
-                'allowClear' => 'false',
-                'label' => false,
-                'filterOptions' => $value,
-                'class' => 'entity-list-filter',
-                'dropdownParent' => '#datagrid-filters',
-            ]
-        ) !!}
+        <x-forms.tags
+            label=""
+            allowClear="true"
+            :options="$value"
+            dropdownParent="#datagrid-filters">
+        </x-forms.tags>
     </div>
     <div class="col-xs-4">
         {!! Form::select(

@@ -5,14 +5,15 @@
     @endif
     <div class="form-group">
         <input type="hidden" name="save-tags" value="1" />
-        {!! Form::tags(
-            'tag_id',
-            [
-                'model' => isset($model) ? $model : FormCopy::model(),
-                'enableNew' => isset($enableNew) ? $enableNew : auth()->user()->can('create', \App\Models\Tag::class),
-                'dropdownParent' => isset($dropdownParent) ? $dropdownParent : '#app'
-            ]
-        ) !!}
+
+        <x-forms.tags
+            :model="isset($model) ? $model : FormCopy::model()"
+            :enableNew="isset($enableNew) ? $enableNew : auth()->user()->can('create', \App\Models\Tag::class)"
+            :dropdownParent="$dropdownParent ?? null"
+            allowNew="true"
+            allowClear="false"
+            enableAuto="true"
+        ></x-forms.tags>
     </div>
 
     @if (isset($bulk) && $bulk)

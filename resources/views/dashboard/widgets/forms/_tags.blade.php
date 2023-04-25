@@ -1,13 +1,10 @@
 <div class="form-group">
-    {!! Form::tags(
-            'tag_id',
-            [
-                'model' => isset($model) ? $model : null,
-                'enableNew' => false,
-                'helper' => __('dashboard.widgets.recent.tags'),
-                'enableAutoTags' => false,
-            ]
-        ) !!}
+
+    <h2>whaaa</h2>
+    <x-forms.tags
+        :model="$model ?? null"
+        allowClear="true"
+    ></x-forms.tags>
     <p class="help-block visible-xs visible-sm">
         {{ __('dashboard.widgets.recent.tags') }}
     </p>

@@ -18,14 +18,10 @@ foreach ($entityService->getEnabledEntities($campaignService->campaign()) as $en
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::tags(
-                    'tag_id',
-                    [
-                        'model' => isset($model) ? $model : null,
-                        'enableNew' => false,
-                    ]
-                ) !!}
             <input type="hidden" name="save_tags" value="1" />
+            <x-forms.tags
+                :model="$model ?? null">
+            </x-forms.tags>
         </div>
 
     </div>
