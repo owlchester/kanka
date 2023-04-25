@@ -388,6 +388,11 @@ class EntityEvent extends MiscModel
         return [$this->entity_id, $this->id];
     }
 
+    public function getNameAttribute(): string
+    {
+        return $this->deleteName();
+    }
+
     /**
      * Calculate how long ago the event happened
      * @param int $year

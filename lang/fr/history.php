@@ -25,7 +25,7 @@ return [
         'update'        => 'L\'utilisateur :user a modifié :entity',
         'update_post'   => 'L\'utilisateur :user a supprimé la note ":post" sur :entity',
     ],
-    'title'     => 'Histoires',
+    'title'     => 'Historique',
     'unknown'   => [
         'entity'    => 'une entité inconnue',
     ],
