@@ -14,6 +14,7 @@ trait Picture
 {
     private int $avatarWidth = 40;
     private int $avatarHeight = 40;
+    private bool $cropped = true;
 
     private bool $hasNoImage;
 
@@ -24,6 +25,12 @@ trait Picture
     {
         $this->avatarWidth = $width;
         $this->avatarHeight = $height ?? $width;
+        return $this;
+    }
+
+    public function fullsize(): self
+    {
+        $this->cropped = false;
         return $this;
     }
 
@@ -170,6 +177,13 @@ trait Picture
         if (!empty($focus)) {
             Img::focus($focus[0], $focus[1]);
         }
+
+        // Reset for next caller
+        if (!$this->cropped) {
+            $this->cropped = true;
+            return Img::url($avatar);
+        }
+
         return Img::crop($this->avatarWidth, $this->avatarHeight)->url($avatar);
     }
 

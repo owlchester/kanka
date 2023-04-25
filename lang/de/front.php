@@ -41,7 +41,6 @@ return [
     'contact'               => [
         'description'   => 'Benötigen Sie Hilfe, haben Sie einen Vorschlag oder möchten Sie einfach Ihre Liebe zu Kanka teilen? Unser Team wird zu jedem Anlass antworten!',
         'email'         => 'Senden Sie alle Anfragen an unsere :email',
-        'other'         => 'Oder kontaktieren Sie uns auf einer der folgenden Social-Media-Plattformen:',
         'title'         => 'Wir :icon neue Freunde!',
     ],
     'cookie'                => [

@@ -41,10 +41,10 @@ return [
         ],
         'tooltip'           => 'Create a new entity without leaving the current page.',
         'tooltips'          => [
-            'create' => 'Create the entity and go back to the entity selection screen',
-            'create_more' => 'Create the entity and start creating another one of the same type',
-            'edit' => 'Create the entity and start editing it',
-        ]
+            'create'        => 'Create the entity and go back to the entity selection screen',
+            'create_more'   => 'Create the entity and start creating another one of the same type',
+            'edit'          => 'Create the entity and start editing it',
+        ],
     ],
     'creature'              => 'Creature',
     'creatures'             => 'Creatures',

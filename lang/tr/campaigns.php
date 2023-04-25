@@ -147,7 +147,6 @@ TEXT
         ],
         'switch_back_success'   => 'Artık tekrar orijinal kullanıcınızdasınız.',
         'title'                 => ':name Serüveni Üyeleri',
-        'your_role'             => 'Rolünüz: <i>:role</i>',
     ],
     'panels'                            => [
         'boosted'   => 'Destekli',

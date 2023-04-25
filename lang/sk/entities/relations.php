@@ -74,9 +74,10 @@ return [
         'related'   => 'Prepojené',
     ],
     'placeholders'      => [
-        'attitude'  => '-100 až 100, kde 100 je max. pozitívny',
-        'relation'  => 'Typ vzťahu',
-        'target'    => 'Vybrať objekt',
+        'attitude'          => '-100 až 100, kde 100 je max. pozitívny',
+        'relation'          => 'Typ vzťahu',
+        'target'            => 'Vybrať objekt',
+        'target_relation'   => 'Ponechaj prázdne, ak chceš použiť popis',
     ],
     'show'              => [
         'title' => 'Vzťahy pre :name',

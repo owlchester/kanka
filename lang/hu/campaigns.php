@@ -176,7 +176,6 @@ TEXT
             'added'     => ':role szerepet hozzáadtuk :user felhasználóhoz.',
             'removed'   => ':role szerepet eltávolítottuk :user felhasználótól.',
         ],
-        'your_role'             => 'A szereped: <i>:role</i>',
     ],
     'open_campaign'                     => [],
     'panels'                            => [

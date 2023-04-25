@@ -116,7 +116,11 @@ class PostController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $post->update($request->all());
+        if ($request->isNotFilled('position')) {
+            $post->update($request->except('position'));
+        } else {
+            $post->update($request->all());
+        }
 
         /** @var MultiEditingService $editingService */
         $editingService = app()->make(MultiEditingService::class);

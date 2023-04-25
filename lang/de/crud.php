@@ -115,7 +115,6 @@ return [
     'errors'                    => [
         'boosted'                       => 'Diese Funktion ist nur für geboostete Kampagnen verfügbar.',
         'boosted_campaigns'             => 'Diese Funktion ist nur für :boosted verfügbar',
-        'cannot_move_node_into_itself'  => 'Das  ausgewählte übergeordnete Objekt ist ungültig. Dies könnte darauf zurückzuführen sein, dass es dieses Objekt als übergeordnetes Element hat.',
         'node_must_not_be_a_descendant' => 'Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein.',
         'unavailable_feature'           => 'nicht verfügbare Eigenschaft',
     ],

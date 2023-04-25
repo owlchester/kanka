@@ -203,7 +203,6 @@ TEXT
             'added'     => 'Пользователь :user получил роль ":role".',
             'removed'   => 'Пользователь :user потерял роль ":role".',
         ],
-        'your_role'             => 'Ваша роль: <i>:role</i>',
     ],
     'open_campaign'                     => [],
     'options'                           => [],

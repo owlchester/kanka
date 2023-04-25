@@ -47,7 +47,6 @@ class TimelineElement extends Model
         'name',
         'entry',
         'position',
-        'name',
         'colour',
         'visibility_id',
         'icon',

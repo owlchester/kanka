@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class CampaignDashboardWidgetTag extends Pivot
 {
+    public $timestamps = false;
     public $table = 'campaign_dashboard_widget_tags';
 
     public function tag()

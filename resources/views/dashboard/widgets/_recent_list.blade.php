@@ -14,7 +14,7 @@
             @endif
         </div>
 
-        <div class="blame flex-0 text-right text-xs">
+        <div class="blame flex-none text-right text-xs">
             <span class="author block">
                 {{ !empty($entity->updated_by) ? \App\Facades\UserCache::name($entity->updated_by) : __('crud.history.unknown') }}
             </span>

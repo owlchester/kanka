@@ -21,7 +21,6 @@ return [
     'contact'       => [
         'description'   => 'Hai bisogno di aiuto, hai un suggerimento, o vuoi semplicemente condividere il tuo amore per Kanka? Il nostro team ti risponderà in ogni caso!',
         'email'         => 'Manda tutte le domande a',
-        'other'         => 'O su una delle seguenti piattaforme social:',
         'title'         => 'Noi :icon i nuovi amici!',
     ],
     'cookie'        => [

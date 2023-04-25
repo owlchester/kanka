@@ -19,8 +19,7 @@ class ExportService
     public function export(): self
     {
         $this->campaign->export_date = date('Y-m-d');
-        $this->campaign->withObservers = false;
-        $this->campaign->save();
+        $this->campaign->saveQuietly();
 
         CampaignExport::dispatch($this->campaign, $this->user);
         CampaignAssetExport::dispatch($this->campaign, $this->user);

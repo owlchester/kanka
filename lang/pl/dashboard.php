@@ -100,10 +100,11 @@ return [
     ],
     'title'         => 'Pulpit',
     'widgets'       => [
-        'actions'       => [
+        'actions'                   => [
             'advanced-options'  => 'Opcje zaawansowane',
         ],
-        'calendar'      => [
+        'advanced_options_boosted'  => 'Więcej opcji, na przykład wyświetlanie przypięć, zapewnia :boosted_campaing.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Zmień datę na kolejny dzień',
                 'previous'  => 'Zmień datę na poprzedni dzień',
@@ -112,16 +113,16 @@ return [
             'previous_events'   => 'Poprzedni',
             'upcoming_events'   => 'Nadchodzące',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Ten widżet wyświetla nagłówek kampanii. Jest zawsze widoczny na podstawowym pulpicie.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Dodano widżet do pulpitu.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Usunięto widżet z pulpitu.',
         ],
-        'fields'        => [
+        'fields'                    => [
             'class'             => 'Klasa CSS',
             'dashboard'         => 'Pulpit',
             'name'              => 'Własna nazwa widżetu',
@@ -131,21 +132,21 @@ return [
             'text'              => 'Tekst',
             'width'             => 'Szerokość',
         ],
-        'helpers'       => [
+        'helpers'                   => [
             'class'     => 'Określ własną klasę css dodaną do widżetu',
             'filters'   => 'Kliknij by poznać dostępne opcje filtrowania.',
         ],
-        'orders'        => [
+        'orders'                    => [
             'name_asc'  => 'Nazwa rosnąco',
             'name_desc' => 'Nazwa malejąco',
             'recent'    => 'Ostatnie zmiany',
         ],
-        'random'        => [
+        'random'                    => [
             'helpers'   => [
                 'name'  => 'Możesz wskazać nazwę losowego elementu przy pomocy {name}.',
             ],
         ],
-        'recent'        => [
+        'recent'                    => [
             'advanced_filter'   => 'Filtry zaawansowane',
             'advanced_filters'  => [
                 'mentionless'   => 'Niewzmiankujące (elementy, które nie wzmiankują żadnych innych elementów)',
@@ -169,20 +170,20 @@ return [
             'tags'              => 'Filtruj listę niedawno zmienianych elementów według konkretnych etykiet.',
             'title'             => 'Ostatnie zmiany',
         ],
-        'tabs'          => [
+        'tabs'                      => [
             'advanced'  => 'Zaawanowane',
             'setup'     => 'Ustawienia',
         ],
-        'unmentioned'   => [
+        'unmentioned'               => [
             'title' => 'Elementy bez wzmianki',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Zmodyfikowano widżet.',
         ],
-        'welcome'       => [
+        'welcome'                   => [
             'helper'    => 'Ten widżet zawiera komunikat powitalny oraz szereg odnośników, które przydadzą się nowym użytkownikom Kanki.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Automatyczna',
             '12'=> 'Pełny (100%)',
             '3' => 'Malutki (25%)',

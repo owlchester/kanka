@@ -100,10 +100,11 @@ return [
     ],
     'title'         => 'Nástenka',
     'widgets'       => [
-        'actions'       => [
+        'actions'                   => [
             'advanced-options'  => 'Rozšírené možnosti',
         ],
-        'calendar'      => [
+        'advanced_options_boosted'  => 'Aktivovať viac možností ako napr. zobrazovania značiek s :boosted_campaign.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Zmeniť dátum na nasledujúci deň',
                 'previous'  => 'Zmeniť dátum na predošlý deň',
@@ -112,16 +113,16 @@ return [
             'previous_events'   => 'Predošlé',
             'upcoming_events'   => 'Nasledujúce',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Tento widget zobrazuje záhlavie kampane. Tento widget je vždy zobrazovaný na štandardnej nástenke.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Widget bol pridaný na nástenku.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Widget bol odstránený z nástenky.',
         ],
-        'fields'        => [
+        'fields'                    => [
             'class'             => 'Trieda CSS',
             'dashboard'         => 'Nástenka',
             'name'              => 'Vlastný názov widgetu',
@@ -131,21 +132,21 @@ return [
             'text'              => 'Text',
             'width'             => 'Šírka',
         ],
-        'helpers'       => [
+        'helpers'                   => [
             'class'     => 'Definuj vlastnú triedu CSS priradenú widgetu.',
             'filters'   => 'Klikni sem, ak chceš spoznať možnosti filtrovania.',
         ],
-        'orders'        => [
+        'orders'                    => [
             'name_asc'  => 'Názov vzostupne',
             'name_desc' => 'Názov zostupne',
             'recent'    => 'Posledne upravené',
         ],
-        'random'        => [
+        'random'                    => [
             'helpers'   => [
                 'name'  => 'Referencie na náhodný objekt môžeš vložiť pomocou {name}',
             ],
         ],
-        'recent'        => [
+        'recent'                    => [
             'advanced_filter'   => 'Rozšírený filter',
             'advanced_filters'  => [
                 'mentionless'   => 'Neobsahuje referencie (Objekty, ktoré nereferencujú iné)',
@@ -169,20 +170,20 @@ return [
             'tags'              => 'Filtrovať zoznam nedávno upravených objektov podľa vybraných kategórií.',
             'title'             => 'Nedávno upravené',
         ],
-        'tabs'          => [
+        'tabs'                      => [
             'advanced'  => 'Rozšírené',
             'setup'     => 'Nastavenie',
         ],
-        'unmentioned'   => [
+        'unmentioned'               => [
             'title' => 'Objekty bez referencií',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Widget bol upravený.',
         ],
-        'welcome'       => [
+        'welcome'                   => [
             'helper'    => 'Tento widget zobrazuje uvítaciu správu na nástenke, ktorá obsahuje nápomocné linky pre nových užívateľov/ky Kanky.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Automatická',
             '12'=> 'Plná (100%)',
             '3' => 'Mini (25%)',

@@ -40,6 +40,11 @@ return [
             'quick-access'  => 'Accès rapide',
         ],
         'tooltip'           => 'Créer une nouvelle entité sans quitter la page actuelle',
+        'tooltips'          => [
+            'create'        => 'Créer une entité et poursuivre avec la sélection d\'entité',
+            'create_more'   => 'Créer une entité et poursuivre avec la création d\'une autre entité du même type',
+            'edit'          => 'Créer une entité et poursuivre avec la modification de la nouvelle entité',
+        ],
     ],
     'creature'              => 'Créature',
     'creatures'             => 'Créatures',

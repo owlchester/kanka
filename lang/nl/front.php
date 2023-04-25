@@ -33,7 +33,6 @@ return [
     'contact'       => [
         'description'   => 'Hulp nodig, een suggestie of wil je gewoon je liefde voor Kanka delen? Ons team zal bij elke gelegenheid antwoorden!',
         'email'         => 'Stuur alle vragen naar',
-        'other'         => 'Of op een van de volgende social media platforms:',
         'title'         => 'We zijn er voor je',
     ],
     'cookie'        => [

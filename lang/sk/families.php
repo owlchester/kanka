@@ -39,6 +39,7 @@ return [
             'all_members'   => 'Všetci členovia/ky',
             'families'      => 'Rody',
             'members'       => 'Členovia/ky',
+            'tree'          => 'Rodokmeň',
         ],
     ],
 ];

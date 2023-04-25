@@ -49,11 +49,27 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @yield('styles')
-    @include('layouts._theme')
+    @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
+        @php $specificTheme = $themeOverride; @endphp
+        @if($themeOverride != 'base')
+            @vite('resources/sass/themes/' . request()->get('_theme') . '.scss')
+        @endif
+    @else
+        @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id))
+            @if ($campaign->theme_id !== 1)
+                @vite('resources/sass/themes/' . ($campaign->theme_id === 2 ? 'dark' : 'midnight') . '.scss')
+                @php $specificTheme = ($campaign->theme_id === 2 ? 'dark' : 'midnight') @endphp
+            @endif
+        @elseif (auth()->check() && !empty(auth()->user()->theme))
+            @vite('resources/sass/themes/' . auth()->user()->theme . '.scss')
+            @php $specificTheme = auth()->user()->theme @endphp
+        @endif
+    @endif
+    @includeWhen(!empty($campaign), 'layouts._theme')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->environment('prod')) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif >
+<body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->environment('prod')) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
 @include('layouts._tracking-fallback')
 
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute py-2 px-4 top-0" tabindex="1">

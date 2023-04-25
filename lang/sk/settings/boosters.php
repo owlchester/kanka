@@ -61,6 +61,7 @@ return [
     'superboost'=> [
         'actions'   => [
             'confirm'   => 'Superboostni to!',
+            'instead'   => 'Superboostni za :count!',
             'remove'    => 'Ukončiť superboostnutie :campaign',
         ],
         'confirm'   => 'Ako vzrušujúce! Ideš superboostnuť :campaign. Toto priradí tri (:cost) z dostupných boostov kampani.',

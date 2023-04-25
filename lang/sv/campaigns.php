@@ -151,7 +151,6 @@ TEXT
         ],
         'switch_back_success'   => 'Du är nu tillbaka i din ursprungliga användare.',
         'title'                 => 'Kampanj :name Medlemmar',
-        'your_role'             => 'Din roll: <i>:role</i>',
     ],
     'panels'                            => [
         'boosted'   => 'Boostad',

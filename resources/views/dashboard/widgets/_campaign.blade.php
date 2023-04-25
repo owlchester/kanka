@@ -10,7 +10,7 @@
                 <a href="{{ route('campaign') }}" title="{!! $campaign->name !!}" class="grow campaign-title text-2xl m-0 p-0">
                     {!! $campaign->name !!}
                 </a>
-                <div class="flex-0 action-bar">
+                <div class="flex-none action-bar">
                     @can ('follow', $campaign)
                         <button id="campaign-follow" class="btn btn-default btn-xl" data-id="{{ $campaign->id }}"
                                 style="display: none"

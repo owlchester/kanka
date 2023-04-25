@@ -46,7 +46,7 @@ $(document).ready(function() {
                     var $span = $("<span class='block grow text-left'>" + item.text + "</span>");
                     if (item.colour) {
                         $span = $("<span class='flex gap-2 items-center text-left'>" +
-                            "<span class='rounded-full flex-0 w-6 h-6 " + item.colour + "' /></span>" +
+                            "<span class='rounded-full flex-none w-6 h-6 " + item.colour + "' /></span>" +
                             "<span class='grow'>" + item.text + "</span>" +
                             "</span>");
                     }

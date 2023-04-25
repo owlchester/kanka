@@ -20,7 +20,7 @@
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" aria-label="Loading"></i>
             </div>
             <div class="search-recent bg-lookup p-2 min-h-full shadow-r flex flex-col items-stretch" v-if="show_recent">
-                <div class="flex-0" v-if="!show_results">
+                <div class="flex-none" v-if="!show_results">
                     <p class="italic text-xs text-center">
                         {{ texts.hint}}
                     </p>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                <div class="flex-0 text-xs text-center" v-if="!show_loading">
+                <div class="flex-none text-xs text-center" v-if="!show_loading">
                     <hr />
                     <p class="italic text-xs text-center" v-html="texts.keyboard" />
                 </div>

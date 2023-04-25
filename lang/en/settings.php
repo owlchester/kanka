@@ -57,7 +57,7 @@ return [
         ],
         'benefits'  => 'Kanka provides a few integrations to third party services. More third party integrations are planned for the future.',
         'discord'   => [
-            'confirm' => 'Are you sure you want to disconnect your account from Discord? This will remove any roles you have been synced with.',
+            'confirm'   => 'Are you sure you want to disconnect your account from Discord? This will remove any roles you have been synced with.',
             'errors'    => [
                 'add'   => 'An error occurred linking up your Discord account with Kanka. Please try again. If this keeps happening, please be aware that Discord has a limit on 100 joined servers when using their APIs.',
             ],
@@ -168,8 +168,8 @@ return [
             'title' => 'Change your preferred billing currency',
         ],
         'errors'                => [
-            'failed' => 'We are currently experiencing issues with our billing system. Please contact us at :email for assistance.',
             'callback'      => 'Our payment provider reported an error. Please try again or contact us if the problem persists.',
+            'failed'        => 'We are currently experiencing issues with our billing system. Please contact us at :email for assistance.',
             'subscribed'    => 'Couldn\'t process your subscription. Stripe provided the following hint.',
         ],
         'fields'                => [

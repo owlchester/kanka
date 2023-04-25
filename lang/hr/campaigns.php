@@ -166,7 +166,6 @@ TEXT
             'added'     => 'Uloga :role dodana korisniku :user.',
             'removed'   => 'Uloga :role uklonjena od korisnika :user.',
         ],
-        'your_role'             => 'Tvoja uloga <i>:role</i>',
     ],
     'open_campaign'                     => [],
     'panels'                            => [

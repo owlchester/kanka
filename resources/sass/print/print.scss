@@ -2,6 +2,10 @@
  * SASS file for all that is print related.
  * This file contains all the stuff to hide when printing
  */
+:root {
+    --body-text: #636b6f;
+    --header-text: inherit;
+}
 
 .entity-image.hidden-xs {
   display: none !important;
@@ -69,10 +73,15 @@
         float: left;
     }
 }
-
-body, #app.wrapper {
+body, #app.wrapper, .wrapper, .content-wrapper, .box {
     background: unset;
     background-image: unset;
+    background-color: unset;
+    box-shadow: unset;
+}
+
+.shadow-xs, .shadow-sm {
+    box-shadow: unset;
 }
 
 .content-wrapper {

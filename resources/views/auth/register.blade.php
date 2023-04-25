@@ -74,7 +74,7 @@
     'privacy' => link_to_route('front.privacy', __('front.menu.privacy'), null, ['class' => 'text-blue-500 hover:text-blue-800']),
     ]) !!}
             </div>
-            <div class="flex-0">
+            <div class="flex-none">
                 <div id="btn-wait" class="rounded border border-gray-200 px-6 py-2 bg-gray-200 disabled" style="display: none;">
                     <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
                 </div>

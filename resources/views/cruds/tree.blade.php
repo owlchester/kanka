@@ -12,7 +12,7 @@
 @section('entity-header')
     <div class="flex items-center mb-2">
         <h1 class="grow m-0">{{ $titleKey ?? __('entities.' . $langKey) }}</h1>
-        <div class="flex-0 flex gap-2">
+        <div class="flex-none flex gap-2">
             @include('layouts.datagrid._togglers', ['route' => 'tree'])
             @include('cruds.lists._actions')
             @includeWhen(auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
@@ -61,7 +61,7 @@
                     </p>
                 @endif
                 <div class="pull-right">
-                    {{ $models->appends('parent_id', request()->get('parent_id'))->links() }}
+                    {{ $models->appends('parent_id', request()->get('parent_id'))->appends('m', 'table')->links() }}
                 </div>
             </div>
             {!! Form::hidden('entity', $name) !!}

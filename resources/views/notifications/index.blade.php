@@ -9,7 +9,7 @@
         <div class="flex gap-2 mb-3">
             <h1 class="grow">{{ __('notifications.index.title') }}</h1>
 
-            <div class="flex-0 self-end">
+            <div class="flex-none self-end">
                 <x-buttons.confirm type="danger" target="delete-confirm-notifications" size="sm">
                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
                     <span>{{ __('notifications.clear.action') }}</span>

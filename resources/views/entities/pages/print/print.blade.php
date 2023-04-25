@@ -36,16 +36,7 @@
     @includeIf('entities.pages.profile._' . $entity->type())
     @includeIf($name . '._print')
     @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
-    @includeWhen($entity->inventories->count() > 0, 'entities.pages.inventory._inventory', [
-    'inventory' =>
-            $entity->inventories()
-            ->with(['entity', 'item', 'item.entity'])
-            ->has('entity')
-            ->get()
-            ->sortBy(function($model, $key) {
-                return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
-            })
-])
+    @includeWhen($entity->inventories->count() > 0, 'entities.pages.print._inventory')
     @includeWhen($entity->relationships->count() > 0, 'entities.pages.print._relations')
     @includeWhen($entity->attributes->count() > 0 && !$entity->isAttributeTemplate(), 'entities.pages.print._attributes')
 

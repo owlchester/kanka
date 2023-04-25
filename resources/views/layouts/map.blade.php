@@ -40,8 +40,23 @@ $specificTheme = null;
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-
-    @include('layouts._theme')
+    @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
+        @php $specificTheme = $themeOverride; @endphp
+        @if($themeOverride != 'base')
+            @vite('resources/sass/themes/' . request()->get('_theme') . '.scss')
+        @endif
+    @else
+        @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id))
+            @if ($campaign->theme_id !== 1)
+                @vite('resources/sass/themes/' . ($campaign->theme_id === 2 ? 'dark' : 'midnight') . '.scss')
+                @php $specificTheme = ($campaign->theme_id === 2 ? 'dark' : 'midnight') @endphp
+            @endif
+        @elseif (auth()->check() && !empty(auth()->user()->theme))
+            @vite('resources/sass/themes/' . auth()->user()->theme . '.scss')
+            @php $specificTheme = auth()->user()->theme @endphp
+        @endif
+    @endif
+    @includeWhen(!empty($campaign), 'layouts._theme')
 @yield('styles')
 </head>
 <body id="map-body" class="map-page sidebar-collapse @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>

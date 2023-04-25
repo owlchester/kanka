@@ -41,7 +41,6 @@ return [
     'contact'               => [
         'description'   => 'T\'as besoin d\'aide, une amélioration à suggérer, ou envie de nous dire que t\'adores Kanka? Notre équipe répond à tous les emails.',
         'email'         => 'Envoie toutes tes demandes à notre email:',
-        'other'         => 'Ou contacte-nous à travers les réseaux sociaux.',
         'title'         => 'Nous sommes là!',
     ],
     'cookie'                => [

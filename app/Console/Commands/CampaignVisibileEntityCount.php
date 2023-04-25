@@ -54,8 +54,7 @@ class CampaignVisibileEntityCount extends Command
                 //$this->info('Campaign ' . $campaign->id . ' has ' . $count . ' public entities.');
 
                 $campaign->visible_entity_count = $count;
-                $campaign->withObservers = false;
-                $campaign->save();
+                $campaign->saveQuietly();
             }
         });
         $log = "Updated {$this->count} public campaigns.";

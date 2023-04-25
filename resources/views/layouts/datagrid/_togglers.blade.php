@@ -30,29 +30,15 @@
 @endif
 
 @if (empty($forceMode))
-<div class="dropdown">
-    <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false">
-        @if (!isset($mode) || $mode === 'grid')
-            <i class="fa-solid fa-grid" aria-hidden="true" data-tree="escape"></i>
-            <span class="sr-only">Grid</span>
-        @else
-            <i class="fa-solid fa-list-ul" aria-hidden="true" data-tree="escape"></i>
+    @if (!isset($mode) || $mode === 'grid')
+        <a class="btn btn-default" href="{{ route($name . '.' . $route, ['m' => 'table']) }}" title="{{ __('datagrids.modes.table') }}">
+            <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
             <span class="sr-only">Table</span>
-        @endif
-    </a>
-    <ul class="dropdown-menu min-w-0" role="menu">
-        <li class="dropdown-item">
-            <a href="{{ route($name . '.' . $route, ['m' => 'grid']) }}" title="{{ __('datagrids.modes.grid') }}">
-                <i class="fa-solid fa-grid !mr-0" aria-hidden="true"></i>
-                <span class="sr-only">Grid</span>
-            </a>
-        </li>
-        <li class="dropdown-item">
-            <a href="{{ route($name . '.' . $route, ['m' => 'table']) }}" title="{{ __('datagrids.modes.table') }}">
-                <i class="fa-solid fa-list-ul !mr-0" aria-hidden="true"></i>
-                <span class="sr-only">Table</span>
-            </a>
-        </li>
-    </ul>
-</div>
+        </a>
+    @else
+        <a class="btn btn-default" href="{{ route($name . '.' . $route, ['m' => 'grid']) }}" title="{{ __('datagrids.modes.grid') }}">
+            <i class="fa-solid fa-grid !mr-0" aria-hidden="true"></i>
+            <span class="sr-only">Grid</span>
+        </a>
+    @endif
 @endif

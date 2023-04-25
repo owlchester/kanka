@@ -111,12 +111,12 @@ return [
     ],
     'edit'                      => 'Edit',
     'errors'                    => [
-        'boosted'                       => 'This feature is only available to premium campaigns.',
-        'boosted_campaigns'             => 'This feature is only available to :boosted.',
         //'cannot_move_node_into_itself'  => 'The selected parent is invalid. This could be due to it having this entity as the parent.',
+        'boosted'                       => 'This feature is only available to boosted campaigns.',
+        'boosted_campaigns'             => 'This feature is only available for :boosted.',
+        'invalid_node'                  => 'The selected parent is invalid. This can usually be fixed by giving the selected parent a parent of its own, then removing it.',
         'node_must_not_be_a_descendant' => 'The selected parent is invalid. It would be a descendant of itself.',
         'unavailable_feature'           => 'Unavailable feature',
-        'invalid_node'                  => 'The selected parent is invalid. This can usually be fixed by giving the selected parent a parent of its own, then removing it.',
     ],
     'export'                    => 'Export',
     'fields'                    => [

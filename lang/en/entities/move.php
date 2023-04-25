@@ -16,8 +16,8 @@ return [
         'copy'          => 'Create a copy',
         'select_one'    => 'Select a campaign',
     ],
-    'helpers' => [
-        'copy' => 'Create a copy of the entity in the target campaign.',
+    'helpers'       => [
+        'copy'  => 'Create a copy of the entity in the target campaign.',
     ],
     'panel'         => [
         'description'           => 'Move this entity to another campaign, or create a copy of it in a target campaign.',

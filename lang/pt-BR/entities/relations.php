@@ -74,9 +74,10 @@ return [
         'related'   => 'Relacionados',
     ],
     'placeholders'      => [
-        'attitude'  => '-100 a 100, 100 sendo muito positiva',
-        'relation'  => 'Rival, Melhor Amigo, Irmão',
-        'target'    => 'Escolha uma entidade',
+        'attitude'          => '-100 a 100, 100 sendo muito positiva',
+        'relation'          => 'Rival, Melhor Amigo, Irmão',
+        'target'            => 'Escolha uma entidade',
+        'target_relation'   => 'Deixe em branco para usar a descrição',
     ],
     'show'              => [
         'title' => 'Relações de :name',

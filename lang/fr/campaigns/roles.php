@@ -19,4 +19,7 @@ return [
         'disabled'  => 'Les membre du rôle :role ne peuvent plus :action les :entities.',
         'enabled'   => 'Les membre du rôle :role peuvent maintenant :action les :entities.',
     ],
+    'warnings'  => [
+        'adding-to-admin'   => 'Les membres du rôle :name ont accès à tous les éléments de la campagne, et ne peuvent pas être retiré par d\'autres membres du rôle. Après :amount minutes, seules le/la membre peut se retirer du rôle.',
+    ],
 ];

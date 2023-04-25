@@ -203,7 +203,6 @@ TEXT
             'added'     => 'Rol :role engadido a :user.',
             'removed'   => 'Rol :role eliminado de :user.',
         ],
-        'your_role'             => 'O teu rol: <i>:role</i>',
     ],
     'open_campaign'                     => [],
     'options'                           => [],

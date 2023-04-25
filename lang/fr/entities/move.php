@@ -16,6 +16,9 @@ return [
         'copy'          => 'Faire une copie',
         'select_one'    => 'Sélectionner une campagne',
     ],
+    'helpers'       => [
+        'copy'  => 'Créer une copie de cette entité dans la campagne cible.',
+    ],
     'panel'         => [
         'description'           => 'Sélectionner une campagne vers laquelle cette entité sera déplacée ou copiée.',
         'description_bulk_copy' => 'Sélectionner une campagne vers laquelle cette entité sera copiée.',
