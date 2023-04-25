@@ -61,7 +61,7 @@
                     </p>
                 @endif
                 <div class="pull-right">
-                    {{ $models->appends('parent_id', request()->get('parent_id'))->links() }}
+                    {{ $models->appends('parent_id', request()->get('parent_id'))->appends('m', 'table')->links() }}
                 </div>
             </div>
             {!! Form::hidden('entity', $name) !!}
