@@ -49,7 +49,23 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     @yield('styles')
-    @include('layouts._theme')
+    @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
+        @php $specificTheme = $themeOverride; @endphp
+        @if($themeOverride != 'base')
+            @vite('resources/sass/themes/' . request()->get('_theme') . '.scss')
+        @endif
+    @else
+        @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme_id))
+            @if ($campaign->theme_id !== 1)
+                @vite('resources/sass/themes/' . ($campaign->theme_id === 2 ? 'dark' : 'midnight') . '.scss')
+                @php $specificTheme = ($campaign->theme_id === 2 ? 'dark' : 'midnight') @endphp
+            @endif
+        @elseif (auth()->check() && !empty(auth()->user()->theme))
+            @vite('resources/sass/themes/' . auth()->user()->theme . '.scss')
+            @php $specificTheme = auth()->user()->theme @endphp
+        @endif
+    @endif
+    @includeWhen(!empty($campaign), 'layouts._theme')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
