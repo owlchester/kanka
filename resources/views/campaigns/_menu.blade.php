@@ -6,14 +6,14 @@
 $boost = isset($boost) ? $boost : $campaign->boosts->first();
 $buttons = [];
 if (auth()->check()) {
-    if (!$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost)) {
+    if (auth()->user()->hasBoosterNomenclature() && !$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost)) {
         $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn btn-block bg-boost text-white">
             <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
     }
     if (!$campaign->boosted()) {
         if (auth()->check() && auth()->user()->hasBoosterNomenclature()) {
         $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-boost text-white mb-5">
-            <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('callouts.booster.actions.boost') . '</a>';
+            <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) . '</a>';
         } else {
         $buttons[] = '<a href="' . route('settings.premium', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-boost text-white mb-5">
             <i class="fa-solid fa-rocket" aria-hidden="true"></i> ' . __('settings/premium.actions.unlock') . '</a>';

@@ -79,4 +79,22 @@ class PremiumController extends Controller
                 ->with('error', __($ex->getMessage()));
         }
     }
+
+    /**
+     * For local debugging
+     * @return \Illuminate\Http\RedirectResponse|void
+     */
+    public function back()
+    {
+        if (!app()->environment('local')) {
+            return redirect()->route('settings.premium');
+        }
+
+        $this->service
+            ->user(auth()->user())
+            ->back();
+
+        return redirect()->route('settings.boost')
+            ->with('success', __('Migrated back'));
+    }
 }

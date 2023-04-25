@@ -26,9 +26,11 @@
             </p>
             <p>This action cannot be reverted.</p>
 
-            <a href="{{ route('settings.switch-to-premium') }}" class="btn btn-block btn-primary">
+            <button class="btn btn-block btn-primary"
+                    data-toggle="dialog"
+                    data-target="switch-dialog">
                 Switch to premium
-            </a>
+            </button>
         </div>
     @endif
 
@@ -143,6 +145,27 @@
             </div>
         </div>
     @endif
+
+    <x-dialog id="switch-dialog" title="Switch to premium">
+        <div class="">
+            <p>
+               Are you sure you want to switch to premium campaigns? This will unboost your campaigns and give you a number of premium campaigns based on your subscription.
+            </p>
+            <p>This action cannot be reverted.</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 w-full">
+            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                {{ __('crud.cancel') }}
+            </x-buttons.confirm>
+            <form method="POST" action="{{ route('settings.switch-to-premium') }}" class="w-full">
+            <x-buttons.confirm type="primary" full="true">
+                Yes, switch to premium
+            </x-buttons.confirm>
+                @csrf
+            </form>
+        </div>
+    </x-dialog>
 @endsection
 
 @section('scripts')

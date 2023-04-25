@@ -17,6 +17,12 @@
         {{ __('settings.menu.premium') }}
     </h1>
 
+    @if (app()->environment('local'))
+        <a href="{{ route('settings.switch-back') }}" class="btn btn-primary mb-5">
+            Switch to legacy
+        </a>
+    @endif
+
     <x-box>
         <h3 class="my-1">{{ __('settings/boosters.pitch.title') }}</h3>
         <p class="my-5">{{ __('settings/premium.pitch.description') }}</p>

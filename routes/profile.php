@@ -15,8 +15,10 @@ Route::get('/boosters/boost/{campaign}', 'Settings\BoostController@boost')
 Route::get('/boosters/unboost/{campaign}', 'Settings\BoostController@unboost')
     ->name('settings.campaign-unboost');
 
-Route::get('/switch-to-premium', 'Settings\PremiumController@migrate')
+Route::post('/switch-to-premium', [\App\Http\Controllers\Settings\PremiumController::class, 'migrate'])
     ->name('settings.switch-to-premium');
+Route::get('/switch-back', [\App\Http\Controllers\Settings\PremiumController::class, 'back'])
+    ->name('settings.switch-back');
 Route::get('/premium', 'Settings\PremiumController@index')
     ->name('settings.premium');
 Route::get('/boosters/premium/{campaign}', 'Settings\PremiumController@premium')
