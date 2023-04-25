@@ -47,6 +47,7 @@
                             <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                             <span class="hidden-xs hidden-sm">{{ __('crud.tabs.boost') }}</span>
                         @else
+                            <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                             <span>{{ __('crud.tabs.premium') }}</span>
                         @endif
                     </a>
