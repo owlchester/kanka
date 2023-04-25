@@ -25,6 +25,7 @@ class UserLog extends Model
     public const TYPE_LOGOUT = 2;
     public const TYPE_AUTOLOGIN = 3;
     public const TYPE_UPDATE = 4;
+    public const TYPE_BANNED_LOGIN = 5;
     public const TYPE_SUB_NEW = 10;
     public const TYPE_SUB_CANCEL = 11;
     public const TYPE_SUB_UPGRADE = 12;
