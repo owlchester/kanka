@@ -51,14 +51,15 @@ class Tags extends Component
     public function render(): View|Closure|string
     {
         $this->prepareOptions();
-        return view('components.forms.tags');
+        return view('components.forms.tags')
+            ->with('tags', $this->tags);
     }
 
     protected function prepareOptions(): void
     {
         $this->tags = [];
-        if (!empty($this->model) && !empty($model->entity)) {
-            foreach ($this->model->entity->tags()->with('entity')->has('entity')->get() as $tag) {
+        if (!empty($this->model) && !empty($this->model->entity)) {
+            foreach ($this->model->entity->tags()->with('entity')->get() as $tag) {
                 if ($tag->entity) {
                     $this->tags[$tag->id] = $tag;
                 }

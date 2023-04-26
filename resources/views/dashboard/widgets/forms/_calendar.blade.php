@@ -16,17 +16,7 @@
 
     <div class="tab-content">
         <div id="setup" class="tab-pane fade in active">
-
-            <div class="form-group required">
-                {!! Form::select2(
-                    'entity_id',
-                    !empty($model) && $model->entity ? $model->entity : null,
-                    App\Models\Entity::class,
-                    false,
-                    'entities.calendar',
-                    'search.calendars'
-                ) !!}
-            </div>
+            @include('cruds.fields.calendar', ['required' => true, 'allowClear' => false, 'allowNew' => false])
 
             <div class="row">
                 <div class="col-sm-6">

@@ -91,7 +91,9 @@ class Foreign extends Component
             if (empty($this->label)) {
                 $this->label = __('crud.fields.' . $this->key);
             }
-            $this->placeholder = __('crud.placeholders.' . $this->key);
+            if (empty($this->placeholder)) {
+                $this->placeholder = __('crud.placeholders.' . $this->key);
+            }
         } else {
             if (empty($this->label)) {
                 $this->label = __('crud.users.unknown');

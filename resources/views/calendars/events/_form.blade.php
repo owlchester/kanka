@@ -20,19 +20,10 @@
     @if (empty($entityEvent))
         <div class="row">
             <div class="col-md-8 calendar-existing-event-field">
-                <div class="form-group required">
-                    {!! Form::select2(
-                        'entity_id',
-                        null,
-                        App\Models\Entity::class,
-                        false,
-                        'crud.fields.entity',
-                        'search.entities-with-reminders',
-                        null,
-                        null,
-                        request()->ajax() ? '#entity-modal' : null
-                    ) !!}
-                </div>
+                @include('cruds.fields.entity', [
+                    'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+                    'required' => true
+                ])
             </div>
             <div class="col-md-8 calendar-new-event-field">
                 <div class="form-group">

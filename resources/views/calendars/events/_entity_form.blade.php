@@ -5,20 +5,18 @@ $onlyOneCalendar = count($calendars) == 1;
 {{ csrf_field() }}
 
 <div id="entity-calendar-modal-form">
-    <div class="form-group">
-        <div class="form-group entity-calendar-selector">
-            {!! Form::select2(
-                'calendar_id',
-                ($onlyOneCalendar ? $calendars->first() : null),
-                App\Models\Calendar::class,
-                false,
-                null,
-                null,
-                null,
-                null,
-                request()->ajax() ? '#entity-modal' : null
-            ) !!}
-        </div>
+    <h1>waaa</h1>
+    <div class="form-group entity-calendar-selector">
+        <x-forms.foreign
+            name="calendar_id"
+            key="calendar"
+            :allowNew="false"
+            :allowClear="true"
+            :parent="$isParent ?? false"
+            :route="route('calendars.find', isset($model) ? ['exclude' => $model->id] : null)"
+            :selected="$onlyOneCalendar ? $calendars->first() : null"
+            :dropdownParent="request()->ajax() ? '#entity-modal' : null">
+        </x-forms.foreign>
     </div>
 </div>
 

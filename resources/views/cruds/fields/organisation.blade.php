@@ -1,4 +1,6 @@
-@if (!$campaignService->enabled('organisations'))
+@if (
+    (isset($campaign) && $campaign instanceof \App\Models\Campaign && !$campaign->enabled('organisations')) ||
+    (isset($campaignService) && !$campaignService->enabled('organisations')))
     <?php return ?>
 @endif
 
@@ -14,6 +16,7 @@
     name="organisation_id"
     key="organisation"
     entityType="organisations"
+    :required="$required ?? false"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
