@@ -3,21 +3,9 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <div class="form-group">
-            {!! Form::select2(
-                'organisation_id',
-                (isset($model) && $model->organisation ? $model->organisation : FormCopy::field('organisation')->select()),
-                App\Models\Organisation::class,
-                false,
-                'organisations.fields.organisation',
-                null,
-                null,
-                null,
-                request()->ajax() ? '#entity-modal' : null,
-            ) !!}
-        </div>
+        @include('cruds.fields.organisation', ['isParent' => true])
     </div>
     <div class="col-sm-6">
-        @include('cruds.fields.location', ['quickCreator' => true])
+        @include('cruds.fields.location')
     </div>
 </div>

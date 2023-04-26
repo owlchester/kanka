@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        @include('cruds.fields.note', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
+        @include('cruds.fields.note', ['isParent' => true])
     </div>
 </div>
 

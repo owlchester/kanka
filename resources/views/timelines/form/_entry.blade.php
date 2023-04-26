@@ -9,7 +9,7 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        @include('cruds.fields.timeline', ['parent' => true, 'from' => isset($model) ? $model : null])
+        @include('cruds.fields.timeline', ['isParent' => true])
     </div>
 </div>
 

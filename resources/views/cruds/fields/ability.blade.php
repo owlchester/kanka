@@ -6,37 +6,22 @@
 $preset = null;
 if (isset($model) && $model->ability) {
     $preset = $model->ability;
-} elseif (isset($parent) && $parent) {
-    $preset = FormCopy::field('ability')->select(true, \App\Models\Ability::class);
-} else {
-    $preset = FormCopy::field('ability')->select();
-}
-
-$data = [
-    'preset' => $preset,
-    'class' => App\Models\Ability::class,
-];
-if (isset($enableNew)) {
-    $data['allowNew'] = $enableNew;
-}
-if (isset($parent) && $parent) {
-    $data['labelKey'] = 'abilities.fields.ability';
-}
-if (isset($dropdownParent)) {
-    $data['dropdownParent'] = $dropdownParent;
-}
-if (isset($from)) {
-    $data['from'] = $from;
-}
-if (isset($quickCreator)) {
-    $data['quickCreator'] = $quickCreator;
+} elseif (!isset($bulk)) {
+    $preset = FormCopy::field('ability')->select($isParent ?? false, \App\Models\Ability::class);
 }
 @endphp
 
-<div class="form-group">
-    {!! Form::foreignSelect(
-        'ability_id',
-        $data
-    ) !!}
-</div>
+<x-forms.foreign
+    name="ability_id"
+    key="ability"
+    entityType="abilities"
+    :allowNew="$allowNew ?? true"
+    :allowClear="$allowClear ?? true"
+    :parent="$isParent ?? false"
+    :route="route('abilities.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :class="\App\Models\Ability::class"
+    :selected="$preset"
+    :helper="$helper ?? null"
+    :dropdownParent="$dropdownParent ?? null">
+</x-forms.foreign>
 

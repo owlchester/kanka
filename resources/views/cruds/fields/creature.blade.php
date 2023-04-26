@@ -6,38 +6,21 @@
 $preset = null;
 if (isset($model) && $model->creature) {
     $preset = $model->creature;
-} elseif (isset($parent) && $parent) {
-    $preset = FormCopy::field('creature')->select(true, \App\Models\Creature::class);
-} else {
-    $preset = FormCopy::field('creature')->select();
-}
-
-$data = [
-    'preset' => $preset,
-    'class' => App\Models\Creature::class,
-];
-if (isset($enableNew)) {
-    $data['allowNew'] = $enableNew;
-}
-if (isset($parent) && $parent) {
-    $data['labelKey'] = 'creatures.fields.creature';
-}
-if (isset($dropdownParent)) {
-    $data['dropdownParent'] = $dropdownParent;
-} elseif (request()->ajax()) {
-    $data['dropdownParent'] = '#entity-modal';
-}
-if (isset($from)) {
-    $data['from'] = $from;
-}
-if (isset($quickCreator)) {
-    $data['quickCreator'] = true;
+} elseif (!isset($bulk)) {
+    $preset = FormCopy::field('creature')->select($isParent ?? false, \App\Models\Creature::class);
 }
 @endphp
 
-<div class="form-group">
-    {!! Form::foreignSelect(
-        'creature_id',
-        $data
-    ) !!}
-</div>
+<x-forms.foreign
+    name="creature_id"
+    key="creature"
+    entityType="creatures"
+    :allowNew="$allowNew ?? true"
+    :allowClear="$allowClear ?? true"
+    :parent="$isParent ?? false"
+    :route="route('creatures.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :class="\App\Models\Creature::class"
+    :selected="$preset"
+    :helper="$helper ?? null"
+    :dropdownParent="$dropdownParent ?? null">
+</x-forms.foreign>

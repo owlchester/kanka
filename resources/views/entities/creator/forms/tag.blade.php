@@ -3,7 +3,7 @@
         @include('cruds.fields.type', ['base' => \App\Models\Tag::class, 'trans' => 'tags'])
     </div>
     <div class="col-sm-6">
-        @include('cruds.fields.tag', ['parent' => true, 'quickCreator' => true])
+        @include('cruds.fields.tag', ['isParent' => true])
     </div>
 </div>
 <div class="row">

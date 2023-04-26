@@ -1,4 +1,4 @@
-<div class="field-foreign">
+<div class="field-foreign form-group bg-orange-200 shadow-xs @if ($required) required @endif">
     @if (!empty($label))
         <label>{{ __($label) }}
             @if(!empty($helper))
@@ -11,7 +11,7 @@
         <div class="input-group input-group-sm w-full">
     @endif
 
-    <select name="$name" id="{{ $id }}"
+    <select name="{{ $name }}" id="{{ $id }}"
             class="form-control select2 w-full"
             style="width: 100%"
             data-url="{{ $route }}"
@@ -22,7 +22,7 @@
             @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
     >
         @foreach ($options as $key => $value)
-            <option value="{{ $key }}">{{ $value }}</option>
+            <option value="{{ $key }}">{!! $value !!}</option>
         @endforeach
     </select>
 

@@ -8,7 +8,7 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        @include('cruds.fields.tag', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
+        @include('cruds.fields.tag', ['isParent' => true])
     </div>
     <div class="col-md-6">
         @include('cruds.fields.colour')

@@ -1,40 +1,24 @@
 @if (!$campaignService->enabled('timelines'))
     <?php return ?>
 @endif
-
 @php
-$preset = null;
-if (isset($model) && $model->timeline) {
-    $preset = $model->timeline;
-} elseif (isset($parent) && $parent) {
-    $preset = FormCopy::field('timeline')->select(true, \App\Models\Timeline::class);
-} else {
-    $preset = FormCopy::field('timeline')->select();
-}
-
-$data = [
-    'preset' => $preset,
-    'class' => App\Models\Timeline::class,
-];
-if (isset($enableNew)) {
-    $data['allowNew'] = $enableNew;
-}
-if (isset($parent) && $parent) {
-    $data['labelKey'] = 'timelines.fields.timeline';
-}
-if (isset($dropdownParent)) {
-    $data['dropdownParent'] = $dropdownParent;
-}
-if (isset($from)) {
-    $data['from'] = $from;
-}
-if (isset($quickCreator)) {
-    $data['quickCreator'] = true;
-}
+    $preset = null;
+    if (isset($model) && $model->timeline) {
+        $preset = $model->timeline;
+    } elseif (!isset($bulk)) {
+        $preset = FormCopy::field('timeline')->select($isParent ?? false, \App\Models\Timeline::class);
+    }
 @endphp
-<div class="form-group">
-    {!! Form::foreignSelect(
-        'timeline_id',
-        $data
-    ) !!}
-</div>
+<x-forms.foreign
+    name="timeline_id"
+    key="timeline"
+    entityType="timelines"
+    :allowNew="$allowNew ?? true"
+    :allowClear="$allowClear ?? true"
+    :parent="$isParent ?? false"
+    :route="route('timelines.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :class="\App\Models\Timeline::class"
+    :selected="$preset"
+    :helper="$helper ?? null"
+    :dropdownParent="$dropdownParent ?? null">
+</x-forms.foreign>

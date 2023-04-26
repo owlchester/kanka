@@ -10,22 +10,10 @@
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group">
-            <x-forms.foreign
-                name="family_id"
-                :preset="isset($model) && $model->family ? $model->family : FormCopy::field('family')->select(true, \App\Models\Family::class)"
-                allowNew="1"
-                entityType="families"
-                allowClear="1"
-                label="crud.fields.parent"
-                :route="route('families.find')"
-                :model="$model ?? null"
-                :class="\App\Models\Family::class">
-            </x-forms.foreign>
-        </div>
+        @include('cruds.fields.family', ['isParent' => true])
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.location', ['quickCreator' => true])
+        @include('cruds.fields.location')
     </div>
 </div>
 

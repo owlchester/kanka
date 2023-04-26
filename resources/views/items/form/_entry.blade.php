@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-        @include('cruds.fields.item', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
+        @include('cruds.fields.item', ['isParent' => true])
         </div>
     </div>
 </div>
@@ -26,10 +26,10 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        @include('cruds.fields.location', ['quickCreator' => true])
+        @include('cruds.fields.location')
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.character', ['quickCreator' => true])
+        @include('cruds.fields.character', ['label' => __('items.fields.character')])
     </div>
 </div>
 

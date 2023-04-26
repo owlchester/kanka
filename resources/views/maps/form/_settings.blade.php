@@ -227,17 +227,17 @@ if (isset($model) && $model->isChunked()) {
                         ?>
 
                         {!! Form::foreignSelect(
-                        'center_marker_id',
-                        [
-                        'preset' => $preset,
-                        'class' => App\Models\MapMarker::class,
-                        'labelKey' => 'maps.fields.center_marker',
-                        'placeholderKey' => 'maps.placeholders.center_marker',
-                        'searchRouteName' => 'markers.find',
-                        'searchParams' => [
-                        'include' => $model->id
-                        ]
-                        ]
+                            'center_marker_id',
+                            [
+                                'preset' => $preset,
+                                'class' => App\Models\MapMarker::class,
+                                'labelKey' => 'maps.fields.center_marker',
+                                'placeholderKey' => 'maps.placeholders.center_marker',
+                                'searchRouteName' => 'markers.find',
+                                'searchParams' => [
+                                    'include' => $model->id
+                                ]
+                            ]
                         ) !!}
                         @endif
                     </div>

@@ -13,7 +13,7 @@
         </div>
     </div>
 @else
-    @include('cruds.fields.entity', ['entity' => $entityEvent->entity])
+    @include('cruds.fields.entity_link', ['entity' => $entityEvent->entity])
 @endif
 
 <div id="calendar-event-subform" style="{{ empty($entityEvent) ? 'display:none' : null }}">

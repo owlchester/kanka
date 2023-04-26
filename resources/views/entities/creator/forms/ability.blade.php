@@ -3,19 +3,7 @@
         @include('cruds.fields.type', ['base' => \App\Models\Ability::class, 'trans' => 'abilities'])
     </div>
     <div class="col-sm-6">
-        <div class="form-group">
-            {!! Form::select2(
-                'ability_id',
-                (isset($model) && $model->ability ? $model->ability : FormCopy::field('ability')->select(true, \App\Models\Ability::class)),
-                App\Models\Ability::class,
-                false,
-                'abilities.fields.ability',
-                null,
-                null,
-                null,
-                request()->ajax() ? '#entity-modal' : null,
-            ) !!}
-        </div>
+        @include('cruds.fields.ability', ['isParent' => true])
     </div>
 </div>
 <div class="row">
