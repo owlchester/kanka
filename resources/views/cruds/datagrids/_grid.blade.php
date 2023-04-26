@@ -51,7 +51,7 @@
     </div>
 @else
     <div class="entity block overflow-hidden rounded shadow-sm hover:shadow-md w-[47%] xs:w-[25%] sm:w-48 aspect-square flex flex-col bg-box @if (isset($isParent)) shadow-lg stacking-parent font-bold @endif" title="{{ $model->name }}" @foreach ($dataAttributes as $att) data-{{ $att }}="true" @endforeach data-entity="{{ $model->entity->id }}" data-entity-type="{{ $model->getEntityType() }}">
-        <a href="{{ $model->getLink() }}" class="block avatar grow relative cover-background" style="background-image: url('{{ $model->entity->avatarSize(190, 144)->avatarV2($model) }}')">
+        <a href="{{ $model->getLink() }}" class="block avatar grow relative cover-background" style="background-image: url('{{ $model->entity->avatarSize(192, 144)->avatarV2($model) }}')">
             @if ($model->is_private)
                 <div class="bubble-private absolute left-1.5 top-1.5 text-base shadow-xs flex justify-center align-items-center items-center inline-block aspect-square rounded-full w-6 h-6 text-xs bg-box text-base opacity-80">
                     <i class="fa-regular fa-lock" aria-hidden="true" title="{{ __('crud.is_private') }}"></i>
