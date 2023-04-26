@@ -48,7 +48,7 @@
                 <div class="grow">
                     <div class="form-group required">
                         @if ($model->forCharacters())
-                            @include('cruds.fields.character', ['quickCreator' => true])
+                            @include('cruds.fields.character')
                         @else
                             {!! Form::select(
                                 'user_id',

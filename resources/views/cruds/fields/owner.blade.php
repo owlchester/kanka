@@ -1,18 +1,10 @@
 @php
 $required = !isset($bulk);
+$preset = $owner ?? null;
 @endphp
 
-<div class="form-group @if($required) required @endif">
-    {!! Form::foreignSelect(
-        'owner_id',
-        [
-            'preset' => !empty($owner) ? $owner : null,
-            'class' => App\Models\Entity::class,
-            'enableNew' => false,
-            'labelKey' => 'entities/relations.fields.owner',
-            'searchRouteName' => 'search.entities-with-relations',
-            'placeholderKey' => 'crud.placeholders.entity',
-            'allowClear' => isset($bulk) ? true : false,
-        ]
-    ) !!}
-</div>
+@include('cruds.fields.entity', [
+    'name' => 'owner_id',
+    'label' => __('entities/relations.fields.owner'),
+    'allowClear' => false
+])

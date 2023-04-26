@@ -3,36 +3,22 @@
 @endif
 
 @php
-$preset = null;
-if (isset($model) && $model->family) {
-    $preset = $model->family;
-} else {
-    $preset = FormCopy::field('family')->select();
-}
-
-$data = [
-    'preset' => $preset,
-    'class' => App\Models\Family::class,
-];
-if (isset($enableNew)) {
-    $data['allowNew'] = $enableNew;
-}
-if (isset($parent) && $parent) {
-    $data['labelKey'] = 'families.fields.family';
-}
-if (isset($dropdownParent)) {
-    $data['dropdownParent'] = $dropdownParent;
-}
-if (isset($from)) {
-    $data['from'] = $from;
-}
-if (isset($quickCreator)) {
-    $data['quickCreator'] = $quickCreator;
-}
+    $preset = null;
+    if (isset($model) && $model->family) {
+        $preset = $model->family;
+    } elseif (!isset($bulk)) {
+        $preset = FormCopy::field('family')->select($isParent ?? false, \App\Models\Family::class);
+    }
 @endphp
-<div class="form-group">
-    {!! Form::foreignSelect(
-        'family_id',
-        $data
-    ) !!}
-</div>
+<x-forms.foreign
+    name="family_id"
+    key="family"
+    entityType="families"
+    :allowNew="$allowNew ?? true"
+    :allowClear="$allowClear ?? true"
+    :parent="$isParent ?? false"
+    :route="route('families.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :class="\App\Models\Family::class"
+    :selected="$preset"
+    :dropdownParent="$dropdownParent ?? null">
+</x-forms.foreign>

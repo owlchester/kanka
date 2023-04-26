@@ -3,38 +3,23 @@
 @endif
 
 @php
-$preset = null;
-if (isset($model) && $model->location) {
-    $preset = $model->location;
-} else {
-    $preset = FormCopy::field('location')->select();
-}
-
-$data = [
-    'preset' => $preset,
-    'class' => App\Models\Location::class,
-];
-if (isset($enableNew)) {
-    $data['allowNew'] = $enableNew;
-}
-if (isset($parent) && $parent) {
-    $data['labelKey'] = 'locations.fields.location';
-}
-if (isset($dropdownParent)) {
-    $data['dropdownParent'] = $dropdownParent;
-} elseif (request()->ajax()) {
-    $data['dropdownParent'] = '#entity-modal';
-}
-if (isset($from)) {
-    $data['from'] = $from;
-}
-if (isset($quickCreator)) {
-    $data['quickCreator'] = $quickCreator;
-}
+    $preset = null;
+    if (isset($model) && $model->location) {
+        $preset = $model->location;
+    } elseif (!isset($bulk)) {
+        $preset = FormCopy::field('location')->select($isParent ?? false, \App\Models\Location::class);
+    }
 @endphp
-<div class="form-group">
-    {!! Form::foreignSelect(
-        'location_id',
-        $data
-    ) !!}
-</div>
+
+<x-forms.foreign
+    :name="isset($isParent) ? 'parent_location_id' : 'location_id'"
+    key="location"
+    entityType="locations"
+    :allowNew="$allowNew ?? true"
+    :allowClear="$allowClear ?? true"
+    :parent="$isParent ?? false"
+    :route="route('locations.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :class="\App\Models\Location::class"
+    :selected="$preset"
+    :dropdownParent="$dropdownParent ?? null">
+</x-forms.foreign>

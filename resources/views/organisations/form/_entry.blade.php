@@ -10,20 +10,11 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::foreignSelect(
-                'organisation_id',
-                [
-                    'preset' => (isset($model) && $model->organisation ? $model->organisation : FormCopy::field('organisation')->select(true, \App\Models\Organisation::class)),
-                    'class' => App\Models\Organisation::class,
-                    'quickCreator' => true,
-                    'labelKey' => 'organisations.fields.organisation',
-                    'from' => isset($model) ? $model : null,
-                ]
-            ) !!}
+            @include('cruds.fields.organisation', ['isParent' => true])
         </div>
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.location', ['quickCreator' => true])
+        @include('cruds.fields.location')
     </div>
 </div>
 

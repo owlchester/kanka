@@ -36,12 +36,14 @@ if (!empty($oldCalendarID)) {
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group entity-calendar-selector">
-                        {!! Form::select2(
-                            'calendar_id',
-                            (isset($model) && $model->calendarReminder() && $model->calendarReminder()->calendar ? $model->calendarReminder()->calendar : FormCopy::field('calendar')->select()),
-                            App\Models\Calendar::class,
-                            false
-                        ) !!}
+                        <x-forms.foreign
+                            name="calendar_id"
+                            key="calendar"
+                            :allowClear="true"
+                            :route="route('calendars.find')"
+                            :selected="isset($model) && $model->calendarReminder() && $model->calendarReminder()->calendar ? $model->calendarReminder()->calendar : FormCopy::field('calendar')->select()"
+                            :dropdownParent="$dropdownParent ?? null">
+                        </x-forms.foreign>
                     </div>
                 </div>
             </div>

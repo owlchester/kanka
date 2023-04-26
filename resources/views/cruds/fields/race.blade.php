@@ -6,38 +6,22 @@
 $preset = null;
 if (isset($model) && $model->race) {
     $preset = $model->race;
-} elseif (isset($parent) && $parent) {
-    $preset = FormCopy::field('race')->select(true, \App\Models\Race::class);
-} else {
-    $preset = FormCopy::field('race')->select();
-}
-
-$data = [
-    'preset' => $preset,
-    'class' => App\Models\Race::class,
-];
-if (isset($enableNew)) {
-    $data['allowNew'] = $enableNew;
-}
-if (isset($parent) && $parent) {
-    $data['labelKey'] = 'races.fields.race';
-}
-if (isset($dropdownParent)) {
-    $data['dropdownParent'] = $dropdownParent;
-} elseif (request()->ajax()) {
-    $data['dropdownParent'] = '#entity-modal';
-}
-if (isset($from)) {
-    $data['from'] = $from;
-}
-if (isset($quickCreator)) {
-    $data['quickCreator'] = true;
+} elseif (!isset($bulk)) {
+    $preset = FormCopy::field('race')->select($isParent ?? false, \App\Models\Race::class);
 }
 @endphp
 
-<div class="form-group">
-    {!! Form::foreignSelect(
-        'race_id',
-        $data
-    ) !!}
-</div>
+<x-forms.foreign
+    name="race_id"
+    key="race"
+    entityType="races"
+    :allowNew="$allowNew ?? true"
+    :allowClear="$allowClear ?? true"
+    :parent="$isParent ?? false"
+    :route="route('races.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :class="\App\Models\Race::class"
+    :selected="$preset"
+    :helper="$helper ?? null"
+    :dropdownParent="$dropdownParent ?? null">
+</x-forms.foreign>
+

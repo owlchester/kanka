@@ -14,13 +14,13 @@
                     {!! $fieldCount % 2 === 0 ? '</div><div class="row">' : null !!}
                         <div class="col-md-6">
                     @include('cruds.fields.' . $trimmed, [
-    'trans' => $name,
-    'enableNew' => true,
-    'base' => $model,
-    'bulk' => true,
-    'parent' => \Illuminate\Support\Str::plural($trimmed) == $name,
-    'dropdownParent' => '#bulk-edit'
-])
+                        'trans' => $name,
+                        'base' => $model,
+                        'bulk' => true,
+                        'parent' => \Illuminate\Support\Str::plural($trimmed) == $name,
+                        'allowNew' => false,
+                        'dropdownParent' => '#bulk-edit'
+                    ])
                     </div>
                     @php $fieldCount++; @endphp
                 @endforeach

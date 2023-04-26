@@ -31,6 +31,7 @@
         ],
         [
             'type' => 'character',
+            'label' => __('items.fields.character'),
             'visible' => $campaignService->enabled('characters'),
         ],
         [

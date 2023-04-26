@@ -1,18 +1,13 @@
 <?php /** @var \App\Models\Ability $model */?>
 {{ csrf_field() }}
-<div class="form-group required">
-    {!! Form::select2(
-        'entity_id',
-        null,
-        App\Models\Entity::class,
-        false,
-        'crud.fields.entity',
-        'search.ability-entities',
-        'entities/relations.placeholders.target',
-        $model,
-        request()->ajax() ? '#entity-modal' : null,
-    ) !!}
-</div>
+
+@include('cruds.fields.entity', [
+    'required' => true,
+    'route' => 'search.ability-entities',
+    'placeholder' => __('entities/relations.placeholders.target'),
+    'preset' => false,
+    'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+])
 
 @include('cruds.fields.visibility_id', ['model' => null])
 

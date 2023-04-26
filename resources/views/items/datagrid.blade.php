@@ -37,6 +37,7 @@
             'visible' => $campaignService->enabled('locations'),
         ],
         [
+            'label' => __('items.fields.character'),
             'type' => 'character',
             'visible' => $campaignService->enabled('characters'),
         ],

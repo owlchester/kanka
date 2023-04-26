@@ -18,17 +18,14 @@
                 {{ __('fields.gallery-image.description') }}
             </p>
 
-            <div class="form-group">
-                {!! Form::select2(
-                    'entity_image_uuid',
-                    $preset,
-                    App\Models\Image::class,
-                    false,
-                    false,
-                    'images.find',
-                    'fields.gallery.placeholder'
-                ) !!}
-            </div>
+            <x-forms.foreign
+                name="entity_image_uuid"
+                :allowClear="true"
+                :route="route('images.find')"
+                :label="__('crud.fields.image')"
+                :placeholder="__('fields.gallery.placeholder')"
+                :selected="$preset">
+            </x-forms.foreign>
 
         </div>
         <div class="col-sm-2">

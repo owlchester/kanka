@@ -9,7 +9,7 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        @include('cruds.fields.ability', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
+        @include('cruds.fields.ability', ['isParent' => true])
     </div>
     <div class="col-md-6">
         <div class="form-group">

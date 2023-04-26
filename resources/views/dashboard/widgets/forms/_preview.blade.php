@@ -15,17 +15,7 @@
 
     <div class="tab-content">
         <div id="setup" class="tab-pane fade in active">
-            <div class="form-group required">
-                {!! Form::select2(
-                    'entity_id',
-                    !empty($model) && $model->entity ? $model->entity : null,
-                    App\Models\Entity::class,
-                    false,
-                    'crud.fields.entity',
-                    'search.entities-with-relations'
-                ) !!}
-            </div>
-
+            @include('cruds.fields.entity', ['required' => true])
 
             {!! Form::hidden('config[full]', 0) !!}
             <div class="form-group">

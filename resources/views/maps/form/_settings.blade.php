@@ -225,20 +225,14 @@ if (isset($model) && $model->isChunked()) {
                                 $preset = $model->center_marker;
                             }
                         ?>
-
-                        {!! Form::foreignSelect(
-                        'center_marker_id',
-                        [
-                        'preset' => $preset,
-                        'class' => App\Models\MapMarker::class,
-                        'labelKey' => 'maps.fields.center_marker',
-                        'placeholderKey' => 'maps.placeholders.center_marker',
-                        'searchRouteName' => 'markers.find',
-                        'searchParams' => [
-                        'include' => $model->id
-                        ]
-                        ]
-                        ) !!}
+                        <x-forms.foreign
+                            name="center_marker_id"
+                            :label="__('maps.fields.center_marker')"
+                            :placeholder="__('maps.placeholders.center_marker')"
+                            :allowClear="true"
+                            :route="route('markers.find', ['include' => $model->id])"
+                            :selected="$preset">
+                        </x-forms.foreign>
                         @endif
                     </div>
                 </div>

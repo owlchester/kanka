@@ -6,37 +6,22 @@
 $preset = null;
 if (isset($model) && $model->tag) {
     $preset = $model->tag;
-} elseif (isset($parent) && $parent) {
-    $preset = FormCopy::field('tag')->select(true, \App\Models\Tag::class);
-} else {
-    $preset = FormCopy::field('tag')->select();
-}
-
-$data = [
-    'preset' => $preset,
-    'class' => App\Models\Tag::class,
-];
-if (isset($enableNew)) {
-    $data['allowNew'] = $enableNew;
-}
-if (isset($parent) && $parent) {
-    $data['labelKey'] = 'tags.fields.tag';
-}
-if (isset($dropdownParent)) {
-    $data['dropdownParent'] = $dropdownParent;
-} elseif (request()->ajax()) {
-    $data['dropdownParent'] = '#entity-modal';
-}
-if (isset($from)) {
-    $data['from'] = $from;
-}
-if (isset($quickCreator)) {
-    $data['quickCreator'] = $quickCreator;
+} elseif (!isset($bulk)) {
+    $preset = FormCopy::field('tag')->select($isParent ?? false, \App\Models\Tag::class);
 }
 @endphp
-<div class="form-group">
-    {!! Form::foreignSelect(
-        'tag_id',
-        $data,
-    ) !!}
-</div>
+
+<x-forms.foreign
+    name="tag_id"
+    key="tag"
+    entityType="tags"
+    :label="$label ?? null"
+    :allowNew="$allowNew ?? true"
+    :allowClear="$allowClear ?? true"
+    :parent="$isParent ?? false"
+    :route="route('tags.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :class="\App\Models\Tag::class"
+    :selected="$preset"
+    :helper="$helper ?? null"
+    :dropdownParent="$dropdownParent ?? null">
+</x-forms.foreign>

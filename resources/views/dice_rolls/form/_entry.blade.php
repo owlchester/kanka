@@ -1,16 +1,7 @@
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'dice_rolls'])
-        @if ($campaignService->enabled('characters'))
-            <div class="form-group">
-                {!! Form::select2(
-                    'character_id',
-                    (isset($model) && $model->character ? $model->character : FormCopy::field('character')->select()),
-                    App\Models\Character::class,
-                    true
-                ) !!}
-            </div>
-        @endif
+        @include('cruds.fields.character')
         @include('cruds.fields.tags')
 
         <div class="form-group required">

@@ -28,9 +28,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        {!! Form::select2('entity_id', !empty($model) && $model->entity ? $model->entity : null, App\Models\Entity::class, false, 'dashboard.widgets.fields.optional-entity', 'search.entities-with-relations') !!}
-                    </div>
+                    @include('cruds.fields.entity', ['label' => __('dashboard.widgets.fields.optional-entity')])
                 </div>
             </div>
         </div>
