@@ -133,6 +133,8 @@ trait Picture
     {
         $key = $this->avatarCacheKey('image_v2');
         $cached = Cache::get($key, false);
+        $campaign = CampaignLocalization::getCampaign();
+
         if ($cached === false) {
             $child = $child ?? $this->child;
             $avatar = '';
@@ -140,16 +142,9 @@ trait Picture
             // No valid attached child
             if (!$child) {
                 //$avatar = '';
-            } elseif (empty($child->image)) {
-                $campaign = CampaignLocalization::getCampaign();
-                // Superboosted and with image?
-                if ($campaign->superboosted() && $this->image) {
-                    $avatar = $this->image->path;
-                } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
-                    // Fallback, boosted default image?
-                    $avatar = CampaignCache::defaultImages()[$this->type()]['path'];
-                }
-            } else {
+            } elseif ($campaign->superboosted() && $this->image) {
+                $avatar = $this->image->path;
+            } elseif (!empty($child->image)) {
                 $avatar = $child->image;
 
                 if (!empty($this->focus_x) && !empty($this->focus_y)) {
@@ -166,6 +161,14 @@ trait Picture
 
         // If the image is empty, look if the user has a nice picture
         if (empty($avatar)) {
+            // Superboosted and with image?
+            if ($campaign->superboosted() && $this->image) {
+                return Img::url($this->image->path);
+            } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
+                // Fallback, boosted default image?
+                return Img::url(CampaignCache::defaultImages()[$this->type()]['path']);
+            }
+
             if (auth()->check() && auth()->user()->isGoblin()) {
                 // Goblins and above have nicer icons
                 return asset('/images/defaults/subscribers/' . $this->pluralType() . '.jpeg');

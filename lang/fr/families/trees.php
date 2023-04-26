@@ -12,7 +12,7 @@ return [
         'first-title'   => 'Sélectionner une entité',
         'helper'        => 'Remplacer l\'entité avec une autre de la campagne',
         'relation'      => 'Relation',
-        'title'         => 'Replacer l\'entité',
+        'title'         => 'Remplacer l\'entité',
     ],
     'modals'    => [
         'clear'     => [

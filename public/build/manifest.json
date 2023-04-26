@@ -301,7 +301,7 @@
     "src": "resources/sass/themes/midnight.scss"
   },
   "resources/sass/tinymce.scss": {
-    "file": "assets/tinymce-b4121fac.css",
+    "file": "assets/tinymce-ec4190d1.css",
     "isEntry": true,
     "src": "resources/sass/tinymce.scss"
   },

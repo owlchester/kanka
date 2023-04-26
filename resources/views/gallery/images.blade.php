@@ -2,7 +2,7 @@
 
 
 @if(!empty($folder))
-    <li tabindex="0" data-folder="{{ empty($folder->folder_id) ? route('campaign.gallery.index') : route('campaign.gallery.index', ['folder_id' => $folder->folder_id]) }}" class="w-40 p-2 rounded shadow-xs bg-box hover:shadow-md cursor-pointer flex flex-col items-center justify-center text-center select-none gap-2">
+    <li tabindex="0" data-folder="{{ empty($folder->folder_id) ? route('campaign.gallery.index') : route('campaign.gallery.index', ['folder_id' => $folder->folder_id]) }}" class="block overflow-hidden rounded shadow-sm aspect-square w-[47%] xs:w-[25%] sm:w-48 cursor-pointer flex flex-col bg-box select-none hover:shadow-md focus:shadow-md items-center justify-center">
         <div class="w-full flex flex-col items-center gap-2 text-4xl">
             <i class="fa-regular fa-arrow-left" aria-hidden="true"></i>
             <div class="text-base overflow-hidden">

@@ -149,25 +149,25 @@ $highlightClass = 'drop-shadow border-accent border-solid border-2 !bg-blue-100'
         </div>
     @endif
 
-        <div class="{{ $boxClass }} {{ $highlight === 'explore' ? $highlightClass : '' }}">
-            <div class="flex gap-2 mb-2">
-                <h2 class="text-base mt-0 grow">
-                    <i class="fa-solid fa-grid" aria-hidden="true"></i>
-                    {{ __('settings/appearance.fields.entity-explore') }}
-                </h2>
-                <a href="https://docs.kanka.io/en/latest/profile/appearance.html#entity-explore" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
-                    <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
-                </a>
-            </div>
-            <p class="text-sm flex-grow">
-                {{ __('settings/appearance.helpers.entity-explore') }}
-            </p>
-            {!! Form::select('entity_explore', [
-                    0 => __('settings/appearance.explore.grid'),
-                    1 => __('settings/appearance.explore.table'),
-                ], null, ['class' => 'form-control flex self-end w-full border rounded p-2']) !!}
+    <div class="{{ $boxClass }} {{ $highlight === 'explore' ? $highlightClass : '' }}">
+        <div class="flex gap-2 mb-2">
+            <h2 class="text-base mt-0 grow">
+                <i class="fa-solid fa-grid" aria-hidden="true"></i>
+                {{ __('settings/appearance.fields.entity-explore') }}
+            </h2>
+            <a href="https://docs.kanka.io/en/latest/profile/appearance.html#entity-explore" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
+                <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
+            </a>
         </div>
+        <p class="text-sm flex-grow">
+            {{ __('settings/appearance.helpers.entity-explore') }}
+        </p>
+        {!! Form::select('entity_explore', [
+                0 => __('settings/appearance.explore.grid'),
+                1 => __('settings/appearance.explore.table'),
+            ], null, ['class' => 'form-control flex self-end w-full border rounded p-2']) !!}
+    </div>
 
     <div class="{{ $boxClass }}">
         <div class="flex gap-2 mb-2">

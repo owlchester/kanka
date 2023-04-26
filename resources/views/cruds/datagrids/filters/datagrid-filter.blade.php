@@ -28,7 +28,7 @@ $hasAttributeFilters = false;
     </div>
 
     @if ($activeFilters > 0)
-        <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="p-1.5">
+        <a href="{{ route($route, ['m' => $mode, 'reset-filter' => 'true']) }}" class="p-1.5">
             <i class="fa-solid fa-eraser" aria-hidden="true"></i> {{ __('crud.filters.clear') }}
         </a>
     @endif
@@ -37,7 +37,7 @@ $hasAttributeFilters = false;
 @section('modals')
     @parent()
     <x-dialog id="datagrid-filters" title="{{ __('crud.filters.title') }}" full="true">
-        {!! Form::open(['url' => route($route), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
+        {!! Form::open(['url' => route($route, ['m' => $mode]), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
             @if (auth()->guest())
                 <p class="help-block">{{ __('filters.helpers.guest') }}</p>
             @else
@@ -120,7 +120,7 @@ $hasAttributeFilters = false;
                     </button>
                 @endif
             </div>
-        <input type="hidden" name="mode" value="{{ $mode }}" />
+        <input type="hidden" name="m" value="{{ $mode }}" />
         {!! Form::close() !!}
     </x-dialog>
 @endsection
