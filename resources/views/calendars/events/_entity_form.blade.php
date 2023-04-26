@@ -12,7 +12,6 @@ $onlyOneCalendar = count($calendars) == 1;
             key="calendar"
             :allowNew="false"
             :allowClear="true"
-            :parent="$isParent ?? false"
             :route="route('calendars.find', isset($model) ? ['exclude' => $model->id] : null)"
             :selected="$onlyOneCalendar ? $calendars->first() : null"
             :dropdownParent="request()->ajax() ? '#entity-modal' : null">
