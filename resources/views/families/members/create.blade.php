@@ -8,7 +8,7 @@
 ])
 
 @section('content')
-    {!! Form::open(array('route' => ['families.character_family.store', $model->id], 'method'=>'POST')) !!}
+    {!! Form::open(array('route' => ['families.members.store', $model->id], 'method'=>'POST')) !!}
 
     @include('partials.forms.form', [
         'title' => __('families.members.create.title', ['name' => $model->name]),

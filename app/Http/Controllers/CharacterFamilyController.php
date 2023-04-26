@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Family;
-use App\Models\CharacterFamily;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCharacterFamily;
 
 class CharacterFamilyController extends Controller
 {
@@ -41,18 +40,13 @@ class CharacterFamilyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Family $family)
+    public function store(StoreCharacterFamily $request, Family $family)
     {
         $this->authorize('update', $family);
-        $newMembers = 0;
 
-        foreach ($request->members as $member) {
-            if (!CharacterFamily::where('character_id', $member)->where('family_id', $family->id)->first()) {
-                $relation = CharacterFamily::create(['family_id' => $family->id, 'character_id' => $member]);
-                $newMembers++;
-            }
-        }
+        $newMembers = $family->members()->syncWithoutDetaching($request->members);
+
         return redirect()->route('families.show', $family->id)
-            ->with('success', trans_choice($this->view . '.create.success', $newMembers, ['count' => $newMembers]));
+            ->with('success', trans_choice($this->view . '.create.success', count($newMembers['attached']), ['count' => count($newMembers['attached'])]));
     }
 }

@@ -30,8 +30,8 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
                 </a>
             @endif
             @can('update', $model)
-                <a href="{{ route('families.character_family.create', ['family' => $model->id]) }}" class="btn btn-primary btn-sm"
-                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('families.character_family.create', $model->id) }}">
+                <a href="{{ route('families.members.create', ['family' => $model->id]) }}" class="btn btn-primary btn-sm"
+                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('families.members.create', $model->id) }}">
                     <i class="fa-solid fa-plus" aria-hidden="true"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
                 </a>
             @endcan

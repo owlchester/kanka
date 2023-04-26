@@ -71,6 +71,8 @@ Route::get('/families/{family}/tree', [\App\Http\Controllers\Families\FamilyTree
 Route::get('/families/{family}/tree/api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'api'])->name('families.family-tree.api');
 Route::get('/families/{entity}/tree/entity-api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'entity'])->name('families.family-tree.entity-api');
 Route::post('/families/{family}/tree/api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'save'])->name('families.family-tree.api-save');
+Route::post('/families/{family}/store-member', 'CharacterFamilyController@store')->name('families.members.store');
+Route::get('/families/{family}/add-member', 'CharacterFamilyController@create')->name('families.members.create');
 
 // Items menu
 Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
@@ -268,7 +270,6 @@ Route::resources([
     'locations' => 'LocationController',
     //'locations.map_points' => 'LocationMapPointController',
     'families' => 'FamilyController',
-    'families.character_family' => 'CharacterFamilyController',
     'items' => 'ItemController',
     'journals' => 'JournalController',
     'maps' => 'Maps\MapController',
