@@ -3,7 +3,7 @@
 return [
     'actions'           => [
         'change_focus'  => 'Changer le point de focus',
-        'replace_image' => 'Replacer l\'imager',
+        'replace_image' => 'Remplacer l\'image',
         'save-replace'  => 'Remplacer l\'image',
         'save_focus'    => 'Enregistrer le focus',
         'view'          => 'Voir l\'image',

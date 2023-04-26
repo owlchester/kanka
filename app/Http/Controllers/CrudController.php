@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\DefaultDatagridActions;
 use App\Datagrids\Sorters\DatagridSorter;
+use App\Facades\Breadcrumb;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Facades\FormCopy;
@@ -339,13 +340,7 @@ class CrudController extends Controller
                 return response()->redirectTo($route);
             }
 
-            $subroute = 'index';
-            $campaign = CampaignLocalization::getCampaign();
-            $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
-            if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
-                $subroute = 'tree';
-            }
-            $route = route($this->route . '.' . $subroute);
+            $route = Breadcrumb::index($this->route );
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));

@@ -9,7 +9,7 @@ return [
         'followed_campaigns'=> 'Campagnes suivies',
         'new_campaign'      => 'Nouvelle campagne',
         'public_campaigns'  => 'Campagnes publiques',
-        'reorder'           => 'Rérdonner',
+        'reorder'           => 'Réordonner',
         'updated'           => 'Mis à jour',
     ],
     'campaigns'         => 'Campagnes',
