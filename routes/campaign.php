@@ -87,6 +87,8 @@ Route::get('/quests/{quest}/quests', 'QuestController@quests')->name('quests.que
 Route::get('/races/{race}/characters', 'RaceController@characters')->name('races.characters');
 Route::get('/races/{race}/races', 'RaceController@races')->name('races.races');
 Route::get('/races/tree', 'RaceController@tree')->name('races.tree');
+Route::post('/races/{race}/store-member', 'CharacterRaceController@store')->name('races.members.store');
+Route::get('/races/{race}/add-member', 'CharacterRaceController@create')->name('races.members.create');
 
 // Creatures
 Route::get('/creatures/{creature}/creatures', 'CreatureController@creatures')->name('creatures.creatures');
