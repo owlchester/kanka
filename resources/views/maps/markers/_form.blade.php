@@ -191,20 +191,7 @@ $sizeOptions = [
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="form-group">
-                {!! Form::foreignSelect(
-                    'entity_id',
-                    [
-                        'preset' => (isset($model) && $model->entity ? $model->entity : \App\Facades\FormCopy::field('entity')->select()),
-                        'class' => App\Models\Entity::class,
-                        'labelKey' => 'crud.fields.entity',
-                        'from' => null,
-                        'searchRouteName' => 'search.entities-with-relations',
-                        'placeholderKey' => 'crud.placeholders.entity',
-                        'dropdownParent' => (isset($dropdownParent) ? $dropdownParent : null)
-                    ]
-                ) !!}
-            </div>
+            @include('cruds.fields.entity')
         </div>
     </div>
 

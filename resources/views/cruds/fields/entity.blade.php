@@ -1,3 +1,4 @@
+@if (!isset($preset))
 @php
     $preset = null;
     if (isset($model) && $model->entity) {
@@ -6,10 +7,11 @@
         $preset = FormCopy::field('entity')->select($isParent ?? false, \App\Models\Entity::class);
     }
 @endphp
+@endif
 
 <x-forms.foreign
-    name="entity_id"
-    key="entity"
+    :name="$name ?? 'entity_id'"
+    :key="$key ?? 'entity'"
     :required="$required ?? false"
     :label="$label ?? null"
     :allowClear="$allowClear ?? true"

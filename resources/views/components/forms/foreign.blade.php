@@ -18,7 +18,7 @@
             data-placeholder="{{ $placeholder ?? __('crud.placeholders.parent') }}"
             data-allow-new="{{ $allowNew ? 'true' : 'false' }}"
             data-language="{{ LaravelLocalization::getCurrentLocale() }}"
-            @if ($allowClear) data-allow-clear="true" @endif
+            data-allow-clear="{{ $allowClear ? 'true' : 'false' }}"
             @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
     >
         @foreach ($options as $key => $value)

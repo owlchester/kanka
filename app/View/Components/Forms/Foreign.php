@@ -42,6 +42,7 @@ class Foreign extends Component
         string $entityType = null,
         string $key = null,
         string $label = null,
+        string $placeholder = null,
         string $helper = null,
         string $dropdownParent = null,
         //mixed $model = null,
@@ -56,6 +57,7 @@ class Foreign extends Component
         $this->key = $key;
         $this->parent = $parent;
         $this->label = $label;
+        $this->placeholder = $placeholder;
         $this->required = $required;
         //$this->model = $model;
         $this->helper = $helper;
@@ -91,10 +93,15 @@ class Foreign extends Component
             }
             $this->placeholder = __('crud.placeholders.' . $this->key);
         } else {
-            $this->label = __('crud.users.unknown');
-            $this->placeholder = '';
+            if (empty($this->label)) {
+                $this->label = __('crud.users.unknown');
+            }
+            if (empty($this->placeholder)) {
+                $this->placeholder = '';
+            }
         }
         return view('components.forms.foreign')
             ->with('canNew', $canNew);
     }
 }
+
