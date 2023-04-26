@@ -11,16 +11,17 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::foreignSelect(
-                'family_id',
-                [
-                    'preset' => (isset($model) && $model->family ? $model->family : FormCopy::field('family')->select(true, \App\Models\Family::class)),
-                    'class' => App\Models\Family::class,
-                    'quickCreator' => true,
-                    'labelKey' => 'families.fields.family',
-                    'from' => isset($model) ? $model : null,
-                ]
-            ) !!}
+            <x-forms.foreign
+                name="family_id"
+                :preset="isset($model) && $model->family ? $model->family : FormCopy::field('family')->select(true, \App\Models\Family::class)"
+                allowNew="1"
+                entityType="families"
+                allowClear="1"
+                label="crud.fields.parent"
+                :route="route('families.find')"
+                :model="$model ?? null"
+                :class="\App\Models\Family::class">
+            </x-forms.foreign>
         </div>
     </div>
     <div class="col-md-6">
