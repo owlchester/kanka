@@ -25,6 +25,11 @@ return [
             'direct_members'    => 'Most families have members who run it or made it famous. The following list are characters that are directly in this family.',
         ],
         'title'     => 'Family :name Members',
+        'create'    => [
+            'title'     => 'New Family Members',
+            'submit'    => 'Add members',
+            'success'   => '{0} No member was added.|{1} 1 member was added.|[2,*] :count members were added.'
+        ],
     ],
     'placeholders'  => [
         'location'  => 'Choose a location',
