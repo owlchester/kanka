@@ -28,15 +28,16 @@ Most entities have the following attributes.
 | :- | :- | :- |
 | `id` | `integer` | The id identifying the object against all other objects of the same type. |
 | `name` | `string` | The name representing the object. |
-| `entry` | `string` | The html description of the object. |
-| `entry_parsed` | `string` | The html description of the object with mentions replaced with kanka links. |
+| `type` | `string` | The type of entity as a string. (deprecated) |
+| `type_id` | `integer` | The type of entity as an integer. |
+| `child_id` | `integer` | The id identifying the entity against all other entities of the same type (ie unique character id). |
 | `image` | `string` | The local path to the picture of the object. |
 | `image_full` | `string` | The url to the picture of the object. |
 | `image_thumb` | `string` | The url to the thumbnail of the object. |
 | `image_uuid` | `uuid` | The image gallery uuid of the entity (only available for superboosted campaigns) |
 | `is_private` | `boolean` | Determines if the object is only visible by `admin` members of the campaign.<br /> If the user requesting the API isn't a member of the `admin` role, such objects won't be returned. |
+| `is_template` | `boolean` | Determines if the object is a template. |
 | `is_attributes_private` | `boolean` | Determines if the entity's attributes are only visible to members of the campaign's admin role. |
-| `entity_id` | `integer` | The id identifying the objects against all other entities.
 | `tags` | `array` | An array of tags that the object is related to. |
 | `created_at` | `object` | An object representing when the object was created (server time) |
 | `created_by` | `integer` | The `users`.`id` who created the object.
