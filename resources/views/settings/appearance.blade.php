@@ -91,7 +91,7 @@ $highlightClass = 'drop-shadow border-accent border-solid border-2 !bg-blue-100'
                 <div class="flex gap-2 mb-2">
                     <h2 class="text-base mt-0 grow">
                         <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true"></i>
-                        {{ __('settings/appearance.fields.date-format') }}
+                        {{ __('settings/appearance.fields.campaign-order') }}
                     </h2>
                     <a href="https://docs.kanka.io/en/latest/profile/appearance.html#campaign-order" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
                         <i class="fa-solid fa-question-circle" aria-hidden="true" aria-label="{{ __('front.menu.documentation') }}"></i>
