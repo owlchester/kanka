@@ -106,7 +106,7 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
         <div class="{{ $box }}">
             <div class="text-xl text-center">
                 @php $method = $user->defaultPaymentMethod(); @endphp
-                {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card->brand), 'last4' => $method->card->last4]) }}
+                {{ __('settings.subscription.payment_method.saved', ['brand' => ucfirst($method->card?->brand), 'last4' => $method->card?->last4]) }}
             </div>
             <div class="text-muted">
                 {{ __('settings.subscription.fields.payment_method') }}

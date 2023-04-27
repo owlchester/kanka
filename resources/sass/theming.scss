@@ -477,6 +477,6 @@ body .main-header .navbar .nav .open > a.active {
     background-color: var(--tooltip-background, #111);
     color: var(--tooltip-text, #eee)
 }
-.tooltip.top .tooltip-arrow {
+.tooltip.top .tooltip-arrow, .tooltip.bottom .tooltip-arrow {
     border-top-color: var(--tooltip-background, #111);
 }
