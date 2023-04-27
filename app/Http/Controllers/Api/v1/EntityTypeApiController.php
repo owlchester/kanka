@@ -13,6 +13,6 @@ class EntitytypeApiController extends ApiController
      */
     public function index()
     {
-        return Resource::collection(EntityType::all());
+        return Resource::collection(EntityType::paginate());
     }
 }
