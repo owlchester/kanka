@@ -7,6 +7,7 @@ month_length# Calendars
 - [Create a Calendar](#create-calendar)
 - [Update a Calendar](#update-calendar)
 - [Delete a Calendar](#delete-calendar)
+- [Reminders](#reminders)
 - [Weather](#weather)
 
 <a name="all-calendars"></a>
@@ -299,6 +300,67 @@ To delete a calendar, use the following endpoint.
 ### Results
 
 > {success} Code 200 with JSON.
+
+
+<a name="reminders"></a>
+## Reminders
+
+You can get a list of all the reminders of a calendar by using the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `calendars/{calendar.id}/reminders` | Default |
+
+### Results
+```json
+{
+"data": [
+        {
+            "calendar_id": 2,
+            "colour": "#cccccc",
+            "comment": null,
+            "created_at": "2022-08-25T20:24:40.000000Z",
+            "created_by": 2,
+            "date": "1-3-1",
+            "day": 1,
+            "entity_id": 299,
+            "id": 9,
+            "is_private": false,
+            "is_recurring": false,
+            "length": 1,
+            "month": 3,
+            "recurring_periodicity": null,
+            "recurring_until": null,
+            "type_id": 4,
+            "updated_at": "2023-04-19T18:40:16.000000Z",
+            "updated_by": null,
+            "visibility_id": 1,
+            "year": 1
+        },
+        {
+            "calendar_id": 2,
+            "colour": "#ff8000",
+            "comment": "Harvest Season",
+            "created_at": "2022-12-12T22:12:54.000000Z",
+            "created_by": 2,
+            "date": "1-1-5",
+            "day": 5,
+            "entity_id": 298,
+            "id": 13,
+            "is_private": false,
+            "is_recurring": true,
+            "length": 8,
+            "month": 1,
+            "recurring_periodicity": "month",
+            "recurring_until": "2",
+            "type_id": null,
+            "updated_at": "2023-02-14T21:38:13.000000Z",
+            "updated_by": null,
+            "visibility_id": 1,
+            "year": 1
+        },
+}
+```
 
 <a name="weather"></a>
 ## Weather
