@@ -43,7 +43,9 @@ elseif(!empty($model) && !empty($model->entity)) {
 }
 ?>
 @if ($label)
-<label>{{ __('entities.abilities') }}</label>
+<label>
+    {!! \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities')) !!}
+</label>
 @endif
 
 <select multiple="multiple" name="abilities[]" id="{{ Arr::get($options, 'id', 'abilities[]') }}" class="form-control form-tags form-abilities" style="width: 100%" data-url="{{ route('abilities.find', $searchParams) }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}" data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}" data-new-tag="{{ __('abilities.new_ability') }}" data-placeholder="">

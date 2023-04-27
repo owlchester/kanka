@@ -20,5 +20,6 @@
     :route="route('families.find', isset($model) ? ['exclude' => $model->id] : null)"
     :class="\App\Models\Family::class"
     :selected="$preset"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.family')">
 </x-forms.foreign>

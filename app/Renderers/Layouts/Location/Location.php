@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Location;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Location extends Layout
             ],
             'location_id' => [
                 'key' => 'name',
-                'label' => 'entities.location',
+                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -28,7 +29,7 @@ class Location extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'locations.fields.location',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;

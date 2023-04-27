@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Journal;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Journal extends Layout
             ],
             'journal' => [
                 'key' => 'name',
-                'label' => 'entities.journal',
+                'label' => Module::singular(config('entities.ids.journal'), 'entities.journal'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -45,7 +46,7 @@ class Journal extends Layout
             ],
             'parent_journal' => [
                 'key' => 'journal.name',
-                'label' => 'journals.fields.journal',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     if (!$model->journal) {
                         return null;

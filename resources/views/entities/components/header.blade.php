@@ -104,10 +104,10 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                         <li class="inline-block">
                         @if (is_array($bcdata))
                         <a href="{{ $bcdata['url'] }}" class="no-underline" title="{{ $bcdata['label'] }}">
-                            {{ $bcdata['label'] }}
+                            {!! $bcdata['label'] !!}
                         </a>
                         @elseif(!empty($bcdata))
-                            {{ $bcdata }}
+                            {!! $bcdata !!}
                         @endif
                         </li>
                     @endforeach

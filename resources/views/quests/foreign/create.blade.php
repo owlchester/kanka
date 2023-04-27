@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans($name . '.create.title', ['name' => $parent->name]),
+    'title' => __($name . '.create.title', ['name' => $parent->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('quests'), 'label' => __('entities.quests')],
-        ['url' => route('quests.show', $parent->id), 'label' => $parent->name],
-        ['url' => route('quests.' . $menu, $parent->id), 'label' => trans('quests.show.tabs.' . $menu)],
+        ['url' => Breadcrumb::index('quests'), 'label' => \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests'))],
+        ['url' => $parent->getLink(), 'label' => $parent->name],
+        ['url' => $parent->getLink($menu), 'label' => __('quests.show.tabs.' . $menu)],
         trans('crud.create'),
     ]
 ])

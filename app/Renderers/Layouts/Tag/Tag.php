@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Tag;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Tag extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'entities.tag',
+                'label' => Module::singular(config('entities.ids.tag'), 'entities.tag'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -33,7 +34,7 @@ class Tag extends Layout
             ],
             'tag' => [
                 'key' => 'tag.name',
-                'label' => 'tags.fields.tag',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     if (!$model->tag) {
                         return null;

@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Ability;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Ability extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'entities.ability',
+                'label' => Module::singular(config('entities.ids.ability'), 'entities.ability'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -28,7 +29,7 @@ class Ability extends Layout
             ],
             'ability' => [
                 'key' => 'ability.name',
-                'label' => 'abilities.fields.ability',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     if (!$model->ability) {
                         return null;

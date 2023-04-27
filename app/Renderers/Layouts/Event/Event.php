@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Event;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Event extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'entities.event',
+                'label' => Module::singular(config('entities.ids.event'), 'entities.event'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -32,7 +33,7 @@ class Event extends Layout
             ],
             'event' => [
                 'key' => 'event.name',
-                'label' => 'events.fields.event',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     if (!$model->event) {
                         return null;

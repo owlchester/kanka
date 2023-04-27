@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
+use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -178,7 +179,7 @@ class Ability extends MiscModel
         $campaign = CampaignLocalization::getCampaign();
 
         $items['second']['abilities'] = [
-            'name' => 'abilities.show.tabs.abilities',
+            'name' => Module::plural($this->entityTypeId(), 'entities.abilities'),
             'route' => 'abilities.abilities',
             'count' => $this->descendants()->count()
         ];

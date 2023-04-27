@@ -1,7 +1,7 @@
 <div class="box box-solid" id="race-races">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('races.show.tabs.races') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
         </h3>
         <div class="box-tools">
             @if (request()->has('parent_id'))

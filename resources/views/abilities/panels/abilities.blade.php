@@ -15,7 +15,7 @@ $datagridOptions = [];
 <div class="box box-solid" id="abilities-abilities">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('abilities.fields.abilities') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities')) !!}
         </h3>
         <div class="box-tools">
             @if (request()->has('parent_id'))

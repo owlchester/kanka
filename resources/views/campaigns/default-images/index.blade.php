@@ -56,7 +56,7 @@
                                         <div class="entity-image cover-background" style="background-image: url({{ Img::crop(40, 40)->url($image['path']) }})"></div>
                                     </td>
                                     <td>
-                                        {{ __('entities.' . $image['type']) }}
+                                        {!! \App\Facades\Module::singular($image['type'], __('entities.' . $image['type'])) !!}
                                     </td>
                                     <td class="text-right">
                                         <button class="btn btn-sm btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('entities.' . $image['type']) }}"

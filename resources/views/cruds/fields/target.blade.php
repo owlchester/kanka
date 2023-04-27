@@ -6,5 +6,6 @@ $preset = $target ?? null;
 @include('cruds.fields.entity', [
     'name' => 'target_id',
     'label' => __('entities/relations.fields.target'),
-    'allowClear' => false
+    'allowClear' => false,
+    'route' => null,
 ])

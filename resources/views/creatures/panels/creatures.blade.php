@@ -1,7 +1,7 @@
 <div class="box box-solid" id="creature-creatures">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('creatures.show.tabs.creatures') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.creature'), __('entities.creatures')) !!}
         </h3>
 
         <div class="box-tools">

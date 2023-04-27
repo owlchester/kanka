@@ -12,8 +12,8 @@ if (isset($id) && $campaign->hasModuleIcon($id)) {
     <div class="rounded p-4 shadow-xs bg-box mb-0 box-warning flex flex-wrap flex-col" id="{{ $module }}">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <i class="{{ $icon }}"></i>
-                {{ $moduleName }}
+                <i class="{{ $icon }}" aria-hidden="true"></i>
+                {!! $moduleName !!}
             </h3>
         </div>
         <div class="box-body select-none">
@@ -27,9 +27,10 @@ if (isset($id) && $campaign->hasModuleIcon($id)) {
     <div class="box-module w-full rounded overflow-hidden shadow-xs bg-box flex flex-wrap flex-col select-none {{ $campaign->enabled($module) ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} hover:shadow-sm" id="{{ $module }}">
         <div class="header p-2 bg-gray-200 flex items-center gap-2">
             <h3 class="text-lg m-0 grow">
-                <i class="{{ $icon }}"></i> {{ $moduleName }}
+                <i class="{{ $icon }}" aria-hidden="true"></i>
+                {!! $moduleName !!}
             </h3>
-            @if (isset($id))
+            @if (isset($id) && !isset($deprecated))
             <a href="#"
                class="btn btn-sm btn-default"
                data-toggle="dialog-ajax"

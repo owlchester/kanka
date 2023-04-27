@@ -36,7 +36,7 @@
             'model' => $entity->child,
             'entity' => $entity,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
+                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
                 __('crud.tabs.inventory')
             ]
         ])

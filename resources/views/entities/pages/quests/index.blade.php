@@ -7,7 +7,7 @@
     'title' => __('entities/quests.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('entities.quests')
     ],

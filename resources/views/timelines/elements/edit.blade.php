@@ -5,13 +5,13 @@
 */
 ?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-'title' => __('timelines/elements.edit.title', ['name' => $model->name]),
-'description' => '',
-'breadcrumbs' => [
-['url' => route('timelines.index'), 'label' => __('entities.timelines')],
-['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
-__('timelines/elements.edit.title', ['name' => $model->name])
-]
+    'title' => __('timelines/elements.edit.title', ['name' => $model->name]),
+    'description' => '',
+    'breadcrumbs' => [
+        ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
+        ['url' => $timeline->entity->url(), 'label' => $timeline->name],
+        __('timelines/elements.edit.title', ['name' => $model->name])
+    ]
 ])
 
 @inject('campaignService', 'App\Services\CampaignService')

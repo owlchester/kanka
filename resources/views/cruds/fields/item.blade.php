@@ -27,5 +27,6 @@
     :class="\App\Models\Item::class"
     :selected="$preset"
     :helper="$helper ?? null"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.item')">
 </x-forms.foreign>

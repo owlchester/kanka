@@ -28,12 +28,11 @@ return [
     ],
     'reorder'   => [
         'parentless'    => 'No Parent',
-        'success'       => 'Abilities succesfully reordered',
-        'title'         => 'Reorder the abilities',
+        'success'       => 'Abilities successfully reordered',
     ],
     'show'      => [
         'helper'    => 'Attach abilities to this entity. You can always edit the visibility or remove an ability. Abilities belonging to the same parent ability will display as filter boxes.',
-        'reorder'   => 'Reorder Abilities',
+        'reorder'   => 'Reorder',
         'title'     => ':name Abilities',
     ],
     'update'    => [

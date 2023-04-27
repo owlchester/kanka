@@ -2,7 +2,7 @@
 <div class="box box-solid" id="family-families">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('families.show.tabs.families') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')) !!}
         </h3>
         <div class="box-tools">
             @if (request()->has('parent_id'))

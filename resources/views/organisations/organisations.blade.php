@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => trans('organisations.organisations.title', ['name' => $model->name]),
-    'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -8,6 +7,9 @@
 
 @inject('campaignService', 'App\Services\CampaignService')
 
+@php
+    $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations'));
+@endphp
 @section('content')
     @include('partials.errors')
 
@@ -15,8 +17,8 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
-                null
+                ['url' => Breadcrumb::index('organisations'), 'label' => $plural],
+                __('entities.children')
             ]
         ])
 

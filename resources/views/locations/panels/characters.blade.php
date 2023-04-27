@@ -1,7 +1,7 @@
 <div class="box box-solid" id="location-characters">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('entities.characters') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')) !!}
         </h3>
 
         <div class="box-tools">

@@ -28,7 +28,7 @@ if ($quickCreator) {
     $quickCreator = auth()->user()->can('create', new \App\Models\Location());
 }
 ?>
-<label>{{ __('races.fields.locations') }}</label>
+<label>{{ \App\Facades\Module::plural(config('entities.ids.location'), __('races.fields.locations')) }}</label>
 
 @if ($quickCreator)<div class="input-group input-group-sm">@endif
 

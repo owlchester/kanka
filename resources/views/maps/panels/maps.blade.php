@@ -7,7 +7,7 @@ if (request()->has('map_id')) {
 <div class="box box-solid" id="map-maps">
     <div class="box-header with-border">
         <h3 class="box-title">
-            {{ __('maps.show.tabs.maps') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps')) !!}
         </h3>
         <div class="box-tools">
             @if (request()->has('map_id'))

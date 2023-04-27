@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
+use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -187,7 +188,7 @@ class Creature extends MiscModel
         $count = $this->descendants()->count();
         if ($count > 0) {
             $items['second']['creatures'] = [
-                'name' => 'creatures.show.tabs.creatures',
+                'name' => Module::plural($this->entityTypeId(), 'entities.creatures'),
                 'route' => 'creatures.creatures',
                 'count' => $count
             ];

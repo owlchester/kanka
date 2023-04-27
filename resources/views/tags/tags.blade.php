@@ -1,6 +1,5 @@
 @extends('layouts.app', [
-    'title' => trans('tags.tags.title', ['name' => $model->name]),
-    'description' => trans('tags.tags.description'),
+    'title' => __('tags.tags.title', ['name' => $model->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -12,8 +11,8 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
-                null
+                ['url' => Breadcrumb::index('tags'), 'label' => \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')),
+                __('entities.children')
             ]
         ])
 

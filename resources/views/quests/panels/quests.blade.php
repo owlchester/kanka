@@ -11,7 +11,9 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
 
 <div class="box box-solid quest-subquests" id="subquests">
     <div class="box-header with-border">
-        <h3 class="box-title">{{ __('quests.fields.quests') }}</h3>
+        <h3 class="box-title">
+            {!! \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests')) !!}
+        </h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
                 <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}

@@ -9,10 +9,9 @@
 ])
 @inject('campaignService', 'App\Services\CampaignService')
 
-
 @section('entity-header')
     <div class="flex items-center mb-2">
-        <h1 class="grow m-0">{{ $titleKey ?? __('entities.' . $langKey) }}</h1>
+        <h1 class="grow m-0">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex-none flex gap-2">
             @includeWhen($route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
             @include('cruds.lists._actions')

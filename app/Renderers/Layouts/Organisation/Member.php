@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Organisation;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -20,7 +21,7 @@ class Member extends Layout
             ],
             'character' => [
                 'key' => 'character.name',
-                'label' => 'entities.character',
+                'label' => Module::singular(config('entities.ids.character'), 'entities.character'),
                 'render' => Standard::CHARACTER,
             ],
             'role' => [
@@ -47,7 +48,7 @@ class Member extends Layout
                 }
             ],
             'location' => [
-                'label' => 'entities.location',
+                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     if (!$model->character->location) {

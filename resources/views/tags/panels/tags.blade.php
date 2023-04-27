@@ -9,7 +9,7 @@ if (request()->has('tag_id')) {
     <div class="box-header">
 
         <h3 class="box-title">
-            {{ __('tags.show.tabs.tags') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')) !!}
         </h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">

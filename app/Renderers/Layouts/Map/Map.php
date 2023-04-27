@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Map;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Map extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'entities.map',
+                'label' => Module::singular(config('entities.ids.map'), 'entities.map'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -28,7 +29,7 @@ class Map extends Layout
             ],
             'map' => [
                 'key' => 'map.name',
-                'label' => 'maps.fields.map',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     if (!$model->map) {
                         return null;

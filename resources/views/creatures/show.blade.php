@@ -2,7 +2,7 @@
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
+            ['url' => Breadcrumb::index('creatures'), 'label' => \App\Facades\Module::plural(config('entities.ids.creature'), __('entities.creatures'))],
             null
         ]
     ])

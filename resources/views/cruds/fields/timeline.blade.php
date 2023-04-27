@@ -20,5 +20,6 @@
     :class="\App\Models\Timeline::class"
     :selected="$preset"
     :helper="$helper ?? null"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.timeline')">
 </x-forms.foreign>

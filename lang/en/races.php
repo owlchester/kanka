@@ -33,12 +33,6 @@ return [
         'type'  => 'Human, Fey, Borg',
     ],
     'races'         => [
-        'title' => 'Race :name Subraces',
-    ],
-    'show'          => [
-        'tabs'  => [
-            'characters'    => 'Characters',
-            'races'         => 'Subraces',
-        ],
+        'title' => ':name Subraces',
     ],
 ];

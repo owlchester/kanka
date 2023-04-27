@@ -13,12 +13,12 @@ if (!empty($id)) {
     @if ($dropType == $type)
         <a href="#">
             <i class="fa-solid fa-check" aria-hidden="true"></i>
-            {{ $trans }}
+            {!! $trans !!}
         </a>
     @else
     <a href="#" class="" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => $dropType, 'mode' => $mode ?? null]) }}" data-entity-type="character" data-type="inline">
         <i class="fa-solid" aria-hidden="true"></i>
-        {{ $trans }}
+        {!! $trans !!}
     </a>
     @endif
 </li>

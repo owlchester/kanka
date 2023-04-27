@@ -6,5 +6,6 @@ $preset = $owner ?? null;
 @include('cruds.fields.entity', [
     'name' => 'owner_id',
     'label' => __('entities/relations.fields.owner'),
-    'allowClear' => false
+    'allowClear' => false,
+    'route' => null,
 ])

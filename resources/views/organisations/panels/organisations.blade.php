@@ -1,7 +1,7 @@
 <div class="box box-solid" id="organisation-suborganisations">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('organisations.show.tabs.organisations') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations')) !!}
         </h3>
 
         <div class="box-tools">

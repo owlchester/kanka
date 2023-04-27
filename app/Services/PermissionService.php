@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\Module;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
@@ -591,6 +592,10 @@ class PermissionService
     public function entityType(int $entityType): string
     {
         $flip = array_flip(config('entities.ids'));
+        $plural = Module::plural($flip[$entityType]);
+        if (!empty($plural)) {
+            return $plural;
+        }
         return 'entities.' . Str::plural($flip[$entityType]);
     }
 

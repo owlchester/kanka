@@ -24,5 +24,6 @@ if (isset($model) && $model->character) {
     :class="\App\Models\Character::class"
     :selected="$preset"
     :helper="$helper ?? null"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.character')">
 </x-forms.foreign>

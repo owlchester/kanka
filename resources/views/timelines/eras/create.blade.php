@@ -8,9 +8,9 @@
     'title' => __('timelines/eras.create.title', ['name' => $timeline->name]),
     'description' => '',
     'breadcrumbs' => [
-    ['url' => route('timelines.index'), 'label' => __('entities.timelines')],
-    ['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
-    __('timelines/eras.create.title')
+        ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
+        ['url' => $timeline->entity->url(), 'label' => $timeline->name],
+        __('timelines/eras.create.title')
     ]
 ])
 @inject('campaignService', 'App\Services\CampaignService')

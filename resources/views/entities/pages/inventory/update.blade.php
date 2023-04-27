@@ -2,7 +2,7 @@
     'title' => __('entities/inventories.update.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         ['url' => route('entities.inventory', $entity->id), 'label' => __('crud.tabs.inventory')],
     ]

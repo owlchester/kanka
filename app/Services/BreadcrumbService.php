@@ -37,6 +37,7 @@ class BreadcrumbService
                 $entityIndexRoute = route($name . '.tree', $params);
             }
         }
+
         return $entityIndexRoute;
     }
 }

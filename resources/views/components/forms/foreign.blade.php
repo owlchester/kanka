@@ -1,6 +1,6 @@
 <div class="field-foreign form-group @if ($required) required @endif">
     @if (!empty($label))
-        <label>{{ __($label) }}
+        <label>{!! __($label) !!}
             @if(!empty($helper))
                 <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}" aria-hidden="true"></i>
             @endif

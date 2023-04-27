@@ -12,7 +12,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('tags'), 'label' => __('entities.tags')],
+                ['url' => Breadcrumb::index('tags'), 'label' => \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags'))],
                 __('tags.show.tabs.children')
             ]
         ])

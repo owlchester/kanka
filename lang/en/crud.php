@@ -330,6 +330,7 @@ return [
         'journal'       => 'Choose a journal',
         'location'      => 'Choose a location',
         'map'           => 'Choose a map',
+        'name'          => 'Name of the entity',
         'note'          => 'Choose a note',
         'organisation'  => 'Choose an organisation',
         'parent'        => 'Choose a parent',

@@ -28,7 +28,7 @@
                         @if (strlen($breadcrumb['label']) > 22)
                             {!! \Illuminate\Support\Str::limit(e($breadcrumb['label']), 20) !!}
                         @else
-                            {!! e($breadcrumb['label']) !!}
+                            {!! $breadcrumb['label'] !!}
                         @endif
                     </a>
                 @else

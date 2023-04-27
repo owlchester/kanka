@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -182,7 +183,7 @@ class Timeline extends MiscModel
     public function menuItems(array $items = []): array
     {
         $items['second']['timelines'] = [
-            'name' => 'timelines.fields.timelines',
+            'name' => Module::plural($this->entityTypeId(), 'entities.timelines'),
             'route' => 'timelines.timelines',
             'count' => $this->descendants()->count()
         ];

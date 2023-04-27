@@ -27,7 +27,7 @@ if ($quickCreator) {
     $quickCreator = auth()->user()->can('create', new \App\Models\Family());
 }
 ?>
-<label>{{ __('entities.families') }}</label>
+<label>{!! \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')) !!}</label>
 
 @if ($quickCreator)<div class="input-group input-group-sm">@endif
 

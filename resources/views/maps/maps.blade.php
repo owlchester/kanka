@@ -8,13 +8,16 @@
 
 @inject('campaignService', 'App\Services\CampaignService')
 
+@php
+    $plural = \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'));
+@endphp
 @section('content')
     <div class="entity-grid">
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('maps'), 'label' => __('entities.maps')],
-                null
+                ['url' => Breadcrumb::index('maps'), 'label' => $plural],
+                __('entities.children')
             ]
         ])
 

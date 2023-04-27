@@ -1,8 +1,8 @@
 @extends('layouts.app', [
     'title' => __('quests.elements.edit.title', ['name' => $quest->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('quests'), 'label' => __('entities.quests')],
-        ['url' => route('quests.show', $quest->id), 'label' => $quest->name],
+        ['url' => Breadcrumb::index('quests'), 'label' => \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests'))],
+        ['url' => $quest->getLink(), 'label' => $quest->name],
         ['url' => route('quests.quest_elements.index', $quest->id), 'label' => __('quests.show.tabs.elements')],
         __('crud.update'),
     ]

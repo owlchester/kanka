@@ -21,5 +21,6 @@ if (isset($model) && $model->map) {
     :route="route('maps.find', isset($model) ? ['exclude' => $model->id] : null)"
     :class="\App\Models\Map::class"
     :selected="$preset"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.map')">
 </x-forms.foreign>

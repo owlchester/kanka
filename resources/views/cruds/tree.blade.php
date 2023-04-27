@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => __('entities.' . $langKey),
-    'seoTitle' => __('entities.' . $langKey) . ' - ' . CampaignLocalization::getCampaign()->name,
+    'title' => $titleKey ?? __('entities.' . $langKey),
+    'seoTitle' => $titleKey ?? __('entities.' . $langKey) . ' - ' . CampaignLocalization::getCampaign()->name,
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $langKey)],
+        ['url' => Breadcrumb::index($name), 'label' => $titleKey ?? __('entities.' . $langKey)],
     ],
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,
@@ -11,7 +11,7 @@
 
 @section('entity-header')
     <div class="flex items-center mb-2">
-        <h1 class="grow m-0">{{ $titleKey ?? __('entities.' . $langKey) }}</h1>
+        <h1 class="grow m-0">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex-none flex gap-2">
             @include('layouts.datagrid._togglers', ['route' => 'tree'])
             @include('cruds.lists._actions')

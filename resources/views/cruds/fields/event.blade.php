@@ -21,5 +21,6 @@ if (isset($model) && $model->event) {
     :route="route('events.find', isset($model) ? ['exclude' => $model->id] : null)"
     :class="\App\Models\Event::class"
     :selected="$preset"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.event')">
 </x-forms.foreign>

@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Facades\Module;
 use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -118,6 +119,14 @@ trait TreeControllerTrait
         $bulk = $this->bulkModel();
         $actions = $this->navActions;
 
+        $entityTypeId = $model->entityTypeId();
+        if (!empty($this->titleKey)) {
+            $titleKey = $this->titleKey;
+        } else {
+            $titleKey = Module::plural($entityTypeId, __('entities.' . $langKey));
+        }
+        $singular = Module::singular($entityTypeId, __('entities.' .  \Illuminate\Support\Str::singular($route)));
+
         return view('cruds.tree', compact(
             'models',
             'name',
@@ -135,6 +144,9 @@ trait TreeControllerTrait
             'datagridActions',
             'parent',
             'mode',
+            'titleKey',
+            'entityTypeId',
+            'singular',
         ));
     }
 }

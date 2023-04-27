@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -252,7 +253,7 @@ class Map extends MiscModel
         $campaign = CampaignLocalization::getCampaign();
 
         $items['second']['maps'] = [
-            'name' => 'maps.show.tabs.maps',
+            'name' => Module::plural($this->entityTypeId(), 'entities.maps'),
             'route' => 'maps.maps',
             'count' => $this->maps()->count()
         ];

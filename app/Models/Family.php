@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
+use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -245,7 +246,7 @@ class Family extends MiscModel
     public function menuItems(array $items = []): array
     {
         $items['second']['families'] = [
-            'name' => 'families.show.tabs.families',
+            'name' => Module::plural($this->entityTypeId(), 'entities.families'),
             'route' => 'families.families',
             'count' => $this->descendants()->count()
         ];

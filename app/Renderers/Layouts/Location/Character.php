@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Location;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Character extends Layout
             ],
             'character_id' => [
                 'key' => 'name',
-                'label' => 'entities.character',
+                'label' => Module::singular(config('entities.ids.character'), 'entities.character'),
                 'render' => Standard::CHARACTER,
             ],
             'type' => [
@@ -30,7 +31,7 @@ class Character extends Layout
                 },
             ],
             'families' => [
-                'label' => 'characters.fields.families',
+                'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     $models = [];
@@ -42,7 +43,7 @@ class Character extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'entities.location',
+                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;
@@ -54,7 +55,7 @@ class Character extends Layout
                 }
             ],
             'races' => [
-                'label' => 'entities.races',
+                'label' => Module::plural(config('entities.ids.race'), 'entities.races'),
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     $models = [];

@@ -1,11 +1,10 @@
 @extends('layouts.app', [
-    'title' => trans($name . '.edit.title', ['name' => $parent->name]),
-    'description' => trans($name . '.edit.description'),
+    'title' => __($name . '.edit.title', ['name' => $parent->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('quests'), 'label' => __('entities.quests')],
-        ['url' => route('quests.show', $parent->id), 'label' => $parent->name],
-        ['url' => route('quests.' . $menu, $parent->id), 'label' => trans('quests.show.tabs.' . $menu)],
-        trans('crud.update'),
+        ['url' => Breadcrumb::index('quests'), 'label' => \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests'))],
+        ['url' => $parent->getLink(), 'label' => $parent->name],
+        ['url' => $parent->getLink($menu), 'label' => __('quests.show.tabs.' . $menu)],
+        __('crud.update'),
     ]
 ])
 @section('content')
@@ -25,7 +24,7 @@
                     {!! Form::hidden('quest_id', $parent->id) !!}
 
                     <div class="form-group">
-                        <button class="btn btn-success">{{ trans('crud.save') }}</button>
+                        <button class="btn btn-success">{{ __('crud.save') }}</button>
                         @include('partials.or_cancel')
                     </div>
 

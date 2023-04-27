@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Item;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Item extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'entities.item',
+                'label' => Module::singular(config('entities.ids.item'), 'entities.item'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [

@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Race;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Race extends Layout
             ],
             'race_id' => [
                 'key' => 'name',
-                'label' => 'entities.race',
+                'label' => Module::singular(config('entities.ids.race'), 'entities.race'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -28,7 +29,7 @@ class Race extends Layout
             ],
             'race' => [
                 'key' => 'race.name',
-                'label' => 'races.fields.race',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     if (!$model->race) {
                         return null;
@@ -37,7 +38,7 @@ class Race extends Layout
                 },
             ],
             'characters' => [
-                'label' => 'races.fields.characters',
+                'label' => Module::plural(config('entities.ids.character'), 'entities.characters'),
                 'render' => function ($model) {
                     return $model->characters->count();
                 }

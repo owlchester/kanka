@@ -6,6 +6,7 @@ use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
+use App\Facades\Module;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
@@ -295,7 +296,7 @@ abstract class MiscModel extends Model
         // Each entity can have abilities
         if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
             $items['third']['abilities'] = [
-                'name' => 'crud.tabs.abilities',
+                'name' => Module::plural(config('entities.ids.ability'), 'crud.tabs.abilities'),
                 'route' => 'entities.entity_abilities.index',
                 'count' => 0, //$this->entity->abilities()->has('ability')->count(),
                 'entity' => true,

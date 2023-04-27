@@ -6,7 +6,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('entities/timelines.show.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('entities.timelines')
     ],

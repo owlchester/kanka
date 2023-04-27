@@ -1,9 +1,9 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => trans('calendars/weather.create.title', ['name' => $calendar->name]),
+    'title' => __('calendars/weather.create.title', ['name' => $calendar->name]),
     'breadcrumbs' => [
-        ['url' => route('calendars.index'), 'label' => __('entities.calendars')],
-        ['url' => route('calendars.show', $calendar->id), 'label' => $calendar->name],
-        trans('calendars.show.tabs.weather'),
+        ['url' => Breadcrumb::index('calendars'), 'label' => \App\Facades\Module::plural(config('entities.ids.calendar'), __('entities.calendars'))],
+        ['url' => $calendar->getLink(), 'label' => $calendar->name],
+        __('calendars.show.tabs.weather'),
     ],
     'canonical' => true,
 ])

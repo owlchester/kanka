@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Forms;
 
+use App\Facades\Module;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +27,7 @@ class Foreign extends Component
     public array $options = [];
     public ?string $dropdownParent;
     public ?string $className;
+    public ?int $entityTypeID;
 
     /**
      * Create a new component instance.
@@ -45,6 +47,7 @@ class Foreign extends Component
         string $placeholder = null,
         string $helper = null,
         string $dropdownParent = null,
+        int $entityTypeID = null,
         //mixed $model = null,
         mixed $class = null,
     ) {
@@ -64,6 +67,7 @@ class Foreign extends Component
         $this->dropdownParent = $dropdownParent;
         $this->id = $id ?? $name . '_' . uniqid();
         $this->className = $class;
+        $this->entityTypeID = $entityTypeID;
     }
 
     /**
@@ -90,6 +94,9 @@ class Foreign extends Component
         } elseif (!empty($this->key)) {
             if (empty($this->label)) {
                 $this->label = __('crud.fields.' . $this->key);
+                if (!empty($this->entityTypeID)) {
+                    $this->label = Module::singular($this->entityTypeID, $this->label);
+                }
             }
             if (empty($this->placeholder)) {
                 $this->placeholder = __('crud.placeholders.' . $this->key);

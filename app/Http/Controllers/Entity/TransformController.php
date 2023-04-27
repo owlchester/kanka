@@ -12,13 +12,9 @@ use App\Traits\GuestAuthTrait;
 
 class TransformController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
-    /** @var EntityService */
-    protected $service;
+    protected EntityService $service;
 
     /**
      * AbilityController constructor.
@@ -43,6 +39,7 @@ class TransformController extends Controller
         $campaign = CampaignLocalization::getCampaign();
 
         $entities = $this->service
+            ->campaign($campaign)
             ->labelledEntities(true, [$entity->pluralType(), 'menu_links', 'relations'], true);
 
         $entities[''] = __('entities/transform.fields.select_one');
@@ -51,6 +48,7 @@ class TransformController extends Controller
         return view('entities.pages.transform.index', compact(
             'entity',
             'entities',
+            'campaign',
         ));
     }
 

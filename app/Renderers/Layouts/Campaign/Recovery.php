@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Campaign;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Layout;
 
 class Recovery extends Layout
@@ -32,7 +33,7 @@ class Recovery extends Layout
                 'key' => 'type_id',
                 'label' => 'crud.fields.entity_type',
                 'render' => function ($entity) {
-                    return __('entities.' . $entity->type());
+                    return Module::singular($entity->typeID(), __('entities.' . $entity->type()));
                 },
             ],
             'deleted' => [

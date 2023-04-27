@@ -5,6 +5,9 @@
     'miscModel' => $model,
 ])
 
+@php
+$plural = \App\Facades\Module::plural(config('entities.ids.journal'), __('entities.journals'));
+@endphp
 @section('content')
     @include('partials.errors')
 
@@ -12,8 +15,8 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('journals'), 'label' => __('entities.journals')],
-                __('journals.show.tabs.journals')
+                ['url' => Breadcrumb::index('journals'), 'label' => $plural],
+                __('entities.children')
             ]
         ])
 

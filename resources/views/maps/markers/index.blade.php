@@ -31,7 +31,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('maps'), 'label' => __('entities.maps')],
+                ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
                 __('maps.panels.markers')
             ]
         ])

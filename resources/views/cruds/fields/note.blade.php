@@ -22,5 +22,6 @@ if (isset($model) && $model->note) {
     :class="\App\Models\Note::class"
     :selected="$preset"
     :helper="$helper ?? null"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.note')">
 </x-forms.foreign>

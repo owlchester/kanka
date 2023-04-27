@@ -23,5 +23,6 @@ if (isset($model) && $model->tag) {
     :class="\App\Models\Tag::class"
     :selected="$preset"
     :helper="$helper ?? null"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.tag')">
 </x-forms.foreign>

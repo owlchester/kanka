@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Facades\Mentions;
+use App\Facades\Module;
 use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -371,11 +372,20 @@ class SearchService
         $options = [];
         $term = str_replace('_', ' ', $this->term);
         foreach ($this->entityService->newEntityTypes() as $type => $class) {
+            /** @var MiscModel $misc */
+            $misc = new $class;
+            $label = __('entities.new.' . $type);
+            if (!empty($misc->entityTypeId())) {
+                $singular = Module::singular($misc->entityTypeId());
+                if ($singular) {
+                    $label = __('crud.titles.new', ['module' => $singular]);
+                }
+            }
             $options[] = [
                 'new' => true,
                 'inject' => '[new:' . $type . '|' . $term . ']',
                 'fullname' => $term,
-                'type' => __('entities.new.' . $type),
+                'type' => $label,
                 'text' => $term,
                 'name' => $term,
             ];

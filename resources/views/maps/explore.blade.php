@@ -6,8 +6,8 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @extends('layouts.map', [
-'title' => $map->name,
-'map' => $map,
+    'title' => $map->name,
+    'map' => $map,
 ])
 
 @section('content')

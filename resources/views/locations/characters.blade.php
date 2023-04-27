@@ -12,8 +12,8 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('locations'), 'label' => __('entities.locations')],
-                __('entities.characters')
+                ['url' => Breadcrumb::index('locations'), 'label' => \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations'))],
+                \App\Facades\Module::plural(config('entities.ids.character'), __('entities.locations'))
             ]
         ])
 

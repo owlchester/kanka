@@ -21,5 +21,6 @@
     :route="route('locations.find', isset($model) ? ['exclude' => $model->id] : null)"
     :class="\App\Models\Location::class"
     :selected="$preset"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.location')">
 </x-forms.foreign>

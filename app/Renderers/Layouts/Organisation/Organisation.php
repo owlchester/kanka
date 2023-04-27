@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Organisation;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Organisation extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'entities.organisation',
+                'label' => Module::singular(config('entities.ids.organisation'), 'entities.organisation'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -28,7 +29,7 @@ class Organisation extends Layout
             ],
             'organisation' => [
                 'key' => 'organisation.name',
-                'label' => 'organisations.fields.organisation',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     if (!$model->organisation) {
                         return null;

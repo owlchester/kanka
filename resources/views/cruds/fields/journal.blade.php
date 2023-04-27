@@ -22,5 +22,6 @@ if (isset($model) && $model->journal) {
     :route="route('journals.find', isset($model) ? ['exclude' => $model->id] : null)"
     :class="\App\Models\Journal::class"
     :selected="$preset"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.journal')">
 </x-forms.foreign>

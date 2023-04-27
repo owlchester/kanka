@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\Module;
 use App\Models\Ability;
 use App\Models\Attribute;
 use App\Models\Campaign;
@@ -141,10 +142,12 @@ class EntityService
 
         foreach ($this->entities() as $entity => $class) {
             if (auth()->check() && auth()->user()->can('create', $class)) {
+                /** @var MiscModel|mixed $misc */
+                $misc = new $class();
                 if ($singular) {
-                    $labels[$entity] = __('entities.' . $this->singular($entity));
+                    $labels[$entity] = Module::singular($misc->entityTypeId(), __('entities.' . $this->singular($entity)));
                 } else {
-                    $labels[$entity] = __('entities.' . $entity);
+                    $labels[$entity] = Module::plural($misc->entityTypeId(), __('entities.' . $entity));
                 }
             }
         }

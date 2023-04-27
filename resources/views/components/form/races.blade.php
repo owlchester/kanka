@@ -27,7 +27,7 @@ if ($quickCreator) {
     $quickCreator = auth()->user()->can('create', new \App\Models\Race());
 }
 ?>
-<label>{{ __('entities.races') }}</label>
+<label>{{ \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) }}</label>
 
 @if ($quickCreator)<div class="input-group input-group-sm">@endif
 

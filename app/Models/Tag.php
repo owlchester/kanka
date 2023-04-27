@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -247,7 +248,7 @@ class Tag extends MiscModel
         $count = $this->descendants->count();
         if ($count > 0) {
             $items['second']['tags'] = [
-                'name' => 'tags.show.tabs.tags',
+                'name' => Module::plural($this->entityTypeId(), 'entities.tags'),
                 'route' => 'tags.tags',
                 'count' => $count
             ];

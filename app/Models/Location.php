@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -329,7 +330,7 @@ class Location extends MiscModel
         $count = $this->descendants()->has('location')->count();
         if ($count > 0) {
             $items['second']['locations'] = [
-                'name' => 'entities.locations',
+                'name' => Module::plural($this->entityTypeId(), 'entities.locations'),
                 'route' => 'locations.locations',
                 'count' => $count
             ];
@@ -338,7 +339,7 @@ class Location extends MiscModel
         $count = $this->allCharacters()->count();
         if ($campaign->enabled('characters') && $count > 0) {
             $items['second']['characters'] = [
-                'name' => 'entities.characters',
+                'name' => Module::plural(config('entities.ids.character'), 'entities.characters'),
                 'route' => 'locations.characters',
                 'count' => $count
             ];

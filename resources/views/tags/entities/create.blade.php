@@ -1,10 +1,10 @@
 <?php /** @var \App\Models\Tag $model */ ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => trans('tags.children.create.title', ['name' => $model->name]),
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
+    'title' => __('tags.children.create.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index('tags'), 'label' => trans('entities.tags')],
-        ['url' => route('tags.show', $model->id), 'label' => $model->name]
+        ['url' => Breadcrumb::index('tags'), 'label' => \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags'))],
+        ['url' => $model->getLink(), 'label' => $model->name]
     ]
 ])
 

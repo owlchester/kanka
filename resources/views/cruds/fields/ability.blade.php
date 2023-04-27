@@ -22,6 +22,7 @@ if (isset($model) && $model->ability) {
     :class="\App\Models\Ability::class"
     :selected="$preset"
     :helper="$helper ?? null"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.ability')">
 </x-forms.foreign>
 

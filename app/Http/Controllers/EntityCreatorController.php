@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Module;
 use App\Http\Requests\StoreCharacter;
 use App\Models\Campaign;
 use App\Models\MiscModel;
@@ -296,6 +297,12 @@ class EntityCreatorController extends Controller
 
         $orderedEntityTypes = $this->orderedEntityTypes();
 
+        $newLabel = __($type . '.create.title');
+        $singular = Module::singular($type);
+        if (!empty($singular)) {
+            $newLabel = __('crud.titles.new', ['module' => $singular]);
+        }
+
         return view('entities.creator.' . $view, compact(
             'type',
             'singularType',
@@ -310,6 +317,8 @@ class EntityCreatorController extends Controller
             //'entityTypes',
             'orderedEntityTypes',
             'success',
+            'newLabel',
+            'singular',
         ))
             ->with('campaign', $this->campaign);
     }

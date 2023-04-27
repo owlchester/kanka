@@ -7,7 +7,7 @@ $required = !isset($bulk);
         'name',
         null,
         [
-            'placeholder' => trans($trans . '.placeholders.name'),
+            'placeholder' => __('crud.placeholders.name'),
             'class' => 'form-control',
             'maxlength' => 191,
             'data-live' => route('search.live'),

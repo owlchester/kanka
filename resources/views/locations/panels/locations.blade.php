@@ -1,7 +1,7 @@
 <div class="box box-solid" id="location-locations">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('entities.locations') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.location'), __('entities.location')) !!}
         </h3>
         <div class="box-tools">
             @if (request()->has('parent_id'))

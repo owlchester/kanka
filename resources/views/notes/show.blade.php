@@ -4,7 +4,7 @@
     @include('entities.components.header', [
         'model' => $model,
         'breadcrumb' => [
-            ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
+            ['url' => Breadcrumb::index('notes'), 'label' => \App\Facades\Module::plural(config('entities.ids.note'), __('entities.notes'))],
             null
         ]
     ])
@@ -17,7 +17,9 @@
         @if(!$model->notes->isEmpty())
             <div class="box box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{ __('notes.fields.notes') }}</h3>
+                    <h3 class="box-title">
+                        {!! \App\Facades\Module::plural(config('entities.ids.note'), __('entities.notes')) !!}
+                    </h3>
                 </div>
                 <div class="box-body">
                     <div class="row">

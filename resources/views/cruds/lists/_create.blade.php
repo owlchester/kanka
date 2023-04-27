@@ -1,7 +1,7 @@
 <div class="btn-group">
     <a href="{{ route($route . '.create') }}" class="btn btn-primary btn-new-entity" data-entity-type="{{ $name }}">
         <i class="fa-solid fa-plus" aria-hidden="true"></i>
-        <span class="hidden-xs hidden-sm">{{ __('entities.' .  \Illuminate\Support\Str::singular($route)) }}</span>
+        <span class="hidden-xs hidden-sm">{!! $singular !!}</span>
     </a>
     @if(!in_array($name, ['menu_links', 'relations']))
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -12,7 +12,7 @@
                 @foreach ($templates as $entityTemplate)
                     <li>
                         <a href="{{ route($route . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $name }}">
-                            <i class="fa-solid fa-star"></i> {{ $entityTemplate->name  }}</span>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i> {{ $entityTemplate->name  }}</span>
                         </a>
                     </li>
                 @endforeach

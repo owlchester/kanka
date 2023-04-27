@@ -2,8 +2,8 @@
     'title' => __('entities/notes.edit.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route($parentRoute . '.index'), 'label' => __('entities.' . $parentRoute)],
-        ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
+        ['url' => $entity->url(), 'label' => $entity->name],
         __('crud.update'),
     ]
 ])

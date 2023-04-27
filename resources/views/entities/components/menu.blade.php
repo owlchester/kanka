@@ -13,7 +13,7 @@
                                 {{ $menuItem['count'] }}
                             </span>
                             @endif
-                            {{ __($menuItem['name']) }}
+                            {!! __($menuItem['name']) !!}
                         </a>
                         @if(!empty($menuItem['button']))
                             <a href="{{ $menuItem['button']['url'] }}" class="icon" @if(!empty($menuItem['button']['tooltip'])) title="{{ $menuItem['button']['tooltip'] }}" data-toggle="tooltip" @endif>

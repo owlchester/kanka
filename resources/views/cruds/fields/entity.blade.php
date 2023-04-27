@@ -12,7 +12,6 @@
     @php $allowClear = false;@endphp
 @endif
 
-
 <x-forms.foreign
     :name="$name ?? 'entity_id'"
     :key="$key ?? 'entity'"

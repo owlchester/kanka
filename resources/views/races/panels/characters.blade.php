@@ -17,7 +17,9 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 <div class="box box-solid" id="race-characters">
     <div class="box-header with-border">
-        <h3 class="box-title">{{ __('races.show.tabs.characters') }}</h3>
+        <h3 class="box-title">
+            {!! \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')) !!}
+        </h3>
 
         <div class="box-tools pull-right">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">

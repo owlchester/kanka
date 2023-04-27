@@ -4,8 +4,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('crud.titles.editing', ['name' => $model->name])  . ' - ' . __('entities.' . $name),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
-        ['url' => route($name . '.show', $model->id), 'label' => $model->name],
+        ['url' => Breadcrumb::index($name), 'label' => \App\Facades\Module::plural($entityTypeId, __('entities.' . $name))],
+        ['url' => $model->getLink(), 'label' => $model->name],
         __('crud.edit'),
     ],
     'mainTitle' => false,

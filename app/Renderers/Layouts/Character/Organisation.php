@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Character;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -20,11 +21,11 @@ class Organisation extends Layout
             ],
             'organisation' => [
                 'key' => 'organisation.name',
-                'label' => 'entities.organisation',
+                'label' => Module::singular(config('entities.ids.organisation'), 'entities.organisation'),
                 'render' => function ($model) {
                     $defunctIcon = null;
                     if ($model->organisation->is_defunct) {
-                        $defunctIcon = ' <i class="fa-solid fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>';
+                        $defunctIcon = ' <i class="fa-solid fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '" aria-hidden="true"></i>';
                     }
                     return $model->organisation->tooltipedLink() . $defunctIcon . '<br />' . $model->organisation->type;
                 },
@@ -45,7 +46,7 @@ class Organisation extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'entities.location',
+                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;

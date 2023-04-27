@@ -1,8 +1,8 @@
 @extends('layouts.app', [
     'title' => __('entities/transform.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => route($entity->pluralType() . '.show', [$entity->entity_id]), 'label' => $entity->name],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
+        ['url' => $entity->url(), 'label' => $entity->name],
         __('crud.actions.transform'),
     ]
 ])

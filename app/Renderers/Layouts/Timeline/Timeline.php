@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Timeline;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Timeline extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'entities.timeline',
+                'label' => Module::singular(config('entities.ids.timeline'), 'entities.timeline'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -28,7 +29,7 @@ class Timeline extends Layout
             ],
             'timeline' => [
                 'key' => 'timeline.name',
-                'label' => 'timelines.fields.timeline',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     if (!$model->timeline) {
                         return null;

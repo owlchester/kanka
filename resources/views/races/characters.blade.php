@@ -1,9 +1,9 @@
 @extends('layouts.app', [
     'title' => trans('races.characters.title', ['name' => $model->name]),
-    'description' => trans('races.characters.description'),
     'breadcrumbs' => [
-        ['url' => route('races.show', $model), 'label' => $model->name],
-        trans('races.show.tabs.characters')
+        ['url' => Breadcrumb::index('races'), 'label' => \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races'))],
+        ['url' => $model->getLink(), 'label' => $model->name],
+        \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters'))
     ],
     'mainTitle' => false,
     'miscModel' => $model,

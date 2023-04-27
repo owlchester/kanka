@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Creature;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Creature extends Layout
             ],
             'creature_id' => [
                 'key' => 'name',
-                'label' => 'entities.creature',
+                'label' => Module::singular(config('entities.ids.creature'), 'entities.creature'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -28,7 +29,7 @@ class Creature extends Layout
             ],
             'creature' => [
                 'key' => 'creature.name',
-                'label' => 'creatures.fields.creature',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     return $model->creature?->tooltipedLink();
                 },

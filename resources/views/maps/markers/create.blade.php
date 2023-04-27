@@ -9,8 +9,8 @@
     'title' => __('maps/markers.create.title', ['name' => $map->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('maps.index'), 'label' => __('entities.maps')],
-        ['url' => $map->entity->url('show'), 'label' => $map->name],
+        ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
+        ['url' => $map->entity->url(), 'label' => $map->name],
         __('maps/markers.create.title')
     ]
 ])

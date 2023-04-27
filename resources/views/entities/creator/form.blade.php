@@ -69,7 +69,7 @@
             <div class="btn-group mr-4">
                 <button type="submit" class="btn btn-success quick-creator-submit px-5" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.create') }}">
                     <span>
-                        {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
+                        {!! __('entities.creator.actions.create', ['type' => $singular ?? $entityType]) !!}
                     </span>
                     <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
                 </button>

@@ -24,5 +24,6 @@
     :class="\App\Models\Organisation::class"
     :selected="$preset"
     :helper="$helper ?? null"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.organisation')">
 </x-forms.foreign>

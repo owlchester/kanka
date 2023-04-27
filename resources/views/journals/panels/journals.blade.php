@@ -7,7 +7,7 @@
 <div class="box box-solid" id="journal-journals">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('journals.show.tabs.journals') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.journal'), __('entities.journals')) !!}
         </h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">

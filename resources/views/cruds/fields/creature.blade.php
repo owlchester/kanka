@@ -22,5 +22,6 @@ if (isset($model) && $model->creature) {
     :class="\App\Models\Creature::class"
     :selected="$preset"
     :helper="$helper ?? null"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.creature')">
 </x-forms.foreign>

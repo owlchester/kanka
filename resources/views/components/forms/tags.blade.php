@@ -1,6 +1,6 @@
 <div class="field-tag">
     @if (!empty($label))
-        <label>{{ __('entities.tags') }}
+        <label>{{ \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')) }}
             @if(!empty($helper))
                 <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}" aria-hidden="true"></i>
             @endif

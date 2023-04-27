@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -145,7 +146,7 @@ class Journal extends MiscModel
     public function menuItems(array $items = []): array
     {
         $items['second']['journals'] = [
-            'name' => 'journals.show.tabs.journals',
+            'name' => Module::plural($this->entityTypeId(), 'entities.journals'),
             'route' => 'journals.journals',
             'count' => $this->descendants()->count()
         ];

@@ -13,7 +13,7 @@
             @if (empty($target))
                 <div class="dropdown">
                     <div role="button" class="text-2xl dropdown-toggle text-2xl" data-toggle="dropdown" aria-expanded="false">
-                        {{ __($type . '.create.title') }}
+                        {!! $newLabel !!}
                         <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                     </div>
                     <ul class="dropdown-menu" role="menu">
@@ -33,7 +33,7 @@
             @else
                 <div>
                     <div class="text-2xl text-2xl">
-                        {{ __($type . '.create.title') }}
+                        {!! $newLabel !!}
                     </div>
                 </div>
             @endif

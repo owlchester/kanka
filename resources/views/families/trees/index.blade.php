@@ -45,7 +45,7 @@
         @include('entities.components.header', [
             'model' => $family,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('families'), 'label' => __('entities.families')],
+                ['url' => Breadcrumb::index('families'), 'label' => \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families'))],
                 null
             ]
         ])

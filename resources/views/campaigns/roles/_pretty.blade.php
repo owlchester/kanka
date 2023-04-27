@@ -27,7 +27,7 @@ $first = true;
         @php $first = false; @endphp
     @endif
         <div class="col-span-7 md:col-span-1">
-            <strong>{{ __($permission->entityType($entity)) }}</strong>
+            <strong>{!! __($permission->entityType($entity)) !!}</strong>
             @if (!$campaign->enabled($permission->entityTypePlural($entity)))
                 <div class="inline" data-toggle="tooltip" title="{{ __('campaigns.modules.permission-disabled') }}">
                     <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>

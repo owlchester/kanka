@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Family;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Family extends Layout
             ],
             'family_id' => [
                 'key' => 'name',
-                'label' => 'entities.family',
+                'label' => Module::singular(config('entities.ids.family'), 'entities.family'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -28,7 +29,7 @@ class Family extends Layout
             ],
             'location' => [
                 'key' => 'location.name',
-                'label' => 'entities.location',
+                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'render' => function ($model) {
                     if (!$model->location) {
                         return null;
@@ -38,7 +39,7 @@ class Family extends Layout
             ],
             'family' => [
                 'key' => 'family.name',
-                'label' => 'families.fields.family',
+                'label' => 'crud.fields.parent',
                 'render' => function ($model) {
                     if (!$model->family) {
                         return null;

@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => __('characters.organisations.title', ['name' => $model->name]),
-    'description' => __('characters.organisations.description'),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -28,7 +27,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('characters'), 'label' => __('entities.characters')],
+                ['url' => Breadcrumb::index('characters'), 'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters'))],
                 null
             ]
         ])

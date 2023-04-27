@@ -7,6 +7,9 @@
 
 @inject('campaignService', 'App\Services\CampaignService')
 
+@php
+    $plural = \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'));
+@endphp
 @section('content')
     @include('partials.errors')
 
@@ -14,8 +17,8 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
-                __('timelines.fields.timelines')
+                ['url' => Breadcrumb::index($name), 'label' => $plural],
+                __('entities.children')
             ]
         ])
 

@@ -22,5 +22,6 @@ if (isset($model) && $model->quest) {
     :class="\App\Models\Quest::class"
     :selected="$preset"
     :helper="$helper ?? null"
-    :dropdownParent="$dropdownParent ?? null">
+    :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.quest')">
 </x-forms.foreign>

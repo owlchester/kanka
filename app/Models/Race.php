@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\FilterOption;
 use App\Facades\CampaignLocalization;
+use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
@@ -216,7 +217,7 @@ class Race extends MiscModel
         $count = $this->descendants()->count();
         if ($campaign->enabled('races') && $count > 0) {
             $items['second']['races'] = [
-                'name' => 'races.show.tabs.races',
+                'name' => Module::plural($this->entityTypeId(), 'entities.races'),
                 'route' => 'races.races',
                 'count' => $count
             ];

@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Quest;
 
+use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -19,7 +20,7 @@ class Quest extends Layout
             ],
             'name' => [
                 'key' => 'name',
-                'label' => 'entities.quest',
+                'label' => Module::singular(config('entities.ids.quest'), 'entities.quest'),
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
@@ -38,7 +39,7 @@ class Quest extends Layout
                     if (!$model->is_completed) {
                         return '';
                     }
-                    return '<i class="fa-solid fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>';
+                    return '<i class="fa-solid fa-check-circle" title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
                 },
 
             ],

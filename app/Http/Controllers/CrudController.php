@@ -192,7 +192,8 @@ class CrudController extends Controller
             );
         }
         $actions = $this->navActions;
-        $entity_type_id = $model->entityTypeId();
+        $entityTypeId = $model->entityTypeId();
+        $singular = Module::singular($entityTypeId, __('entities.' .  \Illuminate\Support\Str::singular($route)));
 
         $data = compact(
             'models',
@@ -212,12 +213,13 @@ class CrudController extends Controller
             'mode',
             'parent',
             'forceMode',
-            'entity_type_id',
+            'entityTypeId',
+            'singular',
         );
         if (!empty($this->titleKey)) {
             $data['titleKey'] = $this->titleKey;
         } else {
-            $data['titleKey'] = Module::plural($entity_type_id, __('entities.' . $langKey));
+            $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
         }
         return view('cruds.index', $data);
     }
@@ -274,7 +276,7 @@ class CrudController extends Controller
         $entityTypeID = $model->entityTypeId();
         $plural = Module::plural($entityTypeID, __('entities.' . $this->view));
         $singular = Module::singular($entityTypeID);
-        $params['entity_type_id'] = $entityTypeID;
+        $params['entityTypeId'] = $entityTypeID;
         $params['plural'] = $plural;
         if (!empty($singular)) {
             $params['title'] = __('crud.titles.new', ['module' => $singular]);
@@ -439,7 +441,7 @@ class CrudController extends Controller
             'entityType' => $model->getEntityType(),
             'horizontalForm' => $this->horizontalForm,
             'editingUsers' => $editingUsers,
-            'entity_type_id' => $model->entityTypeId()
+            'entityTypeId' => $model->entityTypeId()
         ];
 
         return view('cruds.forms.edit', $params);

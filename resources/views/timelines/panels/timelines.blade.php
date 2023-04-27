@@ -1,7 +1,7 @@
 <div class="box box-solid" id="race-races">
     <div class="box-header">
         <h3 class="box-title">
-            {{ __('timelines.fields.timelines') }}
+            {!! \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines')) !!}
         </h3>
         <div class="box-tools">
             @if (request()->has('parent_id'))

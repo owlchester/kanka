@@ -27,7 +27,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('timelines'), 'label' => __('entities.timelines')],
+                ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
                 __('timelines.fields.eras')
             ]
         ])

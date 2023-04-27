@@ -7,6 +7,9 @@
 
 @inject('campaignService', 'App\Services\CampaignService')
 
+@php
+    $plural = \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities'));
+@endphp
 @section('content')
     @include('partials.errors')
 
@@ -14,8 +17,8 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index('abilities'), 'label' => __('entities.abilities')],
-                __('abilities.show.tabs.abilities')
+                ['url' => Breadcrumb::index('abilities'), 'label' => $plural],
+                $plural
             ]
         ])
 
