@@ -6,36 +6,20 @@
 $preset = null;
 if (isset($model) && $model->event) {
     $preset = $model->event;
-} elseif (isset($parent) && $parent) {
-    $preset = FormCopy::field('event')->select(true, \App\Models\Event::class);
-} else {
-    $preset = FormCopy::field('event')->select();
-}
-
-$data = [
-    'preset' => $preset,
-    'class' => App\Models\Event::class,
-];
-if (isset($enableNew)) {
-    $data['allowNew'] = $enableNew;
-}
-if (isset($parent) && $parent) {
-    $data['labelKey'] = 'events.fields.event';
-}
-if (isset($dropdownParent)) {
-    $data['dropdownParent'] = $dropdownParent;
-}
-if (isset($from)) {
-    $data['from'] = $from;
-}
-if (isset($quickCreator)) {
-    $data['quickCreator'] = $quickCreator;
+} elseif (!isset($bulk)) {
+    $preset = FormCopy::field('event')->select($isParent ?? false, \App\Models\Event::class);
 }
 @endphp
 
-<div class="form-group">
-    {!! Form::foreignSelect(
-        'event_id',
-        $data
-    ) !!}
-</div>
+<x-forms.foreign
+    name="event_id"
+    key="event"
+    entityType="events"
+    :allowNew="$allowNew ?? true"
+    :allowClear="$allowClear ?? true"
+    :parent="$isParent ?? false"
+    :route="route('events.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :class="\App\Models\Event::class"
+    :selected="$preset"
+    :dropdownParent="$dropdownParent ?? null">
+</x-forms.foreign>

@@ -416,7 +416,7 @@ class SearchService
             'id' => $entity->id,
             'name' => $entity->name,
             'is_private' => $entity->is_private,
-            'image' => $entity->avatarSize(64)->avatar(),
+            'image' => $entity->avatarSize(64)->avatarV2(),
             'link' => $entity->url(),
             'type' => __('entities.' . $entity->type()),
             'preview' => route('entities.preview', $entity)

@@ -115,7 +115,6 @@ return [
     'errors'                    => [
         'boosted'                       => 'Táto funkcionalita je dostupná iba pre boostnuté kampane.',
         'boosted_campaigns'             => 'Funkcionalita je dostupná iba pre :boosted.',
-        'cannot_move_node_into_itself'  => 'Vybraný nadradený objekt je neplatný, možno pretože má tento objekt priradený ako nadradený.',
         'node_must_not_be_a_descendant' => 'Neplatný objekt (kategória, miesto): bol by potomok samého seba.',
         'unavailable_feature'           => 'Funkcionalita nedostupná',
     ],

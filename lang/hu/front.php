@@ -33,7 +33,6 @@ return [
     'contact'       => [
         'description'   => 'Segítségre lenne szükséged, van egy javaslatod, vagy csak egyszerűen megosztanád, hogy mennyire tetszik a Kanka? Csapatunk válaszol majd, bármi legyen is az alkalom!',
         'email'         => 'Az alábbi email címen elérhetsz minket:',
-        'other'         => 'Vagy vedd fel a kapcsolatot velünk az alábbi közösségi média felületen:',
         'title'         => 'Itt vagyunk Neked',
     ],
     'cookie'        => [

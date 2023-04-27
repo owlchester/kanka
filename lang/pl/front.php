@@ -41,7 +41,6 @@ return [
     'contact'               => [
         'description'   => 'Potrzebujesz pomocy, masz sugestię albo chcesz podzielić się podziwem dla Kanki? Nasz zespół odpowie niezależnie od tematu!',
         'email'         => 'Ślij zapytania na adres',
-        'other'         => 'Albo użyj jednego z serwisów społecznościowych:',
         'title'         => 'W czym możemy pomóc?',
     ],
     'cookie'                => [
@@ -190,10 +189,11 @@ return [
             'title'         => 'Sekrety i tajemnice',
         ],
         'superboosts'       => [
-            'boosted'   => 'Turbodoładowanie',
-            'gallery'   => 'Galeria kampanii zintegrowana z edytorem tekstu Summernote',
-            'logs'      => 'Pełna lista wszystkich zmian elementów (do 30 dni wstecz)',
-            'stats'     => 'Osiągnięcia w kampanii',
+            'boosted'       => 'Turbodoładowanie',
+            'family-tree'   => 'Drzewa genealogiczne pozwalają przedstawić historię rodu',
+            'gallery'       => 'Galeria kampanii zintegrowana z edytorem tekstu Summernote',
+            'logs'          => 'Pełna lista wszystkich zmian elementów (do 30 dni wstecz)',
+            'stats'         => 'Osiągnięcia w kampanii',
         ],
         'timelines'         => [
             'description'   => 'Przedstaw graficznie historie światów, imperiów, rodów królewskich, a nawet pojedynczych postaci.',

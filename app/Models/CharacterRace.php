@@ -10,6 +10,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CharacterRace extends Model
 {
+    /** @var string[]  */
+    protected $fillable = [
+        'character_id',
+        'race_id',
+    ];
+
     public function character()
     {
         return $this->belongsTo(Character::class);

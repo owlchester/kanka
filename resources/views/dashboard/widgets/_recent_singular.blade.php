@@ -10,7 +10,7 @@ if (empty($entity->child)) {
 ?>
 <div class="entity p-1 text-red-500">
     <div class="flex items-center gap-2 p-1">
-        <a class="w-9 h-9 cover-background rounded-full inline-block" style="background-image: url('{{ $entity->avatarSize(36)->avatarV2() }}');"
+        <a class="w-9 h-9 cover-background rounded-full inline-block" style="background-image: url('{{ $entity->avatarSize(40)->avatarV2() }}');"
             title="{{ $entity->name }}"
             href="{{ $entity->url() }}">
 
@@ -20,7 +20,7 @@ if (empty($entity->child)) {
             {!! $entity->tooltipedLink($entity->name, false) !!}
         </div>
 
-        <div class="flex-0 text-right text-xs ">
+        <div class="flex-none text-right text-xs ">
             <span class="author block">
                 {{ !empty($entity->updated_by) ? \App\Facades\UserCache::name($entity->updated_by) : __('crud.history.unknown') }}
             </span>

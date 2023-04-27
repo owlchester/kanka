@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div class="col-sm-6">
-        @include('cruds.fields.location', ['quickCreator' => true])
+        @include('cruds.fields.location')
     </div>
 </div>
 

@@ -17,36 +17,28 @@ $fromOrg = request()->get('from') === 'org';
 @if ($fromOrg)
    {!! Form::hidden('organisation_id') !!}
 @else
-<div class="form-group required">
-    {!! Form::select2(
-        'organisation_id',
-        (!empty($member) && $member->organisation ? $member->organisation : null),
-        App\Models\Organisation::class,
-        false,
-        null,
-        null,
-        null,
-        null,
-        request()->ajax() ? '#entity-modal' : null,
-    ) !!}
-</div>
+    @include('cruds.fields.organisation', [
+        'preset' => !empty($member) && $member->organisation ? $member->organisation : null,
+        'allowNew' => false,
+        'required' => true,
+        'allowClear' => false,
+        'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+    ])
 @endif
 
 @if ($fromOrg)
-<div class="form-group">
     <input type="hidden" name="parent_id" value="" />
-    {!! Form::select2(
-        'parent_id',
-        (!empty($member) ? $member->parent : null),
-        App\Models\OrganisationMember::class,
-        false,
-        'organisations.members.fields.parent',
-        'search.organisation-member',
-        'organisations.members.placeholders.parent',
-        $member->organisation,
-        request()->ajax() ? '#entity-modal' : null,
-    ) !!}
-</div>
+    @include('cruds.fields.character', [
+        'name' => 'parent_id',
+        'preset' => !empty($member) && $member->parent ? $member->parent : null,
+        'allowNew' => false,
+        'allowClear' => true,
+        'label' => __('organisations.members.fields.parent'),
+        'placeholder' => __('organisations.members.placeholders.parent'),
+        'route' => 'search.organisation-member',
+        'model' => $member->organisation,
+        'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+    ])
 @endif
 
 <div class="form-group">

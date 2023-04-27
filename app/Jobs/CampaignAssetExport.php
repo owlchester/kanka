@@ -33,20 +33,11 @@ class CampaignAssetExport implements ShouldQueue
      */
     public $tries = 1;
 
-    /**
-     * @var Campaign
-     */
-    protected $campaign;
+    protected Campaign $campaign;
 
-    /**
-     * @var User
-     */
-    protected $user;
+    protected User $user;
 
-    /**
-     * @var EntityService
-     */
-    protected $entity;
+    protected EntityService $entity;
 
     /**
      * CampaignExport constructor.

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Kalnoy\Nestedset\AncestorsRelation;
 use Kalnoy\Nestedset\Collection;
 use Kalnoy\Nestedset\DescendantsRelation;
@@ -142,9 +143,20 @@ trait Nested
         if ($value) {
             $this->appendToNode($this->newScopedQuery()->findOrFail($value));
         } else {
-            //dump('make ' . $this->name . ' root');
             $this->actionRoot();
         }
+    }
+
+    /**
+     * Force a node as root. Useful when moving an entity to another campaign
+     * @return void
+     */
+    public function forceAsRoot(): void
+    {
+        if (!$this->exists) {
+            Log::warning('Trying to force a non-existing model as a tree root.');
+        }
+        $this->actionRoot();
     }
 
     /**

@@ -115,7 +115,7 @@ return [
     'errors'                    => [
         'boosted'                       => 'Cette fonctionnalité n\'est accessible qu\'aux campagnes boostées..',
         'boosted_campaigns'             => 'Cette fonctionnalité n\'est que disponible que pour les :boosted.',
-        'cannot_move_node_into_itself'  => 'Le parent sélectionné est invalide. Cela peut être causé par le parent ayant cette entité comme parent.',
+        'invalid_node'                  => 'Le parent sélectionné n\'est pas valide. Cela peut généralement être résolu en donnant au parent sélectionné un parent, puis en le retirant.',
         'node_must_not_be_a_descendant' => 'Node invalide (étiquette, lieu parent): l\'entité serait un descendant de lui-même.',
         'unavailable_feature'           => 'Fonctionnalité indisponible',
     ],
@@ -362,6 +362,7 @@ return [
         'inventory'     => 'Inventaire',
         'links'         => 'Liens',
         'map-points'    => 'Points de carte',
+        'mentions'      => 'Mentions',
         'overview'      => 'Aperçu',
         'permissions'   => 'Permissions',
         'profile'       => 'Profil',

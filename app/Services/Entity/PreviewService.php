@@ -151,7 +151,7 @@ class PreviewService
                 'id' => $relation->target->id,
                 'name' => $relation->target->name,
                 'type' => $relation->relation,
-                'image' => $relation->target->avatarSize(64)->avatar(),
+                'image' => $relation->target->avatarSize(64)->avatarV2(),
                 'link' => $relation->target->url(),
             ];
 

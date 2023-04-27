@@ -1,5 +1,5 @@
 
-<div class="alert alert-info tutorial">
+<div class="alert alert-info tutorial mb-5">
     <span>
         <button type="button" class="close banner-notification-dismiss" data-dismiss="tutorial" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => $code, 'type' => 'tutorial']) }}">×</button>
     </span>

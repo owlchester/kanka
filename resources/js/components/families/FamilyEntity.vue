@@ -1,7 +1,7 @@
 <template>
     <div v-bind:class="boxClasses()" v-bind:style="position()" v-bind:data-uuid="uuid" v-bind:data-entity="entity.id" v-bind:data-tags="tags()">
         <div class="flex items-center gap-1 max-w-full">
-            <div class="flex-0">
+            <div class="flex-none">
                 <a v-bind:href="entity.url">
                     <img v-bind:src="entity.thumb" class="rounded-full entity-image" v-bind:alt="entity.name" />
                 </a>

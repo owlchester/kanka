@@ -7,7 +7,7 @@
 
         <p class="help-block">
             {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, ogg, json', 'size' => auth()->user()->maxUploadSize(true)]) }}
-            @include('cruds.fields.helpers.share')
+            @include('cruds.fields.helpers.share', ['max' => 25])
         </p>
     </div>
 @endif

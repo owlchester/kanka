@@ -25,6 +25,7 @@ return [
         'plugin'                => [
             'deleted'   => 'Plugin :plugin bol odstránený z trhoviska a tvojej kampane :campaign.',
         ],
+        'removed-image'         => 'Obrázok alebo hlavička :entity bola odstránená kvôli žiadosti na základe autorských práv.',
         'role'                  => [
             'add'       => 'Bola ti pridaná rola :role v kampani :campaign.',
             'remove'    => 'Bola ti odobraná rola :role v kampani :campaign.',

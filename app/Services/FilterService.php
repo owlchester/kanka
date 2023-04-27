@@ -339,6 +339,10 @@ class FilterService
             $options['m'] = $this->request->get('m');
         }
 
+        if ($this->request->filled('parent_id')) {
+            $options['parent_id'] = (int) $this->request->get('parent_id');
+        }
+
         return $options;
     }
 

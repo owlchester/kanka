@@ -40,7 +40,56 @@ class MentionController extends Controller
         $rows = $entity
             ->targetMentions()
             ->datagridElements(request()->only(['o', 'k']))
-            ->with(['campaign', 'post', 'post.entity', 'entity', 'entity.image'])
+            ->with([
+                'campaign' => function ($sub) {
+                    $sub->select('id', 'name');
+                },
+                'post' => function ($sub) {
+                    $sub->select('id', 'entity_id', 'name', 'visibility_id');
+                },
+                'post.entity' => function ($sub) {
+                    $sub->select('id', 'type_id', 'entity_id', 'name', 'is_private');
+                },
+                'entity' => function ($sub) {
+                    $sub->select('id', 'type_id', 'entity_id', 'name', 'is_private');
+                },
+                'questElement' => function ($sub) {
+                    $sub->select('id', 'name', 'quest_id', 'entity_id', 'visibility_id');
+                },
+                'questElement.entity' => function ($sub) {
+                    $sub->select('id', 'type_id', 'entity_id', 'name', 'is_private');
+                },
+                /*'questElement.quest' => function ($sub) {
+                    $sub->select('id', 'name', 'is_private');
+                },
+                'questElement.quest.entity' => function ($sub) {
+                    $sub->select('id', 'type_id', 'entity_id', 'name', 'is_private');
+                },*/
+                'timelineElement' => function ($sub) {
+                    $sub->select('id', 'name', 'timeline_id', 'entity_id', 'visibility_id');
+                },
+                'timelineElement.entity' => function ($sub) {
+                    $sub->select('id', 'type_id', 'entity_id', 'name', 'is_private');
+                },
+                /*'timelineElement.timeline' => function ($sub) {
+                    $sub->select('id', 'name', 'is_private');
+                },
+                'timelineElement.timeline.entity' => function ($sub) {
+                    $sub->select('id', 'type_id', 'entity_id', 'name', 'is_private');
+                },*/
+            ])
+            ->where(function ($pref) {
+                return $pref
+                    ->where(function ($subEnt) {
+                        return $subEnt
+                            ->entity()
+                            ->has('entity');
+                    })
+                    ->orWhere(function ($subCam) {
+                        return $subCam->campaign();
+                    })
+                ;
+            })
             ->paginate();
 
         // Ajax Datagrid

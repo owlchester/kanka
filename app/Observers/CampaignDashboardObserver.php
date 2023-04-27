@@ -31,7 +31,7 @@ class CampaignDashboardObserver
             if (empty($source)) {
                 return;
             }
-            foreach ($source->widgets as $widget) {
+            foreach ($source->widgets()->with('dashboardWidgetTags')->get() as $widget) {
                 $widget->copyTo($model);
             }
         }

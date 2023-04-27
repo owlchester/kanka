@@ -51,6 +51,16 @@ return [
     'journals'      => [
         'title' => 'Dzienniki postaci :name',
     ],
+    'labels'        => [
+        'appearance'    => [
+            'entry' => 'Opis cechy wyglądu',
+            'name'  => 'Nazwa cechy wyglądu',
+        ],
+        'personality'   => [
+            'entry' => 'Opis cechy osobowości',
+            'name'  => 'Nazwa cechy osobowości',
+        ],
+    ],
     'maps'          => [
         'title' => 'Mapa relacji postaci :name',
     ],

@@ -38,7 +38,7 @@ return [
     ],
     'placeholders'  => [
         'name'          => 'Magasins, trésors, PNJs',
-        'position'      => 'Champ optionnel pour définir l\'ordre dans lequel s\'affichent les groupes.',
+        'position'      => 'Première',
         'position_list' => 'Après :name',
     ],
     'reorder'       => [

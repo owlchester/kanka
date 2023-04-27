@@ -56,7 +56,7 @@
                         <div v-html="ability.entry"></div>
                         <div v-html="ability.note" class="help-block"></div>
                     </div>
-                    <div class="flex-0 text-right ml-2 mb-2" v-if="ability.images.has" >
+                    <div class="flex-none text-right ml-2 mb-2" v-if="ability.images.has" >
                         <a class="ability-image block w-32 h-32 cover-background" target="_blank" v-bind:href="ability.images.url"
                            v-bind:style="backgroundImage">
                         </a>

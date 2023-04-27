@@ -1,17 +1,14 @@
 {{ csrf_field() }}
-<div class="form-group required">
-    {!! Form::select2(
-        'target_id',
-        (!empty($relation) && $relation->target ? $relation->target : null),
-        App\Models\Entity::class,
-        false,
-        'entities/relations.fields.target',
-        'search.entities-with-relations',
-        'entities/relations.placeholders.target',
-        $entity,
-        request()->ajax() ? '#entity-modal' : null
-    ) !!}
-</div>
+
+@include('cruds.fields.entity', [
+    'name' => 'target_id',
+    'required' => true,
+    'preset' => !empty($relation) && $relation->target ? $relation->target : null,
+    'label' => __('entities/relations.fields.target'),
+    'placeholder' => __('entities/relations.placeholders.target'),
+    'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+    'allowClear' => false,
+])
 <div class="form-group required">
     <label>{{ __('entities/relations.fields.relation') }}</label>
     {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191, 'required']) !!}

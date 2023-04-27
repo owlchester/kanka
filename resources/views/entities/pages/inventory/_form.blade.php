@@ -4,17 +4,10 @@
     <div class="col-md-6">
         <div class="form-group required">
             <input type="hidden" name="item_id" value="" />
-            {!! Form::select2(
-                'item_id',
-                (!empty($inventory) && $inventory->item ? $inventory->item: null),
-                App\Models\Item::class,
-                false,
-                'entities.item',
-                'items.find',
-                'crud.placeholders.item',
-                null,
-                request()->ajax() ? '#entity-modal' : null
-            ) !!}
+            @include('cruds.fields.item', [
+                'preset' => (!empty($inventory) && $inventory->item ? $inventory->item: false),
+                'parentDropdown' => request()->ajax() ? '#entity-modal' : null
+            ])
         </div>
     </div>
     <div class="col-md-6">

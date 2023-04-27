@@ -29,7 +29,7 @@
                 <p class="help-block">
                     {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => auth()->user()->maxUploadSize(true)]) }}
                     {{ __('crud.hints.image_recommendation', ['width' => '1200', 'height' => '400']) }}
-                    @include('cruds.fields.helpers.share')
+                    @include('cruds.fields.helpers.share', ['max' => 25])
                 </p>
             </div>
             <div class="col-md-2">

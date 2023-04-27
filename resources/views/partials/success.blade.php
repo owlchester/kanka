@@ -7,7 +7,7 @@
                 {{ session('success') }}
             @endif
         </div>
-        <div class="flex-0">
+        <div class="flex-none">
             <button type="button" data-dismiss="alert" aria-hidden="true">
                 <i class="fa-solid fa-times" aria-hidden="true"></i>
                 <span class="sr-only">{{ __('crud.click_modal.close') }}</span>
@@ -20,7 +20,7 @@
         <div class="grow">
             {{ session('warning') }}
         </div>
-        <div class="flex-0">
+        <div class="flex-none">
             <button type="button" data-dismiss="alert" aria-hidden="true">
                 <i class="fa-solid fa-times" aria-hidden="true"></i>
                 <span class="sr-only">{{ __('crud.click_modal.close') }}</span>
@@ -37,7 +37,7 @@
                 {{ session('error') }}
             @endif
         </div>
-        <div class="flex-0">
+        <div class="flex-none">
             <button type="button" data-dismiss="alert" aria-hidden="true">
                 <i class="fa-solid fa-times" aria-hidden="true"></i>
                 <span class="sr-only">{{ __('crud.click_modal.close') }}</span>

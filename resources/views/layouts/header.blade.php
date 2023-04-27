@@ -3,7 +3,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
 ?>
 <header id="header" class="fixed top-0 h-12 w-full bg-navbar z-[900]">
     <nav class="flex gap-2 justify-center items-center">
-        <div class="ml-1 flex-0 flex w-sidebar justify-items items-center">
+        <div class="ml-1 flex-none flex w-sidebar justify-items items-center">
         @if (isset($toggle) && $toggle)
             <nav-toggler
                 text="{{ __('header.toggle_navigation') }}"
@@ -22,7 +22,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
         </div>
 
         @if (auth()->check() && !empty($currentCampaign) && $currentCampaign->userIsMember() && (!isset($qq) || $qq))
-        <div class="flex-0">
+        <div class="flex-none">
             <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="bottom"></span>
             <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button flex justify-center text-center gap-2 rounded h-9 min-w-9 px-2 text-uppercase items-center"
             tabindex="4">

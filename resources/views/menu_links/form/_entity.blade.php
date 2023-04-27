@@ -55,22 +55,16 @@ $menus = array_merge(['' => __('crud.tabs.story')], $menus);
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group required">
-            {!! Form::select2(
-                'entity_id',
-                (!empty($model) && $model->target ? $model->target : null),
-                App\Models\Entity::class,
-                false,
-                'menu_links.fields.entity',
-                'search.entities-with-relations',
-                'menu_links.placeholders.entity'
-            ) !!}
-        </div>
+        @include('cruds.fields.entity', [
+            'required' => true,
+            'preset' => !empty($model) && $model->target ? $model->target : null,
+            'label' => __('menu_links.fields.entity'),
+        ])
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
-            <label>{{ trans('menu_links.fields.menu') }}</label>
+            <label>{{ __('menu_links.fields.menu') }}</label>
             {!! Form::select('menu', $menus, null, ['class' => 'form-control', 'id' => 'entity-selector']) !!}
         </div>
     </div>

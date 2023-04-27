@@ -11,7 +11,7 @@ return [
     ],
     'show'      => [
         'actions'   => [
-            'add'   => 'Add lembrete',
+            'add'   => 'Adicionar lembrete',
         ],
         'title'     => 'Lembretes :name',
     ],

@@ -584,7 +584,7 @@ abstract class MiscModel extends Model
      * Generate the entity's body css classes
      * @return string
      */
-    public function bodyClasses(): string
+    public function bodyClasses(?Entity $entity = null): string
     {
         $classes = [
             'kanka-entity-' . $this->entity->id,
@@ -595,7 +595,10 @@ abstract class MiscModel extends Model
             $classes[] = 'kanka-type-' . Str::slug($this->type);
         }
 
-        foreach ($this->entity->tagsWithEntity(true) as $tag) {
+        if (empty($entity)) {
+            $entity = $this->entity;
+        }
+        foreach ($entity->tagsWithEntity(true) as $tag) {
             $classes[] = 'kanka-tag-' . $tag->id;
             $classes[] = 'kanka-tag-' . $tag->slug;
 
@@ -619,7 +622,7 @@ abstract class MiscModel extends Model
         $campaign = CampaignLocalization::getCampaign();
         $superboosted = $campaign->superboosted();
 
-        if ($campaign->boosted() && $this->entity->hasHeaderImage($superboosted)) {
+        if ($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             $classes[] = 'entity-with-banner';
         }
 

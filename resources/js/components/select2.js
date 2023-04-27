@@ -51,7 +51,7 @@ $(document).ready(function() {
                     var $span = '';
                     if (item.image) {
                         $span = $("<span class='flex gap-2 items-center text-left'>" +
-                            "<img src='" + item.image + "' class='rounded-full flex-0 w-6 h-6'/>" +
+                            "<img src='" + item.image + "' class='rounded-full flex-none w-6 h-6'/>" +
                             "<span class='grow'>" + item.text + "</span>" +
                             "</span>");
                     } else {

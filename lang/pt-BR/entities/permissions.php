@@ -14,6 +14,7 @@ return [
         ],
         'private'           => 'Somente membros do cargo de administrador da campanha pode atualmente ver essa entidade.',
         'public'            => 'Essa entidade é atualmente visível a qualquer usuário ou cargo com acesso a ela.',
+        'screen-reader'     => 'Abrir as configurações de privacidade',
         'success'           => [
             'private'   => ':entity está agora escondida.',
             'public'    => ':entity está agora visível.',

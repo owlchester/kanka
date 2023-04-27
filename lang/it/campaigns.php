@@ -204,7 +204,6 @@ TEXT
             'added'     => 'Ruolo :role aggiunto a :user.',
             'removed'   => 'Ruolo :role rimosso da :user',
         ],
-        'your_role'             => 'Il tuo ruolo: <i>:role</i>',
     ],
     'modules'                           => [
         'permission-disabled'   => 'Questo modulo è disattivato.',

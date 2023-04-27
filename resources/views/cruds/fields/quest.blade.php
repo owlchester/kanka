@@ -6,35 +6,21 @@
 $preset = null;
 if (isset($model) && $model->quest) {
     $preset = $model->quest;
-} elseif (isset($parent) && $parent) {
-    $preset = FormCopy::field('quest')->select(true, \App\Models\Quest::class);
-} else {
-    $preset = FormCopy::field('quest')->select();
-}
-
-$data = [
-    'preset' => $preset,
-    'class' => App\Models\Quest::class,
-];
-if (isset($enableNew)) {
-    $data['allowNew'] = $enableNew;
-}
-if (isset($parent) && $parent) {
-    $data['labelKey'] = 'quests.fields.quest';
-}
-if (isset($dropdownParent)) {
-    $data['dropdownParent'] = $dropdownParent;
-}
-if (isset($from)) {
-    $data['from'] = $from;
-}
-if (isset($quickCreator)) {
-    $data['quickCreator'] = $quickCreator;
+} elseif (!isset($bulk)) {
+    $preset = FormCopy::field('quest')->select($isParent ?? false, \App\Models\Quest::class);
 }
 @endphp
-<div class="form-group">
-    {!! Form::foreignSelect(
-        'quest_id',
-        $data
-    ) !!}
-</div>
+
+<x-forms.foreign
+    name="quest_id"
+    key="quest"
+    entityType="quests"
+    :allowNew="$allowNew ?? true"
+    :allowClear="$allowClear ?? true"
+    :parent="$isParent ?? false"
+    :route="route('quests.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :class="\App\Models\Quest::class"
+    :selected="$preset"
+    :helper="$helper ?? null"
+    :dropdownParent="$dropdownParent ?? null">
+</x-forms.foreign>

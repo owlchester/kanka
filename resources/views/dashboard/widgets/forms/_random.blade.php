@@ -53,14 +53,9 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        {!! Form::tags(
-                                'tag_id',
-                                [
-                                    'model' => isset($model) ? $model : null,
-                                    'enableNew' => false,
-                                    'enableAutoTags' => false,
-                                ]
-                            ) !!}
+                        <x-forms.tags
+                            :model="$model ?? null"
+                        ></x-forms.tags>
                         <input type="hidden" name="save_tags" value="1" />
                     </div>
                 </div>

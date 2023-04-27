@@ -13,18 +13,14 @@
             {{ __('fields.gallery-header.description') }}
         </p>
         <div class="col-sm-10">
-            <div class="form-group">
-                {!! Form::select2(
-                    'entity_header_uuid',
-                    $preset,
-                    App\Models\Image::class,
-                    false,
-                    false,
-                    'images.find',
-                    'fields.gallery.placeholder',
-                ) !!}
-            </div>
-
+            <x-forms.foreign
+                name="entity_header_uuid"
+                :allowClear="true"
+                :route="route('images.find')"
+                :label="__('crud.fields.image')"
+                :placeholder="__('fields.gallery.placeholder')"
+                :selected="$preset">
+            </x-forms.foreign>
         </div>
         <div class="col-sm-2">
             @if (!empty($model->entity) && !empty($model->entity->header_uuid) && !empty($model->entity->header))

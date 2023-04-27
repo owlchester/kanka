@@ -471,3 +471,12 @@ body .main-header .navbar .nav .open > a.active {
 .box-header > .box-tools .dropdown-menu > li > a {
   color: var(--breadcrumb-text) !important;
 }
+
+
+.tooltip-inner, .tooltip-content {
+    background-color: var(--tooltip-background, #111);
+    color: var(--tooltip-text, #eee)
+}
+.tooltip.top .tooltip-arrow, .tooltip.bottom .tooltip-arrow {
+    border-top-color: var(--tooltip-background, #111);
+}

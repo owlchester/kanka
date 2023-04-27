@@ -24,36 +24,7 @@ class MacroServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->addFormDirectives();
         $this->addCustomBladeDirectives();
-    }
-
-    /**
-     * Add macros related for forms
-     */
-    protected function addFormDirectives()
-    {
-        Form::component('select2', 'components.form.select2', [
-            'fieldId',
-            'prefill' => null,
-            'prefillModel' => null,
-            'allowNew' => false,
-            'labelKey' => null,
-            'searchRouteName' => null,
-            'placeholderKey' => null,
-            'from' => null,
-            'dropdownParent' => null,
-        ]);
-
-        Form::component('foreignSelect', 'components.form.select3', [
-            'fieldId',
-            'options' => []
-        ]);
-
-        Form::component('tags', 'components.form.tags', [
-            'fieldId',
-            'options' => []
-        ]);
     }
 
     /**

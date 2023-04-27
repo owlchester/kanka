@@ -164,7 +164,7 @@ class FamilyTreeService
             'id' => $entity->id,
             'name' => $entity->name,
             'url' => $entity->url(),
-            'thumb' => $entity->avatar(),
+            'thumb' => $entity->avatarSize(40)->avatarV2(),
             'is_dead' => (bool) $entity->character->is_dead,
             'tags' => $tags,
         ];

@@ -100,7 +100,6 @@ return [
     'errors'                    => [
         'boosted'                       => 'Esta función solo está disponible para las campañas mejoradas.',
         'boosted_campaigns'             => 'Esta funcionalidad solo está disponible para las :boosted.',
-        'cannot_move_node_into_itself'  => 'La entidad superior seleccionada no es válida. Comprueba que no sea la hija de esta entidad.',
         'node_must_not_be_a_descendant' => 'Nodo inválido (etiqueta, localización superior): sería un descendiente de sí mismo.',
         'unavailable_feature'           => 'Funcionalidad no disponible',
     ],

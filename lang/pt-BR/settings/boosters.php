@@ -61,6 +61,7 @@ return [
     'superboost'=> [
         'actions'   => [
             'confirm'   => 'Superimpulsione-a!',
+            'instead'   => 'Superimpulsione-a por :count!',
             'remove'    => 'Parar de superimpulsionar :campaign',
         ],
         'confirm'   => 'Que legal! Você está prestes a dar uma superimpulsão em :campaign. Isso atribuirá três (:cost) de seus impulsos disponíveis de campanha.',

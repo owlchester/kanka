@@ -1,20 +1,30 @@
 $(document).ready(function() {
+    $(document).on('shown.bs.modal shown.bs.popover', function() {
+        initFormMembersSelect();
+    });
     if ($('.form-members').count === 0) {
         return;
     }
+    initFormMembersSelect();
+});
 
+function initFormMembersSelect() {
     $.each($('.form-members'), function () {
+        let me = $(this);
+        if (me.data('loaded') === 1) {
+            return;
+        }
+        me.data('loaded', 1);
+        let allowClear = me.data('allow-clear');
 
-        let allowClear = $(this).data('allow-clear');
-
-        $(this).select2({
+        me.select2({
             tags: true,
             allowClear: allowClear || true,
             minimumInputLength: 0,
             ajax: {
                 quietMillis: 500,
                 delay: 500,
-                url: $(this).attr('data-url'),
+                url: me.data('url'),
                 dataType: 'json',
                 data: function (params) {
                     return {
@@ -33,4 +43,4 @@ $(document).ready(function() {
             }
         });
     });
-});
+}

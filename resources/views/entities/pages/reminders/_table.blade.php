@@ -22,7 +22,7 @@
             </th>
             <th><br /></th>
         @else
-            <th>{{ __('entitites.calendar') }}</th>
+            <th>{{ __('entities.calendar') }}</th>
             <th>{{ __('calendars.fields.date') }}</th>
             <th>{{ __('calendars.fields.length') }}</th>
             <th>{{ __('calendars.fields.comment') }}</th>

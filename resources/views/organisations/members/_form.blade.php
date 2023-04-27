@@ -13,32 +13,24 @@ $statuses = [
 @endphp
 
 {{ csrf_field() }}
-<div class="form-group required">
-    {!! Form::select2(
-        'character_id',
-        (!empty($member) && $member->character ? $member->character : null),
-        App\Models\Character::class,
-        false,
-        null,
-        null,
-        null,
-        null,
-        request()->ajax() ? '#entity-modal' : null
-    ) !!}
-</div>
+
+@include('cruds.fields.character', [
+    'required' => true,
+    'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+    'allowNew' => false,
+    'allowClear' => false,
+])
 <div class="form-group">
     <input type="hidden" name="parent_id" value="" />
-    {!! Form::select2(
-        'parent_id',
-        (!empty($member) ? $member->parent : null),
-        App\Models\OrganisationMember::class,
-        false,
-        'organisations.members.fields.parent',
-        'search.organisation-member',
-        'organisations.members.placeholders.parent',
-        $model,
-        request()->ajax() ? '#entity-modal' : null
-    ) !!}
+
+    @include('cruds.fields.character', [
+        'label' => __('organisations.members.fields.parent'),
+        'placeholder' => __('organisations.members.placeholders.parent'),
+        'route' => 'search.organisation-member',
+        'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+        'allowNew' => false,
+        'allowClear' => false,
+    ])
 </div>
 
 <div class="form-group">

@@ -13,15 +13,10 @@
                     $model = $modelclass->find($value);
                 }?>
                 @if ($field['type'] == 'tag')
-                    {!! Form::tags(
-                        $field['field'],
-                        [
-                            'id' => $field['field'],
-                            'model' => null,
-                            'enableNew' => false,
-                            'label' => false
-                        ]
-                    ) !!}
+                    <span class="text-red">Is this being called?</span>
+                    <x-forms.tags
+                        :id="$field['field']"
+                        label=""></x-forms.tags>
                 @elseif ($field['type'] == 'select')
                     {!! Form::select(
                     $field['field'],

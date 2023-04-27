@@ -83,7 +83,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                             @endif
                             >
                             @if (!empty($event->entity->child->image))
-                            <a href="{{ $event->entity->url() }}" class="hidden-xs hidden-sm entity-image pull-left mr-1 cover-background inline-block" style="background-image: url('{{ $event->entity->avatarSize(30)->avatarV2() }}');"></a>
+                            <a href="{{ $event->entity->url() }}" class="hidden-xs hidden-sm entity-image pull-left mr-1 cover-background inline-block" style="background-image: url('{{ $event->entity->avatarSize(40)->avatarV2() }}');"></a>
                             @endif
                             <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', $event->entity->id) }}" class="block">
                                 {{ $event->entity->name }}

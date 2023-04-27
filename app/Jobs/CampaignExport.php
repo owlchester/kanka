@@ -32,19 +32,10 @@ class CampaignExport implements ShouldQueue
      */
     public $tries = 1;
 
-    /**
-     * @var Campaign
-     */
     protected Campaign $campaign;
 
-    /**
-     * @var User
-     */
     protected User $user;
 
-    /**
-     * @var EntityService
-     */
     protected EntityService $entity;
 
     /**
@@ -70,8 +61,7 @@ class CampaignExport implements ShouldQueue
         if (!empty($this->campaign->export_path)) {
             Storage::delete($this->campaign->export_path);
             $this->campaign->export_path = null;
-            $this->campaign->withObservers = false;
-            $this->campaign->save();
+            $this->campaign->saveQuietly();
         }
 
         // Prepare the folder if it's missing (new local installs)
@@ -136,8 +126,7 @@ class CampaignExport implements ShouldQueue
 
         // Save the new path.
         $this->campaign->export_path = $downloadPath;
-        $this->campaign->withObservers = false;
-        $this->campaign->save();
+        $this->campaign->saveQuietly();
 
         // Don't delete in "sync" mode as there is no delay.
         $queue = config('queue.default');

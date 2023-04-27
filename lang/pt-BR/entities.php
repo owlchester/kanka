@@ -45,6 +45,7 @@ return [
     'creatures'             => 'Criaturas',
     'dice_roll'             => 'Rolagem de Dado',
     'dice_rolls'            => 'Rolagem de Dados',
+    'entity_attributes'     => 'Atributos',
     'event'                 => 'Evento',
     'events'                => 'Eventos',
     'families'              => 'Famílias',

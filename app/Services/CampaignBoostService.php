@@ -155,4 +155,18 @@ class CampaignBoostService
                 ->unboost($boost);
         }
     }
+
+    public function back(): void
+    {
+        $settings = $this->user->settings;
+        $settings['grandfathered_boost'] = 1;
+        $this->user->settings = $settings;
+        $this->user->saveQuietly();
+
+        foreach ($this->user->boosts()->with(['campaign', 'user'])->get() as $boost) {
+            $this
+                ->campaign($boost->campaign)
+                ->unboost($boost);
+        }
+    }
 }

@@ -19,7 +19,6 @@
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
 
-    @include('layouts._theme')
     @yield('styles')
 </head>
 <body class="layout-top-nav">

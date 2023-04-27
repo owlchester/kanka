@@ -252,9 +252,24 @@ button.dropdown-item {
     background-color: var(--box-background);
 }
 
+/** Cancel some of tw's resets **/
 hr {
     margin-top: 1.1rem;
     margin-bottom: 1.1rem;
+}
+ul {
+    list-style: disc;
+    padding: 0 1.5rem;
+    //margin: 0.5rem 0.25rem;
+}
+ol {
+    list-style: decimal;
+    padding: 0 1.5rem;
+    //margin: 0.5rem 0.25rem;
+}
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
 }
 
 .stack > * {

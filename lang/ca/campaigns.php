@@ -185,7 +185,6 @@ TEXT
             'added'     => 'S\'ha afegit el rol :role a :user.',
             'removed'   => 'S\'ha tret el rol :role a :user.',
         ],
-        'your_role'             => 'El vostre rol: <i>:role</i>',
     ],
     'open_campaign'                     => [],
     'options'                           => [],

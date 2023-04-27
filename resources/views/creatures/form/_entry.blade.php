@@ -9,10 +9,10 @@
 <div class="row">
 
     <div class="col-md-6">
-        @include('cruds.fields.creature', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
+        @include('cruds.fields.creature', ['isParent' => true])
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.locations', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
+        @include('cruds.fields.locations', ['from' => isset($model) ? $model : null, 'quickCreator' => true])
     </div>
 </div>
 

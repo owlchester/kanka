@@ -90,7 +90,6 @@ class QuestController extends CrudController
         if (request()->ajax()) {
             return $this->datagridAjax();
         }
-        return $this
-            ->menuView($quest, 'quests');
+        return redirect()->to($quest->getLink());
     }
 }

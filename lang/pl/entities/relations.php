@@ -74,9 +74,10 @@ return [
         'related'   => 'Związki',
     ],
     'placeholders'      => [
-        'attitude'  => '-100 do 100, gdzie 100 to bardzo pozytywny stosunek',
-        'relation'  => 'Rywal, Przyjaciółka od serca, Rodzeństwo',
-        'target'    => 'Wybierz element',
+        'attitude'          => '-100 do 100, gdzie 100 to bardzo pozytywny stosunek',
+        'relation'          => 'Rywal, Przyjaciółka od serca, Rodzeństwo',
+        'target'            => 'Wybierz element',
+        'target_relation'   => 'Nie wypełniaj, by użyć opisu',
     ],
     'show'              => [
         'title' => 'Relacje elementu :name',

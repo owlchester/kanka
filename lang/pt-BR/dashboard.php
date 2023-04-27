@@ -100,10 +100,11 @@ return [
     ],
     'title'         => 'Dashboard',
     'widgets'       => [
-        'actions'       => [
+        'actions'                   => [
             'advanced-options'  => 'Opções avançadas',
         ],
-        'calendar'      => [
+        'advanced_options_boosted'  => 'Habilite mais opções como mostrar fixados com uma :boosted_campaign.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Alterar data para o dia seguinte',
                 'previous'  => 'Alterar data para o dia anterior',
@@ -112,16 +113,16 @@ return [
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Posterior',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Este widget exibe o cabeçalho da campanha. Este widget é sempre exibido no dashboard padrão.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Widget adicionado ao dashboard.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Widget removido so dashboard.',
         ],
-        'fields'        => [
+        'fields'                    => [
             'class'             => 'Classe CSS',
             'dashboard'         => 'Dashboard',
             'name'              => 'Nome personalizado do widget',
@@ -131,21 +132,21 @@ return [
             'text'              => 'Texto',
             'width'             => 'Largura',
         ],
-        'helpers'       => [
+        'helpers'                   => [
             'class'     => 'Defina uma classe CSS personalizada para adicionar ao widget.',
             'filters'   => 'Clique para aprender sobre as opções de filtro disponíveis.',
         ],
-        'orders'        => [
+        'orders'                    => [
             'name_asc'  => 'Nome ascendente',
             'name_desc' => 'Nome descendente',
             'recent'    => 'Recentemente modificado',
         ],
-        'random'        => [
+        'random'                    => [
             'helpers'   => [
                 'name'  => 'Você pode fazer referência ao nome da entidade aleatória com {name}',
             ],
         ],
-        'recent'        => [
+        'recent'                    => [
             'advanced_filter'   => 'Filtro avançado',
             'advanced_filters'  => [
                 'mentionless'   => 'Sem Mencionar (entidades que não mencionam outras entidades)',
@@ -169,20 +170,20 @@ return [
             'tags'              => 'Filtre a lista de entidades modificadas recentemente em tags específicas.',
             'title'             => 'Lista de entidade',
         ],
-        'tabs'          => [
+        'tabs'                      => [
             'advanced'  => 'Avançado',
             'setup'     => 'Configurações',
         ],
-        'unmentioned'   => [
+        'unmentioned'               => [
             'title' => 'Entidades sem menções',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Widget modificado',
         ],
-        'welcome'       => [
+        'welcome'                   => [
             'helper'    => 'Este widget exibe uma mensagem de boas-vindas no painel que inclui links úteis para novos usuários do Kanka.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Automático',
             '12'=> 'Inteiro (100%)',
             '3' => 'Minúsculo (25%)',

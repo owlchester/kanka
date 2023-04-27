@@ -181,7 +181,6 @@ TEXT
             'added'     => 'Role :role přidána uživateli :user.',
             'removed'   => 'Role :role odebrána uživateli :user.',
         ],
-        'your_role'             => 'Tvoje role: <i>:role</i>',
     ],
     'open_campaign'                     => [],
     'options'                           => [],

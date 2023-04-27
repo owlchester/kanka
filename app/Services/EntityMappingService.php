@@ -180,6 +180,7 @@ class EntityMappingService
             $mention->campaign_id = $model->id;
         } elseif ($model instanceof EntityNote) {
             $mention->entity_note_id = $model->id;
+            $mention->entity_id = $model->entity_id;
 
             // If we are making a reference to ourselves, no need to save it
             if ($model->entity_id == $target) {
@@ -187,6 +188,7 @@ class EntityMappingService
             }
         } elseif ($model instanceof TimelineElement) {
             $mention->timeline_element_id = $model->id;
+            $mention->entity_id = $model->timeline->entity->id;
 
             // If we are making a reference to ourselves, no need to save it
             if ($model->timeline_id == $target) {
@@ -194,6 +196,7 @@ class EntityMappingService
             }
         } elseif ($model instanceof QuestElement) {
             $mention->quest_element_id = $model->id;
+            $mention->entity_id = $model->quest->entity->id;
 
             // If we are making a reference to ourselves, no need to save it
             if ($model->quest_id == $target) {

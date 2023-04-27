@@ -35,7 +35,6 @@ return [
         'type'              => 'Set up this quick link to go directly to a list of entities. To filter the results, copy parts of the url on the filtered entity list after the :? sign into the :filter field.',
     ],
     'placeholders'      => [
-        'entity'    => 'Choose an entity',
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Menu subpage (use the last text of the url)',
         'name'      => 'Name of the quick link',

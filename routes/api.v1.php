@@ -86,6 +86,8 @@ Route::delete('campaigns/{campaign}/users', 'Campaign\UserApiController@remove')
 
 Route::post('campaigns/{campaign}/permissions/test', 'EntityPermissionApiController@test');
 
+Route::get('campaigns/{campaign}/calendars/{calendar}/reminders', 'CalendarEventApiController@index');
+
 Route::get('visibilities', 'VisibilityController@index');
 Route::get('version', function() { return config('app.version'); });
 

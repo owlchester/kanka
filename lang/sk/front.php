@@ -41,7 +41,6 @@ return [
     'contact'               => [
         'description'   => 'Potrebuješ pomoc, máš nápad alebo sa chceš iba podeliť o tvoju lásku ku Kanke? Náš tím ti odpovie na každú správu!',
         'email'         => 'Všetky pripomienky nám zasielaj na e-mail:',
-        'other'         => 'Alebo nás kontaktuj na jednej z týchto sociálnych sietí:',
         'title'         => 'Sme tu pre teba',
     ],
     'cookie'                => [
@@ -190,10 +189,11 @@ return [
             'title'         => 'Spravovať tajomstvá',
         ],
         'superboosts'       => [
-            'boosted'   => 'Superboostnutie',
-            'gallery'   => 'Galéria obrázkov kampane a jej integrácia v rámci textového editora Summernote',
-            'logs'      => 'Plnohodnotné logy zmien v objektoch (30 dní dozadu)',
-            'stats'     => 'Stránka s Úspechmi v kampani',
+            'boosted'       => 'Superboostnutie',
+            'family-tree'   => 'Tvorba rodokmeňov na sledovanie rodinnej histórie',
+            'gallery'       => 'Galéria obrázkov kampane a jej integrácia v rámci textového editora Summernote',
+            'logs'          => 'Plnohodnotné logy zmien v objektoch (30 dní dozadu)',
+            'stats'         => 'Stránka s Úspechmi v kampani',
         ],
         'timelines'         => [
             'description'   => 'Vizuálne zobrazujú časové osy tvojho sveta, krajín, šľachtických rodov alebo hoci aj jednotlivých postáv.',

@@ -157,7 +157,6 @@ TEXT
         ],
         'switch_back_success'   => 'Je bent nu terug bij je oorspronkelijke gebruiker.',
         'title'                 => 'Campaign :name Leden',
-        'your_role'             => 'Jouw rol: <i>:role</i>',
     ],
     'open_campaign'                     => [],
     'panels'                            => [

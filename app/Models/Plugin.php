@@ -159,14 +159,14 @@ class Plugin extends Model
      * @param string|null $uuid
      * @return Builder
      */
-    public function scopeHighlighted(Builder $query, string $uuid = null)
+    public function scopeHighlighted(Builder $query, string $uuid = null): Builder
     {
         if (empty($uuid) || !Str::isUuid($uuid)) {
             return $query;
         }
 
         return $query->orderByRaw(
-            DB::raw($this->getTable() . ".uuid = '{$uuid}' DESC")
+            $this->getTable() . ".uuid = ? DESC", $uuid
         );
     }
     /**

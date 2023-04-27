@@ -37,7 +37,7 @@ return [
     ],
     'placeholders'  => [
         'name'          => 'Sous-sol, Niveau 2, Epave',
-        'position'      => 'Champ optionnel pour définir l\'ordre d\'affichage des couches.',
+        'position'      => 'Première',
         'position_list' => 'Après :name',
     ],
     'reorder'       => [

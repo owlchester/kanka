@@ -48,6 +48,7 @@
             {{ __('entities.creator.actions.more') }}
         </a>
         <div class="qq-more-fields" style="{{ $singularType !== 'post' ? 'display: none' : null }}">
+            @php $allowNew = false; $dropdownParent = '#entity-modal';@endphp
             @include('entities.creator.forms.' . $singularType)
 
             @if (!in_array($type, ['tags', 'posts', 'attribute_templates']))

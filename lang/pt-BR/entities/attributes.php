@@ -37,6 +37,12 @@ return [
         'success'   => 'Atributos para :entity atualizados.',
         'title'     => 'Atributos para :name',
     ],
+    'labels'        => [
+        'checkbox'  => 'Nome da caixa de seleção',
+        'name'      => 'Nome do atributo',
+        'section'   => 'Nome da seção',
+        'value'     => 'Valor do atributo',
+    ],
     'live'          => [
         'success'   => 'Atributo :attribute atualizado.',
         'title'     => 'Atualizando :attribute',

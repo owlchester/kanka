@@ -37,6 +37,12 @@ return [
         'success'   => 'Zaktualizowano cechy :entity',
         'title'     => 'Cechy :name',
     ],
+    'labels'        => [
+        'checkbox'  => 'Nazwa pola wyboru',
+        'name'      => 'Nazwa cechy',
+        'section'   => 'Nazwa sekcji',
+        'value'     => 'Wartość cechy',
+    ],
     'live'          => [
         'success'   => 'Zmieniono cechę :attribute.',
         'title'     => 'Zmiana cechy :attribute.',
