@@ -232,6 +232,7 @@ return [
         App\Providers\PermissionsServiceProvider::class,
         App\Providers\EntitySetupServiceProvider::class,
         App\Providers\UserDateServiceProvider::class,
+        App\Providers\ModuleServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
 
     ],

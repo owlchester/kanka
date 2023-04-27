@@ -8,6 +8,7 @@ use App\Facades\Breadcrumb;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Facades\FormCopy;
+use App\Facades\Module;
 use App\Facades\Permissions;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
@@ -191,6 +192,7 @@ class CrudController extends Controller
             );
         }
         $actions = $this->navActions;
+        $entity_type_id = $model->entityTypeId();
 
         $data = compact(
             'models',
@@ -210,9 +212,12 @@ class CrudController extends Controller
             'mode',
             'parent',
             'forceMode',
+            'entity_type_id',
         );
         if (!empty($this->titleKey)) {
             $data['titleKey'] = $this->titleKey;
+        } else {
+            $data['titleKey'] = Module::plural($entity_type_id, __('entities.' . $langKey));
         }
         return view('cruds.index', $data);
     }
@@ -263,6 +268,17 @@ class CrudController extends Controller
         $params['entityAttributeTemplates'] = $templates;
         $params['entityType'] = $model->getEntityType();
         $params['horizontalForm'] = $this->horizontalForm;
+        $params['title'] = __($this->view . '.create.title');
+
+        // Custom module names shenanigans
+        $entityTypeID = $model->entityTypeId();
+        $plural = Module::plural($entityTypeID, __('entities.' . $this->view));
+        $singular = Module::singular($entityTypeID);
+        $params['entity_type_id'] = $entityTypeID;
+        $params['plural'] = $plural;
+        if (!empty($singular)) {
+            $params['title'] = __('crud.titles.new', ['module' => $singular]);
+        }
 
         return view('cruds.forms.create', array_merge(['name' => $this->view], $params));
     }
@@ -368,6 +384,7 @@ class CrudController extends Controller
         }
         $name = $this->view;
         $ajax = request()->ajax();
+        $entity_type_id = $model->entityTypeId();
 
         // Fix for models without an entity
         if (empty($model->entity) && !($model instanceof MenuLink)) {
@@ -383,7 +400,7 @@ class CrudController extends Controller
 
         return view(
             'cruds.show',
-            compact('model', 'name', 'ajax')
+            compact('model', 'name', 'entity_type_id')
         );
     }
 
@@ -421,7 +438,8 @@ class CrudController extends Controller
             'tabCopy' => $this->tabCopy,
             'entityType' => $model->getEntityType(),
             'horizontalForm' => $this->horizontalForm,
-            'editingUsers' => $editingUsers
+            'editingUsers' => $editingUsers,
+            'entity_type_id' => $model->entityTypeId()
         ];
 
         return view('cruds.forms.edit', $params);

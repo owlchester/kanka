@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\Module;
 use App\Models\Entity;
 use App\Models\MenuLink;
 use App\Traits\CampaignAware;
@@ -124,7 +125,50 @@ class SidebarService
         ],
     ];
 
-    protected array $elements = [
+    protected array $elements;
+
+    protected $layout = [
+        'dashboard' => null,
+        'menu_links' => null,
+        'campaigns' => [ //world
+            'characters',
+            'locations',
+            'maps',
+            'organisations',
+            'families',
+            'calendars',
+            'timelines',
+            'creatures',
+            'races',
+        ],
+        'campaign' => [
+            'quests',
+            'journals',
+            'items',
+            'events',
+            'abilities',
+        ],
+        'notes' => null,
+        'other' => [
+            'tags',
+            'conversations',
+            'dice_rolls',
+            'relations',
+            'gallery',
+            'attribute_templates',
+            'history',
+        ],
+        //'search' => null,
+    ];
+
+    public function __construct()
+    {
+        $this->setupElements();
+    }
+
+    protected function setupElements(): void
+    {
+        $this->elements = [
         'dashboard' => [
             'icon' => 'fa-solid fa-th-large',
             'label' => 'sidebar.dashboard',
@@ -148,54 +192,63 @@ class SidebarService
             'icon' => 'fa-solid fa-user',
             'label' => 'entities.characters',
             'mode' => true,
+            'type_id' => config('entities.ids.character')
         ],
         'locations' => [
             'icon' => 'ra ra-tower',
             'label' => 'entities.locations',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.location')
         ],
         'maps' => [
             'icon' => 'fa-solid fa-map',
             'label' => 'entities.maps',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.map')
         ],
         'organisations' => [
             'icon' => 'ra ra-hood',
             'label' => 'entities.organisations',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.organisation')
         ],
         'families' => [
             'icon' => 'ra ra-double-team',
             'label' => 'entities.families',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.family')
         ],
         'calendars' => [
             'icon' => 'fa-solid fa-calendar',
             'label' => 'entities.calendars',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.calendar')
         ],
         'timelines' => [
             'icon' => 'fa-solid fa-hourglass-half',
             'label' => 'entities.timelines',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.timeline')
         ],
         'races' => [
             'icon' => 'ra ra-wyvern',
             'label' => 'entities.races',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.race')
         ],
         'creatures' => [
             'icon' => 'ra ra-raven',
             'label' => 'entities.creatures',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.creature')
         ],
         'campaign' => [
             'icon' => 'fa-solid fa-globe',
@@ -208,36 +261,42 @@ class SidebarService
             'label' => 'entities.quests',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.quest')
         ],
         'journals' => [
             'icon' => 'ra ra-quill-ink',
             'label' => 'entities.journals',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.journal')
         ],
         'items' => [
             'icon' => 'ra ra-gem-pendant',
             'label' => 'entities.items',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.item')
         ],
         'events' => [
             'icon' => 'fa-solid fa-bolt',
             'label' => 'entities.events',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.event')
         ],
         'abilities' => [
             'icon' => 'ra ra-fire-symbol',
             'label' => 'entities.abilities',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.ability')
         ],
         'notes' => [
             'icon' => 'fa-solid fa-book-open',
             'label' => 'entities.notes',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.note')
         ],
         'other' => [
             'icon' => 'fa-solid fa-cubes',
@@ -251,6 +310,7 @@ class SidebarService
             'label' => 'entities.tags',
             'tree' => true,
             'mode' => true,
+            'type_id' => config('entities.ids.tag')
         ],
         'conversations' => [
             'icon' => 'fa-solid fa-comment',
@@ -290,40 +350,7 @@ class SidebarService
             'module' => false,
         ],
     ];
-
-    protected $layout = [
-        'dashboard' => null,
-        'menu_links' => null,
-        'campaigns' => [ //world
-            'characters',
-            'locations',
-            'maps',
-            'organisations',
-            'families',
-            'calendars',
-            'timelines',
-            'creatures',
-            'races',
-        ],
-        'campaign' => [
-            'quests',
-            'journals',
-            'items',
-            'events',
-            'abilities',
-        ],
-        'notes' => null,
-        'other' => [
-            'tags',
-            'conversations',
-            'dice_rolls',
-            'relations',
-            'gallery',
-            'attribute_templates',
-            'history',
-        ],
-        //'search' => null,
-    ];
+    }
 
     /** @var bool */
     protected bool $withDisabled = false;
@@ -621,16 +648,36 @@ class SidebarService
         return $layout;
     }
 
+    /**
+     * Load custom element setup for boosted campaigns
+     * @param string $key
+     * @return array
+     */
     protected function customElement(string $key): array
     {
         $element = $this->elements[$key];
         $element['custom_label'] = null;
         $element['custom_icon'] = null;
-        $element['label'] = __($element['label']);
+        $element['label_key'] = $element['label'];
+        $element['label'] = null;
 
         if (!$this->campaign->boosted()) {
             return $element;
         }
+
+        // Module custom name
+        if (!empty($element['type_id'])) {
+            $type = $element['type_id'];
+            $label = Module::plural($type);
+            if (!empty($label)) {
+                $element['custom_label'] = $label;
+            }
+            $icon = Module::icon($type);
+            if (!empty($icon)) {
+                $element['custom_icon'] = $icon;
+            }
+        }
+
         $label = Arr::get($this->campaign->ui_settings, 'sidebar.labels.' . $key);
         $icon = Arr::get($this->campaign->ui_settings, 'sidebar.icons.' . $key);
         if (!empty($label)) {

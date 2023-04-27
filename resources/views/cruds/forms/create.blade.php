@@ -1,7 +1,7 @@
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => __($name . '.create.title'),
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
+    'title' => $title,
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => __('entities.' . $name)],
+        ['url' => Breadcrumb::index($name), 'label' => $plural],
         __('crud.create'),
     ]
 ])

@@ -369,6 +369,7 @@ return [
         'story'         => 'Overview',
     ],
     'titles'                    => [
+        'new'       => 'New :module',
         'editing'   => 'Editing :name',
     ],
     'tooltips'                  => [
