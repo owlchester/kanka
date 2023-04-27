@@ -9,22 +9,21 @@
         <div class="flex gap-2 mb-3">
             <h1 class="grow">{{ __('notifications.index.title') }}</h1>
 
+            @if ($notifications->count() >= 0)
             <div class="flex-none self-end">
                 <x-buttons.confirm type="danger" target="delete-confirm-notifications" size="sm">
                     <i class="fa-solid fa-trash" aria-hidden="true"></i>
                     <span>{{ __('notifications.clear.action') }}</span>
                 </x-buttons.confirm>
             </div>
+            @endif
         </div>
 
-        <div class="rounded p-4 bg-box">
+        <div class="rounded shadow-xs bg-box">
             @if ($notifications->count() === 0)
-                <p class="help-block">{{ __('notifications.no_notifications') }}</p>
+                <p class="help-block p-4">{{ __('notifications.no_notifications') }}</p>
             @else
-
-            <div class="text-right mb-5">
-            </div>
-            <div class=" table-responsive">
+            <div class="table-responsive">
                 <table class="table table-hover mb-0">
                     <tbody>
                     <?php /** @var \Illuminate\Notifications\DatabaseNotification $notification */?>
