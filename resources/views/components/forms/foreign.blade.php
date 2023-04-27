@@ -1,4 +1,4 @@
-<div class="field-foreign form-group bg-orange-200 shadow-xs @if ($required) required @endif">
+<div class="field-foreign form-group @if ($required) required @endif">
     @if (!empty($label))
         <label>{{ __($label) }}
             @if(!empty($helper))
