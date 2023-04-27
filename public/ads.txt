@@ -1,1 +1,2 @@
 google.com, pub-1686281547359435, DIRECT, f08c47fec0942fa0
+venatus.com, 644a6d694e5eec549defceb1, DIRECT
