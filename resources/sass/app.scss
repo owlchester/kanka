@@ -287,6 +287,10 @@ ol, ul {
     z-index: 2;
 }
 
+.entity-story-block .entity-content {
+    display: flow-root;
+}
+
 @import "calendar";
 @import "tooltip";
 @import "timeline";
