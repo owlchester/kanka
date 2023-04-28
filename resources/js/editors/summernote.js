@@ -394,7 +394,7 @@ function uploadImage($summernote, file) {
         return;
     }
 
-    formData = new FormData();
+    let formData = new FormData();
     formData.append("file", file);
     formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
     $.ajax({
@@ -442,7 +442,7 @@ function uploadImage($summernote, file) {
  */
 function buildErrors(data) {
     var errors = '';
-    for (var key in data) {
+    for (let key in data) {
         // skip loop if the property is from prototype
         if (!data.hasOwnProperty(key)) continue;
 
