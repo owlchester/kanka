@@ -14,7 +14,9 @@
     <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-profile-elements">
         @if (!empty($model->family))
             <div class="element profile-family">
-                <div class="title text-uppercase text-xs">{{ __('families.fields.family') }}</div>
+                <div class="title text-uppercase text-xs">
+                    {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.family')) !!}
+                </div>
                 {!! $model->family->tooltipedLink() !!}
             </div>
         @endif

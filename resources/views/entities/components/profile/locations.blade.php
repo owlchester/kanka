@@ -17,7 +17,9 @@
 
         @if (!$model->maps->isEmpty())
             <div class="profile-maps">
-                <div class="title text-uppercase text-xs">{{ __('entities.maps') }}</div>
+                <div class="title text-uppercase text-xs">
+                    {!! \App\Facades\Module::singular(config('entities.ids.map'), __('entities.map')) !!}
+                </div>
                 @foreach ($model->maps as $map)
                     {!! $map->tooltipedLink() !!} {!! $map->exploreLink() !!}<br />
                 @endforeach

@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('abilities.entities.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . __('abilities.show.tabs.entities'),
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,

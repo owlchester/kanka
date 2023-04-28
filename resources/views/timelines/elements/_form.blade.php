@@ -123,7 +123,7 @@
 
 @include('editors.editor')
 
-@if ($ajax)
+@if (request()->ajax())
     <script type="text/javascript">
         $(document).ready(function () {
 @if(auth()->user()->editor != 'legacy')

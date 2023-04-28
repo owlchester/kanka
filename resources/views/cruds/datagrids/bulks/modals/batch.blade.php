@@ -19,7 +19,8 @@
                         'bulk' => true,
                         'parent' => \Illuminate\Support\Str::plural($trimmed) == $name,
                         'allowNew' => false,
-                        'dropdownParent' => '#bulk-edit'
+                        'dropdownParent' => '#bulk-edit',
+                        'route' => null,
                     ])
                     </div>
                     @php $fieldCount++; @endphp

@@ -7,7 +7,7 @@
 @include('partials.forms.form', [
     'title' => __('characters.organisations.create.title', ['name' => $model->name]),
     'content' => 'characters.organisations._form',
-    'submit' => __('characters.organisations.actions.submit')
+    'submit' => __('crud.add')
 ])
 
 {!! Form::hidden('character_id', $model->id) !!}

@@ -20,9 +20,7 @@ return [
             'description'       => 'Description',
             'entity_or_name'    => 'Either select either an entity of the campaign, or give a name for this element.',
             'name'              => 'Name',
-            'quest'             => 'Quest',
         ],
-        'title'     => 'Quest :name Elements',
         'warning'   => [
             'editing'   => [
                 'description'   => 'Looks like someone else is currently editing this quest element! Do you want to go back or ignore this warning, at the risk of losing data? Members currently editing this quest element:',
@@ -35,8 +33,6 @@ return [
         'date'          => 'Date',
         'element_role'  => 'Role',
         'is_completed'  => 'Completed',
-        'quest'         => 'Parent Quest',
-        'quests'        => 'Sub Quests',
         'role'          => 'Role',
     ],
     'helpers'       => [
@@ -49,8 +45,6 @@ return [
     'placeholders'  => [
         'date'      => 'Real world date for the quest',
         'entity'    => 'Name of an element from the quest',
-        'name'      => 'Name of the quest',
-        'quest'     => 'Parent Quest',
         'role'      => 'This entity\'s role in the quest',
         'type'      => 'Character Arc, Sidequest, Main',
     ],

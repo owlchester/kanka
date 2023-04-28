@@ -5,26 +5,6 @@
  */
 ?>
 <div class="box box-solid" id="journal-journals">
-    <div class="box-header">
-        <h3 class="box-title">
-            {!! \App\Facades\Module::plural(config('entities.ids.journal'), __('entities.journals')) !!}
-        </h3>
-        <div class="box-tools">
-            <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
-            </a>
-            @if (request()->has('parent_id'))
-                <a href="{{ route('journals.journals', [$model]) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-filter" aria-hidden="true"></i> {{ __('crud.filters.all') }} ({{ $model->allJournals()->count() }})
-                </a>
-            @else
-                <a href="{{ route('journals.journals', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-filter" aria-hidden="true"></i> {{ __('crud.filters.direct') }} ({{ $model->journals()->count() }})
-                </a>
-            @endif
-        </div>
-    </div>
-
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table')
     </div>

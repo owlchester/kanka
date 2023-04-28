@@ -58,11 +58,10 @@ return [
             'show_before'   => 'Show before today',
         ],
         'start'     => '(start)',
-        'title'     => 'Calendar :name Events',
     ],
     'fields'        => [
-        'calendar'              => 'Parent Calendar',
-        'calendars'             => 'Calendars',
+        /*'calendar'              => 'Parent Calendar',
+        'calendars'             => 'Calendars',*/
         'colour'                => 'Colour',
         'comment'               => 'Comment',
         'current_day'           => 'Current Day',
@@ -200,7 +199,6 @@ return [
         'leap_year_start'   => 'First year that is a leap year',
         'length'            => 'Event length in days',
         'months'            => 'Number of months in a year',
-        'name'              => 'Name of the calendar',
         'recurring_until'   => 'Last recurring year (leave empty for forever recurring)',
         'seasons'           => 'Number of seasons',
         'suffix'            => 'Current Era suffix (AC, BC)',

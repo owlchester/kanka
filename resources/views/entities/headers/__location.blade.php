@@ -5,7 +5,7 @@
 ?>
 @if ($campaignService->enabled('locations') && $model->location)
     <div class="entity-header-sub pull-left">
-        <i class="ra ra-tower" title="{{ __('entities.location') }}"></i>
+        <i class="ra ra-tower" title="{{ \App\Facades\Module::singular(config('entities.ids.location'), __('entities.location')) }}"></i>
 
         @if ($model->location->parentLocation)
             {!! __('crud.fields.locations', [

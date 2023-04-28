@@ -1,15 +1,9 @@
-<div class="box box-solid">
-    <div class="box-header with-header">
-        <h3 class="box-title">
-            {{ __('items.show.tabs.inventories') }}
-        </h3>
-    </div>
-    <div class="box-body">
-
+<div class="box box-solid ">
+    <div class="box-body no-padding">
         <?php $r = $model->inventories()->orderBy('entity_id', 'ASC')->with(['entity'])->has('entity')->paginate(); ?>
         <table id="item-inventories" class="table table-hover">
             <tbody><tr>
-                <th class="min-w-10"><br /></th>
+                <th class="avatar w-12"><br /></th>
                 <th>{{ __('crud.fields.entity') }}</th>
                 <th class="hidden-sm">{{ __('entities/inventories.fields.amount') }}</th>
                 <th class="hidden-sm">{{ __('entities/inventories.fields.position') }}</th>

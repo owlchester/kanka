@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\QuestElement $element */?>
 @extends('layouts.app', [
-    'title' => __('quests.elements.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . __('quests.show.tabs.elements'),
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,

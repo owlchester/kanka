@@ -46,6 +46,9 @@ class Family extends Layout
                     }
                     return $model->family->tooltipedLink();
                 },
+                'visible' => function () {
+                    return !request()->has('parent_id');
+                }
             ],
         ];
 

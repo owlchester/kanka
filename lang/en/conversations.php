@@ -4,9 +4,6 @@ return [
     'create'        => [
         'title' => 'New Conversation',
     ],
-    'edit'          => [
-        'title' => 'Conversation :name',
-    ],
     'fields'        => [
         'is_closed'     => 'Closed',
         'messages'      => 'Messages',
@@ -43,7 +40,6 @@ return [
         'is_closed' => 'Conversation is closed.',
     ],
     'tabs'          => [
-        'conversation'  => 'Conversation',
         'participants'  => 'Participants',
     ],
     'targets'       => [

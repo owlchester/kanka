@@ -1,5 +1,8 @@
+@php
+$plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations'));
+@endphp
 @extends('layouts.app', [
-    'title' => __('characters.organisations.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -14,7 +17,8 @@
             <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}"
                class="btn btn-sm btn-warning" data-toggle="ajax-modal"
                data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('characters.organisations.actions.add')  }}
+                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                {!! \App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation')) !!}
             </a>
         </div>
     @endcan
@@ -28,7 +32,7 @@
             'model' => $model,
             'breadcrumb' => [
                 ['url' => Breadcrumb::index('characters'), 'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters'))],
-                null
+                $plural
             ]
         ])
 

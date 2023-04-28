@@ -5,7 +5,7 @@
 ?>
 @if ($model->item)
     <div class="entity-header-sub pull-left">
-        <span title="{{ __('items.fields.item') }}" data-toggle="tooltip">
+        <span title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
         <i class="ra ra-gem-pendant" aria-hidden="true"></i>
         {!! $model->item->tooltipedLink() !!}
         </span>

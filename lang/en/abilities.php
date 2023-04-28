@@ -1,9 +1,6 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Child abilities of :name',
-    ],
     'children'      => [
         'actions'       => [
             'add'   => 'Add ability to entity',
@@ -18,12 +15,7 @@ return [
     'create'        => [
         'title' => 'New Ability',
     ],
-    'entities'      => [
-        'title' => 'Entities with the :name ability',
-    ],
     'fields'        => [
-        'abilities' => 'Sub abilities',
-        'ability'   => 'Parent ability',
         'charges'   => 'Charges',
     ],
     'helpers'       => [
@@ -41,7 +33,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Sub abilities',
             'entities'  => 'Entities',
             'reorder'   => 'Reorder Abilities',
         ],

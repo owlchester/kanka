@@ -18,12 +18,10 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Dice Rolls',
             'results'   => 'Results',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Dice Roll',
         'name'      => 'Name of the Dice Roll',
         'parameters'=> '4d6+3',
     ],

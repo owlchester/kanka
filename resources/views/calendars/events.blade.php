@@ -1,6 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('calendars.events.title', ['name' => $model->name]),
-    'description' => __('calendars.events.description'),
+    'title' => $model->name . ' - ' . __('crud.tabs.reminders'),
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,

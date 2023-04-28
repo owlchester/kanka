@@ -36,6 +36,9 @@ class Timeline extends Layout
                     }
                     return $model->timeline->tooltipedLink();
                 },
+                'visible' => function () {
+                    return !request()->has('parent_id');
+                }
             ],
         ];
 

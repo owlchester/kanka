@@ -7,8 +7,6 @@ return [
     'fields'        => [
         'is_defunct'    => 'Defunct',
         'members'       => 'Members',
-        'organisation'  => 'Parent Organisation',
-        'organisations' => 'Sub Organisations',
     ],
     'helpers'       => [
         'descendants'       => 'This list contains all organisations which are descendants of this organisation, and not only those directly under it.',
@@ -64,17 +62,7 @@ return [
         ],
         'title'         => 'Organisation :name Members',
     ],
-    'organisations' => [
-        'title' => 'Organisation :name Organisations',
-    ],
     'placeholders'  => [
-        'location'  => 'Choose a location',
-        'name'      => 'Name of the organisation',
         'type'      => 'Cult, Gang, Rebellion, Fandom',
-    ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organisations',
-        ],
     ],
 ];

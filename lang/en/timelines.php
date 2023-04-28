@@ -15,8 +15,6 @@ return [
         'copy_eras'     => 'Copy Eras',
         'eras'          => 'Eras',
         'reverse_order' => 'Reverse era order',
-        'timeline'      => 'Parent Timeline',
-        'timelines'     => 'Timelines',
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all timelines that don\'t have a parent timeline. Click on a row to see the children timelines.',
@@ -24,7 +22,6 @@ return [
         'reverse_order'     => 'Enable to display eras in reverse chronological order (older era first)',
     ],
     'placeholders'  => [
-        'name'  => 'Name of the timeline',
         'type'  => 'Primary, World chronicle, Kingdom legacy',
     ],
     'reorder'       => [
@@ -34,10 +31,6 @@ return [
     'show'          => [
         'tabs'  => [
             'reorder'   => 'Reorder timeline',
-            'timelines' => 'Timelines',
         ],
-    ],
-    'timelines'     => [
-        'title' => 'Timeline :name Timelines',
     ],
 ];

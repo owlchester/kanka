@@ -6,16 +6,11 @@ return [
             'all_characters'    => 'Displaying all the characters related to this race and it\'s sub races.',
             'characters'        => 'Displaying all the characters directly related to this race.',
         ],
-        'title'     => 'Race :name Characters',
     ],
     'create'        => [
         'title' => 'New Race',
     ],
     'fields'        => [
-        'characters'    => 'Characters',
-        'locations'     => 'Locations',
-        'race'          => 'Parent Race',
-        'races'         => 'Sub Races',
         'members'       => 'Members',
     ],
     'helpers'       => [
@@ -29,10 +24,6 @@ return [
         ],
     ],
     'placeholders'  => [
-        'name'  => 'Name of the race',
         'type'  => 'Human, Fey, Borg',
-    ],
-    'races'         => [
-        'title' => ':name Subraces',
     ],
 ];

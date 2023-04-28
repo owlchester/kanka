@@ -6,8 +6,6 @@ return [
     ],
     'fields'        => [
         'character' => 'Creator',
-        'item'      => 'Parent Item',
-        'items'     => 'Sub Items',
         'price'     => 'Price',
         'size'      => 'Size',
     ],
@@ -17,11 +15,7 @@ return [
     'hints'         => [
         'items' => 'Organise items by using the parent item field.',
     ],
-    'inventories'   => [
-        'title' => 'Item :name Inventories',
-    ],
     'placeholders'  => [
-        'name'  => 'Name of the item',
         'price' => 'Price of the item',
         'size'  => 'Size, Weight, Dimensions',
         'type'  => 'Weapon, Potion, Artefact',

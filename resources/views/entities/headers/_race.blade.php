@@ -5,8 +5,8 @@
 ?>
 @if ($model->race)
     <div class="entity-header-sub pull-left">
-        <span title="{{ __('races.fields.race') }}" data-toggle="tooltip">
-        <i class="ra ra-wyvern"></i>
+        <span title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
+        <i class="ra ra-wyvern" aria-hidden="true"></i>
         {!! $model->race->tooltipedLink() !!}
         </span>
     </div>

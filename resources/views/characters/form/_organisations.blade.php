@@ -19,9 +19,10 @@ $statuses = [
     \App\Models\OrganisationMember::STATUS_INACTIVE => __('organisations.members.status.inactive'),
     \App\Models\OrganisationMember::STATUS_UNKNOWN => __('organisations.members.status.unknown'),
 ];
+$singular = App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation'));
 ?>
 <div class="row hidden-xs">
-    <div class="col-sm-3">{{ __('entities.organisation') }}</div>
+    <div class="col-sm-3">{!! $singular !!}</div>
     <div class="col-sm-3">{{ __('organisations.members.fields.role') }}</div>
     <div class="col-sm-2">{{ __('organisations.members.fields.status') }}</div>
     <div class="col-sm-2">
@@ -82,7 +83,7 @@ $statuses = [
 
 <button class="btn btn-default" id="add_organisation" href="#" title="{{ __('characters.actions.add_organisation') }}">
     <i class="fa-solid fa-plus" aria-hidden="true"></i>
-    {{ __('characters.actions.add_organisation') }}
+    {!! $singular !!}
 </button>
 
 

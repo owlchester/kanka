@@ -37,7 +37,7 @@ class Location extends Layout
                     return $model->location->tooltipedLink();
                 },
                 'visible' => function () {
-                    return !request()->has('parent_location_id');
+                    return !request()->has('parent_id');
                 }
             ],
         ];

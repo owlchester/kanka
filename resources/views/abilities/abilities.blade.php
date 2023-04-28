@@ -1,5 +1,8 @@
+@php
+    $plural = \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities'));
+@endphp
 @extends('layouts.app', [
-    'title' => __('abilities.abilities.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -7,9 +10,20 @@
 
 @inject('campaignService', 'App\Services\CampaignService')
 
-@php
-    $plural = \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities'));
-@endphp
+@section('entity-header-actions')
+    <div class="header-buttons inline-block pull-right ml-auto">
+        @if (request()->has('parent_id'))
+            <a href="{{ route('abilities.abilities', [$model]) }}" class="btn btn-default btn-sm">
+                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
+            </a>
+        @else
+            <a href="{{ route('abilities.abilities', [$model, 'parent_id' => $model->id]) }}" class="btn btn-default btn-sm">
+                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->abilities()->count() }})
+            </a>
+        @endif
+    </div>
+@endsection
+
 @section('content')
     @include('partials.errors')
 

@@ -18,8 +18,6 @@ return [
         'children'          => 'Children',
         'is_auto_applied'   => 'Automatically apply to new entities',
         'is_hidden'         => 'Hidden from header and tooltip',
-        'tag'               => 'Parent Tag',
-        'tags'              => 'Sub-tags',
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all tags that don\'t have a parent tag. Click on a row to see the children tags.',
@@ -40,10 +38,6 @@ return [
     'show'          => [
         'tabs'  => [
             'children'  => 'Children',
-            'tags'      => 'Tags',
         ],
-    ],
-    'tags'          => [
-        'title' => 'Tag :name Children',
     ],
 ];

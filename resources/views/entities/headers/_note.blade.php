@@ -5,8 +5,8 @@
 ?>
 @if ($model->note)
     <div class="entity-header-sub pull-left">
-        <span title="{{ __('notes.fields.note') }}" data-toggle="tooltip">
-        <i class="fa-solid fa-book-open"></i>
+        <span title="{{ \App\Facades\Module::singular(config('entities.ids.note'), __('entities.note')) }}" data-toggle="tooltip">
+        <i class="fa-solid fa-book-open" aria-hidden="true"></i>
         {!! $model->note->tooltipedLink() !!}
         </span>
     </div>

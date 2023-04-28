@@ -16,7 +16,7 @@
         @if ($campaignService->enabled('locations') && !$model->locations->isEmpty())
             <div class="element profile-location">
                 <div class="title text-uppercase text-xs">
-                    {{ __('creatures.fields.locations') }}
+                    {!! \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')) !!}
                 </div>
                 @php $existingLocations = []; @endphp
                 @foreach ($model->locations as $location)

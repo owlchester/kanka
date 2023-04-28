@@ -6,15 +6,8 @@ return [
         'add_organisation'  => 'Add an organisation',
         'add_personality'   => 'Add a personality',
     ],
-    'conversations' => [
-        'title' => 'Character :name Conversations',
-    ],
     'create'        => [
         'title' => 'New Character',
-    ],
-    'dice_rolls'    => [
-        'hint'  => 'Dice rolls can be assigned to a character for in game usage.',
-        'title' => 'Character :name Dice Rolls',
     ],
     'fields'        => [
         'age'                       => 'Age',
@@ -41,13 +34,6 @@ return [
         'personality_not_visible'   => 'Personality traits of this character are currently only visible to Admin users.',
         'personality_visible'       => 'Personality traits of this character are visible to all.',
     ],
-    'items'         => [
-        'hint'  => 'Items can be assigned to characters and will be displayed here.',
-        'title' => 'Character :name Items',
-    ],
-    'journals'      => [
-        'title' => 'Character :name Journals',
-    ],
     'labels'        => [
         'appearance'    => [
             'entry' => 'Appearance description',
@@ -58,14 +44,7 @@ return [
             'name'  => 'Personality trait name',
         ],
     ],
-    'maps'          => [
-        'title' => 'Character :name Relation Map',
-    ],
     'organisations' => [
-        'actions'       => [
-            'add'       => 'Add an organisation',
-            'submit'    => 'Add organisation',
-        ],
         'create'        => [
             'success'   => 'Character added to organisation.',
             'title'     => 'New Organisation for :name',
@@ -78,14 +57,9 @@ return [
             'title'     => 'Update Organisation for :name',
         ],
         'fields'        => [
-            'organisation'  => 'Organisation',
             'role'          => 'Role',
         ],
         'hint'          => 'Characters can be part of many organisations, representing who they work for or what secret society they are part of.',
-        'placeholders'  => [
-            'organisation'  => 'Choose an organisation...',
-        ],
-        'title'         => 'Character :name Organisations',
     ],
     'placeholders'  => [
         'age'               => 'Age',
@@ -109,13 +83,7 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Appearance',
-        'general'       => 'General information',
         'personality'   => 'Personality',
-    ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organisations',
-        ],
     ],
     'warnings'      => [
         'personality_hidden'    => 'You aren\'t allowed to edit personality traits on this character.',

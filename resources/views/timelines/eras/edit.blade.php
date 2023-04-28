@@ -4,7 +4,7 @@
 * @var \App\Models\TimelineEra $model
 */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('timelines/eras.edit.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [

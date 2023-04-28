@@ -36,6 +36,9 @@ class Map extends Layout
                     }
                     return $model->map->tooltipedLink();
                 },
+                'visible' => function () {
+                    return !request()->has('map_id');
+                }
             ],
         ];
 

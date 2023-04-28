@@ -33,6 +33,9 @@ class Creature extends Layout
                 'render' => function ($model) {
                     return $model->creature?->tooltipedLink();
                 },
+                'visible' => function () {
+                    return !request()->has('parent_id');
+                }
             ],
         ];
 

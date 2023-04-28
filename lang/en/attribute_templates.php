@@ -8,7 +8,6 @@ return [
         'title' => 'New Attribute Template',
     ],
     'fields'                => [
-        'attribute_template'    => 'Parent Attribute Template',
         'attributes'            => 'Attributes',
     ],
     'hints'                 => [
@@ -17,12 +16,10 @@ return [
         'parent_attribute_template' => 'This attribute template can be a child of another attribute template. When applying this attribute template, it and all of its parents will be applied.',
     ],
     'placeholders'          => [
-        'attribute_template'    => 'Choose an attribute template',
         'name'                  => 'Name of the Attribute Template',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Attribute Templates',
             'attributes'            => 'Attributes',
         ],
     ],

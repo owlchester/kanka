@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('items.inventories.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . __('items.show.tabs.inventories'),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -15,7 +15,7 @@
             'model' => $model,
             'breadcrumb' => [
                 ['url' => Breadcrumb::index('items'), 'label' => \App\Facades\Module::plural(config('entities.ids.item'), __('entities.items'))],
-                null
+                __('items.show.tabs.inventories')
             ]
         ])
 

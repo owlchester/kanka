@@ -47,9 +47,9 @@
 
 
 
-@include('editors.editor', ($ajax ? ['dialogsInBody' => true] : []))
+@include('editors.editor', (request()->ajax() ? ['dialogsInBody' => true] : []))
 
-@if ($ajax)
+@if (request()->ajax())
     <script type="text/javascript">
         $(document).ready(function () {
 @if(auth()->user()->editor != 'legacy')

@@ -19,7 +19,9 @@
     <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-profile-elements">
         @if ($campaignService->enabled('families') && !$model->families->isEmpty())
             <div class="element profile-family">
-                <div class="title text-uppercase text-xs">{{ __('entities.families') }}</div>
+                <div class="title text-uppercase text-xs">
+                    {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!}
+                </div>
                 @php $existingFamilies = []; @endphp
                 @foreach ($model->families as $family)
                     @if(!empty($existingFamilies[$family->id]))
@@ -33,7 +35,9 @@
         @if (!$model->races->isEmpty() || $model->hasAge())
             @if (!$model->races->isEmpty() && !$model->hasAge())
             <div class="element profile-race">
-                <div class="title text-uppercase text-xs">{{ __('entities.races') }}</div>
+                <div class="title text-uppercase text-xs">
+                    {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
+                </div>
                 @php $existingRaces = []; @endphp
                 @foreach ($model->races as $race)
                     @if(!empty($existingRaces[$race->id]))
@@ -50,7 +54,10 @@
             </div>
             @else
             <div class="element profile-race-age">
-                <div class="title text-uppercase text-xs">{{ __('entities.races') }}, {{ __('characters.fields.age') }}</div>
+                <div class="title text-uppercase text-xs">
+                    {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!},
+                    {{ __('characters.fields.age') }}
+                </div>
                 @php $existingRaces = []; @endphp
                 @foreach ($model->races as $race)
                     @if(!empty($existingRaces[$race->id]))

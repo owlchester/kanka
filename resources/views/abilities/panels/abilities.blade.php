@@ -13,23 +13,6 @@ $datagridOptions = [];
 }
 ?>
 <div class="box box-solid" id="abilities-abilities">
-    <div class="box-header">
-        <h3 class="box-title">
-            {!! \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities')) !!}
-        </h3>
-        <div class="box-tools">
-            @if (request()->has('parent_id'))
-                <a href="{{ route('abilities.abilities', [$model]) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
-                </a>
-            @else
-                <a href="{{ route('abilities.abilities', [$model, 'parent_id' => $model->id]) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->abilities()->count() }})
-                </a>
-            @endif
-        </div>
-    </div>
-
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table', $datagridOptions)
     </div>

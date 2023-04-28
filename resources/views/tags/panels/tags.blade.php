@@ -6,31 +6,9 @@ if (request()->has('tag_id')) {
 }
 ?>
 <div class="box box-solid" id="tag-tags">
-    <div class="box-header">
-
-        <h3 class="box-title">
-            {!! \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')) !!}
-        </h3>
-        <div class="box-tools">
-            <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
-            </a>
-            @if (request()->has('tag_id'))
-                <a href="{{ route('tags.tags', [$model, '#tag-tags']) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
-                </a>
-            @else
-                <a href="{{ route('tags.tags', [$model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->tags()->count() }})
-                </a>
-            @endif
-        </div>
-    </div>
-
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table')
     </div>
-
 </div>
 
 @section('modals')

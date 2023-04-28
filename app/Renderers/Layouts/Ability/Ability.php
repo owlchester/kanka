@@ -36,6 +36,9 @@ class Ability extends Layout
                     }
                     return $model->ability->tooltipedLink();
                 },
+                'visible' => function () {
+                    return !request()->has('parent_id');
+                }
             ],
         ];
 

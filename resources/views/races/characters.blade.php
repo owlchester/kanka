@@ -1,9 +1,12 @@
+@php
+$plural = \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters'));
+@endphp
 @extends('layouts.app', [
-    'title' => trans('races.characters.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . $plural,
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('races'), 'label' => \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races'))],
         ['url' => $model->getLink(), 'label' => $model->name],
-        \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters'))
+        $plural
     ],
     'mainTitle' => false,
     'miscModel' => $model,

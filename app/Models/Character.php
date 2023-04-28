@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\FilterOption;
 use App\Facades\CampaignLocalization;
+use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
@@ -373,7 +374,7 @@ class Character extends MiscModel
         $count = $this->organisationMemberships()->has('organisation')->count();
         if ($campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
             $items['second']['organisations'] = [
-                'name' => 'characters.show.tabs.organisations',
+                'name' => Module::plural(config('entities.ids.organisation'), 'entities.organisations'),
                 'route' => 'characters.organisations',
                 'count' => $count
             ];
