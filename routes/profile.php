@@ -7,6 +7,8 @@ Route::get('/profile', 'Settings\ProfileController@index')
     ->name('settings.profile');
 Route::patch('/profile', 'Settings\ProfileController@update')
     ->name('settings.profile');
+Route::patch('/reset-tutorials', 'Settings\ProfileController@resetTutorials')
+    ->name('settings.reset-tutorials');
 
 Route::get('/boosters', 'Settings\BoostController@index')
     ->name('settings.boost');

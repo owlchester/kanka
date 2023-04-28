@@ -45,4 +45,21 @@ class ProfileController extends Controller
             ->route('settings.profile')
             ->with('success', trans('settings.profile.success'));
     }
+
+        /**
+     * @param StoreSettingsProfile $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function resetTutorials(Request $request)
+    {
+        /** @var User $user */
+        $user = $request->user();
+
+        $user->resetTutorials()
+            ->update();
+
+        return redirect()
+            ->route('settings.profile')
+            ->with('success', trans('settings.profile.success'));
+    }
 }
