@@ -71,6 +71,14 @@ class Creature extends MiscModel
     ];
 
     /**
+     * Foreign relations to add to export
+     * @var array
+     */
+    protected $foreignExport = [
+        'locations',
+    ];
+
+    /**
      * @return string
      */
     public function getParentIdName()
