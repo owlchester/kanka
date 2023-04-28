@@ -85,4 +85,19 @@
         </div>
     </x-box>
     {!! Form::close() !!}
+    @if (!app()->environment('prod'))
+        <h1 class="mb-3">
+            Reset Tutorials
+        </h1>
+        <x-box>
+            <div class="flex flex-col md:flex-row gap-5">
+            {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.reset-tutorials'], 'data-shortcut' => 1]) !!}
+                    <div class="text-right">
+                        <x-buttons.confirm type="primary" outline="true">
+                            Reset tutorials
+                        </x-buttons.confirm>
+                    </div>
+            {!! Form::close() !!}
+        </x-box>
+    @endif
 @endsection
