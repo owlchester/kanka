@@ -21,19 +21,17 @@ return [
             'submit'    => 'Add member',
         ],
         'create'        => [
-            'success'   => 'Member added to the organisation.',
+            'success'   => 'Member added to :name.',
             'title'     => 'New Member',
         ],
         'destroy'       => [
-            'success'   => 'Member removed from the organisation.',
+            'success'   => 'Member removed from :name.',
         ],
         'edit'          => [
-            'success'   => 'Organisation member updated.',
+            'success'   => 'Member updated.',
             'title'     => 'Update Member for :name',
         ],
         'fields'        => [
-            'character'     => 'Character',
-            'organisation'  => 'Organisation',
             'parent'        => 'Superior',
             'pinned'        => 'Pinned',
             'role'          => 'Role',
@@ -46,12 +44,9 @@ return [
         ],
         'pinned'        => [
             'both'          => 'Both',
-            'character'     => 'Character',
             'none'          => 'None',
-            'organisation'  => 'Organisation',
         ],
         'placeholders'  => [
-            'character' => 'Choose a character',
             'parent'    => 'Who is this member\'s superior',
             'role'      => 'Leader, Member, High Septon, Spymaster',
         ],

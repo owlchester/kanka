@@ -9,7 +9,6 @@ return [
             'success'   => 'Added the tag :name to the entity.',
             'title'     => 'Add an entity to :name',
         ],
-        'title'     => 'Tag :name Children',
     ],
     'create'        => [
         'title' => 'New Tag',
@@ -31,8 +30,6 @@ return [
     ],
     'new_tag'       => 'New Tag',
     'placeholders'  => [
-        'name'  => 'Name of the tag',
-        'tag'   => 'Choose a parent tag',
         'type'  => 'Lore, Wars, History, Religion, Vexillology',
     ],
     'show'          => [
