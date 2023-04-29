@@ -306,6 +306,7 @@ return [
         'entity'        => 'Choose an entity',
         'entry'         => 'Use @ followed by three letters to mention other entities of the campaign.',
         'event'         => 'Choose an event',
+        'fallback'      => 'Choose :module',
         'family'        => 'Choose a family',
         'gallery_image' => 'Choose an image from the campaign gallery',
         'image_url'     => 'Upload an image from a URL instead',

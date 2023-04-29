@@ -100,6 +100,9 @@ class Foreign extends Component
             }
             if (empty($this->placeholder)) {
                 $this->placeholder = __('crud.placeholders.' . $this->key);
+                if (!empty($this->entityTypeID)) {
+                    $this->placeholder = __('crud.placeholders.fallback', ['module' => Module::singular($this->entityTypeID, $this->label)]);
+                }
             }
         } else {
             if (empty($this->label)) {

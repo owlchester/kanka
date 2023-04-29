@@ -7,14 +7,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateModuleName;
 use App\Models\EntityType;
 use App\Observers\PurifiableTrait;
+use App\Services\SidebarService;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class ModuleController extends Controller
 {
     use PurifiableTrait;
 
-    public function __construct()
+    protected SidebarService $sidebarService;
+
+    public function __construct(SidebarService $sidebarService)
     {
         $this->middleware('auth');
+        $this->sidebarService = $sidebarService;
     }
 
     public function edit(EntityType $entityType)
@@ -37,7 +43,7 @@ class ModuleController extends Controller
             ->with('singular', $singular)
             ->with('plural', $plural)
             ->with('icon', $icon)
-            ;
+        ;
     }
 
     public function update(UpdateModuleName $request, EntityType $entityType)
@@ -51,10 +57,11 @@ class ModuleController extends Controller
         }
 
         $settings = $campaign->settings;
-        $key = 'modules.' . $entityType->id . '.';
-        unset($settings[$key . 's']);
-        unset($settings[$key . 'p']);
-        unset($settings[$key . 'i']);
+
+        $key = $entityType->id;
+        unset($settings['modules'][$key]['s']);
+        unset($settings['modules'][$key]['p']);
+        unset($settings['modules'][$key]['i']);
 
         $singular = $plural = $icon = null;
         if ($request->filled('singular')) {
@@ -68,13 +75,13 @@ class ModuleController extends Controller
         }
 
         if (!empty($singular)) {
-            $settings[$key . 's'] = $singular;
+            $settings['modules'][$key]['s'] = $singular;
         }
         if (!empty($plural)) {
-            $settings[$key . 'p'] = $plural;
+            $settings['modules'][$key]['p'] = $plural;
         }
         if (!empty($icon)) {
-            $settings[$key . 'i'] = $icon;
+            $settings['modules'][$key]['i'] = $icon;
         }
 
         $campaign->settings = $settings;
@@ -83,5 +90,30 @@ class ModuleController extends Controller
 
         return redirect()->route('campaign.modules')
             ->with('success', __('Module renamed'));
+    }
+
+    public function reset()
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('setting', $campaign);
+
+        $settings = $campaign->settings;
+        unset($settings['modules']);
+        foreach ($settings as $name => $val) {
+            if (Str::startsWith($name, 'modules.')) {
+                unset($settings[$name]);
+            }
+        }
+        $campaign->settings = $settings;
+        $campaign->save();
+
+
+        $this->sidebarService
+            ->campaign($campaign)
+            ->clearCache();
+
+        return redirect()
+            ->route('campaign.modules')
+            ->with('success', __('campaigns/modules.reset.success'));
     }
 }

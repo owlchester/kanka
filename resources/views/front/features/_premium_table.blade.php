@@ -215,6 +215,19 @@
                 <span class="fa-sr-only">{{ __('general.yes') }}</span>
             </td>
         </tr>
+        <tr>
+            <td class="text">
+                {{ __('front.features.boosts.modules') }}
+                <a href="https://docs.kanka.io/en/latest/features/campaigns/modules.html" target="_blank">
+                    <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
+                </a>
+            </td>
+            <td></td>
+            <td>
+                <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
+                <span class="fa-sr-only">{{ __('general.yes') }}</span>
+            </td>
+        </tr>
         <tr id="superboost">
             <td class="text">
                 <a href="https://docs.kanka.io/en/latest/features/family-trees.html" target="_blank">

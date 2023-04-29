@@ -86,6 +86,7 @@ return [
             'images'                => 'Set default images for lists per entity type',
             'map_markers'           => 'Access to thousands of icons for map markers and custom marker shapes',
             'marketplace'           => 'Access to the :marketplace',
+            'modules'               => 'Rename modules, for example changing families to clans in a campaign',
             'no_ads'                => 'No ads on the campaign for logged in users',
             'recovery'              => 'Restore deleted entities (up to :amount days)',
             'relation-visualiser'   => 'Explore the relations of entities visually',

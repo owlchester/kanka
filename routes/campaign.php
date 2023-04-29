@@ -463,6 +463,7 @@ Route::post('/campaign-visibility', 'Campaign\VisibilityController@save')->name(
 
 Route::get('/modules/{entity_type}/edit', [\App\Http\Controllers\Campaign\ModuleController::class, 'edit'])->name('modules.edit');
 Route::patch('/modules/{entity_type}/update', [\App\Http\Controllers\Campaign\ModuleController::class, 'update'])->name('modules.update');
+Route::delete('/modules/reset', [\App\Http\Controllers\Campaign\ModuleController::class, 'reset'])->name('modules.reset');
 
 Route::get('/campaign-applications', 'Campaign\SubmissionController@toggle')->name('campaign-applications');
 Route::post('/campaign-applications', 'Campaign\SubmissionController@toggleSave')->name('campaign-applications.save');

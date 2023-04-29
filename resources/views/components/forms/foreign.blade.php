@@ -15,7 +15,7 @@
             class="form-control select2 w-full"
             style="width: 100%"
             data-url="{{ $route }}"
-            data-placeholder="{{ $placeholder ?? __('crud.placeholders.parent') }}"
+            data-placeholder="{!! $placeholder ?? __('crud.placeholders.parent') !!}"
             data-allow-new="{{ $allowNew ? 'true' : 'false' }}"
             data-language="{{ LaravelLocalization::getCurrentLocale() }}"
             data-allow-clear="{{ $allowClear ? 'true' : 'false' }}"

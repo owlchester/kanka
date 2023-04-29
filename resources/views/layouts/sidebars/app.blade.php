@@ -43,13 +43,13 @@ $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m
                             }
                             @endphp
                             <a href="{{ route($route, (\Illuminate\Support\Arr::get($element, 'mode') === true ? $defaultOptions : [])) }}">
-                                <i class="{{ $element['custom_icon'] ?: $element['icon']  }}" aria-hidden="true"></i>
-                                {!! $element['custom_label'] ?: __($element['label_key']) !!}
+                                <i class="{{ $element['custom_icon'] ?? $element['icon']  }}" aria-hidden="true"></i>
+                                {!! $element['custom_label'] ?? __($element['label_key']) !!}
                             </a>
                         @else
                             <span>
-                                <i class="{{ $element['custom_icon'] ?: $element['icon'] }}" aria-hidden="true"></i>
-                                {!! $element['custom_label'] ?: __($element['label_key']) !!}
+                                <i class="{{ $element['custom_icon'] ?? $element['icon'] }}" aria-hidden="true"></i>
+                                {!! $element['custom_label'] ?? __($element['label_key']) !!}
                             </span>
                         @endif
                         @if (!empty($element['children']))
@@ -64,8 +64,8 @@ $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m
                                     }
                                 @endphp
                                 <a href="{{ route($route, \Illuminate\Support\Arr::get($child, 'mode') === true ? $defaultOptions : []) }}">
-                                    <i class="{{ $child['custom_icon'] ?: $child['icon'] }}" aria-hidden="true"></i>
-                                    {!! $child['custom_label'] ?: __($child['label_key']) !!}
+                                    <i class="{{ $child['custom_icon'] ?? $child['icon'] }}" aria-hidden="true"></i>
+                                    {!! $child['custom_label'] ?? __($child['label_key']) !!}
                                 </a>
                             </li>
                             @includeWhen($sidebar->hasQuickLinks($childName), 'layouts.sidebars._quick-links', ['links' => $sidebar->quickLinks($childName)])

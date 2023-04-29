@@ -1,9 +1,9 @@
 @php
 $moduleName = __('entities.' . $module);
-if (isset($id) && $campaign->hasModuleName($id, true)) {
+if (isset($id) && $campaign->superboosted() && $campaign->hasModuleName($id, true)) {
     $moduleName = $campaign->moduleName($id, true);
 }
-if (isset($id) && $campaign->hasModuleIcon($id)) {
+if (isset($id) && $campaign->superboosted() && $campaign->hasModuleIcon($id)) {
     $icon = $campaign->moduleIcon($id);
 }
 @endphp

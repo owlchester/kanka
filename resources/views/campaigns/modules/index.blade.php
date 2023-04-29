@@ -24,6 +24,12 @@
                     {{ __('campaigns.show.tabs.settings') }}
                 </h3>
 
+                @if ($canReset)
+                    <a href="#" class="btn btn-default btn-sm" data-toggle="dialog" data-target="reset-confirm">
+                        <i class="fa-solid fa-eraser" aria-hidden="true"></i>
+                        {{ __('crud.actions.reset') }}
+                    </a>
+                @endif
                 <a href="//docs.kanka.io/en/latest/features/campaigns/modules.html"
                    target="_blank" class="btn btn-default btn-sm">
                     <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
@@ -112,5 +118,27 @@
     @parent
     <x-dialog id="rename-dialog" title="Loading">
 
+    </x-dialog>
+
+
+    <x-dialog id="reset-confirm" :title="__('campaigns/modules.reset.title')">
+        <p>{{ __('campaigns/modules.reset.warning') }}</p>
+
+        <div class="grid grid-cols-2 gap-2 w-full">
+            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                {{ __('crud.cancel') }}
+            </x-buttons.confirm>
+
+            {!! Form::open([
+                'method' => 'DELETE',
+                'route' => [
+                    'modules.reset',
+                ]
+            ]) !!}
+            <x-buttons.confirm type="danger" full="true" outline="true">
+                {{ __('crud.click_modal.confirm') }}
+            </x-buttons.confirm>
+            {!! Form::close() !!}
+        </div>
     </x-dialog>
 @endsection

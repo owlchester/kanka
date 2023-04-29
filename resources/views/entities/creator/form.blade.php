@@ -27,7 +27,7 @@
             ]) !!}
             @else
                 {!! Form::text('name', null, [
-                    'placeholder' => __($type . '.placeholders.name'),
+                    'placeholder' => __('crud.placeholders.name'),
                     'autocomplete' => 'off',
                     'class' => 'form-control',
                     'maxlength' => 191,

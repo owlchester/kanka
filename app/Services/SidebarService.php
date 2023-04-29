@@ -576,7 +576,7 @@ class SidebarService
         $this->campaign->ui_settings = $ui;
         $this->campaign->save();
 
-        Cache::forget($this->cacheKey());
+        $this->clearCache();
     }
 
     public function reset()
@@ -586,6 +586,11 @@ class SidebarService
         $this->campaign->ui_settings = $ui;
         $this->campaign->save();
 
+        $this->clearCache();
+    }
+
+    public function clearCache()
+    {
         Cache::forget($this->cacheKey());
     }
 
@@ -656,17 +661,15 @@ class SidebarService
     protected function customElement(string $key): array
     {
         $element = $this->elements[$key];
-        $element['custom_label'] = null;
-        $element['custom_icon'] = null;
         $element['label_key'] = $element['label'];
-        $element['label'] = null;
+        unset($element['label']);
 
         if (!$this->campaign->boosted()) {
             return $element;
         }
 
         // Module custom name
-        if (!empty($element['type_id'])) {
+        if (!empty($element['type_id']) && !$this->withDisabled) {
             $type = $element['type_id'];
             $label = Module::plural($type);
             if (!empty($label)) {

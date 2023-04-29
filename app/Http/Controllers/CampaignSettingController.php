@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
-use App\Models\Campaign;
 
 class CampaignSettingController extends Controller
 {
@@ -22,8 +21,10 @@ class CampaignSettingController extends Controller
      */
     public function index()
     {
+        $canReset = true;
         $campaign = CampaignLocalization::getCampaign();
-        return view('campaigns.modules.index', compact('campaign'));
+        return view('campaigns.modules.index', compact('campaign'))
+            ->with('canReset', $canReset);
     }
 
 

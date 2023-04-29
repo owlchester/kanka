@@ -44,43 +44,40 @@ if (auth()->check()) {
 @endif
 
     <div class="hidden lg:!block ">
-        <div class="box box-solid entity-submenu">
-            <div class="box-body no-padding">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="@if(empty($active) || $active == 'campaign')active @endif">
-                        <a href="{{ route('campaign') }}">
-                            {{ __('crud.tabs.overview') }}
+        <div class="bg-box rounded overflow-hidden shadow-xs entity-submenu mb-5">
+            <ul class="nav nav-pills nav-stacked p-0">
+                <li class="@if(empty($active) || $active == 'campaign')active @endif">
+                    <a href="{{ route('campaign') }}">
+                        {{ __('crud.tabs.overview') }}
+                    </a>
+                </li>
+                @can('update', $campaign)
+                    <li class="@if(!empty($active) && $active == 'export')active @endif">
+                        <a href="{{ route('campaign.export') }}">
+                            {{ __('campaigns.show.tabs.export') }}
                         </a>
                     </li>
-                    @can('update', $campaign)
-                        <li class="@if(!empty($active) && $active == 'export')active @endif">
-                            <a href="{{ route('campaign.export') }}">
-                                {{ __('campaigns.show.tabs.export') }}
-                            </a>
-                        </li>
-                    @endif
-                    @can('update', $campaign)
-                    <li class="@if(!empty($active) && $active == 'recovery')active @endif">
-                        <a href="{{ route('recovery') }}">
-                            {{ __('campaigns.show.tabs.recovery') }}
+                @endif
+                @can('update', $campaign)
+                <li class="@if(!empty($active) && $active == 'recovery')active @endif">
+                    <a href="{{ route('recovery') }}">
+                        {{ __('campaigns.show.tabs.recovery') }}
+                    </a>
+                </li>
+                @endcan
+                @can('stats', $campaign)
+                    <li class="@if(!empty($active) && $active == 'stats')active @endif">
+                        <a href="{{ route('stats') }}">
+                            {{ __('campaigns.show.tabs.achievements') }}
                         </a>
                     </li>
-                    @endcan
-                    @can('stats', $campaign)
-                        <li class="@if(!empty($active) && $active == 'stats')active @endif">
-                            <a href="{{ route('stats') }}">
-                                {{ __('campaigns.show.tabs.achievements') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </div>
+                @endcan
+            </ul>
         </div>
 
         @if (auth()->check() && (auth()->user()->can('members', $campaign) || auth()->user()->can('submissions', $campaign) || auth()->user()->can('roles', $campaign)))
-        <div class="box box-solid entity-submenu">
-            <div class="box-body no-padding">
-                <ul class="nav nav-pills nav-stacked">
+            <div class="bg-box rounded overflow-hidden shadow-xs entity-submenu mb-5">
+                <ul class="nav nav-pills nav-stacked p-0">
                     @can('members', $campaign)
                         <li class="@if(!empty($active) && $active == 'users')active @endif">
                             <a href="{{ route('campaign_users.index') }}">
@@ -107,45 +104,42 @@ if (auth()->check()) {
                     @endcan
                 </ul>
             </div>
-        </div>
         @endif
 
-        <div class="box box-solid entity-submenu">
-            <div class="box-body no-padding">
-                <ul class="nav nav-pills nav-stacked">
-                    @can('update', $campaign)
-                    <li class="@if(!empty($active) && $active == 'settings')active @endif">
-                        <a href="{{ route('campaign.modules') }}">
-                            {{ __('campaigns.show.tabs.settings') }}
+        <div class="bg-box rounded overflow-hidden shadow-xs entity-submenu">
+            <ul class="nav nav-pills nav-stacked p-0">
+                @can('update', $campaign)
+                <li class="@if(!empty($active) && $active == 'settings')active @endif">
+                    <a href="{{ route('campaign.modules') }}">
+                        {{ __('campaigns.show.tabs.settings') }}
+                    </a>
+                </li>
+                @endcan
+                @if(config('marketplace.enabled'))
+                    <li class="@if (!empty($active) && $active == 'plugins')active @endif">
+                        <a href="{{ route('campaign_plugins.index') }}">
+                            {{ __('campaigns.show.tabs.plugins') }}
                         </a>
                     </li>
-                    @endcan
-                    @if(config('marketplace.enabled'))
-                        <li class="@if (!empty($active) && $active == 'plugins')active @endif">
-                            <a href="{{ route('campaign_plugins.index') }}">
-                                {{ __('campaigns.show.tabs.plugins') }}
-                            </a>
-                        </li>
-                    @endif
-                    @can('update', $campaign)
-                    <li class="@if(!empty($active) && $active == 'default-images')active @endif">
-                        <a href="{{ route('campaign.default-images') }}">
-                            {{ __('campaigns.show.tabs.default-images') }}
-                        </a>
-                    </li>
-                    <li class="@if(!empty($active) && $active == 'styles')active @endif">
-                        <a href="{{ route('campaign_styles.index') }}">
-                            {{ __('campaigns.show.tabs.styles') }}
-                        </a>
-                    </li>
-                    <li class="@if(!empty($active) && $active == 'sidebar')active @endif">
-                        <a href="{{ route('campaign-sidebar') }}">
-                            {{ __('campaigns.show.tabs.sidebar') }}
-                        </a>
-                    </li>
-                    @endcan
-                </ul>
-            </div>
+                @endif
+                @can('update', $campaign)
+                <li class="@if(!empty($active) && $active == 'default-images')active @endif">
+                    <a href="{{ route('campaign.default-images') }}">
+                        {{ __('campaigns.show.tabs.default-images') }}
+                    </a>
+                </li>
+                <li class="@if(!empty($active) && $active == 'styles')active @endif">
+                    <a href="{{ route('campaign_styles.index') }}">
+                        {{ __('campaigns.show.tabs.styles') }}
+                    </a>
+                </li>
+                <li class="@if(!empty($active) && $active == 'sidebar')active @endif">
+                    <a href="{{ route('campaign-sidebar') }}">
+                        {{ __('campaigns.show.tabs.sidebar') }}
+                    </a>
+                </li>
+                @endcan
+            </ul>
         </div>
     </div>
 

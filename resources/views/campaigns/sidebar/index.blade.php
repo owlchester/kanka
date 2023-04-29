@@ -53,16 +53,16 @@
                     <ul class="list-none m-0 p-0 sidebar-sortable nested-sortable">
                     @foreach ($layout as $name => $setup)
                         <li class="p-1 @if (isset($setup['fixed'])) fixed-position @endif" id="{{ $name }}">
-                            <p class="text-muted text-sm hidden-md hidden-lg">({{ $setup['label'] }})</p>
+                            <p class="text-muted text-sm hidden-md hidden-lg">({{ $setup['label'] ?? __($setup['label_key']) }})</p>
                             <div class="input-group">
                                 <span class="input-group-addon dnd-handle cursor-move">
-                                    <i class="inline-block w-6 {{ $setup['custom_icon'] ?: $setup['icon'] }}" aria-hidden="true"></i>
+                                    <i class="inline-block w-6 {{ $setup['custom_icon'] ?? $setup['icon'] }}" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" class="form-control" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] }}" placeholder="{{$setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
+                                <input type="text" class="form-control" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] ?? null }}" placeholder="{{ $setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
                             </div>
 
-                            <input type="text" class="form-control" name="{{ $name }}_label" value="{{ $setup['custom_label'] }}" placeholder="{{$setup['label'] }}" maxlength="90" />
-                            <span class="text-muted text-sm hidden-xs hidden-sm">({{ $setup['label'] }})</span>
+                            <input type="text" class="form-control" name="{{ $name }}_label" value="{{ $setup['custom_label'] ?? null }}" placeholder="{{ $setup['label'] ?? __($setup['label_key'])  }}" maxlength="90" />
+                            <span class="text-muted text-sm hidden-xs hidden-sm">({{ $setup['label'] ?? __($setup['label_key']) }})</span>
                             <input type="hidden" name="order[{{ $name }}]" value="1" />
 
                             @if (empty($setup['children']))
@@ -73,17 +73,17 @@
                             <ul class="list-none mt-2 m-0 p-0 pl-4 sidebar-sortable nested-sortable">
                                 @foreach ($setup['children'] as $childName => $child)
                                     <li class="p-1 @if (\Illuminate\Support\Arr::get($child, 'disabled') === true) alert-warning @endif" id="{{ $childName }}">
-                                        <p class="text-muted text-sm hidden-md hidden-lg">({{ $child['label'] }})</p>
+                                        <p class="text-muted text-sm hidden-md hidden-lg">({{ $child['label'] ?? __($child['label_key'])}})</p>
                                         <div class="input-group">
                                             <span class="input-group-addon dnd-handle cursor-move">
-                                                <i class="inline-block w-6 {{ $child['custom_icon'] ?: $child['icon'] }}" aria-hidden="true"></i>
+                                                <i class="inline-block w-6 {{ $child['custom_icon'] ?? $child['icon'] }}" aria-hidden="true"></i>
                                             </span>
-                                            <input type="text" class="form-control" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] }}" placeholder="{{ $child['icon'] }}" data-paste="fontawesome" maxlength="50" />
+                                            <input type="text" class="form-control" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] ?? null }}" placeholder="{{ $child['icon'] ?? null }}" data-paste="fontawesome" maxlength="50" />
                                         </div>
 
-                                        <input type="text" class="form-control" name="{{ $childName }}_label" value="{{ $child['custom_label'] }}" placeholder="{{ $child['label'] }}" maxlength="90" />
+                                        <input type="text" class="form-control" name="{{ $childName }}_label" value="{{ $child['custom_label'] ?? null }}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" />
                                         <span class="text-muted text-sm hidden-xs hidden-sm">(
-                                            {{ $child['label'] }}
+                                            {{ $child['label'] ?? __($child['label_key']) }}
                                             @if (\Illuminate\Support\Arr::get($child, 'disabled') === true)
                                                 <i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" title="{{ __('campaigns.modules.permission-disabled') }}"></i>
                                             @endif
