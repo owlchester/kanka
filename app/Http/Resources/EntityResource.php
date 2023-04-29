@@ -103,8 +103,13 @@ class EntityResource extends JsonResource
                     'image' => $image ? $entity->image->path : $entity->child->image,
                     'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : $entity->fullsize()->avatarV2(),
                     'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatarSize(40)->avatarV2(),
-                    'has_custom_image' => $image || !empty($entity->child->image)
+                    'has_custom_image' => $image || !empty($entity->child->image),
                 ];
+
+                /*if (request()->get('entry')) {
+                    $data['child']['entry'] = $entity->child->hasEntry() ? $entity->child->entry : null;
+                    $data['child']['entry_parsed'] = $entity->child->hasEntry() ? Mentions::map($entity->child->entry) : null;
+                }*/
             }
         }
 
