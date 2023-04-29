@@ -18,10 +18,10 @@ if (!empty($redirect)) {
     <div class="header-buttons inline-block pull-right ml-auto">
         <div class="btn-group">
             <div class="btn btn-default btn-sm btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
-                <i class="fa-solid fa-grip-lines"></i>
+                <i class="fa-solid fa-grip-lines" aria-hidden="true"></i>
             </div>
             <div class="btn btn-default btn-sm btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
             </div>
         </div>
         @can('update', $model)
@@ -59,3 +59,20 @@ if (!empty($redirect)) {
         @include('entities.pages.logs.history')
     </div>
 </div>
+
+<!-- We need this for tailwind to include the definitions -->
+<template id="moon-colours">
+    <div class="text-blue-500"></div>
+    <div class="text-orange-900"></div>
+    <div class="text-green-500"></div>
+    <div class="text-blue-300"></div>
+    <div class="text-pink-800"></div>
+    <div class="text-blue-900"></div>
+    <div class="text-orange-500"></div>
+    <div class="text-pink-500"></div>
+    <div class="text-purple-500"></div>
+    <div class="text-red-500"></div>
+    <div class="text-teal-500"></div>
+    <div class="text-yellow-500"></div>
+    <div class="text-gray-500"></div>
+</template>
