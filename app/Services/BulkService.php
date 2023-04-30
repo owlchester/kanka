@@ -297,11 +297,16 @@ class BulkService
                     if (Str::startsWith($mathField, '+')) {
                         $entityFields[$math] = $entity->{$math} + (int) Str::after($mathField, '+');
                     } else {
-                        $entityFields[$math] = $entity->{$math} - (int)Str::after($mathField, '-');
+                        $entityFields[$math] = $entity->{$math} - (int) Str::after($mathField, '-');
                     }
                 }
             }
             $entity->updateQuietly($entityFields);
+            // We need to manually call the tree calculation in case the parent was changed to properly rebuild
+            if (method_exists($entity, 'forcePendingAction')) {
+                $entity->forcePendingAction(); // Usually called in the saving event
+                $entity->updateQuietly();
+            }
 
             // Foreign belongsTo loop
             foreach ($filledForeigns as $relation => $ids) {
