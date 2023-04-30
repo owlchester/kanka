@@ -6,21 +6,21 @@ use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateModuleName;
 use App\Models\EntityType;
-use App\Observers\PurifiableTrait;
+use App\Services\Campaign\ModuleService;
 use App\Services\SidebarService;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class ModuleController extends Controller
 {
-    use PurifiableTrait;
 
     protected SidebarService $sidebarService;
+    protected ModuleService $moduleService;
 
-    public function __construct(SidebarService $sidebarService)
+    public function __construct(SidebarService $sidebarService, ModuleService $moduleService)
     {
         $this->middleware('auth');
         $this->sidebarService = $sidebarService;
+        $this->moduleService = $moduleService;
     }
 
     public function edit(EntityType $entityType)
@@ -56,40 +56,12 @@ class ModuleController extends Controller
                 ->with('errors', __('This feature is only available on premium campaigns'));
         }
 
-        $settings = $campaign->settings;
-
-        $key = $entityType->id;
-        unset($settings['modules'][$key]['s']);
-        unset($settings['modules'][$key]['p']);
-        unset($settings['modules'][$key]['i']);
-
-        $singular = $plural = $icon = null;
-        if ($request->filled('singular')) {
-            $singular = $this->purify(trim($request->get('singular')));
-        }
-        if ($request->filled('plural')) {
-            $plural = $this->purify(trim($request->get('plural')));
-        }
-        if ($request->filled('icon')) {
-            $icon = $this->purify(trim($request->get('icon')));
-        }
-
-        if (!empty($singular)) {
-            $settings['modules'][$key]['s'] = $singular;
-        }
-        if (!empty($plural)) {
-            $settings['modules'][$key]['p'] = $plural;
-        }
-        if (!empty($icon)) {
-            $settings['modules'][$key]['i'] = $icon;
-        }
-
-        $campaign->settings = $settings;
-        $campaign->updateQuietly();
-        $campaign->touchQuietly();
+        $this->moduleService
+            ->campaign($campaign)
+            ->update($request, $entityType);
 
         return redirect()->route('campaign.modules')
-            ->with('success', __('Module renamed'));
+            ->with('success', __('campaigns/modules.rename.success'));
     }
 
     public function reset()

@@ -20,10 +20,23 @@
 }
 
 #campaign-modules {
+    .module-actions {
+        .btn-module-disable {
+            display: none;
+        }
+    }
     .module-enabled {
         .header {
             background-color: #00a65a;
             color: white;
+        }
+        .module-actions {
+            .btn-module-enable {
+                display: none;
+            }
+            .btn-module-disable {
+                display: block;
+            }
         }
     }
 }

@@ -13,10 +13,15 @@ return [
     'rename' => [
         'title' => 'Customise the :module module',
         'helper' => 'Change the name and icon of the module throughout the campaign. Leave blank to use Kanka\'s default.',
+        'success' => 'Module customised.',
     ],
     'fields' => [
         'singular' => 'Module singular name',
         'plural' => 'Module plural name',
         'icon' => 'Module icon',
+    ],
+    'states'    => [
+        'enable' => 'Enable',
+        'disable' => 'Disable',
     ]
 ];

@@ -31,13 +31,14 @@ function registerModules() {
     if ($('#campaign-modules').length === 0) {
         return;
     }
-    $('.box-module .body').click(function (e) {
+    $('.box-module [data-url]').click(function (e) {
         e.preventDefault();
         let header = $(this).parent().find('h3');
         if (header.hasClass('loading')) {
             return;
         }
         header.addClass('loading');
+        $(this).parent().find('.footer').hide();
 
         $.ajax({
             method: 'post',
@@ -54,6 +55,7 @@ function registerModules() {
                 window.showToast(res.toast);
             }
             $(this).parent().find('h3').removeClass('loading');
+            $(this).parent().find('.footer').show();
         });
     });
 }
