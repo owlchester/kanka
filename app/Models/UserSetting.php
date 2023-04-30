@@ -206,6 +206,25 @@ trait UserSetting
     }
 
     /**
+     * Reset tutorials for the user.
+     * @return $this
+     */
+    public function resetTutorials(): self
+    {
+        $settings = $this->settings;
+
+        foreach ($settings as $key => $setting) {
+            if (str_starts_with($key, 'tutorial_')) {
+                unset($settings[$key]);
+            }
+        }
+
+        $this->settings = $settings;
+
+        return $this;
+    }
+
+    /**
      * @param array $data
      * @return $this
      */

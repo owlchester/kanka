@@ -3,6 +3,7 @@
 ---
 
 - [Entities](#entities)
+- [Entity Types](#entity-types)
 - [Single Entity](#entity)
 - [Filtering Entities](#filtering-entities)
 - [Related Entities](#related-entities)
@@ -43,6 +44,13 @@ Most entities have the following attributes.
 | `created_by` | `integer` | The `users`.`id` who created the object.
 | `updated_at` | `object` | An object representing when the object was updated (server time) |
 | `updated_by` | `integer` | The `users`.`id` who last updated the object.
+
+
+<a name="entity-types"></a>
+## Entity Types
+
+You can see all entity types and their ID's on the following endpoint: [Entity Types](/api-docs/{{version}}/entity-types)
+
 
 <a name="entity"></a>
 ## Single Entity
