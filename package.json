@@ -31,6 +31,7 @@
         "cytoscape-panzoom": "^2.5.3",
         "leaflet.markercluster": "^1.5.3",
         "leaflet.markercluster.layersupport": "^2.0.1",
+        "leaflet.path.drag": "^0.0.6",
         "mitt": "^3.0.0",
         "rpg-awesome": "^0.2.0",
         "sass-loader": "^8.0.0",
