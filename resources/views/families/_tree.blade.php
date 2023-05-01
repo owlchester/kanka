@@ -19,13 +19,6 @@
             },
             'disableSort' => true,
         ],
-        // Location
-        [
-            'type' => 'avatar',
-            'parent' => 'location',
-            'parent_route' => 'locations',
-            'visible' => $campaignService->enabled('locations'),
-        ],
         [
             'type' => 'location',
             'visible' => $campaignService->enabled('locations'),

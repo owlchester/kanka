@@ -75,7 +75,7 @@ class Note extends MiscModel
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'notes' => function ($sub) {
-                $sub->select('id', 'note_id');
+                $sub->select('id', 'note_id', 'name');
             },
             'children' => function ($sub) {
                 $sub->select('id', 'note_id');

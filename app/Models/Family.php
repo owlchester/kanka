@@ -110,13 +110,28 @@ class Family extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
-            'entity',
-            'entity.image',
-            'location',
-            'location.entity',
-            'families',
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext');
+            },
+            'location' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'location.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'family' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'families' => function ($sub) {
+                $sub->select('id', 'family_id', 'name');
+            },
             'members',
-            'children',
+            'children' => function ($sub) {
+                $sub->select('id', 'family_id');
+            },
         ]);
     }
 
