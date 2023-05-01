@@ -55,7 +55,7 @@
 
     </script>
 
-    @include('maps._setup')
+    @include('maps._setup', ['editable' => true])
 
     <script type="text/javascript">
         window.exploreEditMode = false;

@@ -84,7 +84,7 @@
         'resources/js/ajax-subforms.js'
     ])
 
-    @include('maps._setup', ['single' => true])
+    @include('maps._setup', ['single' => true, 'editable' => true])
     <script type="text/javascript">
         var labelShapeIcon = new L.Icon({
             iconUrl: '/images/transparent.png',
@@ -96,67 +96,15 @@
         var marker{{ $model->id }} = {!! $model->editing()->multiplier($map->is_real)->marker() !!}.addTo(map{{ $map->id }});
         window.polygon = marker{{ $model->id }};
         window.polygon.enableEdit();
-        //window.polygon.on('dragend', dragend);
-        window.polygon.on('editable:dragend', updateHandler);
-        window.polygon.on('editable:vertex:dragend', updateHandler);
-        window.polygon.on('editable:vertex:dragend', updateHandler);
-
-        let shape = document.getElementsByName('shape_id');
-        /*map{{ $map->id }}.on('click', function(ev) {
-            // Only do this is the map is a polygon
-            if (!isPolygon()) {
-                return;
-            }
-            window.map.removeLayer(window.polygon);
-            let position = ev.latlng;
-            let lat = position.lat.toFixed(3);
-            let lng = position.lng.toFixed(3);
-            window.addPolygonPosition(lat, lng);
-        });*/
-        map{{ $map->id }}.dragging.enable();
+        window.polygon.on('editable:dragend', markerUpdateHandler);
+        window.polygon.on('editable:vertex:dragend', markerUpdateHandler);
+        window.polygon.on('editable:vertex:dragend', markerUpdateHandler);
 
         window.map = map{{ $map->id }};
 
-        function updateHandler(data) {
-            if (isPolygon()) {
-                updatePolygon(data);
-            }
-            else if (isLabel()) {
-                updateLabel(data);
-            }
+        function markerUpdateHandler(data) {
+            window.markerUpdateHandler(data)
         }
-
-        const updatePolygon = (data) => {
-            //console.log('polygon updated', data);
-            let points = data.target.getLatLngs();
-            if (points.length === 0) {
-                return;
-            }
-
-            let coords = [];
-            points[0].forEach((i) => {
-                coords.push(i.lat.toFixed(3) + ',' + i.lng.toFixed(3));
-            });
-            window.setPolygonPosition(coords.join(' '));
-        }
-
-        const updateLabel = (data) => {
-            //console.log('label updated', data);
-            let points = data.target._latlng;
-            if (!points) {
-                return;
-            }
-            $('#marker-latitude').val(points.lat.toFixed(3));
-            $('#marker-longitude').val(points.lng.toFixed(3));
-        }
-
-        const isPolygon = () => {
-            return shape[0].value === 5;
-        }
-        const isLabel = () => {
-            return shape[0].value === 2;
-        }
-
     </script>
 @endsection
 

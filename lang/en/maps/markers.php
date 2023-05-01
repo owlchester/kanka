@@ -36,10 +36,10 @@ return [
         'bg_colour'     => 'Background colour',
         'circle_radius' => 'Circle radius',
         'copy_elements' => 'Copy elements',
-        'custom_icon'   => 'Custom Icon',
-        'custom_shape'  => 'Custom Shape',
-        'font_colour'   => 'Icon Colour',
-        'group'         => 'Marker Group',
+        'custom_icon'   => 'Custom icon',
+        'custom_shape'  => 'Polygon shape',
+        'font_colour'   => 'Icon colour',
+        'group'         => 'Marker group',
         'icon'          => 'Icon',
         'is_draggable'  => 'Draggable',
         'latitude'      => 'Latitude',
@@ -62,7 +62,7 @@ return [
         'draggable'                 => 'Enable to allow moving this marker in the exploration mode of the map.',
         'label'                     => 'A label is displayed as a block of text on the map. The content will be the marker\'s name or the entity\'s name.',
         'polygon'                   => [
-            'edit'  => 'Click on the map to add that position to the polygon\'s coordinates.',
+            'edit'  => 'Edit the polygon by dragging its edges and nodes.',
         ],
     ],
     'icons'         => [

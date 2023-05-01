@@ -28,6 +28,8 @@
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
     <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
+    <script src="/js/vendor/leaflet/leaflet.path.drag.js"></script>
+    <script src="/js/vendor/leaflet/leaflet.editable.js"></script>
     @vite([
         'resources/js/location/map-v3.js',
         'resources/js/ajax-subforms.js'
@@ -47,10 +49,11 @@
         @endforeach
 
     </script>
-    @include('maps._setup', ['map' => $model])
+    @include('maps._setup', ['map' => $model, 'editable' => true])
 
     <script type="text/javascript">
         window.map = map{{ $model->id }};
+        //window.map
         window.exploreEditMode = true;
         /** Add markers outside of a group directly to the page **/
         @foreach ($model->markers as $marker)

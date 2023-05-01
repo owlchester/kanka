@@ -79,7 +79,7 @@ if (isset($single) && $single) {
         minZoom: {{ $map->minZoom() }},
         maxZoom: {{ $map->maxZoom() }},
         layers: [{{ $map->activeLayers(!isset($single)) }}],
-        @if (isset($single) && $single)
+        @if (isset($editable) && $editable)
         editable: true,
         @endif
     });

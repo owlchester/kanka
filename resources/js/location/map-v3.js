@@ -198,22 +198,27 @@ function registerModes() {
         e.preventDefault();
         window.exploreEditMode = false;
         $('body').removeClass('map-edit-mode');
+        if (window.polygon) {
+            window.map.removeLayer(window.polygon);
+        }
     });
     $('.btn-mode-drawing').click(function (e) {
         e.preventDefault();
-        window.drawingPolygon = false;
-        $('body').removeClass('map-drawing-mode');
-        $('#marker-modal').modal('show');
+        endDrawing();
     });
-
-
 }
 
+function endDrawing() {
+    window.drawingPolygon = false;
+    $('body').removeClass('map-drawing-mode');
+    $('#marker-modal').modal('show');
+}
 function initPolygonDrawing() {
 
     $('#start-drawing-polygon').on('click', function (e) {
         e.preventDefault();
-        window.drawingPolygon = true;
+        window.exploreEditMode = false;
+        window.startNewPolygon();
         window.showToast($(this).data('toast'));
         $('body').addClass('map-drawing-mode');
         $('#marker-modal').modal('hide');
@@ -227,12 +232,87 @@ function initPolygonDrawing() {
         }
         $('textarea[name="custom_shape"]').val('');
         eraseTempPolygonBtn.hide();
+
+        window.startNewPolygon();
+    });
+
+    window.map.on('editable:editing', function (e) {
+        getPolygonStyle();
+        e.layer.setStyle({
+            weight: polygonStrokeWeight,
+            color: polygonStrokeColour,
+            opacity: polygonStrokeOpacity,
+            fillColor: polygonColour,
+            fillOpacity: polygonOpacity,
+        });
     });
 }
+
+window.startNewPolygon = function () {
+    window.polygon = window.map.editTools.startPolygon();
+    let drawing = true;
+    window.polygon.on('editable:dragend', window.markerUpdateHandler);
+    window.polygon.on('editable:vertex:new', window.markerUpdateHandler);
+    window.polygon.on('editable:vertex:dragend', window.markerUpdateHandler);
+    window.polygon.on('editable:vertex:dragend', window.markerUpdateHandler);
+    window.polygon.on('editable:drawing:end', function (e) {
+        drawing = false;
+    });
+    // Open the modal when clicking on
+    window.polygon.on('click', function (e) {
+        if (drawing) {
+            return;
+        }
+        endDrawing();
+    });
+};
 
 window.setPolygonPosition = function (coords) {
     let shape = $('textarea[name="custom_shape"]');
     shape.val(coords);
+};
+
+
+window.markerUpdateHandler = function (data) {
+    if (isPolygon()) {
+        updatePolygon(data);
+    }
+    else if (isLabel()) {
+        updateLabel(data);
+    }
+};
+
+const updatePolygon = (data) => {
+    //console.log('polygon updated', data);
+    let points = data.target.getLatLngs();
+    if (points.length === 0) {
+        return;
+    }
+
+    let coords = [];
+    points[0].forEach((i) => {
+        coords.push(i.lat.toFixed(3) + ',' + i.lng.toFixed(3));
+    });
+    window.setPolygonPosition(coords.join(' '));
+};
+
+const updateLabel = (data) => {
+    //console.log('label updated', data);
+    let points = data.target._latlng;
+    if (!points) {
+        return;
+    }
+    $('#marker-latitude').val(points.lat.toFixed(3));
+    $('#marker-longitude').val(points.lng.toFixed(3));
+};
+
+const isPolygon = () => {
+    let shape = document.getElementsByName('shape_id');
+    return Number(shape[0].value) === 5;
+};
+const isLabel = () => {
+    let shape = document.getElementsByName('shape_id');
+    return Number(shape[0].value) === 2;
 };
 
 window.addPolygonPosition = function(lat, lng) {
@@ -319,7 +399,7 @@ function loadPresets(url) {
         return;
     }
 
-    console.log('load from', url);
+    //console.log('load from', url);
     $.ajax({
         url: url
     }).done(function (data) {
