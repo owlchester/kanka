@@ -395,6 +395,8 @@ class PluginVersion extends Model
         // We need this for some blade directives like foreach
         $data['__env'] = app(\Illuminate\View\Factory::class);
         $data['attributes'] = $allAttributes;
+        $data['abilities'] = $this->abilities($entity);
+        dd($data['abilities']);
 
         // Share some attributes to plugin developers
         $data['_locale'] = app()->getLocale();
@@ -431,6 +433,46 @@ class PluginVersion extends Model
         }
 
         return [$data, $ids, $checkboxes];
+    }
+
+    protected function abilities(Entity $entity): array
+    {
+        $abilities = $entity
+            ->abilities()
+            ->has('ability')
+            ->with(['ability', 'ability.parent', 'ability.entity', 'ability.entity.tags'])
+            ->get();
+        $data = [];
+        /** @var EntityAbility $abi */
+        foreach ($abilities as $abi) {
+            $tags = [];
+            foreach ($abi->ability->entity->tags as $tag) {
+                $tags[] = $tag->slug;
+            }
+
+            $parent = null;
+            if (!empty($abi->ability->parent)) {
+                $parent = [
+                    'name' => $abi->ability->parent->name,
+                    'slug' => $abi->ability->parent->slug,
+                ];
+            }
+
+            $ability = [
+                'name' => $abi->ability->name,
+                'slug' => $abi->ability->slug,
+                'entry' => $abi->ability->entry(),
+                'charges' => $abi->ability->charges,
+                'used_charges' => $abi->charges,
+                'thumb' => $abi->ability->entity->avatarSize(40)->avatarV2($abi->ability),
+                'link' => $abi->ability->getLink(),
+                'tags' => $tags,
+                'parent' => $parent,
+            ];
+            $data[] = $ability;
+        }
+
+        return $data;
     }
 
     /**
