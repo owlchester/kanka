@@ -804,6 +804,11 @@ layout-base@^1.0.0:
   resolved "https://registry.yarnpkg.com/layout-base/-/layout-base-1.0.2.tgz#1291e296883c322a9dd4c5dd82063721b53e26e2"
   integrity sha512-8h2oVEZNktL4BH2JCOI90iD1yXwL6iNW7KcCKT2QZgQJR2vbqDsldCTPRU9NifTCqHZci57XvQQ15YTu+sTYPg==
 
+leaflet-editable@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/leaflet-editable/-/leaflet-editable-1.2.0.tgz#a3a01001764ba58ea923381ee6a1c814708a0b84"
+  integrity sha512-wG11JwpL8zqIbypTop6xCRGagMuWw68ihYu4uqrqc5Ep0wnEJeyob7NB2Rt5t74Oih4rwJ3OfwaGbzdowOGfYQ==
+
 leaflet.markercluster.layersupport@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/leaflet.markercluster.layersupport/-/leaflet.markercluster.layersupport-2.0.1.tgz#8d2d3d2e8c09f3a23c472de595cb759dfa448b96"

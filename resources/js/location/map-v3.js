@@ -1,15 +1,13 @@
 import deleteConfirm from "../components/delete-confirm";
 
-//import 'leaflet.markercluster/dist/leaflet.markercluster';
-//require ('leaflet.markercluster.layersupport');
 
-var mapPageBody;
-var sidebarMap, sidebarMarker;
-var markerModal, markerModalContent, markerModalTitle;
+let mapPageBody;
+let sidebarMap, sidebarMarker;
+let markerModal, markerModalContent, markerModalTitle;
 
 // Polygon layout style
-var eraseTempPolygonBtn;
-var polygonStrokeWeight, polygonStrokeColour, polygonStrokeOpacity, polygonColour, polygonOpacity;
+let eraseTempPolygonBtn;
+let polygonStrokeWeight, polygonStrokeColour, polygonStrokeOpacity, polygonColour, polygonOpacity;
 
 $(document).ready(function() {
 
@@ -232,6 +230,11 @@ function initPolygonDrawing() {
     });
 }
 
+window.setPolygonPosition = function (coords) {
+    let shape = $('textarea[name="custom_shape"]');
+    shape.val(coords);
+};
+
 window.addPolygonPosition = function(lat, lng) {
     let shape = $('textarea[name="custom_shape"]');
     let current = shape.val();
@@ -269,7 +272,7 @@ window.addPolygonPosition = function(lat, lng) {
     });
     window.polygon.addTo(window.map);
     eraseTempPolygonBtn.show();
-}
+};
 
 function getPolygonStyle() {
     polygonStrokeColour = $('input[name="polygon_style[stroke]"]').val();

@@ -238,6 +238,7 @@ class MapMarker extends Model
                 smoothFactor: 1,
                 linecap: \'round\',
                 linejoin: \'round\',
+                ' . ($this->editing ? 'draggable: true,' : null) . '
             })' . $this->popup();
         }
 

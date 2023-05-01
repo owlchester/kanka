@@ -78,7 +78,10 @@ if (isset($single) && $single) {
         zoomSnap: 0.25,
         minZoom: {{ $map->minZoom() }},
         maxZoom: {{ $map->maxZoom() }},
-        layers: [{{ $map->activeLayers(!isset($single)) }}]
+        layers: [{{ $map->activeLayers(!isset($single)) }}],
+        @if (isset($single) && $single)
+        editable: true,
+        @endif
     });
 
     L.control.layers(baseMaps{{ $map->id }}, overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});

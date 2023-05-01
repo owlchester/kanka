@@ -77,6 +77,8 @@
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <script src="/js/vendor/leaflet/leaflet.markercluster.js"></script>
     <script src="/js/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
+    <script src="/js/vendor/leaflet/leaflet.path.drag.js"></script>
+    <script src="/js/vendor/leaflet/leaflet.editable.js"></script>
     @vite([
         'resources/js/location/map-v3.js',
         'resources/js/ajax-subforms.js'
@@ -93,11 +95,16 @@
 
         var marker{{ $model->id }} = {!! $model->editing()->multiplier($map->is_real)->marker() !!}.addTo(map{{ $map->id }});
         window.polygon = marker{{ $model->id }};
+        window.polygon.enableEdit();
+        //window.polygon.on('dragend', dragend);
+        window.polygon.on('editable:dragend', updateHandler);
+        window.polygon.on('editable:vertex:dragend', updateHandler);
+        window.polygon.on('editable:vertex:dragend', updateHandler);
 
         let shape = document.getElementsByName('shape_id');
-        map{{ $map->id }}.on('click', function(ev) {
+        /*map{{ $map->id }}.on('click', function(ev) {
             // Only do this is the map is a polygon
-            if (shape[0].value != 5) {
+            if (!isPolygon()) {
                 return;
             }
             window.map.removeLayer(window.polygon);
@@ -105,9 +112,50 @@
             let lat = position.lat.toFixed(3);
             let lng = position.lng.toFixed(3);
             window.addPolygonPosition(lat, lng);
-        });
+        });*/
+        map{{ $map->id }}.dragging.enable();
 
         window.map = map{{ $map->id }};
+
+        function updateHandler(data) {
+            if (isPolygon()) {
+                updatePolygon(data);
+            }
+            else if (isLabel()) {
+                updateLabel(data);
+            }
+        }
+
+        const updatePolygon = (data) => {
+            //console.log('polygon updated', data);
+            let points = data.target.getLatLngs();
+            if (points.length === 0) {
+                return;
+            }
+
+            let coords = [];
+            points[0].forEach((i) => {
+                coords.push(i.lat.toFixed(3) + ',' + i.lng.toFixed(3));
+            });
+            window.setPolygonPosition(coords.join(' '));
+        }
+
+        const updateLabel = (data) => {
+            //console.log('label updated', data);
+            let points = data.target._latlng;
+            if (!points) {
+                return;
+            }
+            $('#marker-latitude').val(points.lat.toFixed(3));
+            $('#marker-longitude').val(points.lng.toFixed(3));
+        }
+
+        const isPolygon = () => {
+            return shape[0].value === 5;
+        }
+        const isLabel = () => {
+            return shape[0].value === 2;
+        }
 
     </script>
 @endsection
