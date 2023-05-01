@@ -104,6 +104,11 @@ trait Nested
         return $this;
     }
 
+    public function forcePendingAction()
+    {
+        $this->callPendingAction();
+    }
+
     /**
      * Call pending action.
      */

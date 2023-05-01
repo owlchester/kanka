@@ -149,6 +149,9 @@ class Character extends MiscModel
             'location' => function ($sub) {
                 $sub->select('id', 'name');
             },
+            'location.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
             'families' => function ($sub) {
                 $sub->select('families.id', 'families.name');
             },

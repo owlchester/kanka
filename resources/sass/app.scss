@@ -287,6 +287,10 @@ ol, ul {
     z-index: 2;
 }
 
+.entity-story-block :is(.box-entity-entry, .entity-content.collapse.in) {
+    display: flow-root;
+}
+
 @import "calendar";
 @import "tooltip";
 @import "timeline";

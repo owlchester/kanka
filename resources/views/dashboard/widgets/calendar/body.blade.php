@@ -17,7 +17,6 @@ $previousEvents = $calendar->pastReminders();
 //$previousEvents = new \Illuminate\Support\Collection();
 
 // Get the current day's weather effect.
-// Todo: make it a relation that can be queried "with"?
 $weather = $calendar->calendarWeather()
     ->year($calendar->currentYear())
     ->month($calendar->currentMonth())
@@ -67,21 +66,24 @@ $weather = $calendar->calendarWeather()
             <ul class="style-none p-0">
                 @foreach ($previousEvents->take(5) as $reminder)
                     @if (!$reminder->entity) @continue @endif
-                    <li data-ago="{{ $reminder->daysAgo() }}" class="">
-                        <div class="pull-right">
+                    <li data-ago="{{ $reminder->daysAgo() }}" class="flex gap-2">
+                        <div class="grow">
+                            {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
+
+                            @if (app()->environment('local'))
+                                <span class="text-xs">({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)</span>
+                            @endif
+                        </div>
+
+                        <div class="flex-0 flex gap-1">
                             @if (!empty($reminder->comment))
                                 <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
                             @endif
-                                @if ($reminder->is_recurring)
+                            @if ($reminder->is_recurring)
                                 <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
                             @endif
                             <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
                         </div>
-                        {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
-
-                        @if (app()->environment('local'))
-                            <span class="text-xs">({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)</span>
-                        @endif
                     </li>
                 @endforeach
             </ul>
@@ -100,8 +102,15 @@ $weather = $calendar->calendarWeather()
             <ul class="style-none p-0">
                 @foreach ($upcomingEvents->take(5) as $reminder)
                     @if (!$reminder->entity) @continue @endif
-                    <li data-in="{{ $reminder->inDays() }}">
-                        <div class="pull-right">
+                    <li data-in="{{ $reminder->inDays() }}" class="flex gap-2">
+                        <div class="grow">
+                        {{ link_to($reminder->entity->url(), $reminder->entity->name, ['title' => $reminder->comment, 'data-toggle' => 'tooltip']) }}
+                        @if (app()->environment('local'))
+                            <span class="text-xs">({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)</span>
+                        @endif
+                        </div>
+
+                        <div class="flex-0 flex gap-1">
                             @if (!empty($reminder->comment))
                                 <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
                             @endif
@@ -114,10 +123,6 @@ $weather = $calendar->calendarWeather()
                                 <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
                             @endif
                         </div>
-                        {{ link_to($reminder->entity->url(), $reminder->entity->name, ['title' => $reminder->comment, 'data-toggle' => 'tooltip']) }}
-                        @if (app()->environment('local'))
-                            <span class="text-xs">({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)</span>
-                        @endif
                     </li>
                 @endforeach
             </ul>

@@ -266,4 +266,9 @@ class Relation extends Model
             'is_mirrored',
         ];
     }
+
+    public function hasSearchableFields(): bool
+    {
+        return false;
+    }
 }

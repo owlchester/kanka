@@ -123,7 +123,7 @@ class Journal extends MiscModel
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             'journals' => function ($sub) {
-                $sub->select('id', 'journal_id');
+                $sub->select('id', 'journal_id', 'name');
             },
             'children' => function ($sub) {
                 $sub->select('id', 'journal_id');

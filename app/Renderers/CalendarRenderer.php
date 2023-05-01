@@ -1250,9 +1250,44 @@ class CalendarRenderer
             'name' => $moon['name'],
             'type' => $type,
             'class' => $class,
-            'colour' => Arr::get($moon, 'colour', 'grey'),
+            'colour' => $this->moonColour(Arr::get($moon, 'colour', 'grey')),
             'id' => Arr::get($moon, 'id', null)
         ];
+    }
+
+    protected function moonColour(string $colour): string
+    {
+        switch ($colour) {
+            case 'aqua':
+                return 'blue-500';
+            case 'black':
+                return 'black';
+            case 'brown':
+                return 'orange-900';
+            /*case 'green':
+                return 'green-500';*/
+            case 'light-blue':
+                return 'blue-300';
+            case 'maroon':
+                return 'pink-800';
+            case 'navy':
+                return 'blue-900';
+            /*case 'orange':
+                return 'orange-500';
+            case 'pink':
+                return 'pink-500';
+            case 'purple':
+                return 'purple-500';
+            case 'red':
+                return 'red-500';
+            case 'teal':
+                return 'teal-500';
+            case 'yellow':
+                return 'yellow-500';*/
+            case 'grey':
+                return 'gray-500';
+        }
+        return $colour . '-500';
     }
 
     /**

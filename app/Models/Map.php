@@ -154,14 +154,26 @@ class Map extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
-            'entity',
-            'map',
-            'map.entity',
-            'maps' => function ($sub) {
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+            },
+            'map' => function ($sub) {
                 $sub->select('id', 'name');
+            },
+            'map.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'maps' => function ($sub) {
+                $sub->select('id', 'map_id', 'name');
             },
             'children' => function ($sub) {
                 $sub->select('id', 'map_id');
+            },
+            'location' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'location.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
             },
         ]);
     }
@@ -172,7 +184,7 @@ class Map extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['map_id'];
+        return ['map_id', 'location_id'];
     }
 
     /**

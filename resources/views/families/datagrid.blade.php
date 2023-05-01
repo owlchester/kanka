@@ -14,19 +14,11 @@
         [
             'label' => trans('families.fields.family'),
             'field' => 'family.name',
-            'visible' => $campaignService->enabled('families'),
             'render' => function($model) {
                 if ($model->family) {
                     return $model->family->tooltipedLink();
                 }
             }
-        ],
-        // Location
-        [
-            'type' => 'avatar',
-            'parent' => 'location',
-            'parent_route' => 'locations',
-            'visible' => $campaignService->enabled('locations'),
         ],
         [
             'type' => 'location',
