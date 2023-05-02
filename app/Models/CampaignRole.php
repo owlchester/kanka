@@ -207,6 +207,7 @@ class CampaignRole extends Model
         $perm = $this->permissions()
             ->where('entity_type_id', $entityType)
             ->where('action', $action)
+            ->whereNull('entity_id')
             ->first();
 
         if ($perm) {

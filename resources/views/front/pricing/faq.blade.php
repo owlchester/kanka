@@ -1,4 +1,4 @@
-<section class="minimal-padding ab-testing-b bg-primary" id="pricing-faq">
+<section class="minimal-padding" id="pricing-faq">
     <div class="container">
         <h2>{{ __('front/pricing.faq.title') }}</h2>
         <p class="lead">{{ __('front/pricing.faq.description') }}</p>
