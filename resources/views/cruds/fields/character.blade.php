@@ -12,7 +12,7 @@ if (isset($model) && $model->character) {
 @endphp
 
 <x-forms.foreign
-    name="character_id"
+    :name="$name ?? 'character_id'"
     key="character"
     entityType="characters"
     :label="$label ?? null"

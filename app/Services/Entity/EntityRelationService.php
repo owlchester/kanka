@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\Module;
 use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\DiceRoll;
@@ -402,7 +403,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $subfamily->entity->id,
                 'target' => $this->entity->id,
-                'text' => __('families.fields.family'),
+                'text' => Module::singular(config('entities.ids.family'), __('entities.family')),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'sub-family',
@@ -579,7 +580,7 @@ class EntityRelationService
             $this->relations[] = [
                 'target' => $sub->entity->id,
                 'source' => $this->entity->id,
-                'text' => __('entities.character'),
+                'text' => Module::singular(config('entities.ids.character'), __('entities.character')),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'entity-character',
@@ -602,7 +603,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $item->entity->id,
-                'text' => __('entities.item'),
+                'text' => Module::singular(config('entities.ids.item'), __('entities.item')),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'entity-item',
@@ -625,7 +626,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $journal->entity->id,
-                'text' => __('entities.journal'),
+                'text' => Module::singular(config('entities.ids.journal'), __('entities.journal')),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'journal-location',
@@ -669,7 +670,7 @@ class EntityRelationService
         $this->relations[] = [
             'source' => $this->entity->id,
             'target' => $this->entity->child->location->entity->id,
-            'text' => __('entities.location'),
+            'text' => Module::singular(config('entities.ids.location'), __('entities.location')),
             'colour' => '#ccc',
             'attitude' => null,
             'type' => 'entity-location',
@@ -699,13 +700,11 @@ class EntityRelationService
             return $this;
         }
 
-        $transKey = $this->entity->pluralType() . '.fields.' . $this->entity->type();
-
         $this->addEntity($parent->entity);
         $this->relations[] = [
             'source' => $this->entity->id,
             'target' => $parent->entity->id,
-            'text' => __($transKey),
+            'text' => __('crud.fields.parent'),
             'colour' => '#ccc',
             'attitude' => null,
             'type' => 'entity-parent',
@@ -824,7 +823,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $related->entity->id,
-                'text' => __('locations.show.tabs.maps'),
+                'text' => Module::singular(config('entities.ids.map'), __('entities.maps')),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'location-map',
@@ -871,7 +870,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $subrace->entity->id,
                 'target' => $this->entity->id,
-                'text' => __('races.fields.race'),
+                'text' => Module::singular(config('entities.ids.race'), __('entities.race')),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'sub-race',
@@ -897,7 +896,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $loc->entity->id,
                 'target' => $this->entity->id,
-                'text' => __('creatures.fields.location'),
+                'text' => Module::singular(config('entities.ids.location'), __('entities.location')),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'location-creature',
@@ -925,7 +924,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $subrace->entity->id,
                 'target' => $this->entity->id,
-                'text' => __('races.fields.race'),
+                'text' => Module::singular(config('entities.ids.race'), __('entities.race')),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'sub-race',

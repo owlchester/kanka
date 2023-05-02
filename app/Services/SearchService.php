@@ -10,8 +10,6 @@ use App\Models\EntityAsset;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\User;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class SearchService
@@ -428,7 +426,7 @@ class SearchService
             'is_private' => $entity->is_private,
             'image' => $entity->avatarSize(64)->avatarV2(),
             'link' => $entity->url(),
-            'type' => __('entities.' . $entity->type()),
+            'type' => Module::singular($entity->typeId(), __('entities.' . $entity->type())),
             'preview' => route('entities.preview', $entity)
         ];
     }

@@ -3,13 +3,13 @@
 namespace App\Services\Entity;
 
 use App\Facades\Img;
+use App\Facades\Module;
 use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
-use Illuminate\Support\Arr;
 
 class PreviewService
 {
@@ -165,12 +165,14 @@ class PreviewService
     {
         if ($child->families->isNotEmpty()) {
             $races = $child->families->pluck('name')->toArray();
-            $this->addProfile('entities.families', 'families', implode(', ', $races));
+            $key = Module::plural(config('entities.ids.family'), 'entities.families');
+            $this->addProfile($key, 'families', implode(', ', $races));
         }
 
         if ($child->races->isNotEmpty()) {
             $races = $child->races->pluck('name')->toArray();
-            $this->addProfile('entities.races', 'races', implode(', ', $races));
+            $key = Module::plural(config('entities.ids.race'), 'entities.races');
+            $this->addProfile($key, 'races', implode(', ', $races));
         }
 
         if ($child->age) {
