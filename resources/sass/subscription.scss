@@ -42,14 +42,14 @@ table.tiers {
 }
 
 .card {
-  margin: 30px 0;
-  //background-color: rgba(0, 0, 0, 0.1);
-  padding: 15px;
+    margin: 30px 0;
+    //background-color: rgba(0, 0, 0, 0.1);
+    padding: 15px;
 
-  .card-element {
-    border: 1px solid #d2d6de;
-    background-color: white;
-  }
+    .card-element {
+        border: 1px solid #d2d6de;
+        background-color: white;
+    }
 }
 
 .StripeElement {
@@ -59,29 +59,34 @@ table.tiers {
   line-height: 1.6;
 }
 
-body.ab-testing-second {
-  #pricing-overview.period-year {
-    .price-monthly {
-      display: none;
+body {
+    #pricing-overview.period-year {
+        .price-monthly {
+            display: none;
+        }
+
+        .price-yearly {
+            display: block;
+        }
     }
-    .price-yearly {
-      display: block;
+
+    #pricing-overview.period-month {
+        .price-monthly {
+            display: block;
+        }
+
+        .price-yearly {
+            display: none;
+        }
     }
-  }
-  #pricing-overview.period-month {
-    .price-monthly {
-      display: block;
+
+    .btn-block.price-yearly {
+        margin-top: 0;
     }
-    .price-yearly {
-      display: none;
+
+    .ribbon {
+        display: block;
     }
-  }
-  .btn-block.price-yearly {
-    margin-top: 0;
-  }
-  .ribbon {
-    display: block;
-  }
 }
 
 @media (max-width: 991px) {

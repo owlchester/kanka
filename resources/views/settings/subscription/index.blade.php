@@ -52,7 +52,7 @@
         </x-buttons.confirm>
     </div>
     <div class="rounded bg-box period-month" id="pricing-overview">
-        <div class="text-center py-5 text-vertical ab-testing-b">
+        <div class="text-center py-5 text-vertical">
             <span>{{ __('tiers.periods.monthly') }}</span>
             <label class="toggle mx-1">
                 <input type="checkbox" name="period">
@@ -63,61 +63,7 @@
 
         <table class="table table-bordered tiers">
             <thead>
-            <tr class="ab-testing-a">
-                <th class="align-middle">
-                    <div class="tier">
-                        <div class="img">
-                            <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png" alt="Kobold"/>
-                        </div>
-                        <div class="text">
-                            KOBOLD
-                            <span class="price">
-                                {{ __('front.features.patreon.free') }}
-                            </span>
-                        </div>
-                    </div>
-                </th>
-                <th class="align-middle">
-                    <div class="tier">
-                        <div class="img">
-                            <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png" alt="Owlbear"/>
-                        </div>
-                        <div class="text">
-                            OWLBEAR
-                            <span class="price">
-                                {{ __('tiers.pricing', ['amount' => 5, 'currency' => $user->currencySymbol()]) }}
-                            </span>
-                        </div>
-                    </div>
-                </th>
-                <th class="align-middle">
-                    <div class="tier">
-                        <div class="img">
-                            <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png" alt="Wyvern"/>
-                        </div>
-                        <div class="text">
-                            WYVERN
-                            <span class="price">
-                                {{ __('tiers.pricing', ['amount' => 10, 'currency' => $user->currencySymbol()]) }}
-                            </span>
-                        </div>
-                    </div>
-                </th>
-                <th class="align-middle">
-                    <div class="tier">
-                        <div class="img">
-                            <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental"/>
-                        </div>
-                        <div class="text">
-                            ELEMENTAL
-                            <span class="price">
-                                {{ __('tiers.pricing', ['amount' => 25, 'currency' => $user->currencySymbol()]) }}
-                            </span>
-                        </div>
-                    </div>
-                </th>
-            </tr>
-            <tr class="ab-testing-b">
+            <tr class="">
                 <th class="align-middle">
                     <div class="tier">
                         <div class="img">
@@ -209,10 +155,7 @@
                     </td>
                 </tr>
             @else
-            <tr class="ab-testing-a">
-                @include('settings.subscription._buttons', ['toggle' => false])
-            </tr>
-            <tr class="ab-testing-b">
+            <tr class="">
                 @include('settings.subscription._buttons', ['toggle' => true])
             </tr>
             @endif
