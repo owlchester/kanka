@@ -24,13 +24,20 @@
             <p>
                 Dear user, you are still using our legacy campaign boosters concept. Switching to premium campaigns will unboost your campaigns and give you a number of premium campaigns based on your subscription.
             </p>
-            <p>This action cannot be reverted.</p>
+            <p>
+                As a reminder, premium campaigns are a just a renamed superboosted campaign. Owlbears get 1, Wyverns 3, and Elementals 7.
+            </p>
+            <p>
+                This action cannot be reverted.
+            </p>
 
-            <button class="btn btn-block btn-primary"
-                    data-toggle="dialog"
-                    data-target="switch-dialog">
-                Switch to premium
-            </button>
+            <div class="mt-5">
+                <button class="btn btn-block btn-primary"
+                        data-toggle="dialog"
+                        data-target="switch-dialog">
+                    Switch to premium
+                </button>
+            </div>
         </div>
     @endif
 
