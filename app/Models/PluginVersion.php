@@ -135,6 +135,7 @@ class PluginVersion extends Model
         $html = $this->content;
         $html = str_replace(['&lt;', '&gt;', '&amp;&amp;'], ['<', '>', '&&'], $html);
 
+        $html .= ' @if($frankly === 1)';
         // Loop on every variable to be rendered in the
         $html = preg_replace_callback('`\{(.*?[^\!])\}`i', function ($matches) {
             $name = trim((string) $matches[1]);
@@ -197,7 +198,6 @@ class PluginVersion extends Model
             }
             return '<span class="live-edit" data-id="' . $ids[$attr] . '">' . $value . '</span>';
         }, $html);
-        //dd($html);
 
         $obLevel = ob_get_level();
         ob_start() && extract($data, EXTR_SKIP);
@@ -225,7 +225,39 @@ class PluginVersion extends Model
         return '<div class="alert alert-danger">
             ' . __('attributes/templates.errors.marketplace.rendering') . (!empty($errors) ?
                 '<br /><br />' . __('attributes/templates.errors.marketplace.hint') . ': ' . $errors . ' (line ' . $e->getLine() . ')' : null) . '
-        </div>';
+        </div>' . $this->debug($data);
+    }
+
+    /**
+     * Build a html list of all variables
+     * @param mixed $data
+     * @return string
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    protected function debug(mixed $data): string
+    {
+        $html = '<div class="m-2 p-2 text-xs">
+            <h4 class="mb-5">Debug info - the following variables are available</h4>
+            ';
+
+        foreach ($data as $key => $val) {
+            if (!is_array($val) && !is_object($val)) {
+                $html .= '<dtk>$' . $key . '</dtk> <code>' . (empty($val) ? NULL : $val) . '</code><br />';
+            } elseif (is_array($val)) {
+                $html .= '<dtk class="">$' . $key . '</dtk>';
+                if (empty($val)) {
+                    $html .= '<code>NULL</code><br />';
+                } else {
+                    $html .= '<ul class="m-0">';
+                    foreach ($val as $k => $v) {
+                        $html .= '<li><dtk>' . $k . '</dtk> <code>' . $v . '</code></li>';
+                    }
+                    $html .= '</ul>';
+                }
+            }
+        }
+        return $html . '</div>';
     }
 
     /**
@@ -396,7 +428,6 @@ class PluginVersion extends Model
         $data['__env'] = app(\Illuminate\View\Factory::class);
         $data['attributes'] = $allAttributes;
         $data['abilities'] = $this->abilities($entity);
-        dd($data['abilities']);
 
         // Share some attributes to plugin developers
         $data['_locale'] = app()->getLocale();
@@ -426,6 +457,7 @@ class PluginVersion extends Model
 
         $campaign = CampaignLocalization::getCampaign();
         $data['_superboosted'] = $campaign->superboosted();
+        $data['_premium'] = $campaign->premium();
 
         // Add any missing attributes to be accessible in blade
         foreach ($this->templateAttributes as $name) {
@@ -435,6 +467,12 @@ class PluginVersion extends Model
         return [$data, $ids, $checkboxes];
     }
 
+    /**
+     * Load abilities of the entity and make them available to blade
+     * @param Entity $entity
+     * @return array
+     * @throws \Exception
+     */
     protected function abilities(Entity $entity): array
     {
         $abilities = $entity
