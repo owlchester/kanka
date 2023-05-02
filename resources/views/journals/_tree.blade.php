@@ -27,7 +27,14 @@
             'type' => 'calendar_date',
         ],
         [
-            'label' => __('journals.fields.journals'),
+            'field' => 'author.name',
+            'label' => __('journals.fields.author'),
+            'render' => function($model) {
+                return $model->author ? $model->author->tooltipedLink() : null;
+            },
+        ],
+        [
+            'label' => \App\Facades\Module::plural(config('entities.ids.journal'), __('entities.journals')),
             'render' => function($model) {
                 $count = $model->journals->count();
                 return !empty($count) ? $count : '';
