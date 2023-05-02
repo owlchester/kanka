@@ -755,7 +755,7 @@ class EntityService
     {
         // When transforming to a nested model, we need to recalculate the tree bounds to
         // place it correctly in the overall campaign tree.
-        if (!method_exists($model, 'getParentIdName')) {
+        if (!method_exists($model, 'recalculateTreeBounds')) {
             return;
         }
         $model->setParentId(null);
