@@ -2,6 +2,7 @@
 
 namespace App\Datagrids\Filters;
 
+use App\Facades\Module;
 use App\Models\Timeline;
 
 class TimelineFilter extends DatagridFilter
@@ -11,15 +12,20 @@ class TimelineFilter extends DatagridFilter
      */
     public function __construct()
     {
+        $name = Module::singular(config('entities.ids.timeline'));
+        $placeholder = __('crud.placeholders.timeline');
+        if (!empty($name)) {
+            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
+        }
         $this
             ->add('name')
             ->add('type')
             ->add([
                 'field' => 'timeline_id',
-                'label' => __('entities.timeline'),
+                'label' => Module::singular(config('entities.ids.timeline'), __('entities.timeline')),
                 'type' => 'select2',
                 'route' => route('timelines.find'),
-                'placeholder' =>  __('crud.placeholders.timeline'),
+                'placeholder' =>  $placeholder,
                 'model' => Timeline::class,
             ])
             ->isPrivate()

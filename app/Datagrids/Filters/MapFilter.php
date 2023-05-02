@@ -16,10 +16,10 @@ class MapFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'map_id',
-                'label' => __('entities.map'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('maps.find'),
-                'placeholder' =>  __('crud.placeholders.map'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Map::class,
             ])
             ->location()

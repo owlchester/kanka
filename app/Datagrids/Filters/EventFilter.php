@@ -2,6 +2,7 @@
 
 namespace App\Datagrids\Filters;
 
+use App\Facades\Module;
 use App\Models\Event;
 
 class EventFilter extends DatagridFilter
@@ -17,10 +18,10 @@ class EventFilter extends DatagridFilter
             ->add('date')
             ->add([
                 'field' => 'event_id',
-                'label' => __('entities.event'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('events.find'),
-                'placeholder' =>  __('crud.placeholders.event'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Event::class,
             ])
             ->isPrivate()

@@ -2,8 +2,8 @@
 
 namespace App\Datagrids\Filters;
 
+use App\Facades\Module;
 use App\Models\Organisation;
-use App\Models\Character;
 
 class OrganisationFilter extends DatagridFilter
 {
@@ -12,26 +12,24 @@ class OrganisationFilter extends DatagridFilter
      */
     public function __construct()
     {
+        $name = Module::singular(config('entities.ids.timeline'));
+        $placeholder = __('crud.placeholders.timeline');
+        if (!empty($name)) {
+            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
+        }
         $this
             ->add('name')
             ->add('type')
             ->location()
             ->add([
                 'field' => 'organisation_id',
-                'label' => __('entities.organisation'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('organisations.find'),
-                'placeholder' =>  __('crud.placeholders.organisation'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Organisation::class,
             ])
-            ->add([
-                'field' => 'member_id',
-                'label' => __('entities.character'),
-                'type' => 'select2',
-                'route' => route('characters.find'),
-                'placeholder' =>  __('crud.placeholders.character'),
-                'model' => Character::class,
-            ])
+            ->character('member_id')
             ->add('is_defunct')
             ->isPrivate()
             ->template()

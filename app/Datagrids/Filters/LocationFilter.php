@@ -16,10 +16,10 @@ class LocationFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'parent_location_id',
-                'label' => __('entities.location'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('locations.find'),
-                'placeholder' =>  __('crud.placeholders.location'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Location::class,
             ])
             ->isPrivate()

@@ -66,7 +66,7 @@ abstract class DatagridFilter
      * Add the character filters
      * @return $this
      */
-    protected function character(): self
+    protected function character(string $field = 'character_id'): self
     {
         $name = Module::singular(config('entities.ids.character'));
         $placeholder = __('crud.placeholders.character');
@@ -74,7 +74,7 @@ abstract class DatagridFilter
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this->filters[] = [
-            'field' => 'character_id',
+            'field' => $field,
             'label' => \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')),
             'type' => 'select2',
             'route' => route('characters.find'),

@@ -16,10 +16,10 @@ class AbilityFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'ability_id',
-                'label' => __('entities.ability'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('abilities.find'),
-                'placeholder' =>  __('crud.placeholders.ability'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Ability::class,
             ])
             ->isPrivate()
