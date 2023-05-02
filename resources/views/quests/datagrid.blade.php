@@ -17,7 +17,7 @@
             'label' => __('quests.fields.character'),
         ],
         [
-            'label' => __('quests.fields.quest'),
+            'label' => __('crud.fields.parent'),
             'field' => 'quest.name',
             'render' => function($model) {
                 if ($model->quest) {

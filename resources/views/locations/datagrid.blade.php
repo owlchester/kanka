@@ -5,15 +5,13 @@
     ->service($filterService)
     ->models($models)
     ->columns([
-        // Avatar
         [
             'type' => 'avatar'
         ],
-        // Name
         'name',
         'type',
         [
-            'label' => __('locations.fields.location'),
+            'label' => __('crud.fields.parent'),
             'field' => 'parentLocation.name',
             'render' => function($model) {
                 if ($model->parentLocation) {
@@ -22,7 +20,7 @@
             }
         ],
         [
-            'label' => __('locations.fields.characters'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
             'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
                 $total = $model->characters->count();

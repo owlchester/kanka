@@ -18,10 +18,10 @@ class ItemFilter extends DatagridFilter
             ->add('size')
             ->add([
                 'field' => 'item_id',
-                'label' => __('items.fields.item'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('items.find'),
-                'placeholder' =>  __('crud.placeholders.item'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Item::class,
             ])
             ->location()

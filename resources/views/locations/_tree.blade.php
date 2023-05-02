@@ -6,32 +6,20 @@
     ->service($filterService)
     ->models($models)
     ->columns([
-        // Avatar
         [
             'type' => 'avatar'
         ],
-        // Name
         'name',
         'type',
-        /*[
-            'label' => __('locations.fields.location'),
-            'render' => function($model) {
-                if ($model->parentLocation) {
-                    return '<a href="' . route('locations.show', $model->parentLocation->id) . '">' . e($model->parentLocation->name) . '</a>';
-                }
-            },
-            'field' => 'parentLocation.name',
-            'disableSort' => true,
-        ],*/
         [
-            'label' => __('locations.fields.locations'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')),
             'render' => function($model) {
                 return $model->locations->count();
             },
             'disableSort' => true,
         ],
         [
-            'label' => __('locations.fields.characters'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
             'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count();

@@ -12,7 +12,7 @@
         'name',
         'type',
         [
-            'label' => trans('families.fields.family'),
+            'label' => __('crud.fields.parent'),
             'field' => 'family.name',
             'render' => function($model) {
                 if ($model->family) {

@@ -19,7 +19,11 @@
             'disableSort' => true,
         ],
         [
-            'label' => __('maps.fields.map'),
+            'type' => 'location',
+            'visible' => $campaignService->enabled('locations'),
+        ],
+        [
+            'label' => __('crud.fields.parent'),
             'field' => 'map.name',
             'render' => function($model) {
                 if ($model->map) {
@@ -28,11 +32,7 @@
             }
         ],
         [
-            'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
-        ],
-        [
-            'label' => '<i class="fa-solid fa-users" title="' . __('maps.fields.maps') . '"></i>',
+            'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps')),
             'render' => function($model) {
                 return $model->maps->count();
             },

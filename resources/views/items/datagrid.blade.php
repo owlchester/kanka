@@ -10,7 +10,7 @@
         'name',
         'type',
         [
-            'label' => __('items.fields.item'),
+            'label' => __('crud.fields.parent'),
             'field' => 'item_id',
             'render' => function($model) {
                 if ($model->item) {

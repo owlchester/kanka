@@ -23,7 +23,7 @@
             }
         ],
         [
-            'label' => __('tags.fields.tag'),
+            'label' => __('crud.fields.parent'),
             'field' => 'tag.name',
             'render' => function($model) {
                 if ($model->tag) {
@@ -32,7 +32,7 @@
             }
         ],
         [
-            'label' => __('tags.fields.tags'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')),
             'render' => function($model) {
                 return $model->tags->count();
             },

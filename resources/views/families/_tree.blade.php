@@ -13,7 +13,7 @@
         'name',
         'type',
         [
-            'label' => trans('families.fields.families'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')),
             'render' => function($model) {
                 return $model->families->count();
             },

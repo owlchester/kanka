@@ -17,21 +17,11 @@
         'name',
         'type',
         [
-            'label' => trans('notes.fields.notes'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.note'), __('entities.notes')),
             'render' => function($model) {
                 $count = $model->notes->count();
                 return !empty($count) ? $count : '';
             },
-            'disableSort' => true,
-        ],
-        [
-            'label' => trans('notes.fields.note'),
-            'render' => function($model) {
-                if ($model->note) {
-                    return '<a href="' . route('notes.show', $model->note) . '">' . e($model->note->name) . '</a>';
-                }
-            },
-            'field' => 'note.name',
             'disableSort' => true,
         ],
         [

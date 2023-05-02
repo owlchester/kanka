@@ -12,7 +12,7 @@
         'name',
         'type',
         [
-            'label' => __('entities.ability'),
+            'label' => __('crud.fields.parent'),
             'field' => 'ability.name',
             'render' => function($model) {
                 if ($model->ability) {

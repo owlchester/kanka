@@ -13,22 +13,15 @@
         'name',
         'type',
         [
-            'label' => trans('organisations.fields.organisations'),
+            'type' => 'location',
+            'visible' => $campaignService->enabled('locations'),
+        ],
+        [
+            'label' => \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations')),
             'render' => function($model) {
                 return $model->organisations->count();
             },
             'disableSort' => true,
-        ],
-        // location
-        [
-            'type' => 'avatar',
-            'parent' => 'location',
-            'parent_route' => 'locations',
-            'visible' => $campaignService->enabled('locations'),
-        ],
-        [
-            'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
         ],
         [
             'label' => '<i class="fa-solid fa-users" title="' . __('organisations.fields.members') . '"></i>',

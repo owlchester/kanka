@@ -24,7 +24,7 @@
             }
         ],
         [
-            'label' => __('tags.fields.tags'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')),
             'render' => function($model) {
                 return $model->tags->count();
             },

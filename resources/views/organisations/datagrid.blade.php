@@ -13,13 +13,7 @@
         'type',
         [
             'type' => 'organisation',
-        ],
-        // Location
-        [
-            'type' => 'avatar',
-            'parent' => 'location',
-            'parent_route' => 'locations',
-            'visible' => $campaignService->enabled('locations'),
+            'label' => __('crud.fields.parent')
         ],
         [
             'type' => 'location',

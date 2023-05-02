@@ -23,14 +23,14 @@
             }
         ],*/
         [
-            'label' => __('races.fields.races'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')),
             'render' => function($model) {
                 return $model->races->count();
             },
             'disableSort' => true,
         ],
         [
-            'label' => __('races.fields.characters'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
             'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count() . ' / ' . $model->allCharacters(true)->count();

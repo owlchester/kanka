@@ -2,6 +2,7 @@
 
 namespace App\Datagrids\Filters;
 
+use App\Facades\Module;
 use App\Models\Character;
 use App\Models\Journal;
 use App\Models\Location;
@@ -44,12 +45,17 @@ abstract class DatagridFilter
      */
     protected function location(): self
     {
+        $name = Module::singular(config('entities.ids.location'));
+        $placeholder = __('crud.placeholders.location');
+        if (!empty($name)) {
+            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
+        }
         $this->filters[] = [
             'field' => 'location_id',
-            'label' => __('entities.location'),
+            'label' => \App\Facades\Module::singular(config('entities.ids.location'), __('entities.location')),
             'type' => 'select2',
             'route' => route('locations.find'),
-            'placeholder' =>  __('crud.placeholders.location'),
+            'placeholder' =>  $placeholder,
             'model' => Location::class,
             'withChildren' => true,
         ];
@@ -62,12 +68,17 @@ abstract class DatagridFilter
      */
     protected function character(): self
     {
+        $name = Module::singular(config('entities.ids.character'));
+        $placeholder = __('crud.placeholders.character');
+        if (!empty($name)) {
+            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
+        }
         $this->filters[] = [
             'field' => 'character_id',
-            'label' => __('entities.character'),
+            'label' => \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')),
             'type' => 'select2',
             'route' => route('characters.find'),
-            'placeholder' =>  __('crud.placeholders.character'),
+            'placeholder' =>  $placeholder,
             'model' => Character::class,
         ];
         return $this;
@@ -79,12 +90,17 @@ abstract class DatagridFilter
      */
     protected function journal(): self
     {
+        $name = Module::singular(config('entities.ids.journal'));
+        $placeholder = __('crud.placeholders.journal');
+        if (!empty($name)) {
+            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
+        }
         $this->filters[] = [
             'field' => 'journal_id',
-            'label' => __('journals.fields.journal'),
+            'label' => \App\Facades\Module::singular(config('entities.ids.journal'), __('entities.journal')),
             'type' => 'select2',
             'route' => route('journals.find'),
-            'placeholder' =>  __('crud.placeholders.journal'),
+            'placeholder' =>  $placeholder,
             'model' => Journal::class,
         ];
         return $this;
@@ -96,12 +112,17 @@ abstract class DatagridFilter
      */
     protected function tags(): self
     {
+        $name = Module::singular(config('entities.ids.tag'));
+        $placeholder = __('crud.placeholders.tag');
+        if (!empty($name)) {
+            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
+        }
         $this->filters[] = [
             'field' => 'tags',
-            'label' => __('entities.tag'),
+            'label' => \App\Facades\Module::singular(config('entities.ids.tag'), __('entities.tag')),
             'type' => 'tag',
             'route' => route('tags.find'),
-            'placeholder' =>  __('crud.placeholders.tag'),
+            'placeholder' =>  $placeholder,
             'model' => Tag::class,
         ];
         return $this;

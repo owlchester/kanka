@@ -3,6 +3,7 @@
 namespace App\Renderers;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Module;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Journal;
@@ -157,15 +158,18 @@ class DatagridRenderer
             //$html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('location.name', __('entities.location'));
+                $label = Arr::get($column, 'label', Module::singular(config('entities.ids.location'), __('entities.location')));
+                $html = $this->route('location.name', $label);
             } elseif ($type == 'organisation') {
                 $class .= '  hidden-xs hidden-sm';
-                $html = $this->route('organisation.name', __('entities.organisation'));
+                $label = Arr::get($column, 'label', Module::singular(config('entities.ids.organisation'), __('entities.organisation')));
+                $html = $this->route('organisation.name', $label);
             } elseif ($type == 'character') {
                 $class .= '  hidden-xs hidden-sm';
+                $label = Arr::get($column, 'label', Module::singular(config('entities.ids.character'), __('entities.character')));
                 $html = $this->route(
                     'character.name',
-                    !empty($column['label']) ? $column['label'] : __('entities.character')
+                    $label
                 );
             } elseif ($type == 'entity') {
                 $class .= '  hidden-xs hidden-sm';

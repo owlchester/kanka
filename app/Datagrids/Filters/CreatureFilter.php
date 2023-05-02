@@ -17,10 +17,10 @@ class CreatureFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'creature_id',
-                'label' => __('creatures.fields.creature'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('creatures.find'),
-                'placeholder' =>  __('crud.placeholders.creature'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Creature::class,
             ])
             ->location()

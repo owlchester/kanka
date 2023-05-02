@@ -20,10 +20,10 @@ class QuestFilter extends DatagridFilter
             ->character()
             ->add([
                 'field' => 'quest_id',
-                'label' => __('quests.fields.quest'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('quests.find'),
-                'placeholder' =>  __('crud.placeholders.quest'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Quest::class,
             ])
             ->add([

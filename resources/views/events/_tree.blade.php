@@ -16,7 +16,7 @@
             'visible' => $campaignService->enabled('locations'),
         ],
         [
-            'label' => __('events.fields.events'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.event'), __('entities.events')),
             'field' => 'event.name',
             'render' => function($model) {
                 return $model->descendants->count();

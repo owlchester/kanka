@@ -11,7 +11,7 @@
         'name',
         'type',
         [
-            'label' => trans('timelines.fields.timeline'),
+            'label' => __('crud.fields.parent'),
             'field' => 'timeline.name',
             'render' => function($model) {
                 if ($model->timeline) {

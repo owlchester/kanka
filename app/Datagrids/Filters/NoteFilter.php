@@ -16,10 +16,10 @@ class NoteFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'note_id',
-                'label' => __('notes.fields.note'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('notes.find'),
-                'placeholder' =>  __('crud.placeholders.note'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Note::class,
             ])
             ->isPrivate()

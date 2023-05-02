@@ -22,7 +22,7 @@
             }
         ],*/
         [
-            'label' => trans('timelines.fields.timelines'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines')),
             'render' => function($model) {
                 return $model->timelines->count();
             },

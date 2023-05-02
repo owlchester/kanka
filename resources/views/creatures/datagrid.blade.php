@@ -12,14 +12,14 @@
         'name',
         'type',
         [
-            'label' => __('creatures.fields.creatures'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.creature'), __('entities.creatures')),
             'render' => function($model) {
                 return $model->creatures->count();
             },
             'disableSort' => true,
         ],
         [
-            'label' => __('entities.locations'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')),
             'render' => function($model) {
                 $locations = [];
                 foreach ($model->locations as $location) {

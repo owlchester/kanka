@@ -17,7 +17,7 @@
             'visible' => $campaignService->enabled('locations'),
         ],
         [
-            'label' => trans('events.fields.event'),
+            'label' => __('crud.fields.parent'),
             'field' => 'event.name',
             'render' => function($model) {
                 if ($model->event) {

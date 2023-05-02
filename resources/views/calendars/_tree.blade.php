@@ -28,7 +28,7 @@
             },
         ],*/
         [
-            'label' => trans('calendars.fields.calendars'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.calendar'), __('entities.calendars')),
             'visible' => $campaignService->enabled('calendars'),
             'render' => function($model) {
                 return $model->calendars->count();

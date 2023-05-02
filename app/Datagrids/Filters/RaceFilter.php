@@ -17,10 +17,10 @@ class RaceFilter extends DatagridFilter
             ->add('type')
             ->add([
                 'field' => 'race_id',
-                'label' => __('races.fields.race'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('races.find'),
-                'placeholder' =>  __('crud.placeholders.race'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Race::class,
             ])
             ->add([

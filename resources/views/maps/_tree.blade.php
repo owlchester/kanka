@@ -20,7 +20,11 @@
             'disableSort' => true,
         ],
         [
-            'label' => __('maps.fields.maps'),
+            'type' => 'location',
+            'visible' => $campaignService->enabled('locations'),
+        ],
+        [
+            'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps')),
             'render' => function($model) {
                 return $model->maps->count();
             },

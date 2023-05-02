@@ -12,7 +12,7 @@
         'name',
         'type',
         [
-            'label' => __('entities.race'),
+            'label' => __('crud.fields.parent'),
             'field' => 'race.name',
             'visible' => $campaignService->enabled('races'),
             'render' => function($model) {
@@ -22,7 +22,7 @@
             }
         ],
         [
-            'label' => __('races.fields.characters'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
             'visible' => $campaignService->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count();

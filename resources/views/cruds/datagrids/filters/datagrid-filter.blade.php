@@ -51,7 +51,7 @@ $hasAttributeFilters = false;
                         @endif
                         <div class="form-group m-0">
                             @if (is_array($field))
-                                <label>{{ Arr::get($field, 'label', __('crud.fields.' . $field['field'])) }}</label>
+                                <label>{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
                                 <?php $model = null;
                                 $value = $filterService->single($field['field']);
                                 if (!empty($value) && $field['type'] == 'select2') {
