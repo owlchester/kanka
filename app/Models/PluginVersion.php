@@ -135,7 +135,6 @@ class PluginVersion extends Model
         $html = $this->content;
         $html = str_replace(['&lt;', '&gt;', '&amp;&amp;'], ['<', '>', '&&'], $html);
 
-        $html .= ' @if($frankly === 1)';
         // Loop on every variable to be rendered in the
         $html = preg_replace_callback('`\{(.*?[^\!])\}`i', function ($matches) {
             $name = trim((string) $matches[1]);
