@@ -49,7 +49,7 @@
     "src": "node_modules/rpg-awesome/fonts/rpgawesome-webfont.woff"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-4c7c2aa7.js",
+    "file": "assets/abilities-38fa6829.js",
     "imports": [
       "__plugin-vue_export-helper-de6cf830.js",
       "_mitt-f7ef348c.js",
@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-17a1009b.js",
+    "file": "assets/app-8ed54b9e.js",
     "imports": [
       "_delete-confirm-fec6aa52.js",
       "_mention-5d95822d.js",
@@ -231,12 +231,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-8a5389b3.css",
+    "file": "assets/app-1b46ee45.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-46fa6755.css",
+    "file": "assets/auth-19676935.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -256,7 +256,7 @@
     "src": "resources/sass/family-tree.scss"
   },
   "resources/sass/freyja/freyja.scss": {
-    "file": "assets/freyja-3210e8de.css",
+    "file": "assets/freyja-2dfe300f.css",
     "isEntry": true,
     "src": "resources/sass/freyja/freyja.scss"
   },
