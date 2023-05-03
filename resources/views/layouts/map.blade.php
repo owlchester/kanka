@@ -66,7 +66,7 @@ $specificTheme = null;
         <!-- Header -->
         @include('layouts.header', ['qq' => false, 'toggle' => true])
 
-        <aside class="main-sidebar overflow-hidden pt-0">
+        <aside class="main-sidebar overflow-hidden pt-0 t-0 l-0 absolute">
             <section class="sidebar" style="height: auto">
 
                 <div id="sidebar-content" class="p-0 overflow-auto h-sidebar">

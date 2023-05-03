@@ -44,10 +44,6 @@
                 background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--main-navbar-background) 100%);
                 color: var(--campaign-switcher-text, #1b1b1b);
             }
-
-            &:hover {
-                box-shadow: var(--input-border-color) 0 1px 5px;
-            }
         }
 
         .campaign.boosted {
@@ -81,13 +77,6 @@
                 background-color: var(--input-border-color);
             }
         }
-    }
-    .bordered {
-        border-width: 1px;
-        border-color: var(--input-border-color);
-    }
-    .bordered {
-        color: var(--header-link-colours);
     }
 
     .link {
@@ -172,15 +161,12 @@
 .quick-creator-button {
     background-color: var(--quick-creator-button-background);
 
-    i {
-        font-size: 1rem;
-    }
     i, span {
         color: var(--quick-creator-button-text);
     }
 
     &:hover {
-        transition: all 0.5s ease-in-out;
+        transition: all 0.3s ease-in-out;
         background-color: var(--quick-creator-button-hover-background);
     }
 }

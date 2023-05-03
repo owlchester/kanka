@@ -38,7 +38,7 @@ use \Illuminate\Support\Arr;
             @else
 
             @foreach ($stats as $key => $stat)
-                <div class="info-box drop-shadow h-24 block w-full rounded mb-4 flex align-center items-stretch level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-gray @elseif ($stat['level'] == 5) bg-yellow @else bg-aqua @endif">
+                <div class="info-box shadow-xs h-24 block w-full rounded mb-4 flex align-center items-stretch level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-gray @elseif ($stat['level'] == 5) bg-yellow @else bg-aqua @endif">
                     <div class="flex items-center justify-center flex-none info-box-icon text-4xl w-20">
                         <i class="{{ $stat['icon'] }}"></i><br />
                     </div>
