@@ -1,6 +1,4 @@
 :root {
-    --quick-creator-background: var(--link-text);
-    --quick-creator-text: var(--label-default-text);
     --sidebar-width: 280px;
 }
 
@@ -9,7 +7,7 @@
 }
 
 .w-sidebar {
-    width: var(--sidebar-width, 280px);
+    width: var(--sidebar-width);
 }
 .h-sidebar {
     height: calc(100vh - 3rem);
@@ -18,175 +16,48 @@
 .main-sidebar {
     width: var(--sidebar-width);
     background-color: var(--sidebar-background);
-    color: var(--sidebar-text);
+    color: var(--sidebar-text, #eee);
 
     background-size: var(--sidebar-width) 210px;
     background-repeat: no-repeat;
-
-    position: absolute;
-    top: 0;
-    left: 0;
     padding-top: 50px;
     min-height: 100%;
     transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
 
     a {
-        color: var(--sidebar-link);
+        color: var(--sidebar-link, #fff);
     }
 
     .sidebar-menu {
-        background-color: unset;
-        margin-bottom: 60px;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        white-space: nowrap;
-
-        .sidebar-icon-link {
-            color: #474747;
-            font-size: 16px;
-
-            .fas, .fa, .far, .fab, .ra, .fa-solid, .fa-regular, .fa-brands, .fa-light, .fa-thin, .fa-duotone {
-                width: 20px;
-            }
-
-            &:hover {
-                color: #C2C2C2;
-                background: unset;
-            }
-        }
-
-        li.sidebar-section {
-            .sidebar-text {
-                padding: 6px 5px 6px 15px;
-            }
-        }
-
         li {
-            .fa, .ra, .fas, .far, .fab, .fa-solid, .fa-regular, .fa-brands, .fa-light, .fa-thin, .fa-duotone {
-                font-size: 14px;
-                width: 22px;
-            }
-
-            padding: 0 12px;
-            min-height: 38px;
-
-            &:hover {
-                a {
-                    background: unset;
-                }
-            }
-
             a, span {
-                display: block;
-                font-size: 11px;
-                line-height: 22px;
-                color: var(--sidebar-link);
+                font-size: 0.8rem;
+                color: var(--sidebar-link, #fff);
                 letter-spacing: 1.5px;
                 text-transform: uppercase;
             }
 
             a {
-                border-left: unset;
-                overflow: hidden;
-
                 &:hover {
                     background: rgba(0, 0, 0, 0.16);
-                    border-radius: 8px;
-                }
-            }
-
-            ul.sidebar-submenu {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-
-                li {
-                    padding-left: 12px;
-                    margin: 1px 0;
                 }
             }
         }
 
         li.active > a, li.active.sidebar-section {
-            border: none;
             background: rgba(0, 0, 0, 0.24);
-            box-shadow: inset 1px 2px 6px rgba(0, 0, 0, 0.16);
-            border-radius: 8px;
         }
     }
 }
 .main-sidebar-placeholder {
     background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
 }
-.sidebar-menu {
-    .fa, .fas, .fab, .far, .ra, .fa-solid, .fa-regular, .fa-brands, .fa-light, .fa-thin, .fa-duotone {
-        display: inline-block;
-        width: 20px;
-    }
-
-    li > .treeview-menu {
-        background-color: unset;
-    }
-
-    li > a, li > span {
-        padding: 8px 5px 8px 15px;
-    }
-}
 
 section.sidebar-campaign {
-    height: 160px;
     background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
-    overflow: hidden;
-
-    .campaign-block {
-        text-align: left;
-        height: 120px;
-        left: 60px;
-        padding: 0 24px;
-        padding-top: 96px;
-
-        .campaign-head {
-            font-size: 20px;
-            line-height: 24px;
-            letter-spacing: 0.15px;
-            height: 24px;
-            word-break: break-all;
-
-            .campaign-name {
-                overflow: hidden;
-                display: block;
-                max-height: 24px;
-            }
-
-            .campaign-updated {
-                font-size: 12px;
-                line-height: 16px;
-                /* identical to box height, or 133% */
-
-                letter-spacing: 0.4px;
-
-                /* Soft grey */
-
-                color: #C2C2C2;
-                mix-blend-mode: normal;
-            }
-        }
-    }
 }
 
-body .main-sidebar/*, body .left-side*/ {
-    background-color: var(--sidebar-background);
-}
-.main-sidebar .sidebar li {
-    .fa, .fas, .fab, .far, .ra, .fa-solid, .fa-regular, .fa-brands, .fa-light, .fa-thin, .fa-duotone {
-        font-size: 14px;
-        vertical-align: text-bottom;
-    }
-}
-
-.main-footer, .navbar {
+.main-footer {
     margin-left: var(--sidebar-width);
 }
 
