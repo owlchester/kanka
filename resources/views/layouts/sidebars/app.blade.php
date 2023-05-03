@@ -12,15 +12,15 @@ $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
     @inject('sidebar', 'App\Services\SidebarService')
     @php $sidebar->campaign($currentCampaign)->prepareQuickLinks()@endphp
-    <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute @if(auth()->check() && $currentCampaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($currentCampaign->image) style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
+    <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute @if(auth()->check() && $currentCampaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($currentCampaign->image) style="--sidebar-placeholder: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
         <section class="sidebar-campaign h-40 overflow-hidden">
             <div class="campaign-block h-32 px-4 pt-24">
-                <div class="campaign-head break-all">
+                <div class="campaign-head">
                     <div class="campaign-name truncate text-xl">
                         {!! $currentCampaign->name !!}
                     </div>
 
-                    <div class="campaign-updated text-xs text-gray-300">
+                    <div class="campaign-updated text-xs text-gray-300 truncate">
                         {{ __('sidebar.campaign_switcher.updated') }} {{ $currentCampaign->updated_at->diffForHumans() }}
                     </div>
                 </div>
