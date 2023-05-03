@@ -470,6 +470,13 @@ class PluginVersion extends Model
             $data[$name] = $val;
         }
 
+        if (!isset($data['openLI'])) $data['openLI'] = '<li>';
+        if (!isset($data['closeLI'])) $data['closeLI'] = '</li>';
+        if (!isset($data['openOL'])) $data['openOL'] = '<ol>';
+        if (!isset($data['closeOL'])) $data['closeOL'] = '</ol>';
+        if (!isset($data['openUL'])) $data['openUL'] = '<ul>';
+        if (!isset($data['closeUL'])) $data['closeUL'] = '</ul>';
+
         return [$data, $ids, $checkboxes];
     }
 
