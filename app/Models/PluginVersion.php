@@ -145,14 +145,16 @@ class PluginVersion extends Model
                 return '{{' . $attribute . '}}';
             }
             // Flag this as an attribute that is referenced
-            $this->templateAttributes[$attribute] = null;
+            $name = Str::after($attribute, '$');
+            $this->templateAttributes[$name] = null;
             return '{{ ' . $attribute . ' }}';
         }, $html);
 
         $html = preg_replace_callback('`\{\!\!(.*?[^(\!])\!\!\}`i', function ($matches) {
             $attribute = trim((string) $matches[1]);
+            $name = Str::after($attribute, '$');
             // Flag this as an attribute that is referenced
-            $this->templateAttributes[$attribute] = null;
+            $this->templateAttributes[$name] = null;
             return '{!! ' . $attribute . ' !!}';
         }, $html);
 
@@ -464,8 +466,8 @@ class PluginVersion extends Model
         $data['_premium'] = $campaign->premium();
 
         // Add any missing attributes to be accessible in blade
-        foreach ($this->templateAttributes as $name) {
-            $data[$name] = null;
+        foreach ($this->templateAttributes as $name => $val) {
+            $data[$name] = $val;
         }
 
         return [$data, $ids, $checkboxes];
