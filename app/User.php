@@ -39,7 +39,7 @@ use App\Models\Concerns\LastSync;
  * @property string $avatar
  * @property string $provider
  * @property integer $provider_id
- * @property string $last_login_at
+ * @property Carbon $last_login_at
  * @property integer $welcome_campaign_id
  * @property boolean $newsletter
  * @property boolean $has_last_login_sharing
