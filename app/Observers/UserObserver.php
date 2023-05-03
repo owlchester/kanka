@@ -123,7 +123,7 @@ class UserObserver
         ;
 
         // If the user was subscribed to the newsletter, unsubscribe them
-        if (!empty($user->hasNewsletter())) {
+        if (app()->isProduction() && !empty($user->hasNewsletter())) {
             UnsubscribeUser::dispatch($user->email);
         }
     }

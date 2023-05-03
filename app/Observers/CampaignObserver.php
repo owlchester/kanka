@@ -14,7 +14,6 @@ use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
-use App\Services\StarterService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -29,22 +28,15 @@ class CampaignObserver
      * Service used to build the map of the entity
      * @var EntityMappingService
      */
-    protected $entityMappingService;
-
-    /**
-     * @var StarterService
-     */
-    protected $starterService;
+    protected EntityMappingService $entityMappingService;
 
     /**
      * CharacterObserver constructor.
      * @param EntityMappingService $entityMappingService
-     * @param StarterService $starterService
      */
-    public function __construct(EntityMappingService $entityMappingService, StarterService $starterService)
+    public function __construct(EntityMappingService $entityMappingService)
     {
         $this->entityMappingService = $entityMappingService;
-        $this->starterService = $starterService;
     }
 
     /**
