@@ -36,6 +36,7 @@ class PluginVersion extends Model
     /** @var Collection|Attribute[] */
     protected $entityAttributes;
 
+    /** @var array A list of all the attributes being referenced in the character sheet */
     protected array $templateAttributes = [];
 
     /**
@@ -135,22 +136,26 @@ class PluginVersion extends Model
         $html = $this->content;
         $html = str_replace(['&lt;', '&gt;', '&amp;&amp;'], ['<', '>', '&&'], $html);
 
-        // Loop on every variable to be rendered in the
-        $html = preg_replace_callback('`\{(.*?[^\!])\}`i', function ($matches) {
-            $name = trim((string) $matches[1]);
-            // If it's a {{ }} case, nothing more to do
-            if (Str::startsWith($name, '{')) {
-                $spaceAtEnd = Str::endsWith($name, '--') ? null : ' ';
-                return '{' . $name . $spaceAtEnd . '}';
+        // Get all the referenced attributes in the character sheet so that they are set to null if an entity
+        // doesn't have the attribute
+        $html = preg_replace_callback('`\{\{(.*?[^(\!])\}\}`i', function ($matches) {
+            $attribute = trim((string) $matches[1]);
+            // If it's a comment, we can safely ignore it
+            if (Str::startsWith($attribute, '--') && Str::endsWith($attribute, '--')) {
+                return '{{' . $attribute . '}}';
             }
-
-            // However, if it's an attribute being generated à la ${"member$i"}, we need to skip it
-            if (Str::startsWith($name, '"') && Str::contains($name, '$')) {
-                return '{' . $name . '}';
-            }
-            $this->templateAttributes[$name] = null;
-            return '{{ $' . $name . ' }}';
+            // Flag this as an attribute that is referenced
+            $this->templateAttributes[$attribute] = null;
+            return '{{ ' . $attribute . ' }}';
         }, $html);
+
+        $html = preg_replace_callback('`\{\!\!(.*?[^(\!])\!\!\}`i', function ($matches) {
+            $attribute = trim((string) $matches[1]);
+            // Flag this as an attribute that is referenced
+            $this->templateAttributes[$attribute] = null;
+            return '{!! ' . $attribute . ' !!}';
+        }, $html);
+
 
         // Blacklisted commands
         $html = str_replace([
