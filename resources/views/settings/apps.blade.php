@@ -27,7 +27,7 @@
                         Discord
                     </div>
                     <div class="flex-0">
-                        @if(!$discord = auth()->user()->apps()->app('discord')->first())
+                        @if($discord = auth()->user()->apps()->app('discord')->first())
                             <x-buttons.confirm type="danger" target="remove-discord" outline="true">
                                 <i class="fa-solid fa-link-slash" aria-hidden="true"></i>
                                 <span>
