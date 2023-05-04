@@ -27,7 +27,7 @@ class ModuleController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
-        if (!$campaign->superboosted()) {
+        if (!$campaign->boosted()) {
             return view('campaigns.modules.not-premium')
                 ->with('campaign', $campaign);
         }
@@ -50,9 +50,9 @@ class ModuleController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
-        if (!$campaign->superboosted()) {
+        if (!$campaign->boosted()) {
             return view('campaign.modules')
-                ->with('errors', __('This feature is only available on premium campaigns'));
+                ->with('errors', __('This feature is only available on premium and boosted campaigns'));
         }
 
         $this->moduleService
