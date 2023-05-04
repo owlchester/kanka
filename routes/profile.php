@@ -161,6 +161,13 @@ Route::post('/security/verify2fa', function() {
 
 /*
 --------------------------------------------------------------------------
-Google2FA
+PayPal API
 --------------------------------------------------------------------------
 */
+
+Route::post('/process-transaction', 'PayPalController@processTransaction')
+    ->name('process.transaction');
+Route::get('/success-transaction', 'PayPalController@successTransaction')
+    ->name('success.transaction');
+Route::get('/cancel-transaction', 'PayPalController@cancelTransaction')
+    ->name('cancel.transaction');

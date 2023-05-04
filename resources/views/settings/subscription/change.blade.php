@@ -234,9 +234,29 @@
                 </div>
                 @endif
                 <div role="tabpanel" class="tab-pane {{ $limited ? 'active' : null }}" id="paypal">
-                    <p class="help-block">
-                        {!! __('settings.subscription.helpers.paypal_v2', ['email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}
-                    </p>
+                    @if ($period !== 'yearly')
+                            <p class="text-danger">
+                                {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'PayPal']) }}
+                            </p>
+                    @else
+                    {!! Form::open(['route' => ['process.transaction'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
+                        <p class="help-block">
+                            {!! __('settings.subscription.helpers.paypal_v3', ['email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}
+                        </p>    
+                        <div class="text-center">
+                            <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                                <span>{{ __('settings.subscription.actions.subscribe') }}</span>
+                                <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
+                            </button>
+                        </div>
+
+                        <input type="hidden" name="tier" value="{{ $tier }}" />
+                        <input type="hidden" name="coupon" id="coupon" value="" />
+                        <input type="hidden" name="period" value="{{ $period }}" />
+                        <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
+                        <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
+                    {!! Form::close() !!}
+                    @endif
                 </div>
             </div>
         </div>
