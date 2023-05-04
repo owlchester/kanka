@@ -58,7 +58,7 @@ if ($folder) {
                 <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer opacity-0" multiple />
             </span>
 
-            <p class="my-2">{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif', 'size' => auth()->user()->maxUploadSize(true)]) }}</p>
+            <p class="my-2">{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => auth()->user()->maxUploadSize(true)]) }}</p>
 
 
             <p class="text-red gallery-error" style="display:none"></p>

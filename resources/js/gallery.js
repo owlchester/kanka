@@ -71,11 +71,9 @@ function initGallery() {
     galleryForm.ondragover = (e) => {
         e.preventDefault();
         galleryForm.classList.add('drop-shadow', 'dropping');
-        console.log('drag start');
     };
     galleryForm.ondragleave = (e) => {
         galleryForm.classList.remove('drop-shadow', 'dropping');
-        console.log('drag end');
     };
 
 }
@@ -144,30 +142,20 @@ const uploadFiles = (data) => {
 
     fileProgress.show();
 
-    console.log('data', data);
-    data.forEach((i) => {
-        console.log('foreach', i);
-    });
 
     axios
         .post(galleryForm.action, data, config)
         .then(function (res) {
-            /*output.className = 'container';
-            output.innerHTML = res.data;*/
-            console.info('then', res);
-            console.log('data', res.data);
 
             fileProgress.hide();
 
             if (res.data.success) {
                 res.data.images.forEach(image => {
-                    //console.log('image', image);
 
                     // Do we have a folder to add to?
                     let last = $('li[data-folder]').last();
 
                     if (last.length === 1) {
-                        console.log('last', last[0]);
                         $(image).insertAfter($('li[data-folder]').last());
                     } else {
                         gallery.prepend(image);

@@ -3,7 +3,8 @@
 return [
     'actions'       => [
         'close' => 'Close',
-        'full'  => 'Image link',
+        'image-link'  => 'Image link',
+        'file-link'  => 'File link',
         'save'  => 'Save',
     ],
     'breadcrumb'    => 'Gallery',

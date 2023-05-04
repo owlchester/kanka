@@ -4,6 +4,7 @@ namespace App\Http\Requests\Campaigns;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 
 class GalleryImageStore extends FormRequest
 {
@@ -26,10 +27,10 @@ class GalleryImageStore extends FormRequest
     {
         //opentype,ttf,woff,woff2 not working for some reason.
         $rules = [
-            'file' => [
-                '*' => [
-                    'required', 'mimes:jpeg,jpg,gif,png,webp', 'max:' . auth()->user()->maxUploadSize()
-                ],
+            'file.*' => [
+                'required',
+                File::types(['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2']),
+                'max:' . auth()->user()->maxUploadSize()
             ],
             'folder_id' => [
                 'nullable',

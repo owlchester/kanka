@@ -9,14 +9,19 @@ $imageCount = 0;
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div class="">
-        @if($image->is_folder)
+        @if($image->isFolder())
             <div class="text-center my-5">
                 <i class="fa-solid fa-folder fa-4x" aria-hidden="true"></i>
             </div>
         @else
-            <div class="text-center">
-                <img src="{{ Img::crop(300, 300)->url($image->path) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
-            </div>
+
+            @if ($image->isFont())
+                <div class="help-block">This file is a font file.</div>
+            @else
+                <div class="text-center">
+                    <img src="{{ Img::crop(300, 300)->url($image->path) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
+                </div>
+            @endif
 
             <hr />
             <p class="{{ $image->inEntitiesCount() === 0 ? 'text-muted' : '' }}">
@@ -34,7 +39,7 @@ $imageCount = 0;
         </div>
         <div class="">
             <div class="flex gap-2 items-center mb-5">
-                @if(!$image->is_folder)
+                @if(!$image->isFolder())
                     <div class="label label-default text-xs" title="{{ __('campaigns/gallery.fields.ext') }}">
                         <i class="fa-regular fa-image" aria-hidden="true"></i>
                         {{ strtoupper($image->ext) }}
@@ -58,7 +63,7 @@ $imageCount = 0;
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-5">
-            @if(!$image->is_folder)
+            @if(!$image->isFolder())
             <div class="form-group">
                 <label for="folder_id" class="control-label">{{ __('campaigns/gallery.fields.folder') }}</label>
                 {!! Form::select('folder_id', $folders, null, ['class' => 'form-control']) !!}
@@ -71,7 +76,7 @@ $imageCount = 0;
 
             <div class="flex gap-2 sm:gap-5 items-center mb-5">
                 <div class="grow flex gap-2 sm:gap-5">
-                @if(!$image->is_folder || $image->hasNoFolders())
+                @if(!$image->isFolder() || $image->hasNoFolders())
                     <a role="button" tabindex="0" class="btn-dynamic-delete text-red-500 hover:text-red-800" data-toggle="popover"
                        title="{{ __('crud.remove') }}"
                        data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
@@ -80,9 +85,9 @@ $imageCount = 0;
                         {{ __('crud.remove') }}
                     </a>
                 @endif
-                    @if(!$image->is_folder)
+                    @if(!$image->isFolder())
                         <a href="{{ $image->getUrl() }}" target="_blank">
-                            <i class="fa-regular fa-link" aria-hidden="true"></i> {{ __('campaigns/gallery.actions.full') }}
+                            <i class="fa-regular fa-link" aria-hidden="true"></i> {{ __('campaigns/gallery.actions.' . $image->isFont() ? 'file-link' : 'image-link') }}
                         </a>
                     @endif
                 </div>
@@ -99,7 +104,7 @@ $imageCount = 0;
 </div>
 
 
-@if(!$image->is_folder || $image->hasNoFolders())
+@if(!$image->isFolder() || $image->hasNoFolders())
     {!! Form::open(['method' => 'DELETE','route' => ['images.destroy', $image->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
     {!! Form::close() !!}
 @endif

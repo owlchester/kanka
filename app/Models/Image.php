@@ -245,4 +245,14 @@ class Image extends Model
     {
         return Img::resetCrop()->crop($width, $height)->url($this->path);
     }
+
+    public function isFolder(): bool
+    {
+        return (bool) $this->is_folder;
+    }
+
+    public function isFont(): bool
+    {
+        return in_array($this->ext, ['woff', 'woff2']);
+    }
 }

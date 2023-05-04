@@ -5,6 +5,6 @@
         @include('cruds.fields.quest', ['isParent' => true])
     </div>
     <div class="col-sm-6">
-        @include('cruds.fields.character')
+        @include('cruds.fields.character', ['label' => 'quests.fields.character'])
     </div>
 </div>

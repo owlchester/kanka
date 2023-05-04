@@ -93,7 +93,7 @@ class Foreign extends Component
             $this->placeholder = __('crud.placeholders.parent');
         } elseif (!empty($this->key)) {
             if (empty($this->label)) {
-                $this->label = __('crud.fields.' . $this->key);
+                $this->label = !empty($this->entityTypeID) ? __('entities.' . $this->key) : __('crud.fields.' . $this->key);
                 if (!empty($this->entityTypeID)) {
                     $this->label = Module::singular($this->entityTypeID, $this->label);
                 }
@@ -101,7 +101,10 @@ class Foreign extends Component
             if (empty($this->placeholder)) {
                 $this->placeholder = __('crud.placeholders.' . $this->key);
                 if (!empty($this->entityTypeID)) {
-                    $this->placeholder = __('crud.placeholders.fallback', ['module' => Module::singular($this->entityTypeID, $this->label)]);
+                    $mod = Module::singular($this->entityTypeID);
+                    if (!empty($mod)) {
+                        $this->placeholder = __('crud.placeholders.fallback', ['module' => Module::singular($this->entityTypeID, $this->label)]);
+                    }
                 }
             }
         } else {
