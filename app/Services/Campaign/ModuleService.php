@@ -98,7 +98,7 @@ class ModuleService
 
         $this->campaign->settings = $settings;
         $this->campaign->updateQuietly();
-        $this->campaign->touchQuietly();
+        //$this->campaign->touchQuietly();
 
         return $this;
     }

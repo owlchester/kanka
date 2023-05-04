@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 
 class ModuleController extends Controller
 {
-
     protected SidebarService $sidebarService;
     protected ModuleService $moduleService;
 

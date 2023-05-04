@@ -41,7 +41,7 @@ if (isset($id) && $campaign->superboosted() && $campaign->hasModuleIcon($id)) {
                 </a>
             @endif
         </div>
-        <div class="grow flex flex-wrap flex-col cursor-pointer" data-url="{{ route('campaign.modules.toggle', ['module' => $module]) }}">
+        <div class="grow flex flex-wrap flex-col">
 
             <div class="body p-4 pb-2 grow"  >
                 <p class="mb-0">
@@ -59,10 +59,10 @@ if (isset($id) && $campaign->superboosted() && $campaign->hasModuleIcon($id)) {
             </div>
             <div class="footer p-4 pt-2"  data-url="{{ route('campaign.modules.toggle', ['module' => $module]) }}">
                 <div class="module-actions text-center">
-                    <div class="btn-module-enable btn btn-default btn-block mb-0">
+                    <div class="btn-toggle btn-module-enable btn btn-default btn-block mb-0" data-url="{{ route('campaign.modules.toggle', ['module' => $module]) }}">
                         {{ __('campaigns/modules.states.enable') }}
                     </div>
-                    <div class="btn-module-disable btn btn-default btn-block mb-0">
+                    <div class="btn-toggle btn-module-disable btn btn-default btn-block mb-0"  data-url="{{ route('campaign.modules.toggle', ['module' => $module]) }}">
                         {{ __('campaigns/modules.states.disable') }}
                     </div>
                 </div>
