@@ -24,9 +24,9 @@ if (isset($id) && $campaign->superboosted() && $campaign->hasModuleIcon($id)) {
         </div>
     </div>
 @else
-    <div class="box-module w-full rounded overflow-hidden shadow-xs bg-box flex flex-wrap flex-col select-none {{ $campaign->enabled($module) ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} hover:shadow-md" id="{{ $module }}">
-        <div class="header p-2 bg-gray-200 flex items-center gap-2">
-            <h3 class="text-lg m-0 grow">
+    <div class="box-module w-full rounded overflow-hidden shadow-xs bg-box flex flex-wrap flex-col select-none {{ $campaign->enabled($module) ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $module }}">
+        <div class="header p-2 bg-gray-600 flex items-center gap-2">
+            <h3 class="text-lg m-0 grow text-white">
                 <i class="{{ $icon }}" aria-hidden="true"></i>
                 {!! $moduleName !!}
             </h3>

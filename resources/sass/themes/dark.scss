@@ -148,6 +148,7 @@
     --header-mode-inactive: var(--notification-accent);
     --campaign-switcher-text: var(--theme-input-text);
     --header-profile-background: var(--table-highlight);
+
 }
 
 .hover\:shadow-md:hover {
@@ -157,4 +158,9 @@
 
 .family-tree {
     --family-tree-founder: #131212;
+}
+
+.alert-warning {
+    background-color: #d0c2a5;
+    border-color: #c5af78;
 }

@@ -184,6 +184,9 @@ class AppServiceProvider extends ServiceProvider
 
         Relation::observe('App\Observers\RelationObserver');
 
+        // Tell laravel that we are using bootstrap 3 to style the paginators
+        Paginator::useBootstrapThree();
+
         if (request()->has('_debug_perm')) {
             // Add in boot function
             DB::listen(function ($query) {

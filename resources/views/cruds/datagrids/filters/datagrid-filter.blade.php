@@ -14,14 +14,11 @@ $hasAttributeFilters = false;
 
 @endphp
 
-@if (auth()->guest())
-    <div class="text-muted grow">{{ __('filters.helpers.guest') }}</div>
-    <?php return; ?>
-@endif
 
 <div class="grow flex gap-2">
-    <div class="inline-block cursor-pointer btn btn-default" data-toggle="dialog" data-target="datagrid-filters">
-        <i class="fa-solid fa-filter" aria-hidden="true"></i> {{ __('crud.filters.title') }}
+    <div class="inline-block cursor-pointer btn btn-default break-keep" data-toggle="dialog" data-target="datagrid-filters">
+        <i class="fa-solid fa-filter" aria-hidden="true"></i>
+        <span class="hidden-xs">{{ __('crud.filters.title') }}</span>
         @if ($activeFilters > 0)
             <span class="label label-danger">{{ $activeFilters }}</span>
         @endif

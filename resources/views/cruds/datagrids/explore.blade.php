@@ -38,7 +38,7 @@
 
 
 @if($models->hasPages())
-    <div class="text-right">
+    <div class="pull-right">
         {{ $models->appends($filterService->pagination())->links() }}
     </div>
 @endif

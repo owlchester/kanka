@@ -13,7 +13,7 @@
         Bragi Logs
     </h1>
 
-    <div class="rounded p-2 bg-blue-100 text-slate-800 mb-5">
+    <div class="rounded p-2 bg-info text-slate-800 mb-5">
         <p><strong>Tokens</strong> {{ auth()->user()->availableTokens() }} / {{ auth()->user()->maxTokens() }}</p>
         <p class="mb-0">Your tokens refill on <strong>{{ auth()->user()->tokenRenewalDate() }}</strong>.</p>
     </div>

@@ -6,7 +6,7 @@
 ])
 @php
 $boxClass = "rounded p-4 bg-box flex flex-col";
-$highlightClass = 'shadow-xs border-accent border-solid border-2 !bg-blue-100';
+$highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500';
 @endphp
 
 @section('content')

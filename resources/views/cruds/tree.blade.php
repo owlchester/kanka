@@ -24,10 +24,17 @@
 
     @include('partials.errors')
 
+    @if (auth()->guest())
+        <div class="text-muted grow mb-5">
+            <i class="fa-solid fa-filter" aria-hidden="true"></i>
+            {{ __('filters.helpers.guest') }}
+        </div>
+    @else
     <div class="mb-3 flex flex-stretch gap-2 items-center">
         @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', ['m' => $mode])])
         @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index'])
     </div>
+    @endif
 
     @include('partials.ads.top')
 
@@ -60,9 +67,11 @@
                         {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
                     </p>
                 @endif
+                @if($models->hasPages())
                 <div class="pull-right">
                     {{ $models->appends('parent_id', request()->get('parent_id'))->appends('m', 'table')->links() }}
                 </div>
+                @endif
             </div>
             {!! Form::hidden('entity', $name) !!}
             {!! Form::hidden('datagrid-action', 'print') !!}

@@ -23,10 +23,17 @@
 @section('content')
     @include('partials.errors')
 
+    @if (auth()->guest())
+        <div class="text-muted grow">
+            <i class="fa-solid fa-filter" aria-hidden="true"></i>
+            {{ __('filters.helpers.guest') }}
+        </div>
+    @else
     <div class="mb-3 flex flex-stretch gap-2 items-center">
         @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', ['m' => $mode])])
         @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index'])
     </div>
+    @endif
 
 
     @include('partials.ads.top')
