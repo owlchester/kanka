@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\MiscModel $model */?>
 <div class="entities-grid flex flex-wrap gap-3 lg:gap-5">
     @if (!empty($parent))
-        <a href="{{ route($route . '.' . $sub, $parent->parent ? ['parent_id' => $parent->parent->id] : []) }}" class="entity block w-48 overflow-hidden rounded flex flex-col shadow-sm hover:shadow-md sm">
+        <a href="{{ route($route . '.' . $sub, $parent->parent ? ['parent_id' => $parent->parent->id] : []) }}" class="entity block w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-sm hover:shadow-md sm">
             <div class="block w-46 flex items-center justify-center grow  text-6xl">
                 <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
             </div>
