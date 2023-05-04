@@ -1,12 +1,7 @@
 <?php
-/**
- * Description of
- *
- * @author Jeremy Payne hello@kanka.io
- * 24/04/2020
- */
 
 return [
+    'fraud_detection' => env('APP_FRAUD_DETECTION', false),
     'owlbear' => [
         'eur' => [
             'monthly' => env('STRIPE_OWLBEAR_EUR'),

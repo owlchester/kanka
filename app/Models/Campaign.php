@@ -558,7 +558,7 @@ class Campaign extends MiscModel
      */
     public function exportable(): bool
     {
-        if (!app()->environment('prod')) {
+        if (!app()->isProduction()) {
             return true;
         }
 

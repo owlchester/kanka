@@ -121,7 +121,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // In production, we want URLs to be HTTPS for pagination and redirects
-        if ($this->app->environment('prod')) {
+        if ($this->app->isProduction()) {
             \URL::forceScheme('https');
         }
 
@@ -183,9 +183,6 @@ class AppServiceProvider extends ServiceProvider
         Race::observe('App\Observers\RaceObserver');
 
         Relation::observe('App\Observers\RelationObserver');
-
-        // Tell laravel that we are using bootstrap 3 to style the paginators
-        Paginator::useBootstrapThree();
 
         if (request()->has('_debug_perm')) {
             // Add in boot function
