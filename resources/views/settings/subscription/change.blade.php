@@ -239,7 +239,7 @@
                                 {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'PayPal']) }}
                             </p>
                     @else
-                    {!! Form::open(['route' => ['process.transaction'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
+                    {!! Form::open(['route' => ['paypal.process-transaction'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
                         <p class="help-block">
                             {!! __('settings.subscription.helpers.paypal_v3', ['email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}
                         </p>    

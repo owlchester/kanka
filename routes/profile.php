@@ -165,9 +165,9 @@ PayPal API
 --------------------------------------------------------------------------
 */
 
-Route::post('/process-transaction', 'PayPalController@processTransaction')
-    ->name('process.transaction');
-Route::get('/success-transaction', 'PayPalController@successTransaction')
-    ->name('success.transaction');
-Route::get('/cancel-transaction', 'PayPalController@cancelTransaction')
-    ->name('cancel.transaction');
+Route::post('paypal/process-transaction', 'PayPalController@processTransaction')
+    ->name('paypal.process-transaction');
+Route::get('paypal/success-transaction', 'PayPalController@successTransaction')
+    ->name('paypal.transaction-success');
+Route::get('paypal/cancel-transaction', 'PayPalController@cancelTransaction')
+    ->name('paypal.cancel-transaction');
