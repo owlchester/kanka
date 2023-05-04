@@ -19,7 +19,7 @@ return [
 
     'payment_action' => env('PAYPAL_PAYMENT_ACTION', 'Sale'), // Can only be 'Sale', 'Authorization' or 'Order'
     'currency'       => env('PAYPAL_CURRENCY', 'USD'),
-    'notify_url'     => env('PAYPAL_NOTIFY_URL', ''), // Change this accordingly for your application.
+    'notify_url'     => env('PAYPAL_NOTIFY_URL', ''), // Change this accordingly for your application, After payment is done PayPal IPN service sends notification to notify_url (or it can be set in PayPal profile). https://developer.paypal.com/api/nvp-soap/ipn/ht-ipn/
     'locale'         => env('PAYPAL_LOCALE', 'en_US'), // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
     'validate_ssl'   => env('PAYPAL_VALIDATE_SSL', true), // Validate SSL when creating api client.
 ];
