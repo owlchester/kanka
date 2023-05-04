@@ -42,15 +42,16 @@ $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m
                                 $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                             }
                             @endphp
-                            <a href="{{ route($route, (\Illuminate\Support\Arr::get($element, 'mode') === true ? $defaultOptions : [])) }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                                <i class="w-6 flex-shrink-0 text-base {{ $element['custom_icon'] ?? $element['icon']  }}" aria-hidden="true"></i>
-                                <span class="inline-block truncate">{!! $element['custom_label'] ?? __($element['label_key']) !!}</span>
-                            </a>
+                            <x-sidebar.element
+                                :url="route($route, (\Illuminate\Support\Arr::get($element, 'mode') === true ? $defaultOptions : []))"
+                                :icon="$element['custom_icon'] ?? $element['icon']"
+                                :text="$element['custom_label'] ?? __($element['label_key'])"
+                            ></x-sidebar.element>
                         @else
-                            <div class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                                <i class="w-6 flex-shrink-0 text-base {{ $element['custom_icon'] ?? $element['icon'] }}" aria-hidden="true"></i>
-                                <span class="inline-block truncate">{!! $element['custom_label'] ?? __($element['label_key']) !!}</span>
-                            </div>
+                            <x-sidebar.element
+                                :icon="$element['custom_icon'] ?? $element['icon']"
+                                :text="$element['custom_label'] ?? __($element['label_key'])"
+                            ></x-sidebar.element>
                         @endif
                         @if (!empty($element['children']))
 
@@ -63,10 +64,11 @@ $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m
                                         $route = \Illuminate\Support\Str::beforeLast($route, '.') . '.' . $defaultIndex;
                                     }
                                 @endphp
-                                <a href="{{ route($route, \Illuminate\Support\Arr::get($child, 'mode') === true ? $defaultOptions : []) }}" class="px-2 py-1.5 flex items-center gap-2 my-0.5 rounded">
-                                    <i class="w-6 flex-shrink-0 text-base {{ $child['custom_icon'] ?? $child['icon'] }}" aria-hidden="true"></i>
-                                    <span class="inline-block truncate">{!! $child['custom_label'] ?? __($child['label_key']) !!}</span>
-                                </a>
+                                <x-sidebar.element
+                                    :url="route($route, \Illuminate\Support\Arr::get($child, 'mode') === true ? $defaultOptions : [])"
+                                    :icon="$child['custom_icon'] ?? $child['icon']"
+                                    :text="$child['custom_label'] ?? __($child['label_key'])"
+                                ></x-sidebar.element>
                             </li>
                             @includeWhen($sidebar->hasQuickLinks($childName), 'layouts.sidebars._quick-links', ['links' => $sidebar->quickLinks($childName)])
                         @endforeach

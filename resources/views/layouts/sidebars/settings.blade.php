@@ -13,72 +13,81 @@
     <section class="sidebar" style="height: auto">
         <ul class="sidebar-menu overflow-hidden whitespace-no-wrap m-0 p-0 list-none mb-14">
             <li class="px-2 {{ $sidebar->settings('profile') }}">
-                <a href="{{ route('settings.profile') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                    <i class="w-6 flex-shrink-0 text-base fa-solid fa-user" aria-hidden="true"></i>
-                    <span>{{ __('settings.menu.profile') }}</span>
-                </a>
+                <x-sidebar.element
+                    :url="route('settings.profile')"
+                    icon="fa-solid fa-user"
+                    :text="__('settings.menu.profile')"
+                ></x-sidebar.element>
             </li>
             <li class="px-2 {{ $sidebar->settings('account') }}">
-                <a href="{{ route('settings.account') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                    <i class="w-6 flex-shrink-0 text-base fa-solid fa-cog" aria-hidden="true"></i>
-                    <span>{{ __('settings.menu.account') }}</span>
-                </a>
+                <x-sidebar.element
+                    :url="route('settings.account')"
+                    icon="fa-solid fa-cog"
+                    :text="__('settings.menu.account')"
+                ></x-sidebar.element>
             </li>
             <li class="px-2 {{ $sidebar->settings('appearance') }}">
-                <a href="{{ route('settings.appearance') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                    <i class="w-6 flex-shrink-0 text-base fa-solid fa-brush" aria-hidden="true"></i>
-                    <span>{{ __('settings.menu.appearance') }}</span>
-                </a>
+                <x-sidebar.element
+                    :url="route('settings.appearance')"
+                    icon="fa-solid fa-brush"
+                    :text="__('settings.menu.appearance')"
+                ></x-sidebar.element>
             </li>
             <li class="px-2 {{ $sidebar->settings('notification') }}">
-                <a href="{{ route('settings.notifications') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                    <i class="w-6 flex-shrink-0 text-base fa-solid fa-bell" aria-hidden="true"></i>
-                    <span>{{ __('settings.menu.notifications') }}</span>
-                </a>
+                <x-sidebar.element
+                    :url="route('settings.notifications')"
+                    icon="fa-solid fa-bell"
+                    :text="__('settings.menu.notifications')"
+                ></x-sidebar.element>
             </li>
 
             <li class="px-2 ">
-                <div class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                    <i class="w-6 flex-shrink-0 text-base fa-solid fa-bolt" aria-hidden="true"></i>
-                    <span>{{ __('settings.menu.subscription') }}</span>
-                </div>
+                <x-sidebar.element
+                    icon="fa-solid fa-bolt"
+                    :text="__('settings.menu.subscription')"
+                ></x-sidebar.element>
                 <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
                     @if (config('services.stripe.enabled'))
                         <li class="p-0 m-0 {{ $sidebar->settings('subscription') }} subsection">
-                            <a href="{{ route('settings.subscription') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                                <i class="w-6 flex-shrink-0 text-base fa-solid fa-heart" aria-hidden="true"></i>
-                                {{ __('billing/menu.overview') }}
-                            </a>
+                            <x-sidebar.element
+                                :url="route('settings.subscription')"
+                                icon="fa-solid fa-heart"
+                                :text="__('billing/menu.overview')"
+                            ></x-sidebar.element>
                         </li>
                         @if (auth()->user()->hasBoosterNomenclature())
                             <li class="{{ $sidebar->settings('boosters') }} subsection">
-                                <a href="{{ route('settings.boost') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                                    <i class="w-6 flex-shrink-0 text-base fa-solid fa-rocket" aria-hidden="true"></i>
-                                    {{ __('settings.menu.boosters') }}
-                                </a>
+                                <x-sidebar.element
+                                    :url="route('settings.boost')"
+                                    icon="fa-solid fa-rocket"
+                                    :text="__('settings.menu.boosters')"
+                                ></x-sidebar.element>
                             </li>
                         @else
                             <li class="{{ $sidebar->settings('premium') }} subsection">
-                                <a href="{{ route('settings.premium') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                                    <i class="w-6 flex-shrink-0 text-base fa-solid fa-rocket" aria-hidden="true"></i>
-                                    {{ __('settings.menu.premium') }}
-                                </a>
+                                <x-sidebar.element
+                                    :url="route('settings.premium')"
+                                    icon="fa-solid fa-rocket"
+                                    :text="__('settings.menu.premium')"
+                                ></x-sidebar.element>
                             </li>
                         @endif
                     @endif
 
                     @if (config('services.stripe.enabled'))
                         <li class="{{ $sidebar->settings('payment-method', 4) }} subsection">
-                            <a href="{{ route('billing.payment-method') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                                <i class="w-6 flex-shrink-0 text-base fa-solid fa-credit-card" aria-hidden="true"></i>
-                                {{ __('billing/menu.payment-method') }}
-                            </a>
+                            <x-sidebar.element
+                                :url="route('billing.payment-method')"
+                                icon="fa-solid fa-credit-card"
+                                :text="__('billing/menu.payment-method')"
+                            ></x-sidebar.element>
                         </li>
                         <li class="{{ $sidebar->settings('history', 4) }} subsection">
-                            <a href="{{ route('billing.history') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                                <i class="w-6 flex-shrink-0 text-base fa-solid fa-receipt" aria-hidden="true"></i>
-                                {{ __('billing/menu.history') }}
-                            </a>
+                            <x-sidebar.element
+                                :url="route('billing.history')"
+                                icon="fa-solid fa-receipt"
+                                :text="__('billing/menu.history')"
+                            ></x-sidebar.element>
                         </li>
                     @endif
                 </ul>
@@ -92,23 +101,26 @@
 
                 <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
                     @if (auth()->user()->isLegacyPatron())<li class="{{ $sidebar->settings('patreon') }} subsection">
-                        <a href="{{ route('settings.patreon') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                            <i class="w-6 flex-shrink-0 text-base fa-brands fa-patreon" aria-hidden="true"></i>
-                            {{ __('settings.menu.patreon') }}
-                        </a>
+                        <x-sidebar.element
+                            :url="route('settings.patreon')"
+                            icon="fa-brands fa-patreon"
+                            :text="__('settings.menu.patreon')"
+                        ></x-sidebar.element>
                     </li>@endif
 
                     <li class="p-0 m-0 {{ $sidebar->settings('apps') }} subsection">
-                        <a href="{{ route('settings.apps') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                            <i class="w-6 flex-shrink-0 text-base fa-brands fa-discord" aria-hidden="true"></i>
-                            {{ __('settings.menu.apps') }}
-                        </a>
+                        <x-sidebar.element
+                            :url="route('settings.apps')"
+                            icon="fa-brands fa-discord"
+                            :text="__('settings.menu.apps')"
+                        ></x-sidebar.element>
                     </li>
                     <li class="p-0 m-0 {{ $sidebar->settings('api') }} subsection">
-                        <a href="{{ route('settings.api') }}" class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                            <i class="w-6 flex-shrink-0 text-base fa-solid fa-code" aria-hidden="true"></i>
-                            {{ __('settings.menu.api') }}
-                        </a>
+                        <x-sidebar.element
+                            :url="route('settings.api')"
+                            icon="fa-solid fa-code"
+                            :text="__('settings.menu.api')"
+                        ></x-sidebar.element>
                     </li>
                 </ul>
             </li>
