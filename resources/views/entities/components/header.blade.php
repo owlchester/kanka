@@ -145,7 +145,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                 @endif
                 <div class="btn-group entity-actions">
                     <span role="button" tabindex="0" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
-                        <i class="fa-solid fa-cog entity-icons cursor-pointer text-xl" aria-hidden="true"></i>
+                        <i class="fa-solid fa-cog entity-icons cursor-pointer text-xl transition-all hover:rotate-45" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                     </span>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu" id="entity-submenu">

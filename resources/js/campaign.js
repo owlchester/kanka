@@ -31,14 +31,13 @@ function registerModules() {
     if ($('#campaign-modules').length === 0) {
         return;
     }
-    $('.box-module .btn-toggle[data-url]').click(function (e) {
+    $('input[name="enabled"]').change(function (e) {
         e.preventDefault();
         let header = $(this).closest('.box-module').find('h3');
         if (header.hasClass('loading')) {
             return;
         }
         header.addClass('loading');
-        $(this).closest('.box-module').find('.footer').hide();
 
         $.ajax({
             method: 'post',
@@ -55,7 +54,6 @@ function registerModules() {
                 window.showToast(res.toast);
             }
             $(this).closest('.box-module').find('h3').removeClass('loading');
-            $(this).closest('.box-module').find('.footer').show();
         });
     });
 }

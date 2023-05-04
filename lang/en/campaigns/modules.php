@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions' => [
+        'customise' => 'Customise',
+    ],
     'pitch' => 'Rename and change the icon associated with this module for the whole campaign.',
     'helpers'   => [
         'info'  => 'A campaign is split into several modules that interact with each other. Enable or disable those you don\'t need. Deactivating a module doesn\'t delete any of its data, it only hides it.',
