@@ -15,6 +15,10 @@ class PayPalService
    public function process(Request $request)
    {
         $user = $request->user();
+        if ($user->isSubscriber()) {
+            return [];
+        }
+        
         $pledge = $request->get('tier');
         $currency = "USD";
         if ($user->billedInEur()) {

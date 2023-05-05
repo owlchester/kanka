@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\PayPalService;
+use App\Http\Requests\ValidatePledge;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PayPalController extends Controller
@@ -16,6 +17,7 @@ class PayPalController extends Controller
      */
     public function __construct(PayPalService $service)
     {
+        $this->middleware(['identity']);
         $this->service = $service;
     }
     /**
@@ -23,7 +25,7 @@ class PayPalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function processTransaction(Request $request)
+    public function processTransaction(ValidatePledge $request)
     {
         $response = $this->service->process($request);
         
