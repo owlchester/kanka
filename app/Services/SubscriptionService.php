@@ -395,8 +395,9 @@ class SubscriptionService
             return Pledge::WYVERN;
         } elseif ($this->user->subscribedToPrice($this->elementalPlans(), 'kanka')) {
             return Pledge::ELEMENTAL;
+        } elseif ($this->user->pledge) {
+            return $this->user->pledge;
         }
-
         // Free user?
         return Pledge::KOBOLD;
     }
