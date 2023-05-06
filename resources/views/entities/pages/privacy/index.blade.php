@@ -49,7 +49,7 @@
             @endif
 
             <button class="btn btn-default btn-manage-perm" data-target="#entity-permissions-link">
-                <i class="fa-solid fa-wrench" aria-hidden="true"></i> {{ __('Manage Permissions') }}
+                <i class="fa-solid fa-wrench" aria-hidden="true"></i> {{ __('entities/permissions.quick.manage') }}
             </button>
         </div>
     </article>

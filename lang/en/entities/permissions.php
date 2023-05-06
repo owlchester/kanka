@@ -8,6 +8,7 @@ return [
     'quick'     => [
         'empty-permissions' => 'No role or user outside of the campaign admins have access to this entity.',
         'field'             => 'Quick edit',
+        'manage'            => 'Manage Permissions',
         'options'           => [
             'private'   => 'Private to all but admins',
             'visible'   => 'Visible to the following',
