@@ -54,31 +54,53 @@ return [
             |
             */
 
-            'HTML.Allowed' =>
-                ''
+            'HTML.Allowed' => ''
+                /** Titles */
                 . 'h1[class|style|id|title],'
                 . 'h2[class|style|id|title],'
                 . 'h3[class|style|id|title],'
                 . 'h4[class|style|id|title],'
                 . 'h5[class|style|id|title],'
                 . 'h6[class|style|id|title],'
+                /** General elements */
                 . 'div[class|style|id|align|role|title],'
-                . 'ins,del,'
-                . 'sup,sub,'
-                . 'big,small,'
-                . 'strong,em,b,strike,br[class|style],'
+                . 'p[class|style|id|dir|align],'
+                . 'span[class|style|id|dir],'
+                . 'a[href|class|style|target|rel|title|data-toggle|data-html|id|role],'
+                . 'br[class|style],'
                 . 'i[class],u[class],'
+                . 'img[src|style|alt|width|height|class|title|id],'
+                . 'hr[class|style|id|title],'
+
+                /** Text blocks */
                 . 'pre[class|title|id],'
                 . 'blockquote[cite|class|style|id],'
-                . 'hr[class|style|id|title],'
-                . 'caption[class|style|id|title],'
+                . 'code[class|style|id],'
+
+                /** Lists **/
                 . 'ul[class|style|id|role],'
                 . 'ol[class|style|id|role],'
                 . 'li[class|style|id|role],'
-                . 'img[src|style|alt|width|height|class|title|id],'
-                . 'a[href|class|style|target|rel|title|data-toggle|data-html|id|role],'
-                . 'p[class|style|id|dir|align],'
-                . 'span[class|style|id|dir],'
+
+                /** Misc elements */
+                . 'caption[class|style|id|title],'
+                . 'acronym[title|class|style],'
+                . 'abbr[title|class|style],'
+                . 'font[class|style|color],'
+                . 'summary[class|style|id],'
+                . 'details[class|style|id|open],'
+                . 'figure[class|style|id|title],figcaption[class|style|id|title],'
+
+                /** Iframe, combined with the domain whitelist */
+                . 'iframe[src|width|height|style|class|scrolling|id],'
+
+                /** Old school HTML formatting */
+                . 'ins,del,'
+                . 'sup,sub,'
+                . 'big,small,'
+                . 'strong,em,b,strike,'
+
+                /** Tables */
                 . 'table[class|style|summary|border|cellpadding|cellspacing|id],'
                 . 'tbody[class|style|id],'
                 . 'thead[class|style|id],'
@@ -86,14 +108,7 @@ return [
                 . 'tr[class|style|id],'
                 . 'td[class|style|abbr|colspan|title],'
                 . 'th[class|style|abbr|colspan|title],'
-                . 'acronym[title|class|style],'
-                . 'abbr[title|class|style],'
-                . 'code[class|style|id],'
-                . 'font[class|style|color],'
-                . 'summary[class|style|id],'
-                . 'details[class|style|id|open],'
-                . 'iframe[src|width|height|style|class|scrolling|id],' // only use this with HTML.SafeIframe
-                . 'figure[class|style|id|title],figcaption[class|style|id|title]',
+            ,
 
             /*
             |--------------------------------------------------------------------------
