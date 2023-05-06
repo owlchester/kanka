@@ -16,6 +16,12 @@ class CustomDefinitions implements Definition
         $def->addAttribute('a', 'data-html', 'Text');
         $def->addAttribute('a', 'target', 'Text');
 
+        $def->addAttribute('ul', 'role', 'Text');
+        $def->addAttribute('ol', 'role', 'Text');
+        $def->addAttribute('li', 'role', 'Text');
+        $def->addAttribute('div', 'role', 'Text');
+        $def->addAttribute('a', 'role', 'Text');
+
         $def->addElement(
             'details',
             'Block',
