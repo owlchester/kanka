@@ -70,6 +70,7 @@ class PrivacyService
                 $data['users'][] = $user->name;
             }
         }
+
         return $data;
     }
 

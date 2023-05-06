@@ -36,7 +36,7 @@
             <div>
                 <strong>{{ __('entities/permissions.quick.viewable-by') }}</strong>
             </div>
-            @if (!empty($visibility['roles']) || !empty($visibility['roles']))
+            @if (!empty($visibility['roles']) || !empty($visibility['users']))
             <div class="mb-3 @if ($entity->is_private) line-through text-slate-400 @endif">
                 @foreach ($visibility['roles'] as $element)<span class="mr-1"><i class="fa-solid fa-user-group" aria-hidden="true"></i> {!! $element !!}</span>@endforeach
                 @if (!empty($visibility['roles']))<br />@endif
