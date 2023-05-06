@@ -59,6 +59,11 @@ function initGallery() {
                 alertTooManyFiles();
                 return;
             }
+
+            let folder = $('input[name="folder_id"]');
+            if (folder) {
+                data.append('folder_id', folder.val());
+            }
             uploadFiles(data);
             galleryForm.classList.remove('drop-shadow', 'dropping');
         } else {
@@ -117,6 +122,11 @@ function initUploader() {
         Array.from(galleryFiles.files).forEach(file => {
             data.append('file[]', file);
         });
+
+        let folder = $('input[name="folder_id"]');
+        if (folder) {
+            data.append('folder_id', folder.val());
+        }
 
         uploadFiles(data);
     };
