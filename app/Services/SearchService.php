@@ -269,11 +269,12 @@ class SearchService
                     . $child->thumbnail() . '\');"></span> ';
             }
 
-            $parsedName = str_replace('&#039;', '\'', e($model->name));
+            $parsedName = str_replace(['&#039;', '&amp;'], ['\'', '&'], $model->name);
             $parsedNameAlias = $parsedName;
 
+
             if ($model->alias_name) {
-                $parsedNameAlias = $parsedName . ' - ' . str_replace('&#039;', '\'', e($model->alias_name));
+                $parsedNameAlias = $parsedName . ' - ' . str_replace(['&#039;', '&amp;'], ['\'', '&'], e($model->alias_name));
             }
 
             if (!$this->full) {

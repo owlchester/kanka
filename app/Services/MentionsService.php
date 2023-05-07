@@ -219,7 +219,10 @@ class MentionsService
         // Parse all links and transform them into advanced mentions [] if needed
         $links = '`<a\s[^>]*>(.*?)<\/a>`i';
         $text = preg_replace_callback($links, function ($matches) {
-            $mentionName = $matches[1];
+            // Summernote will purify & into &amps, so we need to convert them back. This is done so that mentioning an
+            // entity with & in the name doesn't get replaced with an advanced mention when saving and the name didn't
+            // change.
+            $mentionName = Str::replace(['&amp;'], ['&'], $matches[1]);
             $attributes = $this->linkAttributes($matches[0]);
             $advancedMention = Arr::get($attributes, 'data-mention');
             $advancedAttribute = Arr::get($attributes, 'data-attribute');
@@ -266,7 +269,7 @@ class MentionsService
      */
     public function advancedMentionHelper(string $name): string
     {
-        $cleanEntityName = Str::replace(['"'], ['\''], $name);
+        $cleanEntityName = Str::replace(['"', '&amp;'], ['"', '&'], $name);
         return '<ins class="' . self::ADVANCED_MENTION_CLASS . '" data-name="'
             . $cleanEntityName . '"></ins>';
     }
