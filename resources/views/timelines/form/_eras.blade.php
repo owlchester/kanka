@@ -46,13 +46,13 @@
                    data-url="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}"
                    data-backdrop="static"
                 >
-                    <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                    <x-icon class="pencil"></x-icon>
                 </a>
 
                 <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $era->name }}"
                         data-target="#delete-confirm" data-delete-target="delete-form-era-{{ $era->id }}"
                         title="{{ __('crud.remove') }}">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <x-icon class="trash"></x-icon>
                 </a>
             </td>
         </tr>
@@ -70,7 +70,7 @@
        data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
        data-backdrop="static"
     >
-        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('timelines/eras.actions.add') }}
+        <x-icon class="plus"></x-icon> {{ __('timelines/eras.actions.add') }}
     </a>
 
     <hr />

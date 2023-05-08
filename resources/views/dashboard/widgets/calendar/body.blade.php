@@ -59,7 +59,7 @@ $weather = $calendar->calendarWeather()
             <div class="text-lg mb-2">
                 {{ __('dashboard.widgets.calendar.previous_events') }}
                 <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}">
-                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    <x-icon class="question"></x-icon>
                     <span class="sr-only">{{ __('helpers.calendar-widget.info') }}</span>
                 </a>
             </div>
@@ -95,7 +95,7 @@ $weather = $calendar->calendarWeather()
             <div class="text-lg mb-2">
                 {{ __('dashboard.widgets.calendar.upcoming_events') }}
                 <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}">
-                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    <x-icon class="question"></x-icon>
                     <span class="sr-only">{{ __('helpers.calendar-widget.info') }}</span>
                 </a>
             </div>

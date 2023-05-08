@@ -47,7 +47,7 @@
             {{ __('settings.subscription.tiers') }}
         </h2>
         <x-buttons.confirm type="ghost" target="change-information" size="sm">
-            <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+            <x-icon class="question"></x-icon>
             <span>{{ __('settings.subscription.upgrade_downgrade.button') }}</span>
         </x-buttons.confirm>
     </div>

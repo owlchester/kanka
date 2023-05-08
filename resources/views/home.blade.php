@@ -26,13 +26,14 @@
         @if(!empty($dashboards))
             <div class="btn-group pull-right">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-th-large" aria-hidden="true"></i>
+                    <x-icon class="fa-solid fa-th-large"></x-icon>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     @if (!empty($dashboard))
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
-                                <i class="fa-solid fa-th-large" aria-hidden="true"></i> {{ __('dashboard.dashboards.default.title')}}
+                                <x-icon class="fa-solid fa-th-large"></x-icon>
+                                {{ __('dashboard.dashboards.default.title')}}
                             </a>
                         </li>
                     @endif
@@ -42,7 +43,8 @@
                         @endif
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
-                                <i class="fa-solid fa-th-large" aria-hidden="true"></i> {!! $dash->name !!}
+                                <x-icon class="fa-solid fa-th-large"></x-icon>
+                                {!! $dash->name !!}
                             </a>
                         </li>
                     @endforeach
@@ -50,7 +52,8 @@
                     @can('dashboard', $campaign)
                         <li>
                             <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
-                                <i class="fa-solid fa-cog" aria-hidden="true"></i> {{ __('dashboard.settings.title') }}
+                                <x-icon class="cog"></x-icon>
+                                {{ __('dashboard.settings.title') }}
                             </a>
                         </li>
                     @endcan
@@ -58,7 +61,8 @@
                         <li class="divider"></li>
                         <li>
                             <a href="{{ route('campaigns.edit') }}">
-                                <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('campaigns.show.actions.edit') }}
+                                <x-icon class="pencil"></x-icon>
+                                {{ __('campaigns.show.actions.edit') }}
                             </a>
                         </li>
                     @endcan
@@ -67,7 +71,7 @@
         @else
             @can('update', $campaign)
             <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
-                <i class="fa-solid fa-th-large" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-th-large"></x-icon>
                 <span class="sr-only">{{ __('dashboard.settings.title') }}</span>
             </a>
             @endcan
@@ -82,7 +86,8 @@
                     data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
                     data-placement="bottom"
             >
-                <i class="fa-regular fa-star" aria-hidden="true"></i> <span id="campaign-follow-text"></span>
+                <x-icon class="fa-regular fa-star"></x-icon>
+                <span id="campaign-follow-text"></span>
             </button>
         @endcan
         @can('apply', $campaign)
@@ -92,7 +97,8 @@
                     data-target="#large-modal"
                     data-placement="bottom"
             >
-                <i class="fa-solid fa-door-open" aria-hidden="true"></i> {{ __('dashboard.actions.join') }}
+                <x-icon class="fa-solid fa-door-open"></x-icon>
+                {{ __('dashboard.actions.join') }}
             </button>
         @endcan
     </div>
@@ -136,7 +142,8 @@
     @can('update', $campaign)
         <div class="text-center mt-6">
             <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
-                <i class="fa-solid fa-cog" aria-hidden="true"></i> {{ __('dashboard.settings.title') }}
+                <x-icon class="cog"></x-icon>
+                {{ __('dashboard.settings.title') }}
             </a>
         </div>
 

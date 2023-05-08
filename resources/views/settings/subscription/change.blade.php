@@ -48,7 +48,7 @@
                 @if (! $limited)
                 <li role="presentation" class="active">
                     <a href="#card" aria-controls="home" role="tab" data-toggle="tab">
-                        <i class="fa-regular fa-credit-card" aria-hidden="true"></i>
+                        <x-icon class="fa-regular fa-credit-card"></x-icon>
                         {{ __('billing/payment_methods.types.card') }}
                     </a>
                 </li>

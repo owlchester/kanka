@@ -26,7 +26,7 @@
         </x-buttons.confirm>
 
         <x-buttons.confirm type="primary" full="true">
-            <i class="fa-solid fa-save" aria-hidden="true"></i>
+            <x-icon class="save"></x-icon>
             {{ __('crud.save') }}
         </x-buttons.confirm>
     </div>

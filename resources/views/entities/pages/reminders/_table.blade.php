@@ -63,7 +63,7 @@
                 @can('events', $relation->calendar)
                     <a href="{{ route('entities.entity_events.edit', [$relation->entity, $relation->id, 'next' => 'entity.events']) }}"
                     data-toggle="ajax-modal" data-url="{{ route('entities.entity_events.edit', [$relation->entity, $relation->id, 'next' => 'entity.events']) }}" data-target="#entity-modal">
-                        <i class="fa-solid fa-edit" aria-hidden="true"></i>
+                        <x-icon class="edit"></x-icon>
                     </a>
                 @endcan
             </td>

@@ -13,7 +13,7 @@
         </h3>
         <button class="btn btn-default btn-sm" data-toggle="dialog"
                 data-target="invite-help">
-            <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+            <x-icon class="question"></x-icon>
             <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>
         </button>
 
@@ -65,7 +65,7 @@
                                 <td class="text-right">
                                     {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
                                     <button class="btn btn-sm btn-danger">
-                                        <i class="fa-solid fa-trash" aria-hidden="true"></i> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
+                                        <x-icon class="trash"></x-icon> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
                                     </button>
                                     {!! Form::close() !!}
                                 </td>

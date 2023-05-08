@@ -6,8 +6,8 @@
 @if ($model->race)
     <div class="entity-header-sub pull-left">
         <span title="{{ __('crud.fields.parent') }}" data-toggle="tooltip">
-        <i class="ra ra-wyvern" aria-hidden="true"></i>
-        {!! $model->race->tooltipedLink() !!}
+            <x-icon class="ra ra-wyvern" :title="__('crud.fields.parent')"></x-icon>
+            {!! $model->race->tooltipedLink() !!}
         </span>
     </div>
 @endif

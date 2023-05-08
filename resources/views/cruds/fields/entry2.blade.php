@@ -8,7 +8,7 @@ $old = old('entry');
 
         <a href="//docs.kanka.io/en/latest/features/mentions.html" class="pull-right btn btn-default btn-sm"
            target="_blank" title="{{ __('helpers.link.description') }}">
-            <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.helpers.linking') }}
+            <x-icon class="question"></x-icon> {{ __('crud.helpers.linking') }}
         </a>
     </label>
     {!! Form::textarea(

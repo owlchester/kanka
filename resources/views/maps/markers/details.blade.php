@@ -43,7 +43,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
     @if($marker->entity->isMap())
         <div class="marker-map-link text-center m-3">
             <a href="{{ $marker->entity->url('explore') }}" target="_blank" class="btn btn-primary">
-                <i class="fa-solid fa-map" aria-hidden="true"></i> {{ __('maps.actions.explore') }}
+                <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
             </a>
         </div>
     @endif
@@ -52,7 +52,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
         <div class="marker-explore-links text-center m-3">
             @foreach ($marker->entity->child->maps as $map)
                 <a href="{{ route('maps.explore', $map) }}" class="btn btn-block btn-primary" target="_blank">
-                    <i class="fa-solid fa-map" aria-hidden="true"></i>
+                    <x-icon class="map"></x-icon>
                     {{ __('maps.actions.explore') }} {!! $map->name !!}
                 </a>
             @endforeach
@@ -75,10 +75,10 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
     <div class="marker-actions text-center">
         <div class="btn-group">
             <a href="{{ route('maps.map_markers.edit', [$marker->map, $marker, 'from' => 'explore']) }}" class="btn btn-primary">
-                <i class="fa-solid fa-map-pin"></i> {{ __('maps/markers.actions.update') }}
+                <x-icon class="fa-solid fa-map-pin"></x-icon> {{ __('maps/markers.actions.update') }}
             </a>
             <button class="btn btn-danger delete-confirm" data-name="{{ $marker->markerTitle() }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-marker-confirm-form-{{ $marker->id }}">
-                <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('maps/markers.actions.remove') }}
+                <x-icon class="trash"></x-icon> {{ __('maps/markers.actions.remove') }}
             </button>
         </div>
     </div>

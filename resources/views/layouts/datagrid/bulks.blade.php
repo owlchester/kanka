@@ -13,14 +13,15 @@ $hasOthers = false;
             @if ($bulk === \App\Renderers\Layouts\Layout::ACTION_EDIT)
                 <li>
                     <a href="#" class="datagrid-bulk" data-action="edit">
-                        <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.bulk.actions.edit') }}
+                        <x-icon class="pencil"></x-icon>
+                        {{ __('crud.bulk.actions.edit') }}
                     </a>
                 </li>
             @elseif ($bulk === \App\Renderers\Layouts\Layout::ACTION_DELETE)
                 @if ($hasOthers) <li class="divider"></li> @endif
             <li>
                 <a href="#" class="text-red datagrid-submit" data-action="delete">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
                 </a>
             </li>
             @elseif (is_array($bulk))

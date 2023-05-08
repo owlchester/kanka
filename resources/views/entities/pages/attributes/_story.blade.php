@@ -2,7 +2,7 @@
     <div class="box box-solid box-attributes">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <i class="fa-solid fa-th-list" aria-hidden="true"></i> {{ __('crud.tabs.attributes') }}
+                <x-icon class="fa-solid fa-th-list"></x-icon> {{ __('crud.tabs.attributes') }}
             </h3>
         </div>
         <div class="box-body">

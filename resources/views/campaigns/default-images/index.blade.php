@@ -23,14 +23,14 @@
                 @if ($campaign->boosted())
                     <button class="btn btn-default btn-sm" data-toggle="dialog"
                             data-target="default-images-help">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}
                     </button>
 
                     <a href="{{ route('campaign.default-images.create') }}" class="btn btn-primary btn-sm"
                        data-toggle="ajax-modal" data-target="#entity-modal"
                        data-url="{{ route('campaign.default-images.create') }}">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        <x-icon class="plus"></x-icon>
                         {{ __('campaigns/default-images.actions.add') }}
                     </a>
                 @endif
@@ -43,7 +43,7 @@
                                 <a href="{{ route('campaign.default-images.create') }}" class="btn btn-primary"
                                    data-toggle="ajax-modal" data-target="#entity-modal"
                                    data-url="{{ route('campaign.default-images.create') }}">
-                                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                                    <x-icon class="plus"></x-icon>
                                     {{ __('campaigns/default-images.actions.add') }}
                                 </a>
                             </div>
@@ -62,7 +62,7 @@
                                         <button class="btn btn-sm btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('entities.' . $image['type']) }}"
                                                 data-target="#delete-confirm" data-delete-target="delete-form-{{ $image['uuid'] }}"
                                                 title="{{ __('crud.remove') }}">
-                                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                            <x-icon class="trash"></x-icon>
                                             <span>{{ __('crud.remove') }}</span>
                                         </button>
                                         {!! Form::open([

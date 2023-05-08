@@ -30,7 +30,7 @@
 
                     @can('update', $model)
                         <button class="btn btn-xs btn-danger pull-right">
-                            <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                            <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
                         </button>
                         {!! Form::close() !!}
                     @endcan
@@ -64,7 +64,7 @@
                         <label></label>
                     @endif
                     <button class="btn btn-primary btn-info btn-flat btn-block">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.add') }}
+                        <x-icon class="plus"></x-icon> {{ __('crud.add') }}
                     </button>
                 </div>
             </div>

@@ -43,7 +43,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('maps.explore', [$marker->map_id, 'lat' => $marker->latitude, 'lng' => $marker->longitude]) }}" target="_blank">
-                                        <i class="fa-solid fa-map"></i>
+                                        <x-icon class="map"></x-icon>
                                     </a>
                                 </td>
                             </tr>
@@ -55,7 +55,9 @@
                                 </td>
                                 <td>
                                     @if (!empty($location->location->map) && (!$location->location->is_map_private || (auth()->check() && auth()->user()->can('map', $location->location))))
-                                        <a href="{{ route('locations.map', $location->location_id) }}"><i class="fa-solid fa-map"></i></a>
+                                        <a href="{{ route('locations.map', $location->location_id) }}">
+                                            <x-icon class="map"></x-icon>
+                                        </a>
                                     @endif
                                 </td>
                             </tr>

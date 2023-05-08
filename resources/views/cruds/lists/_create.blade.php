@@ -1,6 +1,6 @@
 <div class="btn-group">
     <a href="{{ route($route . '.create') }}" class="btn btn-primary btn-new-entity" data-entity-type="{{ $name }}">
-        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+        <x-icon class="plus"></x-icon>
         <span class="hidden-xs hidden-sm">{!! $singular !!}</span>
     </a>
     @if(!in_array($name, ['menu_links', 'relations']))

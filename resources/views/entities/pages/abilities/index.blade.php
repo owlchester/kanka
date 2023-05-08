@@ -14,23 +14,26 @@
     @can('update', $entity->child)
         <div class="header-buttons inline-block pull-right ml-auto">
             <a href="{{ route('entities.entity_abilities.reorder', $entity) }}" class="btn btn-sm btn-default">
-                <i class="fa-solid fa-sort" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.show.reorder') }}</span>
+                <x-icon class="fa-solid fa-sort"></x-icon>
+                <span class="hidden-xs hidden-sm">{{ __('entities/abilities.show.reorder') }}</span>
                 <span class="visible-xs visible-sm">{{ __('sidebar.campaign_switcher.reorder') }}</span>
             </a>
             <a href="{{ route('entities.entity_abilities.reset', $entity) }}" class="btn btn-sm btn-default">
-                <i class="fa-solid fa-redo" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>
+                <x-icon class="fa-solid fa-redo"></x-icon>
+                <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>
                 <span class="visible-xs visible-sm">{{ __('crud.actions.reset') }}</span>
             </a>
             @if ($entity->isCharacter())
                 <a href="{{ route('entities.entity_abilities.import', [$entity, 'from' => 'race']) }}" class="btn btn-sm btn-default">
-                    <i class="ra ra-wyvern" aria-hidden="true"></i>
+                    <x-icon class="ra ra-wyvern"></x-icon>
                     <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.import_from_race') }}</span>
                     <span class="visible-xs visible-sm">{{ __('entities/abilities.actions.import_from_race_mobile') }}</span>
                 </a>
             @endif
             <a href="{{ route('entities.entity_abilities.create', $entity) }}" class="btn btn-sm btn-warning"
                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_abilities.create', $entity) }}">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i> <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>
+                <x-icon class="plus"></x-icon>
+                <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>
                 <span class="visible-xs visible-sm">{{ __('crud.add') }}</span>
             </a>
         </div>

@@ -9,7 +9,7 @@
     data-url="{{ route('images.edit', $image) }}" @if ($image->is_folder) data-folder="{{ route('campaign.gallery.index', ['folder_id' => $image->id]) }}" @endif title="{{ $image->name }}">
     @if ($image->isFolder())
         <div class="w-full flex flex-col items-center gap-2">
-            <i class="fa-regular fa-folder text-4xl" aria-hidden="true"></i>
+            <x-icon class="fa-regular fa-folder text-4xl"></x-icon>
             <div class="text-base overflow-hidden text-center px-2">
 
                 @if ($image->visibility_id != \App\Models\Visibility::VISIBILITY_ALL)
@@ -21,7 +21,7 @@
     @else
         @if ($image->isFont())
             <div class="block grow w-full flex flex-col justify-center items-center gap-2">
-                <i class="fa-regular fa-file text-4xl" aria-hidden="true"></i>
+                <x-icon class="fa-regular fa-file text-4xl"></x-icon>
             </div>
         @else
         <a class="block avatar grow relative cover-background"

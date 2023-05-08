@@ -65,7 +65,8 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                 <li>
                     <a href="{{ $imageUrl }}" target="_blank">
-                        <i class="fa-solid fa-external-link"></i> {{ __('entities/image.actions.view') }}
+                        <x-icon class="fa-solid fa-external-link"></x-icon>
+                        {{ __('entities/image.actions.view') }}
                     </a>
                 </li>
                 <li class="divider"></li>
@@ -118,20 +119,20 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     {!! $model->name !!}
                 </h1>
                 @if ($model instanceof \App\Models\Character && $model->is_dead)
-                    <span class="entity-name-icon entity-char-dead cursor-pointer" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}">
-                        <i class="ra ra-skull entity-icons text-xl" aria-hidden="true" ></i>
+                    <span class="entity-name-icon entity-char-dead cursor-pointer text-xl" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}">
+                        <x-icon class="ra ra-skull entity-icons"></x-icon>
                         <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                     </span>
                 @endif
                 @if ($model instanceof \App\Models\Quest && $model->is_completed)
-                    <span class="entity-name-icon entity-quest-complete cursor-pointer" data-toggle="tooltip" title="{{ __('quests.fields.is_completed') }}">
-                        <i class="fa-solid fa-check-circle entity-icons text-xl" aria-hidden="true" ></i>
+                    <span class="entity-name-icon entity-quest-complete cursor-pointer text-xl" data-toggle="tooltip" title="{{ __('quests.fields.is_completed') }}">
+                        <x-icon class="fa-solid fa-check-circle entity-icons"></x-icon>
                         <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
                     </span>
                 @endif
                 @if ($model instanceof \App\Models\Organisation && $model->is_defunct)
-                    <span class="entity-name-icon entity-org-defunct cursor-pointer" data-toggle="tooltip" title="{{ __('organisations.hints.is_defunct') }}">
-                        <i class="fa-solid fa-shop-slash entity-icons text-xl" aria-hidden="true" ></i>
+                    <span class="entity-name-icon entity-org-defunct cursor-pointer text-xl" data-toggle="tooltip" title="{{ __('organisations.hints.is_defunct') }}">
+                        <x-icon class="fa-solid fa-shop-slash entity-icons "></x-icon>
                         <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
                     </span>
                 @endif
@@ -152,7 +153,8 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                         @can('update', $model)
                             <li>
                                 <a href="{{ route($entity->pluralType() . '.edit', $model->id) }}" data-keyboard="edit">
-                                    <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.edit') }}
+                                    <x-icon class="pencil"></x-icon>
+                                    {{ __('crud.edit') }}
 
                                     <span class="keyboard-shortcut pull-right" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>E</code>']) !!}" data-html="true">E</span>
                                 </a>
@@ -161,19 +163,22 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                         @can('create', $model)
                             <li>
                                 <a href="{{ route($entity->pluralType() . '.create') }}">
-                                    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new') }}
+                                    <x-icon class="fa-regular fa-plus"></x-icon>
+                                    {{ __('crud.actions.new') }}
                                 </a>
                             </li>
                             @if (\Illuminate\Support\Facades\Route::has($entity->pluralType() . '.tree'))
                                 <li>
                                     <a href="{{ route($entity->pluralType() . '.create', ['parent_id' => $model->id]) }}">
-                                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('crud.actions.new_child') }}
+                                        <x-icon class="fa-regular fa-plus"></x-icon>
+                                        {{ __('crud.actions.new_child') }}
                                     </a>
                                 </li>
                             @endif
                             <li>
                                 <a href="{{ route($entity->pluralType() . '.create', ['copy' => $model->id]) }}">
-                                    <i class="fa-solid fa-copy" aria-hidden="true"></i> {{ __('crud.actions.copy') }}
+                                    <x-icon class="fa-regular fa-copy"></x-icon>
+                                    {{ __('crud.actions.copy') }}
                                 </a>
                             </li>
                         @endcan
@@ -183,23 +188,27 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                                 @can('update', $model)
                                     <li>
                                         <a href="{{ route('entities.story.reorder', $model->entity->id) }}">
-                                            <i class="fa-solid fa-list-ol"></i> {{ __('entities/story.reorder.icon_tooltip') }}
+                                            <x-icon class="fa-solid fa-list-ol"></x-icon>
+                                            {{ __('entities/story.reorder.icon_tooltip') }}
                                         </a>
                                     </li>
                                 @endcan
                                 <li>
                                     <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toggle="tooltip"
                                        data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toast="{{ __('crud.alerts.copy_mention') }}">
-                                        <i class="fa-solid fa-link"></i> {{ __('crud.actions.copy_mention') }}
+                                        <x-icon class="fa-solid fa-link"></x-icon>
+                                        {{ __('crud.actions.copy_mention') }}
                                     </a>
                                 </li>
                                 @if (auth()->user()->isAdmin())
                                     <li>
                                         <a href="{{ route('entities.template', $entity) }}">
                                             @if($entity->is_template)
-                                                <i class="fa-regular fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.unset') }}
+                                                <x-icon class="fa-regular fa-star"></x-icon>
+                                                {{ __('entities/actions.templates.unset') }}
                                             @else
-                                                <i class="fa-solid fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.set') }}
+                                                <x-icon class="fa-solid fa-star"></x-icon>
+                                                {{ __('entities/actions.templates.set') }}
                                             @endif
                                         </a>
                                     </li>
@@ -208,12 +217,14 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                             @endif
                             <li>
                                 <a href="{{ route('entities.html-export', $entity) }}">
-                                    <i class="fa-solid fa-print" aria-hidden="true"></i> {{ __('crud.actions.print') }}
+                                    <x-icon class="fa-solid fa-print"></x-icon>
+                                    {{ __('crud.actions.print') }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('entities.json-export', $entity) }}">
-                                    <i class="fa-solid fa-download" aria-hidden="true"></i> {{ __('crud.actions.json-export') }}
+                                    <x-icon class="fa-solid fa-download"></x-icon>
+                                    {{ __('crud.actions.json-export') }}
                                 </a>
                             </li>
                         @endif
@@ -221,7 +232,8 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                             <li class="divider"></li>
                             <li>
                                 <a href="{{ route('entities.move', $entity->id) }}">
-                                    <i class="fa-solid fa-clone" aria-hidden="true"></i> {{ __('crud.actions.move') }}
+                                    <x-icon class="fa-regular fa-clone"></x-icon>
+                                    {{ __('crud.actions.move') }}
                                 </a>
                             </li>
                         @endif
@@ -229,7 +241,8 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                         @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
                             <li>
                                 <a href="{{ route('entities.transform', $entity->id) }}">
-                                    <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.transform') }}
+                                    <x-icon class="fa-solid fa-exchange-alt"></x-icon>
+                                    {{ __('crud.actions.transform') }}
                                 </a>
                             </li>
                         @endif
@@ -238,7 +251,8 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                             <li class="divider"></li>
                             <li>
                                 <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm" data-recoverable="1">
-                                    <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                                    <x-icon class="trash"></x-icon>
+                                    {{ __('crud.remove') }}
                                 </a>
                                 {!! Form::open(['method' => 'DELETE','route' => [$entity->pluralType() . '.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                                 {!! Form::close() !!}
@@ -305,7 +319,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
 
     <x-dialog id="quick-privacy" :title="__('Loading')">
         <div class="p-5 text-center">
-            <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+            <x-icon class="fa-solid fa-spinner fa-spin fa-2x"></x-icon>
         </div>
     </x-dialog>
 @endsection

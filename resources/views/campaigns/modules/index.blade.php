@@ -32,7 +32,7 @@
                 @endif
                 <a href="//docs.kanka.io/en/latest/features/campaigns/modules.html"
                    target="_blank" class="btn btn-default btn-sm">
-                    <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                    <x-icon class="question"></x-icon>
                     {!! __('campaigns.members.actions.help') !!}
                 </a>
             </div>

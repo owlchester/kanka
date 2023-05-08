@@ -36,20 +36,21 @@
 
                         @if ($discord = $user->discord())
                             <span class="mr-5" title="Discord" data-toggle="tooltip">
-                            <i class="fab fa-discord"></i> {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }}
+                            <x-icon class="fa-brands fa-discord"></x-icon> {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }}
                             </span>
                         @endif
 
                         @if ($user->hasPlugins())
                             <a class="mr-5" href="{{ config('marketplace.url') . '/profiles/' . $user->id }}" title="Marketplace" data-toggle="tooltip" target="_blank">
-                                <i class="fa-solid fa-shop"></i>
+                                <x-icon class="fa-solid fa-shop"></x-icon>
                                 {{ __('front.menu.marketplace') }}
                             </a>
                         @endif
 
                         @if (auth()->check() && !\App\Facades\Identity::isImpersonating() && auth()->user()->id === $user->id)
                             <a href="{{ route('settings.profile') }}" target="_blank" title="{{ __('crud.edit') }}" data-toggle="tooltip">
-                                <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('settings.profile.actions.update_profile') }}
+                                <x-icon class="pencil"></x-icon>
+                                {{ __('settings.profile.actions.update_profile') }}
                             </a>
                         @endif
                     </div>

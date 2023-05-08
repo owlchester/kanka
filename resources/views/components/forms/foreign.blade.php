@@ -29,7 +29,7 @@
     @if ($canNew)
             <div class="input-group-btn">
                 <a class="quick-creator-subform btn btn-tab-form" data-url="{{ route('entity-creator.form', ['type' => $entityType, 'origin' => 'entity-form', 'target' => $id]) }}">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    <x-icon class="plus"></x-icon>
                     <span class="sr-only">{{ __('crud.create') }}</span>
                 </a>
             </div>

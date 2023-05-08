@@ -104,29 +104,29 @@
                             @endforeach
                             <li>
                                 <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" title="{{ __('dashboard.settings.title') }}">
-                                    <i class="fa-solid fa-cog"></i> {{ __('dashboard.settings.title') }}
+                                    <x-icon class="cog"></x-icon> {{ __('dashboard.settings.title') }}
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="{{ route('campaigns.edit') }}">
-                                    <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('campaigns.show.actions.edit') }}
+                                    <x-icon class="pencil"></x-icon> {{ __('campaigns.show.actions.edit') }}
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="{{ route('campaign_users.index') }}"  title="{{ __('campaigns.show.tabs.members') }}">
-                                    <i class="fa-solid fa-user"></i> {{ __('campaigns.show.tabs.members') }}
+                                    <x-icon class="fa-solid fa-user"></x-icon> {{ __('campaigns.show.tabs.members') }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('campaign_roles.index') }}" title="{{  __('campaigns.show.tabs.roles') }}">
-                                    <i class="fa-solid fa-user-tag"></i> {{ __('campaigns.show.tabs.roles') }}
+                                    <x-icon class="fa-solid fa-user-tag"></x-icon> {{ __('campaigns.show.tabs.roles') }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('campaign.modules') }}" title="{{ __('campaigns.show.tabs.settings') }}">
-                                    <i class="fa-solid fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
+                                    <x-icon class="fa-solid fa-th-large"></x-icon> {{ __('campaigns.show.tabs.settings') }}
                                 </a>
                             </li>
                         </ul>

@@ -34,7 +34,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                                 ]) !!}
                                 <span class="input-group-btn">
                                     <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
-                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                        <x-icon class="trash"></x-icon>
                                         <span class="sr-only">{{ __('crud.remove') }}</span>
                                     </span>
                                 </span>
@@ -45,7 +45,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             @endforeach
         </div>
         <a class="btn btn-default btn-block dynamic-row-add" data-template="template_appearance" data-target="character-appearance" href="#" title="{{ __('characters.actions.add_appearance') }}">
-            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            <x-icon class="plus"></x-icon>
             {{ __('characters.actions.add_appearance') }}
         </a>
 
@@ -82,7 +82,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                                 ]) !!}
                                 <span class="input-group-btn">
                                     <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0" >
-                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                        <x-icon class="trash"></x-icon>
                                         <span class="sr-only">{{ __('crud.remove') }}</span>
                                     </span>
                                 </span>
@@ -102,7 +102,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 @endforeach
             </div>
             <a class="btn btn-default btn-block dynamic-row-add" data-template="template_personality" data-target="character-personality" href="#" title="{{ __('characters.actions.add_personality') }}">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                <x-icon class="plus"></x-icon>
                 {{ __('characters.actions.add_personality') }}
             </a>
 
@@ -172,7 +172,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                             ]) !!}
                             <span class="input-group-btn">
                                 <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
-                                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                    <x-icon class="trash"></x-icon>
                                 <span class="sr-only">{{ __('crud.remove') }}</span>
                                 </span>
                             </span>
@@ -197,7 +197,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                         ]) !!}
                         <span class="input-group-btn">
                             <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
-                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                <x-icon class="trash"></x-icon>
                                 <span class="sr-only">{{ __('crud.remove') }}</span>
                             </span>
                         </span>

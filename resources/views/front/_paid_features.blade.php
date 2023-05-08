@@ -255,7 +255,7 @@
         @if (isset($campaign))
             <div class="my-2">
                 <a href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" class="btn btn-block btn-success text-uppercase">
-                    <i class="fa-solid fa-rocket" aria-hidden="true"></i> {{ __('callouts.premium.unlock', ['campaign' => $campaign->name]) }}
+                    <x-icon class="premium"></x-icon> {{ __('callouts.premium.unlock', ['campaign' => $campaign->name]) }}
                 </a>
             </div>
         @endif

@@ -92,11 +92,11 @@
             @if (!$campaignService->campaign()->boosted())
                 @subscriber()
                     <p class="help-block">
-                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaignService->campaign()])]) !!}
+                        <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaignService->campaign()])]) !!}
                     </p>
                 @else
                     <p class="help-block">
-                        <i class="fa-solid fa-rocket" aria-hidden="true"></i> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
+                        <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
                     </p>
                 @endsubscriber
             @endif

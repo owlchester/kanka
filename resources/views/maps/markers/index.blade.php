@@ -13,12 +13,12 @@
     @can('update', $model)
         <div class="header-buttons inline-block pull-right ml-auto">
             <a href="https://docs.kanka.io/en/latest/entities/maps/markers.html" class="btn btn-default btn-sm" target="_blank">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                <x-icon class="question"></x-icon>
                 {{ __('crud.actions.help') }}
             </a>
             @if ($model->explorable())
                 <a href="{{ route('maps.explore', ['map' => $model]) }}" class="btn btn-primary btn-sm">
-                    <i class="fa-solid fa-map" aria-hidden="true"></i>
+                    <x-icon class="map"></x-icon>
                     {{ __('maps.actions.explore') }}
                 </a>
             @endif

@@ -9,7 +9,7 @@
 
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
             </a>
         </div>
     </div>
@@ -21,7 +21,7 @@
             </p>
             @can('relation', [$entity->child, 'add'])
                 <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    <x-icon class="plus"></x-icon>
                     <span class="hidden-xs hidden-sm">
                     {{ __('entities.relation') }}
                 </span>

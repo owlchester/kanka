@@ -24,7 +24,7 @@
                 </p>
                 <p>
                     <a href="{{ $model->getLink() }}">
-                        <i class="fa-regular fa-arrow-left" aria-hidden="true"></i>
+                        <x-icon class="fa-regular fa-arrow-left"></x-icon>
                         {{ __('crud.actions.back') }}
                     </a>
                 </p>
@@ -58,7 +58,7 @@
     ]) !!}
             </p>
             <a href="{{ $model->getLink() }}">
-                <i class="fa-regular fa-arrow-left" aria-hidden="true"></i>
+                <x-icon class="fa-regular fa-arrow-left"></x-icon>
                 {{ __('crud.actions.back') }}
             </a>
         @endif

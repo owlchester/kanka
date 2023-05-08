@@ -17,11 +17,10 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
 
             {{ __('entities/pins.title') }}
             <a href="//docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank">
-                <i class="fa-solid fa-question-circle pull-right" aria-hidden="true" ></i>
+                <x-icon class="fa-solid fa-question-circle pull-right"></x-icon>
             </a>
         </div>
         <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-pinned-elements">
-
             <ul class="pins m-0 p-0 list-none">
                 @includeWhen(!$model->entity->pinnedFiles->isEmpty(), 'entities.components.assets')
                 @include('entities.components.relations')

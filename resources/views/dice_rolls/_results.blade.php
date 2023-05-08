@@ -5,7 +5,7 @@
     <div class="box-tools">
         @can('roll', $model)
             <a href="{{ route('dice_rolls.roll', ['dice_roll' => $model]) }}" class="btn btn-box-tool">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('dice_rolls.results.actions.add') }}
+                <x-icon class="plus"></x-icon> {{ __('dice_rolls.results.actions.add') }}
             </a>
         @endcan
     </div>
@@ -31,7 +31,7 @@
                 @can('delete', $model)
                 {!! Form::open(['method' => 'DELETE','route' => ['dice_rolls.destroy_roll', $model, $relation->id],'style'=>'display:inline']) !!}
                 <button class="btn btn-xs btn-danger" title="{{ __('crud.remove') }}" data-toggle="tooltip">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <x-icon class="trash"></x-icon>
                 </button>
                 {!! Form::close() !!}
                 @endcan

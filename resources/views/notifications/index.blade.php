@@ -12,7 +12,7 @@
             @if ($notifications->count() >= 0)
             <div class="flex-none self-end">
                 <x-buttons.confirm type="danger" target="delete-confirm-notifications" size="sm">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <x-icon class="trash"></x-icon>
                     <span>{{ __('notifications.clear.action') }}</span>
                 </x-buttons.confirm>
             </div>
@@ -87,7 +87,7 @@
                 'id' => 'notifications-clear'
             ]) !!}
                 <x-buttons.confirm type="danger" full="true" ouline="true">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <x-icon class="trash"></x-icon>
                     <span>{{ __('crud.remove') }}</span>
                 </x-buttons.confirm>
             {!! Form::close() !!}

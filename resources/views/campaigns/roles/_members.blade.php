@@ -11,7 +11,7 @@
            class="btn btn-primary btn-sm"
            data-toggle="ajax-modal" data-target="#entity-modal"
            data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
-            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            <x-icon class="plus"></x-icon>
             {{ __('campaigns.roles.users.actions.add') }}
         </a>
     @endcan
@@ -51,7 +51,7 @@
                     class="btn btn-primary lg:w-full"
                     data-toggle="ajax-modal" data-target="#entity-modal"
                     data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                <x-icon class="plus"></x-icon>
                 {{ __('campaigns.roles.users.actions.add') }}
             </button>
         @endcan

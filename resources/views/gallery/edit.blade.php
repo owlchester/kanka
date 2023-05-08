@@ -11,7 +11,7 @@ $imageCount = 0;
         <div class="">
         @if($image->isFolder())
             <div class="text-center my-5">
-                <i class="fa-solid fa-folder fa-4x" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-folder fa-4x"></x-icon>
             </div>
         @else
 
@@ -41,16 +41,16 @@ $imageCount = 0;
             <div class="flex gap-2 items-center mb-5">
                 @if(!$image->isFolder())
                     <div class="label label-default text-xs" title="{{ __('campaigns/gallery.fields.ext') }}">
-                        <i class="fa-regular fa-image" aria-hidden="true"></i>
+                        <x-icon class="fa-regular fa-image"></x-icon>
                         {{ strtoupper($image->ext) }}
                     </div>
                     <div class="label label-default text-xs" title="{{ __('campaigns/gallery.fields.size') }}">
-                        <i class="fa-regular fa-weight-hanging" aria-hidden="true"></i>
+                        <x-icon class="fa-regular fa-weight-hanging"></x-icon>
                         {{ $image->niceSize() }}
                     </div>
                 @endif
                 <div class="label label-default text-xs" title="{{ __('campaigns/gallery.fields.created_by') }}">
-                    <i class="fa-regular fa-user" aria-hidden="true"></i>
+                    <x-icon class="fa-regular fa-user"></x-icon>
                     {{ $image->user ? $image->user->name : __('crud.users.unknown') }}
                 </div>
             </div>
@@ -81,13 +81,14 @@ $imageCount = 0;
                        title="{{ __('crud.remove') }}"
                        data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
                        <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-confirm-form'>{{ __('crud.remove') }}</a>">
-                        <i class="fa-regular fa-trash" aria-hidden="true"></i>
+                        <x-icon class="fa-regular fa-trash"></x-icon>
                         {{ __('crud.remove') }}
                     </a>
                 @endif
                     @if(!$image->isFolder())
                         <a href="{{ $image->getUrl() }}" target="_blank">
-                            <i class="fa-regular fa-link" aria-hidden="true"></i> {{ __('campaigns/gallery.actions.' . $image->isFont() ? 'file-link' : 'image-link') }}
+                            <x-icon class="fa-regular fa-link"></x-icon>
+                            {{ __('campaigns/gallery.actions.' . $image->isFont() ? 'file-link' : 'image-link') }}
                         </a>
                     @endif
                 </div>

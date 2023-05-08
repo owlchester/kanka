@@ -16,7 +16,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         </h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
             </a>
             @if (request()->has('parent_id'))
                 <a href="{{ route('quests.show', [$model]) }}" class="btn btn-box-tool">

@@ -26,7 +26,7 @@ use \Illuminate\Support\Arr;
                 @if ($campaign->superboosted())
                     <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
                                  data-target="stats-help">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}
                     </button>
                 @endif

@@ -84,7 +84,7 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
         @if (!empty($widget->entity->child->map))
             <div class="panel-footer text-right">
                 <a href="{{ $widget->entity->url('map') }}">
-                    <i class="fa-solid fa-map"></i> {{ __('locations.show.tabs.map') }}
+                    <x-icon class="map"></x-icon> {{ __('locations.show.tabs.map') }}
                 </a>
             </div>
         @endif

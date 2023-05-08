@@ -24,7 +24,7 @@ use App\Facades\Datagrid ?>
                 @if ($campaign->boosted())
                     <button class="btn btn-sm btn-default pull-right ml-1" data-toggle="dialog"
                             data-target="theming-help">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}
                     </button>
                     <a href="#" data-url="{{ route('campaign-theme') }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn btn-default btn-sm pull-right ml-1">
@@ -32,7 +32,7 @@ use App\Facades\Datagrid ?>
                     </a>
 
                     <a href="{{ route('campaign_styles.create') }}" class="btn btn-primary btn-sm pull-right ml-1">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('campaigns/styles.actions.new') }}
+                        <x-icon class="plus"></x-icon> {{ __('campaigns/styles.actions.new') }}
                     </a>
                 @endif
             </div>

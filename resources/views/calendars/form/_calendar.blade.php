@@ -104,7 +104,7 @@
                                 {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
                                 <span class="input-group-btn">
                                     <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                        <x-icon class="trash"></x-icon>
                                     </span>
                                 </span>
                             </div>
@@ -114,7 +114,7 @@
             @endforeach
         </div>
         <a class="btn btn-default dynamic-row-add" data-template="template_year" data-target="calendar-years" href="#" title="{{ __('calendars.actions.add_year') }}">
-            <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('calendars.actions.add_year') }}
+            <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_year') }}
         </a>
 
         <hr />
@@ -167,7 +167,7 @@
                         {!! Form::text('year_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.name')]) !!}
                         <span class="input-group-btn">
                             <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                <x-icon class="trash"></x-icon>
                             </span>
                         </span>
                     </div>

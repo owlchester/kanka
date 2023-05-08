@@ -24,11 +24,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             <div class="{{ $boxClass }}">
                 <div class="flex gap-2 mb-2">
                     <h2 class="text-base mt-0 grow">
-                        <i class="fa-regular fa-moon-over-sun" aria-hidden="true"></i>
+                        <x-icon class="fa-regular fa-moon-over-sun"></x-icon>
                         {{ __('settings/appearance.fields.theme') }}
                     </h2>
                     <a href="https://docs.kanka.io/en/latest/profile/appearance.html#theme" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
@@ -46,11 +46,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? $highlightClass : '' }}">
                 <div class="flex gap-2 mb-2">
                     <h2 class="text-base mt-0 grow">
-                        <i class="fa-solid fa-list" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-list"></x-icon>
                         {{ __('settings/appearance.fields.pagination') }}
                     </h2>
                     <a href="https://docs.kanka.io/en/latest/profile/appearance.html#results-per-page" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
@@ -64,11 +64,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             <div class="{{ $boxClass }}">
                 <div class="flex gap-2 mb-2">
                     <h2 class="text-base mt-0 grow">
-                        <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-calendar"></x-icon>
                         {{ __('settings/appearance.fields.date-format') }}
                     </h2>
                     <a href="https://docs.kanka.io/en/latest/profile/appearance.html#date-formatting" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
@@ -90,11 +90,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             <div class="{{ $boxClass }} {{ $highlight === 'campaign-switcher' ? $highlightClass : '' }}">
                 <div class="flex gap-2 mb-2">
                     <h2 class="text-base mt-0 grow">
-                        <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-arrow-down-a-z"></x-icon>
                         {{ __('settings/appearance.fields.campaign-order') }}
                     </h2>
                     <a href="https://docs.kanka.io/en/latest/profile/appearance.html#campaign-order" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true" aria-label="{{ __('front.menu.documentation') }}"></i>
+                        <x-icon class="question"></x-icon>
+                        <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
 
@@ -114,11 +115,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             <div class="{{ $boxClass }}">
                 <div class="flex gap-2 mb-2">
                     <h2 class="text-base mt-0 grow">
-                        <i class="fa-solid fa-save" aria-hidden="true"></i>
+                        <x-icon class="save"></x-icon>
                         {{ __('settings/appearance.fields.new-entity-workflow') }}
                     </h2>
                     <a href="https://docs.kanka.io/en/latest/profile/appearance.html#new-entity-workflow" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
@@ -133,11 +134,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <div class="{{ $boxClass }}">
                     <div class="flex gap-2 mb-2">
                         <h2 class="text-base mt-0 grow">
-                            <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                            <x-icon class="pencil"></x-icon>
                             {{ __('settings/appearance.fields.editor') }}
                         </h2>
                         <a href="https://docs.kanka.io/en/latest/profile/appearance.html#text-editor" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                            <x-icon class="question"></x-icon>
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
                     </div>
@@ -153,11 +154,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             <div class="{{ $boxClass }} {{ $highlight === 'explore' ? $highlightClass : '' }}">
                 <div class="flex gap-2 mb-2">
                     <h2 class="text-base mt-0 grow">
-                        <i class="fa-solid fa-grid" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-grid"></x-icon>
                         {{ __('settings/appearance.fields.entity-explore') }}
                     </h2>
                     <a href="https://docs.kanka.io/en/latest/profile/appearance.html#entity-explore" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
@@ -173,11 +174,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             <div class="{{ $boxClass }}">
                 <div class="flex gap-2 mb-2">
                     <h2 class="text-base mt-0 grow">
-                        <i class="fa-solid fa-folder" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-folder"></x-icon>
                         {{ __('settings/appearance.fields.default-nested') }}
                     </h2>
                     <a href="https://docs.kanka.io/en/latest/profile/appearance.html#nested-lists-layout" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
@@ -194,11 +195,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
             <div class="{{ $boxClass }}">
                 <div class="flex gap-2 mb-2">
                     <h2 class="text-base mt-0 grow">
-                        <i class="fa-solid fa-at" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-at"></x-icon>
                         {{ __('settings/appearance.fields.mentions') }}
                     </h2>
                     <a href="https://docs.kanka.io/en/latest/profile/appearance.html#mentions" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                     </a>
                 </div>
@@ -213,7 +214,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
         </div>
 
         <x-buttons.confirm type="primary" full="true">
-            <i class="fa-solid fa-save" aria-hidden="true"></i>
+            <x-icon class="save"></x-icon>
             <span>{{ __('settings/appearance.actions.save') }}</span>
         </x-buttons.confirm>
     @if (!empty($from))

@@ -23,7 +23,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
 
         <div class="box-tools pull-right">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
             </a>
 
             @if (request()->has('race_id'))
@@ -38,7 +38,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
             @can('update', $model)
                 <a href="{{ route('races.members.create', ['race' => $model->id]) }}" class="btn btn-primary btn-sm"
                    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('races.members.create', $model->id) }}">
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                    <x-icon class="plus"></x-icon>
                     <span class="hidden-sm hidden-xs">{{ __('crud.add') }}</span>
                 </a>
             @endcan

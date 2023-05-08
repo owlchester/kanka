@@ -63,7 +63,7 @@ if (!empty($moonNames)) {
                         {!! Form::number('moon_offset[]', $fullmoon['offset'], ['class' => 'form-control', 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
                         <span class="input-group-btn">
                             <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                <x-icon class="trash"></x-icon>
                             </span>
                         </span>
                     </div>
@@ -74,7 +74,7 @@ if (!empty($moonNames)) {
     @endforeach
 </div>
 <a class="btn btn-default dynamic-row-add" data-template="template_moon" data-target="calendar-moons" href="#" title="{{ __('calendars.actions.add_moon') }}">
-    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('calendars.actions.add_moon') }}
+    <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_moon') }}
 </a>
 
 @section('modals')
@@ -105,7 +105,7 @@ if (!empty($moonNames)) {
                     {!! Form::number('moon_offset[]', 0, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.offset'), 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
                     <span class="input-group-btn">
                         <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                            <x-icon class="trash"></x-icon>
                         </span>
                     </span>
                 </div>

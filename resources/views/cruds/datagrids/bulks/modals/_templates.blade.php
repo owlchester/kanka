@@ -21,7 +21,7 @@
 <div class="modal-footer">
     <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
     <button class="btn btn-success" type="submit">
-        <i class="fa-solid fa-th-list" aria-hidden="true"></i>
+        <x-icon class="fa-solid fa-th-list"></x-icon>
         {{ __('crud.actions.apply') }}
     </button>
 </div>

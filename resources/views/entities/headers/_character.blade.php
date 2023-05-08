@@ -9,7 +9,7 @@
 
 <div class="entity-header-sub entity-header-line">
     <div class="entity-header-sub-element">
-        <i class="ra ra-tower" title="{{ \App\Facades\Module::singular(config('entities.ids.location'), __('entities.location')) }}" data-toggle="tooltip" aria-hidden="true"></i>
+        <x-icon class="ra ra-tower" :tooltip="\App\Facades\Module::singular(config('entities.ids.location'), __('entities.location'))"></x-icon>
 
         @if ($model->location->parentLocation)
             {!! __('crud.fields.locations', [

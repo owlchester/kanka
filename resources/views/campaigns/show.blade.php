@@ -43,7 +43,7 @@
                     </h3>
                     @can('update', $campaign)
                         <a href="{{ route('campaigns.edit') }}" class="btn btn-default btn-sm" title="{{ __('campaigns.show.actions.edit') }}">
-                            <i class="fa-solid fa-edit" aria-hidden="true"></i>
+                            <x-icon class="edit"></x-icon>
                             {{ __('campaigns.show.actions.edit') }}
                         </a>
                     @endcan

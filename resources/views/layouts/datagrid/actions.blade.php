@@ -11,12 +11,12 @@
             <li>
                 @if ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT)
                     <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : $model) }}">
-                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                        <x-icon class="pencil"></x-icon>
                         {{ __('crud.edit') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_COPY)
                     <a href="{{ route($model->url('create'), method_exists($model, 'routeCopyParams') ? $model->routeCopyParams($params) : $model) }}">
-                        <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-copy"></x-icon>
                         {{ __('crud.actions.copy') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT_AJAX)
@@ -24,7 +24,7 @@
                        data-toggle="ajax-modal" data-target="#entity-modal"
                        data-url="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : $model) }}"
                     >
-                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                        <x-icon class="pencil"></x-icon>
                         {{ __('crud.edit') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_DELETE)
@@ -32,7 +32,7 @@
                        data-target="#delete-confirm" data-delete-target="delete-form-{{ $model->id }}"
                        {!! method_exists($model, 'actionDeleteConfirmOptions') ? $model->actionDeleteConfirmOptions() : null !!}
                     >
-                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        <x-icon class="trash"></x-icon>
                         {{ __('crud.remove') }}
                     </a>
                 @elseif (is_array($action))

@@ -41,7 +41,7 @@
                                 title="{{ __('crud.delete_modal.title') }}"
                                 data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
                                  <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-marker-confirm-form-{{ $model->id}}'>{{ __('crud.remove') }}</a>">
-                                <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('maps/markers.actions.remove') }}
+                                <x-icon class="trash"></x-icon> {{ __('maps/markers.actions.remove') }}
                             </a>
                         </div>
                     </div>

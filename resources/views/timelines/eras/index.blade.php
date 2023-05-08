@@ -13,7 +13,7 @@
         <div class="header-buttons inline-block pull-right ml-auto">
             <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn btn-warning btn-sm"
             >
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                <x-icon class="plus"></x-icon>
                 {{ __('timelines/eras.actions.add') }}
             </a>
         </div>

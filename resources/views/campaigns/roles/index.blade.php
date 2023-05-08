@@ -4,7 +4,7 @@
     </h3>
     <button class="btn btn-default btn-sm" data-toggle="dialog"
             data-target="roles-help">
-        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+        <x-icon class="question"></x-icon>
         {{ __('campaigns.members.actions.help') }}
     </button>
     @if (auth()->user()->can('update', $campaign))
@@ -12,7 +12,7 @@
            data-toggle="ajax-modal" data-target="#entity-modal"
            data-url="{{ route('campaign_roles.create') }}"
         >
-            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            <x-icon class="plus"></x-icon>
             {{ __('campaigns.roles.actions.add') }}
         </a>
     @endif

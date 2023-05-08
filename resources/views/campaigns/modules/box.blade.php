@@ -38,7 +38,7 @@ $enabled = $campaign->enabled($module);
                     data-url="{{ route('modules.edit', [$id]) }}"
                     data-target="rename-dialog"
                     title="{{ __('campaigns/modules.actions.customise') }}">
-                        <i class="fa-solid fa-cog" aria-hidden="true"></i>
+                        <x-icon class="cog"></x-icon>
                         <span class="sr-only">
                         {{ __('campaigns/modules.actions.customise') }}
                     </span>

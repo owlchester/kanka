@@ -4,14 +4,14 @@
         @if (auth()->check() && auth()->user()->hasBoosterNomenclature())
             <p>
                 <a href="{{ route('settings.boost', ['campaign' => $currentCampaign]) }}">
-                    <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                    <x-icon class="premium"></x-icon>
                     {!! __('callouts.subscribe.share-booster', ['campaign' => $currentCampaign->name]) !!}
                 </a>
             </p>
         @else
             <p>
                 <a href="{{ route('settings.premium', ['campaign' => $currentCampaign]) }}">
-                    <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                    <x-icon class="premium"></x-icon>
                     {!! __('callouts.subscribe.share-premium', ['campaign' => $currentCampaign->name]) !!}
                 </a>
             </p>

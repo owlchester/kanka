@@ -26,15 +26,15 @@ if ($folder) {
 <div class="flex items-center gap-2 mb-2">
     <div class="grow">
         <button class="btn btn-primary" data-toggle="collapse" data-target="#uploader">
-            <i class="fa-solid fa-upload" aria-hidden="true"></i> {{ __('campaigns/gallery.uploader.add') }}
+            <x-icon class="fa-solid fa-upload"></x-icon> {{ __('campaigns/gallery.uploader.add') }}
         </button>
         <button class="btn btn-default" data-toggle="modal" data-target="#modal-new-folder">
-            <i class="fa-solid fa-folder" aria-hidden="true"></i> {{ __('campaigns/gallery.uploader.new_folder') }}
+            <x-icon class="fa-solid fa-folder"></x-icon> {{ __('campaigns/gallery.uploader.new_folder') }}
         </button>
 
         @if(!empty($folder))
             <button class="btn btn-default" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', $folder) }}">
-                <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.edit') }}
+                <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
             </button>
         @endif
     </div>
@@ -53,7 +53,7 @@ if ($folder) {
             <p>{{ __('campaigns/gallery.uploader.or') }}</p>
 
             <span class="btn btn-primary fileinput-button relative overflow-hidden inline-block">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                <x-icon class="plus"></x-icon>
                 <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
                 <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer opacity-0" multiple />
             </span>

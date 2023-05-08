@@ -88,7 +88,7 @@ $specificTheme = null;
                             @can('update', $map)
                                 <div class="btn-group">
                                     <a href="{{ route('maps.edit', [$map]) }}" class="btn btn-primary">
-                                        <i class="fa-solid fa-map" aria-hidden="true"></i> {{ __('maps.actions.edit') }}
+                                        <x-icon class="map"></x-icon> {{ __('maps.actions.edit') }}
                                     </a>
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                         <span class="caret"></span>
@@ -96,17 +96,17 @@ $specificTheme = null;
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
                                             <a href="{{ route('maps.map_layers.index', [$map]) }}" class="dropdown-item">
-                                                <i class="fa-solid fa-layer-group" aria-hidden="true"></i> {{ __('maps.panels.layers') }}
+                                                <x-icon class="fa-solid fa-layer-group"></x-icon> {{ __('maps.panels.layers') }}
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{{ route('maps.map_groups.index', [$map]) }}" class="dropdown-item">
-                                                <i class="fa-solid fa-map-signs" aria-hidden="true"></i> {{ __('maps.panels.groups') }}
+                                                <x-icon class="fa-solid fa-map-signs"></x-icon> {{ __('maps.panels.groups') }}
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{{ route('maps.map_markers.index', [$map]) }}" class="dropdown-item">
-                                                <i class="fa-solid fa-map-pin" aria-hidden="true"></i> {{ __('maps.panels.markers') }}
+                                                <x-icon class="fa-solid fa-map-pin"></x-icon> {{ __('maps.panels.markers') }}
                                             </a>
                                         </li>
                                     </ul>

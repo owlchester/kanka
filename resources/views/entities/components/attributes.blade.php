@@ -10,7 +10,7 @@ $attributes = isset($entity) ? $entity->starredAttributes() : $model->entity->st
         <li class="list-group-item pinned-attribute @if ($attribute->isSection()) pinned-attribute-section text-center @elseif ($attribute->value == null) pinned-attribute-empty @endif" data-attribute="{{ $attribute->name }}" data-target="{{ $attribute->id }}" @if ($attribute->is_private) data-private="true" @endif>
             @if ($attribute->isCheckbox())
                 @if ($attribute->value)
-                    <i class="fa-solid fa-check pull-right"></i>
+                    <x-icon class="fa-solid fa-check pull-right"></x-icon>
                 @else
                     <span class="pull-right">{{ __('general.no') }}</span>
                 @endif

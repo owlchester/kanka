@@ -141,28 +141,28 @@ if (isset($model)) {
     <div class="box-body">
         <div class="menu-link-selector" id="quick-link-selector">
             <a class="btn btn-app @if($isEntity) btn-active @endif" data-type="entity">
-                <i class="ra ra-tower"></i>
+                <x-icon class="ra ra-tower"></x-icon>
                 {{ __('menu_links.fields.entity') }}
                 <span class="badge bg-blue">
                     <i class="fa-solid fa-check"></i>
                 </span>
             </a>
             <a class="btn btn-app @if($isList) btn-active @endif" data-type="list">
-                <i class="fa-solid fa-th-list"></i>
+                <x-icon class="fa-solid fa-th-list"></x-icon>
                 {{ __('crud.fields.type') }}
                 <span class="badge bg-blue">
                     <i class="fa-solid fa-check"></i>
                 </span>
             </a>
             <a class="btn btn-app @if($isRandom) btn-active @endif" data-type="random">
-                <i class="fa-solid fa-question"></i>
+                <x-icon class="fa-solid fa-question"></x-icon>
                 {{ __('menu_links.fields.random') }}
                 <span class="badge bg-blue">
                     <i class="fa-solid fa-check"></i>
                 </span>
             </a>
             <a class="btn btn-app @if($isDashboard) btn-active @endif" data-type="dashboard">
-                <i class="fa-solid fa-th-large"></i>
+                <x-icon class="fa-solid fa-th-large"></x-icon>
                 {{ __('menu_links.fields.dashboard') }}
                 <span class="badge bg-blue">
                     <i class="fa-solid fa-check"></i>

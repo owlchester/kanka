@@ -71,7 +71,7 @@ $statuses = [
                 @endif
                 <div class="col-sm-1 text-center">
                     <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
-                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        <x-icon class="trash"></x-icon>
                         <span class="sr-only">{{ __('crud.remove') }}</span>
                     </span>
                 </div>
@@ -82,7 +82,7 @@ $statuses = [
 </div>
 
 <button class="btn btn-default" id="add_organisation" href="#" title="{{ __('characters.actions.add_organisation') }}">
-    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+    <x-icon class="plus"></x-icon>
     {!! $singular !!}
 </button>
 
@@ -127,7 +127,7 @@ $statuses = [
             @endif
             <div class="col-sm-1 text-center">
                 <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <x-icon class="trash"></x-icon>
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </span>
             </div>

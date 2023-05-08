@@ -12,12 +12,12 @@
     @can('update', $model)
         <div class="header-buttons inline-block pull-right ml-auto">
             <a href="https://docs.kanka.io/en/latest/entities/maps/groups.html" class="btn btn-default btn-sm" target="_blank">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                <x-icon class="question"></x-icon>
                 {{ __('crud.actions.help') }}
             </a>
             @if ($model->explorable())
                 <a href="{{ route('maps.explore', ['map' => $model]) }}" class="btn btn-primary btn-sm">
-                    <i class="fa-solid fa-map" aria-hidden="true"></i>
+                    <x-icon class="map"></x-icon>
                     {{ __('maps.actions.explore') }}
                 </a>
             @endif
@@ -25,7 +25,7 @@
                 data-toggle="ajax-modal" data-target="#entity-modal"
                 data-url="{{ route('maps.map_groups.create', ['map' => $model]) }}"
             >
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                <x-icon class="plus"></x-icon>
                 {{ __('maps/groups.actions.add') }}
             </a>
         </div>

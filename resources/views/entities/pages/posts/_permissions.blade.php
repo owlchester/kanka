@@ -37,7 +37,7 @@
 
                         <span class="input-group-btn">
                             <button class="btn btn-danger btn-flat post-delete-perm">
-                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                <x-icon class="trash"></x-icon>
                             </button>
                         </span>
                     </div>
@@ -73,7 +73,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button class="btn btn-primary post-perm-add" id="post-perm-user-add" data-type="user">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/notes.actions.add_user') }}
+                        <x-icon class="plus"></x-icon> {{ __('entities/notes.actions.add_user') }}
                     </button>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button class="btn btn-primary post-perm-add" id="post-perm-role-add" data-type="role">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/notes.actions.add_role') }}
+                        <x-icon class="plus"></x-icon> {{ __('entities/notes.actions.add_role') }}
                     </button>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                 ]) !!}
                 <span class="input-group-btn">
                     <button class="btn btn-danger btn-flat post-delete-perm">
-                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        <x-icon class="trash"></x-icon>
                     </button>
                 </span>
             </div>
@@ -141,7 +141,7 @@
                 ]) !!}
                 <span class="input-group-btn">
                 <button class="btn btn-danger btn-flat post-delete-perm">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                    <x-icon class="trash"></x-icon>
                 </button>
             </span>
             </div>

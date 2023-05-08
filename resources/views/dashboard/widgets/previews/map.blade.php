@@ -38,7 +38,7 @@ $map = $entity->child;
     <div class="panel-body p-0">
         <div class="map map-dashboard" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
             <a href="{{ route('maps.explore', $map) }}" target="_blank" class="btn btn-primary btn-xs btn-map-explore z-[820] absolute bottom-3 right-3">
-                <i class="fa-solid fa-map" aria-hidden="true"></i> {{ __('maps.actions.explore') }}
+                <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
             </a>
         </div>
     </div>

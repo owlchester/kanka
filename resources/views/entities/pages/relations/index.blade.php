@@ -18,13 +18,13 @@
                     <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
                 </a>
                 <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'map']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
-                    <i class="fa-solid fa-map" aria-hidden="true"></i>
+                    <x-icon class="map"></x-icon>
                 </a>
             </div>
 
             @can('relation', [$entity->child, 'add'])
             <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                <x-icon class="plus"></x-icon>
                 <span class="hidden-xs hidden-sm">
                     {{ __('entities.relation') }}
                 </span>

@@ -1,23 +1,25 @@
 <li class="{{ (request()->get('tab') == 'form-calendar' ? ' active' : '') }}">
-    <a href="#form-calendar" title="{{ trans('entities.calendar') }}">
-        <i class="ra ra-moon-sun"></i> <span class="hidden-xs hidden-sm">{{ trans('entities.calendar') }}</span>
+    <a href="#form-calendar" title="{{ __('entities.calendar') }}">
+        <x-icon class="ra ra-moon-sun"></x-icon>
+        <span class="hidden-xs hidden-sm">{{ __('entities.calendar') }}</span>
     </a>
 </li>
 <li class="{{ (request()->get('tab') == 'form-months' ? ' active' : '') }}">
-    <a href="#form-months" title="{{ trans('calendars.panels.months') }}">
-        {{ trans('calendars.panels.months') }}
+    <a href="#form-months" title="{{ __('calendars.panels.months') }}">
+        {{ __('calendars.panels.months') }}
     </a>
 <li class="{{ (request()->get('tab') == 'form-weeks' ? ' active' : '') }}">
-    <a href="#form-weeks" title="{{ trans('calendars.panels.weeks') }}">
-        {{ trans('calendars.panels.weeks') }}
+    <a href="#form-weeks" title="{{ __('calendars.panels.weeks') }}">
+        {{ __('calendars.panels.weeks') }}
     </a>
 </li>
 <li class="{{ (request()->get('tab') == 'form-moons' ? ' active' : '') }}">
-    <a href="#form-moons" title="{{ trans('calendars.fields.moons') }}">
-        <i class="far fa-moon"></i> <span class="hidden-xs hidden-sm">{{ trans('calendars.fields.moons') }}</span>
+    <a href="#form-moons" title="{{ __('calendars.fields.moons') }}">
+        <x-icon class="far fa-moon"></x-icon>
+        <span class="hidden-xs hidden-sm">{{ __('calendars.fields.moons') }}</span>
     </a>
 </li><li class="{{ (request()->get('tab') == 'form-seasons' ? ' active' : '') }}">
-    <a href="#form-seasons" title="{{ trans('calendars.fields.seasons') }}">
-        {{ trans('calendars.fields.seasons') }}
+    <a href="#form-seasons" title="{{ __('calendars.fields.seasons') }}">
+        {{ __('calendars.fields.seasons') }}
     </a>
 </li>

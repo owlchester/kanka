@@ -103,7 +103,7 @@
             <div class="text-center">
             <button class="btn btn-success px-5 quick-creator-submit" data-entity-type="{{ $singularType }}">
                 <span>
-                    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
+                    <x-icon class="plus"></x-icon> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
                 </span>
                 <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
             </button>

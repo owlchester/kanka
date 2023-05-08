@@ -51,7 +51,7 @@ if (!empty($seasonNames)) {
                         {!! Form::number('season_day[]', $season['day'], ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
                             <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                <x-icon class="trash"></x-icon>
                             </span>
                         </span>
                     </div>
@@ -61,7 +61,7 @@ if (!empty($seasonNames)) {
     @endforeach
 </div>
 <a class="btn btn-default dynamic-row-add" data-template="template_season" data-target="calendar-seasons" href="#" title="{{ __('calendars.actions.add_season') }}">
-    <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('calendars.actions.add_season') }}
+    <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_season') }}
 </a>
 
 @section('modals')
@@ -88,7 +88,7 @@ if (!empty($seasonNames)) {
                     {!! Form::number('season_day[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.day')]) !!}
                     <span class="input-group-btn">
                         <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                            <x-icon class="trash"></x-icon>
                         </span>
                     </span>
                 </div>

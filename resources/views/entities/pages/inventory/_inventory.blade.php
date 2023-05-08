@@ -70,13 +70,13 @@
                                        data-toggle="ajax-modal" data-target="#entity-modal"
                                        data-url="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
                                        title="{{ __('crud.edit') }}">
-                                        <i class="fa-solid fa-edit" aria-hidden="true"></i> {{ __('crud.edit') }}
+                                        <x-icon class="edit"></x-icon> {{ __('crud.edit') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="text-danger delete-confirm" data-toggle="modal" data-name="{!! $item->itemName() !!}"
                                        data-target="#delete-confirm" data-delete-target="delete-form-{{ $item->id }}">
-                                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                        <x-icon class="trash"></x-icon>
                                         {{ __('crud.remove') }}
                                     </a>
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['entities.inventories.destroy', 'entity' => $entity, 'inventory' => $item], 'style' => 'display:inline', 'id' => 'delete-form-' . $item->id]) !!}

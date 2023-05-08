@@ -109,7 +109,7 @@ $actions = [
 <div class="modal-footer">
     <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
     <button class="btn btn-success" type="submit">
-        <i class="fa-solid fa-cog" aria-hidden="true"></i>
+        <x-icon class="cog"></x-icon>
         {{ __('crud.bulk.actions.permissions') }}
     </button>
 </div>

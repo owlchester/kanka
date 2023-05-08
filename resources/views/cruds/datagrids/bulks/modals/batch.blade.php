@@ -30,7 +30,7 @@
             <div class="modal-footer">
                 <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
                 <button class="btn btn-success" type="submit">
-                    <i class="fa-solid fa-save" aria-hidden="true"></i>
+                    <x-icon class="save"></x-icon>
                     {{ __('crud.actions.apply') }}
                 </button>
             </div>

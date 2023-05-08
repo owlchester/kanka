@@ -11,7 +11,7 @@
     </h3>
     <button class="btn btn-default btn-sm" data-toggle="dialog"
             data-target="members-help">
-        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+        <x-icon class="question"></x-icon>
         {{ __('campaigns.members.actions.help') }}
     </button>
 </div>
@@ -105,7 +105,7 @@
                                                    data-toggle="modal" data-name="{{ $relation->user->name }}"
                                                    data-target="#removal-confirm" data-delete-target="campaign-user-{{ $relation->id }}"
                                                 >
-                                                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                                                    <x-icon class="trash"></x-icon>
                                                     {{ __('campaigns.members.actions.remove') }}
                                                 </a>
                                             </li>

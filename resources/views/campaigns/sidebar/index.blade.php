@@ -25,7 +25,7 @@
                 @if ($campaign->boosted())
                     <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
                             data-target="sidebar-help">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}
                     </button>
               @endif
@@ -101,11 +101,11 @@
                 </div>
                 <div class="box-footer text-right">
                     <a href="#" class="btn btn-default pull-left" data-toggle="dialog" data-target="reset-confirm">
-                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        <x-icon class="trash"></x-icon>
                         {{ __('campaigns/sidebar.actions.reset') }}
                     </a>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fa-solid fa-save" aria-hidden="true"></i>
+                        <x-icon class="save"></x-icon>
                         {{ __('crud.save') }}
                     </button>
                 </div>

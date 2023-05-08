@@ -10,7 +10,7 @@
 
     <h3>{{ $model->name }}
         @if ($model->is_private)
-            <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}"></i>
+            <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')"></x-icon>
         @endif
     </h3>
 @endif

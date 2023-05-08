@@ -46,7 +46,7 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
                 {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
                 <div class="text-right">
                     <a href="//docs.kanka.io/en/latest/features/mentions.html" target="_blank" title="{{ __('helpers.link.description') }}">
-                        {{ __('crud.helpers.linking') }} <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        {{ __('crud.helpers.linking') }} <x-icon class="question"></x-icon>
                     </a>
                 </div>
             </div>

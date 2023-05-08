@@ -1,7 +1,7 @@
 
 <div class="btn-group mr-2">
     <button type="button" class="btn btn-default add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-        <i class="fa-solid fa-plus" aria-hidden="true"></i> {{ __('entities/attributes.types.attribute') }}
+        <x-icon class="plus"></x-icon> {{ __('entities/attributes.types.attribute') }}
     </button>
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
         {{ __('entities/attributes.actions.more') }}
@@ -50,10 +50,10 @@
 </div>
 
 <a href="//docs.kanka.io/en/latest/features/attributes.html" target="_blank">
-    {{ __('helpers.attributes.link') }} <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+    {{ __('helpers.attributes.link') }} <x-icon class="question"></x-icon>
 </a>
 <a href="#" class="btn btn-danger pull-right" data-toggle="modal" data-target="#attributes-delete-all-confirm">
-    <i class="fa-solid fa-trash" aria-hidden="true"></i> <span class="hidden-xs">{{ __('entities/attributes.actions.remove_all') }}</span>
+    <x-icon class="trash"></x-icon> <span class="hidden-xs">{{ __('entities/attributes.actions.remove_all') }}</span>
 </a>
 
 <!-- Modal -->

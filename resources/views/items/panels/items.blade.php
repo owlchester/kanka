@@ -11,7 +11,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         <h3 class="box-title">{!! \App\Facades\Module::plural(config('entities.ids.item'), __('entities.items')) !!}</h3>
         <div class="box-tools">
             <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <i class="fa-solid fa-question-circle" aria-hidden="true"></i> {{ __('crud.actions.help') }}
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
             </a>
         </div>
     </div>

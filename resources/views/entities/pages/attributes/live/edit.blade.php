@@ -30,7 +30,8 @@
 </div>
 <div class="modal-footer">
     <button type="submit" class="btn btn-primary">
-        <i class="fa-regular fa-save"></i> {{ __('crud.update') }}
+        <x-icon class="fa-regular fa-save"></x-icon>
+        {{ __('crud.update') }}
     </button>
 </div>
 {!! Form::hidden('uid', $uid) !!}

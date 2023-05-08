@@ -39,7 +39,7 @@
         </div>
         <div class="text-right">
             <x-buttons.confirm type="primary" outline="true">
-                <i class="fa-solid fa-save" aria-hidden="true"></i>
+                <x-icon class="save"></x-icon>
                 <span>
             {{ __('settings.subscription.actions.update_currency') }}</span>
             </x-buttons.confirm>

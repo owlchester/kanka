@@ -47,7 +47,8 @@
                                     <li class="divider"></li>
                                     <li>
                                         <a href="#" class="delete-confirm text-red" data-name="{{ $model->name }}" data-toggle="modal" data-target="#delete-confirm">
-                                            <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                                            <x-icon class="fa-solid fa-trash"></x-icon>
+                                            {{ __('crud.remove') }}
                                         </a>
                                         {!! Form::open(['method' => 'DELETE','route' => ['menu_links.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
                                         {!! Form::close() !!}
@@ -66,7 +67,8 @@
 
                 @can('update', $model)
                     <a href="{{ route('menu_links.edit', $model) }}" class="btn btn-primary">
-                        <i class="fa-solid fa-pencil" aria-hidden="true"></i> {{ __('crud.update') }}
+                        <x-icon class="pencil"></x-icon>
+                        {{ __('crud.update') }}
                     </a>
                 @endcan
             </div>

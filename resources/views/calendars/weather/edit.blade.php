@@ -25,7 +25,7 @@
                    title="{{ __('crud.delete_modal.title') }}"
                    data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
                    <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-weather-{{ $weather->id}}'>{{ __('crud.remove') }}</a>">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
                 </a>
             </div>
         </div>
@@ -46,7 +46,7 @@
                    title="{{ __('crud.delete_modal.title') }}"
                    data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
                        <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-weather-{{ $weather->id}}'>{{ __('crud.remove') }}</a>">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
                 </a>
             </div>
         </div>

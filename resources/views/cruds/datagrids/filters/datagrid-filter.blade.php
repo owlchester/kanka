@@ -100,7 +100,7 @@ $hasAttributeFilters = false;
                     </a>
 
                     <a class="grow" href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
-                        <i class="fa-solid fa-question-circle" aria-hidden="true"></i>
+                        <x-icon class="question"></x-icon>
                         {{ __('helpers.filters.title') }}
                     </a>
 

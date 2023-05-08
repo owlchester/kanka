@@ -88,7 +88,7 @@
 
         @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
             <div class="label bg-boost text-white ml-3" data-toggle="tooltip" title="{{ __('settings/premium.ready.available') }}">
-                <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                <x-icon class="premium"></x-icon>
                 {{ auth()->user()->availableBoosts() }}
             </div>
         @endif

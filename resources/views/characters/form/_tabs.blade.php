@@ -7,8 +7,7 @@
     @php $tabTitle = \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations')); @endphp
 <li class="{{ (request()->get('tab') == 'organisations' ? ' active' : '') }}" data-tab="organisations">
     <a href="#form-organisations" title="{{ $tabTitle }}" data-toggle="tooltip">
-        <i class="ra ra-hood" title="{{ $tabTitle }}"></i>
-
+        <x-icon class="ra ra-hood" :title="$tabTitle"></x-icon>
         <span class="hidden-xs hidden-sm">
             {!! $tabTitle !!}
         </span>

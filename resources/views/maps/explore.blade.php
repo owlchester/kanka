@@ -14,15 +14,15 @@
     @can('update', $map)
         <div class="map-actions absolute bottom-0 right-0 m-4">
             <button class="btn btn-warning btn-mode-enable">
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                <x-icon class="plus"></x-icon>
                 {{ __('maps/explore.actions.enter-edit-mode') }}
             </button>
             <button class="btn btn-default btn-mode-disable">
-                <i class="fa-solid fa-ban" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-ban"></x-icon>
                 {{ __('maps/explore.actions.exit-edit-mode') }}
             </button>
             <button class="btn btn-warning btn-mode-drawing">
-                <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                <x-icon class="pencil"></x-icon>
                 {{ __('maps/explore.actions.finish-drawing') }}
             </button>
         </div>

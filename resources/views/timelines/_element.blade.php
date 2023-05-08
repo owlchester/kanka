@@ -35,14 +35,14 @@
                             <li>
                                 <a href="{{ route('timelines.timeline_elements.edit', [$timeline, $element, 'from' => 'view']) }}" title="{{ __('crud.edit') }}"
                                 >
-                                    <i class="fa-solid fa-edit" aria-hidden="true"></i> {{ __('crud.edit') }}
+                                    <x-icon class="edit"></x-icon> {{ __('crud.edit') }}
                                 </a>
                             </li>
                             <li class="text-red">
                                 <a href="#" class="delete-confirm" data-toggle="modal" data-name="{{ $element->elementName() }}"
                                    data-target="#delete-confirm" data-delete-target="delete-form-timeline-element-{{ $element->id }}"
                                    title="{{ __('crud.remove') }}">
-                                    <i class="fa-solid fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
                                 </a>
                             </li>
                             <li class="divider"></li>
