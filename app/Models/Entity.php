@@ -452,7 +452,7 @@ class Entity extends Model
         $options = [null => __('posts.position.dont_change'), 1 => __('posts.position.first')];
 
         if (!$position) {
-        #    $options = [1 => __('posts.position.first')];
+            $options = [1 => __('posts.position.first')];
         }
         $layers = $this->posts->sortBy('position');
         foreach ($layers as $layer) {
