@@ -32,7 +32,9 @@ trait ReorderTrait
                 $position = $position + 1;
             }
         } elseif ($model instanceof EntityNote) {
-            foreach ($model->entity->posts()->orderBy('position')->get() as $post) {
+            $posts = $model->entity->posts()->orderBy('position')->get();
+            $position = $posts['0']->position;
+            foreach ($posts as $post) {
                 $post->position = $position;
                 $post->updateQuietly();
                 $position = $position + 1;
