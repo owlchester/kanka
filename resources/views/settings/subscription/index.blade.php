@@ -141,17 +141,17 @@
             @if ($user->isLegacyPatron())
                 <tr>
                     <td class="text-center" colspan="4">
-                        <div class="alert alert-warning">
+                        <x-alert type="warning">
                             {!! __('settings.subscription.warnings.patreon', ['patreon' => link_to_route('settings.patreon', __('settings.menu.patreon'))]) !!}
-                        </div>
+                        </x-alert>
                     </td>
                 </tr>
             @elseif($user->hasIncompletePayment('kanka'))
                 <tr>
                     <td class="text-center" colspan="4">
-                        <div class="alert alert-warning">
+                        <x-alert type="warning">
                             {!! __('settings.subscription.warnings.incomplete') !!}
-                        </div>
+                        </x-alert>
                     </td>
                 </tr>
             @else

@@ -15,13 +15,13 @@
             </p>
 
             @if($token)
-                <div class="alert alert-success">
+                <x-alert type="success">
                     <p class="mb-5">{{ __('helpers.troubleshooting.success') }}</p>
                     <a href="#" data-clipboard="{{ $token }}" data-toggle="tooltip" data-toast="Token copied to the clipboard" title="{{__('campaigns.invites.actions.copy') }}">
                         <i class="fa-solid fa-copy" aria-hidden="true"></i>
                         {{ $token }}
                     </a>
-                </div>
+                </x-alert>
             @else
                 <div class="form-group">
                     <label>{{ __('entities/move.fields.campaign') }}</label>

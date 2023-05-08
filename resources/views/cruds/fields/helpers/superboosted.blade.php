@@ -9,9 +9,9 @@
     $pricingOptions['callback'] = $campaignService->campaign()->id;
     }
     @endphp
-    <div class="alert alert-info">
+    <x-alert type="info">
         {!! __($key, ['superboosted-campaign' => link_to_route('front.pricing', __('concept.superboosted-campaign'), $pricingOptions)]) !!}
-    </div>
+    </x-alert>
     <?php return; ?>
 @endif
 
@@ -25,6 +25,6 @@
         $pricingOptions['callback'] = $campaignService->campaign()->id;
     }
 @endphp
-<div class="alert alert-info">
+<x-alert type="info">
     {!! __($key, ['superboosted-campaign' => link_to_route('front.pricing', __('concept.premium-campaign'), $pricingOptions)]) !!}
-</div>
+</x-alert>

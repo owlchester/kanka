@@ -37,10 +37,10 @@
                     'id' => 'qq-name-field'
                 ]) !!}
             @endif
-            <p class=" my-1 alert alert-warning duplicate-entity-warning" style="display: none">
+            <x-alert type="warning" class=" my-1 duplicate-entity-warning" :hidden="true">
                 {{ __('entities.creator.duplicate') }}<br />
                 <span class="duplicate-entities"></span>
-            </p>
+            </x-alert>
         </div>
 
         <a href="#" class="qq-action-more text-uppercase pointer text-sm" style="{{ $singularType === 'post' ? 'display: none' : null }}">

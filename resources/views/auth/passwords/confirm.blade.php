@@ -8,9 +8,9 @@
     </p>
 
     @if (session('status'))
-        <div class="alert alert-success">
+        <x-alert type="success">
             {{ session('status') }}
-        </div>
+        </x-alert>
     @endif
 
     <form class="form-horizontal" method="POST" action="{{ route('password.confirm') }}" class="w-full">

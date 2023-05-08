@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Campaign $model */?>
 <div class="tab-pane" id="form-public">
 
-    <div class="alert alert-info">
+    <x-alert type="info">
         <p>{!! __('campaigns/public.helpers.main', [
     'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank']),
     'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), null, ['target' => '_blank'])
@@ -9,7 +9,7 @@
         <p>
             <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
         </p>
-    </div>
+    </x-alert>
 
     <div class="row">
         <div class="col-md-6">
@@ -25,11 +25,11 @@
                 </p>
 
                 @if ($model->publicHasNoVisibility())
-                    <div class="alert alert-warning">
+                    <x-alert type="warning">
                         {!! __('campaigns.helpers.public_no_visibility', [
 'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'))
 ]) !!}
-                    </div>
+                    </x-alert>
                 @endif
             @endif
         </div>

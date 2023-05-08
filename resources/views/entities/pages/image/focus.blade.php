@@ -19,9 +19,9 @@
         <x-box>
         @if ($campaignService->campaign()->boosted())
             @if($campaignService->campaign()->superboosted() && empty($model->image) && !empty($entity->image_uuid))
-                <p class="alert alert-warning">
+                <x-alert type="warning">
                     {{ __('entities/image.focus.warning') }}
-                </p>
+                </x-alert>
                 <p>
                     <a href="{{ $model->getLink() }}">
                         <x-icon class="fa-regular fa-arrow-left"></x-icon>
@@ -52,11 +52,11 @@
             @endif
 
         @else
-            <p class="alert alert-warning">
+            <x-alert type="warning">
                 {!! __('entities/image.focus.unboosted', [
         'boosted-campaigns' => link_to_route('front.pricing', __('concept.premium-campaigns'), ['#premium'])
     ]) !!}
-            </p>
+            </x-alert>
             <a href="{{ $model->getLink() }}">
                 <x-icon class="fa-regular fa-arrow-left"></x-icon>
                 {{ __('crud.actions.back') }}

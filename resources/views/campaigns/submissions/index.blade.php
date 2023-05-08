@@ -36,7 +36,7 @@
 
             @if (!$campaign->isOpen() || !$campaign->isPublic() || $submissions->isEmpty())
                 @if(!$campaign->isOpen())
-                    <div class="alert alert-warning">
+                    <x-alert type="warning">
                         <p>{!! __('campaigns/submissions.helpers.not_open') !!}</p>
                         <p>
                             <button data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn btn-warning">
@@ -44,21 +44,21 @@
                                 {{ __('campaigns/submissions.actions.change') }}
                             </button>
                         </p>
-                    </div>
+                    </x-alert>
                 @else
                     @if(!$campaign->isPublic())
-                        <div class="alert alert-warning">
+                        <x-alert type="warning">
                             <p>{{ __('campaigns/submissions.helpers.open_not_public') }}</p>
                             @if (auth()->user()->can('update', $campaign))
                             <a href="{{ route('campaigns.edit', ['#tab_form-public']) }}" class="btn btn-warning">
                                 {{ __('crud.fix-this-issue') }}
                             </a>
                             @endif
-                        </div>
+                        </x-alert>
                     @elseif ($submissions->isEmpty())
-                        <div class="alert alert-info">
+                        <x-alert type="info">
                             {!! __('campaigns/submissions.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open" aria-hidden="true"></i> ' . __('dashboard.actions.join') . '</code>']) !!}
-                        </div>
+                        </x-alert>
                     @endif
                 @endif
             @endif

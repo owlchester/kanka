@@ -31,11 +31,11 @@ if (!empty($source) && $source->is_private) {
     $hidden = true;
 }
 @endphp
-<div class="alert alert-warning" id="entity-is-private" style="{{ !$hidden ? 'display: none' : null }}">
+<x-alert type="warning" id="entity-is-private" :hidden="!$hidden">
     <strong>{{ __('entities/permissions.privacy.warning') }}</strong>
     <p>{!! __('entities/permissions.privacy.text', [
     'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), null)
 ]) !!}</p>
-</div>
+</x-alert>
 
 @include('cruds.permissions.permissions_table', ['skipUsers' => true, 'campaign'])

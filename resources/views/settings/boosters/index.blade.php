@@ -19,7 +19,7 @@
     </h1>
 
     @if (auth()->user()->hasBoosterNomenclature())
-        <div class="alert alert-warning">
+        <x-alert type="warning">
             <strong class="inline-block mb-2">Legacy boosters</strong>
             <p>
                 Dear user, you are still using our legacy campaign boosters concept. Switching to premium campaigns will unboost your campaigns and give you a number of premium campaigns based on your subscription.
@@ -38,7 +38,7 @@
                     Switch to premium
                 </button>
             </div>
-        </div>
+        </x-alert>
     @endif
 
     <x-box>

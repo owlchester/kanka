@@ -135,7 +135,9 @@ $role = \App\Facades\CampaignCache::adminRole();
                 {!! Form::hidden('is_personality_visible', 1) !!}
             @endif
         @else
-            <p class="alert alert-warning">{{ __('characters.warnings.personality_hidden') }}</p>
+            <x-alert type="warning">
+                {{ __('characters.warnings.personality_hidden') }}
+            </x-alert>
         @endif
     </div>
 </div>

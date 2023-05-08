@@ -1,11 +1,11 @@
 @if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <strong>{{ trans('partials.errors.title') }}</strong>
-        {{ trans('partials.errors.description') }}<br>
+    <x-alert type="danger">
+        <strong>{{ __('partials.errors.title') }}</strong>
+        {{ __('partials.errors.description') }}<br>
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-    </div>
+    </x-alert>
 @endif

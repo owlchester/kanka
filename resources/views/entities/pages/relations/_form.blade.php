@@ -55,20 +55,18 @@
 </div>
 
 @if (!empty($relation) && !empty($relation->isMirrored()))
-    <div class="alert alert-info">
+    <x-alert type="info">
         <h4>{{ __('entities/relations.hints.mirrored.title') }}</h4>
         <p>{!! __('entities/relations.hints.mirrored.text', [
         'link' => '<a href="' . $relation->target->url() . '" data-toggle="tooltip-ajax" data-id="' . $relation->target_id . '" data-url="' . route('entities.tooltip', $relation->target->id) . "\">" . $relation->target->name . '</a>'
         ]) !!}</p>
-        <p>
-            <div class="form-group">
-                {!! Form::hidden('unmirror', 0) !!}
-                <label>{!! Form::checkbox('unmirror', 1)!!}
-                    {{ __('entities/relations.fields.unmirror') }}
-                </label>
-            </div>
-        </p>
-    </div>
+        <div class="form-group">
+            {!! Form::hidden('unmirror', 0) !!}
+            <label>{!! Form::checkbox('unmirror', 1)!!}
+                {{ __('entities/relations.fields.unmirror') }}
+            </label>
+        </div>
+    </x-alert>
 @endif
 
 @include('cruds.fields.visibility_id', ['model' => isset($relation) ? $relation : null])

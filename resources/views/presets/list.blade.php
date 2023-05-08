@@ -15,7 +15,7 @@
         @endforeach
     </div>
 @else
-    <div class="alert alert-warning">
+    <x-alert type="warning">
         {!! __('presets.lists.empty') !!}
-    </div>
+    </x-alert>
 @endif

@@ -9,9 +9,9 @@
     </div>
 
     @if ($user->isFrauding())
-        <div class="alert alert-warning">
+        <x-alert type="warning">
             {{ __('settings.subscription.errors.failed', ['email' => config('app.email')]) }}
-        </div></div><?php return; ?>
+        </x-alert></div><?php return; ?>
     @endif
 
     @if (!$cancel)
@@ -20,7 +20,7 @@
         <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
     @endif
 
-    <div class="alert alert-danger" style="display: none"></div>
+    <x-alert type="danger" :hidden="true"></x-alert>
 
 
     @if (!$cancel)
@@ -36,10 +36,10 @@
                   </button>
                 </span>
             </div>
-            <p class="alert alert-success" style="display:none" id="coupon-success"></p>
-            <p class="alert alert-warning" style="display:none" id="coupon-invalid">
+            <x-alert type="success" :hidden="true" id="coupon-success"></x-alert>
+            <x-alert type="warning" :hidden="true" id="coupon-invalid">
                 {{ __('settings.subscription.coupon.invalid') }}
-            </p>
+            </x-alert>
         @endif
         <div class="card" style="margin: 0">
 
@@ -139,23 +139,23 @@
                     <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                     {!! Form::close() !!}
                 </div>
-                <div role="tabpanel" class="tab-pane" id="sofort">
+                <p role="tabpanel" class="tab-pane" id="sofort">
                     <p class="help-block">
                         {{ __('settings.subscription.helpers.alternatives', ['method' => 'SOFORT']) }}
                     </p>
                     @if ($hasPromo)
-                        <p class="alert alert-danger alert-coupon">Sadly we cannot offer discounts for Sofort payments.</p>
+                        <x-alert type="danger" class="alert-coupon">Sadly we cannot offer discounts for Sofort payments.</x-alert>
                     @endif
 
                     @if ($period !== 'yearly')
-                        <div class="alert alert-warning">
+                        <x-alert type="warning">
                             {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'SOFORT']) }}
-                        </div>
+                        </x-alert>
                     @else
                         @if ($user->subscribed('kanka'))
-                            <p class="alert alert-warning">
+                            <x-alert type="warning">
                                 {{ __('settings.subscription.helpers.alternatives_warning') }}
-                            </p>
+                            </x-alert>
                         @else
                         {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
                         <label for="sofort-country">
@@ -192,18 +192,20 @@
                         {{ __('settings.subscription.helpers.alternatives', ['method' => 'Giropay']) }}
                     </p>
                     @if ($hasPromo)
-                        <p class="alert alert-danger alert-coupon">Sadly we cannot offer discounts for giropay payments.</p>
+                        <x-alert type="danger alert-coupon">
+                            Sadly we cannot offer discounts for giropay payments.
+                        </x-alert>
                     @endif
 
                     @if ($period !== 'yearly')
-                        <p class="alert alert-warning">
+                        <x-alert type="warning">
                             {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'Giropay']) }}
-                        </p>
+                        </x-alert>
                     @else
                         @if ($user->subscribed('kanka'))
-                            <p class="alert alert-warning">
+                            <x-alert type="warning">
                                 {{ __('settings.subscription.helpers.alternatives_warning') }}
-                            </p>
+                            </x-alert>
                         @else
                         {!! Form::open(['route' => ['settings.subscription.alt-subscribe'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
                         <label for="accountholder-name">
@@ -232,15 +234,15 @@
                         {{ __('settings.subscription.helpers.alternatives-2', ['method' => 'PayPal']) }}
                     </p>
                     @if ($period !== 'yearly')
-                        <div class="alert alert-warning">
+                        <x-alert type="warning">
                             {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'PayPal']) }}
-                        </div>
+                        </x-alert>
                     @elseif (config('paypal.enabled'))
 
                         @if ($user->subscribed('kanka'))
-                            <p class="alert alert-warning">
+                            <x-alert type="warning">
                                 {{ __('settings.subscription.helpers.alternatives_warning') }}
-                            </p>
+                            </x-alert>
                         @else
                         {!! Form::open(['route' => ['paypal.process-transaction'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
                             <p class="help-block">

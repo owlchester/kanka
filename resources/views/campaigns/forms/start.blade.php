@@ -14,9 +14,9 @@
                 </h3>
             </div>
             <div class="box-body">
-                <div class="alert alert-info">
+                <x-alert type="info">
                     <p>{!! nl2br(__('campaigns.create.helper.welcome')) !!}</p>
-                </div>
+                </x-alert>
                 <div class="form-group required">
                     <label>{{ __('campaigns.fields.name') }}</label>
                     {!! Form::text('name', null, ['placeholder' => __('campaigns.placeholders.name'), 'class' => 'form-control', 'require', 'minlength' => 4, 'maxlength' => 191]) !!}

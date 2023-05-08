@@ -122,9 +122,9 @@
         @endforeach
         </ul>
     @else
-        <p class="alert alert-warning">
+        <x-alert type="warning">
             {{ __('history.filters.no-results') }}
-        </p>
+        </x-alert>
     @endif
 
     @if ($superboosted)

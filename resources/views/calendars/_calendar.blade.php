@@ -3,9 +3,9 @@
  * @var \App\Models\Calendar $model
  */
 if ($model->missingDetails()): ?>
-    <div class="alert alert-warning">
+    <x-alert type="warning">
         {{ __('calendars.show.missing_details') }}
-    </div>
+    </x-alert>
 <?php return;
 endif;
 $weekNumber = 1;

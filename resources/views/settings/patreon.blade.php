@@ -24,7 +24,7 @@
             </x-buttons.confirm>
         </x-box>
     @else
-        <div class="alert alert-warning">
+        <x-alert type="warning">
             <p>
                 {!! __('settings.patreon.deprecated', ['subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))]) !!}
             </p>

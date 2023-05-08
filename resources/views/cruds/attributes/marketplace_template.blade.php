@@ -8,10 +8,9 @@
 @if ($plugin->version->isDraft())
     <div class="row">
         <div class="col-md-6 col-xs-12">
-
-            <div class="alert alert-info">
+            <x-alert type="info">
                 {{ __('This plugin is a draft, meaning only its authors can see it rendered.') }}
-            </div>
+            </x-alert>
         </div>
     </div>
 @endif

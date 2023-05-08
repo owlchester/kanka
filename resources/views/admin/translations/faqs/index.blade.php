@@ -27,9 +27,9 @@
     @include('partials.success')
 
     @if (empty($lang))
-    <div class="alert alert-info">
+        <x-alert type="info">
         Select a target language first.
-    </div>
+        </x-alert>
     @else
 
     @foreach ($categories as $category)

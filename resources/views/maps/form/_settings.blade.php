@@ -42,9 +42,9 @@ if (isset($model) && $model->isChunked()) {
 <hr />
 
 @if (isset($model) && $model->isChunked())
-    <div class="alert alert-info">
+    <x-alert type="info">
         <p>{{ __('maps.helpers.chunked_zoom') }}</p>
-    </div>
+    </x-alert>
 @else
 <div class="row">
     <div class="col-sm-6">

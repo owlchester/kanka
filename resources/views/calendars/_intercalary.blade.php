@@ -1,3 +1,3 @@
-<div class="alert alert-success">
+<x-alert type="success">
     {{ $day['name'] }}
-</div>
+</x-alert>

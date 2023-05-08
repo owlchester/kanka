@@ -13,24 +13,22 @@
     @include('partials.ads.top')
 
     @if(session('plugin_entities_created'))
-        <div class="alert alert-info alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <x-alert type="info" :dismissable="true">
             <strong>{{ __('campaigns/plugins.import.created') }}</strong><br/>
             {!! session('plugin_entities_created') !!}
-        </div>
+        </x-alert>
     @endif
     @if(session('plugin_entities_updated'))
-        <div class="alert alert-info alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <x-alert type="info" :dismissable="true">
             <strong>{{ __('campaigns/plugins.import.updated') }}</strong><br/>
             {!! session('plugin_entities_updated') !!}
-        </div>
+        </x-alert>
     @endif
     @if(session('plugin_only_new') == 'on' && session('plugin_entities_created') == 0)
-        <div class="alert alert-warning alert-dismissable">
+        <x-alert type="warning" :dismissable="true">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <strong>{{ __('campaigns/plugins.import.no_new_entities') }}</strong><br/>
-        </div>
+        </x-alert>
     @endif
     <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
         <div class="lg:flex-none lg:w-60">

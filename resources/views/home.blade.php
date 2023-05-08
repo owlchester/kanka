@@ -148,11 +148,12 @@
         </div>
 
         @if($widgets->count() === 0)
-            <div class="alert alert-info mt-6">
+            <div class="mt-6"></div>
+            <x-alert type="info">
                 {!! __('dashboard.setup.tutorial.text', [
     'blog' => link_to('https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/', __('dashboard.setup.tutorial.blog'), ['target' => '_blank'])
 ]) !!}
-            </div>
+            </x-alert>
         @endif
     @endcan
 @endsection

@@ -24,9 +24,9 @@
                     <div class="header-content mb-4">
                         <h1 class="mb-3">{!! $user->displayName() !!}</h1>
                         @if ($user->isBanned())
-                            <div class="alert alert-warning">
+                            <x-alert type="warning">
                                 {{__('users/profile.fields.banned')}}
-                            </div>
+                            </x-alert>
                         @endif
                         @if (!empty($user->profile['bio']))
                             <p class="mb-5 text-justify">

@@ -5,9 +5,9 @@
 */
 ?>
 @if (!isset($model) || empty($model->image))
-    <div class="alert alert-warning">
+    <x-alert type="warning">
         <p>{{ __('maps.helpers.missing_image') }}</p>
-    </div>
+    </x-alert>
 @else
     <x-tutorial code="map_markers" doc="https://docs.kanka.io/en/latest/entities/maps/markers.html">
         <p>{{ __('maps/markers.helpers.base') }}</p>

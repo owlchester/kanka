@@ -27,11 +27,11 @@
         <div class="grow max-w-7xl">
             @can('update', $campaign)
                 @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
-                    <div class="alert alert-warning">
+                    <x-alert type="warning">
                         <p>{!! __('campaigns.helpers.public_no_visibility', [
     'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'))
 ]) !!}</p>
-                    </div>
+                    </x-alert>
                 @endif
             @endcan
 

@@ -18,9 +18,9 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            <div id="max-content-error" class="alert alert-danger" style="display: none">
+            <x-alert type="danger" id="max-content-error" :hidden="true">
                 {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
-            </div>
+            </x-alert>
 
             <div class="form-group required">
                 <label>{{ __('campaigns/styles.fields.name') }}</label>

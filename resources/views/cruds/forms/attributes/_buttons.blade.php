@@ -43,11 +43,11 @@
         {{ __('entities/attributes.actions.show_hidden') }}
     </button>
 @endif
-<div class="alert alert-warning alert-too-many-fields mt-6" style="display:none">
+<x-alert type="warning" class="alert-too-many-fields mt-6" :hidden="true">
     {!! __('entities/attributes.errors.too_many', [
     'max' => number_format(ini_get('max_input_vars'))
 ]) !!}
-</div>
+</x-alert>
 
 <a href="//docs.kanka.io/en/latest/features/attributes.html" target="_blank">
     {{ __('helpers.attributes.link') }} <x-icon class="question"></x-icon>

@@ -21,10 +21,9 @@
             @include('partials.errors')
 
             @if (!empty($from))
-                <div class="alert alert-warning">
+                <x-alert type="warning">
                     {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
-
-                </div>
+                </x-alert>
             @endif
 
             @include('calendars.events._form')
@@ -50,10 +49,9 @@
             @include('partials.errors')
 
             @if (!empty($from))
-                <div class="alert alert-warning">
+                <x-alert type="warning">
                     {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
-
-                </div>
+                </x-alert>
             @endif
 
             @include('calendars.events._form')

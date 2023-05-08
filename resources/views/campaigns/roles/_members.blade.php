@@ -43,7 +43,7 @@
     @endif
 </x-box>
 @else
-    <div class="alert alert-info">
+    <x-alert type="info">
         <div class="mb-5">{{__('campaigns.roles.hints.empty_role')}}</div>
 
         @can('user', $role)
@@ -55,7 +55,7 @@
                 {{ __('campaigns.roles.users.actions.add') }}
             </button>
         @endcan
-    </div>
+    </x-alert>
 @endif
 
 @section('modals')

@@ -7,9 +7,9 @@
 ?>
 
 @if (!isset($model))
-    <div class="alert alert-warning">
+    <x-alert type="warning">
         {{ __('timelines/eras.helpers.eras') }}
-    </div>
+    </x-alert>
 @else
     <p class="help-block">
         {{ __('timelines/eras.helpers.primary') }}

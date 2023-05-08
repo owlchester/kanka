@@ -18,9 +18,9 @@
             </ul>
         </div>
     @else
-        <div class="alert alert-warning">
+        <x-alert type="warning">
             <p>This application will have full access to your account and campaigns.</p>
-        </div>
+        </x-alert>
     @endif
 
     <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem">

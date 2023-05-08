@@ -36,9 +36,9 @@
                 </div>
             </div>
             @else
-            <div class="alert alert-warning">
+            <x-alert type="warning">
                 {{ __('campaigns/export.errors.limit') }}
-            </div>
+            </x-alert>
             @endif
         </div>
     </div>

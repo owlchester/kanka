@@ -37,10 +37,10 @@
 
     <section class="py-50">
         <div class="container">
-            <div class="alert alert-warning">
+            <x-alert type="warning">
                 <h4>Deprecated concept</h4>
                 <p>Campaign boosters are a concept that have been replaced by the simpler <a class="btn btn-outline btn-primary" href="{{ route('front.premium') }}">Premium Campaigns</a></p>
-            </div>
+            </x-alert>
         </div>
     </section>
 

@@ -18,14 +18,14 @@
             <div class="row">
                 <div class="col-md-12">
                         @if ($model->isChunked() && $model->chunkingError())
-                            <p class="alert alert-error">
+                            <x-alert type="error">
                                 {!! __('maps.errors.chunking.error', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
-                            </p>
+                            </x-alert>
                         @elseif ($model->isChunked() && !$model->chunkingReady())
-                            <p class="alert alert-warning">
+                            <x-alert type="warning">
                                 {{ __('maps.errors.chunking.running.explore') }}
                                 {{ __('maps.errors.chunking.running.time') }}
-                            </p>
+                            </x-alert>
                         @else
                         <p>
                             <a href="{{ route('maps.explore', $model) }}" class="btn btn-block btn-primary" target="_blank">
