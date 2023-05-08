@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Services\PayPalService;
 use App\Http\Requests\ValidatePledge;
@@ -7,9 +9,7 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PayPalController extends Controller
 {
-
-    /** @var PaypalService */
-    protected $service;
+    protected PaypalService $service;
 
     /**
      * AbilityController constructor.
@@ -17,7 +17,7 @@ class PayPalController extends Controller
      */
     public function __construct(PayPalService $service)
     {
-        $this->middleware(['identity']);
+        $this->middleware(['auth', 'identity']);
         $this->service = $service;
     }
     /**
@@ -27,10 +27,11 @@ class PayPalController extends Controller
      */
     public function processTransaction(ValidatePledge $request)
     {
-        $response = $this->service->process($request);
-        
+        $response = $this->service
+            ->user($request->user())
+            ->process($request->get('tier'));
+
         if (isset($response['id']) && $response['id'] != null) {
-            // redirect to approve href
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
                     return redirect()->away($links['href']);
@@ -47,20 +48,23 @@ class PayPalController extends Controller
     }
 
     /**
-     * success transaction.
-     *
-     * @return \Illuminate\Http\Response
+     * Process a successful transaction
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Throwable
      */
     public function successTransaction(Request $request)
     {
-        $provider = new PayPalClient;
+        $provider = new PayPalClient();
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
 
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             $pledge = $response['purchase_units']['0']['reference_id'];
-            $this->service->subscribeUser($request, $pledge);
+            $this->service
+                ->user($request->user())
+                ->subscribe($pledge);
             $routeOptions = ['success' => 1];
 
             return redirect()

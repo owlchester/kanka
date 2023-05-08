@@ -1,27 +1,28 @@
 <?php
 
 namespace App\Services;
-use Illuminate\Http\Request;
+
+use App\Traits\UserAware;
 use Laravel\Cashier\Subscription;
 use Carbon\Carbon;
-use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Srmklive\PayPal\Services\PayPal;
 
 class PayPalService
-{   
+{
+    use UserAware;
+
     /**
-    * @param Request $request
-    * @return mixed
-    */
-   public function process(Request $request)
-   {
-        $user = $request->user();
-        if ($user->isSubscriber()) {
+     * @param string $pledge
+     * @return mixed
+     */
+    public function process(string $pledge): mixed
+    {
+        if ($this->user->isSubscriber()) {
             return [];
         }
-        
-        $pledge = $request->get('tier');
+
         $currency = "USD";
-        if ($user->billedInEur()) {
+        if ($this->user->billedInEur()) {
             $currency = "EUR";
         }
         if ($pledge === 'Owlbear') {
@@ -31,11 +32,11 @@ class PayPalService
         } elseif ($pledge === 'Elemental') {
             $price = "275.00";
         }
-        
-        $provider = new PayPalClient;
+
+        $provider = new PayPal();
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
-        
+
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
             "application_context" => [
@@ -54,27 +55,26 @@ class PayPalService
         ]);
 
         return $response;
-   }
+    }
 
     /**
-    * @param Request $request
-    */
-    public function subscribeUser(Request $request, string $pledge)
+     * @param string $pledge
+     */
+    public function subscribe(string $pledge): void
     {
-        $user = $request->user();
-
         // Add the subscriber role
-        $user->roles()->syncWithoutDetaching([5]);
+        $this->user->roles()->syncWithoutDetaching([5]);
 
-        // Add the sub level
-        $user->pledge = $pledge;
-        $user->save();
+        // Add the subscription to the user level
+        $this->user->pledge = $pledge;
+        $this->user->save();
+
         $sub = new Subscription();
-        $sub->user_id = $user->id;
+        $sub->user_id = $this->user->id;
         $sub->name = 'kanka';
         $sub->stripe_id = 'manual_sub';
         $sub->stripe_status = 'canceled';
-        $sub->stripe_price = 'paypal_' . $user->pledge;
+        $sub->stripe_price = 'paypal_' . $this->user->pledge;
         $sub->quantity = 1;
         $sub->ends_at = Carbon::now()->addYear();
         $sub->save();
