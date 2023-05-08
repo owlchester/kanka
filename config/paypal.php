@@ -1,11 +1,11 @@
 <?php
-/**
- * PayPal Setting & API Credentials
- * Created by Raza Mehdi <srmk@outlook.com>.
- */
 
 return [
-    'mode'    => env('PAYPAL_MODE', 'sandbox'), // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
+    // Sanity check
+    'enabled' => env('PAYPAL_MODE') !== null,
+
+    // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
+    'mode' => env('PAYPAL_MODE', 'sandbox'),
     'sandbox' => [
         'client_id'         => env('PAYPAL_SANDBOX_CLIENT_ID', ''),
         'client_secret'     => env('PAYPAL_SANDBOX_CLIENT_SECRET', ''),
@@ -17,9 +17,17 @@ return [
         'app_id'            => env('PAYPAL_LIVE_APP_ID', ''),
     ],
 
-    'payment_action' => env('PAYPAL_PAYMENT_ACTION', 'Sale'), // Can only be 'Sale', 'Authorization' or 'Order'
+    // Can only be 'Sale', 'Authorization' or 'Order'
+    'payment_action' => env('PAYPAL_PAYMENT_ACTION', 'Sale'),
     'currency'       => env('PAYPAL_CURRENCY', 'USD'),
-    'notify_url'     => env('PAYPAL_NOTIFY_URL', ''), // Change this accordingly for your application, After payment is done PayPal IPN service sends notification to notify_url (or it can be set in PayPal profile). https://developer.paypal.com/api/nvp-soap/ipn/ht-ipn/
-    'locale'         => env('PAYPAL_LOCALE', 'en_US'), // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
-    'validate_ssl'   => env('PAYPAL_VALIDATE_SSL', true), // Validate SSL when creating api client.
+
+    // Change this accordingly for your application, after payment is done PayPal IPN service sends notification
+    // to notify_url (or it can be set in PayPal profile). https://developer.paypal.com/api/nvp-soap/ipn/ht-ipn/
+    'notify_url'     => env('PAYPAL_NOTIFY_URL', ''),
+
+    // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
+    'locale'         => env('PAYPAL_LOCALE', 'en_US'),
+
+    // Validate SSL when creating api client.
+    'validate_ssl'   => env('PAYPAL_VALIDATE_SSL', true),
 ];

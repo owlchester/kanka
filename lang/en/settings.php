@@ -183,8 +183,9 @@ return [
         ],
         'helpers'               => [
             'alternatives'          => 'Pay for your subscription using :method. This payment method won\'t auto-renew at the end of your subscription. :method is only available in Euros.',
+            'alternatives-2'        => 'Pay for your subscription using :method. This is a one time payment that doesn\'t automatically renew at at the end of the subscription.',
             'alternatives_warning'  => 'Upgrading your subscription when using this method is not possible. Please subscribe again when your current one ends.',
-            'alternatives_yearly'   => 'Due to the restrictions surrounding recurring payments, :method is only available for yearly subscriptions',
+            'alternatives_yearly'   => 'We only accept yearly subscriptions with :method',
             'paypal'                => 'Want to use Paypal instead? Contact us at :email if you wish to subscribe to a yearly plan using Paypal.',
             'paypal_v2'             => 'We accept PayPal for yearly subscriptions. Contact us at :email with your Kanka account email, the tier you wish to subscribe to, and currency (USD or EUR) you want to be billed in.',
             'paypal_v3'             => 'Safely pay for your yearly subscription using PayPal.',

@@ -148,9 +148,9 @@
                     @endif
 
                     @if ($period !== 'yearly')
-                        <p class="text-danger">
+                        <div class="alert alert-warning">
                             {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'SOFORT']) }}
-                        </p>
+                        </div>
                     @else
                         @if ($user->subscribed('kanka'))
                             <p class="alert alert-warning">
@@ -196,7 +196,7 @@
                     @endif
 
                     @if ($period !== 'yearly')
-                        <p class="text-danger">
+                        <p class="alert alert-warning">
                             {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'Giropay']) }}
                         </p>
                     @else
@@ -212,7 +212,7 @@
                         <input id="accountholder-name"  name="accountholder-name" class="form-control mb-5">
 
                         <div class="text-center">
-                            <button class="btn btn-xl btn-success subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                            <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                 <span>{{ __('settings.subscription.actions.subscribe') }}</span>
                                 <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                             </button>
@@ -223,26 +223,23 @@
                         <input type="hidden" name="period" value="{{ $period }}" />
                         <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                         {!! Form::close() !!}
-
-                        @if($period === 'yearly')
-                            <p class="help-block">
-                                {!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
-                            </p>
-                        @endif
                         @endif
                     @endif
                 </div>
                 @endif
                 <div role="tabpanel" class="tab-pane {{ $limited ? 'active' : null }}" id="paypal">
+                    <p class="help-block">
+                        {{ __('settings.subscription.helpers.alternatives-2', ['method' => 'PayPal']) }}
+                    </p>
                     @if ($period !== 'yearly')
-                            <p class="text-danger">
-                                {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'PayPal']) }}
-                            </p>
-                    @else
+                        <div class="alert alert-warning">
+                            {{ __('settings.subscription.helpers.alternatives_yearly', ['method' => 'PayPal']) }}
+                        </div>
+                    @elseif (config('paypal.enabled'))
                     {!! Form::open(['route' => ['paypal.process-transaction'], 'method' => 'POST', 'class' => 'subscription-form']) !!}
                         <p class="help-block">
                             {!! __('settings.subscription.helpers.paypal_v3', ['email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}
-                        </p>    
+                        </p>
                         <div class="text-center">
                             <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                 <span>{{ __('settings.subscription.actions.subscribe') }}</span>
@@ -256,6 +253,8 @@
                         <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
                         <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                     {!! Form::close() !!}
+                    @else
+                        <p>Send us an email at {{ config('app.email') }} to get a yearly subscription through PayPal.</p>
                     @endif
                 </div>
             </div>
@@ -263,7 +262,7 @@
 
             <p class="help-block">
                 {!! __('settings.subscription.helpers.stripe', ['stripe' => link_to('https://stripe.com', 'Stripe', ['target' => '_blank'])]) !!}
-        @if($period === 'yearly')
+        @if($isYearly)
                 <br />{!! __('settings.subscription.trial_period', ['email' => link_to('mailto:' .  config('app.email'), config('app.email'))]) !!}
         @endif
             </p>
