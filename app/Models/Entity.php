@@ -450,6 +450,10 @@ class Entity extends Model
     public function postPositionOptions($position = null): array
     {
         $options = [null => __('posts.position.dont_change'), 1 => __('posts.position.first')];
+
+        if (!$position) {
+        #    $options = [1 => __('posts.position.first')];
+        }
         $layers = $this->posts->sortBy('position');
         foreach ($layers as $layer) {
             $options[$layer->position + 1] = __('maps/layers.placeholders.position_list', ['name' => $layer->name]);

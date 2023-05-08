@@ -62,7 +62,7 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
                 <div class="col-md-6 col-lg-4">
                     <div class="form-group">
                         <label>{{ __('crud.fields.position') }}</label>
-                        {!! Form::select('position', $options, (!empty($model->position) ? $model->position : $last), ['class' => 'form-control']) !!}
+                        {!! Form::select('position', $options, (!empty($model->position) ? 0 : $last), ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
