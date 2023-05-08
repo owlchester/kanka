@@ -37,7 +37,7 @@ class MapObserver extends MiscObserver
          */
         foreach ($model->maps as $sub) {
             $sub->map_id = null;
-            $sub->save();
+            $sub->saveQuietly();
         }
 
         $this->cleanupTree($model, 'map_id');

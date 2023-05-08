@@ -18,7 +18,7 @@ class JournalObserver extends MiscObserver
          */
         foreach ($journal->journals as $sub) {
             $sub->journal_id = null;
-            $sub->save();
+            $sub->saveQuietly();
         }
 
         $this->cleanupTree($journal, 'journal_id');

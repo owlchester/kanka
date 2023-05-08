@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\EntityNote;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
+use App\Models\Post;
 
 /**
  * Trait ReorderTrait
@@ -32,12 +33,47 @@ trait ReorderTrait
                 $position = $position + 1;
             }
         } elseif ($model instanceof EntityNote) {
-            $posts = $model->entity->posts()->orderBy('position')->get();
-            $position = $posts['0']->position;
+            $this->reorderPosts($model);
+        }
+    }
+
+    protected function reorderPosts(EntityNote $model)
+    {
+        // Placing it first, this makes it a bit complicated
+        $position = $model->position;
+
+        // If it's placed after the entry (positive position)
+        if ($model->position > 0) {
+            /** @var Post[] $posts */
+            $posts = $model->entity->posts()
+                ->where('position', '>', 0)
+                ->whereNot('id', $model->id)
+                ->orderBy('position')
+                ->get();
             foreach ($posts as $post) {
+                // Ignore things that come "before". Could be moved into the query
+                if ($post->position < $model->position) {
+                    continue;
+                }
+                $position++;
                 $post->position = $position;
                 $post->updateQuietly();
-                $position = $position + 1;
+            }
+        } else {
+            /** @var Post[] $posts */
+            $posts = $model->entity->posts()
+                ->where('position', '<', 0)
+                ->whereNot('id', $model->id)
+                ->orderByDesc('position')
+                ->get();
+            foreach ($posts as $post) {
+                // Ignore things that come "after". Could be moved into the query
+                if ($post->position > $model->position) {
+                    continue;
+                }
+                $position--;
+                $post->position = $position;
+                $post->updateQuietly();
             }
         }
     }

@@ -94,7 +94,7 @@ class CreatureObserver extends MiscObserver
          */
         foreach ($creature->creatures as $sub) {
             $sub->creature_id = null;
-            $sub->save();
+            $sub->saveQuietly();
         }
 
         $this->cleanupTree($creature, 'creature_id');

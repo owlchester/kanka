@@ -74,7 +74,7 @@ class FamilyObserver extends MiscObserver
          */
         foreach ($family->families as $sub) {
             $sub->family_id = null;
-            $sub->save();
+            $sub->saveQuietly();
         }
 
         $this->cleanupTree($family, 'family_id');

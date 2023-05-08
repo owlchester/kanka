@@ -18,7 +18,7 @@ class LocationObserver extends MiscObserver
          */
         foreach ($location->locations as $sub) {
             $sub->parent_location_id = null;
-            $sub->save();
+            $sub->saveQuietly();
         }
 
         $this->cleanupTree($location, 'parent_location_id');

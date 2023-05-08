@@ -52,7 +52,7 @@ class TimelineObserver extends MiscObserver
          */
         foreach ($timeline->timelines as $sub) {
             $sub->timeline_id = null;
-            $sub->save();
+            $sub->saveQuietly();
         }
 
         $this->cleanupTree($timeline, 'timeline_id');

@@ -449,20 +449,34 @@ class Entity extends Model
      */
     public function postPositionOptions($position = null): array
     {
-        $options = [null => __('posts.position.dont_change'), 1 => __('posts.position.first')];
+        $options = $position ? [
+            null => __('posts.position.dont_change'),
+        ] : [];
 
-        if (!$position) {
-            $options = [1 => __('posts.position.first')];
-        }
         $layers = $this->posts->sortBy('position');
+        $hasFirst = false;
         foreach ($layers as $layer) {
-            $options[$layer->position + 1] = __('maps/layers.placeholders.position_list', ['name' => $layer->name]);
+            if (!$hasFirst) {
+                $hasFirst = true;
+                $options[$layer->position < 0 ? $layer->position - 1 : 1] = __('posts.position.first');
+            }
+            $key = $layer->position > 0 ? $layer->position + 1 : $layer->position;
+            $lang = __('maps/layers.placeholders.position_list', ['name' => $layer->name]);
+            if (app()->isLocal()) {
+                $lang .= ' (' . $key . ')';
+            }
+            $options[$key] = $lang;
+        }
+
+        // Didn't have a first option added, add one now
+        if (!$hasFirst) {
+            $options[1] = __('posts.position.first');
         }
 
         //If is the last position remove last+1 position from the options array
-        if ($position == array_key_last($options) - 1 && count($options) > 1) {
+        /*if ($position == array_key_last($options) - 1 && count($options) > 1) {
             array_pop($options);
-        }
+        }*/
         return $options;
     }
 }

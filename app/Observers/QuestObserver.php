@@ -20,7 +20,7 @@ class QuestObserver extends MiscObserver
          */
         foreach ($model->quests as $sub) {
             $sub->quest_id = null;
-            $sub->save();
+            $sub->saveQuietly();
         }
 
         // We need to refresh our foreign relations to avoid deleting our children nodes again

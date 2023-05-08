@@ -18,7 +18,7 @@ class NoteObserver extends MiscObserver
          */
         foreach ($note->notes as $sub) {
             $sub->note_id = null;
-            $sub->save();
+            $sub->saveQuietly();
         }
 
         $this->cleanupTree($note, 'note_id');

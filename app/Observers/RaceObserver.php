@@ -94,7 +94,7 @@ class RaceObserver extends MiscObserver
          */
         foreach ($race->races as $sub) {
             $sub->race_id = null;
-            $sub->save();
+            $sub->saveQuietly();
         }
 
         $this->cleanupTree($race, 'race_id');

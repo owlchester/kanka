@@ -18,7 +18,7 @@ class AttributeTemplateObserver extends MiscObserver
          */
         foreach ($attributeTemplate->attributeTemplates as $sub) {
             $sub->attribute_template_id = null;
-            $sub->save();
+            $sub->saveQuietly();
         }
 
         $this->cleanupTree($attributeTemplate, 'attribute_template_id');
