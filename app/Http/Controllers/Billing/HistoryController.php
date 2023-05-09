@@ -40,14 +40,19 @@ class HistoryController extends Controller
     {
         /** @var User $user */
         $user = $request->user();
+        $billing = '';
+        if ($user->profile) {
+            $billing = $user->profile['billing'];
+        }
         return $user->downloadInvoice($invoice, [
             'vendor' => 'Owlchester SNC',
-            'product' => 'Kanka Subscription',
+            'product' => 'Kanka Subscriptions',
             'url' => config('app.url'),
             'street' => config('billing.street'),
             'location' => config('billing.location'),
             'country' => config('billing.country'),
             'email' => config('app.email'),
+            'billing' => $billing,
         ]);
     }
 }

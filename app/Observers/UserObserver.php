@@ -43,6 +43,19 @@ class UserObserver
             }
         }
 
+        //Purify Billing info
+        if (!empty($user->profile['billing'])) {
+            $profile = $user->profile;
+            $profile['billing'] = mb_substr(strip_tags($profile['billing']), 0, 1024);
+            try {
+                $user->profile = $profile;
+            } catch (\Exception $e) {
+                //invalid billing info, like emojis in text
+                $profile['billing'] = '';
+                $user->profile = $profile;
+            }
+        }
+
         // Handle image. Let's use a service for this.
         $folderno = (int) floor($user->id / 1000);
         ImageService::handle($user, $user->getTable() . '/' . $folderno, 60, 'avatar');

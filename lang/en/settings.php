@@ -121,6 +121,9 @@ return [
         'actions'   => [
             'update_profile'    => 'Update profile',
         ],
+        'billing_info' => 'Billing Information',
+        'billing_placeholder' => 'If you need additional contact or tax information added to your receipts (bussines address, VAT number, etc.), enter it below and it will appear on all of your receipts',
+        'update_billing'   => 'Save billing information',
         'avatar'    => 'Profile Picture',
         'success'   => 'Profile updated.',
         'title'     => 'Public Profile',

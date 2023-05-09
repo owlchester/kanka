@@ -46,6 +46,26 @@
         </div>
     </x-box>
     {!! Form::close() !!}
+
+
+    {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing-info']]) !!}
+    <x-box>
+        <div class="form-group">
+            <label class="inline-block w-full font-bold mb-1">
+                {{ __('settings.profile.billing_info') }}
+            </label>
+            {!! Form::textarea('profile[billing]', null, ['placeholder' => __('settings.profile.billing_placeholder'), 'class' => 'rounded border p-2 w-full', 'rows' => 5, 'maxlength' => 1024]) !!}
+        </div>
+
+        <div class="text-right">
+            <x-buttons.confirm type="primary" outline="true">
+                <x-icon class="save"></x-icon>
+                <span>
+            {{ __('settings.profile.update_billing') }}</span>
+            </x-buttons.confirm>
+        </div>
+    </x-box>
+    {!! Form::close() !!}
 @endsection
 
 

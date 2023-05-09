@@ -46,7 +46,23 @@ class ProfileController extends Controller
             ->with('success', trans('settings.profile.success'));
     }
 
-        /**
+    /**
+     * @param StoreSettingsProfile $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveBillingInfo(Request $request)
+    {
+        /** @var User $user */
+        $user = $request->user();
+        $user->updateBillingInfo($request->profile['billing'])
+            ->update();
+
+        return redirect()
+            ->route('billing.payment-method')
+            ->with('success', trans('settings.profile.success'));
+    }
+
+    /**
      * @param StoreSettingsProfile $request
      * @return \Illuminate\Http\RedirectResponse
      */

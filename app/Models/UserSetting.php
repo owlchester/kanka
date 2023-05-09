@@ -225,6 +225,20 @@ trait UserSetting
     }
 
     /**
+     * Save user's custom billing info
+     * @return $this
+     */
+    public function updateBillingInfo($billing): self
+    {
+        $profile = $this->profile;
+        $profile['billing'] = $billing;
+
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
      * @param array $data
      * @return $this
      */
