@@ -94,6 +94,6 @@ class AccountController extends Controller
         $this->deletionService
             ->user($request->user())
             ->delete();
-        return redirect()->route('home', ['deleted' => true]);
+        return redirect()->route('front.goodbye', ['deleted' => true]);
     }
 }

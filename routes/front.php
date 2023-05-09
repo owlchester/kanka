@@ -2,6 +2,7 @@
 
 Route::get('/front', 'FrontController@index')->name('front.home');
 Route::get('/about', 'FrontController@about')->name('front.about');
+Route::get('/goodbye', 'FrontController@goodbye')->name('front.goodbye');
 //Route::get('/terms-of-service', 'FrontController@tos')->name('tos');
 Route::get('/privacy-policy', 'FrontController@privacy')->name('front.privacy');
 Route::get('/terms-and-conditions', 'FrontController@terms')->name('front.terms');
