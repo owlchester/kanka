@@ -10,10 +10,19 @@ export default defineConfig({
         },
         watch: {
             ignored: [
-                '**/vendor/**',
+                '**/bootstrap/**',
+                '**/database/**',
+                '**/docs/**',
                 '**/lang/**',
+                '**/node_modules/**',
                 '**/public/**',
-                '**/storage/debugbar/**'
+                '**/resources/api-docs/**',
+                '**/resources/assets/**',
+                '**/routes/**',
+                '**/storage/**',
+                '**/storage/debugbar/**',
+                '**/tests/**',
+                '**/vendor/**',
             ],
         },
     },

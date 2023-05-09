@@ -12,6 +12,8 @@
 /.scannerwork
 /.idea
 /.vagrant
+/.vscode
+/.sail
 Homestead.json
 Homestead.yaml
 npm-debug.log
@@ -19,9 +21,7 @@ yarn-error.log
 .env
 .env.local
 .DS_Store
-.vscode
 .phpunit.result.cache
 *.sql
-/.sail
 package-lock.json
 
