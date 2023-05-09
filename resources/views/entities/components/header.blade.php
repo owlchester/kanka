@@ -10,13 +10,17 @@ if (!isset($entity)) {
     $entity = $model->entity;
 }
 
-$imageUrl = $imagePath = $headerImageUrl = null;
+$imageUrl = $imagePath = $headerImageUrl = $imagePathXL = $imagePathMobile = null;
 if ($model->image) {
     $imageUrl = $model->getOriginalImageUrl();
     $imagePath = $model->thumbnail(170);
+    $imagePathXL = $model->thumbnail(400);
+    $imagePathMobile = $model->thumbnail(100);
 } elseif ($campaignService->campaign()->superboosted() && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
     $imagePath = Img::crop(170, 170)->url($entity->image->path);
+    $imagePathXL = Img::crop(400, 400)->url($entity->image->path);
+    $imagePathMobile = Img::crop(100, 100)->url($entity->image->path);
 }
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();
@@ -57,10 +61,14 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
             @endif
 
             @if (!isset($printing))
-            <a class="entity-image cover-background visible-xs" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
+            <a class="entity-image cover-background visible-xs" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePathMobile }}');"></a>
             @endif
-            <div class="entity-image cover-background dropdown-toggle hidden-xs" data-toggle="dropdown" aria-expanded="false" style="background-image: url('{{ $imagePath }}');"></div>
-
+            <div class="cursor-pointer dropdown-toggle hidden-xs" data-toggle="dropdown" aria-expanded="false">
+                <picture>
+                    <source media="(min-width:766px)" srcset="{{ $imagePathXL }}">
+                    <img src="{{ $imagePath }}" alt="{{ $model->name }}" style="width:auto;">
+                </picture>
+            </div>
 
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                 <li>
