@@ -139,7 +139,7 @@
                     <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
                     {!! Form::close() !!}
                 </div>
-                <p role="tabpanel" class="tab-pane" id="sofort">
+                <div role="tabpanel" class="tab-pane" id="sofort">
                     <p class="help-block">
                         {{ __('settings.subscription.helpers.alternatives', ['method' => 'SOFORT']) }}
                     </p>
