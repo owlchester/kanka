@@ -216,6 +216,13 @@ return [
             'community' => 'Community',
         ],
     ],
+    'goodbye'               => [
+        'title'             => 'Goodbye',
+        'description_1'     => 'We\'re sorry to see you go and we understand that deleting your account is a big decision. We appreciate the time you spent with Kanka and we hope that it met your expectations.',
+        'description_2'     => 'Please know that our team is committed to constantly improving and updating Kanka to provide the best experience possible. We value your feedback and suggestions, and we encourage you to reach out to us at :email any time with any comments you may have.',
+        'description_3'     => 'We also want you to know that should you ever decide to return, we would be more than happy to have you back. We are confident that with our frequent updates, you will find Kanka even better and more user-friendly than ever before.',
+        'description_4'     => 'Thank you again for being a part of our community. We wish you all the best in your future worldbuilding endeavors.',
+    ],
     'help'                  => [
         'description'   => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',
         'discord'       => 'Join our Discord',

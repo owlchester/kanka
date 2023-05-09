@@ -45,6 +45,14 @@ class FrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function goodbye()
+    {
+        return view('front.goodbye');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function tos()
     {
         return $this->cachedResponse('front.tos');
