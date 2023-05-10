@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBillingSettings;
 use App\Http\Requests\StoreSettingsProfile;
 use App\User;
 use Illuminate\Http\Request;
@@ -46,8 +47,24 @@ class ProfileController extends Controller
             ->with('success', trans('settings.profile.success'));
     }
 
-        /**
-     * @param StoreSettingsProfile $request
+    /**
+     * @param StoreBillingSettings $request
+     * @return \Illuminate\Http\StoreBillingSettings
+     */
+    public function saveBillingInfo(StoreBillingSettings $request)
+    {
+        /** @var User $user */
+        $user = $request->user();
+        $user->updateBillingInfo($request->profile['billing'])
+            ->update();
+
+        return redirect()
+            ->route('billing.payment-method')
+            ->with('success', trans('settings.profile.success'));
+    }
+
+    /**
+     * @param request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function resetTutorials(Request $request)

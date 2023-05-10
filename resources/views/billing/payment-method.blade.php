@@ -8,8 +8,9 @@
     'breadcrumbs' => false,
     'sidebar' => 'settings',
 ])
-
 @section('content')
+    @include('partials.errors')
+
     <h1 class="mb-3">
         {{ __('billing/payment_methods.title') }}
     </h1>
@@ -42,6 +43,26 @@
                 <x-icon class="save"></x-icon>
                 <span>
             {{ __('settings.subscription.actions.update_currency') }}</span>
+            </x-buttons.confirm>
+        </div>
+    </x-box>
+    {!! Form::close() !!}
+
+
+    {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing-info']]) !!}
+    <x-box>
+        <div class="form-group">
+            <label class="inline-block w-full font-bold mb-1">
+                {{ __('settings.billing.title') }}
+            </label>
+            {!! Form::textarea('profile[billing]', null, ['placeholder' => __('settings.billing.placeholder'), 'class' => 'rounded border p-2 w-full', 'rows' => 5, 'maxlength' => 1024]) !!}
+        </div>
+
+        <div class="text-right">
+            <x-buttons.confirm type="primary" outline="true">
+                <x-icon class="save"></x-icon>
+                <span>
+            {{ __('settings.billing.save') }}</span>
             </x-buttons.confirm>
         </div>
     </x-box>
