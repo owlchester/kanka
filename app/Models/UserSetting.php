@@ -232,6 +232,9 @@ trait UserSetting
     {
         $profile = $this->profile;
         $profile['billing'] = $billing;
+        if ($billing == '') {
+            unset($profile['billing']);
+        }
 
         $this->profile = $profile;
 

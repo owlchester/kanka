@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBillingSettings;
 use App\Http\Requests\StoreSettingsProfile;
 use App\User;
 use Illuminate\Http\Request;
@@ -47,10 +48,10 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param StoreSettingsProfile $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param StoreBillingSettings $request
+     * @return \Illuminate\Http\StoreBillingSettings
      */
-    public function saveBillingInfo(Request $request)
+    public function saveBillingInfo(StoreBillingSettings $request)
     {
         /** @var User $user */
         $user = $request->user();
@@ -63,7 +64,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param StoreSettingsProfile $request
+     * @param request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function resetTutorials(Request $request)

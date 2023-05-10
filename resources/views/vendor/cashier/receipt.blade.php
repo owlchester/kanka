@@ -153,8 +153,7 @@
                 @foreach ($invoice->customerTaxIds() as $taxId)
                     {{ $taxId->value }}<br>
                 @endforeach
-                
-                {{ $billing }}
+                <span style="white-space: pre;">{{ $billing }}</span>  
             </td>
         </tr>
         <tr valign="top">
