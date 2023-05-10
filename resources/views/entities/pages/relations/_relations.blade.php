@@ -1,19 +1,19 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Relation $relation
  */?>
-<div class="box box-solid box-entity-relations box-entity-relations-table" id="entity-relations-table">
-    <div class="box-header">
-        <h3 class="box-title">
-            {{ __('sidebar.relations') }}
-        </h3>
+<div class="flex gap-2">
+    <h3 class="grow box-title">
+        {{ __('sidebar.relations') }}
+    </h3>
 
-        <div class="box-tools">
-            <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
-            </a>
-        </div>
+    <div class="flex-0">
+        <a href="#" class="btn btn-default btn-sm" data-toggle="dialog" data-target="help-modal">
+            <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+        </a>
     </div>
-    <div class="box-body">
+</div>
+<div class="box box-solid box-entity-relations box-entity-relations-table" id="entity-relations-table">
+    <div class="box-body @if ($rows->count() > 0) no-padding @endif">
 
         @if ($rows->count() === 0)
             <p class="help-block">
@@ -28,7 +28,6 @@
                 </a>
             @endcan
         @else
-
             <div id="datagrid-parent" class="table-responsive">
                 @include('layouts.datagrid._table')
             </div>

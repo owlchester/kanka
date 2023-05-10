@@ -54,7 +54,9 @@
             @if ($reminders->count() > 0)
                 <div class="box box-solid box-entity-reminders">
                     <div class="box-body no-padding">
+                        <div class="table-responsive">
                         @include('entities.pages.reminders._table')
+                        </div>
                     </div>
                 </div>
             @endif
