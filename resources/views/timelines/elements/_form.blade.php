@@ -1,3 +1,8 @@
+<?php
+//dd($timeline->elements);
+$options = $timeline->elementPositionOptions(!empty($model->position) ? $model->position : null);
+$last = array_key_last($options);
+?>
 
 @inject('campaignService', 'App\Services\CampaignService')
 
@@ -50,7 +55,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('crud.fields.position') }}</label>
-            {!! Form::number('position', $position ?? null, ['placeholder' => __('timelines/elements.placeholders.position'), 'class' => 'form-control', 'maxlength' => 5]) !!}
+            {!! Form::select('position', $options, (!empty($model->position) ? -9999 : $last), ['class' => 'form-control']) !!}
         </div>
     </div>
 

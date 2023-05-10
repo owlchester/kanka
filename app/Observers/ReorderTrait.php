@@ -6,6 +6,7 @@ use App\Models\EntityNote;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\Post;
+use App\Models\TimelineElement;
 
 /**
  * Trait ReorderTrait
@@ -30,6 +31,12 @@ trait ReorderTrait
             foreach ($model->map->layers()->orderBy('position')->get() as $layer) {
                 $layer->position = $position;
                 $layer->updateQuietly();
+                $position = $position + 1;
+            }
+        } elseif ($model instanceof TimelineElement) {
+            foreach ($model->timeline->elements()->orderBy('position')->get() as $element) {
+                $element->position = $position;
+                $element->updateQuietly();
                 $position = $position + 1;
             }
         } elseif ($model instanceof EntityNote) {
