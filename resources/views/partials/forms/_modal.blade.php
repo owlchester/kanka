@@ -15,7 +15,7 @@
 </div>
 <div class="modal-footer">
     @if (isset($actions))
-        @include($actions)
+        @includeWhen(!empty($actions), $actions)
     @else
     <button class="btn btn-success">
         {{ $submit ?? __('crud.save') }}
