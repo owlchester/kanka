@@ -202,6 +202,13 @@
     <div class="modal fade" id="change-currency" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+                @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->ended())
+                    @include('partials.forms._modal', [
+                        'title' => __('settings.subscription.currency.title'),
+                        'content' => 'settings.subscription.currency._blocked',
+                        'actions' => '',
+                    ])
+                @else
                 {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['billing.payment-method.save']]) !!}
                 @include('partials.forms._modal', [
                     'title' => __('settings.subscription.currency.title'),
@@ -210,6 +217,7 @@
                 ])
                 <input type="hidden" name="from" value="{{ 'settings.subscription' }}" />
                 {!! Form::close() !!}
+                @endif
             </div>
         </div>
     </div>
