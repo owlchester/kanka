@@ -46,7 +46,7 @@ class HistoryController extends Controller
         }
         return $user->downloadInvoice($invoice, [
             'vendor' => 'Owlchester SNC',
-            'product' => 'Kanka Subscriptions',
+            'product' => 'Kanka Subscription',
             'url' => config('app.url'),
             'street' => config('billing.street'),
             'location' => config('billing.location'),
