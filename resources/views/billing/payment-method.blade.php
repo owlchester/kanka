@@ -34,17 +34,21 @@
 
     {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['billing.payment-method.save']]) !!}
     <x-box>
-        <div class="form-group">
-            <label>{{ __('settings.subscription.fields.currency') }}</label>
-            {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], auth()->user()->currency(), ['class' => 'form-control']) !!}
-        </div>
-        <div class="text-right">
-            <x-buttons.confirm type="primary" outline="true">
-                <x-icon class="save"></x-icon>
-                <span>
-            {{ __('settings.subscription.actions.update_currency') }}</span>
-            </x-buttons.confirm>
-        </div>
+        @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->ended())
+            @include('settings.subscription.currency._blocked')
+        @else
+            <div class="form-group">
+                <label>{{ __('settings.subscription.fields.currency') }}</label>
+                {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], auth()->user()->currency(), ['class' => 'form-control']) !!}
+            </div>
+            <div class="text-right">
+                <x-buttons.confirm type="primary" outline="true">
+                    <x-icon class="save"></x-icon>
+                    <span>
+                {{ __('settings.subscription.actions.update_currency') }}</span>
+                </x-buttons.confirm>
+            </div>
+        @endif
     </x-box>
     {!! Form::close() !!}
 
