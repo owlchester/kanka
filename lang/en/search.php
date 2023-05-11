@@ -13,5 +13,6 @@ return [
         'links'             => 'Links',
         'no-connections'    => 'No pinned relations to display',
     ],
+    'placeholder' => 'SEARCH',
     'title'         => 'Search',
 ];
