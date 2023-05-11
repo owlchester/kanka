@@ -15,7 +15,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
             <nav-search
                 api_lookup="{{ route('search.live') }}"
                 api_recent="{{ route('search.recent') }}"
-                placeholder="{{ __('SEARCH') }}"
+                placeholder="{{ __('search.placeholder') }}"
                 keyboard_tooltip="{!! __('crud.keyboard-shortcut', ['code' => '<code>K</code>']) !!}"
             ></nav-search>
         @endif
