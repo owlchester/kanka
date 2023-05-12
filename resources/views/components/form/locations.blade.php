@@ -29,7 +29,7 @@ if ($quickCreator) {
 }
 ?>
 <label>
-    {!! \App\Facades\Module::plural(config('entities.ids.location'), __('races.fields.locations')) !!}
+    {!! \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')) !!}
 </label>
 
 @if ($quickCreator)<div class="input-group input-group-sm">@endif

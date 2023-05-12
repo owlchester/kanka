@@ -5,7 +5,7 @@ $hasOthers = false;
 <div class="dropdown datagrid-bulk-actions">
     <a class="dropdown-toggle btn btn-default disabled" data-toggle="dropdown" aria-expanded="false" data-tree="escape">
         {{ __('crud.bulk.buttons.label') }}
-        <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
+        <x-icon class="fa-solid fa-caret-down"></x-icon>
     </a>
     <ul class="dropdown-menu" role="menu">
 
@@ -48,15 +48,20 @@ $hasOthers = false;
             <div class="modal-content rounded-2xl">
                 <div class="modal-body text-center">
 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
 
-                    <p class="mt-3">{{ __('crud.bulk.delete.warning') }}<br />{{ __('crud.delete_modal.permanent') }}</p>
+                    <p class="mt-3">
+                        {{ __('crud.bulk.delete.warning') }}<br />
+                        {{ __('crud.delete_modal.permanent') }}
+                    </p>
 
                     <div class="py-5">
                         <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                         <button type="button" class="btn btn-danger px-8 ml-5 rounded-full" id="datagrid-action-confirm">
-                            <span class="fa-solid fa-trash" aria-hidden="true"></span>
+                            <x-icon class="trash"></x-icon>
                             <span class="remove-button-label">{{ __('crud.remove') }}</span>
                         </button>
                     </div>
