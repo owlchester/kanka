@@ -8,20 +8,20 @@ $buttons = [];
 if (auth()->check()) {
     if (auth()->user()->hasBoosterNomenclature() && !$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost)) {
         $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn btn-block bg-boost text-white">
-            <x-icon class="premium"></x-icon> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
+            <i class="fa-solid fa-premium" aria-hidden=true"></i> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
     }
     if (!$campaign->boosted()) {
         if (auth()->check() && auth()->user()->hasBoosterNomenclature()) {
         $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-boost text-white mb-5">
-            <x-icon class="premium"></x-icon> ' . __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) . '</a>';
+            <i class="fa-solid fa-premium" aria-hidden=true"></i> ' . __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) . '</a>';
         } else {
         $buttons[] = '<a href="' . route('settings.premium', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-boost text-white mb-5">
-            <x-icon class="premium"></x-icon> ' . __('settings/premium.actions.unlock') . '</a>';
+            <i class="fa-solid fa-premium" aria-hidden=true"></i> ' . __('settings/premium.actions.unlock') . '</a>';
         }
     }
     if (auth()->user()->can('update', $campaign)) {
         $buttons[] = '<a href="'. route('campaigns.edit') .'" class="btn btn-primary btn-block">
-            <x-icon class="edit"></x-icon> '. __('campaigns.show.actions.edit') .'</a>';
+            <i class="fa-solid fa-edit" aria-hidden=true"></i> '. __('campaigns.show.actions.edit') .'</a>';
     }
     if ($campaign->userIsMember()) {
     $buttons[] = '<button type="button" class="btn btn-warning btn-block" data-toggle="dialog" data-target="leave-confirm">
@@ -30,7 +30,7 @@ if (auth()->check()) {
     }
     if (auth()->user()->can('roles', $campaign)) {
         $buttons[] = '<button type="button" class="btn btn-danger btn-block" data-toggle="dialog" data-target="campaign-delete-confirm">
-            <x-icon class="trash"></x-icon> ' . __('campaigns.destroy.action') . '
+            <i class="fa-regular fa-trash" aria-hidden=true"></i> ' . __('campaigns.destroy.action') . '
         </button>';
     }
 }
