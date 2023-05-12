@@ -222,12 +222,16 @@ class TimelineEraController extends Controller
 
     /**
      */
-    public function positionList(Timeline $timeline, TimelineEra $era)
+    public function positionList(Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('view', $timeline);
 
+        if ($timeline->id != $timelineEra->timeline_id) {
+            abort(404);
+        }
+
         return response()->json([
-            'positions' => $era->positionOptions(),
+            'positions' => $timelineEra->positionOptions(),
         ]);
     }
 }

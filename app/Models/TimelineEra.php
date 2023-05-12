@@ -183,9 +183,9 @@ class TimelineEra extends Model
         foreach ($elements as $element) {
             if (!$hasFirst) {
                 $hasFirst = true;
-                $options[$element->position < 0 ? $element->position - 1 : 1] = __('posts.position.first');
+                $options[1] = __('posts.position.first');
             }
-            $key = $element->position > 0 ? $element->position + 1 : $element->position;
+            $key = $element->position;
             $lang = __('maps/layers.placeholders.position_list', ['name' => $element->name]);
             if (app()->isLocal()) {
                 $lang .= ' (' . $key . ')';

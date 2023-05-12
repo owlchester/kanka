@@ -124,7 +124,7 @@ $era = null;
     </div>
 </div>
 
-<input type="hidden" name="era-data-url" data-url="{{ route('timelines.era-list', ['timeline' => $timeline->id, 'era' => 0]) }}">
+<input type="hidden" name="era-data-url" data-url="{{ route('timelines.era-list', ['timeline' => $timeline->id, 'timeline_era' => 0]) }}">
 <input type="hidden" name="oldPosition" data-url="{{ $oldPosition }}">
 
 

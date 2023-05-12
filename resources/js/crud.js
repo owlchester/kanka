@@ -334,8 +334,6 @@ function loadCalendarDates(calendarID) {
  * @param calendarID
  */
 function loadTimelineEra(eraID) {
-    entityCalendarLoading.show();
-
     eraID = parseInt(eraID);
     var url = $('input[name="era-data-url"]').data('url').replace('/0/', '/' + eraID + '/');
     var oldPosition = $('input[name="oldPosition"]').data('url');
@@ -356,7 +354,6 @@ function loadTimelineEra(eraID) {
                 }
                 id++;
             });
-            initSpectrum();
         });
 }
 

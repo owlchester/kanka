@@ -186,7 +186,7 @@ Route::post('/editing/quest-elements/{quest_element}/keep-alive', 'EditingContro
 // Timeline Elements
 Route::post('/editing/timeline-elements/{timeline_element}/confirm-editing', 'EditingController@confirmTimelineElement')->name('timeline-elements.confirm-editing');
 Route::post('/editing/timeline-elements/{timeline_element}/keep-alive', 'EditingController@keepAliveTimelineElement')->name('timeline-elements.keep-alive');
-Route::get('/timeline/{timeline}/era/{era}/list', 'Timelines\TimelineEraController@positionList')->name('timelines.era-list');
+Route::get('/timeline/{timeline}/era/{timeline_era}/list', 'Timelines\TimelineEraController@positionList')->name('timelines.era-list');
 
 // Permission save
 Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');
