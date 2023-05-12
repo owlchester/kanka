@@ -12,6 +12,8 @@ var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
 var entityCalendarModalForm;
 
+var oldEra;
+
 var entityName;
 
 $(document).ready(function () {
@@ -30,6 +32,7 @@ $(document).ready(function () {
 
     registerFormSubmitAnimation();
     registerEntityCalendarForm();
+    registerEraForm();
     registerFormMaintenance();
     registerEntityCalendarModal();
     registerModalLoad();
@@ -248,6 +251,24 @@ function registerEntityCalendarModal() {
     }
 }
 
+
+function registerEraForm() {
+    entityCalendarAdd = $('#era-form-add');
+    let eraField = $('[name="era_id"]');
+
+    let positionField = $('select[name="position"]');
+    oldEra = eraField.val();
+    loadTimelineEra(eraField.val());
+
+    if (eraField.length === 1) {
+        eraField.on('change', function () {
+            // Load era list
+            let positionField = $('select[name="position"]');
+            loadTimelineEra(eraField.val());
+        });
+    }
+}
+
 /**
  *
  * @param calendarID
@@ -304,6 +325,35 @@ function loadCalendarDates(calendarID) {
             }
 
             initSpectrum();
+        });
+}
+
+
+/**
+ *
+ * @param calendarID
+ */
+function loadTimelineEra(eraID) {
+    eraID = parseInt(eraID);
+    var url = $('input[name="era-data-url"]').data('url').replace('/0/', '/' + eraID + '/');
+    var oldPosition = $('input[name="oldPosition"]').data('url');
+    $.ajax(url)
+        .done(function (data) {
+            let eraField = $('select[name="position"]');
+            eraField.html('');
+            let id = 1;
+            $.each(data.positions, function (i) {
+                let position = data.positions[i];
+                let selected = ' selected="selected"';
+
+                if (oldPosition && !i && (oldEra == eraID)) {
+                    eraField.append('<option value="" data-length="' + position.length + '" ' + selected + '>' + position + '</option>');
+                }
+                if (i) {
+                    eraField.append('<option value="' + id + '" data-length="' + position.length + '" ' + selected + '>' + position + '</option>');
+                }
+                id++;
+            });
         });
 }
 

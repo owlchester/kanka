@@ -1,9 +1,13 @@
+<?php
+$oldPosition = !empty($model->position) ? $model->position : null;
+$era = null;
+?>
 
 @inject('campaignService', 'App\Services\CampaignService')
 
 <div class="form-group required">
     <label>{{ __('timelines/elements.fields.era') }}</label>
-    {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => 'form-control']) !!}
+    {!! Form::select('era_id', $timeline->eras->pluck('name', 'id'), (!empty($eraId) ? $eraId : null), ['class' => 'form-control', 'id' => 'era-form-add']) !!}
 </div>
 
 
@@ -50,7 +54,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('crud.fields.position') }}</label>
-            {!! Form::number('position', $position ?? null, ['placeholder' => __('timelines/elements.placeholders.position'), 'class' => 'form-control', 'maxlength' => 5]) !!}
+            {!! Form::select('position', [], (!empty($model->position) ? -9999 : $oldPosition), ['class' => 'form-control', 'name' => 'position']) !!}
         </div>
     </div>
 
@@ -119,6 +123,9 @@
         </div>
     </div>
 </div>
+
+<input type="hidden" name="era-data-url" data-url="{{ route('timelines.era-list', ['timeline' => $timeline->id, 'timeline_era' => 0]) }}">
+<input type="hidden" name="oldPosition" data-url="{{ $oldPosition }}">
 
 
 @include('editors.editor')

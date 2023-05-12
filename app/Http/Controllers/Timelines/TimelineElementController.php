@@ -154,8 +154,15 @@ class TimelineElementController extends Controller
         if (!$request->has('entity_id')) {
             $data['entity_id'] = null;
         }
+
+        if ($request->position == null) {
+            unset($data['position']);
+        }
+
         $timelineElement->update($data);
-        $this->service->reorderElements($timelineElement);
+        if ($request->position) {
+            $this->service->reorderElements($timelineElement);
+        }
 
         return redirect()
             ->route('timelines.show', [$timeline->id, '#timeline-element-' . $timelineElement->id])
