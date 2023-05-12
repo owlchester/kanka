@@ -219,4 +219,15 @@ class TimelineEraController extends Controller
 
         return response()->json($data);
     }
+
+    /**
+     */
+    public function positionList(Timeline $timeline, TimelineEra $era)
+    {
+        $this->authorize('view', $timeline);
+
+        return response()->json([
+            'positions' => $era->positionOptions(),
+        ]);
+    }
 }

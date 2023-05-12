@@ -222,40 +222,4 @@ class Timeline extends MiscModel
             'timeline_id',
         ];
     }
-
-    /**
-     * @return array|string[]
-     */
-    public function elementPositionOptions($position = null): array
-    {
-        $options = $position ? [
-            null => __('posts.position.dont_change'),
-        ] : [];
-
-        $elements = $this->elements->sortBy('position');
-        $hasFirst = false;
-        foreach ($elements as $element) {
-            if (!$hasFirst) {
-                $hasFirst = true;
-                $options[$element->position < 0 ? $element->position - 1 : 1] = __('posts.position.first');
-            }
-            $key = $element->position > 0 ? $element->position + 1 : $element->position;
-            $lang = __('maps/layers.placeholders.position_list', ['name' => $element->name]);
-            if (app()->isLocal()) {
-                $lang .= ' (' . $key . ')';
-            }
-            $options[$key] = $lang;
-        }
-
-        // Didn't have a first option added, add one now
-        if (!$hasFirst) {
-            $options[1] = __('posts.position.first');
-        }
-
-        //If is the last position remove last+1 position from the options array
-        /*if ($position == array_key_last($options) - 1 && count($options) > 1) {
-            array_pop($options);
-        }*/
-        return $options;
-    }
 }

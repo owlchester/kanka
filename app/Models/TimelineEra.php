@@ -170,4 +170,36 @@ class TimelineEra extends Model
         $text = Mentions::parseForEdit($this);
         return $text;
     }
+
+    /**
+     * @return array|string[]
+     */
+    public function positionOptions($position = null): array
+    {
+        $options = [null => __('posts.position.dont_change')];
+
+        $elements = $this->orderedElements;
+        $hasFirst = false;
+        foreach ($elements as $element) {
+            if (!$hasFirst) {
+                $hasFirst = true;
+                $options[$element->position < 0 ? $element->position - 1 : 1] = __('posts.position.first');
+            }
+            $key = $element->position > 0 ? $element->position + 1 : $element->position;
+            $lang = __('maps/layers.placeholders.position_list', ['name' => $element->name]);
+            if (app()->isLocal()) {
+                $lang .= ' (' . $key . ')';
+            }
+            if (!($position == $key - 1)) {
+                $options[$key] = $lang;
+            }
+        }
+
+        // Didn't have a first option added, add one now
+        if (!$hasFirst) {
+            $options[1] = __('posts.position.first');
+        }
+
+        return $options;
+    }
 }

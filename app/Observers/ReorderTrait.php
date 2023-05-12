@@ -34,7 +34,7 @@ trait ReorderTrait
                 $position = $position + 1;
             }
         } elseif ($model instanceof TimelineElement) {
-            foreach ($model->timeline->elements()->orderBy('position')->get() as $element) {
+            foreach ($model->era->elements()->orderBy('position')->orderBy('updated_at', 'DESC')->get() as $element) {
                 $element->position = $position;
                 $element->updateQuietly();
                 $position = $position + 1;
