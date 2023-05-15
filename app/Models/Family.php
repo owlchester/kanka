@@ -12,6 +12,7 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Family
@@ -33,6 +34,7 @@ class Family extends MiscModel
     use Nested;
     use SoftDeletes;
     use SortableTrait;
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [
