@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    @include('layouts._tracking')
+    @include('layouts.tracking.tracking')
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? __('default.page_title') }} - {{ config('app.name') }}</title>
@@ -22,7 +22,7 @@
     @yield('styles')
 </head>
 <body class="layout-top-nav">
-@include('layouts._tracking-fallback')
+@include('layouts.tracking.fallback')
     <div id="app" class="wrapper">
 
         <div class="content-wrapper">

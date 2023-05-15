@@ -91,7 +91,7 @@
 </head>
 
 <body id="page-top" class="@if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif">
-@include('layouts._tracking-fallback')
+@include('layouts.tracking.fallback')
 <noscript id="deferred-styles">
 </noscript>
 
@@ -150,7 +150,7 @@
 
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropLocale" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa-solid fa-language" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-language"></x-icon>
                         {{ LaravelLocalization::getCurrentLocaleNative() }} <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropLocale">
@@ -310,7 +310,7 @@
             } } }
     window.onload = init;
 </script>
-@include('layouts._tracking', ['frontLayout' => true, 'noads' => true])
+@include('layouts.tracking.tracking', ['frontLayout' => true, 'noads' => true])
 @yield('scripts')
 </body>
 </html>

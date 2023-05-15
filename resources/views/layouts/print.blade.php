@@ -63,7 +63,7 @@ $specificTheme = null;
 </head>
 
 <body class="@if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif  @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
-@include('layouts._tracking-fallback')
+@include('layouts.tracking.fallback')
     <div id="app" class="wrapper">
 
         <div class="content-wrapper" @if(isset($contentId)) id="{{ $contentId }}" @endif>

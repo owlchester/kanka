@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-@include('layouts._tracking', ['noads' => true])
+@include('layouts.tracking.tracking', ['noads' => true])
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? "" }} - {{ config('app.name') }}</title>
@@ -20,7 +20,7 @@
     @yield('styles')
 </head>
 <body class="">
-@include('layouts._tracking-fallback')
+@include('layouts.tracking.fallback')
     <div id="app" class="wrapper">
         <!-- Sidebar -->
         @include('layouts.partner.sidebar')

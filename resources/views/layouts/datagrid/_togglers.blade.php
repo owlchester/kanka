@@ -32,7 +32,7 @@
 @if (empty($forceMode))
     @if (!isset($mode) || $mode === 'grid')
         <a class="btn btn-default" href="{{ route($name . '.' . $route, ['m' => 'table']) }}" title="{{ __('datagrids.modes.table') }}">
-            <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
+            <x-icon class="fa-solid fa-list-ul"></x-icon>
             <span class="sr-only">Table</span>
         </a>
     @else

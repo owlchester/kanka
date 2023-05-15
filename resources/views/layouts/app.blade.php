@@ -11,7 +11,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" class="scroll-pt-16 overflow-auto">
 <head>
-@include('layouts._tracking')
+@include('layouts.tracking.tracking')
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{!! $seoTitle !!} - {{ config('app.name', 'Kanka') }}</title>
@@ -70,7 +70,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses($entity ?? null) }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->environment('prod')) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
-@include('layouts._tracking-fallback')
+@include('layouts.tracking.fallback')
 
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute py-2 px-4 top-0" tabindex="1">
     {{ __('crud.navigation.skip_to_content') }}
@@ -117,7 +117,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                         </div>
                         <div>
                             <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm switch-back">
-                                <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+                                <x-icon class="fa-solid fa-sign-out-alt"></x-icon>
                                 {{ __('campaigns.members.actions.switch-back') }}
                             </a>
                         </div>

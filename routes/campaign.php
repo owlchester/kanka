@@ -356,7 +356,7 @@ if(config('marketplace.enabled')) {
 
 //Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timelines\TimelineEraController@reorder')->name('timelines.reorder');
 // Old Search
-Route::get('/search', 'SearchController@search')->name('search');
+Route::get('/search', [\App\Http\Controllers\SearchController::class, 'search'])->name('search');
 
 // Misc Model Search
 Route::get('/search/calendars', 'Search\MiscController@calendars')->name('calendars.find');

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-@include('layouts._tracking', ['noads' => true])
+@include('layouts.tracking.tracking', ['noads' => true])
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,7 +38,7 @@
 </head>
 
 <body id="page-top">
-@include('layouts._tracking-fallback')
+@include('layouts.tracking.fallback')
 <!-- Custom styles for this template -->
 
 @vite('resources/sass/front.scss')

@@ -3,7 +3,7 @@
         @if ($campaign)
             <li>
                 <a href="{{ route('dashboard') }}">
-                    <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                    <x-icon class="fa-solid fa-globe"></x-icon>
                     <span class="hidden-xs hidden-sm">
                         {!! $campaign->name !!}
                     </span>
@@ -12,7 +12,7 @@
         @else
             <li>
                 <a href="{{ route('home') }}">
-                    <i class="fa-solid fa-dashboard" aria-hidden="true"></i>
+                    <x-icon class="fa-solid fa-dashboard"></x-icon>
                     <span class="hidden-xs hidden-sm">
                         {{ __('dashboard.title') }}
                     </span>

@@ -1,4 +1,3 @@
-<!-- Main Footer -->
 <footer id="footer" class="main-footer pt-10 pb-8">
     @ads('footer')
     <div class="ads-space overflow-hidden">
@@ -72,18 +71,17 @@
                         <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview">
                             {{ __('front.features.api.link') }}
                         </a>
+                    </li>@endif
+                    <li class="px-0 py-1 text-sm">
+                        <a href="//blog.kanka.io/category/news" target="_blank">
+                            {{ __('footer.whats-new') }}
+                        </a>
                     </li>
-                    @endif
-                        <li class="px-0 py-1 text-sm">
-                            <a href="//blog.kanka.io/category/news" target="_blank">
-                                {{ __('footer.whats-new') }}
-                            </a>
-                        </li>
-                        <li class="px-0 py-1 text-sm">
-                            <a href="//blog.kanka.io" target="_blank">
-                                {{ __('footer.blog') }}
-                            </a>
-                        </li>
+                    <li class="px-0 py-1 text-sm">
+                        <a href="//blog.kanka.io" target="_blank">
+                            {{ __('footer.blog') }}
+                        </a>
+                    </li>
 
                     @if (config('services.stripe.enabled'))
                     <li class="px-0 py-1 text-sm">
@@ -95,9 +93,7 @@
                         <a href="{{ route('front.newsletter') }}">
                             {{ __('front.menu.newsletter') }}
                         </a>
-                    </li>
-                    @endif
-
+                    </li>@endif
                 </ul>
             </div>
 
@@ -211,7 +207,7 @@
 
             <div id="language-switcher" class="language-switcher block text-lg py-2">
                 <a href="#" class="" data-toggle="dialog" data-target="language-select-modal">
-                    <i class="fa-solid fa-language" aria-hidden="true"></i>
+                    <x-icon class="fa-solid fa-language"></x-icon>
                     {{ LaravelLocalization::getCurrentLocaleNative() }} (Switch)
                 </a>
             </div>

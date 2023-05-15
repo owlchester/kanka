@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-@include('layouts._tracking', ['noads' => true])
+@include('layouts.tracking.tracking', ['noads' => true])
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? __('default.page_title') }} - {{ config('app.name', 'Laravel') }}</title>
@@ -33,7 +33,7 @@
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
 </head>
 <body class="hold-transition register-page">
-@include('layouts._tracking-fallback')
+@include('layouts.tracking.fallback')
     <div class="login-box mx-auto">
 
         <!-- Content Header (Page header) -->

@@ -7,7 +7,7 @@ $specificTheme = null;
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    @include('layouts._tracking', ['noads' => true])
+    @include('layouts.tracking.tracking', ['noads' => true])
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? __('default.page_title') }} - {{ config('app.name') }}</title>
@@ -60,7 +60,7 @@ $specificTheme = null;
 @yield('styles')
 </head>
 <body id="map-body" class="map-page sidebar-collapse @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
-@include('layouts._tracking-fallback')
+@include('layouts.tracking.fallback')
 
     <div id="app" class="wrapper mt-12">
         <!-- Header -->
