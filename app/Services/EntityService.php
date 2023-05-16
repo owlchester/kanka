@@ -35,6 +35,8 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use Illuminate\Support\Str;
 
+use function PHPUnit\Framework\isEmpty;
+
 class EntityService
 {
     use CampaignAware;
@@ -742,9 +744,9 @@ class EntityService
 
         //If the entity is switched from one location to multiple locations
         if (!in_array($old->entityTypeId(), [$raceID, $creatureID]) && in_array($new->entityTypeId(), [$raceID, $creatureID])) {
-            if (in_array('parent_location_id', $new->getFillable())) {
+            if (in_array('parent_location_id', $old->getFillable()) && !empty($old->parent_location_id)) {
                 $new->locations()->attach($old->parent_location_id);
-            } else {
+            } elseif (in_array('location_id', $old->getFillable()) && !empty($old->location_id)) {
                 $new->locations()->attach($old->location_id);
             }
             return false;
