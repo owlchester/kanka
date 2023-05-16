@@ -13,7 +13,6 @@ use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Illuminate\Support\Facades\Session;
 
 class UserObserver
 {
@@ -79,7 +78,7 @@ class UserObserver
     {
         // Tell mailchimp about the user's new email
         if (!$user->wasRecentlyCreated && $user->isDirty('email') && $user->hasNewsletter()) {
-            UpdateEmail::dispatch($user->getOriginal('email'), $user->email);
+            UpdateEmail::dispatch($user);
         }
     }
 

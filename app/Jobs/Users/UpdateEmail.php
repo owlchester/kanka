@@ -2,30 +2,32 @@
 
 namespace App\Jobs\Users;
 
+use App\Services\NewsletterService;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use Spatie\Newsletter\NewsletterFacade as Newsletter;
 
 class UpdateEmail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
-    protected string $oldEmail;
-    protected string $newEmail;
+    protected int $userId;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(string $oldEmail, string $newEmail)
+    public function __construct(User $user)
     {
-        $this->oldEmail = $oldEmail;
-        $this->newEmail = $newEmail;
+        $this->userId = $user->id;
     }
 
     /**
@@ -35,7 +37,13 @@ class UpdateEmail implements ShouldQueue
      */
     public function handle()
     {
-        Newsletter::updateEmailAddress($this->oldEmail, $this->newEmail);
-        Log::info('Newsletter', ['action' => 'update', 'old' => $this->oldEmail, 'new' => $this->newEmail]);
+        /** @var User|null $user */
+        $user = User::find($this->userId);
+
+        /** @var NewsletterService $newsletter */
+        $newsletter = app()->make(NewsletterService::class);
+
+        $newsletter->user($user)->update(['email' => $user->email]);
+        Log::info('Newsletter', ['action' => 'update', 'user' => $user->id]);
     }
 }

@@ -40,7 +40,7 @@ class NewsletterService
     public function isSubscribed(): bool
     {
         try {
-            $email = $this->user? $this->user->email : $this->email;
+            $email = $this->user ? $this->user->email : $this->email;
             $this->userID = $this->fetch($email);
             return true;
         } catch (\Exception $e) {
@@ -98,8 +98,6 @@ class NewsletterService
                 $this->mailerlite->subscribers->update($this->userID, $data);
                 return true;
             }
-
-            return false;
         } catch (Exception $e) {
             return false;
         }
