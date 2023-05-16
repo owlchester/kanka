@@ -418,12 +418,12 @@ class EntityService
         /** @var Location $old */
         /** @var Item $new */
         if (in_array('location_id', $fillable) && empty($new->location_id) && !empty($old->parent_location_id)) {
-            $new->location_id = $old->parent_location_id;
+            $new->location_id = $old->getParentId();
         }
         /** @var Item $old */
         /** @var Location $new */
         if (in_array('parent_location_id', $fillable) && empty($new->parent_location_id) && !empty($old->location_id)) {
-            $new->parent_location_id = $old->location_id;
+            $new->setParentId($old->location_id);
         }
 
         /** @var Race|Creature $old */
@@ -435,7 +435,7 @@ class EntityService
             if (in_array('location_id', $fillable)) {
                 $new->location_id = $old->locations()->first()->id;
             } elseif (in_array('parent_location_id', $fillable)) {
-                $new->parent_location_id = $old->locations()->first()->id;
+                $new->setParentId($old->locations()->first()->id);
             }
         }
 
@@ -781,7 +781,9 @@ class EntityService
         if (!method_exists($model, 'recalculateTreeBounds')) {
             return;
         }
-        if (!in_array('parent_location_id', $model->getFillable())) {
+        $isLocationWithParent = in_array('parent_location_id', $model->getFillable()) && !empty($model->getParentId());
+        // If it's not a location or the parent location is empty, force the parent to be properly empty
+        if (!$isLocationWithParent) {
             $model->setParentId(null);
         }
         $model->{$model->getRgtName()} = 0;
@@ -792,6 +794,10 @@ class EntityService
             $model->exists = true;
         } else {
             $model->recalculateTreeBounds();
+        }
+        // For a location with a parent, place it inside the tree
+        if ($isLocationWithParent) {
+            $model->forcePendingAction();
         }
     }
 }
