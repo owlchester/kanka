@@ -19,10 +19,9 @@ class ImageService
     /**
      * @param MiscModel|Map|Model $model
      * @param string $folder
-     * @param int $thumbSize
      * @param string $field
      */
-    public static function handle(MiscModel|Map|Model $model, string $folder = '', int $thumbSize = 60, string $field = 'image')
+    public static function handle(MiscModel|Map|Model $model, string $folder = '', string $field = 'image')
     {
         // A user can create entities and tags dynamically when creating or updating another entity, so make sure
         // the loop is only called when sending the data for this specific entity type
@@ -106,14 +105,6 @@ class ImageService
                 // Remove old
                 self::cleanup($model, $field);
 
-                // Create a thumb of the picture
-//                    if ($thumbSize !== false) {
-//                        $image = Image::make($file)->resize($thumbSize, null, function ($constraint) {
-//                            $constraint->aspectRatio();
-//                        });
-//                        Storage::put($thumb, (string) $image->encode(), 'public');
-//                    }
-
                 // Save new image
                 if ($url) {
                     if ($file->getMimeType() == 'image/svg+xml') {
@@ -143,10 +134,9 @@ class ImageService
     /**
      * @param Entity $entity
      * @param string $folder
-     * @param int $thumbSize
      * @param string $field
      */
-    public static function entity(Entity $entity, string $folder = '', $thumbSize = 60, string $field = 'header_image')
+    public static function entity(Entity $entity, string $folder = '', string $field = 'header_image')
     {
         if (request()->has($field) || request()->filled($field . '_url')) {
             try {
@@ -188,14 +178,6 @@ class ImageService
                 if (!empty($path)) {
                     // Remove old
                     self::cleanup($entity, $field);
-
-//                    // Create a thumb of the picture
-//                    if ($thumbSize !== false) {
-//                        $image = Image::make($file)->resize($thumbSize, null, function ($constraint) {
-//                            $constraint->aspectRatio();
-//                        });
-//                        Storage::put($thumb, (string) $image->encode(), 'public');
-//                    }
 
                     // Save new image
                     if ($url) {

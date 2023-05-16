@@ -236,6 +236,9 @@ class EntityObserver
 
     /**
      * @param Entity $entity
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function saveBoosted(Entity $entity): void
     {
@@ -251,7 +254,7 @@ class EntityObserver
 
 
         // Handle map. Let's use a service for this.
-        ImageService::entity($entity, 'campaign/' . $entity->campaign_id, 0, 'header_image');
+        ImageService::entity($entity, 'campaign/' . $entity->campaign_id, 'header_image');
 
         // Superboosted image gallery selection
         if ($campaign->superboosted()) {

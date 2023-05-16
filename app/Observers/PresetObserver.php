@@ -11,7 +11,6 @@ class PresetObserver
 
     public function saving(Preset $preset)
     {
-        $preset->campaign_id = CampaignLocalization::getCampaign()->id;
         $preset->name = $this->purify(trim($preset->name));
 
         // Clean up config

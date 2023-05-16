@@ -51,6 +51,7 @@ class PresetController extends Controller
 
         $data = $request->only('name', 'config', 'visibility_id');
         $data['type_id'] = $presetType->id;
+        $data['campaign_id'] = $campaign->id;
         $preset = new Preset();
         $preset = $preset->create($data);
 

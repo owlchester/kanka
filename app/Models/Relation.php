@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $attitude
  * @property int|null $mirror_id
  * @property int $owner_id
+ * @property int $campaign_id
  * @property int $target_id
  * @property bool $is_star
  * @property string $colour

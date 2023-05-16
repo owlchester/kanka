@@ -14,6 +14,7 @@ use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -65,7 +66,7 @@ class CampaignObserver
 
         // Handle image. Let's use a service for this.
         ImageService::handle($campaign, 'campaigns');
-        ImageService::handle($campaign, 'campaigns', 0, 'header_image');
+        ImageService::handle($campaign, 'campaigns', 'header_image');
     }
 
     /**
@@ -88,6 +89,7 @@ class CampaignObserver
         $role->save();
 
         // Make sure we save the last campaign id to avoid infinite loops
+        /** @var User $user */
         $user = auth()->user();
         $user->last_campaign_id = $campaign->id;
         $user->save();

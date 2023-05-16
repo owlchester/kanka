@@ -2,17 +2,11 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Models\MenuLink;
 
 class MenuLinkObserver
 {
     use PurifiableTrait;
-
-    public function creating(MenuLink $model)
-    {
-        $model->campaign_id = CampaignLocalization::getCampaign()->id;
-    }
 
     /**
      * @param MenuLink $model

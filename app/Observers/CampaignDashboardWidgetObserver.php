@@ -2,19 +2,10 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Models\CampaignDashboardWidget;
 
 class CampaignDashboardWidgetObserver
 {
-    /**
-     * @param CampaignDashboardWidget $model
-     */
-    public function saving(CampaignDashboardWidget $model)
-    {
-        $model->campaign_id = CampaignLocalization::getCampaign()->id;
-    }
-
     /**
      * @param CampaignDashboardWidget $model
      */

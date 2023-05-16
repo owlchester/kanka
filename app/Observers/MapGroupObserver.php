@@ -43,6 +43,6 @@ class MapGroupObserver
     public function saved(MapGroup $mapGroup)
     {
         $this->reorder($mapGroup);
-        $mapGroup->map->touch();
+        $mapGroup->map->touchSilently();
     }
 }
