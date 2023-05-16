@@ -35,6 +35,8 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use Illuminate\Support\Str;
 
+use function PHPUnit\Framework\isEmpty;
+
 class EntityService
 {
     use CampaignAware;
@@ -418,12 +420,26 @@ class EntityService
         /** @var Location $old */
         /** @var Item $new */
         if (in_array('location_id', $fillable) && empty($new->location_id) && !empty($old->parent_location_id)) {
-            $new->location_id = $old->parent_location_id;
+            $new->location_id = $old->getParentId();
         }
         /** @var Item $old */
         /** @var Location $new */
         if (in_array('parent_location_id', $fillable) && empty($new->parent_location_id) && !empty($old->location_id)) {
-            $new->parent_location_id = $old->location_id;
+            $new->setParentId($old->location_id);
+        }
+
+        /** @var Race|Creature $old */
+        /** @var Creature|Race $new */
+        $raceID = config('entities.ids.race');
+        $creatureID = config('entities.ids.creature');
+
+        if (in_array($old->entityTypeId(), [$raceID, $creatureID]) && !in_array($new->entityTypeId(), [$raceID, $creatureID]) && !empty($old->locations()->first())) {
+            if (in_array('location_id', $fillable)) {
+                $new->location_id = $old->locations()->first()->id;
+            } elseif (in_array('parent_location_id', $fillable)) {
+                // Todo: fix crash when location is empty
+                $new->setParentId($old->locations()->first()->id);
+            }
         }
 
         // Copy file
@@ -725,6 +741,17 @@ class EntityService
         /** @var Creature|Race $new */
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
+
+        //If the entity is switched from one location to multiple locations
+        if (!in_array($old->entityTypeId(), [$raceID, $creatureID]) && in_array($new->entityTypeId(), [$raceID, $creatureID])) {
+            if (in_array('parent_location_id', $old->getFillable()) && !empty($old->parent_location_id)) {
+                $new->locations()->attach($old->parent_location_id);
+            } elseif (in_array('location_id', $old->getFillable()) && !empty($old->location_id)) {
+                $new->locations()->attach($old->location_id);
+            }
+            return false;
+        }
+
         if (
             !in_array($old->entityTypeId(), [$raceID, $creatureID]) ||
             !in_array($new->entityTypeId(), [$raceID, $creatureID])
@@ -758,7 +785,11 @@ class EntityService
         if (!method_exists($model, 'recalculateTreeBounds')) {
             return;
         }
-        $model->setParentId(null);
+        $isLocationWithParent = in_array('parent_location_id', $model->getFillable()) && !empty($model->getParentId());
+        // If it's not a location or the parent location is empty, force the parent to be properly empty
+        if (!$isLocationWithParent) {
+            $model->setParentId(null);
+        }
         $model->{$model->getRgtName()} = 0;
         $model->{$model->getLftName()} = 0;
         if ($model->exists) {
@@ -767,6 +798,10 @@ class EntityService
             $model->exists = true;
         } else {
             $model->recalculateTreeBounds();
+        }
+        // For a location with a parent, place it inside the tree
+        if ($isLocationWithParent) {
+            $model->forcePendingAction();
         }
     }
 }

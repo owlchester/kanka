@@ -27,8 +27,8 @@ use Illuminate\Support\Str;
  * Class MiscModel
  * @package App\Models
  *
- * @property integer $id
- * @property integer $campaign_id
+ * @property int $id
+ * @property int $campaign_id
  * @property string $name
  * @property string $type
  * @property string $slug
