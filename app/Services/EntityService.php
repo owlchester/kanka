@@ -431,7 +431,7 @@ class EntityService
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
 
-        if (in_array($old->entityTypeId(), [$raceID, $creatureID]) && !in_array($new->entityTypeId(), [$raceID, $creatureID])) {
+        if (in_array($old->entityTypeId(), [$raceID, $creatureID]) && !in_array($new->entityTypeId(), [$raceID, $creatureID]) && !empty($old->locations()->first())) {
             if (in_array('location_id', $fillable)) {
                 $new->location_id = $old->locations()->first()->id;
             } elseif (in_array('parent_location_id', $fillable)) {
