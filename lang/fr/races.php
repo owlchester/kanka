@@ -16,6 +16,7 @@ return [
     'fields'        => [
         'characters'    => 'Personnages',
         'locations'     => 'Lieux',
+        'members'       => 'Membres',
         'race'          => 'Race Parentale',
         'races'         => 'Sous-races',
     ],
@@ -23,6 +24,13 @@ return [
         'nested_without'    => 'Affichage des races sans parent. Cliquer sur une rangée pour afficher les races enfants.',
     ],
     'index'         => [],
+    'members'       => [
+        'create'    => [
+            'submit'    => 'Ajouter membres',
+            'success'   => '{0} Aucun membre ajouté.|{1} 1 membre ajouté.|[2,*] :count membres ajoutés.',
+            'title'     => 'Nouveaux membres',
+        ],
+    ],
     'placeholders'  => [
         'name'  => 'Nom de la race',
         'type'  => 'Humain, Fée, Borg',

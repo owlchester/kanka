@@ -9,10 +9,10 @@ return [
         'results'   => 'Results',
     ],
     'no_results'    => 'No results.',
+    'placeholder'   => 'SEARCH',
     'preview'       => [
         'links'             => 'Links',
         'no-connections'    => 'No pinned relations to display',
     ],
-    'placeholder' => 'SEARCH',
     'title'         => 'Search',
 ];

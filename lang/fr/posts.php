@@ -11,7 +11,8 @@ return [
         'name'  => 'Nom de l\'entrée',
     ],
     'position'      => [
-        'first' => 'Début',
-        'last'  => 'Fin',
+        'dont_change'   => 'Tel quel',
+        'first'         => 'Début',
+        'last'          => 'Fin',
     ],
 ];

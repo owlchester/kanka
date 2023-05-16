@@ -22,8 +22,8 @@ return [
         ],
     ],
     'placeholders'  => [
-        'name'      => 'Name of the Dice Roll',
-        'parameters'=> '4d6+3',
+        'name'          => 'Name of the Dice Roll',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

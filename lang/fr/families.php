@@ -23,6 +23,11 @@ return [
     ],
     'index'         => [],
     'members'       => [
+        'create'    => [
+            'submit'    => 'Ajouter membres',
+            'success'   => '{0} Aucun membre ajouté.|{1} 1 membre ajouté.|[2,*] :count membres ajoutés.',
+            'title'     => 'Nouveau membres',
+        ],
         'helpers'   => [
             'all_members'       => 'Cette liste contient tous les personnages qui sont dans cette famille et toutes ses sous-familles.',
             'direct_members'    => 'Cette liste contient tous les membres directement dans cette famille.',

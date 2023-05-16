@@ -70,10 +70,10 @@ return [
         ],
         'title'     => 'App Integration',
     ],
-    'billing'   => [
-        'title' => 'Billing Information',
-        'placeholder' => 'If you need additional contact or tax information added to your receipts (bussines address, VAT number, etc.), enter it below and it will appear on all of your receipts',
-        'save'   => 'Save billing information',
+    'billing'       => [
+        'placeholder'   => 'If you need additional contact or tax information added to your receipts (bussines address, VAT number, etc.), enter it below and it will appear on all of your receipts',
+        'save'          => 'Save billing information',
+        'title'         => 'Billing Information',
     ],
     'boost'         => [
         'exceptions'    => [
@@ -105,8 +105,8 @@ return [
         'patreon'               => 'Patreon',
         'payment_options'       => 'Payment Options',
         'personal_settings'     => 'Personal Settings',
-        'profile'               => 'Public profile',
         'premium'               => 'Premium campaigns',
+        'profile'               => 'Public profile',
         'settings'              => 'Settings',
         'subscription'          => 'Subscription',
         'subscription_status'   => 'Subscription Status',
@@ -187,11 +187,11 @@ return [
             'reason'            => 'Reason',
         ],
         'helpers'               => [
-            'currency_blocked'      => 'It is not possible to change currency once you have had an active Kanka subscription. Please contact us at :email for assistance.',
             'alternatives'          => 'Pay for your subscription using :method. This payment method won\'t auto-renew at the end of your subscription. :method is only available in Euros.',
             'alternatives-2'        => 'Pay for your subscription using :method. This is a one time payment that doesn\'t automatically renew at at the end of the subscription.',
             'alternatives_warning'  => 'Upgrading your subscription when using this method is not possible. Please subscribe again when your current one ends.',
             'alternatives_yearly'   => 'We only accept yearly subscriptions with :method',
+            'currency_blocked'      => 'It is not possible to change currency once you have had an active Kanka subscription. Please contact us at :email for assistance.',
             'paypal'                => 'Want to use Paypal instead? Contact us at :email if you wish to subscribe to a yearly plan using Paypal.',
             'paypal_v2'             => 'We accept PayPal for yearly subscriptions. Contact us at :email with your Kanka account email, the tier you wish to subscribe to, and currency (USD or EUR) you want to be billed in.',
             'paypal_v3'             => 'Safely pay for your yearly subscription using PayPal.',
@@ -253,8 +253,8 @@ return [
                 'bullets'   => [
                     'bonuses'   => 'Your bonuses stay enabled until the end of your payment period.',
                     'boosts'    => 'The same happens for your boosted campaigns. Boosted features become invisible but aren\'t deleted when a campaign is no longer boosted.',
-                    'premium'    => 'The same happens for your premium campaigns. Premium features become invisible but aren\'t deleted when a campaign is no longer premium.',
                     'kobold'    => 'To cancel your subscription, change to the Kobold tier.',
+                    'premium'   => 'The same happens for your premium campaigns. Premium features become invisible but aren\'t deleted when a campaign is no longer premium.',
                 ],
                 'title'     => 'When cancelling your subscription',
             ],

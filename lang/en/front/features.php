@@ -14,10 +14,6 @@ TEXT
         'secondary'     => 'An entity\'s attributes can also be styled to look like a TTRPG character sheet by using our  :marketplace.',
         'title'         => 'Attributes',
     ],
-    'premium'      => [
-        'description'   => 'Some features are only available to premium campaigns. When a user subscribes to Kanka, they can upgrade a set number of campaigns. These premium campaigns can be moved around from one campaign to another, such as when a campaign ends. As long as a user stays a subscriber, their premium campaigns will stay that way.',
-        'link'          => 'See all premium features on our pricing page.',
-    ],
     'calendars'     => [
         'description'   => 'Create one or several calendars of your world, fully controlling the number of days in a year, the months, length of weeks, seasons, moons and their phases, and more. Attach events to your calendars linked to other entities, such as automatically calculating a character\'s age based on the calendar.',
     ],
@@ -66,6 +62,10 @@ TEXT
         'description'   => 'We\'ve focused our efforts on building about 20 different modules in Kanka that each focus on one aspect of playing a TTRPG or wordbuilding in general. In each campaign, you can create characters, locations, families, organisations, items, quests, journals, calendars, events, abilities and more. Don\'t need abilities? No problem, you can disable modules of your choice in each campaign, simplifying your setup to focus on what\'s important to you.',
     ],
     'other_features'=> 'Other features',
+    'premium'       => [
+        'description'   => 'Some features are only available to premium campaigns. When a user subscribes to Kanka, they can upgrade a set number of campaigns. These premium campaigns can be moved around from one campaign to another, such as when a campaign ends. As long as a user stays a subscriber, their premium campaigns will stay that way.',
+        'link'          => 'See all premium features on our pricing page.',
+    ],
     'quests'        => [
         'description'   => 'Prepare and keep track of your game\'s quests, where they will take the players, who\'s involved, and what organisations are secretly pulling the strings. Once a quest is complete, flag it as such and move on to the next one.',
         'title'         => 'Quests',
@@ -76,8 +76,8 @@ TEXT
         'secondary'     => ':boosted-campaigns have access to a visual explorer for the relations of an entity.',
     ],
     'sections'      => [
-        'premium'       => 'Premium campaign features',
         'general'       => 'General',
+        'premium'       => 'Premium campaign features',
         'rpg'           => 'RPGs',
         'worldbuilding' => 'Worldbuilding',
     ],

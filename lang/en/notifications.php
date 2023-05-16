@@ -16,10 +16,6 @@ return [
             'remove'        => ':user is no longer boosting the :campaign campaign.',
             'superboost'    => 'Campaign :campaign is being superboosted by :user.',
         ],
-        'premium'                 => [
-            'add'           => 'Premium features have been unlocked for :campaign by :user.',
-            'remove'        => ':user is no longer unlocking premium features for the :campaign campaign.',
-        ],
         'deleted'               => 'The campaign :campaign was deleted.',
         'export'                => 'An export of a campaign is available. The link is available for :time minutes.',
         'export_error'          => 'An error occurred while exporting your campaign entities. Please contact us if this problem persists.',
@@ -28,6 +24,10 @@ return [
         'leave'                 => ':user left the campaign :campaign.',
         'plugin'                => [
             'deleted'   => 'The plugin :plugin was deleted from the marketplace and removed from your campaign :campaign.',
+        ],
+        'premium'               => [
+            'add'       => 'Premium features have been unlocked for the :campaign campaign by :user.',
+            'remove'    => ':user is no longer unlocking premium features for the :campaign campaign.',
         ],
         'removed-image'         => 'The image or header of :entity was removed due to a copyright claim.',
         'role'                  => [

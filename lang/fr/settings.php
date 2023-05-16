@@ -70,6 +70,11 @@ return [
         ],
         'title'     => 'Intégration d\'app',
     ],
+    'billing'       => [
+        'placeholder'   => 'Si tu souhaites que tes coordonnées ou informations fiscales supplémentaires soient ajoutées à tes reçus (adresse professionnelle, numéro de TVA, etc.), saisi-les ci-dessous et elles apparaîtront sur tous tes reçus.',
+        'save'          => 'Enregister les informations',
+        'title'         => 'Facturation',
+    ],
     'boost'         => [
         'exceptions'    => [
             'already_boosted'       => 'La campagne :name est déjà boostée.',
@@ -102,6 +107,7 @@ return [
         'patreon'               => 'Patreon',
         'payment_options'       => 'Options de paiement',
         'personal_settings'     => 'Paramètres Personnels',
+        'premium'               => 'Campagnes Premium',
         'profile'               => 'Profil',
         'settings'              => 'Paramètres',
         'subscription'          => 'Abonnement',
@@ -184,10 +190,13 @@ return [
         ],
         'helpers'               => [
             'alternatives'          => 'Payez votre abonnement en utilisant :method. Ce mode de paiement ne sera pas renouvelé automatiquement à la fin de votre abonnement. :method n\'est disponible qu\'en Euros.',
+            'alternatives-2'        => 'Payes ton abonnement en utilisant la méthode :method. Il s\'agit d\'un seul paiement qui ne se renouvelle pas automatiquement à la fin de l\'abonnement.',
             'alternatives_warning'  => 'La mise à niveau de l\'abonnement lors de l\'utilisation de cette méthode n\'est pas possible. Veuillez créer un nouvel abonnement à la fin de votre abonnement actuel.',
             'alternatives_yearly'   => 'En raison des restrictions entourant les paiements récurrents, :method n\'est disponible que pour les abonnements annuels',
+            'currency_blocked'      => 'Il n\'est pas possible de changer de devise une fois que tu as un abonnement Kanka actif. Prière de nous contacter à l\'adresse :email pour obtenir de l\'aide.',
             'paypal'                => 'Tu préfères utiliser Paypal? Contactes nous à :email si tu souhaites souscrire à un abonnement annuel en utilisant Paypal.',
             'paypal_v2'             => 'Nous acceptons PayPal pour les abonnements annuels. Contactes-nous à :email avec ton email de compte Kanka, l\'abonnement que tu désires, et la monnaie (USD ou EUR) dans laquelle tu souhaites être facturé.',
+            'paypal_v3'             => 'Payer en toute sécurité pour ton abonnement annuel avec PayPal.',
             'stripe'                => 'La facturation est traité en toute securité par :stripe.',
         ],
         'manage_subscription'   => 'Gérer l\'abonnement',
@@ -247,6 +256,7 @@ return [
                     'bonuses'   => 'Tes bonus restent activés jusqu\'à la fin de la période de paiement.',
                     'boosts'    => 'La même chose se passe pour les campagnes boostées. Les fonctionnalités boostées deviennent invisibles mais les données ne sont pas supprimé lorsqu\'une campagne n\'est plus boostée.',
                     'kobold'    => 'Pour annuler ton abonnement, change au tier Kobold.',
+                    'premium'   => 'Il en va de même pour tes campagnes Premium. Les fonctionnalités Premium deviennent invisibles mais ne sont pas supprimées lorsqu\'une campagne n\'a plus le status Premium',
                 ],
                 'title'     => 'Lors de l\'annulation d\'un abonnement',
             ],

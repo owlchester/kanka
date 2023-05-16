@@ -37,7 +37,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'You don\'t have access to this campaign.',
-        'premium'  => 'This feature is only available to premium campaigns.',
+        'premium'       => 'This feature is only available to premium campaigns.',
         'unknown_id'    => 'Unknown Campaign.',
     ],
     'fields'                            => [
@@ -73,7 +73,6 @@ TEXT
     'following'                         => 'Following',
     'helpers'                           => [
         'boosted'                           => 'Some features are unlocked because this campaign is being boosted. Find out more on the :settings page.',
-        'premium'                           => 'Some features are unlocked because this campaign\'s premium features are unlocked. Find out more on the :settings page.',
         'character_personality_visibility'  => 'When creating a new character as an admin, select the default privacy setting for its personality traits.',
         'css'                               => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
         'dashboard'                         => 'Customise the way the campaign dashboard widget is displayed by filling out the following fields.',
@@ -87,6 +86,7 @@ TEXT
         'name'                              => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
         'no_entry'                          => 'Looks like the campaign doesn\'t have a description yet! Let\'s fix that.',
         'permissions_tab'                   => 'Control the default privacy and visibility settings of new elements with the following options.',
+        'premium'                           => 'Some features are available because this campaign\'s premium features are unlocked. Find out more on the :settings page.',
         'public_campaign_filters'           => 'Help others find the campaign among other public campaigns by providing the following information.',
         'public_no_visibility'              => 'Heads up! The campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
         'related_visibility'                => 'Default Visibility value when creating a new element with this field (posts, relations, abilities, etc)',

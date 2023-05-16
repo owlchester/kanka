@@ -40,10 +40,11 @@ return [
         'title'         => 'Les boosters de campagne prend l\'expérience Kanka et la rend encore meilleure.',
     ],
     'call-to-action'    => [
-        'description'   => 'Convaincu et prêt à booster tes campagnes ? Abonne-toi à Kanka pour débloquer des boosters de campagne !',
-        'go-to-pricing' => 'Vers la page des prix',
-        'go-to-sub'     => 'Vers la page d\'abonnements',
-        'title'         => 'C\'est bon, j\'ai compris. Voici mon argent.',
+        'description'       => 'Convaincu et prêt à booster tes campagnes ? Abonne-toi à Kanka pour débloquer des boosters de campagne !',
+        'description_v2'    => 'Convaincu et prêt à débloquer les fonctionnalité Premium avec tes campagnes? Abonne-toi à Kanka pour débloquer des campagnes Premium!',
+        'go-to-pricing'     => 'Vers la page des prix',
+        'go-to-sub'         => 'Vers la page d\'abonnements',
+        'title'             => 'C\'est bon, j\'ai compris. Voici mon argent.',
     ],
     'description'       => 'Déverrouilles des fonctions avancées pour tes campagnes Kanka moyennant un abonnement mensuel. Personnalises l\'apparence et la convivialité d\'une campagne, fais en sorte que la campagne ne contienne pas de publicité, profites d\'upload de fichiers plus grands pour tous les membres de la campagne, et bien plus encore.',
     'perks'             => [

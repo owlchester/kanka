@@ -40,11 +40,11 @@ return [
         'title'         => 'Campaign boosters take your Kanka experience to the next level',
     ],
     'call-to-action'    => [
-        'description'   => 'Convinced and ready to boost your campaigns? Subscribe to Kanka to unlock campaign boosters!',
-        'description_v2'   => 'Convinced and ready to go premium with your campaigns? Subscribe to Kanka to unlock premium campaigns!',
-        'go-to-pricing' => 'Take me to the pricing page',
-        'go-to-sub'     => 'Take me to the subscription page',
-        'title'         => 'Ok, take my money',
+        'description'       => 'Convinced and ready to boost your campaigns? Subscribe to Kanka to unlock campaign boosters!',
+        'description_v2'    => 'Convinced and ready to go premium with your campaigns? Subscribe to Kanka to unlock premium campaigns!',
+        'go-to-pricing'     => 'Take me to the pricing page',
+        'go-to-sub'         => 'Take me to the subscription page',
+        'title'             => 'Ok, take my money',
     ],
     'description'       => 'Unlock advanced features for your Kanka campaigns for a small monthly fee. Customise the look and feel of a campaign, make the campaign ad-free, enjoy larger file uploads for all campaign members, and much more.',
     'perks'             => [

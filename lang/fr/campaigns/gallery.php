@@ -2,11 +2,13 @@
 
 return [
     'actions'       => [
-        'close' => 'Fermer',
-        'full'  => 'Lien d\'image',
-        'save'  => 'Enregistrer',
+        'close'     => 'Fermer',
+        'file-link' => 'Lien de fichier',
+        'image-link'=> 'Lien d\'image',
+        'save'      => 'Enregistrer',
     ],
     'breadcrumb'    => 'Galerie',
+    'cta'           => 'Gérer et réutiliser des images à travers la campagne.',
     'destroy'       => [
         'success'   => 'Image :name supprimée.',
     ],

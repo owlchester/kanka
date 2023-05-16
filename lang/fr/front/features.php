@@ -63,6 +63,10 @@ return [
         'description'   => 'Nous avons concentré nos efforts sur la création d\'environ 20 modules différents dans Kanka qui se concentrent chacun sur un aspect des TTRPG ou de la création d\'univers en général. Dans chaque campagne, tu peux créer des personnages, des lieux, des familles, des organisations, des objets, des quêtes, des journaux, des calendriers, des événements, des pouvoirs et plus encore. Tu n\'as pas besoin de pouvoirs? Pas de problème, tu peux désactiver les modules de ton choix dans chaque campagne, simplifiant ta configuration pour te concentrer sur ce qui est important pour toi.',
     ],
     'other_features'=> 'Autres fonctionnalités',
+    'premium'       => [
+        'description'   => 'Certaines fonctionnalités ne sont disponibles que pour les campagnes Premium. Lorsqu\'un utilisateur s\'abonne à Kanka, il peut activer les fonctionnalités Premium d\'un certain nombre de campagnes. Ce status de campagne Premium peut être déplacé d\'une campagne à l\'autre, par exemple à la fin d\'une campagne. Tant qu\'un utilisateur reste abonné, ses campagnes Premium le resteront.',
+        'link'          => 'Voir toutes les fonctionnalités premium sur notre page de tarification.',
+    ],
     'quests'        => [
         'description'   => 'Prépares et suis les quêtes de ton jeu, où elles vont mener les joueurs, qui est impliqué et quelles organisations tirent secrètement les ficelles. Une fois qu\'une quête est terminée, signales-la comme telle et passes à la suivante.',
         'title'         => 'Quêtes',
@@ -75,6 +79,7 @@ return [
     'sections'      => [
         'boosted'       => 'Fonctionnalités Boostées',
         'general'       => 'Général',
+        'premium'       => 'Fonctionnalités de campagne Premium',
         'rpg'           => 'JDR',
         'worldbuilding' => 'Création de monde',
     ],

@@ -45,21 +45,21 @@ return [
         ],
     ],
     'organisations' => [
-        'create'        => [
+        'create'    => [
             'success'   => 'Character added to organisation.',
             'title'     => 'New Organisation for :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Character organisation removed.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Character organisation updated.',
             'title'     => 'Update Organisation for :name',
         ],
-        'fields'        => [
-            'role'          => 'Role',
+        'fields'    => [
+            'role'  => 'Role',
         ],
-        'hint'          => 'Characters can be part of many organisations, representing who they work for or what secret society they are part of.',
+        'hint'      => 'Characters can be part of many organisations, representing who they work for or what secret society they are part of.',
     ],
     'placeholders'  => [
         'age'               => 'Age',

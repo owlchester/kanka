@@ -60,8 +60,6 @@ return [
         'start'     => '(start)',
     ],
     'fields'        => [
-        /*'calendar'              => 'Parent Calendar',
-        'calendars'             => 'Calendars',*/
         'colour'                => 'Colour',
         'comment'               => 'Comment',
         'current_day'           => 'Current Day',

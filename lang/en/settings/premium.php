@@ -1,36 +1,35 @@
 <?php
 
 return [
-    'actions' => [
-        'unlock' => 'Go premium',
-        'remove' => 'Remove premium',
+    'actions'       => [
+        'remove'    => 'Remove premium',
+        'unlock'    => 'Go premium',
     ],
-    'pitch' => [
-        'title' => 'Premium campaigns get',
-        'description'   => 'Go premium on campaigns and help unlock amazing features for everyone involved.',
-        'more'          => 'Check out the full list of perks on our :premium page.',
-    ],
-
-    'ready'     => [
-        'available'         => 'Your available premium campaigns.',
-        'pricing'           => 'All of our subscription levels include at least one premium campaign and start :amount per month.',
-        'pricing-amount'    => ':currency:amount',
-        'title'             => 'Go premium',
-    ],
-    'create' => [
-        'actions' => [
-            'confirm' => 'Go premium!',
+    'create'        => [
+        'actions'   => [
+            'confirm'   => 'Go premium!',
         ],
         'confirm'   => 'How exciting! You\'re about to unlock premium features for :campaign. This will use one of your available premium campaigns.',
         'duration'  => 'Premium campaigns stay that way until manually remove them, or when your subscription ends.',
         'pitch'     => 'Become a subscriber to unlock premium campaigns.',
         'success'   => 'The :campaign campaign is now premium. Enjoy all the new awesome features!',
     ],
-    'exceptions' => [
-        'already' => 'Premium features have already been unlocked for this campaign.',
-        'out-of-stock' => 'You don\'t have enough premium campaigns available to unlock this campaign. Either remove the premium status from another campaign, or :upgrade.',
+    'exceptions'    => [
+        'already'       => 'Premium features have already been unlocked for this campaign.',
+        'out-of-stock'  => 'You don\'t have enough premium campaigns available to unlock this campaign. Either remove the premium status from another campaign, or :upgrade.',
     ],
-    'remove'   => [
+    'pitch'         => [
+        'description'   => 'Go premium on campaigns and help unlock amazing features for everyone involved.',
+        'more'          => 'Check out the full list of perks on our :premium page.',
+        'title'         => 'Premium campaigns get',
+    ],
+    'ready'         => [
+        'available'         => 'Your available premium campaigns.',
+        'pricing'           => 'All of our subscription levels include at least one premium campaign and start :amount per month.',
+        'pricing-amount'    => ':currency:amount',
+        'title'             => 'Go premium',
+    ],
+    'remove'        => [
         'confirm'   => 'Yes, I\'m sure',
         'success'   => 'Premium features have been removed from the :campaign campaign. You can now unlock premium features on another campaign.',
         'title'     => 'Removing premium features',

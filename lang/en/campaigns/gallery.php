@@ -2,13 +2,13 @@
 
 return [
     'actions'       => [
-        'close' => 'Close',
-        'image-link'  => 'Image link',
-        'file-link'  => 'File link',
-        'save'  => 'Save',
+        'close'     => 'Close',
+        'file-link' => 'File link',
+        'image-link'=> 'Image link',
+        'save'      => 'Save',
     ],
     'breadcrumb'    => 'Gallery',
-    'cta'       => 'Manage and reuse images throughout the campaign.',
+    'cta'           => 'Manage and reuse images throughout the campaign.',
     'destroy'       => [
         'success'   => 'Image :name deleted.',
     ],

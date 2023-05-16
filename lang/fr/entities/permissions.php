@@ -8,6 +8,7 @@ return [
     'quick'     => [
         'empty-permissions' => 'Aucun rôle ou utilisateur hors des admins de la campagne n\'ont accès à cette entité.',
         'field'             => 'Modification rapide',
+        'manage'            => 'Gérer les permissions',
         'options'           => [
             'private'   => 'Privé pour tous sauf les admins',
             'visible'   => 'Visible pour les suivants',

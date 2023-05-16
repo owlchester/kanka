@@ -41,6 +41,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Accès refusé pour cette campagne.',
+        'premium'       => 'Cette fonctionnalité n\'est que disponible pour les campagnes Premium.',
         'superboosted'  => 'Cette fonctionnalité est seulement accessible pour les campagnes superboostées.',
         'unknown_id'    => 'Campagne inconnue.',
     ],
@@ -65,6 +66,7 @@ TEXT
         'open'                              => 'Ouvert aux applications',
         'past_featured'                     => 'Campagne précédemment vedette',
         'post_collapsed'                    => 'Les nouvelles notes sur les entités sont minimisées par défaut.',
+        'premium'                           => 'Premium débloqué par :name',
         'public'                            => 'Visibilité de la campagne',
         'public_campaign_filters'           => 'Filtres pour les campagnes publiques',
         'related_visibility'                => 'Visibilité des éléments liés',
@@ -92,6 +94,7 @@ TEXT
         'name'                              => 'Le nom de la campagne doit contenir au minimum 4 caractères.',
         'no_entry'                          => 'La campagne n\'a pas encore de description! Corrigeons cela.',
         'permissions_tab'                   => 'Controller les visibilités par défaut de nouveaux éléments avec ces options.',
+        'premium'                           => 'Certaines fonctionnalités sont disponibles parce que les fonctionnalités Premium de cette campagne sont débloquées. Pour en savoir plus, consultez la page :settings.',
         'public_campaign_filters'           => 'Aides les autres utilisateurs à trouver la campagne parmi les autres campagnes publiques en fournissant les détails suivants.',
         'public_no_visibility'              => 'Attention! La campagne est public, mais le rôle publique de la campagne n\'a pas d\'accès. :fix.',
         'related_visibility'                => 'Visibilité par défaut lors de la création d\'un nouvel élément avec ce champ (note d\'entité, relation, pouvoir, etc)',

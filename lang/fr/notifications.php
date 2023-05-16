@@ -25,6 +25,10 @@ return [
         'plugin'                => [
             'deleted'   => 'Le plugin :plugin a été supprimé du marketplace et retiré de la campagne :campaign.',
         ],
+        'premium'               => [
+            'add'       => 'Les fonctionnalités Premium ont été débloquées pour la campagne :campaign par :user.',
+            'remove'    => ':user ne débloque plus les fonctionnalités Premium pour la campagne :campaign.',
+        ],
         'removed-image'         => 'L\'image ou l\'entête de :entity a été retirée dû à une plainte pour droit d\'auteur.',
         'role'                  => [
             'add'       => 'Tu es maintenant membre du rôle :role de la campagne :campaign.',

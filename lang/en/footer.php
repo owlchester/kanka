@@ -3,13 +3,13 @@
 return [
     'blog'              => 'Blog',
     'boosters'          => 'Boosters',
-    'premium'           => 'Premium campaigns',
     'company'           => 'Company',
     'language-switcher' => [
         'other' => 'Other languages',
         'title' => 'Select your language',
     ],
     'platform'          => 'Platform',
+    'premium'           => 'Premium campaigns',
     'press-kit'         => 'Press kit',
     'privacy'           => 'Privacy',
     'resources'         => 'Resources',

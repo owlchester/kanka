@@ -8,7 +8,7 @@ return [
         'title' => 'New Attribute Template',
     ],
     'fields'                => [
-        'attributes'            => 'Attributes',
+        'attributes'    => 'Attributes',
     ],
     'hints'                 => [
         'automatic'                 => 'Attributes automatically applied from the :link Attribute Template.',
@@ -16,11 +16,11 @@ return [
         'parent_attribute_template' => 'This attribute template can be a child of another attribute template. When applying this attribute template, it and all of its parents will be applied.',
     ],
     'placeholders'          => [
-        'name'                  => 'Name of the Attribute Template',
+        'name'  => 'Name of the Attribute Template',
     ],
     'show'                  => [
         'tabs'  => [
-            'attributes'            => 'Attributes',
+            'attributes'    => 'Attributes',
         ],
     ],
 ];

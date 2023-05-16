@@ -32,10 +32,10 @@ return [
             'title'     => 'Update Member for :name',
         ],
         'fields'        => [
-            'parent'        => 'Superior',
-            'pinned'        => 'Pinned',
-            'role'          => 'Role',
-            'status'        => 'Membership status',
+            'parent'    => 'Superior',
+            'pinned'    => 'Pinned',
+            'role'      => 'Role',
+            'status'    => 'Membership status',
         ],
         'helpers'       => [
             'all_members'   => 'All characters that are members of this organisations and it\'s sub-organisations.',
@@ -43,8 +43,8 @@ return [
             'pinned'        => 'Choose if this member should be shown in the pinned section of the overview of its associated entities.',
         ],
         'pinned'        => [
-            'both'          => 'Both',
-            'none'          => 'None',
+            'both'  => 'Both',
+            'none'  => 'None',
         ],
         'placeholders'  => [
             'parent'    => 'Who is this member\'s superior',
@@ -58,6 +58,6 @@ return [
         'title'         => 'Organisation :name Members',
     ],
     'placeholders'  => [
-        'type'      => 'Cult, Gang, Rebellion, Fandom',
+        'type'  => 'Cult, Gang, Rebellion, Fandom',
     ],
 ];
