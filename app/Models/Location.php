@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
@@ -42,7 +43,7 @@ class Location extends MiscModel
     use Nested;
     use SoftDeletes;
     use SortableTrait;
-
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

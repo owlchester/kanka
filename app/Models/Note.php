@@ -9,6 +9,7 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Note
@@ -26,6 +27,7 @@ class Note extends MiscModel
     use ExportableTrait;
     use Nested;
     use SoftDeletes;
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [
