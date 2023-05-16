@@ -31,12 +31,8 @@ use Illuminate\Support\Str;
  */
 class CampaignDashboardWidget extends Model
 {
-    /**
-     * Traits
-     */
     use CampaignTrait;
     use LastSync;
-
     use Taggable;
 
     /**

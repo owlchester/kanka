@@ -270,7 +270,7 @@ class EntityService
 
             $this->fixTree($child);
             // Update child second. We do this otherwise we'll have an old entity and a new one
-            $child->campaign_id = $campaign->id; // Technically don't need this since it's in MiscObserver::saving()
+            $child->campaign_id = $campaign->id;
             if (empty($child->slug)) {
                 $child->slug = Str::slug($child->name, '');
             }
