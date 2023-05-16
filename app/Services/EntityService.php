@@ -435,6 +435,7 @@ class EntityService
             if (in_array('location_id', $fillable)) {
                 $new->location_id = $old->locations()->first()->id;
             } elseif (in_array('parent_location_id', $fillable)) {
+                // Todo: fix crash when location is empty
                 $new->setParentId($old->locations()->first()->id);
             }
         }
