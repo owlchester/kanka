@@ -739,6 +739,7 @@ class EntityService
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
 
+        //If the entity is switched from one location to multiple locations
         if (!in_array($old->entityTypeId(), [$raceID, $creatureID]) && in_array($new->entityTypeId(), [$raceID, $creatureID])) {
             if (!in_array('parent_location_id', $new->getFillable())) {
                 $new->locations()->attach($old->parent_location_id);
