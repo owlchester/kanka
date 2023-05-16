@@ -21,7 +21,6 @@ use App\Observers\ItemObserver;
 use App\Observers\TagObserver;
 use App\Observers\RaceObserver;
 use App\Observers\NoteObserver;
-use Illuminate\Support\Str;
 use App\Facades\CampaignLocalization;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Console\Command;
@@ -65,95 +64,95 @@ class DummyJobLog extends Command
 
         //Generate Characters and Locations
         Location::factory()
-            ->state(['campaign_id' => $campaignId, 'name' => 'Thaelia', 'slug' => Str::slug('Thaelia')])
-            ->has(Character::factory()->state(['campaign_id' => $campaignId]))
+            ->state(['name' => 'Thaelia'])
+            ->has(Character::factory())
             ->has(Location::factory()
-                    ->state(['name' => 'March', 'campaign_id' => $campaignId, 'slug' => Str::slug('March')])
+                    ->state(['name' => 'March'])
                     ->has(Location::factory()
-                        ->state(['name' => 'Adestry', 'campaign_id' => $campaignId, 'slug' => Str::slug('Adestry')])))
+                        ->state(['name' => 'Adestry'])))
                     ->has(Location::factory()
-                        ->state(['name' => 'Tilley', 'campaign_id' => $campaignId, 'slug' => Str::slug('Tilley')])
+                        ->state(['name' => 'Tilley'])
                         ->has(Location::factory()
-                            ->state(['name' => 'Carrothead', 'campaign_id' => $campaignId, 'slug' => Str::slug('Carrothead')])))
-                    ->has(Character::factory()->count(2)->state(['campaign_id' => $campaignId]))
-            ->has(Location::factory()->state(['name' => 'Orlene', 'campaign_id' => $campaignId, 'slug' => Str::slug('Orlene')]))
+                            ->state(['name' => 'Carrothead'])))
+                    ->has(Character::factory()->count(2))
+            ->has(Location::factory()->state(['name' => 'Orlene']))
                 ->has(Location::factory()
-                    ->state(['name' => 'Owlchester', 'campaign_id' => $campaignId, 'slug' => Str::slug('Owlchester')]))
+                    ->state(['name' => 'Owlchester']))
             ->create();
 
         Location::factory()
-            ->state(['campaign_id' => $campaignId, 'name' => 'Medina', 'slug' => Str::slug('Medina')])
-            ->has(Location::factory()->count(2)->state(new Sequence(['name' => 'Torchio', 'campaign_id' => $campaignId, 'slug' => Str::slug('Torchio')],['name' => 'Urdino', 'campaign_id' => $campaignId, 'slug' => Str::slug('Urdino')])))
-            ->has(Character::factory()->count(2)->state(['campaign_id' => $campaignId]))
+            ->state(['name' => 'Medina'])
+            ->has(Location::factory()->count(2)->state(new Sequence(['name' => 'Torchio'],['name' => 'Urdino'])))
+            ->has(Character::factory()->count(2))
             ->create();
 
         //Generate Families
         Family::factory()
-            ->state(['campaign_id' => $campaignId, 'name' => 'Graff', 'slug' => Str::slug('Graff')])
-            ->has(Family::factory()->state(['name' => 'Market', 'campaign_id' => $campaignId, 'slug' => Str::slug('Market')]))
+            ->state(['name' => 'Graff'])
+            ->has(Family::factory()->state(['name' => 'Market']))
             ->create();
-        Family::factory()->state(['name' => 'Joren', 'campaign_id' => $campaignId, 'slug' => Str::slug('Joren')])->create();
+        Family::factory()->state(['name' => 'Joren'])->create();
 
         //Generate Organisations
         Organisation::factory()
-            ->state(['campaign_id' => $campaignId, 'name' => 'Kankappy Cult', 'slug' => Str::slug('Kankappy Cult')])
-            ->has(Organisation::factory()->state(['name' => 'Fun Police', 'campaign_id' => $campaignId, 'slug' => Str::slug('Fun Police')]))
+            ->state(['name' => 'Kankappy Cult'])
+            ->has(Organisation::factory()->state(['name' => 'Fun Police']))
             ->create();
-        Organisation::factory()->state(['name' => 'Great Reset', 'campaign_id' => $campaignId, 'slug' => Str::slug('Great Reset')])->create();
+        Organisation::factory()->state(['name' => 'Great Reset'])->create();
         
         //Generate Events
         Event::factory()->count(4)->state(
             new Sequence(
-                ['name' => 'The Great War', 'campaign_id' => $campaignId, 'slug' => Str::slug('The Great War')],
-                ['name' => 'Northern Rebellion', 'campaign_id' => $campaignId, 'slug' => Str::slug('Northern Rebellion')],
-                ['name' => 'Peace of the Sea', 'campaign_id' => $campaignId, 'slug' => Str::slug('Peace of the Sea')],
-                ['name' => 'Royal Wedding', 'campaign_id' => $campaignId, 'slug' => Str::slug('Royal Wedding')],
+                ['name' => 'The Great War'],
+                ['name' => 'Northern Rebellion'],
+                ['name' => 'Peace of the Sea'],
+                ['name' => 'Royal Wedding'],
                 ))
         ->create();
 
         //Generate Items
         Item::factory()->count(5)->state(
             new Sequence(
-                ['name' => 'Bow', 'campaign_id' => $campaignId, 'slug' => Str::slug('Bow')],
-                ['name' => 'Crowbar', 'campaign_id' => $campaignId, 'slug' => Str::slug('Crowbar')],
-                ['name' => 'Shield', 'campaign_id' => $campaignId, 'slug' => Str::slug('Shield')],
-                ['name' => 'Sword', 'campaign_id' => $campaignId, 'slug' => Str::slug('Sword')],
-                ['name' => 'Potion', 'campaign_id' => $campaignId, 'slug' => Str::slug('Potion')],
+                ['name' => 'Bow'],
+                ['name' => 'Crowbar'],
+                ['name' => 'Shield'],
+                ['name' => 'Sword'],
+                ['name' => 'Potion'],
                 ))
         ->create();
 
         //Generate Notes
         Note::factory()->count(3)->state(
             new Sequence(
-                ['name' => 'Aromas of Geneva', 'campaign_id' => $campaignId, 'slug' => Str::slug('Aromas of Geneva')],
-                ['name' => 'Pottery Stacking', 'campaign_id' => $campaignId, 'slug' => Str::slug('Pottery Stacking')],
-                ['name' => 'Making Friends', 'campaign_id' => $campaignId, 'slug' => Str::slug('Making Friends')],
+                ['name' => 'Aromas of Geneva'],
+                ['name' => 'Pottery Stacking'],
+                ['name' => 'Making Friends'],
                 ))
         ->create();
 
         //Generate Races
         Race::factory()
-            ->state(['campaign_id' => $campaignId, 'name' => 'Elf', 'slug' => Str::slug('Elf')])
+            ->state([ 'name' => 'Elf'])
             ->has(Race::factory()
-                    ->state(['name' => 'Wood elf', 'campaign_id' => $campaignId, 'slug' => Str::slug('Wood elf')])
+                    ->state(['name' => 'Wood elf'])
                     ->has(Race::factory()
-                        ->state(['name' => 'Leaf elf', 'campaign_id' => $campaignId, 'slug' => Str::slug('Leaf elf')])))
-            ->has(Race::factory()->state(['name' => 'High elf', 'campaign_id' => $campaignId, 'slug' => Str::slug('High elf')]))
+                        ->state(['name' => 'Leaf elf'])))
+            ->has(Race::factory()->state(['name' => 'High elf']))
             ->create();
 
         Race::factory()->count(2)->state(
             new Sequence(
-                ['name' => 'Human', 'campaign_id' => $campaignId, 'slug' => Str::slug('Human')],
-                ['name' => 'Owlbear', 'campaign_id' => $campaignId, 'slug' => Str::slug('Owlbear')],
+                ['name' => 'Human'],
+                ['name' => 'Owlbear'],
                 ))
         ->create();
 
         //Generate Tags
         Tag::factory()->count(3)->state(
             new Sequence(
-                ['name' => '🧛🏻‍♂️', 'campaign_id' => $campaignId, 'slug' => Str::slug('🧛🏻‍♂️'), 'colour' => 'maroon'],
-                ['name' => 'Important', 'campaign_id' => $campaignId, 'slug' => Str::slug('Important'), 'colour' => 'aqua'],
-                ['name' => 'NPC', 'campaign_id' => $campaignId, 'slug' => Str::slug('NPC'), 'colour' => 'grey'],
+                ['name' => '🧛🏻‍♂️', 'colour' => 'maroon'],
+                ['name' => 'Important', 'colour' => 'aqua'],
+                ['name' => 'NPC', 'colour' => 'grey'],
                 ))
         ->create();
 
