@@ -426,6 +426,19 @@ class EntityService
             $new->parent_location_id = $old->location_id;
         }
 
+        /** @var Race|Creature $old */
+        /** @var Creature|Race $new */
+        $raceID = config('entities.ids.race');
+        $creatureID = config('entities.ids.creature');
+
+        if (in_array($old->entityTypeId(), [$raceID, $creatureID]) && !in_array($new->entityTypeId(), [$raceID, $creatureID])) {
+            if (in_array('location_id', $fillable)) {
+                $new->location_id = $old->locations()->first()->id;
+            } elseif (in_array('parent_location_id', $fillable)) {
+                $new->parent_location_id = $old->locations()->first()->id;
+            }
+        }
+
         // Copy file
         if (!empty($new->image)) {
             $newPath = str_replace($old->getTable(), $new->getTable(), $old->image);
@@ -725,6 +738,16 @@ class EntityService
         /** @var Creature|Race $new */
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
+
+        if (!in_array($old->entityTypeId(), [$raceID, $creatureID]) && in_array($new->entityTypeId(), [$raceID, $creatureID])) {
+            if (!in_array('parent_location_id', $new->getFillable())) {
+                $new->locations()->attach($old->parent_location_id);
+            } else {
+                $new->locations()->attach($old->location_id);
+            }
+            return false;
+        }
+
         if (
             !in_array($old->entityTypeId(), [$raceID, $creatureID]) ||
             !in_array($new->entityTypeId(), [$raceID, $creatureID])
@@ -758,7 +781,9 @@ class EntityService
         if (!method_exists($model, 'recalculateTreeBounds')) {
             return;
         }
-        $model->setParentId(null);
+        if (!in_array('parent_location_id', $model->getFillable())) {
+            $model->setParentId(null);
+        }
         $model->{$model->getRgtName()} = 0;
         $model->{$model->getLftName()} = 0;
         if ($model->exists) {
