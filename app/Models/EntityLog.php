@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Module;
 use App\Http\Requests\HistoryRequest;
 use App\User;
 use Carbon\Carbon;
@@ -175,8 +176,16 @@ class EntityLog extends Model
      */
     public function attributeKey(string $transKey, string $attribute): string
     {
-        // Try with crud first
         $name = Str::beforeLast($attribute, '_id');
+
+        // Entity name
+        $key = 'entities.' . $name;
+        $translation = __($key);
+        if ($key !== $translation) {
+            return $translation;
+        }
+
+        // Crud field
         $key = 'crud.fields.' . $name;
         $translation = __($key);
         if ($key !== $translation) {

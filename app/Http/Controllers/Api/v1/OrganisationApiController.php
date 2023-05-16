@@ -48,7 +48,9 @@ class OrganisationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Organisation::class);
 
-        $model = Organisation::create($request->all());
+        $data = $request->all();
+        $data['campaign_id'] = $campaign->id;
+        $model = Organisation::create($data);
         $this->crudSave($model);
         return new Resource($model);
     }

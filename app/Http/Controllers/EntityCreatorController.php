@@ -18,18 +18,9 @@ use Stevebauman\Purify\Facades\Purify;
 
 class EntityCreatorController extends Controller
 {
-    /**
-     * @var EntityService
-     */
     protected EntityService $entityService;
-
     protected Campaign $campaign;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct(EntityService $entityService)
     {
         $this->middleware('auth');
@@ -134,10 +125,10 @@ class EntityCreatorController extends Controller
             if ($type != 'posts') {
                 $this->validateEntity($values, $validator->rules());
 
-                /** @var MiscModel $model */
-                $model = new $class();
                 /** @var MiscModel $new */
-                $new = $model->create($values);
+                $new = new $class($values);
+                $new->campaign_id = $this->campaign->id;
+                $new->save();
                 $new->crudSaved();
                 $new->entity->crudSaved();
             } else {

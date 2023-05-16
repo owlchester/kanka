@@ -11,9 +11,6 @@ use App\Models\EntityLog;
 
 class PostObserver
 {
-    /**
-     * Purify trait
-     */
     use PurifiableTrait;
     use ReorderTrait;
 
@@ -23,7 +20,6 @@ class PostObserver
     protected EntityMappingService $entityMappingService;
 
     /**
-     * CharacterObserver constructor.
      * @param EntityMappingService $entityMappingService
      */
     public function __construct(EntityMappingService $entityMappingService)

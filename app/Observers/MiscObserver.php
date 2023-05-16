@@ -4,39 +4,30 @@ namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
-use App\Facades\Identity;
 use App\Facades\Mentions;
-use App\Models\Character;
-use App\Models\Concerns\Nested;
-use App\Models\Conversation;
 use App\Models\Entity;
-use App\Models\EntityLog;
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Services\Entity\LogService;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 abstract class MiscObserver
 {
-    /**
-     * Purify trait
-     */
     use PurifiableTrait;
 
-    /**
-     * Service used to build the map of the entity
-     * @var EntityMappingService
-     */
-    protected $entityMappingService;
+    /** @var EntityMappingService Service to build the mention "map" of the entity */
+    protected EntityMappingService $entityMappingService;
 
-    /**
-     * CharacterObserver constructor.
-     * @param EntityMappingService $entityMappingService
-     */
-    public function __construct(EntityMappingService $entityMappingService)
+    /** @var LogService Service for logging changes to an entity */
+    protected LogService $logService;
+
+    public function __construct(EntityMappingService $entityMappingService, LogService $logService)
     {
         $this->entityMappingService = $entityMappingService;
+        $this->logService = $logService;
     }
 
     /**
@@ -45,7 +36,10 @@ abstract class MiscObserver
     public function saving(MiscModel $model)
     {
         $model->slug = Str::slug($model->name, '');
-        $model->campaign_id = CampaignLocalization::getCampaign()->id;
+        if (empty($model->campaign_id)) {
+            $model->campaign_id = CampaignLocalization::getCampaign()->id;
+            Log::info('Had to get the campaign_id magically for ' . $model->getTable() . ':' . $model->name);
+        }
         $model->name = trim($model->name); // Remove empty spaces in names
         //$model->name = strip_tags($model->name);
 
@@ -159,7 +153,7 @@ abstract class MiscObserver
     }
 
     /**
-     * @param MiscModel|Character $model
+     * @param MiscModel $model
      */
     public function deleted(MiscModel $model)
     {
@@ -169,7 +163,6 @@ abstract class MiscObserver
         }
 
         // If soft deleting, don't really delete the image
-        /** @var Location $model */
         if ($model->trashed()) {
             return;
         }
@@ -197,40 +190,11 @@ abstract class MiscObserver
             //}
 
             // Updated log. We do this here to have the dirty attributes of the child
-            $log = new EntityLog();
-            $log->entity_id = $model->entity->id;
-            $log->created_by = auth()->user()->id;
-            $log->impersonated_by = Identity::getImpersonatorId();
-            $log->action = EntityLog::ACTION_UPDATE;
-            // Full logs for superboosted campaigns. RIP sql server
-            if ($model->campaign->superboosted()) {
-                $logs = [];
-                $dirty = $model->getDirty();
-                foreach ($dirty as $attribute => $value) {
-                    if (in_array($attribute, $model->ignoredLogAttributes())) {
-                        continue;
-                    }
-                    // We log the old value
-                    $value = $model->getOriginal($attribute);
-                    if (Str::endsWith($attribute, '_id')) {
-                        // Foreign? Try and get the related model
-                        $value = $this->getForeignOriginal($model, $attribute, $value);
-                    }
-
-                    // If it's not an array, easy work
-                    if (!is_array($value)) {
-                        $logs[$attribute] = $value;
-                        continue;
-                    }
-
-                    // An array (config[, moons[) we need to store it differently
-                    foreach ($value as $k => $v) {
-                        $logs[$k] = $v;
-                    }
-                }
-                $log->changes = $logs;
-            }
-            $log->save();
+            $this->logService
+                ->entity($model->entity)
+                ->user(auth()->user())
+                ->model($model)
+                ->logUpdate();
         }
     }
 
@@ -247,61 +211,7 @@ abstract class MiscObserver
         }
     }
 
-    /**
-     * @param MiscModel $model
-     * @param string $attribute
-     * @param string $original
-     * @return string
-     */
-    protected function getForeignOriginal(MiscModel $model, string $attribute, $original): string
-    {
-        if (empty($original)) {
-            return '';
-        }
 
-        try {
-            if ($attribute == 'parent_location_id') {
-                $originalLocation = Location::where('id', $original)->first();
-                if (!empty($originalLocation)) {
-                    return (string) $originalLocation->name;
-                }
-                return '';
-            }
-            //special treatment for map center markers
-            elseif ($attribute == 'center_marker_id') {
-                $originalMarker = \App\Models\MapMarker::where('id', $original)->first();
-                if (!empty($originalMarker)) {
-                    return (string) $originalMarker->name;
-                }
-                return '';
-            } elseif ($attribute == 'author_id') {
-                $originalAuthor = Entity::where('id', $original)->first();
-                if (!empty($originalAuthor)) {
-                    return (string) $originalAuthor->name;
-                }
-                return '';
-            }
-
-            // Silence
-            if ($attribute == 'target_id' && $model instanceof Conversation) {
-                return __('conversations.targets.' . ($original == Conversation::TARGET_USERS ? 'members' : 'characters'));
-            }
-
-            // Let's try based off of the attribute name
-            $relationName = Str::before($attribute, '_id');
-            $relationName = Str::camel($relationName);
-
-            $relationClass = 'App\Models\\' . ucfirst($relationName);
-
-            /** @var MiscModel $relationModel */
-            $relationModel = new $relationClass();
-            /** @var MiscModel $result */
-            $result = $relationModel->where('id', $original)->firstOrFail();
-            return $result->name;
-        } catch (\Exception $e) {
-            return '';
-        }
-    }
 
     /**
      * @param MiscModel|Location $model

@@ -14,9 +14,9 @@ class CreatureObserver extends MiscObserver
     public function crudSaved(MiscModel $model)
     {
         parent::crudSaved($model);
-        /** @var Race $race */
-        $race = $model;
-        $this->saveLocations($race);
+        /** @var Creature $creature */
+        $creature = $model;
+        $this->saveLocations($creature);
     }
 
     /**

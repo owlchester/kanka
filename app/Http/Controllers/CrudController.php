@@ -303,6 +303,10 @@ class CrudController extends Controller
             }
         }
 
+        $campaign = CampaignLocalization::getCampaign();
+        $data = $request->all();
+        $data['campaign_id'] = $campaign->id;
+
         try {
             // Sanitize the data
             if (!empty($this->sanitizer)) {
@@ -314,7 +318,7 @@ class CrudController extends Controller
             /** @var MiscModel $model */
             $model = new $this->model();
             /** @var MiscModel $new */
-            $new = $model->create($request->all());
+            $new = $model->create($data);
 
             // Fire an event for the Entity Observer.
             $new->crudSaved();

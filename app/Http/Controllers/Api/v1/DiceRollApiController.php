@@ -48,8 +48,9 @@ class DiceRollApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', DiceRoll::class);
 
-        /** @var DiceRoll $model */
-        $model = DiceRoll::create($request->all());
+        $data = $request->all();
+        $data['campaign_id'] = $campaign->id;
+        $model = DiceRoll::create($data);
         $this->crudSave($model);
         return new Resource($model);
     }
