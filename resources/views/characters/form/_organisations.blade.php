@@ -81,7 +81,7 @@ $statuses = [
     @endforeach
 </div>
 
-<button class="btn btn-default" id="add_organisation" href="#" title="{{ __('characters.actions.add_organisation') }}">
+<button class="btn btn-default" id="add_organisation" href="#">
     <x-icon class="plus"></x-icon>
     {!! $singular !!}
 </button>

@@ -2,14 +2,16 @@
     @php return @endphp
 @endif
 
-@php
-$preset = null;
-if (isset($model) && $model->character) {
-    $preset = $model->character;
-} else {
-    $preset = FormCopy::field('character')->select();
-}
-@endphp
+@if (!isset($preset))
+    @php
+    $preset = null;
+    if (isset($model) && $model->character) {
+        $preset = $model->character;
+    } else {
+        $preset = FormCopy::field('character')->select();
+    }
+    @endphp
+@endif
 
 <x-forms.foreign
     :name="$name ?? 'character_id'"

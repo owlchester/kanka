@@ -1,8 +1,8 @@
 @php
 $options = [
 '' => __('organisations.members.pinned.none'),
-\App\Models\OrganisationMember::PIN_CHARACTER => __('organisations.members.pinned.character'),
-\App\Models\OrganisationMember::PIN_ORGANISATION => __('organisations.members.pinned.organisation'),
+\App\Models\OrganisationMember::PIN_CHARACTER => \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')),
+\App\Models\OrganisationMember::PIN_ORGANISATION => \App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation')),
 \App\Models\OrganisationMember::PIN_BOTH => __('organisations.members.pinned.both'),
 ];
 $statuses = [
@@ -18,7 +18,7 @@ $fromOrg = request()->get('from') === 'org';
    {!! Form::hidden('organisation_id') !!}
 @else
     @include('cruds.fields.organisation', [
-        'preset' => !empty($member) && $member->organisation ? $member->organisation : null,
+        'model' => $member ?? null,
         'allowNew' => false,
         'required' => true,
         'allowClear' => false,
@@ -30,7 +30,7 @@ $fromOrg = request()->get('from') === 'org';
     <input type="hidden" name="parent_id" value="" />
     @include('cruds.fields.character', [
         'name' => 'parent_id',
-        'preset' => !empty($member) && $member->parent ? $member->parent : null,
+        'preset' => !empty($member) && $member->parent ? $member->parent->character : null,
         'allowNew' => false,
         'allowClear' => true,
         'label' => __('organisations.members.fields.parent'),

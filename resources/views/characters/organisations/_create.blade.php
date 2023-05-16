@@ -5,7 +5,7 @@
 ]) !!}
 
 @include('partials.forms.form', [
-    'title' => __('characters.organisations.create.title', ['name' => $model->name]),
+    'title' => __('characters.organisations.create.title'),
     'content' => 'characters.organisations._form',
     'submit' => __('crud.add')
 ])

@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Add an appearance',
-        'add_organisation'  => 'Add an organisation',
         'add_personality'   => 'Add a personality',
     ],
     'create'        => [
@@ -11,7 +10,6 @@ return [
     ],
     'fields'        => [
         'age'                       => 'Age',
-        'families'                  => 'Families',
         'is_appearance_pinned'      => 'Pinned appearance',
         'is_dead'                   => 'Dead',
         'is_personality_pinned'     => 'Pinned personality',
@@ -46,20 +44,19 @@ return [
     ],
     'organisations' => [
         'create'    => [
-            'success'   => 'Character added to organisation.',
-            'title'     => 'New Organisation for :name',
+            'success'   => ':character added to :organisation.',
+            'title'     => 'Membership',
         ],
         'destroy'   => [
-            'success'   => 'Character organisation removed.',
+            'success'   => 'Membership removed.',
         ],
         'edit'      => [
-            'success'   => 'Character organisation updated.',
-            'title'     => 'Update Organisation for :name',
+            'success'   => 'Membership updated.',
+            'title'     => 'Update membership :name',
         ],
         'fields'    => [
             'role'  => 'Role',
         ],
-        'hint'      => 'Characters can be part of many organisations, representing who they work for or what secret society they are part of.',
     ],
     'placeholders'  => [
         'age'               => 'Age',

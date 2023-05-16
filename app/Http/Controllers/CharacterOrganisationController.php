@@ -59,7 +59,10 @@ class CharacterOrganisationController extends Controller
 
         $relation = OrganisationMember::create($request->all());
         return redirect()->route('characters.organisations', [$character->id])
-            ->with('success', __($this->view . '.create.success'));
+            ->with('success', __($this->view . '.create.success', [
+                'character' => $character->name,
+                'organisation' => $relation->organisation->name
+            ]));
     }
 
     /**
@@ -71,8 +74,7 @@ class CharacterOrganisationController extends Controller
     public function show(Character $character, OrganisationMember $organisationMember)
     {
         $this->authorize('organisation', [$character, 'read']);
-
-        dd('wut');
+        abort(404);
     }
 
     /**
