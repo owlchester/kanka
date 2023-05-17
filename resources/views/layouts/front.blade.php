@@ -68,7 +68,7 @@
 @else
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, null) }}" />
 @foreach(LaravelLocalization::getSupportedLocales() as $language => $properties)
-    @if (in_array($language, ['hr', 'he']))@continue @endif
+    @if (in_array($language, ['hr', 'he', 'gl', 'hu', 'ca']))@continue @endif
 <link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $language) }}" hreflang="{{ $language }}">
 @endforeach
 @endif
@@ -166,20 +166,21 @@
                         <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
                             Português do Brasil
                         </a>
-                        @php $locale = 'es'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Español
-                        </a>
                         @php $locale = 'de'; @endphp
                         <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
                             Deutsch
                         </a>
-                        <div class="dropdown-divider"></div>
-
                         @php $locale = 'fr'; @endphp
                         <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
                             Français
                         </a>
+                        @php $locale = 'es'; @endphp
+                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                            Español
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
                         @php $locale = 'it'; @endphp
                         <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
                             Italiano
@@ -196,23 +197,9 @@
                         <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
                             Nederlands
                         </a>
-                        <div class="dropdown-divider"></div>
-
-                        @php $locale = 'hu'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Magyar
-                        </a>
                         @php $locale = 'sk'; @endphp
                         <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
                             Slovenský
-                        </a>
-                        @php $locale = 'ca'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Català
-                        </a>
-                        @php $locale = 'gl'; @endphp
-                        <a rel="alternate" hreflang="{{ $locale }}" href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
-                            Galego
                         </a>
                     </div>
                 </li>
