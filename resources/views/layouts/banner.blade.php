@@ -21,3 +21,13 @@
     </span>
 </div>
 @endif
+
+@if (auth()->check() && in_array(app()->currentLocale(), ['it', 'nl']) && !auth()->user()->settings()->get('banner_translators_it_nl_2023'))
+<div class="bg-blue banner-notification p-2">
+    <span>
+        <button type="button" class="close banner-notification-dismiss" data-dismiss="alert" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'translators_it_nl_2023']) }}">×</button>
+
+        Kanka in <strong>{{ app()->currentLocale() === 'nl' ? 'Dutch' : 'Italian' }}</strong> is at risk of being removed due to the translations being out of date. If you want to help keep Kanka available in your language, message us on <a href="{{ config('social.discord') }}" target="_blank">Discord</a>!
+    </span>
+</div>
+@endif
