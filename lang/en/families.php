@@ -24,7 +24,6 @@ return [
             'all_members'       => 'The following list are all characters that are in this family and all of the family\'s descendant families.',
             'direct_members'    => 'Most families have members who run it or made it famous. The following list are characters that are directly in this family.',
         ],
-        'title'     => ':name Members',
     ],
     'placeholders'  => [
         'name'  => 'Name of the family',

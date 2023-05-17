@@ -28,7 +28,6 @@ return [
         'is_hidden'         => 'If checked, this tag won\'t be displayed in an entity\'s header or tooltip.',
         'tag'               => 'This list contains all the tags are children of this tag or its children tags.',
     ],
-    'new_tag'       => 'New Tag',
     'placeholders'  => [
         'type'  => 'Lore, Wars, History, Religion, Vexillology',
     ],

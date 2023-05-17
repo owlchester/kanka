@@ -14,7 +14,7 @@
             data-allow-new="{{ $allowNew ? 'true' : 'false' }}"
             data-placeholder=""
             @if ($allowClear) data-allow-clear="true" @endif
-            data-new-tag="{{ __('tags.new_tag') }}"
+            data-new-tag="{{ __('tags.create.title') }}"
             @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
     >
         @foreach ($tags as $key => $tag)

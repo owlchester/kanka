@@ -55,7 +55,6 @@ return [
             'inactive'  => 'Inactive member',
             'unknown'   => 'Unknown status',
         ],
-        'title'         => 'Organisation :name Members',
     ],
     'placeholders'  => [
         'type'  => 'Cult, Gang, Rebellion, Fandom',

@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('families.members.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
