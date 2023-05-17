@@ -12,7 +12,7 @@ $targets = [
         @include('cruds.fields.type', ['base' => \App\Models\Conversation::class, 'trans' => 'conversations'])
 
         <div class="form-group required">
-            <label>{{ trans('conversations.fields.participants') }}</label>
+            <label>{{ __('conversations.fields.participants') }}</label>
             {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => 'form-control']) !!}
         </div>
 

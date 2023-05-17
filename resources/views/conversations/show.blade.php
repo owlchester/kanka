@@ -10,6 +10,38 @@ $translations = json_encode([
 ]);
 @endphp
 
+@section('entity-header-actions-override')
+    @can('update', $model)
+        <div class="header-buttons inline-block pull-right ml-auto">
+            <a class="btn btn-default btn-sm" data-toggle="ajax-modal" data-target="#entity-modal"
+                    data-url="{{ route('conversations.conversation_participants.index', $model) }}">
+                <x-icon class="fa-solid fa-users"></x-icon>
+                {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}
+            </a>
+            <div class="btn-group">
+                <div class="btn btn-default btn-sm btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
+                    <i class="fa-solid fa-grip-lines" aria-hidden="true"></i>
+                </div>
+                <div class="btn btn-default btn-sm btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </div>
+            </div>
+            @can('update', $model)
+                <a href="{{ $model->getLink('edit') }}" class="btn btn-primary btn-sm ">
+                    <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
+                </a>
+            @endcan
+            @can('post', [$model, 'add'])
+                <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-post"
+                   data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
+                    <x-icon class="plus"></x-icon> {{ __('crud.actions.new_post') }}
+                </a>
+            @endcan
+        </div>
+    @endcan
+@endsection
+
+
 <div class="entity-grid">
 
     @include('entities.components.header', [
@@ -17,7 +49,8 @@ $translations = json_encode([
         'breadcrumb' => [
             ['url' => Breadcrumb::index($name), 'label' => __('entities.conversations')],
             null
-        ]
+        ],
+        'entityHeaderActions' => 'entity-header-actions-override',
     ])
 
     @include('entities.components.menu_v2', ['active' => 'story'])
@@ -25,14 +58,6 @@ $translations = json_encode([
 <div class="entity-story-block">
 
 <div class="box box-solid">
-    <div class="box-header">
-        <div class="box-tools">
-            <button class="btn btn-box-tool" data-toggle="ajax-modal" data-target="#entity-modal"
-                    data-url="{{ route('conversations.conversation_participants.index', $model) }}">
-                <i class="fa-solid fa-users" aria-hidden="true"></i> {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}
-            </button>
-        </div>
-    </div>
     <div class="box-body">
         <div class="box-conversation" id="conversation">
             <conversation
