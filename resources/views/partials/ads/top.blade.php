@@ -12,16 +12,7 @@
 @else
 @ads('entity')
 <div class="ads-space overflow-hidden">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="{{ config('tracking.adsense') }}"
-         data-ad-slot="{{ config('tracking.adsense_entity') }}"
-         data-ad-format="auto"
-         @if(!app()->environment('prod'))data-adtest="on"@endif
-         data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <div class="vm-placement" data-id="{{ config('tracking.venatus.entity') }}"></div>
 </div>
 <p class="text-center text-muted">
 {!! __('misc.ads.remove_v3', [

@@ -53,15 +53,20 @@ class MacroServiceProvider extends ServiceProvider
 
         /** @ads() to show ads */
         Blade::if('ads', function (string $section = null) {
-            if (empty(config('tracking.adsense'))) {
+            if (!config('tracking.venatus.enabled')) {
                 return false;
             }
 
             // If requesting a section but it isn't set up, don't show
-            if (!empty($section) && empty(config('tracking.adsense_' . $section))) {
+            if (!empty($section) && empty(config('tracking.venatus.' . $section))) {
+                //dump('tracking.venatus.' . $section);
                 return false;
             }
 
+            if (request()->has('_showads')) {
+                return true;
+            }
+            return false;
             if (auth()->check()) {
                 // Subscribed users don't have ads
                 if (auth()->user()->isSubscriber()) {

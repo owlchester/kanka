@@ -40,5 +40,18 @@ return [
     /*
      * Google optimize
      */
-    'optimize' => env('TRACKING_OPTIMIZE')
+    'optimize' => env('TRACKING_OPTIMIZE'),
+
+    /*
+     * Venatus ad-manager
+     */
+    'venatus' => [
+        'enabled' => !empty(env('TRACKING_VENATUS')),
+        'id' => env('TRACKING_VENATUS'),
+        'sidebar' => env('TRACKING_VENATUS_STATIC_BOX'),
+        'entity' => env('TRACKING_VENATUS_STATIC_BANNER'),
+        'footer' => env('TRACKING_VENATUS_DYNAMIC_BANNER'),
+        'profile' => env('TRACKING_VENATUS_DYNAMIC_BOX'),
+
+    ],
 ];

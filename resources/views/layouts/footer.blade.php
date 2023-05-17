@@ -1,16 +1,6 @@
 <footer id="footer" class="main-footer pt-10 pb-8">
     @ads('footer')
-    <div class="ads-space overflow-hidden">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="{{ config('tracking.adsense') }}"
-             data-ad-slot="{{ config('tracking.adsense_footer') }}"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+    <div class="vm-placement" data-id="{{ config('tracking.venatus.footer') }}"></div>
     @endads
 
     <div class="footer-links">

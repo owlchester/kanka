@@ -53,6 +53,10 @@
     <!-- End Facebook Pixel Code -->
 @endif
 
+@if (config('tracking.venatus.enabled'))
+    <script src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-site-id="{{ config('tracking.venatus.id') }}" data-mode="scan" async></script>
+@endif
+
 @if (!empty($tracking_new))
     <!-- New account confirmation -->
     <script>
