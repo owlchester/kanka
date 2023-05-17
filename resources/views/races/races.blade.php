@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('races.races.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -36,7 +36,7 @@
             ]
         ])
 
-        @include($name . '._menu', ['active' => 'races'])
+        @include('entities.components.menu_v2', ['active' => 'races'])
 
         <div class="entity-main-block">
             @include('races.panels.races')

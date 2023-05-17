@@ -31,7 +31,7 @@
                 __('timelines.fields.eras')
             ]
         ])
-        @include('timelines._menu', ['active' => 'eras'])
+        @include('entities.components.menu_v2', ['active' => 'eras'])
         <div class="entity-main-block">
             @include('timelines.panels.eras')
             @includeWhen(false && $rows->count() > 1, 'timelines.eras._reorder')

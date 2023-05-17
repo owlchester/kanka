@@ -34,7 +34,7 @@
             ]
         ])
 
-        @include('quests._menu', ['active' => 'elements'])
+        @include('entities.components.menu_v2', ['active' => 'elements'])
 
         <div class="entity-main-block">
             @include('quests.elements._elements')

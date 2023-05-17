@@ -9,7 +9,7 @@
         ]
     ])
 
-    @include($name . '._menu', ['active' => 'story'])
+    @include('entities.components.menu_v2', ['active' => 'story'])
 
     <div class="entity-story-block">
         @include('entities.components.posts', ['withEntry' => true])

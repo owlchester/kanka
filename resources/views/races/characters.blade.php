@@ -18,7 +18,7 @@ $plural = \App\Facades\Module::plural(config('entities.ids.character'), __('enti
     @include('partials.errors')
     <div class="row entity-grid">
         <div class="col-md-2 entity-sidebar-submenu">
-            @include('races._menu', ['active' => 'characters'])
+            @include('entities.components.menu_v2', ['active' => 'characters'])
         </div>
         <div class="col-md-10 entity-main-block">
             @include('races.panels.characters')

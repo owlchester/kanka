@@ -31,9 +31,17 @@ class TimelineReorderController extends Controller
             ->ordered()
             ->get();
 
+        $hasNothing = true;
+        foreach ($eras as $era) {
+            if (!$era->orderedElements->isEmpty()) {
+                $hasNothing = false;
+            }
+        }
+
         return view('timelines.reorder.index', compact(
             'eras',
-            'timeline'
+            'timeline',
+            'hasNothing'
         ));
     }
 
@@ -52,6 +60,6 @@ class TimelineReorderController extends Controller
             ->reorder($request);
         return redirect()
             ->route('timelines.show', [$timeline])
-            ->withSuccess(__('timelines.reorder.success'));
+            ->withSuccess(__('timelines.reorder.success', ['name' => $timeline->name]));
     }
 }

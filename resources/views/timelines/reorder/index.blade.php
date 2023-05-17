@@ -1,7 +1,7 @@
 <?php /**
  * @var \App\Models\TimelineEra $era */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('timelines.reorder.title'),
+    'title' => __('timelines.reorder.title', ['name' => $timeline->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $timeline,
@@ -18,11 +18,11 @@
             'model' => $timeline,
             'breadcrumb' => [
                 ['url' => Breadcrumb::index('timelines'), 'label' => \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'))],
-                __('timelines.reorder.title')
+                __('crud.actions.reorder')
             ]
         ])
 
-        @include('timelines._menu', ['active' => 'reorder', 'model' => $timeline])
+        @include('entities.components.menu_v2', ['active' => 'reorder', 'model' => $timeline])
 
         <div class="entity-main-block">
             @include('timelines.reorder._reorder')

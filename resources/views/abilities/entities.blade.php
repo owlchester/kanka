@@ -33,7 +33,7 @@
             ]
         ])
 
-        @include('abilities._menu', ['active' => 'entities'])
+        @include('entities.components.menu_v2', ['active' => 'entities'])
 
         <div class="entity-main-block">
             @include('abilities.panels.entities')

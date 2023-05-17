@@ -36,7 +36,7 @@ $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('e
             ]
         ])
 
-        @include('characters._menu', ['active' => 'organisations'])
+        @include('entities.components.menu_v2', ['active' => 'organisations'])
 
         <div class="entity-main-block">
             @include('characters.panels.organisations')

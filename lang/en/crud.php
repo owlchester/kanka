@@ -26,6 +26,7 @@ return [
         'print'             => 'Print',
         'reset'             => 'Reset',
         'transform'         => 'Transform',
+        'reorder'           => 'Reorder',
     ],
     'add'                       => 'Add',
     'alerts'                    => [

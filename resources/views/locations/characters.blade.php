@@ -36,7 +36,7 @@
             ]
         ])
 
-        @include('locations._menu', ['active' => 'characters'])
+        @include('entities.components.menu_v2', ['active' => 'characters'])
 
         <div class="entity-main-block">
             @include('locations.panels.characters')

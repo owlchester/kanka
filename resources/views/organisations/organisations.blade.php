@@ -36,7 +36,7 @@
             ]
         ])
 
-        @include($name . '._menu', ['active' => 'organisations'])
+        @include('entities.components.menu_v2', ['active' => 'organisations'])
 
         <div class="entity-main-block">
             @include('organisations.panels.organisations')

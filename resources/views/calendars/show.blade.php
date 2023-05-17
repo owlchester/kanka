@@ -48,7 +48,7 @@ if (!empty($redirect)) {
         'entityHeaderActions' => 'entity-header-actions-override',
     ])
 
-    @include($name . '._menu', ['active' => 'story', 'withPins'])
+    @include('entities.components.menu_v2', ['active' => 'story', 'withPins'])
 
     <div class="entity-main-block">
 

@@ -41,7 +41,7 @@
                 __('maps.panels.layers')
             ]
         ])
-        @include('maps._menu', ['active' => 'layers'])
+        @include('entities.components.menu_v2', ['active' => 'layers'])
         <div class="entity-main-block">
             @include('maps.panels.layers')
             @includeWhen($rows->count() > 1, 'maps.layers._reorder')

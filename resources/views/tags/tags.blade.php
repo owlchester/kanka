@@ -36,7 +36,7 @@
             ]
         ])
 
-        @include($name . '._menu', ['active' => 'tags'])
+        @include('entities.components.menu_v2', ['active' => 'tags'])
 
         <div class="entity-main-block">
             @include('tags.panels.tags')

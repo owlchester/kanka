@@ -36,7 +36,7 @@
             ]
         ])
 
-        @include('events._menu', ['active' => 'events'])
+        @include('entities.components.menu_v2', ['active' => 'events'])
 
         <div class="entity-main-block">
             @include('events.panels.events')

@@ -36,7 +36,7 @@
             ]
         ])
 
-        @include($name . '._menu', ['active' => 'timelines'])
+        @include('entities.components.menu_v2', ['active' => 'timelines'])
 
         <div class="entity-main-block">
             @include('timelines.panels.timelines')

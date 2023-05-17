@@ -4,13 +4,7 @@
         'method' => 'POST',
     ]) !!}
 <div class="box box-solid box-entity-story-reorder">
-    <div class="box-header">
-        <h3 class="box-title">
-            {{ __('entities/abilities.reorder.title') }}
-        </h3>
-    </div>
     <div class="box-body">
-
     @foreach($parents as $key => $parent)
         <div class="element-live-reorder">
             <div class="element">

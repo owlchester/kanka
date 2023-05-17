@@ -35,7 +35,7 @@
             ]
         ])
 
-        @include('maps._menu', ['active' => 'maps'])
+        @include('entities.components.menu_v2', ['active' => 'maps'])
 
         <div class="entity-main-block">
             @include('maps.panels.maps')

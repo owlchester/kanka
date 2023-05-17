@@ -40,10 +40,9 @@
             ]
         ])
 
-        @include($entity->pluralType() . '._menu', [
+        @include('entities.components.menu_v2', [
             'active' => 'attributes',
             'model' => $entity->child,
-            'name' => $entity->pluralType()
         ])
 
         <div class="entity-main-block">

@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('families.families.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -36,7 +36,7 @@
             ]
         ])
 
-        @include($name . '._menu', ['active' => 'families'])
+        @include('entities.components.menu_v2', ['active' => 'families'])
 
         <div class="entity-main-block">
             @include('families.panels.families')

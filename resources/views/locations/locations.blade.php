@@ -35,7 +35,7 @@
             ]
         ])
 
-        @include('locations._menu', ['active' => 'locations'])
+        @include('entities.components.menu_v2', ['active' => 'locations'])
 
         <div class="entity-main-block">
             @include('locations.panels.locations')

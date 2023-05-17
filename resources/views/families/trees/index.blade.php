@@ -50,7 +50,7 @@
             ]
         ])
 
-        @include('families._menu', ['active' => 'tree', 'model' => $family])
+        @include('entities.components.menu_v2', ['active' => 'tree', 'model' => $family])
 
         <div class="entity-main-block">
 

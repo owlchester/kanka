@@ -25,7 +25,7 @@
     @include('partials.errors')
     <div class="row entity-grid">
         <div class="col-md-2 entity-sidebar-submenu">
-            @include($entity->pluralType() . '._menu', ['active' => 'map-points', 'model' => $entity->child, 'name' => $entity->pluralType()])
+            @include('entities.components.menu_v2', ['active' => 'map-points', 'model' => $entity->child])
         </div>
         <div class="col-md-10 entity-main-block">
             <div class="box box-solid box-entity-map-markers">

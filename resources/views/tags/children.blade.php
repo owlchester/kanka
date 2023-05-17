@@ -17,7 +17,7 @@
             ]
         ])
 
-        @include('tags._menu', ['active' => 'entities'])
+        @include('entities.components.menu_v2', ['active' => 'entities'])
 
         <div class="entity-main-block">
             @include('tags.panels.children')

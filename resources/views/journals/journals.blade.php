@@ -34,7 +34,7 @@
             ]
         ])
 
-        @include('journals._menu', ['active' => 'journals'])
+        @include('entities.components.menu_v2', ['active' => 'journals'])
 
         <div class="entity-main-block">
             @include('journals.panels.journals')

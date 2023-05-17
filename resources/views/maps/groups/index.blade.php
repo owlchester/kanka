@@ -41,7 +41,7 @@
                 __('maps.panels.groups')
             ]
         ])
-        @include('maps._menu', ['active' => 'groups'])
+        @include('entities.components.menu_v2', ['active' => 'groups'])
         <div class="entity-main-block">
             @include('maps.panels.groups')
             @includeWhen($rows->count() > 1, 'maps.groups._reorder')

@@ -18,7 +18,7 @@
     @include('partials.errors')
     <div class="row entity-grid">
         <div class="col-md-2 entity-sidebar-submenu">
-            @include($name . '._menu', ['active' => 'map-points'])
+            @include('entities.components.menu_v2', ['active' => 'map-points'])
         </div>
         <div class="col-md-10 entity-main-block">
             <div class="box box-solid box-entity-map-points">

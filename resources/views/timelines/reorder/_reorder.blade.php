@@ -1,14 +1,16 @@
 <?php /** @var \App\Models\TimelineEra[] $eras */?>
+
+@if ($hasNothing)
+    <x-alert type="warning">
+        <p>{{ __('timelines.reorder.empty') }}</p>
+    </x-alert>
+    <?php return; ?>
+@endif
 {!! Form::open([
         'route' => ['timelines.reorder-save', $timeline],
         'method' => 'POST',
     ]) !!}
 <div class="box box-solid box-entity-story-reorder">
-    <div class="box-header">
-        <h3 class="box-title">
-            {{ __('timelines.reorder.title') }}
-        </h3>
-    </div>
     <div class="box-body">
         <div class="element-live-reorder sortable-elements">
             @foreach($eras as $era)

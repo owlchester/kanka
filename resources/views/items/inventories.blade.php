@@ -19,7 +19,7 @@
             ]
         ])
 
-        @include('items._menu', ['active' => 'inventories'])
+        @include('entities.components.menu_v2', ['active' => 'inventories'])
 
         <div class="entity-main-block">
             @include('items.panels.inventories')

@@ -19,7 +19,7 @@
             ]
         ])
 
-        @include($name . '._menu', ['active' => 'members'])
+        @include('entities.components.menu_v2', ['active' => 'members'])
 
         <div class="entity-main-block">
             @include('organisations.panels.members')

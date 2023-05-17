@@ -36,7 +36,7 @@
             ]
         ])
 
-        @include('abilities._menu', ['active' => 'abilities'])
+        @include('entities.components.menu_v2', ['active' => 'abilities'])
 
         <div class="entity-main-block">
             @include('abilities.panels.abilities')
