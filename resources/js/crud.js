@@ -258,7 +258,9 @@ function registerEraForm() {
 
     let positionField = $('select[name="position"]');
     oldEra = eraField.val();
-    loadTimelineEra(eraField.val());
+    if (entityCalendarField.val()) {
+        loadTimelineEra(eraField.val());
+    }
 
     if (eraField.length === 1) {
         eraField.on('change', function () {
