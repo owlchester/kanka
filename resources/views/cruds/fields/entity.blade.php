@@ -1,10 +1,10 @@
 @if (!isset($preset))
     @php
         $preset = null;
-        if (isset($model) && $model->entity) {
-            $preset = $model->entity;
+        if (isset($model) && $model->{$relation ?? 'entity'}) {
+            $preset = $model->{$relation ?? 'entity'};
         } elseif (!isset($bulk)) {
-            $preset = FormCopy::field('entity')->select($isParent ?? false, \App\Models\Entity::class);
+            $preset = FormCopy::field($relation ?? 'entity')->select($isParent ?? false, \App\Models\Entity::class);
         }
     @endphp
 @endif
