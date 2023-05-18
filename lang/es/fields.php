@@ -21,6 +21,7 @@ return [
     'tooltip'           => [
         'boosted-description'   => 'Reemplaza la descripción emergente de la entidad con una :boosted-campaign.',
         'description'           => 'Reemplaza la descripción emergente de la entidad con el texto siguiente.',
+        'helper'                => 'Los siguientes elementos HTML están permitidos en los tooltips: :tags',
         'name'                  => 'Descripción emergente',
     ],
 ];

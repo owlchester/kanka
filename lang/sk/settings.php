@@ -57,6 +57,7 @@ return [
         ],
         'benefits'  => 'Kanka poskytuje niekoľko integrácií so službami tretích strán. Široká integrácia s aplikáciami tretích strán je plánovaná v budúcnosti.',
         'discord'   => [
+            'confirm'   => 'Naozaj chceš odpojiť svoje konte z Discordu? Toto odstráni aj role, ktoré máš nastavené.',
             'errors'    => [
                 'add'   => 'Pri prepojení tvojho Discord účtu s Kankou sa vyskytla chyba. Prosím, skús to ešte raz.',
             ],
@@ -169,6 +170,7 @@ return [
         ],
         'errors'                => [
             'callback'      => 'Náš spracovateľ platieb nám nahlásil chybu. Prosím, skús ešte raz alebo nás kontaktuj, ak problém pretrváva.',
+            'failed'        => 'Aktuálne evidujeme problémy s naším platobným systémom. Ak potrebuješ pomôcť, kontaktuj nás na :email.',
             'subscribed'    => 'Tvoje predplatné sa nám nepodarilo spracovať. Stripe nám poskytlo nasledujúcu informáciu prečo.',
         ],
         'fields'                => [
@@ -191,6 +193,7 @@ return [
         'manage_subscription'   => 'Spravovať predplatné',
         'payment_method'        => [
             'actions'       => [
+                'add'               => 'Pridať',
                 'add_new'           => 'Pridať nový spôsob platby',
                 'change'            => 'Zmeniť spôsob platby',
                 'save'              => 'Uložiť spôsob platby',

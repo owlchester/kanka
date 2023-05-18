@@ -115,6 +115,7 @@ return [
     'errors'                    => [
         'boosted'                       => 'Este recurso está disponível apenas para campanhas impulsionadas.',
         'boosted_campaigns'             => 'Esse recurso está somente disponível para :boosted.',
+        'invalid_node'                  => 'O elemento primário selecionado é inválido. Isso geralmente pode ser corrigido dando ao elemento selecionado um elemento primário e, em seguida, removendo-o.',
         'node_must_not_be_a_descendant' => 'Nódulo inválido (tag, localização principal): seria um descendente de si mesmo.',
         'unavailable_feature'           => 'Recurso indisponível',
     ],
@@ -361,6 +362,7 @@ return [
         'inventory'     => 'Inventário',
         'links'         => 'Links',
         'map-points'    => 'Pontos do Mapa',
+        'mentions'      => 'Menções',
         'overview'      => 'Visão Geral',
         'permissions'   => 'Permissões',
         'profile'       => 'Perfil',

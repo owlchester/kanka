@@ -11,7 +11,8 @@ return [
         'name'  => 'Tytuł komentarza',
     ],
     'position'      => [
-        'first' => 'Pierwszy',
-        'last'  => 'Ostatni',
+        'dont_change'   => 'Nie zmienaj',
+        'first'         => 'Pierwszy',
+        'last'          => 'Ostatni',
     ],
 ];

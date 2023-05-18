@@ -16,6 +16,9 @@ return [
         'copy'          => 'Skopiuj',
         'select_one'    => 'Wybierz kampanię',
     ],
+    'helpers'       => [
+        'copy'  => 'Stwórz kopię elementu ze wskazanej kampanii.',
+    ],
     'panel'         => [
         'description'           => 'Wybierz kampanię do której element ma zostać przeniesiony albo skopiowany.',
         'description_bulk_copy' => 'Wybierz kampanię, do której chcesz skopiować wybrane elementy.',

@@ -57,6 +57,7 @@ return [
         ],
         'benefits'  => 'Kanka bietet einige Integrationsmöglichkeiten für Dienste von Drittanbietern. Weitere Integrationen von Drittanbietern sind für die Zukunft geplant.',
         'discord'   => [
+            'confirm'   => 'Möchtest du dein Konto wirklich von Discord trennen? Dadurch werden alle Rollen entfernt, mit denen du synchronisiert wurdest.',
             'errors'    => [
                 'add'   => 'Beim Verknüpfen Ihres Discord-Kontos mit Kanka ist ein Fehler aufgetreten. Bitte versuche es erneut.',
             ],
@@ -169,6 +170,7 @@ return [
         ],
         'errors'                => [
             'callback'      => 'Unser Zahlungsanbieter hat einen Fehler gemeldet. Bitte versuchen Sie es erneut oder kontaktieren Sie uns, wenn das Problem weiterhin besteht.',
+            'failed'        => 'Wir haben derzeit Probleme mit unserem Abrechnungssystem. Bitte kontaktiere uns unter :email für Unterstützung.',
             'subscribed'    => 'Ihr Abonnement konnte nicht verarbeitet werden. Stripe lieferte den folgenden Hinweis.',
         ],
         'fields'                => [
@@ -191,6 +193,7 @@ return [
         'manage_subscription'   => 'Abonnement verwalten',
         'payment_method'        => [
             'actions'       => [
+                'add'               => 'Hinzufügen',
                 'add_new'           => 'Füge eine neue Zahlungsmethode hinzu',
                 'change'            => 'Zahlungsmethode ändern',
                 'save'              => 'Zahlungsmethode speichern',

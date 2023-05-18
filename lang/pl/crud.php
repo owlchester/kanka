@@ -115,6 +115,7 @@ return [
     'errors'                    => [
         'boosted'                       => 'Ta funkcja jest dostępna wyłącznie w doładowanych kampaniach.',
         'boosted_campaigns'             => 'By korzystać z tej funkcji, kampania musi być :boosted.',
+        'invalid_node'                  => 'Wybrano niewłaściwe źródło. Błąd można zwykle naprawić nadając wybranemu źródłu własne źródło, a potem usuwając to pierwsze.',
         'node_must_not_be_a_descendant' => 'Niewłaściwy węzeł (etykieta, miejsce źródłowe): pochodziłby sam od siebie.',
         'unavailable_feature'           => 'Funkcja niedostępna',
     ],
@@ -361,6 +362,7 @@ return [
         'inventory'     => 'Wyposażenie',
         'links'         => 'Odnośniki',
         'map-points'    => 'Na mapach',
+        'mentions'      => 'Wzmianki',
         'overview'      => 'Ogólne',
         'permissions'   => 'Uprawnienia',
         'profile'       => 'Profil',

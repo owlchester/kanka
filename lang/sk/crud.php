@@ -115,7 +115,8 @@ return [
     'errors'                    => [
         'boosted'                       => 'Táto funkcionalita je dostupná iba pre boostnuté kampane.',
         'boosted_campaigns'             => 'Funkcionalita je dostupná iba pre :boosted.',
-        'node_must_not_be_a_descendant' => 'Neplatný objekt (kategória, miesto): bol by potomok samého seba.',
+        'invalid_node'                  => 'Zvolený rodič nie je platný. Toto je možné vyriešiť pridaním rodiča danému rodičovi a následne jeho odstránením.',
+        'node_must_not_be_a_descendant' => 'Zvolený rodič je neplatný. Bol by potomok samého seba.',
         'unavailable_feature'           => 'Funkcionalita nedostupná',
     ],
     'events'                    => [],
@@ -361,6 +362,7 @@ return [
         'inventory'     => 'Inventár',
         'links'         => 'Linky',
         'map-points'    => 'Značky na mape',
+        'mentions'      => 'Referencie',
         'overview'      => 'Prehľad',
         'permissions'   => 'Oprávnenia',
         'profile'       => 'Profil',

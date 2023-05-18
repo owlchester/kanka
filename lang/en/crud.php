@@ -24,9 +24,9 @@ return [
         'new_post'          => 'New post',
         'next'              => 'Next',
         'print'             => 'Print',
+        'reorder'           => 'Reorder',
         'reset'             => 'Reset',
         'transform'         => 'Transform',
-        'reorder'           => 'Reorder',
     ],
     'add'                       => 'Add',
     'alerts'                    => [

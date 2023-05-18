@@ -11,6 +11,7 @@ return [
         'success'   => 'Obrázok :name zmazaný.',
     ],
     'errors'        => [
+        'max'           => 'Prosím zvoľ max. :count súborov naraz.',
         'permissions'   => 'Role v tvojej kampani nemajú oprávnenie :permission, aby mohli nahrávať obrázky do galérie kampane.',
     ],
     'fields'        => [

@@ -14,6 +14,7 @@ return [
         'add_year'          => 'Añadir año con nombre',
         'set_today'         => 'Poner como día actual',
         'today'             => 'Hoy',
+        'update_weather'    => 'Actualizar clima',
     ],
     'checkboxes'    => [
         'is_recurring'  => 'Ocurre cada año',
@@ -51,7 +52,14 @@ return [
         'success'   => 'Evento \':event\' añadido al calendario.',
     ],
     'events'        => [
-        'title' => 'Eventos del calendario :name',
+        'end'       => '(fin)',
+        'filters'   => [
+            'show_after'    => 'Mostrar hoy y después',
+            'show_all'      => 'Mostrar todos',
+            'show_before'   => 'Mostrar antes de hoy',
+        ],
+        'start'     => '(inicio)',
+        'title'     => 'Eventos del calendario :name',
     ],
     'fields'        => [
         'calendar'              => 'Calendario superior',
@@ -62,6 +70,8 @@ return [
         'current_month'         => 'Mes actual',
         'current_year'          => 'Año actual',
         'date'                  => 'Fecha actual',
+        'day'                   => 'Día',
+        'default_layout'        => 'Diseño predeterminado',
         'has_leap_year'         => 'Tiene años bisiestos',
         'intercalary'           => 'Días intercalares',
         'is_incrementing'       => 'Fecha incremental',
@@ -72,6 +82,7 @@ return [
         'leap_year_start'       => 'Año bisiesto',
         'length'                => 'Duración del evento',
         'length_days'           => ':count day|:count days',
+        'month'                 => 'Mes',
         'months'                => 'Meses',
         'moons'                 => 'Lunas',
         'parameters'            => 'Parámetros',
@@ -79,13 +90,17 @@ return [
         'recurring_until'       => 'Recurrente hasta el año',
         'reset'                 => 'Reinicio semanal',
         'seasons'               => 'Estaciones',
+        'skip_year_zero'        => 'Saltar Año Cero',
         'start_offset'          => 'Retraso inicial',
         'suffix'                => 'Sufijo',
         'week_names'            => 'Nombres de las semanas',
         'weekdays'              => 'Días de la semana',
+        'year'                  => 'Año',
     ],
     'helpers'       => [
+        'default_layout'    => 'Seleccione qué diseño debe usar el calendario de forma predeterminada.',
         'month_type'        => 'Los meses intercalares no usan los días de la semana, pero influyen en las lunas y las estaciones.',
+        'moon_offset'       => 'De forma predeterminada, la primera luna llena aparece el primer día del año 0. Cambiar el desplazamiento alterará el cuando se muestra la primera luna llena. Este valor puede ser negativo (hasta la duración del primer mes) o positivo (hasta la duración del primer mes).',
         'nested_without'    => 'Mostrando todos los calendarios que no tienen ningún superior. Haz clic sobre una fila para mostrar los subcalendarios.',
         'start_offset'      => 'Por defecto, el calendario empieza en el primer día de la semana del año 0. En este campo puedes cambiar dónde se situará el primer día del calendario.',
     ],
@@ -99,14 +114,17 @@ return [
         'parent_calendar'   => 'Los calendarios incluyen los recordatorios y efectos climáticos de su calendario superior.',
         'reset'             => 'Empezar siempre el siguiente mes o año en el primer día de la semana.',
         'seasons'           => 'Crea estaciones en tu calendario estableciendo cuándo empieza cada una. Kanka se encargará del resto.',
+        'skip_year_zero'    => 'De forma predeterminada, el primer año del calendario es el año cero. Habilita esta opción para omitir el año cero.',
         'weekdays'          => 'Escribe los nombres de los días de la semana. Se requiere un mínimo de 2 días.',
         'weeks'             => 'Define los nombres para las semanas más importantes de tu calendario.',
         'years'             => 'Algunos años son tan importantes que tienen su propio nombre.',
     ],
     'index'         => [],
     'layouts'       => [
-        'month' => 'Mes',
-        'year'  => 'Año',
+        'month'     => 'Mes',
+        'monthly'   => 'Mensual por defecto',
+        'year'      => 'Año',
+        'yearly'    => 'Anual por defecto',
     ],
     'modals'        => [
         'switcher'  => [
@@ -192,8 +210,12 @@ return [
         'weekdays'          => 'Número de días de la semana',
     ],
     'show'          => [
-        'missing_details'   => 'Este calendario no se puede mostrar. Los calendarios necesitan un mínimo de 2 meses y 2 días semanales para renderizarse correctamente.',
-        'tabs'              => [
+        'missing_details'       => 'Este calendario no se puede mostrar. Los calendarios necesitan un mínimo de 2 meses y 2 días semanales para renderizarse correctamente.',
+        'moon_1first_quarter'   => ':moon cuarto creciente',
+        'moon_full'             => ':moon luna llena',
+        'moon_last_quarter'     => ':moon cuarto menguante',
+        'moon_new'              => ':moon luna nueva',
+        'tabs'                  => [
             'events'    => 'Eventos del calendario',
             'weather'   => 'Clima',
         ],
@@ -201,5 +223,8 @@ return [
     'sorters'       => [
         'after' => 'De hoy en adelante',
         'before'=> 'Hasta hoy',
+    ],
+    'validators'    => [
+        'moon_offset'   => 'El desplazamiento de la primera luna llena de la luna no puede ser mayor que la duración del primer mes del calendario.',
     ],
 ];

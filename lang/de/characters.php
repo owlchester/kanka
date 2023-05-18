@@ -51,6 +51,16 @@ return [
     'journals'      => [
         'title' => 'Charakter :name Logbücher',
     ],
+    'labels'        => [
+        'appearance'    => [
+            'entry' => 'Erscheinungsbeschreibung',
+            'name'  => 'Erscheinungsname',
+        ],
+        'personality'   => [
+            'entry' => 'Beschreibung von Persönlichkeitsmerkmalen',
+            'name'  => 'Name des Persönlichkeitsmerkmals',
+        ],
+    ],
     'maps'          => [
         'title' => 'Charakter :name Beziehungskarte',
     ],

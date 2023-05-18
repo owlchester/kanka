@@ -2,6 +2,12 @@
 
 return [
     'actions'       => [
+        'bulks'             => [
+            'disable'   => 'Desactivar plugins',
+            'enable'    => 'Activar plugins',
+            'update'    => 'Actualizar plugins',
+        ],
+        'changelog'         => 'Registro de cambios',
         'disable'           => 'Desactivar plugin',
         'enable'            => 'Activar plugin',
         'go_to_marketplace' => 'Ir a la tienda',
@@ -9,6 +15,12 @@ return [
         'remove'            => 'Eliminar plugin',
         'update'            => 'Actualizar plugin',
         'update_available'  => '¡Actualización disponible!',
+    ],
+    'bulks'         => [
+        'delete'    => '{1} :count plugin eliminado.|[2,*] :count plugins eliminados.',
+        'disable'   => '{1} :count plugin desactivado.|[2,*] :count plugins desactivados.',
+        'enable'    => '{1} :count plugin activado.|[2,*] :count plugins activados.',
+        'update'    => '{1} :count plugin actualizado.|[2,*] :count plugins actualizados.',
     ],
     'destroy'       => [
         'success'   => 'Se ha eliminado el plugin :plugin.',
@@ -25,6 +37,7 @@ return [
     ],
     'fields'        => [
         'name'      => 'Nombre del plugin',
+        'obsolete'  => 'Este plugin ha sido marcado como obsoleto por el equipo de Kanka, lo que significa que ya no funciona como su creador pretendía originalmente.',
         'status'    => 'Estatus',
         'type'      => 'Tipo de plugin',
     ],
@@ -45,6 +58,7 @@ return [
         'updates'       => 'Actualizaciones',
         'your_version'  => 'Tu versión',
     ],
+    'pitch'         => 'Instale y gestione plugins desde el :marketplace.',
     'status'        => [
         'disabled'  => 'Desactivado',
         'enabled'   => 'Activado',

@@ -40,6 +40,11 @@ return [
             'quick-access'  => 'Acesso rápido',
         ],
         'tooltip'           => 'Crie uma nova entidade sem deixar a página atual.',
+        'tooltips'          => [
+            'create'        => 'Crie a entidade e volte para a tela de seleção de entidade',
+            'create_more'   => 'Crie a entidade e comece a criar outra do mesmo tipo',
+            'edit'          => 'Crie a entidade e comece a editá-la',
+        ],
     ],
     'creature'              => 'Criatura',
     'creatures'             => 'Criaturas',

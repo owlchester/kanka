@@ -16,10 +16,14 @@ return [
         'changes'   => 'Die folgenden Felder hatten zuvor diese Werte.',
     ],
     'log'       => [
-        'create'    => ':user erstellt :entity',
-        'delete'    => ':user gelöscht :entity',
-        'restore'   => ':user wiederhergestellt :entity',
-        'update'    => ':user aktualisiert :entity',
+        'create'        => ':user erstellt :entity',
+        'create_post'   => ':user erstellte den Beitrag  ":post" zu :entity',
+        'delete'        => ':user gelöscht :entity',
+        'delete_post'   => ':user löschte den Beitrag zu :entity',
+        'reorder_post'  => ':user ordnete den Beitrag zu :entity neu',
+        'restore'       => ':user wiederhergestellt :entity',
+        'update'        => ':user aktualisiert :entity',
+        'update_post'   => ':user aktualisierte den Beitrag ":post" zu :entity',
     ],
     'title'     => 'Historie',
     'unknown'   => [

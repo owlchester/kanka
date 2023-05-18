@@ -189,10 +189,11 @@ return [
             'title'         => 'Geheimnisse verwalten',
         ],
         'superboosts'       => [
-            'boosted'   => 'Superboosted',
-            'gallery'   => 'Kampagnengalerie und Integrationen mit dem Summernote-Texteditor',
-            'logs'      => 'Vollständige Änderungsprotokolle für Objekte (bis zu 30 Tage)',
-            'stats'     => 'Seite mit den Kampagnenerfolgen',
+            'boosted'       => 'Superboosted',
+            'family-tree'   => 'Erstelle Stammbäume, um die Geschichte einer Familie zu verfolgen',
+            'gallery'       => 'Kampagnengalerie und Integrationen mit dem Summernote-Texteditor',
+            'logs'          => 'Vollständige Änderungsprotokolle für Objekte (bis zu 30 Tage)',
+            'stats'         => 'Seite mit den Kampagnenerfolgen',
         ],
         'timelines'         => [
             'description'   => 'Stellen Sie visuell die Zeitstrahlen Ihrer Welten, Reiche, Adelsfamilien oder sogar eines einzelnen Charakters dar.',

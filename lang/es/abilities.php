@@ -37,10 +37,16 @@ return [
         'name'      => 'Bola de fuego, Alerta, Puñalada trasera',
         'type'      => 'Hechizo, Proeza, Ataque',
     ],
+    'reorder'       => [
+        'parentless'    => 'Sin padre',
+        'success'       => 'Habilidades reordenadas exitosamente.',
+        'title'         => 'Reordenar las habilidades',
+    ],
     'show'          => [
         'tabs'  => [
             'abilities' => 'Habilidades',
             'entities'  => 'Entidades',
+            'reorder'   => 'Reordenar Habilidades',
         ],
     ],
 ];

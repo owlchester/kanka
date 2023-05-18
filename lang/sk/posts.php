@@ -11,7 +11,8 @@ return [
         'name'  => 'Názov komentára',
     ],
     'position'      => [
-        'first' => 'Prvý',
-        'last'  => 'Posledný',
+        'dont_change'   => 'Nezmeniť',
+        'first'         => 'Prvý',
+        'last'          => 'Posledný',
     ],
 ];

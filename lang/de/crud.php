@@ -115,6 +115,7 @@ return [
     'errors'                    => [
         'boosted'                       => 'Diese Funktion ist nur für geboostete Kampagnen verfügbar.',
         'boosted_campaigns'             => 'Diese Funktion ist nur für :boosted verfügbar',
+        'invalid_node'                  => 'Das ausgewählte übergeordnete Element ist ungültig. Dies kann normalerweise behoben werden, indem du dem ausgewählten Elternteil ein eigenes Elternteil gibst und es dann entfernst.',
         'node_must_not_be_a_descendant' => 'Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein.',
         'unavailable_feature'           => 'nicht verfügbare Eigenschaft',
     ],
@@ -362,6 +363,7 @@ return [
         'inventory'     => 'Inventar',
         'links'         => 'Links',
         'map-points'    => 'Kartenmarker',
+        'mentions'      => 'Erwähnungen',
         'overview'      => 'Übersicht',
         'permissions'   => 'Berechtigungen',
         'profile'       => 'Profil',

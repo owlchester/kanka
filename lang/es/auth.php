@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'banned'    => [
+        'permanent' => 'Has sido baneado permanentemente.',
+        'temporary' => '{1} Has sido baneado por :days dia.|[2,*] Has sido baneado por :days dias.',
+    ],
+    'confirm'   => [
+        'confirm'   => 'Confirmar',
+        'error'     => 'Contraseña no válida, inténtalo de nuevo.',
+        'helper'    => 'Por favor confirma tu contraseña antes de continuar.',
+        'title'     => 'Confirmación de contraseña.',
+    ],
     'failed'    => 'Los datos introducidos no coinciden con ningún usuario registrado.',
     'helpers'   => [
         'password'  => 'Mostrar/ocultar contraseña',

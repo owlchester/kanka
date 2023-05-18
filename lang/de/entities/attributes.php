@@ -40,6 +40,12 @@ return [
         'success'   => 'Attribute für :entity aktualisiert',
         'title'     => 'Attribute für :name',
     ],
+    'labels'        => [
+        'checkbox'  => 'Checkbox Name',
+        'name'      => 'Attributsname',
+        'section'   => 'Abteilungsname',
+        'value'     => 'Attributswert',
+    ],
     'live'          => [
         'success'   => 'Attribute :attribute aktualisiert',
         'title'     => ':attribute aktualisieren',

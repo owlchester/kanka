@@ -10,6 +10,10 @@ return [
     'destroy'       => [
         'success'   => 'Imagen :name borrada.',
     ],
+    'errors'        => [
+        'max'           => 'Por favor, sólo seleccione hasta :count archivos a la vez.',
+        'permissions'   => 'A tus roles de campaña les falta el permiso :permission para poder subir imágenes a la galería de la campaña.',
+    ],
     'fields'        => [
         'created_by'    => 'Subida por',
         'ext'           => 'Ext',
@@ -22,6 +26,7 @@ return [
         'title' => 'Nueva carpeta',
     ],
     'no_folder'     => 'Sin carpeta',
+    'pitch'         => 'Sube imágenes a la galería de la campaña directamente desde el editor de texto.',
     'placeholders'  => [
         'search'    => 'Buscar nombre de imagen...',
     ],

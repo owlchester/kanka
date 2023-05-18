@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'                           => [
+        'boost' => 'Mejorar :name',
+    ],
     'create'                            => [
         'description'           => 'Crear nueva campaña',
         'helper'                => [
@@ -17,8 +20,13 @@ TEXT
         'title'                 => 'Nueva campaña',
     ],
     'destroy'                           => [
-        'action'    => 'Eliminar campaña',
-        'success'   => 'Campaña eliminada.',
+        'action'            => 'Eliminar campaña',
+        'confirm'           => '¿Estás seguro de que deseas eliminar :campaign? Esta acción es permanente y no se puede recuperar.',
+        'confirm-button'    => 'Eliminar la campaña de forma permanente',
+        'helper-v2'         => 'Esta campaña no se puede eliminar mientras haya otros miembros en ella. Quita los otros miembros primero e inténtalo de nuevo.',
+        'hint'              => 'Si es así, escribe :code en el cuadro de abajo.',
+        'success'           => 'Campaña eliminada.',
+        'title'             => 'Eliminar una campaña',
     ],
     'edit'                              => [
         'success'   => 'Campaña actualizada.',
@@ -47,6 +55,7 @@ TEXT
         'entity_privacy'                    => 'Privacidad por defecto de nuevas entidades',
         'entry'                             => 'Descripción de la campaña',
         'excerpt'                           => 'Extracto',
+        'featured'                          => 'Campaña destacada',
         'followers'                         => 'Seguidores',
         'header_image'                      => 'Imagen de cabecera',
         'image'                             => 'Imagen',
@@ -54,6 +63,7 @@ TEXT
         'name'                              => 'Nombre',
         'nested'                            => 'Anidar las listas de entidades siempre que sea posible',
         'open'                              => 'Inscripciones abiertas',
+        'past_featured'                     => 'Campaña destacada previamente',
         'post_collapsed'                    => 'Los nuevos posts en las entidades están colapsados por defecto.',
         'public'                            => 'Visibilidad de la campaña',
         'public_campaign_filters'           => 'Filtros de las campañas públicas',
@@ -72,6 +82,7 @@ TEXT
         'character_personality_visibility'  => 'Selecciona la privacidad por defecto para los rasgos de personalidad al crear un nuevo personaje como administrador.',
         'css'                               => 'Escribe tu propio CSS para las páginas de tu campaña. Ten en cuenta que abusar de esta herramienta puede llevar a la eliminación de tu CSS personalizado. Incumplimientos repetidos o graves pueden llevar a la eliminación de tu campaña.',
         'dashboard'                         => 'Personaliza la forma en que el widget se muestra en el tablero rellenando los campos siguientes.',
+        'entity_count_v3'                   => 'Este número se recalcula cada :amount horas.',
         'entity_privacy'                    => 'Selecciona la privacidad por defecto al crear nuevas entidades como administrador.',
         'excerpt'                           => 'El extracto de la campaña se mostrará en el tablero principal. Escribe unas pocas líneas para introducir tu mundo. Si lo dejas en blanco, se mostrarán los primeros 1.000 caracteres de la descripción de la campaña.',
         'header_image'                      => 'La imagen que se muestra como fondo en el widget de la cabecera del tablero.',
@@ -79,6 +90,7 @@ TEXT
         'hide_members'                      => 'Habilita esta opción para esconder la lista de miembros de la campaña a los no administradores.',
         'locale'                            => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
         'name'                              => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
+        'no_entry'                          => '¡Parece que la campaña aún no tiene una descripción! Arreglemos eso.',
         'permissions_tab'                   => 'Controla la privacidad y visibilidad de nuevos elementos mediante las opciones siguientes.',
         'public_campaign_filters'           => 'Facilita que otros encuentren tu campaña entre las demás proporcionando la siguiente información.',
         'public_no_visibility'              => '¡Ojo! Tu campaña es pública, pero el rol público no tiene acceso a nada. :fix.',
@@ -120,6 +132,7 @@ TEXT
         'fields'                => [
             'created'   => 'Enviado',
             'role'      => 'Rol',
+            'token'     => 'Token',
             'type'      => 'Tipo',
             'usage'     => 'Número máximo de usos',
         ],
@@ -132,9 +145,13 @@ TEXT
         ],
     ],
     'leave'                             => [
-        'confirm'   => '¿Seguro que quieres abandonar la campaña :name? No tendrás acceso a ella, a no ser que un administrador te invite de nuevo.',
-        'error'     => 'No puedes abandonar la campaña.',
-        'success'   => 'Has abandonado la campaña.',
+        'confirm'           => '¿Seguro que quieres abandonar la campaña :name? No tendrás acceso a ella, a no ser que un administrador te invite de nuevo.',
+        'confirm-button'    => 'Sí, abandonar la campaña',
+        'error'             => 'No puedes abandonar la campaña.',
+        'fix'               => 'Ir a los miembros de la campaña',
+        'no-admin-left'     => 'No es posible salir de la campaña porque hacerlo la dejaría sin administradores. Agrega otro miembro al rol de administrador primero.',
+        'success'           => 'Has abandonado la campaña.',
+        'title'             => 'Saliendo de la campaña',
     ],
     'members'                           => [
         'actions'               => [
@@ -142,6 +159,7 @@ TEXT
             'remove'        => 'Quitar de la campaña',
             'switch'        => 'Ver como',
             'switch-back'   => 'Volver a mi usuario',
+            'switch-entity' => 'Ver como',
         ],
         'create'                => [
             'title' => 'Añade un miembro a la campaña',
@@ -150,6 +168,7 @@ TEXT
             'title' => 'Editar miembro :name',
         ],
         'fields'                => [
+            'banned'        => 'El usuario está baneado',
             'joined'        => 'Inscrito',
             'last_login'    => 'Última conexión',
             'name'          => 'Usuario',
@@ -172,6 +191,7 @@ TEXT
             'title'         => 'Invitaciones',
         ],
         'manage_roles'          => 'Configurar roles de usuario',
+        'removal'               => 'Estás eliminando a ":member" de la campaña.',
         'roles'                 => [
             'member'    => 'Miembro',
             'owner'     => 'Administrador',
@@ -186,8 +206,15 @@ TEXT
             'removed'   => 'Se ha quitado el rol :role de :user.',
         ],
     ],
+    'modules'                           => [
+        'permission-disabled'   => 'Este módulo está deshabilitado.',
+    ],
     'open_campaign'                     => [],
     'options'                           => [],
+    'overview'                          => [
+        'entity-count'      => '{0} Sin entidades|{1} :amount entidad|[2,*] :amount entidades',
+        'follower-count'    => '{0} Sin seguidores|{1} :amount seguidor|[2,*] :amount seguidores',
+    ],
     'panels'                            => [
         'boosted'   => 'Mejoras',
         'dashboard' => 'Tablero',
@@ -221,6 +248,10 @@ TEXT
             'save'          => 'Guardar rol',
         ],
         'admin_role'    => 'rol de administrador',
+        'bulks'         => [
+            'delete'    => '{1} :count rol eliminado.|[2,*] :count roles eliminados.',
+            'edit'      => '{1} :count rol actualizado.|[2,*] :count roles actualizados.',
+        ],
         'create'        => [
             'success'   => 'Rol creado.',
             'title'     => 'Crear un nuevo rol en :name',
@@ -242,9 +273,12 @@ TEXT
             '1' => 'Una campaña puede tener tantos roles como se quiera. El rol "Administrador" tiene acceso automáticamente a todo dentro de una campaña, pero cada uno de los demás roles puede tener permisos específicos en diferentes tipos de entidades (personajes, lugares, etc).',
             '2' => 'Las entidades pueden tener permisos más afinados mediante la pestaña "Permisos" de una entidad. Esta pestaña aparece cuando tu campaña tiene varios roles o miembros.',
             '3' => 'Se puede usar un sistema de "exclusión", donde los roles tienen acceso a todas las entidades, y usar la casilla de "Privado" en las entidades que se quieran ocultar. O bien, pueden darse pocos permisos a los roles, y configurar cada entidad para que sea visible individualmente.',
+            '4' => 'Las campañas mejoradas pueden tener una cantidad ilimitada de roles.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'El rol "Público" tiene permisos pero la campaña es privada. Puedes ajustar esto en la pestaña Compartir al editar la campaña.',
+            'empty_role'            => 'El rol aún no tiene miembros.',
+            'role_admin'            => 'Los miembros del rol :name automáticamente pueden acceder a todas las entidades y características de la campaña.',
             'role_permissions'      => 'Habilitar el rol ":name" para que pueda hacer las siguientes acciones en todas las entidades.',
         ],
         'members'       => 'Miembros',
@@ -297,8 +331,9 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Añadir miembro',
-                'remove'    => ':user del rol :role',
+                'add'           => 'Añadir miembro',
+                'remove'        => ':user del rol :role',
+                'remove_user'   => 'Quitar usuario del rol',
             ],
             'create'    => [
                 'success'   => 'Usuario añadido al rol.',
@@ -307,37 +342,57 @@ TEXT
             'destroy'   => [
                 'success'   => 'Usuario eliminado del rol.',
             ],
+            'errors'    => [
+                'cant_kick_admins'  => 'Para evitar abusos, no es posible eliminar a otros miembros del rol de :admin de la campaña. En caso de problemas, contáctanos en :discord o en :email.',
+                'needs_more_roles'  => 'Debes agregarte a otro rol en la campaña antes de poder eliminarte del rol de :admin.',
+            ],
             'fields'    => [
                 'name'  => 'Nombre',
             ],
         ],
     ],
     'settings'                          => [
-        'actions'   => [
+        'actions'       => [
             'enable'    => 'Habilitar',
         ],
-        'boosted'   => 'Esta función está en beta y actualmente solo está disponible para las :boosted.',
-        'helpers'   => [
-            'abilities'     => 'Crea habilidades, proezas, hechizos o poderes y asígnalos a entidades.',
-            'calendars'     => 'El sitio para definir los calendarios de tu mundo.',
-            'characters'    => 'Las personas que viven en tu mundo.',
-            'conversations' => 'Conversaciones ficticias entre personajes o entre usuarios de la campaña.',
-            'dice_rolls'    => 'Una manera de manejar las tiradas de dados para aquellos que usan Kanka para campañas de rol.',
-            'events'        => 'Celebraciones, festivales, desastres, cumpleaños, guerras...',
-            'families'      => 'Clanes o familias, sus relaciones y sus miembros.',
-            'inventories'   => 'Gestiona el inventario de tus entidades.',
-            'items'         => 'Armas, vehículos, reliquias, pociones...',
-            'journals'      => 'Observaciones escritas por los personajes, o preparación de la sesión del máster.',
-            'locations'     => 'Planetas, planos, continentes, ríos, estados, asentamientos, templos, tabernas...',
-            'maps'          => 'Sube mapas con diferentes capas y marcadores que señalen a otras entidades de la campaña.',
-            'menu_links'    => 'Enlaces de menú personalizados en la barra lateral.',
-            'notes'         => 'Tradiciones, religiones, historia, magia, razas...',
-            'organisations' => 'Sectas, unidades militares, facciones, gremios...',
-            'quests'        => 'Para llevar un seguimiento de varias misiones con personajes y localizaciones.',
-            'races'         => 'Si tu campaña tiene más de una raza, de esta forma no las perderás de vista.',
-            'tags'          => 'Cada entidad puede tener varias etiquetas. Éstas pueden pertenecer a otras etiquetas, y las entradas pueden filtrarse por etiqueta.',
-            'timelines'     => 'Representa la historia de tu mundo con líneas de tiempo.',
+        'boosted'       => 'Esta función está en beta y actualmente solo está disponible para las :boosted.',
+        'deprecated'    => [
+            'help'  => 'Este módulo está obsoleto, lo que significa que ya no recibe mantenimiento y que no se prueba con cada nueva actualización. Usa este módulo con el conocimiento de que eventualmente se eliminará de Kanka.',
+            'title' => 'Obsoleto',
         ],
+        'disabled'      => 'El módulo :module está deshabilitado.',
+        'enabled'       => 'El módulo :module está habilitado.',
+        'errors'        => [
+            'module-disabled'   => 'El módulo solicitado está actualmente deshabilitado en la configuración de la campaña. :fix.',
+        ],
+        'helpers'       => [
+            'abilities'         => 'Crea habilidades, proezas, hechizos o poderes y asígnalos a entidades.',
+            'calendars'         => 'El sitio para definir los calendarios de tu mundo.',
+            'characters'        => 'Las personas que viven en tu mundo.',
+            'conversations'     => 'Conversaciones ficticias entre personajes o entre usuarios de la campaña.',
+            'creatures'         => 'Crea las criaturas, animales y monstruos de tu mundo con el módulo de criaturas.',
+            'dice_rolls'        => 'Una manera de manejar las tiradas de dados para aquellos que usan Kanka para campañas de rol.',
+            'entity_attributes' => 'Lleva un control de los atributos de las entidades de la campaña, por ejemplo, HP o VELOCIDAD.',
+            'events'            => 'Celebraciones, festivales, desastres, cumpleaños, guerras...',
+            'families'          => 'Clanes o familias, sus relaciones y sus miembros.',
+            'inventories'       => 'Gestiona el inventario de tus entidades.',
+            'items'             => 'Armas, vehículos, reliquias, pociones...',
+            'journals'          => 'Observaciones escritas por los personajes, o preparación de la sesión del máster.',
+            'locations'         => 'Planetas, planos, continentes, ríos, estados, asentamientos, templos, tabernas...',
+            'maps'              => 'Sube mapas con diferentes capas y marcadores que señalen a otras entidades de la campaña.',
+            'menu_links'        => 'Enlaces de menú personalizados en la barra lateral.',
+            'notes'             => 'Tradiciones, religiones, historia, magia, razas...',
+            'organisations'     => 'Sectas, unidades militares, facciones, gremios...',
+            'quests'            => 'Para llevar un seguimiento de varias misiones con personajes y localizaciones.',
+            'races'             => 'Si tu campaña tiene más de una raza, de esta forma no las perderás de vista.',
+            'tags'              => 'Cada entidad puede tener varias etiquetas. Éstas pueden pertenecer a otras etiquetas, y las entradas pueden filtrarse por etiqueta.',
+            'timelines'         => 'Representa la historia de tu mundo con líneas de tiempo.',
+        ],
+    ],
+    'sharing'                           => [
+        'filters'   => 'Las campañas públicas son visibles en la página :public-campaigns. Rellenar estos campos facilita que las personas descubran la campaña.',
+        'language'  => 'El idioma en el que está escrito el contenido de la campaña.',
+        'system'    => 'Si juegas un TTRPG, el sistema usado para jugar en la campaña.',
     ],
     'show'                              => [
         'actions'   => [
@@ -362,11 +417,15 @@ TEXT
             'recovery'          => 'Recuperación',
             'roles'             => 'Roles',
             'settings'          => 'Módulos',
+            'sidebar'           => 'Configuración de la barra lateral',
             'styles'            => 'Personalización',
         ],
         'title'     => 'Campaña :name',
     ],
     'superboosted'                      => [],
+    'themes'                            => [
+        'none'  => 'Ninguno (el valor predeterminado es configuraciónes de usuario)',
+    ],
     'ui'                                => [
         'boosted'           => 'Mejorada',
         'collapsed'         => [
@@ -383,6 +442,7 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Interfaz de conexiones entre entidades por defecto',
+            'connections_mode'  => 'Modo del explorador de relaciones predeterminado',
             'entity_history'    => 'Registros históricos de la entidad',
             'entity_image'      => 'Imagen de la entidad',
             'family_toolip'     => 'Familia del personaje',
@@ -392,8 +452,12 @@ TEXT
         ],
         'helpers'           => [
             'connections'       => 'Al hacer clic en la subpágina de conexiones de una entidad, selecciona la interfaz por defecto.',
+            'connections_mode'  => 'Al ver el explorador de relaciones de una entidad, defina el modo seleccionado por defecto.',
+            'entity-history'    => 'Controla quién puede ver los cambios realizados recientemente en cada entidad de la campaña.',
+            'member-list'       => 'Controla quién puede ver a los miembros de la campaña.',
             'other'             => 'Otras opciones visuales para la campaña.',
             'post_collapsed'    => 'Al crear un nuevo post en una entidad, selecciona si estará colapsado o expandido por defecto.',
+            'theme'             => 'Muestra la campaña en el tema del usuario u oblíguela mostrarse en uno de los siguientes temas.',
             'tooltip'           => 'Controla qué información se muestra en la descripción emergente al pasar el ratón sobre el nombre de una entidad.',
         ],
         'members'           => [
@@ -402,6 +466,7 @@ TEXT
         ],
         'nested'            => [
             'nested'    => 'Anidada',
+            'user'      => 'Predeterminado del usuario',
         ],
         'other'             => 'Otros',
     ],
@@ -409,5 +474,10 @@ TEXT
         'private'   => 'Privada',
         'public'    => 'Pública',
         'review'    => 'Esperando revisión',
+    ],
+    'warning'                           => [
+        'editing'   => [
+            'description'   => '¡Parece que alguien más está editando esta campaña! ¿Deseas retroceder o ignorar esta advertencia, a riesgo de perder datos? Miembros que actualmente editan esta campaña:',
+        ],
     ],
 ];

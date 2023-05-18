@@ -11,6 +11,7 @@ return [
         'success'   => 'Usunięto obraz :name',
     ],
     'errors'        => [
+        'max'           => 'Możesz wybrać do :count plików na raz.',
         'permissions'   => 'Role w kampanii nie mają uprawnienia :permission więc nie mogą dodawać ilustracji do galerii.',
     ],
     'fields'        => [

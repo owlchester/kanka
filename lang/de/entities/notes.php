@@ -6,6 +6,10 @@ return [
         'add_role'  => 'Rolle hinzufügen',
         'add_user'  => 'Benutzer hinzufügen',
     ],
+    'collapsed'     => [
+        'closed'    => 'Der Beitrag wird auf die Kopfzeile reduziert',
+        'open'      => 'Beitrag wird erweitert',
+    ],
     'copy_mention'  => [
         'copy'              => 'Erweiterte Erwähnung kopieren',
         'copy_with_name'    => 'Kopiere die erweiterte Erwähnung mit dem Beitragsnamen',
@@ -24,6 +28,7 @@ return [
     ],
     'fields'        => [
         'creator'   => 'Ersteller',
+        'display'   => 'Anzeige',
         'entry'     => 'Eintrag',
         'name'      => 'Name',
         'position'  => 'Position',

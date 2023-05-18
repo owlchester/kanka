@@ -19,4 +19,7 @@ return [
         'disabled'  => 'Členovia role :role už nemôžu :action :entities.',
         'enabled'   => 'Členovia role :role už môžu :action :entities.',
     ],
+    'warnings'  => [
+        'adding-to-admin'   => 'Členovia role :name majú prístup ku všetkému v kampani a nemôžu byť odstránení inými členmi rovnakej roly. Po :amount minútach sa sami môžu odstrániť z tejto role.',
+    ],
 ];

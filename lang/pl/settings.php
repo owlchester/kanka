@@ -57,6 +57,7 @@ return [
         ],
         'benefits'  => 'Kanka posiada możliwość integracji z kilkoma narzędziami zewnętrznymi. Kolejne dostępne będą w przyszłości.',
         'discord'   => [
+            'confirm'   => 'Czy na pewno chcesz odłączyć Discord? Stracisz wszystkie zsynchronizowane z nim role.',
             'errors'    => [
                 'add'   => 'Podczas łączenia konta Kanki z Discordem nastąpił błąd. Spróbuj jeszcze raz.',
             ],
@@ -169,6 +170,7 @@ return [
         ],
         'errors'                => [
             'callback'      => 'Nasz dostawca płatności zgłosił błąd. Spróbuj ponownie i skontaktuj się z nami, jeżeli się powtórzy.',
+            'failed'        => 'Mamy obecnie kłopoty techniczne z systemem opłat. Pomoc uzyskasz pod adresem o :email.',
             'subscribed'    => 'Nie można przetworzyć subskrypcji. Stripe sugeruje następującą radę.',
         ],
         'fields'                => [
@@ -191,6 +193,7 @@ return [
         'manage_subscription'   => 'Zarządzaj subskrypcją',
         'payment_method'        => [
             'actions'       => [
+                'add'               => 'Dodaj',
                 'add_new'           => 'Dodaj metodę płatności',
                 'change'            => 'Zmień metodę płatności',
                 'save'              => 'Zapisz metodę płatności',

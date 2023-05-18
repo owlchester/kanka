@@ -2,9 +2,10 @@
 
 return [
     'actions'   => [
-        'collapse_all'  => 'Recolher todos',
-        'expand_all'    => 'Expandir todos',
-        'load_more'     => 'Carregar mais',
+        'collapse_all'      => 'Recolher todos',
+        'expand_all'        => 'Expandir todos',
+        'load_more'         => 'Carregar mais',
+        'login_for_more'    => 'Entre para ver mais posts',
     ],
     'reorder'   => [
         'icon_tooltip'  => 'Reordenar posts',
