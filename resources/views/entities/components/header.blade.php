@@ -126,19 +126,19 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                 <h1 class="entity-name text-4xl m-0 break-all">
                     {!! $model->name !!}
                 </h1>
-                @if ($model instanceof \App\Models\Character && $model->is_dead)
+                @if ($model instanceof \App\Models\Character && $model->isDead())
                     <span class="entity-name-icon entity-char-dead cursor-pointer text-2xl" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}">
                         <x-icon class="ra ra-skull entity-icons"></x-icon>
                         <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                     </span>
                 @endif
-                @if ($model instanceof \App\Models\Quest && $model->is_completed)
+                @if ($model instanceof \App\Models\Quest && $model->isCompleted())
                     <span class="entity-name-icon entity-quest-complete cursor-pointer text-2xl" data-toggle="tooltip" title="{{ __('quests.fields.is_completed') }}">
                         <x-icon class="fa-solid fa-check-circle entity-icons"></x-icon>
                         <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
                     </span>
                 @endif
-                @if ($model instanceof \App\Models\Organisation && $model->is_defunct)
+                @if ($model instanceof \App\Models\Organisation && $model->isDefunct())
                     <span class="entity-name-icon entity-org-defunct cursor-pointer text-2xl" data-toggle="tooltip" title="{{ __('organisations.hints.is_defunct') }}">
                         <x-icon class="fa-solid fa-shop-slash entity-icons "></x-icon>
                         <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
