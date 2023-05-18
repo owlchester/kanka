@@ -14,7 +14,7 @@
 
     @if ($campaign->premium())
         <p>{!! __('settings/premium.create.errors.boosted', ['campaign' => $campaign->name])!!}</p>
-    @elseif(auth()->user()->availableBoosts() < 4)
+    @elseif(auth()->user()->availableBoosts() < 1)
         @subscriber
             <p class="my-1">
                 {!! __('settings/boosters.boost.errors.out-of-boosters', [
