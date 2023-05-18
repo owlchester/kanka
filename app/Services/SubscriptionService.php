@@ -101,6 +101,18 @@ class SubscriptionService
         return $this;
     }
 
+    public function yearly(): self
+    {
+        $this->period = 'yearly';
+        return $this;
+    }
+
+    public function monthly(): self
+    {
+        $this->period = 'monthly';
+        return $this;
+    }
+
     /**
      * @return $this
      */
