@@ -83,9 +83,12 @@ class RelationController extends CrudController
         }
 
         try {
+            $data = $request->all();
+            $data['campaign_id'] = $campaign->id;
+
             $model = new $this->model();
             /** @var Relation $new */
-            $new = $model->create($request->all());
+            $new = $model->create($data);
 
             if ($request->has('two_way')) {
                 $new->createMirror();
