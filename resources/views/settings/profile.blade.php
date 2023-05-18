@@ -85,7 +85,7 @@
         </div>
     </x-box>
     {!! Form::close() !!}
-    @if (!app()->environment('prod'))
+    @if (!app()->isProduction())
         <h1 class="mb-3">
             Reset Tutorials
         </h1>
