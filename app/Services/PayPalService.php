@@ -53,9 +53,6 @@ class PayPalService
                 ]
             ]
         ]);
-        if (auth()->user()->id === 1) {
-            dd($response);
-        }
 
         return $response;
     }

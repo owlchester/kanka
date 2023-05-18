@@ -31,6 +31,9 @@ class PayPalController extends Controller
             ->user($request->user())
             ->process($request->get('tier'));
 
+        if (auth()->user()->id === 1) {
+            dd($response);
+        }
         if (isset($response['id']) && $response['id'] != null) {
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
