@@ -11,7 +11,7 @@
         <div class="box-header with-border">
             <h3 class="box-title cursor-pointer element-toggle {{ $post->collapsed() ? "collapsed" : null }}" data-toggle="collapse" data-target="#post-body-{{ $post->id }}" data-short="post-toggle-{{ $post->id }}" >
                 <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
-                <x-icon class="fa-solid fa-chevron-down icon-show"></x-icon>
+                <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
                 {{ $post->name  }}
                 @if (app()->environment('local'))
                     <sup>({{ $post->position }})</sup>
