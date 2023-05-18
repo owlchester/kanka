@@ -243,7 +243,7 @@ class EntityRelationService
                 ])
             ];
 
-            if ($relation->isMirrored() && $relation->relation && $relation->relation == $relation->mirror->relation) {
+            if ($relation->isMirrored() && $relation->mirror && $relation->relation && $relation->relation == $relation->mirror->relation) {
                 $this->mirrors[$relation->id . '-' . $relation->mirror_id] = true;
             }
             $this->relationIds[] = $relation->id;
