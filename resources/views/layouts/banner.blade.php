@@ -27,7 +27,7 @@
     <span>
         <button type="button" class="close banner-notification-dismiss" data-dismiss="banner-notification" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => 'translators_2023']) }}">×</button>
 
-        Kanka in <strong>{{ app()->currentLocale() === 'nl' ? 'Dutch' : 'Italian' }}</strong> is at risk of being removed due to the translations being out of date. If you want to help keep Kanka available in your language, message us on <a href="{{ config('social.discord') }}" target="_blank">Discord</a>!
+        Kanka is community translated into <strong>{{ app()->currentLocale() === 'nl' ? 'Dutch' : 'Italian' }}</strong>, and is in need of new translators to help keep it up to date. If you want to help keep Kanka available in your language, message us on <a href="{{ config('social.discord') }}" target="_blank">Discord</a>!
     </span>
 </div>
 @endif
