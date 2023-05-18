@@ -69,7 +69,7 @@ class SubscriptionEndJob implements ShouldQueue
             $boostService
                 ->campaign($boost->campaign)
                 ->unboost($boost);
-            if (!in_array($unboostedCampaigns, $boost->campaign_id)) {
+            if (!in_array($boost->campaign_id, $unboostedCampaigns)) {
                 $boost->user->log(UserLog::TYPE_CAMPAIGN_UNBOOST_AUTO);
                 $unboostedCampaigns[] = $boost->campaign_id;
             }
