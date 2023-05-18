@@ -68,7 +68,7 @@ return [
         //'ha'          => ['name' => 'Hausa',                  'script' => 'Latn', 'native' => 'Hausa', 'regional' => 'ha_NG'],
         //'bez'         => ['name' => 'Bena',                   'script' => 'Latn', 'native' => 'Hibena', 'regional' => ''],
         //'ho'          => ['name' => 'Hiri Motu',              'script' => 'Latn', 'native' => 'Hiri Motu', 'regional' => ''],
-        //'hr'          => ['name' => 'Croatian',               'script' => 'Latn', 'native' => 'Hrvatski', 'regional' => 'hr_HR'],
+        'hr'          => ['name' => 'Croatian',               'script' => 'Latn', 'native' => 'Hrvatski', 'regional' => 'hr_HR'],
         //'bem'         => ['name' => 'Bemba',                  'script' => 'Latn', 'native' => 'Ichibemba', 'regional' => 'bem_ZM'],
         //'io'          => ['name' => 'Ido',                    'script' => 'Latn', 'native' => 'Ido', 'regional' => ''],
         //'ig'          => ['name' => 'Igbo',                   'script' => 'Latn', 'native' => 'Igbo', 'regional' => 'ig_NG'],
