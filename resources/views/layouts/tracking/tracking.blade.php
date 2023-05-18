@@ -53,7 +53,7 @@
     <!-- End Facebook Pixel Code -->
 @endif
 
-@if (config('tracking.venatus.enabled'))
+@if (config('tracking.venatus.enabled') && request()->filled('_showads'))
     <script src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-site-id="{{ config('tracking.venatus.id') }}" data-mode="scan" async></script>
 @endif
 
