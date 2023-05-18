@@ -49,7 +49,7 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             // Root folder is prefixed outside of prod
-            'root' => env('APP_ENV') != 'prod' ? env('APP_ENV') : null,
+            'root' => env('APP_ENV') != 'production' ? env('APP_ENV') : null,
             'visibility' => 'public',
             // Url for including the assets in the browser
             'url' => env('AWS_URL_S3', env('AWS_URL')),
