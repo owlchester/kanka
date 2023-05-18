@@ -174,6 +174,7 @@ class CampaignBoostController extends Controller
 
         try {
             $this->campaignBoostService
+                ->user(auth()->user())
                 ->campaign($campaign)
                 ->upgrade()
                 ->action($request->post('action'))
