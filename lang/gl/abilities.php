@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Habilidades fillas de ":name"',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Engadir habilidade á entidade',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Entidades coa habilidade ":name"',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Habilidades',
-        'ability'   => 'Habilidade nai',
         'charges'   => 'Cargas',
     ],
     'helpers'       => [
@@ -44,7 +38,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Habilidades',
             'entities'  => 'Entidades',
             'reorder'   => 'Reordenar habilidades',
         ],

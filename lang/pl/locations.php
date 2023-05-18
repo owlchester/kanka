@@ -1,25 +1,15 @@
 <?php
 
 return [
-    'characters'    => [
-        'title' => 'Postaci w miejscu :name',
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Nowe miejsce',
     ],
     'destroy'       => [],
     'edit'          => [],
-    'events'        => [
-        'title' => 'Wydarzenia w miejscu :name',
-    ],
-    'families'      => [
-        'title' => 'Rodziny w miejscu :name',
-    ],
-    'fields'        => [
-        'characters'    => 'Postaci',
-        'location'      => 'Miejsce źródłowe',
-        'locations'     => 'Miejsca pochodne',
-    ],
+    'events'        => [],
+    'families'      => [],
+    'fields'        => [],
     'helpers'       => [
         'characters'        => 'Wyświetla postaci znajdujące się w tym miejscu i wszystkich miejscach pochodnych, albo wyłącznie tutaj.',
         'descendants'       => 'Na liście znajdują się wszystkie miejsca pochodne od tego miejsca, nie tylko bezpośrednio.',
@@ -29,17 +19,13 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
-    'locations'     => [
-        'title' => 'Miejsca miejsca :name',
-    ],
+    'locations'     => [],
     'map'           => [],
     'maps'          => [],
     'organisations' => [],
     'panels'        => [],
     'placeholders'  => [
-        'location'  => 'Wybierz miejsce źródłowe',
-        'name'      => 'Nazwa miejsca',
-        'type'      => 'Miasto, królestwo, ruiny',
+        'type'  => 'Miasto, królestwo, ruiny',
     ],
     'show'          => [],
 ];

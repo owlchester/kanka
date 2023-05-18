@@ -3,20 +3,14 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Přidat vzhled',
-        'add_organisation'  => 'Přidat organizaci',
         'add_personality'   => 'Přidat povahovou vlastnost',
     ],
-    'conversations' => [
-        'title' => 'Rozhovory s postavou :name',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Nová postava',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Hody kostkami lze pro herní účely přiřadit postavě.',
-        'title' => 'Hody kostkami postavy :name',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Věk',
@@ -39,40 +33,24 @@ return [
         'personality_visible'       => 'Sekce s popisem osobnosti postavy je nyní dostupná všem uživatelům.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Předměty přiřazené postavám se zobrazí zde.',
-        'title' => 'Předměty postavy :name',
-    ],
-    'journals'      => [
-        'title' => 'Deníky postavy :name',
-    ],
-    'maps'          => [
-        'title' => 'Mapa souvislostí postavy :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'   => 'Přidat organizaci',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Postava přidána za člena organizace.',
             'title'     => 'Nová organizace pro :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Členství postavy v organizaci zrušeno',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Členství postavy v organizaci aktualizováno',
             'title'     => 'Upravit členství postavy :name v organizaci',
         ],
-        'fields'        => [
-            'organisation'  => 'Organizace',
-            'role'          => 'Role',
+        'fields'    => [
+            'role'  => 'Role',
         ],
-        'hint'          => 'Postavy mohou být členy více organizací, což ukazuje pro koho postava pracuje nebo do jaké sociální skupiny patří.',
-        'placeholders'  => [
-            'organisation'  => 'Vybrat organizaci...',
-        ],
-        'title'         => 'Členství postavy :name v organizacích',
     ],
     'placeholders'  => [
         'age'               => 'Věk',
@@ -95,14 +73,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Vzhled',
-        'general'       => 'Všeobecné informace',
         'personality'   => 'Povahové rysy',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizace',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Nemáš oprávnění upravovat povahové rysy této postavy.',
     ],

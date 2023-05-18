@@ -20,17 +20,13 @@ return [
         ],
         'fields'    => [
             'description'   => 'Opis',
-            'quest'         => 'Zadatak',
         ],
-        'title'     => 'Elementi zadatka :name',
     ],
     'fields'        => [
         'character'     => 'Inicijator',
         'copy_elements' => 'Kopirajte elemente pridružene zadatku',
         'date'          => 'Datum',
         'is_completed'  => 'Izvršen',
-        'quest'         => 'Zadatak roditelj',
-        'quests'        => 'Podzadatak',
         'role'          => 'Uloga',
     ],
     'helpers'       => [
@@ -42,8 +38,6 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Stvarni datum zadatka',
-        'name'  => 'Naziv zadatka',
-        'quest' => 'Zadatak roditelj',
         'role'  => 'Uloga ovog entieta u zadatku',
         'type'  => 'Priča o liku, Sporedni zadatak, Glavni zadatak',
     ],

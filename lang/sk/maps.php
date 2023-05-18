@@ -38,8 +38,6 @@ return [
         'has_clustering'    => 'Značka zhluku',
         'initial_zoom'      => 'Prvotné priblíženie',
         'is_real'           => 'Použiť OpenStreetMaps',
-        'map'               => 'Nadradená mapa',
-        'maps'              => 'Mapy',
         'max_zoom'          => 'Maximálne priblíženie',
         'min_zoom'          => 'Minimálne priblíženie',
         'tabs'              => [
@@ -64,9 +62,7 @@ return [
         'nested_without'        => 'Zobraziť všetky mapy, ktoré nemajú nadradenú mapu. Kliknutím na riadok zobrazíš podradené mapy.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => 'Mapy objektu :name',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Skupiny',
         'layers'    => 'Vrstvy',

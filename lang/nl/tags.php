@@ -8,7 +8,6 @@ return [
         'create'    => [
             'title' => 'Voeg een tag toe aan :name',
         ],
-        'title'     => 'Tag :name Gerelateerden',
     ],
     'create'        => [
         'title' => 'Nieuwe Tag',
@@ -17,8 +16,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Gerelateerden',
-        'tag'       => 'Bovenliggende Tag',
-        'tags'      => 'Subtags',
     ],
     'helpers'       => [],
     'hints'         => [
@@ -26,19 +23,13 @@ return [
         'tag'       => 'Hieronder worden alle tags weergegeven die direct onder deze tag staan.',
     ],
     'index'         => [],
-    'new_tag'       => 'Nieuwe Tag',
     'placeholders'  => [
-        'name'  => 'Naam van de tag',
-        'tag'   => 'Kies een bovenliggende tag',
         'type'  => 'Lore, Oorlogen, Geschiedenis, Religie, Vexillologie',
     ],
     'show'          => [
         'tabs'  => [
             'children'  => 'Gerelateerden',
-            'tags'      => 'Tags',
         ],
     ],
-    'tags'          => [
-        'title' => 'Tag :name Gerelateerden',
-    ],
+    'tags'          => [],
 ];

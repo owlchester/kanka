@@ -6,12 +6,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'families'      => [
-        'title' => 'Familles de la famille :name',
-    ],
+    'families'      => [],
     'fields'        => [
-        'families'  => 'Sous-familles',
-        'family'    => 'Famille Parent',
         'members'   => 'Membres',
     ],
     'helpers'       => [
@@ -32,19 +28,15 @@ return [
             'all_members'       => 'Cette liste contient tous les personnages qui sont dans cette famille et toutes ses sous-familles.',
             'direct_members'    => 'Cette liste contient tous les membres directement dans cette famille.',
         ],
-        'title'     => 'Membres de la famille :name',
     ],
     'placeholders'  => [
-        'location'  => 'Choix d\'un lieu',
-        'name'      => 'Nom de la famille',
-        'type'      => 'Royale, Noble, Éteinte',
+        'name'  => 'Nom de la famille',
+        'type'  => 'Royale, Noble, Éteinte',
     ],
     'show'          => [
         'tabs'  => [
-            'all_members'   => 'Tous les membres',
-            'families'      => 'Familles',
-            'members'       => 'Membres',
-            'tree'          => 'Arbre de famille',
+            'members'   => 'Membres',
+            'tree'      => 'Arbre de famille',
         ],
     ],
 ];

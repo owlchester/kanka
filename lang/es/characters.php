@@ -3,24 +3,17 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Añadir apariencia',
-        'add_organisation'  => 'Añadir organización',
         'add_personality'   => 'Añadir personalidad',
     ],
-    'conversations' => [
-        'title' => 'Conversaciones de :name',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Nuevo Personaje',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Se pueden asignar tiradas de dados a un personaje para usarlas en el juego.',
-        'title' => 'Tiradas de dados de :name',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Edad',
-        'families'                  => 'Familias',
         'is_appearance_pinned'      => 'Apariencia fijada',
         'is_dead'                   => 'Muerto',
         'is_personality_pinned'     => 'Personalidad fijada',
@@ -44,40 +37,24 @@ return [
         'personality_visible'       => 'Los rasgos de personalidad de este personaje son visibles para todos.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Aquí se muestran los objetos que se han asignado a los personajes.',
-        'title' => 'Objetos de :name',
-    ],
-    'journals'      => [
-        'title' => 'Diarios de :name',
-    ],
-    'maps'          => [
-        'title' => 'Mapa de relaciones de :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'   => 'Añadir organización',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Personaje añadido a la organización.',
             'title'     => 'Nueva organización para :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Personaje quitado de la organización.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Organización del personaje actualizada.',
             'title'     => 'Actualizar organización de :name',
         ],
-        'fields'        => [
-            'organisation'  => 'Organización',
-            'role'          => 'Rol',
+        'fields'    => [
+            'role'  => 'Rol',
         ],
-        'hint'          => 'Los personajes pueden formar parte de muchas organizaciones, que representan para quién trabajan o de qué sociedad secreta forman parte.',
-        'placeholders'  => [
-            'organisation'  => 'Elegir una organización',
-        ],
-        'title'         => 'Organizaciones de :name',
     ],
     'placeholders'  => [
         'age'               => 'Edad',
@@ -100,14 +77,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Apariencia',
-        'general'       => 'Información general',
         'personality'   => 'Personalidad',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizaciones',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'No puedes editar los rasgos de personalidad de este personaje.',
     ],

@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => '父特质模板',
-        'attributes'            => '特质',
+        'attributes'    => '特质',
     ],
     'hints'                 => [
         'automatic'                 => '自动应用:link特质模板的特质。',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => '选择特质模板',
-        'name'                  => '特质模板的名称',
+        'name'  => '特质模板的名称',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => '特质模板',
-            'attributes'            => '特质',
+            'attributes'    => '特质',
         ],
     ],
 ];

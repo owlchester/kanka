@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Kiemelt',
-        'note'      => 'Szülőjegyzet',
-        'notes'     => 'Aljegyzet',
+        'notes' => 'Aljegyzet',
     ],
     'helpers'       => [
         'nested_without'    => 'Minden jegyeztet megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekjegyzeteket.',
@@ -19,7 +17,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'A jegyzet neve',
         'note'  => 'Válassz egy szülőjegyzetet',
         'type'  => 'Vallás, faj, politikai rendszer',
     ],

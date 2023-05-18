@@ -38,8 +38,6 @@ return [
         'has_clustering'    => 'Agrupar marcadores',
         'initial_zoom'      => 'Zoom inicial',
         'is_real'           => 'Usar OpenStreetMaps',
-        'map'               => 'Mapa Primário',
-        'maps'              => 'Mapas',
         'max_zoom'          => 'Zoom máximo',
         'min_zoom'          => 'Zoom mínimo',
         'tabs'              => [
@@ -64,9 +62,7 @@ return [
         'nested_without'        => 'Exibindo todos os mapas que não tem um mapa primário. Clique em uma linha para ver os mapas secundários.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => 'Mapas de :name',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Grupos',
         'layers'    => 'Camadas',

@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'members'       => 'Membres',
-        'organisation'  => 'Organització superior',
-        'organisations' => 'Suborganitzacions',
+        'members'   => 'Membres',
     ],
     'helpers'       => [
         'descendants'       => 'Aquí es mostren totes les organitzacions que descendeixen d\'aquesta organització, no només les directament inferiors.',
@@ -32,32 +30,20 @@ return [
             'title'     => 'Actualitza un membre de :name',
         ],
         'fields'        => [
-            'character'     => 'Personatge',
-            'organisation'  => 'Organització',
-            'role'          => 'Rol',
+            'role'  => 'Rol',
         ],
         'helpers'       => [
             'all_members'   => 'Tots els personatges que pertanyen a aquesta organització i les seves suborganitzacions.',
             'members'       => 'Tots els membres que pertanyen a aquesta organització.',
         ],
         'placeholders'  => [
-            'character' => 'Trieu un personatge',
-            'role'      => 'Líder, membre, Mestre d\'espies, Septó Suprem...',
+            'role'  => 'Líder, membre, Mestre d\'espies, Septó Suprem...',
         ],
-        'title'         => 'Membres de :name',
     ],
-    'organisations' => [
-        'title' => 'Organitzacions de :name',
-    ],
+    'organisations' => [],
     'placeholders'  => [
-        'location'  => 'Trieu un indret',
-        'name'      => 'Nom de l\'organització',
-        'type'      => 'Secta, banda, rebel·lió, gremi...',
+        'type'  => 'Secta, banda, rebel·lió, gremi...',
     ],
     'quests'        => [],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organitzacions',
-        ],
-    ],
+    'show'          => [],
 ];

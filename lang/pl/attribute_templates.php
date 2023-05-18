@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Źródłowy szablon cech',
-        'attributes'            => 'Cechy',
+        'attributes'    => 'Cechy',
     ],
     'hints'                 => [
         'automatic'                 => 'Cechy przypisane automatycznie według szablonu :link.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Wybierz szablon cech',
-        'name'                  => 'Nazwa szablonu cech',
+        'name'  => 'Nazwa szablonu cech',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Szablony cech',
-            'attributes'            => 'Cechy',
+            'attributes'    => 'Cechy',
         ],
     ],
 ];

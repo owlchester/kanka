@@ -3,24 +3,17 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Dodaj cechę wyglądu',
-        'add_organisation'  => 'Dodaj organizację',
         'add_personality'   => 'Dodaj cechę osobowości',
     ],
-    'conversations' => [
-        'title' => 'Konwersacje postaci :name',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Nowa postać',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Postaci można przypisać rodzaj rzutów kośćmi, wykonywanych w grze.',
-        'title' => 'Rzuty kośćmi postaci :name',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Wiek',
-        'families'                  => 'Rodziny',
         'is_appearance_pinned'      => 'Przypnij wygląd',
         'is_dead'                   => 'Nie żyje',
         'is_personality_pinned'     => 'Przypnij osobowość',
@@ -44,13 +37,8 @@ return [
         'personality_visible'       => 'Opis osobowości widoczny dla wszystkich.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Postaci można przypisać przedmioty - będą wyświetlane tutaj.',
-        'title' => 'Przedmioty postaci :name',
-    ],
-    'journals'      => [
-        'title' => 'Dzienniki postaci :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'labels'        => [
         'appearance'    => [
             'entry' => 'Opis cechy wyglądu',
@@ -61,34 +49,22 @@ return [
             'name'  => 'Nazwa cechy osobowości',
         ],
     ],
-    'maps'          => [
-        'title' => 'Mapa relacji postaci :name',
-    ],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'       => 'Dodaj organizację',
-            'submit'    => 'Dodaj organizację',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Postać dodana do organizacji',
             'title'     => 'Nowa organizacja dla :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Postać usunięta z organizacji',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Zaktualizowano organizacje postaci.',
             'title'     => 'Aktualizuj organizacje dla :name',
         ],
-        'fields'        => [
-            'organisation'  => 'Organizacja',
-            'role'          => 'Rola',
+        'fields'    => [
+            'role'  => 'Rola',
         ],
-        'hint'          => 'Postaci mogą należeć do wielu organizacji. Oznaczaj w tej sposób, dla kogo pracują albo do jakich tajnych sprzysiężeń należą.',
-        'placeholders'  => [
-            'organisation'  => 'Wybierz organizację...',
-        ],
-        'title'         => 'Organizacje postaci :name',
     ],
     'placeholders'  => [
         'age'               => 'Wiek',
@@ -112,14 +88,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Wygląd',
-        'general'       => 'Informacje podstawowe',
         'personality'   => 'Osobowość',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizacje',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Nie masz uprawnień do edycji osobowości tej postaci.',
     ],

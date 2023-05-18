@@ -14,7 +14,6 @@ return [
     'placeholders'  => [
         'author'    => 'Chi ha scritto il diario',
         'date'      => 'Data del diario',
-        'name'      => 'Nome del diario',
         'type'      => 'Sessione, One Shot, Bozza',
     ],
     'show'          => [],

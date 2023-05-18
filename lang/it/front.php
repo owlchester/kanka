@@ -41,12 +41,10 @@ return [
         ],
         'boosts'            => [
             'beta'      => 'Accesso in beta ad alcune nuove funzionalità 30 giorni prima del loro rilascio generale.',
-            'boosted'   => 'Campagna potenziata',
             'css'       => 'CSS personalizzati per la campagna',
             'images'    => 'Imposta immagini predefinite personalizzate per le entità',
             'recovery'  => 'Recupero delle entità fino a 30 giorni',
             'theme'     => 'Tema fisso della campagna',
-            'title'     => 'Campagne potenziate',
             'tooltip'   => 'Tooltips personalizzati per le entità: mostra immagine, cambia testo',
             'upload'    => 'Dimensioni di caricamento aumentate per tutti i membri',
         ],

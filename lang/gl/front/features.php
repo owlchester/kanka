@@ -10,11 +10,7 @@ return [
         'secondary'     => 'Os atributos dunha entidade tamén poden ser estilizados para ser mostrados como unha folla de personaxe de xogo de rol usando o noso :marketplace.',
         'title'         => 'Atributos',
     ],
-    'boosters'      => [
-        'description'   => 'Algunhas funcionalidades só están dispoñibles para campañas potenciadas. Cando unha persoa se subscribe a Kanka, esta gaña certo número de potenciadores que pode usar en unha ou varias campañas. Estes potenciadores poden ser movidos de campaña a campaña a vontade, e duran ata que a persoa deixe de estar subscrita a Kanka.',
-        'link'          => 'Mira todas as funcionalidades potenciadas na nosa páxina de prezos.',
-        'title'         => 'Potenciadores de campaña',
-    ],
+    'boosters'      => [],
     'calendars'     => [
         'description'   => 'Crea un ou varios calendarios para o teu mundo, tendo control completo sobre o número de días do ano, os meses, a lonxitude das semanas, estacións, as lúas e as súas fases, e moito máis. Adxunta eventos aos teus calendarios e lígaos con entidades para conseguir cousas como calcular a idade das personaxes automaticamente.',
     ],
@@ -73,7 +69,6 @@ return [
         'secondary'     => 'As :boosted-campaigns teñen acceso a un explorador visual para as relacións dunha entidade.',
     ],
     'sections'      => [
-        'boosted'       => 'Funcionalidades potenciadas',
         'general'       => 'Xeral',
         'rpg'           => 'Xogos de rol',
         'worldbuilding' => 'Creación de mundos',

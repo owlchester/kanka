@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'members'       => 'Tagok',
-        'organisation'  => 'Szülőszervezet',
-        'organisations' => 'Alszervezet',
+        'members'   => 'Tagok',
     ],
     'helpers'       => [
         'descendants'       => 'Ez a lista a szervezet összes leszármazott szervezetét tartalmazza, nem csak a közvetlen alszervezeit.',
@@ -32,31 +30,19 @@ return [
             'title'     => ':name tagjának módosítása',
         ],
         'fields'        => [
-            'character'     => 'Karakter',
-            'organisation'  => 'Szervezet',
-            'role'          => 'Szerep',
+            'role'  => 'Szerep',
         ],
         'helpers'       => [
             'all_members'   => 'Minden karakter, ami tagja ennek a szervezetnek és alszervezeteinek.',
             'members'       => 'Az alábbi listában azok a karakterek szerepelnek, akik vagy tagjai ennek a szervezetnek, vagy tagjai ezen szervezet valamelyik leszármazott szervezetének. Lehetőség van csak a közvetlen tagokra is szűrni.',
         ],
         'placeholders'  => [
-            'character' => 'Válassz ki egy karaktert',
-            'role'      => 'Vezető, tag, sárkánylovas, zolg',
+            'role'  => 'Vezető, tag, sárkánylovas, zolg',
         ],
-        'title'         => ':name tagjai',
     ],
-    'organisations' => [
-        'title' => ':name alszervezetei',
-    ],
+    'organisations' => [],
     'placeholders'  => [
-        'location'  => 'Válassz ki egy helyszínt!',
-        'name'      => 'A szervezet neve',
-        'type'      => 'Kultusz, banda, klán, fanklub',
+        'type'  => 'Kultusz, banda, klán, fanklub',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Szervezetek',
-        ],
-    ],
+    'show'          => [],
 ];

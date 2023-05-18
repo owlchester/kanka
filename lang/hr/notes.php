@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Pričvršćena',
-        'note'      => 'Bilješka roditelj',
-        'notes'     => 'Bilješka dijete',
+        'notes' => 'Bilješka dijete',
     ],
     'helpers'       => [
         'nested_without'    => 'Prikazuju se sve bilješke koje nemaju bilješku roditelj. Klikni redak da bi vidio/la bilješke djecu.',
@@ -19,7 +17,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Naslov bilješke',
         'note'  => 'Odaberite bilješku roditelja',
         'type'  => 'Religija, Rasa, Politički sustav',
     ],

@@ -6,12 +6,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'families'      => [
-        'title' => 'Rody rodu :name',
-    ],
+    'families'      => [],
     'fields'        => [
-        'families'  => 'Podřazené rody',
-        'family'    => 'Nadřazený rod',
         'members'   => 'Členové',
     ],
     'helpers'       => [
@@ -27,18 +23,14 @@ return [
             'all_members'       => 'Tento seznam obsahuje všechny členy tohoto rodu a jeho podřazených rodů.',
             'direct_members'    => 'Většinu rodů proslavili někteří její členové. Zde je seznam postav, které jsou přímými členy tohoto rodu.',
         ],
-        'title'     => 'Členové rodu :name',
     ],
     'placeholders'  => [
-        'location'  => 'Vyberte místo',
-        'name'      => 'Název rodu',
-        'type'      => 'Královský, šlechtický, vymřelý,...',
+        'name'  => 'Název rodu',
+        'type'  => 'Královský, šlechtický, vymřelý,...',
     ],
     'show'          => [
         'tabs'  => [
-            'all_members'   => 'Všichni členové',
-            'families'      => 'Rody',
-            'members'       => 'Členové',
+            'members'   => 'Členové',
         ],
     ],
 ];

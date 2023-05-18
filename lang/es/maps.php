@@ -27,8 +27,6 @@ return [
         'grid'          => 'Cuadrícula',
         'initial_zoom'  => 'Zoom inicial',
         'is_real'       => 'Usar OpenStreetMaps',
-        'map'           => 'Mapa superior',
-        'maps'          => 'Mapas',
         'max_zoom'      => 'Zoom máximo',
         'min_zoom'      => 'Zoom mínimo',
         'tabs'          => [
@@ -50,9 +48,7 @@ return [
         'nested_without'    => 'Mostrando todos los mapas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => 'Mapas de :name',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Grupos',
         'layers'    => 'Capas',

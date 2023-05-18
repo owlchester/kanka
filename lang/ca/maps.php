@@ -27,8 +27,6 @@ return [
         'grid'          => 'Cuadrícula',
         'initial_zoom'  => 'Zoom inicial',
         'is_real'       => 'Utilitza OpenStreetMaps',
-        'map'           => 'Mapa superior',
-        'maps'          => 'Mapes',
         'max_zoom'      => 'Zoom màxim',
         'min_zoom'      => 'Zoom mínim',
         'tabs'          => [
@@ -50,9 +48,7 @@ return [
         'nested_without'    => 'S\'estan mostrant els mapes sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne els descendents.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => 'Mapes de :name',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Grups',
         'layers'    => 'Capes',

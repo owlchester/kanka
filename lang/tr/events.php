@@ -15,7 +15,6 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Olayınız için bir tarih',
-        'name'  => 'Olayın adı',
         'type'  => 'Seremoni, Festival, Felaket, Savaş, Doğum',
     ],
     'show'          => [],

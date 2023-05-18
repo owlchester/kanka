@@ -20,9 +20,7 @@ return [
         'public'            => [
             'description'   => 'Échale un vistazo a las campañas públicas para inspirarte.',
             'filters'       => [
-                'all'       => 'Estatus de mejora',
-                'boosted'   => 'Campañas mejoradas',
-                'unboosted' => 'Campañas no mejoradas',
+                'all'   => 'Estatus de mejora',
             ],
             'no-results'    => 'No se encuentra ninguna campaña pública con estos filtros. Por favor, vuelve a intentarlo.',
             'title'         => 'Campañas públicas',
@@ -65,7 +63,6 @@ return [
         ],
         'boosts'            => [
             'beta'                  => 'Acceso anticipado a algunas funciones nuevas 30 días antes del lanzamiento general.',
-            'boosted'               => 'Campaña mejorada',
             'css'                   => 'CSS personalizado de la campaña',
             'dashboards'            => 'Configura tableros personalizados para los diferentes roles de la campaña',
             'description'           => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
@@ -77,7 +74,6 @@ return [
             'recovery'              => 'Recuperación de entidades de hasta 30 días',
             'relation-visualiser'   => 'Explora visualmente las relaciones entre entidades',
             'theme'                 => 'Tema de campaña fijo',
-            'title'                 => 'Campañas mejoradas',
             'tooltip'               => 'Descripciones emergentes personalizadas',
             'upload'                => 'Subida de archivos ampliada para todos los miembros',
         ],
@@ -161,7 +157,6 @@ return [
             'title'         => 'Gestionar secretos',
         ],
         'superboosts'       => [
-            'boosted'   => 'Supermejorada',
             'gallery'   => 'Galería de campaña e integración con el editor de texto Summernote',
             'logs'      => 'Registros completos de los cambios de las entidades (de hasta 30 días)',
             'stats'     => 'Página de logros de campaña',
@@ -248,7 +243,6 @@ return [
             'core'          => 'Acceso a todas las funciones principales',
             'huge_maps'     => 'Mapas enormes (:size)',
             'huge_uploads'  => 'Subir archivos enormes',
-            'no_boosters'   => 'Sin mejoras de campaña',
             'unlimited'     => 'Campañas y archivos subidos ilimitados',
             'updates'       => 'Actualizaciones y mejoras frecuentes',
         ],

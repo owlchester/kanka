@@ -3,24 +3,17 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Ajouter une apparence',
-        'add_organisation'  => 'Ajouter une organisation',
         'add_personality'   => 'Ajouter un trait de personnalité',
     ],
-    'conversations' => [
-        'title' => 'Conversations du personnage :name',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Créer une nouvelle personne',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Les jets de dés peuvent être assignés à des personnages.',
-        'title' => 'Jet de dés de :name',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Age',
-        'families'                  => 'Familles',
         'is_appearance_pinned'      => 'Physique épinglé',
         'is_dead'                   => 'Mort',
         'is_personality_pinned'     => 'Personnalité épinglée',
@@ -44,13 +37,8 @@ return [
         'personality_visible'       => 'Les traits de personnalités sont visibles pour tous.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Des objets peuvent être assignés à des personnages et seront affichés ici.',
-        'title' => 'Objets de :name',
-    ],
-    'journals'      => [
-        'title' => 'Journaux de :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'labels'        => [
         'appearance'    => [
             'entry' => 'Description de l\'apparance',
@@ -61,34 +49,22 @@ return [
             'name'  => 'Nom du trait de personnalité',
         ],
     ],
-    'maps'          => [
-        'title' => 'Carte relationnelle de :name',
-    ],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'       => 'Nouvelle organisation',
-            'submit'    => 'Ajouter une organisation',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Personne ajoutée à l\'organisation.',
             'title'     => 'Nouvelle Organisation pour :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Organisation de personne supprimée.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Organisation de personne modifiée.',
             'title'     => 'Modifier l\'Organisation pour :name',
         ],
-        'fields'        => [
-            'organisation'  => 'Organisation',
-            'role'          => 'Rôle',
+        'fields'    => [
+            'role'  => 'Rôle',
         ],
-        'hint'          => 'Les personnages peuvent faire partie de nombreuses organisations, représentant leur employeur ou les sociétés auxquelles ils appartiennent.',
-        'placeholders'  => [
-            'organisation'  => 'Choix d\'une organisation...',
-        ],
-        'title'         => 'Organisations de :name',
     ],
     'placeholders'  => [
         'age'               => 'Âge',
@@ -112,14 +88,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Physique',
-        'general'       => 'Information générale',
         'personality'   => 'Personnalité',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organisations',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Tu n\'as pas le droit de modifier les traits de personnalité de ce personnage.',
     ],

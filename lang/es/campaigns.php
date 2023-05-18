@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'                           => [
-        'boost' => 'Mejorar :name',
-    ],
+    'actions'                           => [],
     'create'                            => [
         'description'           => 'Crear nueva campaña',
         'helper'                => [
@@ -41,7 +39,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'No tienes acceso a esta campaña.',
-        'superboosted'  => 'Esta funcionalidad solo está disponible para las campañas supermejoradas.',
         'unknown_id'    => 'Campaña desconocida.',
     ],
     'export'                            => [],
@@ -76,8 +73,6 @@ TEXT
     ],
     'following'                         => 'Siguiendo',
     'helpers'                           => [
-        'boost_required'                    => 'Esta funcionalidad requiere mejorar la campaña. Más información en la página de :settings.',
-        'boost_required_multi'              => 'Estas funcionalidades requieren que la campaña esté mejorada. Para más información lee la página de :settings.',
         'boosted'                           => 'Algunas características están desbloqueadas porque esta campaña está mejorada. Para saber más sobre esto, echa un vistazo en la página de :settings.',
         'character_personality_visibility'  => 'Selecciona la privacidad por defecto para los rasgos de personalidad al crear un nuevo personaje como administrador.',
         'css'                               => 'Escribe tu propio CSS para las páginas de tu campaña. Ten en cuenta que abusar de esta herramienta puede llevar a la eliminación de tu CSS personalizado. Incumplimientos repetidos o graves pueden llevar a la eliminación de tu campaña.',
@@ -216,7 +211,6 @@ TEXT
         'follower-count'    => '{0} Sin seguidores|{1} :amount seguidor|[2,*] :amount seguidores',
     ],
     'panels'                            => [
-        'boosted'   => 'Mejoras',
         'dashboard' => 'Tablero',
         'permission'=> 'Permisos',
         'setup'     => 'Configuración',
@@ -396,7 +390,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Mejorar campaña',
             'edit'  => 'Editar campaña',
             'leave' => 'Abandonar campaña',
         ],
@@ -427,7 +420,6 @@ TEXT
         'none'  => 'Ninguno (el valor predeterminado es configuraciónes de usuario)',
     ],
     'ui'                                => [
-        'boosted'           => 'Mejorada',
         'collapsed'         => [
             'collapsed' => 'Colapsar/Expandir',
             'default'   => 'Por defecto',

@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'                           => [
-        'boost' => 'Doładuj :name',
-    ],
+    'actions'                           => [],
     'create'                            => [
         'description'           => 'Utwórz nową kampanię',
         'helper'                => [
@@ -41,7 +39,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Nie masz dostępu do tej kampanii.',
-        'superboosted'  => 'Ta opcja dostępna jest tylko w kampaniach turbodoładowanych.',
         'unknown_id'    => 'Nieznana kampania.',
     ],
     'export'                            => [],
@@ -76,8 +73,6 @@ TEXT
     ],
     'following'                         => 'Obserwowanie',
     'helpers'                           => [
-        'boost_required'                    => 'Ta opcja jest dostępna tylko w doładowanych kampaniach. Więcej informacji znajdziesz na stronie :settings.',
-        'boost_required_multi'              => 'Ta opcja wymaga doładowania kampanii. Więcej informacji znajdziesz na stronie :settings',
         'boosted'                           => 'Odblokowano nowe opcje ponieważ kampania jest doładowana. Więcej informacji znajdziesz na stronie :settings.',
         'character_personality_visibility'  => 'Wybierz domyślą widoczność cech osobowości nowych postaci, tworzonych przez adminów.',
         'css'                               => 'Twórz własne style CSS do używania w kampanii. Uwaga - nadużywanie tej opcji może poskutkować usunięciem stworzonych stylów. Powtarzające się albo poważne wykroczenia mogą spowodować usunięcie kampanii.',
@@ -216,7 +211,6 @@ TEXT
         'follower-count'    => '{0} Brak śledzących|{1} :amount śledzący|[2,] :amount śledzących',
     ],
     'panels'                            => [
-        'boosted'   => 'Doładowana',
         'dashboard' => 'Pulpit',
         'permission'=> 'Uprawnienia',
         'setup'     => 'Konfiguracja',
@@ -396,7 +390,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Doładuj kampanię',
             'edit'  => 'Edytuj kampanię',
             'leave' => 'Opuść kampanię',
         ],
@@ -427,7 +420,6 @@ TEXT
         'none'  => 'Brak (powrót do ustawień użytkownika)',
     ],
     'ui'                                => [
-        'boosted'           => 'Doładowana',
         'collapsed'         => [
             'collapsed' => 'Zwinięte',
             'default'   => 'Domyślne',

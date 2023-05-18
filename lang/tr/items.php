@@ -12,11 +12,8 @@ return [
         'size'      => 'Boyut',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => ':name Eşyası Envanterleri',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Eşyanın adı',
         'price' => 'Eşyanın fiyatı',
         'size'  => 'Boyut, Ağırlık, Ölçüler',
         'type'  => 'Silah, İksir, Artifakt',

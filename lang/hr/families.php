@@ -6,12 +6,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'families'      => [
-        'title' => 'Obitelji od obitelji :name',
-    ],
+    'families'      => [],
     'fields'        => [
-        'families'  => 'Obitelji unutar veće obitelji',
-        'family'    => 'Obitelj s manjim obiteljima',
         'members'   => 'Članovi',
     ],
     'helpers'       => [
@@ -27,18 +23,14 @@ return [
             'all_members'       => 'Na sljedećem popisu su svi likovi koji se nalaze u ovoj obitelji i sve manjim obiteljima unutar ove obitelji.',
             'direct_members'    => 'Većina obitelji ima članove koji ju vode ili čine poznatom. Sljedeći popis prikazuje likove koji se nalaze u ovoj obitelji.',
         ],
-        'title'     => 'Članovi obitelji :name',
     ],
     'placeholders'  => [
-        'location'  => 'Odaberi lokaciju',
-        'name'      => 'Ime obitelji',
-        'type'      => 'Kraljevska, plemenita, izumrla',
+        'name'  => 'Ime obitelji',
+        'type'  => 'Kraljevska, plemenita, izumrla',
     ],
     'show'          => [
         'tabs'  => [
-            'all_members'   => 'Svi članovi',
-            'families'      => 'Obitelji',
-            'members'       => 'Članovi',
+            'members'   => 'Članovi',
         ],
     ],
 ];

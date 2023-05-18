@@ -5,9 +5,7 @@ return [
         'title' => 'Neue Unterhaltung',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => 'Unterhaltung :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'is_closed'     => 'geschlossen',
         'messages'      => 'Nachrichten',
@@ -45,7 +43,6 @@ return [
         'is_closed' => 'Unterhaltung geschlossen',
     ],
     'tabs'          => [
-        'conversation'  => 'Unterhaltung',
         'participants'  => 'Teilnehmer',
     ],
     'targets'       => [

@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Bacanja kockica',
             'results'   => 'Rezultati',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Bacanje kockica',
-        'name'      => 'Naziv bacanja kockica',
-        'parameters'=> '4d6+3',
+        'name'          => 'Naziv bacanja kockica',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

@@ -9,7 +9,6 @@ return [
             'success'   => 'Adicionado a tag :name para a entidade.',
             'title'     => 'Adicionar uma tag a :name',
         ],
-        'title'     => 'Tag Secundária de :name',
     ],
     'create'        => [
         'title' => 'Nova Tag',
@@ -20,8 +19,6 @@ return [
         'children'          => 'Filhos',
         'is_auto_applied'   => 'Aplicar automaticamente a novas entidades',
         'is_hidden'         => 'Ocultar do cabeçalho e da dica de contexto',
-        'tag'               => 'Tag Primária',
-        'tags'              => 'Sub-Tags',
     ],
     'helpers'       => [
         'nested_without'    => 'Exibindo todas as tags que não tem uma tag primária. Clique em uma linha para ver as tags secundárias.',
@@ -34,19 +31,13 @@ return [
         'tag'               => 'Esta lista contém todas as tags secundárias desta tag ou de suas tags secundárias.',
     ],
     'index'         => [],
-    'new_tag'       => 'Nova Tag',
     'placeholders'  => [
-        'name'  => 'Nome da tag',
-        'tag'   => 'Escolha uma tag primária',
         'type'  => 'Tradições, Guerras, História, Religião, Vexilologia',
     ],
     'show'          => [
         'tabs'  => [
             'children'  => 'Filhos',
-            'tags'      => 'Tags',
         ],
     ],
-    'tags'          => [
-        'title' => 'Tag Secundária de :name',
-    ],
+    'tags'          => [],
 ];

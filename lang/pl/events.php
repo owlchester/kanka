@@ -8,12 +8,9 @@ return [
     'edit'          => [],
     'events'        => [
         'helper'    => 'Ty wyświetlone są wydarzenia pochodzące od tego elementu.',
-        'title'     => 'Wydarzenia wydarzenia :name',
     ],
     'fields'        => [
-        'date'      => 'Data',
-        'event'     => 'Wydarzenie źródłowe',
-        'events'    => 'Wydarzenia pochodne',
+        'date'  => 'Data',
     ],
     'helpers'       => [
         'date'              => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce "Ważne daty" wydarzenia.',
@@ -22,14 +19,9 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Data tego wydarzenia',
-        'name'  => 'Nazwa wydarzenia',
         'type'  => 'Uroczystość, festiwal, katastrofa, bitwa, narodziny',
     ],
-    'show'          => [
-        'tabs'  => [
-            'events'    => 'Wydarzenia',
-        ],
-    ],
+    'show'          => [],
     'tabs'          => [
         'calendars' => 'Wpisy w kalendarzu',
     ],

@@ -3,20 +3,14 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Bir görünüm ekle',
-        'add_organisation'  => 'Bir organizasyon ekle',
         'add_personality'   => 'Bir kişilik ekle',
     ],
-    'conversations' => [
-        'title' => ':name Karakterinin Muhabbetleri',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Yeni Karakter',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Zarlar oyun içi kullanım için karakterlere bağlanabilir.',
-        'title' => ':name Karakteri Zarları',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Yaş',
@@ -38,40 +32,24 @@ return [
         'personality_visible'       => 'Bu karakterin kişilik özelliklere herkese görünür.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Eşyalar karakterlere atanabilir ve burada görüntülenebilir.',
-        'title' => ':name Karakterinin Eşyaları',
-    ],
-    'journals'      => [
-        'title' => ':name Karakterinin Günlükleri',
-    ],
-    'maps'          => [
-        'title' => ':name Karakter İlişki Haritası',
-    ],
+    'items'         => [],
+    'journals'      => [],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'   => 'Organizasyon ekle',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Karakter organizasyona eklendi.',
             'title'     => ':name için Yeni Organizasyon',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Karakter organizasyonu kaldırıldı.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Karakter organizasyonu güncellendi.',
             'title'     => ':name için Organizasyonu Güncelle',
         ],
-        'fields'        => [
-            'organisation'  => 'Organizasyon',
-            'role'          => 'Rol',
+        'fields'    => [
+            'role'  => 'Rol',
         ],
-        'hint'          => 'Karakterler kimin için çalıştıklarını ya da hangi gizli topluluğun bir parçası olduklarını belirten pek çok organizasyonun parçası olabilirler.',
-        'placeholders'  => [
-            'organisation'  => 'Bir organizasyon seçin...',
-        ],
-        'title'         => ':name Karakterinin Organizasyonları',
     ],
     'placeholders'  => [
         'age'               => 'Yaş',
@@ -93,14 +71,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Görünüm',
-        'general'       => 'Genel bilgi',
         'personality'   => 'Kişilik',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizasyonlar',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Bu karakterde kişilik özelliklerini düzenleme izniniz yok.',
     ],

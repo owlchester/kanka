@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Dobások',
             'results'   => 'Eredmények',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Dobás',
-        'name'      => 'Dobás megnevezése',
-        'parameters'=> '4d6+3',
+        'name'          => 'Dobás megnevezése',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

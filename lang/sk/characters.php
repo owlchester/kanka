@@ -3,24 +3,17 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Pridať výzor',
-        'add_organisation'  => 'Pridať organizáciu',
         'add_personality'   => 'Pridať osobnosť',
     ],
-    'conversations' => [
-        'title' => 'Diskusie s postavou :name',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Nová postava',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Hody kockami môžu byť priradené postavy, aby ich mohla v hre používať.',
-        'title' => 'Hody kockami postavy :name',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Vek',
-        'families'                  => 'Rody',
         'is_appearance_pinned'      => 'Pripnutý výzor',
         'is_dead'                   => 'Po smrti',
         'is_personality_pinned'     => 'Pripnutá osobnosť',
@@ -44,13 +37,8 @@ return [
         'personality_visible'       => 'Osobnostné črty tejto postavy sú viditeľné pre všetkých.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Predmety môžu byť pridelené postavám a zobrazia sa na tomto mieste.',
-        'title' => 'Predmety postavy :name',
-    ],
-    'journals'      => [
-        'title' => 'Denníky postavy :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'labels'        => [
         'appearance'    => [
             'entry' => 'Opis výzoru',
@@ -61,34 +49,22 @@ return [
             'name'  => 'Názov osobnostnej črty',
         ],
     ],
-    'maps'          => [
-        'title' => 'Mapa vzťahov postavy :name',
-    ],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'       => 'Pridať organizáciu',
-            'submit'    => 'Pridať organizáciu',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Postava priradená organizácii.',
             'title'     => 'Nová organizácia pre :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Postava odstránená z organizácie.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Organizácia postavy upravená.',
             'title'     => 'Upraviť organizáciu :name',
         ],
-        'fields'        => [
-            'organisation'  => 'Organizácia',
-            'role'          => 'Rola',
+        'fields'    => [
+            'role'  => 'Rola',
         ],
-        'hint'          => 'Postavy môžu byť súčasťou viacerých organizácií, ktoré hovoria o tom, pre koho pracujú alebo ku ktorému tajnému spolku patria.',
-        'placeholders'  => [
-            'organisation'  => 'Vybrať organizáciu...',
-        ],
-        'title'         => 'Organizácie postavy :name',
     ],
     'placeholders'  => [
         'age'               => 'Vek',
@@ -112,14 +88,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Výzor',
-        'general'       => 'Všeobecné informácie',
         'personality'   => 'Osobnosť',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizácie',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Nemáš povolené upravovať črty osobnosti tejto postavy.',
     ],

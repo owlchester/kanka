@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Habilidades secundárias de :name',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Adicionar habilidade para entidade',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Entidades com a habilidade :name',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Sub-Habilidades',
-        'ability'   => 'Habilidade primária',
         'charges'   => 'Cargas',
     ],
     'helpers'       => [
@@ -44,7 +38,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Sub-Habilidades',
             'entities'  => 'Entidades',
             'reorder'   => 'Reordenar Habilidades',
         ],

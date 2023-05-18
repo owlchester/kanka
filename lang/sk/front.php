@@ -24,13 +24,9 @@ return [
         'public'            => [
             'description'   => 'Pozri sa a inšpiruj verejnými kampaňami.',
             'filters'       => [
-                'all'               => 'Stav boostu',
-                'boosted'           => 'Boostnuté kampane',
-                'entities'          => 'Zoradiť podľa počtu objektov',
-                'followers'         => 'Zoradiť podľa sledovateľov',
-                'is-boosted'        => 'Kampaň je boostnutá!',
-                'is-superboosted'   => 'Kampaň je superboostnutá!',
-                'unboosted'         => 'Neboostnuté kampane',
+                'all'       => 'Stav boostu',
+                'entities'  => 'Zoradiť podľa počtu objektov',
+                'followers' => 'Zoradiť podľa sledovateľov',
             ],
             'no-results'    => 'Toto nastavenie filtrov nenašlo žiadne kampane. Prosím, skús to zmeniť.',
             'title'         => 'Verejné kampane',
@@ -78,7 +74,6 @@ return [
         ],
         'boosts'            => [
             'beta'                  => 'Beta prístup na nové funkcionality 30 dní pred oficiálnym spustením.',
-            'boosted'               => 'Boostovaná kampaň',
             'css'                   => 'Vlastné CSS tvojej kampane',
             'dashboards'            => 'Nastaviť vlastné nástenky pre role v kampani',
             'description'           => 'Niektoré formy predplatného dávajú užívateľom možnosť boostnuť kampane. Tieto následne získajú tieto výhody.',
@@ -96,7 +91,6 @@ return [
             'standard'              => 'Štandardná kampaň',
             'theme'                 => 'Nezmeniteľná téma kampane',
             'timeline_elements'     => 'Upravuj ikonky a farby na časových osiach',
-            'title'                 => 'Boostnuté kampane',
             'tooltip'               => 'Bubliny objektov s možnosťou zobrazenia obrázku a úpravy textu',
             'upload'                => 'Navýšenie veľkosti uploadu pre všetkých členov',
         ],
@@ -189,7 +183,6 @@ return [
             'title'         => 'Spravovať tajomstvá',
         ],
         'superboosts'       => [
-            'boosted'       => 'Superboostnutie',
             'family-tree'   => 'Tvorba rodokmeňov na sledovanie rodinnej histórie',
             'gallery'       => 'Galéria obrázkov kampane a jej integrácia v rámci textového editora Summernote',
             'logs'          => 'Plnohodnotné logy zmien v objektoch (30 dní dozadu)',
@@ -282,7 +275,6 @@ return [
             'core'          => 'Prístup ku všetkým funkciám',
             'huge_maps'     => 'Obrovské mapy (:size)',
             'huge_uploads'  => 'Obrovská veľkosť nahrávaných súborov',
-            'no_boosters'   => 'Žiadne Boosty kampaní',
             'unlimited'     => 'Neobmedzený počet kampaní a nahrávaných súborov',
             'updates'       => 'Časté aktualizácie a zlepšenia',
         ],

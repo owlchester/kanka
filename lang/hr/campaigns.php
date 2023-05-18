@@ -33,7 +33,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Nemaš pristup ovoj kampanji.',
-        'superboosted'  => 'Ova je značajka dostupna samo za super pojačane kampanje.',
         'unknown_id'    => 'Nepoznata kampanja.',
     ],
     'export'                            => [],
@@ -60,7 +59,6 @@ TEXT
     ],
     'following'                         => 'Praćenje',
     'helpers'                           => [
-        'boost_required'            => 'Ova funkcionalnost zahtjeva pojačanu kampanju. Više informacija na stranici :settings.',
         'boosted'                   => 'Neke funkcionalnosti su otključane jer je ova kampanja pojačana. Pronađi više na stranicama :settings.',
         'css'                       => 'Napiši svoj CSS koji će biti učitan u stranice tvoje kampanje. Zlonamjerno korištenje ove funkiconalnosti će rezultirati uklanjanjem tvog CSS-a. Ponovni ili posebno teški prijestupi mogu dovesti do uklanjanja tvoje kampanje.',
         'dashboard'                 => 'Prilagodi način na koji se prikazuje programčić naslovne ploče kampanje popunjavanjem sljedećih polja.',
@@ -169,7 +167,6 @@ TEXT
     ],
     'open_campaign'                     => [],
     'panels'                            => [
-        'boosted'   => 'Pojačano',
         'dashboard' => 'Naslovna ploča',
         'permission'=> 'Ovlasti',
         'setup'     => 'Postavljanje',
@@ -290,7 +287,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Pojačaj kampanju',
             'edit'  => 'Uredi kampanju',
             'leave' => 'Napusti kampanju',
         ],

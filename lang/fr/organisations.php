@@ -9,8 +9,6 @@ return [
     'fields'        => [
         'is_defunct'    => 'Défunte',
         'members'       => 'Membres',
-        'organisation'  => 'Organisation Parent',
-        'organisations' => 'Sous-organisations',
     ],
     'helpers'       => [
         'descendants'       => 'Cette liste contient toutes les organisations qui appartiennent directement ou indirectement à cette organisation.',
@@ -37,12 +35,10 @@ return [
             'title'     => 'Modifier Membre pour :name',
         ],
         'fields'        => [
-            'character'     => 'Personnage',
-            'organisation'  => 'Organisation',
-            'parent'        => 'Superieur',
-            'pinned'        => 'Épinglé',
-            'role'          => 'Rôle',
-            'status'        => 'Status de membre',
+            'parent'    => 'Superieur',
+            'pinned'    => 'Épinglé',
+            'role'      => 'Rôle',
+            'status'    => 'Status de membre',
         ],
         'helpers'       => [
             'all_members'   => 'Tous les personnages qui sont membres de cette organisation et des sous-organisations.',
@@ -50,13 +46,10 @@ return [
             'pinned'        => 'Définir sur le membre doit être affiché dans les épingles des entités associées.',
         ],
         'pinned'        => [
-            'both'          => 'Les deux',
-            'character'     => 'Personnage',
-            'none'          => 'Aucun',
-            'organisation'  => 'Organisation',
+            'both'  => 'Les deux',
+            'none'  => 'Aucun',
         ],
         'placeholders'  => [
-            'character' => 'Choix du personnage',
             'parent'    => 'Qui est le supérieur de ce membre',
             'role'      => 'Chef, Membre, Prêtre, Maître d\'arme',
         ],
@@ -65,20 +58,11 @@ return [
             'inactive'  => 'Membre inactif',
             'unknown'   => 'Status inconnu',
         ],
-        'title'         => 'Organisation :name Membres',
     ],
-    'organisations' => [
-        'title' => 'Organisation :name Organisations',
-    ],
+    'organisations' => [],
     'placeholders'  => [
-        'location'  => 'Choix du lieu',
-        'name'      => 'Nom de l\'organisation',
-        'type'      => 'Culte, Bande, Rebellion',
+        'type'  => 'Culte, Bande, Rebellion',
     ],
     'quests'        => [],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organisations',
-        ],
-    ],
+    'show'          => [],
 ];

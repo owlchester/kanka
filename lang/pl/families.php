@@ -6,12 +6,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'families'      => [
-        'title' => 'Rodziny rodziny :name',
-    ],
+    'families'      => [],
     'fields'        => [
-        'families'  => 'Rodziny pochodne',
-        'family'    => 'Rodzina źródłowa',
         'members'   => 'Członkowie',
     ],
     'helpers'       => [
@@ -27,19 +23,15 @@ return [
             'all_members'       => 'Na liście znajdują się postaci należące do tej rodziny i wszystkich jej rodzin pochodnych.',
             'direct_members'    => 'Większość rodzin posiada członków, którymi słynie. Na poniższej liście znajdują się postaci należące do tej rodziny bezpośrednio.',
         ],
-        'title'     => 'Członkowie rodziny :name',
     ],
     'placeholders'  => [
-        'location'  => 'Wybierz miejsce',
-        'name'      => 'Nazwisko rodowe',
-        'type'      => 'Królewska, szlachecka, wymarła',
+        'name'  => 'Nazwisko rodowe',
+        'type'  => 'Królewska, szlachecka, wymarła',
     ],
     'show'          => [
         'tabs'  => [
-            'all_members'   => 'Wszyscy członkowie',
-            'families'      => 'Rodziny',
-            'members'       => 'Członkowie',
-            'tree'          => 'Drzewo genealogiczne',
+            'members'   => 'Członkowie',
+            'tree'      => 'Drzewo genealogiczne',
         ],
     ],
 ];

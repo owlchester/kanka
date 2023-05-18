@@ -37,7 +37,6 @@ return [
     ],
     'index'             => [],
     'placeholders'      => [
-        'entity'    => 'Wybierz element',
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Podstrona menu (użyj ostatniego tekstu adresu)',
         'name'      => 'Nazwa skrótu',

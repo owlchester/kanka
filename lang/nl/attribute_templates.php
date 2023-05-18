@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Bovenliggende Attribuutsjabloon',
-        'attributes'            => 'Attributen',
+        'attributes'    => 'Attributen',
     ],
     'hints'                 => [
         'automatic'                 => 'Attributen worden automatisch toegepast vanuit de :link Attribuutsjabloon',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Kies een attribuutsjabloon',
-        'name'                  => 'Naam van de attribuutsjabloon',
+        'name'  => 'Naam van de attribuutsjabloon',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Attribuutsjablonen',
-            'attributes'            => 'Attributen',
+            'attributes'    => 'Attributen',
         ],
     ],
 ];

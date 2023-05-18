@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'members'       => 'Leden',
-        'organisation'  => 'Bovenliggende Organisatie',
-        'organisations' => 'Sub Organisaties',
+        'members'   => 'Leden',
     ],
     'helpers'       => [
         'descendants'   => 'Deze lijst bevat alle organisaties die afstammen van deze organisatie, en niet alleen de direct daaronder vallende organisaties.',
@@ -31,31 +29,19 @@ return [
             'title'     => 'Werk Lid bij voor :name',
         ],
         'fields'        => [
-            'character'     => 'Personage',
-            'organisation'  => 'Organisatie',
-            'role'          => 'Rol',
+            'role'  => 'Rol',
         ],
         'helpers'       => [
             'all_members'   => 'Alle personages die lid zijn van deze organisaties en zijn suborganisaties.',
             'members'       => 'Alle personages die lid zijn van deze organisatie.',
         ],
         'placeholders'  => [
-            'character' => 'Kies een personage',
-            'role'      => 'Leider, Lid, Hoog-lid, Spymaster',
+            'role'  => 'Leider, Lid, Hoog-lid, Spymaster',
         ],
-        'title'         => 'Organisatie :name Leden',
     ],
-    'organisations' => [
-        'title' => 'Organisatie :name Organisaties',
-    ],
+    'organisations' => [],
     'placeholders'  => [
-        'location'  => 'Kies een locatie',
-        'name'      => 'Naam van de organisatie',
-        'type'      => 'Sekte, Gang, Rebellie, Fandom',
+        'type'  => 'Sekte, Gang, Rebellie, Fandom',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organisaties',
-        ],
-    ],
+    'show'          => [],
 ];

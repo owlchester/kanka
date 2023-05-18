@@ -22,17 +22,13 @@ return [
             'description'       => 'Descripció',
             'entity_or_name'    => 'Seleccioneu una entitat de la campanya o doneu un nom a aquest element.',
             'name'              => 'Nom',
-            'quest'             => 'Missió',
         ],
-        'title'     => 'Elements de la missió :name',
     ],
     'fields'        => [
         'character'     => 'Instigador',
         'copy_elements' => 'Copia els elements vinculats a la missió',
         'date'          => 'Data',
         'is_completed'  => 'Completada',
-        'quest'         => 'Missió superior',
-        'quests'        => 'Sub-missions',
         'role'          => 'Rol',
     ],
     'helpers'       => [
@@ -48,8 +44,6 @@ return [
     'organisations' => [],
     'placeholders'  => [
         'date'  => 'Data real de la missió',
-        'name'  => 'Nom de la missió',
-        'quest' => 'Missió superior',
         'role'  => 'El paper que juga l\'entitat a la missió',
         'type'  => 'Història principal, arc de personatge, missió secundària...',
     ],

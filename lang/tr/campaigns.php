@@ -31,7 +31,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Bu serüvene erişiminiz yok.',
-        'superboosted'  => 'Bu özellik yalnızca süperdesteklenmiş serüvenler için mevcuttur.',
         'unknown_id'    => 'Bilinmeyen Serüven.',
     ],
     'export'                            => [],
@@ -54,7 +53,6 @@ TEXT
     ],
     'following'                         => 'Takip ediyor',
     'helpers'                           => [
-        'boost_required'            => 'Bu özellik serüvenin desteklenmesini gerektirir. Daha fazla bilgi :settings sayfasında mevcuttur.',
         'boosted'                   => 'Bazı özelliklerin kilidi bu serüven desteklendiği için açıktır. :settings sayfasında daha fazlasını bulabilirsiniz.',
         'css'                       => 'Serüven sayfalarınızla beraber yüklenecek kendi CSS\'inizi yazın. Lütfen bu özelliğin istismarının özel CSS\'inizin kaldırılmasına yol açabileceğini unutmayın. Sürekli ya da aşırı ağır ihlaller serüveninizin kaldırılmasına yol açabilir.',
         'excerpt'                   => 'Serüven özeti ana sayfanızda görüntülenecek, o yüzden dünyanızı tanıtan birkaç cümle yazın. En iyi sonuç için kısa tutun.',
@@ -149,7 +147,6 @@ TEXT
         'title'                 => ':name Serüveni Üyeleri',
     ],
     'panels'                            => [
-        'boosted'   => 'Destekli',
         'dashboard' => 'Kontrol Paneli',
         'permission'=> 'İzin',
         'sharing'   => 'Paylaşım',
@@ -263,7 +260,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Serüveni destekle',
             'edit'  => 'Serüveni Düzenle',
             'leave' => 'Serüvenden ayrıl',
         ],

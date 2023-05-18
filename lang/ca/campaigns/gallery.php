@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'close' => 'Tanca',
-        'full'  => 'Enllaç a la imatge',
         'save'  => 'Desa',
     ],
     'breadcrumb'    => 'Galeria',

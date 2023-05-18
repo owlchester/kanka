@@ -11,8 +11,6 @@ return [
         'copy_elements' => 'Göreve iliştirilmiş elementleri kopyala',
         'date'          => 'Tarih',
         'is_completed'  => 'Tamamlandı',
-        'quest'         => 'Ana Görev',
-        'quests'        => 'Alt Görevler',
         'role'          => 'Rol',
     ],
     'helpers'       => [],
@@ -22,8 +20,6 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Görev için gerçek dünya tarihi',
-        'name'  => 'Görevin adı',
-        'quest' => 'Ana Görev',
         'role'  => 'Bu varlığın görevdeki rolü',
         'type'  => 'Karakter Arkı, Yangörev, Ana',
     ],

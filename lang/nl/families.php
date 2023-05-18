@@ -6,12 +6,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'families'      => [
-        'title' => 'Familie :name Families',
-    ],
+    'families'      => [],
     'fields'        => [
-        'families'  => 'Sub Families',
-        'family'    => 'Bovenliggende Familie',
         'members'   => 'Leden',
     ],
     'helpers'       => [
@@ -26,18 +22,14 @@ return [
             'all_members'       => 'De volgende lijst bevat alle personages die in deze familie voorkomen en alle afstammelingen van de familie.',
             'direct_members'    => 'De meeste families hebben leden die het runnen of het beroemd hebben gemaakt. De volgende lijst bevat personages die direct in deze familie voorkomen.',
         ],
-        'title'     => 'Family :name Leden',
     ],
     'placeholders'  => [
-        'location'  => 'Kies een locatie',
-        'name'      => 'Naam van de familie',
-        'type'      => 'Koninklijk, Adel, Uitgestorven',
+        'name'  => 'Naam van de familie',
+        'type'  => 'Koninklijk, Adel, Uitgestorven',
     ],
     'show'          => [
         'tabs'  => [
-            'all_members'   => 'Alle Leden',
-            'families'      => 'Families',
-            'members'       => 'Leden',
+            'members'   => 'Leden',
         ],
     ],
 ];

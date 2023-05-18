@@ -8,8 +8,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Charakter',
-        'item'      => 'übergeordneter Gegenstand',
-        'items'     => 'untergeortneter Gegenstand',
         'price'     => 'Preis',
         'size'      => 'Größe',
     ],
@@ -20,11 +18,8 @@ return [
         'items' => 'Organisiere Gegenstände mithilfe des übergeordneten Gegenstandfelds.',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => 'Gegenstand :name Objekte',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Name des Gegenstands',
         'price' => 'Preis des Gegenstandes',
         'size'  => 'Größe, Gewicht, Maße',
         'type'  => 'Waffe, Trank, Artefakt',

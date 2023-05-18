@@ -22,9 +22,7 @@ return [
             'description'       => 'Descrición',
             'entity_or_name'    => 'Selecciona unha entidade ou dá un nome a este elemento.',
             'name'              => 'Nome',
-            'quest'             => 'Misión',
         ],
-        'title'     => 'Elementos da misión ":name"',
     ],
     'fields'        => [
         'character'     => 'Quen deu a misión',
@@ -32,8 +30,6 @@ return [
         'date'          => 'Data',
         'element_role'  => 'Rol',
         'is_completed'  => 'Completada',
-        'quest'         => 'Misión superior',
-        'quests'        => 'Submisións',
         'role'          => 'Rol',
     ],
     'helpers'       => [
@@ -47,8 +43,6 @@ return [
     'placeholders'  => [
         'date'      => 'Data do mundo real para a misión',
         'entity'    => 'Nome dun elemento da misión',
-        'name'      => 'Nome da misión',
-        'quest'     => 'Misión superior',
         'role'      => 'O rol desta entidade na misión',
         'type'      => 'Arco de personaxe, Misión secundaria, Historia principal...',
     ],

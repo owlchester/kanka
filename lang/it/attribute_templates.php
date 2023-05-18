@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Template Attributi Genitore',
-        'attributes'            => 'Attributi',
+        'attributes'    => 'Attributi',
     ],
     'hints'                 => [
         'automatic'                 => 'Attributi automaticamente applicati dal Template di Attributi :link',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Seleziona un template attributi',
-        'name'                  => 'Nome del Template Attributi',
+        'name'  => 'Nome del Template Attributi',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Templates attributi',
-            'attributes'            => 'Attributi',
+            'attributes'    => 'Attributi',
         ],
     ],
 ];

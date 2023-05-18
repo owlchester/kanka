@@ -20,9 +20,7 @@ return [
         'public'            => [
             'description'   => 'Doneu un cop d\'ull a les campanyes públiques per a inspirar-vos.',
             'filters'       => [
-                'all'       => 'Estatus de millora',
-                'boosted'   => 'Campanyes millorades',
-                'unboosted' => 'Campanyes no millorades',
+                'all'   => 'Estatus de millora',
             ],
             'no-results'    => 'No es troba cap campanya pública amb aquests filtres. Torneu a intentar-ho.',
             'title'         => 'Campanyes públiques',
@@ -65,7 +63,6 @@ return [
         ],
         'boosts'            => [
             'beta'                  => 'Accés anticipat a algunes funcions noves 30 dies abans del llançament general.',
-            'boosted'               => 'Campanya millorada',
             'css'                   => 'CSS de campanya personalitzat',
             'dashboards'            => 'Taulells personalitzats segons el rol de campanya',
             'description'           => 'Alguns nivells de mecenatge atorguen millores als usuaris, que poden usar per a millorar campanyes. Aquestes obtenen els següents beneficis.',
@@ -76,7 +73,6 @@ return [
             'recovery'              => 'Recuperació d\'entitats de fins a 30 dies enrere',
             'relation-visualiser'   => 'Explora visualment les relacions entre entitats',
             'theme'                 => 'Tema de campanya fix',
-            'title'                 => 'Campanyes millorades',
             'tooltip'               => 'Descripcions emergents personalitzades',
             'upload'                => 'Pujada d\'arxius ampliada per a tots els membres',
         ],
@@ -160,7 +156,6 @@ return [
             'title'         => 'Gestió de secrets',
         ],
         'superboosts'       => [
-            'boosted'   => 'Supermillorades',
             'gallery'   => 'Galeria de campanya i integracions amb l\'editor de text Summernote',
             'logs'      => 'Registre de canvis complet a les entitats (de fins a 30 dies)',
             'stats'     => 'Pàgina d\'assoliments de la campanya',
@@ -244,7 +239,6 @@ return [
             'core'          => 'Accés a totes les funcions principals',
             'huge_maps'     => 'Mapes enormes (:size)',
             'huge_uploads'  => 'Puja arxius enormes',
-            'no_boosters'   => 'Sense millores de campanya',
             'unlimited'     => 'Campanyes i arxius pujats il·limitats',
             'updates'       => 'Actualitzacions i millores freqüents',
         ],

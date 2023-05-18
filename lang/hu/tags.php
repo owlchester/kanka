@@ -9,7 +9,6 @@ return [
             'success'   => ':name cédulát hozzáadtuk az entitáshoz.',
             'title'     => 'Új címke hozzárendelése ehhez: :name',
         ],
-        'title'     => ':name címke entitásai',
     ],
     'create'        => [
         'title' => 'Új címke',
@@ -18,8 +17,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Almezők',
-        'tag'       => 'Szülő Címke',
-        'tags'      => 'Alcímkék',
     ],
     'helpers'       => [
         'nested_without'    => 'Minden céldulát megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekcéduláit.',
@@ -29,19 +26,13 @@ return [
         'tag'       => 'Minden címke, mely közvetlenül ezen címke alatt van.',
     ],
     'index'         => [],
-    'new_tag'       => 'Új címke',
     'placeholders'  => [
-        'name'  => 'A címke neve',
-        'tag'   => 'Válaszd ki, melyik címkének legyen alcímkéje',
         'type'  => 'Legendák, háborúk, történelem, vallás, címertan',
     ],
     'show'          => [
         'tabs'  => [
             'children'  => 'Alcímkék',
-            'tags'      => 'Címkék',
         ],
     ],
-    'tags'          => [
-        'title' => ':name címke alcímkéi',
-    ],
+    'tags'          => [],
 ];

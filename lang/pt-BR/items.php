@@ -8,8 +8,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Criador',
-        'item'      => 'Item Primário',
-        'items'     => 'Sub-Itens',
         'price'     => 'Preço',
         'size'      => 'Tamanho',
     ],
@@ -20,11 +18,8 @@ return [
         'items' => 'Organize os itens usando o campo de item primário.',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => 'Item :name inventários',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Nome do item',
         'price' => 'Preço do item',
         'size'  => 'Tamanho, Peso, Dimensões',
         'type'  => 'Arma, Poção, Artefato',

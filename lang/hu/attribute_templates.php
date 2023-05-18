@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Előd tulajdonságsablon',
-        'attributes'            => 'Tulajdonságok',
+        'attributes'    => 'Tulajdonságok',
     ],
     'hints'                 => [
         'automatic'                 => 'A tulajdonságok automatikusan alkalmazásra kerülnek a :link tulajdonságsablonból.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Válassz egy tulajdonságsablont!',
-        'name'                  => 'A tulajdonságsablon neve',
+        'name'  => 'A tulajdonságsablon neve',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Tulajdonságsablonok',
-            'attributes'            => 'Tulajdonságok',
+            'attributes'    => 'Tulajdonságok',
         ],
     ],
 ];

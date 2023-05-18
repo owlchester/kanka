@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Fixada',
-        'note'      => 'Nota Primária',
-        'notes'     => 'Sub-Notas',
+        'notes' => 'Sub-Notas',
     ],
     'helpers'       => [
         'nested_without'    => 'Exibindo todas as notas que não tem uma nota primária. Clique em uma linha para ver as notas secundárias.',
@@ -19,7 +17,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Nome da nota',
         'note'  => 'Escolha uma nota primária',
         'type'  => 'Religião, Raça, Sistema Político',
     ],

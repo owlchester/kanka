@@ -6,12 +6,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'families'      => [
-        'title' => ':name Aileleri',
-    ],
+    'families'      => [],
     'fields'        => [
-        'families'  => 'Alt Aileler',
-        'family'    => 'Ana Aile',
         'members'   => 'Üyeler',
     ],
     'helpers'       => [
@@ -26,18 +22,14 @@ return [
             'all_members'       => 'Aşağıdaki liste bu ailede ve bu aileden gelen ailelerde bulunan karakterlerin listesidir.',
             'direct_members'    => 'Pek çok aile onu yöneten ya da onu ünlü yapan üyelere sahiptir. Aşağıdaki liste doğrudan bu ailede olan karakterlerin listesidir.',
         ],
-        'title'     => ':name Üyeleri',
     ],
     'placeholders'  => [
-        'location'  => 'Bir konum seçin',
-        'name'      => 'Ailenin adı',
-        'type'      => 'Asil, Soylu, Soyu Kurumuş',
+        'name'  => 'Ailenin adı',
+        'type'  => 'Asil, Soylu, Soyu Kurumuş',
     ],
     'show'          => [
         'tabs'  => [
-            'all_members'   => 'Tüm Üyeler',
-            'families'      => 'Aileler',
-            'members'       => 'Üyeler',
+            'members'   => 'Üyeler',
         ],
     ],
 ];

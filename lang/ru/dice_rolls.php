@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Броски костей',
             'results'   => 'Результаты',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Бросок костей',
-        'name'      => 'Название броска костей',
-        'parameters'=> '4d6+3',
+        'name'          => 'Название броска костей',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

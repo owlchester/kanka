@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Nadradená šablóna atribútov',
-        'attributes'            => 'Atribúty',
+        'attributes'    => 'Atribúty',
     ],
     'hints'                 => [
         'automatic'                 => 'Atribúty boli automaticky aplikované zo šablóny atribútov :link.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Vyber jednu zo šablón atribútov',
-        'name'                  => 'Názov šablóny atribútov',
+        'name'  => 'Názov šablóny atribútov',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Šablóny atribútov',
-            'attributes'            => 'Atribúty',
+            'attributes'    => 'Atribúty',
         ],
     ],
 ];

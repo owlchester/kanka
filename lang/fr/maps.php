@@ -38,8 +38,6 @@ return [
         'has_clustering'    => 'Grouper les marqueurs',
         'initial_zoom'      => 'Zoom initial',
         'is_real'           => 'Utiliser OpenStreetMaps',
-        'map'               => 'Carte mère',
-        'maps'              => 'Cartes',
         'max_zoom'          => 'Zoom maximal',
         'min_zoom'          => 'Zoom minimal',
         'tabs'              => [
@@ -64,9 +62,7 @@ return [
         'nested_without'        => 'Affichage des cartes sans parent. Cliquer sur une rangée pour afficher les cartes enfants.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => 'Cartes de :name',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Groupes',
         'layers'    => 'Couches',

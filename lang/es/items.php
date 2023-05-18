@@ -12,11 +12,8 @@ return [
         'size'      => 'Tamaño',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => 'Inventarios del objeto :name',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Nombre del objeto',
         'price' => 'Precio del objeto',
         'size'  => 'Tamaño, peso, dimensiones',
         'type'  => 'Arma, Poción, Artefacto...',

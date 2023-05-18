@@ -9,7 +9,6 @@ return [
             'success'   => 'Dodano do elementu etykietę :name.',
             'title'     => 'Dodaj etykietę do elementu :name',
         ],
-        'title'     => 'Etykiety pochodne od :name',
     ],
     'create'        => [
         'title' => 'Nowa etykieta',
@@ -20,8 +19,6 @@ return [
         'children'          => 'Pochodne',
         'is_auto_applied'   => 'Dodawaj automatycznie',
         'is_hidden'         => 'Ukryj w nagłówkach i dymkach',
-        'tag'               => 'Etykieta źródłowa',
-        'tags'              => 'Etykiety pochodne',
     ],
     'helpers'       => [
         'nested_without'    => 'Wyświetlono wszystkie etykiety nieposiadające źródła. Kliknij na rząd, by wyświetlić etykiety pochodne.',
@@ -34,19 +31,13 @@ return [
         'tag'               => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę.',
     ],
     'index'         => [],
-    'new_tag'       => 'Nowa etykieta',
     'placeholders'  => [
-        'name'  => 'Nazwa etykiety',
-        'tag'   => 'Wybierz etykietę źródłówą',
         'type'  => 'Wiedza tajemna, wojna, historia, religia, weksylologia',
     ],
     'show'          => [
         'tabs'  => [
             'children'  => 'Pochodne',
-            'tags'      => 'Etykiety',
         ],
     ],
-    'tags'          => [
-        'title' => 'Etykiety pochodzące od :name',
-    ],
+    'tags'          => [],
 ];

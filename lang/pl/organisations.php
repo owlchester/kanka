@@ -9,8 +9,6 @@ return [
     'fields'        => [
         'is_defunct'    => 'Nie funkcjonuje',
         'members'       => 'Członkowie',
-        'organisation'  => 'Organizacja źródłowa',
-        'organisations' => 'Organizacje pochodne',
     ],
     'helpers'       => [
         'descendants'       => 'Na liście znajdują się wszystkie organizacje wywodzące się od tej, nie tylko bezpośrednio.',
@@ -37,12 +35,10 @@ return [
             'title'     => 'Edycja członka :name',
         ],
         'fields'        => [
-            'character'     => 'Postać',
-            'organisation'  => 'Organiacja',
-            'parent'        => 'Zwierzchnik',
-            'pinned'        => 'Przypnij',
-            'role'          => 'Rola',
-            'status'        => 'Rodzaj członkostwa',
+            'parent'    => 'Zwierzchnik',
+            'pinned'    => 'Przypnij',
+            'role'      => 'Rola',
+            'status'    => 'Rodzaj członkostwa',
         ],
         'helpers'       => [
             'all_members'   => 'Wszystkie postaci należące do tej organizacji i organizacji pochodnych.',
@@ -50,13 +46,10 @@ return [
             'pinned'        => 'Wybierz czy członkostwo ma być wyświetlane w sekcji "przypięte" wskazanych elementów.',
         ],
         'pinned'        => [
-            'both'          => 'Do obu',
-            'character'     => 'Do postaci',
-            'none'          => 'Do żadnego',
-            'organisation'  => 'Do organizacji',
+            'both'  => 'Do obu',
+            'none'  => 'Do żadnego',
         ],
         'placeholders'  => [
-            'character' => 'Wybierz postać',
             'parent'    => 'Zwierzchnik tego członka',
             'role'      => 'Przywódca, członek, Wielki Septon, mistrz szpiegów',
         ],
@@ -65,19 +58,10 @@ return [
             'inactive'  => 'Była działalność',
             'unknown'   => 'Nieznany',
         ],
-        'title'         => 'Członkowie organizacji :name',
     ],
-    'organisations' => [
-        'title' => 'Organizacje organizacji :name',
-    ],
+    'organisations' => [],
     'placeholders'  => [
-        'location'  => 'Wybierz miejsce',
-        'name'      => 'Nazwa organizacji',
-        'type'      => 'Kult, gang, podziemie niepodległościowe, fandom',
+        'type'  => 'Kult, gang, podziemie niepodległościowe, fandom',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizacje',
-        ],
-    ],
+    'show'          => [],
 ];

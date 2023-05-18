@@ -20,9 +20,7 @@ return [
         'public'            => [
             'description'   => 'Potraži inspiraciju u javnim kampanjama.',
             'filters'       => [
-                'all'       => 'Pojačani status',
-                'boosted'   => 'Pojačane kampanje',
-                'unboosted' => 'Nepojačane kampanje',
+                'all'   => 'Pojačani status',
             ],
             'no-results'    => 'Nije pronađena nijedna javna kampanja s ovim filterima. Pokušaj ponovno.',
             'title'         => 'Javne kampanje',
@@ -65,7 +63,6 @@ return [
         ],
         'boosts'            => [
             'beta'                  => 'Beta pristup nekim novim značajkama 30 dana prije općeg izdanja.',
-            'boosted'               => 'Pojačana kampanja',
             'css'                   => 'Proizvoljni CSS kampanje',
             'dashboards'            => 'Postavi prilagođene naslove ploče za uloge kampanje',
             'description'           => 'Određene razine pretplate pružaju korisnicima pojačanja koja mogu koristiti za unaprijeđenje kampanja. Ona omogućuju sljedeće prednosti.',
@@ -78,7 +75,6 @@ return [
             'recovery'              => 'Oporavak entiteta do 30 dana',
             'relation-visualiser'   => 'Vizualno istraži odnose entiteta',
             'theme'                 => 'Fiksna tema kampanje',
-            'title'                 => 'Pojačane kampanje',
             'tooltip'               => 'Proizvoljni kratki opisi entiteta',
             'upload'                => 'Povećane dozvoljene veličine prijenosa za sve članove',
         ],
@@ -166,7 +162,6 @@ return [
             'title'         => 'Upravljaj tajnama',
         ],
         'superboosts'       => [
-            'boosted'   => 'Super pojačano',
             'gallery'   => 'Galerija slika kampanje i integracije s uređivačem teksta Summernote',
             'logs'      => 'Potpuni zapisnici promjena na entitetima (do 30 dana)',
             'stats'     => 'Stranica postignuća kampanje',
@@ -251,7 +246,6 @@ return [
             'core'          => 'Pristup svim osnovnim funkcionalnostima',
             'huge_maps'     => 'Ogromna veličina mape (:size)',
             'huge_uploads'  => 'Ogromne veličine za prijenos',
-            'no_boosters'   => 'Nema pojačivača kampanje',
             'unlimited'     => 'Neograničene kampanje i prijenosi',
             'updates'       => 'Česte nadogradnje i poboljšanja',
         ],

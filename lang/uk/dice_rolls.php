@@ -18,14 +18,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Кидки кісток',
             'results'   => 'Результати',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Кидок кісток',
-        'name'      => 'Назва кидка кісток',
-        'parameters'=> '4d6 + 3',
+        'name'          => 'Назва кидка кісток',
+        'parameters'    => '4d6 + 3',
     ],
     'results'       => [
         'actions'   => [

@@ -20,17 +20,13 @@ return [
         ],
         'fields'    => [
             'description'   => 'Leírás',
-            'quest'         => 'Küldetés',
         ],
-        'title'     => ':name küldetés elemei',
     ],
     'fields'        => [
         'character'     => 'Küldetésadó',
         'copy_elements' => 'A küldetéshez tartozó elemek másolása',
         'date'          => 'Dátum',
         'is_completed'  => 'Teljesítve',
-        'quest'         => 'Szülő Küldetés',
-        'quests'        => 'Alküldetések',
         'role'          => 'Szerep',
     ],
     'helpers'       => [
@@ -42,8 +38,6 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'A küldetés valós világbéli dátuma',
-        'name'  => 'A küldetés neve',
-        'quest' => 'Főküldetés',
         'role'  => 'Az entitás szerepe a küldetésben',
         'type'  => 'Karaktertörténet, mellékszál, főszál',
     ],

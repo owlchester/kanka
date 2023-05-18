@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => ':name leszármazott képességei',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Adj egy képességet az entitáshoz',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Entitások a :name képességgel',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Képességek',
-        'ability'   => 'Szülő Képesség',
         'charges'   => 'Aktiválások száma',
     ],
     'helpers'       => [
@@ -39,7 +33,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Képességek',
             'entities'  => 'Entitások',
         ],
     ],

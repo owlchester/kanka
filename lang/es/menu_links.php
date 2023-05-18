@@ -30,7 +30,6 @@ return [
     ],
     'index'             => [],
     'placeholders'      => [
-        'entity'    => 'Elige una entidad',
         'filters'   => 'location_id=15&type=ciudad',
         'menu'      => 'Subpágina del menú (usa la última parte de la url)',
         'name'      => 'Nombre del acceso directo',

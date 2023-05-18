@@ -5,9 +5,7 @@ return [
         'title' => 'Új beszélgetés',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => ':name beszélgetés',
-    ],
+    'edit'          => [],
     'fields'        => [
         'is_closed'     => 'Lezárva',
         'messages'      => 'Üzenetek',
@@ -45,7 +43,6 @@ return [
         'is_closed' => 'A beszélgetést lezártuk.',
     ],
     'tabs'          => [
-        'conversation'  => 'Beszélgetés',
         'participants'  => 'Résztvevők',
     ],
     'targets'       => [

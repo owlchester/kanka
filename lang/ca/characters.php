@@ -3,24 +3,17 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Afegeix aparença',
-        'add_organisation'  => 'Afegeix una organització',
         'add_personality'   => 'Afegeix personalitat',
     ],
-    'conversations' => [
-        'title' => 'Converses de :name',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Nou personatge',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Es poden assignar tirades de daus a un personatge per utilitzar-les durant el joc.',
-        'title' => 'Tirades de daus de :name',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Edat',
-        'families'                  => 'Famílies',
         'is_appearance_pinned'      => 'Aparença fixada',
         'is_dead'                   => 'És mort',
         'is_personality_pinned'     => 'Personalitat fixada',
@@ -44,40 +37,24 @@ return [
         'personality_visible'       => 'Els trets de personalitat d\'aquest personatge són visibles per a tothom.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Aquí es mostren els objectes assignats als personatges.',
-        'title' => 'Objectes de :name',
-    ],
-    'journals'      => [
-        'title' => 'Diaris de :name',
-    ],
-    'maps'          => [
-        'title' => 'Mapa de relacions de :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'   => 'Afegeix una organització',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'S\'ha afegit el personatge a l\'organització.',
             'title'     => 'Nova organització per a :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'S\'ha tret el personatge de l\'organització.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'S\'ha actualitzat l\'organització del personatge.',
             'title'     => 'Actualiza l\'organizació de :name',
         ],
-        'fields'        => [
-            'organisation'  => 'Organització',
-            'role'          => 'Rol',
+        'fields'    => [
+            'role'  => 'Rol',
         ],
-        'hint'          => 'Els personatges poden formar part de moltes organitzacions, per representar per a qui treballen o a quina secta van tots els divendres a la tarda.',
-        'placeholders'  => [
-            'organisation'  => 'Trieu una organització',
-        ],
-        'title'         => 'Organitzacions de :name',
     ],
     'placeholders'  => [
         'age'               => 'Edat',
@@ -100,14 +77,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Aparença',
-        'general'       => 'Informació general',
         'personality'   => 'Personalitat',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organitzacions',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'No teniu permís per editar els trets de personalitat d\'aquest personatge.',
     ],

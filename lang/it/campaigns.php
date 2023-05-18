@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'                           => [
-        'boost' => 'Potenzia :name',
-    ],
+    'actions'                           => [],
     'create'                            => [
         'description'           => 'Crea una nuova campagna',
         'helper'                => [
@@ -40,7 +38,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Non hai accesso a questa campagna.',
-        'superboosted'  => 'Questa funzione è disponibile solo per campagne superpotenziate.',
         'unknown_id'    => 'Campagna sconosciuta.',
     ],
     'export'                            => [],
@@ -75,8 +72,6 @@ TEXT
     ],
     'following'                         => 'Che Segui',
     'helpers'                           => [
-        'boost_required'                    => 'Questa funzione richiede che la campagna sia potenziata. Puoi trovare maggiori informazioni sulla pagina :settings.',
-        'boost_required_multi'              => 'Queste funzioni richiedono che la campagna sia potenziata. Puoi trovare maggiori informazioni sulla pagina :settings.',
         'boosted'                           => 'Alcune caratteristiche sono sbloccate perché questa campagna è stata potenziata. Scopri di più nella pagina :settings.',
         'character_personality_visibility'  => 'Quando crei un nuovo personaggio come amministratore, seleziona l\'impostazione predefinita della privacy per i tratti della personalità.',
         'css'                               => 'Scrivi i tuoi CSS che saranno caricati all\'interno della pagina della tua campagna. Considera che qualsiasi abuso di questa funzionalità può portare alla rimozione dei tuoi CSS personalizzati.',
@@ -213,7 +208,6 @@ TEXT
         'follower-count'    => '{0} Nessun seguace|{1} :amount seguace|[2,] :amount seguaci',
     ],
     'panels'                            => [
-        'boosted'   => 'Potenziata',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permessi',
         'setup'     => 'Configurazione',
@@ -392,7 +386,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Potenzia campagna',
             'edit'  => 'Modifica Campagna',
             'leave' => 'Abbandona Campagna',
         ],
@@ -422,7 +415,6 @@ TEXT
         'none'  => 'Nessuno (predefinito alle impostazioni utente)',
     ],
     'ui'                                => [
-        'boosted'           => 'Potenziata',
         'collapsed'         => [
             'collapsed' => 'Ripiegato',
             'default'   => 'Predefinito',

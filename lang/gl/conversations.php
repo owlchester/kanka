@@ -5,9 +5,7 @@ return [
         'title' => 'Nova conversa',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => 'Conversa ":name"',
-    ],
+    'edit'          => [],
     'fields'        => [
         'is_closed'     => 'Pechada',
         'messages'      => 'Mensaxes',
@@ -45,7 +43,6 @@ return [
         'is_closed' => 'A conversa está pechada.',
     ],
     'tabs'          => [
-        'conversation'  => 'Conversa',
         'participants'  => 'Participantes',
     ],
     'targets'       => [

@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'members'       => 'Membri',
-        'organisation'  => 'Organizzazione Padre',
-        'organisations' => 'Sotto-Organizzazioni',
+        'members'   => 'Membri',
     ],
     'helpers'       => [
         'descendants'   => 'Questa lista contiene tutte le organizzazione che sono discendenti di questa organizzazione, non solo quelle direttamente sotto di essa.',
@@ -31,30 +29,18 @@ return [
             'title'     => 'Aggiorna Membro per :name',
         ],
         'fields'        => [
-            'character'     => 'Personaggio',
-            'organisation'  => 'Organizzazione',
-            'role'          => 'Ruolo',
+            'role'  => 'Ruolo',
         ],
         'helpers'       => [
             'members'   => 'La lista seguente rappresenta tutti i personaggi che fanno parte di questa organizzazione e di tutte le organizzazioni che ne discendono.',
         ],
         'placeholders'  => [
-            'character' => 'Seleziona un personaggio',
-            'role'      => 'Leader, Membro, Alto Septon, Maestro di Spinaggio',
+            'role'  => 'Leader, Membro, Alto Septon, Maestro di Spinaggio',
         ],
-        'title'         => 'Membri dell\'Organizzazione :name',
     ],
-    'organisations' => [
-        'title' => 'Organizzazioni dell\'Organizzazione :name',
-    ],
+    'organisations' => [],
     'placeholders'  => [
-        'location'  => 'Seleziona un luogo',
-        'name'      => 'Nome dell\'organizzazione',
-        'type'      => 'Culto, Banda, Ribellione, Fandom',
+        'type'  => 'Culto, Banda, Ribellione, Fandom',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizzazioni',
-        ],
-    ],
+    'show'          => [],
 ];

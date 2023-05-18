@@ -38,8 +38,6 @@ return [
         'has_clustering'    => 'Grupuj znaczniki',
         'initial_zoom'      => 'Wyjściowe powiększenie',
         'is_real'           => 'Użyj OpenStreetMaps',
-        'map'               => 'Mapa źrodłowa',
-        'maps'              => 'Mapy pochodne',
         'max_zoom'          => 'Maksymalne powiększenie',
         'min_zoom'          => 'Maksymalne oddalenie',
         'tabs'              => [
@@ -64,9 +62,7 @@ return [
         'nested_without'        => 'Wyświetlono wszystkie mapy nieposiadające źródła. Kliknij na rząd, by wyświetlić mapy pochodne.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => 'Mapy elementu :name',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Kategorie',
         'layers'    => 'Warstwy',

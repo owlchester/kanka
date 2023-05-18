@@ -20,9 +20,7 @@ return [
         'public'            => [
             'description'   => 'Ha inspiráció kell, nézz rá a kiemelt kampányainkra!',
             'filters'       => [
-                'all'       => 'Megerősítési státusz',
-                'boosted'   => 'Megerősített kampány',
-                'unboosted' => 'Nem megerősített kampány',
+                'all'   => 'Megerősítési státusz',
             ],
             'no-results'    => 'Nem találtunk olyan publikus kampányt, ami ezen szűrőfeltételeknek eleget tett volna. Kérlek próbáld újra.',
             'title'         => 'Nyilvános kampányok',
@@ -65,7 +63,6 @@ return [
         ],
         'boosts'            => [
             'beta'                  => 'Béta hozzáférés néhány új lehetőséghez a publikálás előtt 30 nappal.',
-            'boosted'               => 'Boost-olt kampány',
             'css'                   => 'Kampány-függő egyedi CSS',
             'dashboards'            => 'Egyéni főoldal beállítása a kampány különböző szerepeinek',
             'description'           => 'Bizonyos adományozási szintek adott számú boosterrel látják el a felhasználót, amellyel kampányt tud boostolni. Ezek az alábbi előnyöket biztosítják.',
@@ -78,7 +75,6 @@ return [
             'recovery'              => 'Entitások visszaállítása 30 napon belül',
             'relation-visualiser'   => 'Fedezd fel az entitások viszonyait vizuálisan',
             'theme'                 => 'Rögzített kampány megjelenítési téma.',
-            'title'                 => 'Boost-olt kampányok',
             'tooltip'               => 'Egyedi entitás tooltip-ek.',
             'upload'                => 'Megnövelt fájlfeltöltési korlát az összes Tag számára.',
         ],
@@ -164,7 +160,6 @@ return [
             'title'         => 'Titkok kezelése',
         ],
         'superboosts'       => [
-            'boosted'   => 'Szupererősített',
             'gallery'   => 'Kampánygaléria és integráció a Summernote szövegszerkesztővel',
             'logs'      => 'Teljes változás lista (:amount napig)',
             'stats'     => 'Kampányteljesítmények oldal',
@@ -249,7 +244,6 @@ return [
             'core'          => 'Hozzáférés az összes alapfunkcióhoz',
             'huge_maps'     => 'Hatalmas térkép méret (:size)',
             'huge_uploads'  => 'Nagy fájlfeltöltési limit',
-            'no_boosters'   => 'Nincs kampány booster',
             'unlimited'     => 'Korlátlan kampány & feltöltés',
             'updates'       => 'Rendszeres frissítés és fejlesztések',
         ],

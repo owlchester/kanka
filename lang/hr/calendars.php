@@ -50,12 +50,8 @@ return [
         ],
         'success'   => 'Događaj ":event" dodan u kalendar.',
     ],
-    'events'        => [
-        'title' => 'Događaji kalendara :name',
-    ],
+    'events'        => [],
     'fields'        => [
-        'calendar'              => 'Kalendar roditelj',
-        'calendars'             => 'Kalendari',
         'colour'                => 'Boja',
         'comment'               => 'Komentar',
         'current_day'           => 'Trenutni dan',
@@ -184,7 +180,6 @@ return [
         'leap_year_start'   => 'Prva godina koja je prijestupna',
         'length'            => 'Duljina događaja u danima',
         'months'            => 'Broj mjeseci u godini',
-        'name'              => 'Naziv kalendara',
         'recurring_until'   => 'Zadnja godina ponavljanja (ostavi prazno za ponavljanje zauvijek)',
         'seasons'           => 'Broj sezona',
         'suffix'            => 'Dometak trenutnoj eri (pr.n.e. ili n.e.)',

@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Angepinnt',
-        'note'      => 'übergeordnete Notiz',
-        'notes'     => 'untergeordnete Notiz',
+        'notes' => 'untergeordnete Notiz',
     ],
     'helpers'       => [
         'nested_without'    => 'Anzeigen aller Notizen ohne übergeordnete Notiz. Klicken Sie auf eine Zeile, um die untergeordneten Notizen anzuzeigen.',
@@ -19,7 +17,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Name der Notiz',
         'note'  => 'Wähle eine übergeordnete Notiz',
         'type'  => 'Religion, Spezies, Politisches System',
     ],

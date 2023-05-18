@@ -4,7 +4,6 @@ return [
     'actions'       => [
         'add_element'   => 'Pridať prvok k obdobiu :era',
         'back'          => 'Späť k :name',
-        'edit'          => 'Upraviť časovú os',
         'save_order'    => 'Uložiť nové poradie',
     ],
     'create'        => [
@@ -17,8 +16,6 @@ return [
         'copy_eras'     => 'Kopírovať obdobie',
         'eras'          => 'Obdobia',
         'reverse_order' => 'Otočiť poradie období',
-        'timeline'      => 'Nadradená časová os',
-        'timelines'     => 'Časové osy',
     ],
     'helpers'       => [
         'nested_without'    => 'Zobrazujú sa všetky časové osy, ktoré nemajú nadradenú časovú os. Kliknutím na riadok zobrazíš podradené časové osy.',
@@ -27,7 +24,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Názov časovej osy',
         'type'  => 'Primárna, Kronika sveta, Osud kráľovstva',
     ],
     'reorder'       => [
@@ -37,10 +33,7 @@ return [
     'show'          => [
         'tabs'  => [
             'reorder'   => 'Preskupenie časovej osi',
-            'timelines' => 'Časové osi',
         ],
     ],
-    'timelines'     => [
-        'title' => 'Časové osy podradené :name',
-    ],
+    'timelines'     => [],
 ];

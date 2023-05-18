@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Dobbelsteen Worpen',
             'results'   => 'Resultaten',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Dobbelsteen Worp',
-        'name'      => 'Naam van de Dobbelsteen Worp',
-        'parameters'=> '4d6+3',
+        'name'          => 'Naam van de Dobbelsteen Worp',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

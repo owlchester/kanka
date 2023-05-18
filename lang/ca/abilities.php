@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Habilitats descendents de :name',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Afegeix una habilitat a l\'entitat',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Entitats amb l\'habilitat :name',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Habilitats',
-        'ability'   => 'Habilitat superior',
         'charges'   => 'Usos',
     ],
     'helpers'       => [
@@ -39,7 +33,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Habilitats',
             'entities'  => 'Entitats',
         ],
     ],

@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'close' => 'Zavřít',
-        'full'  => 'Odkaz na obrázek',
         'save'  => 'Uložit',
     ],
     'breadcrumb'    => 'Galerie',

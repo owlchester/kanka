@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Zarlar',
             'results'   => 'Sonuçlar',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Zar atışı',
-        'name'      => 'Zar Atışının Adı',
-        'parameters'=> '4d6+3',
+        'name'          => 'Zar Atışının Adı',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

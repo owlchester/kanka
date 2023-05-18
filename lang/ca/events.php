@@ -8,12 +8,9 @@ return [
     'edit'          => [],
     'events'        => [
         'helper'    => 'Aquí es mostren els esdeveniments que tenen aquesta entitat com el seu esdeveniment pare.',
-        'title'     => 'Esdeveniments de :name',
     ],
     'fields'        => [
-        'date'      => 'Data',
-        'event'     => 'Esdeveniment pare',
-        'events'    => 'Esdeveniments',
+        'date'  => 'Data',
     ],
     'helpers'       => [
         'date'              => 'Aquest camp pot contenir qualsevol cosa i no està vinculat als calendaris de la campanya. Per vincular aquest esdeveniment amb un calendari, afegiu-lo des de la pestanya de recordatoris o des del mateix calendari.',
@@ -22,14 +19,9 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Data de l\'esdeveniment',
-        'name'  => 'Nom de l\'esdeveniment',
         'type'  => 'Cerimònia, festival, catàstrofe, batalla, naixement...',
     ],
-    'show'          => [
-        'tabs'  => [
-            'events'    => 'Esdeveniments',
-        ],
-    ],
+    'show'          => [],
     'tabs'          => [
         'calendars' => 'Entrades del calendari',
     ],

@@ -3,20 +3,14 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Dodaj fizički izgled',
-        'add_organisation'  => 'Dodaj organizaciju',
         'add_personality'   => 'Dodaj osobnost',
     ],
-    'conversations' => [
-        'title' => 'Razgovori s likom :name',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Novi lik',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Rezultati bacanja kockica se mogu dodijeliti liku za korištenje unutar igre.',
-        'title' => 'Rezultati bacanja kockica lika :name',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Starosna dob',
@@ -39,40 +33,24 @@ return [
         'personality_visible'       => 'Osobine ličnosti ovog lika su vidljive svima.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Predmeti se mogu dodijeliti na likove i bit će prikazani ovdje.',
-        'title' => 'Predmeti lika :name',
-    ],
-    'journals'      => [
-        'title' => 'Dnevnici lika :name',
-    ],
-    'maps'          => [
-        'title' => 'Mapa odnosa za lika :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'   => 'Dodaj organizaciju',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Lik je dodan u organizaciju.',
             'title'     => 'Nova organizacija za :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Organizacija lika uklonjena.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Organizacija lika ažurirana.',
             'title'     => 'Ažuriraj organizaciju za :name',
         ],
-        'fields'        => [
-            'organisation'  => 'Organizacija',
-            'role'          => 'Uloga',
+        'fields'    => [
+            'role'  => 'Uloga',
         ],
-        'hint'          => 'Likovi mogu biti dio više organizacija, predstavljajući za koga rade ili biti članovi tajnih društava.',
-        'placeholders'  => [
-            'organisation'  => 'Odaberi organizaciju...',
-        ],
-        'title'         => 'Organizacije lika :name',
     ],
     'placeholders'  => [
         'age'               => 'Starosna dob',
@@ -95,14 +73,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Fizički izgled',
-        'general'       => 'Općenite informacije',
         'personality'   => 'Osobnost',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizacije',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Nemaš dopuštenje mijenjati osobine ovog lika.',
     ],

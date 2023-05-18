@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Ana Özellik Taslağı',
-        'attributes'            => 'Özellikler',
+        'attributes'    => 'Özellikler',
     ],
     'hints'                 => [
         'automatic'                 => 'Özellikler :link Özellik Taslağından otomatik olarak uygulanır.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Bir özellik taslağı seçin',
-        'name'                  => 'Özellik Taslağının adı',
+        'name'  => 'Özellik Taslağının adı',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Özellik Taslakları',
-            'attributes'            => 'Özellikler',
+            'attributes'    => 'Özellikler',
         ],
     ],
 ];

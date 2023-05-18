@@ -3,20 +3,14 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Megjelenés hozzáadása',
-        'add_organisation'  => 'Szervezet hozzáadása',
         'add_personality'   => 'Személyiség hozzáadása',
     ],
-    'conversations' => [
-        'title' => ':name karakter beszélgetései',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Új karakter',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'A dobásokat egy karakterhez lehet rendelni a játék közbeni használat érdekében.',
-        'title' => ':name karakter dobásai',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Kor',
@@ -39,40 +33,24 @@ return [
         'personality_visible'       => 'Ennek a karakternek a személyes jellemzőit mindenki láthatja.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'A tárgyakat a karakterekhez rendelheted, és azokat itt mutatjuk meg.',
-        'title' => ':name karakter tárgyai',
-    ],
-    'journals'      => [
-        'title' => ':name karakter irományai',
-    ],
-    'maps'          => [
-        'title' => ':name karakter kapcsolati térképe',
-    ],
+    'items'         => [],
+    'journals'      => [],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'   => 'Szervezet hozzáadása',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'A karaktert hozzáadtuk a szervezethez.',
             'title'     => ':name számára új szervezet',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'A karakter szervezetét eltávolítottuk.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'A karakter szervezetét frissítettük.',
             'title'     => 'Szervezet frissítése :name számára',
         ],
-        'fields'        => [
-            'organisation'  => 'Szervezet',
-            'role'          => 'Szerep',
+        'fields'    => [
+            'role'  => 'Szerep',
         ],
-        'hint'          => 'A karakterek számos szervezet tagjai lehetnek, jelezve, hogy kinek dolgoznak, vagy hogy milyen titkos társaság tagjai.',
-        'placeholders'  => [
-            'organisation'  => 'Válassz egy szervezetet...',
-        ],
-        'title'         => ':name karakter szervezetei',
     ],
     'placeholders'  => [
         'age'               => 'Kor',
@@ -95,14 +73,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Megjelenés',
-        'general'       => 'Általános információk',
         'personality'   => 'Személyiség',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Szervezetek',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Nincs jogosultságod szerkeszteni ennek a karakternek a Személyiség jellemzőit.',
     ],

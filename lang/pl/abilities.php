@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Zdolności wywodzące się od :name',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Dodaj zdolność do elementu',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Elementy posiadające zdolność :name',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Zdolności pochodne',
-        'ability'   => 'Zdolność źródłowa',
         'charges'   => 'Ładunki',
     ],
     'helpers'       => [
@@ -44,7 +38,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Zdolności',
             'entities'  => 'Elementy',
             'reorder'   => 'Zmień kolejność',
         ],

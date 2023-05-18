@@ -12,11 +12,8 @@ return [
         'size'      => 'Veličina',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => 'Inventar predmeta :name',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Naziv predmeta',
         'price' => 'Cijena predmeta',
         'size'  => 'Veličina, težina, dimenzije',
         'type'  => 'Oružje, napitak, artefakt',

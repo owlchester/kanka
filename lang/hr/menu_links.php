@@ -29,7 +29,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'entity'    => 'Odaberite entitet',
         'filters'   => 'location_id=15&type=grad',
         'menu'      => 'Podstranica izbornika (koristite posljednji tekst URL-a)',
         'name'      => 'Naziv poveznice izbornika',

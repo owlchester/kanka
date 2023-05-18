@@ -24,8 +24,6 @@ return [
         'center_y'      => 'Varsayılan Enlem Konumu',
         'grid'          => 'Izgara',
         'initial_zoom'  => 'Temel yakınlaştırma',
-        'map'           => 'Ana Harita',
-        'maps'          => 'Haritalar',
         'max_zoom'      => 'Azami yakınlaştırma',
         'min_zoom'      => 'Asgari yakınlaştırma',
     ],
@@ -40,9 +38,7 @@ return [
         'missing_image'     => 'Katmanlar ve işaretler ekleyebilmek için önce haritayı bir görsel ile birlikte kaydedin.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => ':name Haritaları',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Gruplar',
         'layers'    => 'Katmanlar',

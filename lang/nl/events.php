@@ -6,13 +6,9 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'events'        => [
-        'title' => 'Gebeurtenis :name Gebeurtenissen',
-    ],
+    'events'        => [],
     'fields'        => [
-        'date'      => 'Datum',
-        'event'     => 'Bovenliggende gebeurtenis',
-        'events'    => 'Gebeurtenissen',
+        'date'  => 'Datum',
     ],
     'helpers'       => [
         'date'  => 'Dit veld kan alles bevatten en is niet gekoppeld aan de kalenders van de campaign. Om deze gebeurtenis aan een kalender te koppelen, voeg je deze toe aan de kalender of op het tabblad herinneringen van deze gebeurtenissen.',
@@ -20,7 +16,6 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Een datum voor je gebeurtenis',
-        'name'  => 'Naam van de gebeurtenis',
         'type'  => 'Ceremonie, Festival, Ramp, Veldslag, Geboorte',
     ],
     'show'          => [],

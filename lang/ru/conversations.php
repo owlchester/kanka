@@ -5,9 +5,7 @@ return [
         'title' => 'Новый разговор',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => 'Разговор :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'is_closed'     => 'Закрыт',
         'messages'      => 'Сообщения',
@@ -45,7 +43,6 @@ return [
         'is_closed' => 'Разговор закрыт.',
     ],
     'tabs'          => [
-        'conversation'  => 'Разговор',
         'participants'  => 'Участники',
     ],
     'targets'       => [

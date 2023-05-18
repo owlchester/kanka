@@ -22,9 +22,7 @@ return [
             'description'       => 'Beschreibung',
             'entity_or_name'    => 'Wählen Sie entweder ein Objekt der Kampagne aus oder geben Sie diesem Element einen Namen.',
             'name'              => 'Name',
-            'quest'             => 'Quest',
         ],
-        'title'     => 'Quest :name Elemente',
         'warning'   => [
             'editing'   => [
                 'description'   => 'Es sieht so aus, als ob gerade jemand anderes diese Quest bearbeitet! Möchtest du zurückgehen oder diese Warnung ignorieren, auf die Gefahr hin, dass Daten verloren gehen? Mitglieder, die diese Quest derzeit bearbeiten:',
@@ -37,8 +35,6 @@ return [
         'date'          => 'Datum',
         'element_role'  => 'Rolle',
         'is_completed'  => 'Abgeschlossen',
-        'quest'         => 'Übergeordnete Queste',
-        'quests'        => 'Untergeornete Queste',
         'role'          => 'Rolle',
     ],
     'helpers'       => [
@@ -55,8 +51,6 @@ return [
     'placeholders'  => [
         'date'      => 'Reales Datum der Quest',
         'entity'    => 'Name eines Elements aus der Quest',
-        'name'      => 'Name des Quests',
-        'quest'     => 'Elternquest',
         'role'      => 'Die Rolle des Objekts in der Quest',
         'type'      => 'Charakterentwicklung, Sidequest, Hauptquest',
     ],

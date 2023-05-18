@@ -38,8 +38,6 @@ return [
         'has_clustering'    => 'Agrupar marcadores',
         'initial_zoom'      => 'Zoom inicial',
         'is_real'           => 'Usar OpenStreetMaps',
-        'map'               => 'Mapa superior',
-        'maps'              => 'Mapas',
         'max_zoom'          => 'Zoom máximo',
         'min_zoom'          => 'Zoom mínimo',
         'tabs'              => [
@@ -64,9 +62,7 @@ return [
         'nested_without'        => 'Mostrando todos os mapas que non teñen un mapa superior. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => 'Mapas de ":name"',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Grupos',
         'layers'    => 'Capas',

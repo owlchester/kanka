@@ -1,25 +1,15 @@
 <?php
 
 return [
-    'characters'    => [
-        'title' => ':name helyszín karakterei',
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Új helyszín',
     ],
     'destroy'       => [],
     'edit'          => [],
-    'events'        => [
-        'title' => ':name helyszín eseményei',
-    ],
-    'families'      => [
-        'title' => ':name helyszínhez kapcsolódó családok',
-    ],
-    'fields'        => [
-        'characters'    => 'Karakterek',
-        'location'      => 'Szülő Helyszín',
-        'locations'     => 'Helyszínek',
-    ],
+    'events'        => [],
+    'families'      => [],
+    'fields'        => [],
     'helpers'       => [
         'characters'        => 'Minden, a helyszínen és annak alhelyszínein, vagy közvetlenül csak a helyszínen tartózkodó karakter listázása.',
         'descendants'       => 'Ez a lista a helyszín összes leszármazott helyszínét tartalmazza, nemcsak a közvetlen alhelyszíneit.',
@@ -29,17 +19,13 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
-    'locations'     => [
-        'title' => ':name helyszín alhelyszínei',
-    ],
+    'locations'     => [],
     'map'           => [],
     'maps'          => [],
     'organisations' => [],
     'panels'        => [],
     'placeholders'  => [
-        'location'  => 'Válassz ki egy szülő helyszínt!',
-        'name'      => 'A helyszín neve',
-        'type'      => 'Város, királyság, rom, táncklub',
+        'type'  => 'Város, királyság, rom, táncklub',
     ],
     'show'          => [],
 ];

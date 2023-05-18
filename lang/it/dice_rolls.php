@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Titi di Dado',
             'results'   => 'Risultati',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Tiro di Dado',
-        'name'      => 'Nome del Tiro di Dado',
-        'parameters'=> '4d6+3',
+        'name'          => 'Nome del Tiro di Dado',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

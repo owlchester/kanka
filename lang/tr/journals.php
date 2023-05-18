@@ -14,7 +14,6 @@ return [
     'placeholders'  => [
         'author'    => 'Günlüğü kim yazdı',
         'date'      => 'Günlüğün gerçek dünyada tarihi',
-        'name'      => 'Günlüğün adı',
         'type'      => 'Oturum, Tek Seferlik, Taslak',
     ],
     'show'          => [],

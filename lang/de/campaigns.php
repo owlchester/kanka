@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'                           => [
-        'boost' => 'Boost :name',
-    ],
+    'actions'                           => [],
     'create'                            => [
         'description'           => 'Erstelle eine neue Kampagne',
         'helper'                => [
@@ -41,7 +39,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Du hast keinen Zugang zu dieser Kampagne.',
-        'superboosted'  => 'Diese Funktion ist nur für Kampagnen mit Superboost verfügbar.',
         'unknown_id'    => 'Unbekannte Kampagne.',
     ],
     'export'                            => [],
@@ -76,8 +73,6 @@ TEXT
     ],
     'following'                         => 'Abonniert',
     'helpers'                           => [
-        'boost_required'                    => 'Für diese Funktion muss die Kampagne geboosted werden. Weitere Informationen finden Sie hier :settings page.',
-        'boost_required_multi'              => 'Für diese Funktionen muss die Kampagne geboostet werden. Weitere Informationen auf der Seite :settings page.',
         'boosted'                           => 'Einige Funktionen sind freigeschaltet, da diese Kampagne geboosted wird. Weitere Informationen finden Sie auf der :settings page.',
         'character_personality_visibility'  => 'Wählen Sie beim Erstellen eines neuen Charakters als Administrator die standardmäßige Privatsphäreeinstellung für seine Persönlichkeitsmerkmale aus.',
         'css'                               => 'Schreibe dein eigenes CSS, das du auf die Seiten deiner Kampagne laden kannst. Bitte beachte, dass jeder Missbrauch dieser Funktion dazu führen kann, dass dein benutzerdefiniertes CSS entfernt wird. Wiederholungen oder schwerwiegende Verstöße können dazu führen, dass deine Kampagne entfernt wird.',
@@ -220,7 +215,6 @@ TEXT
         'follower-count'    => '{0} Keine Follower|{1} :Anzahl Follower|[2,*] :Anzahl Follower',
     ],
     'panels'                            => [
-        'boosted'   => 'Geboosted',
         'dashboard' => 'Dashboard',
         'permission'=> 'Berechtigung',
         'setup'     => 'erstellen',
@@ -400,7 +394,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Boost Kampagne',
             'edit'  => 'Kampagne editieren',
             'leave' => 'Kampagne verlassen',
         ],
@@ -431,7 +424,6 @@ TEXT
         'none'  => 'Keine (standardmäßig Benutzereinstellungen)',
     ],
     'ui'                                => [
-        'boosted'           => 'geboostet',
         'collapsed'         => [
             'collapsed' => 'einklappen',
             'default'   => 'Ursprünglich',

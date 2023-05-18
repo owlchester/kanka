@@ -22,17 +22,13 @@ return [
             'description'       => 'Descripción',
             'entity_or_name'    => 'Selecciona una entidad de la campaña o asigna un nombre a este elemento.',
             'name'              => 'Nombre',
-            'quest'             => 'Misión',
         ],
-        'title'     => 'Elementos de la misión :name',
     ],
     'fields'        => [
         'character'     => 'Instigador',
         'copy_elements' => 'Copiar elementos vinculados a la misión',
         'date'          => 'Fecha',
         'is_completed'  => 'Completada',
-        'quest'         => 'Misión superior',
-        'quests'        => 'Submisiones',
         'role'          => 'Rol',
     ],
     'helpers'       => [
@@ -45,8 +41,6 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Fecha real de la misión',
-        'name'  => 'Nombre de la misión',
-        'quest' => 'Misión superior',
         'role'  => 'El papel que juega la entidad en la misión',
         'type'  => 'Historia Principal, Arco de Personaje, Misión Secundaria...',
     ],

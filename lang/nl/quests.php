@@ -11,8 +11,6 @@ return [
         'copy_elements' => 'Kopieer elementen die aan de quest zijn gekoppeld',
         'date'          => 'Datum',
         'is_completed'  => 'Voltooid',
-        'quest'         => 'Bovenliggende Quest',
-        'quests'        => 'Sub Quest',
         'role'          => 'Rol',
     ],
     'helpers'       => [],
@@ -22,8 +20,6 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Echte werelddatum voor de quest',
-        'name'  => 'Naam van de quest',
-        'quest' => 'Bovenliggende Quest',
         'role'  => 'De rol van deze entiteit in de quest',
         'type'  => 'Karakter Boog, Sidequest, Hoofd',
     ],

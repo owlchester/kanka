@@ -5,9 +5,7 @@ return [
         'title' => 'Nová diskusia',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => 'Diskusia :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'is_closed'     => 'Uzavretá',
         'messages'      => 'Správy',
@@ -45,7 +43,6 @@ return [
         'is_closed' => 'Diskusia je uzavretá.',
     ],
     'tabs'          => [
-        'conversation'  => 'Diskusia',
         'participants'  => 'Účastníci',
     ],
     'targets'       => [

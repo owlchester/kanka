@@ -4,7 +4,6 @@ return [
     'actions'       => [
         'add_element'   => 'Ajouter un élément à l\'ère :era',
         'back'          => 'Retour à :name',
-        'edit'          => 'Modifier la chronologie',
         'save_order'    => 'Enregistrer les changements',
     ],
     'create'        => [
@@ -17,8 +16,6 @@ return [
         'copy_eras'     => 'Copier les ères',
         'eras'          => 'Ères',
         'reverse_order' => 'Inverser l\'ordre des ères',
-        'timeline'      => 'Chronologie parent',
-        'timelines'     => 'Chronologies',
     ],
     'helpers'       => [
         'nested_without'    => 'Affichage des chronologies sans parent. Cliquer sur une rangée pour afficher les chronologies enfants.',
@@ -27,7 +24,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Nom de la chronologie',
         'type'  => 'Principale, chronique du monde, chronologie du royaume',
     ],
     'reorder'       => [
@@ -37,10 +33,7 @@ return [
     'show'          => [
         'tabs'  => [
             'reorder'   => 'Réordonner',
-            'timelines' => 'Chronologies',
         ],
     ],
-    'timelines'     => [
-        'title' => 'Chronologies de la chronologie :name',
-    ],
+    'timelines'     => [],
 ];

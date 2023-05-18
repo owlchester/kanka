@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'close' => 'Fechar',
-        'full'  => 'Link da imagem',
         'save'  => 'Salvar',
     ],
     'breadcrumb'    => 'Galeria',

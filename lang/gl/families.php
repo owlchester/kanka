@@ -6,12 +6,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'families'      => [
-        'title' => 'Familias da familia :name',
-    ],
+    'families'      => [],
     'fields'        => [
-        'families'  => 'Subfamilias',
-        'family'    => 'Familia superior',
         'members'   => 'Integrantes',
     ],
     'helpers'       => [
@@ -27,18 +23,14 @@ return [
             'all_members'       => 'A seguinte lista contén todas as personaxes que están nesta familia ou nalgunha das súas subfamilias.',
             'direct_members'    => 'Algunhas familias teñen integrantes que a lideraron ou a fixeron famosa. Aquí móstranse as personaxes que están directamente nesta familia.',
         ],
-        'title'     => 'Integrantes da familia :name',
     ],
     'placeholders'  => [
-        'location'  => 'Elixe un lugar',
-        'name'      => 'Nome da familia',
-        'type'      => 'Real, nobre, extinta...',
+        'name'  => 'Nome da familia',
+        'type'  => 'Real, nobre, extinta...',
     ],
     'show'          => [
         'tabs'  => [
-            'all_members'   => 'Todas as integrantes',
-            'families'      => 'Familias',
-            'members'       => 'Integrantes',
+            'members'   => 'Integrantes',
         ],
     ],
 ];

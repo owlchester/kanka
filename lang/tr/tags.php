@@ -8,7 +8,6 @@ return [
         'create'    => [
             'title' => ':name için etiket ekle',
         ],
-        'title'     => ':name Etiketine Bağlı Notlar',
     ],
     'create'        => [
         'title' => 'Yeni Etiket',
@@ -17,8 +16,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Bağlı not',
-        'tag'       => 'Ana Etiket',
-        'tags'      => 'Alt Etiket',
     ],
     'helpers'       => [],
     'hints'         => [
@@ -26,19 +23,13 @@ return [
         'tag'       => 'Aşağıda bu etiketin doğrudan altında olan tüm etiketler görüntülenir.',
     ],
     'index'         => [],
-    'new_tag'       => 'Yeni Etiket',
     'placeholders'  => [
-        'name'  => 'Etiketin adı',
-        'tag'   => 'Bir ana etiket seçin',
         'type'  => 'Bilgi, Savaşlar, Tarih, Din, Bayrakbilim',
     ],
     'show'          => [
         'tabs'  => [
             'children'  => 'Alt etiketler',
-            'tags'      => 'Etiketler',
         ],
     ],
-    'tags'          => [
-        'title' => ':name Alt Etiketleri',
-    ],
+    'tags'          => [],
 ];

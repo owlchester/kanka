@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Родительский шаблон атрибутов',
-        'attributes'            => 'Атрибуты',
+        'attributes'    => 'Атрибуты',
     ],
     'hints'                 => [
         'automatic'                 => 'Атрибуты добавлены автоматически по шаблону атрибутов :link.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Выберите шаблон атрибутов',
-        'name'                  => 'Название шаблона атрибутов',
+        'name'  => 'Название шаблона атрибутов',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Шаблоны атрибутов',
-            'attributes'            => 'Атрибуты',
+            'attributes'    => 'Атрибуты',
         ],
     ],
 ];

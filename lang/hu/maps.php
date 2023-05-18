@@ -26,8 +26,6 @@ return [
         'centering'     => 'Középre állítás',
         'grid'          => 'Rács',
         'initial_zoom'  => 'Kezdeti zoom',
-        'map'           => 'Szülő Térkép',
-        'maps'          => 'Térképek',
         'max_zoom'      => 'Maximális zoom',
         'min_zoom'      => 'Minimális zoom',
         'tabs'          => [
@@ -48,9 +46,7 @@ return [
         'nested_without'    => 'Minden olyan térkép mutatása, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermektérképeit.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => ':name térképei',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Csoportok',
         'layers'    => 'Rétegek',
