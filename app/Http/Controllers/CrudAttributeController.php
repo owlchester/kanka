@@ -166,7 +166,7 @@ class CrudAttributeController extends Controller
             'attr_type',
             'template_id'
         );
-        $this->attributeService->saveEntity($data, $entity);
+        $this->attributeService->entity($entity)->save($data);
 
         return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, '#attribute'])
             ->with('success', trans('crud.attributes.index.success', ['entity' => $entity->name]));

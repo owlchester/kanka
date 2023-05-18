@@ -136,7 +136,10 @@ class AttributeController extends Controller
             'attr_type',
             'template_id'
         );
-        $this->service->saveEntity($data, $entity);
+        $this->service
+            ->entity($entity)
+            ->updateVisibility(request()->filled('is_attributes_private'))
+            ->save($data);
 
         return redirect()->route('entities.attributes', $entity->id)
             ->with('success', __('entities/attributes.update.success', ['entity' => $entity->name]));

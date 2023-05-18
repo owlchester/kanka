@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
+use App\Traits\EntityAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Kanka\Dnd5eMonster\Template;
@@ -16,6 +17,7 @@ use Stevebauman\Purify\Facades\Purify;
 class AttributeService
 {
     use CampaignAware;
+    use EntityAware;
 
     protected array $loadedTemplates = [];
     protected array $loadedPlugins = [];
@@ -59,19 +61,18 @@ class AttributeService
     /**
      * Add form attributes to an entity
      * @param array $request
-     * @param Entity $entity
      * @return int
      * @throws \Exception
      */
-    public function saveEntity($request, Entity $entity)
+    public function save($request)
     {
         // First, let's get all the stuff for this entity
         $existing = [];
-        $existingAttributes = $entity->attributes()->where('is_hidden', '0')->get();
+        $existingAttributes = $this->entity->attributes()->where('is_hidden', '0')->get();
 
         //Dont load hidden attributes for deletion, unless deleting all.
         if (empty($request) || request()->filled('delete-all-attributes')) {
-            $existingAttributes = $entity->attributes()->get();
+            $existingAttributes = $this->entity->attributes()->get();
         }
 
         foreach ($existingAttributes as $att) {
@@ -125,12 +126,12 @@ class AttributeService
                 unset($existing[$id]);
             } else {
                 // Special case if the attribute is a random
-                if ($entity->typeId() != config('entities.ids.attribute_template')) {
+                if ($this->entity->typeId() != config('entities.ids.attribute_template')) {
                     list($typeID, $value) = $this->randomAttribute($typeID, $value);
                 }
 
                 $attribute = new Attribute([
-                    'entity_id' => $entity->id,
+                    'entity_id' => $this->entity->id,
                     'type_id' => $typeID,
                     'name' => $name,
                     'is_private' => $isPrivate,
@@ -152,15 +153,30 @@ class AttributeService
 
         // If a template id was provided, try and add it to the new entity.
         if (!empty($templateId)) {
-            $this->apply($entity, $templateId);
+            $this->apply($this->entity, $templateId);
         }
 
         if ($touch) {
-            $entity->touchSilently();
-            $entity->child->touchSilently();
+            $this->entity->touchSilently();
+            $this->entity->child->touchSilently();
         }
 
         return $order;
+    }
+
+    /**
+     * @param bool $privateAttributes
+     * @return $this
+     */
+    public function updateVisibility(bool $privateAttributes): self
+    {
+        // Only admins can update this value
+        if (!auth()->user()->isAdmin()) {
+            return $this;
+        }
+        $this->entity->is_attributes_private = $privateAttributes;
+        $this->entity->saveQuietly();
+        return $this;
     }
 
     /**
