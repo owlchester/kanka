@@ -127,19 +127,19 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     {!! $model->name !!}
                 </h1>
                 @if ($model instanceof \App\Models\Character && $model->is_dead)
-                    <span class="entity-name-icon entity-char-dead cursor-pointer text-xl" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}">
+                    <span class="entity-name-icon entity-char-dead cursor-pointer text-2xl" data-toggle="tooltip" title="{{ __('characters.hints.is_dead') }}">
                         <x-icon class="ra ra-skull entity-icons"></x-icon>
                         <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                     </span>
                 @endif
                 @if ($model instanceof \App\Models\Quest && $model->is_completed)
-                    <span class="entity-name-icon entity-quest-complete cursor-pointer text-xl" data-toggle="tooltip" title="{{ __('quests.fields.is_completed') }}">
+                    <span class="entity-name-icon entity-quest-complete cursor-pointer text-2xl" data-toggle="tooltip" title="{{ __('quests.fields.is_completed') }}">
                         <x-icon class="fa-solid fa-check-circle entity-icons"></x-icon>
                         <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
                     </span>
                 @endif
                 @if ($model instanceof \App\Models\Organisation && $model->is_defunct)
-                    <span class="entity-name-icon entity-org-defunct cursor-pointer text-xl" data-toggle="tooltip" title="{{ __('organisations.hints.is_defunct') }}">
+                    <span class="entity-name-icon entity-org-defunct cursor-pointer text-2xl" data-toggle="tooltip" title="{{ __('organisations.hints.is_defunct') }}">
                         <x-icon class="fa-solid fa-shop-slash entity-icons "></x-icon>
                         <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
                     </span>
@@ -147,14 +147,14 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
 
                 @if (auth()->check() && auth()->user()->isAdmin())
                     <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy" aria-haspopup="dialog">
-                            <i class="fa-solid fa-lock entity-icons text-xl" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                            <i class="fa-solid fa-lock-open entity-icons text-xl" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <i class="fa-solid fa-lock entity-icons text-2xl" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                            <i class="fa-solid fa-lock-open entity-icons text-2xl" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                             <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                         </span>
                 @endif
                 <div class="btn-group entity-actions">
                     <span role="button" tabindex="0" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
-                        <i class="fa-solid fa-cog entity-icons cursor-pointer text-xl transition-all hover:rotate-45" aria-hidden="true"></i>
+                        <i class="fa-solid fa-cog entity-icons cursor-pointer text-2xl transition-all hover:rotate-45" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                     </span>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu" id="entity-submenu">
