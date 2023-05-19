@@ -13,7 +13,7 @@ if (isset($model) && $model->journal) {
 
 
 <x-forms.foreign
-    name="journal"
+    name="journal_id"
     key="journal"
     entityType="journals"
     :allowNew="$allowNew ?? true"
