@@ -280,7 +280,7 @@ class SearchService
             if (!$this->full) {
                 $searchResults[] = [
                     'id' => $model->id,
-                    'text' => $parsedName . ' (' . __('entities.' . $model->type()) . ')'
+                    'text' => $parsedName . ' (' . Module::singular($model->type_id, $model->entityType()) . ')'
                 ];
                 continue;
             }
@@ -290,7 +290,7 @@ class SearchService
                 'fullname' => $parsedNameAlias,
                 'image' => $img,
                 'name' => $parsedName,
-                'type' => __('entities.' . $model->type()),
+                'type' => Module::singular($model->type_id, $model->entityType()),
                 'model_type' => $model->type(),
                 'url' => $model->url(),
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line
