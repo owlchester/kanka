@@ -6,6 +6,8 @@ return [
         'file-link' => 'File link',
         'image-link'=> 'Image link',
         'save'      => 'Save',
+        'focus_point'   => 'Set focus point',
+        'reset_focus'   => 'Reset focus point'
     ],
     'breadcrumb'    => 'Gallery',
     'cta'           => 'Manage and reuse images throughout the campaign.',

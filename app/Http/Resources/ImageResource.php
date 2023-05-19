@@ -34,6 +34,10 @@ class ImageResource extends JsonResource
             'updated_at' => $image->updated_at,
 
             'visibility_id' => $image->visibility_id,
+
+            'focus_x'   => $image->focus_x,
+            'focus_y'   => $image->focus_y,
+
         ];
     }
 }
