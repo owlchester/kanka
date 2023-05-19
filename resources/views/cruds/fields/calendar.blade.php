@@ -13,7 +13,7 @@
 @endphp
 @endif
 <x-forms.foreign
-    :name="$name ?? calendar_id"
+    name="calendar_id"
     key="calendar"
     entityType="calendars"
     :allowNew="$allowNew ?? true"
