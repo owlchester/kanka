@@ -6,7 +6,7 @@
             <input type="hidden" name="item_id" value="" />
             @include('cruds.fields.item', [
                 'preset' => (!empty($inventory) && $inventory->item ? $inventory->item: false),
-                'parentDropdown' => request()->ajax() ? '#entity-modal' : null
+                'dropdownParent' => request()->ajax() ? '#entity-modal' : null
             ])
         </div>
     </div>
