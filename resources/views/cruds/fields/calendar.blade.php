@@ -1,6 +1,8 @@
 @if (!$campaignService->enabled('calendars'))
     <?php return ?>
 @endif
+
+@if (!isset($preset))
 @php
     $preset = null;
     if (isset($model) && $model->calendar) {
@@ -9,8 +11,9 @@
         $preset = FormCopy::field('calendar')->select($isParent ?? false, \App\Models\Calendar::class);
     }
 @endphp
+@endif
 <x-forms.foreign
-    name="calendar_id"
+    :name="$name ?? calendar_id"
     key="calendar"
     entityType="calendars"
     :allowNew="$allowNew ?? true"
