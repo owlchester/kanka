@@ -102,7 +102,7 @@ class TimelineEra extends Model
      * @return string
      */
     public function ages(): string
-    {        
+    {
         $a = new \NumberFormatter(app()->getLocale(), \NumberFormatter::DECIMAL);
         $from = mb_strlen($this->start_year);
         $to = mb_strlen($this->end_year);
@@ -117,7 +117,7 @@ class TimelineEra extends Model
             return '> ' . $a->format($this->start_year);
         }
 
-        return $a->format($this->start_year) . ' &mdash; ' . $a->format($this->start_year);
+        return $a->format($this->start_year) . ' &mdash; ' . $a->format($this->end_year);
     }
 
     /**
