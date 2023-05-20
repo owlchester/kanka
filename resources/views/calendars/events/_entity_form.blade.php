@@ -5,7 +5,6 @@ $onlyOneCalendar = count($calendars) == 1;
 {{ csrf_field() }}
 
 <div id="entity-calendar-modal-form">
-    <h1>waaa</h1>
     <div class="form-group entity-calendar-selector">
         <x-forms.foreign
             name="calendar_id"
@@ -14,7 +13,8 @@ $onlyOneCalendar = count($calendars) == 1;
             :allowClear="true"
             :route="route('calendars.find', isset($model) ? ['exclude' => $model->id] : null)"
             :selected="$onlyOneCalendar ? $calendars->first() : null"
-            :dropdownParent="request()->ajax() ? '#entity-modal' : null">
+            :dropdownParent="request()->ajax() ? '#entity-modal' : null"
+            :entityTypeID="config('entities.ids.calendar')">
         </x-forms.foreign>
     </div>
 </div>
