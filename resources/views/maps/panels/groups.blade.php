@@ -11,8 +11,8 @@
             {{ __('maps.panels.groups') }}
         </h3>
     </div>
-    <div id="datagrid-parent" class="table-responsive">
-        @include('layouts.datagrid._table')
+    <div id="datagrid-parent">
+        @include('layouts.datagrid._table', ['responsive' => true])
     </div>
     @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
 

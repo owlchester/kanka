@@ -7,6 +7,7 @@
 @endif
 
 <div class="box-body no-padding">
+    @if (isset($responsive))<div class="table-responsive">@endif
     <table class="table table-hover mb-0" data-render="datagrid2">
         <thead>
             <tr>
@@ -41,6 +42,8 @@
         </tr>
         </tfoot>
     </table>
+
+    @if (isset($responsive))</div>@endif
 </div>
 @if ($rows->hasPages() || Datagrid::hasBulks() )
     <div class="box-footer text-right clearfix">
