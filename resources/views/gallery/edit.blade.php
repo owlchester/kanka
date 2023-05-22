@@ -19,11 +19,7 @@ $imageCount = 0;
                     <div class="help-block">This file is a font file.</div>
                 @else
                     <div class="text-center">
-                        @if($image->focus_x && $image->focus_y)
-                            <img src="{{ Img::focus($image->focus_x, $image->focus_y)->crop(300, 300)->url($image->path) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
-                        @else
-                            <img src="{{ Img::crop(300, 300)->url($image->path) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
-                        @endif
+                        <img src="{{ $image->getFocusUrl() }}" class="max-w-full rounded" alt="{{ $image->name }}" />
                     </div>
                 @endif
 

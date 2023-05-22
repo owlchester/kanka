@@ -24,15 +24,9 @@
                 <x-icon class="fa-regular fa-file text-4xl"></x-icon>
             </div>
         @else
-            @if ($image->focus_x && $image->focus_y)
-                <a class="block avatar grow relative cover-background"
-                    style="background-image: url('{{ Img::focus($image->focus_x, $image->focus_y)->crop(192, 144)->url($image->path) }}')">
-                </a>
-            @else
-                <a class="block avatar grow relative cover-background"
-                    style="background-image: url('{{ Img::crop(192, 144)->url($image->path) }}')">
-                </a>
-            @endif
+            <a class="block avatar grow relative cover-background"
+                style="background-image: url('{{ $image->getFocusUrl() }}')">
+            </a>
         @endif
         <div class="block px-2 py-4 h-12 truncate">
             {!! $image->visibilityIcon() !!}

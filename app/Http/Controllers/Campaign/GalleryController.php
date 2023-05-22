@@ -137,13 +137,10 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
-        $image->focus_x = $request->post('focus_x');
-        $image->focus_y = $request->post('focus_y');
-        $image->save();
-
-        foreach($image->inEntities() as $entity) {
-            $entity->clearAvatarCache();
-        }
+        $this->service
+            ->campaign($campaign)
+            ->image($image)
+            ->saveFocusPoint($request);
 
         $params = null;
         if (!empty($image->folder_id)) {

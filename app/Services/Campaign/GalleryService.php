@@ -3,6 +3,7 @@
 namespace App\Services\Campaign;
 
 use App\Http\Requests\Campaigns\GalleryImageStore;
+use App\Http\Requests\StoreImageFocus;
 use App\Models\Image;
 use App\Models\Visibility;
 use App\Observers\PurifiableTrait;
@@ -71,6 +72,23 @@ class GalleryService
         }
 
         return $images;
+    }
+
+    /**
+     * @param StoreImageFocus $request
+     * @return Image
+     */
+    public function saveFocusPoint(StoreImageFocus $request): Image
+    {
+        $this->image->focus_x = $request->post('focus_x');
+        $this->image->focus_y = $request->post('focus_y');
+        $this->image->save();
+
+        foreach($this->image->inEntities() as $entity) {
+            $entity->clearAvatarCache();
+        }
+
+        return $this->image;
     }
 
     /**

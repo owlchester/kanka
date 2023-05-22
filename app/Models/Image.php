@@ -255,4 +255,13 @@ class Image extends Model
     {
         return in_array($this->ext, ['woff', 'woff2']);
     }
+
+    public function getFocusUrl(): string
+    {
+        if (!$this->focus_x && !$this->focus_y){
+            return Img::crop(192, 144)->url($this->path);
+        }
+
+        return Img::focus($this->focus_x, $this->focus_y)->crop(192, 144)->url($this->path);
+    }
 }

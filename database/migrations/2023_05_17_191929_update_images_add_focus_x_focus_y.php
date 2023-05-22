@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('images', function (Blueprint $table) {
-            $table->integer('focus_x')->nullable();
-            $table->integer('focus_y')->nullable();
+            $table->integer('focus_x')->unsigned()->nullable();
+            $table->integer('focus_y')->unsigned()->nullable();
         });
     }
 

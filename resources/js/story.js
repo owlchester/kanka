@@ -10,13 +10,12 @@ function initImageFocus() {
     if (target.length === 0) {
         return;
     }
-    console.log('its starting');
 
     target.on('click', function (e) {
         let elm = $(this);
         let posX = e.pageX - elm.offset().left;
         let posY = e.pageY - elm.offset().top;
-        console.log('where click', posX, posY);
+        //console.log('where click', posX, posY);
 
         $('.focus').css('top', posY - 22).css('left', posX - 22).show();
         $('input[name="focus_x"]').val(parseInt(posX));
