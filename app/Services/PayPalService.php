@@ -6,6 +6,7 @@ use App\Traits\UserAware;
 use Laravel\Cashier\Subscription;
 use Carbon\Carbon;
 use Srmklive\PayPal\Services\PayPal;
+use App\Models\UserLog;
 
 class PayPalService
 {
@@ -78,5 +79,7 @@ class PayPalService
         $sub->quantity = 1;
         $sub->ends_at = Carbon::now()->addYear();
         $sub->save();
+
+        $this->user->log(UserLog::TYPE_SUB_PAYPAL);
     }
 }
