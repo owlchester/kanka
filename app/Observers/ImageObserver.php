@@ -20,7 +20,7 @@ class ImageObserver
 
     public function deleting(Image $image)
     {
-        if (!$image->is_folder) {
+        if (!$image->isFolder()) {
             return;
         }
 
