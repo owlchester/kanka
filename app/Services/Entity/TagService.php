@@ -27,7 +27,7 @@ class TagService
         return $this->canCreate;
     }
 
-    public function fetch(mixed $id, int $campaignID): Tag
+    public function fetch(mixed $id, int $campaignID): Tag|null
     {
         /** @var Tag|null $tag */
         $tag = Tag::find($id);

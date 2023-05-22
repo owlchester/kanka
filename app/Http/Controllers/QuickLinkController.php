@@ -8,13 +8,8 @@ use App\Services\MenuLinkService;
 
 class QuickLinkController extends Controller
 {
-    /** @var MenuLinkService */
-    protected $service;
+    protected MenuLinkService $service;
 
-    /**
-     * AbilityController constructor.
-     * @param MenuLinkService $service
-     */
     public function __construct(MenuLinkService $service)
     {
         $this->service = $service;

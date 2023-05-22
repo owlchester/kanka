@@ -177,7 +177,7 @@ function registerEntityCalendarForm() {
             entityCalendarAdd.hide();
             entityCalendarForm.show();
 
-            var defaultCalendarId = entityCalendarAdd.data('default-calendar');
+            let defaultCalendarId = $(this).data('default-calendar');
             if (defaultCalendarId) {
                 entityCalendarField.val(defaultCalendarId);
                 entityCalendarCancel.show();
@@ -199,7 +199,7 @@ function registerEntityCalendarForm() {
         entityCalendarField.on('change', function () {
             entityCalendarSubForm.hide();
             // No new calendar selected? hide everything again
-            if (!entityCalendarField.val()) {
+            if (!$(this).val()) {
                 calendarHideSubform();
                 return;
             }

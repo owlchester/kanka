@@ -230,8 +230,9 @@ class TimelineEraController extends Controller
             abort(404);
         }
 
+        $new = (bool) request()->get('new');
         return response()->json([
-            'positions' => $timelineEra->positionOptions(),
+            'positions' => $timelineEra->positionOptions(null, $new),
         ]);
     }
 }

@@ -7,8 +7,10 @@
     </div>
     @if ($dismissible)
     <div class="flex-none">
-        <x-icon class="fa-solid fa-times"></x-icon>
-        <span class="sr-only">{{ __('crud.click_modal.close') }}</span>
+        <button type="button" data-dismiss="alert" aria-hidden="true">
+            <x-icon class="fa-solid fa-times"></x-icon>
+            <span class="sr-only">{{ __('crud.click_modal.close') }}</span>
+        </button>
     </div>
     @endif
 </div>

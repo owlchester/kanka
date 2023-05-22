@@ -6,7 +6,6 @@
 ?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('maps/markers.edit.title', ['name' => $model->name]),
-    'description' => '',
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
         ['url' => $map->entity->url(), 'label' => $map->name],
@@ -27,6 +26,11 @@
             </div>
         @endif
         <div class="panel-body">
+            @if (!$map->explorable())
+                <x-alert type="warning">
+                    <p>{{ __('maps.helpers.missing_image') }}</p>
+                </x-alert>
+            @else
             <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @include('partials.errors')
 
@@ -58,6 +62,7 @@
                 </div>
             </div>
             {!! Form::close() !!}
+            @endif
         </div>
     </div>
 
@@ -71,6 +76,7 @@
 
 @endsection
 
+@if ($map->explorable())
 @section('scripts')
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
@@ -145,3 +151,4 @@
 
     </style>
 @endsection
+@endif
