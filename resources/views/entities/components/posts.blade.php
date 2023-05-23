@@ -36,7 +36,7 @@ $postCount = 0;
         @endif
 
         @include('entities.components._post')
-        @includeWhen($postCount % 3 === 0, 'partials.ads.inline')
+        @includeWhen($postCount > 0 && $postCount % 3 === 0, 'partials.ads.inline')
         @php $postCount++; @endphp
     @endforeach
 
