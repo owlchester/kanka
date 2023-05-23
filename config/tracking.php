@@ -52,6 +52,7 @@ return [
         'entity' => env('TRACKING_VENATUS_STATIC_BANNER'),
         'footer' => env('TRACKING_VENATUS_DYNAMIC_BANNER'),
         'profile' => env('TRACKING_VENATUS_DYNAMIC_BOX'),
+        'inline' => env('TRACKING_VENATUS_DYNAMIC_MOBILE')
 
     ],
 ];

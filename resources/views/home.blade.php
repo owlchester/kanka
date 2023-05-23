@@ -5,6 +5,7 @@
 @php
     $position = 0;
     $seoTitle = (!empty($dashboard) ? $dashboard->name : __('sidebar.dashboard')) .  ' - ' . $campaign->name;
+    $row = 0;
 @endphp
 
 @extends('layouts.app', [
@@ -125,8 +126,10 @@
                 continue;
             endif; ?>
             @if ($position + $widget->colSize() > 12)
-                </div><div class="row">
-            <?php $position = 0; ?>
+                </div>
+                @includeWhen($row % 3 === 0 || $row === 0, 'partials.ads.inline')
+                <div class="row">
+                @php $position = 0; $row++; @endphp
             @endif
                 <div class="col-md-{{ $widget->colSize() }}">
                     <div class="widget widget-{{ $widget->widget }}">
