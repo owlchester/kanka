@@ -75,6 +75,12 @@ return [
         'success'   => 'Attribute template :name applied to :entity',
         'title'     => 'Apply an attribute template for :name',
     ],
+    'toasts'        => [
+        'pin' => 'Attribute pinned',
+        'unpin' => 'Attribute unpinned',
+        'lock' => 'Attribute locked',
+        'unlock' => 'Attribute unlocked',
+    ],
     'types'         => [
         'attribute' => 'Attribute',
         'block'     => 'Block',
