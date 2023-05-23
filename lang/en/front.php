@@ -144,7 +144,6 @@ return [
             'title'         => 'Journals',
         ],
         'patreon'           => [
-            '2fa'               => 'Access to Two Factor Authentication',
             'api_calls'         => 'Increased API calls (90 per minute)',
             'boosts'            => 'Campaign Boosters',
             'bragi'             => 'Access to Bragi, Kanka\'s worldbuilding AI',
