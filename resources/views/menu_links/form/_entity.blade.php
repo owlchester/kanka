@@ -25,7 +25,7 @@ $menus = [
             'locations' => __('entities.locations'),
         ],
         __('entities.families') => [
-            'families' => __('families.show.tabs.families')
+            'families' => __('entities.families')
         ],
         __('entities.items') => [
             'inventories' => __('items.show.tabs.inventories')

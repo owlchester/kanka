@@ -21,7 +21,7 @@ elseif(!empty($model)) {
     }
 }
 ?>
-<label>{{ __('characters.show.tabs.organisations') }}</label>
+<label>{{ \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations')) }}</label>
 
 <select multiple="multiple" name="organisations[]" class="form-control select2" data-tags="true" style="width: 100%" data-url="{{ route('organisations.find') }}" data-allow-clear="true" data-allow-new="false" data-placeholder="">
     @foreach ($selectedOption as $key => $val)
