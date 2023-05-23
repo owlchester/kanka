@@ -19,7 +19,7 @@ $imageCount = 0;
                     <div class="help-block">This file is a font file.</div>
                 @else
                     <div class="text-center">
-                        <img src="{{ $image->getFocusUrl() }}" class="max-w-full rounded" alt="{{ $image->name }}" />
+                        <img src="{{ $image->getUrl(192, 144) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
                     </div>
                 @endif
 

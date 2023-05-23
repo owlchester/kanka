@@ -25,7 +25,7 @@
             </div>
         @else
             <a class="block avatar grow relative cover-background"
-                style="background-image: url('{{ $image->getFocusUrl() }}')">
+                style="background-image: url('{{ $image->getUrl(192, 144) }}')">
             </a>
         @endif
         <div class="block px-2 py-4 h-12 truncate">

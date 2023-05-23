@@ -396,9 +396,7 @@ class Entity extends Model
             return '';
         }
 
-        return Img::resetCrop()
-            ->crop(1200, 400)
-            ->url($this->header->path);
+        return $this->header->getUrl(1200, 400);
     }
 
     /**
