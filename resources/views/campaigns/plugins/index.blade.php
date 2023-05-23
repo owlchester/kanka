@@ -13,8 +13,8 @@
 @if($campaign->boosted())
     <div class="box box-solid">
         @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_plugins.bulk']) !!} @endif
-        <div id="datagrid-parent" class="table-responsive">
-            @include('campaigns.plugins._table', ['empty' => __('campaigns/plugins.empty_list')])
+        <div id="datagrid-parent">
+            @include('campaigns.plugins._table', ['empty' => __('campaigns/plugins.empty_list'), 'responsive' => true])
         </div>
         @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
     </div>

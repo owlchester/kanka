@@ -16,6 +16,9 @@ return [
         'copy'          => 'Vytvoriť kópiu',
         'select_one'    => 'Vyber kampaň',
     ],
+    'helpers'       => [
+        'copy'  => 'Vytvoriť kópiu objektu v cieľovej kampani.',
+    ],
     'panel'         => [
         'description'           => 'Vyber kampaň, do ktorej chceš tento objekt presunúť alebo skopírovať.',
         'description_bulk_copy' => 'Vyber kampaň, do ktorej chceš vybrané objekty skopírovať.',

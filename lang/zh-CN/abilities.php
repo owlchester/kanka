@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => ':name的子能力',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => '为实体添加能力',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => '拥有:name能力的实体',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => '能力',
-        'ability'   => '父能力',
         'charges'   => '充能',
     ],
     'helpers'       => [
@@ -39,7 +33,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => '能力',
             'entities'  => '实体',
         ],
     ],

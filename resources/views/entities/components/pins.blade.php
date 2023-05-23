@@ -10,6 +10,12 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
 ?>
 
 @if ($forceShow || $model->entity->hasPins())
+
+    @ads('profile')
+    <div>
+        <div class="vm-placement" data-id="{{ config('tracking.venatus.profile') }}"></div>
+    </div>
+    @endads
     <div class="sidebar-section-box entity-pins {{ $model->entity->hasPins() ? '' : 'entity-empty-pin' }}">
         <div class="sidebar-section-title cursor-pointer text-lg user-select" data-toggle="collapse" data-target="#sidebar-pinned-elements">
             <i class="fa-solid fa-chevron-right" aria-hidden="true" style="display: none"></i>

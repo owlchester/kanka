@@ -9,7 +9,6 @@ return [
             'success'   => 'S\'ha afegit l\'etiqueta :name a l\'entitat.',
             'title'     => 'Afegeix una etiqueta a :name',
         ],
-        'title'     => 'Descendents de l\'etiqueta :name',
     ],
     'create'        => [
         'title' => 'Nova etiqueta',
@@ -18,8 +17,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'children'  => 'Entitats niades',
-        'tag'       => 'Etiqueta superior',
-        'tags'      => 'Subetiquetes',
     ],
     'helpers'       => [
         'nested_without'    => 'S\'estan mostrant les etiquetes sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne les descendents.',
@@ -29,19 +26,13 @@ return [
         'tag'       => 'Aquí es mostren totes les etiquetes que estan directament sota aquesta etiqueta.',
     ],
     'index'         => [],
-    'new_tag'       => 'Nova etiqueta',
     'placeholders'  => [
-        'name'  => 'Nom de l\'etiqueta',
-        'tag'   => 'Trieu una etiqueta superior',
         'type'  => 'Tradicions, guerres, història, religió...',
     ],
     'show'          => [
         'tabs'  => [
             'children'  => 'Entitats niades',
-            'tags'      => 'Etiquetes',
         ],
     ],
-    'tags'          => [
-        'title' => 'Descendents de l\'etiqueta :name',
-    ],
+    'tags'          => [],
 ];

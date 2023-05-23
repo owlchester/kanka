@@ -6,12 +6,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'families'      => [
-        'title' => 'Famílies de la família :name',
-    ],
+    'families'      => [],
     'fields'        => [
-        'families'  => 'Subfamílies',
-        'family'    => 'Família antecessora',
         'members'   => 'Membres',
     ],
     'helpers'       => [
@@ -27,18 +23,14 @@ return [
             'all_members'       => 'Aquí es mostren tots els personatges d\'aquesta família i de totes les subfamílies.',
             'direct_members'    => 'Totes les famílies felices s\'assemblen; cada família infeliç ho és a la seva manera. Aquí es mostren els personatges que són membres directes d\'aquesta família.',
         ],
-        'title'     => 'Membres de la família :name',
     ],
     'placeholders'  => [
-        'location'  => 'Trieu un indret',
-        'name'      => 'Nom de la família',
-        'type'      => 'Real, noble, extingida...',
+        'name'  => 'Nom de la família',
+        'type'  => 'Real, noble, extingida...',
     ],
     'show'          => [
         'tabs'  => [
-            'all_members'   => 'Tots els membres',
-            'families'      => 'Famílies',
-            'members'       => 'Membres',
+            'members'   => 'Membres',
         ],
     ],
 ];

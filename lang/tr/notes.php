@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Sabitli',
-        'note'      => 'Ana Not',
-        'notes'     => 'Alt Notlar',
+        'notes' => 'Alt Notlar',
     ],
     'helpers'       => [],
     'hints'         => [
@@ -17,7 +15,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Notun adı',
         'note'  => 'Bir ana not seçin',
         'type'  => 'Din, Irk, Politika sistemi',
     ],

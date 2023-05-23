@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'close' => 'Bezárás',
-        'full'  => 'Kép hivatkozása',
         'save'  => 'Mentés',
     ],
     'breadcrumb'    => 'Galéria',

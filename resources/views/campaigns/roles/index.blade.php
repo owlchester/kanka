@@ -23,8 +23,8 @@
  */?>
     <div class="box box-solid">
         @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_roles.bulk']) !!} @endif
-        <div id="datagrid-parent" class="table-responsive">
-            @include('layouts.datagrid._table')
+        <div id="datagrid-parent">
+            @include('layouts.datagrid._table', ['responsive' => true])
         </div>
         @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
     </div>

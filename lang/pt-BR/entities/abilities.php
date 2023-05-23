@@ -29,7 +29,6 @@ return [
     'reorder'   => [
         'parentless'    => 'Sem Pai',
         'success'       => 'Habilidades reordenadas com sucesso',
-        'title'         => 'Reordenar as habilidades',
     ],
     'show'      => [
         'helper'    => 'Adicione habilidades a esta entidade. Você sempre pode editar a visibilidade ou remover uma habilidade. Habilidades pertencentes à mesma habilidade primária serão exibidas como caixas de filtro.',

@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Hody kockami',
             'results'   => 'Výsledky',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Hod kockami',
-        'name'      => 'Názov hodu kockami',
-        'parameters'=> '4d6+3',
+        'name'          => 'Názov hodu kockami',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

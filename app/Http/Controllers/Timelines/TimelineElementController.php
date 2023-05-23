@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Timelines;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTimelineElement;
 use App\Facades\CampaignLocalization;
+use App\Models\TimelineEra;
 use App\Services\MultiEditingService;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
@@ -62,10 +63,11 @@ class TimelineElementController extends Controller
         $ajax = request()->ajax();
         $eraId = $request->get('era_id');
         $position = $request->get('position', 1);
+        $era = TimelineEra::findOrFail($eraId);
 
         return view(
             'timelines.elements.create',
-            compact('timeline', 'ajax', 'eraId', 'position')
+            compact('timeline', 'ajax', 'eraId', 'position', 'era')
         );
     }
 

@@ -8,12 +8,9 @@ return [
     'edit'          => [],
     'events'        => [
         'helper'    => 'Os eventos que teñen esta entidade como o seu evento superior son mostrados aquí.',
-        'title'     => 'Eventos do evento ":name"',
     ],
     'fields'        => [
-        'date'      => 'Data',
-        'event'     => 'Evento pai',
-        'events'    => 'Eventos',
+        'date'  => 'Data',
     ],
     'helpers'       => [
         'date'              => 'Este campo pode conter calquera cousa e non está ligado aos calendarios da campaña. Para ligar este evento a un calendario, faino dende o propio calendario ou na lapela "Lembretes" deste evento.',
@@ -22,14 +19,9 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Data do teu evento',
-        'name'  => 'Nome do evento',
         'type'  => 'Cerimonia, festival, desastre, batalla, nacemento...',
     ],
-    'show'          => [
-        'tabs'  => [
-            'events'    => 'Eventos',
-        ],
-    ],
+    'show'          => [],
     'tabs'          => [
         'calendars' => 'Entradas en calendarios',
     ],

@@ -156,7 +156,7 @@ class EntityObserver
             'template_id',
             'is_attributes_private'
         );
-        $this->attributeService->saveEntity($data, $entity);
+        $this->attributeService->entity($entity)->save($data);
         $sourceId = request()->post('copy_source_id');
         if (request()->has('replace_mentions') && request()->filled('replace_mentions')) {
             $source = Entity::findOrFail($sourceId);

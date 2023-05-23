@@ -3,24 +3,17 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Füge ein Aussehen hinzu',
-        'add_organisation'  => 'Füge eine Organisation hinzu',
         'add_personality'   => 'Füge eine Persönlichkeit hinzu',
     ],
-    'conversations' => [
-        'title' => 'Charakter :name Unterhaltungen',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Erstelle einen neuen Charakter',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Würfelwürfe können einem Charakter zugewiesen werden, um in einem Spiel verwendet zu werden.',
-        'title' => 'Charakter :name Würfelwürfe',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Alter',
-        'families'                  => 'Familien',
         'is_appearance_pinned'      => 'Angeheftetes Aussehen',
         'is_dead'                   => 'Tot',
         'is_personality_pinned'     => 'Angeheftete Persönlichkeit',
@@ -44,41 +37,34 @@ return [
         'personality_visible'       => 'Persönlichkeitsmerkmale dieses Charakters sind für alle sichtbar.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Items können einem Charakter hinzugefügt werden und werden dann hier dargestellt.',
-        'title' => 'Charakter :name Gegenstände',
-    ],
-    'journals'      => [
-        'title' => 'Charakter :name Logbücher',
-    ],
-    'maps'          => [
-        'title' => 'Charakter :name Beziehungskarte',
-    ],
-    'organisations' => [
-        'actions'       => [
-            'add'       => 'Organisation hinzufügen',
-            'submit'    => 'Organisation hinzufügen',
+    'items'         => [],
+    'journals'      => [],
+    'labels'        => [
+        'appearance'    => [
+            'entry' => 'Erscheinungsbeschreibung',
+            'name'  => 'Erscheinungsname',
         ],
-        'create'        => [
+        'personality'   => [
+            'entry' => 'Beschreibung von Persönlichkeitsmerkmalen',
+            'name'  => 'Name des Persönlichkeitsmerkmals',
+        ],
+    ],
+    'maps'          => [],
+    'organisations' => [
+        'create'    => [
             'success'   => 'Charakter wurde der Organisation hinzugefügt.',
             'title'     => 'Neue Organisation für :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Character aus Organisation entfernt.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Organisation des Charakters aktualisiert',
             'title'     => 'Aktualisiere Organisation für :name',
         ],
-        'fields'        => [
-            'organisation'  => 'Organisation',
-            'role'          => 'Rolle',
+        'fields'    => [
+            'role'  => 'Rolle',
         ],
-        'hint'          => 'Charaktere können Mitglied mehrerer Organisationen sein, um darzustellen, für wen sie arbeiten oder welcher Geheimgesellschaft sie angehören.',
-        'placeholders'  => [
-            'organisation'  => 'Wähle eine Organisation...',
-        ],
-        'title'         => 'Charakter :name Organisationen',
     ],
     'placeholders'  => [
         'age'               => 'Alter',
@@ -102,14 +88,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Aussehen',
-        'general'       => 'Allgemeine Informationen',
         'personality'   => 'Persönlichkeit',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organisationen',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Es ist dir nicht erlaubt, die Persönlichkeit dieses Charakters zu bearbeiten.',
     ],

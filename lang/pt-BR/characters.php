@@ -3,24 +3,17 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Adicionar uma aparência',
-        'add_organisation'  => 'Adicionar uma organização',
         'add_personality'   => 'Adicionar uma personalidade',
     ],
-    'conversations' => [
-        'title' => 'Diálogos de :name',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Novo Personagem',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Rolagens de dados podem ser vinculadas a um personagem para uso no jogo.',
-        'title' => 'Rolagens de Dados do personagem :name',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Idade',
-        'families'                  => 'Famílias',
         'is_appearance_pinned'      => 'Aparência fixada',
         'is_dead'                   => 'Morto',
         'is_personality_pinned'     => 'Personalidade fixada',
@@ -44,13 +37,8 @@ return [
         'personality_visible'       => 'Os traços de personalidade deste personagem estão visíveis para todos.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Itens podem ser vinculados a personagens e serão exibidos aqui.',
-        'title' => 'Itens do Personagem :name',
-    ],
-    'journals'      => [
-        'title' => 'Diários do Personagem :name',
-    ],
+    'items'         => [],
+    'journals'      => [],
     'labels'        => [
         'appearance'    => [
             'entry' => 'Descrição da aparência',
@@ -61,34 +49,22 @@ return [
             'name'  => 'Nome do traço de personalidade',
         ],
     ],
-    'maps'          => [
-        'title' => 'Mapa de Relações do Personagem :name',
-    ],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'       => 'Adicionar uma organização',
-            'submit'    => 'Adicionar organização',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Personagem adicionado à organização.',
             'title'     => 'Nova Organização para :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Organização do personagem removida.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Organização do personagem atualizada.',
             'title'     => 'Atualizar Organização para :name',
         ],
-        'fields'        => [
-            'organisation'  => 'Organização',
-            'role'          => 'Função',
+        'fields'    => [
+            'role'  => 'Função',
         ],
-        'hint'          => 'Personagens podem ser parte de diversas organizações, representando para quem eles trabalham ou qual sociedade secreta eles fazem parte.',
-        'placeholders'  => [
-            'organisation'  => 'Escolha uma organização...',
-        ],
-        'title'         => 'Organizações do Personagem :name',
     ],
     'placeholders'  => [
         'age'               => 'Idade',
@@ -112,14 +88,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Aparência',
-        'general'       => 'Informações gerais',
         'personality'   => 'Personalidade',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizações',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Você não tem permissão para editar traços de personalidade deste personagem.',
     ],

@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Pripnutá',
-        'note'      => 'Nadradená poznámka',
-        'notes'     => 'Podradená poznámka',
+        'notes' => 'Podradená poznámka',
     ],
     'helpers'       => [
         'nested_without'    => 'Zobraziť všetky poznámky, ktoré nemajú nadradenú poznámku. Kliknutím na riadok zobrazíš podradené poznámky.',
@@ -19,7 +17,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Názov poznámky',
         'note'  => 'Vybrať nadradenú poznámku',
         'type'  => 'náboženstvo, rasa, politický systém',
     ],

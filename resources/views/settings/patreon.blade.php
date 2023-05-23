@@ -28,7 +28,7 @@
             <p>
                 {!! __('settings.patreon.deprecated', ['subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))]) !!}
             </p>
-        </div>
+        </x-alert>
     @endif
 @endsection
 

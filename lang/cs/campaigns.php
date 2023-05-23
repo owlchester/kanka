@@ -33,7 +33,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'K této kampani nemáš přístup',
-        'superboosted'  => 'Tato funkce je dostupná pouze pro super-zvýhodněná ("superboosted") tažení .',
         'unknown_id'    => 'Neznámá Kampaň',
     ],
     'export'                            => [],
@@ -62,7 +61,6 @@ TEXT
     ],
     'following'                         => 'Sledující',
     'helpers'                           => [
-        'boost_required'            => 'Tato funkce vyžaduje zvýhodněné kmapaň pomocí "Boost". Další informace najdeš na stránce :settings',
         'boosted'                   => 'Jsou dostupné některé bonusové funkce, protože tažení je zvýhodněné pomocí "Boost". Další informace najdeš na stránce :settings',
         'css'                       => 'Pro své tažení můžeš vytvořit vlastní CSS definici. Jakékoli zneužití této funkce povede k odstranění CSS definice. Opakované nebo závažné porušení mohou vést k odstranění tvého tažení.',
         'dashboard'                 => 'Vyplněním následujících polí ovlivníš vzhled nástěnky tažení.',
@@ -185,7 +183,6 @@ TEXT
     'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
-        'boosted'   => 'Zvýhodněné ("boosted") tažení.',
         'dashboard' => 'Nástěnka',
         'permission'=> 'Oprávnění',
         'setup'     => 'Nastavení',
@@ -326,7 +323,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Zvýhodnit ("boost") tažení',
             'edit'  => 'Upravit tažení',
             'leave' => 'Opustit tažení',
         ],

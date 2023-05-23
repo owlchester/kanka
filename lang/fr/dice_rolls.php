@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Jets de dés',
             'results'   => 'Résultats',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Jet de dés',
-        'name'      => 'Nom du jet de dés',
-        'parameters'=> '4d6+3',
+        'name'          => 'Nom du jet de dés',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

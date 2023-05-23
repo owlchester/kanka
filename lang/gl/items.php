@@ -8,8 +8,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Personaxe',
-        'item'      => 'Obxecto pai',
-        'items'     => 'Obxectos fillos',
         'price'     => 'Prezo',
         'size'      => 'Tamaño',
     ],
@@ -20,11 +18,8 @@ return [
         'items' => 'Organiza obxectos usando o campo de obxecto pai.',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => 'Inventarios do obxecto ":name"',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Nome do obxecto',
         'price' => 'Prezo do obxecto',
         'size'  => 'Tamaño, peso, dimensións...',
         'type'  => 'Arma, apócema, artefacto...',

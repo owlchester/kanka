@@ -6,13 +6,9 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'events'        => [
-        'title' => 'Události podřazené události ::name',
-    ],
+    'events'        => [],
     'fields'        => [
-        'date'      => 'Kalendářní datum',
-        'event'     => 'Nadřazená událost',
-        'events'    => 'Události',
+        'date'  => 'Kalendářní datum',
     ],
     'helpers'       => [
         'date'              => 'Toto pole může může obsahovat cokoli a není propojené s kalendářem tažení. Pokud chceš tuto událost připojit k některému kalendáři, přidej ji ke kalendáři nebo do karty připomínky této události.',
@@ -21,14 +17,9 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Kalendářní datum události',
-        'name'  => 'Název události',
         'type'  => 'Oslava, Festival, Pohroma, Bitva, Narozeniny',
     ],
-    'show'          => [
-        'tabs'  => [
-            'events'    => 'Události',
-        ],
-    ],
+    'show'          => [],
     'tabs'          => [
         'calendars' => 'Položky kalendáře',
     ],

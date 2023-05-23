@@ -24,9 +24,9 @@ return [
         'new_post'          => 'New post',
         'next'              => 'Next',
         'print'             => 'Print',
+        'reorder'           => 'Reorder',
         'reset'             => 'Reset',
         'transform'         => 'Transform',
-        'reorder'           => 'Reorder',
     ],
     'add'                       => 'Add',
     'alerts'                    => [
@@ -234,7 +234,7 @@ return [
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [
-        'attribute_template'    => 'The selected attribute template will be applied saving the entity.',
+        'attribute_template'    => 'The selected attribute template will be applied when saving the entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a reminder in the selected calendar.',
         'gallery_header'        => 'If the entity has no header, display an image from the campaign gallery instead.',
         'gallery_image'         => 'If the entity has no image, display an image from the campaign gallery instead.',

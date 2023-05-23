@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Fissata',
-        'note'      => 'Nota sovraordinata',
-        'notes'     => 'Sottonote',
+        'notes' => 'Sottonote',
     ],
     'helpers'       => [
         'nested_without'    => 'Visualizzazione delle note che non hanno una nota sovraordinata. Clicca su una fila per vedere le sottonote.',
@@ -19,7 +17,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Nome della nota',
         'note'  => 'Scegli una nota sovraordinata',
         'type'  => 'Religione, Razza, Systema Politico',
     ],

@@ -443,7 +443,7 @@ class Campaign extends MiscModel
         foreach ($this->default_images as $type => $uuid) {
             /** @var Image|null $image */
             $image = $images->where('id', $uuid)->first();
-            if (empty($image)) {
+            if (empty($image) || in_array($type, ['relations', 'menu_links'])) {
                 continue;
             }
 

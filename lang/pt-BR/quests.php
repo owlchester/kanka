@@ -22,9 +22,7 @@ return [
             'description'       => 'Descrição',
             'entity_or_name'    => 'Selecione uma entidade da campanha ou dê um nome para este elemento.',
             'name'              => 'Nome',
-            'quest'             => 'Missão',
         ],
-        'title'     => 'Elementos da Missão :name',
         'warning'   => [
             'editing'   => [
                 'description'   => 'Parece que outra pessoa está editando este elemento de missão! Deseja voltar atrás ou ignorar este aviso, correndo o risco de perder dados? Membros atualmente editando este elemento de missão:',
@@ -37,8 +35,6 @@ return [
         'date'          => 'Data',
         'element_role'  => 'Função',
         'is_completed'  => 'Concluída',
-        'quest'         => 'Missão Primária',
-        'quests'        => 'Sub-Missões',
         'role'          => 'Função',
     ],
     'helpers'       => [
@@ -52,8 +48,6 @@ return [
     'placeholders'  => [
         'date'      => 'Data do mundo real para a missão',
         'entity'    => 'Nome de um elemento da missão',
-        'name'      => 'Nome da missão',
-        'quest'     => 'Missão Primária',
         'role'      => 'A função desta entidade na missão',
         'type'      => 'Arco de Personagem, Missão Secundária, Missão Principal',
     ],

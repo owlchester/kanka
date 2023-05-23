@@ -6,12 +6,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'families'      => [
-        'title' => 'Familias de la familia :name',
-    ],
+    'families'      => [],
     'fields'        => [
-        'families'  => 'Subfamilias',
-        'family'    => 'Familia antecesora',
         'members'   => 'Miembros',
     ],
     'helpers'       => [
@@ -27,18 +23,15 @@ return [
             'all_members'       => 'Aquí se muestran todos los personajes de esta familia y de todas sus subfamilias.',
             'direct_members'    => 'Muchas familias tienen miembros que las hicieron famosas. Aquí se muestran los personajes que están directamente en esta familia.',
         ],
-        'title'     => 'Miembros de la familia :name',
     ],
     'placeholders'  => [
-        'location'  => 'Elige un lugar',
-        'name'      => 'Nombre de la familia',
-        'type'      => 'Real, noble, extinguida...',
+        'name'  => 'Nombre de la familia',
+        'type'  => 'Real, noble, extinguida...',
     ],
     'show'          => [
         'tabs'  => [
-            'all_members'   => 'Todos los miembros',
-            'families'      => 'Familias',
-            'members'       => 'Miembros',
+            'members'   => 'Miembros',
+            'tree'      => 'Árbol genealógico',
         ],
     ],
 ];

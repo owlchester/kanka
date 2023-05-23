@@ -1,6 +1,13 @@
 <?php
+
 $oldPosition = !empty($model->position) ? $model->position : null;
-$era = null;
+$positions = [];
+if (!empty($era)) {
+    $positions = $era->positionOptions(null, true);
+    $oldPosition = count($positions);
+} elseif (!empty($model)) {
+    $positions = $model->era->positionOptions($oldPosition);
+}
 ?>
 
 @inject('campaignService', 'App\Services\CampaignService')
@@ -54,7 +61,7 @@ $era = null;
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('crud.fields.position') }}</label>
-            {!! Form::select('position', [], (!empty($model->position) ? -9999 : $oldPosition), ['class' => 'form-control', 'name' => 'position']) !!}
+            {!! Form::select('position', $positions, (!empty($model->position) ? -9999 : $oldPosition), ['class' => 'form-control', 'name' => 'position']) !!}
         </div>
     </div>
 
@@ -124,7 +131,7 @@ $era = null;
     </div>
 </div>
 
-<input type="hidden" name="era-data-url" data-url="{{ route('timelines.era-list', ['timeline' => $timeline->id, 'timeline_era' => 0]) }}">
+<input type="hidden" name="era-data-url" data-url="{{ route('timelines.era-list', ['timeline' => $timeline->id, 'timeline_era' => 0, 'new' => !empty($model)]) }}">
 <input type="hidden" name="oldPosition" data-url="{{ $oldPosition }}">
 
 

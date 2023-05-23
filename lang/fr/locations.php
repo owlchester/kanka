@@ -1,25 +1,15 @@
 <?php
 
 return [
-    'characters'    => [
-        'title' => 'Personnages situés dans :name',
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Ajouter un lieu',
     ],
     'destroy'       => [],
     'edit'          => [],
-    'events'        => [
-        'title' => 'Evénements du lieu :name',
-    ],
-    'families'      => [
-        'title' => 'Familles du lieu :name',
-    ],
-    'fields'        => [
-        'characters'    => 'Personnages',
-        'location'      => 'Lieu Parent',
-        'locations'     => 'Lieux',
-    ],
+    'events'        => [],
+    'families'      => [],
+    'fields'        => [],
     'helpers'       => [
         'characters'        => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou seulement ceux qui sont ici.',
         'descendants'       => 'Cette liste contient tous les lieux descendants de celui-ci, pas uniquement les descendants directs.',
@@ -29,17 +19,13 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
-    'locations'     => [
-        'title' => 'Sous-lieux du lieu :name',
-    ],
+    'locations'     => [],
     'map'           => [],
     'maps'          => [],
     'organisations' => [],
     'panels'        => [],
     'placeholders'  => [
-        'location'  => 'Choix d\'un lieu parent',
-        'name'      => 'Nom du lieu',
-        'type'      => 'Village, Royaume, Ruine',
+        'type'  => 'Village, Royaume, Ruine',
     ],
     'show'          => [],
 ];

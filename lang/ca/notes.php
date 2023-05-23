@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Fixada',
-        'note'      => 'Nota superior',
-        'notes'     => 'Subnotes',
+        'notes' => 'Subnotes',
     ],
     'helpers'       => [
         'nested_without'    => 'S\'estan mostrant les notes sense pare. Feu clic a la fila d\'una nota per a mostrar-ne les descendents.',
@@ -19,7 +17,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Nom de la nota',
         'note'  => 'Trieu una nota superior',
         'type'  => 'Religió, relat, sistema polític...',
     ],

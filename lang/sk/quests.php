@@ -22,9 +22,7 @@ return [
             'description'       => 'Popis',
             'entity_or_name'    => 'Zvoľ buď objekt kampane, alebo pomenuj tento prvok.',
             'name'              => 'Názov',
-            'quest'             => 'Úloha',
         ],
-        'title'     => 'Prvky úlohy :name',
         'warning'   => [
             'editing'   => [
                 'description'   => 'Zdá sa, že iná osoba upravuje súčasne tento prvok úlohy! Chceš sa vrátiť a ignorovať toto varovanie aj s rizikom straty dát? Členstvo súčasne editujúce tento prvok:',
@@ -37,8 +35,6 @@ return [
         'date'          => 'Dátum',
         'element_role'  => 'Rola',
         'is_completed'  => 'Splnená',
-        'quest'         => 'Nadradená úloha',
-        'quests'        => 'Podradená úloha',
         'role'          => 'Rola',
     ],
     'helpers'       => [
@@ -52,8 +48,6 @@ return [
     'placeholders'  => [
         'date'      => 'Reálny dátum zadania úlohy',
         'entity'    => 'Názov prvku v úlohe',
-        'name'      => 'Názov úlohy',
-        'quest'     => 'Nadradená úloha',
         'role'      => 'Rola objektu v úlohe',
         'type'      => 'príbeh postavy, bočná úloha, hlavný dej',
     ],

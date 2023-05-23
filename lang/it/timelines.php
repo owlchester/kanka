@@ -4,7 +4,6 @@ return [
     'actions'       => [
         'add_element'   => 'Aggiungi all\'era :era',
         'back'          => 'Torna a :nome',
-        'edit'          => 'Modifica linea temporale',
         'save_order'    => 'Salva nuovo ordine',
     ],
     'create'        => [
@@ -17,8 +16,6 @@ return [
         'copy_eras'     => 'Copia ere',
         'eras'          => 'Ere',
         'reverse_order' => 'Inverti l\'ordine delle ere',
-        'timeline'      => 'Linea temporale principale',
-        'timelines'     => 'Linee temporali',
     ],
     'helpers'       => [
         'nested_without'    => 'Tutte le linee temporali che non hanno una linea temporale principale. Clicca su una riga per vedere le linee temporali figlie',
@@ -27,7 +24,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Nome della linea temporale',
         'type'  => 'Principale, Cronache del mondo, Storia del Regno',
     ],
     'reorder'       => [
@@ -37,10 +33,7 @@ return [
     'show'          => [
         'tabs'  => [
             'reorder'   => 'Riordina linea temporale',
-            'timelines' => 'Linee temporali',
         ],
     ],
-    'timelines'     => [
-        'title' => 'Linea temporale :name Linee temporali',
-    ],
+    'timelines'     => [],
 ];

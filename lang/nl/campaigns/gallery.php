@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'close' => 'Sluiten',
-        'full'  => 'Afbeelding link',
         'save'  => 'Opslaan',
     ],
     'destroy'       => [

@@ -40,6 +40,11 @@ return [
             'quick-access'  => 'Szybki dostęp',
         ],
         'tooltip'           => 'Stwórz nowy element bez opuszczania obecnej strony',
+        'tooltips'          => [
+            'create'        => 'Stwórz element i wróć do ekranu wyboru elementów.',
+            'create_more'   => 'Stwórz element i zacznij tworzyć kolejny element tego typu',
+            'edit'          => 'Stwórz element i rozpocznij jego edycję',
+        ],
     ],
     'creature'              => 'Istota',
     'creatures'             => 'Istoty',

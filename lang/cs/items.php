@@ -10,7 +10,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Název předmětu',
         'price' => 'Cena předmětu',
     ],
     'show'          => [

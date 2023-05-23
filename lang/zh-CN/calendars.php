@@ -54,11 +54,8 @@ return [
         'filters'   => [
             'show_all'  => '显示全部',
         ],
-        'title'     => ':name中的事件',
     ],
     'fields'        => [
-        'calendar'              => '父日历',
-        'calendars'             => '日历',
         'colour'                => '颜色',
         'comment'               => '评注',
         'current_day'           => '当前日',

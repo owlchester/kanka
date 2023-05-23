@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Przypięta',
-        'note'      => 'Notatka źródłowa',
-        'notes'     => 'Notatki pochodne',
+        'notes' => 'Notatki pochodne',
     ],
     'helpers'       => [
         'nested_without'    => 'Wyświetlono wszystkie notatki nieposiadające źródła. Kliknij na rząd, by wyświetlić notatki pochodne.',
@@ -19,7 +17,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Nazwa notatki',
         'note'  => 'Wybierz notatkę źródłową',
         'type'  => 'Religia, rasa, system polityczny',
     ],

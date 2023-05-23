@@ -14,7 +14,7 @@ function initBannerPromoDismiss()
         }).done(function() {
             // We can either have bootstrap handle the dismiss, or do it ourselves
             let target = $(this).data('dismiss');
-            if (!target || target !== 'tutorial') {
+            if (!target) {
                 return;
             }
             $(this).closest('.' + target).fadeOut();

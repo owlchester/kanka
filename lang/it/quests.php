@@ -10,8 +10,6 @@ return [
         'character'     => 'Istigatore',
         'date'          => 'Data',
         'is_completed'  => 'Completata',
-        'quest'         => 'Missione Padre',
-        'quests'        => 'Sotto-Missioni',
         'role'          => 'Ruolo',
     ],
     'helpers'       => [],
@@ -21,8 +19,6 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Data del mondo reale per la missione',
-        'name'  => 'Nome della missione',
-        'quest' => 'Missione Padre',
         'role'  => 'Il ruolo dell\'entità nella missione',
         'type'  => 'Personaggio, Missione Secondaria, Missione Principale',
     ],

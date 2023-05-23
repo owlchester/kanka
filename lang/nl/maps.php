@@ -24,8 +24,6 @@ return [
         'center_y'      => 'Standaard Breedtegraad Positie',
         'grid'          => 'Raster',
         'initial_zoom'  => 'Initiële zoom',
-        'map'           => 'Bovenliggende Kaart',
-        'maps'          => 'Kaarten',
         'max_zoom'      => 'Maximale zoom',
         'min_zoom'      => 'Minimale zoom',
     ],
@@ -40,9 +38,7 @@ return [
         'missing_image'     => 'Sla de kaart met een afbeelding op voordat je lagen en markeringen kunt toevoegen.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => 'Kaarten van :name',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Groepen',
         'layers'    => 'Lagen',

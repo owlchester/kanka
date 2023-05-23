@@ -3,20 +3,14 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Voeg een uiterlijk toe',
-        'add_organisation'  => 'Voeg een organisatie toe',
         'add_personality'   => 'Voeg een persoonlijkheid toe',
     ],
-    'conversations' => [
-        'title' => 'Personage :name Conversaties',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => 'Nieuw Personage',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => 'Dobbelsteen worpen kunnen worden toegewezen aan een personage voor in het spel.',
-        'title' => 'Personage :name Dobbelsteen Worpen',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => 'Leeftijd',
@@ -38,40 +32,24 @@ return [
         'personality_visible'       => 'Persoonlijkheidskenmerken van dit personage zijn voor iedereen zichtbaar.',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => 'Voorwerpen kunnen worden toegewezen aan personages en worden hier weergegeven.',
-        'title' => 'Personage :name Voorwerpen',
-    ],
-    'journals'      => [
-        'title' => 'Personage :name Logboeken',
-    ],
-    'maps'          => [
-        'title' => 'Personage :name Relatie Kaart',
-    ],
+    'items'         => [],
+    'journals'      => [],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'   => 'Voeg organisatie toe',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Personage toegevoegd aan organisatie.',
             'title'     => 'Nieuwe Organisatie voor :name',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Personage organisatie verwijderd.',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => 'Personage organisatie bijgewerkt.',
             'title'     => 'Werk organisatie voor :name bij',
         ],
-        'fields'        => [
-            'organisation'  => 'Organisatie',
-            'role'          => 'Rol',
+        'fields'    => [
+            'role'  => 'Rol',
         ],
-        'hint'          => 'Personages kunnen deel uitmaken van veel organisaties, die vertegenwoordigen voor wie ze werken of van welk geheime samenleving ze deel uitmaken.',
-        'placeholders'  => [
-            'organisation'  => 'Kies een organisatie...',
-        ],
-        'title'         => 'Personage :name Organisaties',
     ],
     'placeholders'  => [
         'age'               => 'Leeftijd',
@@ -93,14 +71,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Uiterlijk',
-        'general'       => 'Algemene informatie',
         'personality'   => 'Persoonlijkheid',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organisaties',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Het is niet toegestaan om persoonlijkheidskenmerken van dit personage te bewerken.',
     ],

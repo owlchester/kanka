@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Plantilla de atributos superior',
-        'attributes'            => 'Atributos',
+        'attributes'    => 'Atributos',
     ],
     'hints'                 => [
         'automatic'                 => 'Atributos aplicados automáticamente desde la plantilla de atributos :link.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Elige una plantilla de atributos',
-        'name'                  => 'Nombre de la plantilla de atributos',
+        'name'  => 'Nombre de la plantilla de atributos',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Plantillas de atributos',
-            'attributes'            => 'Atributos',
+            'attributes'    => 'Atributos',
         ],
     ],
 ];

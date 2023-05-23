@@ -33,7 +33,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'No teniu accés a aquesta campanya.',
-        'superboosted'  => 'Aquesta funcionalitat només està disponible per a les campanyes supermillorades.',
         'unknown_id'    => 'Campanya desconeguda.',
     ],
     'export'                            => [],
@@ -66,8 +65,6 @@ TEXT
     ],
     'following'                         => 'Seguint',
     'helpers'                           => [
-        'boost_required'                    => 'Aquesta funcionalitat requereix millorar la campanya. Per a més informació, aneu a la pàgina de :settings.',
-        'boost_required_multi'              => 'Aquestes funcionalitats requereixen millorar la campanya. Per a més informació, aneu a la pàgina de :settings.',
         'boosted'                           => 'Algunes característiques estan desbloquejades perquè aquesta campanya està millorada. Per a saber-ne més, feu una ullada a la pàgina de :settings.',
         'character_personality_visibility'  => 'Fes que la personalitat dels nous personatges sigui privada per defecte per als administradors.',
         'css'                               => 'Escriviu CSS propi per a les pàgines de la campanya. Tingueu en compte que abusar d\'aquesta eina pot comportar l\'eliminació del CSS personalitzat. Els incompliments repetits o greus poden comportar l\'eliminació de la campanya.',
@@ -189,7 +186,6 @@ TEXT
     'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
-        'boosted'   => 'Millores',
         'dashboard' => 'Taulell',
         'permission'=> 'Permisos',
         'setup'     => 'Configuració',
@@ -341,7 +337,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Millora la campanya',
             'edit'  => 'Edita la campanya',
             'leave' => 'Abandona la campanya',
         ],
@@ -368,7 +363,6 @@ TEXT
     ],
     'superboosted'                      => [],
     'ui'                                => [
-        'boosted'           => 'Millorada',
         'collapsed'         => [
             'collapsed' => 'Col·lapsar/Expandir',
             'default'   => 'Per defecte',

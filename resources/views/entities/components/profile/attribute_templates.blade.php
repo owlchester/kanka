@@ -14,14 +14,14 @@
     <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-profile-elements">
         @if (!empty($model->attributeTemplate))
             <div class="element profile-attribute-template">
-                <div class="title text-uppercase text-xs">{{ __('entities.attribute_template') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('crud.fields.parent') }}</div>
                 {!! $model->attributeTemplate->tooltipedLink() !!}
             </div>
         @endif
 
         @if (!empty($model->entityType))
             <div class="element profile-entity-type">
-                <div class="title text-uppercase text-xs">{{ __('crud.fields.entity_type') }}</div>
+                <div class="title text-uppercase text-xs">{{ __('attribute_templates.fields.auto_apply') }}</div>
                 {!! $model->entityType->name() !!}
             </div>
         @endif

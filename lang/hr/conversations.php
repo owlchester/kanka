@@ -5,9 +5,7 @@ return [
         'title' => 'Novi razgovor',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => 'Razgovor :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'is_closed'     => 'Zatvoreno',
         'messages'      => 'Poruke',
@@ -45,7 +43,6 @@ return [
         'is_closed' => 'Razgovor je zatvoren.',
     ],
     'tabs'          => [
-        'conversation'  => 'Razgovor',
         'participants'  => 'Sudionici',
     ],
     'targets'       => [

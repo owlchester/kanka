@@ -37,7 +37,6 @@ return [
     ],
     'index'             => [],
     'placeholders'      => [
-        'entity'    => 'Wähle ein Objekt',
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Menü Unterseite (Nutze den letzten Text der URL)',
         'name'      => 'Name des Menü Links',

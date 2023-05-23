@@ -1,25 +1,15 @@
 <?php
 
 return [
-    'characters'    => [
-        'title' => 'Ort :name Charaktere',
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Erstelle einen neuen Ort',
     ],
     'destroy'       => [],
     'edit'          => [],
-    'events'        => [
-        'title' => 'Ort :name Ereignisse',
-    ],
-    'families'      => [
-        'title' => 'Ort :name Familien',
-    ],
-    'fields'        => [
-        'characters'    => 'Charaktere',
-        'location'      => 'Übergeordneter Ort',
-        'locations'     => 'Orte',
-    ],
+    'events'        => [],
+    'families'      => [],
+    'fields'        => [],
     'helpers'       => [
         'characters'        => 'Sieh alle Charaktere in diesem Ort und den Unterorten an oder nur die direkt im Ort.',
         'descendants'       => 'Diese Liste enthält alle Orte, die direkt in diesem Ort und allen untergeordneten Orten sind.',
@@ -29,17 +19,13 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
-    'locations'     => [
-        'title' => 'Ort :name Orte',
-    ],
+    'locations'     => [],
     'map'           => [],
     'maps'          => [],
     'organisations' => [],
     'panels'        => [],
     'placeholders'  => [
-        'location'  => 'Wähle einen übergeordneten Ort',
-        'name'      => 'Name des Ortes',
-        'type'      => 'Stadt, Königreich, Ruine',
+        'type'  => 'Stadt, Königreich, Ruine',
     ],
     'show'          => [],
 ];

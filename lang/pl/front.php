@@ -24,13 +24,9 @@ return [
         'public'            => [
             'description'   => 'Poszukaj inspiracji przeglądając dostępne publicznie kampanie.',
             'filters'       => [
-                'all'               => 'Doładowanie',
-                'boosted'           => 'Kampanie doładowane',
-                'entities'          => 'Sortuj według liczby elementów',
-                'followers'         => 'Sortuj według liczby obserwujących',
-                'is-boosted'        => 'Tę kampanię doładowano!',
-                'is-superboosted'   => 'Tę kampanię trubodoładowano!',
-                'unboosted'         => 'Niedoładowane',
+                'all'       => 'Doładowanie',
+                'entities'  => 'Sortuj według liczby elementów',
+                'followers' => 'Sortuj według liczby obserwujących',
             ],
             'no-results'    => 'Nie znaleziono żadnych kampanii publicznych pasujących do tych filtrów. Spróbuj jeszcze raz.',
             'title'         => 'Kampanie publiczne',
@@ -78,7 +74,6 @@ return [
         ],
         'boosts'            => [
             'beta'                  => 'Dostęp do wersji beta nowych funkcji na 30 dni przed ich publiczną premierą',
-            'boosted'               => 'Doładowana kampania',
             'css'                   => 'Własne css kampanii',
             'dashboards'            => 'Rożne pulpity kampanii dla różnych ról jej uczestników',
             'description'           => 'Niektóre poziomy wsparcia zapewniają użytkownikom doładowania, których mogą używać w kampaniach. Doładowanie zapewnia następujące korzyści.',
@@ -96,7 +91,6 @@ return [
             'standard'              => 'Kampania standardowa',
             'theme'                 => 'Dobór motywu dla kampanii',
             'timeline_elements'     => 'Zmieniaj kolory i ikony wpisów w historii.',
-            'title'                 => 'Doładowane kampanie',
             'tooltip'               => 'Własne dymki elementów: zmieniaj tekst, dodawaj obrazy',
             'upload'                => 'Możliwość zamieszczania większych plików dla wszystkich uczestników',
         ],
@@ -189,7 +183,6 @@ return [
             'title'         => 'Sekrety i tajemnice',
         ],
         'superboosts'       => [
-            'boosted'       => 'Turbodoładowanie',
             'family-tree'   => 'Drzewa genealogiczne pozwalają przedstawić historię rodu',
             'gallery'       => 'Galeria kampanii zintegrowana z edytorem tekstu Summernote',
             'logs'          => 'Pełna lista wszystkich zmian elementów (do 30 dni wstecz)',
@@ -282,7 +275,6 @@ return [
             'core'          => 'Dostęp do wszystkich głównych funkcji',
             'huge_maps'     => 'Ogromna mapa (:size)',
             'huge_uploads'  => 'Możliwość dodawania ogromnych plików',
-            'no_boosters'   => 'Brak doładowań kampanii',
             'unlimited'     => 'Brak limitu liczby kampanii i plików',
             'updates'       => 'Częste aktualizacje i poprawki',
         ],

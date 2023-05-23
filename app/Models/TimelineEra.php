@@ -102,7 +102,7 @@ class TimelineEra extends Model
      * @return string
      */
     public function ages(): string
-    {        
+    {
         $a = new \NumberFormatter(app()->getLocale(), \NumberFormatter::DECIMAL);
         $from = mb_strlen($this->start_year);
         $to = mb_strlen($this->end_year);
@@ -117,7 +117,7 @@ class TimelineEra extends Model
             return '> ' . $a->format($this->start_year);
         }
 
-        return $a->format($this->start_year) . ' &mdash; ' . $a->format($this->start_year);
+        return $a->format($this->start_year) . ' &mdash; ' . $a->format($this->end_year);
     }
 
     /**
@@ -174,7 +174,7 @@ class TimelineEra extends Model
     /**
      * @return array|string[]
      */
-    public function positionOptions($position = null): array
+    public function positionOptions($position = null, bool $new = false): array
     {
         $options = [null => __('posts.position.dont_change')];
 
@@ -186,18 +186,22 @@ class TimelineEra extends Model
                 $options[1] = __('posts.position.first');
             }
             $key = $element->position;
-            $lang = __('maps/layers.placeholders.position_list', ['name' => $element->name]);
+            $lang = __('maps/layers.placeholders.position_list', ['name' => $element->elementName()]);
             if (app()->isLocal()) {
                 $lang .= ' (' . $key . ')';
             }
-            if (!($position == $key - 1)) {
-                $options[$key] = $lang;
+            if (!($position == $key)) {
+                $options[$key + 1] = $lang;
             }
         }
 
         // Didn't have a first option added, add one now
         if (!$hasFirst) {
             $options[1] = __('posts.position.first');
+        }
+
+        if ($new) {
+            unset($options[null]);
         }
 
         return $options;

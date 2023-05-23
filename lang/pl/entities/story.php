@@ -2,9 +2,10 @@
 
 return [
     'actions'   => [
-        'collapse_all'  => 'Zwiń wszystkie',
-        'expand_all'    => 'Rozwiń wszystkie',
-        'load_more'     => 'Załaduj więcej',
+        'collapse_all'      => 'Zwiń wszystkie',
+        'expand_all'        => 'Rozwiń wszystkie',
+        'load_more'         => 'Załaduj więcej',
+        'login_for_more'    => 'Zaloguj się, by zobaczyć kolejne wpisy',
     ],
     'reorder'   => [
         'icon_tooltip'  => 'Zmień kolejność',

@@ -14,12 +14,12 @@
 
     @if ($campaign->premium())
         <p>{!! __('settings/premium.create.errors.boosted', ['campaign' => $campaign->name])!!}</p>
-    @elseif(auth()->user()->availableBoosts() < 4)
+    @elseif(auth()->user()->availableBoosts() < 1)
         @subscriber
             <p class="my-1">
                 {!! __('settings/boosters.boost.errors.out-of-boosters', [
                     'upgrade' => link_to_route('settings.subscription', __('settings/boosters.boost.upgrade')),
-                    'cost' => '<code>' . $cost . '</code>',
+                    'cost' => '<code>' . 1 . '</code>',
                     'available' => '<strong>' . auth()->user()->availableBoosts() . '</strong>'
                 ]) !!}
             </p>

@@ -26,8 +26,6 @@ return [
         'centering'     => 'Centriranje',
         'grid'          => 'Mreža',
         'initial_zoom'  => 'Početno povećanje',
-        'map'           => 'Karta roditelj',
-        'maps'          => 'Karte',
         'max_zoom'      => 'Maksimalno povećanje',
         'min_zoom'      => 'Minimalno povećanje',
         'tabs'          => [
@@ -48,9 +46,7 @@ return [
         'nested_without'    => 'Prikazuju se sve mape koje nemaju mapu roditelj. Klikni redak da bi vidio/la mapu djecu.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => 'Karte od :name',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Grupe',
         'layers'    => 'Slojevi',

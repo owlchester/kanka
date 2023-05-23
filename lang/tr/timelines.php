@@ -4,7 +4,6 @@ return [
     'actions'       => [
         'add_element'   => ':era çağına bir element ekle.',
         'back'          => ':name çağına geri dön',
-        'edit'          => 'Zaman çizgisini düzenle',
         'save_order'    => 'Yeni sıralamayı kaydet',
     ],
     'create'        => [
@@ -22,7 +21,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Zaman çizgisinin adı',
         'type'  => 'Ana, Dünya tarihçesi, Krallık mirası',
     ],
     'show'          => [],

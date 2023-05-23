@@ -50,12 +50,8 @@ return [
         ],
         'success'   => 'Událost \':event\' přidána do kalendáře',
     ],
-    'events'        => [
-        'title' => 'Události kalendáře :name',
-    ],
+    'events'        => [],
     'fields'        => [
-        'calendar'              => 'Nadřazený kalendář',
-        'calendars'             => 'Kalendáře',
         'colour'                => 'Barva',
         'comment'               => 'Komentář',
         'current_day'           => 'Současný den',
@@ -184,7 +180,6 @@ return [
         'leap_year_start'   => 'První přestupný rok',
         'length'            => 'Trvání události ve dnech',
         'months'            => 'Počet měsíců v roku',
-        'name'              => 'Název kalendáře',
         'recurring_until'   => 'Poslední rok opakování (pokud zůstane prázdné, opakuje se stále)',
         'seasons'           => 'Počet ročních období',
         'suffix'            => 'Přípona současné éry (LP, n.l., př.n.l.)',

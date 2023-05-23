@@ -67,6 +67,10 @@ function initAttributeUI()
         if (maxFieldAlert) {
             maxFieldAlert.hide();
         }
+
+        $(this).closest('dialog')[0].close();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
         return false;
     });
 
@@ -104,10 +108,12 @@ function initAttributeHandlers() {
             // Unlock
             $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
             $(this).prev('input:hidden').val("0");
+            window.showToast($(this).data('unlock'));
         } else {
             // Lock
             $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
             $(this).prev('input:hidden').val("1");
+            window.showToast($(this).data('lock'));
         }
     });
 
@@ -116,10 +122,12 @@ function initAttributeHandlers() {
             // Unlock
             $(this).removeClass('fa-regular').addClass('fa-solid').prop('title', $(this).data('entry'));
             $(this).prev('input:hidden').val("1");
+            window.showToast($(this).data('pin'));
         } else {
             // Lock
             $(this).removeClass('fa-solid').addClass('fa-regular').prop('title', $(this).data('tab'));
             $(this).prev('input:hidden').val("0");
+            window.showToast($(this).data('unpin'));
         }
     });
 

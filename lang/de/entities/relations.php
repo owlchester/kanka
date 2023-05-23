@@ -74,9 +74,10 @@ return [
         'related'   => 'verbunden',
     ],
     'placeholders'      => [
-        'attitude'  => '-100 bis 100, 100 ist maximal positiv.',
-        'relation'  => 'Art der Beziehung',
-        'target'    => 'Wähle ein Objekt',
+        'attitude'          => '-100 bis 100, 100 ist maximal positiv.',
+        'relation'          => 'Art der Beziehung',
+        'target'            => 'Wähle ein Objekt',
+        'target_relation'   => 'Lasse das Feld leer, um die Beschreibung zu verwenden',
     ],
     'show'              => [
         'title' => 'Beziehungen für :name',

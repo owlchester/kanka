@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Похідна характеристика від :name',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Додати характеристику до сутності',
@@ -18,12 +16,8 @@ return [
     'create'        => [
         'title' => 'Нова характеристика',
     ],
-    'entities'      => [
-        'title' => 'Сутності з характеристикою :name',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Субхарактеристика',
-        'ability'   => 'Батьківська характеристика',
         'charges'   => 'Заряди',
     ],
     'helpers'       => [
@@ -41,7 +35,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Субхарактеристики',
             'entities'  => 'Сутності',
             'reorder'   => 'Впорядкувати Характеристики',
         ],

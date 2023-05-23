@@ -68,7 +68,7 @@ class Tags extends Component
             foreach ($this->model->tags()->get() as $tag) {
                 $this->tags[$tag->id] = $tag;
             }
-        } elseif (!empty($this->options)) {
+        } elseif (!empty($this->options) && is_array($this->options)) {
             foreach ($this->options as $tagId) {
                 if (!empty($tagId) && is_numeric($tagId)) {
                     $tag = \App\Models\Tag::find($tagId);

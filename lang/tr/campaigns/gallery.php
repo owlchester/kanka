@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'close' => 'Kapat',
-        'full'  => 'Görsel linki',
         'save'  => 'Kaydet',
     ],
     'destroy'       => [

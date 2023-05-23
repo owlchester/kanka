@@ -56,6 +56,7 @@ $menus = array_merge(['' => __('crud.tabs.story')], $menus);
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.entity', [
+            'name' => 'entity_id',
             'required' => true,
             'preset' => !empty($model) && $model->target ? $model->target : null,
             'label' => __('menu_links.fields.entity'),

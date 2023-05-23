@@ -38,8 +38,6 @@ return [
         'has_clustering'    => 'Cluster-Marker',
         'initial_zoom'      => 'Initial Zoom',
         'is_real'           => 'Verwenden Sie OpenStreetMaps',
-        'map'               => 'Übergeordnete Karte',
-        'maps'              => 'Karten',
         'max_zoom'          => 'Maximal Zoom',
         'min_zoom'          => 'Minimal Zoom',
         'tabs'              => [
@@ -64,9 +62,7 @@ return [
         'nested_without'        => 'Anzeigen aller Karten ohne übergeordnete Karte. Klicken Sie auf eine Zeile, um die untergeordneten Karten anzuzeigen.',
     ],
     'index'         => [],
-    'maps'          => [
-        'title' => 'Karte von :name',
-    ],
+    'maps'          => [],
     'panels'        => [
         'groups'    => 'Gruppen',
         'layers'    => 'Ebenen',

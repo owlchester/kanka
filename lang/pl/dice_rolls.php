@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Rzuty kości',
             'results'   => 'Wyniki',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Rzut kośćmi',
-        'name'      => 'Nazwa rzutu kośćmi',
-        'parameters'=> '4d6+3',
+        'name'          => 'Nazwa rzutu kośćmi',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

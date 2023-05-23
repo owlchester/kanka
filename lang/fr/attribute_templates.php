@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Modèle d\'attribut parent',
-        'attributes'            => 'Attributs',
+        'attributes'    => 'Attributs',
     ],
     'hints'                 => [
         'automatic'                 => 'Attributs automatiquement appliqués depuis le modèle :link.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Choix d\'un modèle d\'attribut',
-        'name'                  => 'Nom du modèle d\'attribut',
+        'name'  => 'Nom du modèle d\'attribut',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Modèles d\'attributs',
-            'attributes'            => 'Attributs',
+            'attributes'    => 'Attributs',
         ],
     ],
 ];

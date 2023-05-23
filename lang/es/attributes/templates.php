@@ -13,4 +13,5 @@ return [
         'kanka'         => 'Plantillas de Kanka',
         'marketplace'   => 'Plantillas del Marketplace',
     ],
+    'pitch'     => 'Encuentra y añade hojas de personaje del :marketplace a una :boosted-campaign.',
 ];

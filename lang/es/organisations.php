@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'members'       => 'Miembros',
-        'organisation'  => 'Organización superior',
-        'organisations' => 'Suborganizaciones',
+        'members'   => 'Miembros',
     ],
     'helpers'       => [
         'descendants'       => 'Esta lista contiene todas las organizaciones que descienden de esta organización, no solo las que están directamente por debajo.',
@@ -32,12 +30,10 @@ return [
             'title'     => 'Actualizar miembro de :name',
         ],
         'fields'        => [
-            'character'     => 'Personaje',
-            'organisation'  => 'Organización',
-            'parent'        => 'Superior',
-            'pinned'        => 'Fijada',
-            'role'          => 'Rol',
-            'status'        => 'Estatus de miembro',
+            'parent'    => 'Superior',
+            'pinned'    => 'Fijada',
+            'role'      => 'Rol',
+            'status'    => 'Estatus de miembro',
         ],
         'helpers'       => [
             'all_members'   => 'Todos los personajes que son miembros de la organización y de los descendientes de esta.',
@@ -45,13 +41,10 @@ return [
             'pinned'        => 'Elige esta opción si el miembro debe mostrarse en la sección fijada de las entidades asociadas a esta.',
         ],
         'pinned'        => [
-            'both'          => 'Ambos',
-            'character'     => 'Personaje',
-            'none'          => 'Ninguno',
-            'organisation'  => 'Organización',
+            'both'  => 'Ambos',
+            'none'  => 'Ninguno',
         ],
         'placeholders'  => [
-            'character' => 'Elegir personaje',
             'parent'    => 'Quién es el superior de este miembro',
             'role'      => 'Líder, Miembro, Maestro de Espías, Septón Supremo...',
         ],
@@ -60,20 +53,11 @@ return [
             'inactive'  => 'Miembro inactivo',
             'unknown'   => 'Estatus desconocido',
         ],
-        'title'         => 'Miembros de :name',
     ],
-    'organisations' => [
-        'title' => 'Organizaciones de :name',
-    ],
+    'organisations' => [],
     'placeholders'  => [
-        'location'  => 'Elegir localización',
-        'name'      => 'Nombre de la organización',
-        'type'      => 'Culto, banda, Rebelión, Gremio...',
+        'type'  => 'Culto, banda, Rebelión, Gremio...',
     ],
     'quests'        => [],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizaciones',
-        ],
-    ],
+    'show'          => [],
 ];

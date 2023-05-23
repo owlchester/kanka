@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Nadřazená šablona atributů',
-        'attributes'            => 'Atributy',
+        'attributes'    => 'Atributy',
     ],
     'hints'                 => [
         'automatic'                 => 'Atributy byly automaticky aplikované ze šablony atributů :link.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Vyber jednu ze šablon atributů',
-        'name'                  => 'Název šablony atributů',
+        'name'  => 'Název šablony atributů',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Šablony atributů',
-            'attributes'            => 'Atributy',
+            'attributes'    => 'Atributy',
         ],
     ],
 ];

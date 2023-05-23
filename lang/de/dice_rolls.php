@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Würfelwürfe',
             'results'   => 'Ergebnisse',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Würfelwurf',
-        'name'      => 'Name des Würfelwurfs',
-        'parameters'=> '4d6+3',
+        'name'          => 'Name des Würfelwurfs',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

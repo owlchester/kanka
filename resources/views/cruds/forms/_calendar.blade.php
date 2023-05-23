@@ -40,10 +40,12 @@ if (!empty($oldCalendarID)) {
                         <x-forms.foreign
                             name="calendar_id"
                             key="calendar"
+                            entityType="calendars"
                             :allowClear="true"
                             :route="route('calendars.find')"
                             :selected="isset($model) && $model->calendarReminder() && $model->calendarReminder()->calendar ? $model->calendarReminder()->calendar : FormCopy::field('calendar')->select()"
-                            :dropdownParent="$dropdownParent ?? null">
+                            :dropdownParent="$dropdownParent ?? null"
+                            :entityTypeID="config('entities.ids.calendar')">
                         </x-forms.foreign>
                     </div>
                 </div>

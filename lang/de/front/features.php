@@ -10,11 +10,7 @@ return [
         'secondary'     => 'Die Attribute eines Objekts können auch so gestyled werden, dass sie wie ein TTRPG Charakterblatt aussehen, Vorlagen finden sich in unserem :marketplace.',
         'title'         => 'Attribute',
     ],
-    'boosters'      => [
-        'description'   => 'Einige Funktionen sind nur für geboostete Kampagnen verfügbar. Wenn ein Benutzer Kanka abonniert, erhält er eine bestimmte Anzahl von Boosts, die er einer oder mehreren Kampagnen zuordnen kann. Diese Boosts können von einer Kampagne zur anderen verschoben werden, beispielsweise wenn eine Kampagne endet. Solange ein Benutzer Abonnent bleibt, behält er seine Boosts.',
-        'link'          => 'Sehen Sie alle geboosteten Features auf unserer Preisgestaltungsseite',
-        'title'         => 'Kampagnen Booster',
-    ],
+    'boosters'      => [],
     'calendars'     => [
         'description'   => 'Erstellen Sie einen oder mehrere Kalender Ihrer Welt und steuern Sie die Anzahl der Tage im Jahr, die Monate, die Länge der Wochen, die Jahreszeiten, die Monde und ihre Phasen und mehr. Hängen Sie Ereignisse an Ihre Kalender an, die mit anderen Objekten verknüpft sind, z. B. die automatische Berechnung des Alters eines Charakters basierend auf dem Kalender.',
     ],
@@ -73,7 +69,6 @@ return [
         'secondary'     => ':boosted-campaigns haben Zugriff zu einer visuellen Darstellung der Beziehungen einer Entität.',
     ],
     'sections'      => [
-        'boosted'       => 'Geboostete Features',
         'general'       => 'Allgemein',
         'rpg'           => 'RPGs',
         'worldbuilding' => 'Worldbuilding',

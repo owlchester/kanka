@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Predložak svojstva roditelj',
-        'attributes'            => 'Svojstva',
+        'attributes'    => 'Svojstva',
     ],
     'hints'                 => [
         'automatic'                 => 'Svojstva automatski pridjeljena iz :link predloška svojstva.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Izaberi predložak svojstva',
-        'name'                  => 'Naziv predloška svojstva',
+        'name'  => 'Naziv predloška svojstva',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Predlošci svojstva',
-            'attributes'            => 'Svojstva',
+            'attributes'    => 'Svojstva',
         ],
     ],
 ];

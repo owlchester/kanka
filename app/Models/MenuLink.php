@@ -203,6 +203,8 @@ class MenuLink extends MiscModel
                 $dashboard = 'default';
             }
             return route('dashboard', ['dashboard' => $dashboard, 'quick-link' => $this->id]);
+        } elseif ($this->isRandom()) {
+            return route('menu_links.random', $this->id);
         }
         return !empty($this->entity_id) ? $this->getEntityRoute() : $this->getIndexRoute();
     }

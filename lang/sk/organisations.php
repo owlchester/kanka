@@ -9,8 +9,6 @@ return [
     'fields'        => [
         'is_defunct'    => 'Nečinná',
         'members'       => 'Členovia',
-        'organisation'  => 'Nadradená organizácia',
-        'organisations' => 'Podradená organizácia',
     ],
     'helpers'       => [
         'descendants'       => 'Tento zoznam obsahuje všetky organizácie, ktoré sú podradené tejto a všetkým podradeným organizáciám.',
@@ -37,12 +35,10 @@ return [
             'title'     => 'Upraviť člena organizácie :name',
         ],
         'fields'        => [
-            'character'     => 'Postava',
-            'organisation'  => 'Organizácia',
-            'parent'        => 'Nadriadená osoba',
-            'pinned'        => 'Pripnuté',
-            'role'          => 'Rola',
-            'status'        => 'Stav členstva',
+            'parent'    => 'Nadriadená osoba',
+            'pinned'    => 'Pripnuté',
+            'role'      => 'Rola',
+            'status'    => 'Stav členstva',
         ],
         'helpers'       => [
             'all_members'   => 'Všetky postavy, ktoré sú členmi tejto a podradených organizácií.',
@@ -50,13 +46,10 @@ return [
             'pinned'        => 'Zvoľ, či toto členstvo má byť zobrazené v sekcii pripnutých v prehľade priradených objektov.',
         ],
         'pinned'        => [
-            'both'          => 'Oboje',
-            'character'     => 'Postava',
-            'none'          => 'Žiadne',
-            'organisation'  => 'Organizácia',
+            'both'  => 'Oboje',
+            'none'  => 'Žiadne',
         ],
         'placeholders'  => [
-            'character' => 'Vyber postavu',
             'parent'    => 'Kto je nadriadená osoba tohto člena?',
             'role'      => 'veliteľ, členka, veľkňaz, majsterka špiónov',
         ],
@@ -65,19 +58,10 @@ return [
             'inactive'  => 'Neaktívne členstvo',
             'unknown'   => 'Neznámy stav',
         ],
-        'title'         => 'Členovia organizácie :name',
     ],
-    'organisations' => [
-        'title' => 'Organizácie organizácie :name',
-    ],
+    'organisations' => [],
     'placeholders'  => [
-        'location'  => 'Vyber miesto',
-        'name'      => 'Názov organizácie',
-        'type'      => 'kult, gang, bunka revolúcie, fandom',
+        'type'  => 'kult, gang, bunka revolúcie, fandom',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizácie',
-        ],
-    ],
+    'show'          => [],
 ];

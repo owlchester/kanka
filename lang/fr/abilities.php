@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Pouvoirs enfants de :name',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Ajouter un pouvoir à une entité',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Entités avec le pouvoir :name',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Pouvoirs',
-        'ability'   => 'Pouvoir Parent',
         'charges'   => 'Charges',
     ],
     'helpers'       => [
@@ -44,7 +38,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Pouvoirs',
             'entities'  => 'Entités',
             'reorder'   => 'Réorganiser les pouvoirs',
         ],

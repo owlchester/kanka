@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'                           => [
-        'boost' => 'Potenciar ":name"',
-    ],
+    'actions'                           => [],
     'create'                            => [
         'description'           => 'Crear unha nova campaña',
         'helper'                => [
@@ -41,7 +39,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Non tes acceso a esta campaña.',
-        'superboosted'  => 'Esta funcionalidade só está dispoñible para campañas superpotenciadas.',
         'unknown_id'    => 'Campaña descoñecida.',
     ],
     'export'                            => [],
@@ -76,8 +73,6 @@ TEXT
     ],
     'following'                         => 'Seguindo',
     'helpers'                           => [
-        'boost_required'                    => 'Esta función requer que a campaña sexa potenciada. Máis información na páxina de :settings.',
-        'boost_required_multi'              => 'Estas funcionalidades requiren que a campaña sexa potenciada. Máis información na páxina de :settings.',
         'boosted'                           => 'Algunhas funcións están desbloqueadas porque esta campaña está potenciada. Máis información na páxina de :settings.',
         'character_personality_visibility'  => 'Selecciona a privacidade por defecto dos trazos de personalidade ao crear novas personaxes.',
         'css'                               => 'Escrebe o teu propio CSS para as páxinas da túa campaña. Ten en conta que calquer abuso desta ferramenta pode levar á eliminación do teu CSS personalizado. Ofensas repetidas ou graves poden levar á eliminación da túa campaña.',
@@ -207,7 +202,6 @@ TEXT
     'open_campaign'                     => [],
     'options'                           => [],
     'panels'                            => [
-        'boosted'   => 'Potenciada',
         'dashboard' => 'Taboleiro',
         'permission'=> 'Permisos',
         'setup'     => 'Configuración',
@@ -381,7 +375,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Potenciar campaña',
             'edit'  => 'Editar campaña',
             'leave' => 'Abandonar campaña',
         ],
@@ -412,7 +405,6 @@ TEXT
         'none'  => 'Ningún (usa a configuración de cada persoa)',
     ],
     'ui'                                => [
-        'boosted'           => 'Potenciada',
         'collapsed'         => [
             'collapsed' => 'Colapsada',
             'default'   => 'Por defecto',

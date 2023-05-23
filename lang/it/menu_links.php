@@ -22,7 +22,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'entity'    => 'Seleziona un\'entità',
         'filters'   => 'Esempio: location_id=15&type=city',
         'menu'      => 'Sottopagina del menù (utilizza l\'ultimo pezzo di testo dell\'url)',
         'name'      => 'Titolo dell\'elemento del menù',

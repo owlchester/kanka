@@ -7,23 +7,23 @@
         // Name
         'name',
         [
-            'label' => trans('attribute_templates.fields.attribute_template'),
+            'label' => __('crud.fields.parent'),
             'field' => 'attributeTemplate.name',
             'render' => function($model) {
                 if ($model->attributeTemplate) {
-                    return '<a href="' . route('attribute_templates.show', $model->attributeTemplate->id) . '">' . e($model->attributeTemplate->name) . '</a>';
+                return $model->attributeTemplate->tooltipedLink();
                 }
             }
         ],
        [
-            'label' => trans('attribute_templates.fields.attributes'),
+            'label' => __('attribute_templates.fields.attributes'),
             'render' => function($model) {
                 return $model->entity->attributes()->count();
             },
             'disableSort' => true,
         ],
        [
-            'label' => trans('crud.fields.entity_type'),
+            'label' => __('attribute_templates.fields.auto_apply'),
             'render' => function($model) {
                 return $model->entityType ? $model->entityType->name() : null;
             },

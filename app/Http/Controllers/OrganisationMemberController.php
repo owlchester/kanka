@@ -24,6 +24,11 @@ class OrganisationMemberController extends Controller
         $this->middleware('campaign.member');
     }
 
+    public function index(Organisation $organisation)
+    {
+        return redirect()->to($organisation->getLink());
+    }
+
     /**
      * Show the form for creating a new resource.
      */

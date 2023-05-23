@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Schopnosti priradené :name',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Priradiť schopnosť k objektu',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Objekty so schopnosťou :name',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Schopnosti',
-        'ability'   => 'Schopnosť',
         'charges'   => 'Náboje',
     ],
     'helpers'       => [
@@ -44,7 +38,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Schopnosti',
             'entities'  => 'Objekty',
             'reorder'   => 'Preskúpiť schopnosti',
         ],

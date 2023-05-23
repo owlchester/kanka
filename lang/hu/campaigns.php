@@ -33,7 +33,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Nincs hozzáférésed ehhez a kampányhoz.',
-        'superboosted'  => 'Ez a funkció csak szuperboostolt kapányoknál elérhető.',
         'unknown_id'    => 'Ismeretlen kampány.',
     ],
     'export'                            => [],
@@ -62,7 +61,6 @@ TEXT
     ],
     'following'                         => 'Követve',
     'helpers'                           => [
-        'boost_required'            => 'Ez a funkció a kampány boost-olását igényli. További információ a :settings oldalon.',
         'boosted'                   => 'Néhány funkció elérhetővé vált, mivel a kampány boost-olva van. További információk a :settings oldalon olvashatóak.',
         'css'                       => 'Írj saját CSS kódot, amely a kampányod oldalaira applikálódik majd. Kérlek vedd figyelembe, hogy az ezzel a funkcióval kapcsolatos bármiféle visszaélés az egyedi CSS törléséhez vezethet! Többszöri, vagy súlyos visszaélés esetén a teljes kampányod törlésre kerülhet.',
         'dashboard'                 => 'A következő mezők kitöltésével személyre szabhatod a kampányod főoldalán a widgeteket.',
@@ -179,7 +177,6 @@ TEXT
     ],
     'open_campaign'                     => [],
     'panels'                            => [
-        'boosted'   => 'Boost-olva',
         'dashboard' => 'Főoldal',
         'permission'=> 'Jogosultság',
         'setup'     => 'Beállítás',
@@ -319,7 +316,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Kampány megerősítése',
             'edit'  => 'Kampány szerkesztése',
             'leave' => 'Kilépés a kampányból',
         ],

@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Tirades de daus',
             'results'   => 'Resultats',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Tirada de daus',
-        'name'      => 'Nom de la tirada de daus',
-        'parameters'=> '4d6+3',
+        'name'          => 'Nom de la tirada de daus',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

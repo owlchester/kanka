@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'members'       => 'Članovi',
-        'organisation'  => 'Organizacija roditelj',
-        'organisations' => 'Podorganizacije',
+        'members'   => 'Članovi',
     ],
     'helpers'       => [
         'descendants'       => 'Popis sadrži sve organizacije koje su unutar trenutne organizacije, a ne samo one koje su direktno ispod nje.',
@@ -32,31 +30,19 @@ return [
             'title'     => 'Ažuriraj člana za :name',
         ],
         'fields'        => [
-            'character'     => 'Lik',
-            'organisation'  => 'Organizacija',
-            'role'          => 'Uloga',
+            'role'  => 'Uloga',
         ],
         'helpers'       => [
             'all_members'   => 'Svi likovi koji su članovi ove organizacije i njenih podorganizacija.',
             'members'       => 'Sljedeća lista prikazuje sve likove koji su u ovoj organizaciji i svim njenim podorganizacijama. Možeš filtrirati stranicu da prikaže samo direktne članove.',
         ],
         'placeholders'  => [
-            'character' => 'Izaberi lika',
-            'role'      => 'Voditelj, Član, Visoki Svećenik, Majstor Špijun',
+            'role'  => 'Voditelj, Član, Visoki Svećenik, Majstor Špijun',
         ],
-        'title'         => 'Članovi organizacije :name',
     ],
-    'organisations' => [
-        'title' => 'Organizacije u organizaciji :name',
-    ],
+    'organisations' => [],
     'placeholders'  => [
-        'location'  => 'Izaberi lokaciju',
-        'name'      => 'Naziv organizacije',
-        'type'      => 'Kult, Banda, Pobuna, Klub obožavatelja',
+        'type'  => 'Kult, Banda, Pobuna, Klub obožavatelja',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => 'Organizacije',
-        ],
-    ],
+    'show'          => [],
 ];

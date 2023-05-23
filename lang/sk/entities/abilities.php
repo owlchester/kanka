@@ -29,7 +29,6 @@ return [
     'reorder'   => [
         'parentless'    => 'Bez nadradenej',
         'success'       => 'Schopnosti úspešne preskupené.',
-        'title'         => 'Preskupenie schopností',
     ],
     'show'      => [
         'helper'    => 'Pridaj schopnosti k tomuto objektu. Môžeš upraviť ich viditeľnosť alebo ich odstrániť. Schopnosti patriace pod nadradenú schopnosť sa zobrazia pod spoločným tlačidlom.',

@@ -33,7 +33,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Je hebt geen toegang tot deze campaign.',
-        'superboosted'  => 'Deze functie is alleen beschikbaar voor superboost-campaigns.',
         'unknown_id'    => 'Onbekende Campaign.',
     ],
     'export'                            => [],
@@ -60,7 +59,6 @@ TEXT
     ],
     'following'                         => 'Volgend',
     'helpers'                           => [
-        'boost_required'            => 'Deze functie vereist een boost van de campaign. Meer info op de :settings pagina.',
         'boosted'                   => 'Sommige functies zijn ontgrendeld omdat deze campaign een boost krijgt. Lees meer op de :settings pagina.',
         'css'                       => 'Schrijf je eigen CSS die in de pagina\'s van je campaign wordt geladen. Houd er rekening mee dat elk misbruik van deze functie kan leiden tot het verwijderen van je aangepaste CSS. Herhaalde of ernstige overtredingen kunnen ertoe leiden dat je campaign wordt verwijderd.',
         'excerpt'                   => 'Het campaign excerpt wordt op het dashboard weergegeven, dus schrijf een paar zinnen die je wereld introduceren. Houd het kort voor het beste resultaat.',
@@ -160,7 +158,6 @@ TEXT
     ],
     'open_campaign'                     => [],
     'panels'                            => [
-        'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permissie',
         'setup'     => 'Opstelling',
@@ -279,7 +276,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Boost campaign',
             'edit'  => 'Wijzig Campaign',
             'leave' => 'Verlaat campaign',
         ],

@@ -29,7 +29,6 @@ return [
     'reorder'   => [
         'parentless'    => 'kein übergepordnetes Objekt',
         'success'       => 'Fähigkeiten erfolgreich neu geordnet.',
-        'title'         => 'Ordne die Fähigkeiten neu',
     ],
     'show'      => [
         'helper'    => 'Fügen Sie diesem Objekt Fähigkeiten hinzu. Sie können die Sichtbarkeit jederzeit bearbeiten oder eine Fähigkeit entfernen. Fähigkeiten, die zu derselben übergeordneten Fähigkeit gehören, werden als Filterfelder angezeigt.',

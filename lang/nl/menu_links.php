@@ -29,7 +29,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'entity'    => 'Kies een entiteit',
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Menu subpagina (gebruik de laatste tekst van de url)',
         'name'      => 'Naam van de snelle link',

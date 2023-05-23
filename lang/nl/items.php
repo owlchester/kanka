@@ -12,11 +12,8 @@ return [
         'size'      => 'Grootte',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => 'Voorwerp :name Inventories',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Naam van het voorwerp',
         'price' => 'Prijs van het voorwerp',
         'size'  => 'Grootte, Gewicht, Afmeting',
         'type'  => 'Wapen, Potion, Artefact',

@@ -22,9 +22,7 @@ return [
             'description'       => 'Szczegóły',
             'entity_or_name'    => 'Wybierz inny element kampanii albo nadaj nazwę temu elementowi.',
             'name'              => 'Nazwa',
-            'quest'             => 'zadanie',
         ],
-        'title'     => 'Elementy zadania :name',
         'warning'   => [
             'editing'   => [
                 'description'   => 'Najwyraźniej ktoś inny edytuje właśnie to zadanie! Chcesz się wycofać czy zignorować to ostrzeżenie, ryzykując utratę danych? Członkowie obecnie edytujący zadanie:',
@@ -37,8 +35,6 @@ return [
         'date'          => 'Data',
         'element_role'  => 'Rola',
         'is_completed'  => 'Ukończona',
-        'quest'         => 'Zadanie źródłowe',
-        'quests'        => 'Zadania pochodne',
         'role'          => 'Rola',
     ],
     'helpers'       => [
@@ -52,8 +48,6 @@ return [
     'placeholders'  => [
         'date'      => 'Data zadania w prawdziwym świecie',
         'entity'    => 'Nazwa elementu z tego zadania',
-        'name'      => 'Nazwa zadania',
-        'quest'     => 'Zadanie źródłowe',
         'role'      => 'Rola elementu w tym zadaniu',
         'type'      => 'Wątek osobisty, misja poboczna, zadanie główne',
     ],

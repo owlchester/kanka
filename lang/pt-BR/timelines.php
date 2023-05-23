@@ -4,7 +4,6 @@ return [
     'actions'       => [
         'add_element'   => 'Adicionar elemento à era :era',
         'back'          => 'Voltar para :name',
-        'edit'          => 'Editar linha do tempo',
         'save_order'    => 'Salvar nova ordem',
     ],
     'create'        => [
@@ -17,8 +16,6 @@ return [
         'copy_eras'     => 'Copiar Eras',
         'eras'          => 'Eras',
         'reverse_order' => 'Ordem reversa da era',
-        'timeline'      => 'Linha do Tempo Primária',
-        'timelines'     => 'Linhas do Tempo',
     ],
     'helpers'       => [
         'nested_without'    => 'Exibindo todas as linhas do tempo que não tem uma linha do tempo primária. Clique em uma linha para ver as linhas do tempo secundárias.',
@@ -27,7 +24,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Nome da linha do tempo',
         'type'  => 'Primária, Crônica Mundial, Legado do Reino',
     ],
     'reorder'       => [
@@ -37,10 +33,7 @@ return [
     'show'          => [
         'tabs'  => [
             'reorder'   => 'Reordenar linha do tempo',
-            'timelines' => 'Linhas do tempo',
         ],
     ],
-    'timelines'     => [
-        'title' => 'Linhas do tempo da Linha do Tempo :name',
-    ],
+    'timelines'     => [],
 ];

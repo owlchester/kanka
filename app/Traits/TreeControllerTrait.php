@@ -71,7 +71,7 @@ trait TreeControllerTrait
         $parentKey = $model->getParentIdName();
         $parent = null;
         if (request()->has('parent_id')) {
-            $base->where([$parentKey => request()->get('parent_id')]);
+            $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
             if (request()->get('m') === 'table') {

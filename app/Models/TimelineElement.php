@@ -153,7 +153,7 @@ class TimelineElement extends Model
             return strip_tags(htmlentities($this->name));
         }
 
-        return strip_tags($this->entity->name);
+        return strip_tags($this->entity?->name);
     }
 
     /**

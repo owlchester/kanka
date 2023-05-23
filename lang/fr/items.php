@@ -8,8 +8,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Personnage',
-        'item'      => 'Objet parent',
-        'items'     => 'Sous-objets',
         'price'     => 'Prix',
         'size'      => 'Taille',
     ],
@@ -20,11 +18,8 @@ return [
         'items' => 'Organises les objets en utilisant le champ objet parent.',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => 'Inventaires de l\'objet :name',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Nom de l\'objet',
         'price' => 'Prix de l\'objet',
         'size'  => 'Taille, poids, dimensions.',
         'type'  => 'Arme, Potion, Coffre',

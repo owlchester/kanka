@@ -2,8 +2,7 @@
 
 return [
     'fields'        => [
-        'colour'        => 'Color',
-        'organisation'  => 'Organization',
+        'colour'    => 'Color',
     ],
     'placeholders'  => [
         'organisation'  => 'Choose an organization',

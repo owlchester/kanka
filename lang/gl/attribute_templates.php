@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Padrón de atributos pai',
-        'attributes'            => 'Atributos',
+        'attributes'    => 'Atributos',
     ],
     'hints'                 => [
         'automatic'                 => 'Atributos aplicados automaticamente a partir do padrón de atributos :link.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Elixe un padrón de atributos',
-        'name'                  => 'Nome do padrón de atributos',
+        'name'  => 'Nome do padrón de atributos',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Padróns de atributos',
-            'attributes'            => 'Atributos',
+            'attributes'    => 'Atributos',
         ],
     ],
 ];

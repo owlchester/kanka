@@ -8,8 +8,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Postać',
-        'item'      => 'Przedmiot źródłowy',
-        'items'     => 'Przedmiot pochodny',
         'price'     => 'Cena',
         'size'      => 'Rozmiar',
     ],
@@ -20,11 +18,8 @@ return [
         'items' => 'Porządkuj przedmioty według źródeł',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => 'Ekwipunki przedmiotu :name',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Nazwa przedmiotu',
         'price' => 'Cena przedmiotu',
         'size'  => 'Wielkość, ciężar, wymiary',
         'type'  => 'Broń, eliksir, artefakt',

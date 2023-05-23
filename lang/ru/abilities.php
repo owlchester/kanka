@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Потомки способности :name',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Добавить способность объекту',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Объекты со способностью :name',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Способности',
-        'ability'   => 'Родительская способность',
         'charges'   => 'Заряды',
     ],
     'helpers'       => [
@@ -39,7 +33,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Способности',
             'entities'  => 'Объекты',
         ],
     ],

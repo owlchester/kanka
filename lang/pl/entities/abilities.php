@@ -29,7 +29,6 @@ return [
     'reorder'   => [
         'parentless'    => 'Bez źródła',
         'success'       => 'Zmieniono kolejność zdolności.',
-        'title'         => 'Zmień kolejność zdolności',
     ],
     'show'      => [
         'helper'    => 'Dodaj zdolności, które posiada ten element. Możesz w każdej chwili zmienić ich widoczność albo je usunąć. Zdolności wywodzące się z tego samego źródła wyświetlane są jako kafelki.',

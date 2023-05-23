@@ -14,6 +14,7 @@ return [
         ],
         'private'           => 'Nur Mitglieder der Administratorrolle der Kampagne können dieses Objekt derzeit sehen.',
         'public'            => 'Dieses Objekt ist derzeit von jedem Benutzer oder jeder Rolle mit Zugriff darauf sichtbar.',
+        'screen-reader'     => 'Datenschutzeinstellungen öffnen',
         'success'           => [
             'private'   => ':entity ist jetzt versteckt.',
             'public'    => ':entity ist jetzt sichtbar.',

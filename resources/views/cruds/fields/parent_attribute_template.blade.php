@@ -4,7 +4,7 @@
     entityType="attribute_templates"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
-    :parent="$isParent ?? false"
+    :parent="$isParent ?? true"
     :route="route('attribute_templates.find')"
     :class="\App\Models\AttributeTemplate::class"
     :dropdownParent="$dropdownParent ?? null"

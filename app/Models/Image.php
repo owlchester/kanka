@@ -208,7 +208,9 @@ class Image extends Model
     {
         return $query
             ->orderBy('is_folder', 'desc')
-            ->orderBy('updated_at', 'desc');
+            ->orderBy('updated_at', 'desc')
+            ->orderBy('name', 'asc')
+        ;
     }
 
     /**

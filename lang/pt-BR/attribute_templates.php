@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Modelo de Atributo Primário',
-        'attributes'            => 'Atributos',
+        'attributes'    => 'Atributos',
     ],
     'hints'                 => [
         'automatic'                 => 'Atributos aplicados automaticamente a partir do Modelo de Atributo :link',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Escolha um modelo de atributo',
-        'name'                  => 'Nome do Modelo de Atributo',
+        'name'  => 'Nome do Modelo de Atributo',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Modelos de Atributo',
-            'attributes'            => 'Atributos',
+            'attributes'    => 'Atributos',
         ],
     ],
 ];

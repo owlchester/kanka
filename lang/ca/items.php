@@ -12,11 +12,8 @@ return [
         'size'      => 'Tamany',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => 'Inventaris de l\'objecte :name',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Nom de l\'objecte',
         'price' => 'Preu de l\'objecte',
         'size'  => 'Grandària, pes, dimensions',
         'type'  => 'Arma, poció, artefacte...',

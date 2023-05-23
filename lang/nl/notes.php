@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Vastgemaakt',
-        'note'      => 'Bovenliggende Notitie',
-        'notes'     => 'Sub Notities',
+        'notes' => 'Sub Notities',
     ],
     'helpers'       => [],
     'hints'         => [
@@ -17,7 +15,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Naam van de notitie',
         'note'  => 'Kies een bovenliggende notitie',
         'type'  => 'Religie, Ras, Politiek systeem',
     ],

@@ -20,9 +20,7 @@ return [
         'public'            => [
             'description'   => 'Bekijk de Openbare Campaigns voor inspiratie.',
             'filters'       => [
-                'all'       => 'Boost Status',
-                'boosted'   => 'Boosted campaigns',
-                'unboosted' => 'Unboosted campaigns',
+                'all'   => 'Boost Status',
             ],
             'no-results'    => 'Er is geen openbare campaign met deze filters gevonden. Probeer het a.u.b. opnieuw.',
             'title'         => 'Openbare Campaigns',
@@ -65,7 +63,6 @@ return [
         ],
         'boosts'            => [
             'beta'                  => 'Bètatoegang tot enkele nieuwe functies gedurende 30 dagen vóór de algemene release',
-            'boosted'               => 'Boosted campaign',
             'css'                   => 'Custom campaign css',
             'dashboards'            => 'Stel custom dashboards in voor rollen van de campaign',
             'description'           => 'Bepaalde toezeggingsniveaus bieden gebruikers boosters die ze kunnen gebruiken om campaigns te boosten. Deze bieden de volgende voordelen.',
@@ -76,7 +73,6 @@ return [
             'recovery'              => 'Entiteit herstel tot 30 dagen',
             'relation-visualiser'   => 'Verken de relaties van entiteiten visueel',
             'theme'                 => 'Vaste campaign thema',
-            'title'                 => 'Boosted Campaigns',
             'tooltip'               => 'Tooltips voor custom entiteiten: afbeelding weergeven, tekst wijzigen',
             'upload'                => 'Verhoogde upload formaten voor alle leden',
         ],
@@ -157,7 +153,6 @@ return [
             'title'         => 'Beheer Geheimen',
         ],
         'superboosts'       => [
-            'boosted'   => 'Superboosted',
             'gallery'   => 'Campaign galerij en integraties met de Summernote teksteditor',
             'logs'      => 'Volledige wijzigingslogboeken op entiteiten (tot 30 dagen)',
             'stats'     => 'Pagina met campaign prestaties',
@@ -242,7 +237,6 @@ return [
             'core'          => 'Toegang tot alle kern functies',
             'huge_maps'     => 'Enorme kaartgrootte (:size)',
             'huge_uploads'  => 'Enorme bestandsuploadformaten',
-            'no_boosters'   => 'Geen Campaign Boosters',
             'unlimited'     => 'Onbeperkt aantal campagnes en uploads',
             'updates'       => 'Regelmatige updates en verbeteringen',
         ],

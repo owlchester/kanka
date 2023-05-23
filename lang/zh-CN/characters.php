@@ -3,24 +3,17 @@
 return [
     'actions'       => [
         'add_appearance'    => '添加外观',
-        'add_organisation'  => '添加组织',
         'add_personality'   => '添加个性',
     ],
-    'conversations' => [
-        'title' => ':name的对话',
-    ],
+    'conversations' => [],
     'create'        => [
         'title' => '新角色',
     ],
     'destroy'       => [],
-    'dice_rolls'    => [
-        'hint'  => '可以为一名角色分配此属性以供游戏使用。',
-        'title' => ':name的掷骰',
-    ],
+    'dice_rolls'    => [],
     'edit'          => [],
     'fields'        => [
         'age'                       => '年龄',
-        'families'                  => '家族',
         'is_dead'                   => '死亡',
         'is_personality_visible'    => '个性可见',
         'life'                      => '生活状况',
@@ -40,40 +33,24 @@ return [
         'personality_visible'       => '该角色的个性特征目前为所有人可见。',
     ],
     'index'         => [],
-    'items'         => [
-        'hint'  => '分配给该角色的道具将会展示在这里。',
-        'title' => ':name的物品',
-    ],
-    'journals'      => [
-        'title' => ':name的日志',
-    ],
-    'maps'          => [
-        'title' => ':name的关系图',
-    ],
+    'items'         => [],
+    'journals'      => [],
+    'maps'          => [],
     'organisations' => [
-        'actions'       => [
-            'add'   => '添加至组织',
-        ],
-        'create'        => [
+        'create'    => [
             'success'   => '角色成功添加至组织。',
             'title'     => '为:name创建新组织',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => '成功移除角色组织。',
         ],
-        'edit'          => [
+        'edit'      => [
             'success'   => '成功更新角色组织。',
             'title'     => '为:name更新组织',
         ],
-        'fields'        => [
-            'organisation'  => '组织',
-            'role'          => '职位',
+        'fields'    => [
+            'role'  => '职位',
         ],
-        'hint'          => '角色可以是许多组织的成员。这代表着他们为谁工作，或者是什么隐秘社会的一份子。',
-        'placeholders'  => [
-            'organisation'  => '选择一个组织...',
-        ],
-        'title'         => ':name的组织',
     ],
     'placeholders'  => [
         'age'               => '年龄',
@@ -96,14 +73,9 @@ return [
     ],
     'sections'      => [
         'appearance'    => '外貌',
-        'general'       => '一般信息',
         'personality'   => '个性',
     ],
-    'show'          => [
-        'tabs'  => [
-            'organisations' => '组织',
-        ],
-    ],
+    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => '你无权编辑这个角色的个性特征。',
     ],

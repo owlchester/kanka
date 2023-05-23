@@ -5,9 +5,7 @@ return [
         'title' => 'Yeni Muhabbet',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => ':name Muhabbeti',
-    ],
+    'edit'          => [],
     'fields'        => [
         'messages'      => 'Mesajlar',
         'participants'  => 'Katılımcılar',
@@ -42,7 +40,6 @@ return [
     ],
     'show'          => [],
     'tabs'          => [
-        'conversation'  => 'Muhabbet',
         'participants'  => 'Katılımcılar',
     ],
     'targets'       => [

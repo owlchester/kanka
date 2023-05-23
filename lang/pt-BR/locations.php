@@ -1,25 +1,15 @@
 <?php
 
 return [
-    'characters'    => [
-        'title' => 'Personagens no Local :name',
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Novo Local',
     ],
     'destroy'       => [],
     'edit'          => [],
-    'events'        => [
-        'title' => 'Eventos no Local :name',
-    ],
-    'families'      => [
-        'title' => 'Famílias no Local :name',
-    ],
-    'fields'        => [
-        'characters'    => 'Personagens',
-        'location'      => 'Local Primário',
-        'locations'     => 'Locais',
-    ],
+    'events'        => [],
+    'families'      => [],
+    'fields'        => [],
     'helpers'       => [
         'characters'        => 'Ver todos personagens neste local e em seus locais secundários, ou apenas aqueles localizados diretamente aqui.',
         'descendants'       => 'Esta lista contém todos locais que estão relacionados a este local, e não apenas os diretamente relacionados a ela.',
@@ -29,17 +19,13 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
-    'locations'     => [
-        'title' => 'Locais do Local :name',
-    ],
+    'locations'     => [],
     'map'           => [],
     'maps'          => [],
     'organisations' => [],
     'panels'        => [],
     'placeholders'  => [
-        'location'  => 'Escolha um local primário',
-        'name'      => 'Nome do local',
-        'type'      => 'Cidade, Reino, Ruína',
+        'type'  => 'Cidade, Reino, Ruína',
     ],
     'show'          => [],
 ];

@@ -5,9 +5,7 @@ return [
         'title' => 'Nieuwe Conversatie',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => 'Conversatie :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'messages'      => 'Berichten',
         'participants'  => 'Deelnemers',
@@ -42,7 +40,6 @@ return [
     ],
     'show'          => [],
     'tabs'          => [
-        'conversation'  => 'Conversatie',
         'participants'  => 'Deelnemers',
     ],
     'targets'       => [

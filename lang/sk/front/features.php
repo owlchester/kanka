@@ -10,11 +10,7 @@ return [
         'secondary'     => 'Atribúty postavy môžu byť štýlované do podoby denníka postavy tvojho systému prostredníctvom šablón na našom :marketplace.',
         'title'         => 'Atribúty',
     ],
-    'boosters'      => [
-        'description'   => 'Niektoré funkcionality sú dostupné iba pre boostnuté kampane. Keď si užívateľ predplatí Kanku, získa niekoľko boostov, ktoré môže rozdeliť medzi kampane. Tieto boosty môžu byť presunuté z jednej kampane do druhej, napr. ak kampaň skončí. Boosty trvajú tak dlho, ako dlho je aktívne dané predplatné.',
-        'link'          => 'Prehľad všetkých boostnutých funkcionalít nájdeš na stránke s cenníkom.',
-        'title'         => 'Boosty kampaní',
-    ],
+    'boosters'      => [],
     'calendars'     => [
         'description'   => 'Do tvojho sveta môžeš pridať jeden alebo viacero kalendárov s plnou kontrolou nad počtom dní v roku, mesiacoch, dĺžkou týždňov, ročných období, družíc a ich fáz, atď. Pridaj do nich následne udalosti prepojené s objektami, ako napr. automaticky kalkulovaný vek postáv podľa kalendára.',
     ],
@@ -73,7 +69,6 @@ return [
         'secondary'     => ':boosted-campaigns majú prístup k vizuálnemu prehliadaču vzťahov daného objektu.',
     ],
     'sections'      => [
-        'boosted'       => 'Boostnuté funkcionality',
         'general'       => 'Všeobecné',
         'rpg'           => 'RPG hry',
         'worldbuilding' => 'Tvorba svetov',

@@ -8,12 +8,9 @@ return [
     'edit'          => [],
     'events'        => [
         'helper'    => 'Udalosti, ktoré majú tento objekt ako ich nadradený, sa zobrazujú tu.',
-        'title'     => 'Udalosti podradené :name',
     ],
     'fields'        => [
-        'date'      => 'Dátum',
-        'event'     => 'Nadradená udalosť',
-        'events'    => 'Udalosti',
+        'date'  => 'Dátum',
     ],
     'helpers'       => [
         'date'              => 'Toto pole môže obsahovať čokoľvek a nie je prepojené s kalendármi kampane. Na zobrazenie tejto udalosti v kalendári je nutné ju pridať do kalendára alebo do karty Pripomienky tejto udalosti.',
@@ -22,14 +19,9 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Dátum tvojej udalosti',
-        'name'  => 'Názov udalosti',
         'type'  => 'ceremónia, festival, katastrofa, bitva, narodenie',
     ],
-    'show'          => [
-        'tabs'  => [
-            'events'    => 'Udalosti',
-        ],
-    ],
+    'show'          => [],
     'tabs'          => [
         'calendars' => 'Záznamy v kalendári',
     ],

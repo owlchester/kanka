@@ -5,9 +5,7 @@ return [
         'title' => 'Novo Diálogo',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => 'Diálogo :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'is_closed'     => 'Fechado',
         'messages'      => 'Mensagens',
@@ -45,7 +43,6 @@ return [
         'is_closed' => 'Diálogo está fechado.',
     ],
     'tabs'          => [
-        'conversation'  => 'Diálogo',
         'participants'  => 'Participantes',
     ],
     'targets'       => [

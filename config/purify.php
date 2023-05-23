@@ -69,7 +69,7 @@ return [
                 . 'a[href|class|style|target|rel|title|data-toggle|data-html|id|role],'
                 . 'br[class|style],'
                 . 'i[class],u[class],'
-                . 'img[src|style|alt|width|height|class|title|id],'
+                . 'img[src|style|alt|width|height|class|title|id|data-gallery-id],'
                 . 'hr[class|style|id|title],'
 
                 /** Text blocks */

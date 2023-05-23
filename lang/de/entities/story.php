@@ -2,9 +2,10 @@
 
 return [
     'actions'   => [
-        'collapse_all'  => 'Alle ausblenden',
-        'expand_all'    => 'Alle einblenden',
-        'load_more'     => 'mehr laden',
+        'collapse_all'      => 'Alle ausblenden',
+        'expand_all'        => 'Alle einblenden',
+        'load_more'         => 'mehr laden',
+        'login_for_more'    => 'Melde dich an, um weitere Beiträge anzuzeigen',
     ],
     'reorder'   => [
         'icon_tooltip'  => 'Beiträge neu anordnen',

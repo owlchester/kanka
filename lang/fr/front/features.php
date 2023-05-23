@@ -10,11 +10,7 @@ return [
         'secondary'     => 'Les attributs d\'une entité peuvent également être stylisés pour ressembler à une feuille de personnage TTRPG en utilisant notre :marketplace.',
         'title'         => 'Attributs',
     ],
-    'boosters'      => [
-        'description'   => 'Certaines fonctionnalités ne sont disponibles que pour les campagnes boostées. Lorsqu\'un utilisateur s\'abonne à Kanka, il obtient un certain nombre de boosts qu\'il peut attribuer à une ou plusieurs campagnes. Ces boosts peuvent être déplacés d\'une campagne à l\'autre, par exemple à la fin d\'une campagne. Tant qu\'un utilisateur reste abonné, il garde ses boosts.',
-        'link'          => 'Voir toutes les fonctionnalités boostées sur notre page de prix.',
-        'title'         => 'Boosters de Campagne',
-    ],
+    'boosters'      => [],
     'calendars'     => [
         'description'   => 'Crées un ou plusieurs calendriers de ton monde, contrôlant entièrement le nombre de jours dans une année, les mois, la durée des semaines, les saisons, les lunes et leurs phases, etc. Attaches des événements à tes calendriers liés à d\'autres entités, comme le calcul automatique de l\'âge d\'un personnage en fonction du calendrier.',
     ],
@@ -77,7 +73,6 @@ return [
         'secondary'     => ':boosted-campaigns ont accès à un explorateur visuel pour les relations d\'une entité.',
     ],
     'sections'      => [
-        'boosted'       => 'Fonctionnalités Boostées',
         'general'       => 'Général',
         'premium'       => 'Fonctionnalités de campagne Premium',
         'rpg'           => 'JDR',

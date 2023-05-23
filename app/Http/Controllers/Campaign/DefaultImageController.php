@@ -49,9 +49,11 @@ class DefaultImageController extends Controller
         $this->authorize('recover', $campaign);
         $ajax = request()->ajax();
 
+        $ignore = $campaign->existingDefaultImages();
+        $ignore = array_merge($ignore, ['relations', 'menu_links']);
         $entities = $this
             ->entityService
-            ->labelledEntities(false, $campaign->existingDefaultImages());
+            ->labelledEntities(false, $ignore);
 
         return view('campaigns.default-images.create', compact(
             'campaign',

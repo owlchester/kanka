@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'                           => [
-        'boost' => 'Impulsionar :name',
-    ],
+    'actions'                           => [],
     'create'                            => [
         'description'           => 'Criar uma nova campanha',
         'helper'                => [
@@ -41,7 +39,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Você não tem acesso a esta campanha.',
-        'superboosted'  => 'Este recurso está disponível apenas para campanhas super impulsionadas',
         'unknown_id'    => 'Campanha Desconhecida.',
     ],
     'export'                            => [],
@@ -76,8 +73,6 @@ TEXT
     ],
     'following'                         => 'Seguindo',
     'helpers'                           => [
-        'boost_required'                    => 'Este recurso requer que a campanha seja impulsionada. Mais informações na página :settings.',
-        'boost_required_multi'              => 'Esses recursos exigem que a campanha seja impulsionada. Mais informações na página :settings.',
         'boosted'                           => 'Alguns recursos requerem que a campanha esteja sendo impulsionada. Mais informações na página :settings.',
         'character_personality_visibility'  => 'Ao criar um novo personagem como administrador, selecione a configuração de privacidade padrão para seus traços de personalidade.',
         'css'                               => 'Escreva seu próprio CSS que será carregado nas páginas de sua campanha. Observe que qualquer abuso desse recurso pode levar à remoção do seu CSS personalizado. Ofensas repetidas ou graves podem levar à remoção de sua campanha.',
@@ -216,7 +211,6 @@ TEXT
         'follower-count'    => '{0} Nenhum seguidor|{1} :amount seguidor|[2,*] :amount seguidores',
     ],
     'panels'                            => [
-        'boosted'   => 'Impulsionada',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permissão',
         'setup'     => 'Configuração',
@@ -396,7 +390,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Impulsionar campanha.',
             'edit'  => 'Editar campanha',
             'leave' => 'Sair da campanha',
         ],
@@ -427,7 +420,6 @@ TEXT
         'none'  => 'Nenhum (padrão para configurações do usuário)',
     ],
     'ui'                                => [
-        'boosted'           => 'Impulsionado',
         'collapsed'         => [
             'collapsed' => 'Recolhido',
             'default'   => 'Padrão',

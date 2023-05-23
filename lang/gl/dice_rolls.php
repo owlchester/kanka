@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Tiradas de dados',
             'results'   => 'Resultados',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Tirada de dados',
-        'name'      => 'Nome da tirada de dados',
-        'parameters'=> '4d6+3',
+        'name'          => 'Nome da tirada de dados',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

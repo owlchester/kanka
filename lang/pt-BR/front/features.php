@@ -10,11 +10,7 @@ return [
         'secondary'     => 'Os atributos de uma entidade também podem ser estilizados para se parecerem com uma planilha de personagem TTRPG usando nosso :marketplace.',
         'title'         => 'Atributos',
     ],
-    'boosters'      => [
-        'description'   => 'Alguns recursos estão disponíveis apenas para campanhas impulsionadas. Quando um usuário se inscreve no Kanka, ele ganha um determinado número de impulsos que pode atribuir a uma ou várias campanhas. Esses impulsos podem ser movidos de uma campanha para outra, como quando uma campanha termina. Enquanto um usuário permanecer assinante, ele mantém seus impulsos.',
-        'link'          => 'Veja todos os recursos aprimorados em nossa página de preços.',
-        'title'         => 'Impulsionamentos da Campanha',
-    ],
+    'boosters'      => [],
     'calendars'     => [
         'description'   => 'Crie um ou vários calendários do seu mundo, controlando totalmente o número de dias em um ano, os meses, a duração das semanas, as estações, as luas e suas fases e muito mais. Anexe eventos aos seus calendários vinculados a outras entidades, como calcular automaticamente a idade de um personagem com base no calendário.',
     ],
@@ -73,7 +69,6 @@ return [
         'secondary'     => ':boosted-campaigns tem acesso a um explorador visual para as relações de uma entidade.',
     ],
     'sections'      => [
-        'boosted'       => 'Características impulsionadas',
         'general'       => 'Geral',
         'rpg'           => 'RPGs',
         'worldbuilding' => 'Construção de Mundo',

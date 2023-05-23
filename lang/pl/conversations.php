@@ -5,9 +5,7 @@ return [
         'title' => 'Nowa konwersacja',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => 'Konwersacja :name',
-    ],
+    'edit'          => [],
     'fields'        => [
         'is_closed'     => 'Zamknięta',
         'messages'      => 'Wiadomości',
@@ -45,7 +43,6 @@ return [
         'is_closed' => 'Konwersacja jest zamknięta.',
     ],
     'tabs'          => [
-        'conversation'  => 'Konwersacja',
         'participants'  => 'Uczestnicy',
     ],
     'targets'       => [

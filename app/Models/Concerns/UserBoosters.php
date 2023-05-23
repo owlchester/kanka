@@ -38,7 +38,10 @@ trait UserBoosters
      */
     public function boosting(): int
     {
-        return $this->boosts->count();
+        if ($this->hasBoosterNomenclature()) {
+            return $this->boosts->count();
+        }
+        return $this->boosts->groupBy('campaign_id')->count();
     }
 
     /**

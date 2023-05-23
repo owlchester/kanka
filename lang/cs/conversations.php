@@ -5,9 +5,7 @@ return [
         'title' => 'Nový rozhovor',
     ],
     'destroy'       => [],
-    'edit'          => [
-        'title' => 'Rozhovor ":name"',
-    ],
+    'edit'          => [],
     'fields'        => [
         'is_closed'     => 'Uzavřený',
         'messages'      => 'Zprávy',
@@ -45,7 +43,6 @@ return [
         'is_closed' => 'Rozhovor skončil',
     ],
     'tabs'          => [
-        'conversation'  => 'Rozhovor',
         'participants'  => 'Účastníci',
     ],
     'targets'       => [

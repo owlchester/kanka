@@ -16,6 +16,9 @@ return [
         'copy'          => 'Kopiere',
         'select_one'    => 'Kampagne auswählen',
     ],
+    'helpers'       => [
+        'copy'  => 'Erstelle eine Kopie des Objekts in der Zielkampagne.',
+    ],
     'panel'         => [
         'description'           => 'Wählen Sie eine Kampagne aus, in die Sie verschieben möchten, oder erstellen Sie eine Kopie dieses Objekts.',
         'description_bulk_copy' => 'Wählen Sie eine Kampagne aus, in die Sie die ausgewählten Objekte kopieren möchten.',

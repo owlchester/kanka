@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'                           => [
-        'boost' => 'Boostnuť :name',
-    ],
+    'actions'                           => [],
     'create'                            => [
         'description'           => 'Vytvoriť novú kampaň',
         'helper'                => [
@@ -41,7 +39,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'K tejto kampani nemáš prístup.',
-        'superboosted'  => 'Táto funkcionalita je dostupná len pre superboostnuté kampane.',
         'unknown_id'    => 'Neznáma kampaň.',
     ],
     'export'                            => [],
@@ -76,8 +73,6 @@ TEXT
     ],
     'following'                         => 'Odber aktívny',
     'helpers'                           => [
-        'boost_required'                    => 'Táto funkcia vyžaduje boostnutú kampaň. Viac informácií nájdeš v :settings.',
-        'boost_required_multi'              => 'Tieto funkcie vyžadujú boostnutú kampaň. Viac informácií nájdeš v :settings.',
         'boosted'                           => 'Niektoré funkcie sú odomknuté, pretože táto kampaň je boostnutá. Viac nájdeš v :settings.',
         'character_personality_visibility'  => 'Keď vytváraš ako admin novú postavu, tu môžeš zvoliť štandardné nastavenie pre jej osobnostné črty.',
         'css'                               => 'Napíš svoj vlastný CSS, ktorý sa nahrá do stránok tvojej kampane. Prosím, uvedom si, že hociktoré zneužitie tejto funkcionality môže viesť k odstráneniu tvojho užívateľského CSS kódu. Opakované alebo závažné porušenia môžu viesť k odstráneniu tvojej kampane.',
@@ -216,7 +211,6 @@ TEXT
         'follower-count'    => '{0} Žiadni sledovatelia|{1} :amount sledovateľ|[2,4] :amount sledovatelia|[5,*] :amount sledovateľov',
     ],
     'panels'                            => [
-        'boosted'   => 'Boostovaná',
         'dashboard' => 'Nástenka',
         'permission'=> 'Oprávnenie',
         'setup'     => 'Nastavenia',
@@ -396,7 +390,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Boostnuť kampaň',
             'edit'  => 'Upraviť kampaň',
             'leave' => 'Opustiť kampaň',
         ],
@@ -427,7 +420,6 @@ TEXT
         'none'  => 'Žiadna (štandardné nastavenie)',
     ],
     'ui'                                => [
-        'boosted'           => 'Boostnutá',
         'collapsed'         => [
             'collapsed' => 'Zbalená',
             'default'   => 'Štandardná',

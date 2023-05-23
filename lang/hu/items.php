@@ -12,11 +12,8 @@ return [
         'size'      => 'Méret',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => ':name tárgy Felszerelései',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'A tárgy neve',
         'price' => 'A tárgy ára',
         'size'  => 'Méret, Súly, Térfogat',
         'type'  => 'Fegyver, bájital, ereklye',

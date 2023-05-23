@@ -4,7 +4,6 @@ return [
     'actions'       => [
         'add_element'   => 'Afegeix un element a l\'era :era',
         'back'          => 'Torna a :name',
-        'edit'          => 'Edita la línia de temps',
         'save_order'    => 'Guarda l\'ordre nou',
     ],
     'create'        => [
@@ -17,8 +16,6 @@ return [
         'copy_eras'     => 'Copia\'n les eres',
         'eras'          => 'Eres',
         'reverse_order' => 'Era en ordre invers',
-        'timeline'      => 'Línia de temps pare',
-        'timelines'     => 'Línies de temps',
     ],
     'helpers'       => [
         'nested_without'    => 'S\'estan mostrant les línies de temps sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne les descendents.',
@@ -26,15 +23,8 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Nom de la línia de temps',
         'type'  => 'Primària, crònica del món, llegat del regne...',
     ],
-    'show'          => [
-        'tabs'  => [
-            'timelines' => 'Línies de temps',
-        ],
-    ],
-    'timelines'     => [
-        'title' => 'Línies de temps de :name',
-    ],
+    'show'          => [],
+    'timelines'     => [],
 ];

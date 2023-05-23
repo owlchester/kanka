@@ -12,9 +12,13 @@ class CustomDefinitions implements Definition
     {
         Html5Definition::apply($def);
 
+        // Mentions
         $def->addAttribute('a', 'data-toggle', 'Text');
         $def->addAttribute('a', 'data-html', 'Text');
         $def->addAttribute('a', 'target', 'Text');
+
+        // Gallery
+        $def->addAttribute('img', 'data-gallery-id', 'Text');
 
         $def->addAttribute('ul', 'role', 'Text');
         $def->addAttribute('ol', 'role', 'Text');

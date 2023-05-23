@@ -1,25 +1,15 @@
 <?php
 
 return [
-    'characters'    => [
-        'title' => 'Personatges a :name',
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Nou indret',
     ],
     'destroy'       => [],
     'edit'          => [],
-    'events'        => [
-        'title' => 'Esdeveniments a :name',
-    ],
-    'families'      => [
-        'title' => 'Famílies a :name',
-    ],
-    'fields'        => [
-        'characters'    => 'Personatges',
-        'location'      => 'Localizació superior',
-        'locations'     => 'Indrets',
-    ],
+    'events'        => [],
+    'families'      => [],
+    'fields'        => [],
     'helpers'       => [
         'characters'        => 'Mostra tots els personatges d\'aquest indret i els seus indrets niats, o només els que són aquí.',
         'descendants'       => 'Aquí es mostren totes les localitzacions que són descendents d\'aquests indrets, a més de les directament inferiors.',
@@ -29,17 +19,13 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
-    'locations'     => [
-        'title' => 'Indrets de :name',
-    ],
+    'locations'     => [],
     'map'           => [],
     'maps'          => [],
     'organisations' => [],
     'panels'        => [],
     'placeholders'  => [
-        'location'  => 'Trieu l\'indret superior',
-        'name'      => 'Nom de l\'indret',
-        'type'      => 'Ciutat, regne, ruïnes...',
+        'type'  => 'Ciutat, regne, ruïnes...',
     ],
     'show'          => [],
 ];

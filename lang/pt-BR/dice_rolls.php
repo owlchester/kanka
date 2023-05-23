@@ -19,14 +19,12 @@ return [
     ],
     'index'         => [
         'actions'   => [
-            'dice'      => 'Rolagem de Dados',
             'results'   => 'Resultados',
         ],
     ],
     'placeholders'  => [
-        'dice_roll' => 'Rolagem de Dados',
-        'name'      => 'Nome da Rolagem de Dados',
-        'parameters'=> '4d6+3',
+        'name'          => 'Nome da Rolagem de Dados',
+        'parameters'    => '4d6+3',
     ],
     'results'       => [
         'actions'   => [

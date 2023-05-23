@@ -10,11 +10,7 @@ return [
         'secondary'     => 'Cechy elementu mogą też wyglądać jak karta postaci do RPG dzięki dodatkom z :marketplace.',
         'title'         => 'Cechy',
     ],
-    'boosters'      => [
-        'description'   => 'Część funkcji dostępna jest tylko w doładowanych kampaniach. Subskrybując Kankę otrzymujesz dostęp do pewnej liczby doładowań, których możesz używać w dowolnych kampaniach i je między nimi przenosić - na przykład kiedy skończycie grać. Doładowania posiadasz póki opłacasz subskrypcję.',
-        'link'          => 'Lista funkcji dostępnych po doładowaniu znajduje się na stronie z cennikiem.',
-        'title'         => 'Doładowania kampanii',
-    ],
+    'boosters'      => [],
     'calendars'     => [
         'description'   => 'Możesz stworzyć jeden albo kilka kalendarzy kampanii, dowolnie regulując liczbę dni i miesięcy, długość tygodnia, pory roku, fazy księżyca i tak dalej. Kalendarze można następnie łączyć z elementami, co pozwala na przykład automatycznie wyliczać wiek postaci.',
     ],
@@ -73,7 +69,6 @@ return [
         'secondary'     => ':boosted-campaigns posiadają też narzędzie wizualizacji relacji między elementami.',
     ],
     'sections'      => [
-        'boosted'       => 'Funkcje doładowania',
         'general'       => 'Ogólne',
         'rpg'           => 'Gry fabularne',
         'worldbuilding' => 'Tworzenie światów',

@@ -22,9 +22,7 @@ return [
             'description'       => 'Description',
             'entity_or_name'    => 'Sélection soit d\'une entité de la campagne, soit d\'un nom pour cet élément.',
             'name'              => 'Nom',
-            'quest'             => 'Quête',
         ],
-        'title'     => 'Éléments de quêtes pour :name',
         'warning'   => [
             'editing'   => [
                 'description'   => 'On dirait que quelqu\'un d\'autre est en train de modifier cet élément de quête! Souhaites-tu revenir en arrière ou ignorer cet avertissement, au risque de perdre des données? Les membres éditant actuellement cet élément entité sont:',
@@ -37,8 +35,6 @@ return [
         'date'          => 'Date',
         'element_role'  => 'Rôle',
         'is_completed'  => 'Completée',
-        'quest'         => 'Quête Parentale',
-        'quests'        => 'Sous-quêtes',
         'role'          => 'Rôle',
     ],
     'helpers'       => [
@@ -52,8 +48,6 @@ return [
     'placeholders'  => [
         'date'      => 'Date réelle de la quête',
         'entity'    => 'Nom d\'un élément dans la quête',
-        'name'      => 'Nom de la quête',
-        'quest'     => 'Quête Parentale',
         'role'      => 'Le rôle de l\'entité dans la quête.',
         'type'      => 'Principale, side quest, personnage',
     ],

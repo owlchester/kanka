@@ -51,12 +51,8 @@ return [
         ],
         'success'   => '\':event\' eseményt hozzáadtuk a naptárhoz.',
     ],
-    'events'        => [
-        'title' => ':name naptár eseményei',
-    ],
+    'events'        => [],
     'fields'        => [
-        'calendar'              => 'Szülő Naptár',
-        'calendars'             => 'Naptárak',
         'colour'                => 'Szín',
         'comment'               => 'Megjegyzés',
         'current_day'           => 'Jelenlegi nap',
@@ -185,7 +181,6 @@ return [
         'leap_year_start'   => 'Az első év, ami szökőév',
         'length'            => 'Esemény időtartama napokban',
         'months'            => 'A hónapok száma egy évben',
-        'name'              => 'A naptár neve',
         'recurring_until'   => 'Legutolsó ismétlődő év (hagyd üresen, ha mindig ismétlődik)',
         'seasons'           => 'Évszakok száma',
         'suffix'            => 'Jelenlegi kor előtagja (pl. ie., isz.)',

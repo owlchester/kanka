@@ -1,17 +1,13 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Gerelateerde vaardigheden van :name',
-    ],
+    'abilities'     => [],
     'create'        => [
         'title' => 'Nieuwe Vaardigheid',
     ],
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'abilities' => 'Vaardigheden',
-        'ability'   => 'Bovenliggende Vaardigheid',
         'charges'   => 'Ladingen',
     ],
     'helpers'       => [],
@@ -21,9 +17,5 @@ return [
         'name'      => 'Vuurbal, Waarschuwing, Sluwe Aanval',
         'type'      => 'Spreuk, Prestatie, Aanval',
     ],
-    'show'          => [
-        'tabs'  => [
-            'abilities' => 'Vaardigheden',
-        ],
-    ],
+    'show'          => [],
 ];

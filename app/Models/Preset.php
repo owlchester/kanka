@@ -28,6 +28,7 @@ class Preset extends Model
         'type_id',
         'config',
         'visibility_id',
+        'campaign_id',
     ];
 
     public $casts = [

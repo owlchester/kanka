@@ -30,7 +30,6 @@ return [
     ],
     'index'             => [],
     'placeholders'      => [
-        'entity'    => 'Trieu una entitat',
         'filters'   => 'location_id=15&type=ciutat',
         'menu'      => 'Subpàgina del menú (usa l\'última part de la url)',
         'name'      => 'Nom de l\'enllaç directe',

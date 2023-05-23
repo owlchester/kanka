@@ -48,12 +48,8 @@ return [
         ],
         'success'   => 'Gebeurtenis \':event\' toegevoegd aan de kalender',
     ],
-    'events'        => [
-        'title' => 'Kalender :name Gebeurtenissen',
-    ],
+    'events'        => [],
     'fields'        => [
-        'calendar'              => 'Bovenliggende Kalender',
-        'calendars'             => 'Kalenders',
         'colour'                => 'Kleur',
         'comment'               => 'Opmerking',
         'current_day'           => 'Huidige Dag',
@@ -174,7 +170,6 @@ return [
         'leap_year_start'   => 'Eerste jaar dat een schrikkeljaar is',
         'length'            => 'Gebeurtenis duur in dagen',
         'months'            => 'Aantal maanden in een jaar',
-        'name'              => 'Naam van de kalender',
         'recurring_until'   => 'Laatste terugkerend jaar (leeg laten voor altijd terugkerend)',
         'seasons'           => 'Aantal seizoenen',
         'suffix'            => 'Huidig Tijdperk Suffix (nC, vC)',

@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'is_pinned' => 'Fijada',
-        'note'      => 'Nota superior',
-        'notes'     => 'Subnotas',
+        'notes' => 'Subnotas',
     ],
     'helpers'       => [
         'nested_without'    => 'Mostrando todas las notas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
@@ -19,7 +17,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'name'  => 'Nombre de la nota',
         'note'  => 'Elige una nota superior',
         'type'  => 'Religión, Raza, Sistema politico...',
     ],

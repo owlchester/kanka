@@ -16,6 +16,9 @@ return [
         'copy'          => 'Hacer una copia',
         'select_one'    => 'Seleccionar campaña',
     ],
+    'helpers'       => [
+        'copy'  => 'Crea una copia de la entidad en la campaña destino.',
+    ],
     'panel'         => [
         'description'           => 'Selecciona una campaña adonde quieras mover o copiar esta entidad.',
         'description_bulk_copy' => 'Selecciona una campaña adonde quieras copiar las entidades seleccionadas.',

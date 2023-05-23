@@ -2,9 +2,10 @@
 
 return [
     'actions'   => [
-        'collapse_all'  => 'Zbaliť všetko',
-        'expand_all'    => 'Rozbaliť všetko',
-        'load_more'     => 'Načítať ďalšie',
+        'collapse_all'      => 'Zbaliť všetko',
+        'expand_all'        => 'Rozbaliť všetko',
+        'load_more'         => 'Načítať ďalšie',
+        'login_for_more'    => 'Prihlásiť sa pre zobrazenie viacerých príspevkov',
     ],
     'reorder'   => [
         'icon_tooltip'  => 'Preskupiť príspevky',

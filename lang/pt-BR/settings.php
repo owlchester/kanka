@@ -57,6 +57,7 @@ return [
         ],
         'benefits'  => 'Kanka oferece integração com alguns serviços de terceiros. Mais integrações de terceiros estão planejadas para o futuro.',
         'discord'   => [
+            'confirm'   => 'Tem certeza de que deseja desconectar sua conta do Discord? Isso removerá todas as funções com as quais você foi sincronizado.',
             'errors'    => [
                 'add'   => 'Ocorreu um erro ao vincular sua conta do Discord ao Kanka. Por favor, tente novamente. Se isso continuar acontecendo, saiba que o Discord tem um limite de 100 servidores associados ao usar suas APIs.',
             ],
@@ -169,6 +170,7 @@ return [
         ],
         'errors'                => [
             'callback'      => 'Nosso provedor de pagamento relatou um erro. Tente novamente ou entre em contato conosco se o problema persistir.',
+            'failed'        => 'No momento, estamos enfrentando problemas com nosso sistema de cobrança. Entre em contato conosco em :email para obter assistência.',
             'subscribed'    => 'Não foi possível processar sua assinatura. Stripe forneceu a seguinte sugestão.',
         ],
         'fields'                => [
@@ -191,6 +193,7 @@ return [
         'manage_subscription'   => 'Gerenciar assinatura',
         'payment_method'        => [
             'actions'       => [
+                'add'               => 'Adicionar',
                 'add_new'           => 'Adicionar um novo método de pagamento',
                 'change'            => 'Alterar método de pagamento',
                 'save'              => 'Salvar método de pagamento',

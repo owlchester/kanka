@@ -34,7 +34,7 @@
 
     {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['billing.payment-method.save']]) !!}
     <x-box>
-        @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->ended())
+        @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended())
             @include('settings.subscription.currency._blocked')
         @else
             <div class="form-group">

@@ -31,6 +31,7 @@ class UserLog extends Model
     public const TYPE_SUB_UPGRADE = 12;
     public const TYPE_SUB_DOWNGRADE = 13;
     public const TYPE_SUB_FAIL = 15;
+    public const TYPE_SUB_PAYPAL = 16;
 
     public const TYPE_CAMPAIGN_NEW = 20;
     public const TYPE_CAMPAIGN_JOIN = 21;
@@ -61,7 +62,7 @@ class UserLog extends Model
     public const TYPE_CAMPAIGN_SUPERBOOST = 92;
     public const TYPE_CAMPAIGN_UNBOOST = 93;
     public const TYPE_CAMPAIGN_UNBOOST_AUTO = 94;
-    public const TYPE_CAMPAIGN_PREMIUM = 94;
+    public const TYPE_CAMPAIGN_PREMIUM = 95;
 
     /**
      * @var string

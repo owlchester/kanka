@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Kinderfähigkeiten von :name',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Fähigkeit zum Objekt hinzufügen',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Objekt mit der Fähigkeit :name',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Fähigkeiten',
-        'ability'   => 'Übergeordnete Fähigkeit',
         'charges'   => 'Ladungen',
     ],
     'helpers'       => [
@@ -44,7 +38,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Fähigkeiten',
             'entities'  => 'Objekte',
             'reorder'   => 'Fähigkeiten neu anordnen',
         ],

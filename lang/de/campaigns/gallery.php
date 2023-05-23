@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'close' => 'Schließen',
-        'full'  => 'Bild link',
         'save'  => 'Speichern',
     ],
     'breadcrumb'    => 'Gallerie',
@@ -11,6 +10,7 @@ return [
         'success'   => 'Bild :name gelöscht',
     ],
     'errors'        => [
+        'max'           => 'Bitte wähle nur bis zu :count Dateien gleichzeitig aus.',
         'permissions'   => 'Deinen Kampagnenrollen fehlen die Berechtigungen :permission, um Bilder in die Kampagnengalerie hochladen zu dürfen.',
     ],
     'fields'        => [

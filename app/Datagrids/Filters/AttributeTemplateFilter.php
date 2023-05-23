@@ -15,10 +15,10 @@ class AttributeTemplateFilter extends DatagridFilter
             ->add('name')
             ->add([
                 'field' => 'attribute_template_id',
-                'label' => __('attribute_templates.fields.attribute_template'),
+                'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('attribute_templates.find'),
-                'placeholder' =>  __('attribute_templates.placeholders.attribute_template'),
+                'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => AttributeTemplate::class,
             ])
             ->isPrivate()

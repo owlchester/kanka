@@ -40,6 +40,11 @@ return [
             'quick-access'  => 'Rýchly prístup',
         ],
         'tooltip'           => 'Vytvoriť nový objekt bez opustenia aktuálnej stránky',
+        'tooltips'          => [
+            'create'        => 'Vytvoriť objekt a prejsť späť na výber',
+            'create_more'   => 'Vytvoriť objekt a začať vytvárať ďalší rovnakého typu',
+            'edit'          => 'Vytvoriť objekt a začať ho upravovať',
+        ],
     ],
     'creature'              => 'Bytosť',
     'creatures'             => 'Bytosti',

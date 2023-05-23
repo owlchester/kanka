@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Übergeordnete Attributvorlage',
-        'attributes'            => 'Attribute',
+        'attributes'    => 'Attribute',
     ],
     'hints'                 => [
         'automatic'                 => 'Attribute wurden automatisch aus der Attribut-Vorlage ":link" erstellt.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Wähle eine Attributvorlage',
-        'name'                  => 'Name der Attributvorlage',
+        'name'  => 'Name der Attributvorlage',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Attributsvorlagen',
-            'attributes'            => 'Attribute',
+            'attributes'    => 'Attribute',
         ],
     ],
 ];

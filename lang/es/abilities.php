@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Habilidades descendientes de :name',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Añadir habilidad a la entidad',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Entidades con la habilidad :name',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Habilidades',
-        'ability'   => 'Habilidad superior',
         'charges'   => 'Usos',
     ],
     'helpers'       => [
@@ -37,10 +31,15 @@ return [
         'name'      => 'Bola de fuego, Alerta, Puñalada trasera',
         'type'      => 'Hechizo, Proeza, Ataque',
     ],
+    'reorder'       => [
+        'parentless'    => 'Sin padre',
+        'success'       => 'Habilidades reordenadas exitosamente.',
+        'title'         => 'Reordenar las habilidades',
+    ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Habilidades',
             'entities'  => 'Entidades',
+            'reorder'   => 'Reordenar Habilidades',
         ],
     ],
 ];

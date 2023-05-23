@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'                           => [
-        'boost' => 'Booster :name',
-    ],
+    'actions'                           => [],
     'create'                            => [
         'description'           => 'Créer une nouvelle campagne',
         'helper'                => [
@@ -42,7 +40,6 @@ TEXT
     'errors'                            => [
         'access'        => 'Accès refusé pour cette campagne.',
         'premium'       => 'Cette fonctionnalité n\'est que disponible pour les campagnes Premium.',
-        'superboosted'  => 'Cette fonctionnalité est seulement accessible pour les campagnes superboostées.',
         'unknown_id'    => 'Campagne inconnue.',
     ],
     'export'                            => [],
@@ -78,8 +75,6 @@ TEXT
     ],
     'following'                         => 'Suivant',
     'helpers'                           => [
-        'boost_required'                    => 'Cette fonctionnalité requiert une campagne boostée. Plus d\'info sur la page :settings.',
-        'boost_required_multi'              => 'Ces fonctionnalités requiert une campagne boostée. Plus d\'info sur la page :settings.',
         'boosted'                           => 'Cette campagne est boostée ce qui active certaines fonctionnalités. Plus de détails sur la page :settings.',
         'character_personality_visibility'  => 'Lors de la création d\'un nouveau personnage en tant qu\'admin, sélectionner la visibilité par défaut des traits de personnalités.',
         'css'                               => 'Définir du code CSS pour la campagne qui sera chargé sur chaque page. Abuser de cette fonctionnalité peut mener à une suppression du CSS. Les abus répétés peuvent mener à une suppression de la campagne.',
@@ -219,7 +214,6 @@ TEXT
         'follower-count'    => '{0} Aucun abonné|{1} :amount abonné|[2,] :amount abonnés',
     ],
     'panels'                            => [
-        'boosted'   => 'Boosté',
         'dashboard' => 'Tableau de bord',
         'permission'=> 'Permission',
         'setup'     => 'Configuration',
@@ -399,7 +393,6 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Booster la campagne',
             'edit'  => 'Modifier la campagne',
             'leave' => 'Quitter la campagne',
         ],
@@ -430,7 +423,6 @@ TEXT
         'none'  => 'Aucun (utilise la configuration de l\'utilisateur)',
     ],
     'ui'                                => [
-        'boosted'           => 'Boosté',
         'collapsed'         => [
             'collapsed' => 'Fermé',
             'default'   => 'Défaut',

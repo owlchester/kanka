@@ -53,6 +53,10 @@
     <!-- End Facebook Pixel Code -->
 @endif
 
+@if (config('tracking.venatus.enabled') && request()->has('_showads'))
+    <script src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-site-id="{{ config('tracking.venatus.id') }}" data-mode="scan" async></script>
+@endif
+
 @if (!empty($tracking_new))
     <!-- New account confirmation -->
     <script>
@@ -67,6 +71,6 @@
 
 @ads()
     @if(!isset($noads))
-    <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" @if(!app()->environment('prod'))data-adtest="on"@endif></script>
+    <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" @if(!app()->isProduction())data-adtest="on"@endif></script>
     @endif
 @endads

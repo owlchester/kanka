@@ -12,14 +12,9 @@ return [
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Una data per il tuo evento',
-        'name'  => 'Nome dell\'evento',
         'type'  => 'Cerimonia, Festival, Disastro, Battaglia, Nascita',
     ],
-    'show'          => [
-        'tabs'  => [
-            'events'    => 'Eventi',
-        ],
-    ],
+    'show'          => [],
     'tabs'          => [
         'calendars' => 'Elementi del Calendario',
     ],

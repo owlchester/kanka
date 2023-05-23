@@ -24,13 +24,9 @@ return [
         'public'            => [
             'description'   => 'Dê uma olhada nas Campanhas Públicas para se inspirar.',
             'filters'       => [
-                'all'               => 'Status de Impulsionamento',
-                'boosted'           => 'Campanhas impulsionadas',
-                'entities'          => 'Ordenar por quantidade de entidades',
-                'followers'         => 'Ordenar por seguidores',
-                'is-boosted'        => 'Essa campanha está impulsionada!',
-                'is-superboosted'   => 'Essa campanha está super-impulsionada!',
-                'unboosted'         => 'Campanhas não impulsionadas',
+                'all'       => 'Status de Impulsionamento',
+                'entities'  => 'Ordenar por quantidade de entidades',
+                'followers' => 'Ordenar por seguidores',
             ],
             'no-results'    => 'Nenhuma campanha pública com esses filtros foi encontrada. Por favor, tente novamente.',
             'title'         => 'Campanhas Públicas',
@@ -78,7 +74,6 @@ return [
         ],
         'boosts'            => [
             'beta'                  => 'Acesso beta a alguns novos recursos por 30 dias antes do lançamento geral.',
-            'boosted'               => 'Campanha impulsionada',
             'css'                   => 'CSS personalizados para a campanha',
             'dashboards'            => 'Defina dashboards personalizados para cargos da campanha',
             'description'           => 'Certos níveis de contribuição fornecem impulsões aos usuários para que eles possam usar para impulsionar campanhas. Estes fornecem os seguintes benefícios.',
@@ -96,7 +91,6 @@ return [
             'standard'              => 'Campanha padrão',
             'theme'                 => 'Tema fixo de campanha',
             'timeline_elements'     => 'Personalize o ícone e a cor dos elementos da linha do tempo',
-            'title'                 => 'Campanhas Impulsionadas',
             'tooltip'               => 'Personalize dicas de contexto para entidades (texto, mostrar imagem)',
             'upload'                => 'Maior tamanho de upload para todos os membros',
         ],
@@ -189,7 +183,6 @@ return [
             'title'         => 'Gerencie Segredos',
         ],
         'superboosts'       => [
-            'boosted'       => 'Super-Impulsionada',
             'family-tree'   => 'Crie árvores genealógicas para rastrear a história de uma família',
             'gallery'       => 'Galeria de Campanha e integrações com o editor de texto padrão',
             'logs'          => 'Logs completos de alterações em entidades (por até :amount dias)',
@@ -282,7 +275,6 @@ return [
             'core'          => 'Acesso a todos os recursos principais',
             'huge_maps'     => 'Tamanho enorme do mapa (:size)',
             'huge_uploads'  => 'Tamanhos enormes de upload de arquivo',
-            'no_boosters'   => 'Nenhum Impulso de Campanha',
             'unlimited'     => 'Campanhas e uploads ilimitados',
             'updates'       => 'Atualizações e melhorias frequentes',
         ],

@@ -24,9 +24,9 @@ return [
         'type'  => 'Primary, World chronicle, Kingdom legacy',
     ],
     'reorder'       => [
+        'empty'     => 'Add eras and elements to the timeline to be able to reorder it.',
         'success'   => ':name successfully reordered.',
         'title'     => 'Reorder :name',
-        'empty'     => 'Add eras and elements to the timeline to be able to reorder it.',
     ],
     'show'          => [
         'tabs'  => [

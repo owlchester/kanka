@@ -16,7 +16,9 @@
 
     <div class="tab-content">
         <div id="setup" class="tab-pane fade in active">
-            @include('cruds.fields.calendar', ['required' => true, 'allowClear' => false, 'allowNew' => false])
+            @include('cruds.fields.entity', [
+    'required' => true, 'allowClear' => false, 'allowNew' => false,
+    'route' => 'search.calendars'])
 
             <div class="row">
                 <div class="col-sm-6">

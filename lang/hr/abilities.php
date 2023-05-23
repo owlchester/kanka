@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => 'Sposobnosti djeca od :name',
-    ],
+    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'add'   => 'Dodaj sposobnost entitetu',
@@ -20,12 +18,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'entities'      => [
-        'title' => 'Entiteti sa sposobnošću :name',
-    ],
+    'entities'      => [],
     'fields'        => [
-        'abilities' => 'Sposobnosti',
-        'ability'   => 'Sposobnost roditelj',
         'charges'   => 'Punjenja',
     ],
     'helpers'       => [
@@ -39,7 +33,6 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Sposobnosti',
             'entities'  => 'Entiteti',
         ],
     ],

@@ -6,12 +6,8 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'families'      => [
-        'title' => 'Familie :name Familien',
-    ],
+    'families'      => [],
     'fields'        => [
-        'families'  => 'Unterfamilien',
-        'family'    => 'Übergeordnete Familie',
         'members'   => 'Mitglieder',
     ],
     'helpers'       => [
@@ -27,18 +23,15 @@ return [
             'all_members'       => 'Die folgende Liste zeigt alle Charaktere an, die Teil dieser Familie oder einer Unterfamilie sind.',
             'direct_members'    => 'Die meisten Familien haben Mitglieder, die sie anführen oder sie berühmt machen. Die folgenden Charaktere sind direkte Mitglieder der Familie.',
         ],
-        'title'     => 'Familie :name Mitglieder',
     ],
     'placeholders'  => [
-        'location'  => 'Wähle einen Ort',
-        'name'      => 'Name der Familie',
-        'type'      => 'königlich, edel, ausgestorben',
+        'name'  => 'Name der Familie',
+        'type'  => 'königlich, edel, ausgestorben',
     ],
     'show'          => [
         'tabs'  => [
-            'all_members'   => 'Alle Mitglieder',
-            'families'      => 'Familien',
-            'members'       => 'Mitglieder',
+            'members'   => 'Mitglieder',
+            'tree'      => 'Stammbaum',
         ],
     ],
 ];

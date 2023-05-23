@@ -30,7 +30,6 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
-        'entity'    => 'Válassz ki egy entitást',
         'filters'   => 'location_id=15&type=város',
         'menu'      => 'Menü aloldal (az url utolsó szöveges része)',
         'name'      => 'A menühivatkozás neve',

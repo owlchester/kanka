@@ -1,17 +1,13 @@
 <?php
 
 return [
-    'abilities'     => [
-        'title' => ':name yeteneğinin alt yetenekleri',
-    ],
+    'abilities'     => [],
     'create'        => [
         'title' => 'Yeni Yetenek',
     ],
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'abilities' => 'Yetenekler',
-        'ability'   => 'Ana Yetenek',
         'charges'   => 'Yük Sayısı',
     ],
     'helpers'       => [],
@@ -21,9 +17,5 @@ return [
         'name'      => 'Alevtopu, Uyanık, Kurnaz Saldırı',
         'type'      => 'Büyü, Hüner, Saldırı',
     ],
-    'show'          => [
-        'tabs'  => [
-            'abilities' => 'Yetenekler',
-        ],
-    ],
+    'show'          => [],
 ];

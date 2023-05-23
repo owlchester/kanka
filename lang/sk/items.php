@@ -8,8 +8,6 @@ return [
     'edit'          => [],
     'fields'        => [
         'character' => 'Postava',
-        'item'      => 'Nadradený predmet',
-        'items'     => 'Podradený predmet',
         'price'     => 'Cena',
         'size'      => 'Veľkosť',
     ],
@@ -20,11 +18,8 @@ return [
         'items' => 'Organizuj predmety pomocou nadradených predmetov.',
     ],
     'index'         => [],
-    'inventories'   => [
-        'title' => 'Objekty s predmetom :name',
-    ],
+    'inventories'   => [],
     'placeholders'  => [
-        'name'  => 'Názov predmetu',
         'price' => 'Cena predmetu',
         'size'  => 'veľkosť, váha, rozmery',
         'type'  => 'zbraň, elixír, artefakt',

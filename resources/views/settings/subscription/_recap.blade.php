@@ -49,17 +49,17 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
         </div>
         <div class="{{ $box }}">
             <div class="text-xl text-center">
-                @if ($user->subscribedToPrice($service->yearlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
+                @if ($user->subscribedToPrice($service->yearly()->owlbearPlanID(), 'kanka'))
                     {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
-                @elseif ($user->subscribedToPrice($service->monthlyPlans(\App\Models\Pledge::OWLBEAR), 'kanka'))
+                @elseif ($user->subscribedToPrice($service->monthly()->owlbearPlanID(), 'kanka'))
                     {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
-                @elseif ($user->subscribedToPrice($service->yearlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
+                @elseif ($user->subscribedToPrice($service->yearly()->wyvernPlanID(), 'kanka'))
                     {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
-                @elseif ($user->subscribedToPrice($service->monthlyPlans(\App\Models\Pledge::WYVERN), 'kanka'))
+                @elseif ($user->subscribedToPrice($service->monthly()->wyvernPlanID(), 'kanka'))
                     {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
-                @elseif ($user->subscribedToPrice($service->yearlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
+                @elseif ($user->subscribedToPrice($service->yearly()->elementalPlanID(), 'kanka'))
                     {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
-                @elseif ($user->subscribedToPrice($service->monthlyPlans(\App\Models\Pledge::ELEMENTAL), 'kanka'))
+                @elseif ($user->subscribedToPrice($service->monthly()->elementalPlanID(), 'kanka'))
                     {{ __('settings.subscription.plans.cost_monthly', ['amount' => 25.00, 'currency' => $currency]) }}
                 @else
                     {{ __('front.pricing.tier.free') }}

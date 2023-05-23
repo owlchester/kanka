@@ -48,12 +48,8 @@ return [
         ],
         'success'   => '\':event\' olayı takvime eklendi.',
     ],
-    'events'        => [
-        'title' => ':name Takvimi Olayları',
-    ],
+    'events'        => [],
     'fields'        => [
-        'calendar'              => 'Ana Takvim',
-        'calendars'             => 'Takvimler',
         'colour'                => 'Renk',
         'comment'               => 'Yorum',
         'current_day'           => 'Mevcut Gün',
@@ -174,7 +170,6 @@ return [
         'leap_year_start'   => 'İlk artık yıl',
         'length'            => 'Gün olarak olay uzunluğu',
         'months'            => 'Bir yıldaki ay sayısı',
-        'name'              => 'Takvimin adı',
         'recurring_until'   => 'Son tekrar eden yıl (sonsuz tekrar için boş bırakın)',
         'seasons'           => 'Mevsim sayısı',
         'suffix'            => 'Mevcut Çağ son eki (AC, BC)',

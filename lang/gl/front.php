@@ -20,13 +20,9 @@ return [
         'public'            => [
             'description'   => 'Bótalle un ollo ás campañas públicas para inspirarte.',
             'filters'       => [
-                'all'               => 'Estatus de potenciación',
-                'boosted'           => 'Campañas potenciadas',
-                'entities'          => 'Ordenar por número de entidades',
-                'followers'         => 'Ordenar por número de seguidores',
-                'is-boosted'        => 'Esta campaña está potenciada!',
-                'is-superboosted'   => 'Esta campaña está superpotenciada!',
-                'unboosted'         => 'Campañas non potenciadas',
+                'all'       => 'Estatus de potenciación',
+                'entities'  => 'Ordenar por número de entidades',
+                'followers' => 'Ordenar por número de seguidores',
             ],
             'no-results'    => 'Non se encontrou ningunha campaña pública con estes filtros. Por favor, inténtao de novo.',
             'title'         => 'Campañas públicas',
@@ -74,7 +70,6 @@ return [
         ],
         'boosts'            => [
             'beta'                  => 'Acceso anticipado a algunhas funcionalidades novas 30 días antes do lanzamento xeral.',
-            'boosted'               => 'Campaña potenciada',
             'css'                   => 'CSS personalizado da campaña',
             'dashboards'            => 'Establecer taboleiros personalizados para os roles da campaña',
             'description'           => 'Certos niveis de mecenazgo otorgan potenciadores que poden ser usados para potenciar campañas. Estes potenciadores otorgan os seguintes beneficios.',
@@ -92,7 +87,6 @@ return [
             'standard'              => 'Campaña estándar',
             'theme'                 => 'Tema de campaña fixo',
             'timeline_elements'     => 'Personaliza a icona e cor dos elementos das liñas temporais',
-            'title'                 => 'Campañas potenciadas',
             'tooltip'               => 'Previsualizacións emerxentes personalizadas: mostrar imaxe, cambiar texto',
             'upload'                => 'Tamaño de ficheiros subidos ampliado para todas as membras',
         ],
@@ -184,7 +178,6 @@ return [
             'title'         => 'Xestionar segredos',
         ],
         'superboosts'       => [
-            'boosted'   => 'Superpotenciada',
             'gallery'   => 'Galería de campaña e integración co editor de texto Summernote',
             'logs'      => 'Historial de cambios completo en entidades (ata 30 días)',
             'stats'     => 'Páxina de logros da campaña',
@@ -275,7 +268,6 @@ return [
             'core'          => 'Acceso a todas as funcionalidades principais',
             'huge_maps'     => 'Tamaño enorme de mapa (:size)',
             'huge_uploads'  => 'Moito máis tamaño de ficheiros subidos',
-            'no_boosters'   => 'Sen potenciadores de campaña',
             'unlimited'     => 'Campañas e ficheiros subidos ilimitados',
             'updates'       => 'Actualizacións e melloras frecuentes',
         ],

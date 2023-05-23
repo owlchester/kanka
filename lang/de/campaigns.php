@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'                           => [
-        'boost' => 'Boost :name',
-    ],
+    'actions'                           => [],
     'create'                            => [
         'description'           => 'Erstelle eine neue Kampagne',
         'helper'                => [
@@ -41,7 +39,6 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Du hast keinen Zugang zu dieser Kampagne.',
-        'superboosted'  => 'Diese Funktion ist nur für Kampagnen mit Superboost verfügbar.',
         'unknown_id'    => 'Unbekannte Kampagne.',
     ],
     'export'                            => [],
@@ -76,12 +73,11 @@ TEXT
     ],
     'following'                         => 'Abonniert',
     'helpers'                           => [
-        'boost_required'                    => 'Für diese Funktion muss die Kampagne geboosted werden. Weitere Informationen finden Sie hier :settings page.',
-        'boost_required_multi'              => 'Für diese Funktionen muss die Kampagne geboostet werden. Weitere Informationen auf der Seite :settings page.',
         'boosted'                           => 'Einige Funktionen sind freigeschaltet, da diese Kampagne geboosted wird. Weitere Informationen finden Sie auf der :settings page.',
         'character_personality_visibility'  => 'Wählen Sie beim Erstellen eines neuen Charakters als Administrator die standardmäßige Privatsphäreeinstellung für seine Persönlichkeitsmerkmale aus.',
         'css'                               => 'Schreibe dein eigenes CSS, das du auf die Seiten deiner Kampagne laden kannst. Bitte beachte, dass jeder Missbrauch dieser Funktion dazu führen kann, dass dein benutzerdefiniertes CSS entfernt wird. Wiederholungen oder schwerwiegende Verstöße können dazu führen, dass deine Kampagne entfernt wird.',
         'dashboard'                         => 'Passen Sie die Anzeige des Kampagnen-Dashboard-Widgets an, indem Sie die folgenden Felder ausfüllen.',
+        'entity_count_v3'                   => 'Diese Zahl wird alle :amount Stunden neu berechnet.',
         'entity_privacy'                    => 'Wählen Sie beim Erstellen eines neuen Objekts als Administrator die standardmäßige Privatsphäreeinstellungen der neuen Objekte aus.',
         'excerpt'                           => 'Die Kampagnenzusammenfassung wird im Dashboard angezeigt. Schreib daher ein paar Sätze, die deine Welt vorstellen. Idealerweise hältst du es kurz und informativ.',
         'header_image'                      => 'Das Bild wird im Widget des Kampagnen-Header-Dashboards als Hintergrund angezeigt.',
@@ -89,6 +85,7 @@ TEXT
         'hide_members'                      => 'Aktivieren Sie diese Option, um die Liste der Kampagnenmitglieder der Kampagne für Nicht-Administratoren auszublenden.',
         'locale'                            => 'Die Sprache, in der deine Kampagne geschrieben ist. Dies wird genutzt, um Inhalte zu erstellen und öffentliche Kampagnen zu gruppieren.',
         'name'                              => 'Deine Kampagne/Welt kann einen beliebigen Namen haben, solange dieser mindestens 4 Buchstaben oder Zahlen enthält.',
+        'no_entry'                          => 'Anscheinend hat die Kampagne noch keine Beschreibung! Lasst uns das beheben.',
         'permissions_tab'                   => 'Steuern Sie die standardmäßigen Datenschutz- und Sichtbarkeitseinstellungen neuer Elemente mit den folgenden Optionen.',
         'public_campaign_filters'           => 'Helfen Sie anderen, die Kampagne unter anderen öffentlichen Kampagnen zu finden, indem Sie die folgenden Informationen bereitstellen.',
         'public_no_visibility'              => 'Kopf hoch! Ihre Kampagne ist öffentlich, aber die öffentliche Rolle der Kampagne kann auf nichts zugreifen. :fix.',
@@ -208,10 +205,16 @@ TEXT
             'removed'   => 'Rolle :role von :user entfernt',
         ],
     ],
+    'modules'                           => [
+        'permission-disabled'   => 'Dieses Modul ist deaktiviert.',
+    ],
     'open_campaign'                     => [],
     'options'                           => [],
+    'overview'                          => [
+        'entity-count'      => '{0} Keine Objekte|{1} :Betrag Objekt|[2,*] :Betrag Objekte',
+        'follower-count'    => '{0} Keine Follower|{1} :Anzahl Follower|[2,*] :Anzahl Follower',
+    ],
     'panels'                            => [
-        'boosted'   => 'Geboosted',
         'dashboard' => 'Dashboard',
         'permission'=> 'Berechtigung',
         'setup'     => 'erstellen',
@@ -361,31 +364,36 @@ TEXT
             'module-disabled'   => 'Das angeforderte Modul ist derzeit in den Kampagneneinstellungen deaktiviert. :fix.',
         ],
         'helpers'       => [
-            'abilities'     => 'Erstellen Sie Fähigkeiten, seien es Talente, Zauber oder Kräfte, die Objekten zugewiesen werden können.',
-            'calendars'     => 'Der Ort, um die Kalender deiner Welt zu erstellen.',
-            'characters'    => 'Die Leute, die deine Welt bevölkern.',
-            'conversations' => 'Fiktive Gespräche zwischen Charakteren oder zwischen Kampagnennutzern.',
-            'creatures'     => 'Erschaffe mit dem Kreaturenmodul die Kreaturen, Tiere und Monster deiner Welt.',
-            'dice_rolls'    => 'Für die, die Kanka für RPG Kampagnen benutzen, eine Möglichkeit Würfelwürfe zu verwalten.',
-            'events'        => 'Feiertage, Festlichkeiten, Katastrophen, Geburtstage, Kriege.',
-            'families'      => 'Klans oder Familien, deren Beziehungen und deren Mitglieder.',
-            'inventories'   => 'verwalten sie die Inventare ihrer Objekte',
-            'items'         => 'Waffen, Fahrzeuge, Reliquien, Tränke.',
-            'journals'      => 'Beobachtungen von Spielern oder Spielvorbereitungen vom Spielleiter.',
-            'locations'     => 'Planeten, Ebenen, Kontinente, Flüsse, Staaten, Siedlungen, Tempel, Tavernen.',
-            'maps'          => 'Laden Sie Karten mit Ebenen und Markierungen hoch, die auf andere Objekte in der Kampagne verweisen.',
-            'menu_links'    => 'Selbsterstellte Menü Links in der Seitenleiste.',
-            'notes'         => 'Sagen, Religionen, Geschichte, Magie, Spezies.',
-            'organisations' => 'Kulte, Militäreinheiten, Fraktionen, Gilden.',
-            'quests'        => 'Um Aufgaben mit Charakteren und Ort zu verfolgen.',
-            'races'         => 'Wenn deine Kampagne mehr als eine Spezies hat, hier kannst du den Überblick behalten.',
-            'tags'          => 'Jedes Objekt kann eine Kategorie habe. Kategorien können zu anderen Kategorien gehören und Objekte können nach Kategorie gefiltert werden.',
-            'timelines'     => 'Stellen Sie die Geschichte Ihrer Welt mit Zeitstrahlen dar.',
+            'abilities'         => 'Erstellen Sie Fähigkeiten, seien es Talente, Zauber oder Kräfte, die Objekten zugewiesen werden können.',
+            'calendars'         => 'Der Ort, um die Kalender deiner Welt zu erstellen.',
+            'characters'        => 'Die Leute, die deine Welt bevölkern.',
+            'conversations'     => 'Fiktive Gespräche zwischen Charakteren oder zwischen Kampagnennutzern.',
+            'creatures'         => 'Erschaffe mit dem Kreaturenmodul die Kreaturen, Tiere und Monster deiner Welt.',
+            'dice_rolls'        => 'Für die, die Kanka für RPG Kampagnen benutzen, eine Möglichkeit Würfelwürfe zu verwalten.',
+            'entity_attributes' => 'Verfolge Attribute zu Objekten der Kampagne, zum Beispiel Lebenspunkte oder Geschwindigkeit.',
+            'events'            => 'Feiertage, Festlichkeiten, Katastrophen, Geburtstage, Kriege.',
+            'families'          => 'Klans oder Familien, deren Beziehungen und deren Mitglieder.',
+            'inventories'       => 'verwalten sie die Inventare ihrer Objekte',
+            'items'             => 'Waffen, Fahrzeuge, Reliquien, Tränke.',
+            'journals'          => 'Beobachtungen von Spielern oder Spielvorbereitungen vom Spielleiter.',
+            'locations'         => 'Planeten, Ebenen, Kontinente, Flüsse, Staaten, Siedlungen, Tempel, Tavernen.',
+            'maps'              => 'Laden Sie Karten mit Ebenen und Markierungen hoch, die auf andere Objekte in der Kampagne verweisen.',
+            'menu_links'        => 'Selbsterstellte Menü Links in der Seitenleiste.',
+            'notes'             => 'Sagen, Religionen, Geschichte, Magie, Spezies.',
+            'organisations'     => 'Kulte, Militäreinheiten, Fraktionen, Gilden.',
+            'quests'            => 'Um Aufgaben mit Charakteren und Ort zu verfolgen.',
+            'races'             => 'Wenn deine Kampagne mehr als eine Spezies hat, hier kannst du den Überblick behalten.',
+            'tags'              => 'Jedes Objekt kann eine Kategorie habe. Kategorien können zu anderen Kategorien gehören und Objekte können nach Kategorie gefiltert werden.',
+            'timelines'         => 'Stellen Sie die Geschichte Ihrer Welt mit Zeitstrahlen dar.',
         ],
+    ],
+    'sharing'                           => [
+        'filters'   => 'Öffentliche Kampagnen sind auf der Seite :public-campaigns sichtbar. Das Ausfüllen dieser Felder erleichtert es den Nutzern, die Kampagne zu entdecken.',
+        'language'  => 'Die Sprache, in der der Inhalt der Kampagne verfasst ist.',
+        'system'    => 'Beim Spielen eines TTRPG wird das System verwendet, mit dem in der Kampagne gespielt wurde.',
     ],
     'show'                              => [
         'actions'   => [
-            'boost' => 'Boost Kampagne',
             'edit'  => 'Kampagne editieren',
             'leave' => 'Kampagne verlassen',
         ],
@@ -416,7 +424,6 @@ TEXT
         'none'  => 'Keine (standardmäßig Benutzereinstellungen)',
     ],
     'ui'                                => [
-        'boosted'           => 'geboostet',
         'collapsed'         => [
             'collapsed' => 'einklappen',
             'default'   => 'Ursprünglich',
@@ -442,8 +449,11 @@ TEXT
         'helpers'           => [
             'connections'       => 'Wenn Sie auf die Unterseite „Verbindungen“ eines Objekts klicken, wählen Sie die angezeigte Standardwerte aus.',
             'connections_mode'  => 'Definiere beim Anzeigen des Beziehungs-Explorers eines Objekts den ausgewählten Standardmodus.',
+            'entity-history'    => 'Steuere, wer die letzten Änderungen sehen kann, die an einzelnen Objekten der Kampagne vorgenommen wurden.',
+            'member-list'       => 'Kontrolliere, wer sehen kann, wer an der Kampagne teilnimmt.',
             'other'             => 'Andere visuelle Optionen für die Kampagne.',
             'post_collapsed'    => 'Wählen Sie beim Erstellen eines neuen Beitrags für ein Objekt den Standardwert des minimierten Felds aus.',
+            'theme'             => 'Zeige die Kampagne im Thema des Benutzers an oder erzwinge die Darstellung in einem der folgenden Themen.',
             'tooltip'           => 'Kontrollieren Sie, welche Informationen sichtbar sind, wenn Sie den Namen eines Objekts in ihrer QuickInfo bewegen.',
         ],
         'members'           => [
@@ -452,6 +462,7 @@ TEXT
         ],
         'nested'            => [
             'nested'    => 'Verschachtelt',
+            'user'      => 'Standardeinstellung des Benutzers',
         ],
         'other'             => 'Andere',
     ],

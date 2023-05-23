@@ -10,8 +10,7 @@ return [
     'destroy'               => [],
     'edit'                  => [],
     'fields'                => [
-        'attribute_template'    => 'Plantilla d\'atributs superior',
-        'attributes'            => 'Atributs',
+        'attributes'    => 'Atributs',
     ],
     'hints'                 => [
         'automatic'                 => 'Atributs aplicats automàticament des de la plantilla d\'atributs :link.',
@@ -20,13 +19,11 @@ return [
     ],
     'index'                 => [],
     'placeholders'          => [
-        'attribute_template'    => 'Tria una plantilla d\'atributs',
-        'name'                  => 'Nom de la plantilla d\'atributs',
+        'name'  => 'Nom de la plantilla d\'atributs',
     ],
     'show'                  => [
         'tabs'  => [
-            'attribute_templates'   => 'Plantilles d\'atributs',
-            'attributes'            => 'Atributs',
+            'attributes'    => 'Atributs',
         ],
     ],
 ];

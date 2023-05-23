@@ -50,12 +50,8 @@ return [
         ],
         'success'   => 'S\'ha afegit l\'esdeveniment «:name» al calendari.',
     ],
-    'events'        => [
-        'title' => 'Esdeveniments del calendari :name',
-    ],
+    'events'        => [],
     'fields'        => [
-        'calendar'              => 'Calendari superior',
-        'calendars'             => 'Calendaris',
         'colour'                => 'Color',
         'comment'               => 'Comentari',
         'current_day'           => 'Dia actual',
@@ -184,7 +180,6 @@ return [
         'leap_year_start'   => 'Primer any que és de traspàs',
         'length'            => 'Dies que dura l\'esdeveniment',
         'months'            => 'Nombre de mesos en un any',
-        'name'              => 'Nom del calendari',
         'recurring_until'   => 'Últim any recurrent (deixeu-ho buit per a que sigui etern)',
         'seasons'           => 'Nombre d\'estacions',
         'suffix'            => 'Sufix de l\'era actual (AC, BC...)',

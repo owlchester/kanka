@@ -4,16 +4,8 @@
 </div>
 @else
     @ads('sidebar')
-    <div class="ads-space overflow-hidden">
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:280px;height:280px"
-             data-ad-client="{{ config('tracking.adsense') }}"
-             data-ad-slot="{{ config('tracking.adsense_sidebar') }}"
-             @if(!app()->environment('prod'))data-adtest="on"@endif
-        ></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+    <div style="width: 280px" class="overflow-hidden">
+    <div class="vm-placement" data-id="{{ config('tracking.venatus.sidebar') }}"></div>
     </div>
     @endads
-    @endnativeAd
+@endnativeAd

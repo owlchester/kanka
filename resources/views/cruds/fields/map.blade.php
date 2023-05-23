@@ -12,7 +12,7 @@ if (isset($model) && $model->map) {
 @endphp
 
 <x-forms.foreign
-    name="map"
+    name="map_id"
     key="map"
     entityType="maps"
     :allowNew="$allowNew ?? true"

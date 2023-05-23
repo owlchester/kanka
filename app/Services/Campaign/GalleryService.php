@@ -47,6 +47,9 @@ class GalleryService
         }
         foreach ($files as $source) {
             // Prepare the name as sent by the user. It gets purified in the observer
+            if (empty($source)) {
+                continue;
+            }
             $name = $source->getClientOriginalName();
             $name = Str::beforeLast($name, '.');
 

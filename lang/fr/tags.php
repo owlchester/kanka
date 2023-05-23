@@ -9,7 +9,6 @@ return [
             'success'   => 'L\'étiquette :name a été ajoutée à l\'entité.',
             'title'     => 'Ajouter une nouvelle étiquette pour :name',
         ],
-        'title'     => 'Enfants de l\'étiquette :name',
     ],
     'create'        => [
         'title' => 'Nouvelle étiquette',
@@ -20,8 +19,6 @@ return [
         'children'          => 'Enfants',
         'is_auto_applied'   => 'Appliquer automatiquement aux nouvelles entités',
         'is_hidden'         => 'Caché de l\'entête et des infobulles',
-        'tag'               => 'Étiquette Parentale',
-        'tags'              => 'Étiquettes',
     ],
     'helpers'       => [
         'nested_without'    => 'Affichage des étiquettes sans parent. Cliquer sur une rangée pour afficher les étiquettes enfants.',
@@ -34,19 +31,13 @@ return [
         'tag'               => 'Affichées ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
     'index'         => [],
-    'new_tag'       => 'Nouvelle étiquette',
     'placeholders'  => [
-        'name'  => 'Nom de l\'étiquette',
-        'tag'   => 'Choix de l\'étiquette parent',
         'type'  => 'Légende, Guerres, Histoire, Religion',
     ],
     'show'          => [
         'tabs'  => [
             'children'  => 'Enfants',
-            'tags'      => 'Étiquettes',
         ],
     ],
-    'tags'          => [
-        'title' => 'Étiquette :name',
-    ],
+    'tags'          => [],
 ];

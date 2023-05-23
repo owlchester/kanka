@@ -3,7 +3,6 @@
 return [
     'actions'       => [
         'close' => 'Zatvori',
-        'full'  => 'Poveznica slike',
         'save'  => 'Spremi',
     ],
     'breadcrumb'    => 'Galerija',
