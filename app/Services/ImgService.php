@@ -23,10 +23,10 @@ class ImgService
     protected $s3;
 
     /** @var bool */
-    protected $enabled;
+    protected bool $enabled;
 
-    protected $focusX;
-    protected $focusY;
+    protected ?int $focusX;
+    protected ?int $focusY;
 
     public function __construct()
     {
@@ -74,6 +74,17 @@ class ImgService
     public function resetCrop(): self
     {
         $this->crop = '';
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function reset(): self
+    {
+        $this->crop = '';
+        $this->focusX = null;
+        $this->focusY = null;
         return $this;
     }
 

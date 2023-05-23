@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\Campaigns\GalleryImageFolderStore;
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\Campaigns\GalleryImageUpdate;
@@ -123,6 +124,31 @@ class GalleryController extends Controller
         $folders = $this->service->campaign($campaign)->folderList();
 
         return view('gallery.edit', compact('image', 'folders'));
+    }
+
+    /**
+     * @param StoreImageFocus $request
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function saveFocus(StoreImageFocus $request, Image $image)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('gallery', $campaign);
+
+        $added = $this->service
+            ->campaign($campaign)
+            ->image($image)
+            ->saveFocusPoint($request);
+
+        $params = null;
+        if (!empty($image->folder_id)) {
+            $params = ['folder_id' => $image->folder_id];
+        }
+
+        return redirect()->route('campaign.gallery.index', $params)
+            ->with('success', __('campaigns/gallery.focus.' . ($added ? 'updated' : 'removed')));
     }
 
     /**

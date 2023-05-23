@@ -14,6 +14,8 @@ Route::get('/gallery/load', 'Campaign\GalleryController@load')->name('campaign.g
 Route::get('/gallery/search', 'Campaign\GalleryController@search')->name('campaign.gallery.search');
 Route::post('/gallery/ajax-upload', 'Campaign\GalleryController@ajaxUpload')->name('campaign.gallery.ajax-upload');
 Route::get('/gallery/ajax-gallery', 'Campaign\AjaxGalleryController@index')->name('campaign.gallery.summernote');
+Route::post('/gallery/{image}/save-focus', 'Campaign\GalleryController@saveFocus')->name('campaign.gallery.save-focus');
+//Route::get('/entities/{entity}/image-focus', [\App\Http\Controllers\Entity\ImageController::class, 'focus'])->name('entities.image.focus');
 
 // Abilities
 Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
