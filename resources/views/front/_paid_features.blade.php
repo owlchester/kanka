@@ -175,27 +175,6 @@
             </tr>
             <tr>
                 <td class="text">
-                    {{ __('front.features.patreon.2fa') }}
-                    <a href="https://docs.kanka.io/en/latest/account/security/two-factor-authentication.html" target="_blank">
-                        <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
-                    </a>
-                </td>
-                <td></td>
-                <td>
-                    <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
-                    <span class="fa-sr-only">{{ __('general.yes') }}</span>
-                </td>
-                <td>
-                    <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
-                    <span class="fa-sr-only">{{ __('general.yes') }}</span>
-                </td>
-                <td>
-                    <i class="fa-solid fa-check-circle" aria-hidden="true" aria-label="{{ __('general.yes') }}"></i>
-                    <span class="fa-sr-only">{{ __('general.yes') }}</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="text">
                     {{ __('front.features.patreon.bragi') }}
                     <a href="https://docs.kanka.io/en/latest/features/bragi.html" target="_blank">
                         <i class="fa-solid fa-question-circle" title="{{ __('front.features.patreon.click-me') }}" data-toggle="tooltip"></i>
