@@ -9,6 +9,7 @@
 ])
 
 @section('content')
+    @include('partials.ads.top')
     @include('partials.errors')
     <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
         <div class="lg:flex-none lg:w-60">
