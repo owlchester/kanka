@@ -1,6 +1,8 @@
 <footer id="footer" class="main-footer pt-10 pb-8">
     @ads('footer')
-    <div class="vm-placement" data-id="{{ config('tracking.venatus.footer') }}"></div>
+    <div class="mb-5">
+        <div class="vm-placement" data-id="{{ config('tracking.venatus.footer') }}"></div>
+    </div>
     @endads
 
     <div class="footer-links">

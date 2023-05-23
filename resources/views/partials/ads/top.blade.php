@@ -12,7 +12,7 @@
 @else
 @ads('entity')
 <div class="ads-space overflow-hidden">
-    <div class="vm-placement" id="vm-av" data-format="isvideo"></div>
+    <div class="vm-placement" id="vm-av" data-id="{{ config('tracking.venatus.entity') }}" data-format="isvideo"></div>
 </div>
 <p class="text-center text-muted">
 {!! __('misc.ads.remove_v3', [
