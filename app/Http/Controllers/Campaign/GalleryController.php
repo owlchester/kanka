@@ -137,7 +137,7 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('gallery', $campaign);
 
-        $this->service
+        $added = $this->service
             ->campaign($campaign)
             ->image($image)
             ->saveFocusPoint($request);
@@ -148,7 +148,7 @@ class GalleryController extends Controller
         }
 
         return redirect()->route('campaign.gallery.index', $params)
-            ->with('success', __('campaigns/gallery.update.success'));
+            ->with('success', __('campaigns/gallery.focus.' . ($added ? 'updated' : 'removed')));
     }
 
     /**

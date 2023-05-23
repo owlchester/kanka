@@ -24,7 +24,7 @@ function initImageFocus() {
 
     $('.focus').click(function () {
         $('.focus').hide();
-        $('input[name="focus_x"]').val();
-        $('input[name="focus_y"]').val();
+        $('input[name="focus_x"]').val("");
+        $('input[name="focus_y"]').val("");
     });
 }

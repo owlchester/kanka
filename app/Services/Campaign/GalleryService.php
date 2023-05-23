@@ -79,9 +79,9 @@ class GalleryService
 
     /**
      * @param StoreImageFocus $request
-     * @return Image
+     * @return bool
      */
-    public function saveFocusPoint(StoreImageFocus $request): Image
+    public function saveFocusPoint(StoreImageFocus $request): bool
     {
         $this->image->focus_x = $request->post('focus_x');
         $this->image->focus_y = $request->post('focus_y');
@@ -91,7 +91,7 @@ class GalleryService
             $entity->clearAvatarCache();
         }
 
-        return $this->image;
+        return $request->filled('focus_x');
     }
 
     /**

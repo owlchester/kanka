@@ -252,6 +252,8 @@ class Image extends Model
 
     public function getUrl(int $sizeX = null, int $sizeY = null): string
     {
+        Img::reset();
+
         if (!$sizeY && $sizeX) {
             $sizeY = $sizeX;
         } elseif (!$sizeX && $sizeY) {

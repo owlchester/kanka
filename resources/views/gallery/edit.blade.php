@@ -9,11 +9,11 @@ $imageCount = 0;
     <div class="gallery-toggle collapse !visible in">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="">
-            @if($image->isFolder())
-                <div class="text-center my-5">
-                    <x-icon class="fa-solid fa-folder fa-4x"></x-icon>
-                </div>
-            @else
+                @if($image->isFolder())
+                    <div class="text-center my-5">
+                        <x-icon class="fa-solid fa-folder fa-4x"></x-icon>
+                    </div>
+                @else
 
                 @if ($image->isFont())
                     <div class="help-block">This file is a font file.</div>
@@ -23,7 +23,7 @@ $imageCount = 0;
                     </div>
                 @endif
 
-                <div class="mt-4">
+                <div class="mt-2">
                     <a href="#" class="btn btn-default btn-sm" data-toggle="collapse" data-target=".gallery-toggle">{{ __('campaigns/gallery.actions.focus_point') }}</a>
                 </div>
                 <hr />
@@ -104,33 +104,34 @@ $imageCount = 0;
 
         </div>
     </div>
-</div>
-
-<div class="gallery-toggle collapse !visible">
-    <div class="modal-body panel-image-edit">
-        <div class="">
-            <x-box>
-                <p class="help-block">{{ __('entities/image.focus.helper') }}</p>
-                <div class="focus-selector max-h-screen relative mb-2 overflow-auto">
-                    <div class="focus absolute text-white cursor-pointer text-3xl" style="@if(empty($image->focus_x))display: none; @else left: {{ $image->focus_x }}px; top: {{ $image->focus_y }}px; @endif">
-                        <i class="fa-regular fa-bullseye fa-2x hover:text-red" aria-hidden="true"></i>
-                    </div>
-                    <img class="focus-image max-w-none" src="{{ $image->getImagePath(0) }}" alt="img" />
+    </div>
+    <div class="gallery-toggle collapse !visible">
+        <div class="panel-image-edit">
+            <p class="help-block">{{ __('entities/image.focus.helper') }}</p>
+            <div class="focus-selector max-h-96 relative mb-2 overflow-auto">
+                <div class="focus absolute text-white cursor-pointer text-3xl" style="@if(empty($image->focus_x))display: none; @else left: {{ $image->focus_x }}px; top: {{ $image->focus_y }}px; @endif">
+                    <i class="fa-regular fa-bullseye fa-2x hover:text-red" aria-hidden="true"></i>
                 </div>
-                <div class="flex gap-2 sm:gap-5 items-center mb-5 pull-right">
-                    {!! Form::model($image, ['route' => ['campaign.gallery.save-focus', $image], 'method' => 'POST', 'class' => '']) !!}
+                <img class="focus-image max-w-none" src="{{ $image->getImagePath(0) }}" alt="img" />
+            </div>
+            <div class="grid grid-cols-2 gap-2 w-full items-center mb-5">
+                <div>
+                    {!! Form::model($image, ['route' => ['campaign.gallery.save-focus', $image], 'method' => 'POST']) !!}
                         <input type="submit" class="btn btn-danger" value="{{ __('campaigns/gallery.actions.reset_focus') }}">
                     {!! Form::close() !!}
-                    {!! Form::model($image, ['route' => ['campaign.gallery.save-focus', $image], 'method' => 'POST', 'class' => '']) !!}
-                        {!! Form::hidden('focus_x', null) !!}
-                        {!! Form::hidden('focus_y', null) !!}
-                        <input type="submit" class="btn btn-primary" value="{{ __('entities/image.actions.save_focus') }}">
-                    {!! Form::close() !!}
-
                 </div>
-            </x-box>
+                <div class="text-right">
+                {!! Form::model($image, ['route' => ['campaign.gallery.save-focus', $image], 'method' => 'POST']) !!}
+                    {!! Form::hidden('focus_x', null) !!}
+                    {!! Form::hidden('focus_y', null) !!}
+                    <input type="submit" class="btn btn-primary" value="{{ __('entities/image.actions.save_focus') }}">
+                {!! Form::close() !!}
+                </div>
+
+            </div>
         </div>
     </div>
+
 </div>
 
 @if(!$image->isFolder() || $image->hasNoFolders())

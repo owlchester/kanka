@@ -39,6 +39,10 @@ return [
         'success'   => 'Image modified.',
         'title'     => 'Image details',
     ],
+    'focus' => [
+        'updated' => 'Image focus updated',
+        'removed' => 'Image focus removed',
+    ],
     'uploader'      => [
         'add'           => 'Add new',
         'new_folder'    => 'New Folder',

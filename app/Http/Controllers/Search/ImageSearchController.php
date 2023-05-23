@@ -33,7 +33,7 @@ class ImageSearchController extends Controller
             $format = [
                 'id' => $image->id,
                 'text' => $image->name,
-                'image' => $image->getUrl(40,40),
+                'image' => $image->getUrl(40)
             ];
 
             $formatted[] = $format;
