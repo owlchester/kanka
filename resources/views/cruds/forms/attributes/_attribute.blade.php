@@ -14,7 +14,7 @@ if ($attribute->isSection()) {
 }
 ?>
 
-<div class="flex flex-wrap items-start gap-2 attribute_row mb-5 md:mb-2">
+<div class="flex flex-wrap md:flex-no-wrap items-start gap-2 attribute_row mb-5 md:mb-2">
     <div class="input-group">
         <span class="input-group-addon">
             <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>

@@ -67,6 +67,10 @@ function initAttributeUI()
         if (maxFieldAlert) {
             maxFieldAlert.hide();
         }
+
+        $(this).closest('dialog')[0].close();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
         return false;
     });
 

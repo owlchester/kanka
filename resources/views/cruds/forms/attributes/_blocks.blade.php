@@ -2,7 +2,7 @@
 $nameBlock = '';
 $textBlock = 'grow';
 $actionBlock = 'flex gap-2';
-$flex = 'flex items-start gap-2 attribute_row mb-2';
+$flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 attribute_row mb-2';
 
 ?>
 <!-- Attribute Section -->
