@@ -24,6 +24,7 @@ class PostResource extends EntityChild
             //            'is_pinned' => (bool) $this->is_pinned,
             'position' => $model->position,
             'settings' => $model->settings,
+            'permissions' => PostPermissionResource::collection($model->permissions),
         ]);
     }
 }
