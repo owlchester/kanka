@@ -32,10 +32,10 @@ You can get a list of all the entity-permissions of an entity by using the follo
         },
 }
 ```
-<a name="create-entity-tag"></a>
-## z
+<a name="create-entity-permissions"></a>
+## Creating entity permissions
 
-To create an entity-tag, use the following endpoint.
+To create an entity permission, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
