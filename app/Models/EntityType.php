@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use App\Facades\CampaignLocalization;
+use App\Facades\Module;
 
 /**
  * @property int $id
@@ -48,12 +49,7 @@ class EntityType extends Model
      */
     public function name(): string
     {
-        $campaign = CampaignLocalization::getCampaign();
-        if ($campaign->hasModuleName($this->id)) {
-            return $campaign->moduleName($this->id);
-        }
-
-        return __('entities.' . $this->code);
+        return Module::singular($this->id, __('entities.' . $this->code));
     }
 
     /**
