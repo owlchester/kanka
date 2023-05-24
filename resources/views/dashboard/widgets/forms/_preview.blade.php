@@ -7,7 +7,7 @@
             </a>
         </li>
         <li>
-            <a class="" data-toggle="tab" href="#advanced">
+            <a data-toggle="tab" href="#advanced">
                 {{ __('dashboard.widgets.tabs.advanced') }}
             </a>
         </li>
@@ -17,17 +17,17 @@
         <div id="setup" class="tab-pane fade in active">
             @include('cruds.fields.entity', ['required' => true])
 
-            {!! Form::hidden('config[full]', 0) !!}
+
+            @php
+            $displayOptions = [
+                0 => __('dashboard.widgets.preview.displays.expand'),
+                1 => __('dashboard.widgets.preview.displays.full'),
+                2 => __('crud.tabs.attributes'),
+            ];
+            @endphp
             <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('config[full]', 1, (!empty($model) ? $model->conf('full') : null), ['id' => 'config-full']) !!}
-
-                        {{ __('dashboard.widgets.recent.full') }}
-
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.full') }}" aria-hidden="true"></i>
-                    </label>
-                    <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.full') }}</p>
+                <label>{{ __('dashboard.widgets.preview.fields.display') }}</label>
+                {!! Form::select('config[full]', $displayOptions, null, ['class' => 'form-control']) !!}
                 </div>
             </div>
 

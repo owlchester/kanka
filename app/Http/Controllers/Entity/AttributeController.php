@@ -62,7 +62,6 @@ class AttributeController extends Controller
             abort(403);
         }
 
-        $ajax = request()->ajax();
         $campaign = CampaignLocalization::getCampaign();
         $template = null;
         $marketplaceTemplate = null;
@@ -76,7 +75,52 @@ class AttributeController extends Controller
 
 
         return view('entities.pages.attributes.index', compact(
-            'ajax',
+            'entity',
+            'model',
+            'marketplaceTemplate',
+            'template'
+        ));
+    }
+
+    public function dashboard(Entity $entity)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->enabled('entity_attributes')) {
+            return redirect()->route('dashboard')->with(
+                'error_raw',
+                __('campaigns.settings.errors.module-disabled', [
+                    // @phpstan-ignore-next-line
+                    'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
+                ])
+            );
+        }
+        if (empty($entity->child)) {
+            abort(404);
+        }
+
+        // Policies will always fail if they can't resolve the user.
+        if (auth()->check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
+        }
+
+        if (!$entity->accessAttributes()) {
+            abort(403);
+        }
+
+        $campaign = CampaignLocalization::getCampaign();
+        $template = null;
+        $marketplaceTemplate = null;
+        $model = $entity->child;
+
+        $layout = $entity->attributes()->where(['name' => '_layout'])->first();
+        if ($layout) {
+            $template = $this->service->communityTemplate($layout->value);
+            $marketplaceTemplate = $this->service->marketplaceTemplate($layout->value, $campaign);
+        }
+
+        return view('entities.pages.attributes.dashboard', compact(
             'entity',
             'model',
             'marketplaceTemplate',

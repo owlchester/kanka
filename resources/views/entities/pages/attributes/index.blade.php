@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Inventory $item */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() || request()->filled('dashboard') ? 'ajax' : 'app'), [
     'title' => __('entities/attributes.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => false,
