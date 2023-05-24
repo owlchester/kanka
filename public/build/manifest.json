@@ -95,7 +95,7 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes.js": {
-    "file": "assets/attributes-a1fe93cd.js",
+    "file": "assets/attributes-161384aa.js",
     "imports": [
       "_sortable.esm-be94e56d.js",
       "_mention-5d95822d.js"
@@ -208,7 +208,7 @@
     "src": "resources/js/settings.js"
   },
   "resources/js/story.js": {
-    "file": "assets/story-d4ffb908.js",
+    "file": "assets/story-1fb887a3.js",
     "isEntry": true,
     "src": "resources/js/story.js"
   },
@@ -231,17 +231,17 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-2722ff41.css",
+    "file": "assets/app-010ff007.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-f10fc2ac.css",
+    "file": "assets/auth-7df266d9.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
   "resources/sass/dashboard.scss": {
-    "file": "assets/dashboard-e64de9a7.css",
+    "file": "assets/dashboard-53704f75.css",
     "isEntry": true,
     "src": "resources/sass/dashboard.scss"
   },
