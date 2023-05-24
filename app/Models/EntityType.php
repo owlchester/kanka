@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Facades\CampaignLocalization;
+use App\Facades\Module;
 
 /**
  * @property int $id
@@ -47,7 +49,7 @@ class EntityType extends Model
      */
     public function name(): string
     {
-        return __('entities.' . $this->code);
+        return Module::singular($this->id, __('entities.' . $this->code));
     }
 
     /**
