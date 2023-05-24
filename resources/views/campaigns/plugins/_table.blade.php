@@ -18,11 +18,13 @@
         </thead>
         <tbody>
         @foreach ($rows as $row)
-            <tr class="@if (Datagrid::isHighlighted($row)) warning row-highlighted @endif">
-                @foreach (Datagrid::columns($row) as $column)
-                    @include('layouts.datagrid._column')
-                @endforeach
-            </tr>
+            @if ($row->status_id != 1)
+                <tr class="@if (Datagrid::isHighlighted($row)) warning row-highlighted @endif">
+                    @foreach (Datagrid::columns($row) as $column)
+                        @include('layouts.datagrid._column')
+                    @endforeach
+                </tr>
+            @endif
         @endforeach
         </tbody>
         <tfoot style="display: none">
