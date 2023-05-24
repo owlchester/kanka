@@ -171,12 +171,21 @@ To add a role to a member of the campaign, use the following endpoint.
 | :- |   :-   |  :-  |
 | POST | `campaigns/{id}/users` | Default |
 
+### Body
+
+| Parameter | Type | Detail |
+| :- |   :-   |  :-  |
+| `user_id` | `integer` (Required) | The user's id |
+| `role_id` | `integer` (Required) | The role's id |
+
+
 ### Results
 ```json
 {
-    "data": "role succesfully added to user"
+    "data": "role successfully added to user"
 }
 ```
+
 <a name="remove-role-from-member"></a>
 ## Remove Role From Member
 
@@ -186,9 +195,16 @@ To remove a role from a member of the campaign, use the following endpoint.
 | :- |   :-   |  :-  |
 | DELETE | `campaigns/{id}/users` | Default |
 
+### Body
+
+| Parameter | Type | Detail |
+| :- |   :-   |  :-  |
+| `user_id` | `integer` (Required) | The user's id |
+| `role_id` | `integer` (Required) | The role's id |
+
 ### Results
 ```json
 {
-    "data": "role succesfully removed from user"
+    "data": "role successfully removed from user"
 }
 ```

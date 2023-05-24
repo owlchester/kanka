@@ -9,6 +9,7 @@
 ])
 
 @section('content')
+    @include('partials.ads.top')
     @include('partials.errors')
     <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
         <div class="lg:flex-none lg:w-60">
@@ -63,16 +64,16 @@
                     @include('campaigns.modules.box', ['icon' => 'ra ra-gem-pendant', 'module' => 'items', 'id' => config('entities.ids.item')])
                 </div>
                 <div class="cell col-span-1 flex">
-                    @include('campaigns.modules.box', ['icon' => 'ra ra-quill-ink', 'module' => 'notes', 'id' => config('entities.ids.note')])
+                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-book-open', 'module' => 'notes', 'id' => config('entities.ids.note')])
                 </div>
                 <div class="cell col-span-1 flex">
-                    @include('campaigns.modules.box', ['icon' => 'ra ra-moon-sun', 'module' => 'calendars', 'id' => config('entities.ids.calendar')])
+                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-calendar', 'module' => 'calendars', 'id' => config('entities.ids.calendar')])
                 </div>
                 <div class="cell col-span-1 flex">
-                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-calendar', 'module' => 'events', 'id' => config('entities.ids.event')])
+                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-bolt', 'module' => 'events', 'id' => config('entities.ids.event')])
                 </div>
                 <div class="cell col-span-1 flex">
-                    @include('campaigns.modules.box', ['icon' => 'ra ra-scroll-unfurled', 'module' => 'journals', 'id' => config('entities.ids.journal')])
+                    @include('campaigns.modules.box', ['icon' => 'ra ra-quill-ink', 'module' => 'journals', 'id' => config('entities.ids.journal')])
                 </div>
                 <div class="cell col-span-1 flex">
                     @include('campaigns.modules.box', ['icon' => 'ra ra-hood', 'module' => 'organisations', 'id' => config('entities.ids.organisation')])
@@ -90,22 +91,22 @@
                     @include('campaigns.modules.box', ['icon' => 'fa-solid fa-map', 'module' => 'maps', 'id' => config('entities.ids.map')])
                 </div>
                 <div class="cell col-span-1 flex">
-                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-clock', 'module' => 'timelines', 'id' => config('entities.ids.timeline')])
+                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-hourglass-half', 'module' => 'timelines', 'id' => config('entities.ids.timeline')])
                 </div>
                 <div class="cell col-span-1 flex">
                     @include('campaigns.modules.box', ['icon' => 'ra ra-dice-five', 'module' => 'dice_rolls', 'deprecated' => true, 'id' => config('entities.ids.dice_roll')])
                 </div>
                 <div class="cell col-span-1 flex">
-                    @include('campaigns.modules.box', ['icon' => 'ra ra-speech-bubbles', 'module' => 'conversations', 'deprecated' => true, 'id' => config('entities.ids.conversation')])
+                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-comment', 'module' => 'conversations', 'deprecated' => true, 'id' => config('entities.ids.conversation')])
                 </div>
                 <div class="cell col-span-1 flex">
-                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-link', 'module' => 'menu_links', 'id' => config('entities.ids.menu_link')])
+                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-star', 'module' => 'menu_links', 'id' => config('entities.ids.menu_link')])
                 </div>
                 <div class="cell col-span-1 flex">
                     @include('campaigns.modules.box', ['icon' => 'fa-solid fa-suitcase', 'module' => 'inventories'])
                 </div>
                 <div class="cell col-span-1 flex">
-                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-suitcase', 'module' => 'entity_attributes'])
+                    @include('campaigns.modules.box', ['icon' => 'fa-solid fa-table', 'module' => 'entity_attributes'])
                 </div>
             </div>
 

@@ -36,7 +36,8 @@ You can get a list of all the posts of an entity by using the following endpoint
             "name": "Secret Note",
             "settings": [],
             "updated_at":  "2019-08-29T13:48:54.000000Z",
-            "updated_by": null
+            "updated_by": null,
+            "permissions": []
         }
     ]
 }
@@ -67,7 +68,8 @@ To get the details of a single post, use the following endpoint.
         "name": "Secret Note",
         "settings": [],
         "updated_at":  "2019-08-29T13:48:54.000000Z",
-        "updated_by": null
+        "updated_by": null,
+        "permissions": []
     }
 }
 ```
@@ -128,3 +130,20 @@ To delete a post, use the following endpoint.
 ### Results
 
 > {success} Code 200 with JSON.
+
+
+## Permissions
+
+Post permissions are exposed with each call. A permission typically looks like this
+```json
+{
+    "user_id": 1,
+    "role_id": null,
+    "permission": 1,
+    "permission-text": "update"
+}
+```
+
+A permission is either attached to a `user_id` or a `role_id`, but never to both.
+
+The permission integer is set to `0` for `Read`, `1` for `Update`, and `2` for `Deny`.

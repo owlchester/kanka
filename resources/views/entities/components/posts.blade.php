@@ -16,11 +16,13 @@ if (!isset($pinnedPosts)) {
 }
 
 $first = $pinnedPosts->first();
+$postCount = 0;
 @endphp
 
 @if(isset($withEntry) && ($pinnedPosts->count() === 0 || (!empty($first) && $first->position >= 0)))
     @include('entities.components.entry')
     @php $entryShown = true; @endphp
+    @include('partials.ads.inline')
 @endif
 
 
@@ -34,12 +36,15 @@ $first = $pinnedPosts->first();
         @endif
 
         @include('entities.components._post')
+        @includeWhen($postCount > 0 && $postCount % 3 === 0, 'partials.ads.inline')
+        @php $postCount++; @endphp
     @endforeach
 
 
     @if (isset($withEntry) && !$entryShown)
         @include('entities.components.entry')
         @php $entryShown = true @endphp
+        @include('partials.ads.inline')
     @endif
 
     @if ($pinnedPosts->currentPage() < $pinnedPosts->lastPage())

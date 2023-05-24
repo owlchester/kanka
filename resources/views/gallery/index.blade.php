@@ -69,9 +69,7 @@ if ($folder) {
                 </div>
             </div>
         </div>
-        @if(!empty($folder))
-            {!! Form::hidden('folder_id', $folder->id) !!}
-        @endif
+        {!! Form::hidden('folder_id', $folder?->id) !!}
     </form>
 
 
