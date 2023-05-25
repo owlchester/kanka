@@ -83,12 +83,7 @@ class CampaignRolePolicy
         }
 
         // Non-admin role? Yep the user can modify the member
-        return (bool) (!$campaignRole->isAdmin())
-
-
-
-        // We have an admin role, time to do some weird stuff
-        ;
+        return (bool) (!$campaignRole->isAdmin());
     }
 
 
