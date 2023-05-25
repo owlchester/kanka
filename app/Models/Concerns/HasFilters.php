@@ -133,8 +133,8 @@ trait HasFilters
                 } elseif ($key == 'location_id') {
                     $this->filterLocations($query, $value, $key);
                 } elseif ($key == 'tag_id') {
-                    $query = $this->joinEntity($query);
                     $query
+                        ->joinEntity()
                         ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
                         ->where('et.tag_id', $value);
                 } elseif (in_array($key, ['attribute_value', 'attribute_name'])) {
@@ -162,8 +162,9 @@ trait HasFilters
                 } elseif ($key == 'parent') {
                     $this->filterParent($query);
                 } elseif (in_array($key, ['created_by', 'updated_by'])) {
-                    $query = $this->joinEntity($query);
-                    $query->where('e.' . $key, (int) $value);
+                    $query
+                        ->joinEntity()
+                        ->where('e.' . $key, (int) $value);
                 } elseif ($this->filterOperator === 'IS NULL') {
                     $query->where(function ($sub) use ($key) {
                         $sub->whereNull($this->getTable() . '.' . $key)
@@ -278,7 +279,7 @@ trait HasFilters
         if ($key == 'attribute_value') {
             return;
         }
-        $query = $this->joinEntity($query);
+        $query->joinEntity();
 
         // No attribute with this name
         if ($this->filterOperator === 'not like') {
@@ -351,8 +352,9 @@ trait HasFilters
      */
     protected function filterHasFiles(Builder $query, string $value = null): void
     {
-        $query = $this->joinEntity($query);
-        $query->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'e.id')
+        $query
+            ->joinEntity()
+            ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'e.id')
             ->where('entity_assets.type_id', \App\Models\EntityAsset::TYPE_FILE);
 
         if ($value) {
@@ -385,7 +387,7 @@ trait HasFilters
      */
     protected function filterTemplate(Builder $query, string $value = null): void
     {
-        $query = $this->joinEntity($query);
+        $query->joinEntity();
 
         if ($value) {
             $query->where('e.is_template', 1);
@@ -405,8 +407,9 @@ trait HasFilters
      */
     protected function filterHasPosts(Builder $query, string $value = null): void
     {
-        $query = $this->joinEntity($query);
-        $query->leftJoin('entity_notes', 'entity_notes.entity_id', 'e.id');
+        $query
+            ->joinEntity()
+            ->leftJoin('entity_notes', 'entity_notes.entity_id', 'e.id');
 
         if ($value) {
             $query->whereNotNull('entity_notes.id');
@@ -423,8 +426,9 @@ trait HasFilters
      */
     protected function filterHasAttributes(Builder $query, string $value = null): void
     {
-        $query = $this->joinEntity($query);
-        $query->leftJoin('attributes', 'attributes.entity_id', 'e.id');
+        $query
+            ->joinEntity()
+            ->leftJoin('attributes', 'attributes.entity_id', 'e.id');
 
         if ($value) {
             $query->whereNotNull('attributes.id');
@@ -445,7 +449,9 @@ trait HasFilters
         if ($this->filterOption('none')) {
             return;
         }
-        $query = $this->joinEntity($query);
+        $query
+            ->joinEntity()
+        ;
 
         // Make sure we always have an array
         if (!is_array($value)) {
@@ -569,7 +575,9 @@ trait HasFilters
         if ($this->filterOption('none')) {
             return;
         }
-        $query = $this->joinEntity($query);
+        $query
+            ->joinEntity()
+        ;
 
         // Make sure we always have an array
         if (!is_array($value)) {
@@ -661,8 +669,8 @@ trait HasFilters
                 $query->whereNull($this->getTable() . '.' . $key);
             }
         } elseif ($key === 'tags') {
-            $query = $this->joinEntity($query);
             $query
+                ->joinEntity()
                 ->leftJoin('entity_tags as no_tags', 'no_tags.entity_id', 'e.id')
                 ->whereNull('no_tags.tag_id');
         } elseif ($key === 'race_id') {

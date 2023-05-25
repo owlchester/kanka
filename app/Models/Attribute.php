@@ -69,7 +69,7 @@ class Attribute extends Model
      * Trigger for filtering based on the order request.
      * @var string
      */
-    protected $orderTrigger = 'attributes/';
+    protected string $orderTrigger = 'attributes/';
 
     /**
      * Searchable fields

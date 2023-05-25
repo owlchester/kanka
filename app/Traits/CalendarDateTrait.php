@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
  * @package App\Traits
  *
  * @property EntityEvent $calendarReminder
+ * @property EntityEvent|null $calendarDate
  * @property int|null $calendar_id
  * @property int|null $calendar_year
  * @property int|null $calendar_month
@@ -19,9 +20,6 @@ use Illuminate\Support\Arr;
  */
 trait CalendarDateTrait
 {
-    /** @var bool|null|EntityEvent */
-    protected $calendarDateEvent = false;
-
     /**
      * On boot of the trait, inject the fillable fields.
      */
@@ -35,12 +33,13 @@ trait CalendarDateTrait
      */
     public function hasCalendar(): bool
     {
-        return $this->calendarReminder() !== null && $this->calendarReminder()->calendar !== null;
+        dump($this->entity->calendarDate);
+        return $this->entity->calendarDate && $this->calendarDate->calendar !== null;
     }
 
     public function hasCalendarButNoAccess(): bool
     {
-        return $this->calendarReminder() !== null && $this->calendarReminder()->calendar === null;
+        return $this->calendarDate && $this->calendarDate->calendar === null;
     }
 
     /**
@@ -48,7 +47,7 @@ trait CalendarDateTrait
      */
     public function getDate(): string
     {
-        $reminder = $this->calendarReminder();
+        $reminder = $this->calendarDate;
         $months = $reminder->calendar->months();
         $count = 0;
         $monthCount = 1;
@@ -73,10 +72,10 @@ trait CalendarDateTrait
      */
     public function getCalendarIdAttribute(): int|null
     {
-        if (!$this->calendarReminder()) {
+        if (!$this->calendarDate) {
             return null;
         }
-        return $this->calendarReminder()->calendar_id;
+        return $this->calendarDate->calendar_id;
     }
 
     /**
@@ -84,10 +83,10 @@ trait CalendarDateTrait
      */
     public function getCalendarYearAttribute(): int|null
     {
-        if (!$this->calendarReminder()) {
+        if (!$this->calendarDate) {
             return null;
         }
-        return $this->calendarReminder()->year;
+        return $this->calendarDate->year;
     }
 
     /**
@@ -95,10 +94,10 @@ trait CalendarDateTrait
      */
     public function getCalendarMonthAttribute(): int|null
     {
-        if (!$this->calendarReminder()) {
+        if (!$this->calendarDate) {
             return null;
         }
-        return $this->calendarReminder()->month;
+        return $this->calendarDate->month;
     }
 
     /**
@@ -106,10 +105,10 @@ trait CalendarDateTrait
      */
     public function getCalendarDayAttribute(): int|null
     {
-        if (!$this->calendarReminder()) {
+        if (!$this->calendarDate) {
             return null;
         }
-        return $this->calendarReminder()->day;
+        return $this->calendarDate->day;
     }
 
     /**
@@ -117,10 +116,10 @@ trait CalendarDateTrait
      */
     public function getCalendarLengthAttribute(): int|null
     {
-        if (!$this->calendarReminder()) {
+        if (!$this->calendarDate) {
             return null;
         }
-        return (int) $this->calendarReminder()->length;
+        return (int) $this->calendarDate->length;
     }
 
     /**
@@ -128,7 +127,7 @@ trait CalendarDateTrait
      */
     public function getCalendarIsRecurringAttribute(): bool
     {
-        return $this->calendarReminder() ? $this->calendarReminder()->is_recurring : false;
+        return $this->calendarDate ? $this->calendarDate->is_recurring : false;
     }
 
     /**
@@ -137,10 +136,10 @@ trait CalendarDateTrait
      */
     public function getCalendarRecurringPeriodicityAttribute(): string|null
     {
-        if (!$this->calendarReminder()) {
+        if (!$this->calendarDate) {
             return null;
         }
-        return $this->calendarReminder()->recurring_periodicity;
+        return $this->calendarDate->recurring_periodicity;
     }
 
     /**
@@ -149,29 +148,9 @@ trait CalendarDateTrait
      */
     public function getCalendarColourAttribute()
     {
-        if (!$this->calendarReminder()) {
+        if (!$this->calendarDate) {
             return '#cccccc';
         }
-        return $this->calendarReminder()->colour;
-    }
-
-    /**
-     * Refactor July 2022
-     * Get the reminder associated to the entity's "calendar date"
-     */
-    public function calendarReminder(): null|EntityEvent
-    {
-        if ($this->calendarDateEvent !== false) {
-            return $this->calendarDateEvent;
-        }
-        if (!$this->entity) {
-            return $this->calendarDateEvent = null;
-        }
-        $this->calendarDateEvent = $this->entity->calendarDateEvents->first();
-        if (!$this->calendarDateEvent || !$this->calendarDateEvent->calendar) {
-            return $this->calendarDateEvent = null;
-        }
-
-        return $this->calendarDateEvent;
+        return $this->calendarDate->colour;
     }
 }

@@ -7,10 +7,12 @@ use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPermission;
 use App\Models\Conversation;
+use App\Models\Creature;
 use App\Models\EntityAbility;
 use App\Models\EntityAlias;
 use App\Models\EntityAsset;
 use App\Models\EntityEvent;
+use App\Models\EntityEventType;
 use App\Models\EntityLink;
 use App\Models\EntityMention;
 use App\Models\EntityNote;
@@ -23,6 +25,7 @@ use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Quest;
+use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Tag;
 use App\Models\Timeline;
@@ -60,6 +63,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Relation[]|Collection $relations
  * @property EntityEvent[]|Collection $elapsedEvents
  * @property EntityEvent[]|Collection $calendarDateEvents
+ * @property EntityEvent|null $calendarDate
  * @property Image|null $image
  * @property Image|null $header
  * @property User[]|Collection $users
@@ -405,6 +409,12 @@ trait EntityRelations
     public function calendarDateEvents()
     {
         return $this->events()->with('calendar')->calendarDate();
+    }
+
+    public function calendarDate() {
+        return $this->hasOne('App\Models\EntityEvent', 'entity_id', 'id')
+            ->with('calendar')
+            ->where('type_id', EntityEventType::CALENDAR_DATE);
     }
 
     /**
