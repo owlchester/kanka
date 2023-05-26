@@ -83,7 +83,7 @@ export default {
                 ;
         },
         relationText() {
-            return this.relation ? this.relation : window.ftTexts.unknown;
+            return this.relation.role ? this.relation.role : window.ftTexts.unknown;
         },
         editRelation(uuid, relation) {
             this.emitter.emit('editRelation', {uuid: uuid, relation: relation});

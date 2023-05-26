@@ -369,7 +369,15 @@ class FamilyTreeService
                 'fields' => [
                     'relation' => __('entities/relations.fields.relation'),
                     'character' => __('entities.character'),
-                    'member' => __('families/trees.modals.entity.add.member')
+                    'member' => __('families/trees.modals.entity.add.member'),
+                    'css'   => __('families/trees.modals.relations.css'),
+                    'colour' => __('crud.fields.colour'),
+                    'visibility' => [
+                        'title' => __('crud.fields.visibility'),
+                        'all' => __('crud.visibilities.all'),
+                        'admins' => __('crud.visibilities.admin'),
+                        'members' => __('crud.visibilities.members'),
+                    ],
                 ],
             ],
             'toasts' => [

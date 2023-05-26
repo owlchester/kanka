@@ -88,8 +88,30 @@
                         </ul>
                     </div>
                     <div class="form-group" v-show="isEditingRelation || isAddingRelation">
+                        
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="isUnknown" id="family_tree_unknown" name="isUnknown" value="isUnknown" />
+                                {{ this.texts.unknown }}                            
+                            </label>
+                        </div>
+                        
                         <label>{{ this.texts.modals.fields.relation }}</label>
                         <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" @keyup.enter="saveModal()"/>
+
+
+                        <label>{{ this.texts.modals.fields.colour }}</label>
+                        <input v-model="colour" type="text" maxlength="7" class="form-control spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
+
+                        <label>{{ this.texts.modals.fields.visibility.title }}</label>
+                        <select v-model="visibility" name="visibility" id="family_tree_visibility" class="form-control">
+                            <option value="1">{{ this.texts.modals.fields.visibility.all }}</option>
+                            <option value="2">{{ this.texts.modals.fields.visibility.admins }}</option>
+                            <option value="5">{{ this.texts.modals.fields.visibility.members }}</option>
+                        </select>
+
+                        <label>{{ this.texts.modals.fields.css }}</label>
+                        <input v-model="cssClass" type="text" maxlength="70" class="form-control" id="family_tree_class" @keyup.enter="saveModal()"/>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -139,6 +161,10 @@ export default {
 
             relation: undefined,
             entity: undefined,
+            cssClass: undefined,
+            colour: undefined,
+            visibility: undefined,
+            isUnknown: undefined,
 
             maxX: 0,
             maxY: 0,
@@ -223,7 +249,11 @@ export default {
             this.isAddingCharacter = false;
             this.currentUuid = undefined;
             this.relation = undefined;
+            this.cssClass = undefined;
+            this.colour = undefined;
             this.entity = undefined;
+            this.visibility = undefined;
+            this.isUnknown = undefined;
 
             $(this.modal).modal('hide');
             $(this.entityField).val(null).trigger('change');
@@ -239,6 +269,10 @@ export default {
             this.isAddingCharacter = false;
             this.currentUuid = undefined;
             this.relation = undefined;
+            this.cssClass = undefined;
+            this.colour = undefined;
+            this.visibility = undefined;
+            this.isUnknown = undefined;
             this.entity = undefined;
 
             $(this.modal).modal('hide');
@@ -279,6 +313,11 @@ export default {
             const getRelationNodes = (result, object) => {
                 if (object.uuid === this.currentUuid) {
                     object.role = this.relation;
+                    console.log(this.cssClass, this.colour, this.visibility);
+                    object.cssClass = this.cssClass;
+                    object.colour = this.colour;
+                    object.visibility = this.visibility;
+                    object.isUnknown = this.isUnknown;
                     result.push(object);
                     return result;
                 }
@@ -329,9 +368,9 @@ export default {
             const getRelationNodes = (result, object) => {
                 if (object.uuid === this.currentUuid) {
                     if (Array.isArray(object.relations)) {
-                        object.relations.push({entity_id: entity_id, role: this.relation, uuid: JSON.stringify(this.newUuid)});
+                        object.relations.push({entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, isUnknown: this.isUnknown, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
                     } else {
-                        object.relations = [{entity_id: entity_id, role: this.relation, uuid: JSON.stringify(this.newUuid)}];
+                        object.relations = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, isUnknown: this.isUnknown, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)}];
                     }
                     this.newUuid++;
                     result.push(object);
@@ -511,9 +550,14 @@ export default {
             this.showDialog();
         });
         this.emitter.on('editRelation', (data) => {
+            console.log(data.relation);
             this.resetVariables();
             this.currentUuid = data.uuid;
-            this.relation = data.relation;
+            this.relation = data.relation.role;
+            this.cssClass = data.relation.cssClass;
+            this.colour = data.relation.colour;
+            this.visibility = data.relation.visibility;
+            this.isUnknown = data.relation.isUnknown,
             this.isEditingRelation = true;
             this.showDialog();
         });
