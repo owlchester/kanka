@@ -101,7 +101,7 @@
 
 
                         <label>{{ this.texts.modals.fields.colour }}</label>
-                        <input v-model="colour" type="text" maxlength="7" class="form-control spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
+                        <input v-model="colour" name="colour" type="text" maxlength="7" class="form-control spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
 
                         <label>{{ this.texts.modals.fields.visibility.title }}</label>
                         <select v-model="visibility" name="visibility" id="family_tree_visibility" class="form-control">
@@ -169,6 +169,7 @@ export default {
             maxX: 0,
             maxY: 0,
 
+            colourField: 'input[name="colour"]',
             modal: '#family-tree-modal',
             entityField: 'select[name="character_id_ft"]',
             newUuid: 1,
@@ -313,9 +314,8 @@ export default {
             const getRelationNodes = (result, object) => {
                 if (object.uuid === this.currentUuid) {
                     object.role = this.relation;
-                    console.log(this.cssClass, this.colour, this.visibility);
                     object.cssClass = this.cssClass;
-                    object.colour = this.colour;
+                    object.colour = $(this.colourField).val();
                     object.visibility = this.visibility;
                     object.isUnknown = this.isUnknown;
                     result.push(object);
@@ -341,6 +341,7 @@ export default {
         },
         addRelation() {
             let entity_id = $(this.entityField).val();
+            this.colour = $(this.colourField).val();
             if (!entity_id) {
                 // Nothing, ignore
                 this.closeModal();
