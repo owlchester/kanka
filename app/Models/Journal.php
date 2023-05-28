@@ -29,8 +29,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Journal extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CalendarDateTrait;
     use CampaignTrait;
     use ExportableTrait;

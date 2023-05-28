@@ -13,20 +13,20 @@ use Illuminate\Support\Str;
  * Class EntityEvent
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer $calendar_id
+ * @property int $entity_id
+ * @property int $calendar_id
  * @property string $date
- * @property integer $length
+ * @property int $length
  * @property string $comment
  * @property string $colour
- * @property integer $day
- * @property integer $month
- * @property integer $year
+ * @property int $day
+ * @property int $month
+ * @property int $year
  * @property boolean $is_recurring
- * @property integer|null $recurring_until
+ * @property int|null $recurring_until
  * @property string $recurring_periodicity
- * @property integer $type_id
- * @property integer $elapsed
+ * @property int $type_id
+ * @property int $elapsed
  * @property boolean $is_private
  *
  * @property Calendar|null $calendar

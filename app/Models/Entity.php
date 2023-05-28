@@ -55,9 +55,6 @@ class Entity extends Model
 {
     use Acl;
     use BlameableTrait;
-    /**
-     * Traits
-     */
     use CampaignTrait;
     use EntityLogs;
     use EntityRelations;

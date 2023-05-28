@@ -214,7 +214,7 @@ trait HasFilters
      * @param Builder $query
      * @return Builder
      */
-    protected function joinEntity(Builder $query): Builder
+    /*protected function joinEntity(Builder $query): Builder
     {
         if ($this->joinedEntity) {
             return $query;
@@ -233,7 +233,7 @@ trait HasFilters
             })
             ->groupBy($this->getTable() . '.id')
         ;
-    }
+    }*/
 
     /**
      * Add a query on a foreign relationship of the model

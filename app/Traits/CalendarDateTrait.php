@@ -33,13 +33,12 @@ trait CalendarDateTrait
      */
     public function hasCalendar(): bool
     {
-        dump($this->entity->calendarDate);
-        return $this->entity->calendarDate && $this->calendarDate->calendar !== null;
+        return $this->entity->calendarDate && $this->entity->calendarDate->calendar !== null;
     }
 
     public function hasCalendarButNoAccess(): bool
     {
-        return $this->calendarDate && $this->calendarDate->calendar === null;
+        return $this->entity->calendarDate && $this->entity->calendarDate->calendar === null;
     }
 
     /**
@@ -72,10 +71,10 @@ trait CalendarDateTrait
      */
     public function getCalendarIdAttribute(): int|null
     {
-        if (!$this->calendarDate) {
+        if (!$this->entity->calendarDate) {
             return null;
         }
-        return $this->calendarDate->calendar_id;
+        return $this->entity->calendarDate->calendar_id;
     }
 
     /**
@@ -83,10 +82,10 @@ trait CalendarDateTrait
      */
     public function getCalendarYearAttribute(): int|null
     {
-        if (!$this->calendarDate) {
+        if (!$this->entity->calendarDate) {
             return null;
         }
-        return $this->calendarDate->year;
+        return $this->entity->calendarDate->year;
     }
 
     /**
@@ -94,10 +93,10 @@ trait CalendarDateTrait
      */
     public function getCalendarMonthAttribute(): int|null
     {
-        if (!$this->calendarDate) {
+        if (!$this->entity->calendarDate) {
             return null;
         }
-        return $this->calendarDate->month;
+        return $this->entity->calendarDate->month;
     }
 
     /**
@@ -105,10 +104,10 @@ trait CalendarDateTrait
      */
     public function getCalendarDayAttribute(): int|null
     {
-        if (!$this->calendarDate) {
+        if (!$this->entity->calendarDate) {
             return null;
         }
-        return $this->calendarDate->day;
+        return $this->entity->calendarDate->day;
     }
 
     /**
@@ -116,10 +115,10 @@ trait CalendarDateTrait
      */
     public function getCalendarLengthAttribute(): int|null
     {
-        if (!$this->calendarDate) {
+        if (!$this->entity->calendarDate) {
             return null;
         }
-        return (int) $this->calendarDate->length;
+        return (int) $this->entity->calendarDate->length;
     }
 
     /**
@@ -127,7 +126,7 @@ trait CalendarDateTrait
      */
     public function getCalendarIsRecurringAttribute(): bool
     {
-        return $this->calendarDate ? $this->calendarDate->is_recurring : false;
+        return $this->entity->calendarDate ? $this->entity->calendarDate->is_recurring : false;
     }
 
     /**
@@ -136,10 +135,10 @@ trait CalendarDateTrait
      */
     public function getCalendarRecurringPeriodicityAttribute(): string|null
     {
-        if (!$this->calendarDate) {
+        if (!$this->entity->calendarDate) {
             return null;
         }
-        return $this->calendarDate->recurring_periodicity;
+        return $this->entity->calendarDate->recurring_periodicity;
     }
 
     /**
@@ -148,9 +147,14 @@ trait CalendarDateTrait
      */
     public function getCalendarColourAttribute()
     {
-        if (!$this->calendarDate) {
+        if (!$this->entity->calendarDate) {
             return '#cccccc';
         }
-        return $this->calendarDate->colour;
+        return $this->entity->calendarDate->colour;
+    }
+
+    public function calendarReminder(): null|EntityEvent
+    {
+        return $this->entity?->calendarDate;
     }
 }
