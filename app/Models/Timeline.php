@@ -79,6 +79,11 @@ class Timeline extends MiscModel
      */
     protected $entityType = 'timeline';
 
+    protected array $apiWith = [
+        'eras',
+        'eras.elements',
+    ];
+
     /**
      * Performance with for datagrids
      * @param Builder $query

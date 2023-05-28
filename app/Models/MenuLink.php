@@ -101,6 +101,10 @@ class MenuLink extends MiscModel
         'dashboard_id',
     ];
 
+    protected array $apiWith = [
+        'target',
+    ];
+
     /**
      * Set to false if this entity type doesn't have relations
      * @var bool

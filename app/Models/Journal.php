@@ -51,12 +51,6 @@ class Journal extends MiscModel
         'is_private',
         'journal_id',
         'author_id',
-
-        // calendar date
-        'calendar_id',
-        'calendar_year',
-        'calendar_month',
-        'calendar_day',
     ];
 
     /**
@@ -91,6 +85,11 @@ class Journal extends MiscModel
         'calendar_id',
         'journal_id',
         'author_id',
+    ];
+
+    protected array $apiWith = [
+        'author',
+        'entity.calendarDate',
     ];
 
     /**
