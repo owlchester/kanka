@@ -174,6 +174,7 @@ class AttributeService
         if (!auth()->user()->isAdmin()) {
             return $this;
         }
+        dd('hein', $privateAttributes);
         $this->entity->is_attributes_private = $privateAttributes;
         $this->entity->saveQuietly();
         return $this;

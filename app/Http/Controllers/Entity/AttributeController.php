@@ -128,17 +128,19 @@ class AttributeController extends Controller
         $this->authorize('attribute', [$entity->child, 'edit']);
         $this->authorize('attributes', $entity);
 
-        $data = request()->only(
+        $fields = [
             'attr_name',
             'attr_value',
             'attr_is_private',
             'attr_is_star',
             'attr_type',
             'template_id'
-        );
+        ];
+        $data = request()->only($fields);
+
         $this->service
             ->entity($entity)
-            ->updateVisibility(request()->filled('is_attributes_private'))
+            ->updateVisibility(request()->get('is_attributes_private') === '1')
             ->save($data);
 
         return redirect()->route('entities.attributes', $entity->id)
