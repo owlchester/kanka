@@ -25,6 +25,7 @@ $statuses = [
     <input type="hidden" name="parent_id" value="" />
 
     @include('cruds.fields.character', [
+        'name' => 'parent_id',
         'label' => __('organisations.members.fields.parent'),
         'placeholder' => __('organisations.members.placeholders.parent'),
         'route' => 'search.organisation-member',
@@ -33,6 +34,7 @@ $statuses = [
         'allowClear' => false,
     ])
 </div>
+
 
 <div class="form-group">
     <label>{{ __('organisations.members.fields.role') }}</label>
