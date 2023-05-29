@@ -29,8 +29,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Journal extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CalendarDateTrait;
     use CampaignTrait;
     use ExportableTrait;
@@ -52,12 +51,6 @@ class Journal extends MiscModel
         'is_private',
         'journal_id',
         'author_id',
-
-        // calendar date
-        'calendar_id',
-        'calendar_year',
-        'calendar_month',
-        'calendar_day',
     ];
 
     /**
@@ -94,6 +87,11 @@ class Journal extends MiscModel
         'author_id',
     ];
 
+    protected array $apiWith = [
+        'author',
+        'entity.calendarDate',
+    ];
+
     /**
      * Performance with for datagrids
      * @param Builder $query
@@ -108,7 +106,7 @@ class Journal extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
-            'entity.calendarDateEvents',
+            'entity.calendarDate',
             'author',
             'location' => function ($sub) {
                 $sub->select('id', 'name');

@@ -48,12 +48,6 @@ class Quest extends MiscModel
         'character_id',
         'is_completed',
         'date',
-
-        // calendar date
-        'calendar_id',
-        'calendar_year',
-        'calendar_month',
-        'calendar_day',
     ];
 
     protected $sortable = [
@@ -96,6 +90,11 @@ class Quest extends MiscModel
      * @var array
      */
     protected $foreignExport = [
+        'elements',
+    ];
+
+    protected array $apiWith = [
+        'entity.calendarDate',
         'elements',
     ];
 
