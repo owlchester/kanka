@@ -408,12 +408,16 @@ trait EntityRelations
      */
     public function calendarDateEvents()
     {
-        return $this->events()->with('calendar')->calendarDate();
+        return $this->events()
+            ->with('calendar')
+            ->has('calendar')
+            ->calendarDate();
     }
 
     public function calendarDate() {
         return $this->hasOne('App\Models\EntityEvent', 'entity_id', 'id')
             ->with('calendar')
+            ->has('calendar')
             ->where('type_id', EntityEventType::CALENDAR_DATE);
     }
 

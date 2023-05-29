@@ -254,6 +254,7 @@ class EntityService
             // relations and, since they won't make sense on the new campaign.
             $entity->relationships()->delete();
             $entity->targetRelationships()->delete();
+            $entity->events()->delete();
 
             // Get the child of the entity (the actual Location, Character etc) and remove the permissions, since they
             // won't make sense on the new campaign either.
