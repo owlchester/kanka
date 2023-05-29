@@ -49,7 +49,7 @@ class CampaignUserPolicy
         if (Identity::isImpersonating()) {
             return false;
         }
-        if ($user->campaign->id !== $campaignUser->campaign->id) {
+        if ($user->campaign->id !== $campaignUser->campaign_id) {
             return false;
         }
 
@@ -96,7 +96,7 @@ class CampaignUserPolicy
         if (Identity::isImpersonating()) {
             return false;
         }
-        return $user->campaign->id == $campaignUser->campaign->id
+        return $user->campaign->id == $campaignUser->campaign_id
             && $user->isAdmin() && !$campaignUser->user->isAdmin()
             && !$campaignUser->user->isBanned()
         ;

@@ -580,7 +580,11 @@ class PermissionService
     public function users()
     {
         if ($this->users === false) {
-            $this->users = $this->campaign->members()->withoutAdmins()->with('user')->get();
+            $this->users = $this->campaign
+                ->members()
+                ->withoutAdmins()
+                ->with(['user', 'user.campaignRoles'])
+                ->get();
         }
         return $this->users;
     }
