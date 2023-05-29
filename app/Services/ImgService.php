@@ -36,7 +36,7 @@ class ImgService
         $this->enabled = !empty(config('thumbor.key'));
         $this->local = config('thumbor.key') === 'local';
 
-        $this->new = !empty(config('thumbor.url-new')); // && request()->has('_thumbornew');
+        $this->new = !empty(config('thumbor.url-new')) && request()->has('_thumbornew');
     }
 
     /**
