@@ -13,6 +13,9 @@ class ImgService
     /** @var bool If true, running locally with docker/minio */
     protected bool $local = false;
 
+    /** @var bool If true, use the new th.kanka.io system */
+    protected bool $new = false;
+
     /** @var bool Called from console */
     protected $console = false;
 
@@ -32,6 +35,8 @@ class ImgService
     {
         $this->enabled = !empty(config('thumbor.key'));
         $this->local = config('thumbor.key') === 'local';
+
+        $this->new = !empty(config('thumbor.url-new')) && request()->has('_thumbornew');
     }
 
     /**
@@ -125,6 +130,12 @@ class ImgService
         if ($this->local) {
             return config('thumbor.url') . 'unsafe/' . $this->crop . $filter
                 . app()->environment() . '/' . urlencode($img);
+        } elseif ($this->new) {
+            $thumborUrl = $this->crop . $filter . $img;
+            $sign = $this->sign($thumborUrl);
+            return config('thumbor.url-new') . $sign . '/' . $this->crop . $filter
+                . $img
+            ;
         }
 
         return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter

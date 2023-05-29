@@ -5,6 +5,7 @@
  * When running Kanka locally with docker, it comes with a lightweight thumbor instance
  * that will read and save thumbnails from minio.
  */
+
 return [
     'key' => env('THUMBOR_KEY'),
     'bases' => [
@@ -12,4 +13,5 @@ return [
         'app' => 'https://' . env('AWS_BUCKET_APP') . '.s3.eu-central-1.amazonaws.com/',
     ],
     'url' => env('THUMBOR_URL', 'http://localhost:8888/'),
+    'url-new' => env('THUMBOR_URL_NEW')
 ];
