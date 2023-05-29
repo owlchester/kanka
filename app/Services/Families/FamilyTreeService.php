@@ -6,6 +6,9 @@ use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\FamilyTree;
+use App\Facades\Permissions;
+use App\Facades\CampaignLocalization;
+use App\Models\Visibility;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -110,7 +113,7 @@ class FamilyTreeService
             if ($k !== 'entity_id') {
                 return;
             }
-            if ($v === 0 || in_array($v, $this->configEntityIds)) {
+            if ($v === 0 || in_array($v, $this->configEntityIds) || $v === null) {
                 return;
             }
             $this->configEntityIds[] = $v;
@@ -139,6 +142,7 @@ class FamilyTreeService
         if (!empty($this->entities)) {
             $this->missingIds = array_diff($this->entityIds, array_keys($this->entities));
             $this->cleanupMissingEntities();
+            $this->visibilityCheck();
         } else {
             $this->entities = [];
             $this->familyTree->config = [];
@@ -170,6 +174,62 @@ class FamilyTreeService
         ];
     }
 
+
+protected function visibilityCheck(): void
+{
+    $config = [];
+    foreach ($this->config as $key => $node) {
+        $config[$key] = $this->cleanInvisible($node, $key);
+    }
+    $this->config = $config;
+
+}
+protected function cleanInvisible($node, $key): mixed
+{
+    $campaign = CampaignLocalization::getCampaign();
+
+    if(isset($node['relations'])){
+        foreach ($node['relations'] as $k => $rel) {
+
+            if (!isset($rel['children'])) {
+                $relations[] = $rel;
+                continue;
+            }
+            
+            $children = [];
+            foreach ($rel['children'] as $ck => $child) {
+                $child = $this->cleanInvisible($child, $ck);
+                if (!$child) {
+                    continue;
+                }
+                if (!isset($child['visibility']) || 
+                    $child['visibility'] == Visibility::VISIBILITY_ALL ||
+                    ($child['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
+                    ($child['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember() )
+                    ) {
+                    $children[] = $child;
+                }
+            }
+            unset($rel['children']);
+            if (!empty($children)) {
+                $rel['children'] = $children;
+            }
+            if (!isset($rel['visibility']) || 
+                $rel['visibility'] == Visibility::VISIBILITY_ALL ||
+                ($rel['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
+                ($rel['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember() )
+            ) {
+                $relations[] = $rel;
+            }
+        }
+        unset($node['relations']);
+        if (!empty($relations)) {
+            $node['relations'] = $relations;
+        }
+    }
+
+    return $node;
+}
     protected function cleanupMissingEntities(): void
     {
         if (empty($this->missingIds)) {
@@ -189,7 +249,7 @@ class FamilyTreeService
 
     protected function cleanupNode($node, $key): mixed
     {
-        if (in_array($node['entity_id'], $this->missingIds)) {
+        if (in_array($node['entity_id'], $this->missingIds) && $node['entity_id'] != null) {
             return null;
         }
         if (!isset($node['relations'])) {
@@ -197,7 +257,7 @@ class FamilyTreeService
         }
         $relations = [];
         foreach ($node['relations'] as $k => $rel) {
-            if (in_array($rel['entity_id'], $this->missingIds)) {
+            if (in_array($rel['entity_id'], $this->missingIds) && $rel['entity_id'] != null) {
                 continue;
             }
             if (!isset($rel['children'])) {
@@ -299,7 +359,7 @@ class FamilyTreeService
         if (empty($nodes)) {
             return [];
         }
-
+        //dd($nodes);
         if (!isset($nodes[0]['relations'])) {
             return [];
         }

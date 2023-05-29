@@ -15,6 +15,7 @@ export default {
         index: 0,
         column: undefined,
         row: undefined,
+        node: '',
     },
 
     data() {
@@ -30,7 +31,8 @@ export default {
 
             return 'width: 1px; height: ' + this.height + 'px;' +
                 'left: ' + left + 'px; ' +
-                'top: ' + top + 'px;'
+                'top: ' + top + 'px;' +
+                'background-color:' + this.node.colour + ';'
             ;
         },
     },

@@ -57,19 +57,24 @@ export default {
             return css;
         },
         verticalSource() {
-            return 'width: 1px; height: ' + this.height + 'px;' +
+            return (this.relation.colour ? '--family-tree-line: ' + this.relation.colour + ';': '') + 
+                'width: 1px; height: ' + this.height + 'px;' +
                 'left: ' + (this.sourceX + (this.entityWidth / 2)) + 'px; ' +
-                'top: ' + (this.sourceY + (this.entityHeight)) + 'px;'
+                'top: ' + (this.sourceY + (this.entityHeight)) + 'px;' +
+                'background-color:' + this.relation.colour + ';'
             ;
         },
         verticalTarget() {
-            return 'width: 1px; height: ' + this.height + 'px;' +
+            return (this.relation.colour ? '--family-tree-line: ' + this.relation.colour + ';': '') + 
+                'width: 1px; height: ' + this.height + 'px;' +
                 'left: ' + (this.drawX + (this.entityWidth / 2)) + 'px; ' +
-                'top: ' + (this.drawY + (this.entityHeight)) + 'px; '
+                'top: ' + (this.drawY + (this.entityHeight)) + 'px; ' +
+                'background-color:' + this.relation.colour + ';'
             ;
         },
         horizontal() {
-            return 'height: 1px;' +
+            return (this.relation.colour ? '--family-tree-line: ' + this.relation.colour + ';': '') +
+                'height: 1px;' +
                 'left: ' + (this.sourceX + (this.entityWidth / 2)) + 'px; ' +
                 'width: ' + (this.drawX - this.sourceX) + 'px; ' +
                 'top: ' + (this.drawY + this.entityHeight + 15) + 'px'

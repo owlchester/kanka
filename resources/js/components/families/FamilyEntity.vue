@@ -1,13 +1,16 @@
 <template>
-    <div v-bind:class="boxClasses()" v-bind:style="position()" v-bind:data-uuid="uuid" v-bind:data-entity="entity.id" v-bind:data-tags="tags()">
+    <div v-bind:class="boxClasses()" v-bind:style="position()" v-bind:data-uuid="uuid" v-bind:data-entity="entity ? entity.id : isUnknown" v-bind:data-tags="tags()">
         <div class="flex items-center gap-1 max-w-full">
             <div class="flex-none">
-                <a v-bind:href="entity.url">
+                <span class="truncate" v-if="node.isUnknown">
+                    ? 
+                </span>
+                <a v-bind:href="entity.url" v-if="!node.isUnknown">
                     <img v-bind:src="entity.thumb" class="rounded-full entity-image" v-bind:alt="entity.name" />
                 </a>
             </div>
             <div class="grow justify-center truncate">
-                <a v-bind:href="entity.url" v-bind:class="cssClasses()" v-bind:title="entity.name">
+                <a v-bind:href="entity.url" v-bind:class="cssClasses()" v-bind:title="entity.name" v-if="!node.isUnknown">
                     <span class="truncate">
                         {{ entity.name }}
                     </span>
@@ -15,11 +18,15 @@
                         <i class="fa-solid fa-skull" v-bind:title="tooltip('is_dead')" aria-hidden="true"/>
                     </span>
                 </a>
+                <span class="truncate" v-if="node.isUnknown">
+                    Unknown 
+                </span>
+
                 <span class="text-xs" v-if="!isEditing && false">
                     (#{{ entity.id }})
                 </span>
                 <div class="flex gap-1" v-if="isEditing">
-                    <a v-on:click="editEntity(uuid)" class="cursor-pointer" v-bind:title="i18n('entity', 'edit')">
+                    <a v-on:click="editEntity(uuid, node)" class="cursor-pointer" v-bind:title="i18n('entity', 'edit')">
                         <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                         <span class="sr-only">{{ i18n('entity', 'edit') }}</span>
                     </a>
@@ -63,12 +70,20 @@ export default {
             if (this.isFounder) {
                 css += ' family-node-entity-founder';
             }
-            if (this.entity.is_dead) {
-                css += ' character-dead';
-            }
-            this.entity.tags.forEach(function (tag) {
+            if (this.entity) {
+                if (this.entity.is_dead) {
+                    css += ' character-dead';    
+                }
+                this.entity.tags.forEach(function (tag) {
                 css += ' ' + tag;
             });
+
+            }
+
+            if (this.node.cssClass) {
+                css += ' ' + this.node.cssClass;
+            }
+
             return css;
         },
         position() {
@@ -76,9 +91,12 @@ export default {
             /*return 'left: ' + this.drawX + 'px; top: ' + this.drawY + 'px;' +
                 'width:' + this.entityWidth + 'px; height: ' + this.entityHeight + 'px';*/
         },
-        editEntity(uuid) {
-            this.emitter.emit('editEntity', uuid);
+        editEntity(uuid, node) {
+            this.emitter.emit('editEntity', {uuid: uuid, relation: node});
         },
+        //editEntity(uuid) {
+        //    this.emitter.emit('editEntity', uuid);
+       // },
         deleteEntity(uuid) {
             this.emitter.emit('deleteEntity', uuid);
         },
