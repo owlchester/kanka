@@ -22,10 +22,10 @@ class QuestResource extends EntityResource
             'is_completed' => $model->isCompleted(),
             'quest_id' => $model->quest_id,
             'character_id' => $model->character_id,
-            'calendar_id' => $model->calendar_id,
-            'calendar_year' => $model->calendar_year,
-            'calendar_month' => $model->calendar_month,
-            'calendar_day' => $model->calendar_day,
+            'calendar_id' => $model->entity->calendarDate?->calendar_id,
+            'calendar_year' => $model->entity->calendarDate?->year,
+            'calendar_month' => $model->entity->calendarDate?->month,
+            'calendar_day' => $model->entity->calendarDate?->day,
             'elements_count' => $model->elements->count(),
             'elements' => QuestElementResource::collection($model->elements)
         ]);
