@@ -40,7 +40,7 @@ $label = $imageLabel ?? 'crud.fields.image';
     @elseif (isset($campaignImage) && $campaignImage)
         <div class="col-md-2">
             @include('cruds.fields._image_preview', [
-                'image' => 'https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg',
+                'image' => 'https://th.kanka.io/TMUEmOVYU-ClCFa8I5B9pKvhsb4=/280x210/smart/app/backgrounds/mountain-background-medium.jpg',
                 'title' => 'Default',
             ])
         </div>

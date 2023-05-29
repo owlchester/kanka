@@ -1,7 +1,7 @@
 
     <div class="flex gap-2 items-center mb-5">
         <div class="flex-0">
-            <img class="img-circle  w-24 h-24" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png" alt="Kobold">
+            <img class="img-circle  w-24 h-24" src="{{ Img::crop(96)->new()->url('app/tiers/kobold-750.png') }}" alt="Kobold">
         </div>
         <div class="grow">
             <h3>Kobold</h3>

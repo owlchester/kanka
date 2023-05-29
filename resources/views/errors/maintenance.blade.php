@@ -45,9 +45,8 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="{{ (auth()->check() ? route('front.home') : route('home')) }}">
-            <img class="d-none d-lg-block" src="https://images.kanka.io/app/lYYwvb1TENQSosFKdgDCLd2oLdU=/228x77/src/images%2Flogos%2Ftext-white.png?webpfallback" title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
-            <img class="d-xl-none d-lg-none" src="https://images.kanka.io/app/G2bnfyER8xMuMzPX4LM0Phdrjew=/228x77/src/images%
-2Flogos%2Ftext-blue.png" title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
+            <img class="d-none d-lg-block" src="{{ Img::crop(95, 32)->new()->url('app/logos/text-white.png') }}" title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
+            <img class="d-xl-none d-lg-none" src="{{ Img::crop(95, 32)->new()->url('app/logos/text-blue.png') }}" title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
         </a>
 
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

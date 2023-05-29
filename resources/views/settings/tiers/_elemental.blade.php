@@ -1,7 +1,7 @@
 
     <div class="flex gap-2 items-center mb-5">
         <div class="flex-0">
-            <img class="img-circle  w-24 h-24" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental">
+            <img class="img-circle  w-24 h-24" src="{{ Img::crop(96)->new()->url('app/tiers/elemental-750.png') }}" alt="Elemental">
         </div>
         <div class="grow">
             <h3>Elemental</h3>

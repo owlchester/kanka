@@ -73,7 +73,7 @@
 
     <div class="header" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/emails/email-banner.jpg); background-position: top center; background-size: cover; width: 100%; height: 220px; text-align: center;">
         <a href="{{ route('home', ['utm_source' => ($utmSource ?? 'notification'), 'utm_medium' => 'email', 'utm_campaign' => ($utmCampaign ?? 'notification')]) }}">
-            <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-blue-white.png" alt="Kanka logo" title="Kanka logo" style="margin: 50px;" width="120px" height="120px">
+            <img src="https://th.kanka.io/m3utcW5cKf_UGTB5dcos-H1Hfig=/226x205/smart/app/logos/kanka-logo-large.png" alt="Kanka logo" title="Kanka logo" style="margin: 50px;" width="120px" height="120px">
         </a>
     </div>
 
@@ -83,17 +83,17 @@
         <div class="footer">
             <p>
                 <a href="{{ config('social.discord') }}" class="social" target="discord" title="Discord" rel="noreferrer">
-                    <img src="https://kanka-app-assets.s3.amazonaws.com/images/socials/discord-brands.png" /></a>
+                    <img src="https://kanka-user-assets.s3.amazonaws.com/app/socials/discord-brands.png" /></a>
                 <a href="{{ config('social.facebook') }}" class="social" target="facebook" title="Facebook" rel="noreferrer">
-                    <img src="https://kanka-app-assets.s3.amazonaws.com/images/socials/facebook-brands.png" /></a>
+                    <img src="https://kanka-user-assets.s3.amazonaws.com/app/socials/facebook-brands.png" /></a>
                 <a href="{{ config('social.instagram') }}" class="social" target="instagram" title="Instagram" rel="noreferrer">
-                    <img src="https://kanka-app-assets.s3.amazonaws.com/images/socials/instagram-brands.png" /></a>
+                    <img src="https://kanka-user-assets.s3.amazonaws.com/app/socials/instagram-brands.png" /></a>
                 <a href="{{ config('social.youtube') }}" class="social" target="youtube" title="Youtube" rel="noreferrer">
-                    <img src="https://kanka-app-assets.s3.amazonaws.com/images/socials/youtube-brands.png" /></a>
+                    <img src="https://kanka-user-assets.s3.amazonaws.com/app/socials/youtube-brands.png" /></a>
                 <a href="{{ config('social.reddit') }}" class="social" target="reddit" title="Reddit" rel="noreferrer">
-                    <img src="https://kanka-app-assets.s3.amazonaws.com/images/socials/reddit-brands.png" /></a>
+                    <img src="https://kanka-user-assets.s3.amazonaws.com/app/socials/reddit-brands.png" /></a>
                 <a href="{{ config('social.twitter') }}" class="social" target="twitter" title="Twitter" rel="noreferrer">
-                    <img src="https://kanka-app-assets.s3.amazonaws.com/images/socials/twitter-brands.png" /></a>
+                    <img src="https://kanka-user-assets.s3.amazonaws.com/app/socials/twitter-brands.png" /></a>
             </p>
 
             @if (!empty($user))

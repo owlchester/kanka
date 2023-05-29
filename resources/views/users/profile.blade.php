@@ -58,33 +58,33 @@
                     <div class="col-md-3 mt-md-5 text-center profile-pledge">
                     @if ($user->isElemental())
                         <a href="{{ route('front.hall-of-fame') }}">
-                            <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png"
+                            <img src="https://th.kanka.io/kfgMHLY-ERcikwpS7SophmZXcf8=/150x150/smart/app/tiers/elemental-750.png"
                                  class="profile-subscriber" title="Elemental" />
                         </a>
                         <div class="text-uppercase">Elemental</div>
                     @elseif ($user->isWyvern())
                         <a href="{{ route('front.hall-of-fame') }}">
-                            <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png"
+                            <img src="https://th.kanka.io/_c01U5jGJIvux12I537pghQe6Ho=/150x150/smart/app/tiers/wyvern-750.png"
                                 class="profile-subscriber mb-2" title="Wyvern" />
                         </a>
                         <div class="text-uppercase">Wyvern</div>
 
                     @elseif ($user->isOwlbear())
                         <a href="{{ route('front.hall-of-fame') }}">
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png"
+                        <img src="https://th.kanka.io/4yF2itbe8ULk4Rv4Kkj2gDkWoVo=/150x150/smart/app/tiers/owlbear-750.png"
                                  class="profile-subscriber mb-2" title="Owlbear" />
                         </a>
                         <div class="text-uppercase">Owlbear</div>
                     @elseif ($user->hasRole('admin'))
                         <a href="{{ route('front.about') }}">
-                            <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/icon-large.png"
+                            <img src="https://th.kanka.io/dlU8nZhj1Hlu1KbxlsqsTWu4o3E=/150x150/smart/app/logos/icon.png"
                                  class="profile-subscriber no-transform mb-2" title="Kanka Team" />
                         </a>
                         <div class="text-uppercase lead">
                             Kanka Team
                         </div>
                     @else
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png"
+                        <img src="https://th.kanka.io/hD1oKiv8v_BoFLBj_GDPsd6ENaw=/150x150/smart/app/tiers/kobold-750.png"
                                  class="profile-subscriber" title="Kobold" />
                         <div class="text-uppercase">Kobold</div>
                     @endif

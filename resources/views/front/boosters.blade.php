@@ -61,7 +61,7 @@
 'marketplace' => link_to('https://marketplace.kanka.io', 'Marketplace', ['target' => '_blank'])
 ]) !!}
                         </p>
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/features/boosted/look-n-feel.jpg"
+                        <img src="https://kanka-user-assets.s3.amazonaws.com/app/features/boosted/look-n-feel.jpg"
                              class="img-thumbnail" alt="{{ __('front/boosters.blocks.customise.title') }}" loading="lazy" />
                     </div>
 
@@ -70,7 +70,7 @@
                         <p>
                             {!! __('front/boosters.blocks.entities.description') !!}
                         </p>
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/features/boosted/entity.jpg"
+                        <img src="https://kanka-user-assets.s3.amazonaws.com/app/features/boosted/entity.jpg"
                              class="img-thumbnail" alt="{{ __('front/boosters.blocks.entities.title') }}" loading="lazy" />
                     </div>
 
@@ -99,7 +99,7 @@
                         <p>
                             {!! __('front/boosters.blocks.defaults.description') !!}
                         </p>
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/features/boosted/default.jpg"
+                        <img src="https://kanka-user-assets.s3.amazonaws.com/app/features/boosted/default.jpg"
                              class="img-thumbnail" alt="{{ __('front/boosters.blocks.defaults.title') }}" loading="lazy" />
                     </div>
 
@@ -121,7 +121,7 @@
     'rpgawesome' => link_to('https://nagoshiashumari.github.io/Rpg-Awesome/', 'RPGAwesome', ['target' => '_blank'])
 ]) !!}
                         </p>
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/features/boosted/icon.jpg"
+                        <img src="https://kanka-user-assets.s3.amazonaws.com/app/features/boosted/icon.jpg"
                              class="img-thumbnail" alt="{{ __('front/boosters.blocks.icons.title') }}" loading="lazy" />
                     </div>
 
@@ -130,7 +130,7 @@
                         <p>
                             {!! __('front/boosters.blocks.relations.description') !!}
                         </p>
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/features/boosted/boosted-relations.jpg"
+                        <img src="https://kanka-user-assets.s3.amazonaws.com/app/features/boosted/boosted-relations.jpg"
                              class="img-thumbnail" alt="{{ __('front/boosters.blocks.relations.title') }}" loading="lazy" />
                     </div>
                 </div>
@@ -152,7 +152,7 @@
                         <p>
                             {!! __('front/boosters.superboosted.gallery.description', []) !!}
                         </p>
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/features/boosted/gallery.jpg"
+                        <img src="https://kanka-user-assets.s3.amazonaws.com/app/features/boosted/gallery.jpg"
                              class="img-thumbnail" alt="{{ __('front/boosters.blocks.gallery.title') }}" loading="lazy" />
                     </div>
                     <div class="text-center booster-card">
@@ -160,7 +160,7 @@
                         <p>
                             {!! __('front/boosters.superboosted.achievements.description', []) !!}
                         </p>
-                        <img src="https://kanka-app-assets.s3.amazonaws.com/images/features/boosted/achievements.jpg"
+                        <img src="https://kanka-user-assets.s3.amazonaws.com/app/features/boosted/achievements.jpg"
                              class="img-thumbnail" alt="{{ __('front/boosters.superboosted.achievements.title') }}" loading="lazy" />
                     </div>
                     <div class="text-center booster-card">
