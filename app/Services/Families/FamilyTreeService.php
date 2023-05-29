@@ -432,6 +432,7 @@ protected function cleanInvisible($node, $key): mixed
                     'member' => __('families/trees.modals.entity.add.member'),
                     'css'   => __('families/trees.modals.relations.css'),
                     'colour' => __('crud.fields.colour'),
+                    'unknown' => __('families/trees.modals.relations.unknown'),
                     'visibility' => [
                         'title' => __('crud.fields.visibility'),
                         'all' => __('crud.visibilities.all'),

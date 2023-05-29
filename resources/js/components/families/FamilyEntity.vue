@@ -3,7 +3,7 @@
         <div class="flex items-center gap-1 max-w-full">
             <div class="flex-none">
                 <span class="truncate" v-if="node.isUnknown">
-                    ? 
+                    <i class="fa-solid fa-3x fa-question" aria-hidden="true"/>
                 </span>
                 <a v-bind:href="entity.url" v-if="!node.isUnknown">
                     <img v-bind:src="entity.thumb" class="rounded-full entity-image" v-bind:alt="entity.name" />
@@ -18,8 +18,8 @@
                         <i class="fa-solid fa-skull" v-bind:title="tooltip('is_dead')" aria-hidden="true"/>
                     </span>
                 </a>
-                <span class="truncate" v-if="node.isUnknown">
-                    Unknown 
+                <span v-bind:class="cssClasses()" v-if="node.isUnknown">
+                    <i>{{ fields('unknown') }}</i>                            
                 </span>
 
                 <span class="text-xs" v-if="!isEditing && false">
@@ -105,7 +105,7 @@ export default {
         },
         cssClasses() {
             let classes = '';
-            if (this.entity.is_dead) {
+            if (this.entity && this.entity.is_dead) {
                 classes += 'flex grid-cols-2 items-center'
             } else {
                 classes += 'block'
@@ -120,6 +120,9 @@ export default {
         },
         i18n(group, action) {
             return window.ftTexts.modals[group][action].title
+        },
+        fields(field) {
+            return window.ftTexts.modals.fields[field]
         },
         tooltip(key) {
             return window.ftTexts.tooltips[key]

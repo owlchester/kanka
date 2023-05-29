@@ -91,7 +91,7 @@
                         <div v-if="isEditingRelation || isAddingRelation" class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="isUnknown" id="family_tree_unknown" name="isUnknown" value="isUnknown" />
-                                {{ this.texts.unknown }}                            
+                                {{ this.texts.modals.fields.unknown }}                            
                             </label>
                         </div>
             
