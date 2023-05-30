@@ -394,7 +394,7 @@ trait EntityRelations
         ;
     }
 
-    public function pinnedAlias()
+    public function pinnedAliases()
     {
         return $this->assets()
             ->where('is_pinned', 1)

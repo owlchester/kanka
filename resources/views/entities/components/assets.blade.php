@@ -11,7 +11,7 @@
         </a>
     </li>
 @endforeach
-@foreach ($model->entity->pinnedAlias as $asset)
+@foreach ($model->entity->pinnedAliases as $asset)
     <li class="list-group-item pinned-asset" data-asset="{{ \Illuminate\Support\Str::slug($asset->name) }}" data-target="{{ $asset->id }}">
         <strong>
             {{ __('entities/assets.actions.alias') }}
