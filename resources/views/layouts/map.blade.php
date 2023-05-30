@@ -64,7 +64,7 @@ $specificTheme = null;
 
     <div id="app" class="wrapper mt-12">
         <!-- Header -->
-        @include('layouts.header', ['qq' => false, 'toggle' => true])
+        @include('layouts.header', ['qq' => true, 'toggle' => true])
 
         <aside class="main-sidebar overflow-hidden pt-0 t-0 l-0 absolute">
             <section class="sidebar" style="height: auto">
@@ -164,6 +164,18 @@ $specificTheme = null;
 @endif
 <script src="/js/vendor/leaflet/leaflet.path.drag.js"></script>
 <script src="/js/vendor/leaflet/leaflet.editable.js"></script>
+
+<!-- Default modal used throughout the app -->
+<div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-2xl"></div>
+        <div class="modal-spinner" style="display: none">
+            <div class="modal-body text-center">
+                <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
 @vite('resources/js/location/map-v3.js')
 @yield('scripts')
