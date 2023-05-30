@@ -67,7 +67,7 @@
                 <th class="align-middle">
                     <div class="tier">
                         <div class="img">
-                            <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png" alt="Kobold"/>
+                            <img class="img-circle" src="{{ Img::crop(60)->new()->url('app/tiers/kobold-750.png') }}" alt="Kobold"/>
                         </div>
                         <div class="text">
                             KOBOLD
@@ -80,7 +80,7 @@
                 <th class="align-middle">
                     <div class="tier">
                         <div class="img">
-                            <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png" alt="Owlbear"/>
+                            <img class="img-circle" src="{{ Img::crop(60)->new()->url('app/tiers/owlbear-750.png') }}" alt="Owlbear"/>
                         </div>
                         <div class="text">
                             OWLBEAR
@@ -101,7 +101,7 @@
                 <th class="align-middle">
                     <div class="tier">
                         <div class="img">
-                            <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png" alt="Wyvern"/>
+                            <img class="img-circle" src="{{ Img::crop(60)->new()->url('app/tiers/wyvern-750.png') }}" alt="Wyvern"/>
                         </div>
                         <div class="text">
                             WYVERN
@@ -122,7 +122,7 @@
                 <th class="align-middle">
                     <div class="tier">
                         <div class="img">
-                            <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental"/>
+                            <img class="img-circle" src="{{ Img::crop(60)->new()->url('app/tiers/elemental-750.png') }}" alt="Elemental"/>
                         </div>
                         <div class="text">
                             ELEMENTAL

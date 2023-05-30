@@ -30,7 +30,7 @@ $fromOrg = request()->get('from') === 'org';
     <input type="hidden" name="parent_id" value="" />
     @include('cruds.fields.character', [
         'name' => 'parent_id',
-        'preset' => !empty($member) && $member->parent ? $member->parent->character : null,
+        'preset' => !empty($member) && $member->parent ? $member->parent : null,
         'allowNew' => false,
         'allowClear' => true,
         'label' => __('organisations.members.fields.parent'),

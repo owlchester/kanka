@@ -1,1 +1,1 @@
-<img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/icon-small.png" style="width: 40px" />
+<img src="https://th.kanka.io/8UnWmV2CPAQfP4P4fdjtcDkCikk=/40x40/smart/app/logos/icon.png" />

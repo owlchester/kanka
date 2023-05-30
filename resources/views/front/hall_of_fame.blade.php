@@ -24,7 +24,7 @@
 
                 <div class="bg-white rounded shadow-sm py-4 px-4 hover-focus mb-5" id="elementals">
                     <div class=" text-center">
-                        <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental" width="150">
+                        <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="{{ Img::crop(150, 150)->new()->url('app/tiers/elemental-750.png') }}" alt="Elemental" width="150">
                         <h5 class="mb-1 text-uppercase">Elemental</h5>
                     </div>
 
@@ -37,7 +37,7 @@
 
                 <div class="bg-white rounded shadow-sm py-4 px-4 hover-focus mb-5" id="wyverns">
                     <div class=" text-center">
-                        <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png" alt="Wyvern" width="125">
+                        <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="h{{ Img::crop(125, 125)->new()->url('app/tiers/wyvern-750.png') }}" alt="Wyvern" width="125">
                         <h5 class="mb-1 text-uppercase">Wyvern</h5>
                     </div>
 
@@ -50,7 +50,7 @@
 
                 <div class="bg-white rounded shadow-sm py-4 px-4 hover-focus mb-5" id="owlbears">
                     <div class=" text-center">
-                        <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png" alt="Owlbear" width="100">
+                        <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="{{ Img::crop(100, 100)->new()->url('app/tiers/owlbear-750.png') }}" alt="Owlbear" width="100">
                         <h5 class="mb-1 text-uppercase">Owlbear</h5>
                     </div>
 
@@ -63,7 +63,7 @@
 
                 <div class="bg-white rounded shadow-sm py-4 px-4 hover-focus mb-5" id="goblins">
                     <div class="mb-1 text-center">
-                        <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/goblin-325.png" alt="Goblin" width="80">
+                        <img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" src="{{ Img::crop(80, 80)->new()->url('app/tiers/goblin-750.png') }}" alt="Goblin" width="80">
                         <h5 class="text-uppercase">Goblin</h5>
                         <p class="text-center font-italic">{{ __('front/hall-of-fame.legacy', ['kanka' => config('app.name')]) }}</p>
                     </div>

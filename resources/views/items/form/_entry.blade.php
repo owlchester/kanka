@@ -29,7 +29,7 @@
         @include('cruds.fields.location')
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.character', ['label' => __('items.fields.character')])
+        @include('cruds.fields.character', ['label' => __('items.fields.character'), 'name' => 'character_id'])
     </div>
 </div>
 

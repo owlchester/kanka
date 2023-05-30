@@ -3,6 +3,7 @@
 namespace App\Services\Entity;
 
 use App\Models\Tag;
+use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\User;
 use Illuminate\Support\Str;
@@ -11,8 +12,6 @@ use Stevebauman\Purify\Facades\Purify;
 class TagService
 {
     use EntityAware;
-
-    protected array $tagIds = [];
 
     protected bool $canCreate = false;
 
@@ -39,6 +38,11 @@ class TagService
         return $tag;
     }
 
+    /**
+     * @param mixed $name
+     * @param int $campaignID
+     * @return Tag
+     */
     public function create(mixed $name, int $campaignID): Tag
     {
         $tag = new Tag([
@@ -47,8 +51,10 @@ class TagService
         $tag->campaign_id = $campaignID;
         $tag->slug = Str::slug($tag->name, '');
         $tag->is_private = false;
+        $tag->recalculateTreeBounds();
         $tag->saveQuietly();
         $tag->createEntity();
+
         return $tag;
     }
 }

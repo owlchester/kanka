@@ -40,7 +40,7 @@
         <div class="bg-white md:rounded-xl p-5 md:mt-28">
             <div class="text-center w-full login-logo mb-5">
                 <a href="{{ route('home') }}" tabindex="-1">
-                    <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-small.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}" class="w-20 inline" />
+                    <img src="https://th.kanka.io/HuIIn1gIw3VLch1JNwosVd7j0YU=/80x72/smart/app/logos/kanka-logo-large.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}" class="w-20 inline" />
                 </a>
             </div>
             @yield('content')

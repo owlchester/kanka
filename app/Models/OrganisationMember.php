@@ -159,6 +159,15 @@ class OrganisationMember extends Model
     }
 
     /**
+     * Foreign selected
+     * @return string
+     */
+    public function getNameAttribute(): string
+    {
+        return $this->character->name;
+    }
+
+    /**
      * Datagrid2: url
      * @param string $where
      * @return string
