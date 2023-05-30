@@ -12,10 +12,10 @@
     </div>
 
     <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-profile-elements">
-        @if (!empty($model->character))
+        @if (!empty($model->instigator))
             <div class="element profile-instigator">
-                <div class="title text-uppercase text-xs">{{ __('quests.fields.character') }}</div>
-                {!! $model->character->tooltipedLink() !!}
+                <div class="title text-uppercase text-xs">{{ __('quests.fields.instigator') }}</div>
+                {!! $model->instigator->tooltipedLink() !!}
             </div>
         @endif
 

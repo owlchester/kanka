@@ -12,9 +12,11 @@
         'name',
         'type',
         [
-            'type' => 'character',
-            'visible' => $campaignService->enabled('characters'),
-            'label' => __('quests.fields.character'),
+            'field' => 'instigator.name',
+            'label' => __('quests.fields.instigator'),
+            'render' => function($model) {
+                return $model->instigator?->tooltipedLink();
+            },
         ],
         [
             'label' => __('crud.fields.parent'),

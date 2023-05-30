@@ -12,7 +12,7 @@
         @include('cruds.fields.quest', ['isParent' => true])
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.character', ['label' => 'quests.fields.character', 'name' => 'character_id'])
+        @include('cruds.fields.instigator')
     </div>
 </div>
 
