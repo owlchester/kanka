@@ -16,19 +16,20 @@ use Illuminate\Support\Collection;
 /**
  * Class Quest
  * @package App\Models
- * @property integer|null $quest_id
- * @property integer|null $character_id
+ * @property int|null $quest_id
+ * @property int|null $character_id
+ * @property int|null $instigator_id
  * @property boolean $is_completed
  * @property string $date
  * @property Character|null $character
+ * @property Entity|null $instigator
  * @property Quest|null $quest
  * @property Quest[]|Collection $quests
  * @property QuestElement[]|Collection $elements
  */
 class Quest extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CalendarDateTrait;
     use CampaignTrait;
     use ExportableTrait;
@@ -46,6 +47,7 @@ class Quest extends MiscModel
         'entry',
         'is_private',
         'character_id',
+        'instigator_id',
         'is_completed',
         'date',
     ];
@@ -54,7 +56,7 @@ class Quest extends MiscModel
         'name',
         'type',
         'date',
-        'is_compelted',
+        'is_completed',
     ];
 
     /**
@@ -69,7 +71,7 @@ class Quest extends MiscModel
      */
     protected $sortableColumns = [
         'date',
-        'character.name',
+        'instigator.name',
         'is_completed',
         'calendar_date',
         'quest.name',
@@ -80,16 +82,15 @@ class Quest extends MiscModel
      * @var string[]
      */
     public $nullableForeignKeys = [
-        'character_id',
+        'instigator_id',
         'quest_id',
-        'calendar_id'
     ];
 
     /**
      * Foreign relations to add to export
      * @var array
      */
-    protected $foreignExport = [
+    protected array $foreignExport = [
         'elements',
     ];
 
@@ -110,8 +111,7 @@ class Quest extends MiscModel
             'entity.image',
             'entity.calendarDateEvents',
             'quests',
-            'character',
-            'character.entity',
+            'instigator',
             //'elements',
             'quest',
             'quest.entity',
@@ -184,7 +184,7 @@ class Quest extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['quest_id', 'character_id', 'is_completed', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
+        return ['quest_id', 'instigator_id', 'is_completed', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
     }
 
     /**
@@ -238,6 +238,14 @@ class Quest extends MiscModel
     }
 
     /**
+     * The Quest Giver
+     */
+    public function instigator()
+    {
+        return $this->belongsTo(Entity::class);
+    }
+
+    /**
      * Elements of the quest
      */
     public function elements()
@@ -257,6 +265,7 @@ class Quest extends MiscModel
             $quest->quest_id = null;
             $quest->save();
         }
+        $this->instigator_id = null;
         parent::detach();
     }
 
@@ -290,7 +299,7 @@ class Quest extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return !empty($this->type) || !empty($this->character) ||
+        return !empty($this->type) || !empty($this->instigator) ||
             !empty($this->date) || !empty($this->calendarReminder());
     }
 
@@ -303,7 +312,7 @@ class Quest extends MiscModel
         return [
             'date',
             'quest_id',
-            'character_id',
+            'instigator_id',
             'is_completed',
             'date_start',
             'date_end',
