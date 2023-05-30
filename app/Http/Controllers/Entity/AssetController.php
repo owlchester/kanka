@@ -89,7 +89,7 @@ class AssetController extends Controller
             $typeId = EntityAsset::TYPE_LINK;
         } elseif (request()->get('type_id') == EntityAsset::TYPE_ALIAS) {
             $typeId = EntityAsset::TYPE_ALIAS;
-            $data = $request->only(['name', 'visibility_id']);
+            $data = $request->only(['name', 'visibility_id', 'is_pinned']);
             $type = 'aliases';
         }
         $data['entity_id'] = $entity->id;
@@ -153,7 +153,7 @@ class AssetController extends Controller
 
         $type = 'files';
         if ($entityAsset->isAlias()) {
-            $data = $request->only(['name', 'visibility_id']);
+            $data = $request->only(['name', 'visibility_id', 'is_pinned']);
             $entityAsset->update($data);
             $type = 'aliases';
         } elseif ($entityAsset->isLink()) {
