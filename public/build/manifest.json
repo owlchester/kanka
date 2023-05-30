@@ -236,7 +236,7 @@
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-7df266d9.css",
+    "file": "assets/auth-4526f004.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -256,12 +256,12 @@
     "src": "resources/sass/family-tree.scss"
   },
   "resources/sass/freyja/freyja.scss": {
-    "file": "assets/freyja-2dfe300f.css",
+    "file": "assets/freyja-b2e24925.css",
     "isEntry": true,
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-10e1661c.css",
+    "file": "assets/front-c9c2ab8c.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
