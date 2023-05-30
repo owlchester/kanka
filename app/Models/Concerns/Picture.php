@@ -134,7 +134,6 @@ trait Picture
         $key = $this->avatarCacheKey('image_v2');
         $cached = Cache::get($key, false);
         $campaign = CampaignLocalization::getCampaign();
-
         if ($cached === false) {
             $child = $child ?? $this->child;
             $avatar = '';
@@ -144,6 +143,9 @@ trait Picture
                 //$avatar = '';
             } elseif ($campaign->superboosted() && $this->image) {
                 $avatar = $this->image->path;
+                if (!empty($this->image->focus_x) && !empty($this->image->focus_y)) {
+                    $focus = [$this->image->focus_x, $this->image->focus_y];
+                }
             } elseif (!empty($child->image)) {
                 $avatar = $child->image;
 

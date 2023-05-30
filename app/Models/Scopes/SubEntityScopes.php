@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait SubEntityScopes
 {
+    protected bool $hasJoinedEntity = false;
+
     /**
      * This call should be adapted in each entity model to add required "with()" statements to the query for performance
      * on the datagrids.
@@ -100,5 +102,24 @@ trait SubEntityScopes
         }
 
         return $query->with($relations);
+    }
+
+    public function scopeJoinEntity(Builder $query): Builder
+    {
+        if ($this->hasJoinedEntity) {
+            return $query;
+        }
+
+        $this->hasJoinedEntity = true;
+
+        return $query
+            ->distinct()
+            ->leftJoin('entities as e', function ($join) {
+                $join->on('e.entity_id', '=', $this->getTable() . '.id');
+                // @phpstan-ignore-next-line
+                $join->where('e.type_id', '=', $this->entityTypeID())
+                    ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
+            })
+            ->groupBy($this->getTable() . '.id');
     }
 }

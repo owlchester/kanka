@@ -1,5 +1,8 @@
 $(document).ready(function () {
     initImageFocus();
+    $(document).on('shown.bs.modal shown.bs.popover', function() {
+        initImageFocus()
+     });
 });
 
 function initImageFocus() {
@@ -21,7 +24,7 @@ function initImageFocus() {
 
     $('.focus').click(function () {
         $('.focus').hide();
-        $('input[name="focus_x"]').val();
-        $('input[name="focus_y"]').val();
+        $('input[name="focus_x"]').val("");
+        $('input[name="focus_y"]').val("");
     });
 }

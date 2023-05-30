@@ -188,14 +188,10 @@ class AclScope implements Scope
      */
     protected function applyToPost(Builder $query, Model $model)
     {
-        $table = $model->getTable();
-        if (auth()->guest()) {
-            return $query->where($table . '.visibility_id', Visibility::VISIBILITY_ALL);
-        }
-
-        // Not part of the campaign either, just get the all visibility
         $campaign = CampaignLocalization::getCampaign();
-        if (!$campaign->userIsMember()) {
+        $table = $model->getTable();
+        // Guest, or not part of the campaign either, just get the all visibility
+        if (auth()->guest() || !$campaign->userIsMember()) {
             return $query->where($table . '.visibility_id', Visibility::VISIBILITY_ALL);
         }
 

@@ -28,8 +28,8 @@ class ImgService
     /** @var bool */
     protected bool $enabled;
 
-    protected mixed $focusX = null;
-    protected mixed $focusY = null;
+    protected ?int $focusX;
+    protected ?int $focusY;
 
     public function __construct()
     {
@@ -91,6 +91,17 @@ class ImgService
     public function resetCrop(): self
     {
         $this->crop = '';
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function reset(): self
+    {
+        $this->crop = '';
+        $this->focusX = null;
+        $this->focusY = null;
         return $this;
     }
 

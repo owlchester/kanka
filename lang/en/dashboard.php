@@ -146,6 +146,15 @@ return [
                 'name'  => 'You can reference the random entity\'s name with {name}',
             ],
         ],
+        'preview' => [
+            'fields' => [
+                'display' => 'Display',
+            ],
+            'displays' => [
+                'expand' => 'Expandable entry',
+                'full' => 'Full entry',
+            ]
+        ],
         'recent'                    => [
             'advanced_filter'   => 'Advanced filter',
             'advanced_filters'  => [
@@ -154,11 +163,9 @@ return [
             ],
             'entity-header'     => 'Use entity header as image',
             'filters'           => 'Filters',
-            'full'              => 'Display full entry',
             'help'              => 'Only show the first entity as a preview instead of a list.',
             'helpers'           => [
                 'entity-header'     => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
-                'full'              => 'Display the whole entity\'s entry by default instead of a preview.',
                 'show_attributes'   => 'Show the entity\'s pinned attributes below the entry.',
                 'show_members'      => 'If the entity is a family or organisation, show its members below the entry.',
                 'show_relations'    => 'Show the entity\'s pinned relations below the entry.',

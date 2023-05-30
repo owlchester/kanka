@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -110,5 +111,24 @@ class DiceRoll extends MiscModel
         return [
             'character_id',
         ];
+    }
+    /**
+     * Performance with for datagrids
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopePreparedWith(Builder $query): Builder
+    {
+        return $query->with([
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'character' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+        ]);
     }
 }

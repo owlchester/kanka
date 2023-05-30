@@ -13,7 +13,7 @@ Kanka is built to run on an Nginx and MariaDB stack with the help of Docker. If 
 
 ## Docker
 
-Kanka is setup to run with Docket and [Laravel Sail](https://laravel.com/8.x/sail). It comes with four machines.
+Kanka is setup to run with Docket and [Laravel Sail](https://laravel.com/10.x/sail). It comes with four machines.
 * Kanka for running the Kanka PHP application
 * Mariadb for the database
 * Redis for the cache
@@ -45,7 +45,7 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/var/www/html \
     -w /var/www/html \
-    laravelsail/php81-composer:latest \
+    laravelsail/php82-composer:latest \
     composer install --ignore-platform-reqs
 ```
 
@@ -148,7 +148,7 @@ sail artisan migrate
 
 ## Sharing your local Kanka
 
-Do not make your Kanka instance accessible to the web! To share your Kanka instance with your friends, use the `sail share` command. Follow the [official documentation](https://laravel.com/docs/8.x/sail#sharing-your-site).
+Do not make your Kanka instance accessible to the web! To share your Kanka instance with your friends, use the `sail share` command. Follow the [official documentation](https://laravel.com/docs/10.x/sail#sharing-your-site).
 
 ## Differences compared to kanka.io
 

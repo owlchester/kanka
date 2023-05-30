@@ -17,6 +17,7 @@ class Confirm extends Component
     public ?string $name;
     public ?string $size;
     public ?string $dismiss;
+    public ?string $id;
 
     /**
      * Create a new component instance.
@@ -29,6 +30,7 @@ class Confirm extends Component
         string $name = null,
         string $size = null,
         string $dismiss = null,
+        string $id = null,
     ) {
         $this->type = $type;
         $this->full = $full;
@@ -37,6 +39,7 @@ class Confirm extends Component
         $this->name = $name;
         $this->size = $size;
         $this->dismiss = $dismiss;
+        $this->id = $id;
     }
 
     /**

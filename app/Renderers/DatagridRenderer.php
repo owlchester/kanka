@@ -410,8 +410,8 @@ class DatagridRenderer
             } elseif ($type == 'calendar_date') {
                 $class = 'hidden-xs hidden-sm';
                 /** @var Journal $model */
-                if ($model->hasCalendar()) {
-                    $reminder = $model->calendarReminder();
+                if ($model->entity->calendarDate) {
+                    $reminder = $model->entity->calendarDate;
                     $content = link_to_route(
                         'calendars.show',
                         $reminder->readableDate(),

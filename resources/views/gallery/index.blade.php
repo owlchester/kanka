@@ -120,5 +120,7 @@ if ($folder) {
 @endsection
 
 @section('scripts')
-    @vite('resources/js/gallery.js')
+    @parent
+    @vite('resources/js/story.js')
+    @vite('resources/js/gallery.js')    
 @endsection

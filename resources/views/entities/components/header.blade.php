@@ -18,9 +18,9 @@ if ($model->image) {
     $imagePathMobile = $model->thumbnail(100);
 } elseif ($campaignService->campaign()->superboosted() && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
-    $imagePath = Img::crop(170, 170)->url($entity->image->path);
-    $imagePathXL = Img::crop(400, 400)->url($entity->image->path);
-    $imagePathMobile = Img::crop(100, 100)->url($entity->image->path);
+    $imagePath = $entity->image->getUrl(170, 170);
+    $imagePathXL = $entity->image->getUrl(400, 400);
+    $imagePathMobile = $entity->image->getUrl(100, 100);
 }
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();

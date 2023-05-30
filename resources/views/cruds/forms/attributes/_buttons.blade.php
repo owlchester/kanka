@@ -1,82 +1,68 @@
+<div class="flex flex-wrap gap-2 items-center">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+            <x-icon class="plus"></x-icon> {{ __('entities/attributes.types.attribute') }}
+        </button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+            {{ __('entities/attributes.actions.more') }}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="#" class="add_attribute" data-template="#checkbox_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+                    <i class="fa-solid fa-check"></i> {{ __('entities/attributes.types.checkbox') }}
+                </a>
+            </li>
+            <li>
+                <a href="#" class="add_attribute" data-template="#text_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+                    <i class="fa-solid fa-align-justify"></i> {{ __('entities/attributes.types.text') }}
+                </a>
+            </li>
+            <li>
+                <a href="#" class="add_attribute" data-template="#number_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+                    <i class="fa-solid fa-hashtag"></i> {{ __('entities/attributes.types.number') }}
+                </a>
+            </li>
+            <li>
+                <a  href="#" class="add_attribute" data-template="#section_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+                    <i class="fa-solid fa-layer-group"></i> {{ __('entities/attributes.types.section') }}
+                </a>
+            </li>
+            @if(request()->is('*/attribute_templates/*') || (isset($entity) && $entity->isAttributeTemplate()))
+            <li>
+                <a  href="#" class="add_attribute" data-template="#random_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+                    <i class="fa-solid fa-question"></i> {{ __('entities/attributes.types.random') }}
+                </a>
+            </li>
+            @endif
+        </ul>
+    </div>
+    @if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#hidden-attributes">
+            <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
+            {{ __('entities/attributes.actions.show_hidden') }}
+        </button>
+    @endif
 
-<div class="btn-group mr-2">
-    <button type="button" class="btn btn-default add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-        <x-icon class="plus"></x-icon> {{ __('entities/attributes.types.attribute') }}
-    </button>
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-        {{ __('entities/attributes.actions.more') }}
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-        <li>
-            <a href="#" class="add_attribute" data-template="#checkbox_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                <i class="fa-solid fa-check"></i> {{ __('entities/attributes.types.checkbox') }}
-            </a>
-        </li>
-        <li>
-            <a href="#" class="add_attribute" data-template="#text_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                <i class="fa-solid fa-align-justify"></i> {{ __('entities/attributes.types.text') }}
-            </a>
-        </li>
-        <li>
-            <a href="#" class="add_attribute" data-template="#number_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                <i class="fa-solid fa-hashtag"></i> {{ __('entities/attributes.types.number') }}
-            </a>
-        </li>
-        <li>
-            <a  href="#" class="add_attribute" data-template="#section_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                <i class="fa-solid fa-layer-group"></i> {{ __('entities/attributes.types.section') }}
-            </a>
-        </li>
-        @if(request()->is('*/attribute_templates/*') || (isset($entity) && $entity->isAttributeTemplate()))
-        <li>
-            <a  href="#" class="add_attribute" data-template="#random_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-                <i class="fa-solid fa-question"></i> {{ __('entities/attributes.types.random') }}
-            </a>
-        </li>
-        @endif
-    </ul>
+    <div class="grow">
+        <a href="//docs.kanka.io/en/latest/features/attributes.html" target="_blank">
+            {{ __('helpers.attributes.link') }} <x-icon class="question"></x-icon>
+        </a>
+    </div>
+    <a href="#" class="text-red pull-right" data-toggle="dialog" data-target="attributes-delete-all-confirm">
+        <x-icon class="trash"></x-icon>
+        {{ __('entities/attributes.actions.remove_all') }}
+    </a>
 </div>
-@if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#hidden-attributes">
-        <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
-        {{ __('entities/attributes.actions.show_hidden') }}
-    </button>
-@endif
+
 <x-alert type="warning" class="alert-too-many-fields mt-6" :hidden="true">
     {!! __('entities/attributes.errors.too_many', [
     'max' => number_format(ini_get('max_input_vars'))
-]) !!}
+    ]) !!}
 </x-alert>
-
-<a href="//docs.kanka.io/en/latest/features/attributes.html" target="_blank">
-    {{ __('helpers.attributes.link') }} <x-icon class="question"></x-icon>
-</a>
-<a href="#" class="btn btn-danger pull-right" data-toggle="modal" data-target="#attributes-delete-all-confirm">
-    <x-icon class="trash"></x-icon> <span class="hidden-xs">{{ __('entities/attributes.actions.remove_all') }}</span>
-</a>
-
 <!-- Modal -->
-<div class="modal fade" id="attributes-delete-all-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    {!! __('entities/attributes.helpers.delete_all') !!}
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                <input type="hidden" name="delete-all-attributes" value="" />
-                <button type="button" class="btn btn-danger" id="attributes-delete-all-confirm-submit"><span class="fa-solid fa-trash" aria-hidden="true"></span> {{ __('crud.delete_modal.delete') }}</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+
 
 @if (auth()->user()->isAdmin())
     @php
@@ -115,4 +101,19 @@
             </div>
         </div>
     @endif
+    <x-dialog id="attributes-delete-all-confirm" :title="__('crud.delete_modal.title')">
+        <p>
+            {!! __('entities/attributes.helpers.delete_all') !!}
+        </p>
+        <div class="grid grid-cols-2 gap-5 w-full">
+            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                {{ __('crud.cancel') }}
+            </x-buttons.confirm>
+            <x-buttons.confirm type="danger" outline="true" full="true" id="attributes-delete-all-confirm-submit">
+                <x-icon class="trash"></x-icon>
+                {{ __('crud.click_modal.confirm') }}
+            </x-buttons.confirm>
+            <input type="hidden" name="delete-all-attributes" value="" />
+        </div>
+    </x-dialog>
 @endsection

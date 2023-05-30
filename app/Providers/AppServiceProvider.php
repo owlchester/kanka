@@ -72,6 +72,7 @@ use App\Observers\UserObserver;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
@@ -93,6 +94,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->registerWebObservers();
         Cashier::useCustomerModel(User::class);
+
+        if (config('app.lazy')) {
+            Model::preventLazyLoading();
+        }
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new HashValidator($translator, $data, $rules, $messages);

@@ -2,7 +2,9 @@
 
 namespace App\Models\Concerns;
 
+use App\Models\EntityEventType;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -30,12 +32,18 @@ trait Orderable
             }
         }
 
-        // Calendar dates are handled differently since we have free fields
-        if ($field == 'calendar_date') {
+        // Calendar dates are handled differently since we have three fields.
+        // However, we should do a left join instead
+        if ($field === 'calendar_date') {
             return $query
-                ->orderBy($this->getTable() . '.calendar_year', $direction)
-                ->orderBy($this->getTable() . '.calendar_month', $direction)
-                ->orderBy($this->getTable() . '.calendar_day', $direction);
+                ->joinEntity()
+                ->leftJoin('entity_events as cd', function ($on) {
+                    return $on->on('cd.entity_id', 'e.id')
+                        ->where('cd.type_id', EntityEventType::CALENDAR_DATE);
+                })
+                ->orderBy('cd.year', $direction)
+                ->orderBy('cd.month', $direction)
+                ->orderBy('cd.day', $direction);
         }
 
 

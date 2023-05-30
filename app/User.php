@@ -52,6 +52,7 @@ use App\Models\Concerns\LastSync;
  * @property Carbon|string|null $created_at
  * @property Collection|array $settings
  * @property Collection|array $profile
+ * @property Campaign $campaign
  *
  * Virtual (from \App\Models\UserSetting)
  * @property bool $advancedMentions

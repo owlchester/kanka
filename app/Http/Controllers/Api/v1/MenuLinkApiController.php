@@ -19,6 +19,7 @@ class MenuLinkApiController extends ApiController
         $this->authorize('access', $campaign);
         return Resource::collection($campaign
             ->menuLinks()
+            ->withApi()
             ->lastSync(request()->get('lastSync'))
             ->paginate());
     }

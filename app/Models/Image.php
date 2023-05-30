@@ -235,14 +235,6 @@ class Image extends Model
     /**
      * @return string
      */
-    public function getUrl(): string
-    {
-        return \Illuminate\Support\Facades\Storage::url($this->path);
-    }
-
-    /**
-     * @return string
-     */
     public function getImagePath($width = 40, $height = 40): string
     {
         return Img::resetCrop()->crop($width, $height)->url($this->path);
@@ -256,5 +248,28 @@ class Image extends Model
     public function isFont(): bool
     {
         return in_array($this->ext, ['woff', 'woff2']);
+    }
+
+    public function getUrl(int $sizeX = null, int $sizeY = null): string
+    {
+        Img::reset();
+
+        if (!$sizeY && $sizeX) {
+            $sizeY = $sizeX;
+        } elseif (!$sizeX && $sizeY) {
+            $sizeX = $sizeY;
+        }
+        if($sizeX && $sizeY) {
+            if (!$this->focus_x && !$this->focus_y){
+                return Img::crop($sizeX, $sizeY)->url($this->path);
+            }
+            return Img::focus($this->focus_x, $this->focus_y)->crop($sizeX, $sizeY)->url($this->path);
+        }
+
+        if ($this->focus_x && $this->focus_y){
+            return Img::focus($this->focus_x, $this->focus_y)->url($this->path);
+        }
+
+        return Img::url($this->path);
     }
 }
