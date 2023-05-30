@@ -394,6 +394,14 @@ trait EntityRelations
         ;
     }
 
+    public function pinnedAliases()
+    {
+        return $this->assets()
+            ->where('is_pinned', 1)
+            ->where('type_id', 3)
+        ;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

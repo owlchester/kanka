@@ -19,6 +19,12 @@
     ) !!}
 </div>
 
-@include('cruds.fields.visibility_id', ['model' => $entity ?? null])
-
+<div class="row">
+    <div class="col-md-6">
+        @include('cruds.fields.is_pinned', ['model' => $entity ?? null, 'fieldName' => 'is_pinned'])
+    </div>
+    <div class="col-md-6">
+        @include('cruds.fields.visibility_id', ['model' => $entity ?? null])
+    </div>
+</div>
 <input type="hidden" name="type_id" value="{{ \App\Models\EntityAsset::TYPE_ALIAS }}" />
