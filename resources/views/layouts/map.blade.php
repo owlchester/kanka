@@ -64,7 +64,7 @@ $specificTheme = null;
 
     <div id="app" class="wrapper mt-12">
         <!-- Header -->
-        @include('layouts.header', ['qq' => true, 'toggle' => true])
+        @include('layouts.header', ['toggle' => true])
 
         <aside class="main-sidebar overflow-hidden pt-0 t-0 l-0 absolute">
             <section class="sidebar" style="height: auto">
