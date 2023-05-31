@@ -70,6 +70,7 @@ Route::delete('campaigns/{campaign}/entities/{entity}/image', 'EntityImageApiCon
 Route::get('campaigns/{campaign}/relations', 'RelationApiController@index');
 Route::get('campaigns/{campaign}/search/{query}', 'SearchApiController@index');
 Route::get('profile', 'ProfileApiController@index');
+Route::get('campaigns/{campaign}/roles', 'CampaignRoleApiController@index');
 
 Route::get('campaigns/{campaign}/entities/templates', 'EntityTemplateApiController@index');
 Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', 'EntityTemplateApiController@switch');
