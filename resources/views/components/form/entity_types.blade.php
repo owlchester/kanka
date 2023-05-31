@@ -10,8 +10,8 @@ foreach ($types as $option) {
     $entityTypes[] = ['id' => $option->id, 'name' => $option->name];
 }
 
-$names = array_column($options, 'name');
-array_multisort($names, SORT_ASC, $options);
+$names = array_column($entityTypes, 'name');
+array_multisort($names, SORT_ASC, $entityTypes);
 
 $showEmpty = Arr::get($options, 'show-empty', true);
 $model = Arr::get($options, 'model', null);
