@@ -95,7 +95,7 @@ function initAttributeHandlers() {
     $.each($('.attribute_delete'), function() {
         $(this).unbind('click');
         $(this).on('click', function() {
-            $(this).parent().parent().parent().remove();
+            $(this).parent().parent().remove();
 
             if (maxFieldAlert) {
                 maxFieldAlert.hide();
