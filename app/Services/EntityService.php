@@ -598,6 +598,31 @@ class EntityService
      * @param array $except
      * @return array
      */
+    public function getEnabledEntitiesSorted(Campaign $campaign, bool $singular = true, $except = []): array
+    {
+        $entityTypes = [];
+        foreach ($this->entities() as $element => $class) {
+            if (in_array($element, $except)) {
+                continue;
+            }
+            if ($campaign->enabled($element)) {
+                /** @var MiscModel|mixed $misc */
+                $misc = new $class();
+                if ($singular) {
+                    $entityTypes[$this->singular($element)] = Module::singular($misc->entityTypeId(), __('entities.' . $this->singular($element)));
+                } else {
+                    $entityTypes[$this->singular($element)] = Module::plural($misc->entityTypeId(), __('entities.' . $element));
+                }
+            }
+        }
+        asort($entityTypes);
+        return $entityTypes;
+    }
+
+    /**
+     * @param array $except
+     * @return array
+     */
     public function getEnabledEntitiesID(array $except = []): array
     {
         $types = $this->getEnabledEntities($this->campaign, $except);
