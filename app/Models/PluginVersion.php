@@ -258,6 +258,7 @@ class PluginVersion extends Model
                     $html .= '<ul class="m-0">';
                     foreach ($val as $k => $v) {
                         if (is_array($v)) {
+                            $html .= '<li><dtk>' . $k . '</dtk></li>';
                             continue;
                         }
                         $html .= '<li><dtk>' . $k . '</dtk> <code>' . $v . '</code></li>';
@@ -518,8 +519,8 @@ class PluginVersion extends Model
                 'entry' => $abi->ability->entry(),
                 'charges' => $abi->ability->charges,
                 'used_charges' => $abi->charges,
-                'thumb' => $abi->ability->entity->avatarSize(40)->avatarV2($abi->ability),
-                'link' => $abi->ability->getLink(),
+                'thumb' => '<img src="' . $abi->ability->entity->avatarSize(40)->avatarV2($abi->ability) . '" class="ability-img"></i>',
+                'link' => link_to($abi->ability->getLink(), $abi->ability->name),
                 'tags' => $tags,
                 'parent' => $parent,
             ];
