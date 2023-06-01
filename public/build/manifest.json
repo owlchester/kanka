@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-969557e9.js",
+    "file": "assets/app-7437a4df.js",
     "imports": [
       "_delete-confirm-fec6aa52.js",
       "_mention-5d95822d.js",
@@ -95,7 +95,7 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes.js": {
-    "file": "assets/attributes-161384aa.js",
+    "file": "assets/attributes-185742c9.js",
     "imports": [
       "_sortable.esm-be94e56d.js",
       "_mention-5d95822d.js"

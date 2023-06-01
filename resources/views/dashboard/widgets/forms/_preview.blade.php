@@ -28,7 +28,6 @@
             <div class="form-group">
                 <label>{{ __('dashboard.widgets.preview.fields.display') }}</label>
                 {!! Form::select('config[full]', $displayOptions, null, ['class' => 'form-control']) !!}
-                </div>
             </div>
 
 
