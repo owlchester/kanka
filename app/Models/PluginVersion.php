@@ -249,7 +249,7 @@ class PluginVersion extends Model
 
         foreach ($data as $key => $val) {
             if (!is_array($val) && !is_object($val)) {
-                $html .= '<dtk>$' . $key . '</dtk> <code>' . (empty($val) ? NULL : $val) . '</code><br />';
+                $html .= '<dtk>$' . $key . '</dtk> <code>' . (empty($val) ? NULL : e($val)) . '</code><br />';
             } elseif (is_array($val)) {
                 $html .= '<dtk class="">$' . $key . '</dtk>';
                 if (empty($val)) {
