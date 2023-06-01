@@ -75,9 +75,12 @@ export default {
                     css += ' character-dead';    
                 }
                 this.entity.tags.forEach(function (tag) {
-                css += ' ' + tag;
-            });
+                    css += ' ' + tag;
+                });
+            }
 
+            if (this.node.isUnknown) {
+                css += ' unknown-character'
             }
 
             if (this.node.cssClass) {

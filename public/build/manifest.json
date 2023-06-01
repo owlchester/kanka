@@ -142,7 +142,7 @@
     "src": "resources/js/editors/summernote.js"
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-964c24e0.js",
+    "file": "assets/family-tree-vue-7e0ec285.js",
     "imports": [
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",

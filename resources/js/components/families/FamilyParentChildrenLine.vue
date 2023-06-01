@@ -15,7 +15,7 @@ export default {
         index: 0,
         column: undefined,
         row: undefined,
-        node: '',
+        node: undefined,
     },
 
     data() {

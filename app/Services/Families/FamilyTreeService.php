@@ -113,7 +113,7 @@ class FamilyTreeService
             if ($k !== 'entity_id') {
                 return;
             }
-            if ($v === 0 || in_array($v, $this->configEntityIds) || $v === null) {
+            if (empty($v) || in_array($v, $this->configEntityIds)) {
                 return;
             }
             $this->configEntityIds[] = $v;
@@ -174,7 +174,6 @@ class FamilyTreeService
         ];
     }
 
-
 protected function visibilityCheck(): void
 {
     $config = [];
@@ -184,10 +183,9 @@ protected function visibilityCheck(): void
     $this->config = $config;
 
 }
+
 protected function cleanInvisible($node, $key): mixed
 {
-    $campaign = CampaignLocalization::getCampaign();
-
     if(isset($node['relations'])){
         foreach ($node['relations'] as $k => $rel) {
 
@@ -202,11 +200,7 @@ protected function cleanInvisible($node, $key): mixed
                 if (!$child) {
                     continue;
                 }
-                if (!isset($child['visibility']) || 
-                    $child['visibility'] == Visibility::VISIBILITY_ALL ||
-                    ($child['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
-                    ($child['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember() )
-                    ) {
+                if ($this->isVisible($child)) {
                     $children[] = $child;
                 }
             }
@@ -214,11 +208,7 @@ protected function cleanInvisible($node, $key): mixed
             if (!empty($children)) {
                 $rel['children'] = $children;
             }
-            if (!isset($rel['visibility']) || 
-                $rel['visibility'] == Visibility::VISIBILITY_ALL ||
-                ($rel['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
-                ($rel['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember() )
-            ) {
+            if ($this->isVisible($rel)) {
                 $relations[] = $rel;
             }
         }
@@ -230,7 +220,22 @@ protected function cleanInvisible($node, $key): mixed
 
     return $node;
 }
-    protected function cleanupMissingEntities(): void
+
+protected function isVisible($relation): bool
+    {
+        $campaign = CampaignLocalization::getCampaign();
+
+        if (!isset($relation['visibility']) || 
+            $relation['visibility'] == Visibility::VISIBILITY_ALL ||
+            ($relation['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
+            ($relation['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember() )
+        ) {
+            return true;
+        }
+    return false;
+    }
+
+protected function cleanupMissingEntities(): void
     {
         if (empty($this->missingIds)) {
             $this->config = $this->familyTree->config;
