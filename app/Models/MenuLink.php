@@ -239,6 +239,8 @@ class MenuLink extends MiscModel
                 return route('entities.entity_assets.index', $routeOptions);
             } elseif ($this->menu === 'reminders') {
                 return route('entities.entity_events.index', $routeOptions);
+            } elseif ($this->menu === 'attributes') {
+                return route('entities.attributes', $routeOptions);
             }
             if (Route::has($menuRoute)) {
                 $route = $menuRoute;
