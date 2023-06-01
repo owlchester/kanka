@@ -257,6 +257,9 @@ class PluginVersion extends Model
                 } else {
                     $html .= '<ul class="m-0">';
                     foreach ($val as $k => $v) {
+                        if (is_array($v)) {
+                            continue;
+                        }
                         $html .= '<li><dtk>' . $k . '</dtk> <code>' . $v . '</code></li>';
                     }
                     $html .= '</ul>';
