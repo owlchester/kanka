@@ -8,6 +8,7 @@ $tabs = [
 ];
 $menus = [
         'abilities' => __('crud.tabs.abilities'),
+        'attributes' => __('crud.tabs.attributes'),
         'assets' => __('crud.tabs.assets'),
         'reminders' => __('crud.tabs.reminders'),
         'organisations' => __('entities.organisations')  . ' (' . __('entities.characters') . ', ' . __('entities.organisations') . ')',
