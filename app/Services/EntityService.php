@@ -598,14 +598,14 @@ class EntityService
      * @param array $except
      * @return array
      */
-    public function getEnabledEntitiesSorted(Campaign $campaign, bool $singular = true, $except = []): array
+    public function getEnabledEntitiesSorted(bool $singular = true, $except = []): array
     {
         $entityTypes = [];
         foreach ($this->entities() as $element => $class) {
             if (in_array($element, $except)) {
                 continue;
             }
-            if ($campaign->enabled($element)) {
+            if ($this->campaign->enabled($element)) {
                 /** @var MiscModel|mixed $misc */
                 $misc = new $class();
                 if ($singular) {
@@ -615,7 +615,10 @@ class EntityService
                 }
             }
         }
-        asort($entityTypes);
+
+        $collator = new \Collator(app()->getLocale());
+        $collator->asort($entityTypes);
+
         return $entityTypes;
     }
 
