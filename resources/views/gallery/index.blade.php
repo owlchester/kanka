@@ -91,7 +91,7 @@ if ($folder) {
             <div class="modal-content">
                 {!! Form::open(['route' => 'campaign.gallery.folder', 'method' => 'POST']) !!}
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <x-dialog.close />
                     <h4 class="modal-title" id="myModalLabel">{{ __('campaigns/gallery.new_folder.title') }}</h4>
                 </div>
                 <div class="modal-body">
@@ -122,5 +122,5 @@ if ($folder) {
 @section('scripts')
     @parent
     @vite('resources/js/story.js')
-    @vite('resources/js/gallery.js')    
+    @vite('resources/js/gallery.js')
 @endsection

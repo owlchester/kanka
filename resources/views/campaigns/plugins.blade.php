@@ -13,20 +13,19 @@
     @include('partials.ads.top')
 
     @if(session('plugin_entities_created'))
-        <x-alert type="info" :dismissable="true">
+        <x-alert type="info" :dismissible="true">
             <strong>{{ __('campaigns/plugins.import.created') }}</strong><br/>
             {!! session('plugin_entities_created') !!}
         </x-alert>
     @endif
     @if(session('plugin_entities_updated'))
-        <x-alert type="info" :dismissable="true">
+        <x-alert type="info" :dismissible="true">
             <strong>{{ __('campaigns/plugins.import.updated') }}</strong><br/>
             {!! session('plugin_entities_updated') !!}
         </x-alert>
     @endif
     @if(session('plugin_only_new') == 'on' && session('plugin_entities_created') == 0)
-        <x-alert type="warning" :dismissable="true">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <x-alert type="warning" :dismissible="true">
             <strong>{{ __('campaigns/plugins.import.no_new_entities') }}</strong><br/>
         </x-alert>
     @endif

@@ -28,8 +28,7 @@
     <div class="panel panel-default">
         @if (request()->ajax())
             <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <x-dialog.close />
                 <h4>
                     {{ __('timelines/eras.create.title', ['name' => $timeline->name]) }}
                 </h4>

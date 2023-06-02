@@ -2,7 +2,7 @@
 $imageCount = 0;
 ?>
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('campaigns/gallery.actions.close') }}"><span aria-hidden="true">&times;</span></button>
+    <x-dialog.close />
     <h4 class="modal-title" id="myModalLabel">{!! $image->name !!}</h4>
 </div>
 <div class="modal-body panel-image-edit">

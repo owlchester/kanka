@@ -43,7 +43,7 @@ if ($quickCreator) {
 @if ($quickCreator)
     <div class="input-group-btn">
         <a class="quick-creator-subform btn btn-tab-form" data-url="{{ route('entity-creator.form', ['type' => 'locations', 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}">
-            <span class="glyphicon glyphicon-plus"></span>
+            <span class="fa-solid fa-plus"></span>
         </a>
     </div>
 </div>

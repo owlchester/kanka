@@ -2,7 +2,7 @@
 
 {!! Form::open(['route' => ['entities.attributes.live.save', $entity, $attribute]]) !!}
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+    <x-dialog.close />
     <h4 class="modal-title" id="myModalLabel">{!! __('entities/attributes.live.title', ['attribute' => $attribute->name()]) !!}</h4>
 </div>
 <div class="modal-header">

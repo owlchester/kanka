@@ -1,10 +1,7 @@
 {!! Form::model($campaign, ['route' => 'campaign-theme.save', 'method' => 'POST']) !!}
 
 <div class="modal-body">
-
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-    </button>
+    <x-dialog.close />
     <h4 class="modal-title  text-center mb-5">
         {!! __('campaigns/styles.theme.title') !!}
     </h4>

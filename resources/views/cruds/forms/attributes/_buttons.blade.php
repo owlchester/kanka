@@ -87,7 +87,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-2xl text-center">
                     <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                        <x-dialog.close />
                         <h4 class="modal-title md-5" id="clickModalLabel">{{ __('entities/attributes.show.hidden') }}</h4>
                         <p class="mt-5">
                             @foreach ($entity->attributes()->ordered()->get() as $attribute)

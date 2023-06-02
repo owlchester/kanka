@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+    <x-dialog.close />
     <h4 class="modal-title" id="clickModalLabel">{{ __('entities/transform.panel.bulk_title') }}</h4>
 </div>
 <div class="modal-body">

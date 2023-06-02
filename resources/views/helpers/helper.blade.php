@@ -9,8 +9,7 @@
 
         @if (request()->ajax())
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
+                <x-dialog.close />
                 <h4 class="modal-title">{{ __('helpers.' . $helper . '.title') }}</h4>
             </div>
         @endif

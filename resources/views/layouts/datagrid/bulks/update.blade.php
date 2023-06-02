@@ -1,9 +1,7 @@
 <form method="POST" action="{{ $route }}">
     @csrf
     <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal"
-                aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span>
-        </button>
+        <x-dialog.close />
         <h3 class="modal-title mb-5">
             {{ __('crud.bulk.edit.title') }}
         </h3>

@@ -61,7 +61,7 @@
             <div class="modal-content rounded-2xl">
                 <div class="modal-body  text-center">
                     <div id="campaign-imageupload-boosted">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                        <x-dialog.close />
 
                         <x-cta :campaign="$campaignService->campaign()" image="0" superboost="1">
                             <p>{{ __('campaigns/gallery.pitch') }}</p>

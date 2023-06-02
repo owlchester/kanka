@@ -19,7 +19,7 @@
     <div class="box box-solid">
         @if (request()->ajax())
             <div class="box-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <x-dialog.close />
                 <h4>
                     {{ __('entities/entry.update.title', ['name' => $entity->name]) }}
                 </h4>

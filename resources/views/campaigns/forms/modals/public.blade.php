@@ -1,10 +1,7 @@
 {!! Form::model($campaign, ['route' => 'campaign-visibility.save', 'method' => 'POST']) !!}
 
 <div class="modal-body">
-
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-    </button>
+    <x-dialog.close />
     <h4 class="modal-title  text-center mb-5">
         {!! __('campaigns/public.title') !!}
     </h4>

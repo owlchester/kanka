@@ -170,7 +170,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-2xl">
                 <div class="modal-body text-center" id="modal-content-buttons">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}" title="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <x-dialog.close />
                     <h4 class="modal-title mb-5" id="myModalLabel">
                         {{ __('dashboard.setup.actions.add') }}
                     </h4>

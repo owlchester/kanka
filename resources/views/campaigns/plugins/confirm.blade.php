@@ -7,9 +7,7 @@
 {!! Form::open(['url' => route('campaign_plugins.import', $plugin), 'method' => 'POST']) !!}
 
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-    </button>
+    <x-dialog.close />
     <h4 class="modal-title">
         {!! __('campaigns/plugins.import.title', ['plugin' => $plugin->name]) !!}
     </h4>
