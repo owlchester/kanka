@@ -23,19 +23,17 @@
             </div>
         </div>
     @else
-        <div class="panel panel-default">
-            <div class="panel-body">
-                @include('partials.errors')
+        <x-box>
+            @include('partials.errors')
 
-                @include('calendars.weather._form')
-            </div>
-            <div class="panel-footer">
+            @include('calendars.weather._form')
+            <x-box.footer>
                 <div class="pull-right">
                     <button class="btn btn-success">{{ __('crud.save') }}</button>
                 </div>
                 @include('partials.footer_cancel')
-            </div>
-        </div>
+            </x-box.footer>
+        </x-box>
     @endif
 
     {!! Form::hidden('year', $year) !!}

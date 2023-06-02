@@ -33,27 +33,22 @@
         </div>
 
     @else
-    <div class="panel panel-default">
-        <div class="panel-body">
+        <x-box>
             @include('partials.errors')
 
             @include('calendars.events._form', ['colourAppendTo' => '#entity-modal'])
 
+            <x-box.footer>
+                <div class="pull-right">
+                    <button class="btn btn-success">
+                        <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
+                        <span>{{ __('crud.save') }}</span>
+                    </button>
+                </div>
 
-        </div>
-        <div class="panel-footer" id="calendar-event-submit" style="display: none">
-
-            <div class="pull-right">
-                <button class="btn btn-success">
-                    <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-                    <span>{{ __('crud.save') }}</span>
-                </button>
-            </div>
-
-            @include('partials.footer_cancel')
-
-        </div>
-    </div>
+                @include('partials.footer_cancel')
+            </x-box.footer>
+        </x-box>
     @endif
 
     @if (request()->has('layout'))

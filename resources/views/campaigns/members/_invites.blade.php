@@ -24,70 +24,68 @@
         </a>
     </div>
 
-    <div class="box box-solid">
-        @if($invitations->count() > 0)
-            <div class="box-body no-padding">
-                <div class="table-responsive">
-                    <table id="campaign-invites" class="table table-hover table-striped mb-0">
-                        <thead>
+    @if($invitations->count() > 0)
+        <x-box :padding="false">
+            <div class="table-responsive">
+                <table id="campaign-invites" class="table table-hover table-striped mb-0">
+                    <thead>
+                    <tr>
+                        <th>{{ __('campaigns.invites.fields.token') }}</th>
+                        <th class="hidden-xs hidden-sm">{{ __('campaigns.invites.fields.usage') }}</th>
+                        <th>{{ __('campaigns.invites.fields.role') }}</th>
+                        <th class="hidden-xs hidden-md">{{ __('campaigns.invites.fields.created') }}</th>
+                        <th class="text-right">
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($invitations as $relation)
                         <tr>
-                            <th>{{ __('campaigns.invites.fields.token') }}</th>
-                            <th class="hidden-xs hidden-sm">{{ __('campaigns.invites.fields.usage') }}</th>
-                            <th>{{ __('campaigns.invites.fields.role') }}</th>
-                            <th class="hidden-xs hidden-md">{{ __('campaigns.invites.fields.created') }}</th>
-                            <th class="text-right">
+                            <td>
+                                <a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">
+                                    {{ substr($relation->token, 0, 6) . '...' }}
+                                </a>
+                                <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
+                                    <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                                    <span class="sr-only">{{ __('Copy') }}</span>
+                                </a>
+                            </td>
+                            <td class="hidden-xs hidden-sm">
+                                {{ $relation->validity !== null ? $relation->validity : __('campaigns.invites.unlimited_validity') }}
+                            </td>
+                            <td>{{ $relation->role ? $relation->role->name : null }}</td>
+                            <td class="hidden-xs hidden-md">
+                            <span title="{{ $relation->created_at }}+00:00" data-toggle="tooltip">
+                                {{ $relation->created_at->diffForHumans() }}
+                            </span>
+                            </td>
 
-                            </th>
+                            <td class="text-right">
+                                {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
+                                <button class="btn btn-sm btn-danger">
+                                    <x-icon class="trash"></x-icon> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
+                                </button>
+                                {!! Form::close() !!}
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($invitations as $relation)
-                            <tr>
-                                <td>
-                                    <a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">
-                                        {{ substr($relation->token, 0, 6) . '...' }}
-                                    </a>
-                                    <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
-                                        <i class="fa-solid fa-copy" aria-hidden="true"></i>
-                                        <span class="sr-only">{{ __('Copy') }}</span>
-                                    </a>
-                                </td>
-                                <td class="hidden-xs hidden-sm">
-                                    {{ $relation->validity !== null ? $relation->validity : __('campaigns.invites.unlimited_validity') }}
-                                </td>
-                                <td>{{ $relation->role ? $relation->role->name : null }}</td>
-                                <td class="hidden-xs hidden-md">
-                                <span title="{{ $relation->created_at }}+00:00" data-toggle="tooltip">
-                                    {{ $relation->created_at->diffForHumans() }}
-                                </span>
-                                </td>
-
-                                <td class="text-right">
-                                    {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
-                                    <button class="btn btn-sm btn-danger">
-                                        <x-icon class="trash"></x-icon> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
-                                    </button>
-                                    {!! Form::close() !!}
-                                </td>
-                            </tr>
-                        @endforeach
-                        </thead>
-                    </table>
-                </div>
+                    @endforeach
+                    </thead>
+                </table>
             </div>
             @if($invitations->hasPages())
-                <div class="box-footer text-right">
+                <div class="text-right">
                     {{ $invitations->links() }}
                 </div>
             @endif
+        </x-box>
         @else
-            <div class="box-body">
-                <p class="help-block">
-                    {!! __('campaigns.members.invite.description') !!}
-                </p>
-            </div>
+        <x-box>
+            <p class="help-block">
+                {!! __('campaigns.members.invite.description') !!}
+            </p>
+        </x-box>
         @endif
-    </div>
 @endif
 
 

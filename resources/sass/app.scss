@@ -291,6 +291,17 @@ ol, ul {
     display: flow-root;
 }
 
+.table-entities {
+    td {
+        vertical-align: middle !important;
+    }
+}
+
+ul.pagination {
+    margin: 0;
+    padding: 0;
+}
+
 @import "calendar";
 @import "tooltip";
 @import "timeline";

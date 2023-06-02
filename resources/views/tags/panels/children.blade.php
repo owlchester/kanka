@@ -16,48 +16,48 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
 
 $existing = $model->allChildren()->count();
 ?>
-<div class="box box-solid" id="tag-children">
-    <div class="box-header">
-        <h3 class="box-title">
-            {{ __('tags.show.tabs.children') }}
-        </h3>
-        <div class="box-tools">
-            <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
-                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
-            </a>
-            @if (request()->has('tag_id'))
-                <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->count() }})
-                </a>
-            @else
-                <a href="{{ route('tags.show', [$model, 'tag_id' => $model->id, '#tag-children']) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->count() }})
-                </a>
-            @endif
+<div class="flex gap-2 items-center mb-2">
+    <h3 class="grow m-0">
+        {{ __('tags.show.tabs.children') }}
+    </h3>
+    <div>
+        <a href="#" class="btn btn-box-tool" data-toggle="dialog" data-target="help-modal">
+            <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+        </a>
 
-            @if ($existing > 0)
+        @if (request()->has('tag_id'))
+            <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn btn-default btn-sm">
+                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->count() }})
+            </a>
+        @else
+            <a href="{{ route('tags.show', [$model, 'tag_id' => $model->id, '#tag-children']) }}" class="btn btn-default btn-sm">
+                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->count() }})
+            </a>
+        @endif
+
+        @if ($existing > 0)
             @can('update', $model)
                 <a href="{{ $addEntityUrl }}" class="btn btn-primary btn-sm"
                    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
                     <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
                 </a>
             @endcan
-            @endif
-        </div>
+        @endif
     </div>
-
+</div>
+<div class="" id="tag-children">
     @if ($existing === 0)
-        <div class="box-body">
-        <p class="help-block">
-            {{ __('tags.helpers.no_children') }}
-        </p>
-        @can('update', $model)
-            <a href="{{ $addEntityUrl }}" class="btn btn-primary"
-               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
-                <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
-            </a>
-        @endcan
-        </div>
+        <x-box>
+            <p class="help-block">
+                {{ __('tags.helpers.no_children') }}
+            </p>
+            @can('update', $model)
+                <a href="{{ $addEntityUrl }}" class="btn btn-primary"
+                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
+                    <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
+                </a>
+            @endcan
+        </x-box>
     @else
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table', ['datagridUrl' => route('tags.children', $datagridOptions)])

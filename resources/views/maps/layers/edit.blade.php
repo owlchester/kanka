@@ -17,20 +17,19 @@
 @section('content')
     {!! Form::model($model, ['route' => ['maps.map_layers.update', 'map' => $map, 'map_layer' => $model], 'method' => 'PATCH', 'id' => 'map-layer-form', 'enctype' => 'multipart/form-data', 'data-maintenance' => 1]) !!}
 
-    <div class="panel panel-default">
-        <div class="panel-body">
-            @include('partials.errors')
+    <x-box>
+        @include('partials.errors')
 
-            @include('maps.layers._form')
-        </div>
+        @include('maps.layers._form')
 
-        <div class="panel-footer text-right">
+        <x-box.footer>
             @include('maps.groups._actions')
-            <div class="pull-left">
+
+            <div class="">
                 @include('partials.footer_cancel')
             </div>
-        </div>
-    </div>
+        </x-box.footer>
+    </x-box>
 
     {!! Form::close() !!}
 @endsection

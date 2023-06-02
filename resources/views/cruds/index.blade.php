@@ -41,39 +41,40 @@
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['sub' => 'index'])
     @else
-        <div class="box no-border">
-            {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
-            <div class="box-body no-padding">
-
-                <div class="table-responsive">
-                    @include($name . '.datagrid')
-                </div>
-
-                @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'index'])
+        {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
+        <x-box :padding="false" >
+            <div class="table-responsive">
+                @include($name . '.datagrid')
             </div>
-            <div class="box-footer">
-                @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
+        </x-box>
 
-                @if ($unfilteredCount != $filteredCount)
-                    <p class="help-block">
-                        {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
-                    </p>
-                @endif
-                @if($models->hasPages())
-                <div class="pull-right">
-                    {{ $models->appends($filterService->pagination())->links() }}
-                </div>
-                @endif
-                {!! Form::hidden('entity', $name) !!}
-                {!! Form::hidden('datagrid-action', 'print') !!}
-                {!! Form::hidden('page', request()->get('page')) !!}
-                {!! Form::hidden('mode', $mode) !!}
-            </div>
-            {!! Form::close() !!}
+
+        @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'index'])
+        @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
+
+        @if ($unfilteredCount != $filteredCount)
+            <p class="help-block">
+                {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
+            </p>
+        @endif
+
+        @if($models->hasPages())
+        <div class="pull-right">
+            {{ $models->appends($filterService->pagination())->links() }}
         </div>
-        @includeWhen(auth()->check(), 'cruds.datagrids.bulks.modals')
+        @endif
+        {!! Form::hidden('entity', $name) !!}
+        {!! Form::hidden('datagrid-action', 'print') !!}
+        {!! Form::hidden('page', request()->get('page')) !!}
+        {!! Form::hidden('mode', $mode) !!}
+            {!! Form::close() !!}
 
     @endif
+@endsection
+
+@section('modals')
+    @parent
+    @includeWhen(auth()->check(), 'cruds.datagrids.bulks.modals')
 @endsection
 
 

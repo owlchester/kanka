@@ -48,58 +48,56 @@
                     'class' => 'sidebar-setup form-inline form-mobile-inline',
                     'data-shortcut' => 1
                 ]) !!}
-            <div class="box box-solid">
-                <div class="box-body">
-                    <ul class="list-none m-0 p-0 sidebar-sortable nested-sortable">
-                    @foreach ($layout as $name => $setup)
-                        <li class="p-1 @if (isset($setup['fixed'])) fixed-position @endif" id="{{ $name }}">
-                            <p class="text-muted text-sm hidden-md hidden-lg">({{ $setup['label'] ?? __($setup['label_key']) }})</p>
-                            <div class="input-group">
-                                <span class="input-group-addon dnd-handle cursor-move">
-                                    <i class="inline-block w-6 {{ $setup['custom_icon'] ?? $setup['icon'] }}" aria-hidden="true"></i>
-                                </span>
-                                <input type="text" class="form-control" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] ?? null }}" placeholder="{{ $setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
-                            </div>
+            <x-box>
+                <ul class="list-none m-0 mb-5 p-0 sidebar-sortable nested-sortable">
+                @foreach ($layout as $name => $setup)
+                    <li class="p-1 @if (isset($setup['fixed'])) fixed-position @endif" id="{{ $name }}">
+                        <p class="text-muted text-sm hidden-md hidden-lg">({{ $setup['label'] ?? __($setup['label_key']) }})</p>
+                        <div class="input-group">
+                            <span class="input-group-addon dnd-handle cursor-move">
+                                <i class="inline-block w-6 {{ $setup['custom_icon'] ?? $setup['icon'] }}" aria-hidden="true"></i>
+                            </span>
+                            <input type="text" class="form-control" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] ?? null }}" placeholder="{{ $setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
+                        </div>
 
-                            <input type="text" class="form-control" name="{{ $name }}_label" value="{{ $setup['custom_label'] ?? null }}" placeholder="{{ $setup['label'] ?? __($setup['label_key'])  }}" maxlength="90" />
-                            <span class="text-muted text-sm hidden-xs hidden-sm">({{ $setup['label'] ?? __($setup['label_key']) }})</span>
-                            <input type="hidden" name="order[{{ $name }}]" value="1" />
+                        <input type="text" class="form-control" name="{{ $name }}_label" value="{{ $setup['custom_label'] ?? null }}" placeholder="{{ $setup['label'] ?? __($setup['label_key'])  }}" maxlength="90" />
+                        <span class="text-muted text-sm hidden-xs hidden-sm">({{ $setup['label'] ?? __($setup['label_key']) }})</span>
+                        <input type="hidden" name="order[{{ $name }}]" value="1" />
 
-                            @if (empty($setup['children']))
-                                @continue
-                            @endif
-                            <input type="hidden" name="order[{{ $name }}_start]" value="1" />
-                            {!! Form::hidden('section_' . $name . '_start', 1) !!}
-                            <ul class="list-none mt-2 m-0 p-0 pl-4 sidebar-sortable nested-sortable">
-                                @foreach ($setup['children'] as $childName => $child)
-                                    <li class="p-1 @if (\Illuminate\Support\Arr::get($child, 'disabled') === true) alert-warning @endif" id="{{ $childName }}">
-                                        <p class="text-muted text-sm hidden-md hidden-lg">({{ $child['label'] ?? __($child['label_key'])}})</p>
-                                        <div class="input-group">
-                                            <span class="input-group-addon dnd-handle cursor-move">
-                                                <i class="inline-block w-6 {{ $child['custom_icon'] ?? $child['icon'] }}" aria-hidden="true"></i>
-                                            </span>
-                                            <input type="text" class="form-control" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] ?? null }}" placeholder="{{ $child['icon'] ?? null }}" data-paste="fontawesome" maxlength="50" />
-                                        </div>
-
-                                        <input type="text" class="form-control" name="{{ $childName }}_label" value="{{ $child['custom_label'] ?? null }}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" />
-                                        <span class="text-muted text-sm hidden-xs hidden-sm">(
-                                            {{ $child['label'] ?? __($child['label_key']) }}
-                                            @if (\Illuminate\Support\Arr::get($child, 'disabled') === true)
-                                                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" title="{{ __('campaigns.modules.permission-disabled') }}"></i>
-                                            @endif
-                                            )
+                        @if (empty($setup['children']))
+                            @continue
+                        @endif
+                        <input type="hidden" name="order[{{ $name }}_start]" value="1" />
+                        {!! Form::hidden('section_' . $name . '_start', 1) !!}
+                        <ul class="list-none mt-2 m-0 p-0 pl-4 sidebar-sortable nested-sortable">
+                            @foreach ($setup['children'] as $childName => $child)
+                                <li class="p-1 @if (\Illuminate\Support\Arr::get($child, 'disabled') === true) alert-warning @endif" id="{{ $childName }}">
+                                    <p class="text-muted text-sm hidden-md hidden-lg">({{ $child['label'] ?? __($child['label_key'])}})</p>
+                                    <div class="input-group">
+                                        <span class="input-group-addon dnd-handle cursor-move">
+                                            <i class="inline-block w-6 {{ $child['custom_icon'] ?? $child['icon'] }}" aria-hidden="true"></i>
                                         </span>
-                                        <input type="hidden" name="order[{{ $childName }}]" value="1" />
-                                    </li>
-                                @endforeach
-                            </ul>
-                            <input type="hidden" name="order[{{ $name }}_end]" value="1" />
-                            {!! Form::hidden('section_' . $name . '_end', 1) !!}
-                        </li>
-                    @endforeach
-                    </ul>
-                </div>
-                <div class="box-footer text-right">
+                                        <input type="text" class="form-control" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] ?? null }}" placeholder="{{ $child['icon'] ?? null }}" data-paste="fontawesome" maxlength="50" />
+                                    </div>
+
+                                    <input type="text" class="form-control" name="{{ $childName }}_label" value="{{ $child['custom_label'] ?? null }}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" />
+                                    <span class="text-muted text-sm hidden-xs hidden-sm">(
+                                        {{ $child['label'] ?? __($child['label_key']) }}
+                                        @if (\Illuminate\Support\Arr::get($child, 'disabled') === true)
+                                            <i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" title="{{ __('campaigns.modules.permission-disabled') }}"></i>
+                                        @endif
+                                        )
+                                    </span>
+                                    <input type="hidden" name="order[{{ $childName }}]" value="1" />
+                                </li>
+                            @endforeach
+                        </ul>
+                        <input type="hidden" name="order[{{ $name }}_end]" value="1" />
+                        {!! Form::hidden('section_' . $name . '_end', 1) !!}
+                    </li>
+                @endforeach
+                </ul>
+                <div class="text-right">
                     <a href="#" class="btn btn-default pull-left" data-toggle="dialog" data-target="reset-confirm">
                         <x-icon class="trash"></x-icon>
                         {{ __('campaigns/sidebar.actions.reset') }}
@@ -109,7 +107,7 @@
                         {{ __('crud.save') }}
                     </button>
                 </div>
-            </div>
+            </x-box>
             {!! Form::close() !!}
             @endif
         </div>

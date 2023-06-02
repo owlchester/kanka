@@ -12,8 +12,8 @@ $datagridOptions = [];
     ;
 }
 ?>
-<div class="box box-solid" id="abilities-abilities">
+<x-box :padding="false" id="abilities-abilities">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table', $datagridOptions)
     </div>
-</div>
+</x-box>

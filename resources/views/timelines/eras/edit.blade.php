@@ -24,12 +24,9 @@
         'data-shortcut' => 1,
         'data-maintenance' => 1,
     ]) !!}
-    <div class="panel panel-default">
-        <div class="panel-body">
+    <x-box>
             @include('timelines.eras._form')
-        </div>
-        <div class="panel-footer">
-
+        <x-box.footer>
             @include('partials.footer_cancel', ['ajax' => null])
             <div class="form-era pull-right">
                 <div class="submit-group">
@@ -39,9 +36,8 @@
                     <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
-
-        </div>
-    </div>
+        </x-box.footer>
+    </x-box>
     @if (!empty($from))
         <input type="hidden" name="from" value="{{ $from }}">
     @endif

@@ -44,20 +44,19 @@
             </div>
         </div>
     @else
-    <div class="panel panel-default">
-        <div class="panel-body">
-            @include('partials.errors')
+    <x-box>
+        @include('partials.errors')
 
-            @if (!empty($from))
-                <x-alert type="warning">
-                    {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
-                </x-alert>
-            @endif
+        @if (!empty($from))
+            <x-alert type="warning">
+                {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
+            </x-alert>
+        @endif
 
-            @include('calendars.events._form')
+        @include('calendars.events._form')
 
-        </div>
-        <div class="panel-footer">
+
+        <x-box.footer>
             <div class="pull-right">
                 <button type="submit" class="btn btn-success">
                     <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
@@ -71,9 +70,8 @@
                    <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-reminder-{{ $entityEvent->id}}'>{{ __('crud.remove') }}</a>">
                 <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
             </a>
-        </div>
-
-    </div>
+        </x-box.footer>
+    </x-box>
     @endif
 
 

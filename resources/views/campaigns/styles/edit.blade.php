@@ -6,44 +6,42 @@
 ])
 
 @section('content')
-    <div class="panel panel-default">
-        {!! Form::model($style, [
-            'route' => ['campaign_styles.update', $style],
-            'method' => 'PATCH',
-            'data-shortcut' => 1,
-            'id' => 'campaign-style',
-            'data-max-content' => \App\Http\Requests\StoreCampaignStyle::MAX,
-            'data-error' => '#max-content-error'
-        ]) !!}
-        <div class="panel-body">
-            @include('partials.errors')
+    {!! Form::model($style, [
+        'route' => ['campaign_styles.update', $style],
+        'method' => 'PATCH',
+        'data-shortcut' => 1,
+        'id' => 'campaign-style',
+        'data-max-content' => \App\Http\Requests\StoreCampaignStyle::MAX,
+        'data-error' => '#max-content-error'
+    ]) !!}
+    <x-box>
+        @include('partials.errors')
 
-            <x-alert type="danger" id="max-content-error" :hidden="true">
-                {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
-            </x-alert>
+        <x-alert type="danger" id="max-content-error" :hidden="true">
+            {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
+        </x-alert>
 
-            <div class="form-group required">
-                <label>{{ __('campaigns/styles.fields.name') }}</label>
-                {!! Form::text('name', null, ['class' => 'form-control']) !!}
-            </div>
+        <div class="form-group required">
+            <label>{{ __('campaigns/styles.fields.name') }}</label>
+            {!! Form::text('name', null, ['class' => 'form-control']) !!}
+        </div>
 
 
-            <div class="form-group required">
-                <label>{{ __('campaigns/styles.fields.content') }}</label>
-                {!! Form::textarea('content', null, ['class' => 'form-control codemirror', 'id' => 'css', 'spellcheck' => 'false']) !!}
-                <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
-            </div>
+        <div class="form-group required">
+            <label>{{ __('campaigns/styles.fields.content') }}</label>
+            {!! Form::textarea('content', null, ['class' => 'form-control codemirror', 'id' => 'css', 'spellcheck' => 'false']) !!}
+            <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
+        </div>
 
-            <div class="form-group">
-                {!! Form::hidden('is_enabled', 0) !!}
-                <div class="checkbox">
-                    <label>{!! Form::checkbox('is_enabled') !!}
-                        {{ __('campaigns/styles.fields.is_enabled') }}
-                    </label>
-                </div>
+        <div class="form-group">
+            {!! Form::hidden('is_enabled', 0) !!}
+            <div class="checkbox">
+                <label>{!! Form::checkbox('is_enabled') !!}
+                    {{ __('campaigns/styles.fields.is_enabled') }}
+                </label>
             </div>
         </div>
-        <div class="panel-footer text-right">
+        <x-box.footer>
             <div class="form-group">
                 <div class="submit-group">
                     <input id="submit-mode" type="hidden" value="true"/>
@@ -70,8 +68,8 @@
                     @includeWhen(!request()->ajax(), 'partials.or_cancel')
                 </div>
             </div>
-        </div>
-    </div>
+        </x-box.footer>
+    </x-box>
 
     {{ csrf_field() }}
     {!! Form::close() !!}

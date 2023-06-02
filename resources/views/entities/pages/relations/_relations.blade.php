@@ -12,28 +12,25 @@
         </a>
     </div>
 </div>
-<div class="box box-solid box-entity-relations box-entity-relations-table" id="entity-relations-table">
-    <div class="box-body @if ($rows->count() > 0) no-padding @endif">
-
-        @if ($rows->count() === 0)
-            <p class="help-block">
-                {{ __('entities/relations.helpers.no_relations') }}
-            </p>
-            @can('relation', [$entity->child, 'add'])
-                <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
-                    <x-icon class="plus"></x-icon>
-                    <span class="hidden-xs hidden-sm">
-                    {{ __('entities.relation') }}
-                </span>
-                </a>
-            @endcan
-        @else
-            <div id="datagrid-parent" class="table-responsive">
-                @include('layouts.datagrid._table')
-            </div>
-        @endif
-    </div>
-</div>
+<x-box css="box-entity-relations box-entity-relations-table" id="entity-relations-table" :padding="$rows->count() === 0">
+    @if ($rows->count() === 0)
+        <p class="help-block">
+            {{ __('entities/relations.helpers.no_relations') }}
+        </p>
+        @can('relation', [$entity->child, 'add'])
+            <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
+                <x-icon class="plus"></x-icon>
+                <span class="hidden-xs hidden-sm">
+                {{ __('entities.relation') }}
+            </span>
+            </a>
+        @endcan
+    @else
+        <div id="datagrid-parent" class="table-responsive">
+            @include('layouts.datagrid._table')
+        </div>
+    @endif
+</x-box>
 
 @includeWhen(!$connections->isEmpty(), 'entities.pages.relations._connections')
 

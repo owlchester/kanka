@@ -35,13 +35,10 @@
             </div>
         </div>
     @else
-
-        <div class="panel panel-default">
-            <div class="panel-body">
-                @include('partials.errors')
-                @include('calendars.events._entity_form')
-            </div>
-            <div class="panel-footer">
+        <x-box>
+            @include('partials.errors')
+            @include('calendars.events._entity_form')
+            <x-box.footer>
                 <div class="pull-right">
                     <button class="btn btn-success" id="calendar-event-submit">
                         <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
@@ -50,8 +47,8 @@
                 </div>
 
                 @include('partials.footer_cancel')
-            </div>
-        </div>
+            </x-box.footer>
+        </x-box>
     @endif
 
     {!! Form::hidden('entity_id', $entity->id) !!}

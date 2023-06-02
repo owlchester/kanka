@@ -20,52 +20,50 @@ if (!empty($rows)) {
 $direct = $model->members()->has('character')->count();
 $all = $model->allMembers()->has('character')->count();
 ?>
-<div class="box box-solid" id="organisation-members">
-    <div class="box-header with-border">
-        <h3 class="box-title">{{ __('organisations.fields.members') }}</h3>
+<div class="flex gap-2 items-center mb-2">
+    <h3 class="m-0 grow">
+        {{ __('organisations.fields.members') }}
+    </h3>
+    <div>
+        @if (!$allMembers)
+            <a href="{{ route('organisations.show', [$model, 'all' => true, '#organisation-members']) }}" class="btn btn-default btn-sm">
+                <i class="fa-solid fa-filter"></i>
+                <span class="hidden-xs hidden-sm">
+                    {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
+                </span>
+                <span class="visible-xs-inline visible-sm-inline">
+                    {{ __('crud.filters.lists.mobile.all', ['count' => $all]) }}
+                </span>
+            </a>
+        @else
+            <a href="{{ route('organisations.show', [$model, '#organisation-members']) }}" class="btn btn-default btn-sm">
+                <i class="fa-solid fa-filter"></i>
 
-        <div class="box-tools">
-            @if (!$allMembers)
-                <a href="{{ route('organisations.show', [$model, 'all' => true, '#organisation-members']) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-filter"></i>
-                    <span class="hidden-xs hidden-sm">
-                        {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
-                    </span>
-                    <span class="visible-xs-inline visible-sm-inline">
-                        {{ __('crud.filters.lists.mobile.all', ['count' => $all]) }}
-                    </span>
-                </a>
-            @else
-                <a href="{{ route('organisations.show', [$model, '#organisation-members']) }}" class="btn btn-box-tool">
-                    <i class="fa-solid fa-filter"></i>
+                <span class="hidden-xs hidden-sm">
+                    {{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}
+                </span>
+                <span class="visible-xs-inline visible-sm-inline">
+                    {{ __('crud.filters.lists.mobile.filtered', ['count' => $direct]) }}
+                </span>
+            </a>
+        @endif
 
-                    <span class="hidden-xs hidden-sm">
-                        {{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}
-                    </span>
-                    <span class="visible-xs-inline visible-sm-inline">
-                        {{ __('crud.filters.lists.mobile.filtered', ['count' => $direct]) }}
-                    </span>
-                </a>
-            @endif
-
-            @can('member', $model)
-                <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
-                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
-                    <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
-                </a>
-            @endcan
-        </div>
+        @can('member', $model)
+            <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
+               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
+                <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
+            </a>
+        @endcan
     </div>
-
+</div>
+<div id="organisation-members">
     @if ($direct === 0 && !$allMembers)
-        <div class="box-body">
-
+        <x-box>
             <p class="help-block">
                 {{ __('organisations.members.helpers.' . ($allMembers ? 'all_' : null) . 'members') }}
             </p>
-        </div>
+        </x-box>
     @else
-
         <div id="datagrid-parent" class="table-responsive">
             @include('layouts.datagrid._table', $datagridCall)
         </div>

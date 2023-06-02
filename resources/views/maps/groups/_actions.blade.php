@@ -1,4 +1,4 @@
-<div class="btn-group">
+<div class="btn-group float-right">
     <input id="submit-mode" type="hidden" value="true"/>
     <button class="btn btn-success" id="form-submit-main" data-target="{{ $target ?? null }}">
         {{ __('crud.save') }}

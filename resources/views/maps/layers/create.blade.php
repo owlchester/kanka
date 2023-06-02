@@ -18,21 +18,19 @@
 @section('content')
     {!! Form::open(['route' => ['maps.map_layers.store', $map], 'method' => 'POST', 'id' => 'map-layer-form', 'enctype' => 'multipart/form-data', 'data-maintenance' => 1]) !!}
 
-        <div class="panel panel-default">
+        <x-box>
 
-            <div class="panel-body">
-                @include('partials.errors')
+            @include('partials.errors')
 
-                @include('maps.layers._form', ['model' => null])
-            </div>
+            @include('maps.layers._form', ['model' => null])
 
-            <div class="panel-footer text-right">
+            <x-box.footer>
                 @include('maps.groups._actions')
-                <div class="pull-left">
+                <div class="">
                     @include('partials.footer_cancel')
                 </div>
-            </div>
-    </div>
+            </x-box.footer>
+    </x-box>
 
     {!! Form::close() !!}
 @endsection

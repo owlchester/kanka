@@ -152,13 +152,13 @@
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="panel-heading">
+                <div class="modal-header">
                     <x-dialog.close />
                     <h4>
                         {{ __('maps/markers.create.title', ['name' => $model->name]) }}
                     </h4>
                 </div>
-                <div class="panel-body">
+                <div class="modal-body">
                     {!! Form::open([
                         'route' => ['maps.map_markers.store', $model],
                         'method' => 'POST',
@@ -169,6 +169,8 @@
                     ]) !!}
                     @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.map_markers.index:' . $model->id)])
 
+                </div>
+                <div class="modal-footer">
                     <div class="form-group" id="marker-footer">
                         <div class="pull-left">
                             @include('partials.footer_cancel', ['ajax' => 1])

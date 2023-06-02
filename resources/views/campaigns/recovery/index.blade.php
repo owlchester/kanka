@@ -30,12 +30,11 @@
                 </x-cta>
             @endif
 
-            <div class="box box-recovery">
-                @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'recovery.save']) !!} @endif
-                <div id="datagrid-parent">
-                    @include('layouts.datagrid._table')
-                </div>
-                @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+            @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'recovery.save']) !!} @endif
+            <div id="datagrid-parent">
+                @include('layouts.datagrid._table')
+            </div>
+            @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
         </div>
     </div>
 @endsection

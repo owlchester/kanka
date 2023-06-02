@@ -30,14 +30,12 @@
             </div>
         </div>
     @else
-        <div class="panel panel-default">
-            <div class="panel-body">
-                @include('partials.errors')
+        <x-box>
+            @include('partials.errors')
 
-                @include('calendars.weather._form')
+            @include('calendars.weather._form')
 
-            </div>
-            <div class="panel-footer">
+            <x-box.footer>
                 <div class="pull-right">
                     <button class="btn btn-success">{{ __('crud.save') }}</button>
                 </div>
@@ -48,8 +46,8 @@
                        <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-weather-{{ $weather->id}}'>{{ __('crud.remove') }}</a>">
                     <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
                 </a>
-            </div>
-        </div>
+            </x-box.footer>
+        </x-box>
     @endif
 
 

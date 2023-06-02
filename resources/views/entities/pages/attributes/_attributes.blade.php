@@ -21,17 +21,15 @@ $inSection = false;
         @php
         $inSection = true;
         @endphp
-        <div class="panel panel-default">
-            <div class="panel-heading" data-toggle="collapse" data-target="#attribute-section-body-{{ $attribute->id }}">
-                <h4 class="panel-title">
-                    @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
-                        <i class="fa-solid fa-lock pull-right" title="{{ __('crud.is_private') }}"></i>
-                    @endif
+        <div class="rounded shadow-sm mb-5 p-2">
+            <h4 class="text-lg m-0 cursor-pointer" data-toggle="collapse" data-target="#attribute-section-body-{{ $attribute->id }}">
+                @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
+                    <i class="fa-solid fa-lock pull-right" title="{{ __('crud.is_private') }}"></i>
+                @endif
 
-                    {!! $attribute->name() !!}
-                </h4>
-            </div>
-            <div class="panel-body collapse  !visible in" id="attribute-section-body-{{ $attribute->id }}">
+                {!! $attribute->name() !!}
+            </h4>
+            <div class="py-2 collapse  !visible in" id="attribute-section-body-{{ $attribute->id }}">
                 <dl class="dl-horizontal">
         @continue
     @endif

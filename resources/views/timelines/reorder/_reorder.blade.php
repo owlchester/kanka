@@ -10,51 +10,46 @@
         'route' => ['timelines.reorder-save', $timeline],
         'method' => 'POST',
     ]) !!}
-<div class="box box-solid box-entity-story-reorder">
-    <div class="box-body">
-        <div class="element-live-reorder sortable-elements">
-            @foreach($eras as $era)
-                <div class="element" data-id="{{ $era->id }}">
-                    {!! Form::hidden('timeline_era[]', $era->id) !!}
-                    <div class="dragger pr-3">
-                        <span class="fa-solid fa-sort"></span>
-                    </div>
-                    <div class="name overflow-hidden flex-grow">
-                        {!! $era->name !!}
-                        <span class="text-sm">
-                            {!! $era->ages()!!}
-                        </span>
-                    </div>
-
-                    @if (!$era->orderedElements->isEmpty())
-                    <div class="sortable-elements mt-3 children">
-                        @foreach ($era->orderedElements as $element)
-                            @if ($element->invisibleEntity())
-                                @continue
-                            @endif
-                            <div class="element" data-id="element-{{ $element->id }}">
-                                {!! Form::hidden('timeline_element[' . $era->id . '][]', $element->id) !!}
-                                <div class="dragger relative dragger pr-3 rounded-icon">
-                                    {!! $element->htmlIcon(false) !!}
-                                </div>
-                                <div class="name overflow-hidden flex-grow">
-                                    {!! $element->htmlName(false) !!}
-                                    @if (isset($element->date))<span class="text-sm">({{ $element->date }})</span>@endif
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    @endif
+<x-box css="max-w-4xl box-entity-story-reorder">
+    <div class="element-live-reorder sortable-elements">
+        @foreach($eras as $era)
+            <div class="element" data-id="{{ $era->id }}">
+                {!! Form::hidden('timeline_era[]', $era->id) !!}
+                <div class="dragger pr-3">
+                    <span class="fa-solid fa-sort"></span>
                 </div>
-            @endforeach
-        </div>
-    </div>
-    <div class="box-footer">
+                <div class="name overflow-hidden flex-grow">
+                    {!! $era->name !!}
+                    <span class="text-sm">
+                        {!! $era->ages()!!}
+                    </span>
+                </div>
 
-        <button class="btn btn-primary btn-block">
-            {{ __('crud.save') }}
-        </button>
-
+                @if (!$era->orderedElements->isEmpty())
+                <div class="sortable-elements mt-3 children">
+                    @foreach ($era->orderedElements as $element)
+                        @if ($element->invisibleEntity())
+                            @continue
+                        @endif
+                        <div class="element" data-id="element-{{ $element->id }}">
+                            {!! Form::hidden('timeline_element[' . $era->id . '][]', $element->id) !!}
+                            <div class="dragger relative dragger pr-3 rounded-icon">
+                                {!! $element->htmlIcon(false) !!}
+                            </div>
+                            <div class="name overflow-hidden flex-grow">
+                                {!! $element->htmlName(false) !!}
+                                @if (isset($element->date))<span class="text-sm">({{ $element->date }})</span>@endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                @endif
+            </div>
+        @endforeach
     </div>
-</div>
+
+    <button class="btn btn-primary btn-block">
+        {{ __('crud.save') }}
+    </button>
+</x-box>
 {!! Form::close() !!}

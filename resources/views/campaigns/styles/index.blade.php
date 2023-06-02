@@ -41,21 +41,19 @@ use App\Facades\Datagrid ?>
                     <p>{!! __('campaigns/styles.pitch') !!}</p>
                 </x-cta>
             @else
-            <div class="box box-solid">
                 @if ($styles->count() === 0)
-                    <div class="box-body">
+                    <x-box>
                         <p class="help-block">
                             {!! __('campaigns/styles.helpers.main', ['here' => link_to('https://blog.kanka.io/category/tutorials', __('campaigns/styles.helpers.here'), ['target' => '_blank'])]) !!}
                         </p>
-                    </div>
+                    </x-box>
                 @else
                     @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_styles.bulk']) !!} @endif
-                    <div id="datagrid-parent">
+                    <div id="datagrid-parent" class="mb-5">
                         @include('campaigns.styles._table')
                     </div>
                     @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
                 @endif
-            </div>
 
                 @includeWhen(!$reorderStyles->isEmpty(), 'campaigns.styles._reorder')
             @endif

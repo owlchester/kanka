@@ -13,16 +13,14 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
-    <div class="px-3">
-        <div class="box box-solid">
-            <div class="box-body text-center">
-                <h3 class="box-title">{{ __('entities/links.go.title') }}</h3>
+    <div class="max-w-4xl m-5">
+        <x-box>
+            <div class="text-center">
+                <h3>{{ __('entities/links.go.title') }}</h3>
 
                 <p>{!! __('entities/links.go.description', ['link' => '<strong>' . $entityAsset->metadata['url'] . '</strong>']) !!}</p>
-
             </div>
-            <div class="box-footer text-center">
-
+            <div class="text-center">
                 <div class="mb-2">
                     <a href="{{ $entity->url('show') }}" class="btn btn-default btn-lg mr-2 px-8">
                         {{ __('crud.cancel') }}
@@ -36,6 +34,6 @@
                     {{ __('entities/links.go.actions.trust') }}
                 </a>
             </div>
-        </div>
+        </x-box>
     </div>
 @endsection

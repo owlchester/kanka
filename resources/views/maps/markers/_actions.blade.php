@@ -1,4 +1,4 @@
-<div class="submit-group">
+<div class="submit-group float-right">
     <input id="submit-mode" type="hidden" value="true"/>
     <div class="btn-group">
         <button class="btn btn-success" id="form-submit-main"

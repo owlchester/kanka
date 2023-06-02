@@ -41,47 +41,39 @@
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['nested' => true, 'sub' => 'tree'])
     @else
-        <div class="box no-border">
-            {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
-            <div class="box-body">
-                @if (!empty($parent))
-                    <p class="help-block">{!! __('crud.helpers.nested_parent', ['parent' => $parent->tooltipedLink()]) !!}</p>
-                @else
-                    <p class="help-block">{{ __($langKey . '.helpers.nested_without') }}</p>
-                @endif
+        {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
+        <x-box :padding="false">
+            <div class="table-responsive">
+                @include($name . '._tree')
             </div>
+        </x-box>
 
-            <div class="box-body no-padding">
-                <div class="table-responsive">
-                    @include($name . '._tree')
-                </div>
+        @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'tree'])
 
-                @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'tree'])
-            </div>
-            <div class="box-footer">
+        @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
 
-                @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
-
-                @if ($unfilteredCount != $filteredCount)
-                    <p class="help-block">
-                        {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
-                    </p>
-                @endif
-                @if($models->hasPages())
-                <div class="pull-right">
-                    {{ $models->appends('parent_id', request()->get('parent_id'))->appends('m', 'table')->links() }}
-                </div>
-                @endif
-            </div>
-            {!! Form::hidden('entity', $name) !!}
-            {!! Form::hidden('datagrid-action', 'print') !!}
-            {!! Form::hidden('page', request()->get('page')) !!}
-            {!! Form::hidden('mode', $mode) !!}
-            {!! Form::close() !!}
+        @if ($unfilteredCount != $filteredCount)
+            <p class="help-block">
+                {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
+            </p>
+        @endif
+        @if($models->hasPages())
+        <div class="pull-right">
+            {{ $models->appends('parent_id', request()->get('parent_id'))->appends('m', 'table')->links() }}
         </div>
-        @includeWhen(auth()->check(), 'cruds.datagrids.bulks.modals')
+        @endif
+        {!! Form::hidden('entity', $name) !!}
+        {!! Form::hidden('datagrid-action', 'print') !!}
+        {!! Form::hidden('page', request()->get('page')) !!}
+        {!! Form::hidden('mode', $mode) !!}
+        {!! Form::close() !!}
 
     @endif
 
     <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.tree') }}">
+@endsection
+
+@section('modals')
+    @parent
+    @includeWhen(auth()->check(), 'cruds.datagrids.bulks.modals')
 @endsection

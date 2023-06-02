@@ -1,9 +1,9 @@
 @extends('layouts.app', [
     'title' => __('dashboard.setup.title'),
-    'description' => '',
     'breadcrumbs' => [
         __('dashboard.setup.title')
     ],
+    'mainTitle' => '',
 ])
 
 @php
@@ -15,118 +15,116 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
 @inject('campaignService', 'App\Services\CampaignService')
 @section('content')
 <div class="max-w-5xl">
-    <div class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                @if ($dashboard)
-                    {!! $dashboard->name !!}
-                @else
-                    {{ __('dashboard.dashboards.default.title') }}
-                @endif
-            </h3>
-            <div class="box-tools">
-                <a href="{{ route('dashboard', isset($dashboard) ? ['dashboard' => $dashboard->id] : null) }}" class="btn btn-box-tool" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                    {{ __('dashboard.setup.actions.back_to_dashboard') }}
-                </a>
-            </div>
-        </div>
-        <div class="box-body">
+    <div class="flex gap-2 mb-2 items-center">
+        <h4 class="grow">
             @if ($dashboard)
-                {!! __('dashboard.dashboards.custom.text', ['name' => $dashboard->name]) !!}
+                {!! $dashboard->name !!}
             @else
-                {{ __('dashboard.dashboards.default.text') }}
+                {{ __('dashboard.dashboards.default.title') }}
             @endif
-        </div>
-        @if (true || $campaignService->campaign()->boosted())
-        <div class="box-footer">
-            <a class="btn btn-primary mr-2"
-                 data-toggle="ajax-modal"
-                 data-target="#edit-widget"
-                 data-url="{{ route('campaign_dashboards.create') }}"
-               >
-                <x-icon class="plus"></x-icon>
-                <span class="hidden-xs">{{ __('dashboard.dashboards.actions.new') }}</span>
-            </a>
+        </h4>
+        <a href="{{ route('dashboard', isset($dashboard) ? ['dashboard' => $dashboard->id] : null) }}" class="btn btn-sm btn-default " title="{{ __('dashboard.setup.actions.back_to_dashboard') }}">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            {{ __('dashboard.setup.actions.back_to_dashboard') }}
+        </a>
+    </div>
+    <x-box >
 
-            @if(!$dashboards->isEmpty() || !empty($dashboard))
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <span class="hidden-xs">{{ __('dashboard.dashboards.actions.switch') }}</span>
-                        <span class="visible-xs-inline">
-                            <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
-                        </span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        @if (!empty($dashboard))
+        @if ($dashboard)
+            {!! __('dashboard.dashboards.custom.text', ['name' => $dashboard->name]) !!}
+        @else
+            {{ __('dashboard.dashboards.default.text') }}
+        @endif
+
+        @if ($campaignService->campaign()->boosted())
+            <div class="mt-5">
+                <a class="btn btn-primary mr-2"
+                     data-toggle="ajax-modal"
+                     data-target="#edit-widget"
+                     data-url="{{ route('campaign_dashboards.create') }}"
+                   >
+                    <x-icon class="plus"></x-icon>
+                    <span class="hidden-xs">{{ __('dashboard.dashboards.actions.new') }}</span>
+                </a>
+
+                @if(!$dashboards->isEmpty() || !empty($dashboard))
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="hidden-xs">{{ __('dashboard.dashboards.actions.switch') }}</span>
+                            <span class="visible-xs-inline">
+                                <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
+                            </span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            @if (!empty($dashboard))
+                                <li>
+                                    <a href="{{ route('dashboard.setup') }}">
+                                        {{ __('dashboard.dashboards.default.title')}}
+                                    </a>
+                                </li>
+                            @endif
+                            @foreach ($dashboards as $dash)
                             <li>
-                                <a href="{{ route('dashboard.setup') }}">
-                                    {{ __('dashboard.dashboards.default.title')}}
+                                <a href="{{ route('dashboard.setup', ['dashboard' => $dash->id]) }}">
+                                    {!! $dash->name !!}
                                 </a>
                             </li>
-                        @endif
-                        @foreach ($dashboards as $dash)
-                        <li>
-                            <a href="{{ route('dashboard.setup', ['dashboard' => $dash->id]) }}">
-                                {!! $dash->name !!}
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-            @if($dashboard)
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        {{ __('crud.actions.actions') }} <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="{{ route('dashboard', ['dashboard' => $dashboard->id]) }}" target="_blank"
-                               >
-                                <i class="fa-solid fa-external-link-alt" aria-hidden="true"></i>
-                                {{ __('crud.view') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                    href="#"
-                               data-toggle="ajax-modal"
-                               data-target="#edit-widget"
-                               data-url="{{ route('campaign_dashboards.edit', $dashboard) }}"
-                            >
-                                <i class="fa-solid fa-pencil-alt" aria-hidden="true"></i>
-                                {{ __('dashboard.dashboards.actions.edit') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                    href="#"
-                                    data-toggle="ajax-modal"
-                                    data-target="#edit-widget"
-                                    data-url="{{ route('campaign_dashboards.create', ['source' => $dashboard]) }}"
-                            >
-                                <i class="fa-solid fa-copy" aria-hidden="true"></i>
-                                {{ __('crud.actions.copy') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="delete-confirm text-red" data-toggle="modal" data-name="{{ $dashboard->name }}"
-                               data-target="#delete-confirm" data-delete-target="delete-dashboard-{{ $dashboard->id }}"
-                               title="{{ __('crud.remove') }}">
-                                <x-icon class="trash"></x-icon>
-                                {{ __('crud.remove') }}
-                            </a>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_dashboards.destroy', $dashboard], 'style '=> 'display:inline', 'id' => 'delete-dashboard-' . $dashboard->id]) !!}
-                            {!! Form::close() !!}
-                        </li>
-                    </ul>
-                </div>
-            @endif
-        </div>
+                @if($dashboard)
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            {{ __('crud.actions.actions') }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('dashboard', ['dashboard' => $dashboard->id]) }}" target="_blank"
+                                   >
+                                    <i class="fa-solid fa-external-link-alt" aria-hidden="true"></i>
+                                    {{ __('crud.view') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                        href="#"
+                                   data-toggle="ajax-modal"
+                                   data-target="#edit-widget"
+                                   data-url="{{ route('campaign_dashboards.edit', $dashboard) }}"
+                                >
+                                    <i class="fa-solid fa-pencil-alt" aria-hidden="true"></i>
+                                    {{ __('dashboard.dashboards.actions.edit') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                        href="#"
+                                        data-toggle="ajax-modal"
+                                        data-target="#edit-widget"
+                                        data-url="{{ route('campaign_dashboards.create', ['source' => $dashboard]) }}"
+                                >
+                                    <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                                    {{ __('crud.actions.copy') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="delete-confirm text-red" data-toggle="modal" data-name="{{ $dashboard->name }}"
+                                   data-target="#delete-confirm" data-delete-target="delete-dashboard-{{ $dashboard->id }}"
+                                   title="{{ __('crud.remove') }}">
+                                    <x-icon class="trash"></x-icon>
+                                    {{ __('crud.remove') }}
+                                </a>
+                                {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_dashboards.destroy', $dashboard], 'style '=> 'display:inline', 'id' => 'delete-dashboard-' . $dashboard->id]) !!}
+                                {!! Form::close() !!}
+                            </li>
+                        </ul>
+                    </div>
+                @endif
+            </div>
         @endif
-    </div>
+    </x-box>
 
     @include('partials.errors')
 

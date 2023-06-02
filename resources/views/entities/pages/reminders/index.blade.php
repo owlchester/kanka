@@ -51,13 +51,17 @@
             <div class="mb-5"></div>
 
             @if ($reminders->count() > 0)
-                <div class="box box-solid box-entity-reminders">
-                    <div class="box-body no-padding">
-                        <div class="table-responsive">
-                        @include('entities.pages.reminders._table')
-                        </div>
+                <x-box css="box-entity-reminders" :padding="false">
+                    <div class="table-responsive">
+                    @include('entities.pages.reminders._table')
                     </div>
-                </div>
+                </x-box>
+
+                @if ($reminders->hasPages())
+                    <div class="text-right">
+                        {{ $reminders->fragment('tab_calendars')->links() }}
+                    </div>
+                @endif
             @endif
         </div>
     </div>

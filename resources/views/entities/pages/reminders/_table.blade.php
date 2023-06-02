@@ -71,4 +71,3 @@
         @endforeach
     </tbody>
 </table>
-{{ $reminders->fragment('tab_calendars')->links() }}

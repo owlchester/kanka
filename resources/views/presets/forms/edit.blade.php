@@ -7,9 +7,9 @@
 @section('content')
 
     {!! Form::model($preset, ['route' => ['preset_types.presets.update', 'preset_type' => $presetType, 'preset' => $preset], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
-        <div class="panel">
+        <x-box>
             @include('presets.forms._' . $presetType->code)
-            <div class="panel-footer">
+            <x-box.footer>
                 @include('partials.footer_cancel')
 
                 <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
@@ -22,8 +22,8 @@
                 <button type="submit" class="btn btn-success pull-right">
                     {!! __('crud.save') !!}
                 </button>
-            </div>
-        </div>
+            </x-box.footer>
+        </x-box>
 
         <input type="hidden" name="from" value="{{ $from }}" />
 

@@ -57,8 +57,7 @@ $translations = json_encode([
 
 <div class="entity-story-block">
 
-<div class="box box-solid">
-    <div class="box-body">
+    <x-box>
         <div class="box-conversation" id="conversation">
             <conversation
                     id="{{ $model->id }}"
@@ -71,11 +70,10 @@ $translations = json_encode([
             >
             </conversation>
         </div>
-    </div>
-</div>
+    </x-box>
 
-@include('entities.components.posts')
-@include('entities.pages.logs.history')
+    @include('entities.components.posts')
+    @include('entities.pages.logs.history')
 </div>
 
 <div class="entity-sidebar">

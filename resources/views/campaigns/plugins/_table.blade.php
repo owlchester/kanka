@@ -1,41 +1,40 @@
 @if (empty($rows) && isset($empty))
-    <div class="box-body">
+    <x-box>
         <p class="help-block">
             {!! $empty !!}
         </p>
-    </div>
+    </x-box>
     @php return @endphp
 @endif
 
-<div class="box-body no-padding">
-    <table class="table table-hover mb-0" data-render="datagrid2">
-        <thead>
-        <tr>
-            @foreach (Datagrid::headers() as $header)
-                @include('layouts.datagrid._header')
+<table class="table table-hover mb-2 bg-box" data-render="datagrid2">
+    <thead>
+    <tr>
+        @foreach (Datagrid::headers() as $header)
+            @include('layouts.datagrid._header')
+        @endforeach
+    </tr>
+    </thead>
+    <tbody>
+    @foreach ($rows as $row)
+        <tr class="@if (Datagrid::isHighlighted($row)) warning row-highlighted @endif">
+            @foreach (Datagrid::columns($row) as $column)
+                @include('layouts.datagrid._column')
             @endforeach
         </tr>
-        </thead>
-        <tbody>
-        @foreach ($rows as $row)
-            <tr class="@if (Datagrid::isHighlighted($row)) warning row-highlighted @endif">
-                @foreach (Datagrid::columns($row) as $column)
-                    @include('layouts.datagrid._column')
-                @endforeach
-            </tr>
-        @endforeach
-        </tbody>
-        <tfoot style="display: none">
-        <tr>
-            <th class="text-center">
-                <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
-            </th>
-        </tr>
-        </tfoot>
-    </table>
-</div>
+    @endforeach
+    </tbody>
+    <tfoot style="display: none">
+    <tr>
+        <th class="text-center">
+            <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+        </th>
+    </tr>
+    </tfoot>
+</table>
+
 @if ($rows->hasPages() || \App\Facades\Datagrid::hasBulks())
-    <div class="box-footer text-right clearfix">
+    <div class="text-right clearfix">
         <div class="pull-left">
             @includeWhen(Datagrid::hasBulks(), 'layouts.datagrid.bulks')
         </div>

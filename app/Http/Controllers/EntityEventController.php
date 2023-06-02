@@ -21,7 +21,7 @@ class EntityEventController extends Controller
     protected string $view = 'entity_event';
     protected string $route = 'entity_event';
 
-    protected $calendarService;
+    protected CalendarService $calendarService;
 
     /**
      * @var string

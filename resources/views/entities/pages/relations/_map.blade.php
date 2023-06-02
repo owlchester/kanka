@@ -21,25 +21,19 @@ $options = [
     'route' => ['entities.relations.index', $entity],
     'method' => 'GET',
 ]) !!}
-<div class="box box-solid">
-    <div class="box-body">
-        <div class="input-group">
-            {!! Form::select('option', $options, $option, ['class' => 'form-control']) !!}
-            <div class="input-group-btn">
+    <div class="input-group mb-5">
+        {!! Form::select('option', $options, $option, ['class' => 'form-control']) !!}
+        <div class="input-group-btn">
 
-                <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn btn-primary" />
-            </div>
+            <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn btn-primary" />
         </div>
     </div>
-</div>
 {!! Form::hidden('mode', 'map') !!}
 {!! Form::close() !!}
 
-<div class="box box-solid box-entity-relations box-entity-relations-explorer">
-    <div class="box-body">
-        <div class="loading text-center" id="spinner">
-            <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
-        </div>
-        <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$entity, 'option' => $option]) }}"></div>
+<x-box css="box box-solid box-entity-relations box-entity-relations-explorer">
+    <div class="loading text-center" id="spinner">
+        <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
     </div>
-</div>
+    <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$entity, 'option' => $option]) }}"></div>
+</x-box>

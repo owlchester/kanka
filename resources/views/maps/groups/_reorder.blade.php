@@ -1,33 +1,29 @@
+
+<h3 class="">
+    {{ __('maps/groups.reorder.title') }}
+</h3>
 {!! Form::open([
     'route' => ['maps.groups.reorder-save', 'map' => $model],
     'method' => 'POST',
 ]) !!}
-    <div class="box box-solid box-entity-story-reorder">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                {{ __('maps/groups.reorder.title') }}
-            </h3>
-        </div>
-        <div class="box-body">
+    <x-box css="box-entity-story-reorder">
 
-            <div class="element-live-reorder sortable-elements">
-                @foreach($rows as $group)
-                    <div class="element" data-id="{{ $group->id }}">
-                        {!! Form::hidden('group[]', $group->id) !!}
-                        <div class="dragger pr-3">
-                            <span class="fa-solid fa-ellipsis-v"></span>
-                        </div>
-                        <div class="name overflow-hidden flex-grow">
-                            {!! $group->name !!}
-                        </div>
+        <div class="element-live-reorder sortable-elements">
+            @foreach($rows as $group)
+                <div class="element" data-id="{{ $group->id }}">
+                    {!! Form::hidden('group[]', $group->id) !!}
+                    <div class="dragger pr-3">
+                        <span class="fa-solid fa-ellipsis-v"></span>
                     </div>
-                @endforeach
-            </div>
+                    <div class="name overflow-hidden flex-grow">
+                        {!! $group->name !!}
+                    </div>
+                </div>
+            @endforeach
         </div>
-        <div class="box-footer">
-            <button class="btn btn-primary btn-block">
-                {{ __('maps/groups.reorder.save') }}
-            </button>
-        </div>
-    </div>
+
+        <button class="btn btn-primary btn-block">
+            {{ __('maps/groups.reorder.save') }}
+        </button>
+    </x-box>
 {!! Form::close() !!}
