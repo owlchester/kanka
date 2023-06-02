@@ -1,9 +1,8 @@
 @inject('entityService', 'App\Services\EntityService')
 <?php
 $entityTypes = ['' => '', 'any' => __('menu_links.random_types.any')];
-foreach ($entityService->getEnabledEntities($campaignService->campaign()) as $entity) {
-    $entityTypes[$entity] = __('entities.' . \Illuminate\Support\Str::plural($entity));
-}
+$entities = $entityService->campaign($campaignService->campaign())->getEnabledEntitiesSorted(false);
+$entityTypes = array_merge($entityTypes, $entities);
 ?>
 <p class="help-block">{!! __('menu_links.helpers.random', [
 ]) !!}</p>
@@ -23,7 +22,5 @@ foreach ($entityService->getEnabledEntities($campaignService->campaign()) as $en
                 :model="$model ?? null">
             </x-forms.tags>
         </div>
-
     </div>
 </div>
-

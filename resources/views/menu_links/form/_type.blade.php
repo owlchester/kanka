@@ -1,9 +1,8 @@
 @inject('entityService', 'App\Services\EntityService')
 <?php
 $entityTypes = ['' => ''];
-foreach ($entityService->getEnabledEntities($campaignService->campaign()) as $entity) {
-$entityTypes[$entity] = __('entities.' . \Illuminate\Support\Str::plural($entity));
-}
+$entities = $entityService->campaign($campaignService->campaign())->getEnabledEntitiesSorted(false);
+$entityTypes = array_merge($entityTypes, $entities);
 ?>
 <p class="help-block">{!! __('menu_links.helpers.type', [
     'filter' => '<code>' . __('menu_links.fields.filters') . '</code>',
