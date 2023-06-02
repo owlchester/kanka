@@ -190,7 +190,12 @@ function initDynamicDelete() {
     $('.btn-dynamic-delete').popover({
         html: true,
         placement: 'top',
-        sanitize: false
+        sanitize: false,
+        template: '<div class="popover absolute top-0 left-0 rounded shadow-xs" role="tooltip">' +
+            '<div class="arrow"></div>' +
+            '<h3 class="popover-title text-base p-1 px-2 mb-0"></h3>' +
+            '<div class="popover-content p-2"></div>' +
+            '</div>',
     });
 
     $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {
