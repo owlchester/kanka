@@ -23,7 +23,7 @@
 @endsection
 
 @section('header-extra')
-    <div class="dashboard-actions">
+    <div class="dashboard-actions inline-block float-right">
         @if(!empty($dashboards))
             <div class="btn-group pull-right">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">

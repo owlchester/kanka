@@ -68,7 +68,6 @@
     --dashboard-preview-gradient: var(--theme-background);
     --dashboard-widget-admin-border: var(--theme-soft);
     --footer-background: var(--theme-soft-background);
-    --footer-links-background: rgba(0, 0, 0, 0.2);
     --footer-logo-blue: none;
     --footer-logo-white: unset;
     --footer-text: var(--theme-main-text);
@@ -80,8 +79,6 @@
     --gallery-background: var(--theme-background);
     --gallery-hover-text: var(--theme-main-text);
 
-    --relation-explorer-background: var(--theme-detail);
-    --relation-explorer-text: var(--theme-hard-text);
 
     --conversation-comment-background: var(--theme-soft);
 
@@ -102,10 +99,7 @@
     --spectrum-background: var(--theme-background);
     --spectrum-text: var(--theme-main-text);
 
-    --search-background: var(--theme-background);
-    --search-text: var(--theme-main-text);
     --search-cursor-background: var(--theme-soft);
-    --search-border: var(--theme-border);
 
     --dropdown-background: var(--theme-background);
     --dropdown-border: var(--theme-border);
@@ -148,7 +142,8 @@
     --header-mode-inactive: var(--notification-accent);
     --campaign-switcher-text: var(--theme-input-text);
     --header-profile-background: var(--table-highlight);
-
+    --mention-text: var(--body-text);
+    --mention-background: var(--theme-border);
 }
 
 .hover\:shadow-md:hover {
@@ -163,4 +158,9 @@
 .alert-warning {
     background-color: #d0c2a5;
     border-color: #c5af78;
+}
+
+#cy {
+    --relation-explorer-background: var(--theme-detail);
+    --relation-explorer-text: var(--theme-hard-text);
 }

@@ -8,13 +8,6 @@
 div.mce-fullscreen {
   z-index: 1400;
 }
-.mce-btn-group:not(:first-child) {
-  border-left: none !important;
-}
-
-.mce-btn-group:not(:first-child) {
-  border-left: none !important;
-}
 
 .editor-panel {
   padding: 5px;
@@ -69,59 +62,61 @@ img.note-float-left {
     }
 }
 .note-hint-item {
-  .entity-hint {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 45px auto;
+    .entity-hint {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 45px auto;
 
-    .entity-hint-name {
+        .entity-hint-name {
+        }
+
+        .entity-image {
+        }
     }
-    .entity-image {
-    }
-  }
 }
 
 .note-editing-area {
-  .mention, .attribute {
-    background-color: #eee;
-    padding: 3px 5px;
-    border-radius: 5px;
-    color: #333 !important;
-    text-decoration: none;
-  }
+    .mention, .attribute {
+        background-color: var(--mention-background, #dfdfdf);
+        padding: 3px 5px;
+        border-radius: 0.25rem;
+        color: var(--mention-text, #222);
+        text-decoration: none;
+    }
 }
 // Gallery
 .images-list {
-  .img-item {
-    overflow: hidden;
-    margin: 10px 0;
-    .img-thumbnail {
-      height: 120px;
-      overflow: hidden;
-      line-height: 120px;
-      background-color: var(--gallery-background);
-      color: var(--gallery-text);
-      border: none;
-      cursor: pointer;
+    .img-item {
+        overflow: hidden;
+        margin: 10px 0;
 
-      .text {
-        display: inline-block;
-        vertical-align: middle;
-        line-height: normal;
+        .img-thumbnail {
+            height: 120px;
+            overflow: hidden;
+            line-height: 120px;
+            background-color: var(--gallery-background);
+            color: var(--gallery-text);
+            border: none;
+            cursor: pointer;
 
-        i {
-          display: block;
+            .text {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: normal;
+
+                i {
+                    display: block;
+                }
+            }
+
+            &:focus,
+            &:hover {
+                box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
+                color: var(--gallery-hover-text);
+                outline: 1px solid transparent;
+            }
         }
-      }
-
-      &:focus,
-      &:hover {
-        box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
-        color: var(--gallery-hover-text);
-        outline: 1px solid transparent;
-      }
     }
-  }
 }
 .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-select:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-select:hover {
   color: #444;
@@ -134,26 +129,23 @@ img.note-float-left {
 /**
  * Tinymce
  */
-:root {
-  --tinymce-background: #FFF;
-  --tinymce-border: #c5c5c5;
-  --tinymce-filter: none; // set to invert(90%) for dark mode
-
-  --tinymce-input-background: #fff;
-  --tinymce-input-text: #595959;
-  --tinymce-input-border: #c5c5c5;
+.mce-btn-group:not(:first-child) {
+    border-left: none !important;
 }
 
+.mce-btn-group:not(:first-child) {
+    border-left: none !important;
+}
 // Tinymce stuff for dark mode
 .mce-edit-area, .mce-content-body {
-  filter: var(--tinymce-filter) !important;
+  filter: var(--tinymce-filter, none) !important; // set to invert(90%) for dark mode
 }
 .mce-panel {
-  background-color: var(--tinymce-background) !important;
-  border-color: var(--tinymce-border) !important;
+  background-color: var(--tinymce-background, #FFF) !important;
+  border-color: var(--tinymce-border, #c5c5c5) !important;
 }
 .mce-menubar {
-  border-color: var(--tinymce-border) !important;
+  border-color: var(--tinymce-border, #c5c5c5) !important;
 }
 .mce-edit-area, .mce-content-body {
   background: none !important;
@@ -163,7 +155,7 @@ img.note-float-left {
   //border-radius: 2px !important;
   background: none !important;
   .mce-txt {
-    color: var(--tinymce-input-text) !important;
+    color: var(--tinymce-input-text, #595959) !important;
   }
 }
 .mce-btn.mce-active, .mce-btn.mce-active:hover, .mce-btn.mce-active:focus, .mce-btn.mce-active:active {
@@ -184,12 +176,12 @@ img.note-float-left {
   //background: var(--theme-background) !important;
 }
 .mce-textbox {
-  background-color: var(--tinymce-input-background) !important;
-  color: var(--tinymce-input-text) !important;
-  border-color: var(--tinymce-input-border) !important;
+  background-color: var(--tinymce-input-background, #fff) !important;
+  color: var(--tinymce-input-text, #595959) !important;
+  border-color: var(--tinymce-input-border, #c5c5c5) !important;
 }
 #mce-modal-block {
-  background-color: var(--tinymce-background) !important;
+  background-color: var(--tinymce-background, #FFF) !important;
 }
 .mce-label {
   text-shadow: none !important;
@@ -205,18 +197,15 @@ img.note-float-left {
   resize: vertical;
 }
 
-
 .advanced-mention-name {
-    --advanced-mention-background: #383898;
-    --advanced-mention-text: white;
     text-decoration: none;
 
     &:after {
         margin-left: 0.1rem;
         content: attr(data-name);
         font-size: 0.7rem;
-        background-color: var(--advanced-mention-background);
-        color: var(--advanced-mention-text);
+        background-color: var(--advanced-mention-background, #383898);
+        color: var(--advanced-mention-text, white);
         padding: 0.15rem;
         border-radius: 0.25rem;
     }

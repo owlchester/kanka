@@ -1,8 +1,8 @@
 <?php /** @var \App\Models\Calendar $model */?>
 @if (empty($day))
-    <td class="h-25"></td>
+    <td class="h-24"></td>
 @else
-    <td class="h-25 text-center {{ $day['isToday'] ? 'today bg-today' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}">
+    <td class="h-24 text-center break-words align-top {{ $day['isToday'] ? 'today bg-today' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}">
         @if ($day['day'])
             <h5 class="m-0 pull-left {{ $day['isToday'] ? "label label-primary" : null}}">
                 <span class="day-number">{{ $day['day'] }}</span>

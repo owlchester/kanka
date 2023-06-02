@@ -70,7 +70,6 @@
     --dashboard-preview-gradient: var(--theme-detail);
     --dashboard-widget-admin-border: var(--theme-soft);
     --footer-background: var(--theme-detail);
-    --footer-links-background: rgba(0, 0, 0, 0.2);
     --footer-logo-blue: none;
     --footer-logo-white: unset;
     --footer-text: var(--theme-main-text);
@@ -81,9 +80,6 @@
     --gallery-text: var(--theme-hard-text);
     --gallery-background: var(--theme-background);
     --gallery-hover-text: var(--theme-main-text);
-
-    --relation-explorer-background: var(--theme-detail);
-    --relation-explorer-text: var(--theme-hard-text);
 
     --conversation-comment-background: var(--theme-soft);
 
@@ -104,10 +100,7 @@
     --spectrum-background: var(--theme-background);
     --spectrum-text: var(--theme-main-text);
 
-    --search-background: var(--theme-background);
-    --search-text: var(--theme-main-text);
     --search-cursor-background: var(--theme-soft);
-    --search-border: var(--theme-border);
 
     --dropdown-background: var(--theme-background);
     --dropdown-border: var(--theme-border);
@@ -150,6 +143,9 @@
     --notification-accent: var(--conversation-comment-background);
     --header-mode-inactive: var(--notification-accent);
     --campaign-switcher-text: var(--theme-input-text);
+
+    --mention-text: var(--body-text);
+    --mention-background: var(--theme-soft);
 }
 
 .hover\:shadow-md:hover {
@@ -159,4 +155,9 @@
 
 .family-tree {
     --family-tree-founder: var(--theme-link-hover);
+}
+
+#cy {
+    --relation-explorer-background: var(--theme-detail);
+    --relation-explorer-text: var(--theme-hard-text);
 }
