@@ -43,7 +43,7 @@
         @endif
         <div class="card" style="margin: 0">
 
-        <!-- Nav tabs -->
+            <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 @if (! $limited)
                 <li role="presentation" class="active">

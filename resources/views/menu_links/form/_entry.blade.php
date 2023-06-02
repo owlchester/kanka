@@ -143,28 +143,28 @@ if (isset($model)) {
             <a class="btn btn-app @if($isEntity) btn-active @endif" data-type="entity">
                 <x-icon class="ra ra-tower"></x-icon>
                 {{ __('menu_links.fields.entity') }}
-                <span class="badge bg-blue">
+                <span class="badge rounded-full text-xs px-1 py-0.5 bg-blue">
                     <i class="fa-solid fa-check"></i>
                 </span>
             </a>
             <a class="btn btn-app @if($isList) btn-active @endif" data-type="list">
                 <x-icon class="fa-solid fa-th-list"></x-icon>
                 {{ __('crud.fields.type') }}
-                <span class="badge bg-blue">
+                <span class="badge rounded-full text-xs px-1 py-0.5 bg-blue">
                     <i class="fa-solid fa-check"></i>
                 </span>
             </a>
             <a class="btn btn-app @if($isRandom) btn-active @endif" data-type="random">
                 <x-icon class="fa-solid fa-question"></x-icon>
                 {{ __('menu_links.fields.random') }}
-                <span class="badge bg-blue">
+                <span class="badge rounded-full text-xs px-1 py-0.5 bg-blue">
                     <i class="fa-solid fa-check"></i>
                 </span>
             </a>
             <a class="btn btn-app @if($isDashboard) btn-active @endif" data-type="dashboard">
                 <x-icon class="fa-solid fa-th-large"></x-icon>
                 {{ __('menu_links.fields.dashboard') }}
-                <span class="badge bg-blue">
+                <span class="badge rounded-full text-xs px-1 py-0.5 bg-blue">
                     <i class="fa-solid fa-check"></i>
                 </span>
             </a>

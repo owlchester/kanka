@@ -49,10 +49,10 @@ use \Illuminate\Support\Arr;
                         'target' => Arr::get($stat, 'target', 0),
                     ]) }}</span>
                         @if($stat['level'] < 5)
-                        <div class="progress my-1">
-                            <div class="progress-bar" style="width: {{ Arr::get($stat, 'progress', 0) }}%"></div>
+                        <div class="h-0.5 float-left w-full bg-gray-400 my-1">
+                            <div class="h-full bg-white" style="width: {{ Arr::get($stat, 'progress', 0) }}%"></div>
                         </div>
-                        <span class="px-2 m-0 progress-description truncate block">
+                        <span class="px-2 m-0 truncate block">
                         {{ __('campaigns/stats.placeholder', [
 'amount' =>  Arr::get($stat, 'amount', 0),
 'target' =>  Arr::get($stat, 'target', 0),

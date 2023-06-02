@@ -1,8 +1,8 @@
 
-<div class="alert alert-info tutorial mb-5">
-    <span>
-        <button type="button" class="close banner-notification-dismiss" data-dismiss="tutorial" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => $code, 'type' => 'tutorial']) }}">×</button>
-    </span>
+<div class="alert p-4 alert-info tutorial mb-5 rounded">
+    <button type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none banner-notification-dismiss float-right" data-dismiss="tutorial" aria-hidden="true" data-url="{{ route('settings.banner', ['code' => $code, 'type' => 'tutorial']) }}">
+        <i class="fa-regular fa-circle-xmark" aria-hidden="true" data-toggle="tooltip" title="{{ __('crud.delete_modal.close') }}"></i>
+    </button>
     {!! $slot !!}
 
     @if (!empty($doc))
