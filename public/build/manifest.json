@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-6b52bc94.js",
+    "file": "assets/app-b5f3298f.js",
     "imports": [
       "_delete-confirm-fec6aa52.js",
       "_mention-5d95822d.js",
@@ -168,7 +168,7 @@
     "src": "resources/js/front.js"
   },
   "resources/js/gallery.js": {
-    "file": "assets/gallery-8e2f139e.js",
+    "file": "assets/gallery-374c5b68.js",
     "imports": [
       "_index-0b481a1e.js",
       "__commonjsHelpers-725317a4.js"
@@ -231,22 +231,22 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-4f21c75e.css",
+    "file": "assets/app-6eae2ddf.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-1af5cc4c.css",
+    "file": "assets/auth-c4286d5b.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
   "resources/sass/dashboard.scss": {
-    "file": "assets/dashboard-7ac32680.css",
+    "file": "assets/dashboard-fdd45ac7.css",
     "isEntry": true,
     "src": "resources/sass/dashboard.scss"
   },
   "resources/sass/export.scss": {
-    "file": "assets/export-70aeed75.css",
+    "file": "assets/export-3f377166.css",
     "isEntry": true,
     "src": "resources/sass/export.scss"
   },
@@ -291,12 +291,12 @@
     "src": "resources/sass/subscription.scss"
   },
   "resources/sass/themes/dark.scss": {
-    "file": "assets/dark-17e55e3c.css",
+    "file": "assets/dark-a0b53910.css",
     "isEntry": true,
     "src": "resources/sass/themes/dark.scss"
   },
   "resources/sass/themes/midnight.scss": {
-    "file": "assets/midnight-80930cd6.css",
+    "file": "assets/midnight-06f21d74.css",
     "isEntry": true,
     "src": "resources/sass/themes/midnight.scss"
   },
