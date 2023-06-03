@@ -1,0 +1,36 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.25rem;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    width: fit-content;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--b2)/var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
+    border-radius: var(--rounded-badge, 1rem);
+}
+
+.badge-accent {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--a)/var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--a)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--ac)/var(--tw-text-opacity));
+}
+.badge-primary {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--p)/var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--p)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--pc)/var(--tw-text-opacity));
+}

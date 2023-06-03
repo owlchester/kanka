@@ -41,31 +41,35 @@
                 </div>
             @endif
 
-                @foreach ($versions as $version)
-                    <div class="plugin-box">
-                        <hr class="my-5" />
+            @foreach ($versions as $version)
+                <div class="plugin-box">
+                    <hr class="my-2" />
 
-                        <div class="plugin-head">
-                            <i class="fa-solid fa-code-branch"></i>
+                    <div class="plugin-head flex items-center gap-2">
+                        <div class="grow">
+                            <x-icon class="fa-solid fa-code-branch"></x-icon>
                             <strong>{{ $version->version }}</strong>
-                            <div class="pull-right">
-                                <small>{{ $version->updated_at->diffForHumans() }}</small>
-                                @if($version->id == $plugin->pivot->plugin_version_id)
-                                    <span class="label label-info">{{ __('campaigns/plugins.info.your_version') }}</span>
-                                @endif
-                                @if ($version->status_id == 1)
-                                    <span class="label label-warning">
-                                       DRAFT
-                                    </span>
-                                @endif
-                            </div>
                         </div>
-
-                        <div class="plugin-body text-justify p-3">
-                            {!! $version->entry !!}
+                        <div class="">
+                            <span class="text-xs">{{ $version->updated_at->diffForHumans() }}</span>
+                            @if($version->id == $plugin->pivot->plugin_version_id)
+                                <x-badge type="accent">
+                                    {{ __('campaigns/plugins.info.your_version') }}
+                                </x-badge>
+                            @endif
+                            @if ($version->status_id == 1)
+                                <x-badge>
+                                    DRAFT
+                                </x-badge>
+                            @endif
                         </div>
                     </div>
-                @endforeach
+
+                    <div class="plugin-body text-justify p-2">
+                        {!! $version->entry !!}
+                    </div>
+                </div>
+            @endforeach
         </div>
         @if ($versions->hasPages())
         <div class="{{ $ajax ? 'modal' : 'box' }}-footer">

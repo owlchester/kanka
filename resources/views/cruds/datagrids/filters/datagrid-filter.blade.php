@@ -20,7 +20,9 @@ $hasAttributeFilters = false;
         <i class="fa-solid fa-filter" aria-hidden="true"></i>
         <span class="hidden-xs">{{ __('crud.filters.title') }}</span>
         @if ($activeFilters > 0)
-            <span class="label label-danger">{{ $activeFilters }}</span>
+            <x-badge type="primary">
+                {{ $activeFilters }}
+            </x-badge>
         @endif
     </div>
 

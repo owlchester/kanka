@@ -5,9 +5,9 @@
     >
 
         @if ($badge > 0)
-            <span class="label label-default float-right">
+            <x-badge css="float-right">
                 {{ number_format($badge) }}
-            </span>
+            </x-badge>
         @endif
         {!! $slot !!}
     </a>

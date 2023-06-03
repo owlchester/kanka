@@ -18,14 +18,7 @@ $translations = json_encode([
                 <x-icon class="fa-solid fa-users"></x-icon>
                 {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}
             </a>
-            <div class="btn-group">
-                <div class="btn btn-default btn-sm btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
-                    <i class="fa-solid fa-grip-lines" aria-hidden="true"></i>
-                </div>
-                <div class="btn btn-default btn-sm btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
-                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
-                </div>
-            </div>
+            @include('entities.headers.toggle')
             @can('update', $model)
                 <a href="{{ $model->getLink('edit') }}" class="btn btn-primary btn-sm ">
                     <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}

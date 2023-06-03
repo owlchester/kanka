@@ -3,7 +3,7 @@
 @if ($attributes->count() === 0)
     <div class="help-block">
         {!! __('entities/attributes.helpers.setup', [
-    'manage' => '<span class="label label-warning">' . __('entities/attributes.actions.manage') .  '</span>'
+    'manage' => '<span class="badge select-none">' . __('entities/attributes.actions.manage') .  '</span>'
 ]) !!}
     </div>
     @php return @endphp

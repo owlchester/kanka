@@ -1,13 +1,6 @@
 @section('entity-header-actions-override')
     <div class="header-buttons inline-block pull-right ml-auto">
-        <div class="btn-group">
-            <div class="btn btn-default btn-sm btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
-                <x-icon class="fa-solid fa-grip-lines"></x-icon>
-            </div>
-            <div class="btn btn-default btn-sm btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
-                <x-icon class="fa-solid fa-bars"></x-icon>
-            </div>
-        </div>
+        @include('entities.headers.toggle')
         @can('update', $model)
             <a href="{{ route('timelines.reorder', $model) }}" class="btn btn-default btn-sm ">
                 <x-icon class="fa-solid fa-sort"></x-icon>

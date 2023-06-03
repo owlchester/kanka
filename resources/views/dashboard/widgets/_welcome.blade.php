@@ -16,7 +16,7 @@
                 <i class="fa-solid fa-plus" aria-hidden="true"></i> ' . __('sidebar.new-entity') . '
             </a>',
             'letter' => '<kbd>N</kbd>',
-            'characters' => '<span class="label label-default"><i class="fa-solid fa-user" aria-hidden="true"></i> ' . __('entities.character') . '</span>',
+            'characters' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-user" aria-hidden="true"></i> ' . __('entities.character') . '</span>',
             'entities' => link_to('https://docs.kanka.io/en/latest/entities/overview.html', __('abilities.show.tabs.entities') . ' <i class="fa-solid fa-external-link" aria-hidden="true"></i>', ['target' => '_blank'], null, false),
         ]) !!}
     </p>
@@ -34,8 +34,8 @@
         </li>
         <li class="mb-2">
             {!! __('dashboards/widgets/welcome.tricks.2', [
-'world' => '<span class="label label-default"><i class="fa-solid fa-globe" aria-hidden="true"></i> ' . __('sidebar.world') . '</span>',
-'edit' => '<span class="label label-default"><i class="fa-solid fa-pencil" aria-hidden="true"></i> ' . __('campaigns.show.actions.edit') . '</span>',
+'world' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-globe" aria-hidden="true"></i> ' . __('sidebar.world') . '</span>',
+'edit' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-pencil" aria-hidden="true"></i> ' . __('campaigns.show.actions.edit') . '</span>',
 ]) !!}
         </li>
         <li class="mb-2">
@@ -44,13 +44,13 @@
         </li>
         <li class="mb-2">
             {!! __('dashboards/widgets/welcome.tricks.4', [
- 'world' => '<span class="label label-default"><i class="fa-solid fa-globe" aria-hidden="true"></i> ' . __('sidebar.world') . '</span>',
-'members' => '<span class="label label-default">' . __('campaigns.show.tabs.members') . '</span>',
+ 'world' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-globe" aria-hidden="true"></i> ' . __('sidebar.world') . '</span>',
+'members' => '<span class="badge select-none flex items-center gap-2">' . __('campaigns.show.tabs.members') . '</span>',
 ]) !!}
         </li>
         <li class="mb-2">
             {!! __('dashboards/widgets/welcome.tricks.5', [
-'button' => '<span class="label label-default"><i class="fa-solid fa-cog" aria-hidden="true"></i> ' . __('dashboard.settings.title') . '</span>'
+'button' => '<span class="badge select-none flex items-center gap-2"><i class="fa-solid fa-cog" aria-hidden="true"></i> ' . __('dashboard.settings.title') . '</span>'
 ]) !!}
         </li>
     </ul>

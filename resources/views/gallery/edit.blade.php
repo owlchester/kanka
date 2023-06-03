@@ -43,19 +43,19 @@ $imageCount = 0;
             <div class="">
                 <div class="flex gap-2 items-center mb-5">
                     @if(!$image->isFolder())
-                        <div class="label label-default text-xs" title="{{ __('campaigns/gallery.fields.ext') }}">
+                        <x-badge :title="__('campaigns/gallery.fields.ext')">
                             <x-icon class="fa-regular fa-image"></x-icon>
                             {{ strtoupper($image->ext) }}
-                        </div>
-                        <div class="label label-default text-xs" title="{{ __('campaigns/gallery.fields.size') }}">
+                        </x-badge>
+                        <x-badge :title="__('campaigns/gallery.fields.size')">
                             <x-icon class="fa-regular fa-weight-hanging"></x-icon>
                             {{ $image->niceSize() }}
-                        </div>
+                        </x-badge>
                     @endif
-                    <div class="label label-default text-xs" title="{{ __('campaigns/gallery.fields.created_by') }}">
+                    <x-badge :title="__('campaigns/gallery.fields.created_by')">
                         <x-icon class="fa-regular fa-user"></x-icon>
                         {{ $image->user ? $image->user->name : __('crud.users.unknown') }}
-                    </div>
+                    </x-badge>
                 </div>
 
                 {!! Form::model($image, ['route' => ['images.update', $image], 'method' => 'PUT', 'class' => '']) !!}
