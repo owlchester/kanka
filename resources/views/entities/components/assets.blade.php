@@ -5,14 +5,14 @@
  */
 ?>
 @foreach ($model->entity->pinnedFiles as $asset)
-    <li class="list-group-item pinned-asset" data-asset="{{ \Illuminate\Support\Str::slug($asset->name) }}" data-target="{{ $asset->id }}">
+    <li class="pinned-asset mb-2" data-asset="{{ \Illuminate\Support\Str::slug($asset->name) }}" data-target="{{ $asset->id }}">
         <a href="{{ Storage::url($asset->metadata['path']) }}" target="_blank" class="child icon" >
             {{ $asset->name }}
         </a>
     </li>
 @endforeach
 @foreach ($model->entity->pinnedAliases as $asset)
-    <li class="list-group-item pinned-asset" data-asset="{{ \Illuminate\Support\Str::slug($asset->name) }}" data-target="{{ $asset->id }}">
+    <li class="pinned-asset mb-2" data-asset="{{ \Illuminate\Support\Str::slug($asset->name) }}" data-target="{{ $asset->id }}">
         <strong>
             {{ __('entities/assets.actions.alias') }}
         </strong>

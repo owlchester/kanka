@@ -242,16 +242,6 @@ hr {
   background-color: var(--tab-background) !important;
 }
 
-.list-group-item {
-  border-color: var(--list-group-item-border);
-  color: var(--header-text);
-  background: var(--list-group-item-background);
-}
-.list-group-unbordered {
-  .list-group-item {
-    background: var(--list-group-item-background);
-  }
-}
 .nav-tabs-custom > .nav-tabs > li.active > a {
   border-color: var(--tab-active-border);
 }

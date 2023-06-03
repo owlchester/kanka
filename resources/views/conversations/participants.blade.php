@@ -14,30 +14,30 @@
         <h4>{{ __('conversations.participants.modal', ['name' => $model->name]) }}</h4>
     </div>
     <div class="modal-body">
-        <ul class="list-group list-group-unbordered mb-5">
+        <div class="mb-5">
             @foreach ($model->participants as $participant)
                 @if ($participant->isMember() || (auth()->check() && auth()->user()->can('view', $participant->entity())))
-                <li class="list-group-item">
                     @can('update', $model)
-                        {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $model, $participant], 'style'=>'display:inline']) !!}
+                        {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $model, $participant], 'class'=>'flex gap-2 mb-2']) !!}
                     @endcan
 
+                    <div class="grow">
                     @if ($participant->isMember())
                         {{ $participant->entity()->name }}
                     @else
                         <a href="{{ route('characters.show', $participant->entity()) }}">{{ $participant->entity()->name }}</a>
                     @endif
+                    </div>
 
                     @can('update', $model)
-                        <button class="btn btn-xs btn-danger pull-right">
+                        <button class="text-danger">
                             <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
                         </button>
                         {!! Form::close() !!}
                     @endcan
-                </li>
                 @endif
             @endforeach
-        </ul>
+        </div>
 
         @can('update', $model)
             @include('partials.errors')

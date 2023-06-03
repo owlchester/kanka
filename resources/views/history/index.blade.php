@@ -50,11 +50,11 @@
         @foreach ($models as $log)
             @if ($log->action < 7 || $log->post)
                 @if ($log->day() !== $previous)
-                    @if ($previous !== null) </ul> @endif
-                    <div class="{{ !$superboosted ? 'blur' : null }} font-bold">{{ $log->created_at->format('M d, Y') }}</div>
-                    <ul class="list-group">
+                    @if ($previous !== null) </div> @endif
+                    <div class="{{ !$superboosted ? 'blur' : null }} font-bold mb-2">{{ $log->created_at->format('M d, Y') }}</div>
+                    <div class="rounded bg-box mb-5 border border-b-0 ">
                 @endif
-                <li class="list-group-item {{ !$superboosted ? 'blur' : null }}">
+                <div class="p-2 border-solid border-b {{ !$superboosted ? 'blur' : null }}">
                     <div class="flex justify-center items-center gap-2">
                         <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
                             <i class="fa-solid {{ $log->actionIcon() }}" aria-hidden="true"></i>
@@ -116,11 +116,11 @@
                         @endforeach
                     </div>
                     @endif
-                </li>
+                </div>
                 @php $previous = $log->day(); @endphp
             @endif
         @endforeach
-        </ul>
+        </div>
     @else
         <x-alert type="warning">
             {{ __('history.filters.no-results') }}

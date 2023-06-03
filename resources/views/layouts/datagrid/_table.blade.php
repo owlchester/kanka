@@ -1,8 +1,8 @@
 @if (!empty($datagridUrl))
-    <div class="box-body text-center datagrid-onload" href="{{ $datagridUrl }}">
+    <x-box css="text-center datagrid-onload" href="{{ $datagridUrl }}">
         <table class="table table-hover" data-render="datagrid2"></table>
-        <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
-    </div>
+        <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+    </x-box>
 <?php return; ?>
 @endif
 

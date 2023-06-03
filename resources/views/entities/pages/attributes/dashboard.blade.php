@@ -15,11 +15,9 @@
 @section('content')
 
     <div class="entity-main-block">
-        <div class="box box-solid box-entity-attributes">
-            <div class="box-body">
-                @include('entities.pages.attributes.render')
-            </div>
-        </div>
+        <x-box css="box-entity-attributes">
+            @include('entities.pages.attributes.render')
+        </x-box>
     </div>
 @endsection
 

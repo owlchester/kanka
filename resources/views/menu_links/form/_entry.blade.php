@@ -137,52 +137,44 @@ if (isset($model)) {
 <h4>{{ __('menu_links.fields.selector') }}</h4>
 <p class="help-block">{{ __('menu_links.helpers.selector') }}</p>
 
-<div class="box box-solid">
-    <div class="box-body">
-        <div class="menu-link-selector" id="quick-link-selector">
-            <a class="btn btn-app @if($isEntity) btn-active @endif" data-type="entity">
-                <x-icon class="ra ra-tower"></x-icon>
-                {{ __('menu_links.fields.entity') }}
-                <span class="badge rounded-full text-xs px-1 py-0.5 bg-blue">
-                    <i class="fa-solid fa-check"></i>
-                </span>
-            </a>
-            <a class="btn btn-app @if($isList) btn-active @endif" data-type="list">
-                <x-icon class="fa-solid fa-th-list"></x-icon>
-                {{ __('crud.fields.type') }}
-                <span class="badge rounded-full text-xs px-1 py-0.5 bg-blue">
-                    <i class="fa-solid fa-check"></i>
-                </span>
-            </a>
-            <a class="btn btn-app @if($isRandom) btn-active @endif" data-type="random">
-                <x-icon class="fa-solid fa-question"></x-icon>
-                {{ __('menu_links.fields.random') }}
-                <span class="badge rounded-full text-xs px-1 py-0.5 bg-blue">
-                    <i class="fa-solid fa-check"></i>
-                </span>
-            </a>
-            <a class="btn btn-app @if($isDashboard) btn-active @endif" data-type="dashboard">
-                <x-icon class="fa-solid fa-th-large"></x-icon>
-                {{ __('menu_links.fields.dashboard') }}
-                <span class="badge rounded-full text-xs px-1 py-0.5 bg-blue">
-                    <i class="fa-solid fa-check"></i>
-                </span>
-            </a>
-        </div>
-        <div class="quick-link-subform" id="quick-link-entity" @if($isEntity) @else style="display: none" @endif>
-            @include('menu_links.form._entity')
-        </div>
-        <div class="quick-link-subform" id="quick-link-list" @if($isList) @else style="display: none" @endif>
-            @include('menu_links.form._type')
-        </div>
-        <div class="quick-link-subform" id="quick-link-random" @if($isRandom) @else style="display: none" @endif>
-            @include('menu_links.form._random')
-        </div>
-        <div class="quick-link-subform" id="quick-link-dashboard" @if($isDashboard) @else style="display: none" @endif>
-            @include('menu_links.form._dashboard')
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label>{{ __('menu_links.fields.target') }}</label>
+            <select name="type" class="form-control" id="quick-link-selector">
+                <option value="">Choose an option</option>
+                <option value="entity" @if($isEntity) selected="selected" @endif data-target="#quick-link-entity">
+                    {{ __('menu_links.fields.entity') }}
+                </option>
+                <option value="type" @if($isList) selected="selected" @endif data-target="#quick-link-list">
+                    {{ __('crud.fields.type') }}
+                </option>
+                <option value="random" @if($isRandom) selected="selected" @endif data-target="#quick-link-random">
+                    {{ __('menu_links.fields.random') }}
+                </option>
+                <option value="dashboard" @if($isDashboard) selected="selected" @endif data-target="#quick-link-dashboard">
+                    {{ __('menu_links.fields.dashboard') }}
+                </option>
+            </select>
         </div>
     </div>
 </div>
+<div>
+    <div class="quick-link-subform" id="quick-link-entity" @if($isEntity) @else style="display: none" @endif>
+        @include('menu_links.form._entity')
+    </div>
+    <div class="quick-link-subform" id="quick-link-list" @if($isList) @else style="display: none" @endif>
+        @include('menu_links.form._type')
+    </div>
+    <div class="quick-link-subform" id="quick-link-random" @if($isRandom) @else style="display: none" @endif>
+        @include('menu_links.form._random')
+    </div>
+    <div class="quick-link-subform" id="quick-link-dashboard" @if($isDashboard) @else style="display: none" @endif>
+        @include('menu_links.form._dashboard')
+    </div>
+</div>
 
+<hr />
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
 

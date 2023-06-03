@@ -16,24 +16,14 @@
 
     {!! Form::model($entity->child, ['route' => ['entities.entry.update', $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form', 'data-maintenance' => 1, 'data-unload' => 1,]) !!}
 
-    <div class="box box-solid">
-        @if (request()->ajax())
-            <div class="box-header">
-                <x-dialog.close />
-                <h4>
-                    {{ __('entities/entry.update.title', ['name' => $entity->name]) }}
-                </h4>
-            </div>
-        @endif
-        <div class="box-body">
-            @include('partials.errors')
+        @include('partials.errors')
 
 
-            <div class="form-group">
-                {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
-            </div>
+        <div class="form-group">
+            {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
         </div>
-        <div class="box-footer">
+
+        <div class="">
             <div class="pull-right">
                 <button class="btn btn-success" id="form-submit-main">{{ __('crud.update') }}</button>
             </div>
@@ -41,7 +31,6 @@
                 {{ __('crud.cancel') }}
             </a>
         </div>
-    </div>
 
     {!! Form::close() !!}
 
