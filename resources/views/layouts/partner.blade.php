@@ -29,17 +29,13 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header mb-5">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>
-                            {{ $title ?? "Page Title" }}
-                            <small>{{ $description ?? null }}</small>
-                            @if (!empty($headerExtra))
-                                {!! $headerExtra !!}
-                            @endif
-                        </h1>
-                    </div>
-                </div>
+                <h1>
+                    {{ $title ?? "Page Title" }}
+                    <small>{{ $description ?? null }}</small>
+                    @if (!empty($headerExtra))
+                        {!! $headerExtra !!}
+                    @endif
+                </h1>
                 <ol class="breadcrumb">
                     @if (isset($breadcrumbs))
                     @foreach ($breadcrumbs as $breadcrumb)

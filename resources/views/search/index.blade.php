@@ -22,13 +22,13 @@
             </x-box>
     {!! Form::close() !!}
 
-    <div class="row">
+    <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
         @forelse ($results as $element => $values)
             @if (!empty($values) && count($values) > 0)
                 @if ($element == 'characters')
-                    <div class="col-md-12">
+                    <div class="grid-col-2">
                 @else
-                    <div class="col-md-6">
+                    <div class="">
                 @endif
                     <h3 class="">
                         {{ __('entities.' . $element) }}

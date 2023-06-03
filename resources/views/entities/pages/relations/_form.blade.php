@@ -24,34 +24,29 @@
 </div>
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>
-                    {!! Form::checkbox('two_way') !!}
-                    {{ __('entities/relations.fields.two_way') }}
-                    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.two_way') }}" data-toggle="tooltip"></i>
-                </label>
-                <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.two_way') }}</p>
-            </div>
+    <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
+
+        <div class="form-group mb-0">
+            <label>
+                {!! Form::checkbox('two_way') !!}
+                {{ __('entities/relations.fields.two_way') }}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.two_way') }}" data-toggle="tooltip"></i>
+            </label>
+            <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.two_way') }}</p>
         </div>
-        <div class="col-md-6">
-            <div class="form-group" style="display:none" id="two-way-relation">
-                <label>
-                    {!! __('entities/relations.fields.target_relation') !!}
-                    <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.target_relation') }}" data-toggle="tooltip"></i>
-                </label>
-                {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
-                <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.target_relation') }}</p>
-            </div>
+        <div class="form-group mb-0" style="display:none" id="two-way-relation">
+            <label>
+                {!! __('entities/relations.fields.target_relation') !!}
+                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.target_relation') }}" data-toggle="tooltip"></i>
+            </label>
+            {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
+            <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.target_relation') }}</p>
         </div>
     </div>
 @endif
 
-<div class="row">
-    <div class="col-md-6">
-        @include('cruds.fields.pinned', ['model' => $relation ?? null])
-    </div>
+<div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
+    @include('cruds.fields.pinned', ['model' => $relation ?? null])
 </div>
 
 @if (!empty($relation) && !empty($relation->isMirrored()))

@@ -19,13 +19,9 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="form-group">
-            <label>{{ __('calendars.fields.comment') }}</label>
-            {!! Form::text('comment', null, ['placeholder' => __('calendars.placeholders.comment'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
-    </div>
+<div class="form-group">
+    <label>{{ __('calendars.fields.comment') }}</label>
+    {!! Form::text('comment', null, ['placeholder' => __('calendars.placeholders.comment'), 'class' => 'form-control', 'maxlength' => 191]) !!}
 </div>
 <div class="row">
     <div class="col-md-6">

@@ -18,17 +18,13 @@ if (!empty($era)) {
 </div>
 
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>{{ __('crud.fields.name') }}</label>
-            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('timelines/elements.placeholders.name')]) !!}
-        </div>
+<div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
+    <div class="form-group mb-0">
+        <label>{{ __('crud.fields.name') }}</label>
+        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('timelines/elements.placeholders.name')]) !!}
     </div>
 
-    <div class="col-md-6">
-        @include('cruds.fields.entity')
-    </div>
+    @include('cruds.fields.entity')
 </div>
 
 
@@ -43,8 +39,8 @@ if (!empty($era)) {
     </label>
 </div>
 
-<div class="row">
-    <div class="col-md-6">
+<div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
+    <div>
         <div class="form-group">
             <label>{{ __('timelines/elements.fields.date') }}</label>
             {!! Form::text('date', null, ['placeholder' => __('timelines/elements.placeholders.date'), 'class' => 'form-control', 'maxlength' => 45]) !!}
@@ -58,7 +54,7 @@ if (!empty($era)) {
             </label>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="">
         <div class="form-group">
             <label>{{ __('crud.fields.position') }}</label>
             {!! Form::select('position', $positions, (!empty($model->position) ? -9999 : $oldPosition), ['class' => 'form-control', 'name' => 'position']) !!}
@@ -67,14 +63,12 @@ if (!empty($era)) {
 
 </div>
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>{{ __('crud.fields.colour') }}</label>
-            {!! Form::select('colour', FormCopy::colours(false), (!empty($model) ? null : 'grey'), ['class' => 'form-control select2-colour']) !!}
-        </div>
+<div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
+    <div class="form-group mb-0">
+        <label>{{ __('crud.fields.colour') }}</label>
+        {!! Form::select('colour', FormCopy::colours(false), (!empty($model) ? null : 'grey'), ['class' => 'form-control select2-colour']) !!}
     </div>
-    <div class="col-md-6">
+    <div>
         <div class="form-group">
             <label>{{ __('timelines/elements.fields.icon') }}</label>
             {!! Form::text(
@@ -115,19 +109,16 @@ if (!empty($era)) {
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-6">
-        @include('cruds.fields.visibility_id')
-    </div>
-    <div class="col-md-6">
-        <div class="form-group checkbox">
-            <label>
-                {!! Form::hidden('is_collapsed', 0) !!}
-                {!! Form::checkbox('is_collapsed', 1) !!}
-                {{ __('timelines/eras.fields.is_collapsed') }}
-            </label>
-            <p class="help-block">{{ __('timelines/elements.helpers.is_collapsed') }}</p>
-        </div>
+<div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
+    @include('cruds.fields.visibility_id')
+
+    <div class="form-group checkbox mb-0">
+        <label>
+            {!! Form::hidden('is_collapsed', 0) !!}
+            {!! Form::checkbox('is_collapsed', 1) !!}
+            {{ __('timelines/eras.fields.is_collapsed') }}
+        </label>
+        <p class="help-block">{{ __('timelines/elements.helpers.is_collapsed') }}</p>
     </div>
 </div>
 
