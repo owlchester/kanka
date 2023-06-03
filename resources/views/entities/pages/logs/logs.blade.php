@@ -18,7 +18,7 @@
         </div>
     @endif
     <div class="pagination-ajax-body">
-        <div class="modal-body no-padding">
+        <div class="modal-body !p-0">
             <div class="loading text-center" style="display: none">
                 <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
             </div>

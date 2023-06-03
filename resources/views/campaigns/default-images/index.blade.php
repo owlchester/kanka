@@ -54,10 +54,10 @@
                                 <td class="w-16">
                                     <div class="entity-image cover-background" style="background-image: url({{ Img::crop(40, 40)->url($image['path']) }})"></div>
                                 </td>
-                                <td>
+                                <td class="!align-middle">
                                     {!! \App\Facades\Module::singular($image['type'], __('entities.' . $image['type'])) !!}
                                 </td>
-                                <td class="text-right">
+                                <td class="!align-middle text-right">
                                     <button class="btn btn-sm btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('entities.' . $image['type']) }}"
                                             data-target="#delete-confirm" data-delete-target="delete-form-{{ $image['uuid'] }}"
                                             title="{{ __('crud.remove') }}">

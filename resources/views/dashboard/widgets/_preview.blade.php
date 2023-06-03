@@ -51,7 +51,7 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
 
         </h3>
     </div>
-    <div class="panel-body @if ($widget->conf('full') === '2') no-padding @endif ">
+    <div class="panel-body @if ($widget->conf('full') === '2') !p-0 @endif ">
         @if ($widget->conf('full') === '1')
             <div class="entity-content">
             {!! $model->entry() !!}

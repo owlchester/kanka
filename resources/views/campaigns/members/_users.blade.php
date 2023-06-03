@@ -37,12 +37,12 @@
             </thead>
             <tbody>
             @foreach ($users as $relation)
-                <tr>
+                <tr class="">
                     <td class="w-14">
                         <div class="entity-image pull-left" style="background-image: url({{ $relation->user->getAvatarUrl() }})" title="{{ $relation->user->name }}">
                         </div>
                     </td>
-                    <td class=" max-w-30">
+                    <td class=" max-w-30 !align-middle">
                         <a class="block break-all truncate" href="{{ route('users.profile', $relation->user_id) }}" target="_blank">
                             {{ $relation->user->name }}
                         </a>
@@ -50,7 +50,7 @@
                             <i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" title = "{{ __('campaigns.members.fields.banned') }}"></i>
                         @endif
                     </td>
-                    <td>
+                    <td class="!align-middle">
                         {!! $relation->user->rolesList($campaign->id) !!}
                         @can('update', $relation)
                             <i role="button" tabindex="0" class="fa-solid fa-plus-circle cursor-pointer btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
@@ -71,17 +71,17 @@
 "></i>
                         @endcan
                     </td>
-                    <td class="hidden-xs hidden-md">
+                    <td class="!align-middle hidden-xs hidden-md">
                         @if (!empty($relation->created_at))
                             <span title="{{ $relation->created_at }} UTC" data-toggle="tooltip">{{ $relation->created_at->diffForHumans() }}</span>
                         @endif
                     </td>
-                    <td class="hidden-xs hidden-md">
+                    <td class="!align-middle hidden-xs hidden-md">
                         @if ($relation->user->has_last_login_sharing && !empty($relation->user->last_login_at))
                             <span title="{{ $relation->user->last_login_at }} UTC" data-toggle="tooltip">{{ $relation->user->last_login_at->diffForHumans() }}</span>
                         @endif
                     </td>
-                    <td class="text-right">
+                    <td class="!align-middle text-right">
                         @if(auth()->user()->can('switch', $relation) || auth()->user()->can('delete', $relation))
                             <div class="dropdown">
                                 <a class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">

@@ -10,7 +10,7 @@ $actions = [
     <x-dialog.close />
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.permissions.title') }}</h4>
 </div>
-<div class="modal-body no-padding">
+<div class="modal-body !p-0">
     <table id="crud_permissions" class="table table-hover">
         <tbody>
         <tr>
