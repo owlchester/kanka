@@ -13,5 +13,4 @@ return [
         'app' => 'https://' . env('AWS_BUCKET_APP') . '.s3.eu-central-1.amazonaws.com/',
     ],
     'url' => env('THUMBOR_URL', 'http://localhost:8888/'),
-    'url-new' => env('THUMBOR_URL_NEW')
 ];
