@@ -174,6 +174,10 @@ class CampaignController extends Controller
                 unset($data['ui_settings'][$key]);
             }
         }
+        // Same mumbo jumbo for module settings...
+        if (!empty($campaign->settings['modules'])) {
+            $data['settings']['modules'] = $campaign->settings['modules'];
+        }
 
         $campaign->update($data);
 
