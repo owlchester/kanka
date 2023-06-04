@@ -154,7 +154,7 @@ class ImgService
         }
         $thumborUrl = $this->crop . $filter . $img;
         $sign = $this->sign($thumborUrl);
-        return config('thumbor.url-new') . $sign . '/' . $this->crop . $filter
+        return config('thumbor.url') . $sign . '/' . $this->crop . $filter
             . $img
         ;
 
