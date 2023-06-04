@@ -168,7 +168,7 @@ if (isset($model) && $model->isChunked()) {
             <p class="help-block">
                 {{ __('maps.helpers.centering') }}
             </p>
-            <ul class="nav nav-tabs">
+            <ul class="nav-tabs tabs-boxed">
                 <li class="active"><a data-toggle="tab" href="#coordinates">{{ __('maps.fields.tabs.coordinates') }}</a>
                 </li>
                 <li class="{{ (isset($model) && !empty($model))? '' : 'disabled cursor-' }}">

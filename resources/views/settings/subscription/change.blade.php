@@ -43,7 +43,7 @@
         @endif
         <div class="card" style="margin: 0">
 
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav-tabs tabs-boxed" role="tablist">
                 @if (! $limited)
                 <li role="presentation" class="active">
                     <a href="#card" aria-controls="home" role="tab" data-toggle="tab">
