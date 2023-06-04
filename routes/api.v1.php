@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -65,33 +63,36 @@ Route::apiResources([
     'campaigns.images' => 'CampaignImageApiController',
 ]);
 
-Route::post('campaigns/{campaign}/entities/{entity}/image', 'EntityImageApiController@put');
-Route::delete('campaigns/{campaign}/entities/{entity}/image', 'EntityImageApiController@destroy');
-Route::get('campaigns/{campaign}/relations', 'RelationApiController@index');
-Route::get('campaigns/{campaign}/search/{query}', 'SearchApiController@index');
-Route::get('profile', 'ProfileApiController@index');
+Route::post('campaigns/{campaign}/entities/{entity}/image', [\App\Http\Controllers\Api\v1\EntityImageApiController::class, 'put']);
+Route::delete('campaigns/{campaign}/entities/{entity}/image', [\App\Http\Controllers\Api\v1\EntityImageApiController::class, 'destroy']);
 Route::get('campaigns/{campaign}/roles', 'CampaignRoleApiController@index');
 
-Route::get('campaigns/{campaign}/entities/templates', 'EntityTemplateApiController@index');
-Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', 'EntityTemplateApiController@switch');
+Route::get('campaigns/{campaign}/relations', [\App\Http\Controllers\Api\v1\RelationApiController::class, 'index']);
+Route::get('campaigns/{campaign}/search/{query}', [\App\Http\Controllers\Api\v1\SearchApiController::class, 'index']);
 
-Route::get('campaigns/{campaign}/entities', 'EntityApiController@index');
-Route::get('campaigns/{campaign}/entities/{entity}', 'EntityApiController@show');
-Route::get('campaigns/{campaign}/entities/{entity}/mentions', 'EntityMentionApiController@index');
+Route::get('campaigns/{campaign}/entities/templates', [\App\Http\Controllers\Api\v1\EntityTemplateApiController::class, 'index']);
+Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', [\App\Http\Controllers\Api\v1\EntityTemplateApiController::class, 'switch']);
 
+Route::get('campaigns/{campaign}/entities', [\App\Http\Controllers\Api\v1\EntityApiController::class, 'index']);
+Route::get('campaigns/{campaign}/entities/{entity}', [\App\Http\Controllers\Api\v1\EntityApiController::class, 'show']);
+Route::get('campaigns/{campaign}/entities/{entity}/mentions', [\App\Http\Controllers\Api\v1\EntityMentionApiController::class, 'index']);
 
 Route::get('campaigns/{campaign}/users', 'Campaign\UserApiController@index');
 Route::get('campaigns/{campaign}/users/{user}', 'Campaign\UserApiController@show');
 Route::post('campaigns/{campaign}/users', 'Campaign\UserApiController@add');
 Route::delete('campaigns/{campaign}/users', 'Campaign\UserApiController@remove');
 
-Route::post('campaigns/{campaign}/permissions/test', 'EntityPermissionApiController@test');
+Route::get('campaigns/{campaign}/users', [\App\Http\Controllers\Api\v1\Campaign\UserApiController::class, 'index']);
+Route::get('campaigns/{campaign}/users/{user}', [\App\Http\Controllers\Api\v1\Campaign\UserApiController::class, 'show']);
+Route::post('campaigns/{campaign}/users', [\App\Http\Controllers\Api\v1\Campaign\UserApiController::class, 'add']);
+Route::delete('campaigns/{campaign}/users', [\App\Http\Controllers\Api\v1\Campaign\UserApiController::class, 'remove']);
 
-Route::get('campaigns/{campaign}/calendars/{calendar}/reminders', 'CalendarEventApiController@index');
+Route::post('campaigns/{campaign}/permissions/test', [\App\Http\Controllers\Api\v1\EntityPermissionApiController::class, 'test']);
 
-Route::get('entity-types', 'EntityTypeApiController@index');
+Route::get('campaigns/{campaign}/calendars/{calendar}/reminders', [\App\Http\Controllers\Api\v1\CalendarEventApiController::class, 'index']);
 
-Route::get('visibilities', 'VisibilityController@index');
+Route::get('entity-types', [\App\Http\Controllers\Api\v1\EntitytypeApiController::class, 'index']);
+Route::get('visibilities', [\App\Http\Controllers\Api\v1\VisibilityController::class, 'index']);
+
+Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
 Route::get('version', function() { return config('app.version'); });
-
-//Route::get('campaigns/{campaign}/settings', 'CampaignSettingApiController@index');
