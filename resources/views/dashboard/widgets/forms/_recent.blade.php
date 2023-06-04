@@ -7,7 +7,7 @@ $advancedFilters = [
 $boosted = $campaignService->campaign()->boosted()
 @endphp
 <div class="nav-tabs-custom">
-    <ul class="nav nav-tabs">
+    <ul class="nav-tabs tabs-boxed">
         <li class="active">
             <a data-toggle="tab" href="#setup">
                 {{ __('dashboard.widgets.tabs.setup') }}

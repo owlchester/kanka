@@ -33,14 +33,6 @@
 
     --sidebar-background: var(--theme-background);
 
-    --tab-color: var(--theme-main-text);
-    --tab-background: var(--theme-background);
-    --tab-hover-color: var(--theme-hard-text);
-    --tab-hover-background: var(--theme-background);
-    --tab-active-color: var(--theme-hard-text);
-    --tab-active-background: var(--theme-background);
-    --tab-active-border: transparent;
-
     --input-background-color: var(--theme-detail);
     --input-border-color: var(--theme-soft);
     --input-text-color: var(--theme-input-text);
@@ -145,6 +137,29 @@
     --mention-text: var(--body-text);
     --mention-background: var(--theme-border);
 
+    --pf: 262 80% 43%;
+    --sf: 316 70% 43%;
+    --af: 175 70% 34%;
+    --in: 198 93% 60%;
+    --su: 158 64% 52%;
+    --wa: 43 96% 56%;
+    --er: 0 91% 71%;
+    --inc: 198 100% 12%;
+    --suc: 158 100% 10%;
+    --wac: 43 100% 11%;
+    --erc: 0 100% 14%;
+    --p: 262 80% 50%;
+    --pc: 0 0% 100%;
+    --s: 316 70% 50%;
+    --sc: 0 0% 100%;
+    --a: 175 70% 41%;
+    --ac: 0 0% 100%;
+    --n: 213 18% 20%;
+    --nf: 212 17% 17%;
+    --nc: 220 13% 69%;
+    --b1: 0 0% 12%;
+    --b2: 213 18% 12%;
+    --b3: 213 18% 10%;
     --bc: 220 13% 69%;
 }
 

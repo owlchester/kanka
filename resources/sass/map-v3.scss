@@ -281,8 +281,8 @@ body.map-drawing-mode {
 
 
 .marker-preset-list .preset {
-    border: 1px solid var(--tab-background);
-    background-color: var(--tab-background);
+    border: 1px solid var(--bc);
+    background-color: var(--bc);
     &:hover {
         border: 1px solid var(--tab-hover-background);
     }

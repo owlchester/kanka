@@ -24,14 +24,6 @@
     --submenu-hover-background: #f7f7f7;
     --submenu-link: inherit;
 
-    --tab-color: #444;
-    --tab-background: #f5f8fa;
-    --tab-hover-color: #999;
-    --tab-hover-background: #f5f8fa;
-    --tab-active-color: #444;
-    --tab-active-background: #fff;
-    --tab-content-background: var(--modal-background);
-    --tab-active-border: #f4f4f4;
     --list-group-item-border: #d3e0e9;
     --list-group-item-background: #fff;
 
@@ -48,7 +40,7 @@
     --color-accent: var(--link-text);
     --n: 214 20% 21%;
 
-    /** standard background **/
+    /** Standard background **/
     --b1: 0 0% 100%;
     --b2: 0 0% 95%;
     --bc: 215 28% 17%;
@@ -61,6 +53,21 @@
     --p: 229 96% 64%;
     --pc: 243 100% 94%;
 
+    /** Success **/
+    --sc: 210 20% 98%;
+    --su: 158 64% 72%;
+
+    /** Warning **/
+    --wac: 43 100% 11%;
+    --wa: 43 96% 82%;
+
+    /** Error **/
+    --er: 0 91% 81%;
+    --erc: 0 100% 14%;
+
+    /** Info **/
+    --inc: 198 100% 12%;
+    --in: 198 93% 90%;
 }
 
 body {
@@ -223,7 +230,7 @@ hr {
 .nav-tabs-custom, .nav-tabs, {
   background: none;
   .tab-content {
-    background: var(--tab-content-background);
+    background: hsl(var(--b1)/var(--tw-background-opacity, 1));
   }
 }
 .nav-tabs {
@@ -244,7 +251,7 @@ hr {
 }
 
 // All the tab stuff
-.nav-tabs > li:hover > a, .nav-tabs > li.active:hover > a {
+/*.nav-tabs > li:hover > a, .nav-tabs > li.active:hover > a {
   color: var(--tab-hover-color) !important;
   background-color: var(--tab-hover-background) !important;
 }
@@ -252,14 +259,10 @@ hr {
   color: var(--tab-active-color) !important;
   background-color: var(--tab-active-background) !important;
 }
-.nav-tabs > li > a {
-  color: var(--tab-color) !important;
-  background-color: var(--tab-background) !important;
-}
 
 .nav-tabs-custom > .nav-tabs > li.active > a {
   border-color: var(--tab-active-border);
-}
+}*/
 
 
 .help-block {
@@ -304,22 +307,6 @@ body .main-header .navbar .nav > li > a, body .main-header .navbar .nav > .activ
 body .main-header .navbar .nav .open > a, body .main-header .navbar .nav > .active > a,
 body .main-header .navbar .nav .open > a.active {
   background-color: var(--main-navbar-hover-background);
-}
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:hover, .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a {
-  border-bottom-color: var(--btn-default-background);
-  color: var(--main-navbar-text);
-  &:hover {
-    background-color: var(--main-navbar-hover-background);
-  }
-}
-
-.nav-tabs-custom > .nav-tabs > li.active:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a {
-  background-color: var(--navbar-tab-active-background);
-  color: var(--navbar-tab-active-text);
-}
-.nav-tabs-custom > .nav-tabs > li:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li.active:hover > a {
-  background-color: var(--navbar-tab-hover-background);
-  color: var(--navbar-tab-hover-text);
 }
 
 /** Buttons **/
@@ -484,5 +471,10 @@ body .main-header .navbar .nav .open > a.active {
 }
 .tooltip.bottom .tooltip-arrow {
     border-bottom-color: var(--tooltip-background, #111);
+}
+
+.bg-secondary-content {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--sc)/var(--tw-bg-opacity));
 }
 

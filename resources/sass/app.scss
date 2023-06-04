@@ -321,6 +321,7 @@ ul.entity-menu {
     }
 }
 
+@import "alerts";
 @import "buttons";
 @import "badge";
 @import "calendar";
@@ -342,6 +343,7 @@ ul.entity-menu {
 @import "attributes/attributes";
 @import "ab-testing";
 @import "toggle";
+@import "tabs";
 //@import "tw/tailwind";
 @import "dialog";
 @import "adminlte";

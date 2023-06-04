@@ -22,7 +22,7 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
     <div class="pull-right">
         @include('entities.pages.posts._save-options')
     </div>
-    <ul class="nav nav-tabs border-none overflow-hidden">
+    <ul class="nav-tabs">
         <li class="active">
             <a href="#form-entry" title="{{ __('crud.fields.entry') }}">
                 {{ __('crud.fields.entry') }}

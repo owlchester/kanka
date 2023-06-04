@@ -18,7 +18,7 @@
         <div class="pull-right">
             @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
         </div>
-        <ul class="nav nav-tabs border-none overflow-hidden">
+        <ul class="nav-tabs border-none overflow-hidden">
             <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                 <a href="#form-entry" title="{{ __('crud.fields.entry') }}">
                     {{ __('crud.fields.entry') }}

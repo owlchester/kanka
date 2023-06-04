@@ -33,7 +33,7 @@
         <div class="pull-right">
             @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form', 'cost' => 6])
         </div>
-        <ul class="nav nav-tabs border-none overflow-hidden" role="tablist">
+        <ul class="nav-tabs border-none overflow-hidden" role="tablist">
             <li role="presentation" class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                 <a href="#form-entry" title="{{ __('crud.fields.entry') }}" role="tab" aria-controls="form-entry">
                     {{ __('crud.fields.entry') }}
@@ -56,7 +56,7 @@
             @if ($tabAttributes)
                 <li role="presentation"  class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
                     <a href="#form-attributes" title="{{ __('crud.tabs.attributes') }}" role="tab" aria-controls="form-attributes">
-                        <i class="fa-solid fa-th-list" aria-hidden="true" title="{{ __('crud.tabs.attributes') }}"></i>
+                        <x-icon class="fa-solid fa-th-list"></x-icon>
                         <span class="hidden-xs hidden-sm">{{ __('crud.tabs.attributes') }}</span>
                     </a>
                 </li>
@@ -64,7 +64,7 @@
             @if ($tabPermissions)
             <li role="presentation"  class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
                 <a href="#form-permissions" title="{{ __('crud.tabs.permissions') }}" role="tab" aria-controls="form-permissions">
-                    <i class="fa-solid fa-cog" aria-hidden="true" title="{{ __('crud.tabs.permissions') }}"></i>
+                    <x-icon class="fa-solid fa-cog"></x-icon>
                     <span class="hidden-xs hidden-sm">{{ __('crud.tabs.permissions') }}</span>
                 </a>
             </li>

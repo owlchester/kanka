@@ -6,35 +6,30 @@
     </div>
 @endif
 
-<ul class="nav nav-tabs border-none overflow-hidden">
-    <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-        <a href="#form-entry" title="{{ __('crud.fields.entry') }}" data-toggle="tooltip">
+<ul class="nav-tabs border-none overflow-hidden">
+    <li role="presentation" class="{{ (request()->get('tab') == null ? ' active' : '') }}">
+        <a href="#form-entry">
             {{ __('crud.fields.entry') }}
         </a>
     </li>
-    <li>
-        <a href="#form-public" title="{{ __('campaigns.panels.sharing') }}"  data-toggle="tooltip">
+    <li role="presentation">
+        <a href="#form-public" >
             {{ __('campaigns.panels.sharing') }}
         </a>
     </li>
-    <li>
-        <a href="#form-ui" title="{{ __('campaigns.panels.ui') }}"  data-toggle="tooltip">
+    <li role="presentation">
+        <a href="#form-ui">
             {{ __('campaigns.panels.ui') }}
         </a>
     </li>
-    <li>
-        <a href="#form-permission" title="{{ __('campaigns.panels.permission') }}"  data-toggle="tooltip">
+    <li role="presentation">
+        <a href="#form-permission">
             {{ __('campaigns.panels.permission') }}
         </a>
     </li>
-    <li>
-        <a href="#form-dashboard" title="{{ __('campaigns.panels.dashboard') }}"  data-toggle="tooltip">
+    <li role="presentation">
+        <a href="#form-dashboard">
             {{ __('campaigns.panels.dashboard') }}
         </a>
     </li>
-{{--    <li>--}}
-{{--        <a href="#form-system" title="{{ __('campaigns.panels.systems') }}"  data-toggle="tooltip">--}}
-{{--            {{ __('campaigns.panels.systems') }}--}}
-{{--        </a>--}}
-{{--    </li>--}}
 </ul>
