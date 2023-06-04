@@ -37,8 +37,8 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
         @endif
 
         @if ($campaignService->campaign()->boosted())
-            <div class="mt-5">
-                <a class="btn btn-primary mr-2"
+            <div class="mt-5 flex items-center gap-2">
+                <a class="btn btn-primary"
                      data-toggle="ajax-modal"
                      data-target="#edit-widget"
                      data-url="{{ route('campaign_dashboards.create') }}"
