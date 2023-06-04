@@ -23,7 +23,8 @@ The following endpoint provides simple data about the current user.
         "date_format": "d.m.Y",
         "default_pagination": 15,
         "last_campaign_id": 1,
-        "is_patreon": true
+        "is_subscriber": true,
+        "rate_limit": 30
     }
 }
 ```
