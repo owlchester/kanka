@@ -1,6 +1,9 @@
 /**
  * Copied from old AdminLTE. Replacing this with tailwind will be a massive PITA.
  */
+:root {
+    --conversation-comment-background: #f7f7f7
+}
 .box {
     position: relative;
     border-radius: 3px;

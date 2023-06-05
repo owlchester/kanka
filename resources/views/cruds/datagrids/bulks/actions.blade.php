@@ -58,10 +58,10 @@ if (auth()->check() && auth()->user()->can('delete', $model)) {
 @if (!empty($dropdownActions))
 <div class="datagrid-bulk-actions inline-block">
     <div class="btn-group">
-        <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right">
+        <button class="dropdown-toggle btn2" data-toggle="dropdown" aria-expanded="false" data-placement="right">
             {{ __('crud.bulk.buttons.label') }}
             <span class="caret"></span>
-        </a>
+        </button>
         <ul class="dropdown-menu" role="menu">
             @foreach ($dropdownActions as $dropdownAction)
                 @if ($dropdownAction === 'divider')

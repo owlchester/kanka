@@ -9,9 +9,9 @@
                 <input type="hidden" name="weekday" />
             </div>
             <div>
-                <a class="btn btn-default btn-sm dynamic-row-add" data-template="template_weekday" data-target="calendar-weekdays" href="#" title="{{ __('calendars.actions.add_weekday') }}">
+                <button class="btn2 btn-sm dynamic-row-add" data-template="template_weekday" data-target="calendar-weekdays" title="{{ __('calendars.actions.add_weekday') }}">
                     <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_weekday') }}
-                </a>
+                </button>
             </div>
         </div>
 
@@ -39,7 +39,7 @@
                         <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
                         {!! Form::text('weekday[]', $weekday, ['class' => 'form-control']) !!}
                         <span class="input-group-btn">
-                            <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
+                            <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                                 <x-icon class="trash"></x-icon>
                                 <span class="sr-only">{{ __('crud.remove') }}</span>
                             </span>
@@ -56,9 +56,9 @@
                 <p class="help-block">{{ __('calendars.hints.weeks') }}</p>
             </div>
             <div>
-                <a class="btn btn-default btn-sm dynamic-row-add" data-template="template_week" data-target="calendar-weeks" href="#" title="{{ __('calendars.actions.add_week') }}">
+                <button class="btn2 btn-sm btn-sm dynamic-row-add" data-template="template_week" data-target="calendar-weeks" title="{{ __('calendars.actions.add_week') }}">
                     <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_week') }}
-                </a>
+                </button>
             </div>
         </div>
         <x-grid type="3/4">
@@ -97,7 +97,7 @@
                             <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
                             {!! Form::text('week_name[]', $name, ['class' => 'form-control']) !!}
                             <span class="input-group-btn">
-                                <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                                <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
                                     <x-icon class="trash"></x-icon>
                                     <span class="sr-only">{{ __('crud.remove') }}</span>
                                 </span>
@@ -121,7 +121,7 @@
                 <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
                 {!! Form::text('weekday[]', null, ['class' => 'form-control', 'aria-label' => __('calendars.parameters.weeks.name')]) !!}
                 <span class="input-group-btn">
-                    <span href="#" class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}">
+                    <span href="#" class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                         <x-icon class="trash"></x-icon>
                     </span>
                 </span>
@@ -143,7 +143,7 @@
                     <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
                     {!! Form::text('week_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.weeks.name')]) !!}
                     <span class="input-group-btn">
-                        <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                        <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
                             <x-icon class="trash"></x-icon>
                         </span>
                     </span>

@@ -19,7 +19,7 @@ if ($firstPost && $firstPost->position >= 0) {
     'route' => ['entities.story.reorder-save', $entity],
     'method' => 'POST',
 ]) !!}
-<x-box css="box-entity-story-reorder">
+<div class="box-entity-story-reorder max-w-4xl">
     <div class="element-live-reorder sortable-elements">
         @includeWhen($startWithStory, 'entities.pages.story.reorder._story')
 
@@ -78,9 +78,9 @@ elseif ($note->visibility_id === \App\Models\Visibility::VISIBILITY_SELF && $not
         @endforeach
         @includeWhen(!$hasEntry, 'entities.pages.story.reorder._story')
     </div>
-    <button class="btn btn-primary btn-block">
+    <button class="btn2 btn-primary btn-block">
         {{ __('entities/story.reorder.save') }}
     </button>
-</x-box>
+</div>
 
 {!! Form::close() !!}

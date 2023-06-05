@@ -10,7 +10,7 @@
         'route' => ['timelines.reorder-save', $timeline],
         'method' => 'POST',
     ]) !!}
-<x-box css="max-w-4xl box-entity-story-reorder">
+<div class="max-w-4xl box-entity-story-reorder">
     <div class="element-live-reorder sortable-elements">
         @foreach($eras as $era)
             <div class="element" data-id="{{ $era->id }}">
@@ -48,8 +48,8 @@
         @endforeach
     </div>
 
-    <button class="btn btn-primary btn-block">
+    <button class="btn2 btn-primary btn-block">
         {{ __('crud.save') }}
     </button>
-</x-box>
+</div>
 {!! Form::close() !!}

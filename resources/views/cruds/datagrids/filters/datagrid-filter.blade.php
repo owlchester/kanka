@@ -95,7 +95,7 @@ $hasAttributeFilters = false;
                 <hr />
                 <div class="flex items-center gap-2 md:gap-5">
                     <div class="grow flex gap-2 items-center">
-                        <a href="#" class="flex-none btn2 btn-outline flex gap-2 items-center"
+                        <a href="#" class="flex-none btn2 btn-sm flex gap-2 items-center"
                            @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false" @else disabled @endif data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
                             <i class="fa-solid fa-clipboard" aria-hidden="true"></i>
                             <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
@@ -103,21 +103,20 @@ $hasAttributeFilters = false;
                         </a>
 
                         @if ($activeFilters > 0)
-                            <a href="{{ route($route, ['reset-filter' => 'true', 'm' => $mode]) }}" class="btn2 btn-error btn-outline">
+                            <a href="{{ route($route, ['reset-filter' => 'true', 'm' => $mode]) }}" class="btn2 btn-sm btn-error btn-outline">
                                 <x-icon class="fa-solid fa-eraser"></x-icon>
                                 {{ __('crud.filters.mobile.clear') }}
                             </a>
                         @endif
 
-                        <a class="" href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
-                            <x-icon class="question"></x-icon>
+                        <a class="btn2 btn-sm btn-link" href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
                             {{ __('helpers.filters.title') }}
                         </a>
 
 
                     </div>
 
-                    <button type="submit" class="btn2 btn-primary flex-none">
+                    <button type="submit" class="btn2 btn-primary btn-sm">
                         <x-icon class="fa-solid fa-filter"></x-icon>
                         {{ __('crud.filter') }}
                     </button>

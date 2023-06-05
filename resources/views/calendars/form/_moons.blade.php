@@ -59,7 +59,7 @@ if (!empty($moonNames)) {
                         <label class="sr-only">{{ __('calendars.parameters.moon.offset') }}</label>
                         {!! Form::number('moon_offset[]', $fullmoon['offset'], ['class' => 'form-control', 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
                         <span class="input-group-btn">
-                            <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                            <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
                                 <x-icon class="trash"></x-icon>
                             </span>
                         </span>
@@ -70,9 +70,9 @@ if (!empty($moonNames)) {
         {!! Form::hidden('moon_id[]', $fullmoon['id']) !!}
     @endforeach
 </div>
-<a class="btn btn-default dynamic-row-add" data-template="template_moon" data-target="calendar-moons" href="#" title="{{ __('calendars.actions.add_moon') }}">
+<button class="btn2 btn-sm  dynamic-row-add" data-template="template_moon" data-target="calendar-moons" title="{{ __('calendars.actions.add_moon') }}">
     <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_moon') }}
-</a>
+</button>
 
 @section('modals')
     @parent
@@ -99,7 +99,7 @@ if (!empty($moonNames)) {
                     <label class="sr-only">{{ __('calendars.parameters.moon.offset') }}</label>
                     {!! Form::number('moon_offset[]', 0, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.offset'), 'aria-label' => __('calendars.parameters.moon.offset')]) !!}
                     <span class="input-group-btn">
-                        <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                        <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
                             <x-icon class="trash"></x-icon>
                         </span>
                     </span>

@@ -101,7 +101,7 @@ $sizeOptions = [
                         </p>
                     @else
                         <div>
-                            <a href="#" id="start-drawing-polygon" class="btn btn-info" data-toast="{{ __('maps/explore.notifications.start-drawing') }}">
+                            <a href="#" id="start-drawing-polygon" class="btn2 btn-primary btn-sm" data-toast="{{ __('maps/explore.notifications.start-drawing') }}">
                                 <x-icon class="pencil"></x-icon>
                                 {{ __('maps/markers.actions.start-drawing') }}
                             </a>
@@ -157,7 +157,7 @@ $sizeOptions = [
             </div>
 
             @can('mapPresets', $campaignService->campaign())
-                <a href="{{ route('preset_types.presets.create', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}" class="btn btn-success">
+                <a href="{{ route('preset_types.presets.create', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}" class="btn2 btn-primary btn-sm">
                     {{ __('presets.actions.create') }}
                 </a>
             @endcan

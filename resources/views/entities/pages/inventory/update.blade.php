@@ -14,8 +14,12 @@
     @include('partials.forms.form', [
         'title' => __('entities/inventories.update.title', ['name' => $entity->name]),
         'content' => 'entities.pages.inventory._form',
+        'deleteID' => '#delete-inventory-' . $inventory->id
     ])
 
     {!! Form::hidden('entity_id', $entity->id) !!}
+    {!! Form::close() !!}
+
+    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.inventories.destroy', 'entity' => $entity, 'inventory' => $inventory], 'id' => 'delete-inventory-' . $inventory->id]) !!}
     {!! Form::close() !!}
 @endsection

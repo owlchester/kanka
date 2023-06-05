@@ -15,12 +15,7 @@
 
         @if (isset($deleteID) && !empty($deleteID))
             <div class="pull-left">
-                <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
-                   title="{{ __('crud.delete_modal.title') }}"
-                   data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                               <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='{{ $deleteID }}'>{{ __('crud.remove') }}</a>">
-                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-                </a>
+                <x-button.delete-confirm target="{{ $deleteID }}" />
             </div>
         @endif
     </div>

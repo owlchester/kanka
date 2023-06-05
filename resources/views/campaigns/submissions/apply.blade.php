@@ -33,12 +33,7 @@
         {!! Form::close() !!}
 
         @if($submission)
-            <a role="button" tabindex="0" class="text-red-500 btn-dynamic-delete float-left" data-toggle="popover"
-               title="{{ __('crud.delete_modal.title') }}"
-               data-content="
-                       <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-submission'>{{ __('crud.remove') }}</a>">
-                <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-            </a>
+            <x-button.delete-confirm target="#delete-submission" />
         @endif
     </div>
 

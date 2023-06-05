@@ -12,16 +12,16 @@
 
 @section('content')
     @can('update', $map)
-        <div class="map-actions absolute bottom-0 right-0 m-4">
-            <button class="btn btn-warning btn-mode-enable">
+        <div class="map-actions absolute bottom-0 right-0 m-2">
+            <button class="btn2 btn-warning btn-mode-enable">
                 <x-icon class="plus"></x-icon>
                 {{ __('maps/explore.actions.enter-edit-mode') }}
             </button>
-            <button class="btn btn-default btn-mode-disable">
+            <button class="btn2 btn-default btn-mode-disable">
                 <x-icon class="fa-solid fa-ban"></x-icon>
                 {{ __('maps/explore.actions.exit-edit-mode') }}
             </button>
-            <button class="btn btn-warning btn-mode-drawing">
+            <button class="btn2 btn-warning btn-mode-drawing">
                 <x-icon class="pencil"></x-icon>
                 {{ __('maps/explore.actions.finish-drawing') }}
             </button>

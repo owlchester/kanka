@@ -39,6 +39,13 @@ div.mce-fullscreen {
 .note-editable {
   //color: var(--summernote-editable-text);
 }
+.note-popover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+        padding: 1px;
+}
 
 img.note-float-right {
     float: right;
@@ -123,6 +130,11 @@ img.note-float-left {
 }
 .note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
   white-space: normal !important;
+}
+.note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--p)/var(--tw-bg-opacity)) !important;
+    color: hsl(var(--pc)) !important
 }
 
 

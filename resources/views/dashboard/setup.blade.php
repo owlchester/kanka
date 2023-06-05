@@ -9,7 +9,7 @@
 @php
 $widgetClass = 'widget relative mb-5 rounded text-xl text-center h-40 overflow-hidden shadow-xs hover:shadow-md cursor-pointer bg-box' ;
 $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-center h-full';
-$newWidgetListClass = 'btn btn-block btn-default text-xl';
+$newWidgetListClass = 'btn2 btn-full';
 @endphp
 
 @inject('campaignService', 'App\Services\CampaignService')
@@ -23,8 +23,8 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
                 {{ __('dashboard.dashboards.default.title') }}
             @endif
         </h4>
-        <a href="{{ route('dashboard', isset($dashboard) ? ['dashboard' => $dashboard->id] : null) }}" class="btn btn-sm btn-default " title="{{ __('dashboard.setup.actions.back_to_dashboard') }}">
-            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        <a href="{{ route('dashboard', isset($dashboard) ? ['dashboard' => $dashboard->id] : null) }}" class="btn2 btn-sm" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}">
+            <x-icon class="fa-solid fa-arrow-left" />
             {{ __('dashboard.setup.actions.back_to_dashboard') }}
         </a>
     </div>
@@ -38,7 +38,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
 
         @if ($campaignService->campaign()->boosted())
             <div class="mt-5 flex items-center gap-2">
-                <a class="btn btn-primary"
+                <a class="btn2 btn-primary btn-sm"
                      data-toggle="ajax-modal"
                      data-target="#edit-widget"
                      data-url="{{ route('campaign_dashboards.create') }}"
@@ -49,7 +49,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
 
                 @if(!$dashboards->isEmpty() || !empty($dashboard))
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <span class="hidden-xs">{{ __('dashboard.dashboards.actions.switch') }}</span>
                             <span class="visible-xs-inline">
                                 <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
@@ -76,7 +76,7 @@ $newWidgetListClass = 'btn btn-block btn-default text-xl';
 
                 @if($dashboard)
                     <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             {{ __('crud.actions.actions') }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">

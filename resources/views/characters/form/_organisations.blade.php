@@ -58,7 +58,7 @@ $statuses = [
                 </div>
             @endif
             <div class="">
-                <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".member-row">
+                <span class="member-delete btn2 btn-sm btn-error btn-outline" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".member-row">
                     <x-icon class="trash"></x-icon>
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </span>
@@ -67,7 +67,7 @@ $statuses = [
     @endforeach
 </div>
 
-<button class="btn btn-default" id="add_organisation" href="#">
+<button class="btn2 btn-sm" id="add_organisation" href="#">
     <x-icon class="plus"></x-icon>
     {!! $singular !!}
 </button>
@@ -112,7 +112,7 @@ $statuses = [
                 </div>
             @endif
             <div class="">
-                <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".member-row">
+                <span class="member-delete btn2 btn-sm btn-error btn-outline" title="{{ __('crud.remove') }}" role="button" tabindex="0" data-target=".member-row">
                     <x-icon class="trash"></x-icon>
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </span>

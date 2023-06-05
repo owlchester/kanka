@@ -39,14 +39,7 @@
             <div class="form-group">
                 <div class="submit-group">
                     <div class="inline-block">
-                        <div class="btn-group">
-                            <a role="button" tabindex="-1" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
-                                title="{{ __('crud.delete_modal.title') }}"
-                                data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                                 <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-marker-confirm-form-{{ $model->id}}'>{{ __('crud.remove') }}</a>">
-                                <x-icon class="trash"></x-icon> {{ __('maps/markers.actions.remove') }}
-                            </a>
-                        </div>
+                        <x-button.delete-confirm target="#delete-marker-confirm-form-{{ $model->id}}" />
                     </div>
                     <input id="submit-mode" type="hidden" value="true"/>
                     <div class="pull-right">

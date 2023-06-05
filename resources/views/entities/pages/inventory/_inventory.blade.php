@@ -59,31 +59,13 @@
                 </td>
                 @can('inventory', $entity->child)
                     <td class="text-right">
-                        <div class="dropdown">
-                            <a class="dropdown-toggle btn btn-xs btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
-                                <i class="fa-solid fa-ellipsis-h" data-tree="escape" aria-hidden="true"></i>
-                                <span class="sr-only">{{ __('crud.actions.actions') }}</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                <li>
-                                    <a href="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
-                                       data-toggle="ajax-modal" data-target="#entity-modal"
-                                       data-url="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
-                                       title="{{ __('crud.edit') }}">
-                                        <x-icon class="edit"></x-icon> {{ __('crud.edit') }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-danger delete-confirm" data-toggle="modal" data-name="{!! $item->itemName() !!}"
-                                       data-target="#delete-confirm" data-delete-target="delete-form-{{ $item->id }}">
-                                        <x-icon class="trash"></x-icon>
-                                        {{ __('crud.remove') }}
-                                    </a>
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.inventories.destroy', 'entity' => $entity, 'inventory' => $item], 'style' => 'display:inline', 'id' => 'delete-form-' . $item->id]) !!}
-                                    {!! Form::close() !!}
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
+                           class="btn2 btn-outline btn-xs"
+                           data-toggle="ajax-modal" data-target="#entity-modal"
+                           data-url="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
+                           title="{{ __('crud.edit') }}">
+                            <x-icon class="edit"></x-icon> {{ __('crud.edit') }}
+                        </a>
                     </td>
                 @endcan
             @endif

@@ -94,9 +94,9 @@ function toggleCrudMultiDelete()
     });
 
     if (hide) {
-        $('.datagrid-bulk-actions .btn').prop('disabled', true).addClass('disabled');
+        $('.datagrid-bulk-actions .btn2').prop('disabled', true).addClass('btn-disabled');
     } else {
-        $('.datagrid-bulk-actions .btn').prop('disabled', false).removeClass('disabled');
+        $('.datagrid-bulk-actions .btn2').prop('disabled', false).removeClass('btn-disabled');
     }
 }
 

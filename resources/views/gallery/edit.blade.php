@@ -79,13 +79,8 @@ $imageCount = 0;
             <div class="flex gap-2 sm:gap-5 items-center mb-5">
                 <div class="grow flex gap-2 sm:gap-5">
                 @if(!$image->isFolder() || $image->hasNoFolders())
-                    <a role="button" tabindex="0" class="btn-dynamic-delete text-red-500 hover:text-red-800" data-toggle="popover"
-                    title="{{ __('crud.remove') }}"
-                    data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                    <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-confirm-form'>{{ __('crud.remove') }}</a>">
-                        <x-icon class="fa-regular fa-trash"></x-icon>
-                        {{ __('crud.remove') }}
-                    </a>
+
+                    <x-button.delete-confirm target="#delete-confirm-form" />
                 @endif
                     @if(!$image->isFolder())
                         <a href="{{ $image->getUrl() }}" target="_blank">

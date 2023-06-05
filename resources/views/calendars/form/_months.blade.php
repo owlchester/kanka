@@ -74,7 +74,7 @@ if (!empty($names)) {
                         'aria-label' => __('calendars.parameters.month.type'),
                     ]) !!}
                     <span class="input-group-btn">
-                        <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                        <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
                             <x-icon class="trash"></x-icon>
                         </span>
                     </span>
@@ -83,9 +83,9 @@ if (!empty($names)) {
         </div>
     @endforeach
 </div>
-<a class="btn btn-default dynamic-row-add" data-template="template_month" data-target="calendar-months" href="#" title="{{ __('calendars.actions.add_month') }}">
+<button class="btn2 btn-sm dynamic-row-add" data-template="template_month" data-target="calendar-months" title="{{ __('calendars.actions.add_month') }}">
     <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_month') }}
-</a>
+</button>
 
 @section('modals')
     @parent
@@ -118,7 +118,7 @@ if (!empty($names)) {
                 {!! Form::select('month_type[]', __('calendars.month_types'), 'standard', ['class' => 'form-control',
                     'aria-label' => __('calendars.parameters.month.type'),]) !!}
                 <span class="input-group-btn">
-                    <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                    <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
                         <x-icon class="trash"></x-icon>
                     </span>
                 </span>

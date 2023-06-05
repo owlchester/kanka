@@ -3,7 +3,7 @@
         {{ __('crud.cancel') }}
     </button>
 @else
-    <a href="{{ url()->previous() }}" class="btn btn-default">
+    <a href="{{ url()->previous() }}" class="btn2 btn-ghost">
         {{ __('crud.cancel') }}
     </a>
 @endif

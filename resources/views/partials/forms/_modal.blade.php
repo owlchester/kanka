@@ -26,12 +26,7 @@
             {{ __('crud.cancel') }}
         </button>
         @if (isset($deleteID) && !empty($deleteID))
-            <a role="button" tabindex="0" class="btn2 btn-error btn-outline btn-dynamic-delete" data-toggle="popover"
-               title="{{ __('crud.delete_modal.title') }}"
-               data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                           <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='{{ $deleteID }}'>{{ __('crud.remove') }}</a>">
-                <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-            </a>
+            <x-button.delete-confirm target="{{ $deleteID }}" />
         @endif
     </div>
 </div>

@@ -23,7 +23,7 @@
     <h3 class="">
         {{ __('menu_links.reorder.title') }}
     </h3>
-    <x-box css="box-entity-story-reorder">
+    <div class="box-entity-story-reorder max-w-4xl">
         <div class="element-live-reorder sortable-elements">
             @foreach($links as $link)
                 <div class="element" data-id="{{ $link->id }}">
@@ -43,9 +43,9 @@
             @endforeach
         </div>
 
-        <button class="btn btn-primary btn-block">
+        <button class="btn2 btn-primary btn-block">
             {{ __('crud.save') }}
         </button>
-    </x-box>
+    </div>
     {!! Form::close() !!}
 @endsection
