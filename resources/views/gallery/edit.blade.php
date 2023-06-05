@@ -38,6 +38,17 @@ $imageCount = 0;
                     </div>
                     <hr class="visible-sm visible-xs"/>
                 @endif
+                @if($image->mentions->count() > 0)
+                <p class="{{ $image->mentions->count() === 0 ? 'text-muted' : '' }}">
+                    {{ trans_choice('campaigns/gallery.fields.image_mentioned_in', $image->mentions->count(), ['count' => $image->mentions->count()]) }}
+                </p>
+                    <div class="grid grid-cols-2 gap-2">
+                        @foreach($image->mentions as $mention)
+                            {!! $mention->linkToEntity() !!}
+                        @endforeach
+                    </div>
+                    <hr class="visible-sm visible-xs"/>
+                @endif    
             @endif
             </div>
             <div class="">

@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\Image;
+use App\Models\ImageMention;
 use App\Models\EntityMention;
 use App\Models\EntityNote;
 use App\Models\Post;
@@ -59,7 +61,8 @@ class EntityMappingService
      */
     public function mapPost(Post $post)
     {
-        return $this->map($post);
+        //return $this->map($post);
+        return $this->images($post)->map($post);
     }
 
     /**
@@ -211,6 +214,74 @@ class EntityMappingService
             }
         }
         $mention->target_id = $target;
+        $mention->save();
+    }
+    protected function images(Model $model): self
+    {
+       $images = $this->extractImages($model->entry);
+
+       $existingTargets = [];
+       foreach ($model->imageMentions as $map) {
+           $existingTargets[$map->image_id] = $map;
+       }
+       $createdMappings = 0;
+       $existingMappings = 0;
+
+       foreach ($images as $data) {
+           $id = $data;
+
+           // Determine the real campaign id from the model.
+           // Todo: why can't we use CampaignLocalization? Because this was used by the migration script?
+           $campaignId = $model->campaign_id;
+            if ($model instanceof EntityNote) {
+               $campaignId = $model->entity->campaign_id;
+            }
+
+           /** @var Entity|null $target */
+           $target = Image::where([
+                'id' => $id, 'campaign_id' => $campaignId
+           ])->first();
+           if ($target) {
+               // Do we already have this mention mapped?
+               if (!empty($existingTargets[$target->id])) {
+                   //$this->log("- already have mapping");
+                   unset($existingTargets[$target->id]);
+                   $existingMappings++;
+                   continue;
+               }
+
+               $this->createNewImageMention($model, $target->id);
+               $createdMappings++;
+           }
+       }
+
+       // Existing mappings that are no longer needed
+       $deletedMappings = 0;
+       foreach ($existingTargets as $targetId => $map) {
+           $map->delete();
+           $deletedMappings++;
+       }
+
+       return $this;
+    }
+
+ /**
+     * @param MiscModel|EntityNote|TimelineElement|QuestElement|Campaign $model
+     * @param int $target
+     */
+    protected function createNewImageMention($model, string $target)
+    {
+        $mention = new ImageMention();
+
+        // Determine what kind of entity this is
+        if ($model instanceof EntityNote) {
+            $mention->post_id = $model->id;
+            $mention->entity_id = $model->entity_id;
+
+        } else {
+            $mention->entity_id = $model->id;
+        }
+        $mention->image_id = $target;
         $mention->save();
     }
 
