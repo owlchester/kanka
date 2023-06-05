@@ -71,7 +71,7 @@ return [
         'title'     => 'App Integration',
     ],
     'billing'       => [
-        'placeholder'   => 'If you need additional contact or tax information added to your receipts (bussines address, VAT number, etc.), enter it below and it will appear on all of your receipts',
+        'placeholder'   => 'If you need additional contact or tax information added to your receipts (bussines address, VAT number, etc.), enter it below and it will appear on all of your receipts.',
         'save'          => 'Save billing information',
         'title'         => 'Billing Information',
     ],

@@ -81,11 +81,11 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         </div>
         @else
             @if (!$campaign->premium())
-                <a href="#" class="shadow-xs rounded border text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white px-4 py-2" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
+                <a href="#" class="btn2 btn-secondary btn-outline btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
                     {!! __('settings/premium.actions.unlock', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
                 </a>
             @elseif (auth()->user()->can('destroy', $boost))
-                <a href="#" class="shadow-xs rounded border text-red-500 border-red-500 hover:bg-red-500 hover:text-white px-4 py-2" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boost.confirm-destroy', $boost) }}">
+                <a href="#" class="btn2 btn-error btn-outline btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boost.confirm-destroy', $boost) }}">
                     {!! __('settings/premium.actions.remove', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
                 </a>
             @endif

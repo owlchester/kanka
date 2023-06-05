@@ -21,62 +21,59 @@ $statuses = [
     \App\Models\OrganisationMember::STATUS_UNKNOWN => __('organisations.members.status.unknown'),
 ];
 ?>
-<div class="row hidden-xs">
-    <div class="col-sm-3">{!! $singular !!}</div>
-    <div class="col-sm-3">{{ __('organisations.members.fields.role') }}</div>
-    <div class="col-sm-2">{{ __('organisations.members.fields.status') }}</div>
-    <div class="col-sm-2">
+<div class="flex flex-wrap md:flex-no-wrap items-start gap-2 md:gap-4 mb-2 hidden-xs">
+    <div class="">{!! $singular !!}</div>
+    <div class="grow">{{ __('organisations.members.fields.role') }}</div>
+    <div class="">{{ __('organisations.members.fields.status') }}</div>
+    <div class="">
         {{ __('organisations.members.fields.pinned') }} <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
     </div>
 @if ($isAdmin)
-    <div class="col-sm-1 text-center">{{ __('crud.fields.is_private') }}</div>
+    <div class="">{{ __('crud.fields.is_private') }}</div>
 @endif
 </div>
 <div class="character-organisations">
     @foreach ($organisations as $organisation)
-        <div class="form-group">
-            <div class="row">
-                <div class="col-sm-3">
-                    <select name="organisations[{{ $organisation->id }}]" class="form-control select2" style="width: 100%"
-                        data-url="{{ route('organisations.find') }}"
-                        data-placeholder="{{ __('crud.placeholders.organisation') }}"
-                        data-language="{{ LaravelLocalization::getCurrentLocale() }}"
-                        data-allow-clear="false"
-                    >
-                        <option value="{{ $organisation->organisation->id }}">{{ $organisation->organisation->name }}</option>
-                    </select>
-                </div>
-                <div class="col-sm-3">
-                    <label class="sr-only">{{ __('organisations.members.fields.role') }}</label>
-                    {!! Form::text('organisation_roles[' . $organisation->id . ']', $organisation->role, [
-                        'class' => 'form-control',
-                        'placeholder' => __('organisations.members.placeholders.role'),
-                        'spellcheck' => 'true',
-                        'aria-label' => __('organisations.members.fields.role'),
-                    ]) !!}
-                </div>
-                <div class="col-md-2">
-                    <label class="sr-only">{{ __('organisations.members.fields.status') }}</label>
-                    {!! Form::select('organisation_statuses[' . $organisation->id . ']', $statuses, $organisation->status_id, ['class' => 'form-control', 'aria-label' => __('organisations.members.fields.status')]) !!}
-                </div>
-                <div class="col-md-2">
-                    <label class="sr-only">{{ __('organisations.members.fields.pinned') }}</label>
-                    {!! Form::select('organisation_pins[' . $organisation->id . ']', $options, $organisation->pin_id, ['class' => 'form-control', 'aria-label' => __('organisations.members.fields.pinned')]) !!}
-                </div>
-                @if ($isAdmin)
-                    <div class="col-sm-1 text-center">
-                        {!! Form::hidden('organisation_privates[' . $organisation->id . ']', $organisation->is_private) !!}
-                        <i class="fa @if($organisation->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
-                    </div>
-                @endif
-                <div class="col-sm-1 text-center">
-                    <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
-                        <x-icon class="trash"></x-icon>
-                        <span class="sr-only">{{ __('crud.remove') }}</span>
-                    </span>
-                </div>
+        <div class="flex flex-wrap md:flex-no-wrap items-start gap-2 md:gap-4 mb-2">
+            <div class="">
+                <select name="organisations[{{ $organisation->id }}]" class="form-control select2" style="width: 100%"
+                    data-url="{{ route('organisations.find') }}"
+                    data-placeholder="{{ __('crud.placeholders.organisation') }}"
+                    data-language="{{ LaravelLocalization::getCurrentLocale() }}"
+                    data-allow-clear="false"
+                >
+                    <option value="{{ $organisation->organisation->id }}">{{ $organisation->organisation->name }}</option>
+                </select>
             </div>
-            <hr class="visible-xs" />
+            <div class="grow">
+                <label class="sr-only">{{ __('organisations.members.fields.role') }}</label>
+                {!! Form::text('organisation_roles[' . $organisation->id . ']', $organisation->role, [
+                    'class' => 'form-control',
+                    'placeholder' => __('organisations.members.placeholders.role'),
+                    'spellcheck' => 'true',
+                    'aria-label' => __('organisations.members.fields.role'),
+                ]) !!}
+            </div>
+            <div class="">
+                <label class="sr-only">{{ __('organisations.members.fields.status') }}</label>
+                {!! Form::select('organisation_statuses[' . $organisation->id . ']', $statuses, $organisation->status_id, ['class' => 'form-control', 'aria-label' => __('organisations.members.fields.status')]) !!}
+            </div>
+            <div class="">
+                <label class="sr-only">{{ __('organisations.members.fields.pinned') }}</label>
+                {!! Form::select('organisation_pins[' . $organisation->id . ']', $options, $organisation->pin_id, ['class' => 'form-control', 'aria-label' => __('organisations.members.fields.pinned')]) !!}
+            </div>
+            @if ($isAdmin)
+                <div class="">
+                    {!! Form::hidden('organisation_privates[' . $organisation->id . ']', $organisation->is_private) !!}
+                    <i class="fa @if($organisation->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
+                </div>
+            @endif
+            <div class="">
+                <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                    <x-icon class="trash"></x-icon>
+                    <span class="sr-only">{{ __('crud.remove') }}</span>
+                </span>
+            </div>
         </div>
     @endforeach
 </div>
@@ -93,8 +90,8 @@ $statuses = [
 @section('modals')
     @parent
     <div id="template_organisation" style="display: none">
-        <div class="row">
-            <div class="col-sm-3">
+        <div class="flex flex-wrap md:flex-no-wrap items-start gap-2 md:gap-4 mb-2">
+            <div class="">
                 <select name="organisations[]" class="form-control tmp-org" style="width: 100%"
                         data-url="{{ route('organisations.find') }}"
                         data-placeholder="{{ __('crud.placeholders.organisation') }}"
@@ -102,7 +99,7 @@ $statuses = [
                 >
                 </select>
             </div>
-            <div class="col-sm-3">
+            <div class="grow form-group">
                 <label class="sr-only">{{ __('organisations.members.fields.role') }}</label>
                 {!! Form::text('organisation_roles[]', null, [
                     'class' => 'form-control',
@@ -111,28 +108,27 @@ $statuses = [
                     'aria-label' => __('organisations.members.fields.role'),
                 ]) !!}
             </div>
-            <div class="col-md-2">
+            <div class="form-group">
                 <label class="sr-only">{{ __('organisations.members.fields.status') }}</label>
                 {!! Form::select('organisation_statuses[]', $statuses, null, ['class' => 'form-control', 'aria-label' => __('organisations.members.fields.status')]) !!}
             </div>
-            <div class="col-md-2">
+            <div class="form-group">
                 <label class="sr-only">{{ __('organisations.members.fields.pinned') }}</label>
                 {!! Form::select('organisation_pins[]', $options, null, ['class' => 'form-control', 'aria-label' => __('organisations.members.fields.pinned')]) !!}
             </div>
             @if ($isAdmin)
-                <div class="col-sm-1 text-center">
+                <div class="form-group">
                     {!! Form::hidden('organisation_privates[]', 0) !!}
                     <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                 </div>
             @endif
-            <div class="col-sm-1 text-center">
+            <div class="form-group">
                 <span class="member-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
                     <x-icon class="trash"></x-icon>
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </span>
             </div>
         </div>
-        <hr class="visible-xs" />
     </div>
 @endsection
 

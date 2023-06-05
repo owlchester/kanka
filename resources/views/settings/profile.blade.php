@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="text-right">
-            <x-buttons.confirm type="primary" outline="true">
+            <x-buttons.confirm type="primary">
                 {{ __('settings.profile.actions.update_profile') }}
             </x-buttons.confirm>
         </div>
@@ -93,7 +93,7 @@
             <div class="flex flex-col md:flex-row gap-5">
             {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.reset-tutorials'], 'data-shortcut' => 1]) !!}
                     <div class="text-right">
-                        <x-buttons.confirm type="primary" outline="true">
+                        <x-buttons.confirm type="danger" outline="true">
                             Reset tutorials
                         </x-buttons.confirm>
                     </div>

@@ -27,15 +27,15 @@
                     </div>
                     <div class="flex-0">
                         @if($discord = auth()->user()->apps()->app('discord')->first())
-                            <x-buttons.confirm type="danger" target="remove-discord" outline="true">
-                                <i class="fa-solid fa-link-slash" aria-hidden="true"></i>
+                            <x-buttons.confirm type="danger" target="remove-discord" outline="true" size="sm">
+                                <x-icon class="fa-solid fa-link-slash" />
                                 <span>
                                     {{ __('settings.apps.actions.remove') }}
                                     @if (!empty($discord->settings)) {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }} @endif
                                 </span>
                             </x-buttons.confirm>
                         @else
-                            <a href="https://discord.com/api/oauth2/authorize?client_id={{ config('discord.client_id') }}&redirect_uri={{ url('/settings/discord-callback') }}&response_type=code&scope=identify+guilds+guilds.join" class="inline-block rounded px-6 py-2 border hover:shadow-xs bg-blue-600 text-white uppercase hover:bg-blue-800">
+                            <a href="https://discord.com/api/oauth2/authorize?client_id={{ config('discord.client_id') }}&redirect_uri={{ url('/settings/discord-callback') }}&response_type=code&scope=identify+guilds+guilds.join" class="btn2 btn-primary btn-outline btn-sm">
                                 {{ __('settings.apps.actions.connect') }}
                             </a>
                         @endif

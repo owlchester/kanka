@@ -16,11 +16,11 @@
     'campaign' => '<strong>' . $campaign->name . '</strong>'])!!}</p>
 
    {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_boosts.destroy', $boost->id]]) !!}
-    <div class="pb-5">
-        <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">
+    <div class="grid grid-cols-2 gap-2 md:gap-5 items-center">
+        <button type="button" class="btn2 btn-ghost" data-dismiss="modal">
             {{ __('crud.cancel') }}
         </button>
-        <button type="submit" class="btn btn-danger px-8 ml-5 rounded-full">
+        <button type="submit" class="btn2 btn-error">
             <span class="">{{ __('settings/premium.remove.confirm') }}</span>
         </button>
     </div>

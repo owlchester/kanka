@@ -19,7 +19,7 @@
             {!! Form::email('email', null, ['placeholder' => __('profiles.placeholders.email'), 'class' => 'form-control']) !!}
         </div>
         <div class="text-right">
-            <x-buttons.confirm outline="true" type="primary">
+            <x-buttons.confirm type="primary">
                 {{ __('settings.account.actions.update_email') }}
             </x-buttons.confirm>
         </div>
@@ -43,7 +43,7 @@
             </div>
 
             <div class="text-right">
-                <x-buttons.confirm outline="true" type="primary">
+                <x-buttons.confirm type="primary">
                     {{ __('settings.account.actions.update_password') }}
                 </x-buttons.confirm>
             </div>
@@ -61,7 +61,7 @@
                 {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
             </div>
             <div class="text-right">
-                <x-buttons.confirm outline="true" type="primary">
+                <x-buttons.confirm type="primary">
                     {{ __('settings.account.actions.social') }}
                 </x-buttons.confirm>
             </div>

@@ -34,3 +34,33 @@
     --tw-text-opacity: 1;
     color: hsl(var(--pc)/var(--tw-text-opacity));
 }
+
+
+.badge-xs {
+    height:.75rem;
+    font-size:.75rem;
+    line-height:.75rem;
+    padding-left:.313rem;
+    padding-right:.313rem
+}
+.badge-sm {
+    height:1rem;
+    font-size:.75rem;
+    line-height:1rem;
+    padding-left:.438rem;
+    padding-right:.438rem
+}
+.badge-md {
+    height:1.25rem;
+    font-size:.875rem;
+    line-height:1.25rem;
+    padding-left:.563rem;
+    padding-right:.563rem
+}
+.badge-lg {
+    height:1.5rem;
+    font-size:1rem;
+    line-height:1.5rem;
+    padding-left:.688rem;
+    padding-right:.688rem
+}

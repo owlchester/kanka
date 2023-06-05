@@ -32,7 +32,7 @@
             </p>
 
             <div class="mt-5">
-                <button class="btn btn-block btn-primary"
+                <button class="btn2 btn-block btn-secondary"
                         data-toggle="dialog"
                         data-target="switch-dialog">
                     Switch to premium
@@ -105,7 +105,7 @@
         {{ __('settings/boosters.ready.title') }}
 
         @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
-            <div class="label bg-boost text-white ml-3" data-toggle="tooltip" title="{{ __('settings/boosters.ready.available') }}">
+            <div class="badge bg-boost flex gap-1 badge-lg ml-2" data-toggle="tooltip" title="{{ __('settings/boosters.ready.available') }}">
                 <x-icon class="premium"></x-icon>
                 {{ auth()->user()->availableBoosts() }}
             </div>
