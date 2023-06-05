@@ -27,13 +27,12 @@
                     @include('layouts.callouts.recoverable')
                 </div>
 
-                <div class="py-5">
-                    <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
+                <x-dialog.footer>
+                    <button type="button" class="btn2 btn-error btn-outline delete-confirm-submit px-8 ml-5 rounded-full">
                         <x-icon class="trash"></x-icon>
                         <span class="remove-button-label">{{ __('crud.remove') }}</span>
                     </button>
-                </div>
+                </x-dialog.footer>
             </div>
         </div>
     </div>

@@ -16,12 +16,13 @@
     @if(view()->exists($type . '.bulk.modals._copy_to_campaign'))
         @include($type . '.bulk.modals._copy_to_campaign')
     @endif
-</div>
-<div class="modal-footer">
-    <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-    <button class="btn btn-success" type="submit">
-        <i class="fa-solid fa-clone" aria-hidden="true"></i>
-        {{ __('crud.actions.copy_to_campaign') }}
-    </button>
+
+
+    <x-dialog.footer>
+        <button class="btn2 btn-primary" type="submit">
+            <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            {{ __('crud.actions.copy_to_campaign') }}
+        </button>
+    </x-dialog.footer>
 </div>
 <input type="hidden" name="datagrid-action" value="copy-campaign" />

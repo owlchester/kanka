@@ -19,9 +19,7 @@ function initCharacterOrganisation() {
     characterAddOrganisation.on('click', function (e) {
         e.preventDefault();
 
-        $(characterOrganisations).append('<div class="form-group">' +
-            characterTemplateOrganisation.html() +
-            '</div>');
+        $(characterOrganisations).append(characterTemplateOrganisation.html());
 
         // Replace the temp class with the real class. We need this to avoid having two select2 fields
         characterOrganisations.find('.tmp-org').removeClass('tmp-org').addClass('select2');
@@ -41,17 +39,20 @@ function initCharacterOrganisation() {
 function characterDeleteRowHandler() {
 
     $.each($('.member-delete'), function () {
-        $(this).unbind('click').unbind('keydown');
+        if ($(this).data('init') === 1) {
+            return;
+        }
+        $(this).data('init', 1);
         $(this).on('click', function (e) {
             e.preventDefault();
-            $(this).closest('.form-group').remove();
+            $(this).closest($(this).data('target')).remove();
         }).on('keydown', function (e) {
             // Support for pressing enter on a span
             if (e.key !== 'Enter') {
                 return;
             }
             $(this).click();
-        });;
+        });
     });
 
     // Always re-calc the sortable traits

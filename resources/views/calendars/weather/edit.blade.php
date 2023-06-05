@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\CalendarWeather $weather */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars/weather.edit.title'),
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('calendars'), 'label' => \App\Facades\Module::plural(config('entities.ids.calendar'), __('entities.calendars'))],
@@ -12,43 +12,11 @@
 @section('content')
     {!! Form::model($weather, ['method' => 'PATCH', 'route' => ['calendars.calendar_weather.update', $weather->calendar->id, $weather->id], 'data-shortcut' => '1']) !!}
 
-    @if (request()->ajax())
-        <div class="modal-body">
-            @include('partials.errors')
-            @include('calendars.weather._form')
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-success">{{ __('crud.save') }}</button>
-            <div class="pull-left">
-                @include('partials.footer_cancel')
-                <a role="button" tabindex="0" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
-                   title="{{ __('crud.delete_modal.title') }}"
-                   data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                   <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-weather-{{ $weather->id}}'>{{ __('crud.remove') }}</a>">
-                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-                </a>
-            </div>
-        </div>
-    @else
-        <x-box>
-            @include('partials.errors')
-
-            @include('calendars.weather._form')
-
-            <x-box.footer>
-                <div class="pull-right">
-                    <button class="btn btn-success">{{ __('crud.save') }}</button>
-                </div>
-
-                <a role="button" tabindex="0" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
-                   title="{{ __('crud.delete_modal.title') }}"
-                   data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                       <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-weather-{{ $weather->id}}'>{{ __('crud.remove') }}</a>">
-                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-                </a>
-            </x-box.footer>
-        </x-box>
-    @endif
+    @include('partials.forms.form', [
+        'title' => __('calendars/weather.edit.title'),
+        'content' => 'calendars.weather._form',
+        'deleteID' => '#delete-weather-' . $weather->id
+    ])
 
 
     {!! Form::hidden('year', $weather->year) !!}

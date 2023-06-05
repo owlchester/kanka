@@ -37,7 +37,7 @@
                 <strong>{{ __('entities/permissions.quick.viewable-by') }}</strong>
             </div>
             @if (!empty($visibility['roles']) || !empty($visibility['users']))
-            <div class="mb-3 @if ($entity->is_private) line-through text-slate-400 @endif">
+            <div class="mb-5 @if ($entity->is_private) line-through text-slate-400 @endif">
                 @foreach ($visibility['roles'] as $element)<span class="mr-1"><i class="fa-solid fa-user-group" aria-hidden="true"></i> {!! $element !!}</span>@endforeach
                 @if (!empty($visibility['roles']))<br />@endif
                 @foreach ($visibility['users'] as $element)<span class="mr-1"><i class="fa-solid fa-user" aria-hidden="true"></i> {!! $element !!}</span>@endforeach
@@ -48,7 +48,7 @@
             </p>
             @endif
 
-            <button class="btn btn-default btn-manage-perm" data-target="#entity-permissions-link">
+            <button class="btn2 btn-outline btn-sm btn-block btn-manage-perm" data-target="#entity-permissions-link">
                 <i class="fa-solid fa-wrench" aria-hidden="true"></i> {{ __('entities/permissions.quick.manage') }}
             </button>
         </div>

@@ -24,30 +24,25 @@
             @include('partials.errors')
 
             @include('calendars.events._entity_form')
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-success" id="calendar-event-submit">
-                <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-                <span>{{ __('crud.save') }}</span>
-            </button>
-            <div class="pull-left">
-                @include('partials.footer_cancel')
-            </div>
+
+            <x-dialog.footer>
+                <button class="btn2 btn-primary" id="calendar-event-submit">
+                    <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
+                    <span>{{ __('crud.save') }}</span>
+                </button>
+            </x-dialog.footer>
         </div>
     @else
         <x-box>
             @include('partials.errors')
             @include('calendars.events._entity_form')
-            <x-box.footer>
-                <div class="pull-right">
-                    <button class="btn btn-success" id="calendar-event-submit">
-                        <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-                        <span>{{ __('crud.save') }}</span>
-                    </button>
-                </div>
 
-                @include('partials.footer_cancel')
-            </x-box.footer>
+            <x-dialog.footer>
+                <button class="btn2 btn-primary" id="calendar-event-submit">
+                    <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
+                    <span>{{ __('crud.save') }}</span>
+                </button>
+            </x-dialog.footer>
         </x-box>
     @endif
 

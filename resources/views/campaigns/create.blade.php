@@ -18,7 +18,7 @@
 
 @section('content')
     @include('partials.errors')
-    @include('campaigns.forms.' . ($start ? 'start' : 'standard'))
+    @include('campaigns.forms.standard')
 @endsection
 
 @section('fullpage-form-end')

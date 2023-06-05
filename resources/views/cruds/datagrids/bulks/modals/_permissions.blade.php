@@ -10,7 +10,7 @@ $actions = [
     <x-dialog.close />
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.permissions.title') }}</h4>
 </div>
-<div class="modal-body !p-0">
+<div class="modal-body">
     <table id="crud_permissions" class="table table-hover">
         <tbody>
         <tr>
@@ -105,12 +105,12 @@ $actions = [
         @endforeach
         </tbody>
     </table>
-</div>
-<div class="modal-footer">
-    <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-    <button class="btn btn-success" type="submit">
-        <x-icon class="cog"></x-icon>
-        {{ __('crud.bulk.actions.permissions') }}
-    </button>
+
+    <x-dialog.footer>
+        <button class="btn2 btn-primary" type="submit">
+            <x-icon class="cog"></x-icon>
+            {{ __('crud.bulk.actions.permissions') }}
+        </button>
+    </x-dialog.footer>
 </div>
 <input type="hidden" name="datagrid-action" value="permissions" />

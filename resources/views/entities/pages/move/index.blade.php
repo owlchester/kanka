@@ -38,15 +38,12 @@
 
             @includeIf($entity->pluralType() . '.bulk.modals._copy_to_campaign')
 
-            <div class="flex items-center">
-                <div class="grow">
-                    @includeWhen(!request()->ajax(), 'partials.footer_cancel')
-                </div>
-                <button class="btn btn-success">
+            <x-dialog.footer>
+                <button class="btn2 btn-primary">
                     <i class="fa-solid fa-copy" aria-hidden="true"></i>
                     @can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan
                 </button>
-            </div>
+            </x-dialog.footer>
         </x-box>
     </div>
 

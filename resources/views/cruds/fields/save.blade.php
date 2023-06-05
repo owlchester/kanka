@@ -16,25 +16,25 @@
             </button>
             <ul class="dropdown-menu {{ isset($disableCancel) ? 'dropdown-menu-right' : '' }}" role="menu">
                 <li>
-                    <a href="#" class="form-submit-actions flex">
-                        <span class="flex-grow">{{ __('crud.save') }}</span>
-                        <span class="keyboard-shortcut flex-none" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+S</code>']) !!}" data-html="true">
+                    <a href="#" class="form-submit-actions !flex gap-2">
+                        <span class="grow">{{ __('crud.save') }}</span>
+                        <span class="keyboard-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+S</code>']) !!}" data-html="true">
                             CTRL+S
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="form-submit-actions flex" data-action="submit-new">
-                        <span class="flex-grow">{{ __('crud.save_and_new') }}</span>
-                        <span class="keyboard-shortcut flex-none ml-2" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+ALT+S</code>']) !!}" data-html="true">
+                    <a href="#" class="form-submit-actions !flex gap-2" data-action="submit-new">
+                        <span class="grow">{{ __('crud.save_and_new') }}</span>
+                        <span class="keyboard-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+ALT+S</code>']) !!}" data-html="true">
                             CTRL+ALT+S
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="form-submit-actions flex" data-action="submit-update">
-                        <span class="flex-grow">{{ __('crud.save_and_update') }}</span>
-                        <span class="keyboard-shortcut flex-none ml-2" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+SHIFT+S</code>']) !!}" data-html="true">
+                    <a href="#" class="form-submit-actions !flex gap-2" data-action="submit-update">
+                        <span class="grow">{{ __('crud.save_and_update') }}</span>
+                        <span class="keyboard-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+SHIFT+S</code>']) !!}" data-html="true">
                             CTRL+SHIFT+S
                         </span>
                     </a>
@@ -45,9 +45,9 @@
                     @else
                     <li><a href="#" class="form-submit-actions" data-action="submit-close">{{ __('crud.save_and_close') }}</a></li>
                     <li>
-                        <a href="#" class="form-submit-actions flex" data-action="submit-copy">
-                            <span class="flex-grow">{{ __('crud.save_and_copy') }}</span>
-                            <span class="keyboard-shortcut flex-none ml-2" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+ALT+C</code>']) !!}" data-html="true">
+                        <a href="#" class="form-submit-actions !flex gap-2" data-action="submit-copy">
+                            <span class="grow">{{ __('crud.save_and_copy') }}</span>
+                            <span class="keyboard-shortcut" data-toggle="tooltip" title="{!! __('crud.keyboard-shortcut', ['code' => '<code>CTRL+ALT+C</code>']) !!}" data-html="true">
                                 CTRL+ALT+C
                             </span>
                         </a>

@@ -16,13 +16,13 @@
     'marketplace' => link_to(config('marketplace.url') . '/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
     ]) !!}
     </p>
+
+    <x-dialog.footer>
+        <button class="btn2 btn-primary" type="submit">
+            <x-icon class="fa-solid fa-th-list"></x-icon>
+            {{ __('crud.actions.apply') }}
+        </button>
+    </x-dialog.footer>
 </div>
 
-<div class="modal-footer">
-    <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-    <button class="btn btn-success" type="submit">
-        <x-icon class="fa-solid fa-th-list"></x-icon>
-        {{ __('crud.actions.apply') }}
-    </button>
-</div>
 <input type="hidden" name="datagrid-action" value="templates" />

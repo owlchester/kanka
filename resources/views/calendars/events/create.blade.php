@@ -21,14 +21,13 @@
         </div>
         <div class="modal-footer" id="calendar-event-submit" style="display: none">
 
-            <button class="btn btn-success">
-                <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-                <span>{{ __('crud.save') }}</span>
-            </button>
+            <x-dialog.footer>
 
-            <div class="pull-left">
-                @include('partials.footer_cancel')
-            </div>
+                <button class="btn2 btn-primary">
+                    <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
+                    <span>{{ __('crud.save') }}</span>
+                </button>
+            </x-dialog.footer>
 
         </div>
 

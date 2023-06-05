@@ -8,13 +8,13 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     if ($datagridActions->hasBulkEditing()) {
         $dropdownActions[] = '
         <a href="#" class="bulk-edit" data-toggle="modal" data-target="#bulk-edit.modal" data-bulk-action="batch">
-            <x-icon class="edit"></x-icon> ' . __('crud.bulk.actions.edit') . '
+            <i class="fa-solid fa-pencil" aria-hidden="true"></i> ' . __('crud.bulk.actions.edit') . '
         </a>';
     }
     if ($datagridActions->hasBulkPermissions()) {
         $dropdownActions[] = '
             <a href="#" class="bulk-permissions" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', ['view' => 'permissions']) . '" data-bulk-action="ajax">
-                <x-icon class="cog"></x-icon> ' .  __('crud.bulk.actions.permissions') . '
+                <i class="fa-solid fa-cog" aria-hidden="true"></i> ' .  __('crud.bulk.actions.permissions') . '
             </a>';
     }
     if ($datagridActions->hasBulkTemplate() && $campaign->enabled('entity_attributes')) {

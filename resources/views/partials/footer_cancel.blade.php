@@ -1,5 +1,5 @@
 @if(request()->ajax())
-    <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
+    <button type="button" class="btn2 btn-ghost" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
         {{ __('crud.cancel') }}
     </button>
 @else

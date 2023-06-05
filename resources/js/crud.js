@@ -634,8 +634,10 @@ function registerDynamicRows() {
  */
 function registerDynamicRowDelete() {
     $.each($('.dynamic-row-delete'), function () {
-        // Todo: we can re-do this with adding an attribute on the element instead
-        $(this).unbind('click').unbind('keydown'); // remove previous bindings
+        if ($(this).data('init') === 1) {
+            return;
+        }
+        $(this).data('init', 1);
         $(this).on('click', function (e) {
             e.preventDefault();
             $(this).closest('.parent-delete-row').remove();

@@ -27,15 +27,16 @@
             @endif
 
             @include('calendars.events._form')
+
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn2 btn-primary">
                 <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
                 <span>{{ __('crud.save') }}</span>
             </button>
             <div class="pull-left">
                 @include('partials.footer_cancel')
-                <a role="button" tabindex="0" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
+                <a role="button" tabindex="0" class="btn2 btn-dynamic-delete btn-error btn-outline" data-toggle="popover"
                    title="{{ __('crud.delete_modal.title') }}"
                    data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
                    <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-reminder-{{ $entityEvent->id}}'>{{ __('crud.remove') }}</a>">
