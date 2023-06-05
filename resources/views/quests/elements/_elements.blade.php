@@ -1,23 +1,17 @@
 <?php /** @var \App\Models\QuestElement[] $elements */?>
 @php $count = 0; @endphp
 
-<div class="row mb-5">
-    <div class="col-md-6">
-        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-main-block'])
-    </div>
-</div>
+<x-grid css="mb-4">
+    @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-main-block'])
+</x-grid>
 
 <div class="" id="quest-elements">
-    <div class="row">
+    <x-grid>
     @foreach ($elements as $element)
         @if ($element->entity_id && !$element->entity)
             @continue
         @endif
-        @if ($count % 2 === 0)
-    </div><div class="row">
-        @endif
         @php $count++; @endphp
-        <div class="col-md-6">
             <div class="box box-widget widget-user-2 box-quest-element" id="quest-element-{{ $element->id }}" @if ($element->entity)data-entity-id="{{ $element->entity->id }}" data-entity-type="{{ $element->entity->type() }}"@endif>
                 <div class="flex p-4 gap-2 items-center {{ $element->colourClass() }}">
                     @if ($element->entity)
@@ -74,9 +68,8 @@
                     @endcan
                 </div>
             </div>
-        </div>
     @endforeach
-    </div>
+    </x-grid>
 </div>
 
 <div class="text-right">

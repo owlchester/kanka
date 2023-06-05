@@ -20,7 +20,7 @@
         <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
     @endif
 
-    <x-alert type="danger" :hidden="true"></x-alert>
+    <x-alert type="error" :hidden="true"></x-alert>
 
 
     @if (!$cancel)
@@ -143,7 +143,7 @@
                         {{ __('settings.subscription.helpers.alternatives', ['method' => 'SOFORT']) }}
                     </p>
                     @if ($hasPromo)
-                        <x-alert type="danger" class="alert-coupon">Sadly we cannot offer discounts for Sofort payments.</x-alert>
+                        <x-alert type="error" class="alert-coupon">Sadly we cannot offer discounts for Sofort payments.</x-alert>
                     @endif
 
                     @if ($period !== 'yearly')
@@ -191,7 +191,7 @@
                         {{ __('settings.subscription.helpers.alternatives', ['method' => 'Giropay']) }}
                     </p>
                     @if ($hasPromo)
-                        <x-alert type="danger alert-coupon">
+                        <x-alert type="error alert-coupon">
                             Sadly we cannot offer discounts for giropay payments.
                         </x-alert>
                     @endif

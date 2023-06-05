@@ -1,17 +1,14 @@
 {{ csrf_field() }}
 @if (empty($entityEvent))
-    <div class="row" id="calendar-event-first">
-        <div class="col-md-6">
-            <a href="#" class="btn btn-default btn-block btn-lg" id="calendar-action-existing">
-                <i class="fa-solid fa-search fa-2x"></i><br />{{ __('calendars.event.actions.existing') }}
-            </a>
-        </div>
-        <div class="col-md-6">
-            <span class="btn btn-default btn-block btn-lg" id="calendar-action-new">
-                <i class="fa-solid fa-bolt fa-2x"></i><br />{{ __('calendars.event.actions.new') }}
-            </span>
-        </div>
-    </div>
+    <x-grid id="calendar-event-first">
+        <a href="#" class="btn btn-default btn-block btn-lg" id="calendar-action-existing">
+            <i class="fa-solid fa-search fa-2x"></i><br />{{ __('calendars.event.actions.existing') }}
+        </a>
+
+        <span class="btn btn-default btn-block btn-lg" id="calendar-action-new">
+            <i class="fa-solid fa-bolt fa-2x"></i><br />{{ __('calendars.event.actions.new') }}
+        </span>
+    </x-grid>
 @else
     @include('cruds.fields.entity_link', ['entity' => $entityEvent->entity])
 @endif

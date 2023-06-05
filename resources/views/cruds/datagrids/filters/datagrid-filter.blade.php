@@ -40,7 +40,7 @@ $hasAttributeFilters = false;
             @if (auth()->guest())
                 <p class="help-block">{{ __('filters.helpers.guest') }}</p>
             @else
-                <div class="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-5 mb-5 max-w-3xl">
+                <x-grid>
                     @foreach ($filters as $field)
                         @php $count++ @endphp
 
@@ -48,7 +48,7 @@ $hasAttributeFilters = false;
                             @php $hasAttributeFilters = true @endphp
                             @continue
                         @endif
-                        <div class="form-group m-0">
+                        <div class="form-group">
                             @if (is_array($field))
                                 <label>{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
                                 <?php $model = null;
@@ -87,7 +87,7 @@ $hasAttributeFilters = false;
                             @endif
                         </div>
                     @endforeach
-                </div>
+                </x-grid>
                 @includeWhen($hasAttributeFilters, 'cruds.datagrids.filters._attributes')
             @endif
             <br class="clear-both" />

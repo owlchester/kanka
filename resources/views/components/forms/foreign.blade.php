@@ -1,4 +1,4 @@
-<div class="field-foreign form-group @if ($required) required @endif">
+<div class="field-foreign form-group @if ($required) required @endif {{ $key }}" >
     @if (!empty($label))
         <label>{!! __($label) !!}
             @if(!empty($helper))

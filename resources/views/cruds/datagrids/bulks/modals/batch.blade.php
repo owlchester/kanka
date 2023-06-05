@@ -8,11 +8,10 @@
                 <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.edit.title') }}</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <x-grid>
                 @foreach ($bulk->fields() as $field)
                     @php $trimmed = \Illuminate\Support\Str::beforeLast($field, '_id'); @endphp
-                    {!! $fieldCount % 2 === 0 ? '</div><div class="row">' : null !!}
-                        <div class="col-md-6">
+                    {!! $fieldCount % 2 === 0 ? '' : null !!}
                     @include('cruds.fields.' . $trimmed, [
                         'trans' => $name,
                         'base' => $model,
@@ -22,10 +21,9 @@
                         'dropdownParent' => '#bulk-edit',
                         'route' => null,
                     ])
-                    </div>
                     @php $fieldCount++; @endphp
                 @endforeach
-                </div>
+                </x-grid>
             </div>
             <div class="modal-footer">
                 <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>

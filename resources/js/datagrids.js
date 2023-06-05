@@ -211,6 +211,7 @@ function datagrid2Reorder(ele) {
     }
 
     let target = ele.data('target') ?? '#datagrid-parent';
+    console.log('url', url, ele);
     $.ajax(
         url
     ).done(function (res) {

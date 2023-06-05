@@ -2,7 +2,7 @@
 $old = old('entry');
 ?>
 
-<div class="form-group">
+<div class="md:col-span-2 form-group entry">
     <label style="width: 100%">
         {{ __('crud.fields.entry') }}
 

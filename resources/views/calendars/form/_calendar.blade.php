@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Calendar $model */?>
-<div class="row">
-    <div class="col-md-6">
+<x-grid>
+    <div>
         <div class="form-group checkbox">
             {!! Form::hidden('skip_year_zero', 0) !!}
             <label>
@@ -63,7 +63,7 @@
         </div>
 
     </div>
-    <div class="col-md-6">
+    <div class="">
         <div class="form-group">
             <label>{{ __('calendars.panels.years') }}</label>
             <p class="help-block">{{ __('calendars.hints.years') }}</p>
@@ -87,29 +87,26 @@
         } ?>
         <div class="calendar-years sortable-elements" data-handle=".input-group-addon">
             @foreach ($years as $year => $name)
-                <div class="form-group parent-delete-row">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                                </span>
-                                <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
-                                {!! Form::text('year_number[]', $year, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
-                            </div>
+                <div class="parent-delete-row mb-2">
+                    <x-grid>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
+                            </span>
+                            <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
+                            {!! Form::text('year_number[]', $year, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
                         </div>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
-                                {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
-                                <span class="input-group-btn">
-                                    <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                        <x-icon class="trash"></x-icon>
-                                    </span>
+
+                        <div class="input-group">
+                            <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
+                            {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
+                            <span class="input-group-btn">
+                                <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                                    <x-icon class="trash"></x-icon>
                                 </span>
-                            </div>
+                            </span>
                         </div>
-                    </div>
+                    </x-grid>
                 </div>
             @endforeach
         </div>
@@ -144,35 +141,32 @@
             </div>
         </div>
     </div>
-</div>
+</x-grid>
 
 
 @section('modals')
     @parent
     <div id="template_year" style="display: none">
         <div class="form-group parent-delete-row">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                        </span>
-                        <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
-                        {!! Form::number('year_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
-                    </div>
+            <x-grid>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
+                    </span>
+                    <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
+                    {!! Form::number('year_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
                 </div>
-                <div class="col-sm-8">
-                    <div class="input-group">
-                        <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
-                        {!! Form::text('year_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.name')]) !!}
-                        <span class="input-group-btn">
-                            <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
-                                <x-icon class="trash"></x-icon>
-                            </span>
+
+                <div class="input-group">
+                    <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
+                    {!! Form::text('year_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.name')]) !!}
+                    <span class="input-group-btn">
+                        <span class="dynamic-row-delete btn btn-danger" data-remove="4" title="{{ __('crud.remove') }}">
+                            <x-icon class="trash"></x-icon>
                         </span>
-                    </div>
+                    </span>
                 </div>
-            </div>
+            </x-grid>
         </div>
     </div>
 @endsection

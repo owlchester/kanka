@@ -1,40 +1,26 @@
+<x-grid>
+    @include('cruds.fields.name', ['trans' => 'families'])
 
-<div class="row">
-    <div class="col-md-6">
-        @include('cruds.fields.name', ['trans' => 'families'])
-    </div>
-    <div class="col-md-6">
-        @include('cruds.fields.type', ['base' => \App\Models\Family::class, 'trans' => 'families'])
-    </div>
-</div>
+    @include('cruds.fields.type', ['base' => \App\Models\Family::class, 'trans' => 'families'])
 
-<div class="row">
-    <div class="col-md-6">
-        @include('cruds.fields.family', ['isParent' => true])
-    </div>
-    <div class="col-md-6">
-        @include('cruds.fields.location')
-    </div>
-</div>
+    @include('cruds.fields.family', ['isParent' => true])
 
-@include('cruds.fields.entry2')
+    @include('cruds.fields.location')
 
-@if ($campaignService->enabled('characters'))
-    <input type="hidden" name="sync_family_members" value="1">
-    <div class="form-group">
-        @include('components.form.family_members', ['options' => [
-            'model' => $model ?? FormCopy::model(),
-            'source' => $source ?? null,
-        ]])
-    </div>
-@endif
+    @include('cruds.fields.entry2')
 
-<div class="row">
-    <div class="col-md-6">
-        @include('cruds.fields.tags')
-    </div>
-    <div class="col-md-6">
-        @include('cruds.fields.image')
-    </div>
-</div>
+    @if ($campaignService->enabled('characters'))
+        <div class="form-group characters">
+            <input type="hidden" name="sync_family_members" value="1">
+            @include('components.form.family_members', ['options' => [
+                'model' => $model ?? FormCopy::model(),
+                'source' => $source ?? null,
+            ]])
+        </div>
+    @endif
+
+    @include('cruds.fields.tags')
+
+    @include('cruds.fields.image')
+</x-grid>
 

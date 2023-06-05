@@ -4,9 +4,9 @@
     </label>
 
     @if($campaignService->campaign()->boosted())
-    <p class="help-block">
-        {{ __('fields.tooltip.description') }}
-    </p>
+        <p class="help-block">
+            {{ __('fields.tooltip.description') }}
+        </p>
 
         {!! Form::textarea('entity_tooltip', FormCopy::entity()->field('tooltip')->string(), ['class' => 'form-control', 'id' => 'tooltip', 'rows' => 3, 'placeholder' => __('fields.tooltip.description')]) !!}
 
@@ -23,7 +23,6 @@ $tooltipTags = implode(', ', $tooltipTags);
     @else
         @include('cruds.fields.helpers.boosted', ['key' => 'fields.tooltip.boosted-description'])
     @endif
-
 </div>
 
 
@@ -39,47 +38,40 @@ $tooltipTags = implode(', ', $tooltipTags);
             $headerUrlPreset = Storage::url($source->entity->header_image);
         }
         @endphp
-        <div class="row">
-            <div class="col-lg-6">
-            <p class="help-block">{{ __('fields.header-image.description') }}</p>
-
-            {!! Form::hidden('remove-header_image') !!}
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        {!! Form::file('header_image', array('class' => 'image form-control')) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::text('header_image_url', $headerUrlPreset, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
-
-                        <p class="help-block">
-                            {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => auth()->user()->maxUploadSize(true)]) }}
-                            {{ __('crud.hints.image_recommendation', ['width' => '1200', 'height' => '400']) }}
-                        </p>
-                    </div>
-
+        <p class="help-block">{{ __('fields.header-image.description') }}</p>
+        {!! Form::hidden('remove-header_image') !!}
+        <x-grid type="3/4">
+            <div class="@if ((!empty($model->entity) && !empty($model->entity->header_image))) col-span-3 @else col-span-4 @endif">
+                <div class="form-group mb-2">
+                    {!! Form::file('header_image', array('class' => 'image form-control')) !!}
                 </div>
-                <div class="col-md-2">
-                    @if (!empty($model->entity) && !empty($model->entity->header_image))
+                <div class="form-group">
+                    {!! Form::text('header_image_url', $headerUrlPreset, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
 
-                        @include('cruds.fields._image_preview', [
-                            'image' => $model->entity->thumbnail(120),
-                            'title' => $model->name,
-                            'target' => 'remove-header_image',
-                        ])
-                    @endif
+                    <p class="help-block">
+                        {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => auth()->user()->maxUploadSize(true)]) }}
+                        {{ __('crud.hints.image_recommendation', ['width' => '1200', 'height' => '400']) }}
+                    </p>
                 </div>
             </div>
-            </div>
-            <div class="col-lg-6">
-                @include('cruds.fields.entity_header')
-            </div>
-        </div>
+
+            @if (!empty($model->entity) && !empty($model->entity->header_image))
+
+                @include('cruds.fields._image_preview', [
+                    'image' => $model->entity->thumbnail(120),
+                    'title' => $model->name,
+                    'target' => 'remove-header_image',
+                ])
+            @endif
+
+        </x-grid>
+
+        @include('cruds.fields.entity_header')
     @else
         @include('cruds.fields.helpers.boosted', ['key' => 'fields.header-image.boosted-description'])
     @endif
 </div>
 
+<hr />
 @include('cruds.fields.entity_image')
 

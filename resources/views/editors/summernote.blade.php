@@ -67,8 +67,8 @@
                             <p>{{ __('campaigns/gallery.pitch') }}</p>
                         </x-cta>
                     </div>
-                    <x-alert type="danger" id="campaign-imageupload-error" :hidden="true"></x-alert>
-                    <x-alert type="danger" id="campaign-imageupload-permission" :hidden="true"></x-alert>
+                    <x-alert type="error" id="campaign-imageupload-error" :hidden="true"></x-alert>
+                    <x-alert type="error" id="campaign-imageupload-permission" :hidden="true"></x-alert>
                         {!! __('campaigns/gallery.errors.permissions', [
     'permission' => '<code>' . __('campaigns.roles.permissions.actions.gallery') . '</code>']
     ) !!}

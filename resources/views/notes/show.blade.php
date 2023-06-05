@@ -19,13 +19,12 @@
                 {!! \App\Facades\Module::plural(config('entities.ids.note'), __('entities.notes')) !!}
             </h3>
             <x-box>
-                <div class="row">
+                <x-grid>
                     @foreach ($model->notes->sortBy('name') as $subNote)
-                        <div class="col-sm-6">
                             {!! $subNote->tooltipedLink() !!} @if($subNote->is_private) <i class="fa-solid fa-lock"></i> @endif <br />
-                        </div>
+
                     @endforeach
-                </div>
+                </x-grid>
             </x-box>
         @endif
 
