@@ -14,14 +14,10 @@
     {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191, 'required']) !!}
 </div>
 
-<div class="row">
-    <div class="col-sm-6">
-        @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#entity-modal'] : [])
-    </div>
-    <div class="col-sm-6">
-        @include('cruds.fields.attitude')
-    </div>
-</div>
+<x-grid>
+    @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#entity-modal'] : [])
+    @include('cruds.fields.attitude')
+</x-grid>
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
     <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">

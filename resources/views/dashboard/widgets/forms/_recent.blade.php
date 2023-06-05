@@ -22,38 +22,34 @@ $boosted = $campaignService->campaign()->boosted()
 
     <div class="tab-content">
         <div id="setup" class="tab-pane fade in active">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group required">
-                        <label for="config-entity">
-                            {{ __('crud.fields.entity_type') }}
-                        </label>
-                        {!! Form::select('config[entity]', $entities, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
-                    </div>
+            <x-grid>
+                <div class="form-group required">
+                    <label for="config-entity">
+                        {{ __('crud.fields.entity_type') }}
+                    </label>
+                    {!! Form::select('config[entity]', $entities, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
                 </div>
-                <div class="col-sm-6">
-                    <div class="form-group recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
-                        <label>
-                            {{ __('dashboard.widgets.recent.filters') }}
-                            <a href="//docs.kanka.io/en/latest/guides/dashboard.html" target="_blank">
-                                <i class="fa-solid fa-question-circle" title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                            </a>
 
-                        </label>
-                        {!! Form::text('config[filters]', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
-                    </div>
-                </div>
-            </div>
+                <div class="form-group recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
+                    <label>
+                        {{ __('dashboard.widgets.recent.filters') }}
+                        <a href="//docs.kanka.io/en/latest/guides/dashboard.html" target="_blank">
+                            <i class="fa-solid fa-question-circle" title="{{ __('dashboard.widgets.helpers.filters') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                        </a>
 
-            <div class="row">
-                <div class="col-md-6">
-                    @include('dashboard.widgets.forms._tags')
+                    </label>
+                    {!! Form::text('config[filters]', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                <div class="col-md-6">
+
+
+
+                @include('dashboard.widgets.forms._tags')
+
+                <div class="form-group">
                     <label>{{ __('dashboard.widgets.recent.advanced_filter') }}</label>
                     {!! Form::select('config[adv_filter]', $advancedFilters, null, ['class' => 'form-control']) !!}
                 </div>
-            </div>
+            </x-grid>
 
             <div class="form-group">
                 {!! Form::hidden('config[singular]', 0) !!}
@@ -92,29 +88,20 @@ $boosted = $campaignService->campaign()->boosted()
             </div>
 
 
-            <div class="row">
-                <div class="col-sm-6">
-                    @include('dashboard.widgets.forms._name')
-                </div>
-                <div class="col-sm-6">
-                    @include('dashboard.widgets.forms._width')
-                </div>
-            </div>
+            <x-grid>
+                @include('dashboard.widgets.forms._name')
+                @include('dashboard.widgets.forms._width')
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>{{ __('dashboard.widgets.fields.order') }}</label>
-                        {!! Form::select('config[order]', [
-                    '' => __('dashboard.widgets.orders.recent'),
-                    'name_asc' => __('dashboard.widgets.orders.name_asc'),
-                    'name_desc' => __('dashboard.widgets.orders.name_desc'),
-                ], null, ['class' => 'form-control']) !!}
-                    </div>
-
+                <div class="form-group">
+                    <label>{{ __('dashboard.widgets.fields.order') }}</label>
+                    {!! Form::select('config[order]', [
+                '' => __('dashboard.widgets.orders.recent'),
+                'name_asc' => __('dashboard.widgets.orders.name_asc'),
+                'name_desc' => __('dashboard.widgets.orders.name_desc'),
+            ], null, ['class' => 'form-control']) !!}
                 </div>
-            @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
-            </div>
+                @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
+            </x-grid>
         </div>
         <div id="advanced" class="tab-pane fade in">
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')

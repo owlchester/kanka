@@ -18,19 +18,14 @@
         <div id="setup" class="tab-pane fade in active">
 
             @include('dashboard.widgets.forms._name')
-            <div class="row">
-                <div class="col-sm-6">
-                    @include('dashboard.widgets.forms._width')
-                </div>
-                <div class="col-sm-6">
-                    @include('dashboard.widgets.forms._size')
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    @include('cruds.fields.entity', ['label' => __('dashboard.widgets.fields.optional-entity')])
-                </div>
-            </div>
+
+            <x-grid>
+                @include('dashboard.widgets.forms._width')
+
+                @include('dashboard.widgets.forms._size')
+
+                @include('cruds.fields.entity', ['label' => __('dashboard.widgets.fields.optional-entity')])
+            </x-grid>
         </div>
         <div id="advanced" class="tab-pane fade in">
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')

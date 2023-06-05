@@ -31,19 +31,13 @@
             </div>
 
 
-            <div class="row">
-                <div class="col-sm-6">
-                    @include('dashboard.widgets.forms._name')
-                </div>
-                <div class="col-sm-6">
-                    @include('dashboard.widgets.forms._width')
-                </div>
-            </div>
+            <x-grid>
+                @include('dashboard.widgets.forms._name')
 
-            <div class="row">
+                @include('dashboard.widgets.forms._width')
+
                 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
-            </div>
-
+            </x-grid>
         </div>
         <div id="advanced" class="tab-pane fade in">
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')

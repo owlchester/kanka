@@ -1,73 +1,62 @@
 <?php /** @var \App\Models\EntityEvent $entityEvent */?>
-<div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label>{{ __('calendars.fields.year') }}</label>
-            {!! Form::number('year', (!empty($year) ? $year : null), ['class' => 'form-control']) !!}
-        </div>
+<x-grid type="3/3">
+    <div class="form-group">
+        <label>{{ __('calendars.fields.year') }}</label>
+        {!! Form::number('year', (!empty($year) ? $year : null), ['class' => 'form-control']) !!}
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label>{{ __('calendars.fields.month') }}</label>
-            {!! Form::select('month', isset($calendar) ? $calendar->monthList() : [], (!empty($month) ? $month : null), ['class' => 'form-control']) !!}
-        </div>
+
+    <div class="form-group">
+        <label>{{ __('calendars.fields.month') }}</label>
+        {!! Form::select('month', isset($calendar) ? $calendar->monthList() : [], (!empty($month) ? $month : null), ['class' => 'form-control']) !!}
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label>{{ __('calendars.fields.day') }}</label>
-            {!! Form::number('day', (!empty($day) ? $day : null), ['class' => 'form-control']) !!}
-        </div>
+
+    <div class="form-group">
+        <label>{{ __('calendars.fields.day') }}</label>
+        {!! Form::number('day', (!empty($day) ? $day : null), ['class' => 'form-control']) !!}
     </div>
-</div>
+</x-grid>
 <div class="form-group">
     <label>{{ __('calendars.fields.comment') }}</label>
     {!! Form::text('comment', null, ['placeholder' => __('calendars.placeholders.comment'), 'class' => 'form-control', 'maxlength' => 191]) !!}
 </div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>
-                {{ __('calendars.fields.length') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.event_length') }}"></i>
-            </label>
-            {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'class' => 'form-control', 'maxlength' => 1]) !!}
+<x-grid>
+    <div class="form-group">
+        <label>
+            {{ __('calendars.fields.length') }}
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.event_length') }}"></i>
+        </label>
+        {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'class' => 'form-control', 'maxlength' => 1]) !!}
 
-            <p class="help-block hidden-md hidden-lg">{{ __('calendars.hints.event_length') }}</p>
+        <p class="help-block hidden-md hidden-lg">{{ __('calendars.hints.event_length') }}</p>
 
-        </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>{{ __('calendars.fields.colour') }}</label><br />
+
+    <div class="form-group">
+        <label>{{ __('calendars.fields.colour') }}</label><br />
 @php
 $fieldOptions = [
-    'class' => 'form-control spectrum', 'maxlength' => 7
+'class' => 'form-control spectrum', 'maxlength' => 7
 ];
 if (isset($colourAppendTo) && request()->ajax()) {
-    $fieldOptions['data-append-to'] = $colourAppendTo;
+$fieldOptions['data-append-to'] = $colourAppendTo;
 }
 @endphp
-            {!! Form::text('colour', (!empty($entityEvent) ? null : '#cccccc'), $fieldOptions ) !!}
-        </div>
+        {!! Form::text('colour', (!empty($entityEvent) ? null : '#cccccc'), $fieldOptions ) !!}
     </div>
-</div>
+</x-grid>
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>
-                {{ __('calendars.fields.is_recurring') }}
-            </label>
-            {!! Form::select('recurring_periodicity', (isset($calendar) ? $calendar->recurringOptions() : []), (isset($entityEvent) && $entityEvent->is_recurring ? $entityEvent->recurring_periodicity : ''), ['class' => 'form-control']) !!}
-        </div>
+<x-grid>
+    <div class="form-group">
+        <label>
+            {{ __('calendars.fields.is_recurring') }}
+        </label>
+        {!! Form::select('recurring_periodicity', (isset($calendar) ? $calendar->recurringOptions() : []), (isset($entityEvent) && $entityEvent->is_recurring ? $entityEvent->recurring_periodicity : ''), ['class' => 'form-control']) !!}
     </div>
-    <div class="col-md-6" style="@if (!isset($entityEvent) || !$entityEvent->is_recurring) display:none @endif" id="add_event_recurring_until">
-        <div class="form-group">
-            <label>{{ __('calendars.fields.recurring_until') }}</label>
-            {!! Form::text('recurring_until', null, ['placeholder' => __('calendars.placeholders.recurring_until'), 'class' => 'form-control', 'maxlength' => 12]) !!}
-        </div>
+    <div class="form-group" style="@if (!isset($entityEvent) || !$entityEvent->is_recurring) display:none @endif" id="add_event_recurring_until">
+        <label>{{ __('calendars.fields.recurring_until') }}</label>
+        {!! Form::text('recurring_until', null, ['placeholder' => __('calendars.placeholders.recurring_until'), 'class' => 'form-control', 'maxlength' => 12]) !!}
     </div>
-</div>
+</x-grid>
 
 @include('cruds.fields.visibility_id', ['model' => $entityEvent ?? null])
 

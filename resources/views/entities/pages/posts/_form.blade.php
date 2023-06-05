@@ -44,55 +44,44 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
             </div>
             <div class="form-group">
                 {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
-                <div class="text-right">
-                    <a href="//docs.kanka.io/en/latest/features/mentions.html" target="_blank" title="{{ __('helpers.link.description') }}">
-                        {{ __('crud.helpers.linking') }} <x-icon class="question"></x-icon>
-                    </a>
-                </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
+            <x-grid>
+                <div class="location">
                     <input type="hidden" name="location_id" value="" />
                     @include('cruds.fields.location', ['from' => null])
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    @include('cruds.fields.visibility_id')
+                @include('cruds.fields.visibility_id')
+
+                <div class="form-group position">
+                    <label>{{ __('crud.fields.position') }}</label>
+                    {!! Form::select('position', $options, (!empty($model->position) ? -9999 : $last), ['class' => 'form-control']) !!}
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="form-group">
-                        <label>{{ __('crud.fields.position') }}</label>
-                        {!! Form::select('position', $options, (!empty($model->position) ? -9999 : $last), ['class' => 'form-control']) !!}
-                    </div>
+                @php
+                    $collapsedOptions = [
+                        0 => __('entities/notes.collapsed.open'),
+                        1 => __('entities/notes.collapsed.closed')
+                    ];
+                @endphp
+                <div class="form-group display">
+                    <label>
+                        {{ __('entities/notes.fields.display') }}
+                    </label>
+                    {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => 'form-control']) !!}
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    @php
-                        $collapsedOptions = [
-                            0 => __('entities/notes.collapsed.open'),
-                            1 => __('entities/notes.collapsed.closed')
-                        ];
-                    @endphp
-                    <div class="form-group">
-                        <label>
-                            {{ __('entities/notes.fields.display') }}
-                        </label>
-                        {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => 'form-control']) !!}
-                    </div>
+
+                <div class="form-group class">
+                    <label for="config[class]">
+                        {{ __('dashboard.widgets.fields.class') }}
+                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+                    </label>
+                    {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
+                    <p class="help-block visible-xs visible-sm">
+                        {{ __('dashboard.widgets.helpers.class') }}
+                    </p>
+                    @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="form-group">
-                        <label for="config[class]">
-                            {{ __('dashboard.widgets.fields.class') }}
-                            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
-                        </label>
-                        {!! Form::text('settings[class]', null, ['class' => 'form-control', 'id' => 'config[class]', 'disabled' => !$currentCampaign->boosted() ? 'disabled' : null]) !!}
-                        <p class="help-block visible-xs visible-sm">
-                            {{ __('dashboard.widgets.helpers.class') }}
-                        </p>
-                        @includeWhen(!$currentCampaign->boosted(), 'entities.pages.posts._boosted')
-                    </div>
-                </div>
-            </div>
+            </x-grid>
         </div>
 
         @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.posts._permissions')

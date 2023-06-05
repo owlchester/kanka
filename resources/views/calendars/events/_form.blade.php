@@ -1,12 +1,14 @@
 {{ csrf_field() }}
 @if (empty($entityEvent))
     <x-grid id="calendar-event-first">
-        <a href="#" class="btn btn-default btn-block btn-lg" id="calendar-action-existing">
-            <i class="fa-solid fa-search fa-2x"></i><br />{{ __('calendars.event.actions.existing') }}
+        <a href="#" class="btn2 text-2" id="calendar-action-existing">
+            <i class="fa-solid fa-search fa-2x"></i>
+            {{ __('calendars.event.actions.existing') }}
         </a>
 
-        <span class="btn btn-default btn-block btn-lg" id="calendar-action-new">
-            <i class="fa-solid fa-bolt fa-2x"></i><br />{{ __('calendars.event.actions.new') }}
+        <span class="btn2" id="calendar-action-new">
+            <i class="fa-solid fa-bolt fa-2x"></i>
+            {{ __('calendars.event.actions.new') }}
         </span>
     </x-grid>
 @else
@@ -15,26 +17,23 @@
 
 <div id="calendar-event-subform" style="{{ empty($entityEvent) ? 'display:none' : null }}">
     @if (empty($entityEvent))
-        <div class="row">
-            <div class="col-md-8 calendar-existing-event-field">
+        <div class="flex gap-2 md:gap-4 mb-2 md:mb-4 items-center">
+            <div class="grow calendar-existing-event-field">
                 @include('cruds.fields.entity', [
                     'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
                     'required' => true
                 ])
             </div>
-            <div class="col-md-8 calendar-new-event-field">
+            <div class="grow calendar-new-event-field">
                 <div class="form-group">
                     <label>{{ __('crud.fields.name') }}</label>
-                    {!! Form::text('name', null, ['placeholder' => __('events.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                    {!! Form::text('name', null, ['placeholder' => __('crud.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
             </div>
-            <div class="col-md-4">
-            <span class="pull-right">
-                <label></label>
-                <a href="#" id="calendar-event-switch" class="pull-right">
+            <div class="">
+                <a href="#" id="calendar-event-switch" class="btn2 btn-sm">
                     {{ __('calendars.event.actions.switch') }}
                 </a>
-            </span>
             </div>
         </div>
     @endif

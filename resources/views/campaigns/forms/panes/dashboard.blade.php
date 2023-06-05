@@ -17,8 +17,9 @@
         </label>
         <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.header_image') }}</p>
         {!! Form::hidden('remove-header_image') !!}
-        <div class="row">
-            <div class="col-md-10">
+        {!! Form::hidden('remove-header_image') !!}
+        <div class="grid gap-2 grid-cols-4">
+            <div class="col-span-3">
                 <div class="form-group">
                     {!! Form::file('header_image', ['class' => 'image form-control', 'id' => 'header_image']) !!}
                 </div>
@@ -32,7 +33,7 @@
                     @include('cruds.fields.helpers.share', ['max' => 25])
                 </p>
             </div>
-            <div class="col-md-2">
+            <div class="">
                 @if (!empty($model->header_image))
                     @include('cruds.fields._image_preview', [
                         'image' => $model->thumbnail(200, 160, 'header_image'),

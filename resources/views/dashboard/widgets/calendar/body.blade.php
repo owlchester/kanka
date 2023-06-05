@@ -53,7 +53,7 @@ $weather = $calendar->calendarWeather()
     </div>
 @endif
 
-<div class="row">
+<x-grid>
     @if ($previousEvents->isNotEmpty())
         <div class="col-md-12 col-lg-6">
             <div class="text-lg mb-2">
@@ -91,7 +91,7 @@ $weather = $calendar->calendarWeather()
     @endif
 
     @if ($upcomingEvents->isNotEmpty())
-        <div class="col-lg-6 col-md-12">
+        <div class="">
             <div class="text-lg mb-2">
                 {{ __('dashboard.widgets.calendar.upcoming_events') }}
                 <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}">
@@ -128,4 +128,4 @@ $weather = $calendar->calendarWeather()
             </ul>
         </div>
     @endif
-</div>
+</x-grid>

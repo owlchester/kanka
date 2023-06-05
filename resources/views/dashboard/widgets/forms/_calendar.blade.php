@@ -20,19 +20,13 @@
     'required' => true, 'allowClear' => false, 'allowNew' => false,
     'route' => 'search.calendars'])
 
-            <div class="row">
-                <div class="col-sm-6">
+            <x-grid>
                     @include('dashboard.widgets.forms._name')
-                </div>
-                <div class="col-sm-6">
+
                     @include('dashboard.widgets.forms._width')
-                </div>
-            </div>
 
-
-            <div class="row">
                 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
-            </div>
+            </x-grid>
         </div>
         <div id="advanced" class="tab-pane fade in">
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')

@@ -6,13 +6,9 @@
 ?>
 
 @if ($plugin->version->isDraft())
-    <div class="row">
-        <div class="col-md-6 col-xs-12">
-            <x-alert type="info">
-                {{ __('This plugin is a draft, meaning only its authors can see it rendered.') }}
-            </x-alert>
-        </div>
-    </div>
+    <x-alert type="info" class="max-w-4xl">
+        {{ __('This plugin is a draft, meaning only its authors can see it rendered.') }}
+    </x-alert>
 @endif
 
 <div class="marketplace-template-{{ $plugin->plugin->uuid }}">
