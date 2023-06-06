@@ -13,16 +13,16 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         {!! \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests')) !!}
     </h3>
     <div>
-        <a href="#" class="btn btn-default btn-sm" data-toggle="dialog" data-target="help-modal">
+        <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </a>
         @if (request()->has('parent_id'))
-            <a href="{{ route('quests.show', [$model]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('quests.show', [$model]) }}" class="btn2 btn-sm">
                 <x-icon class="fa-solid fa-filter"></x-icon>
                 {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
             </a>
         @else
-            <a href="{{ route('quests.show', [$model, 'parent_id' => $model->id]) }}" class="btn btn-sm btn-default">
+            <a href="{{ route('quests.show', [$model, 'parent_id' => $model->id]) }}" class="btn2 btn-default">
                 <x-icon class="fa-solid fa-filter"></x-icon>
                 {{ __('crud.filters.direct') }} ({{ $model->quests()->count() }})
             </a>

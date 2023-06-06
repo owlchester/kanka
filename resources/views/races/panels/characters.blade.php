@@ -26,18 +26,18 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         </a>
 
         @if (request()->has('race_id'))
-            <a href="{{ route('races.show', $model) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('races.show', $model) }}" class="btn2 btn-sm">
                 <x-icon class="fa-solid fa-filter"></x-icon>
                 {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
             </a>
         @else
-            <a href="{{ route('races.show', [$model, 'race_id' => $model->id]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('races.show', [$model, 'race_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="fa-solid fa-filter"></x-icon>
                 {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
             </a>
         @endif
         @can('update', $model)
-            <a href="{{ route('races.members.create', ['race' => $model->id]) }}" class="btn btn-primary btn-sm"
+            <a href="{{ route('races.members.create', ['race' => $model->id]) }}" class="btn2 btn-primary btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('races.members.create', $model->id) }}">
                 <x-icon class="plus"></x-icon>
                 <span class="hidden-sm hidden-xs">{{ __('crud.add') }}</span>

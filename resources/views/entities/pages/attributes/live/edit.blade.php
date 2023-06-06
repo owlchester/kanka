@@ -29,7 +29,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn2 btn-primary">
         <x-icon class="fa-regular fa-save"></x-icon>
         {{ __('crud.update') }}
     </button>

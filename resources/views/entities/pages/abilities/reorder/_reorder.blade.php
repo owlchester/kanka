@@ -3,7 +3,7 @@
         'route' => ['entities.entity_abilities.reorder-save', $entity],
         'method' => 'POST',
     ]) !!}
-<x-box css="box-entity-story-reorder">
+<div class="box-entity-story-reorder w-max-4xl">
     @foreach($parents as $key => $parent)
         <div class="element-live-reorder">
             <div class="element">
@@ -34,8 +34,8 @@
         </div>
     @endforeach
 
-    <button class="btn btn-primary btn-block">
+    <button class="btn2 btn-primary btn-block">
         {{ __('crud.save') }}
     </button>
-</x-box>
+</div>
 {!! Form::close() !!}

@@ -2,13 +2,13 @@
     <h3 class="m-0 inline-block grow">
         {{ __('campaigns.show.tabs.roles') }} <small>({{ $roles->total() }} / @if ($limit = $campaign->roleLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</small>
     </h3>
-    <button class="btn btn-default btn-sm" data-toggle="dialog"
+    <button class="btn2 btn-sm" data-toggle="dialog"
             data-target="roles-help">
         <x-icon class="question"></x-icon>
         {{ __('campaigns.members.actions.help') }}
     </button>
     @if (auth()->user()->can('update', $campaign))
-        <a href="{{ route('campaign_roles.create') }}" class="btn btn-primary btn-sm"
+        <a href="{{ route('campaign_roles.create') }}" class="btn2 btn-primary btn-sm"
            data-toggle="ajax-modal" data-target="#entity-modal"
            data-url="{{ route('campaign_roles.create') }}"
         >

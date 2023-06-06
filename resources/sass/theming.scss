@@ -52,7 +52,7 @@
     --wac: 43 100% 11%;
     --erc: 0 100% 14%;
     --btn-text-case: uppercase;
-    --border-btn: 0px;
+    --border-btn: 1px;
     --tab-border: 0px;
     --tab-radius: .25rem;
     --p: 202 52% 49%;
@@ -101,7 +101,7 @@ h1, h2, h3, h4, h5, h6, h1 > small, .panel-title {
 }
 
 .content-wrapper {
-    background-color: var(--content-wrapper-background, #ecf0f5);
+    background-color: var(--content-wrapper-background, #f1f3f6);
 }
 
 
@@ -115,6 +115,9 @@ input, textarea, .select2, select, .input-group .input-group-addon, .form-contro
     line-height: 1.5rem;
     box-shadow: none;
     color: inherit;
+}
+input[type="text"], input[type="date"], input[type="file"], select {
+    min-height: 3rem;
 }
 input:focus, .textarea:focus, .form-control:focus {
     outline-style: solid;
@@ -140,7 +143,13 @@ input[type=checkbox], input[type=file] {
   filter: var(--input-file-filter);
 }
 .select2 {
-  border: none;
+    border: none;
+}
+.select2-container {
+    min-height: 3rem;
+}
+.select2-search__field {
+    min-height: inherit;
 }
 .select2-container--default .select2-selection--single, .select2-dropdown {
     border-width: 1px;
@@ -151,6 +160,12 @@ input[type=checkbox], input[type=file] {
     border-radius: var(--rounded-btn,.5rem);
     line-height: 1.5rem;
     box-shadow: none;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered, .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    line-height: 3rem;
+}
+.select2-container .select2-selection--single, .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 3rem;
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
     --tw-bg-opacity: 1;
@@ -214,19 +229,21 @@ hr {
   --dropdown-link: #777;
 }
 .dropdown-menu {
-  background-color: var(--dropdown-background);
-  border: 1px solid var(--dropdown-border);
+    background-color: var(--dropdown-background);
+    border: 1px solid var(--dropdown-border);
 
-  li.divider {
-    background-color: var(--dropdown-border);
-  }
-  li > a:hover, li > a:focus {
-    background-color: var(--dropdown-hover-background);
-    color: var(--dropdown-hover-text);
-  }
-  li > a {
-    color: var(--dropdown-link);
-  }
+    li.divider {
+        background-color: var(--dropdown-border);
+    }
+
+    li > a:hover, li > a:focus {
+        background-color: var(--dropdown-hover-background);
+        color: var(--dropdown-hover-text);
+    }
+
+    li > a {
+        color: var(--dropdown-link);
+    }
 }
 
 .modal-content {

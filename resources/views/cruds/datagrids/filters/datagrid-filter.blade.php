@@ -16,7 +16,7 @@ $hasAttributeFilters = false;
 
 
 <div class="grow flex gap-2">
-    <div class="inline-block cursor-pointer btn btn-default break-keep" data-toggle="dialog" data-target="datagrid-filters">
+    <div class="inline-block cursor-pointer btn2 break-keep" data-toggle="dialog" data-target="datagrid-filters">
         <i class="fa-solid fa-filter" aria-hidden="true"></i>
         <span class="hidden-xs">{{ __('crud.filters.title') }}</span>
         @if ($activeFilters > 0)

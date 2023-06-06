@@ -15,7 +15,7 @@
 @section('entity-header-actions')
     @can('inventory', $entity->child)
         <div class="header-buttons inline-block pull-right ml-auto">
-            <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-warning btn-sm"
+            <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn2 btn-accent btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
             >
@@ -52,7 +52,7 @@
                     <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
 
                     @can('inventory', $entity->child)
-                        <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-warning btn-sm"
+                        <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn2 btn-accent btn-sm"
                            data-toggle="ajax-modal" data-target="#entity-modal"
                            data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
                         >

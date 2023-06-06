@@ -96,7 +96,7 @@ function toggleCrudMultiDelete()
     if (hide) {
         $('.datagrid-bulk-actions .btn2').prop('disabled', true).addClass('btn-disabled');
     } else {
-        $('.datagrid-bulk-actions .btn2').prop('disabled', false).removeClass('btn-disabled');
+        $('.datagrid-bulk-actions .btn2').prop('disabled', false).removeClass('btn-disabled').removeClass('disabled');
     }
 }
 

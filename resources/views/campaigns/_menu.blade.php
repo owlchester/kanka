@@ -7,29 +7,29 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();
 $buttons = [];
 if (auth()->check()) {
     if (auth()->user()->hasBoosterNomenclature() && !$campaign->superboosted() && isset($boost) && auth()->user()->can('destroy', $boost)) {
-        $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn btn-block bg-boost text-white">
+        $buttons[] = '<a href="#" data-toggle="ajax-modal" data-target="#entity-modal" data-url="' . route('campaign_boosts.edit', [$boost]) . '" class="btn2 btn-block bg-boost text-white">
             <i class="fa-solid fa-premium" aria-hidden=true"></i> ' . __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) . '</a>';
     }
     if (!$campaign->boosted()) {
         if (auth()->check() && auth()->user()->hasBoosterNomenclature()) {
-        $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-boost text-white mb-5">
+        $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn2 btn-block bg-boost text-white mb-5">
             <i class="fa-solid fa-premium" aria-hidden=true"></i> ' . __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) . '</a>';
         } else {
-        $buttons[] = '<a href="' . route('settings.premium', ['campaign' => $campaign->id]) .'" class="btn btn-block bg-boost text-white mb-5">
+        $buttons[] = '<a href="' . route('settings.premium', ['campaign' => $campaign->id]) .'" class="btn2 btn-block bg-boost text-white mb-5">
             <i class="fa-solid fa-premium" aria-hidden=true"></i> ' . __('settings/premium.actions.unlock') . '</a>';
         }
     }
     if (auth()->user()->can('update', $campaign)) {
-        $buttons[] = '<a href="'. route('campaigns.edit') .'" class="btn btn-primary btn-block">
+        $buttons[] = '<a href="'. route('campaigns.edit') .'" class="btn2 btn-primary btn-block">
             <i class="fa-solid fa-edit" aria-hidden=true"></i> '. __('campaigns.show.actions.edit') .'</a>';
     }
     if ($campaign->userIsMember()) {
-    $buttons[] = '<button type="button" class="btn btn-warning btn-block" data-toggle="dialog" data-target="leave-confirm">
+    $buttons[] = '<button type="button" class="btn2 btn-warning btn-block" data-toggle="dialog" data-target="leave-confirm">
             <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i> ' . __('campaigns.show.actions.leave') . '
         </button>';
     }
     if (auth()->user()->can('roles', $campaign)) {
-        $buttons[] = '<button type="button" class="btn btn-danger btn-block" data-toggle="dialog" data-target="campaign-delete-confirm">
+        $buttons[] = '<button type="button" class="btn2 btn-error btn-block" data-toggle="dialog" data-target="campaign-delete-confirm">
             <i class="fa-regular fa-trash" aria-hidden=true"></i> ' . __('campaigns.destroy.action') . '
         </button>';
     }

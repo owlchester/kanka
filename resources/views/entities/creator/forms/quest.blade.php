@@ -2,4 +2,4 @@
 <x-grid>
     @include('cruds.fields.quest', ['isParent' => true])
     @include('cruds.fields.character', ['label' => 'quests.fields.character'])
-</x-grid>>
+</x-grid>

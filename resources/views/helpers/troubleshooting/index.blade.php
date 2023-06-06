@@ -31,7 +31,7 @@
 
             @if(!$token)
                 <div class=" text-right">
-                    <input type="submit" class="btn btn-primary" value="{{ __('helpers.troubleshooting.save_btn') }}" />
+                    <input type="submit" class="btn2 btn-primary" value="{{ __('helpers.troubleshooting.save_btn') }}" />
                 </div>
             @endif
         </x-box>

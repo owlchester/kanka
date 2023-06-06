@@ -44,15 +44,17 @@ $isAdmin = Auth::user()->isAdmin();
         @include('cruds.forms.attributes._blocks', ['existing' => $r->count()])
         @include('cruds.forms.attributes._buttons', ['model' => $entity->child, 'existing' => $r->count()])
 
-        <div class="pull-right">
-            <button class="btn btn-success">
-                {{ __('crud.save') }}
-            </button>
+        <div class="flex gap-2 items-center">
+            <a href="{{ url()->previous() }}" class="btn2 btn-ghost">
+                {{ __('crud.cancel') }}
+            </a>
+            <div class="grow text-right">
+                <button class="btn2 btn-primary">
+                    {{ __('crud.save') }}
+                </button>
+            </div>
         </div>
 
-        <a href="{{ url()->previous() }}" class="btn btn-default">
-            {{ __('crud.cancel') }}
-        </a>
     </x-box>
 @endsection
 

@@ -24,7 +24,7 @@ $imageCount = 0;
                 @endif
 
                 <div class="mt-2">
-                    <a href="#" class="btn btn-default btn-sm" data-toggle="collapse" data-target=".gallery-toggle">{{ __('campaigns/gallery.actions.focus_point') }}</a>
+                    <a href="#" class="btn2 btn-sm" data-toggle="collapse" data-target=".gallery-toggle">{{ __('campaigns/gallery.actions.focus_point') }}</a>
                 </div>
                 <hr />
                 <p class="{{ $image->inEntitiesCount() === 0 ? 'text-muted' : '' }}">
@@ -91,7 +91,7 @@ $imageCount = 0;
                 </div>
 
                 <div class="">
-                    <input type="submit" class="btn btn-primary" value="{{ __('campaigns/gallery.actions.save') }}">
+                    <input type="submit" class="btn2 btn-primary" value="{{ __('campaigns/gallery.actions.save') }}">
                 </div>
             </div>
 
@@ -112,14 +112,14 @@ $imageCount = 0;
             <div class="grid grid-cols-2 gap-2 w-full items-center mb-5">
                 <div>
                     {!! Form::model($image, ['route' => ['campaign.gallery.save-focus', $image], 'method' => 'POST']) !!}
-                        <input type="submit" class="btn btn-danger" value="{{ __('campaigns/gallery.actions.reset_focus') }}">
+                        <input type="submit" class="btn2 btn-error btn-outline btn-sm" value="{{ __('campaigns/gallery.actions.reset_focus') }}">
                     {!! Form::close() !!}
                 </div>
                 <div class="text-right">
                 {!! Form::model($image, ['route' => ['campaign.gallery.save-focus', $image], 'method' => 'POST']) !!}
                     {!! Form::hidden('focus_x', null) !!}
                     {!! Form::hidden('focus_y', null) !!}
-                    <input type="submit" class="btn btn-primary" value="{{ __('entities/image.actions.save_focus') }}">
+                    <input type="submit" class="btn2 btn-primary btn-sm" value="{{ __('entities/image.actions.save_focus') }}">
                 {!! Form::close() !!}
                 </div>
 

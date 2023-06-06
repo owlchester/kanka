@@ -67,7 +67,7 @@ $loadedElements = [];
 
     @can('update', $timeline)
         <div class="text-center mb-5">
-            <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn btn-primary btn-sm"
+            <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn2 btn-primary btn-sm"
                 title="{{ __('crud.create') }}"
             >
                 <x-icon class="plus"></x-icon>
@@ -89,7 +89,7 @@ $loadedElements = [];
 @if (!$timeline->eras->isEmpty())
     @can('update', $timeline)
         <div class="text-center mb-5">
-            <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model, 'from' => 'view']) }}" class="btn2 btn-primary btn-sm">
                 <x-icon class="plus"></x-icon> {{ __('timelines/eras.actions.add') }}
             </a>
         </div>

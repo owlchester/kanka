@@ -25,9 +25,9 @@
 
         <div class="">
             <div class="pull-right">
-                <button class="btn btn-success" id="form-submit-main">{{ __('crud.update') }}</button>
+                <button class="btn2 btn-primary" id="form-submit-main">{{ __('crud.update') }}</button>
             </div>
-            <a href="{{ url()->previous() }}" class="btn btn-default">
+            <a href="{{ url()->previous() }}" class="btn2 btn-ghost">
                 {{ __('crud.cancel') }}
             </a>
         </div>

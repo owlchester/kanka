@@ -24,7 +24,7 @@ if (!empty($oldCalendarID)) {
 <div class="form-group">
     <p class="help-block">{{ __('crud.hints.calendar_date') }}</p>
 
-    <a href="#" id="entity-calendar-form-add" class="btn btn-default"
+    <a href="#" id="entity-calendar-form-add" class="btn2 btn-sm"
        style="<?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "display: none" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}">
         <x-icon class="ra ra-moon-sun"></x-icon>
         {{ __('crud.forms.actions.calendar') }}

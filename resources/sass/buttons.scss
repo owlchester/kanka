@@ -14,6 +14,11 @@
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
     }
+
+    .select2-container .select2-selection--single {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
 }
 
 .btn2 {
@@ -42,7 +47,7 @@
     line-height:1em;
     min-height:3rem;
     gap:.5rem;
-    font-weight:600;
+    //font-weight:600;
     text-decoration-line:none;
     border-width:var(--border-btn,1px);
     animation:button-pop var(--animation-btn,.25s) ease-out;
@@ -100,31 +105,36 @@
         --tw-border-opacity: 1;
         border-color:hsl(var(--b3)/var(--tw-border-opacity));
         --tw-bg-opacity: 1;
-        background-color:hsl(var(--b3)/var(--tw-bg-opacity))
+        background-color:hsl(var(--b3)/var(--tw-bg-opacity));
+        color:hsl(var(--bc)/var(--tw-text-opacity));
     }
     .btn2.btn-primary:hover {
         --tw-border-opacity: 1;
         border-color:hsl(var(--pf)/var(--tw-border-opacity));
         --tw-bg-opacity: 1;
-        background-color:hsl(var(--pf)/var(--tw-bg-opacity))
+        background-color:hsl(var(--pf)/var(--tw-bg-opacity));
+        color:hsl(var(--pc)/var(--tw-text-opacity));
     }
     .btn2.btn-secondary:hover {
         --tw-border-opacity: 1;
         border-color:hsl(var(--sf)/var(--tw-border-opacity));
         --tw-bg-opacity: 1;
-        background-color:hsl(var(--sf)/var(--tw-bg-opacity))
+        background-color:hsl(var(--sf)/var(--tw-bg-opacity));
+        color:hsl(var(--sc)/var(--tw-text-opacity));
     }
     .btn2.btn-accent:hover {
         --tw-border-opacity: 1;
         border-color:hsl(var(--af)/var(--tw-border-opacity));
         --tw-bg-opacity: 1;
-        background-color:hsl(var(--af)/var(--tw-bg-opacity))
+        background-color:hsl(var(--af)/var(--tw-bg-opacity));
+        color:hsl(var(--ac)/var(--tw-text-opacity));
     }
     .btn2.btn-neutral:hover {
         --tw-border-opacity: 1;
         border-color:hsl(var(--nf)/var(--tw-border-opacity));
         --tw-bg-opacity: 1;
-        background-color:hsl(var(--nf)/var(--tw-bg-opacity))
+        background-color:hsl(var(--nf)/var(--tw-bg-opacity));
+        color:hsl(var(--fc)/var(--tw-text-opacity));
     }
     .btn2.btn-info:hover {
         --tw-border-opacity: 1;

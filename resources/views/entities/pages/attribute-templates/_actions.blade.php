@@ -1,10 +1,10 @@
 <div class="submit-group inline-block">
     <input id="submit-mode" type="hidden" value="true"/>
-    <div class="btn-group">
-        <button class="btn btn-success ml-5 rounded-full px-8" id="form-submit-main"
+    <div class="join">
+        <button class="btn2 join-item btn-primary" id="form-submit-main"
     >{{ __('crud.actions.apply') }}</button>
 
-        <button type="button" class="btn btn-success rounded-full dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn2 join-item btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">

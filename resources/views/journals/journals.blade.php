@@ -11,11 +11,11 @@
 @section('entity-header-actions')
     <div class="header-buttons inline-block pull-right ml-auto">
         @if (request()->has('parent_id'))
-            <a href="{{ route('journals.journals', [$model]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('journals.journals', [$model]) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter" aria-hidden="true"></i> {{ __('crud.filters.all') }} ({{ $model->allJournals()->count() }})
             </a>
         @else
-            <a href="{{ route('journals.journals', [$model, 'parent_id' => $model->id]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('journals.journals', [$model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter" aria-hidden="true"></i> {{ __('crud.filters.direct') }} ({{ $model->journals()->count() }})
             </a>
         @endif

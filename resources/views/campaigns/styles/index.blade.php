@@ -22,16 +22,16 @@ use App\Facades\Datagrid ?>
                     {{ __('campaigns.show.tabs.styles') }}
                 </h3>
                 @if ($campaign->boosted())
-                    <button class="btn btn-sm btn-default pull-right ml-1" data-toggle="dialog"
+                    <button class="btn2 btn-sm pull-right ml-1" data-toggle="dialog"
                             data-target="theming-help">
                         <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}
                     </button>
-                    <a href="#" data-url="{{ route('campaign-theme') }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn btn-default btn-sm pull-right ml-1">
+                    <a href="#" data-url="{{ route('campaign-theme') }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn2 btn-sm pull-right ml-1">
                         <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
                     </a>
 
-                    <a href="{{ route('campaign_styles.create') }}" class="btn btn-primary btn-sm pull-right ml-1">
+                    <a href="{{ route('campaign_styles.create') }}" class="btn2 btn-primary btn-sm pull-right ml-1">
                         <x-icon class="plus"></x-icon> {{ __('campaigns/styles.actions.new') }}
                     </a>
                 @endif

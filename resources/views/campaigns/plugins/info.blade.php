@@ -33,7 +33,7 @@
             @if($plugin->hasUpdate())
                 <div class="text-right">
                     {!! Form::open(['route' => ['campaign_plugins.update', $plugin], 'method' => 'POST']) !!}
-                    <button type="submit" class="btn btn-primary btn-sm">
+                    <button type="submit" class="btn2 btn-primary btn-sm">
                         <i class="fa-solid fa-download"></i>
                         {{ __('campaigns/plugins.actions.update') }}
                     </button>

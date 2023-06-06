@@ -21,13 +21,13 @@
                     {{ __('campaigns.show.tabs.default-images') }}
                 </h3>
                 @if ($campaign->boosted())
-                    <button class="btn btn-default btn-sm" data-toggle="dialog"
+                    <button class="btn2 btn-sm" data-toggle="dialog"
                             data-target="default-images-help">
                         <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}
                     </button>
 
-                    <a href="{{ route('campaign.default-images.create') }}" class="btn btn-primary btn-sm"
+                    <a href="{{ route('campaign.default-images.create') }}" class="btn2 btn-primary btn-sm"
                        data-toggle="ajax-modal" data-target="#entity-modal"
                        data-url="{{ route('campaign.default-images.create') }}">
                         <x-icon class="plus"></x-icon>

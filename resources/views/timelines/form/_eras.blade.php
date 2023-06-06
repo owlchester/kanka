@@ -65,7 +65,7 @@
         {{ $eras->links() }}
     </div>
 
-    <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn btn-primary btn-sm"
+    <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn2 btn-primary btn-sm"
        data-toggle="ajax-modal" data-target="#large-modal"
        data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
        data-backdrop="static"

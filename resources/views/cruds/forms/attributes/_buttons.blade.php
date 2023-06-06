@@ -1,8 +1,8 @@
 <div class="flex flex-wrap gap-2 items-center">
-    <div class="btn-group">
-        <button type="button" class="btn2 btn-sm add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-            <x-icon class="plus"></x-icon> {{ __('entities/attributes.types.attribute') }}
-        </button>
+    <button type="button" class="btn2 btn-sm add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+        <x-icon class="plus"></x-icon> {{ __('entities/attributes.types.attribute') }}
+    </button>
+    <div class="dropdown">
         <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
             {{ __('entities/attributes.actions.more') }}
             <span class="caret"></span>
@@ -45,7 +45,7 @@
     @endif
 
     <div class="grow">
-        <a href="//docs.kanka.io/en/latest/features/attributes.html" target="_blank" class="btn btn-sm btn-link">
+        <a href="//docs.kanka.io/en/latest/features/attributes.html" target="_blank" class="btn2 btn-sm btn-link">
             {{ __('helpers.attributes.link') }}
         </a>
     </div>

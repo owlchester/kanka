@@ -5,12 +5,6 @@
     <h3 class="grow box-title">
         {{ __('sidebar.relations') }}
     </h3>
-
-    <div class="flex-0">
-        <a href="#" class="btn btn-default btn-sm" data-toggle="dialog" data-target="help-modal">
-            <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
-        </a>
-    </div>
 </div>
 <x-box css="box-entity-relations box-entity-relations-table" id="entity-relations-table" :padding="$rows->count() === 0">
     @if ($rows->count() === 0)
@@ -18,7 +12,7 @@
             {{ __('entities/relations.helpers.no_relations') }}
         </p>
         @can('relation', [$entity->child, 'add'])
-            <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
+            <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn2 btn-sm btn-accent" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
                 <x-icon class="plus"></x-icon>
                 <span class="hidden-xs hidden-sm">
                 {{ __('entities.relation') }}

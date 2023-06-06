@@ -20,16 +20,16 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
     </h3>
     <div>
         @if (!$allMembers)
-            <a href="{{ route('families.show', [$model]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('families.show', [$model]) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->count() }})
             </a>
         @else
-            <a href="{{ route('families.show', [$model, 'family_id' => $model->id]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('families.show', [$model, 'family_id' => $model->id]) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->count() }})
             </a>
         @endif
         @can('update', $model)
-            <a href="{{ route('families.members.create', ['family' => $model->id]) }}" class="btn btn-primary btn-sm"
+            <a href="{{ route('families.members.create', ['family' => $model->id]) }}" class="btn2 btn-primary btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('families.members.create', $model->id) }}">
                 <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
             </a>

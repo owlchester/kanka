@@ -8,7 +8,7 @@
     <h3 class="m-0 grow">{{ __('campaigns.roles.members') }}</h3>
     @can('user', $role)
         <a href="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}"
-           class="btn btn-primary btn-sm"
+           class="btn2 btn-primary btn-sm"
            data-toggle="ajax-modal" data-target="#entity-modal"
            data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
             <x-icon class="plus"></x-icon>

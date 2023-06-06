@@ -25,15 +25,15 @@ if ($folder) {
 @section('content')
 <div class="flex items-center gap-2 mb-2">
     <div class="grow">
-        <button class="btn btn-primary" data-toggle="collapse" data-target="#uploader">
+        <button class="btn2 btn-primary btn-sm" data-toggle="collapse" data-target="#uploader">
             <x-icon class="fa-solid fa-upload"></x-icon> {{ __('campaigns/gallery.uploader.add') }}
         </button>
-        <button class="btn btn-default" data-toggle="modal" data-target="#modal-new-folder">
+        <button class="btn2 btn-sm" data-toggle="modal" data-target="#modal-new-folder">
             <x-icon class="fa-solid fa-folder"></x-icon> {{ __('campaigns/gallery.uploader.new_folder') }}
         </button>
 
         @if(!empty($folder))
-            <button class="btn btn-default" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', $folder) }}">
+            <button class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', $folder) }}">
                 <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
             </button>
         @endif
@@ -52,7 +52,7 @@ if ($folder) {
 
             <p>{{ __('campaigns/gallery.uploader.or') }}</p>
 
-            <span class="btn btn-primary fileinput-button relative overflow-hidden inline-block">
+            <span class="btn2 btn-primary btn-sm fileinput-button relative overflow-hidden inline-block">
                 <x-icon class="plus"></x-icon>
                 <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
                 <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer opacity-0" multiple />
@@ -103,8 +103,8 @@ if ($folder) {
                     @include('cruds.fields.visibility_id', ['model' => null])
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" class="btn2 btn-sm" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                    <button type="submit" class="btn2 btn-sm btn-primary">
                     {{ __('crud.create') }}
                 </button>
                 </div>

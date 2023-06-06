@@ -45,7 +45,7 @@
                         {!! $connection->tooltipedLink() !!}
 
                         @if ($connection->type() == 'map')
-                            <a href="{{ route('maps.explore', $connection->entity_id) }}" class="btn btn-xs btn-primary" target="_blank">
+                            <a href="{{ route('maps.explore', $connection->entity_id) }}" class="btn2 btn-xs btn-primary" target="_blank">
                                 <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
                             </a>
                         @endif

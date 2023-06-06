@@ -26,13 +26,13 @@
                 </h3>
 
                 @if ($canReset)
-                    <a href="#" class="btn btn-default btn-sm" data-toggle="dialog" data-target="reset-confirm">
+                    <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
                         <i class="fa-solid fa-eraser" aria-hidden="true"></i>
                         {{ __('crud.actions.reset') }}
                     </a>
                 @endif
                 <a href="//docs.kanka.io/en/latest/features/campaigns/modules.html"
-                   target="_blank" class="btn btn-default btn-sm">
+                   target="_blank" class="btn2 btn-sm">
                     <x-icon class="question"></x-icon>
                     {!! __('campaigns.members.actions.help') !!}
                 </a>

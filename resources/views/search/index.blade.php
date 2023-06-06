@@ -8,18 +8,17 @@
 
 @section('content')
     {!! Form::open(['route' => 'search', 'method' => 'GET']) !!}
+        <x-box>
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ request()->get('q') }}">
 
-            <x-box>
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ request()->get('q') }}">
-
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa-solid fa-search"></i> {{ __('crud.search') }}
-                        </button>
-                    </div>
+                <div class="input-group-btn">
+                    <button type="submit" class="btn2 btn-primary">
+                        <i class="fa-solid fa-search"></i> {{ __('crud.search') }}
+                    </button>
                 </div>
-            </x-box>
+            </div>
+        </x-box>
     {!! Form::close() !!}
 
     <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">

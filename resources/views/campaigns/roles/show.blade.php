@@ -27,7 +27,7 @@
         <div class="grow">
             <div class="flex gap-2 items-center mb-5">
                 <h3 class="m-0 grow">{{ __('crud.permissions.title') }}</h3>
-                <button class="btn btn-default btn-sm" data-target="permission-modal" data-toggle="dialog">
+                <button class="btn2 btn-sm" data-target="permission-modal" data-toggle="dialog">
                     <x-icon class="question"></x-icon> {{ __('campaigns.members.actions.help') }}
                 </button>
             </div>
@@ -47,7 +47,7 @@
                 @endif
                 @can('permission', $role)
                 <div class="text-right mt-5">
-                    <button class="btn btn-success">
+                    <button class="btn2 btn-primary">
                         <x-icon class="save"></x-icon>
                         {{ __('crud.save') }}
                     </button>

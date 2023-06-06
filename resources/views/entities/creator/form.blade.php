@@ -96,7 +96,7 @@
 
         @else
             <div class="text-center">
-            <button class="btn btn-success px-5 quick-creator-submit" data-entity-type="{{ $singularType }}">
+            <button class="btn2 btn-primary quick-creator-submit" data-entity-type="{{ $singularType }}">
                 <span>
                     <x-icon class="plus"></x-icon> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
                 </span>

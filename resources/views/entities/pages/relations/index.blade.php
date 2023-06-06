@@ -13,17 +13,23 @@
 
 @section('entity-header-actions')
         <div class="header-buttons inline-block pull-right ml-auto">
-            <div class="btn-group">
-                <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
+
+            <button class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+            </button>
+
+            @if ($mode === 'map')
+                <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
                     <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
                 </a>
-                <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'map']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
+            @else
+                <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'map']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
                     <x-icon class="map"></x-icon>
                 </a>
-            </div>
+            @endif
 
             @can('relation', [$entity->child, 'add'])
-            <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
+            <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn2 btn-sm btn-accent" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
                 <x-icon class="plus"></x-icon>
                 <span class="hidden-xs hidden-sm">
                     {{ __('entities.relation') }}

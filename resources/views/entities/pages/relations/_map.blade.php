@@ -21,12 +21,9 @@ $options = [
     'route' => ['entities.relations.index', $entity],
     'method' => 'GET',
 ]) !!}
-    <div class="input-group mb-5">
-        {!! Form::select('option', $options, $option, ['class' => 'form-control']) !!}
-        <div class="input-group-btn">
-
-            <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn btn-primary" />
-        </div>
+    <div class="join mb-5 w-full">
+        {!! Form::select('option', $options, $option, ['class' => 'form-control join-item']) !!}
+        <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn2 btn-primary join-item" />
     </div>
 {!! Form::hidden('mode', 'map') !!}
 {!! Form::close() !!}

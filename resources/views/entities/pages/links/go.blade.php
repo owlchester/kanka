@@ -20,16 +20,15 @@
 
                 <p>{!! __('entities/links.go.description', ['link' => '<strong>' . $entityAsset->metadata['url'] . '</strong>']) !!}</p>
             </div>
+            <div class="flex gap-2 items-center justify-center my-5">
+                <a href="{{ $entity->url('show') }}" class="btn2 btn-ghost">
+                    {{ __('crud.cancel') }}
+                </a>
+                <a href="{{ $entityAsset->metadata['url'] }}" rel="noreferrer nofollow" class="btn2 btn-primary">
+                    {{ __('entities/links.go.actions.confirm') }}
+                </a>
+            </div>
             <div class="text-center">
-                <div class="mb-2">
-                    <a href="{{ $entity->url('show') }}" class="btn btn-default btn-lg mr-2 px-8">
-                        {{ __('crud.cancel') }}
-                    </a>
-                    <a href="{{ $entityAsset->metadata['url'] }}" rel="noreferrer nofollow" class="btn btn-lg btn-primary ml-2 px-8">
-                        {{ __('entities/links.go.actions.confirm') }}
-                    </a>
-                </div>
-
                 <a href="{{ $entityAsset->metadata['url'] }}" rel="noreferrer nofollow" class="domain-trust" data-domain="{{ $entityAsset->urlDomain() }}">
                     {{ __('entities/links.go.actions.trust') }}
                 </a>
