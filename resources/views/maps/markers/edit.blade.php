@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="submit-animation" style="display: none;">
-                    <button class="btn btn-success" disabled>
+                    <button class="btn2 btn-success btn-sm" disabled>
                         <i class="fa-solid fa-spinner fa-spin"></i>
                     </button>
                 </div>

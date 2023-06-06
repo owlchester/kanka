@@ -5,7 +5,7 @@
     'route' => ['maps.layers.reorder-save', 'map' => $model],
     'method' => 'POST',
 ]) !!}
-    <x-box css="box-entity-story-reorder">
+    <div class="box-entity-story-reorder">
         <div class="element-live-reorder sortable-elements">
             @foreach($rows as $layer)
                 <div class="element" data-id="{{ $layer->id }}">
@@ -19,8 +19,8 @@
                 </div>
             @endforeach
         </div>
-        <button class="btn btn-primary btn-block">
+        <button class="btn2 btn-primary btn-block">
             {{ __('maps/layers.reorder.save') }}
         </button>
-    </x-box>
+    </div>
 {!! Form::close() !!}

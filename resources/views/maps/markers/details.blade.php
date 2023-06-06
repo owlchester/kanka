@@ -42,7 +42,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
 @if ($marker->entity)
     @if($marker->entity->isMap())
         <div class="marker-map-link text-center m-3">
-            <a href="{{ $marker->entity->url('explore') }}" target="_blank" class="btn btn-primary">
+            <a href="{{ $marker->entity->url('explore') }}" target="_blank" class="btn2 btn-primary btn-sm">
                 <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
             </a>
         </div>
@@ -51,7 +51,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
     @if($marker->entity->isLocation() && !$marker->entity->child->maps->isEmpty())
         <div class="marker-explore-links text-center m-3">
             @foreach ($marker->entity->child->maps as $map)
-                <a href="{{ route('maps.explore', $map) }}" class="btn btn-block btn-primary" target="_blank">
+                <a href="{{ route('maps.explore', $map) }}" class="btn2 btn-block btn-primary btn-sm" target="_blank">
                     <x-icon class="map"></x-icon>
                     {{ __('maps.actions.explore') }} {!! $map->name !!}
                 </a>
@@ -73,11 +73,12 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
 
 @can('update', $marker->map)
     <div class="marker-actions text-center">
-        <div class="btn-group">
-            <a href="{{ route('maps.map_markers.edit', [$marker->map, $marker, 'from' => 'explore']) }}" class="btn btn-primary">
-                <x-icon class="fa-solid fa-map-pin"></x-icon> {{ __('maps/markers.actions.update') }}
+        <div class="join">
+            <a href="{{ route('maps.map_markers.edit', [$marker->map, $marker, 'from' => 'explore']) }}" class="btn2 btn-primary btn-sm join-item">
+                <x-icon class="fa-solid fa-map-pin"></x-icon>
+                {{ __('maps/markers.actions.update') }}
             </a>
-            <button class="btn btn-danger delete-confirm" data-name="{{ $marker->markerTitle() }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-marker-confirm-form-{{ $marker->id }}">
+            <button class="btn2 btn-error btn-sm join-item delete-confirm" data-name="{{ $marker->markerTitle() }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-marker-confirm-form-{{ $marker->id }}">
                 <x-icon class="trash"></x-icon> {{ __('maps/markers.actions.remove') }}
             </button>
         </div>

@@ -40,7 +40,7 @@
                 @endif
             </td>
             <td class="text-right">
-                <a href="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}" class="btn btn-primary btn-xs"
+                <a href="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}" class="btn2 btn-primary btn-xs"
                    title="{{ __('crud.edit') }}"
                    data-toggle="ajax-modal" data-target="#large-modal"
                    data-url="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}"

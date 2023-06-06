@@ -52,7 +52,7 @@ $existing = $model->allChildren()->count();
                 {{ __('tags.helpers.no_children') }}
             </p>
             @can('update', $model)
-                <a href="{{ $addEntityUrl }}" class="btn btn-primary"
+                <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
                    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
                     <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
                 </a>

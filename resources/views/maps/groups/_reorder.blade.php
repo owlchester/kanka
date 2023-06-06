@@ -6,7 +6,7 @@
     'route' => ['maps.groups.reorder-save', 'map' => $model],
     'method' => 'POST',
 ]) !!}
-    <x-box css="box-entity-story-reorder">
+    <div class="box-entity-story-reorder">
 
         <div class="element-live-reorder sortable-elements">
             @foreach($rows as $group)
@@ -22,8 +22,8 @@
             @endforeach
         </div>
 
-        <button class="btn btn-primary btn-block">
+        <button class="btn2 btn-primary btn-block">
             {{ __('maps/groups.reorder.save') }}
         </button>
-    </x-box>
+    </div>
 {!! Form::close() !!}
