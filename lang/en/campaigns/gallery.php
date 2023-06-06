@@ -23,6 +23,7 @@ return [
         'ext'           => 'Ext',
         'folder'        => 'Folder',
         'image_used_in' => '{0} This image isn\'t used in any of the campaign\'s entities.|{1} Used as the image of one entity.|[2,*] Used as the image of :count entities.',
+        'image_mentioned_in' => '{0} This image isn\'t mentioned in any of the campaign\'s entities.|{1} Mentioned in one entry/post.|[2,*] mentioned in :count entries/posts.',
         'name'          => 'Name',
         'size'          => 'Size',
     ],

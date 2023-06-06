@@ -464,6 +464,15 @@ trait EntityRelations
 
     /**
      * List of entities that mention this entity
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function imageMentions()
+    {
+        return $this->hasMany('App\Models\ImageMention', 'entity_id', 'id');
+    }
+
+    /**
+     * List of entities that mention this entity
      * @return EntityMention|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function targetMentions()

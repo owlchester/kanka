@@ -51,6 +51,26 @@ trait MentionTrait
         return $mentions;
     }
 
+ /**
+     * Extract the Images from a text
+     * @param string|null $text
+     * @return array
+     */
+    public function extractImages(string $text = null): array
+    {
+        $images = [];
+
+        preg_match_all('/data-gallery-id="[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"/i', $text, $segments);
+
+        foreach ($segments[0] as $key => $type) {
+            $id = substr($type, 17, -1);
+            if (!in_array($id, $images)) {
+                $images[$key] = $id;
+            }
+        }
+        return $images;
+    }
+
     /**
      * Extract the formatting for a mention
      * @param array $matches
