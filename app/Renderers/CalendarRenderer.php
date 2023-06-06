@@ -687,7 +687,7 @@ class CalendarRenderer
         $calendarYear = $this->calendar->currentDate('year');
         $calendarMonth = $this->calendar->currentDate('month');
 
-        $options = ['class' => 'btn btn-default'];
+        $options = ['class' => 'btn2 btn-sm'];
         if ($this->year == $calendarYear && $this->month == $calendarMonth) {
             $options['disabled'] = 'disabled';
         }

@@ -12,10 +12,10 @@ if (auth()->check()) {
     }
     if (!$campaign->boosted()) {
         if (auth()->check() && auth()->user()->hasBoosterNomenclature()) {
-        $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn2 btn-block bg-boost text-white mb-5">
+        $buttons[] = '<a href="' . route('settings.boost', ['campaign' => $campaign->id]) .'" class="btn2 btn-block bg-boost text-white">
             <i class="fa-solid fa-premium" aria-hidden=true"></i> ' . __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) . '</a>';
         } else {
-        $buttons[] = '<a href="' . route('settings.premium', ['campaign' => $campaign->id]) .'" class="btn2 btn-block bg-boost text-white mb-5">
+        $buttons[] = '<a href="' . route('settings.premium', ['campaign' => $campaign->id]) .'" class="btn2 btn-block bg-boost text-white">
             <i class="fa-solid fa-premium" aria-hidden=true"></i> ' . __('settings/premium.actions.unlock') . '</a>';
         }
     }

@@ -257,10 +257,12 @@ function registerEntityCalendarModal() {
 
 
 function registerEraForm() {
+    if ($('#era-form-add').length === 0) {
+        return;
+    }
     entityCalendarAdd = $('#era-form-add');
     let eraField = $('[name="era_id"]');
 
-    let positionField = $('select[name="position"]');
     oldEra = eraField.val();
     if (entityCalendarField.val()) {
         loadTimelineEra(eraField.val());
@@ -369,9 +371,12 @@ function loadTimelineEra(eraID) {
 function calendarHideSubform() {
     entityCalendarForm.hide();
     entityCalendarAdd.show();
+
     $('input[name="calendar_day"]').val(null);
     $('input[name="calendar_month"]').val(null);
     $('input[name="calendar_year"]').val(null);
+    $('input[name="calendar_id"]').val(null);
+    console.log('finished?');
 }
 
 /**

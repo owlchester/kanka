@@ -3,14 +3,17 @@ $old = old('entry');
 ?>
 
 <div class="md:col-span-2 form-group entry">
-    <label style="width: 100%">
-        {{ __('crud.fields.entry') }}
+    <div class="flex gap-2 items-center">
+        <label class="grow">
+            {{ __('crud.fields.entry') }}
+        </label>
 
-        <a href="//docs.kanka.io/en/latest/features/mentions.html" class="pull-right btn2 btn-sm"
-           target="_blank" title="{{ __('helpers.link.description') }}">
-            <x-icon class="question"></x-icon> {{ __('crud.helpers.linking') }}
+        <a href="//docs.kanka.io/en/latest/features/mentions.html" class="pull-right btn2 btn-xs btn-link"
+           target="_blank" title="{{ __('helpers.link.description') }}" data-toggle="tooltip">
+            {{ __('crud.helpers.linking') }}
         </a>
-    </label>
+    </div>
+
     {!! Form::textarea(
         'entryForEdition',
         !empty($old) ? $old : FormCopy::field('entryForEdition')->string(),

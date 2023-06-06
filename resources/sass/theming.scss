@@ -36,18 +36,18 @@
     --color-accent: var(--link-text);
     --pf: 202 52% 34%;
     --sf: 215 26% 52%;
-    --af: 154 49% 53%;
+    --af: 41 74% 46%;
     --nf: 233 27% 6%;
     --b2: 0 0% 93%;
     --b3: 0 0% 86%;
     --in: 198 93% 80%;
-    --su: 158 64% 52%;
     --wa: 43 96% 76%;
     --er: 0 91% 71%;
     --pc: 243 100% 96%;
     --sc: 216 13% 13%;
     --ac: 151 21% 13%;
     --inc: 198 100% 12%;
+    --su: 158 64% 52%;
     --suc: 158 100% 10%;
     --wac: 43 100% 11%;
     --erc: 0 100% 14%;
@@ -57,8 +57,9 @@
     --tab-radius: .25rem;
     --p: 202 52% 49%;
 
+
     --s: 215 26% 59%;
-    --a: 154 49% 60%;
+    --a: 41 74% 53%;;
     --n: 233 27% 13%;
     --nc: 210 38% 95%;
     --b1: 0 0% 100%;
@@ -116,8 +117,8 @@ input, textarea, .select2, select, .input-group .input-group-addon, .form-contro
     box-shadow: none;
     color: inherit;
 }
-input[type="text"], input[type="date"], input[type="file"], select {
-    min-height: 3rem;
+input[type="text"], input[type="date"], input[type="number"], input[type="file"], select {
+    min-height: 2.2rem;
 }
 input:focus, .textarea:focus, .form-control:focus {
     outline-style: solid;
@@ -145,12 +146,13 @@ input[type=checkbox], input[type=file] {
 .select2 {
     border: none;
 }
-.select2-container {
+/*.select2-container {
     min-height: 3rem;
 }
 .select2-search__field {
     min-height: inherit;
 }
+*/
 .select2-container--default .select2-selection--single, .select2-dropdown {
     border-width: 1px;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
@@ -158,19 +160,7 @@ input[type=checkbox], input[type=file] {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b1)/var(--tw-bg-opacity));
     border-radius: var(--rounded-btn,.5rem);
-    line-height: 1.5rem;
     box-shadow: none;
-}
-.select2-container--default .select2-selection--single .select2-selection__rendered, .select2-container--default .select2-selection--multiple .select2-selection__rendered {
-    line-height: 3rem;
-}
-.select2-container .select2-selection--single, .select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 3rem;
-}
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--p)/var(--tw-bg-opacity));
-    color: hsl(var(--pc))
 }
 
 label {
@@ -209,7 +199,13 @@ hr {
 }
 .select2-container--default .select2-results__option[aria-selected="true"] {
     --tw-bg-opacity: 1;
-    background-color: hsl(var(--pc)/var(--tw-bg-opacity));
+    background-color: hsl(var(--p)/var(--tw-bg-opacity));
+    color: hsl(var(--pc))
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--p)/var(--tw-bg-opacity));
+    color: hsl(var(--pc))
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     color: hsl(var(--n));

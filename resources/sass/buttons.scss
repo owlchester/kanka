@@ -15,9 +15,18 @@
         border-top-left-radius: 0;
     }
 
-    .select2-container .select2-selection--single {
+    .select2-container .select2-selection {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
+        border-right: none;
+    }
+
+    .quick-creator-subform.join-item {
+        height:2.2rem;
+        padding-left:.75rem;
+        padding-right:.75rem;
+        min-height:2.2rem;
+        font-size:1rem
     }
 }
 
@@ -599,10 +608,10 @@
     font-size:.75rem
 }
 .btn2.btn-sm {
-    height:2rem;
+    height:2.2rem;
     padding-left:.75rem;
     padding-right:.75rem;
-    min-height:2rem;
+    min-height:2.2rem;
     font-size:.875rem
 }
 .btn2.btn-md {

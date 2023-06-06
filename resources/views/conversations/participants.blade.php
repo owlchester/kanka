@@ -30,8 +30,9 @@
                     </div>
 
                     @can('update', $model)
-                        <button class="text-danger">
-                            <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
+                        <button class="btn2 btn-error btn-outline btn-sm">
+                            <x-icon class="trash"></x-icon>
+                            <span class="sr-only">{{ __('crud.remove') }}</span>
                         </button>
                         {!! Form::close() !!}
                     @endcan
@@ -46,20 +47,18 @@
             {!! Form::open(['route' => ['conversations.conversation_participants.store', $model], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
             <div class="flex gap-2 items-center">
                 <div class="grow">
-                    <div class="form-group required">
-                        @if ($model->forCharacters())
-                            @include('cruds.fields.character')
-                        @else
-                            {!! Form::select(
-                                'user_id',
-                                $memberList,
-                                null,
-                                ['class' => 'form-control']
-                            ) !!}
-                        @endif
-                    </div>
+                    @if ($model->forCharacters())
+                        @include('cruds.fields.character', ['allowNew' => false])
+                    @else
+                        {!! Form::select(
+                            'user_id',
+                            $memberList,
+                            null,
+                            ['class' => 'form-control']
+                        ) !!}
+                    @endif
                 </div>
-                <div class="flex-none">
+                <div class="">
                     @if ($model->target ==  \App\Models\Conversation::TARGET_CHARACTERS)
                         <label></label>
                     @endif
