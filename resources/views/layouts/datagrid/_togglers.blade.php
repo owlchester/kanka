@@ -1,6 +1,6 @@
 @if ($mode === 'grid')
     <div class="dropdown">
-        <a class="dropdown-toggle btn2 btn-sm" data-toggle="dropdown" aria-expanded="false">
+        <a class="dropdown-toggle btn2" data-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true" data-tree="escape"></i>
             <span class="sr-only">Order by</span>
         </a>
@@ -31,12 +31,12 @@
 
 @if (empty($forceMode))
     @if (!isset($mode) || $mode === 'grid')
-        <a class="btn2 btn-sm" href="{{ route($name . '.' . $route, ['m' => 'table']) }}" title="{{ __('datagrids.modes.table') }}">
+        <a class="btn2 " href="{{ route($name . '.' . $route, ['m' => 'table']) }}" title="{{ __('datagrids.modes.table') }}">
             <x-icon class="fa-solid fa-list-ul"></x-icon>
             <span class="sr-only">Table</span>
         </a>
     @else
-        <a class="btn2 btn-sm" href="{{ route($name . '.' . $route, ['m' => 'grid']) }}" title="{{ __('datagrids.modes.grid') }}">
+        <a class="btn2" href="{{ route($name . '.' . $route, ['m' => 'grid']) }}" title="{{ __('datagrids.modes.grid') }}">
             <i class="fa-solid fa-grid !mr-0" aria-hidden="true"></i>
             <span class="sr-only">Grid</span>
         </a>
