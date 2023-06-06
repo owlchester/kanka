@@ -4,7 +4,7 @@
     <div class="row">
     @foreach ($filters as $field)
         <div class="col-md-{{ is_array($field) ? 12 : $filterColWidth }}">
-            <div class="form-group">
+            <div class="field-filter">
             @if (is_array($field))
                 <?php $model = null;
                 $value = $filterService->single($field['field']);

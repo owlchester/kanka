@@ -3,20 +3,21 @@
         @include('partials.errors')
         @include($content)
     </div>
-    <div class="box-footer">
-        @if (isset($actions))
-            @include($actions)
-        @else
-            <button class="btn btn-success">
-                {{ $submit ?? __('crud.save') }}
-            </button>
-        @endif
-        @includeWhen(!request()->ajax(), 'partials.or_cancel')
+    <div class="box-footer flex gap-2 items-center">
+        <div class="grow flex gap-2 items-center">
+            @include('partials.footer_cancel')
 
-        @if (isset($deleteID) && !empty($deleteID))
-            <div class="pull-left">
+            @if (isset($actions))
+                @include($actions)
+            @endif
+
+            @if (isset($deleteID) && !empty($deleteID))
                 <x-button.delete-confirm target="{{ $deleteID }}" />
-            </div>
-        @endif
+            @endif
+        </div>
+        
+        <button class="btn2 btn-primary">
+            {{ $submit ?? __('crud.save') }}
+        </button>
     </div>
 </div>

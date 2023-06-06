@@ -18,13 +18,13 @@
                 {{ __('entities/move.panel.description') }}
             </p>
 
-            <div class="form-group">
+            <div class="field-campaign mb-5">
                 <label>{{ __('entities/move.fields.campaign') }}</label>
                 {!! Form::select('campaign', $campaigns, null, ['class' => 'form-control']) !!}
             </div>
 
             @can('update', $entity->child)
-                <div class="form-group form-check">
+                <div class="field-copy form-check">
                     <label>{!! Form::checkbox('copy', 1, true) !!}
                         {{ __('entities/move.fields.copy') }}
                     </label>

@@ -8,7 +8,7 @@
     @include('cruds.fields.entry2')
 
 @if ($campaignService->enabled('characters'))
-    <div class="form-group members">
+    <div class="field-members">
         <input type="hidden" name="sync_org_members" value="1">
         @include('components.form.members', ['options' => [
             'model' => $model ?? FormCopy::model(),
@@ -17,7 +17,7 @@
     </div>
 @endif
 
-    <div class="form-group defunct">
+    <div class="field-defunct">
         {!! Form::hidden('is_defunct', 0) !!}
         <label>{!! Form::checkbox('is_defunct', 1, $model->is_defunct ?? '' )!!}
             {{ __('organisations.fields.is_defunct') }}

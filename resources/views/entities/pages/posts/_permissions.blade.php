@@ -60,7 +60,7 @@
                     <h4 class="modal-title" id="myModalLabel">{{ __('entities/notes.show.advanced') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="field-user">
                         <label for="user">{{ __('crud.permissions.fields.member') }}</label>
                         @include('components.form.user', ['options' => ['dropdownParent' => '#post-new-user']])
                     </div>
@@ -82,7 +82,7 @@
                     <h4 class="modal-title" id="myModalLabel">{{ __('entities/notes.show.advanced') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="field-user">
                         <label for="user">{{ __('crud.permissions.fields.role') }}</label>
                         @include('components.form.role', ['options' => [
                             'dropdownParent' => '#post-new-role'

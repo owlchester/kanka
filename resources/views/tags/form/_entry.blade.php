@@ -7,14 +7,14 @@
 
     @include('cruds.fields.entry2')
 
-    <div class="form-group auto-apply">
+    <div class="field-auto-apply">
         {!! Form::hidden('is_auto_applied', 0) !!}
         <label>{!! Form::checkbox('is_auto_applied', 1, $model->is_auto_applied ?? '' )!!}
             {{ __('tags.fields.is_auto_applied') }}
         </label>
         <p class="help-block">{{ __('tags.hints.is_auto_applied') }}</p>
     </div>
-    <div class="form-group hidden">
+    <div class="field-hidden">
         {!! Form::hidden('is_hidden', 0) !!}
         <label>{!! Form::checkbox('is_hidden', 1, $model->is_hidden ?? '' )!!}
             {{ __('tags.fields.is_hidden') }}

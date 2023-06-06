@@ -1,14 +1,16 @@
-@include('cruds.fields.entity', ['required' => true])
-
-<div class="form-group">
-    <label>{{ __('crud.fields.entry') }}</label>
-    {!! Form::textarea('entry', FormCopy::field('entry')->string(), ['class' => 'form-control  resize-y', 'rows' => 5]) !!}
-</div>
-
 <x-grid>
+    <div class="col-span-2">
+        @include('cruds.fields.entity', ['required' => true]).
+    </div>
+
+    <div class="field-entry col-span-2">
+        <label>{{ __('crud.fields.entry') }}</label>
+        {!! Form::textarea('entry', FormCopy::field('entry')->string(), ['class' => 'form-control  resize-y', 'rows' => 5]) !!}
+    </div>
+
     @include('cruds.fields.visibility_id')
 
-    <div class="form-group">
+    <div class="field-position">
         <label>
             {{ __('entities/notes.fields.position') }}
         </label>

@@ -5,8 +5,8 @@ $types = [
     3 => __('maps/markers.tabs.circle'),
 ];
 @endphp
-<div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
-    <div class="form-group required mb-0">
+<x-grid>
+    <div class="field-name required">
         <label>{{ __('presets.fields.name') }}</label>
         {!! Form::text('name', null, [
             'class' => 'form-control',
@@ -24,4 +24,4 @@ $types = [
     @include('maps.markers.fields.background_colour', ['fieldname' => 'config[colour]'])
 
     @include('cruds.fields.visibility_id', ['model' => $preset ?? null])
-</div>
+</x-grid>

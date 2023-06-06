@@ -13,49 +13,48 @@ $statuses = [
 @endphp
 
 {{ csrf_field() }}
+<x-gird>
 
-@include('cruds.fields.character', [
-    'required' => true,
-    'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
-    'allowNew' => false,
-    'allowClear' => false,
-])
+    <div class="col-span-2">
+        @include('cruds.fields.character', [
+            'required' => true,
+            'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+            'allowNew' => false,
+            'allowClear' => false,
+        ])
+    </div>
 
-<div class="form-group">
-    <input type="hidden" name="parent_id" value="" />
+    <div class="field-character col-span-2">
+        <input type="hidden" name="parent_id" value="" />
 
-    @include('cruds.fields.character', [
-        'name' => 'parent_id',
-        'label' => __('organisations.members.fields.parent'),
-        'placeholder' => __('organisations.members.placeholders.parent'),
-        'route' => 'search.organisation-member',
-        'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
-        'allowNew' => false,
-        'allowClear' => false,
-    ])
-</div>
-
-
-<div class="form-group">
-    <label>{{ __('organisations.members.fields.role') }}</label>
-    {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
-</div>
-
-<div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
-    <div class="form-group mb-0">
+        @include('cruds.fields.character', [
+            'name' => 'parent_id',
+            'label' => __('organisations.members.fields.parent'),
+            'placeholder' => __('organisations.members.placeholders.parent'),
+            'route' => 'search.organisation-member',
+            'dropdownParent' => request()->ajax() ? '#entity-modal' : null,
+            'allowNew' => false,
+            'allowClear' => false,
+        ])
+    </div>
+    <div class="field-role col-span-2">
+        <label>{{ __('organisations.members.fields.role') }}</label>
+        {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+    </div>
+    <div class="field-status">
         <label>
             {{ __('organisations.members.fields.status') }}
         </label>
         {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
     </div>
-    <div class="form-group mb-0">
+    <div class="field-pinned">
         <label>
             {{ __('organisations.members.fields.pinned') }}
             <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
         </label>
         {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
     </div>
-</div>
+</x-gird>
 
 
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])

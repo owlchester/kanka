@@ -9,7 +9,7 @@ if (isset($dropdownParent)) {
 
 @endphp
 
-<div class="form-group">
+<div class="colour">
     <label>{{ __('crud.fields.colour') }}</label>
     {!! Form::text('colour', null, $fieldOptions ) !!}
 </div>

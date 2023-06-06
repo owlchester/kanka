@@ -23,7 +23,7 @@
                     </a>
                 </x-alert>
             @else
-                <div class="form-group">
+                <div class="field-campaign mb-5">
                     <label>{{ __('entities/move.fields.campaign') }}</label>
                     {!! Form::select('campaign', $campaigns, null, ['class' => 'form-control']) !!}
                 </div>

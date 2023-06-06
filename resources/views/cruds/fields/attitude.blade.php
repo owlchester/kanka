@@ -1,5 +1,5 @@
 
-<div class="form-group">
+<div class="field-attitude">
     <label for="attitude">
         {{ __('entities/relations.fields.attitude') }}
         <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.attitude') }}" data-toggle="tooltip"></i>

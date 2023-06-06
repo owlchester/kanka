@@ -12,7 +12,7 @@
 
         @includeWhen(!empty($success), 'entities.creator._created')
 
-        <div class="form-group required">
+        <div class="field-name required mb-5">
             <label>{{ __('crud.fields.name') }}</label>
 
             @if ($mode === 'bulk')
@@ -43,7 +43,7 @@
             </x-alert>
         </div>
 
-        <a href="#" class="qq-action-more text-uppercase pointer text-sm" style="{{ $singularType === 'post' ? 'display: none' : null }}">
+        <a href="#" class="qq-action-more text-uppercase cursor-pointer text-sm" style="{{ $singularType === 'post' ? 'display: none' : null }}">
             <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
             {{ __('entities.creator.actions.more') }}
         </a>

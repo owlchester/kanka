@@ -1,10 +1,10 @@
-<div class="form-group">
-    <label>{{ trans($trans . '.fields.size') }}</label>
+<div class="field-size">
+    <label>{{ __($trans . '.fields.size') }}</label>
     {!! Form::text(
         'size',
         FormCopy::field('size')->string(),
         [
-            'placeholder' => trans($trans . '.placeholders.size'),
+            'placeholder' => __($trans . '.placeholders.size'),
             'class' => 'form-control',
             'maxlength' => 191
         ]

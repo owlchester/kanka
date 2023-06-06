@@ -111,7 +111,7 @@ $weekNumber = 1;
                 </div>
                 <div class="modal-body">
                     {!! Form::open(['route' => ['calendars.show', $model], 'method' => 'GET']) !!}
-                    <div class="form-group">
+                    <div class="field-year">
                         <label>{{ __('calendars.fields.year') }}</label>
                         {!! Form::number('year', null, ['class' => 'form-control', 'placeholder' => e($renderer->currentYear())]) !!}
                     </div>

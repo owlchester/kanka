@@ -19,17 +19,15 @@
         @include('partials.errors')
 
 
-        <div class="form-group">
+        <div class="field-entry">
             {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
         </div>
 
-        <div class="">
-            <div class="pull-right">
-                <button class="btn2 btn-primary" id="form-submit-main">{{ __('crud.update') }}</button>
+        <div class="flex gap-2 items-center">
+            <div class="grow">
+                @include('partials.footer_cancel')
             </div>
-            <a href="{{ url()->previous() }}" class="btn2 btn-ghost">
-                {{ __('crud.cancel') }}
-            </a>
+            <button class="btn2 btn-primary" id="form-submit-main">{{ __('crud.update') }}</button>
         </div>
 
     {!! Form::close() !!}

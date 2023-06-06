@@ -13,20 +13,19 @@
 
     {{ csrf_field() }}
     <x-box>
-        <div class="form-group">
+        <div class="field-entity mb-5">
             <label>{{ __('entities/notes.move.entity') }}</label>
             <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations') }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
         </div>
-        <div class="form-group form-check">
+        <div class="field-copy form-check">
             <label>{!! Form::checkbox('copy', 1, true) !!}
                 {{ __('entities/notes.move.copy') }}
             </label>
         </div>
 
-        <x-box.footer>
-
-            <button class="btn btn-success">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
-        </x-box.footer>
+        <x-dialog.footer>
+            <button class="btn2 btn-primary">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
+        </x-dialog.footer>
     </x-box>
 
     {!! Form::close() !!}

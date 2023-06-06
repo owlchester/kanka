@@ -3,7 +3,7 @@
 <x-grid>
     <div>
         <div class="flex gap-2 mb-2 items-center">
-            <div class="form-group required grow mb-0">
+            <div class="field-weekday required grow mb-0">
                 <label>{{ __('calendars.fields.weekdays') }}</label>
                 <p class="help-block">{{ __('calendars.hints.weekdays') }}</p>
                 <input type="hidden" name="weekday" />
@@ -31,7 +31,7 @@
         } ?>
         <div class="calendar-weekdays sortable-elements" data-handle=".input-group-addon">
             @foreach ($weekdays as $weekday)
-                <div class="form-group parent-delete-row">
+                <div class="parent-delete-row">
                     <div class="input-group">
                         <span class="input-group-addon">
                             <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
@@ -51,7 +51,7 @@
     </div>
     <div>
         <div class="flex gap-2 items-center mb-2">
-            <div class="form-group grow mb-0">
+            <div class="grow mb-0">
                 <label>{{ __('calendars.fields.week_names') }}</label>
                 <p class="help-block">{{ __('calendars.hints.weeks') }}</p>
             </div>
@@ -84,7 +84,7 @@
         } ?>
         <div class="calendar-weeks sortable-elements" data-handle=".input-group-addon">
             @foreach ($weeks as $week => $name)
-                <div class="form-group parent-delete-row">
+                <div class="parent-delete-row">
                     <x-grid type="3/4">
                         <div class="input-group">
                             <span class="input-group-addon">
@@ -113,7 +113,7 @@
 @section('modals')
     @parent
     <div id="template_weekday" style="display: none">
-        <div class="form-group parent-delete-row">
+        <div class="parent-delete-row">
             <div class="input-group">
                 <span class="input-group-addon">
                     <span class="   fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
@@ -130,7 +130,7 @@
     </div>
 
     <div id="template_week" style="display: none">
-        <div class="form-group parent-delete-row">
+        <div class="parent-delete-row">
             <x-grid type="3/4">
                 <div class="input-group">
                     <span class="input-group-addon">

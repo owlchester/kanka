@@ -24,7 +24,7 @@
 
 @php $firstBlock = true @endphp
 <div class="hidden-md hidden-lg hidden-sm" id="sm-a">
-    <div class="form-group">
+    <div class="mb-2">
         <select name="menu-switcher" class="form-control submenu-switcher">
             @foreach ($modelMenuItems as $section => $menuItems)
                 @if (!$firstBlock)

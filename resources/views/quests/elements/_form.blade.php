@@ -3,34 +3,33 @@
 <p class="help-block">
  {{ __('quests.elements.fields.entity_or_name') }}
 </p>
-<div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
-    <div class="form-group required mb-0">
+<x-grid>
+    <div class="field-entity required">
         <input type="hidden" name="entity_id" value="" />
         @include('cruds.fields.entity')
     </div>
-    <div class="form-group required mb-0">
+    <div class="field-name required">
         <label>{{ __('quests.elements.fields.name') }}</label>
         {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100, 'spellcheck' => 'true']) !!}
     </div>
-</div>
 
-<hr />
+    <hr />
 
-<div class="form-group">
-    <label>{{ __('quests.fields.role') }}</label>
-    {!! Form::text('role', null, ['class' => 'form-control', 'maxlength' => 45, 'spellcheck' => 'true']) !!}
-</div>
+    <div class="field-role col-span-2">
+        <label>{{ __('quests.fields.role') }}</label>
+        {!! Form::text('role', null, ['class' => 'form-control', 'maxlength' => 45, 'spellcheck' => 'true']) !!}
+    </div>
 
-<div class="form-group">
-    <label>{{ __('quests.elements.fields.description') }}</label>
-{!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'description', 'name' => 'description']) !!}
-</div>
+    <div class="field-description col-span-2">
+        <label>{{ __('quests.elements.fields.description') }}</label>
+    {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'description', 'name' => 'description']) !!}
+    </div>
 
-<div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
-    <div class="form-group mb-0">
+    <div class="field-colour">
         <label>{{ __('calendars.fields.colour') }}</label>
         {!! Form::select('colour', FormCopy::colours(), null, ['class' => 'form-control select2-colour']) !!}
     </div>
+
     @include('cruds.fields.visibility_id')
-</div>
+</x-grid>
 

@@ -6,7 +6,7 @@
     @include('cruds.fields.instigator')
 
     @include('cruds.fields.date')
-    <div class="completed checkbox form-group">
+    <div class="field-completed checkbox">
         {!! Form::hidden('is_completed', 0) !!}
         <label>{!! Form::checkbox('is_completed', 1, (!empty($model) ? $model->is_completed : (!empty($source) ? FormCopy::field('is_completed')->boolean() : 0))) !!}
             {{ __('quests.fields.is_completed') }}

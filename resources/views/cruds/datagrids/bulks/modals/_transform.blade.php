@@ -8,7 +8,7 @@
         {{ __('entities/transform.panel.bulk_description') }}
     </p>
 
-    <div class="form-group">
+    <div class="field-target">
         <label>{{ __('entities/transform.fields.target') }}</label>
         {!! Form::select('target', $entities, null, ['class' => 'form-control']) !!}
     </div>

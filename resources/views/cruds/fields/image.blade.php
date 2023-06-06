@@ -11,7 +11,7 @@ if (isset($size) && $size == 'map') {
 }
 $label = $imageLabel ?? 'crud.fields.image';
 ?>
-<div class="image">
+<div class="field-image">
     <div class="@if (!empty($imageRequired) && $imageRequired) required @endif">
         <label>{{ __($label) }}</label>
         {!! Form::hidden('remove-image') !!}
@@ -19,10 +19,10 @@ $label = $imageLabel ?? 'crud.fields.image';
 
     <x-grid type="3/4">
         <div class="{{ empty($model->image) && !isset($campaignImage) ? 'col-span-4' : 'col-span-3' }} grid flex-row gap-2">
-            <div class="form-group image">
+            <div class="image-file">
                 {!! Form::file('image', array('class' => 'image form-control')) !!}
             </div>
-            <div class="form-group image-url">
+            <div class="image-url">
             {!! Form::text('image_url', ((!empty($source) && $source->image) ? $source->getOriginalImageUrl() : ''), ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
                 <p class="help-block">
                     {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? auth()->user()->mapUploadSize(true) : auth()->user()->maxUploadSize(true))]) }}

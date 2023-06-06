@@ -69,7 +69,7 @@
         $role = \App\Facades\CampaignCache::adminRole();
     @endphp
     <hr />
-    <div class="form-group">
+    <div class="field-private">
         {!! Form::hidden('is_attributes_private', 0) !!}
         <label>{!! Form::checkbox('is_attributes_private', 1, empty($model) ? false : $model->entity->is_attributes_private) !!}
             {{ __('entities/attributes.fields.is_private') }}

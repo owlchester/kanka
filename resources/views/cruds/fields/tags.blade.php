@@ -2,7 +2,7 @@
     @if (isset($bulk) && $bulk)
         <div class="grid gap-2 md:gap-4 grid-cols-2">
     @endif
-    <div class="tags form-group">
+    <div class="field-tags">
         <input type="hidden" name="save-tags" value="1" />
 
         <x-forms.tags
@@ -16,7 +16,7 @@
     </div>
 
     @if (isset($bulk) && $bulk)
-        <div class="form-group">
+        <div class="field-tagging">
             <label for="bulk-tagging">{{ __('crud.bulk.edit.tagging') }}</label>
             <select name="bulk-tagging" class="form-control">
                 <option value="add">{{ __('crud.bulk.edit.tags.add') }}</option>

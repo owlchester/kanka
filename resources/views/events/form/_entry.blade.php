@@ -5,7 +5,7 @@
     @include('cruds.fields.event', ['isParent' => true])
     @include('cruds.fields.location')
 
-    <div class="form-group date">
+    <div class="field-date">
         <label>
             {{ __('events.fields.date') }}
         </label>

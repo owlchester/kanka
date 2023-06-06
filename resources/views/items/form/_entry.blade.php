@@ -5,7 +5,7 @@
     @include('cruds.fields.item', ['isParent' => true])
     @include('cruds.fields.price', ['trans' => 'items'])
 
-    <div class="form-group size">
+    <div class="field-size">
         <label>{{ __('items.fields.size') }}</label>
         {!! Form::text('size', FormCopy::field('size')->string(), ['placeholder' => __('items.placeholders.size'), 'class' => 'form-control', 'maxlength' => 191]) !!}
     </div>

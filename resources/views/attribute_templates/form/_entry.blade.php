@@ -3,7 +3,7 @@
 
     @include('cruds.fields.parent_attribute_template', ['isParent' => true])
 
-    <div class="form-group entity-type">
+    <div class="entity-type">
         @include('components.form.entity_types', ['options' => [
             'model' => (isset($model) && $model->entityType ? $model->entityType : FormCopy::field('entityType')->related())
         ], 'label' => 'attribute_templates.fields.auto_apply'])

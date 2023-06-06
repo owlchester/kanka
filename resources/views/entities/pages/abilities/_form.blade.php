@@ -1,5 +1,5 @@
 {{ csrf_field() }}
-<div class="form-group required">
+<div class="field-abilities mb-5 required">
     @include('components.form.abilities', ['options' => ['exclude-entity' => $entity->id]])
 </div>
 

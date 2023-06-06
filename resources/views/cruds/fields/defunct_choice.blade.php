@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="defunct">
     <label for="is_defunct">{{ __('organisations.fields.is_defunct') }}</label>
     <select name="is_defunct" class="form-control">
         <option value=""></option>

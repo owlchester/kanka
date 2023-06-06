@@ -1,4 +1,4 @@
-<div class="pronouns form-group">
+<div class="field-pronouns">
     <label>{{ __('characters.fields.pronouns') }}</label>
     {!! Form::text(
         'pronouns',

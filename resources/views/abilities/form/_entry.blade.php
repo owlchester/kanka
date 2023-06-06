@@ -5,7 +5,7 @@
 
     @include('cruds.fields.ability', ['isParent' => true])
 
-    <div class="form-group charges">
+    <div class="charges">
         <label>{{ __('abilities.fields.charges') }}</label>
         {!! Form::text(
             'charges',

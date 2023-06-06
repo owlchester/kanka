@@ -8,7 +8,7 @@
         {{ __('entities/move.panel.description_bulk_copy') }}
     </p>
 
-    <div class="form-group">
+    <div class="field-campaign">
         <label>{{ __('entities/move.fields.campaign') }}</label>
         {!! Form::select('campaign', Auth::user()->moveCampaignList(false), null, ['class' => 'form-control']) !!}
     </div>

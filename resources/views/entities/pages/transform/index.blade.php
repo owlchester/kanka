@@ -23,11 +23,10 @@
                     <i class="fa-solid fa-external-link" aria-hidden="true"></i>
                     {{ __('crud.helpers.learn_more', ['documentation' => __('front.menu.documentation')]) }}
                 </a>
-                <div class="form-group">
+                <div class="field-target">
                     <label>{{ __('entities/transform.fields.target') }}</label>
                     {!! Form::select('target', $entities, null, ['class' => 'form-control']) !!}
                 </div>
-
 
                 <x-dialog.footer>
                     <button class="btn2 btn-primary">

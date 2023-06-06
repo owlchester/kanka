@@ -45,7 +45,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             {{ __('characters.actions.add_appearance') }}
         </button>
 
-        <div class="form-group checkbox">
+        <div class="field-appearance-pinned checkbox">
             {!! Form::hidden('is_appearance_pinned', 0) !!}
             <label>
                 {!! Form::checkbox('is_appearance_pinned', 1, (!empty($model) ? $model->is_appearance_pinned : (!empty($source) ? FormCopy::field('is_appearance_pinned')->boolean() : null))) !!}
@@ -55,8 +55,6 @@ $role = \App\Facades\CampaignCache::adminRole();
                 {{ __('characters.hints.is_appearance_pinned') }}
             </p>
         </div>
-
-        <div class="form-group"><br /></div>
     </div>
     <div>
         <label>{{ __('characters.sections.personality') }}</label>
@@ -82,7 +80,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                                 <span class="sr-only">{{ __('crud.remove') }}</span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="field-personality-entry">
                             <label class="sr-only">{{ __('characters.labels.personality.entry') }}</label>
                             {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, [
                                 'class' => 'form-control',
@@ -101,7 +99,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             </button>
 
 
-            <div class="form-group checkbox">
+            <div class="field-personality-pinned checkbox">
                 {!! Form::hidden('is_personality_pinned', 0) !!}
                 <label>
                     {!! Form::checkbox('is_personality_pinned', 1, (!empty($model) ? $model->is_personality_pinned : (!empty($source) ? FormCopy::field('is_personality_pinned')->boolean() : null))) !!}
@@ -115,7 +113,7 @@ $role = \App\Facades\CampaignCache::adminRole();
         @if (auth()->user()->isAdmin())
                 <hr>
                 {!! Form::hidden('is_personality_visible', 0) !!}
-                <div class="form-group checkbox">
+                <div class="field-personality-visible checkbox">
                     <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? FormCopy::field('is_personality_visible')->boolean() : !CampaignLocalization::getCampaign()->entity_personality_visibility))) !!}
                         {{ __('characters.fields.is_personality_visible') }}
                     </label>
@@ -193,7 +191,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                         <span class="sr-only">{{ __('crud.remove') }}</span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="field-personality-entry">
                     <label class="sr-only">{{ __('characters.labels.personality.entry') }}</label>
                     {!! Form::textarea('personality_entry[]', null, [
                         'class' => 'form-control',

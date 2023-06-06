@@ -5,7 +5,7 @@
 @endif
 
 <div class="max-w-xl">
-    <div class="form-group">
+    <div class="field-template mb-5">
         <label for="template_id">
             {{ __('entities.attribute_template') }}
             <i class="fa-solid fa-question-circle hidden-xs hidden-sm" aria-hidden="true" data-toggle="tooltip" title="{{ __('crud.hints.attribute_template') }}"></i>

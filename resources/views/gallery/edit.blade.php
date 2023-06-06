@@ -60,14 +60,14 @@ $imageCount = 0;
 
                 {!! Form::model($image, ['route' => ['images.update', $image], 'method' => 'PUT', 'class' => '']) !!}
 
-                <div class="form-group">
+                <div class="field-name">
                     <label for="name" class="control-label required">{{ __('crud.fields.name') }}</label>
                     {!! Form::text('name', null, ['maxlength' => 45, 'class' => 'form-control']) !!}
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-5">
                 @if(!$image->isFolder())
-                    <div class="form-group">
+                    <div class="field-folder">
                         <label for="folder_id" class="control-label">{{ __('campaigns/gallery.fields.folder') }}</label>
                         {!! Form::select('folder_id', $folders, null, ['class' => 'form-control']) !!}
                     </div>

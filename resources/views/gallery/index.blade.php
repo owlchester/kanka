@@ -95,7 +95,7 @@ if ($folder) {
                     <h4 class="modal-title" id="myModalLabel">{{ __('campaigns/gallery.new_folder.title') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="field-name">
                         <label>{{ __('campaigns/gallery.fields.name') }}</label>
                         {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
                     </div>

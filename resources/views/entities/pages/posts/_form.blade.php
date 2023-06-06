@@ -39,21 +39,23 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
 
     <div class="tab-content">
         <div class="tab-pane active" id="form-entry">
-            <div class="form-group required">
-                {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
-            </div>
-
             <x-grid>
-                <div class="location">
+
+                <div class="field-name col-span-2 required">
+                    {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
+                </div>
+                <div class="field-entry col-span-2">
+                    {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+                </div>
+
+                <div class="field-location">
                     <input type="hidden" name="location_id" value="" />
                     @include('cruds.fields.location', ['from' => null])
                 </div>
+
                 @include('cruds.fields.visibility_id')
 
-                <div class="form-group position">
+                <div class="field-position">
                     <label>{{ __('crud.fields.position') }}</label>
                     {!! Form::select('position', $options, (!empty($model->position) ? -9999 : $last), ['class' => 'form-control']) !!}
                 </div>
@@ -63,14 +65,14 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
                         1 => __('entities/notes.collapsed.closed')
                     ];
                 @endphp
-                <div class="form-group display">
+                <div class="field-display">
                     <label>
                         {{ __('entities/notes.fields.display') }}
                     </label>
                     {!! Form::select('settings[collapsed]', $collapsedOptions, $defaultCollapsed, ['class' => 'form-control']) !!}
                 </div>
 
-                <div class="form-group class">
+                <div class="field-class">
                     <label for="config[class]">
                         {{ __('dashboard.widgets.fields.class') }}
                         <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>

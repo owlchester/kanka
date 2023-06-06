@@ -34,7 +34,7 @@ if (isset($model) && in_array($model->visibility_id, [Visibility::VISIBILITY_ADM
 }
 $visibilityUniqueID = uniqid('visibility_');
 ?>
-<div class="form-group visibility">
+<div class="field-visibility">
     <label for="{{ $visibilityUniqueID }}">
         {{ __('crud.fields.visibility') }}
         <a href="//docs.kanka.io/en/latest/advanced/visibility.html" target="_blank">

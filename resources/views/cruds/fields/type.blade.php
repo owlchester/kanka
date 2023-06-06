@@ -2,7 +2,7 @@
 /** @var \App\Models\MiscModel $entityTypeListModel */
 $entityTypeListModel = new $base;
 ?>
-<div class="type form-group">
+<div class="field-type">
     @if (!isset($floating))<label>{{ __('crud.fields.type') }}</label>@endif
     {!! Form::text(
         'type',

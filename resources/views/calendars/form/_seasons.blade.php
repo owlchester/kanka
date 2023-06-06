@@ -28,7 +28,7 @@ if (!empty($seasonNames)) {
 }?>
 <div class="calendar-seasons sortable-elements" data-handle=".input-group-addon">
     @foreach ($seasons as $season)
-        <div class="form-group parent-delete-row">
+        <div class="parent-delete-row">
             <div class="grid gap-2 grid-cols-3 md:gap-4 mb-2">
                 <div class="input-group">
                     <span class="input-group-addon">
@@ -63,7 +63,7 @@ if (!empty($seasonNames)) {
 @section('modals')
     @parent
 <div id="template_season" style="display: none">
-    <div class="form-group parent-delete-row">
+    <div class="parent-delete-row">
         <div class="grid gap-2 grid-cols-3 md:gap-4 mb-2">
             <div class="input-group">
                 <span class="input-group-addon cursor-pointer">

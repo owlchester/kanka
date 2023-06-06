@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-tooltips">
     <label>
         {{ __('fields.tooltip.name') }}
     </label>
@@ -26,7 +26,7 @@ $tooltipTags = implode(', ', $tooltipTags);
 </div>
 
 
-<div class="form-group">
+<div class="field-header">
     <label>
         {{ __('fields.header-image.title') }}
     </label>
@@ -42,10 +42,10 @@ $tooltipTags = implode(', ', $tooltipTags);
         {!! Form::hidden('remove-header_image') !!}
         <x-grid type="3/4">
             <div class="@if ((!empty($model->entity) && !empty($model->entity->header_image))) col-span-3 @else col-span-4 @endif">
-                <div class="form-group mb-2">
+                <div class="field-header-file mb-2">
                     {!! Form::file('header_image', array('class' => 'image form-control')) !!}
                 </div>
-                <div class="form-group">
+                <div class="field-header-url">
                     {!! Form::text('header_image_url', $headerUrlPreset, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
 
                     <p class="help-block">

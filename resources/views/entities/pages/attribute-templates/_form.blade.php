@@ -8,7 +8,7 @@
     @endif
     {!! Form::open(['route' => ['entities.attributes.template', $entity->id], 'method'=>'POST', 'data-shortcut' => '1']) !!}
     {{ csrf_field() }}
-    <div class="form-group required">
+    <div class="field-template required">
         <label>{{ __('entities/attributes.fields.template') }}</label>
         {!! Form::select('template_id', $templates, null, ['placeholder' => __('entities/attributes.placeholders.template'), 'class' => 'form-control']) !!}
     </div>

@@ -23,7 +23,7 @@ $options = [
 ]) !!}
     <div class="join mb-5 w-full">
         {!! Form::select('option', $options, $option, ['class' => 'form-control join-item']) !!}
-        <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn2 btn-primary join-item" />
+        <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn2 btn-primary btn-sm join-item" />
     </div>
 {!! Form::hidden('mode', 'map') !!}
 {!! Form::close() !!}

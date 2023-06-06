@@ -5,7 +5,7 @@ $onlyOneCalendar = count($calendars) == 1;
 {{ csrf_field() }}
 
 <div id="entity-calendar-modal-form">
-    <div class="form-group entity-calendar-selector">
+    <div class="field-calendar entity-calendar-selector">
         <x-forms.foreign
             name="calendar_id"
             key="calendar"

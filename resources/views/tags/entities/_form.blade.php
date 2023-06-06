@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Tag $model */?>
 {{ csrf_field() }}
-<div class="form-group required">
+<div class="field-entity required">
     @include('cruds.fields.entity', [
         'placeholder' => __('entities/relations.placeholders.target'),
         'preset' => false,

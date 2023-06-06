@@ -4,7 +4,7 @@
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk_templates.bulk_title') }}</h4>
 </div>
 <div class="modal-body">
-    <div class="form-group required">
+    <div class="field-template required">
         <label>{{ __('entities/attributes.fields.template') }}</label>
         {!! Form::select('template_id', $templates, null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'form-control']) !!}
     </div>

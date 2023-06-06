@@ -75,7 +75,7 @@
 
     <hr />
 
-    <div class="form-group">
+    <div class="field-revert">
         {!! Form::hidden('revert_order', 0) !!}
         <label>{!! Form::checkbox('revert_order') !!}
             {{ __('timelines.fields.reverse_order') }}

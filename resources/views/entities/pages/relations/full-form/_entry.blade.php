@@ -2,19 +2,16 @@
 <x-grid>
     @include('cruds.fields.owner', ['owner' => !empty($relation) ? $relation->owner : null])
     @include('cruds.fields.target', ['target' => !empty($relation) ? $relation->target : null])
-</x-grid>
-@include('cruds.fields.relation')
 
-<x-grid>
+    @include('cruds.fields.relation')
+
     @include('cruds.fields.colour_picker')
     @include('cruds.fields.attitude')
-</x-grid>
 
-@include('cruds.fields.visibility_id', ['model' => $relation ?? null])
+    @include('cruds.fields.visibility_id', ['model' => $relation ?? null])
 
-@if(empty($relation) && (!isset($mirror) || $mirror == true))
-    <x-grid css="mb-4">
-        <div class="form-group">
+    @if(empty($relation) && (!isset($mirror) || $mirror == true))
+        <div class="field-two-way">
             <label>
                 {!! Form::checkbox('two_way') !!}
                 {{ __('entities/relations.fields.two_way') }}
@@ -23,7 +20,7 @@
             <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.two_way') }}</p>
         </div>
 
-        <div class="form-group" style="display:none" id="two-way-relation">
+        <div class="field-target-relation" style="display:none" id="two-way-relation">
             <label>
                 {!! __('entities/relations.fields.target_relation') !!}
                 <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.target_relation') }}" data-toggle="tooltip"></i>
@@ -31,10 +28,11 @@
             {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191, 'placeholder' => __('entities/relations.placeholders.target_relation')]) !!}
             <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.target_relation') }}</p>
         </div>
-    </x-grid>
-@endif
+    @endif
 
-@include('cruds.fields.pinned')
+    @include('cruds.fields.pinned')
+
+</x-grid>
 
 @if (!empty($relation) && !empty($relation->isMirrored()))
     <x-alert type="info">

@@ -7,13 +7,13 @@
     @include('cruds.fields.races', ['quickCreator' => true])
     @include('cruds.fields.entry2')
 
-    <div class="form-group age">
+    <div class="field-age">
         <label>{{ __('characters.fields.age') }}</label>
         {!! Form::text('age', FormCopy::field('age')->string(), ['placeholder' => __('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 25]) !!}
         <p class="help-block">{!! __('characters.helpers.age', ['more' => link_to('https://docs.kanka.io/en/latest/advanced/age.html', __('crud.actions.find_out_more'), ['target' => '_blank'])]) !!}</p>
     </div>
 
-    <div class="form-group gender">
+    <div class="field-gender">
         <label>{{ __('characters.fields.sex') }}</label>
         {!! Form::text('sex', FormCopy::field('sex')->string(), [
             'placeholder' => __('characters.placeholders.sex'),
@@ -33,7 +33,7 @@
 
     @include('cruds.fields.pronouns')
 
-    <div class="form-group dead">
+    <div class="field-dead">
         {!! Form::hidden('is_dead', 0) !!}
         <label>{!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : (!empty($source) ? FormCopy::field('is_dead')->boolean() : 0))) !!}
             {{ __('characters.fields.is_dead') }}

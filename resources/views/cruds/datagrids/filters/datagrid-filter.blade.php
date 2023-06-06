@@ -48,7 +48,7 @@ $hasAttributeFilters = false;
                             @php $hasAttributeFilters = true @endphp
                             @continue
                         @endif
-                        <div class="form-group">
+                        <div class="field-">
                             @if (is_array($field))
                                 <label>{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
                                 <?php $model = null;

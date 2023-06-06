@@ -1,16 +1,14 @@
 <?php /** @var \App\Models\Calendar $model */?>
-<div class="form-group required">
+<div class="field-months mb-2 required">
     <label>{{ __('calendars.fields.months') }}</label>
     <p class="help-block">{{ __('calendars.hints.months') }}</p>
     <input type="hidden" name="month_name" />
 </div>
-<div class="form-group">
-    <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4 mb-2">
-        <div class="">{{ __('calendars.parameters.month.name') }}</div>
-        <div class="">{{ __('calendars.parameters.month.length') }}</div>
-        <div class="">{{ __('calendars.parameters.month.alias') }}</div>
-        <div class="">{{ __('calendars.parameters.month.type') }} <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('calendars.helpers.month_type') }}"></i></div>
-    </div>
+<div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4 mb-2">
+    <div class="">{{ __('calendars.parameters.month.name') }}</div>
+    <div class="">{{ __('calendars.parameters.month.length') }}</div>
+    <div class="">{{ __('calendars.parameters.month.alias') }}</div>
+    <div class="">{{ __('calendars.parameters.month.type') }} <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('calendars.helpers.month_type') }}"></i></div>
 </div>
 <?php
 $months = [];
@@ -38,7 +36,7 @@ if (!empty($names)) {
 }?>
 <div class="calendar-months sortable-elements" data-handle=".input-group-addon">
     @foreach ($months as $month)
-        <div class="form-group parent-delete-row">
+        <div class="parent-delete-row">
             <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4 mb-2">
                 <div class="input-group">
                     <span class="input-group-addon cursor-pointer">
@@ -90,7 +88,7 @@ if (!empty($names)) {
 @section('modals')
     @parent
 <div id="template_month" style="display: none">
-    <div class="form-group parent-delete-row">
+    <div class="parent-delete-row">
         <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4 mb-2">
             <div class="input-group">
                 <span class="input-group-addon cursor-pointer">

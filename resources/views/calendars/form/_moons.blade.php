@@ -37,7 +37,7 @@ if (!empty($moonNames)) {
 }?>
 <div class="calendar-moons sortable-elements" data-handle=".input-group-addon">
     @foreach ($moons as $fullmoon)
-        <div class="form-group parent-delete-row">
+        <div class="parent-delete-row">
             <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4 mb-2">
                 <div class="input-group">
                     <span class="input-group-addon">
@@ -77,7 +77,7 @@ if (!empty($moonNames)) {
 @section('modals')
     @parent
 <div id="template_moon" style="display: none">
-    <div class="form-group parent-delete-row">
+    <div class="parent-delete-row">
         <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4 mb-2">
             <div class="input-group">
                 <span class="input-group-addon">

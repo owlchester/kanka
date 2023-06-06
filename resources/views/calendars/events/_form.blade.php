@@ -25,7 +25,7 @@
                 ])
             </div>
             <div class="grow calendar-new-event-field">
-                <div class="form-group">
+                <div class="field-name">
                     <label>{{ __('crud.fields.name') }}</label>
                     {!! Form::text('name', null, ['placeholder' => __('crud.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
