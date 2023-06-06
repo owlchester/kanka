@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-tags">
     <x-forms.tags
         :model="$model ?? null"
         allowClear="true"

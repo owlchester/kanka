@@ -30,12 +30,10 @@ if (!isset($model) || !$model->boosted()) {
     @endif
 
     <x-grid type="3/3">
-        <div class="form-group">
+        <div class="field-theme">
             <label>
                 {{ __('campaigns.fields.theme') }}
             </label>
-
-
             {!! Form::select(
                 'theme_id',
                 $themes,
@@ -47,7 +45,7 @@ if (!isset($model) || !$model->boosted()) {
             @endif
             <p class="help-block">{{ __('campaigns.ui.helpers.theme') }}</p>
         </div>
-        <div class="form-group">
+        <div class="field-member-list">
             <label>
                 {{ __('campaigns.ui.fields.member_list') }}
             </label>
@@ -57,7 +55,7 @@ if (!isset($model) || !$model->boosted()) {
             @endif
             <p class="help-block">{{ __('campaigns.ui.helpers.member-list') }}</p>
         </div>
-        <div class="form-group">
+        <div class="field-entity-history">
             <label>
                 {{ __('campaigns.ui.fields.entity_history') }}
             </label>
@@ -77,7 +75,7 @@ if (!isset($model) || !$model->boosted()) {
     </p>
 
     <x-grid type="3/3">
-        <div class="form-group">
+        <div class="field-entity-image">
             <label>
                 {{ __('campaigns.ui.fields.entity_image') }}
             </label>
@@ -97,7 +95,7 @@ if (!isset($model) || !$model->boosted()) {
     </p>
 
     <x-grid type="3/3">
-        <div class="form-group">
+        <div class="field-connections">
             <label>
                 {{ __('campaigns.ui.fields.connections') }}
                 <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.connections') }}"></i>
@@ -107,7 +105,7 @@ if (!isset($model) || !$model->boosted()) {
             <p class="help-block visible-xs visible-sm">{{ __('campaigns.ui.helpers.connections') }}</p>
         </div>
 
-        <div class="form-group">
+        <div class="field-connections-mode">
             <label>
                 {{ __('campaigns.ui.fields.connections_mode') }}
                 <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.connections_mode') }}"></i>
@@ -117,7 +115,7 @@ if (!isset($model) || !$model->boosted()) {
             <p class="help-block visible-xs visible-sm">{{ __('campaigns.ui.helpers.connections_mode') }}</p>
         </div>
 
-        <div class="form-group">
+        <div class="field-nested">
             <label>
                 {{ __('campaigns.ui.fields.nested') }}
             </label>
@@ -125,7 +123,7 @@ if (!isset($model) || !$model->boosted()) {
 
         </div>
 
-        <div class="form-group">
+        <div class="field-post-collapsed">
             <label>
                 {{ __('campaigns.ui.fields.post_collapsed') }}
                 <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.ui.helpers.post_collapsed') }}"></i>

@@ -12,7 +12,7 @@
     {!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}
 </p>
 
-<div class="form-group mb-5">
+<div class="field-cancel-reason mb-5">
     <label>{{ __('settings.subscription.fields.reason') }}</label>
     {!! Form::select('reason', [
 '' => __('crud.select'),

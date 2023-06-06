@@ -36,7 +36,7 @@
             @include('settings.subscription.currency._blocked')
         @else
             <x-box>
-            <div class="form-group">
+            <div class="field-currency mb-5">
                 <label>{{ __('settings.subscription.fields.currency') }}</label>
                 {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], auth()->user()->currency(), ['class' => 'form-control']) !!}
             </div>

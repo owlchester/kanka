@@ -149,6 +149,14 @@
 
 @section('modals')
     @parent
+    {!! Form::open([
+        'route' => ['maps.map_markers.store', $model],
+        'method' => 'POST',
+        //'enctype' => 'multipart/form-data',
+        //'id' => 'map-marker-new-form'
+        'class' => 'ajax-subform',
+        'data-maintenance' => 1
+    ]) !!}
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -159,31 +167,16 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    {!! Form::open([
-                        'route' => ['maps.map_markers.store', $model],
-                        'method' => 'POST',
-                        //'enctype' => 'multipart/form-data',
-                        //'id' => 'map-marker-new-form'
-                        'class' => 'ajax-subform',
-                        'data-maintenance' => 1
-                    ]) !!}
                     @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal', 'from' => base64_encode('maps.map_markers.index:' . $model->id)])
 
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group" id="marker-footer">
-                        <div class="pull-left">
-                            @include('partials.footer_cancel', ['ajax' => 1])
-                        </div>
-                        <div class="pull-right">
-                            @include('maps.markers._actions')
-                        </div>
-                    </div>
-                    {!! Form::close() !!}
+                    <x-dialog.footer id="marker-footer">
+                        @include('maps.markers._actions')
+                    </x-dialog.footer>
                 </div>
             </div>
         </div>
     </div>
+    {!! Form::close() !!}
 @endsection
 
 @endif

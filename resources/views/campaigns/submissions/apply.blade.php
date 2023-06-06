@@ -18,7 +18,7 @@
 
         <p class="help-block">{{ __('campaigns/submissions.apply.help') }}</p>
 
-        <div class="form-group">
+        <div class="field-group">
             <label>{{ __('campaigns/submissions.fields.application') }}</label>
             {!! Form::textarea('application', !empty($submission) ? $submission->text : null, [
                 'class' => 'form-control', 'rows' => 5,
@@ -40,5 +40,5 @@
     @if($submission)
         {!! Form::open(['method' => 'DELETE','route' => ['campaign.apply.remove'], 'style '=> 'display:inline', 'id' => 'delete-submission']) !!}
         {!! Form::close() !!}
-        @endif
+    @endif
 @endsection

@@ -7,11 +7,9 @@
     ];
 ?>
 
-<div class="form-group">
+<div class="field-type">
     <label>{{ __('maps/layers.fields.type') }}</label>
     {{ Form::select('type_id', $typeOptions, null, ['class' => 'form-control', 'id' => 'type_id']) }}
 </div>
 
-<div class="form-group">
-    @include('cruds.fields.visibility_id', ['bulk' => true])
-</div>
+@include('cruds.fields.visibility_id', ['bulk' => true])

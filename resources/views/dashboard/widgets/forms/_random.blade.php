@@ -17,14 +17,14 @@
     <div class="tab-content">
         <div id="setup" class="tab-pane fade in active">
             <x-grid>
-                <div class="form-group required">
+                <div class="field-random-type required">
                     <label for="config-entity">
                         {{ __('menu_links.fields.random_type') }}
                     </label>
                     {!! Form::select('config[entity]', $entities, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
                 </div>
 
-                <div class="form-group recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
+                <div class="field-recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
                     <label>
                         {{ __('dashboard.widgets.recent.filters') }}
                         <a href="//docs.kanka.io/en/latest/guides/dashboard.html" target="_blank">
@@ -37,12 +37,7 @@
 
                 @include('dashboard.widgets.forms._width')
 
-                <div class="form-group">
-                    <x-forms.tags
-                        :model="$model ?? null"
-                    ></x-forms.tags>
-                    <input type="hidden" name="save_tags" value="1" />
-                </div>
+                @include('dashboard.widgets.forms._tags')
                 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
             </x-grid>
         </div>
@@ -50,10 +45,10 @@
         <div id="advanced" class="tab-pane fade in">
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
 
-            <div class="grid grid-cols-2 gap-2">
+            <x-grid>
                 @include('dashboard.widgets.forms._related')
                 @include('dashboard.widgets.forms._class')
-            </div>
+            </x-grid>
         </div>
     </div>
 </div>

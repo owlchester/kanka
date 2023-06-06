@@ -36,7 +36,6 @@
             @include('maps.markers._form')
 
             <x-box.footer>
-            <div class="form-group">
                 <div class="submit-group">
                     <div class="inline-block">
                         <x-button.delete-confirm target="#delete-marker-confirm-form-{{ $model->id}}" />
@@ -54,7 +53,6 @@
                         <i class="fa-solid fa-spinner fa-spin"></i>
                     </button>
                 </div>
-            </div>
             </x-box.footer>
             {!! Form::close() !!}
             @endif

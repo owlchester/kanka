@@ -11,7 +11,7 @@
 
     {!! Form::open(['route' => 'translations.faq.index', 'method' => 'GET', 'class' => 'form-inline mb-5']) !!}
 
-    <div class="form-group">
+    <div class="field-language mb-5">
         <label>Select target language</label>
         <select name="lang" class="form-control">
             @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)

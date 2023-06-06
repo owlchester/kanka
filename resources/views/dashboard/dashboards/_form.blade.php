@@ -4,7 +4,7 @@
  * @var \App\Models\CampaignDashboard $dashboard
  */
 ?>
-<div class="form-group required">
+<div class="field-entity required">
     <label for="config-entity">
         {{ __('dashboard.dashboards.fields.name') }}
     </label>
@@ -41,7 +41,7 @@
 
 
 @if(!empty($source))
-    <div class="form-group">
+    <div class="field-copy">
         {!! Form::hidden('copy_widgets', null) !!}
         <label>{!! Form::checkbox('copy_widgets', 1, true) !!}
             {{ __('dashboard.dashboards.fields.copy_widgets') }}

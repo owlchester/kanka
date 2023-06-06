@@ -1,5 +1,5 @@
 {{ csrf_field() }}
-<div class="form-group required">
+<div class="field-name required">
     <label>{{ __('campaigns.members.fields.name') }}</label>
     {!! Form::select('user_id', $campaign->membersList($role->users->pluck('user_id')->toArray()), null, ['class' => 'form-control']) !!}
 </div>

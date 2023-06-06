@@ -15,13 +15,13 @@
     {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.profile'], 'data-shortcut' => 1]) !!}
     <x-box>
         <div class="flex flex-col md:flex-row gap-5">
-            <div class="md:grow">
-                <div class="mb-5">
+            <div class="grow flex flex-col gap-5">
+                <div class="field-name">
                     <label>{{ __('profiles.fields.name') }} <span class="text-red">*</span></label>
                     {!! Form::text('name', null, ['placeholder' => __('profiles.placeholders.name'), 'class' => 'rounded border p-2 w-full']) !!}
                 </div>
 
-                <div class="mb-5">
+                <div class="field-marketplace-name">
                     <label class="inline-block w-full font-bold mb-1">
                         {{ __('profiles.fields.profile-name') }}
                     </label>
@@ -33,7 +33,7 @@
                     </p>
                 </div>
 
-                <div class="mb-5">
+                <div class="field-bio">
                     <label class="inline-block w-full font-bold mb-1">
                         {{ __('profiles.fields.bio') }}
                     </label>
@@ -45,7 +45,7 @@
                     </p>
                 </div>
 
-                <div class="form-group checkbox mb-5">
+                <div class="field-share-login checkbox mb-5">
                     <label class="inline-block w-full font-bold mb-1">
                         {!! Form::hidden('has_last_login_sharing', 0) !!}
                         {!! Form::checkbox('has_last_login_sharing') !!}
@@ -53,7 +53,7 @@
                 </div>
 
                 @if (auth()->user()->isSubscriber())
-                    <div class="form-group checkbox">
+                    <div class="field-hide-sub checkbox">
                         <label class="inline-block w-full font-bold mb-1">
                             {!! Form::hidden('settings[hide_subscription]', 0) !!}
                             {!! Form::checkbox('settings[hide_subscription]', 1) !!}
@@ -63,11 +63,11 @@
                     </div>
                 @endif
             </div>
-            <div class="md:flex-0">
+            <div class="field-avatar">
                 <label class="inline-block w-full font-bold mb-1">
                     {{ __('settings.profile.avatar') }}
                 </label>
-                {!! Form::file('avatar', ['class' => 'image form-group']) !!}
+                {!! Form::file('avatar', ['class' => 'image']) !!}
 
                 @if (!empty(auth()->user()->avatar) && auth()->user()->avatar != 'users/default.png')
                     <div class="rounded-full">

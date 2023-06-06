@@ -12,7 +12,7 @@
     </x-alert>
 
     <x-grid>
-        <div class="form-group">
+        <div class="field-public">
             <label>
                 {{ __('campaigns.fields.public') }}
             </label>
@@ -21,7 +21,7 @@
 
     </x-grid>
     @if (isset($model) && $model->isPublic())
-        <p class="help-block">
+        <p class="help-block mb-0">
             {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard') . '" target="_blank">' . route('dashboard') . '</a>']) !!}
         </p>
 
@@ -44,13 +44,13 @@
     </p>
 
     <x-grid>
-        <div class="form-group">
+        <div class="field-locale">
             <label>{{ __('campaigns.fields.locale') }}</label>
             {!! Form::select('locale', $languages->getSupportedLanguagesList(true), null, ['class' => 'form-control']) !!}
             <p class="help-block">{{ __('campaigns.sharing.language') }}</p>
         </div>
 
-        <div class="form-group">
+        <div class="field-system">
             <label>{{ __('campaigns.fields.system') }}</label>
             {!! Form::text('system', null, [
                 'placeholder' => __('campaigns.placeholders.system'),

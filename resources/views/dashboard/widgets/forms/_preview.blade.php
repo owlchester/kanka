@@ -15,23 +15,24 @@
 
     <div class="tab-content">
         <div id="setup" class="tab-pane fade in active">
-            @include('cruds.fields.entity', ['required' => true])
-
-
-            @php
-            $displayOptions = [
-                0 => __('dashboard.widgets.preview.displays.expand'),
-                1 => __('dashboard.widgets.preview.displays.full'),
-                2 => __('crud.tabs.attributes'),
-            ];
-            @endphp
-            <div class="form-group">
-                <label>{{ __('dashboard.widgets.preview.fields.display') }}</label>
-                {!! Form::select('config[full]', $displayOptions, null, ['class' => 'form-control']) !!}
-            </div>
-
 
             <x-grid>
+                <div class="col-span-2">
+                    @include('cruds.fields.entity', ['required' => true])
+                </div>
+
+                @php
+                $displayOptions = [
+                    0 => __('dashboard.widgets.preview.displays.expand'),
+                    1 => __('dashboard.widgets.preview.displays.full'),
+                    2 => __('crud.tabs.attributes'),
+                ];
+                @endphp
+                <div class="field-display">
+                    <label>{{ __('dashboard.widgets.preview.fields.display') }}</label>
+                    {!! Form::select('config[full]', $displayOptions, null, ['class' => 'form-control']) !!}
+                </div>
+
                 @include('dashboard.widgets.forms._name')
 
                 @include('dashboard.widgets.forms._width')
@@ -42,10 +43,10 @@
         <div id="advanced" class="tab-pane fade in">
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
 
-            <div class="grid grid-cols-2 gap-2">
+            <x-grid>
                 <div>
                     {!! Form::hidden('config[entity-header]', 0) !!}
-                    <div class="form-group checkbox">
+                    <div class="field-header checkbox">
                         <label>
                             {!! Form::checkbox('config[entity-header]', 1, (!empty($model) ? $model->conf('entity-header') : null), ['id' => 'config-entity-header', 'disabled' => !$boosted ? 'disabled' : null]) !!}
                             {{ __('dashboard.widgets.recent.entity-header') }}
@@ -58,8 +59,7 @@
 
                 @include('dashboard.widgets.forms._related')
                 @include('dashboard.widgets.forms._class')
-            </div>
-
+            </x-grid>
         </div>
     </div>
 </div>

@@ -6,13 +6,11 @@
     ];
 ?>
 
-<div class="form-group">
+<div class="field-group-shown">
     <label>
         {{ __('maps/groups.fields.is_shown') }}
     </label>
     {{ Form::select('is_shown',  $typeOptions, null, ['class' => 'form-control', 'id' => 'type_id']) }}
 </div>
 
-<div class="form-group">
-    @include('cruds.fields.visibility_id', ['bulk' => true])
-</div>
+@include('cruds.fields.visibility_id', ['bulk' => true])

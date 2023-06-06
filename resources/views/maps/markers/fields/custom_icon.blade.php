@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-icon">
     <label>{{ __('maps/markers.fields.custom_icon') }}</label>
     {!! Form::text(
         $fieldname ?? 'custom_icon',
@@ -26,11 +26,12 @@
         </p>
         @endsubscriber
     @endif
-</div>
-<div class="hidden">
-    <datalist id="map-marker-icon-list">
-        @foreach (\App\Facades\MapMarkerCache::iconSuggestion() as $icon)
-            <option value="{{ $icon }}">{{ $icon }}</option>
-        @endforeach
-    </datalist>
+
+    <div class="hidden">
+        <datalist id="map-marker-icon-list">
+            @foreach (\App\Facades\MapMarkerCache::iconSuggestion() as $icon)
+                <option value="{{ $icon }}">{{ $icon }}</option>
+            @endforeach
+        </datalist>
+    </div>
 </div>

@@ -77,12 +77,12 @@
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
 
                     @if (!$card)
-                        <div class="form-group">
+                        <div class="field-card-name mb-5">
                             <label>{{ __('settings.subscription.payment_method.card_name' )}}</label>
                             {!! Form::text('card-holder-name', null, ['class' => 'form-control']) !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="field-card-number">
                             <label>{{ __('settings.subscription.payment_method.card' )}}</label>
                             <div id="card-element" class="mb-5">
                         </div>
@@ -100,7 +100,7 @@
                                 {!! __('settings.subscription.upgrade_downgrade.downgrade.provide_reason')!!}
                             </p>
 
-                            <div class="form-group mb-5">
+                            <div class="ffield-reason mb-5">
                                 <label>{{ __('settings.subscription.fields.reason') }}</label>
                                 {!! Form::select('reason', [
                                     '' => __('crud.select'),

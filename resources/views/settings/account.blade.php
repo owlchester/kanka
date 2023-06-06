@@ -14,7 +14,7 @@
     </h3>
     {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.email']]) !!}
     <x-box>
-        <div class="form-group required">
+        <div class="field-email mb-5 required">
             <label>{{ __('profiles.fields.email') }}</label>
             {!! Form::email('email', null, ['placeholder' => __('profiles.placeholders.email'), 'class' => 'form-control']) !!}
         </div>
@@ -33,14 +33,16 @@
         </h3>
         <x-box>
         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.password']]) !!}
-            <div class="form-group">
-                <label>{{ __('profiles.fields.new_password') }}</label>
-                {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                <label>{{ __('profiles.fields.new_password_confirmation') }}</label>
-                {!! Form::password('password_new_confirmation', ['placeholder' => __('profiles.placeholders.new_password_confirmation'), 'class' => 'form-control']) !!}
-            </div>
+            <x-grid type="1/1">
+                <div class="field-new-password">
+                    <label>{{ __('profiles.fields.new_password') }}</label>
+                    {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
+                </div>
+                <div class="field-password-confirm">
+                    <label>{{ __('profiles.fields.new_password_confirmation') }}</label>
+                    {!! Form::password('password_new_confirmation', ['placeholder' => __('profiles.placeholders.new_password_confirmation'), 'class' => 'form-control']) !!}
+                </div>
+            </x-grid>
 
             <div class="text-right">
                 <x-buttons.confirm type="primary">
@@ -56,7 +58,7 @@
         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.social']]) !!}
         <x-box>
             <p class="help">{{ __('settings.account.social.helper', ['provider' => ucfirst($user->provider)]) }}</p>
-            <div class="form-group">
+            <div class="field-new-password mb-5">
                 <label>{{ __('profiles.fields.new_password') }}</label>
                 {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
             </div>
@@ -118,7 +120,7 @@
             <p>
                 {!! __('profiles.sections.delete.goodbye', ['code' => '<code>goodbye</code>']) !!}
             </p>
-            <div class="form-group required">
+            <div class="field-goodbye mb-5 required">
                 {!! Form::text('goodbye',null, ['class' => 'form-control','required']) !!}
             </div>
             <x-buttons.confirm type="danger" outline="true" full="true">
