@@ -508,7 +508,7 @@ export default {
         },
         addEntity(entity) {
             this.entities[entity.id] = Object.freeze(entity);
-            this.nodes.push({entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
+            this.nodes.push({entity_id: entity.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
             this.newUuid++;
         },
         editEntityNode() {
@@ -605,14 +605,16 @@ export default {
         });
 
         this.emitter.on('editEntity', (data) => {
-            console.log(data.relation);
             this.resetVariables();
+            this.entity = data.relation.entity_id;
             this.currentUuid = data.uuid;
             this.relation = data.relation.role;
             this.cssClass = data.relation.cssClass;
             this.colour = data.relation.colour;
             this.visibility = data.relation.visibility;
             this.isEditingEntity = true;
+            let newOption = new Option(this.entities[this.entity].name, this.entity, true, true);
+            $(this.entityField).append(newOption).trigger('change');
             this.showDialog();
         });
 
