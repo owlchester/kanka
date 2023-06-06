@@ -38,14 +38,6 @@ class ImageMention extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function target()
-    {
-        return $this->belongsTo('App\Models\Images', 'image_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function entity()
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
@@ -66,15 +58,6 @@ class ImageMention extends Model
     public function isPost(): bool
     {
         return !empty($this->post_id);
-    }
-
-    /**
-     * Determine if the mention goes to an entity
-     * @return bool
-     */
-    public function isEntity(): bool
-    {
-        return !empty($this->entity_id);
     }
 
     /**
@@ -115,14 +98,5 @@ class ImageMention extends Model
     public function scopePost(Builder $query): Builder
     {
         return $query->whereNotNull('image_mentions.entity_note_id');
-    }
-
-    public function linkToEntity(): string
-    {
-        if ($this->post_id) {
-            return '<a href="' . $this->entity->url() . '?#post-' . $this->post_id . '">' . $this->post->name . '</a>';
-        }
-        return '<a href="' . $this->entity->url() . '">' . $this->entity->name . '</a>';
-
     }
 }

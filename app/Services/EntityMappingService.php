@@ -52,7 +52,8 @@ class EntityMappingService
      */
     public function mapEntity(Entity $entity)
     {
-        return $this->map($entity);
+        //dd('test');
+        return $this->images($entity)->map($entity);
     }
 
     /**
@@ -61,7 +62,6 @@ class EntityMappingService
      */
     public function mapPost(Post $post)
     {
-        //return $this->map($post);
         return $this->images($post)->map($post);
     }
 
@@ -216,53 +216,68 @@ class EntityMappingService
         $mention->target_id = $target;
         $mention->save();
     }
+
     protected function images(Model $model): self
     {
-       $images = $this->extractImages($model->entry);
+        if ($model instanceof Entity) {
+            $images = $this->extractImages($model->child->entry);
+        } else {
+            $images = $this->extractImages($model->entry);
+        }
+        $existingTargets = [];
+        if ($model instanceof Entity) {
+            foreach ($model->imageMentions()->where('post_id', null)->get() as $map) {
+                $existingTargets[$map->image_id] = $map;
+            } 
+        } else {
+            foreach ($model->imageMentions as $map) {
+                $existingTargets[$map->image_id] = $map;
+            }
+        }
 
-       $existingTargets = [];
-       foreach ($model->imageMentions as $map) {
-           $existingTargets[$map->image_id] = $map;
-       }
-       $createdMappings = 0;
-       $existingMappings = 0;
+        $createdMappings = 0;
+        $existingMappings = 0;
 
-       foreach ($images as $data) {
-           $id = $data;
+        foreach ($images as $data) {
+            $id = $data;
 
-           // Determine the real campaign id from the model.
-           // Todo: why can't we use CampaignLocalization? Because this was used by the migration script?
-           $campaignId = $model->campaign_id;
+            // Determine the real campaign id from the model.
+            // Todo: why can't we use CampaignLocalization? Because this was used by the migration script?
+            $campaignId = $model->campaign_id;
             if ($model instanceof EntityNote) {
-               $campaignId = $model->entity->campaign_id;
+                $campaignId = $model->entity->campaign_id;
             }
 
-           /** @var Entity|null $target */
-           $target = Image::where([
+            /** @var Entity|null $target */
+            $target = Image::where([
                 'id' => $id, 'campaign_id' => $campaignId
-           ])->first();
-           if ($target) {
-               // Do we already have this mention mapped?
-               if (!empty($existingTargets[$target->id])) {
-                   //$this->log("- already have mapping");
-                   unset($existingTargets[$target->id]);
-                   $existingMappings++;
-                   continue;
-               }
+            ])->first();
+            if ($target) {
+                // Do we already have this mention mapped?
+                if (!empty($existingTargets[$target->id])) {
+                    if ($model instanceof EntityNote && $existingTargets[$target->id]->post_id == $model->id) {
+                        unset($existingTargets[$target->id]);
+                        $existingMappings++;
+                        continue;
+                    } elseif ($model instanceof Entity && !$existingTargets[$target->id]->post_id) {
+                        unset($existingTargets[$target->id]);
+                        $existingMappings++;
+                        continue;
+                    }
+                }
+                $this->createNewImageMention($model, $target->id);
+                $createdMappings++;
+            }
+        }
 
-               $this->createNewImageMention($model, $target->id);
-               $createdMappings++;
-           }
-       }
+        // Existing mappings that are no longer needed
+        $deletedMappings = 0;
+        foreach ($existingTargets as $targetId => $map) {
+            $map->delete();
+            $deletedMappings++;
+        }
 
-       // Existing mappings that are no longer needed
-       $deletedMappings = 0;
-       foreach ($existingTargets as $targetId => $map) {
-           $map->delete();
-           $deletedMappings++;
-       }
-
-       return $this;
+        return $this;
     }
 
  /**

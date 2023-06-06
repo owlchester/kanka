@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('entity_id');
             $table->uuid('image_id');
-            $table->unsignedInteger('post_id');
+            $table->unsignedInteger('post_id')->nullable();
             $table->timestamps();
 
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');

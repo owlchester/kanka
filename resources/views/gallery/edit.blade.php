@@ -44,7 +44,11 @@ $imageCount = 0;
                 </p>
                     <div class="grid grid-cols-2 gap-2">
                         @foreach($image->mentions as $mention)
-                            {!! $mention->linkToEntity() !!}
+                            @if($mention->isPost())
+                                <a href="{{ $mention->entity->url() }}?#post-{{ $mention->post_id }}"> {{ $mention->post->name }}</a>
+                            @else
+                                <a href="{{ $mention->entity->url() }}">{{ $mention->entity->name }}</a>
+                            @endif
                         @endforeach
                     </div>
                     <hr class="visible-sm visible-xs"/>
