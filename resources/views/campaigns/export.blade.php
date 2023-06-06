@@ -17,7 +17,7 @@
         </div>
         <div class="grow max-w-7xl">
             <h3 class="mt-0">
-                <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                <button class="btn2 btn-sm pull-right" data-toggle="dialog"
                         data-target="export-help">
                     <x-icon class="question"></x-icon>
                     {{ __('campaigns.members.actions.help') }}
@@ -28,7 +28,7 @@
 
             @if ($campaign->exportable())
             <div class="text-center my-5">
-                <button class="btn btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process') }}">
+                <button class="btn2 btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process') }}">
                     <i class="fa-solid fa-download" aria-hidden="true"></i>
                     {{ __('campaigns/export.actions.export') }}
                 </button>

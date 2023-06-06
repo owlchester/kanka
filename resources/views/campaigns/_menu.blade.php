@@ -244,7 +244,7 @@ if (auth()->check()) {
                 </div>
             @else
                 <p class="mt-5">{{ __('campaigns.leave.no-admin-left') }}</p>
-                <a href="{{ route('campaign_users.index') }}" class="btn btn-default px-8 rounded-full">
+                <a href="{{ route('campaign_users.index') }}" class="btn2">
                     {{ __('campaigns.leave.fix') }}
                 </a>
             @endif

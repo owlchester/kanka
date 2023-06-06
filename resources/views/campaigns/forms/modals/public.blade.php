@@ -24,14 +24,9 @@
         {!! Form::select('is_public', [0 => __('campaigns.visibilities.private'), 1 => __('campaigns.visibilities.public')], null, ['class' => 'form-control']) !!}
     </div>
 
-    <div class="my-5 text-center">
-        <button type="button" class="btn btn-default mr-5 rounded-full px-8" data-dismiss="modal">
-            {{ __('crud.cancel') }}
-        </button>
-
-        <button class="btn btn-success ml-5 rounded-full px-8">{{ __('crud.actions.apply') }}</button>
-
-    </div>
+    <x-dialog.footer>
+        <button class="btn2 btn-primary">{{ __('crud.actions.apply') }}</button>
+    </x-dialog.footer>
 </div>
 @if (isset($from) && $from === 'overview')
     <input type="hidden" name="from" value="{{ $from }}" />

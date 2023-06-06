@@ -38,7 +38,7 @@
             @if ($campaign->boosted())
                     @if (empty($campaign->defaultImages()))
                         <x-box>
-                            <a href="{{ route('campaign.default-images.create') }}" class="btn btn-primary"
+                            <a href="{{ route('campaign.default-images.create') }}" class="btn2 btn-primary"
                                data-toggle="ajax-modal" data-target="#entity-modal"
                                data-url="{{ route('campaign.default-images.create') }}">
                                 <x-icon class="plus"></x-icon>
@@ -49,7 +49,7 @@
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
 
                         @foreach ($campaign->defaultImages() as $image)
-                            <div class="rounded overflow-hidden border flex gap-2 items-center">
+                            <div class="rounded overflow-hidden border flex gap-2 items-center bg-box">
                                 <div class="w-24 h-24 cover-background" style="background-image: url('{{ Img::crop(96, 96)->url($image['path']) }}')">
                                 </div>
                                 <div class="grow">

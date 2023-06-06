@@ -6,7 +6,7 @@
     'route' => ['campaign_styles.reorder-save'],
     'method' => 'POST',
 ]) !!}
-<x-box css="box-entity-story-reorder">
+<div class="box-entity-story-reorder">
     <div class="element-live-reorder sortable-elements">
         @foreach($reorderStyles as $style)
             <div class="element" data-id="{{ $style->id }}">
@@ -24,10 +24,10 @@
         @endforeach
     </div>
     <div class="">
-        <button class="btn btn-primary btn-block">
+        <button class="btn2 btn-primary btn-block">
             {{ __('campaigns/styles.reorder.save') }}
         </button>
     </div>
-</x-box>
+</div>
 
 {!! Form::close() !!}

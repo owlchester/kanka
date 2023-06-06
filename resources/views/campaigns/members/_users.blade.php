@@ -58,7 +58,7 @@
                             <form method='post' action='{{ route('campaign_users.update-roles', [$relation, $role]) }}' class='user-role-update'>
 {!! str_replace('"', '\'', csrf_field()) !!}
 
-                                <button class='btn btn-default btn-block btn-role-update mb-2'>
+                                <button class='btn2 btn-block btn-role-update mb-2'>
                                 @if($relation->user->hasCampaignRole($role->id))
                                     <span class='text-danger'><i class='fa-solid fa-times' aria-hidden='true'></i> {{ $role->name }}</span>
                                 @else
@@ -84,7 +84,7 @@
                     <td class="!align-middle text-right">
                         @if(auth()->user()->can('switch', $relation) || auth()->user()->can('delete', $relation))
                             <div class="dropdown">
-                                <a class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
+                                <a class="dropdown-toggle btn2 btn-sm" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
                                     <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                                     <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                                 </a>
@@ -164,13 +164,12 @@
                         </span>
                     </p>
 
-                    <div class="py-5">
-                        <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                        <button type="button" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
+                    <x-dialog.footer>
+                        <button type="button" class="btn2 btn-error btn-outline delete-confirm-submit">
                             <span class="fa-solid fa-trash" aria-hidden="true"></span>
                             <span class="remove-button-label">{{ __('crud.remove') }}</span>
                         </button>
-                    </div>
+                    </x-dialog.footer>
                 </div>
             </div>
         </div>

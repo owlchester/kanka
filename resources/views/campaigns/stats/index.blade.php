@@ -24,7 +24,7 @@ use \Illuminate\Support\Arr;
                 </h3>
 
                 @if ($campaign->superboosted())
-                    <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                    <button class="btn2 btn-sm pull-right" data-toggle="dialog"
                                  data-target="stats-help">
                         <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}

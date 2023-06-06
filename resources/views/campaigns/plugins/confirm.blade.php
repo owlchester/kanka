@@ -34,7 +34,7 @@
     </div>
 </div>
 <div class="modal-footer">
-  <input type="submit" value="{{ __('campaigns/plugins.import.button') }}" class="btn btn-primary" />
+  <input type="submit" value="{{ __('campaigns/plugins.import.button') }}" class="btn2 btn-primary" />
 </div>
 
 
