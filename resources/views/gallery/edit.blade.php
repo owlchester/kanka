@@ -52,7 +52,7 @@ $imageCount = 0;
                         @endforeach
                     </div>
                     <hr class="visible-sm visible-xs"/>
-                @endif    
+                @endif
             @endif
             </div>
             <div class="">
@@ -91,11 +91,11 @@ $imageCount = 0;
                 @include('cruds.fields.visibility_id', ['model' => $image])
             </div>
 
-            <div class="flex gap-2 sm:gap-5 items-center mb-5">
-                <div class="grow flex gap-2 sm:gap-5">
+            <div class="flex gap-2 sm:gap-5 items-center my-5">
+                <div class="grow flex gap-2 sm:gap-5 items-center">
                 @if(!$image->isFolder() || $image->hasNoFolders())
 
-                    <x-button.delete-confirm target="#delete-confirm-form" />
+                    <x-button.delete-confirm target="#delete-confirm-form" size="sm" />
                 @endif
                     @if(!$image->isFolder())
                         <a href="{{ $image->getUrl() }}" target="_blank">
@@ -106,7 +106,7 @@ $imageCount = 0;
                 </div>
 
                 <div class="">
-                    <input type="submit" class="btn2 btn-primary" value="{{ __('campaigns/gallery.actions.save') }}">
+                    <input type="submit" class="btn2 btn-primary btn-sm" value="{{ __('campaigns/gallery.actions.save') }}">
                 </div>
             </div>
 
