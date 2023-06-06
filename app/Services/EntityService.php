@@ -452,6 +452,11 @@ class EntityService
             }
         }
 
+        //Remove tags if converting to tag, since tags can have tags.
+        if ($new->entityTypeId() === config('entities.ids.tag')) {
+            $old->entity->tags()->detach();
+        }
+
         $this->fixTree($new);
 
         // Finally, we can save. Should be all good.
