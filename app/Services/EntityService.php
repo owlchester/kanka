@@ -452,9 +452,9 @@ class EntityService
             }
         }
 
-        //Remove tags if converting to tag, since tags can have tags.
+        //Remove tags if converting to tag, since tags can't have tags.
         if ($new->entityTypeId() === config('entities.ids.tag')) {
-            $old->entity->tags()->detach();
+            $entity->tags()->detach();
         }
 
         $this->fixTree($new);
