@@ -344,18 +344,13 @@ export default {
             let entity_id = $(this.entityField).val();
             this.colour = $(this.colourField).val();
             if (this.isUnknown) {
-                console.log('we in')
                 this.insertUnknownRelation();
                 this.isDirty = true;
                 window.showToast(this.texts.toasts.relations.add);
                 this.closeModal();
             }
 
-            if (!entity_id && !this.isUnknown) {
-                // Nothing, ignore
-                this.closeModal();
-                return;
-            } else if (entity_id && !this.isUnknown) {
+            if (entity_id && !this.isUnknown) {
                 let url = this.entity_api.replace('/0', '/' + entity_id);
                 axios.get(url).then((res) => {
                     let entity = res.data;
@@ -427,6 +422,7 @@ export default {
             this.nodes = this.nodes.reduce(getRelationNodes, []);
         },
         addChild() {
+            console.log('child');
             let entity_id = $(this.entityField).val();
             if (!entity_id) {
                 // Nothing, ignore
@@ -453,7 +449,7 @@ export default {
                 if (object.uuid === this.currentUuid) {
                     //console.log(object);
 
-                    if (Array.isArray(object.relations)) {
+                    if (Array.isArray(object.children)) {
                         object.children.push({entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
                     } else {
                         object.children = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)}];
@@ -613,8 +609,10 @@ export default {
             this.colour = data.relation.colour;
             this.visibility = data.relation.visibility;
             this.isEditingEntity = true;
-            let newOption = new Option(this.entities[this.entity].name, this.entity, true, true);
-            $(this.entityField).append(newOption).trigger('change');
+            if (this.entity) {
+                let newOption = new Option(this.entities[this.entity].name, this.entity, true, true);
+                $(this.entityField).append(newOption).trigger('change');
+            }
             this.showDialog();
         });
 
