@@ -1,6 +1,6 @@
 @php $boosted = $campaignService->campaign()->boosted() @endphp
 <div class="nav-tabs-custom">
-    <ul class="nav-tabs tabs-boxed">
+    <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
         <li class="active">
             <a data-toggle="tab" href="#setup">
                 {{ __('dashboard.widgets.tabs.setup') }}

@@ -139,15 +139,15 @@ if (isset($model) && $model->isChunked()) {
 
     <hr class="col-span-2 m-0" />
 
-    <div class="field-centering">
+    <div class="field-centering col-span-2">
         <label>{{ __('maps.fields.centering') }}</label>
         <p class="help-block">
             {{ __('maps.helpers.centering') }}
         </p>
 
         <div class="nav-tabs-custom">
-            <ul class="nav-tabs tabs-boxed">
-                <li class="active">
+            <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
+                <li class="active rounded">
                     <a data-toggle="tab" href="#coordinates">
                         {{ __('maps.fields.tabs.coordinates') }}
                     </a>
@@ -159,8 +159,8 @@ if (isset($model) && $model->isChunked()) {
                     </a>
                 </li>
             </ul>
-            <div class="tab-content">
-                <div id="coordinates" class="tab-pane fade in active p-2">
+            <div class="tab-content bg-base-100">
+                <div id="coordinates" class="tab-pane fade in active">
                     <p class="help-block">
                         {{ __('maps.helpers.center') }}
                     </p>
@@ -211,6 +211,10 @@ if (isset($model) && $model->isChunked()) {
                         :route="route('markers.find', ['include' => $model->id])"
                         :selected="$preset">
                     </x-forms.foreign>
+                    @else
+                        <p class="help-block">
+                            Add markers to the map first.
+                        </p>
                     @endif
                 </div>
             </div>

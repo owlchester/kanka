@@ -43,7 +43,7 @@
         @endif
         <div class="card" style="margin: 0">
 
-            <ul class="nav-tabs tabs-boxed" role="tablist">
+            <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
                 @if (! $limited)
                 <li role="presentation" class="active">
                     <a href="#card" aria-controls="home" role="tab" data-toggle="tab">
@@ -71,7 +71,7 @@
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
+            <div class="tab-content bg-base-100">
                 @if (! $limited)
                 <div role="tabpanel" class="tab-pane active" id="card">
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}

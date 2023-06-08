@@ -231,12 +231,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-67ebed77.css",
+    "file": "assets/app-7f035891.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-4b169929.css",
+    "file": "assets/auth-b865bc63.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },

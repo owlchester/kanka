@@ -260,17 +260,16 @@ hr {
     }
 }
 
-
-
-.nav-tabs-custom, .nav-tabs, {
+/*.nav-tabs-custom, .nav-tabs, {
   background: none;
   .tab-content {
     background: hsl(var(--b1)/var(--tw-background-opacity, 1));
   }
 }
+
 .nav-tabs {
     border-bottom-color: var(--btn-default-border);
-}
+}*/
 
 // All the tab stuff
 /*.nav-tabs > li:hover > a, .nav-tabs > li.active:hover > a {
@@ -524,4 +523,18 @@ body .main-header .navbar .nav .open > a.active {
 .bg-neutral-content {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--nc)/var(--tw-bg-opacity));
+}
+
+.bg-base-100 {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+}
+.bg-base-200 {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
+}
+
+.bg-base-300 {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b3)/var(--tw-bg-opacity));
 }

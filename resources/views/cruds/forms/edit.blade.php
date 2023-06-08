@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <div class="tab-content">
+        <div class="tab-content bg-base-100">
             <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
                 {{ csrf_field() }}
                 @include($name . '.form._entry', ['source' => null])
