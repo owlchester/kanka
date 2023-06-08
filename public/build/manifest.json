@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-1e5981a5.js",
+    "file": "assets/app-a9cefe8c.js",
     "imports": [
       "_delete-confirm-fec6aa52.js",
       "_mention-5d95822d.js",
@@ -231,12 +231,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-5dcdfb53.css",
+    "file": "assets/app-1d1c1a72.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-70f86e84.css",
+    "file": "assets/auth-fc9a2ccb.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },

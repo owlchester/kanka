@@ -53,7 +53,7 @@
                     <p class="italic text-xs text-center" v-html="texts.keyboard" />
                 </div>
             </div>
-            <div class="search-preview bg-lookup min-h-screen shadow-r" v-if="show_preview">
+            <div class="search-preview bg-lookup min-h-full shadow-r" v-if="show_preview">
                 <EntityPreview
                     :entity="preview_entity">
                 </EntityPreview>
@@ -141,6 +141,7 @@ export default {
                 //console.log('no recent');
                 return;
             }
+            this.show_preview = false;
             this.has_drawer = true;
             this.fetch();
         },
