@@ -12,7 +12,7 @@
         </span>
     </x-grid>
 @else
-    <div class="field-entity">
+    <div class="mb-5">
         @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id'])
     </div>
 @endif
