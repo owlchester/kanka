@@ -173,6 +173,8 @@ class EntityEventController extends Controller
             return response()->json(['success' => true]);
         }
 
+        dd($request->all());
+
         $routeOptions = ['calendar' => $entityEvent->calendar->id, 'year' => request()->post('year')];
         $entityEvent->update($request->all());
 

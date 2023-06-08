@@ -30,7 +30,7 @@
                 <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control" data-url="{{ route('subscription.check-coupon') }}" />
 
                 <span class="input-group-btn">
-                  <button type="button" id="coupon-check-btn" class="btn btn-info btn-flat" title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
+                  <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline" title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
                       <i class="fa-solid fa-check check"></i>
                       <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
                   </button>
@@ -125,7 +125,7 @@
                         @endif
                     @endif
                     <div class="text-center">
-                        <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                        <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                             <span>{{ __('settings.subscription.actions.subscribe') }}</span>
                             <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                         </button>
@@ -171,7 +171,7 @@
                         </select>
 
                         <div class="text-center">
-                            <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                            <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                 <span>{{ __('settings.subscription.actions.subscribe') }}</span>
                                 <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                             </button>

@@ -37,7 +37,7 @@
 </div>
 
 <div class="text-center">
-    <button class="btn btn-lg btn-danger subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+    <button class="btn2 btn-lg btn-error btn-outline subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
         <span>{{ __('settings.subscription.actions.cancel_sub') }}</span>
         <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
     </button>

@@ -66,13 +66,13 @@ body {
         }
 
         .price-yearly {
-            display: block;
+            display: inline-flex;
         }
     }
 
     #pricing-overview.period-month {
         .price-monthly {
-            display: block;
+            display: inline-flex;
         }
 
         .price-yearly {

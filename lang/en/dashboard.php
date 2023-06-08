@@ -70,7 +70,7 @@ return [
         'title' => 'Entity list :name',
     ],
     'settings'      => [
-        'title' => 'Dashboard Settings',
+        'title' => 'Dashboard Setup',
     ],
     'setup'         => [
         'actions'   => [

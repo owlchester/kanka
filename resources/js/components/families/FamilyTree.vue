@@ -1,6 +1,6 @@
 <template>
     <div class="flex w-full gap-1 mb-3 justify-end items-center" v-if="!isLoading">
-        <button class="btn btn-sm btn-warning" v-if="!isEditing" v-on:click="startEditing()">
+        <button class="btn2 btn-sm btn-primary" v-if="!isEditing" v-on:click="startEditing()">
             <i class="fa-solid fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
