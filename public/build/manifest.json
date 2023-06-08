@@ -72,7 +72,7 @@
     "css": [
       "assets/api-44f3e797.css"
     ],
-    "file": "assets/api-878b5c83.js",
+    "file": "assets/api-5ca45f09.js",
     "imports": [
       "__plugin-vue_export-helper-de6cf830.js"
     ],
@@ -142,7 +142,7 @@
     "src": "resources/js/editors/summernote.js"
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-2f9eb953.js",
+    "file": "assets/family-tree-vue-bac28ced.js",
     "imports": [
       "__plugin-vue_export-helper-de6cf830.js",
       "_mitt-f7ef348c.js",
@@ -231,12 +231,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-0b6d4619.css",
+    "file": "assets/app-db0fda89.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-36ccad67.css",
+    "file": "assets/auth-509391a9.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -286,7 +286,7 @@
     "src": "resources/sass/settings.scss"
   },
   "resources/sass/subscription.scss": {
-    "file": "assets/subscription-78e6c8ea.css",
+    "file": "assets/subscription-9480dab5.css",
     "isEntry": true,
     "src": "resources/sass/subscription.scss"
   },
