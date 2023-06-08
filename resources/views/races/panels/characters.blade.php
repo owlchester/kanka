@@ -27,13 +27,15 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
 
         @if (request()->has('race_id'))
             <a href="{{ route('races.show', $model) }}" class="btn2 btn-sm">
-                <x-icon class="fa-solid fa-filter"></x-icon>
-                {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                ({{ $model->allCharacters()->count() }})
             </a>
         @else
             <a href="{{ route('races.show', [$model, 'race_id' => $model->id]) }}" class="btn2 btn-sm">
-                <x-icon class="fa-solid fa-filter"></x-icon>
-                {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                ({{ $model->characters()->count() }})
             </a>
         @endif
         @can('update', $model)

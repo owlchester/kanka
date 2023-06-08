@@ -57,6 +57,7 @@ class Icon extends Component
             'cog' => 'fa-solid fa-cog',
             'edit' => 'fa-solid fa-edit',
             'premium' => 'fa-solid fa-rocket',
+            'filter' => 'fa-solid fa-filter',
             default => $class,
         };
     }

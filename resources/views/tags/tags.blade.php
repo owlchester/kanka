@@ -15,11 +15,15 @@
         </a>
         @if (request()->has('tag_id'))
             <a href="{{ route('tags.tags', [$model, '#tag-tags']) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                ({{ $model->descendants()->count() }})
             </a>
         @else
             <a href="{{ route('tags.tags', [$model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->tags()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                ({{ $model->tags()->count() }})
             </a>
         @endif
     </div>

@@ -27,11 +27,15 @@ $existing = $model->allChildren()->count();
 
         @if (request()->has('tag_id'))
             <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                ({{ $model->allChildren()->count() }})
             </a>
         @else
             <a href="{{ route('tags.show', [$model, 'tag_id' => $model->id, '#tag-children']) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                ({{ $model->entities()->count() }})
             </a>
         @endif
 

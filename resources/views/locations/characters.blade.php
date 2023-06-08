@@ -13,11 +13,15 @@
         </a>
         @if (request()->has('parent_id'))
             <a href="{{ route('locations.characters', $model) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                ({{ $model->allCharacters()->count() }})
             </a>
         @else
             <a href="{{ route('locations.characters', [$model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                ({{ $model->characters()->count() }})
             </a>
         @endif
     </div>
