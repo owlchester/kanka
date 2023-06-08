@@ -25,7 +25,7 @@
         :sourceColumn="sourceColumn"
         :sourceRow="sourceRow"
 
-        :relation="relationText()"
+        :relation="relation"
         :uuid="relation.uuid"
         :isEditing="isEditing"
     ></RelationLine>
@@ -100,9 +100,6 @@ export default {
         },
         lineX() {
             return this.index === 0 ? this.drawX + this.entityWidth + 20 : this.sourceX;
-        },
-        relationText() {
-            return this.relation.role;
         },
     },
     mounted() {

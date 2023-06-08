@@ -46,6 +46,8 @@ return [
                 'success'   => 'Relation updated.',
                 'title'     => 'Update a relation',
             ],
+            'css' => 'Css class',
+            'unknown'   => 'Unknown',
         ],
         'reset'     => [
             'confirm'   => 'Are you sure you want to discard any changes made to the family tree?',
