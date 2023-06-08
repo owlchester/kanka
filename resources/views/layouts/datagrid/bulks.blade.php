@@ -35,7 +35,7 @@ $hasOthers = false;
         @endforeach
     </ul>
 </div>
-<a href="#" class="btn btn-default btn-disabled datagrid-spinner" style="display:none">
+<a href="#" class="btn2 btn-disabled datagrid-spinner" style="display:none">
     <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
 </a>
 <input type="hidden" name="action" value="" />
@@ -55,13 +55,12 @@ $hasOthers = false;
                         {{ __('crud.delete_modal.permanent') }}
                     </p>
 
-                    <div class="py-5">
-                        <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                        <button type="button" class="btn btn-danger px-8 ml-5 rounded-full" id="datagrid-action-confirm">
+                    <x-dialog.footer :modal="true">
+                        <button type="button" class="btn2 btn-error btn-outline" id="datagrid-action-confirm">
                             <x-icon class="trash"></x-icon>
                             <span class="remove-button-label">{{ __('crud.remove') }}</span>
                         </button>
-                    </div>
+                    </x-dialog.footer>
                 </div>
             </div>
         </div>

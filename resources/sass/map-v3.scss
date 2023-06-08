@@ -279,21 +279,6 @@ body.map-drawing-mode {
     background: transparent !important;
 }
 
-
-.marker-preset-list .preset {
-    border: 1px solid hsl(var(--nc)/1);
-    background-color: hsl(var(--nc)/1);
-    &:hover {
-        border: 1px solid var(--tab-hover-background);
-    }
-
-    .preset-use {
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-}
-
 /** Used by the ruler plugin */
 .leaflet-ruler {
     height: 48px;

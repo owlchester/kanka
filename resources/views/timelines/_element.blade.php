@@ -27,7 +27,7 @@
                     @if (auth()->check()) {!! $element->visibilityIcon('btn-box-tool') !!}@endif
 
                     @can('update', $timeline)
-                        <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+                        <a class="dropdown-toggle btn2 btn-xs btn-ghost" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                             <i class="fa-solid fa-ellipsis-v" aria-hidden="true"></i>
                             <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                         </a>

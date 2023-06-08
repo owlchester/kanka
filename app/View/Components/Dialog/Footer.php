@@ -8,12 +8,15 @@ use Illuminate\View\Component;
 
 class Footer extends Component
 {
+    public bool $modal;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        bool $modal = false,
+    )
     {
-        //
+        $this->modal = $modal;
     }
 
     /**

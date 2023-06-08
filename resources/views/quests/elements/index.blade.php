@@ -14,7 +14,7 @@
     @can('update', $model)
         <div class="header-buttons inline-block pull-right ml-auto">
 
-            <a href="{{ route('quests.quest_elements.create', ['quest' => $model->id]) }}" class="btn btn-sm btn-warning">
+            <a href="{{ route('quests.quest_elements.create', ['quest' => $model->id]) }}" class="btn2 btn-sm btn-accent">
                 <x-icon class="plus"></x-icon>
                 <span class="hidden-xs hidden-sm">{{ __('quests.show.actions.add_element') }}</span>
             </a>

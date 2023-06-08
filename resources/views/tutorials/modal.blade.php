@@ -11,10 +11,10 @@
                 @endforeach
             </div>
             <div class="modal-footer">
-                <button class="btn btn-warning pull-left" data-tutorial="disable" data-url="{{ route('settings.tutorial.disable') }}">
+                <button class="btn2 btn-warning pull-left" data-tutorial="disable" data-url="{{ route('settings.tutorial.disable') }}">
                     {{ __('tutorials/actions.disable') }}
                 </button>
-                <button class="btn btn-success" data-tutorial="next" data-url="{{ route('settings.tutorial.done', ['tutorial' => $key]) }}">
+                <button class="btn2 btn-primary" data-tutorial="next" data-url="{{ route('settings.tutorial.done', ['tutorial' => $key]) }}">
                     {{ __('tutorials/actions.next') }}
                 </button>
             </div>

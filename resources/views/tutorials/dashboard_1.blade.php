@@ -11,10 +11,10 @@
 @endsection
 
 @section('footer')
-    <button class="btn btn-warning pull-left" data-tutorial="disable" data-url="{{ route('settings.tutorial.disable') }}">
+    <button class="btn2 btn-accent pull-left" data-tutorial="disable" data-url="{{ route('settings.tutorial.disable') }}">
         {{ __('tutorials/actions.disable') }}
     </button>
-    <button class="btn btn-default" data-tutorial="close">
+    <button class="btn2 btn-ghost" data-tutorial="close">
         {{ __('tutorials/actions.close') }}
     </button>
 @endsection

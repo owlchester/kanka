@@ -11,7 +11,7 @@
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons inline-block pull-right ml-auto">
-            <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn btn-warning btn-sm"
+            <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn2 btn-accent btn-sm"
             >
                 <x-icon class="plus"></x-icon>
                 {{ __('timelines/eras.actions.add') }}

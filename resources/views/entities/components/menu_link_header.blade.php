@@ -66,7 +66,7 @@
             <div class="header-buttons inline-block pull-right ml-auto">
 
                 @can('update', $model)
-                    <a href="{{ route('menu_links.edit', $model) }}" class="btn btn-primary">
+                    <a href="{{ route('menu_links.edit', $model) }}" class="btn2 btn-primary">
                         <x-icon class="pencil"></x-icon>
                         {{ __('crud.update') }}
                     </a>

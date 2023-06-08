@@ -36,7 +36,7 @@
             </div>
             @if (count($filters) > 0)
                 <div class="flex-none">
-                    <a href="{{ route('history.index') }}" role="button" class="btn btn-default">{{ __('crud.actions.reset') }}</a>
+                    <a href="{{ route('history.index') }}" role="button" class="btn2 btn-sm">{{ __('crud.actions.reset') }}</a>
                 </div>
             @endif
             <div class="flex-none filters-loading" style="display: none">
