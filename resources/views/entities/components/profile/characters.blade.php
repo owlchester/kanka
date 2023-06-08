@@ -9,93 +9,85 @@
 //$traits = $model->characterTraits()->personality()->orderBy('default_order')->get();
 
 @endphp
-<div class="sidebar-section-box sidebar-section-profile">
-    <div class="sidebar-section-title cursor-pointer text-lg user-select" data-toggle="collapse" data-target="#sidebar-profile-elements">
-        <i class="fa-solid fa-chevron-right" style="display: none"></i>
-        <i class="fa-solid fa-chevron-down"></i>
-        {{ __('crud.tabs.profile') }}
-    </div>
 
-    <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-profile-elements">
-        @if ($campaignService->enabled('families') && !$model->families->isEmpty())
-            <div class="element profile-family">
-                <div class="title text-uppercase text-xs">
-                    {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!}
-                </div>
-                @php $existingFamilies = []; @endphp
-                @foreach ($model->families as $family)
-                    @if(!empty($existingFamilies[$family->id]))
-                        @continue
-                    @endif
-                    @php $existingRaces[$family->id] = true; @endphp
-                    {!! $family->tooltipedLink() !!}
-                @endforeach            </div>
-        @endif
-
-        @if (!$model->races->isEmpty() || $model->hasAge())
-            @if (!$model->races->isEmpty() && !$model->hasAge())
-            <div class="element profile-race">
-                <div class="title text-uppercase text-xs">
-                    {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
-                </div>
-                @php $existingRaces = []; @endphp
-                @foreach ($model->races as $race)
-                    @if(!empty($existingRaces[$race->id]))
-                        @continue
-                    @endif
-                    @php $existingRaces[$race->id] = true; @endphp
-                    {!! $race->tooltipedLink() !!}
-                @endforeach
+<x-sidebar.profile>
+    @if ($campaignService->enabled('families') && !$model->families->isEmpty())
+        <div class="element profile-family">
+            <div class="title text-uppercase text-xs">
+                {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!}
             </div>
-            @elseif ($model->races->isEmpty() && $model->hasAge())
-            <div class="element profile-age">
-                <div class="title text-uppercase text-xs">{{ __('characters.fields.age') }}</div>
-                <span>{{ $model->age }}</span>
+            @php $existingFamilies = []; @endphp
+            @foreach ($model->families as $family)
+                @if(!empty($existingFamilies[$family->id]))
+                    @continue
+                @endif
+                @php $existingRaces[$family->id] = true; @endphp
+                {!! $family->tooltipedLink() !!}
+            @endforeach            </div>
+    @endif
+
+    @if (!$model->races->isEmpty() || $model->hasAge())
+        @if (!$model->races->isEmpty() && !$model->hasAge())
+        <div class="element profile-race">
+            <div class="title text-uppercase text-xs">
+                {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
             </div>
-            @else
-            <div class="element profile-race-age">
-                <div class="title text-uppercase text-xs">
-                    {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!},
-                    {{ __('characters.fields.age') }}
-                </div>
-                @php $existingRaces = []; @endphp
-                @foreach ($model->races as $race)
-                    @if(!empty($existingRaces[$race->id]))
-                        @continue
-                    @endif
-                    @php $existingRaces[$race->id] = true; @endphp
-                    {!! $race->tooltipedLink() !!}
-                @endforeach
-                <span>{{ $model->age }}</span>
+            @php $existingRaces = []; @endphp
+            @foreach ($model->races as $race)
+                @if(!empty($existingRaces[$race->id]))
+                    @continue
+                @endif
+                @php $existingRaces[$race->id] = true; @endphp
+                {!! $race->tooltipedLink() !!}
+            @endforeach
+        </div>
+        @elseif ($model->races->isEmpty() && $model->hasAge())
+        <div class="element profile-age">
+            <div class="title text-uppercase text-xs">{{ __('characters.fields.age') }}</div>
+            <span>{{ $model->age }}</span>
+        </div>
+        @else
+        <div class="element profile-race-age">
+            <div class="title text-uppercase text-xs">
+                {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!},
+                {{ __('characters.fields.age') }}
             </div>
-            @endif
+            @php $existingRaces = []; @endphp
+            @foreach ($model->races as $race)
+                @if(!empty($existingRaces[$race->id]))
+                    @continue
+                @endif
+                @php $existingRaces[$race->id] = true; @endphp
+                {!! $race->tooltipedLink() !!}
+            @endforeach
+            <span>{{ $model->age }}</span>
+        </div>
         @endif
+    @endif
 
 
-        @if (!empty($model->sex) || !empty($model->pronouns))
-            @if (!empty($model->sex) && empty($model->pronouns))
-                <div class="element profile-gender">
-                    <div class="title text-uppercase text-xs">{{ __('characters.fields.sex') }}</div>
-                    <span>{{ $model->sex }}</span>
-                </div>
-            @elseif (empty($model->sex) && !empty($model->pronouns))
-                <div class="element profile-pronouns">
-                    <div class="title text-uppercase text-xs">{{ __('characters.fields.pronouns') }}</div>
-                    <span>{{ $model->pronouns }}</span>
-                </div>
-            @else
-                <div class="element profile-gender-pronouns">
-                    <div class="title text-uppercase text-xs">{{ __('characters.fields.sex') }}, {{ __('characters.fields.pronouns') }}</div>
-                    <span>{{ $model->sex }}</span>
-                    <span>{{ $model->pronouns }}</span>
-                </div>
-            @endif
+    @if (!empty($model->sex) || !empty($model->pronouns))
+        @if (!empty($model->sex) && empty($model->pronouns))
+            <div class="element profile-gender">
+                <div class="title text-uppercase text-xs">{{ __('characters.fields.sex') }}</div>
+                <span>{{ $model->sex }}</span>
+            </div>
+        @elseif (empty($model->sex) && !empty($model->pronouns))
+            <div class="element profile-pronouns">
+                <div class="title text-uppercase text-xs">{{ __('characters.fields.pronouns') }}</div>
+                <span>{{ $model->pronouns }}</span>
+            </div>
+        @else
+            <div class="element profile-gender-pronouns">
+                <div class="title text-uppercase text-xs">{{ __('characters.fields.sex') }}, {{ __('characters.fields.pronouns') }}</div>
+                <span>{{ $model->sex }}</span>
+                <span>{{ $model->pronouns }}</span>
+            </div>
         @endif
+    @endif
 
 
-        @include('entities.components.profile._events')
+    @include('entities.components.profile._events')
 
-        @include('entities.components.profile._type')
-
-    </div>
-</div>
+    @include('entities.components.profile._type')
+</x-sidebar.profile>

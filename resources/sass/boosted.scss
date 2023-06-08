@@ -26,26 +26,13 @@
 }
 
 .sidebar-section-box {
-    margin-bottom: 30px;
     background: var(--sidebar-section-background, none);
     padding: var(--sidebar-section-padding, none);
-    overflow: hidden;
-
-    .sidebar-section-title {
-        color: var(--header-text);
-        border-bottom: 1px solid var(--input-border-color);
-    }
 
     .sidebar-elements {
-        grid-template-columns: 100%;
-
         .element {
-            margin: 10px 0;
-            font-size: 14px;
-
-            .title {
-                line-height: 1.1;
-            }
+            margin: 0.75rem 0;
+            font-size: 1rem;
 
             a:not(:last-of-type), span:not(:last-of-type) {
                 &:after {

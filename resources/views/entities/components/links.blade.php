@@ -1,7 +1,7 @@
 <?php /** @var \App\Rules\EntityAsset $asset */?>
 
-<div class="sidebar-section-box entity-links my-1 mx-0">
-    <div class="sidebar-section-title cursor-pointer text-lg user-select" data-toggle="collapse" data-target="#sidebar-link-elements">
+<div class="sidebar-section-box entity-links my-1 mx-0 mb-5  overflow-hidden">
+    <div class="sidebar-section-title cursor-pointer text-lg user-select border-b" data-toggle="collapse" data-target="#sidebar-link-elements">
         <i class="fa-solid fa-chevron-right" style="display: none" aria-hidden="true"></i>
         <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
 

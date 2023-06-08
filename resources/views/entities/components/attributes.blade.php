@@ -7,7 +7,7 @@ $attributes = isset($entity) ? $entity->starredAttributes() : $model->entity->st
 ?>
 @if (count($attributes) > 0)
     @foreach ($attributes as $attribute)
-        <li class="pinned-attribute mb-2  @if ($attribute->isSection()) pinned-attribute-section text-center @elseif ($attribute->value == null) pinned-attribute-empty @endif" data-attribute="{{ $attribute->name }}" data-target="{{ $attribute->id }}" @if ($attribute->is_private) data-private="true" @endif>
+        <li class="pinned-attribute mb-2  @if ($attribute->isSection()) border-t pt-2 pinned-attribute-section text-center @elseif ($attribute->value == null) pinned-attribute-empty @endif" data-attribute="{{ $attribute->name }}" data-target="{{ $attribute->id }}" @if ($attribute->is_private) data-private="true" @endif>
             @if ($attribute->isCheckbox())
                 @if ($attribute->value)
                     <x-icon class="fa-solid fa-check pull-right"></x-icon>
