@@ -30,7 +30,7 @@
         ])
 
         <div class="entity-main-block">
-            @include('entities.pages.abilities.reorder._reorder')
+            @includeWhen(!empty($parents), 'entities.pages.abilities.reorder._reorder')
         </div>
     </div>
 @endsection

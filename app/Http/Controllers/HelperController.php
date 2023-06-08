@@ -38,11 +38,4 @@ class HelperController
             abort(404);
         }
     }
-
-    /**
-     */
-    protected function render(string $helper)
-    {
-        return view('helpers.helper', compact('helper'));
-    }
 }

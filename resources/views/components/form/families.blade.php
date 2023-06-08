@@ -29,19 +29,17 @@ if ($quickCreator) {
 ?>
 <label>{!! \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')) !!}</label>
 
-@if ($quickCreator)<div class="input-group input-group-sm">@endif
+@if ($quickCreator)<div class="join w-full">@endif
 
-<select multiple="multiple" name="families[]" class="form-control select2" data-tags="true" style="width: 100%" data-url="{{ route('families.find') }}" data-allow-clear="true" data-allow-new="false" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
+<select multiple="multiple" name="families[]" class="form-control select2 join-item" data-tags="true" style="width: 100%" data-url="{{ route('families.find') }}" data-allow-clear="true" data-allow-new="false" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>
     @endforeach
 </select>
 
 @if ($quickCreator)
-        <div class="input-group-btn">
-            <a class="quick-creator-subform btn btn-tab-form" data-url="{{ route('entity-creator.form', ['type' => 'families', 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}">
-                <span class="glyphicon glyphicon-plus"></span>
-            </a>
-        </div>
+        <a class="quick-creator-subform btn2 join-item btn-primary btn-outline" data-url="{{ route('entity-creator.form', ['type' => 'families', 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}">
+            <span class="fa-solid fa-plus"></span>
+        </a>
     </div>
 @endif

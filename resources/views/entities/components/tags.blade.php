@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Tag $tag */?>
 @if ($campaignService->enabled('tags') && $model->entity->tags()->count() > 0)
-    <li class="list-group-item entity-tags">
+    <li class="mb-2 entity-tags">
         <b>{{ __('entities.tags') }}</b>
         <p>
             @foreach ($model->entity->tags()->with('entity')->get() as $tag)

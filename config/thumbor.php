@@ -5,6 +5,7 @@
  * When running Kanka locally with docker, it comes with a lightweight thumbor instance
  * that will read and save thumbnails from minio.
  */
+
 return [
     'key' => env('THUMBOR_KEY'),
     'bases' => [

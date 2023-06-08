@@ -8,7 +8,7 @@
         <th>{{ trans('dice_rolls.results.fields.date') }}</th>
         <th class="pull-right">
             @can('roll', $model)
-                <a href="{{ route('dice_rolls.roll', ['dice_roll' => $model]) }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('dice_rolls.roll', ['dice_roll' => $model]) }}" class="btn2 btn-primary btn-sm">
                     <x-icon class="plus"></x-icon> {{ trans('dice_rolls.results.actions.add') }}
                 </a>
             @endcan

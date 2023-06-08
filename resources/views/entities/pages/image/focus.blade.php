@@ -47,7 +47,12 @@
         {!! Form::hidden('focus_x', null) !!}
         {!! Form::hidden('focus_y', null) !!}
 
-        <input type="submit" class="btn btn-block btn-primary" value="{{ __('entities/image.actions.save_focus') }}" />
+
+        <x-dialog.footer>
+            <button type="submit" class="btn2 btn-primary">
+                {{ __('entities/image.actions.save_focus') }}
+            </button>
+        </x-dialog.footer>
         {!! Form::close() !!}
             @endif
 

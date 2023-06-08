@@ -235,7 +235,8 @@ trait CampaignRelations
      */
     public function menuLinks()
     {
-        return $this->hasMany(MenuLink::class);
+        return $this->hasMany(MenuLink::class)
+            ->with(['dashboard']);
     }
 
     /**

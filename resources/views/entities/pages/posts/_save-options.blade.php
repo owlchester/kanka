@@ -1,8 +1,8 @@
-<div class="form-group">
-    <div class="btn-group">
-        <input id="submit-mode" type="hidden" value="true"/>
-        <button class="btn btn-success" id="form-submit-main" data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
-        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+<div class="join">
+    <input id="submit-mode" type="hidden" value="true"/>
+    <button class="btn2 btn-sm btn-primary join-item" id="form-submit-main" data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
+    <div class="dropdown">
+        <button type="button" class="btn2 btn-sm btn-primary join-item dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">

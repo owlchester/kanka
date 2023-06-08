@@ -1,9 +1,9 @@
 <div class="flex flex-wrap gap-2 items-center">
-    <div class="btn-group">
-        <button type="button" class="btn btn-default add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-            <x-icon class="plus"></x-icon> {{ __('entities/attributes.types.attribute') }}
-        </button>
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+    <button type="button" class="btn2 btn-sm add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+        <x-icon class="plus"></x-icon> {{ __('entities/attributes.types.attribute') }}
+    </button>
+    <div class="dropdown">
+        <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
             {{ __('entities/attributes.actions.more') }}
             <span class="caret"></span>
         </button>
@@ -38,21 +38,21 @@
         </ul>
     </div>
     @if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#hidden-attributes">
+        <button type="button" class="btn2 btn-ghost" data-toggle="modal" data-target="#hidden-attributes">
             <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
             {{ __('entities/attributes.actions.show_hidden') }}
         </button>
     @endif
 
     <div class="grow">
-        <a href="//docs.kanka.io/en/latest/features/attributes.html" target="_blank">
-            {{ __('helpers.attributes.link') }} <x-icon class="question"></x-icon>
+        <a href="//docs.kanka.io/en/latest/features/attributes.html" target="_blank" class="btn2 btn-sm btn-link">
+            {{ __('helpers.attributes.link') }}
         </a>
     </div>
-    <a href="#" class="text-red pull-right" data-toggle="dialog" data-target="attributes-delete-all-confirm">
+    <button class="btn2 btn-error btn-sm btn-outline" data-toggle="dialog" data-target="attributes-delete-all-confirm">
         <x-icon class="trash"></x-icon>
         {{ __('entities/attributes.actions.remove_all') }}
-    </a>
+    </button>
 </div>
 
 <x-alert type="warning" class="alert-too-many-fields mt-6" :hidden="true">
@@ -69,7 +69,7 @@
         $role = \App\Facades\CampaignCache::adminRole();
     @endphp
     <hr />
-    <div class="form-group">
+    <div class="field-private">
         {!! Form::hidden('is_attributes_private', 0) !!}
         <label>{!! Form::checkbox('is_attributes_private', 1, empty($model) ? false : $model->entity->is_attributes_private) !!}
             {{ __('entities/attributes.fields.is_private') }}
@@ -87,7 +87,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-2xl text-center">
                     <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                        <x-dialog.close />
                         <h4 class="modal-title md-5" id="clickModalLabel">{{ __('entities/attributes.show.hidden') }}</h4>
                         <p class="mt-5">
                             @foreach ($entity->attributes()->ordered()->get() as $attribute)

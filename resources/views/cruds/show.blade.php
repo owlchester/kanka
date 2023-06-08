@@ -24,21 +24,14 @@ $headerImage = true;
 
 @section('entity-header-actions')
     <div class="header-buttons inline-block pull-right ml-auto">
-        <div class="btn-group">
-            <div class="btn btn-default btn-sm btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
-                <i class="fa-solid fa-grip-lines" aria-hidden="true"></i>
-            </div>
-            <div class="btn btn-default btn-sm btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
-                <i class="fa-solid fa-bars" aria-hidden="true"></i>
-            </div>
-        </div>
+        @include('entities.headers.toggle')
         @can('update', $model)
-            <a href="{{ $model->getLink('edit') }}" class="btn btn-primary btn-sm ">
+            <a href="{{ $model->getLink('edit') }}" class="btn2 btn-primary btn-sm ">
                 <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
             </a>
         @endcan
         @can('post', [$model, 'add'])
-        <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-post"
+        <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn2 btn-accent btn-sm btn-new-post"
            data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
             <x-icon class="plus"></x-icon> {{ __('crud.actions.new_post') }}
         </a>

@@ -17,7 +17,14 @@ class QuestFilter extends DatagridFilter
             ->add('type')
             ->dateRange()
             ->add('is_completed')
-            ->character()
+            ->add([
+                'field' => 'instigator_id',
+                'label' => __('quests.fields.instigator'),
+                'type' => 'select2',
+                'route' => route('search.entities-with-relations'),
+                'placeholder' =>  __('crud.placeholders.entity'),
+                'model' => Entity::class,
+            ])
             ->add([
                 'field' => 'quest_id',
                 'label' => __('crud.fields.parent'),

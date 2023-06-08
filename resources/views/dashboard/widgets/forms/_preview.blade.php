@@ -1,13 +1,13 @@
 @php $boosted = $campaignService->campaign()->boosted() @endphp
 <div class="nav-tabs-custom">
-    <ul class="nav nav-tabs">
+    <ul class="nav-tabs tabs-boxed">
         <li class="active">
             <a data-toggle="tab" href="#setup">
                 {{ __('dashboard.widgets.tabs.setup') }}
             </a>
         </li>
         <li>
-            <a class="" data-toggle="tab" href="#advanced">
+            <a data-toggle="tab" href="#advanced">
                 {{ __('dashboard.widgets.tabs.advanced') }}
             </a>
         </li>
@@ -15,44 +15,38 @@
 
     <div class="tab-content">
         <div id="setup" class="tab-pane fade in active">
-            @include('cruds.fields.entity', ['required' => true])
 
-            {!! Form::hidden('config[full]', 0) !!}
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('config[full]', 1, (!empty($model) ? $model->conf('full') : null), ['id' => 'config-full']) !!}
-
-                        {{ __('dashboard.widgets.recent.full') }}
-
-                        <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.full') }}" aria-hidden="true"></i>
-                    </label>
-                    <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.full') }}</p>
+            <x-grid>
+                <div class="col-span-2">
+                    @include('cruds.fields.entity', ['required' => true])
                 </div>
-            </div>
 
-
-            <div class="row">
-                <div class="col-sm-6">
-                    @include('dashboard.widgets.forms._name')
+                @php
+                $displayOptions = [
+                    0 => __('dashboard.widgets.preview.displays.expand'),
+                    1 => __('dashboard.widgets.preview.displays.full'),
+                    2 => __('crud.tabs.attributes'),
+                ];
+                @endphp
+                <div class="field-display">
+                    <label>{{ __('dashboard.widgets.preview.fields.display') }}</label>
+                    {!! Form::select('config[full]', $displayOptions, null, ['class' => 'form-control']) !!}
                 </div>
-                <div class="col-sm-6">
-                    @include('dashboard.widgets.forms._width')
-                </div>
-            </div>
 
-            <div class="row">
+                @include('dashboard.widgets.forms._name')
+
+                @include('dashboard.widgets.forms._width')
+
                 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
-            </div>
-
+            </x-grid>
         </div>
         <div id="advanced" class="tab-pane fade in">
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
 
-            <div class="grid grid-cols-2 gap-2">
+            <x-grid>
                 <div>
                     {!! Form::hidden('config[entity-header]', 0) !!}
-                    <div class="form-group checkbox">
+                    <div class="field-header checkbox">
                         <label>
                             {!! Form::checkbox('config[entity-header]', 1, (!empty($model) ? $model->conf('entity-header') : null), ['id' => 'config-entity-header', 'disabled' => !$boosted ? 'disabled' : null]) !!}
                             {{ __('dashboard.widgets.recent.entity-header') }}
@@ -65,8 +59,7 @@
 
                 @include('dashboard.widgets.forms._related')
                 @include('dashboard.widgets.forms._class')
-            </div>
-
+            </x-grid>
         </div>
     </div>
 </div>

@@ -40,7 +40,7 @@
                 @endif
             </td>
             <td class="text-right">
-                <a href="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}" class="btn btn-primary btn-xs"
+                <a href="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}" class="btn2 btn-primary btn-xs"
                    title="{{ __('crud.edit') }}"
                    data-toggle="ajax-modal" data-target="#large-modal"
                    data-url="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}"
@@ -65,7 +65,7 @@
         {{ $eras->links() }}
     </div>
 
-    <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn btn-primary btn-sm"
+    <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn2 btn-primary btn-sm"
        data-toggle="ajax-modal" data-target="#large-modal"
        data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
        data-backdrop="static"
@@ -75,7 +75,7 @@
 
     <hr />
 
-    <div class="form-group">
+    <div class="field-revert">
         {!! Form::hidden('revert_order', 0) !!}
         <label>{!! Form::checkbox('revert_order') !!}
             {{ __('timelines.fields.reverse_order') }}

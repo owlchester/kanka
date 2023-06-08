@@ -10,22 +10,24 @@ $enabled = $campaign->enabled($module);
 @endphp
 
 @if (isset($boosted) && $boosted && !$campaign->boosted())
-    <div class="rounded p-4 shadow-xs bg-box mb-0 box-warning flex flex-wrap flex-col" id="{{ $module }}">
-        <div class="box-header with-border">
-            <h3 class="box-title">
-                <i class="{{ $icon }}" aria-hidden="true"></i>
+    <x-box css="box-warning flex flex-wrap flex-col" id="{{ $module }}">
+        <div class="header p-2 bg-gray-600 flex items-center gap-2">
+            <i class="flex-0 text-lg {{ $icon }}" aria-hidden="true"></i>
+            <h3 class="text-lg m-0 grow text-white">
                 {!! $moduleName !!}
             </h3>
         </div>
-        <div class="box-body select-none">
-            <p>{{ __('campaigns.settings.helpers.' . $module) }}</p>
+        <div class="grow flex flex-wrap flex-col">
+            <div class="body p-4 pb-2 grow">
+                <p>{{ __('campaigns.settings.helpers.' . $module) }}</p>
+            </div>
+            <div class="box-footer checkbox text-center mt-auto">
+                <i>{!! __('campaigns.settings.boosted', ['boosted' => link_to_route('front.pricing', __('concept.premium-campaigns'), '#premium')]) !!}</i>
+            </div>
         </div>
-        <div class="box-footer checkbox text-center mt-auto">
-            <i>{!! __('campaigns.settings.boosted', ['boosted' => link_to_route('front.pricing', __('concept.premium-campaigns'), '#premium')]) !!}</i>
-        </div>
-    </div>
+    </x-box>
 @else
-    <div class="box-module w-full rounded overflow-hidden shadow-xs bg-box flex flex-wrap flex-col select-none {{ $enabled ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $module }}">
+    <x-box css="box-module overflow-hidden flex flex-wrap flex-col select-none {{ $enabled ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $module }}" :padding="false">
         <div class="header p-2 bg-gray-600 flex items-center gap-2">
             <i class="flex-0 text-lg {{ $icon }}" aria-hidden="true"></i>
             <h3 class="text-lg m-0 grow text-white">
@@ -46,7 +48,7 @@ $enabled = $campaign->enabled($module);
             @endif
         </div>
         <div class="grow flex flex-wrap flex-col">
-            <div class="body p-4 pb-2 grow"  >
+            <div class="body p-4 pb-2 grow">
                 <p class="mb-0">
                     {{ __('campaigns.settings.helpers.' . $module) }}
                 </p>
@@ -69,5 +71,5 @@ $enabled = $campaign->enabled($module);
                 </label>
             </div>
         </div>
-    </div>
+    </x-box>
 @endif

@@ -10,9 +10,10 @@
 ]) !!}
 </p>
 @else
-@ads('entity')
+@ads('rich')
 <div class="ads-space overflow-hidden">
-    <div class="vm-placement" data-id="{{ config('tracking.venatus.entity') }}"></div>
+    <div class="vm-placement" id="vm-av" data-format="isvideo"></div>
+    <div class="vm-placement" data-id="{{ config('tracking.venatus.rich') }}" style="display:none"></div>
 </div>
 <p class="text-center text-muted">
 {!! __('misc.ads.remove_v3', [

@@ -21,7 +21,7 @@ class EntityEventController extends Controller
     protected string $view = 'entity_event';
     protected string $route = 'entity_event';
 
-    protected $calendarService;
+    protected CalendarService $calendarService;
 
     /**
      * @var string
@@ -172,6 +172,8 @@ class EntityEventController extends Controller
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
+
+        dd($request->all());
 
         $routeOptions = ['calendar' => $entityEvent->calendar->id, 'year' => request()->post('year')];
         $entityEvent->update($request->all());

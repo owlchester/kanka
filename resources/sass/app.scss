@@ -75,7 +75,7 @@ div.required label:after {
 table {
     tbody {
         td {
-            vertical-align: middle !important;
+            //vertical-align: middle !important;
         }
     }
 }
@@ -138,23 +138,6 @@ tr.tr-hover {
 .btn {
     white-space: normal;
 }
-.btn-app > .ra, .btn-app > .fas, .btn-app > .far, .btn-app > .fab, .btn-app > .fa, .btn-app > .fa-solid, .btn-app > .fa-regular {
-    font-size: 20px;
-    display: block;
-    line-height: 20px !important;
-}
-
-// Visual info on quick link forms for which mode is enabled
-.menu-link-selector {
-    .btn-app > .badge {
-        display: none;
-    }
-
-    .btn-app.btn-active > .badge {
-        display: unset !important;
-    }
-}
-
 
 // Bootstrap3 sets summary to display:block which isn't correct
 summary { display: list-item; }
@@ -226,6 +209,8 @@ button.dropdown-item {
 }
 .bg-boost {
     background-color: hsl(var(--kanka-boost-accent)/1);
+    --b2: var(--kanka-boost-accent);
+    --bc: 0 0% 100%;
 }
 .text-boost {
     color: hsl(var(--kanka-boost-accent)/1);
@@ -234,6 +219,9 @@ button.dropdown-item {
 // Helper block in forms, closer to field
 .form-group > .help-block {
     margin-top: 0;
+}
+.grid > .form-group {
+    margin: 0;
 }
 
 .loading, .loading:hover {
@@ -291,6 +279,56 @@ ol, ul {
     display: flow-root;
 }
 
+.table-entities {
+    td {
+        vertical-align: middle !important;
+    }
+}
+
+ul.pagination {
+    margin: 0;
+    padding: 0;
+}
+
+ul.entity-menu {
+    /*display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    padding: .5rem;*/
+
+    li {
+        /*position: relative;
+        display: flex;
+        flex-shrink: 0;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: stretch;*/
+
+        a {
+            /*user-select: none;
+            gap: .5rem;
+            padding: .5rem 1rem;
+            transition: all 0.3s;
+            border-radius: 0.5rem;*/
+
+            &:hover {
+                cursor: pointer;
+                background-color: hsl(var(--bc)/.1);
+            }
+        }
+    }
+    li.active {
+        a {
+            background-color: hsl(var(--bc)/.1);
+        }
+    }
+}
+
+@import "alerts";
+@import "buttons";
+@import "badge";
 @import "calendar";
 @import "tooltip";
 @import "timeline";
@@ -310,6 +348,7 @@ ol, ul {
 @import "attributes/attributes";
 @import "ab-testing";
 @import "toggle";
+@import "tabs";
 //@import "tw/tailwind";
 @import "dialog";
 @import "adminlte";

@@ -1,70 +1,59 @@
 /**
- * Layout tweaks for timelines
+ * Timelines
  */
-:root {
-    --timeline-item-background: #fff;
-    --timeline-element-border: #ddd;
-    --timeline-item-header-border: #f4f4f4;
-}
 
-.timeline > li > .ra, .timeline > li > .fab, .timeline > li > .far, .timeline > li > .fas, .timeline > li > .fa-solid, .timeline > li > .fa-brands, .timeline > li > .fa-light, .timeline > li > .fa-thin, .timeline > li > .fa-duotone {
+.timeline > li > i:is(.ra, .fab, .far, .fas, .fa-solid, .fa-brands, .fa-thin, .fa-duotone) {
     line-height: 30px;
-    color: #666;
-    background: var(--timeline-element-border);
+    color: var(--timeline-icon, #666);
+    background: var(--timeline-element-border, #ddd);
     left: 18px;
 }
 
-
-
 .timeline > li > .timeline-item {
-    background: var(--timeline-item-background);
+    background: var(--timeline-item-background, #fff);
     color: var(--body-text);
     .timeline-header {
-        border-bottom-color: var(--timeline-item-header-border);
+        border-bottom-color: var(--timeline-item-header-border, #f4f4f4);
     }
 }
 .timeline > li > .timeline-item > .timeline-header {
     color: var(--header-text);
 }
 .timeline:before {
-    background: var(--timeline-element-border);
+    background: var(--timeline-element-border, #ddd);
 }
 
 /*
  * Component: Timeline
  * -------------------
  */
-.timeline {
-    > li {
+.timeline > li {
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--timeline-element-border, #ddd);
+        left: 31px;
+        margin: 0;
+        border-radius: 2px;
+    }
 
+    &:last-of-type {
         &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: #ddd;
-            left: 31px;
-            margin: 0;
-            border-radius: 2px;
-        }
-
-        &:last-of-type {
-            &:before {
-                content: ' ';
-                display: table;
-            }
-        }
-
-        &:after {
-            content: " ";
+            content: ' ';
             display: table;
-            clear: both;
         }
+    }
 
-        .timeline-item {
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    &:after {
+        content: " ";
+        display: table;
+        clear: both;
+    }
 
-        }
+    .timeline-item {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     }
 }

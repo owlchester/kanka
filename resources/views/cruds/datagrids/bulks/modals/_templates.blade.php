@@ -1,10 +1,10 @@
 
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+    <x-dialog.close />
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk_templates.bulk_title') }}</h4>
 </div>
 <div class="modal-body">
-    <div class="form-group required">
+    <div class="field-template required">
         <label>{{ __('entities/attributes.fields.template') }}</label>
         {!! Form::select('template_id', $templates, null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'form-control']) !!}
     </div>
@@ -16,13 +16,13 @@
     'marketplace' => link_to(config('marketplace.url') . '/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
     ]) !!}
     </p>
+
+    <x-dialog.footer>
+        <button class="btn2 btn-primary" type="submit">
+            <x-icon class="fa-solid fa-th-list"></x-icon>
+            {{ __('crud.actions.apply') }}
+        </button>
+    </x-dialog.footer>
 </div>
 
-<div class="modal-footer">
-    <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-    <button class="btn btn-success" type="submit">
-        <x-icon class="fa-solid fa-th-list"></x-icon>
-        {{ __('crud.actions.apply') }}
-    </button>
-</div>
 <input type="hidden" name="datagrid-action" value="templates" />

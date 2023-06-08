@@ -19,25 +19,24 @@
             'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
         ]) !!}
     </p>
-    <x-box>
-        <strong>
-            {{ __('settings.subscription.billing.saved' )}}
-        </strong>
-        <div id="billing">
-            <billing-management
-                    api_token="{{ $stripeApiToken }}"
-                    trans="{{ $translations }}"
-            ></billing-management>
-        </div>
-    </x-box>
+
+    <h3 class="mb-2">
+        {{ __('settings.subscription.billing.saved' )}}
+    </h3>
+    <div id="billing">
+        <billing-management
+                api_token="{{ $stripeApiToken }}"
+                trans="{{ $translations }}"
+        ></billing-management>
+    </div>
 
 
     {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['billing.payment-method.save']]) !!}
-    <x-box>
         @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended())
             @include('settings.subscription.currency._blocked')
         @else
-            <div class="form-group">
+            <x-box>
+            <div class="field-currency mb-5">
                 <label>{{ __('settings.subscription.fields.currency') }}</label>
                 {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], auth()->user()->currency(), ['class' => 'form-control']) !!}
             </div>
@@ -48,22 +47,23 @@
                 {{ __('settings.subscription.actions.update_currency') }}</span>
                 </x-buttons.confirm>
             </div>
+            </x-box>
         @endif
-    </x-box>
     {!! Form::close() !!}
 
 
+    <h3 class="mb-2">
+        {{ __('settings.billing.title') }}
+    </h3>
     {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing-info']]) !!}
     <x-box>
-        <div class="form-group">
-            <label class="inline-block w-full font-bold mb-1">
-                {{ __('settings.billing.title') }}
-            </label>
-            {!! Form::textarea('profile[billing]', null, ['placeholder' => __('settings.billing.placeholder'), 'class' => 'rounded border p-2 w-full', 'rows' => 5, 'maxlength' => 1024]) !!}
-        </div>
+        <p class="help-block">
+            {{ __('settings.billing.placeholder') }}
+        </p>
+        {!! Form::textarea('profile[billing]', null, ['class' => 'rounded border p-2 w-full mb-2', 'rows' => 5, 'maxlength' => 1024]) !!}
 
         <div class="text-right">
-            <x-buttons.confirm type="primary" outline="true">
+            <x-buttons.confirm type="primary">
                 <x-icon class="save"></x-icon>
                 <span>
             {{ __('settings.billing.save') }}</span>

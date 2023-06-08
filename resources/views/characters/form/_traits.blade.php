@@ -1,55 +1,51 @@
 <?php
 $role = \App\Facades\CampaignCache::adminRole();
 ?>
-<div class="row">
-    <div class="col-md-6">
+<x-grid>
+    <div>
         <label>{{ __('characters.sections.appearance') }}</label>
-        <div class="character-appearance sortable-elements" data-handle=".input-group-addon">
+        <div class="character-appearance sortable-elements" data-handle=".sortable-handler">
             @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : FormCopy::characterAppearance()) as $trait)
-                <div class="form-group parent-delete-row">
-                    <div class="row">
-                        <div class="col-md-4 col-xs-4">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <span class="fa-solid fa-arrows-alt-v"></span>
-                                </span>
-                                <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
-                                {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
-                                    'class' => 'form-control',
-                                    'maxlength' => 191,
-                                    'placeholder' => __('characters.placeholders.appearance_name'),
-                                    'spellcheck' => 'true',
-                                    'aria-label' => __('characters.labels.appearance.name'),
-                                ]) !!}
-                            </div>
+                <x-grid css="parent-delete-row">
+                    <div class="flex gap-1 items-center">
+                        <div class="btn2 btn-sm sortable-handler">
+                            <span class="fa-solid fa-arrows-alt-v"></span>
                         </div>
-                        <div class="col-md-8 col-xs-8">
-                            <div class="input-group">
-                                <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
-                                {!! Form::text('appearance_entry[' . $trait->id . ']', $trait->entry, [
-                                    'class' => 'form-control',
-                                    'placeholder' => __('characters.placeholders.appearance_entry'),
-                                    'spellcheck' => 'true',
-                                    'aria-label' => __('characters.labels.appearance.entry'),
-                                ]) !!}
-                                <span class="input-group-btn">
-                                    <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
-                                        <x-icon class="trash"></x-icon>
-                                        <span class="sr-only">{{ __('crud.remove') }}</span>
-                                    </span>
-                                </span>
-                            </div>
+                        <div class="grow">
+                            <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
+                            {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
+                                'class' => 'form-control',
+                                'maxlength' => 191,
+                                'placeholder' => __('characters.placeholders.appearance_name'),
+                                'spellcheck' => 'true',
+                                'aria-label' => __('characters.labels.appearance.name'),
+                            ]) !!}
                         </div>
                     </div>
-                </div>
+                    <div class="flex gap-1 items-center">
+                        <div class="grow">
+                            <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
+                            {!! Form::text('appearance_entry[' . $trait->id . ']', $trait->entry, [
+                                'class' => 'form-control',
+                                'placeholder' => __('characters.placeholders.appearance_entry'),
+                                'spellcheck' => 'true',
+                                'aria-label' => __('characters.labels.appearance.entry'),
+                            ]) !!}
+                        </div>
+                        <div class="dynamic-row-delete btn2 btn-sm btn-outline btn-error" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                            <x-icon class="trash"></x-icon>
+                            <span class="sr-only">{{ __('crud.remove') }}</span>
+                        </div>
+                    </div>
+                </x-grid>
             @endforeach
         </div>
-        <a class="btn btn-default btn-block dynamic-row-add" data-template="template_appearance" data-target="character-appearance" href="#" title="{{ __('characters.actions.add_appearance') }}">
+        <button class="btn2 btn-sm btn-block dynamic-row-add" data-template="template_appearance" data-target="character-appearance">
             <x-icon class="plus"></x-icon>
             {{ __('characters.actions.add_appearance') }}
-        </a>
+        </button>
 
-        <div class="form-group checkbox">
+        <div class="field-appearance-pinned checkbox">
             {!! Form::hidden('is_appearance_pinned', 0) !!}
             <label>
                 {!! Form::checkbox('is_appearance_pinned', 1, (!empty($model) ? $model->is_appearance_pinned : (!empty($source) ? FormCopy::field('is_appearance_pinned')->boolean() : null))) !!}
@@ -59,20 +55,18 @@ $role = \App\Facades\CampaignCache::adminRole();
                 {{ __('characters.hints.is_appearance_pinned') }}
             </p>
         </div>
-
-        <div class="form-group"><br /></div>
     </div>
-    <div class="col-md-6">
+    <div>
         <label>{{ __('characters.sections.personality') }}</label>
         @if (!isset($model) || auth()->user()->can('personality', $model))
-            <div class="character-personality sortable-elements" data-handle=".input-group-addon">
+            <div class="character-personality sortable-elements" data-handle=".sortable-handler">
                 @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : FormCopy::characterPersonality()) as $trait)
-                    <div class="parent-delete-row mb-5">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <span class="fa-solid fa-arrows-alt-v"></span>
-                                </span>
+                    <div class="grid grid-cols-1 gap-2 mb-4 parent-delete-row">
+                        <div class="flex gap-1 items-center">
+                            <div class="btn2 btn-sm sortable-handler">
+                                <span class="fa-solid fa-arrows-alt-v"></span>
+                            </div>
+                            <div class="grow">
                                 <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
                                 {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
                                     'class' => 'form-control',
@@ -80,15 +74,13 @@ $role = \App\Facades\CampaignCache::adminRole();
                                     'spellcheck' => 'true',
                                     'aria-label' => __('characters.labels.personality.name'),
                                 ]) !!}
-                                <span class="input-group-btn">
-                                    <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0" >
-                                        <x-icon class="trash"></x-icon>
-                                        <span class="sr-only">{{ __('crud.remove') }}</span>
-                                    </span>
-                                </span>
+                            </div>
+                            <div class="dynamic-row-delete btn2 btn-error btn-sm btn-outline" role="button" tabindex="0" >
+                                <x-icon class="trash"></x-icon>
+                                <span class="sr-only">{{ __('crud.remove') }}</span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="field-personality-entry">
                             <label class="sr-only">{{ __('characters.labels.personality.entry') }}</label>
                             {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, [
                                 'class' => 'form-control',
@@ -101,13 +93,13 @@ $role = \App\Facades\CampaignCache::adminRole();
                     </div>
                 @endforeach
             </div>
-            <a class="btn btn-default btn-block dynamic-row-add" data-template="template_personality" data-target="character-personality" href="#" title="{{ __('characters.actions.add_personality') }}">
+            <button class="btn2 btn-sm btn-block dynamic-row-add" data-template="template_personality" data-target="character-personality">
                 <x-icon class="plus"></x-icon>
                 {{ __('characters.actions.add_personality') }}
-            </a>
+            </button>
 
 
-            <div class="form-group checkbox">
+            <div class="field-personality-pinned checkbox">
                 {!! Form::hidden('is_personality_pinned', 0) !!}
                 <label>
                     {!! Form::checkbox('is_personality_pinned', 1, (!empty($model) ? $model->is_personality_pinned : (!empty($source) ? FormCopy::field('is_personality_pinned')->boolean() : null))) !!}
@@ -121,7 +113,7 @@ $role = \App\Facades\CampaignCache::adminRole();
         @if (auth()->user()->isAdmin())
                 <hr>
                 {!! Form::hidden('is_personality_visible', 0) !!}
-                <div class="form-group checkbox">
+                <div class="field-personality-visible checkbox">
                     <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? FormCopy::field('is_personality_visible')->boolean() : !CampaignLocalization::getCampaign()->entity_personality_visibility))) !!}
                         {{ __('characters.fields.is_personality_visible') }}
                     </label>
@@ -140,56 +132,52 @@ $role = \App\Facades\CampaignCache::adminRole();
             </x-alert>
         @endif
     </div>
-</div>
+</x-grid>
 
 
 @section('modals')
     @parent
     <div class="hidden">
         <div id="template_appearance">
-            <div class="form-group parent-delete-row">
-                <div class="row">
-                    <div class="col-md-4 col-xs-4">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                            </span>
-                            <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
-                            {!! Form::text('appearance_name[]', null, [
-                                'class' => 'form-control',
-                                'placeholder' => __('characters.placeholders.appearance_name'),
-                                'spellcheck' => 'true',
-                                'aria-label' => __('characters.labels.appearance.name'),
-                            ]) !!}
-                        </div>
+            <x-grid css="parent-delete-row">
+                <div class="flex gap-1 items-center">
+                    <div class="btn2 btn-sm sortable-handler">
+                        <span class="fa-solid fa-arrows-alt-v"></span>
                     </div>
-                    <div class="col-md-8 col-xs-8">
-                        <div class="input-group">
-                            <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
-                            {!! Form::text('appearance_entry[]', null, [
-                                'class' => 'form-control',
-                                'placeholder' => __('characters.placeholders.appearance_entry'),
-                                'spellcheck' => 'true',
-                                'aria-label' => __('characters.labels.appearance.entry'),
-                            ]) !!}
-                            <span class="input-group-btn">
-                                <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
-                                    <x-icon class="trash"></x-icon>
-                                <span class="sr-only">{{ __('crud.remove') }}</span>
-                                </span>
-                            </span>
-                        </div>
+                    <div class="grow">
+                        <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
+                        {!! Form::text('appearance_name[]', null, [
+                            'class' => 'form-control',
+                            'placeholder' => __('characters.placeholders.appearance_name'),
+                            'spellcheck' => 'true',
+                            'aria-label' => __('characters.labels.appearance.name'),
+                        ]) !!}
                     </div>
                 </div>
-            </div>
+                <div class="flex gap-1 items-center">
+                    <div class="grow">
+                        <label class="sr-only">{{ __('characters.labels.appearance.entry') }}</label>
+                        {!! Form::text('appearance_entry[]', null, [
+                            'class' => 'form-control',
+                            'placeholder' => __('characters.placeholders.appearance_entry'),
+                            'spellcheck' => 'true',
+                            'aria-label' => __('characters.labels.appearance.entry'),
+                        ]) !!}
+                    </div>
+                    <div class="dynamic-row-delete btn2 btn-sm btn-error btn-outline" role="button" tabindex="0">
+                        <x-icon class="trash"></x-icon>
+                        <span class="sr-only">{{ __('crud.remove') }}</span>
+                    </div>
+                </div>
+            </x-grid>
         </div>
         <div id="template_personality">
-            <div class="parent-delete-row mb-5">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                        </span>
+            <div class="grid grid-cols-1 gap-2 mb-4 parent-delete-row">
+                <div class="flex gap-1 items-center">
+                    <div class="btn2 btn-sm sortable-handler">
+                        <span class="fa-solid fa-arrows-alt-v"></span>
+                    </div>
+                    <div class="grow">
                         <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
                         {!! Form::text('personality_name[]', null, [
                             'class' => 'form-control',
@@ -197,15 +185,13 @@ $role = \App\Facades\CampaignCache::adminRole();
                             'spellcheck' => 'true',
                             'aria-label' => __('characters.labels.personality.name'),
                         ]) !!}
-                        <span class="input-group-btn">
-                            <span class="dynamic-row-delete btn btn-danger" title="{{ __('crud.remove') }}" role="button" tabindex="0">
-                                <x-icon class="trash"></x-icon>
-                                <span class="sr-only">{{ __('crud.remove') }}</span>
-                            </span>
-                        </span>
+                    </div>
+                    <div class="dynamic-row-delete btn2 btn-error btn-sm btn-outline" title="{{ __('crud.remove') }}" role="button" tabindex="0">
+                        <x-icon class="trash"></x-icon>
+                        <span class="sr-only">{{ __('crud.remove') }}</span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="field-personality-entry">
                     <label class="sr-only">{{ __('characters.labels.personality.entry') }}</label>
                     {!! Form::textarea('personality_entry[]', null, [
                         'class' => 'form-control',

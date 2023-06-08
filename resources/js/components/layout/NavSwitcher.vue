@@ -5,8 +5,8 @@
             <span class="sr-only">Campaigns</span>
         </div>
         <div class="profile inline cursor-pointer text-center uppercase pt-1" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
-            <div class="indicator">
-                <span class="notification-badge" v-if="show_alerts"></span>
+            <div class="indicator relative inline-flex w-max">
+                <span class="notification-badge left-auto top-auto w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
                     {{ initials }}
                 </div>

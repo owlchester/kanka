@@ -5,7 +5,7 @@ if (request()->has('tag_id')) {
     $filters['tag_id'] = request()->get('tag_id');
 }
 ?>
-<div class="box box-solid" id="tag-tags">
+<div class="" id="tag-tags">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table')
     </div>

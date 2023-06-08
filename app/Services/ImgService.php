@@ -8,19 +8,22 @@ use Illuminate\Support\Str;
 class ImgService
 {
     /** @var string  */
-    protected $crop = '';
+    protected string $crop = '';
 
     /** @var bool If true, running locally with docker/minio */
     protected bool $local = false;
 
+    /** @var bool If true, use the new th.kanka.io system */
+    protected bool $new = false;
+
     /** @var bool Called from console */
-    protected $console = false;
+    protected bool $console = false;
 
     /** @var string user or app */
-    protected $base;
+    protected string $base;
 
     /** @var string s3 url */
-    protected $s3;
+    protected string $s3;
 
     /** @var bool */
     protected bool $enabled;
@@ -44,13 +47,25 @@ class ImgService
     }
 
     /**
+     * @return $this
+     */
+    public function new(): self
+    {
+        $this->new = true;
+        return $this;
+    }
+
+    /**
      * @param int $width
      * @param int $height
      * @return $this
      */
-    public function crop(int $width, int $height): self
+    public function crop(int $width, int $height = null): self
     {
         if ($width !== 0) {
+            if ($height === null) {
+                $height = $width;
+            }
             $this->crop = "{$width}x{$height}/";
         }
         return $this;
@@ -137,10 +152,15 @@ class ImgService
             return config('thumbor.url') . 'unsafe/' . $this->crop . $filter
                 . app()->environment() . '/' . urlencode($img);
         }
-
-        return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
-            . 'src/' . urlencode($img)
+        $thumborUrl = $this->crop . $filter . $img;
+        $sign = $this->sign($thumborUrl);
+        return config('thumbor.url') . $sign . '/' . $this->crop . $filter
+            . $img
         ;
+
+        /*return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
+            . 'src/' . urlencode($img)
+        ;*/
     }
 
     /**

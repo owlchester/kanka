@@ -106,6 +106,11 @@ class Image extends Model
         return $this->belongsTo(Visibility::class);
     }
 
+    public function mentions()
+    {
+        return $this->hasMany(ImageMention::class, 'image_id', 'id');
+    }
+
     public function inEntities(): array
     {
         $entities = [];

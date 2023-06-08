@@ -95,7 +95,7 @@ class DatagridRenderer
 
     public function __toString(): string
     {
-        $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped mb-0' .
+        $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped table-entities mb-0' .
             ($this->nestedFilter ? ' table-nested' : null) . '">';
         $html .= '<thead><tr>';
         $html .= $this->renderColumns();
@@ -345,7 +345,7 @@ class DatagridRenderer
                 }
                 $class = 'hidden-xs hidden-sm';
             }
-            return '<td class="truncated max-w-fit ' . ($class ?? null) . '">' . $content . '</td>';
+            return '<td class="truncated max-w-fit' . ($class ?? null) . '">' . $content . '</td>';
         }
 
         // Check visibility
@@ -410,8 +410,8 @@ class DatagridRenderer
             } elseif ($type == 'calendar_date') {
                 $class = 'hidden-xs hidden-sm';
                 /** @var Journal $model */
-                if ($model->hasCalendar()) {
-                    $reminder = $model->calendarReminder();
+                if ($model->entity->calendarDate) {
+                    $reminder = $model->entity->calendarDate;
                     $content = link_to_route(
                         'calendars.show',
                         $reminder->readableDate(),

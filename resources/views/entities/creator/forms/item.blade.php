@@ -1,12 +1,9 @@
-@include('cruds.fields.type', ['base' => \App\Models\Item::class, 'trans' => 'items'])
+<x-grid>
+    @include('cruds.fields.type', ['base' => \App\Models\Item::class, 'trans' => 'items'])
 
-@include('cruds.fields.item', ['isParent' => true])
+    @include('cruds.fields.item', ['isParent' => true])
 
-<div class="row">
-    <div class="col-sm-6">
-        @include('cruds.fields.location')
-    </div>
-    <div class="col-sm-6">
-        @include('cruds.fields.character', ['label' => __('items.fields.character')])
-    </div>
-</div>
+    @include('cruds.fields.location')
+
+    @include('cruds.fields.character', ['label' => __('items.fields.character')])
+</x-grid>

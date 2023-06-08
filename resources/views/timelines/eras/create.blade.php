@@ -25,23 +25,12 @@
         'data-shortcut' => 1,
         'data-maintenance' => 1,
     ]) !!}
-    <div class="panel panel-default">
-        @if (request()->ajax())
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
-                    {{ __('timelines/eras.create.title', ['name' => $timeline->name]) }}
-                </h4>
-            </div>
-        @endif
-        <div class="panel-body">
-            @include('timelines.eras._form', ['model' => null])
-        </div>
-        <div class="panel-footer">
+    <x-box>
 
+        @include('timelines.eras._form', ['model' => null])
+
+        <x-box.footer>
             @include('partials.footer_cancel', ['ajax' => null])
-
             <div class="form-era pull-right">
                 <div class="submit-group">
                     <button class="btn btn-success">{{ __('crud.save') }}</button>
@@ -50,8 +39,8 @@
                     <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
-        </div>
-    </div>
+        </x-box.footer>
+    </x-box>
     @if (!empty($from))
         <input type="hidden" name="from" value="{{ $from }}">
     @endif

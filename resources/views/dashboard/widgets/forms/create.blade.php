@@ -5,7 +5,7 @@
 {!! Form::open([
     'route' => ['campaign_dashboard_widgets.store'],
     'method'=>'POST',
-    'data-shortcut' => '1'
+    'data-shortcut' => '1',
 ]) !!}
 
 @include('partials.forms.form', [

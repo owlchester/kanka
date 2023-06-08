@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-copy-elements">
     <label>{!! Form::checkbox('copy_elements', 1, true) !!}
         {{ __('quests.fields.copy_elements') }}
     </label>

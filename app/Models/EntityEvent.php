@@ -13,29 +13,28 @@ use Illuminate\Support\Str;
  * Class EntityEvent
  * @package App\Models
  *
- * @property integer $entity_id
- * @property integer $calendar_id
+ * @property int $entity_id
+ * @property int $calendar_id
  * @property string $date
- * @property integer $length
+ * @property int $length
  * @property string $comment
  * @property string $colour
- * @property integer $day
- * @property integer $month
- * @property integer $year
+ * @property int $day
+ * @property int $month
+ * @property int $year
  * @property boolean $is_recurring
- * @property integer|null $recurring_until
+ * @property int|null $recurring_until
  * @property string $recurring_periodicity
- * @property integer $type_id
- * @property integer $elapsed
+ * @property int $type_id
+ * @property int $elapsed
  * @property boolean $is_private
  *
- * @property Calendar $calendar
- * @property EntityEventType $type
+ * @property Calendar|null $calendar
+ * @property EntityEventType|null $type
  */
 class EntityEvent extends MiscModel
 {
     use Blameable;
-    /** Traits */
     use OrderableTrait;
     use SortableTrait;
     use VisibilityIDTrait;
@@ -44,14 +43,14 @@ class EntityEvent extends MiscModel
      * Trigger for filtering based on the order request.
      * @var string
      */
-    protected $orderTrigger = 'events/';
-    protected $orderDefaultDir = 'desc';
+    protected string $orderTrigger = 'events/';
+    protected string $orderDefaultDir = 'desc';
 
     /** @var string */
     public $table = 'entity_events';
 
-    /** @var string Cached readable date */
-    protected $readableDate;
+    /** @var string|null Cached readable date */
+    protected string|null $readableDate = null;
 
     /** @var string[]  */
     protected $fillable = [
@@ -80,10 +79,10 @@ class EntityEvent extends MiscModel
     ];
 
     /** @var bool|int Last occurence of the reminder */
-    protected $cachedLast = false;
+    protected mixed $cachedLast = false;
 
     /** @var bool|int Next occurence of the reminder */
-    protected $cachedNext = false;
+    protected mixed $cachedNext = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

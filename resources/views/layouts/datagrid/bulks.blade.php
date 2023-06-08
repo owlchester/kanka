@@ -3,12 +3,11 @@ use App\Facades\Datagrid;
 $hasOthers = false;
 ?>
 <div class="dropdown datagrid-bulk-actions">
-    <a class="dropdown-toggle btn btn-default disabled" data-toggle="dropdown" aria-expanded="false" data-tree="escape">
+    <a class="dropdown-toggle btn2 btn-disabled" data-toggle="dropdown" aria-expanded="false" data-tree="escape">
         {{ __('crud.bulk.buttons.label') }}
         <x-icon class="fa-solid fa-caret-down"></x-icon>
     </a>
     <ul class="dropdown-menu" role="menu">
-
         @foreach (\App\Facades\Datagrid::bulks() as $bulk)
             @if ($bulk === \App\Renderers\Layouts\Layout::ACTION_EDIT)
                 <li>
@@ -48,9 +47,7 @@ $hasOthers = false;
             <div class="modal-content rounded-2xl">
                 <div class="modal-body text-center">
 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <x-dialog.close />
                     <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
 
                     <p class="mt-3">

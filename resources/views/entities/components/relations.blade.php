@@ -12,14 +12,14 @@ if (count($models) === 0) {
 ?>
 @foreach ($models as $relation)
     @if(!empty($previousRelation) && $previousRelation == $relation->relation)
-    <li class="list-group-item pinned-relation" data-relation="{{ $relation->target->name }}" data-target="{{ $relation->target_id }}" data-visibility="{{ $relation->visibility_id }}">
+    <li class="mb-2 pinned-relation" data-relation="{{ $relation->target->name }}" data-target="{{ $relation->target_id }}" data-visibility="{{ $relation->visibility_id }}">
         <span class="pull-right">
             {!! $relation->target->tooltipedLink() !!}
         </span>
         <br class="clear-both" />
     </li>
     @else
-    <li class="list-group-item pinned-relation" data-target="{{ $relation->target_id }}" data-relation="{{ $relation->target->name }}" data-visibility="{{ $relation->visibility }}">
+    <li class="mb-2 pinned-relation" data-target="{{ $relation->target_id }}" data-relation="{{ $relation->target->name }}" data-visibility="{{ $relation->visibility }}">
         <strong>
             {{ $relation->relation }}
         </strong>

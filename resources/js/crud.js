@@ -54,6 +54,10 @@ function registerModalLoad() {
         registerEntityFormActions();
         registerFormMaintenance();
     });
+
+    $('#campaign-delete-confirm').on('shown.bs.modal', function () {
+        $('#campaign-delete-form').focus();
+    });
 }
 
 function registerEntityNameCheck() {
@@ -253,10 +257,12 @@ function registerEntityCalendarModal() {
 
 
 function registerEraForm() {
+    if ($('#era-form-add').length === 0) {
+        return;
+    }
     entityCalendarAdd = $('#era-form-add');
     let eraField = $('[name="era_id"]');
 
-    let positionField = $('select[name="position"]');
     oldEra = eraField.val();
     if (entityCalendarField.val()) {
         loadTimelineEra(eraField.val());
@@ -365,9 +371,12 @@ function loadTimelineEra(eraID) {
 function calendarHideSubform() {
     entityCalendarForm.hide();
     entityCalendarAdd.show();
+
     $('input[name="calendar_day"]').val(null);
     $('input[name="calendar_month"]').val(null);
     $('input[name="calendar_year"]').val(null);
+    $('input[name="calendar_id"]').val(null);
+    console.log('finished?');
 }
 
 /**
@@ -630,8 +639,10 @@ function registerDynamicRows() {
  */
 function registerDynamicRowDelete() {
     $.each($('.dynamic-row-delete'), function () {
-        // Todo: we can re-do this with adding an attribute on the element instead
-        $(this).unbind('click').unbind('keydown'); // remove previous bindings
+        if ($(this).data('init') === 1) {
+            return;
+        }
+        $(this).data('init', 1);
         $(this).on('click', function (e) {
             e.preventDefault();
             $(this).closest('.parent-delete-row').remove();
@@ -685,7 +696,3 @@ function rebuildCalendarDayList(max) {
         entityCalendarDayField.append('<option value="' + d + '" ' + selected + '>' + d + '</option>');
     }
 }
-
-$('#campaign-delete-confirm').on('shown.bs.modal', function () {
-    $('#campaign-delete-form').focus();
-})

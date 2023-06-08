@@ -24,7 +24,6 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use LogicException;
 
 class CrudController extends Controller
@@ -304,9 +303,6 @@ class CrudController extends Controller
         }
 
         $campaign = CampaignLocalization::getCampaign();
-        $data = $request->all();
-        $data['campaign_id'] = $campaign->id;
-
         try {
             // Sanitize the data
             if (!empty($this->sanitizer)) {
@@ -314,6 +310,9 @@ class CrudController extends Controller
                 $sanitizer = app()->make($this->sanitizer);
                 $request->merge($sanitizer->request($request)->sanitize());
             }
+
+            $data = $request->all();
+            $data['campaign_id'] = $campaign->id;
 
             /** @var MiscModel $model */
             $model = new $this->model();

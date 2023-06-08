@@ -34,15 +34,6 @@
 
     --sidebar-background: var(--theme-background);
 
-    --tab-color: var(--theme-main-text);
-    --tab-background: var(--theme-background);
-    --tab-hover-color: var(--theme-hard-text);
-    --tab-hover-background: var(--theme-background);
-    --tab-active-color: var(--theme-hard-text);
-    --tab-active-background: var(--theme-background);
-    --tab-active-border: transparent;
-    --tab-content-background: var(--theme-background);
-
     --input-background-color: var(--theme-background);
     --input-border-color: var(--theme-soft);
     --input-text-color: var(--theme-input-text);
@@ -70,7 +61,6 @@
     --dashboard-preview-gradient: var(--theme-detail);
     --dashboard-widget-admin-border: var(--theme-soft);
     --footer-background: var(--theme-detail);
-    --footer-links-background: rgba(0, 0, 0, 0.2);
     --footer-logo-blue: none;
     --footer-logo-white: unset;
     --footer-text: var(--theme-main-text);
@@ -81,9 +71,6 @@
     --gallery-text: var(--theme-hard-text);
     --gallery-background: var(--theme-background);
     --gallery-hover-text: var(--theme-main-text);
-
-    --relation-explorer-background: var(--theme-detail);
-    --relation-explorer-text: var(--theme-hard-text);
 
     --conversation-comment-background: var(--theme-soft);
 
@@ -104,10 +91,7 @@
     --spectrum-background: var(--theme-background);
     --spectrum-text: var(--theme-main-text);
 
-    --search-background: var(--theme-background);
-    --search-text: var(--theme-main-text);
     --search-cursor-background: var(--theme-soft);
-    --search-border: var(--theme-border);
 
     --dropdown-background: var(--theme-background);
     --dropdown-border: var(--theme-border);
@@ -150,6 +134,35 @@
     --notification-accent: var(--conversation-comment-background);
     --header-mode-inactive: var(--notification-accent);
     --campaign-switcher-text: var(--theme-input-text);
+
+    --mention-text: var(--body-text);
+    --mention-background: var(--theme-soft);
+
+
+    --pf: 198 93% 53%;
+    --sf: 234 89% 67%;
+    --af: 329 86% 63%;
+    --b2: 222 47% 4%;
+    --b3: 0 0% 0%;
+    --bc: 229 7% 80%;
+    --pc: 202 34% 14%;
+    --sc: 239 22% 15%;
+    --ac: 332 26% 15%;
+    --nc: 221 7% 82%;
+    --inc: 208 79% 92%;
+    --suc: 169 31% 13%;
+    --wac: 39 36% 14%;
+    --erc: 354 28% 15%;
+    --p: 198 93% 60%;
+    --s: 234 89% 74%;
+    --a: 329 86% 70%;
+    --n: 217 33% 17%;
+    --nf: 217 30% 22%;
+    --b1: 212 46% 7%;
+    --in: 198 90% 48%;
+    --su: 172 66% 50%;
+    --wa: 41 88% 64%;
+    --er: 351 95% 71%;
 }
 
 .hover\:shadow-md:hover {
@@ -159,4 +172,9 @@
 
 .family-tree {
     --family-tree-founder: var(--theme-link-hover);
+}
+
+#cy {
+    --relation-explorer-background: var(--theme-detail);
+    --relation-explorer-text: var(--theme-hard-text);
 }

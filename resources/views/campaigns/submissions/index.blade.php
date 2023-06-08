@@ -11,6 +11,7 @@
 ])
 
 @section('content')
+    @include('partials.ads.top')
     @include('partials.errors')
 
     <div class="flex gap-2 flex-col lg:flex-row lg:gap-5">
@@ -22,13 +23,13 @@
                 <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.applications') }}
                 </h3>
-                <button class="btn btn-sm btn-default" data-toggle="dialog"
+                <button class="btn2 btn-sm" data-toggle="dialog"
                         data-target="submissions-help">
                     <x-icon class="question"></x-icon>
                     {{ __('campaigns.members.actions.help') }}
                 </button>
 
-                <a href="#" data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn btn-default btn-sm">
+                <a href="#" data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-sm">
                     <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
                     {{ __('campaigns/submissions.actions.applications', ['status' => ($campaign->isOpen() ? __('campaigns/submissions.statuses.open') : __('campaigns/submissions.statuses.closed'))]) }}
                 </a>
@@ -39,7 +40,7 @@
                     <x-alert type="warning">
                         <p>{!! __('campaigns/submissions.helpers.not_open') !!}</p>
                         <p>
-                            <button data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn btn-warning">
+                            <button data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-warning">
                                 <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
                                 {{ __('campaigns/submissions.actions.change') }}
                             </button>
@@ -50,7 +51,7 @@
                         <x-alert type="warning">
                             <p>{{ __('campaigns/submissions.helpers.open_not_public') }}</p>
                             @if (auth()->user()->can('update', $campaign))
-                            <a href="{{ route('campaigns.edit', ['#tab_form-public']) }}" class="btn btn-warning">
+                            <a href="{{ route('campaigns.edit', ['#tab_form-public']) }}" class="btn2 btn-warning">
                                 {{ __('crud.fix-this-issue') }}
                             </a>
                             @endif

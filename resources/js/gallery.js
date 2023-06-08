@@ -143,7 +143,7 @@ const uploadFiles = (data) => {
         },
         onUploadProgress: function (progressEvent) {
             let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            $('.progress .progress-bar').css(
+            $('[role="progressbar"]').css(
                 'width',
                 percentCompleted + '%'
             );
@@ -151,7 +151,6 @@ const uploadFiles = (data) => {
     };
 
     fileProgress.show();
-
 
     axios
         .post(galleryForm.action, data, config)

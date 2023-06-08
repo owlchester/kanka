@@ -15,82 +15,49 @@
 @import "rpg-awesome/css/rpg-awesome.min.css";
 
 .note-hint-group {
-  .note-hint-item {
-    min-width: 200px;
-    min-height: 30px;
-    display: block;
-    padding: 5px;
+    .note-hint-item {
+        min-width: 200px;
+        min-height: 30px;
+        display: block;
+        padding: 5px;
 
-    &:hover {
-      border-radius: 5px;
-      background: rgba(0, 0, 0, 0.05);
+        &:hover {
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.05);
+        }
     }
-  }
 
-  .active {
-    border-radius: 5px;
-    background: #3c8dbc;
-    color: white;
-  }
-}
-
-:root {
-  --spectrum-border: #f0c49B;
-  --spectrum-background: #ECECEC;
-  --spectrum-text: #222;
-
-  --search-background: #fff;
-  --search-text: inherit;
-
-  --search-cursor-background: #f5f5f5;
-  --search-cursor-text: inherit;
-  --search-border: #d3e0e9;
+    .active {
+        border-radius: 5px;
+        background: #3c8dbc;
+        color: white;
+    }
 }
 
 /** Spectrum */
 .sp-replacer {
-  border-color: var(--spectrum-border);
-  background-color: var(--spectrum-background);
+    border-color: var(--spectrum-border, #f0c49B);
+    background-color: var(--spectrum-background, #ECECEC);
 
-  &:active, &:hover {
-    border-color: var(--spectrum-border);
-  }
+    &:active, &:hover {
+        border-color: var(--spectrum-border, #f0c49B);
+    }
 }
 .sp-light {
-  background-color: var(--spectrum-background);
-  border-color: var(--spectrum-border);
-  .sp-input {
-    color: var(--spectrum-text);
-  }
+    background-color: var(--spectrum-background, #ECECEC);
+    border-color: var(--spectrum-border, #f0c49B);
+
+    .sp-input {
+        color: var(--spectrum-text, #222);
+    }
 }
 .sp-palette-container {
-  border-right-color: var(--spectrum-border);
+    border-right-color: var(--spectrum-border, #f0c49B);
 }
 .sp-picker-container {
-  border-left-color: var(--spectrum-border);
+    border-left-color: var(--spectrum-border, #f0c49B);
 }
 
-
-/** Type ahead / search results */
-/*.tt-cursor {
-  background-color: var(--search-cursor-background) !important;
-  color: var(--search-cursor-text) !important;
-}
-.tt-menu {
-  .list-group-item {
-    color: var(--search-cursor-text) !important;
-    border-color: var(--search-border);
-    background-color: var(--search-background);
-  }
-
-  .entity-image {
-    width: 20px;
-    height: 20px;
-    float: left;
-    margin-right: 8px;
-    display: inline-block;
-  }
-}*/
 
 /**
  * Select 2 changes
@@ -135,8 +102,8 @@
 }
 
 @media (max-width: 767px) {
-  .note-popover {
-    left: 0 !important;
-    width: 100% !important;
-  }
+    .note-popover {
+        left: 0 !important;
+        width: 100% !important;
+    }
 }

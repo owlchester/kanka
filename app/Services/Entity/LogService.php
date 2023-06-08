@@ -104,7 +104,7 @@ class LogService
                     return (string) $originalMarker->name;
                 }
                 return '';
-            } elseif ($attribute == 'author_id') {
+            } elseif (in_array($attribute, ['author_id', 'instigator_id'])) {
                 // Journals have an author, which can be any entity type. In the future, quests might have this too
                 $originalAuthor = Entity::where('id', $original)->first();
                 if (!empty($originalAuthor)) {

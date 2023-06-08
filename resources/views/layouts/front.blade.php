@@ -11,14 +11,14 @@
     <meta property="og:site_name" content="{{ config('app.site_name') }}">
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://kanka-app-assets.s3.amazonaws.com/images/front/preview-background.png" />
+    <meta name="twitter:image" content="https://kanka-user-assets.s3.amazonaws.com/app/front/preview-background.png" />
     <meta name="twitter:image:alt" content="{{ config('app.name') }} showcase of a character view" />
 @if(config('services.facebook.client_id'))  <meta property="fb:app_id" content="{{ config('services.facebook.client_id') }}" />@endif
 
     @yield('og')
 @if(config('app.admin'))
     @if (!isset($ogImage) || !$ogImage)
-    <meta property="og:image" content="https://kanka-app-assets.s3.amazonaws.com/images/front/preview-background.png" />
+    <meta property="og:image" content="https://kanka-users-assets.s3.amazonaws.com/app/front/preview-background.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1920" />
     <meta property="og:image:height" content="1024" />
@@ -34,14 +34,14 @@
         "url": "{{ config('app.url') }}",
         "applicationCategory": "Game, Note taking",
         "operatingSystem": "all",
-        "image": ["https://images.kanka.io/app/Kerln0-2BWKISMgR-n-KvMXOY3o=/1920x1024/smart/src/images%2Ffront%2Fpreview-background.png"],
-        "screenshot": "https://images.kanka.io/app/xbbBJtRB3dtY-NMTtXNylNk1-UM=/600x320/smart/src/images%2Ffront%2Fpreview-background.png",
+        "image": ["https://th.kanka.io/iI1Yjb2dNHa8Adi6ux9V_tUxliw=/1920x1024/smart/app/front/preview-background.png"],
+        "screenshot": "https://th.kanka.io/TU3eoj2PFq2YiedcXQRHLwII0Hk=/600x320/smart/app/front/preview-background.png",
         "creator": {
           "@type": "Organization",
           "@id": "#organization",
           "url": "{{ config('app.url') }}",
           "name": "{{ config('app.name') }}",
-          "logo": { "@type": "ImageObject", "url": "https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-small.png", "width": "226", "height": "205" }
+          "logo": { "@type": "ImageObject", "url": "https://th.kanka.io/m3utcW5cKf_UGTB5dcos-H1Hfig=/226x205/smart/app/logos/kanka-logo-large.png", "width": "226", "height": "205" }
         }
       }
     </script>@endif
@@ -102,9 +102,8 @@
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="{{ (auth()->check() ? route('front.home') : route('home')) }}">
-            <img class="d-none d-lg-block" src="https://images.kanka.io/app/lYYwvb1TENQSosFKdgDCLd2oLdU=/228x77/src/images%2Flogos%2Ftext-white.png?webpfallback" title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
-            <img class="d-xl-none d-lg-none" src="https://images.kanka.io/app/G2bnfyER8xMuMzPX4LM0Phdrjew=/228x77/src/images%
-2Flogos%2Ftext-blue.png" title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
+            <img class="d-none d-lg-block" src="https://th.kanka.io/m5Z0YRoLSTnEuKnRpbVPCMVpKgw=/95x32/smart/app/logos/text-white.png" title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
+            <img class="d-xl-none d-lg-none" src="https://th.kanka.io/5D95vS6FAeZl-I_uCxe61eVWyf0=/95x32/smart/app/logos/text-blue.png" title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
         </a>
 
         <ul class="navbar-buttons ml-auto d-none d-sm-flex d-lg-none">

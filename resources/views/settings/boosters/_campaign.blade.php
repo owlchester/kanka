@@ -8,7 +8,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         @if ($campaign->image)
             <img src="{{ $campaign->thumbnail(60) }}" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-12 h-12" />
         @else
-            <img src="https://images.kanka.io/app/Cs0miUCBJiBcn7lSp89KhwoNBFo=/60x60/smart/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-12 h-12" />
+            <img src="https://th.kanka.io/TMUEmOVYU-ClCFa8I5B9pKvhsb4=/280x210/smart/app/backgrounds/mountain-background-medium.jpg" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-12 h-12" />
         @endif
      </div>
     <div class="grow">
@@ -81,11 +81,11 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         </div>
         @else
             @if (!$campaign->premium())
-                <a href="#" class="shadow-xs rounded border text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white px-4 py-2" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
+                <a href="#" class="btn2 btn-secondary btn-outline btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
                     {!! __('settings/premium.actions.unlock', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
                 </a>
             @elseif (auth()->user()->can('destroy', $boost))
-                <a href="#" class="shadow-xs rounded border text-red-500 border-red-500 hover:bg-red-500 hover:text-white px-4 py-2" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boost.confirm-destroy', $boost) }}">
+                <a href="#" class="btn2 btn-error btn-outline btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_boost.confirm-destroy', $boost) }}">
                     {!! __('settings/premium.actions.remove', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
                 </a>
             @endif

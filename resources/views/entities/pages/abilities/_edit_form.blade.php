@@ -1,12 +1,12 @@
 
 
-<div class="form-group">
+<div class="field-ability mb-5">
     <label>{{ __('entities.ability') }}</label><br />
     {!! $ability->ability->tooltipedLink() !!}
     {!! Form::hidden('ability_id', $ability->ability_id) !!}
 </div>
 
-<div class="form-group">
+<div class="field-note mb-5">
     <div class="pull-right hidden-xs">
         <i class="fa-solid fa-question-circle" aria-hidden="true" title="{!! __('entities/abilities.helpers.note', [
     'code' => '<code>[character:4096]</code>',

@@ -36,7 +36,7 @@
             @else
                 <input id="email" type="email" class="rounded border p-2 w-full" name="email" value="{{ old('email') }}" placeholder="{{ __('auth.login.fields.email') }}" required autofocus>
             @endif
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <span class="fa-solid fa-envelope form-control-feedback"></span>
 
             @if ($errors->has('email'))
                 <span class="text-red-500">

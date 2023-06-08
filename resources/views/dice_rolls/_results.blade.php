@@ -1,16 +1,15 @@
 <?php $r = $model->diceRollResults()->with('creator')->orderBy('created_at', 'DESC')->paginate(); ?>
 
-<div class="box-header">
-    <h3 class="box-title">{{ __('dice_rolls.index.actions.results') }}</h3>
-    <div class="box-tools">
-        @can('roll', $model)
-            <a href="{{ route('dice_rolls.roll', ['dice_roll' => $model]) }}" class="btn btn-box-tool">
-                <x-icon class="plus"></x-icon> {{ __('dice_rolls.results.actions.add') }}
-            </a>
-        @endcan
-    </div>
+<div class="flex gap-2 mb-2 items-center">
+    <h4 class="grow">{{ __('dice_rolls.index.actions.results') }}</h4>
+    @can('roll', $model)
+        <a href="{{ route('dice_rolls.roll', ['dice_roll' => $model]) }}" class="btn btn-sm btn-default">
+            <x-icon class="plus"></x-icon> {{ __('dice_rolls.results.actions.add') }}
+        </a>
+    @endcan
 </div>
-<div class="box-body">
+
+<x-box :padding="false">
 <table id="dice-rolls-results" class="table table-hover">
     <thead><tr>
         <th>{{ __('dice_rolls.results.fields.creator') }}</th>
@@ -39,9 +38,9 @@
         </tr>
     @endforeach
     </tbody></table>
-</div>
+</x-box>
 @if ($r->hasPages())
-    <div class="box-footer text-right">
+    <div class="text-right">
         {{ $r->fragment('tab_relation')->links() }}
     </div>
 @endif

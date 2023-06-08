@@ -1,25 +1,18 @@
 @section('entity-header-actions-override')
     <div class="header-buttons inline-block pull-right ml-auto">
-        <div class="btn-group">
-            <div class="btn btn-default btn-sm btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
-                <x-icon class="fa-solid fa-grip-lines"></x-icon>
-            </div>
-            <div class="btn btn-default btn-sm btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
-                <x-icon class="fa-solid fa-bars"></x-icon>
-            </div>
-        </div>
+        @include('entities.headers.toggle')
         @can('update', $model)
-            <a href="{{ route('timelines.reorder', $model) }}" class="btn btn-default btn-sm ">
+            <a href="{{ route('timelines.reorder', $model) }}" class="btn2 btn-sm ">
                 <x-icon class="fa-solid fa-sort"></x-icon>
                 {{ __('timelines.show.tabs.reorder') }}
             </a>
-            <a href="{{ route('timelines.edit', $model) }}" class="btn btn-primary btn-sm ">
+            <a href="{{ route('timelines.edit', $model) }}" class="btn2 btn-primary btn-sm ">
                 <x-icon class="pencil"></x-icon>
                 {{ __('crud.edit') }}
             </a>
         @endcan
         @can('post', [$model, 'add'])
-            <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-entity"
+            <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn2 btn-accent btn-sm btn-new-post"
                data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
                 <x-icon class="plus"></x-icon>
                 {{ __('crud.actions.new_post') }}

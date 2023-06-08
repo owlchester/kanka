@@ -43,7 +43,7 @@ class Plugin extends Layout
                     }
 
                     return '<a href="' . route('campaign_plugins.update-info', $model)
-                            . '" class="btn btn-xs btn-info" data-toggle="ajax-modal" '
+                            . '" class="btn2 btn-xs btn-accent" data-toggle="ajax-modal" '
                             . 'data-target="#entity-modal" data-url="'
                             . route('campaign_plugins.update-info', $model) . '">'
                             . __('campaigns/plugins.actions.update_available')

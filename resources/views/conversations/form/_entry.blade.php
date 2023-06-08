@@ -6,20 +6,18 @@ $targets = [
 ?>
 
 {{ csrf_field() }}
-<div class="row">
-    <div class="col-md-6">
-        @include('cruds.fields.name', ['trans' => 'conversations'])
-        @include('cruds.fields.type', ['base' => \App\Models\Conversation::class, 'trans' => 'conversations'])
+<x-grid>
+    @include('cruds.fields.name', ['trans' => 'conversations'])
+    @include('cruds.fields.type', ['base' => \App\Models\Conversation::class, 'trans' => 'conversations'])
 
-        <div class="form-group required">
-            <label>{{ __('conversations.fields.participants') }}</label>
-            {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => 'form-control']) !!}
-        </div>
+    <div class="field-participants required ">
+        <label>{{ __('conversations.fields.participants') }}</label>
+        {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => 'form-control']) !!}
+    </div>
 
-        @include('cruds.fields.tags')
-    </div>
-    <div class="col-md-6">
-        @include('cruds.fields.image')
-    </div>
-</div>
-@include('cruds.fields.closed')
+    @include('cruds.fields.tags')
+    @include('cruds.fields.closed')
+
+    @include('cruds.fields.image')
+</x-grid>
+

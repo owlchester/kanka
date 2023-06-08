@@ -25,11 +25,7 @@ use Illuminate\Support\Str;
 class EntityFile extends Model
 {
     use Blameable;
-    use EntityAsset
-    ;
-    /**
-     * Traits
-     */
+    use EntityAsset;
     use VisibilityIDTrait;
 
     /** @var string[]  */
@@ -44,12 +40,6 @@ class EntityFile extends Model
     protected $isFile = true;
     protected $isLink = false;
     protected $isAlias = false;
-
-    /**
-     * Trigger for filtering based on the order request.
-     * @var string
-     */
-    protected $orderTrigger = 'files/';
 
     /**
      * Searchable fields

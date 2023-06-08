@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-auto-apply">
     <label for="is_auto_applied">{{ __('tags.fields.is_auto_applied') }}</label>
     <select name="is_auto_applied" class="form-control">
         <option value=""></option>

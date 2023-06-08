@@ -289,9 +289,13 @@ class EntityCreatorController extends Controller
         $orderedEntityTypes = $this->orderedEntityTypes();
 
         $newLabel = __($type . '.create.title');
-        $singular = Module::singular($type);
-        if (!empty($singular)) {
-            $newLabel = __('crud.titles.new', ['module' => $singular]);
+        if ($type !== 'posts') {
+            $singular = Module::singular($type);
+            if (!empty($singular)) {
+                $newLabel = __('crud.titles.new', ['module' => $singular]);
+            }
+        } else {
+            $singular = __('entities.post');
         }
 
         return view('entities.creator.' . $view, compact(
@@ -325,6 +329,10 @@ class EntityCreatorController extends Controller
         foreach ($types as $singular => $id) {
             $plural = Str::plural($singular);
             $orderedTypes[$plural] = $this->campaign->hasModuleName($id) ? $this->campaign->moduleName($id) : __('entities.' . $singular);
+        }
+
+        if (auth()->user()->can('recover', $this->campaign)) {
+            $orderedTypes['posts'] = __('entities.posts');
         }
 
         $collator = new \Collator(app()->getLocale());

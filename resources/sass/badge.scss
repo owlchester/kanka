@@ -1,0 +1,66 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.25rem;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    width: fit-content;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--b2)/var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
+    border-radius: var(--rounded-badge, 1rem);
+}
+
+.badge-accent {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--a)/var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--a)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--ac)/var(--tw-text-opacity));
+}
+.badge-primary {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--p)/var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--p)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--pc)/var(--tw-text-opacity));
+}
+
+
+.badge-xs {
+    height:.75rem;
+    font-size:.75rem;
+    line-height:.75rem;
+    padding-left:.313rem;
+    padding-right:.313rem
+}
+.badge-sm {
+    height:1rem;
+    font-size:.75rem;
+    line-height:1rem;
+    padding-left:.438rem;
+    padding-right:.438rem
+}
+.badge-md {
+    height:1.25rem;
+    font-size:.875rem;
+    line-height:1.25rem;
+    padding-left:.563rem;
+    padding-right:.563rem
+}
+.badge-lg {
+    height:1.5rem;
+    font-size:1rem;
+    line-height:1.5rem;
+    padding-left:.688rem;
+    padding-right:.688rem
+}

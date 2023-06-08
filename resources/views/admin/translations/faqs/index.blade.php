@@ -11,7 +11,7 @@
 
     {!! Form::open(['route' => 'translations.faq.index', 'method' => 'GET', 'class' => 'form-inline mb-5']) !!}
 
-    <div class="form-group">
+    <div class="field-language mb-5">
         <label>Select target language</label>
         <select name="lang" class="form-control">
             @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
@@ -36,42 +36,38 @@
         {!! Form::open(['route' => 'translations.faq.save', 'method' => 'POST', 'class' => 'form-translations']) !!}
         <div class="box">
             <div class="box-header">
-                <div class="row">
-                    <div class="col-sm-6 cursor-pointer" data-toggle="collapse" data-target="#category-{{ $category->id }}">
+                <x-grid>
+                    <div class="cursor-pointer" data-toggle="collapse" data-target="#category-{{ $category->id }}">
                         <h3 class="box-title">
                             {{ $category->title }} ({{ $category->translatedCount($lang) }} / {{ $category->faqCount() }})
                         </h3>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="">
                         <input type="text" name="title" class="form-control" placeholder="Category name" value="{{ $category->translatedTitle($lang) }}" />
                     </div>
-                </div>
+                </x-grid>
             </div>
             <div class="box-body collapse !visible @if ($category->untranslated($lang)) in @endif" id="category-{{ $category->id }}">
                 @foreach ($category->sortedFaqs() as $faq)
-                    <div class="row">
-                        <div class="col-sm-6">
+                    <x-grid>
+                        <div class="">
                             <h4>{{ $faq->question }}</h4>
                             {!! $faq->answer !!}
                         </div>
-                        <div class="col-sm-6">
+                        <div class="">
                             <input type="text" name="faq[{{ $faq->id }}][question]" value="{{ $faq->translatedQuestion($lang) }}" class="form-control" placeholder="{{ $faq->question }}"/><br />
 
                             <textarea name="faq[{{ $faq->id }}][answer]" class="form-control html-editor" rows="5" style="width: 100%;" placeholder="Answer...">{!! $faq->translatedAnswer($lang) !!}
                             </textarea>
                         </div>
-                    </div>
+                    </x-grid>
                 @endforeach
             </div>
             <div class="box-footer">
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-6">
-                        <button class="btn btn-block btn-primary btn-submit">Save changes to {{ $category->title }}</button>
-                        <button class="btn btn-block btn-primary btn-ajax" disabled="disabled" style="display: none">
-                            <i class="fa-solid fa-spin fa-spinner"></i>
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-block btn-primary btn-submit">Save changes to {{ $category->title }}</button>
+                <button class="btn btn-block btn-primary btn-ajax" disabled="disabled" style="display: none">
+                    <i class="fa-solid fa-spin fa-spinner"></i>
+                </button>
             </div>
         </div>
         {!! Form::hidden('category_id', $category->id) !!}

@@ -1,10 +1,7 @@
 /**
+ * Entity
  * Contains all the stuff for the entity's overview and subpages.
  */
-:root {
-    --sidebar-section-background: none;
-    --sidebar-section-padding: none;
-}
 
 // Dynamically control which privacy status icon is shown based on the page's class
 .entity-privacy-icon {
@@ -30,8 +27,8 @@
 
 .sidebar-section-box {
     margin-bottom: 30px;
-    background: var(--sidebar-section-background);
-    padding: var(--sidebar-section-padding);
+    background: var(--sidebar-section-background, none);
+    padding: var(--sidebar-section-padding, none);
     overflow: hidden;
 
     .sidebar-section-title {
@@ -56,26 +53,6 @@
                 }
             }
         }
-
-        ul.pins {
-            li.list-group-item {
-                background: none;
-                border-left: 0;
-                border-right: 0;
-                border-bottom: 0;
-                word-break: break-word;
-                padding-left: 0;
-                padding-right: 0;
-
-                &:first-child {
-                    border-top: none;
-                }
-            }
-        }
-    }
-
-    .list-group-unbordered .list-group-item {
-        background-color: transparent;
     }
 }
 

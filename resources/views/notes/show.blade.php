@@ -15,22 +15,17 @@
         @include('entities.components.posts', ['withEntry' => true])
 
         @if(!$model->notes->isEmpty())
-            <div class="box box-solid">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        {!! \App\Facades\Module::plural(config('entities.ids.note'), __('entities.notes')) !!}
-                    </h3>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        @foreach ($model->notes->sortBy('name') as $subNote)
-                            <div class="col-sm-6">
-                                {!! $subNote->tooltipedLink() !!} @if($subNote->is_private) <i class="fa-solid fa-lock"></i> @endif <br />
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+            <h3 class="">
+                {!! \App\Facades\Module::plural(config('entities.ids.note'), __('entities.notes')) !!}
+            </h3>
+            <x-box>
+                <x-grid>
+                    @foreach ($model->notes->sortBy('name') as $subNote)
+                            {!! $subNote->tooltipedLink() !!} @if($subNote->is_private) <i class="fa-solid fa-lock"></i> @endif <br />
+
+                    @endforeach
+                </x-grid>
+            </x-box>
         @endif
 
         @include('entities.pages.logs.history')

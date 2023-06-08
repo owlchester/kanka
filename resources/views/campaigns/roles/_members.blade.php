@@ -8,7 +8,7 @@
     <h3 class="m-0 grow">{{ __('campaigns.roles.members') }}</h3>
     @can('user', $role)
         <a href="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}"
-           class="btn btn-primary btn-sm"
+           class="btn2 btn-primary btn-sm"
            data-toggle="ajax-modal" data-target="#entity-modal"
            data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
             <x-icon class="plus"></x-icon>
@@ -27,7 +27,7 @@
             @endif
             </div>
             @can('delete', [$relation, $role])
-                <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}"
+                <a href="#" class="btn2 btn-error btn-outline btn-sm delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}"
                    data-target="#delete-confirm" data-delete-target="campaign-role-member-{{ $relation->id }}"
                    title="{{ __('crud.remove') }}">
                     <i class="fa-solid fa-user-slash" aria-hidden="true" data-toggle="tooltip" title="{{ __('campaigns.roles.users.actions.remove_user') }}"></i>
@@ -48,7 +48,7 @@
 
         @can('user', $role)
             <button href="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}"
-                    class="btn btn-primary lg:w-full"
+                    class="btn2 btn-primary btn-block"
                     data-toggle="ajax-modal" data-target="#entity-modal"
                     data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
                 <x-icon class="plus"></x-icon>

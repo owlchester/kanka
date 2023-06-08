@@ -1,4 +1,4 @@
-<dialog class="dialog rounded-2xl text-center min-w-fit" id="{{ $id }}" aria-modal="true" aria-labelledby="dialogLabel{{ $id }}">
+<dialog class="dialog rounded-2xl text-center min-w-fit shadow-md" id="{{ $id }}" aria-modal="true" aria-labelledby="dialogLabel{{ $id }}">
     <header>
         <h4 id="dialogLabel{{ $id }}">
             {!! $title !!}

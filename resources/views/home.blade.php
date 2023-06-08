@@ -5,6 +5,7 @@
 @php
     $position = 0;
     $seoTitle = (!empty($dashboard) ? $dashboard->name : __('sidebar.dashboard')) .  ' - ' . $campaign->name;
+    $row = 0;
 @endphp
 
 @extends('layouts.app', [
@@ -22,7 +23,7 @@
 @endsection
 
 @section('header-extra')
-    <div class="dashboard-actions">
+    <div class="dashboard-actions inline-block float-right">
         @if(!empty($dashboards))
             <div class="btn-group pull-right">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -125,8 +126,10 @@
                 continue;
             endif; ?>
             @if ($position + $widget->colSize() > 12)
-                </div><div class="row">
-            <?php $position = 0; ?>
+                </div>
+                @includeWhen($row % 3 === 0 || $row === 0, 'partials.ads.inline')
+                <div class="row">
+                @php $position = 0; $row++; @endphp
             @endif
                 <div class="col-md-{{ $widget->colSize() }}">
                     <div class="widget widget-{{ $widget->widget }}">
@@ -141,7 +144,7 @@
 
     @can('update', $campaign)
         <div class="text-center mt-6">
-            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
+            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn2 btn-lg btn-primary" title="{{ __('dashboard.settings.title') }}">
                 <x-icon class="cog"></x-icon>
                 {{ __('dashboard.settings.title') }}
             </a>
@@ -175,30 +178,4 @@
         'resources/sass/dashboard.scss',
         'resources/sass/map-v3.scss'
     ])
-@endsection
-
-@section('modals')
-    @tutorial('welcome')
-    <div class="modal fade tutorial-modal" id="tutorial-modal" role="dialog" aria-labelledby="tutorialModal" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="tutorialModalTitle">{{ __('tutorials/home.welcome.title', ['user' => auth()->user()->name]) }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p>{{ __('tutorials/home.welcome.first') }}</p>
-                    <p>{{ __('tutorials/home.welcome.second') }}</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-warning pull-left" data-tutorial="disable" data-url="{{ route('settings.tutorial.disable') }}">
-                        {{ __('tutorials/actions.disable') }}
-                    </button>
-                    <button class="btn btn-success" data-tutorial="next" data-url="{{ route('settings.tutorial.done', ['tutorial' => 'welcome', 'next' => 'dashboard_1']) }}">
-                        {{ __('tutorials/actions.next') }}
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endtutorial
 @endsection

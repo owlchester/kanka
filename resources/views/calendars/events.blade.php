@@ -11,17 +11,17 @@
 @section('entity-header-actions')
     <div class="header-buttons inline-block pull-right ml-auto">
         @if (!request()->has('before_id'))
-            <a href="{{ route('calendars.events', [$model, 'before_id' => 1]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('calendars.events', [$model, 'before_id' => 1]) }}" class="btn2 btn-sm">
                 {{ __('calendars.events.filters.show_before') }}
             </a>
         @endif
         @if (!request()->has('after_id'))
-            <a href="{{ route('calendars.events', [$model, 'after_id' => 1]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('calendars.events', [$model, 'after_id' => 1]) }}" class="btn2 btn-sm">
                 {{ __('calendars.events.filters.show_after') }}
             </a>
         @endif
         @if (request()->has('after_id') || request()->has('before_id'))
-            <a href="{{ route('calendars.events', [$model]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('calendars.events', [$model]) }}" class="btn2 btn-sm">
                 {{ __('calendars.events.filters.show_all') }}
             </a>
         @endif

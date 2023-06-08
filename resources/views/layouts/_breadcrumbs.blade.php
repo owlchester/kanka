@@ -1,7 +1,7 @@
-<ol class="breadcrumb block m-0 mb-2 p-0 text-xs">
+<ol class="breadcrumb block m-0 mb-2 p-0 text-xs list-none">
     @if (!isset($breadcrumbsDashboard) || $breadcrumbsDashboard === true)
         @if ($campaign)
-            <li>
+            <li class="inline-block">
                 <a href="{{ route('dashboard') }}">
                     <x-icon class="fa-solid fa-globe"></x-icon>
                     <span class="hidden-xs hidden-sm">
@@ -10,7 +10,7 @@
                 </a>
             </li>
         @else
-            <li>
+            <li class="inline-block">
                 <a href="{{ route('home') }}">
                     <x-icon class="fa-solid fa-dashboard"></x-icon>
                     <span class="hidden-xs hidden-sm">
@@ -22,7 +22,7 @@
     @endif
     @if (isset($breadcrumbs))
         @foreach ($breadcrumbs as $breadcrumb)
-            <li>
+            <li class="inline-block">
                 @if (!empty($breadcrumb['url']))
                     <a href="{{ $breadcrumb['url'] }}" title="{{ $breadcrumb['label'] }}">
                         @if (strlen($breadcrumb['label']) > 22)

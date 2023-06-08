@@ -16,7 +16,7 @@
     @can('events', $entity->child)
         <div class="header-buttons inline-block pull-right ml-auto">
             <a href="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
-               class="btn btn-sm btn-warning pull-right" data-toggle="ajax-modal" data-target="#entity-modal"
+               class="btn2 btn-sm btn-accent" data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}">
                 <x-icon class="plus"></x-icon> {{ __('entities/events.show.actions.add') }}
             </a>
@@ -51,13 +51,17 @@
             <div class="mb-5"></div>
 
             @if ($reminders->count() > 0)
-                <div class="box box-solid box-entity-reminders">
-                    <div class="box-body no-padding">
-                        <div class="table-responsive">
-                        @include('entities.pages.reminders._table')
-                        </div>
+                <x-box css="box-entity-reminders" :padding="false">
+                    <div class="table-responsive">
+                    @include('entities.pages.reminders._table')
                     </div>
-                </div>
+                </x-box>
+
+                @if ($reminders->hasPages())
+                    <div class="text-right">
+                        {{ $reminders->fragment('tab_calendars')->links() }}
+                    </div>
+                @endif
             @endif
         </div>
     </div>

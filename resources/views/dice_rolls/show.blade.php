@@ -15,9 +15,7 @@
 
         @include('entities.components.posts')
 
-        <div class="box box-solid">
-                @include('dice_rolls._results')
-        </div>
+        @include('dice_rolls._results')
 
         @include('entities.pages.logs.history')
     </div>

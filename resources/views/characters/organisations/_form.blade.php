@@ -30,7 +30,7 @@ $fromOrg = request()->get('from') === 'org';
     <input type="hidden" name="parent_id" value="" />
     @include('cruds.fields.character', [
         'name' => 'parent_id',
-        'preset' => !empty($member) && $member->parent ? $member->parent->character : null,
+        'preset' => !empty($member) && $member->parent ? $member->parent : null,
         'allowNew' => false,
         'allowClear' => true,
         'label' => __('organisations.members.fields.parent'),
@@ -41,19 +41,19 @@ $fromOrg = request()->get('from') === 'org';
     ])
 @endif
 
-<div class="form-group">
+<div class="field-org-role">
     <label>{{ __('characters.organisations.fields.role') }}</label>
     {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
 </div>
 
-<div class="form-group">
+<div class="field-org-status">
     <label>
         {{ __('organisations.members.fields.status') }}
     </label>
     {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
 </div>
 
-<div class="form-group">
+<div class="field-org-pinned">
     <label>
         {{ __('organisations.members.fields.pinned') }}
         <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>

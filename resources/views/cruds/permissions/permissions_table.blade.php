@@ -152,7 +152,7 @@ $permissionService->campaign($campaignService->campaign());
                     @if (isset($entity))
                         @can('switch', $member)
                             <div class="flex-none">
-                                <a class="btn btn-default btn-sm" href="{{ route('identity.switch-entity', [$member, $entity]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
+                                <a class="btn2 btn-outline btn-accent btn-sm" href="{{ route('identity.switch-entity', [$member, $entity]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
                                     <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
                                     {{ __('campaigns.members.actions.switch-entity') }}
                                 </a>

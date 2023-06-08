@@ -29,17 +29,13 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header mb-5">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>
-                            {{ $title ?? "Page Title" }}
-                            <small>{{ $description ?? null }}</small>
-                            @if (!empty($headerExtra))
-                                {!! $headerExtra !!}
-                            @endif
-                        </h1>
-                    </div>
-                </div>
+                <h1>
+                    {{ $title ?? "Page Title" }}
+                    <small>{{ $description ?? null }}</small>
+                    @if (!empty($headerExtra))
+                        {!! $headerExtra !!}
+                    @endif
+                </h1>
                 <ol class="breadcrumb">
                     @if (isset($breadcrumbs))
                     @foreach ($breadcrumbs as $breadcrumb)
@@ -83,7 +79,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <x-dialog.close />
                     <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
                 </div>
                 <div class="modal-body">

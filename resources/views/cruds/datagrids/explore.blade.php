@@ -20,25 +20,25 @@
         @include('cruds.datagrids._grid')
     @endforeach
 
-        @if ($models->hasPages() && auth()->check() && !auth()->user()->settings()->get('tutorial_pagination'))
-            <div class="block border rounded shadow-xs hover:shadow-md w-48 overflow-hidden tutorial">
-                <div class="bg-blue-100 h-48 w-48 overflow-hidden p-2 flex flex-col gap-2">
-                    <a class="grow" href="{{ route('settings.appearance', ['highlight' => 'pagination', 'from' => base64_encode(route($route . '.' . $sub))]) }}">
-                        {!! __('crud.helpers.pagination.text', ['settings' => __('crud.helpers.pagination.settings')]) !!}
-                    </a>
+    @if ($models->hasPages() && auth()->check() && !auth()->user()->settings()->get('tutorial_pagination'))
+        <div class="block border rounded shadow-xs hover:shadow-md w-48 overflow-hidden tutorial">
+            <div class="bg-blue-100 h-48 w-48 overflow-hidden p-2 flex flex-col gap-2">
+                <a class="grow" href="{{ route('settings.appearance', ['highlight' => 'pagination', 'from' => base64_encode(route($route . '.' . $sub))]) }}">
+                    {!! __('crud.helpers.pagination.text', ['settings' => __('crud.helpers.pagination.settings')]) !!}
+                </a>
 
-                    <button type="button" class="btn btn-default btn-block banner-notification-dismiss" data-dismiss="tutorial" data-url="{{ route('settings.banner', ['code' => 'pagination', 'type' => 'tutorial']) }}">
-                        {{ __('header.notifications.dismiss') }}
-                    </button>
-                </div>
-
+                <button type="button" class="btn2 btn-primary btn-sm btn-block banner-notification-dismiss" data-dismiss="tutorial" data-url="{{ route('settings.banner', ['code' => 'pagination', 'type' => 'tutorial']) }}">
+                    {{ __('header.notifications.dismiss') }}
+                </button>
             </div>
-        @endif
+
+        </div>
+    @endif
 </div>
 
 
 @if($models->hasPages())
-    <div class="pull-right">
+    <div class="text-right">
         {{ $models->appends($filterService->pagination())->links() }}
     </div>
 @endif

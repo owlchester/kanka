@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Inventory $item */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() || request()->filled('dashboard') ? 'ajax' : 'app'), [
     'title' => __('entities/attributes.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => false,
@@ -14,12 +14,14 @@
 @section('entity-header-actions')
     @can('attribute', [$entity->child, 'add'])
         <div class="header-buttons inline-block pull-right ml-auto">
-            <a class="btn btn-sm btn-default" href="{{ route('entities.attributes.template', $entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', $entity) }}">
-                <i class="fa-solid fa-copy" aria-hidden="true"></i> {{ __('entities/attributes.actions.apply_template') }}
+            <a class="btn2 btn-sm" href="{{ route('entities.attributes.template', $entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', $entity) }}">
+                <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                {{ __('entities/attributes.actions.apply_template') }}
             </a>
 
-            <a href="{{ route('entities.attributes.edit', ['entity' => $entity]) }}" class="btn btn-sm btn-warning">
-                <i class="fa-solid fa-list" aria-hidden="true"></i> {{ __('entities/attributes.actions.manage') }}
+            <a href="{{ route('entities.attributes.edit', ['entity' => $entity]) }}" class="btn2 btn-sm btn-accent">
+                <i class="fa-solid fa-list" aria-hidden="true"></i>
+                {{ __('entities/attributes.actions.manage') }}
             </a>
         </div>
     @endcan
@@ -46,11 +48,9 @@
         ])
 
         <div class="entity-main-block">
-            <div class="box box-solid box-entity-attributes">
-                <div class="box-body">
-            @include('entities.pages.attributes.render')
-                </div>
-            </div>
+            <x-box css="box-entity-attributes">
+                @include('entities.pages.attributes.render')
+            </x-box>
         </div>
 
         <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', $entity) }}" />

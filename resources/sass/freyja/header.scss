@@ -38,7 +38,7 @@
 
     .campaigns {
         .campaign {
-            background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
+            background-image: url(https://th.kanka.io/TMUEmOVYU-ClCFa8I5B9pKvhsb4=/280x210/smart/app/backgrounds/mountain-background-medium.jpg);
 
             .name {
                 background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--main-navbar-background) 100%);
@@ -112,32 +112,19 @@
 }
 
 .indicator {
-    position: relative;
-    display: inline-flex;
-    width: max-content;
-
     .notification-badge {
         right: -0.2rem;
-        left: auto;
-        top: auto;
         bottom: -0.2rem;
         --tw-translate-x: 50%;
         transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 
-        --s: var(--notification-badge);
+        --s: var(--boosted);
         border: 1px solid var(--main-navbar-background);
         --tw-bg-opacity: 1;
         background-color: var(--s);
         --tw-text-opacity: 1;
         color: var(--s);
-        z-index: 1;
-        position: absolute;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
         line-height: 0.5rem;
-        width: -moz-fit-content;
-        width: fit-content;
         padding: 0.3rem;
         border-radius: var(--rounded-badge,1.9rem);
     }

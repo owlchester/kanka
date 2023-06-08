@@ -57,8 +57,8 @@ class Confirm extends Component
     protected function size(): string
     {
         if ($this->size === 'sm') {
-            return 'px-3 py-1 text-sm min-h-2';
+            return 'btn-sm';
         }
-        return 'px-6 py-2.5 min-h-4';
+        return '';
     }
 }

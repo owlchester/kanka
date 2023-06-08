@@ -65,6 +65,10 @@ class PostService
      */
     protected function move(): Post
     {
+        foreach ($this->post->imageMentions as $imageMention) {
+            $imageMention->entity_id = $this->entityId;
+            $imageMention->save();
+        }
         $this->post->entity_id = $this->entityId;
         $this->post->save();
 

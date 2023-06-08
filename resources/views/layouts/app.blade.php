@@ -107,7 +107,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
             <section class="content" role="main">
                 @if (isset($sidebar) && $sidebar === 'settings') <div class="max-w-4xl"> @endif
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
-                    <div class="alert alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5">
+                    <div class=" alert p-4 rounded alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5 mb-5">
                         <div class="m-0 p-0 text-lg">
                             <i class="icon fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
                             {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
@@ -116,7 +116,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                             {{ __('campaigns.members.impersonating.message') }}
                         </div>
                         <div>
-                            <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm switch-back">
+                            <a href="{{ route('identity.back') }}" class="btn2 btn-sm switch-back">
                                 <x-icon class="fa-solid fa-sign-out-alt"></x-icon>
                                 {{ __('campaigns.members.actions.switch-back') }}
                             </a>

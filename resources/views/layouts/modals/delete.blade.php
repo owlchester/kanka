@@ -4,7 +4,7 @@
         <div class="modal-content rounded-2xl">
             <div class="modal-body text-center">
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <x-dialog.close />
 
                 <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
                 <p class="mt-3">
@@ -13,7 +13,7 @@
                             {{ __('crud.delete_modal.permanent') }}
                         </span>
                 </p>
-                <div id="delete-confirm-mirror" class="form-group checkbox" style="display: none">
+                <div id="delete-confirm-mirror" class="field-delete-confirm  checkbox" style="display: none">
                     <label>
                         <input type="checkbox" id="delete-confirm-mirror-checkbox" name="delete-mirror">
                         {{ __('entities/relations.delete_mirrored.option') }}
@@ -27,13 +27,12 @@
                     @include('layouts.callouts.recoverable')
                 </div>
 
-                <div class="py-5">
-                    <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger delete-confirm-submit px-8 ml-5 rounded-full">
+                <x-dialog.footer>
+                    <button type="button" class="btn2 btn-error btn-outline delete-confirm-submit px-8 ml-5 rounded-full">
                         <x-icon class="trash"></x-icon>
                         <span class="remove-button-label">{{ __('crud.remove') }}</span>
                     </button>
-                </div>
+                </x-dialog.footer>
             </div>
         </div>
     </div>

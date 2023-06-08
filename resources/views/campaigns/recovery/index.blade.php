@@ -19,7 +19,7 @@
                 <h3 class="m-0 inline-block grow">
                     {{ __('campaigns.show.tabs.recovery') }}
                 </h3>
-                <button class="btn btn-sm btn-default" data-toggle="dialog"
+                <button class="btn2 btn-sm" data-toggle="dialog"
                         data-target="recovery-help">
                     <x-icon class="question"></x-icon>
                     {{ __('campaigns.members.actions.help') }}
@@ -30,12 +30,11 @@
                 </x-cta>
             @endif
 
-            <div class="box box-recovery">
-                @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'recovery.save']) !!} @endif
-                <div id="datagrid-parent">
-                    @include('layouts.datagrid._table')
-                </div>
-                @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
+            @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'recovery.save']) !!} @endif
+            <div id="datagrid-parent">
+                @include('layouts.datagrid._table')
+            </div>
+            @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
         </div>
     </div>
 @endsection

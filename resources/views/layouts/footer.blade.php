@@ -1,14 +1,19 @@
 <footer id="footer" class="main-footer pt-10 pb-8">
     @ads('footer')
-    <div class="vm-placement" data-id="{{ config('tracking.venatus.footer') }}"></div>
+    <div class="mb-5 hidden-xs hidden-sm">
+        <div class="vm-placement" data-id="{{ config('tracking.venatus.footer') }}"></div>
+    </div>
+    <div class="mb-5 visible-xs visible-sm">
+        <div class="vm-placement" data-id="{{ config('tracking.venatus.inline') }}"></div>
+    </div>
     @endads
 
     <div class="footer-links">
         <div class="grid gap-2 grid-cols-2 md:grid-cols-5 mx-auto max-w-5xl">
             <div class="col-span-2 md:col-auto text-center">
                 <a href="{{ route('home') }}" class="logo mb-5">
-                    <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png" alt="Kanka logo blue" title="Kanka" width="48" height="48" />
-                    <img class="logo-white" src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" alt="Kanka logo white" title="Kanka" width="48" height="48" />
+                    <img class="logo-blue" src="https://th.kanka.io/wj726mGfu-qAwU_QpAbMYIctM7w=/48x48/smart/app/logos/logo.png" alt="Kanka logo blue" title="Kanka" width="48" height="48" />
+                    <img class="logo-white" src="https://th.kanka.io/tjrF04vnk_lUb2Dzu4QgOPAcku8=/48x48/smart/app/logos/logo-small-white.png" alt="Kanka logo white" title="Kanka" width="48" height="48" />
                 </a>
             </div>
             <div class="cell text-center truncate mb-1">

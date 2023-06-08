@@ -12,29 +12,21 @@
     {!! Form::open(['route' => ['posts.move', $entity->id, $post->id], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
-    <div class="row">
-        <div class="col-md-8 col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">{{ __('entities/notes.move.title') }}</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label>{{ __('entities/notes.move.entity') }}</label>
-                        <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations') }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
-                    </div>
-                    <div class="form-group form-check">
-                        <label>{!! Form::checkbox('copy', 1, true) !!}
-                            {{ __('entities/notes.move.copy') }}
-                        </label>
-                    </div>
-                </div>
-                <div class="panel-footer text-right">
-                    <button class="btn btn-success">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
-                </div>
-            </div>
+    <x-box>
+        <div class="field-entity mb-5">
+            <label>{{ __('entities/notes.move.entity') }}</label>
+            <select name="entity" class="form-control select2" data-tags="true" data-url="{{ route('search.entities-with-relations') }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
         </div>
-    </div>
+        <div class="field-copy form-check">
+            <label>{!! Form::checkbox('copy', 1, true) !!}
+                {{ __('entities/notes.move.copy') }}
+            </label>
+        </div>
+
+        <x-dialog.footer>
+            <button class="btn2 btn-primary">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
+        </x-dialog.footer>
+    </x-box>
 
     {!! Form::close() !!}
 @endsection

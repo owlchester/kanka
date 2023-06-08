@@ -8,6 +8,7 @@
 - [Campaign Member](#campaign-member)
 - [Add Role To Member](#add-role-to-member)
 - [Remove Role From Member](#remove-role-from-member)
+- [Campaign Roles](#campaign-roles)
 <a name="user-campaigns"></a>
 ## User Campaigns
 
@@ -171,12 +172,21 @@ To add a role to a member of the campaign, use the following endpoint.
 | :- |   :-   |  :-  |
 | POST | `campaigns/{id}/users` | Default |
 
+### Body
+
+| Parameter | Type | Detail |
+| :- |   :-   |  :-  |
+| `user_id` | `integer` (Required) | The user's id |
+| `role_id` | `integer` (Required) | The role's id |
+
+
 ### Results
 ```json
 {
-    "data": "role succesfully added to user"
+    "data": "role successfully added to user"
 }
 ```
+
 <a name="remove-role-from-member"></a>
 ## Remove Role From Member
 
@@ -186,9 +196,48 @@ To remove a role from a member of the campaign, use the following endpoint.
 | :- |   :-   |  :-  |
 | DELETE | `campaigns/{id}/users` | Default |
 
+### Body
+
+| Parameter | Type | Detail |
+| :- |   :-   |  :-  |
+| `user_id` | `integer` (Required) | The user's id |
+| `role_id` | `integer` (Required) | The role's id |
+
 ### Results
 ```json
 {
-    "data": "role succesfully removed from user"
+    "data": "role successfully removed from user"
+}
+```
+
+<a name="campaign-roles"></a>
+## Campaign roles
+
+To get a list of all the roles of a campaign, use the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| GET | `campaigns/{id}/roles` | Default |
+
+### Results
+```json
+{
+    "data": [
+        {
+            "id": 114,
+            "name": "Admin",
+            "is_admin": true
+        },
+        {
+            "id": 115,
+            "name": "Public",
+            "is_admin": false
+        },
+        {
+            "id": 116,
+            "name": "Player",
+            "is_admin": false
+        }
+    ]
 }
 ```

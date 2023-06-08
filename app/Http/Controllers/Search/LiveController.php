@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Search;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Ability;
-use App\Models\Entity;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\Tag;

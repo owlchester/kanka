@@ -1,5 +1,5 @@
 <{{ $element }}
-    class="rounded {{ $sizes }} border uppercase cursor-pointer hover:shadow-xs transition-all duration-150
+    class="btn2 {{ $sizes }}
     @if ($full) w-full @endif {{ $colours }}"
     @if ($target) data-toggle="dialog" data-target="{{ $target }}"@endif
     @if ($name) name="{{ $name }}"@endif

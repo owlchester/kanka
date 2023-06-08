@@ -18,10 +18,10 @@ class MemberService
     use UserAware;
 
     /** @var CampaignRole */
-    protected $campaignRole;
+    protected CampaignRole $campaignRole;
 
     /** @var CampaignRoleUser|null */
-    protected $userCampaignRole;
+    protected ?CampaignRoleUser $userCampaignRole;
 
     public function element(CampaignRoleUser $campaignRoleUser): self
     {
@@ -135,14 +135,16 @@ class MemberService
             return $this->userCampaignRole->delete();
         }
 
-        // It's the admin role. If we're deleting ourselves, make sure we have
-        if ($this->userCampaignRole->user_id === $this->user->id) {
+        // It's the admin role. Only allow if campaign author or self
+        $userIsCreator = $this->userCampaignRole->campaignRole->campaign->created_by === $this->user->id;
+        if ($this->userCampaignRole->user_id === $this->user->id || $userIsCreator) {
             $roleCount = $this
                 ->user
                 ->campaignRoles
                 ->where('campaign_id', $this->userCampaignRole->campaignRole->campaign_id)
                 ->count();
-            if ($roleCount === 1) {
+            // Stop a user from having 0 roles
+            if ($this->userCampaignRole->user_id === $this->user->id && $roleCount === 1) {
                 throw (new TranslatableException(
                     'campaigns.roles.users.errors.needs_more_roles'
                 ))->setOptions(['admin' => $this->userCampaignRole->campaignRole->name]);

@@ -6,55 +6,56 @@
 ])
 
 @section('content')
-    <div class="panel panel-default">
-        {!! Form::open([
-            'route' => ['campaign_styles.store'],
-            'method' => 'POST',
-            'data-shortcut' => 1,
-            'id' => 'campaign-style',
-            'data-max-content' => \App\Http\Requests\StoreCampaignStyle::MAX,
-            'data-error' => '#max-content-error'
-        ]) !!}
-        <div class="panel-body">
-            @include('partials.errors')
 
-            <x-alert type="danger" id="max-content-error" :hidden="true">
-                {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
-            </x-alert>
+    {!! Form::open([
+        'route' => ['campaign_styles.store'],
+        'method' => 'POST',
+        'data-shortcut' => 1,
+        'id' => 'campaign-style',
+        'data-max-content' => \App\Http\Requests\StoreCampaignStyle::MAX,
+        'data-error' => '#max-content-error'
+    ]) !!}
+    <x-box>
+        @include('partials.errors')
 
-            <div class="form-group required">
-                <label>{{ __('campaigns/styles.fields.name') }}</label>
-                {!! Form::text('name', null, ['class' => 'form-control']) !!}
-            </div>
+        <x-alert type="error" id="max-content-error" :hidden="true">
+            {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
+        </x-alert>
+
+        <div class="field-name required">
+            <label>{{ __('campaigns/styles.fields.name') }}</label>
+            {!! Form::text('name', null, ['class' => 'form-control']) !!}
+        </div>
 
 
-            <div class="form-group required">
-                <label>{{ __('campaigns/styles.fields.content') }}</label>
-                {!! Form::textarea('content', null, ['class' => 'form-control codemirror', 'id' => 'css', 'spellcheck' => 'false']) !!}
-                <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
-            </div>
+        <div class="field-content required">
+            <label>{{ __('campaigns/styles.fields.content') }}</label>
+            {!! Form::textarea('content', null, ['class' => 'form-control codemirror', 'id' => 'css', 'spellcheck' => 'false']) !!}
+            <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
+        </div>
 
-            <div class="form-group">
-                {!! Form::hidden('is_enabled', 0) !!}
-                <div class="checkbox">
-                    <label>{!! Form::checkbox('is_enabled', 1, !isset($style) ? true : $style->is_enabled) !!}
-                        {{ __('campaigns/styles.fields.is_enabled') }}
-                    </label>
-                </div>
+        <div class="field-enabled">
+            {!! Form::hidden('is_enabled', 0) !!}
+            <div class="checkbox">
+                <label>{!! Form::checkbox('is_enabled', 1, !isset($style) ? true : $style->is_enabled) !!}
+                    {{ __('campaigns/styles.fields.is_enabled') }}
+                </label>
             </div>
         </div>
-        <div class="panel-footer text-right">
-            <div class="form-group">
-                <div class="submit-group">
-                    <input id="submit-mode" type="hidden" value="true"/>
-                    <div class="btn-group">
-                        <button class="btn btn-success" id="form-submit-main">
-                            {{ __('crud.save') }}
+
+        <x-dialog.footer>
+            <div class="submit-group">
+                <input id="submit-mode" type="hidden" value="true"/>
+                <div class="join">
+                    <button class="btn2 btn-primary join-item" id="form-submit-main">
+                        {{ __('crud.save') }}
+                    </button>
+                    <div class="dropdown">
+                        <button type="button" class="btn2 btn-primary join-item dropdown-toggle" data-toggle="dropdown"
+                                aria-expanded="false">
+                            <span class="caret"></span>
                         </button>
-                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                            aria-expanded="false">                                <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
                             <li>
                                 <a href="#" class="dropdown-item form-submit-actions">
                                     {{ __('crud.save') }}
@@ -67,11 +68,10 @@
                             </li>
                         </ul>
                     </div>
-                    @includeWhen(!request()->ajax(), 'partials.or_cancel')
                 </div>
             </div>
-        </div>
-    </div>
+        </x-dialog.footer>
+    </x-box>
 
     {{ csrf_field() }}
     {!! Form::close() !!}

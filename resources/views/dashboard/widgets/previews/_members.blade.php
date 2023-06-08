@@ -25,19 +25,19 @@ $members = $entity->isFamily()
 <div class="widget-advanced-members">
 
 @if($entity->isFamily())
-    <ul class="list-group">
+    <div class="grid grid-cols-1 gap-2 members">
         @foreach ($members as $member)
-        <li class="list-group-item">{!! $member->tooltipedLink() !!}
+            <div class="">{!! $member->tooltipedLink() !!}</div>
         @endforeach
-    </ul>
+    </div>
 @else
-    <dl class="dl-horizontal">
+    <div class="grid grid-cols-2 gap-2 members">
         @foreach ($members as $member)
             @if (empty($member->character))
                 @continue
             @endif
-            <dt>{{ $member->role }}</dt>
-            <dd>{!! $member->character->tooltipedLink() !!}</dd>
+                <div class="font-extrabold">{{ $member->role }}</div>
+                <div>{!! $member->character->tooltipedLink() !!}</div>
         @endforeach
     </dl>
 @endif

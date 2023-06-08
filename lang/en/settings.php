@@ -71,7 +71,7 @@ return [
         'title'     => 'App Integration',
     ],
     'billing'       => [
-        'placeholder'   => 'If you need additional contact or tax information added to your receipts (bussines address, VAT number, etc.), enter it below and it will appear on all of your receipts',
+        'placeholder'   => 'If you need additional contact or tax information added to your receipts (bussines address, VAT number, etc.), enter it below and it will appear on all of your receipts.',
         'save'          => 'Save billing information',
         'title'         => 'Billing Information',
     ],
@@ -147,6 +147,7 @@ return [
                 'missing_features'  => 'Missing features',
                 'not_for'           => 'Subscription is not for me',
                 'not_using'         => 'Not currently using Kanka',
+                'not_playing'       => 'No longer playing or campaign on hiatus',
                 'other'             => 'Other',
             ],
             'text'      => 'Sorry to see you go! Cancelling your subscription will keep it active until :date, after which you will lose your campaign boosts and other benefits related to supporting Kanka. Feel free to fill out the following form to inform us what we can do better, or what lead to your decision.',

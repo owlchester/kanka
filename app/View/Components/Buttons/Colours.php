@@ -8,16 +8,21 @@ trait Colours
     {
         if ($this->type === 'danger') {
             if ($this->outline) {
-                return 'text-red-500 border-red-500 hover:bg-red-500 hover:border-red-500 hover:text-white';
+                return 'btn2 btn-error btn-outline';
             }
-            return 'text-white border-red-500 bg-red-500 hover:bg-red-700 hover:border-red-700';
+            return 'btn2 btn-error';
         } elseif ($this->type === 'primary') {
             if ($this->outline) {
-                return 'text-blue-500 border-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white';
+                return 'btn2 btn-primary btn-outline';
             }
-            return 'text-white border-blue-500 bg-blue-500 hover:bg-blue-700 hover:border-blue-700';
+            return 'btn2 btn-primary';
+        } elseif ($this->type === 'secondary') {
+            if ($this->outline) {
+                return 'btn2 btn-secondary btn-outline';
+            }
+            return 'btn2 btn-secondary';
         } elseif ($this->type === 'ghost') {
-            return 'border-0 hover:bg-gray-200';
+            return 'btn2 btn-ghost';
         }
 
         if ($this->outline) {

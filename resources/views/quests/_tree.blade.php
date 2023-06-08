@@ -12,11 +12,12 @@
         // Name
         'name',
         'type',
-        // Character
         [
-            'type' => 'character',
-            'visible' => $campaignService->enabled('characters'),
-            'label' => trans('quests.fields.character'),
+            'field' => 'instigator.name',
+            'label' => __('quests.fields.instigator'),
+            'render' => function($model) {
+                return $model->instigator?->tooltipedLink();
+            },
         ],
         [
             'label' => __('quests.show.tabs.elements'),

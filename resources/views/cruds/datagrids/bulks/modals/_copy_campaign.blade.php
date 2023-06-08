@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+    <x-dialog.close />
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.copy_to_campaign.bulk_title') }}</h4>
 </div>
 <div class="modal-body">
@@ -8,7 +8,7 @@
         {{ __('entities/move.panel.description_bulk_copy') }}
     </p>
 
-    <div class="form-group">
+    <div class="field-campaign">
         <label>{{ __('entities/move.fields.campaign') }}</label>
         {!! Form::select('campaign', Auth::user()->moveCampaignList(false), null, ['class' => 'form-control']) !!}
     </div>
@@ -16,12 +16,13 @@
     @if(view()->exists($type . '.bulk.modals._copy_to_campaign'))
         @include($type . '.bulk.modals._copy_to_campaign')
     @endif
-</div>
-<div class="modal-footer">
-    <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-    <button class="btn btn-success" type="submit">
-        <i class="fa-solid fa-clone" aria-hidden="true"></i>
-        {{ __('crud.actions.copy_to_campaign') }}
-    </button>
+
+
+    <x-dialog.footer>
+        <button class="btn2 btn-primary" type="submit">
+            <i class="fa-solid fa-clone" aria-hidden="true"></i>
+            {{ __('crud.actions.copy_to_campaign') }}
+        </button>
+    </x-dialog.footer>
 </div>
 <input type="hidden" name="datagrid-action" value="copy-campaign" />

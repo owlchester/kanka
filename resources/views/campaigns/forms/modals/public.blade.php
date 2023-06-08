@@ -1,10 +1,7 @@
 {!! Form::model($campaign, ['route' => 'campaign-visibility.save', 'method' => 'POST']) !!}
 
 <div class="modal-body">
-
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-    </button>
+    <x-dialog.close />
     <h4 class="modal-title  text-center mb-5">
         {!! __('campaigns/public.title') !!}
     </h4>
@@ -20,21 +17,16 @@
     </x-alert>
 
 
-    <div class="form-group">
+    <div class="field-public">
         <label>
             {{ __('campaigns.fields.public') }}
         </label>
         {!! Form::select('is_public', [0 => __('campaigns.visibilities.private'), 1 => __('campaigns.visibilities.public')], null, ['class' => 'form-control']) !!}
     </div>
 
-    <div class="my-5 text-center">
-        <button type="button" class="btn btn-default mr-5 rounded-full px-8" data-dismiss="modal">
-            {{ __('crud.cancel') }}
-        </button>
-
-        <button class="btn btn-success ml-5 rounded-full px-8">{{ __('crud.actions.apply') }}</button>
-
-    </div>
+    <x-dialog.footer>
+        <button class="btn2 btn-primary">{{ __('crud.actions.apply') }}</button>
+    </x-dialog.footer>
 </div>
 @if (isset($from) && $from === 'overview')
     <input type="hidden" name="from" value="{{ $from }}" />

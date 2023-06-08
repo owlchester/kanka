@@ -10,11 +10,11 @@
 @section('entity-header-actions')
     <div class="header-buttons inline-block pull-right ml-auto">
         @if (request()->has('parent_id'))
-            <a href="{{ route('organisations.organisations', [$model]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('organisations.organisations', [$model]) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter" aria-hidden="true"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
             </a>
         @else
-            <a href="{{ route('organisations.organisations', [$model, 'parent_id' => $model->id]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('organisations.organisations', [$model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter" aria-hidden="true"></i> {{ __('crud.filters.direct') }} ({{ $model->organisations()->count() }})
             </a>
         @endif

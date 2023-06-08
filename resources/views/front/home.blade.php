@@ -24,8 +24,8 @@
             <div class="device-container">
                 <div class="device-mockup iphone6_plus portrait white">
                     <div class="device">
-                        <img src="https://images.kanka.io/app/77003-OIULLJT7wNJlfE9jeualk=/900x562/smart/src/images%2Ffront%2Fdevices-preview-hd.png" class="img-fluid d-none d-lg-inline-block" loading="lazy" alt="{{ config('app.name') }} tabletop rpg campaign management and worldbuilding dashboard">
-                        <img src="https://images.kanka.io/app/GocZ1IVx-sOcPn5L2KQSD3wWKNs=/600x375/smart/src/images%2Ffront%2Fdevices-preview-hd.png" class="img-fluid d-inline-block d-lg-none" loading="lazy" alt="{{ config('app.name') }} tabletop rpg campaign management and worldbuilding dashboard">
+                        <img src="{{ Img::crop(900, 562)->new()->url('app/front/devices-preview-hd.png') }}" class="img-fluid d-none d-lg-inline-block" loading="lazy" alt="{{ config('app.name') }} tabletop rpg campaign management and worldbuilding dashboard">
+                        <img src="{{ Img::crop(600, 375)->new()->url('app/front/devices-preview-hd.png') }}" class="img-fluid d-inline-block d-lg-none" loading="lazy" alt="{{ config('app.name') }} tabletop rpg campaign management and worldbuilding dashboard">
                     </div>
                 </div>
             </div>
@@ -55,9 +55,9 @@
                         </a>
                     </div>
                     <div class="col-12 col-xl-8">
-                        <a href="https://kanka-app-assets.s3.amazonaws.com/images/features/dashboard-hd.jpg" target="_blank">
-                            <img alt="Kanka dashboard" src="https://images.kanka.io/app/I953tDG_2cMATvI3dd4joD3hOqs=/825x464/smart/src/images%2Ffeatures%2Fdashboard-crop-hd.jpg" class="img-fluid shadow mb-2 rounded d-none d-lg-block" loading="lazy" >
-                            <img alt="Kanka dashboard" src="https://images.kanka.io/app/zXQF2JO3vCediym8xg2ObAly3pc=/540x303/smart/src/images%2Ffeatures%2Fdashboard-crop-hd.jpg" class="d-lg-none img-fluid shadow mb-2 rounded" loading="lazy" >
+                        <a href="https://kanka-users-assets.s3.amazonaws.com/app/features/dashboard-hd.jpg" target="_blank">
+                            <img alt="Kanka dashboard" src="{{ Img::crop(825, 464)->new()->url('app/features/dashboard-crop-hd.jpg') }}" class="img-fluid shadow mb-2 rounded d-none d-lg-block" loading="lazy" >
+                            <img alt="Kanka dashboard" src="{{ Img::crop(540, 303)->new()->url('app/features/dashboard-crop-hd.jpg') }}" class="d-lg-none img-fluid shadow mb-2 rounded" loading="lazy" >
                         </a>
                     </div>
                 </div>

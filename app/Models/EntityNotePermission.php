@@ -55,8 +55,10 @@ class EntityNotePermission extends Model
      */
     public function permText(): string
     {
-        if ($this->permission == 1) {
+        if ($this->permission == 0) {
             return __('crud.view');
+        } elseif ($this->permission == 2) {
+            return __('crud.permissions.actions.bulk.deny');
         }
         return __('crud.update');
     }

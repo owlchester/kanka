@@ -8,15 +8,15 @@
 
 @section('entity-header-actions')
     <div class="header-buttons inline-block pull-right ml-auto">
-        <a href="#" class="btn btn-default btn-sm" data-toggle="dialog" data-target="help-modal">
+        <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </a>
         @if (request()->has('parent_id'))
-            <a href="{{ route('locations.characters', $model) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('locations.characters', $model) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
             </a>
         @else
-            <a href="{{ route('locations.characters', [$model, 'parent_id' => $model->id]) }}" class="btn btn-default btn-sm">
+            <a href="{{ route('locations.characters', [$model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
             </a>
         @endif

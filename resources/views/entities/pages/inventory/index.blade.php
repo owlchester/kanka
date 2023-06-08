@@ -15,7 +15,7 @@
 @section('entity-header-actions')
     @can('inventory', $entity->child)
         <div class="header-buttons inline-block pull-right ml-auto">
-            <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-warning btn-sm"
+            <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn2 btn-accent btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
             >
@@ -47,24 +47,25 @@
         ])
 
         <div class="entity-main-block">
-            <div class="box box-solid box-entity-inventory">
-                <div class="box-body">
-                    @if ($inventory->count() === 0)
-                        <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
+            @if ($inventory->count() === 0)
+                <x-box>
+                    <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
 
-                        @can('inventory', $entity->child)
-                        <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-warning btn-sm"
+                    @can('inventory', $entity->child)
+                        <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn2 btn-accent btn-sm"
                            data-toggle="ajax-modal" data-target="#entity-modal"
                            data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
                         >
                             <x-icon class="plus"></x-icon>
                             {{ __('entities/inventories.actions.add') }}
                         </a>
-                        @endcan
-                    @endif
-                    @includeWhen($inventory->count() > 0, 'entities.pages.inventory._inventory')
-                </div>
-            </div>
+                    @endcan
+                </x-box>
+            @else
+            <x-box :padding="false" css="box-entity-inventory">
+                @includeWhen($inventory->count() > 0, 'entities.pages.inventory._inventory')
+            </x-box>
+            @endif
         </div>
     </div>
 

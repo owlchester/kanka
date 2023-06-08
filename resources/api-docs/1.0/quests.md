@@ -76,6 +76,7 @@ To get the details of a single quest, use the following endpoint.
         "image_thumb": "{url}",
         "has_custom_image": false,
         "is_private": true,
+        "instigator_id": null,
         "entity_id": 164,
         "tags": [],
         "created_at":  "2019-01-30T00:01:44.000000Z",
@@ -109,6 +110,7 @@ To get the elements of a quest, use the following endpoint.
         "name": null,
         "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": null,
+        "instigator_id": null,
         "role": "Target",
         "description": "Lorem Ipsum",
         "description_parsed": "Lorem Ipsum",
@@ -142,7 +144,7 @@ To create a quest, use the following endpoint.
 | `entry` | `string` | The html description of the quest |
 | `type` | `string` | Type of quest |
 | `quest_id` | `integer` | The parent quest |
-| `character_id` | `integer` | The quest's character (quest giver) |
+| `instigator_id` | `integer` | The quest's instigator (entity) |
 | `tags` | `array` | Array of tag ids |
 | `image_url` | `string` | URL to a picture to be used for the quest |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |

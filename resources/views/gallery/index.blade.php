@@ -25,15 +25,15 @@ if ($folder) {
 @section('content')
 <div class="flex items-center gap-2 mb-2">
     <div class="grow">
-        <button class="btn btn-primary" data-toggle="collapse" data-target="#uploader">
+        <button class="btn2 btn-primary btn-sm" data-toggle="collapse" data-target="#uploader">
             <x-icon class="fa-solid fa-upload"></x-icon> {{ __('campaigns/gallery.uploader.add') }}
         </button>
-        <button class="btn btn-default" data-toggle="modal" data-target="#modal-new-folder">
+        <button class="btn2 btn-sm" data-toggle="modal" data-target="#modal-new-folder">
             <x-icon class="fa-solid fa-folder"></x-icon> {{ __('campaigns/gallery.uploader.new_folder') }}
         </button>
 
         @if(!empty($folder))
-            <button class="btn btn-default" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', $folder) }}">
+            <button class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', $folder) }}">
                 <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
             </button>
         @endif
@@ -52,7 +52,7 @@ if ($folder) {
 
             <p>{{ __('campaigns/gallery.uploader.or') }}</p>
 
-            <span class="btn btn-primary fileinput-button relative overflow-hidden inline-block">
+            <span class="btn2 btn-primary btn-sm fileinput-button relative overflow-hidden inline-block">
                 <x-icon class="plus"></x-icon>
                 <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
                 <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer opacity-0" multiple />
@@ -63,15 +63,13 @@ if ($folder) {
 
             <p class="text-red gallery-error" style="display:none"></p>
 
-            <div class="progress" style="display: none">
-                <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+            <div class="progress h-0.5 w-full bg-gray" style="display: none">
+                <div class="h-0.5 bg-aqua" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                     <span class="sr-only"></span>
                 </div>
             </div>
         </div>
-        @if(!empty($folder))
-            {!! Form::hidden('folder_id', $folder->id) !!}
-        @endif
+        {!! Form::hidden('folder_id', $folder?->id) !!}
     </form>
 
 
@@ -93,11 +91,11 @@ if ($folder) {
             <div class="modal-content">
                 {!! Form::open(['route' => 'campaign.gallery.folder', 'method' => 'POST']) !!}
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <x-dialog.close />
                     <h4 class="modal-title" id="myModalLabel">{{ __('campaigns/gallery.new_folder.title') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="field-name">
                         <label>{{ __('campaigns/gallery.fields.name') }}</label>
                         {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
                     </div>
@@ -105,8 +103,8 @@ if ($folder) {
                     @include('cruds.fields.visibility_id', ['model' => null])
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" class="btn2 btn-sm" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                    <button type="submit" class="btn2 btn-sm btn-primary">
                     {{ __('crud.create') }}
                 </button>
                 </div>
@@ -124,5 +122,5 @@ if ($folder) {
 @section('scripts')
     @parent
     @vite('resources/js/story.js')
-    @vite('resources/js/gallery.js')    
+    @vite('resources/js/gallery.js')
 @endsection

@@ -43,8 +43,8 @@ return [
             'pinned'        => 'Choose if this member should be shown in the pinned section of the overview of its associated entities.',
         ],
         'pinned'        => [
-            'both'  => 'Both',
-            'none'  => 'None',
+            'both'  => 'Pinned on both',
+            'none'  => 'Pinned nowhere',
         ],
         'placeholders'  => [
             'parent'    => 'Who is this member\'s superior',

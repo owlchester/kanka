@@ -15,7 +15,7 @@
         {{ __('profiles.newsletter.helpers.header') }}
     </p>
     <x-box>
-        <div class="form-group checkbox">
+        <div class="field-mail-release checkbox">
             <label>
                 {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
                 {!! __('profiles.newsletter.options.monthly') !!}

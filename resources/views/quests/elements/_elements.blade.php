@@ -1,25 +1,19 @@
 <?php /** @var \App\Models\QuestElement[] $elements */?>
 @php $count = 0; @endphp
 
-<div class="row mb-5">
-    <div class="col-md-6">
-        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-main-block'])
-    </div>
-</div>
+<x-grid css="mb-4">
+    @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-main-block'])
+</x-grid>
 
 <div class="" id="quest-elements">
-    <div class="row">
+    <x-grid>
     @foreach ($elements as $element)
         @if ($element->entity_id && !$element->entity)
             @continue
         @endif
-        @if ($count % 2 === 0)
-    </div><div class="row">
-        @endif
         @php $count++; @endphp
-        <div class="col-md-6">
-            <div class="box box-widget widget-user-2 box-quest-element" id="quest-element-{{ $element->id }}" @if ($element->entity)data-entity-id="{{ $element->entity->id }}" data-entity-type="{{ $element->entity->type() }}"@endif>
-                <div class="flex p-4 gap-2 items-center {{ $element->colourClass() }}">
+            <div class="rounded flex flex-col bg-box widget-user-2 box-quest-element" id="quest-element-{{ $element->id }}" @if ($element->entity)data-entity-id="{{ $element->entity->id }}" data-entity-type="{{ $element->entity->type() }}"@endif>
+                <div class="flex p-4 gap-2 items-center border-b h-20 {{ $element->colourClass() }}">
                     @if ($element->entity)
                         <div class="widget-user-image">
                             <img class="flex-none entity-image rounded-full pull-left" src="{{ $element->entity->avatarSize(40)->avatarV2() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
@@ -44,22 +38,23 @@
                         @endif
                     </div>
                 </div>
-                <div class="box-body">
-                    <p>{!! $element->entry() !!}</p>
+                <div class="flex p-4 flex-1 entity-content">
+                    {!! $element->entry() !!}
                 </div>
-                <div class="box-footer text-right clearfix">
-                    <div class="pull-left">
+                <div class="p-4 flex gap-2 items-center mt-auto">
+                    <div class="">
                         {!! $element->visibilityIcon() !!}
                     </div>
                     @can('update', $model)
-                        <a href="{{ route('quests.quest_elements.edit', [$model, $element]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa-solid fa-edit" title="{{ __('crud.edit') }}"></i>
-                        </a>
-                        <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $element->name() }}"
-                                data-target="#delete-confirm" data-delete-target="delete-form-{{ $element->id }}"
-                                title="{{ __('crud.remove') }}">
-                            <x-icon class="trash"></x-icon>
-                        </button>
+                        <div class="grow text-right">
+                            <x-button.delete-confirm target="delete-form-{{ $element->id }}" size="sm" />
+
+                            <a href="{{ route('quests.quest_elements.edit', [$model, $element]) }}" class="btn2 btn-sm btn-primary">
+                                <x-icon class="edit"></x-icon>
+                                {{ __('crud.edit') }}
+                            </a>
+                        </div>
+
                         {!! Form::open([
                             'method' => 'DELETE',
                             'route' => [
@@ -67,16 +62,15 @@
                                 $model,
                                 $element
                             ],
-                            'style'=>'display:inline',
+                            'class' => 'hidden',
                             'id' => 'delete-form-' . $element->id
                         ]) !!}
                         {!! Form::close() !!}
                     @endcan
                 </div>
             </div>
-        </div>
     @endforeach
-    </div>
+    </x-grid>
 </div>
 
 <div class="text-right">

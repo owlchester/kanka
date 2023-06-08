@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-price">
     <label>{{ __($trans . '.fields.price') }}</label>
     {!! Form::text(
         'price',

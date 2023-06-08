@@ -27,7 +27,7 @@
             {!! Form::open(['route' => 'settings.security.generate-2fa', 'method' => 'POST']) !!}
                 <div class="text-right">
 
-                    <x-buttons.confirm type="primary" outline="true">
+                    <x-buttons.confirm type="primary">
                         {{ __('settings.account.2fa.generate_qr') }}
                     </x-buttons.confirm>
                 </div>
@@ -36,17 +36,17 @@
             {!! Form::open(['route' => 'settings.security.enable-2fa', 'method' => 'POST']) !!}
                 <p>{{ __('settings.account.2fa.activation_helper') }}</p>
 
-                <div class="form-group required">
+                <div class="field-qr-code mb-5 required">
                     <label>{{ __('settings.account.2fa.fields.qrcode') }}</label><br />
                     {!! $user->passwordSecurity->getGoogleQR() !!}
                 </div>
-                <div class="form-group required">
+                <div class="field-otp mb-5 required">
                     <label>{{ __('settings.account.2fa.fields.otp') }}</label>
                     {!! Form::password('otp', ['class' => 'form-control', 'maxlength' => 12]) !!}
                 </div>
 
                 <div class="text-right">
-                    <x-buttons.confirm type="primary" outline="true">
+                    <x-buttons.confirm type="primary">
                         {{ __('settings.account.2fa.actions.finish') }}
                     </x-buttons.confirm>
                 </div>

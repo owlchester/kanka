@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Entity[]|\Illuminate\Pagination\LengthAwarePaginator $entities */?>
 @foreach ($entities as $entity)
     <div class="flex items-center align-items-center gap-2 p-1 hover:bg-gray-400/10">
-        <a class="inline-block rounded-full cover-background w-9 h-9" style="background-image: url('{{ $entity->avatarSize(40)->avatarV2() }}');"
+        <a class="entity-picture inline-block rounded-full cover-background w-9 h-9" style="background-image: url('{{ $entity->avatarSize(40)->avatarV2() }}');"
             title="{{ $entity->name }}"
             href="{{ $entity->url() }}">
         </a>
@@ -32,7 +32,7 @@
 
 @if($entities->hasMorePages())
 <div class="text-center">
-    <a href="#" class="text-center widget-recent-more"
+    <a href="#" class="text-center widget-recent-more px-5"
        data-url="{{ route('dashboard.recent', ['id' => $widget->id, 'page' => $entities->currentPage() + 1]) }}">
         <span>{{ __('crud.actions.next') }}</span>
         <i class="fa-solid fa-spinner fa-spin spinner" style="display: none;"></i>

@@ -1,0 +1,48 @@
+.nav-tabs{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+}
+.nav-tabs>li{
+    margin: 0;
+}
+.nav-tabs>li>a{
+    line-height:1.25rem;
+    border-radius:0.5rem 0.5rem 0 0;
+    padding: 0.7rem 1rem;
+    display: block;
+    --tw-bg-opacity: 0.5;
+    --tab-bg: hsl(var(--b1) / var(--tw-bg-opacity, 1));
+    background-color: var(--tab-bg);
+
+    --tw-text-opacity: .5;
+    --tab-color: hsl(var(--bc) / var(--tw-text-opacity, 1));
+    color:var(--tab-color);
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+}
+.nav-tabs>li>a:hover {
+    cursor: pointer;
+    --tw-text-opacity: 1;
+}
+.tab-content>.tab-pane {
+    display:none
+}
+.tab-content>.active {
+    display:block
+}
+
+.tabs-boxed {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    padding: .25rem;
+    border-radius: var(--rounded-btn,.5rem);
+
+    > li > a {
+        border-radius: var(--rounded-btn,.5rem);
+    }
+}

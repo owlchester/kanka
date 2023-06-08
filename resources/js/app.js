@@ -187,10 +187,19 @@ function initAjaxPagination() {
  * in a modal.
  */
 function initDynamicDelete() {
-    $('.btn-dynamic-delete').popover({
-        html: true,
-        placement: 'top',
-        sanitize: false
+    $('[data-toggle="confirm-delete"]').on('click', function (e) {
+        e.preventDefault();
+        if ($(this).data('confirming') === 1) {
+            $(this).addClass('loading');
+            $(this).html('');
+            let target = $(this).data('target');
+            //console.log('target', target);
+            $(target).submit();
+            return;
+        }
+
+        $(this).data('confirming', 1);
+        $(this).find('span').html($(this).data('confirm'));
     });
 
     $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {

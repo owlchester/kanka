@@ -176,23 +176,18 @@ class PermissionService
         }
         $this->loadedPosts = true;
 
-        $perms = EntityNotePermission::select(['post_id', 'permission'])
-            ->where('user_id', $this->user->id)
-            ->get();
-        /** @var EntityNotePermission $perm */
-        foreach ($perms as $perm) {
-            if ($perm->permission === 2) {
-                $this->deniedPostIDs[] = $perm->post_id;
-            } else {
-                $this->allowedPostIDs[] = $perm->post_id;
-            }
-        }
-
-        // User roles
+        // Get the user's individual and role permissions
         $roles = $this->user->campaignRoleIDs($this->campaign->id);
         $perms = EntityNotePermission::select(['post_id', 'permission'])
-            ->whereIn('role_id', $roles)
+            ->leftJoin('entity_notes as p', 'p.id', 'entity_note_permissions.post_id')
+            ->leftJoin('entities as e', 'e.id', 'p.entity_id')
+            ->where(function ($sub) use ($roles) {
+                $sub->where('user_id', $this->user->id)
+                    ->orWhereIn('role_id', $roles);
+            })
+            ->where('e.campaign_id', $this->campaign->id)
             ->get();
+        /** @var EntityNotePermission $perm */
         foreach ($perms as $perm) {
             if ($perm->permission === 2) {
                 $this->deniedPostIDs[] = $perm->post_id;
