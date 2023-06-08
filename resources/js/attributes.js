@@ -89,9 +89,6 @@ function initAttributeUI()
  */
 function initAttributeHandlers() {
 
-    let el = document.querySelector('.entity-attributes');
-    Sortable.create(el, {handle: '.input-group-addon'});
-
     $.each($('.attribute_delete'), function() {
         $(this).unbind('click');
         $(this).on('click', function() {

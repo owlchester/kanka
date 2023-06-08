@@ -34,16 +34,18 @@ if (!empty($names)) {
 } elseif (isset($source)) {
     $months = $source->months();
 }?>
-<div class="calendar-months sortable-elements" data-handle=".input-group-addon">
+<div class="calendar-months sortable-elements">
     @foreach ($months as $month)
         <div class="parent-delete-row">
             <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4 mb-2">
-                <div class="input-group">
-                    <span class="input-group-addon cursor-pointer">
-                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                    </span>
-                    <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
-                    {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
+                <div class="flex items-center gap-2">
+                    <div class="sortable-handler p-2 cursor-move">
+                        <x-icon class="fa-solid fa-grip-vertical" />
+                    </div>
+                    <div>
+                        <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
+                        {!! Form::text('month_name[]', $month['name'], ['class' => 'form-control']) !!}
+                    </div>
                 </div>
 
                 <div>
@@ -65,17 +67,19 @@ if (!empty($names)) {
                     ]) !!}
                 </div>
 
-                <div class="input-group">
-                    <label class="sr-only">{{ __('calendars.parameters.month.type') }}</label>
-                    {!! Form::select('month_type[]', __('calendars.month_types'), (!empty($month['type']) ? $month['type'] : 'standard'), [
-                        'class' => 'form-control',
-                        'aria-label' => __('calendars.parameters.month.type'),
-                    ]) !!}
-                    <span class="input-group-btn">
+                <div class="flex items-center gap-2">
+                    <div>
+                        <label class="sr-only">{{ __('calendars.parameters.month.type') }}</label>
+                        {!! Form::select('month_type[]', __('calendars.month_types'), (!empty($month['type']) ? $month['type'] : 'standard'), [
+                            'class' => 'form-control',
+                            'aria-label' => __('calendars.parameters.month.type'),
+                        ]) !!}
+                    </div>
+                    <div class="">
                         <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
                             <x-icon class="trash"></x-icon>
                         </span>
-                    </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,16 +94,18 @@ if (!empty($names)) {
 <div id="template_month" style="display: none">
     <div class="parent-delete-row">
         <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4 mb-2">
-            <div class="input-group">
-                <span class="input-group-addon cursor-pointer">
-                    <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                </span>
-                <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
-                {!! Form::text('month_name[]', null, [
-                    'class' => 'form-control',
-                    'placeholder' => __('calendars.parameters.month.name'),
-                    'aria-label' => __('calendars.parameters.month.name'),
-                ]) !!}
+            <div class="flex gap-2 items-center">
+                <div class="sortable-handler p-2 cursor-move">
+                    <x-icon class="fa-solid fa-grip-vertical" />
+                </div>
+                <div>
+                    <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
+                    {!! Form::text('month_name[]', null, [
+                        'class' => 'form-control',
+                        'placeholder' => __('calendars.parameters.month.name'),
+                        'aria-label' => __('calendars.parameters.month.name'),
+                    ]) !!}
+                </div>
             </div>
             <div>
                 <label class="sr-only">{{ __('calendars.parameters.month.length') }}</label>
@@ -111,15 +117,17 @@ if (!empty($names)) {
                 {!! Form::text('month_alias[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.month.alias'),
                         'aria-label' => __('calendars.parameters.month.alias'),]) !!}
             </div>
-            <div class="input-group">
+            <div class="flex gap-2 items-center">
+                <div>
                 <label class="sr-only">{{ __('calendars.parameters.month.type') }}</label>
                 {!! Form::select('month_type[]', __('calendars.month_types'), 'standard', ['class' => 'form-control',
                     'aria-label' => __('calendars.parameters.month.type'),]) !!}
-                <span class="input-group-btn">
+                </div>
+                <div class="">
                     <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
                         <x-icon class="trash"></x-icon>
                     </span>
-                </span>
+                </div>
             </div>
         </div>
     </div>

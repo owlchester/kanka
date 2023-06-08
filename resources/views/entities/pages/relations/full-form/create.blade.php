@@ -15,16 +15,14 @@
     @include('cruds.forms._errors')
 
     <div class="nav-tabs-custom">
-        <div class="pull-right">
+        <div class="flex gap-2 items-center ">
+            <div class="grow overflow-x-auto">
+                <ul class="nav-tabs flex items-stretch w-full" role="tablist">
+                    <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
+                </ul>
+            </div>
             @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
         </div>
-        <ul class="nav-tabs border-none overflow-hidden">
-            <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                <a href="#form-entry" title="{{ __('crud.fields.entry') }}">
-                    {{ __('crud.fields.entry') }}
-                </a>
-            </li>
-        </ul>
 
         <div class="tab-content">
             <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">

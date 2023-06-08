@@ -624,7 +624,7 @@ function registerDynamicRows() {
         let template = $(this).data('template');
         //console.log('target', target, $('.' + target));
         //console.log('template', template, $('#' + template));
-        $('.' + target).append('<div class="form-group">' +
+        $('.' + target).append('<div class="">' +
             $('#' + template).html() +
             '</div>');
 
