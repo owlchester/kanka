@@ -10,6 +10,7 @@ use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -36,6 +37,7 @@ class Journal extends MiscModel
     use Nested;
     use SoftDeletes;
     use SortableTrait;
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

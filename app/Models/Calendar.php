@@ -7,6 +7,7 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -39,6 +40,7 @@ class Calendar extends MiscModel
     use CampaignTrait;
     use ExportableTrait;
     use SoftDeletes;
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

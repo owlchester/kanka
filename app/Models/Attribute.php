@@ -10,6 +10,7 @@ use App\Models\Scopes\Starred;
 use App\Traits\OrderableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 
 /**
@@ -35,6 +36,7 @@ class Attribute extends Model
     use Paginatable;
     use Privatable;
     use Starred;
+    use HasFactory;
 
     public const TYPE_CHECKBOX = 'checkbox';
     public const TYPE_SECTION = 'section';
