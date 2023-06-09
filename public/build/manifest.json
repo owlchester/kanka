@@ -231,6 +231,7 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
+    "file": "assets/app-433f8c3d.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
