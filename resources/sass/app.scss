@@ -320,6 +320,31 @@ ul.entity-menu {
         }
     }
 }
+.input-group {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+.input-group>:first-child {
+    border-top-left-radius:var(--rounded-btn,.5rem);
+    border-top-right-radius:0;
+    border-bottom-left-radius:var(--rounded-btn,.5rem);
+    border-bottom-right-radius:0
+}
+.input-group>:last-child {
+    border-top-left-radius:0;
+    border-top-right-radius:var(--rounded-btn,.5rem);
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:var(--rounded-btn,.5rem)
+}
+.input-group :where(span) {
+    display: flex;
+    align-items: center;
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b3)/var(--tw-bg-opacity));
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
 
 @import "alerts";
 @import "buttons";

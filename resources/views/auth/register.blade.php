@@ -3,7 +3,7 @@
 ])
 
 @section('content')
-    <h1 class="text-2xl leading-tight mb-3">
+    <h1 class="text-2xl leading-tight mb-3 dark:text-slate-200">
         {{ __('auth.register.title') }}
     </h1>
 
@@ -30,7 +30,7 @@
 
         <div class="mb-3 has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
             <div class="flex items-stretch w-full">
-                <input id="name" type="text" class="rounded border p-2 w-full" name="name" value="{{ old('name') }}" placeholder="{{ __('auth.register.fields.name') }}" required autofocus>
+                <input id="name" type="text" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="name" value="{{ old('name') }}" placeholder="{{ __('auth.register.fields.name') }}" required autofocus>
             </div>
 
             @if ($errors->has('name'))
@@ -39,7 +39,7 @@
         </div>
 
         <div class="mb-3 has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-            <input id="email" type="email" class="rounded border p-2 w-full" name="email" value="{{ old('email') }}" placeholder="{{ __('auth.register.fields.email') }}" required>
+            <input id="email" type="email" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="email" value="{{ old('email') }}" placeholder="{{ __('auth.register.fields.email') }}" required>
 
             @if ($errors->has('email'))
                 <span class="text-red-500">{{ $errors->first('email') }}</span>
@@ -48,7 +48,7 @@
 
         <div class="mb-3{{ $errors->has('password') ? ' has-error' : '' }}">
             <div class="flex items-stretch w-full">
-                <input id="password" type="password" class="rounded border p-2 w-full" name="password" required placeholder="{{ __('auth.register.fields.password') }}">
+                <input id="password" type="password" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="password" required placeholder="{{ __('auth.register.fields.password') }}">
                 <a href="#" id="toggle-password" class="p-2" tabindex="-1" title="{{ __('auth.helpers.password') }}">
                     <i id="toggle-password-icon" class="fa-solid fa-eye" aria-hidden="true"></i>
                     <span class="sr-only">{{ __('auth.helpers.password') }}</span>
@@ -61,7 +61,7 @@
         </div>
         <div class="mb-3">
             <div class="text-gray-500 text-sm">
-                <label for="newsletter" class="">
+                <label for="newsletter" class="dark:text-slate-200">
                     <input id="newsletter" type="checkbox" name="newsletter" value="1" />
                     {!! __('front/newsletter.groups.all') !!}
                 </label>
@@ -79,7 +79,7 @@
                     <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
                 </div>
 
-                <button id="btn-save" type="submit" class="rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white">
+                <button id="btn-save" type="submit" class="rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all  hover:shadow-xs hover:bg-blue-500 hover:text-white">
                     {{ __('auth.register.submit') }}
                 </button>
             </div>
@@ -88,7 +88,7 @@
     </form>
 
     <div class="social-auth-links text-center mb-3">
-        <p class="mb-2 text-gray-500">- {{ __('auth.login.or') }} -</p>
+        <p class="mb-2 text-gray-500 dark:text-slate-200">- {{ __('auth.login.or') }} -</p>
 
         <div class="flex flex-col gap-2">
             @if(config('services.facebook.client_id'))
@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <p class="text-sm text-gray-500">
+    <p class="text-sm text-gray-500 dark:text-slate-200">
         {!! __('auth.register.already', ['login' => link_to('login', __('auth.register.log-in'), ['class' => 'text-blue-500 hover:text-blue-800'])]) !!}
     </p>
 
