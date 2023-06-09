@@ -4,7 +4,7 @@
         @foreach ($model->permissions()->onlyRoles()->with('role')->get() as $perm)
             <x-grid>
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
+                    <span class=""><i class="fa-solid fa-users" aria-hidden="true"></i></span>
                     <input type="text" value="{!! $perm->role->name !!}" disabled="disabled" class="form-control" />
                 </div>
 
@@ -22,7 +22,7 @@
         @foreach ($model->permissions()->onlyUsers()->with('user')->get() as $perm)
             <x-grid>
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+                    <span class=""><i class="fa-solid fa-user" aria-hidden="true"></i></span>
                     <input type="text" value="{!! $perm->user->name !!}" disabled="disabled" class="form-control" />
                 </div>
 
@@ -101,7 +101,7 @@
 
     <x-grid id="post-perm-user-template">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+            <span class=""><i class="fa-solid fa-user" aria-hidden="true"></i></span>
             <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control" />
         </div>
 
@@ -117,7 +117,7 @@
     </x-grid>
     <x-grid id="post-perm-role-template">
         <div class="input-group">
-            <span class="input-group-addon"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
+            <span class=""><i class="fa-solid fa-users" aria-hidden="true"></i></span>
             <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="form-control" />
         </div>
         <div class="flex items-center gap-2">

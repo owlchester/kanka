@@ -173,8 +173,12 @@ class EntityEventController extends Controller
             return response()->json(['success' => true]);
         }
 
-        dd($request->all());
+        if (request()->has('entity_id') && request()->get('entity_id') != $entity->id) {
+            $newEntity = Entity::findOrFail(request()->get('entity_id'));
 
+            $this->authorize('update', $newEntity->child);
+            $request->merge(['type_id' => null]);
+        }
         $routeOptions = ['calendar' => $entityEvent->calendar->id, 'year' => request()->post('year')];
         $entityEvent->update($request->all());
 

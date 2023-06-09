@@ -12,7 +12,9 @@
         </span>
     </x-grid>
 @else
-    @include('cruds.fields.entity_link', ['entity' => $entityEvent->entity])
+    <div class="mb-5">
+        @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id'])
+    </div>
 @endif
 
 <div id="calendar-event-subform" style="{{ empty($entityEvent) ? 'display:none' : null }}">
