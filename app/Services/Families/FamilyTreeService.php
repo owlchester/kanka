@@ -419,6 +419,7 @@ protected function cleanupMissingEntities(): void
                     ],
                     'edit' => [
                         'title' => __('families/trees.modals.entity.edit.title'),
+                        'helper' => __('families/trees.modals.entity.edit.helper'),
                     ],
                     'child' => [
                         'title' => __('families/trees.modals.entity.child.title'),
