@@ -4,7 +4,7 @@
 <article>
     {!! Form::model($campaign, ['route' => 'campaign-applications.save', 'method' => 'POST', 'class' => 'text-left w-full max-w-lg']) !!}
 
-    <div class="form-group required">
+    <div class="field-status required">
         <label for="status">
            {{ __('campaigns/submissions.toggle.label') }}
         </label>
@@ -14,15 +14,11 @@
         </p>
     </div>
 
-    <div class="grid grid-cols-2 gap-2 mt-5">
-        <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
-            {{ __('crud.cancel') }}
-        </x-buttons.confirm>
-        <x-buttons.confirm type="primary" outline="true" full="true">
+    <x-dialog.footer>
+        <x-buttons.confirm type="primary">
             <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
             {{ __('crud.actions.apply') }}
         </x-buttons.confirm>
-
-    </div>
+    </x-dialog.footer>
     {!! Form::close() !!}
 </article>

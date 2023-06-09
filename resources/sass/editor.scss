@@ -73,21 +73,15 @@ img.note-float-left {
         display: grid;
         align-items: center;
         grid-template-columns: 45px auto;
-
-        .entity-hint-name {
-        }
-
-        .entity-image {
-        }
     }
 }
 
 .note-editing-area {
     .mention, .attribute {
-        background-color: var(--mention-background, #dfdfdf);
+        background-color: var(--mention-background, hsl(var(--p)/1));
         padding: 3px 5px;
         border-radius: 0.25rem;
-        color: var(--mention-text, #222);
+        color: var(--mention-text, hsl(var(--pc)/1));
         text-decoration: none;
     }
 }
@@ -101,8 +95,8 @@ img.note-float-left {
             height: 120px;
             overflow: hidden;
             line-height: 120px;
-            background-color: var(--gallery-background);
-            color: var(--gallery-text);
+            background-color: hsl(var(--b1)/1);
+            color: hsl(var(--bc)/1);
             border: none;
             cursor: pointer;
 
@@ -118,8 +112,8 @@ img.note-float-left {
 
             &:focus,
             &:hover {
-                box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
-                color: var(--gallery-hover-text);
+                box-shadow: 0 0 0 1px hsl(var(--bc)/1), 0 0 2px 1px rgba(30, 140, 190, 0.8);
+                color: hsl(var(--bc)/1);
                 outline: 1px solid transparent;
             }
         }
@@ -221,4 +215,28 @@ img.note-float-left {
         padding: 0.15rem;
         border-radius: 0.25rem;
     }
+}
+
+.btn-default {
+    border-width: 1px;
+    border-color: hsl(var(--bc)/var(--tw-border-opacity));
+    --tw-border-opacity: 0.2;
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    border-radius: var(--rounded-btn,.5rem);
+    line-height: 1.5rem;
+    box-shadow: none;
+    color: inherit;
+
+    &:hover, &:focus, &:active {
+        box-shadow: none;
+        border-color: transparent;
+        background-color: hsl(var(--b2)/1);
+        color: hsl(var(--bc)/1);
+    }
+}
+.btn-default:active:hover, .btn-default:active:focus, .btn-default:active.focus, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus, .open > .btn-default.dropdown-toggle:hover, .open > .btn-default.dropdown-toggle:focus, .open > .btn-default.dropdown-toggle.focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+    background-color: hsl(var(--b2)/1);
+    border-color: hsl(var(--b2)/1);
+    color: hsl(var(--bc)/1);
 }

@@ -38,6 +38,21 @@ $imageCount = 0;
                     </div>
                     <hr class="visible-sm visible-xs"/>
                 @endif
+                @if($image->mentions->count() > 0)
+                <p class="{{ $image->mentions->count() === 0 ? 'text-muted' : '' }}">
+                    {{ trans_choice('campaigns/gallery.fields.image_mentioned_in', $image->mentions->count(), ['count' => $image->mentions->count()]) }}
+                </p>
+                    <div class="grid grid-cols-2 gap-2">
+                        @foreach($image->mentions as $mention)
+                            @if($mention->isPost())
+                                <a href="{{ $mention->entity->url() }}?#post-{{ $mention->post_id }}"> {{ $mention->post->name }}</a>
+                            @else
+                                <a href="{{ $mention->entity->url() }}">{{ $mention->entity->name }}</a>
+                            @endif
+                        @endforeach
+                    </div>
+                    <hr class="visible-sm visible-xs"/>
+                @endif
             @endif
             </div>
             <div class="">
@@ -76,11 +91,11 @@ $imageCount = 0;
                 @include('cruds.fields.visibility_id', ['model' => $image])
             </div>
 
-            <div class="flex gap-2 sm:gap-5 items-center mb-5">
-                <div class="grow flex gap-2 sm:gap-5">
+            <div class="flex gap-2 sm:gap-5 items-center my-5">
+                <div class="grow flex gap-2 sm:gap-5 items-center">
                 @if(!$image->isFolder() || $image->hasNoFolders())
 
-                    <x-button.delete-confirm target="#delete-confirm-form" />
+                    <x-button.delete-confirm target="#delete-confirm-form" size="sm" />
                 @endif
                     @if(!$image->isFolder())
                         <a href="{{ $image->getUrl() }}" target="_blank">
@@ -91,7 +106,7 @@ $imageCount = 0;
                 </div>
 
                 <div class="">
-                    <input type="submit" class="btn2 btn-primary" value="{{ __('campaigns/gallery.actions.save') }}">
+                    <input type="submit" class="btn2 btn-primary btn-sm" value="{{ __('campaigns/gallery.actions.save') }}">
                 </div>
             </div>
 

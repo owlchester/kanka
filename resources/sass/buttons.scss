@@ -22,11 +22,15 @@
     }
 
     .quick-creator-subform.join-item {
-        height:2.2rem;
+        height: 2.2rem;
         padding-left:.75rem;
         padding-right:.75rem;
         min-height:2.2rem;
         font-size:1rem
+    }
+
+    .select2 {
+        line-height: 1.1rem;
     }
 }
 
@@ -48,7 +52,6 @@
     transition-duration:.2s;
     transition-timing-function:cubic-bezier(.4,0,.2,1);
     border-radius:var(--rounded-btn,.25rem);
-    height:3rem;
     padding-left:1rem;
     padding-right:1rem;
     font-size:.875rem;
@@ -277,7 +280,7 @@
     --tw-bg-opacity: 1;
     background-color:hsl(var(--b3)/var(--tw-bg-opacity))
 }
-.btn2.btn:focus-visible {
+.btn2:focus-visible {
     outline-style:solid;
     outline-width:2px;
     outline-offset:2px;
@@ -601,28 +604,24 @@
 
 /** Sizes **/
 .btn2.btn-xs {
-    height:1.5rem;
     padding-left:.5rem;
     padding-right:.5rem;
     min-height:1.5rem;
     font-size:.75rem
 }
 .btn2.btn-sm {
-    height:2.2rem;
     padding-left:.75rem;
     padding-right:.75rem;
     min-height:2.2rem;
     font-size:.875rem
 }
 .btn2.btn-md {
-    height:3rem;
     padding-left:1rem;
     padding-right:1rem;
     min-height:3rem;
     font-size:.875rem
 }
 .btn2.btn-lg {
-    height:4rem;
     padding-left:1.5rem;
     padding-right:1.5rem;
     min-height:4rem;

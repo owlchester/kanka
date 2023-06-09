@@ -9,20 +9,20 @@ $entityTypes = array_merge($entityTypes, $entities);
     '?' => '<code>?</code>',
 ]) !!}</p>
 
-<div class="grid gap-5 grid-cols-1 md:grid-cols-2 mb-4">
-    <div class="form-group mb-0">
+<x-grid>
+    <div class="field-typer">
         <label>{{ __('crud.fields.type') }}</label>
         {!! Form::select('type', $entityTypes, FormCopy::field('type')->string(), ['class' => 'form-control']) !!}
     </div>
-    <div class="form-group mb-0">
+    <div class="field-filters">
         <label>{{ __('menu_links.fields.filters') }}</label>
         {!! Form::text('filters', FormCopy::field('filters')->string(), ['placeholder' => __('menu_links.placeholders.filters'), 'class' => 'form-control', 'maxlength' => 191]) !!}
     </div>
-    <div>
+    <div class="field-nested checkbox">
         {!! Form::hidden('options[is_nested]', 0) !!}
         <label>
             {!! Form::checkbox('options[is_nested]', 1, empty($model->options) ? false : $model->options['is_nested']) !!}
             {!! __('menu_links.fields.is_nested') !!}
         </label>
     </div>
-</div>
+</x-grid>

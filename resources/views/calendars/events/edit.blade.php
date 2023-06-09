@@ -16,32 +16,7 @@
 @section('content')
     {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $entity->id, $entityEvent->id], 'data-shortcut' => '1', 'class' => 'ajax-validation', 'data-maintenance' => 1]) !!}
 
-    @if (request()->ajax())
-        <div class="modal-body">
-            @include('partials.errors')
-
-            @if (!empty($from))
-                <x-alert type="warning">
-                    {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
-                </x-alert>
-            @endif
-
-            @include('calendars.events._form')
-
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn2 btn-primary">
-                <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-                <span>{{ __('crud.save') }}</span>
-            </button>
-            <div class="pull-left">
-                @include('partials.footer_cancel')
-
-                <x-button.delete-confirm target="#delete-reminder-{{ $entityEvent->id}}" />
-            </div>
-        </div>
-    @else
-    <x-box>
+    <div class="modal-body">
         @include('partials.errors')
 
         @if (!empty($from))
@@ -52,20 +27,18 @@
 
         @include('calendars.events._form')
 
-
-        <x-box.footer>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-success">
-                    <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-                    <span>{{ __('crud.save') }}</span>
-                </button>
-            </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn2 btn-primary">
+            <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
+            <span>{{ __('crud.save') }}</span>
+        </button>
+        <div class="pull-left">
+            @include('partials.footer_cancel')
 
             <x-button.delete-confirm target="#delete-reminder-{{ $entityEvent->id}}" />
-        </x-box.footer>
-    </x-box>
-    @endif
-
+        </div>
+    </div>
 
     @if (!empty($next))
         <input type="hidden" name="next" value="{{ $next }}" />

@@ -86,30 +86,32 @@ $specificTheme = null;
 
                         <div class="marker-actions text-center">
                             @can('update', $map)
-                                <div class="btn-group">
-                                    <a href="{{ route('maps.edit', [$map]) }}" class="btn btn-primary">
+                                <div class="join">
+                                    <a href="{{ route('maps.edit', [$map]) }}" class="btn2 btn-primary btn-sm join-item">
                                         <x-icon class="map"></x-icon> {{ __('maps.actions.edit') }}
                                     </a>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="{{ route('maps.map_layers.index', [$map]) }}" class="dropdown-item">
-                                                <x-icon class="fa-solid fa-layer-group"></x-icon> {{ __('maps.panels.layers') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('maps.map_groups.index', [$map]) }}" class="dropdown-item">
-                                                <x-icon class="fa-solid fa-map-signs"></x-icon> {{ __('maps.panels.groups') }}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('maps.map_markers.index', [$map]) }}" class="dropdown-item">
-                                                <x-icon class="fa-solid fa-map-pin"></x-icon> {{ __('maps.panels.markers') }}
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn2 btn-primary btn-sm join-item dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <li>
+                                                <a href="{{ route('maps.map_layers.index', [$map]) }}" class="dropdown-item">
+                                                    <x-icon class="fa-solid fa-layer-group"></x-icon> {{ __('maps.panels.layers') }}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('maps.map_groups.index', [$map]) }}" class="dropdown-item">
+                                                    <x-icon class="fa-solid fa-map-signs"></x-icon> {{ __('maps.panels.groups') }}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('maps.map_markers.index', [$map]) }}" class="dropdown-item">
+                                                    <x-icon class="fa-solid fa-map-pin"></x-icon> {{ __('maps.panels.markers') }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             @endcan
                         </div>
@@ -123,7 +125,7 @@ $specificTheme = null;
                         </div>
 
                         <div class="map-legend text-center">
-                            <a href="{{ $map->getLink() }}" class="btn btn-primary">{{ __('maps.actions.back', ['name' => $map->name]) }}</a>
+                            <a href="{{ $map->getLink() }}" class="btn2 btn-primary btn-sm">{{ __('maps.actions.back', ['name' => $map->name]) }}</a>
                         </div>
                     </div>
 
@@ -168,7 +170,7 @@ $specificTheme = null;
 <!-- Default modal used throughout the app -->
 <div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content rounded-2xl"></div>
+        <div class="modal-content bg-base-100 rounded-2xl"></div>
         <div class="modal-spinner" style="display: none">
             <div class="modal-body text-center">
                 <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>

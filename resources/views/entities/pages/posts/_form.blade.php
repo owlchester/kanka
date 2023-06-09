@@ -19,28 +19,20 @@ $last = array_key_last($options);
 $bragiName = $entity->isCharacter() ? $entity->name : null;
 ?>
 <div class="nav-tabs-custom">
-    <div class="pull-right">
+    <div class="flex gap-2 items-center ">
+        <div class="grow overflow-x-auto">
+            <ul class="nav-tabs flex items-stretch w-full" role="tablist">
+                <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
+                @can('permission', $entity->child)
+                    <x-tab.tab target="permissions" :title="__('entities/notes.show.advanced')"></x-tab.tab>
+                @endcan
+            </ul>
+        </div>
         @include('entities.pages.posts._save-options')
     </div>
-    <ul class="nav-tabs">
-        <li class="active">
-            <a href="#form-entry" title="{{ __('crud.fields.entry') }}">
-                {{ __('crud.fields.entry') }}
-            </a>
-        </li>
-       @can('permission', $entity->child)
-        <li class="">
-            <a href="#form-permissions" title="{{ __('entities/notes.show.advanced') }}">
-                {{ __('entities/notes.show.advanced') }}
-            </a>
-        </li>
-       @endcan
-    </ul>
-
-    <div class="tab-content">
-        <div class="tab-pane active" id="form-entry">
+    <div class="tab-content bg-base-100">
+        <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
-
                 <div class="field-name col-span-2 required">
                     {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
                 </div>

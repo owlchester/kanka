@@ -6,7 +6,7 @@
         {!! __('campaigns/styles.theme.title') !!}
     </h4>
 
-    <div class="form-group">
+    <div class="field-theme">
         <label>
             {{ __('campaigns.fields.theme') }}
             <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.helpers.theme') }}"></i>

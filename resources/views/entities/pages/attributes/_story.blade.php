@@ -22,7 +22,7 @@
     @parent
     <div class="modal fade" id="live-attribute-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content"></div>
+            <div class="modal-content bg-base-100"></div>
         </div>
     </div>
 @endsection

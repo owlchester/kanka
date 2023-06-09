@@ -15,7 +15,7 @@ if (!empty($redirect)) {
 }
 ?>
 @section('entity-header-actions-override')
-    <div class="header-buttons inline-block pull-right ml-auto">
+    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
         @include('entities.headers.toggle')
         @can('update', $model)
             <a href="{{ route('calendars.edit', $options) }}" class="btn2 btn-primary btn-sm ">

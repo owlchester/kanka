@@ -84,25 +84,27 @@
         } elseif (isset($source)) {
             $years = $source->years();
         } ?>
-        <div class="calendar-years sortable-elements" data-handle=".input-group-addon">
+        <div class="calendar-years sortable-elements">
             @foreach ($years as $year => $name)
                 <div class="parent-delete-row mb-2">
                     <x-grid>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                            </span>
-                            <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
-                            {!! Form::text('year_number[]', $year, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
+                        <div class="flex gap-2 items-center">
+                            <div class="sortable-handler p-2 cursor-move">
+                                <x-icon class="fa-solid fa-grip-vertical" />
+                            </div>
+                            <div class="grow">
+                                <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
+                                {!! Form::text('year_number[]', $year, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
+                            </div>
                         </div>
+                        <div class="flex gap-2 items-center">
+                            <div class="grow">
+                                <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
+                                {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
+                            </div>
 
-                        <div class="input-group">
-                            <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
-                            {!! Form::text('year_name[]', $name, ['class' => 'form-control']) !!}
-                            <span class="input-group-btn">
-                                <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
-                                    <x-icon class="trash"></x-icon>
-                                </span>
+                            <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
+                                <x-icon class="trash"></x-icon>
                             </span>
                         </div>
                     </x-grid>
@@ -149,21 +151,23 @@
     <div id="template_year" style="display: none">
         <div class="parent-delete-row">
             <x-grid>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                    </span>
-                    <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
-                    {!! Form::number('year_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
+                <div class="flex gap-2 items-center">
+                    <div class="sortable-handler p-2 cursor-move">
+                        <x-icon class="fa-solid fa-grip-vertical" />
+                    </div>
+                    <div class="grow">
+                        <label class="sr-only">{{ __('calendars.parameters.year.number') }}</label>
+                        {!! Form::number('year_number[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.number')]) !!}
+                    </div>
                 </div>
 
-                <div class="input-group">
-                    <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
-                    {!! Form::text('year_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.name')]) !!}
-                    <span class="input-group-btn">
-                        <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
-                            <x-icon class="trash"></x-icon>
-                        </span>
+                <div class="flex gap-2 items-center">
+                    <div class="grow">
+                        <label class="sr-only">{{ __('calendars.parameters.year.name') }}</label>
+                        {!! Form::text('year_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.year.name')]) !!}
+                    </div>
+                    <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
+                        <x-icon class="trash"></x-icon>
                     </span>
                 </div>
             </x-grid>

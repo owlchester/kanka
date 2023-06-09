@@ -14,11 +14,11 @@ if ($attribute->isSection()) {
 }
 ?>
 
-<div class="flex flex-wrap md:flex-no-wrap items-start gap-2 attribute_row mb-5 md:mb-2">
-    <div class="input-group">
-        <span class="input-group-addon">
-            <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-        </span>
+<div class="flex flex-wrap md:flex-no-wrap items-start gap-1 attribute_row mb-5 md:mb-2">
+    <div class="sortable-handler p-2 cursor-move">
+        <x-icon class="fa-solid fa-grip-vertical" />
+    </div>
+    <div class="">
         <label class="sr-only">{{ __('entities/attributes.labels.' . ($attribute->isSection() ? 'section' : 'name')) }}</label>
         @if($attribute->name == '_layout')
             {!! Form::text('attr_name[' . $id . ']', $attribute->name, [
@@ -44,7 +44,8 @@ if ($attribute->isSection()) {
             {!! Form::checkbox('attr_value[' . $id . ']', 1, $attribute->value) !!}
         @elseif ($attribute->isText())
             {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, [
-                'placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions',
+                'placeholder' => __('entities/attributes.placeholders.value'),
+                'class' => 'form-control kanka-mentions',
                 'rows' => 4,
                 'data-remote' => route('search.live'),
                 'aria-label' => __('entities/attributes.fields.value')
@@ -72,9 +73,6 @@ if ($attribute->isSection()) {
         data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
         ></i>
 
-{{--            {!! Form::hidden('attr_is_editable[' . $id . ']', $attribute->is_editable) !!}--}}
-{{--            <i class="fa-edit mr-2 @if($attribute->is_editable) fas @else far @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.editable.false') }}" data-entry="{{ __('entities/attributes.editable.true') }}" title="@if($attribute->is_editable) {{ __('entities/attributes.editable.true') }} @else  {{ __('entities/attributes.editable.false') }} @endif"></i>--}}
-
         @if ($isAdmin)
         {!! Form::hidden('attr_is_private[' . $id . ']', $attribute->is_private) !!}
         <i class="cursor-pointer fa-solid @if($attribute->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
@@ -83,7 +81,7 @@ if ($attribute->isSection()) {
         @endif
         @if (!isset($model) || auth()->user()->can('attribute', [$model, 'delete']))
             <a class="text-danger attribute_delete" title="{{ __('crud.remove') }}">
-                <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                <x-icon class="trash" size="fa-2x" />
                 <span class="sr-only">{{ __('crud.remove') }}</span>
             </a>
         @endcan

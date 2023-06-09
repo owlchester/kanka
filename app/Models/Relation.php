@@ -13,6 +13,7 @@ use App\Models\Scopes\Starred;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Relation
@@ -45,6 +46,7 @@ class Relation extends Model
     use SortableTrait
     ;
     use Starred;
+    use HasFactory;
     /**
      * Traits
      */

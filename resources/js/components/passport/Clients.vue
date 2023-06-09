@@ -5,12 +5,12 @@
     <div>
         <div class="card card-default">
             <div class="card-header">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="flex justify-between items-center">
                     <span>
                         OAuth Clients
                     </span>
 
-                    <a class="cursor-pointer" tabindex="-1" @click="showCreateClientForm">
+                    <a class="btn2 btn-primary btn-outline btn-sm" tabindex="-1" @click="showCreateClientForm">
                         Create New Client
                     </a>
                 </div>
@@ -58,8 +58,8 @@
                             </td>
 
                             <!-- Delete Button -->
-                            <td style="vertical-align: middle;">
-                                <a class="cursor-pointer text-danger" @click="destroy(client)">
+                            <td class="text-right" style="vertical-align: middle;">
+                                <a class="btn2 btn-error btn-outline btn-xs" @click="destroy(client)">
                                     Delete
                                 </a>
                             </td>
@@ -123,9 +123,9 @@
                 </form>
 
                 <div class="grid grid-cols-2 gap-2 w-full">
-                    <button type="button" class="w-full rounded px-6 py-2.5 uppercase font-extrabold hover:bg-gray-200 hover:shadow-sm" @click="closeModal('createModal')">Close</button>
+                    <button type="button" class="btn2 btn-ghost" @click="closeModal('createModal')">Close</button>
 
-                    <button type="button" class="w-full rounded px-6 py-2.5 uppercase border border-blue-500 bg-white text-blue-500 font-extrabold hover:bg-blue-500 hover:text-white hover:shadow-sm" @click="store">
+                    <button type="button" class="btn2 btn-primary" @click="store">
                         Create
                     </button>
                 </div>
@@ -187,9 +187,9 @@
                 </form>
 
                 <div class="grid grid-cols-2 gap-2 w-full">
-                    <button type="button" class="w-full rounded px-6 py-2.5 uppercase font-extrabold hover:bg-gray-200 hover:shadow-sm" @click="closeModal('createModal')">Close</button>
+                    <button type="button" class="btn2 btn-ghost" @click="closeModal('editModal')">Close</button>
 
-                    <button type="button" class="w-full rounded px-6 py-2.5 uppercase border border-blue-500 bg-white text-blue-500 font-extrabold hover:bg-blue-500 hover:text-white hover:shadow-sm" @click="update">
+                    <button type="button" class="btn2 btn-primary" @click="update">
                         Create
                     </button>
                 </div>

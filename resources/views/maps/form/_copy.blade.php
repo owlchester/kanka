@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-copy-elements">
     <label>{!! Form::checkbox('copy_elements', 1, true) !!}
         {{ __('maps/markers.fields.copy_elements') }}
     </label>

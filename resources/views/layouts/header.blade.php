@@ -1,8 +1,8 @@
 <?php
 $currentCampaign = CampaignLocalization::getCampaign();
 ?>
-<header id="header" class="fixed top-0 h-12 w-full bg-navbar z-[900]">
-    <nav class="flex gap-2 justify-center items-center">
+<header id="header" class="fixed top-0 h-12 w-full bg-navbar bg-base-100 z-[900]">
+    <nav class="flex gap-2 justify-center items-center h-full">
         <div class="ml-1 flex-none flex w-sidebar justify-items items-center">
         @if (isset($toggle) && $toggle)
             <nav-toggler

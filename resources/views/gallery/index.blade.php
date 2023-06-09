@@ -88,7 +88,7 @@ if ($folder) {
 
     <div class="modal fade" id="modal-new-folder" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-base-100">
                 {!! Form::open(['route' => 'campaign.gallery.folder', 'method' => 'POST']) !!}
                 <div class="modal-header">
                     <x-dialog.close />

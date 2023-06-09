@@ -1,7 +1,7 @@
 <!-- The delete confirmation modal, can be configured to show custom text and options -->
 <div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content rounded-2xl">
+        <div class="modal-content bg-base-100 rounded-2xl">
             <div class="modal-body text-center">
 
                 <x-dialog.close />
@@ -13,7 +13,7 @@
                             {{ __('crud.delete_modal.permanent') }}
                         </span>
                 </p>
-                <div id="delete-confirm-mirror" class="form-group checkbox" style="display: none">
+                <div id="delete-confirm-mirror" class="field-delete-confirm  checkbox" style="display: none">
                     <label>
                         <input type="checkbox" id="delete-confirm-mirror-checkbox" name="delete-mirror">
                         {{ __('entities/relations.delete_mirrored.option') }}

@@ -11,14 +11,18 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block pull-right ml-auto">
+    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
         @if (request()->has('parent_id'))
             <a href="{{ route('timelines.timelines', [$model]) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                ({{ $model->descendants()->count() }})
             </a>
         @else
             <a href="{{ route('timelines.timelines', [$model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->timelines()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                ({{ $model->timelines()->count() }})
             </a>
         @endif
     </div>

@@ -210,7 +210,7 @@ if (auth()->check()) {
     }
     @endphp
     <div class="lg:hidden" id="sm-a">
-        <div class="form-group">
+        <div class="mb-2">
             <select name="menu-switcher" class="form-control submenu-switcher">
                 @foreach ($menuOptions as $key => $option)
                     <option name="{{ $key }}" data-route="{{ $option['route'] }}" @if($key == $active) selected="selected" @endif>
@@ -259,7 +259,7 @@ if (auth()->check()) {
                 <p class="mt-5">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
                 <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
 
-                <div class="form-group required">
+                <div class="mb-5 required">
                     {!! Form::text('delete', null, ['class' => 'form-control', 'required', 'id' => 'campaign-delete-form']) !!}
                 </div>
 

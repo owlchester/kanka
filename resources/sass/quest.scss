@@ -9,7 +9,7 @@
     .bg-gray, .bg-none {
         .widget-user-username {
             a {
-                color: var(--bg-default-link);
+                color: hsl(var(--pc)/1);
             }
         }
     }

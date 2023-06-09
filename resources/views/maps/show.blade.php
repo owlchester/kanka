@@ -32,8 +32,6 @@
                 </p>
                 @endif
         @endif
-
-        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

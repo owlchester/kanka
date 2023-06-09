@@ -55,7 +55,7 @@ $weather = $calendar->calendarWeather()
 
 <x-grid>
     @if ($previousEvents->isNotEmpty())
-        <div class="col-md-12 col-lg-6">
+        <div class="">
             <div class="text-lg mb-2">
                 {{ __('dashboard.widgets.calendar.previous_events') }}
                 <a href="//docs.kanka.io/en/latest/guides/dashboard.html#known-limitations" target="_blank" data-toggle="tooltip" title="{{ __('helpers.calendar-widget.info') }}">
@@ -65,26 +65,7 @@ $weather = $calendar->calendarWeather()
             </div>
             <ul class="style-none p-0">
                 @foreach ($previousEvents->take(5) as $reminder)
-                    @if (!$reminder->entity) @continue @endif
-                    <li data-ago="{{ $reminder->daysAgo() }}" class="flex gap-2">
-                        <div class="grow">
-                            {{ link_to($reminder->entity->url(), $reminder->entity->name) }}
-
-                            @if (app()->environment('local'))
-                                <span class="text-xs">({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)</span>
-                            @endif
-                        </div>
-
-                        <div class="flex-0 flex gap-1">
-                            @if (!empty($reminder->comment))
-                                <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
-                            @endif
-                            @if ($reminder->is_recurring)
-                                <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
-                            @endif
-                            <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
-                        </div>
-                    </li>
+                    @includeWhen($reminder->entity, 'dashboard.widgets.calendar._reminder')
                 @endforeach
             </ul>
         </div>
@@ -101,29 +82,8 @@ $weather = $calendar->calendarWeather()
             </div>
             <ul class="style-none p-0">
                 @foreach ($upcomingEvents->take(5) as $reminder)
-                    @if (!$reminder->entity) @continue @endif
-                    <li data-in="{{ $reminder->inDays() }}" class="flex gap-2">
-                        <div class="grow">
-                        {{ link_to($reminder->entity->url(), $reminder->entity->name, ['title' => $reminder->comment, 'data-toggle' => 'tooltip']) }}
-                        @if (app()->environment('local'))
-                            <span class="text-xs">({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)</span>
-                        @endif
-                        </div>
+                    @includeWhen($reminder->entity, 'dashboard.widgets.calendar._reminder', ['future' => true])
 
-                        <div class="flex-0 flex gap-1">
-                            @if (!empty($reminder->comment))
-                                <i class="fa-solid fa-comment" title="{{ $reminder->comment }}" data-toggle="tooltip" data-placement="bottom"></i>
-                            @endif
-                            @if ($reminder->is_recurring)
-                                <i class="fa-solid fa-arrows-rotate" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
-                            @endif
-                            @if ($reminder->isToday($calendar))
-                                <i class="fa-solid fa-calendar-check" data-toggle="tooltip" title="{{ __('calendars.actions.today') }}"></i>
-                            @else
-                                <i class="fa-solid fa-calendar" title="{{ $reminder->readableDate() }}" data-toggle="tooltip" data-placement="bottom"></i>
-                            @endif
-                        </div>
-                    </li>
                 @endforeach
             </ul>
         </div>

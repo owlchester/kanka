@@ -6,11 +6,11 @@
     'route' => ['maps.groups.reorder-save', 'map' => $model],
     'method' => 'POST',
 ]) !!}
-    <x-box css="box-entity-story-reorder">
+    <div class="box-entity-story-reorder">
 
         <div class="element-live-reorder sortable-elements">
             @foreach($rows as $group)
-                <div class="element" data-id="{{ $group->id }}">
+                <div class="element bg-base-200" data-id="{{ $group->id }}">
                     {!! Form::hidden('group[]', $group->id) !!}
                     <div class="dragger pr-3">
                         <span class="fa-solid fa-ellipsis-v"></span>
@@ -22,8 +22,8 @@
             @endforeach
         </div>
 
-        <button class="btn btn-primary btn-block">
+        <button class="btn2 btn-primary btn-block">
             {{ __('maps/groups.reorder.save') }}
         </button>
-    </x-box>
+    </div>
 {!! Form::close() !!}

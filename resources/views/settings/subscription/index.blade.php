@@ -201,7 +201,7 @@
 
     <div class="modal fade" id="change-currency" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-base-100">
                 @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended())
                     @include('partials.forms._modal', [
                         'title' => __('settings.subscription.currency.title'),
@@ -224,7 +224,7 @@
 
     <div class="modal fade" id="subscribe-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content"></div>
+            <div class="modal-content bg-base-100"></div>
         </div>
     </div>
 @endsection

@@ -18,14 +18,16 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
     <h3 class="grow m-0">
         {{ __('families.show.tabs.members') }}
     </h3>
-    <div>
+    <div class="flex gap-2 overflow-auto">
         @if (!$allMembers)
             <a href="{{ route('families.show', [$model]) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span> ({{ $model->allMembers()->count() }})
             </a>
         @else
             <a href="{{ route('families.show', [$model, 'family_id' => $model->id]) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span> ({{ $model->members()->count() }})
             </a>
         @endif
         @can('update', $model)

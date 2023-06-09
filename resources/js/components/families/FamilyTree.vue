@@ -1,18 +1,18 @@
 <template>
-    <div class="flex w-full gap-1 mb-3 justify-end items-center" v-if="!isLoading">
-        <button class="btn btn-sm btn-warning" v-if="!isEditing" v-on:click="startEditing()">
+    <div class="flex gap-2 mb-5 justify-end items-center align-right" v-if="!isLoading">
+        <button class="btn2 btn-sm btn-primary" v-if="!isEditing" v-on:click="startEditing()">
             <i class="fa-solid fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
-        <a class="cursor-pointer mr-5" v-if="isEditing" v-on:click="resetTree()">
+        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="resetTree()">
             <i class="fa-solid fa-redo" aria-hidden="true"></i>
             {{ this.texts.actions.reset }}
         </a>
-        <a class="cursor-pointer mr-5" v-if="isEditing" v-on:click="clearTree()">
+        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="clearTree()">
             <i class="fa-solid fa-eraser" aria-hidden="true"></i>
             {{ this.texts.actions.clear }}
         </a>
-        <button class="btn btn-sm btn-primary" :disabled="!isDirty" v-if="isEditing" v-on:click="saveTree()">
+        <button class="btn2 btn-sm btn-primary" :disabled="!isDirty" v-if="isEditing" v-on:click="saveTree()">
             <i class="fa-solid fa-save" aria-hidden="true"></i>
             {{ this.texts.actions.save }}
         </button>
@@ -35,7 +35,7 @@
                 class="!cursor-move"
                 >
                 <div class="relative" v-bind:style="{width: dragWidth() + 'px', height: dragHeight() + 'px'}">
-                    <a class="btn btn-default rounded-2xl px-5 py-2 cursor-pointer" v-on:click="createNode()" v-if="showCreateNode()">
+                    <a class="btn2 btn-primary" v-on:click="createNode()" v-if="showCreateNode()">
                         <i class="fa-solid fa-plus" aria-hidden="true"></i>
                         {{ this.texts.actions.first }}
                     </a>
@@ -63,38 +63,72 @@
     <div class="modal fade" id="family-tree-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel" ref="modal" v-if="!isLoading">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" v-on:click="closeModal()">
+                <div class="modal-header flex gap-2">
+                    <h4 class="modal-title grow" v-if="isAddingChild">{{ this.texts.modals.entity.child.title }}</h4>
+                    <h4 class="modal-title grow" v-else-if="isAddingCharacter">{{ this.texts.modals.entity.add.title }}</h4>
+                    <h4 class="modal-title grow" v-else-if="isEditingEntity">{{ this.texts.modals.entity.edit.title }}</h4>
+                    <h4 class="modal-title grow" v-else-if="isAddingRelation">{{ this.texts.modals.relation.add.title }}</h4>
+                    <h4 class="modal-title grow" v-else-if="isEditingRelation">{{ this.texts.modals.relation.edit.title }}</h4>
+                    <button type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" v-on:click="closeModal()">
                         <i class="fa-solid fa-times" aria-hidden="true"></i>
                     </button>
-                    <h4 class="modal-title" v-if="isAddingChild">{{ this.texts.modals.entity.child.title }}</h4>
-                    <h4 class="modal-title" v-else-if="isAddingCharacter">{{ this.texts.modals.entity.add.title }}</h4>
-                    <h4 class="modal-title" v-else-if="isEditingEntity">{{ this.texts.modals.entity.edit.title }}</h4>
-                    <h4 class="modal-title" v-else-if="isAddingRelation">{{ this.texts.modals.relation.add.title }}</h4>
-                    <h4 class="modal-title" v-else-if="isEditingRelation">{{ this.texts.modals.relation.edit.title }}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter">
-                        <label>{{ this.texts.modals.fields.character }}</label>
-                        <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
+                    <div class="flex flex-col gap-5 mb-5">
+                        <div class="field-character" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter">
+                            <label>{{ this.texts.modals.fields.character }}</label>
+                            <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
+                        </div>
+                        <div class="field-member" v-show="isAddingCharacter && this.showMembers()">
+                            <label>{{ this.texts.modals.fields.member }}</label>
+                            <ul>
+                                <li v-for="(suggestion) in this.suggestions"
+                                >
+                                    <a class="cursor-pointer" v-on:click="this.saveSuggestion(suggestion.id)"> {{ suggestion.name }} </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="form-group" v-show="isAddingCharacter && this.showMembers()">
-                        <label>{{ this.texts.modals.fields.member }}</label>
-                        <ul>
-                            <li v-for="(suggestion) in this.suggestions"
-                            >
-                                <a class="cursor-pointer" v-on:click="this.saveSuggestion(suggestion.id)"> {{ suggestion.name }} </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="form-group" v-show="isEditingRelation || isAddingRelation">
-                        <label>{{ this.texts.modals.fields.relation }}</label>
-                        <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" @keyup.enter="saveModal()"/>
+                    <div class="flex flex-col gap-5" v-show="isEditingRelation || isAddingRelation || isAddingChild || isEditingEntity">
+                        <div v-if="isEditingRelation || isAddingRelation" class="field-unkown checkbox">
+                            <label>
+                                <input type="checkbox" v-model="isUnknown" id="family_tree_unknown" name="isUnknown" value="isUnknown" />
+                                {{ this.texts.modals.fields.unknown }}
+                            </label>
+                            <p class="help-block">Check this option if the relation is unknown. A character can be added later.</p>
+                        </div>
+
+                        <div class="field-relation">
+                            <label>{{ this.texts.modals.fields.relation }}</label>
+                            <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" @keyup.enter="saveModal()"/>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-5">
+                            <div class="field-colour">
+                                <label>{{ this.texts.modals.fields.colour }}</label>
+                                <div>
+                                    <input v-model="colour" name="colour" type="text" maxlength="7" class="form-control spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
+                                </div>
+                            </div>
+
+                            <div class="field-visibility">
+                                <label>{{ this.texts.modals.fields.visibility.title }}</label>
+                                <select v-model="visibility" name="visibility" id="family_tree_visibility" class="form-control">
+                                    <option value="1">{{ this.texts.modals.fields.visibility.all }}</option>
+                                    <option value="2">{{ this.texts.modals.fields.visibility.admins }}</option>
+                                    <option value="5">{{ this.texts.modals.fields.visibility.members }}</option>
+                                </select>
+                            </div>
+
+                            <div class="field-css">
+                                <label>{{ this.texts.modals.fields.css }}</label>
+                                <input v-model="cssClass" type="text" maxlength="70" class="form-control" id="family_tree_class" @keyup.enter="saveModal()"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-
-                    <button class="btn btn-primary" @click="saveModal()">
+                    <button class="btn2 btn-primary" @click="saveModal()">
                         Save
                     </button>
                 </div>
@@ -139,10 +173,15 @@ export default {
 
             relation: undefined,
             entity: undefined,
+            cssClass: undefined,
+            colour: undefined,
+            visibility: undefined,
+            isUnknown: undefined,
 
             maxX: 0,
             maxY: 0,
 
+            colourField: 'input[name="colour"]',
             modal: '#family-tree-modal',
             entityField: 'select[name="character_id_ft"]',
             newUuid: 1,
@@ -223,7 +262,11 @@ export default {
             this.isAddingCharacter = false;
             this.currentUuid = undefined;
             this.relation = undefined;
+            this.cssClass = undefined;
+            this.colour = undefined;
             this.entity = undefined;
+            this.visibility = undefined;
+            this.isUnknown = undefined;
 
             $(this.modal).modal('hide');
             $(this.entityField).val(null).trigger('change');
@@ -239,6 +282,10 @@ export default {
             this.isAddingCharacter = false;
             this.currentUuid = undefined;
             this.relation = undefined;
+            this.cssClass = undefined;
+            this.colour = undefined;
+            this.visibility = undefined;
+            this.isUnknown = undefined;
             this.entity = undefined;
 
             $(this.modal).modal('hide');
@@ -279,6 +326,10 @@ export default {
             const getRelationNodes = (result, object) => {
                 if (object.uuid === this.currentUuid) {
                     object.role = this.relation;
+                    object.cssClass = this.cssClass;
+                    object.colour = $(this.colourField).val();
+                    object.visibility = this.visibility;
+                    object.isUnknown = this.isUnknown;
                     result.push(object);
                     return result;
                 }
@@ -302,21 +353,52 @@ export default {
         },
         addRelation() {
             let entity_id = $(this.entityField).val();
-            if (!entity_id) {
-                // Nothing, ignore
-                this.closeModal();
-                return;
-            }
-
-            let url = this.entity_api.replace('/0', '/' + entity_id);
-            axios.get(url).then((res) => {
-                let entity = res.data;
-                //console.log('add relation then', entity);
-                this.insertRelation(entity);
+            this.colour = $(this.colourField).val();
+            if (this.isUnknown) {
+                this.insertUnknownRelation();
                 this.isDirty = true;
                 window.showToast(this.texts.toasts.relations.add);
                 this.closeModal();
-            });
+            }
+
+            if (entity_id && !this.isUnknown) {
+                let url = this.entity_api.replace('/0', '/' + entity_id);
+                axios.get(url).then((res) => {
+                    let entity = res.data;
+                    //console.log('add relation then', entity);
+                    this.insertRelation(entity);
+                    this.isDirty = true;
+                    window.showToast(this.texts.toasts.relations.add);
+                    this.closeModal();
+                });
+            }
+        },
+        insertUnknownRelation() {
+            let entity_id = '';
+
+            const getRelationNodes = (result, object) => {
+                if (object.uuid === this.currentUuid) {
+                    if (Array.isArray(object.relations)) {
+                        object.relations.push({entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, isUnknown: this.isUnknown, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
+                    } else {
+                        object.relations = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, isUnknown: this.isUnknown, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)}];
+                    }
+                    this.newUuid++;
+                    result.push(object);
+                    return result;
+                }
+                if (Array.isArray(object.children)) {
+                    const children = object.children.reduce(getRelationNodes, []);
+                    object.children = children;
+                }
+                else if (Array.isArray(object.relations)) {
+                    const relations = object.relations.reduce(getRelationNodes, []);
+                    object.relations = relations;
+                }
+                result.push(object);
+                return result;
+            };
+            this.nodes = this.nodes.reduce(getRelationNodes, []);
         },
         insertRelation(entity) {
             let entity_id = entity.id;
@@ -329,9 +411,9 @@ export default {
             const getRelationNodes = (result, object) => {
                 if (object.uuid === this.currentUuid) {
                     if (Array.isArray(object.relations)) {
-                        object.relations.push({entity_id: entity_id, role: this.relation, uuid: JSON.stringify(this.newUuid)});
+                        object.relations.push({entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, isUnknown: this.isUnknown, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
                     } else {
-                        object.relations = [{entity_id: entity_id, role: this.relation, uuid: JSON.stringify(this.newUuid)}];
+                        object.relations = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, isUnknown: this.isUnknown, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)}];
                     }
                     this.newUuid++;
                     result.push(object);
@@ -351,6 +433,7 @@ export default {
             this.nodes = this.nodes.reduce(getRelationNodes, []);
         },
         addChild() {
+            console.log('child');
             let entity_id = $(this.entityField).val();
             if (!entity_id) {
                 // Nothing, ignore
@@ -378,9 +461,9 @@ export default {
                     //console.log(object);
 
                     if (Array.isArray(object.children)) {
-                        object.children.push({entity_id: entity_id, uuid: JSON.stringify(this.newUuid)});
+                        object.children.push({entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
                     } else {
-                        object.children = [{entity_id: entity_id, uuid: JSON.stringify(this.newUuid)}];
+                        object.children = [{entity_id: entity_id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)}];
                     }
                     this.newUuid++;
                     result.push(object);
@@ -405,6 +488,11 @@ export default {
                 entity_id = character;
             }
             if (!entity_id) {
+                if (!(this.currentUuid === 0)) {
+                    this.editEntityNode();
+                    window.showToast(this.texts.toasts.entity.edit);
+                    this.isDirty = true;
+                }
                 // Nothing, ignore
                 this.closeModal();
                 return;
@@ -427,9 +515,36 @@ export default {
         },
         addEntity(entity) {
             this.entities[entity.id] = Object.freeze(entity);
-            this.nodes.push({entity_id: entity.id, uuid: JSON.stringify(this.newUuid), relations: []});
+            this.nodes.push({entity_id: entity.id, role: this.relation, cssClass: this.cssClass, colour: this.colour, visibility: this.visibility, uuid: JSON.stringify(this.newUuid)});
             this.newUuid++;
         },
+        editEntityNode() {
+            const getRelationNodes = (result, object) => {
+                if (object.uuid === this.currentUuid) {
+                    object.role = this.relation;
+                    object.cssClass = this.cssClass;
+                    object.colour = $(this.colourField).val();
+                    object.visibility = this.visibility;
+                    object.entity_id = object.entity_id;
+                    result.push(object);
+                    return result;
+                }
+
+                if (Array.isArray(object.children)) {
+                    const children = object.children.reduce(getRelationNodes, []);
+                    object.children = children;
+                }
+                else if (Array.isArray(object.relations)) {
+                    const relations = object.relations.reduce(getRelationNodes, []);
+                    object.relations = relations;
+                }
+
+                result.push(object);
+                return result;
+            };
+            return this.nodes = this.nodes.reduce(getRelationNodes, []);
+        },
+
         replaceEntity(entity) {
             let entity_id = entity.id;
             if (!this.entities[entity.id]) {
@@ -442,6 +557,10 @@ export default {
                         object.uuid = JSON.stringify(this.newUuid);
                         this.newUuid++;
                     }
+                    object.role = this.relation;
+                    object.cssClass = this.cssClass;
+                    object.colour = $(this.colourField).val();
+                    object.visibility = this.visibility;
                     object.entity_id = entity_id;
                     result.push(object);
                     return result;
@@ -492,10 +611,19 @@ export default {
             this.isLoading = false;
         });
 
-        this.emitter.on('editEntity', (uuid) => {
+        this.emitter.on('editEntity', (data) => {
             this.resetVariables();
-            this.currentUuid = uuid;
+            this.entity = data.relation.entity_id;
+            this.currentUuid = data.uuid;
+            this.relation = data.relation.role;
+            this.cssClass = data.relation.cssClass;
+            this.colour = data.relation.colour;
+            this.visibility = data.relation.visibility;
             this.isEditingEntity = true;
+            if (this.entity) {
+                let newOption = new Option(this.entities[this.entity].name, this.entity, true, true);
+                $(this.entityField).append(newOption).trigger('change');
+            }
             this.showDialog();
         });
 
@@ -511,9 +639,14 @@ export default {
             this.showDialog();
         });
         this.emitter.on('editRelation', (data) => {
+            console.log(data.relation);
             this.resetVariables();
             this.currentUuid = data.uuid;
-            this.relation = data.relation;
+            this.relation = data.relation.role;
+            this.cssClass = data.relation.cssClass;
+            this.colour = data.relation.colour;
+            this.visibility = data.relation.visibility;
+            this.isUnknown = data.relation.isUnknown,
             this.isEditingRelation = true;
             this.showDialog();
         });

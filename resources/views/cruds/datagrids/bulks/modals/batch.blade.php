@@ -2,7 +2,7 @@
 {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
 <div class="modal fade" id="bulk-edit" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-content bg-base-100">
             <div class="modal-header">
                 <x-dialog.close />
                 <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.edit.title') }}</h4>

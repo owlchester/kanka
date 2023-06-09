@@ -26,7 +26,8 @@
 .live-edit.empty-value {
     width: 24px;
     display: inline-block;
-    border-bottom: 1px dotted var(--input-border-color);
+    --tw-border-opacity: .2;
+    border-bottom: 1px dotted hsl(var(--bc)/var(--tw-border-opacity));
 }
 
 /** Mobile support **/

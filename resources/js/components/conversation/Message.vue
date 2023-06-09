@@ -76,7 +76,7 @@
                 return this.openedDropdown = true;
             },
             boxClasses: function (message) {
-                let classes = 'box-comment px-1 py-3';
+                let classes = 'box-comment bg-base-200 px-1 py-3';
                 classes += ' message-author-' + message.from_id;
                 classes += ' message-real-author-' + message.created_by;
 

@@ -2,54 +2,50 @@
 
 <template>
     <div class="ability" v-bind:data-tags="ability.class">
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <span class="box-title">
-                    <span v-bind:class="dropdownClass()" v-click-outside="onClickOutside" v-if="permission">
-                        <a v-on:click="openDropdown()" class="dropdown-toggle mr-2" role="button">
-                            <i class="fa-solid fa-lock" v-if="ability.visibility_id === 2" v-bind:title="translate('admin')"></i>
-                            <i class="fa-solid fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="translate('admin-self')"></i>
-                            <i class="fa-solid fa-users" v-if="ability.visibility_id === 5" v-bind:title="translate('members')"></i>
-                            <i class="fa-solid fa-user-secret" v-if="ability.visibility_id === 4" v-bind:title="translate('self')"></i>
-                            <i class="fa-solid fa-eye" v-if="ability.visibility_id === 1" v-bind:title="translate('all')"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a role="button" v-on:click="setVisibility(1)">{{ translate('all') }}</a>
-                            </li>
-                            <li v-if="meta.is_admin">
-                                <a role="button" v-on:click="setVisibility(2)">{{ translate('admin') }}</a>
-                            </li>
-                            <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility(4)">{{ translate('self') }}</a>
-                            </li>
-                            <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility(5)">{{ translate('members') }}</a>
-                            </li>
-                            <li v-if="this.isSelf">
-                                <a role="button" v-on:click="setVisibility(3)">{{ translate('admin-self') }}</a>
-                            </li>
-                        </ul>
-                    </span>
-                    <a role="button" v-on:click="showAbility(ability)" data-toggle="tooltip-ajax"
+        <div class="ability-box p-3 rounded bg-box shadow-xs">
+            <div class="ability-header border-b flex items-center gap-2 pb-2 mb-2">
+                <div v-bind:class="dropdownClass()" v-click-outside="onClickOutside" v-if="permission">
+                    <a v-on:click="openDropdown()" class="dropdown-toggle" role="button">
+                        <i class="fa-solid fa-lock" v-if="ability.visibility_id === 2" v-bind:title="translate('admin')"></i>
+                        <i class="fa-solid fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="translate('admin-self')"></i>
+                        <i class="fa-solid fa-users" v-if="ability.visibility_id === 5" v-bind:title="translate('members')"></i>
+                        <i class="fa-solid fa-user-secret" v-if="ability.visibility_id === 4" v-bind:title="translate('self')"></i>
+                        <i class="fa-solid fa-eye" v-if="ability.visibility_id === 1" v-bind:title="translate('all')"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a role="button" v-on:click="setVisibility(1)">{{ translate('all') }}</a>
+                        </li>
+                        <li v-if="meta.is_admin">
+                            <a role="button" v-on:click="setVisibility(2)">{{ translate('admin') }}</a>
+                        </li>
+                        <li v-if="this.isSelf">
+                            <a role="button" v-on:click="setVisibility(4)">{{ translate('self') }}</a>
+                        </li>
+                        <li v-if="this.isSelf">
+                            <a role="button" v-on:click="setVisibility(5)">{{ translate('members') }}</a>
+                        </li>
+                        <li v-if="this.isSelf">
+                            <a role="button" v-on:click="setVisibility(3)">{{ translate('admin-self') }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="grow">
+                    <a role="button" v-on:click="showAbility(ability)" data-toggle="tooltip-ajax" class="grow text-lg"
                        v-bind:data-id="ability.entity.id" v-bind:data-url="ability.entity.tooltip">
                       {{ ability.name }}
                     </a>
-                </span>
-              <div class="box-tools">
+                </div>
                 <a role="button"
-                   v-on:click="updateAbility(ability)"
-                   v-if="this.canDelete"
-                   class="btn btn-box-tool"
-                  v-bind:title="translate('update')">
-                  <i class="fa-solid fa-pencil"></i>
+                    v-on:click="updateAbility(ability)"
+                    v-if="this.canDelete"
+                    class="btn2 btn-ghost btn-xs"
+                    v-bind:title="translate('update')">
+                    <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">{{ translate('update') }}</span>
                 </a>
-                <a class="btn btn-box-tool" role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete" v-bind:title="translate('remove')">
-                  <i class="fa-solid fa-trash"></i>
-                </a>
-              </div>
             </div>
-            <div class="box-body">
+            <div class="ability-body entity-content">
                 <div class="flex">
                     <div class="flex-1">
                         <span class="help-block">{{ ability.type }}</span>

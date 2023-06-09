@@ -1,9 +1,9 @@
 <p class="help-block">{{ __('calendars.hints.seasons') }}</p>
-<div class="grid gap-2 grid-cols-3 md:gap-4 mb-2">
+<x-grid type="3/3">
     <div class="">{{ __('calendars.parameters.seasons.name') }}</div>
     <div class="">{{ __('calendars.parameters.seasons.month') }}</div>
     <div class="">{{ __('calendars.parameters.seasons.day') }}</div>
-</div>
+</x-grid>
 <?php
 $seasons = [];
 $seasonNames = old('season_name');
@@ -26,16 +26,18 @@ if (!empty($seasonNames)) {
 } elseif (isset($source)) {
     $seasons = $source->seasons();
 }?>
-<div class="calendar-seasons sortable-elements" data-handle=".input-group-addon">
+<div class="calendar-seasons sortable-elements" data-handle=".sortable-handler">
     @foreach ($seasons as $season)
         <div class="parent-delete-row">
-            <div class="grid gap-2 grid-cols-3 md:gap-4 mb-2">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                    </span>
-                    <label class="sr-only">{{ __('calendars.parameters.seasons.name') }}</label>
-                    {!! Form::text('season_name[]', $season['name'], ['class' => 'form-control']) !!}
+            <x-grid type="3/3">
+                <div class="flex gap-2 items-center">
+                    <div class="sortable-handler p-2 cursor-move">
+                        <x-icon class="fa-solid fa-grip-vertical" />
+                    </div>
+                    <div class="grow">
+                        <label class="sr-only">{{ __('calendars.parameters.seasons.name') }}</label>
+                        {!! Form::text('season_name[]', $season['name'], ['class' => 'form-control']) !!}
+                    </div>
                 </div>
 
                 <div>
@@ -43,16 +45,16 @@ if (!empty($seasonNames)) {
                     {!! Form::number('season_month[]', $season['month'], ['class' => 'form-control']) !!}
                 </div>
 
-                <div class="input-group">
-                    <label class="sr-only">{{ __('calendars.parameters.seasons.day') }}</label>
-                    {!! Form::number('season_day[]', $season['day'], ['class' => 'form-control']) !!}
-                    <span class="input-group-btn">
-                        <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
-                            <x-icon class="trash"></x-icon>
-                        </span>
-                    </span>
+                <div class="flex gap-2 items-center">
+                    <div class="grow">
+                        <label class="sr-only">{{ __('calendars.parameters.seasons.day') }}</label>
+                        {!! Form::number('season_day[]', $season['day'], ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
+                        <x-icon class="trash"></x-icon>
+                    </div>
                 </div>
-            </div>
+            </x-grid>
         </div>
     @endforeach
 </div>
@@ -64,30 +66,32 @@ if (!empty($seasonNames)) {
     @parent
 <div id="template_season" style="display: none">
     <div class="parent-delete-row">
-        <div class="grid gap-2 grid-cols-3 md:gap-4 mb-2">
-            <div class="input-group">
-                <span class="input-group-addon cursor-pointer">
-                    <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                </span>
-                <label class="sr-only">{{ __('calendars.parameters.seasons.name') }}</label>
-                {!! Form::text('season_name[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.name')]) !!}
-            </div>
-            <div>
-                <label class="sr-only">{{ __('calendars.parameters.seasons.month') }}</label>
-                {!! Form::number('season_month[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.month')]) !!}
-            </div>
-            <div>
-                <div class="input-group">
-                    <label class="sr-only">{{ __('calendars.parameters.seasons.day') }}</label>
-                    {!! Form::number('season_day[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.seasons.day')]) !!}
-                    <span class="input-group-btn">
-                        <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
-                            <x-icon class="trash"></x-icon>
-                        </span>
-                    </span>
+        <x-grid type="3/3">
+            <div class="flex gap-2 items-center">
+                <div class="sortable-handler p-2 cursor-move">
+                    <x-icon class="fa-solid fa-grip-vertical" />
+                </div>
+                <div class="grow">
+                    <label class="sr-only">{{ __('calendars.parameters.seasons.name') }}</label>
+                    {!! Form::text('season_name[]', null, ['class' => 'form-control']) !!}
                 </div>
             </div>
-        </div>
+
+            <div>
+                <label class="sr-only">{{ __('calendars.parameters.seasons.month') }}</label>
+                {!! Form::number('season_month[]', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <div class="flex gap-2 items-center">
+                <div class="grow">
+                    <label class="sr-only">{{ __('calendars.parameters.seasons.day') }}</label>
+                    {!! Form::number('season_day[]', null, ['class' => 'form-control']) !!}
+                </div>
+                <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
+                    <x-icon class="trash"></x-icon>
+                </div>
+            </div>
+        </x-grid>
     </div>
 </div>
 @endsection

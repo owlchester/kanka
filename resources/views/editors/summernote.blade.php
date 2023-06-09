@@ -58,8 +58,8 @@
 @if(isset($campaignService) && $campaignService instanceof \App\Services\CampaignService && $campaignService->campaign() !== null)
     <div class="modal fade" id="campaign-imageupload-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl">
-                <div class="modal-body  text-center">
+            <div class="modal-content bg-base-100 rounded-2xl">
+                <div class="modal-body text-center">
                     <div id="campaign-imageupload-boosted">
                         <x-dialog.close />
 

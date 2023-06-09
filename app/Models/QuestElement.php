@@ -7,6 +7,7 @@ use App\User;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityIDTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -30,6 +31,7 @@ class QuestElement extends Model
      */
     use SimpleSortableTrait;
     use VisibilityIDTrait;
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

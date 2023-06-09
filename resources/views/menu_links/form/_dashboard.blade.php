@@ -11,12 +11,12 @@ foreach (\App\Facades\Dashboard::campaign($campaignService->campaign())->getDash
 
 @if($campaignService->campaign()->boosted())
     <x-grid>
-        <div class="form-group">
+        <div class="field-dashboard">
             <label>{{ __('menu_links.fields.dashboard') }}</label>
             {!! Form::select('dashboard_id', $dashboards, FormCopy::field('dashboard_id')->string(), ['class' => 'form-control']) !!}
         </div>
 
-        <div class="form-group checkbox">
+        <div class="field-default checkbox">
             {!! Form::hidden('options[default_dashboard]', 0) !!}
             {{ __('menu_links.fields.default_dashboard') }}
             <label>

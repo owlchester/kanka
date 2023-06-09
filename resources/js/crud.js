@@ -36,7 +36,6 @@ $(document).ready(function () {
     registerFormMaintenance();
     registerEntityCalendarModal();
     registerModalLoad();
-    registerDatagridSorter();
     registerPermissionToggler();
     registerStoryActions();
     registerStoryLoadMore();
@@ -459,32 +458,6 @@ function registerFormMaintenance() {
     });
 }
 
-/**
- * Datagrid Sorter field
- */
-function registerDatagridSorter() {
-    $('#datagrid-simple-sorter').change(function () {
-        let options = '';
-        if (this.value) {
-            options = this.name + '=' + this.value;
-        }
-        let url = $(this).data('url');
-        // Remove target
-        let target = null;
-        if (url.includes('#')) {
-            target = '#' + url.split('#')[1];
-            url = url.split('#')[0];
-        }
-        if ($(this).data('url').includes('?')) {
-            url += '&' + options;
-        } else {
-            url += '?' + options;
-        }
-
-        url += target;
-        window.location = url;
-    });
-}
 
 function registerPermissionToggler() {
     $('.permission-toggle').change(function () {
@@ -624,7 +597,7 @@ function registerDynamicRows() {
         let template = $(this).data('template');
         //console.log('target', target, $('.' + target));
         //console.log('template', template, $('#' + template));
-        $('.' + target).append('<div class="form-group">' +
+        $('.' + target).append('<div class="">' +
             $('#' + template).html() +
             '</div>');
 

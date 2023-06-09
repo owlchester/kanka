@@ -14,21 +14,21 @@ $visibilities = [
         {{ __('campaigns.helpers.permissions_tab') }}
     </p>
     <x-grid type="3/3">
-        <div class="form-group">
+        <div class="field-privacy">
             <label>
                 {{ __('campaigns.fields.entity_privacy') }}
             </label>
             {!! Form::select('entity_visibility', [0 => __('campaigns.privacy.visible'), 1 => __('campaigns.privacy.private')], null, ['class' => 'form-control']) !!}
             <p class="help-block">{{ __('campaigns.helpers.entity_privacy') }}</p>
         </div>
-        <div class="form-group">
+        <div class="field-related-visibility">
             <label>
                 {{ __('campaigns.fields.related_visibility') }}
             </label>
                 {!! Form::select('settings[default_visibility]', $visibilities, null, ['class' => 'form-control']) !!}
             <p class="help-block">{{ __('campaigns.helpers.related_visibility') }}</p>
         </div>
-        <div class="form-group">
+        <div class="field-character-personality">
             <label>
                 {{ __('campaigns.fields.character_personality_visibility') }}
             </label>

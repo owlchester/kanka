@@ -12,7 +12,7 @@
 
 @section('entity-header-actions')
     @can('update', $entity->child)
-        <div class="header-buttons inline-block pull-right ml-auto">
+        <div class="header-buttons inline-block flex gap-2 items-center justify-end flex-wrap">
             <a href="{{ route('entities.entity_abilities.reorder', $entity) }}" class="btn2 btn-sm">
                 <x-icon class="fa-solid fa-sort"></x-icon>
                 <span class="hidden-xs hidden-sm">{{ __('entities/abilities.show.reorder') }}</span>

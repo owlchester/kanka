@@ -17,7 +17,7 @@
     </x-alert>
 
 
-    <div class="form-group">
+    <div class="field-public">
         <label>
             {{ __('campaigns.fields.public') }}
         </label>

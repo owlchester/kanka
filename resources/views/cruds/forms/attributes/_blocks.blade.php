@@ -11,11 +11,11 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
 <div class="attribute-templates hidden">
     <div class="" id="attribute_template">
         <div class="{{ $flex }} attribute_row">
+            <div class="sortable-handler p-2 cursor-move">
+                <x-icon class="fa-solid fa-grip-vertical" />
+            </div>
             <div class="{{ $nameBlock }}">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                    </span>
+                <div class="">
                     <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
                     {!! Form::text('attr_name[$TMP_ID$]', null, [
                         'placeholder' => __('entities/attributes.placeholders.attribute'),
@@ -42,7 +42,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 @endif
 
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
-                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
@@ -52,11 +52,11 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
     <!-- Text Section -->
     <div class="" id="text_template">
         <div class="{{ $flex }} attribute_row">
+            <div class="sortable-handler p-2 cursor-move">
+                <x-icon class="fa-solid fa-grip-vertical" />
+            </div>
             <div class="{{ $nameBlock }}">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                    </span>
+                <div class="">
                     <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
                     {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.block'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
@@ -78,7 +78,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 ></i>
     @endif
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
-                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
@@ -89,14 +89,12 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
     <!-- Number Section -->
     <div class="" id="number_template">
         <div class="{{ $flex }} attribute_row">
+            <div class="sortable-handler p-2 cursor-move">
+                <x-icon class="fa-solid fa-grip-vertical" />
+            </div>
             <div class="{{ $nameBlock }}">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                    </span>
-                    <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
-                    {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
+                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.number'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
             <div class="{{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
@@ -115,7 +113,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 ></i>
     @endif
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
-                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
@@ -125,14 +123,12 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
     </div>
     <div class="" id="checkbox_template">
         <div class="{{ $flex }} attribute_row">
+            <div class="sortable-handler p-2 cursor-move">
+                <x-icon class="fa-solid fa-grip-vertical" />
+            </div>
             <div class="{{ $nameBlock }}">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                    </span>
-                    <label class="sr-only">{{ __('entities/attributes.labels.checkbox') }}</label>
-                    {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.checkbox'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                <label class="sr-only">{{ __('entities/attributes.labels.checkbox') }}</label>
+                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.checkbox'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
             <div class="{{ $textBlock }}">
                 {!! Form::checkbox('attr_value[$TMP_ID$]', 1, false) !!}
@@ -151,7 +147,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
     @endif
 
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
-                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
@@ -162,14 +158,12 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
     <!-- Section -->
     <div class="" id="section_template">
         <div class="{{ $flex }} attribute_row">
+            <div class="sortable-handler p-2 cursor-move">
+                <x-icon class="fa-solid fa-grip-vertical" />
+            </div>
             <div class="{{ $textBlock }}">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                    </span>
-                    <label class="sr-only">{{ __('entities/attributes.labels.section') }}</label>
-                    {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.section'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-                </div>
+                <label class="sr-only">{{ __('entities/attributes.labels.section') }}</label>
+                {!! Form::text('attr_name[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.section'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
             <div class="{{ $textBlock }}">
                 {!! Form::hidden('attr_value[$TMP_ID$]', null) !!}
@@ -187,7 +181,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 ></i>
     @endif
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
-                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>
@@ -197,18 +191,16 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
     <!-- Random -->
     <div class="" id="random_template">
         <div class="{{ $flex }} attribute_row">
+            <div class="sortable-handler p-2 cursor-move">
+                <x-icon class="fa-solid fa-grip-vertical" />
+            </div>
             <div class="{{ $nameBlock }}">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <span class="fa-solid fa-arrows-alt-v" aria-hidden="true"></span>
-                    </span>
-                    <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
-                    {!! Form::text('attr_name[$TMP_ID$]', null, [
-                        'placeholder' => __('entities/attributes.placeholders.random.name'),
-                        'class' => 'form-control',
-                        'maxlength' => 191
-                    ]) !!}
-                </div>
+                <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
+                {!! Form::text('attr_name[$TMP_ID$]', null, [
+                    'placeholder' => __('entities/attributes.placeholders.random.name'),
+                    'class' => 'form-control',
+                    'maxlength' => 191
+                ]) !!}
             </div>
             <div class="{{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.value') }}</label>
@@ -227,7 +219,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                     ></i>
                 @endif
                 <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
-                    <i class="fa-solid fa-trash fa-2x" aria-hidden="true"></i>
+                    <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
             </div>

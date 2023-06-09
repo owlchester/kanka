@@ -71,8 +71,7 @@
                 position: absolute;
                 left: 0;
                 bottom: 0;
-                background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient, white));
-
+                background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient, var(--box-background, #fff)));
             }
         }
 

@@ -25,7 +25,7 @@ if (isset($model)) {
 <x-grid>
     @include('cruds.fields.name', ['trans' => 'menu_links'])
 
-    <div class="form-group icon">
+    <div class="field-icon">
         <label class="control-label">{{ __('entities/links.fields.icon') }}</label>
 
         @if($campaignService->campaign()->boosted())
@@ -59,7 +59,7 @@ if (isset($model)) {
         @endif
     </div>
 
-    <div class="form-group position">
+    <div class="field-position">
         <label class="control-label">
             {{ __('menu_links.fields.position') }}
             <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{!! __('entities/links.helpers.parent') !!}" data-toggle="tooltip"></i>
@@ -82,7 +82,7 @@ if (isset($model)) {
             @endsubscriber
         @endif
     </div>
-    <div class="form-group class">
+    <div class="field-class">
         <label for="config[class]">
             {{ __('dashboard.widgets.fields.class') }}
             <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
@@ -105,7 +105,7 @@ if (isset($model)) {
         @endif
     </div>
 
-    <div class="active">
+    <div class="field-active">
         {!! Form::hidden('is_active', 0) !!}
             <label>
                 {!! __('menu_links.fields.active') !!}
@@ -129,7 +129,7 @@ if (isset($model)) {
 <h4>{{ __('menu_links.fields.selector') }}</h4>
 <p class="help-block">{{ __('menu_links.helpers.selector') }}</p>
 
-<div class="form-group">
+<div class="field-target">
     <label>{{ __('menu_links.fields.target') }}</label>
     <select name="type" class="form-control" id="quick-link-selector">
         <option value="">Choose an option</option>

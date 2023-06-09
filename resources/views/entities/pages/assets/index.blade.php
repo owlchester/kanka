@@ -12,7 +12,7 @@
 
 @section('entity-header-actions')
     @can('update', $entity->child)
-        <div class="header-buttons inline-block pull-right ml-auto">
+        <div class="header-buttons inline-block flex gap-2 items-center justify-end flex-wrap">
             <a href="#" class="btn2 btn-accent btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_ALIAS]) }}">
                 <x-icon class="plus"></x-icon> {{ __('entities/assets.actions.alias') }}
             </a>

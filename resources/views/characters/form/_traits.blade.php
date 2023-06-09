@@ -8,8 +8,8 @@ $role = \App\Facades\CampaignCache::adminRole();
             @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : FormCopy::characterAppearance()) as $trait)
                 <x-grid css="parent-delete-row">
                     <div class="flex gap-1 items-center">
-                        <div class="btn2 btn-sm sortable-handler">
-                            <span class="fa-solid fa-arrows-alt-v"></span>
+                        <div class="sortable-handler px-2 cursor-move">
+                            <x-icon class="fa-solid fa-grip-vertical" />
                         </div>
                         <div class="grow">
                             <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
@@ -63,8 +63,8 @@ $role = \App\Facades\CampaignCache::adminRole();
                 @foreach ((isset($model) ? $model->characterTraits()->personality()->orderBy('default_order', 'ASC')->get() : FormCopy::characterPersonality()) as $trait)
                     <div class="grid grid-cols-1 gap-2 mb-4 parent-delete-row">
                         <div class="flex gap-1 items-center">
-                            <div class="btn2 btn-sm sortable-handler">
-                                <span class="fa-solid fa-arrows-alt-v"></span>
+                            <div class="sortable-handler px-2 cursor-move">
+                                <x-icon class="fa-solid fa-grip-vertical" />
                             </div>
                             <div class="grow">
                                 <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
@@ -141,8 +141,8 @@ $role = \App\Facades\CampaignCache::adminRole();
         <div id="template_appearance">
             <x-grid css="parent-delete-row">
                 <div class="flex gap-1 items-center">
-                    <div class="btn2 btn-sm sortable-handler">
-                        <span class="fa-solid fa-arrows-alt-v"></span>
+                    <div class="sortable-handler px-2 cursor-move">
+                        <x-icon class="fa-solid fa-grip-vertical" />
                     </div>
                     <div class="grow">
                         <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
@@ -174,8 +174,8 @@ $role = \App\Facades\CampaignCache::adminRole();
         <div id="template_personality">
             <div class="grid grid-cols-1 gap-2 mb-4 parent-delete-row">
                 <div class="flex gap-1 items-center">
-                    <div class="btn2 btn-sm sortable-handler">
-                        <span class="fa-solid fa-arrows-alt-v"></span>
+                    <div class="sortable-handler px-2 cursor-move">
+                        <x-icon class="fa-solid fa-grip-vertical" />
                     </div>
                     <div class="grow">
                         <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>

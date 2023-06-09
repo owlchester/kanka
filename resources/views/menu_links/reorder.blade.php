@@ -26,7 +26,7 @@
     <div class="box-entity-story-reorder max-w-4xl">
         <div class="element-live-reorder sortable-elements">
             @foreach($links as $link)
-                <div class="element" data-id="{{ $link->id }}">
+                <div class="element bg-base-200" data-id="{{ $link->id }}">
                     {!! Form::hidden('menu_link[]', $link->id) !!}
                     <div class="dragger pr-3">
                         <span class="fa-solid fa-ellipsis-v"></span>

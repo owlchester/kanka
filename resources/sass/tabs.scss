@@ -1,4 +1,4 @@
-.nav-tabs{
+.nav-tabs {
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,9 +10,10 @@
 }
 .nav-tabs>li>a{
     line-height:1.25rem;
-    border-radius:0.5rem 0.5rem 0 0;
+    border-radius:var(--tab-radius, .25rem) var(--tab-radius, .25rem) 0 0;
     padding: 0.7rem 1rem;
     display: block;
+    border-width: var(--tab-border, 0);
     --tw-bg-opacity: 0.5;
     --tab-bg: hsl(var(--b1) / var(--tw-bg-opacity, 1));
     background-color: var(--tab-bg);
@@ -34,15 +35,4 @@
 }
 .tab-content>.active {
     display:block
-}
-
-.tabs-boxed {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
-    padding: .25rem;
-    border-radius: var(--rounded-btn,.5rem);
-
-    > li > a {
-        border-radius: var(--rounded-btn,.5rem);
-    }
 }

@@ -16,8 +16,6 @@
         @include('entities.components.posts')
 
         @include('dice_rolls._results')
-
-        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

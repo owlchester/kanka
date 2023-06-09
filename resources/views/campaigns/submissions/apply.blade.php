@@ -18,7 +18,7 @@
 
         <p class="help-block">{{ __('campaigns/submissions.apply.help') }}</p>
 
-        <div class="form-group">
+        <div class="field-group">
             <label>{{ __('campaigns/submissions.fields.application') }}</label>
             {!! Form::textarea('application', !empty($submission) ? $submission->text : null, [
                 'class' => 'form-control', 'rows' => 5,
@@ -28,7 +28,7 @@
     </div>
 
     <div class="modal-footer">
-        <button class="btn2 btn-success">{{ empty($submission) ? __('campaigns/submissions.apply.apply') : __('crud.update') }}</button>
+        <button class="btn2 btn-primary">{{ empty($submission) ? __('campaigns/submissions.apply.apply') : __('crud.update') }}</button>
         @includeWhen(!request()->ajax(), 'partials.or_cancel')
         {!! Form::close() !!}
 
@@ -40,5 +40,5 @@
     @if($submission)
         {!! Form::open(['method' => 'DELETE','route' => ['campaign.apply.remove'], 'style '=> 'display:inline', 'id' => 'delete-submission']) !!}
         {!! Form::close() !!}
-        @endif
+    @endif
 @endsection

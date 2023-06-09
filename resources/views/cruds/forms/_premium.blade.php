@@ -1,4 +1,4 @@
-<div class="field-tooltips">
+<div class="field-tooltips mb-5">
     <label>
         {{ __('fields.tooltip.name') }}
     </label>
@@ -26,7 +26,7 @@ $tooltipTags = implode(', ', $tooltipTags);
 </div>
 
 
-<div class="field-header">
+<div class="field-header mb-5">
     <label>
         {{ __('fields.header-image.title') }}
     </label>

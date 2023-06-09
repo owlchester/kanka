@@ -27,11 +27,15 @@ $existing = $model->allChildren()->count();
 
         @if (request()->has('tag_id'))
             <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                ({{ $model->allChildren()->count() }})
             </a>
         @else
             <a href="{{ route('tags.show', [$model, 'tag_id' => $model->id, '#tag-children']) }}" class="btn2 btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->count() }})
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                ({{ $model->entities()->count() }})
             </a>
         @endif
 
@@ -52,7 +56,7 @@ $existing = $model->allChildren()->count();
                 {{ __('tags.helpers.no_children') }}
             </p>
             @can('update', $model)
-                <a href="{{ $addEntityUrl }}" class="btn btn-primary"
+                <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
                    data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
                     <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
                 </a>

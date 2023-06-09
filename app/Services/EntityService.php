@@ -255,6 +255,7 @@ class EntityService
             $entity->relationships()->delete();
             $entity->targetRelationships()->delete();
             $entity->events()->delete();
+            $entity->imageMentions()->delete();
 
             // Get the child of the entity (the actual Location, Character etc) and remove the permissions, since they
             // won't make sense on the new campaign either.
@@ -450,6 +451,11 @@ class EntityService
             if (!Storage::exists($newPath)) {
                 Storage::copy($old->image, $newPath);
             }
+        }
+
+        //Remove tags if converting to tag, since tags can't have tags.
+        if ($new->entityTypeId() === config('entities.ids.tag')) {
+            $entity->tags()->detach();
         }
 
         $this->fixTree($new);

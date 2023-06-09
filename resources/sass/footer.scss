@@ -1,11 +1,6 @@
 /**
  * Everything related to the default footer
  */
-.main-footer {
-    background-color: var(--footer-background, #ecf0f5);
-    color: var(--footer-text, #636b6f);
-}
-
 footer {
     img.logo-white {
         display: var(--footer-logo-white, none);

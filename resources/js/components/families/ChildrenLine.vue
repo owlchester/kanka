@@ -7,6 +7,7 @@
 
 export default {
     props: {
+        node: undefined,
         index: 0,
         originX: 0,
         originY: 0,
@@ -24,10 +25,13 @@ export default {
 
     methods: {
         vertical() {
-            return 'width: 1px; height: ' + this.height + 'px;' +
+            let css = 'width: 1px; height: ' + this.height + 'px;' +
                 'left: ' + (this.targetX + this.left) + 'px; ' +
-                'top: ' + (this.originY - 15) + 'px;'
-            ;
+                'top: ' + (this.originY - 15) + 'px;';
+                if (this.node.colour) {
+                    css += ' background-color:' + this.node.colour + ';';
+                }
+            return css;
         },
         horizontal() {
             // Calc width based on target to source
@@ -50,7 +54,8 @@ export default {
             return 'height: 1px;' +
                 'width: ' + (width) + 'px;' +
                 'left: ' + left + 'px; ' +
-                'top: ' + (this.originY - 15) + 'px; '
+                'top: ' + (this.originY - 15) + 'px; ' +
+                'background-color:' + this.node.colour + ';'
             ;
         },
     },

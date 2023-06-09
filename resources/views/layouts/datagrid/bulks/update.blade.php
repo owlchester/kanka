@@ -6,15 +6,16 @@
             {{ __('crud.bulk.edit.title') }}
         </h3>
 
-        @include('layouts.datagrid.bulks.' . $view)
+        <x-grid type="1/1">
+            @include('layouts.datagrid.bulks.' . $view)
+        </x-grid>
 
-    </div>
-    <div class="modal-footer">
-        <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-        <button class="btn btn-success" type="submit">
-            <x-icon class="save"></x-icon>
-            {{ __('crud.actions.apply') }}
-        </button>
+        <x-dialog.footer>
+            <button class="btn2 btn-primary" type="submit">
+                <x-icon class="save"></x-icon>
+                {{ __('crud.actions.apply') }}
+            </button>
+        </x-dialog.footer>
     </div>
 
 @foreach ($models as $model)
