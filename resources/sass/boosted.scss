@@ -94,11 +94,6 @@
     }
 
     .entity-breadcrumb {
-        li {
-            a {
-                color: var(--breadcrumb-text);
-            }
-        }
 
         li + li:before {
             content: ">\A0";

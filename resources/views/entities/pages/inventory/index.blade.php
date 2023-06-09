@@ -14,7 +14,7 @@
 
 @section('entity-header-actions')
     @can('inventory', $entity->child)
-        <div class="header-buttons inline-block pull-right ml-auto">
+        <div class="header-buttons inline-block flex gap-2 items-center justify-end">
             <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn2 btn-accent btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"

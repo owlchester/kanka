@@ -141,7 +141,7 @@
     @if ($focus)
         <div class="modal fade" id="focus-modal" tabindex="-1" role="dialog" >
             <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-2xl">
+                <div class="modal-content bg-base-100 rounded-2xl">
                     @include('settings.boosters.create', [
                         'campaign' => $focus,
                         'superboost' => $superboost,

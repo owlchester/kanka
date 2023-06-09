@@ -1,14 +1,14 @@
 <template>
-    <div class="box-footer" v-if="commentable">
-        <div class="row">
-            <div class="col-md-3" v-if="targetCharacter">
+    <div class="box-footer mt-5" v-if="commentable">
+        <div class="flex items-center gap-2">
+            <div class="max-w-xs" v-if="targetCharacter">
                 <select class="form-control" v-model="character_id">
                     <option v-for="(name, key) in targets" :value="key" :key="key">
                         {{ name }}
                     </option>
                 </select>
             </div>
-            <div :class="inputForm">
+            <div class="grow">
                 <input
                         type="text"
                         id="message"
@@ -120,9 +120,6 @@
         computed: {
             targetCharacter: function() {
                 return this.target === 'character';
-            },
-            inputForm: function() {
-                return this.targetCharacter ? 'col-md-9' : 'col-md-12';
             },
             inputFormDisabled: function() {
                 return this.sending;

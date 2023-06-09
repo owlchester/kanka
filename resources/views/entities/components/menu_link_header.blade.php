@@ -15,7 +15,7 @@
                         @foreach ($breadcrumb as $bcdata)
                             <li class="inline-block">
                                 @if (is_array($bcdata))
-                                    <a href="{{ $bcdata['url'] }}" class="no-underline" title="{{ $bcdata['label'] }}">
+                                    <a href="{{ $bcdata['url'] }}" class="no-underline text-neutral-content" title="{{ $bcdata['label'] }}">
                                         {{ $bcdata['label'] }}
                                     </a>
                                 @elseif(!empty($bcdata))
@@ -33,9 +33,9 @@
                     <div class="entity-name-icons">
                         @if (auth()->check() && auth()->user()->isAdmin())
                             @if ($model->is_private)
-                                <i role="button" tabindex="0" class="fa-solid fa-lock entity-icons cursor-pointer text-xl btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.private') }}"></i>
+                                <i role="button" tabindex="0" class="fa-solid fa-lock entity-icons cursor-pointer text-xl" title="{{ __('entities/permissions.quick.title') }}" }}"></i>
                             @else
-                                <i role="button" tabindex="0" class="fa-solid fa-lock-open entity-icons cursor-pointer text-xl btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.public') }}"></i>
+                                <i role="button" tabindex="0" class="fa-solid fa-lock-open entity-icons cursor-pointer text-xl " title="{{ __('entities/permissions.quick.title') }}"></i>
                             @endif
                         @endif
 
@@ -63,7 +63,7 @@
 
             @includeIf('entities.headers._' . $model->getEntityType())
 
-            <div class="header-buttons inline-block pull-right ml-auto">
+            <div class="header-buttons inline-block flex gap-2 items-center justify-end">
 
                 @can('update', $model)
                     <a href="{{ route('menu_links.edit', $model) }}" class="btn2 btn-primary">

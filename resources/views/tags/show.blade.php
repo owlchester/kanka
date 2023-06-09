@@ -13,8 +13,6 @@
     <div class="entity-story-block">
         @include('entities.components.posts', ['withEntry' => true])
         @include('tags.panels.children')
-
-        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

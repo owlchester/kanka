@@ -106,7 +106,7 @@
 
     <div class="modal fade" id="small-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content rounded-2xl" id="small-modal-content"></div>
+            <div class="modal-content rounded-2xl bg-base-100" id="small-modal-content"></div>
         </div>
     </div>
 @endsection

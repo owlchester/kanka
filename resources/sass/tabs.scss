@@ -1,4 +1,4 @@
-.nav-tabs{
+.nav-tabs {
     margin: 0;
     padding: 0;
     display: flex;
@@ -35,14 +35,3 @@
 .tab-content>.active {
     display:block
 }
-
-/*.tabs-boxed {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
-    padding: .25rem;
-    border-radius: var(--rounded-btn,.5rem);
-
-    > li > a {
-        border-radius: var(--rounded-btn,.5rem);
-    }
-}*/

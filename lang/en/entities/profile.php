@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'history'   => 'History',
     'actions'   => [
         'edit_profile'  => 'Edit profile',
     ],

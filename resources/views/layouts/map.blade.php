@@ -170,7 +170,7 @@ $specificTheme = null;
 <!-- Default modal used throughout the app -->
 <div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content rounded-2xl"></div>
+        <div class="modal-content bg-base-100 rounded-2xl"></div>
         <div class="modal-spinner" style="display: none">
             <div class="modal-body text-center">
                 <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>

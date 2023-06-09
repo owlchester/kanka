@@ -4,24 +4,13 @@
 
 .timeline > li > i:is(.ra, .fab, .far, .fas, .fa-solid, .fa-brands, .fa-thin, .fa-duotone) {
     line-height: 30px;
-    color: var(--timeline-icon, #666);
-    background: var(--timeline-element-border, #ddd);
+    --tw-text-opacity: 1;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
+    --tw-background-opacity: 1;
+    background: hsl(var(--b1)/var(--tw-background-opacity));
     left: 18px;
 }
 
-.timeline > li > .timeline-item {
-    background: var(--timeline-item-background, #fff);
-    color: var(--body-text);
-    .timeline-header {
-        border-bottom-color: var(--timeline-item-header-border, #f4f4f4);
-    }
-}
-.timeline > li > .timeline-item > .timeline-header {
-    color: var(--header-text);
-}
-.timeline:before {
-    background: var(--timeline-element-border, #ddd);
-}
 
 /*
  * Component: Timeline
@@ -34,7 +23,7 @@
         top: 0;
         bottom: 0;
         width: 4px;
-        background: var(--timeline-element-border, #ddd);
+        background: hsl(var(--b1)/1);
         left: 31px;
         margin: 0;
         border-radius: 2px;

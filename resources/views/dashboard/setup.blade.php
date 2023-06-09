@@ -166,8 +166,8 @@ $newWidgetListClass = 'btn2 btn-full';
 @section('modals')
     <div class="modal fade" id="new-widget" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl">
-                <div class="modal-body text-center" id="modal-content-buttons">
+            <div class="modal-content bg-base-100 rounded-2xl">
+                <div class="modal-body bg-base-100 text-center" id="modal-content-buttons">
                     <x-dialog.close />
                     <h4 class="modal-title mb-5" id="myModalLabel">
                         {{ __('dashboard.setup.actions.add') }}
@@ -208,7 +208,7 @@ $newWidgetListClass = 'btn2 btn-full';
                     </div>
                 </div>
 
-                <div class="modal-body" id="modal-content-spinner" style="display: none">
+                <div class="modal-body bg-base-100" id="modal-content-spinner" style="display: none">
                     <div class="text-center">
                         <i class="fa-solid fa-spin fa-spinner fa-2x" aria-hidden="true"></i>
                     </div>
@@ -222,7 +222,7 @@ $newWidgetListClass = 'btn2 btn-full';
     <!-- Modal edit widget -->
     <div class="modal fade" id="edit-widget" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl">
+            <div class="modal-content bg-base-100 rounded-2xl">
             </div>
         </div>
     </div>

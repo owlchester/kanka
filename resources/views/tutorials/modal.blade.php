@@ -1,7 +1,7 @@
 
 <div class="modal fade tutorial-modal" id="tutorial-modal" role="dialog" aria-labelledby="tutorialModal" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content bg-base-100">
             <div class="modal-header">
                 <h4 class="modal-title" id="tutorialModalTitle">{{ __('tutorials/' . $title) }}</h4>
             </div>

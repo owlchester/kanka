@@ -1,0 +1,1 @@
+.mention,.attribute{background-color:var(--mention-background, hsl(var(--p)/1));padding:3px 5px;border-radius:.25rem;color:var(--mention-text, hsl(var(--pc)/1));text-decoration:none}.attribute{font-style:italic}img{display:block}

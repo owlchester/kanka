@@ -28,8 +28,6 @@
             @include('entities.pages.attributes.render', ['entity' => $model->entity])
         </x-box>
         @include('entities.components.posts')
-
-        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

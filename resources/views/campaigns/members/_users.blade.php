@@ -151,7 +151,7 @@
 
     <div class="modal fade" id="removal-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl">
+            <div class="modal-content bg-base-100 rounded-2xl">
                 <div class="modal-body text-center">
 
                     <x-dialog.close />

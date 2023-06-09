@@ -31,7 +31,8 @@
 .keyboard-shortcut {
     padding: 0.1rem 0.4rem;
     font-size: 0.75rem;
-    border: 1px solid var(--input-border-color);
+    --tw-border-opacity: .2;
+    border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
     border-radius: 5px;
     margin-right: 5px;
     pointer-events: unset;

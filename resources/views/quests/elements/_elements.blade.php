@@ -42,11 +42,11 @@
                     {!! $element->entry() !!}
                 </div>
                 <div class="p-4 flex gap-2 items-center mt-auto">
-                    <div class="">
+                    <div class="grow">
                         {!! $element->visibilityIcon() !!}
                     </div>
                     @can('update', $model)
-                        <div class="grow text-right">
+                        <div class="flex gap-2 items-center">
                             <x-button.delete-confirm target="delete-form-{{ $element->id }}" size="sm" />
 
                             <a href="{{ route('quests.quest_elements.edit', [$model, $element]) }}" class="btn2 btn-sm btn-primary">

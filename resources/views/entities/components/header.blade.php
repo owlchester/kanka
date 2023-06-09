@@ -112,7 +112,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     @foreach ($breadcrumb as $bcdata)
                         <li class="inline-block">
                         @if (is_array($bcdata))
-                        <a href="{{ $bcdata['url'] }}" class="no-underline" title="{{ $bcdata['label'] }}">
+                        <a href="{{ $bcdata['url'] }}" class="no-underline text-neutral-content" title="{{ $bcdata['label'] }}">
                             {!! $bcdata['label'] !!}
                         </a>
                         @elseif(!empty($bcdata))

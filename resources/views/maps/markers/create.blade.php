@@ -18,7 +18,7 @@
 
 @section('content')
     {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
-    <div class="modal-content">
+    <div class="modal-content bg-base-100">
         @if ($ajax)
             <div class="modal-header">
                 <x-dialog.close />

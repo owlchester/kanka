@@ -90,10 +90,8 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                     @includeWhen(!isset($breadcrumbs) || $breadcrumbs !== false, 'layouts._breadcrumbs')
                     @if (!view()->hasSection('entity-header'))
                         @if (isset($mainTitle))
-                            @yield('header-extra')
                         @else
                             <h1 class="truncate m-0 text-lg">
-                                @yield('header-extra')
                                 {!! $title ?? "Page Title" !!}
                                 <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
                             </h1>
@@ -142,7 +140,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <!-- Default modal used throughout the app -->
     <div class="modal fade z-[9900]" id="entity-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl"></div>
+            <div class="modal-content bg-base-100 rounded-2xl"></div>
             <div class="modal-spinner" style="display: none">
                 <div class="modal-body text-center">
                     <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
@@ -154,7 +152,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <!-- Extra-large modal on desktop for more data -->
     <div class="modal fade z-[9900]" id="large-modal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content rounded-2xl" id="large-modal-content"></div>
+            <div class="modal-content bg-base-100 rounded-2xl" id="large-modal-content"></div>
         </div>
     </div>
 

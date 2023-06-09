@@ -1,5 +1,5 @@
 @section('entity-header-actions-override')
-    <div class="header-buttons inline-block pull-right ml-auto">
+    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
         @include('entities.headers.toggle')
         @can('update', $model)
             <a href="{{ route('timelines.reorder', $model) }}" class="btn2 btn-sm ">
@@ -36,8 +36,6 @@
     <div class="entity-story-block">
         @include('entities.components.posts', ['withEntry' => true])
         @include('timelines._timeline', ['timeline' => $model])
-
-        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

@@ -113,7 +113,7 @@ export default {
             if ((tab === 'profile' && this.focus_profile) || (tab === 'links' && this.focus_pins) || (tab === 'access' && this.focus_access)) {
                 cls += ' font-black border-slate-600';
             } else {
-                cls += ' cursor-pointer border-lookup';
+                cls += ' cursor-pointer border-base-100';
             }
 
             return cls;

@@ -77,7 +77,7 @@
     <!-- Modal -->
     <div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-base-100">
                 <div class="modal-header">
                     <x-dialog.close />
                     <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
