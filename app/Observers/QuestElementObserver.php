@@ -50,7 +50,9 @@ class QuestElementObserver
      */
     public function creating(QuestElement $questElement)
     {
-        $questElement->created_by = auth()->user()->id;
+        if (auth()->user()) {
+            $questElement->created_by = auth()->user()->id;
+        }
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Traits\VisibilityIDTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class EntityAbility
@@ -32,6 +33,8 @@ class EntityAbility extends Model
 {
     use Blameable;
     use VisibilityIDTrait;
+    use HasFactory;
+
     /**
      * Fillable fields
      */

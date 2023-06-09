@@ -11,6 +11,7 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Collection;
 
 /**
@@ -36,6 +37,7 @@ class Quest extends MiscModel
     use Nested;
     use SoftDeletes;
     use SortableTrait;
+    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [
