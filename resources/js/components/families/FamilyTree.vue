@@ -90,12 +90,12 @@
                         </div>
                     </div>
                     <div class="flex flex-col gap-5" v-show="isEditingRelation || isAddingRelation || isAddingChild || isEditingEntity">
-                        <div v-if="isEditingRelation || isAddingRelation" class="field-unkown checkbox">
+                        <div v-if="isAddingRelation || isEditingEntity" class="field-unkown checkbox">
                             <label>
                                 <input type="checkbox" v-model="isUnknown" id="family_tree_unknown" name="isUnknown" value="isUnknown" />
                                 {{ this.texts.modals.fields.unknown }}
                             </label>
-                            <p class="help-block">Check this option if the relation is unknown. A character can be added later.</p>
+                            <p class="help-block">{{ this.texts.modals.entity.edit.helper }}</p>
                         </div>
 
                         <div class="field-relation">
@@ -103,7 +103,7 @@
                             <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" @keyup.enter="saveModal()"/>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-5">
+                        <div class="grid grid-cols-2 gap-5" v-show="isAddingRelation || isAddingChild || isEditingEntity">
                             <div class="field-colour">
                                 <label>{{ this.texts.modals.fields.colour }}</label>
                                 <div>
@@ -522,6 +522,7 @@ export default {
             const getRelationNodes = (result, object) => {
                 if (object.uuid === this.currentUuid) {
                     object.role = this.relation;
+                    object.isUnknown = this.isUnknown;
                     object.cssClass = this.cssClass;
                     object.colour = $(this.colourField).val();
                     object.visibility = this.visibility;
@@ -561,6 +562,7 @@ export default {
                     object.cssClass = this.cssClass;
                     object.colour = $(this.colourField).val();
                     object.visibility = this.visibility;
+                    object.isUnknown = this.isUnknown;
                     object.entity_id = entity_id;
                     result.push(object);
                     return result;
@@ -619,6 +621,7 @@ export default {
             this.cssClass = data.relation.cssClass;
             this.colour = data.relation.colour;
             this.visibility = data.relation.visibility;
+            this.isUnknown = data.relation.isUnknown,
             this.isEditingEntity = true;
             if (this.entity) {
                 let newOption = new Option(this.entities[this.entity].name, this.entity, true, true);

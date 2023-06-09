@@ -31,6 +31,7 @@ return [
             'edit'  => [
                 'success'   => 'Entity updated.',
                 'title'     => 'Update an entity',
+                'helper'    => 'Check this option if the relation is unknown. A character can be added later.',
             ],
             'remove'=> [
                 'confirm'   => 'Are you sure you want to remove this entity from the family tree?',
