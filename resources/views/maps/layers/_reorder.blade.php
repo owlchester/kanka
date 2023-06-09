@@ -8,7 +8,7 @@
     <div class="box-entity-story-reorder">
         <div class="element-live-reorder sortable-elements">
             @foreach($rows as $layer)
-                <div class="element" data-id="{{ $layer->id }}">
+                <div class="element bg-base-200" data-id="{{ $layer->id }}">
                     {!! Form::hidden('layer[]', $layer->id) !!}
                     <div class="dragger pr-3">
                         <span class="fa-solid fa-ellipsis-v"></span>

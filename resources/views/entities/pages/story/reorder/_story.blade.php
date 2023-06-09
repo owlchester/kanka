@@ -1,4 +1,4 @@
-<div class="element" data-id="story">
+<div class="element bg-base-200" data-id="story">
     {!! Form::hidden('posts[story]', 'story') !!}
     <div class="dragger pr-3">
         <span class="fa-solid fa-ellipsis-v" aria-hidden="true"></span>

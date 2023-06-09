@@ -29,7 +29,7 @@ if ($firstPost && $firstPost->position >= 0) {
                 @include('entities.pages.story.reorder._story')
             @endif
 
-            <div class="element" data-id="{{ $note->id }}">
+            <div class="element bg-base-200" data-id="{{ $note->id }}">
                 {!! Form::hidden('posts[' . $note->id . '][id]', $note->id) !!}
                 <div class="dragger pr-3">
                     <span class="fa-solid fa-ellipsis-v"></span>
