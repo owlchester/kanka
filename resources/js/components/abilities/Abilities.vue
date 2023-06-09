@@ -4,21 +4,21 @@
             <i class="fa-solid fa-spin fa-spinner"></i>
         </div>
 
-        <div class="row">
+        <div class="flex gap-5 flex-wrap my-5">
             <parent v-for="parent in parents"
                 :key="parent.id"
                 :ability="parent">
             </parent>
         </div>
 
-        <div v-if="show_parent">
-            <div v-if="parent.entry" class="box box-solid">
-                <div class="box-header">
-                    <span class="box-title">
+        <div v-if="show_parent" class="flex flex-col gap-5">
+            <div v-if="parent.entry" class="parent-box p-3 rounded bg-box shadow-xs">
+                <div class="parent-header mb-2">
+                    <a class="text-lg" v-bind:href="parent.url">
                         {{ parent.name }}
-                    </span>
+                    </a>
                 </div>
-                <div class="box-body" v-html="parent.entry">
+                <div class="entity-content parent-body" v-html="parent.entry">
 
                 </div>
             </div>
@@ -31,13 +31,15 @@
             </ability>
         </div>
 
-        <ability v-if="!show_parent" v-for="ability in abilities"
-                 :key="ability.id"
-                 :ability="ability"
-                 :permission="permission"
-                 :meta="meta"
-                 :trans="json_trans">
-        </ability>
+        <div class="flex flex-col gap-5">
+            <ability v-if="!show_parent" v-for="ability in abilities"
+                     :key="ability.id"
+                     :ability="ability"
+                     :permission="permission"
+                     :meta="meta"
+                     :trans="json_trans">
+            </ability>
+        </div>
 
         <AbilityForm :trans="json_trans">
         </AbilityForm>

@@ -9,13 +9,11 @@
     <form method="POST" action="{{ route('presets.store', $presetType) }}">
         <x-box>
             @include('presets.forms._' . $presetType->code)
-            <x-box.footer>
-                @include('partials.footer_cancel')
-
-                <button type="submit" class="btn btn-success pull-right">
+            <x-dialog.footer>
+                <button type="submit" class="btn2 btn-primary">
                     {!! __('crud.save') !!}
                 </button>
-            </x-box.footer>
+            </x-dialog.footer>
         </x-box>
 
         <input type="hidden" name="from" value="{{ $from }}" />

@@ -19,12 +19,6 @@
     --campaign-selector-background: #ddd;
     --input-required-text: red;
     --table-filters-background: #eee;
-    --quick-creator-button-text: #fff;
-    --quick-creator-button-background: #144c93;
-    --quick-creator-button-hover-background: rgb(45, 127, 237);
-    --quick-creator-button-hover-text: #fff;
-
-    --bg-default-link: unset;
 
     --gallery-folder-text: unset;
     --gallery-background: #f5f8fa;
@@ -209,6 +203,7 @@ button.dropdown-item {
 }
 .bg-boost {
     background-color: hsl(var(--kanka-boost-accent)/1);
+    --b1: var(--kanka-boost-accent);
     --b2: var(--kanka-boost-accent);
     --bc: 0 0% 100%;
 }
@@ -237,7 +232,7 @@ button.dropdown-item {
 }
 
 .bg-box {
-    background-color: var(--box-background);
+    background-color: var(--box-background, #fff);
 }
 
 /** Cancel some of tw's resets **/

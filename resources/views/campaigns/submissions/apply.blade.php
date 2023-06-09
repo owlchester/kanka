@@ -28,7 +28,7 @@
     </div>
 
     <div class="modal-footer">
-        <button class="btn2 btn-success">{{ empty($submission) ? __('campaigns/submissions.apply.apply') : __('crud.update') }}</button>
+        <button class="btn2 btn-primary">{{ empty($submission) ? __('campaigns/submissions.apply.apply') : __('crud.update') }}</button>
         @includeWhen(!request()->ajax(), 'partials.or_cancel')
         {!! Form::close() !!}
 

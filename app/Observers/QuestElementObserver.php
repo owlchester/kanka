@@ -19,7 +19,7 @@ class QuestElementObserver
      * Service used to build the map of the entity
      * @var EntityMappingService
      */
-    protected $entityMappingService;
+    protected EntityMappingService $entityMappingService;
 
 
     /**
@@ -42,16 +42,6 @@ class QuestElementObserver
 
         if (empty($questElement->visibility_id)) {
             $questElement->visibility_id = Visibility::VISIBILITY_ALL;
-        }
-    }
-
-    /**
-     * @param QuestElement $questElement
-     */
-    public function creating(QuestElement $questElement)
-    {
-        if (auth()->user()) {
-            $questElement->created_by = auth()->user()->id;
         }
     }
 

@@ -12,8 +12,6 @@
     <div class="entity-story-block">
         @include('entities.components.posts', ['withEntry' => true])
         @include('races.panels.characters')
-
-        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

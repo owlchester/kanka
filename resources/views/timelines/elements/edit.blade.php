@@ -23,20 +23,18 @@
     <x-box>
         @include('timelines.elements._form')
 
-        <x-box.footer>
-            <a href="{{ route('timelines.show', $timeline) }}" class="btn btn-default">
-                {{ __('crud.cancel') }}
-            </a>
-
-            <div class="form-element pull-right">
+        <x-dialog.footer>
+            <div class="form-element">
                 <div class="submit-group">
-                    <button class="btn btn-success">{{ trans('crud.save') }}</button>
+                    <button class="btn2 btn-primary">{{ trans('crud.save') }}</button>
                 </div>
                 <div class="submit-animation" style="display: none;">
-                    <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                    <button class="btn2 btn-primary" disabled>
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                    </button>
                 </div>
             </div>
-        </x-box.footer>
+        </x-dialog.footer>
     </x-box>
     {!! Form::close() !!}
 

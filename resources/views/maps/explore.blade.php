@@ -199,12 +199,12 @@
 @section('modals')
 <div class="modal fade" id="map-marker-modal" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-content bg-base-100">
             <div class="modal-header">
                 <span id="map-marker-modal-title"></span>
                 <x-dialog.close />
             </div>
-            <div class="modal-body" id="map-marker-modal-content">
+            <div class="modal-body bg-base-100" id="map-marker-modal-content">
                 <i class="fa-solid fa-spinner fa-spin spinner"></i>
                 <div class="content p-0"></div>
             </div>
@@ -215,7 +215,7 @@
 @can('update', $map)
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-base-100">
                 {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
                     <div class="modal-header">
                         <x-dialog.close />

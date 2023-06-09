@@ -19,16 +19,13 @@
     <x-box>
         @include('partials.errors')
         @include('quests.elements._form')
-        <x-box.footer>
-            @include('partials.footer_cancel')
-
-            <div class="pull-right">
-                <input id="submit-mode" type="hidden" value="true"/>
-                <div class="btn-group">
-                    <button class="btn btn-success" id="form-submit-main">
-                        {{ __('crud.save') }}
-                    </button>
-                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <x-dialog.footer>
+            <div class="join">
+                <button class="btn2 btn-primary join-item" id="form-submit-main">
+                    {{ __('crud.save') }}
+                </button>
+                <div class="dropdown dropdown-menu-right">
+                    <button type="button" class="btn2 btn-primary dropdown-toggle join-item" data-toggle="dropdown" aria-expanded="false">
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -50,7 +47,7 @@
                     </ul>
                 </div>
             </div>
-        </x-box.footer>
+        </x-dialog.footer>
     </x-box>
     {!! Form::close() !!}
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())

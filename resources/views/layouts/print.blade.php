@@ -73,10 +73,8 @@ $specificTheme = null;
 
                 @if (!View::hasSection('entity-header'))
                     @if (isset($mainTitle))
-                        @yield('header-extra')
                     @else
                         <h1>
-                            @yield('header-extra')
                             {!! $title ?? "Page Title" !!}
                             <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
                         </h1>

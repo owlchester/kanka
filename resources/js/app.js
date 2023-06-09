@@ -208,13 +208,6 @@ function initDynamicDelete() {
         //console.log('target', target);
         $(target).submit();
     });
-
-    $('.btn-popover').popover({
-        html: true,
-        placement: 'bottom',
-        sanitize: false,
-        trigger: 'focus'
-    });
 }
 
 

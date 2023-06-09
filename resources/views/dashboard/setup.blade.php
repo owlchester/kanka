@@ -48,7 +48,7 @@ $newWidgetListClass = 'btn2 btn-full';
                 </a>
 
                 @if(!$dashboards->isEmpty() || !empty($dashboard))
-                    <div class="btn-group">
+                    <div class="dropdown">
                         <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <span class="hidden-xs">{{ __('dashboard.dashboards.actions.switch') }}</span>
                             <span class="visible-xs-inline">
@@ -75,11 +75,11 @@ $newWidgetListClass = 'btn2 btn-full';
                 @endif
 
                 @if($dashboard)
-                    <div class="btn-group pull-right">
+                    <div class="dropdown pull-right">
                         <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             {{ __('crud.actions.actions') }} <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
                             <li>
                                 <a href="{{ route('dashboard', ['dashboard' => $dashboard->id]) }}" target="_blank"
                                    >
@@ -89,10 +89,10 @@ $newWidgetListClass = 'btn2 btn-full';
                             </li>
                             <li>
                                 <a
-                                        href="#"
-                                   data-toggle="ajax-modal"
-                                   data-target="#edit-widget"
-                                   data-url="{{ route('campaign_dashboards.edit', $dashboard) }}"
+                                    href="#"
+                                    data-toggle="ajax-modal"
+                                    data-target="#edit-widget"
+                                    data-url="{{ route('campaign_dashboards.edit', $dashboard) }}"
                                 >
                                     <i class="fa-solid fa-pencil-alt" aria-hidden="true"></i>
                                     {{ __('dashboard.dashboards.actions.edit') }}
@@ -166,8 +166,8 @@ $newWidgetListClass = 'btn2 btn-full';
 @section('modals')
     <div class="modal fade" id="new-widget" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl">
-                <div class="modal-body text-center" id="modal-content-buttons">
+            <div class="modal-content bg-base-100 rounded-2xl">
+                <div class="modal-body bg-base-100 text-center" id="modal-content-buttons">
                     <x-dialog.close />
                     <h4 class="modal-title mb-5" id="myModalLabel">
                         {{ __('dashboard.setup.actions.add') }}
@@ -208,7 +208,7 @@ $newWidgetListClass = 'btn2 btn-full';
                     </div>
                 </div>
 
-                <div class="modal-body" id="modal-content-spinner" style="display: none">
+                <div class="modal-body bg-base-100" id="modal-content-spinner" style="display: none">
                     <div class="text-center">
                         <i class="fa-solid fa-spin fa-spinner fa-2x" aria-hidden="true"></i>
                     </div>
@@ -222,7 +222,7 @@ $newWidgetListClass = 'btn2 btn-full';
     <!-- Modal edit widget -->
     <div class="modal fade" id="edit-widget" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl">
+            <div class="modal-content bg-base-100 rounded-2xl">
             </div>
         </div>
     </div>

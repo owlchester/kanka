@@ -29,17 +29,16 @@
 
         @include('timelines.eras._form', ['model' => null])
 
-        <x-box.footer>
-            @include('partials.footer_cancel', ['ajax' => null])
-            <div class="form-era pull-right">
+        <x-dialog.footer>
+            <div class="form-era">
                 <div class="submit-group">
-                    <button class="btn btn-success">{{ __('crud.save') }}</button>
+                    <button class="btn2 btn-primary">{{ __('crud.save') }}</button>
                 </div>
                 <div class="submit-animation" style="display: none;">
-                    <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                    <button class="btn2 btn-primary" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
-        </x-box.footer>
+        </x-dialog.footer>
     </x-box>
     @if (!empty($from))
         <input type="hidden" name="from" value="{{ $from }}">

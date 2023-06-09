@@ -85,7 +85,7 @@
     @if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
     <div class="modal fade" id="hidden-attributes" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
             <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-2xl text-center">
+                <div class="modal-content bg-base-100 rounded-2xl text-center">
                     <div class="modal-body">
                         <x-dialog.close />
                         <h4 class="modal-title md-5" id="clickModalLabel">{{ __('entities/attributes.show.hidden') }}</h4>

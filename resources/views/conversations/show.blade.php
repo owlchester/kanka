@@ -12,7 +12,7 @@ $translations = json_encode([
 
 @section('entity-header-actions-override')
     @can('update', $model)
-        <div class="header-buttons inline-block pull-right ml-auto">
+        <div class="header-buttons inline-block  flex gap-2 items-center justify-end">
             <a class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#entity-modal"
                     data-url="{{ route('conversations.conversation_participants.index', $model) }}">
                 <x-icon class="fa-solid fa-users"></x-icon>
@@ -66,7 +66,6 @@ $translations = json_encode([
     </x-box>
 
     @include('entities.components.posts')
-    @include('entities.pages.logs.history')
 </div>
 
 <div class="entity-sidebar">

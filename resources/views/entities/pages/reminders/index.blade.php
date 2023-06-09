@@ -14,7 +14,7 @@
 
 @section('entity-header-actions')
     @can('events', $entity->child)
-        <div class="header-buttons inline-block pull-right ml-auto">
+        <div class="header-buttons inline-block flex gap-2 items-center justify-end">
             <a href="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
                class="btn2 btn-sm btn-accent" data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}">

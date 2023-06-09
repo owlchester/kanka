@@ -5,36 +5,6 @@
     'miscModel' => $family,
 ])
 
-@if ($mode === 'pixi')
-@section('entity-header-actions')
-    @can('update', $family)
-        <div class="flex w-full">
-            <div class="grow text-right">
-                <a href="#" class="btn btn-sm btn-warning" id="tree-edit">
-                    <x-icon class="edit"></x-icon> {{ __('crud.edit') }}
-                </a>
-                <a href="#" class="btn btn-sm btn-primary mr-1" id="first-entity" style="display: none">
-                    <x-icon class="plus"></x-icon> {{ __('families/trees.actions.first') }}
-                </a>
-                <a href="#" class="btn btn-sm btn-default" id="tree-reset" style="display: none">
-                    <i class="fa-solid fa-redo" aria-hidden="true"></i>
-                    {{ __('families/trees.actions.reset') }}
-                </a>
-                <a href="#" class="btn btn-sm btn-default" id="tree-clear" style="display: none">
-                    <i class="fa-solid fa-eraser" aria-hidden="true"></i>
-                    {{ __('families/trees.actions.clear') }}
-                </a>
-                <a href="#" class="btn btn-sm btn-primary" id="tree-save" style="display: none">
-                    <x-icon class="save"></x-icon>
-                    {{ __('families/trees.actions.save') }}
-                </a>
-            </div>
-        </div>
-    @endcan
-@endsection
-@endif
-
-
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')

@@ -27,8 +27,6 @@
                 </x-grid>
             </x-box>
         @endif
-
-        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

@@ -54,7 +54,7 @@
     @parent
     <div class="modal fade" id="post-new-user" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-base-100">
                 <div class="modal-header">
                     <x-dialog.close />
                     <h4 class="modal-title" id="myModalLabel">{{ __('entities/notes.show.advanced') }}</h4>
@@ -76,7 +76,7 @@
     </div>
     <div class="modal fade" id="post-new-role" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-base-100">
                 <div class="modal-header">
                     <x-dialog.close />
                     <h4 class="modal-title" id="myModalLabel">{{ __('entities/notes.show.advanced') }}</h4>

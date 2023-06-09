@@ -2,7 +2,7 @@
 @if (empty($day))
     <td class="h-24"></td>
 @else
-    <td class="h-24 text-center break-words align-top {{ $day['isToday'] ? 'today bg-today' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}">
+    <td class="h-24 text-center break-words align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}">
         @if ($day['day'])
             <h5 class="m-0 pull-left {{ $day['isToday'] ? "badge badge-primary" : null}}">
                 <span class="day-number">{{ $day['day'] }}</span>
@@ -10,7 +10,7 @@
             </h5>
             @if ($canEdit)
                 <div class="dropdown pull-right">
-                    <a class="dropdown-toggle btn btn-xs btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right">
+                    <a class="dropdown-toggle btn2 btn-xs" data-toggle="dropdown" aria-expanded="false" data-placement="right">
                         <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                     </a>

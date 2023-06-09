@@ -149,7 +149,7 @@ $sizeOptions = [
             </x-grid>
         </div>
 
-        <div class="tab-pane" id="presets">
+        <div class="tab-pane pane-presets" id="presets">
             <p class="help-block mb-0">
                 {!! __('maps/markers.presets.helper') !!}
             </p>

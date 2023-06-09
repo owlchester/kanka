@@ -246,52 +246,32 @@ body.map-drawing-mode {
 //  }
 //}
 
-:root {
-    --leaflet-popup-background: #fff;
-    --leaflet-popup-text: inherit;
-}
-
 /** Theming of the leaflet stuff **/
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip,
 .leaflet-control-layers-expanded,
 .leaflet-control-layers,
 .leaflet-bar a {
-    background-color: var(--leaflet-popup-background) !important;
-    color: var(--leaflet-popup-text) !important;
+    background-color: var(--leaflet-popup-background, hsl(var(--b1)/1)) !important;
+    color: var(--leaflet-popup-text, hsl(var(--bc)/1)) !important;
 }
 
 .leaflet-bar a {
     &:hover {
-        background: var(--leaflet-popup-background);
+        background: var(--leaflet-popup-background, hsl(var(--b1)/1));
     }
 }
 
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-    background: var(--leaflet-popup-background) !important;
+    background: var(--leaflet-popup-background, hsl(var(--b1)/1)) !important;
 
     .leaflet-popup-content {
-        color: var(--leaflet-popup-text);
+        color: var(--leaflet-popup-text, hsl(var(--bc)/1)) !important;
     }
 }
 
 .leaflet-container {
     background: transparent !important;
-}
-
-
-.marker-preset-list .preset {
-    border: 1px solid hsl(var(--nc)/1);
-    background-color: hsl(var(--nc)/1);
-    &:hover {
-        border: 1px solid var(--tab-hover-background);
-    }
-
-    .preset-use {
-        &:hover {
-            text-decoration: underline;
-        }
-    }
 }
 
 /** Used by the ruler plugin */

@@ -30,7 +30,7 @@
     @include('cruds.forms._errors')
 
 
-    <div class="nav-tabs-custom">
+    <div class="nav-tabs-custom ">
         <div class="flex gap-2 items-center ">
             <div class="grow overflow-x-auto">
                 <ul class="nav-tabs flex items-stretch w-full" role="tablist">

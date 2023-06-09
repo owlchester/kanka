@@ -159,7 +159,7 @@
     ]) !!}
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-base-100">
                 <div class="modal-header">
                     <x-dialog.close />
                     <h4>

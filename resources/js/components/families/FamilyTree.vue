@@ -1,18 +1,18 @@
 <template>
-    <div class="flex w-full gap-1 mb-3 justify-end items-center" v-if="!isLoading">
+    <div class="flex gap-2 mb-5 justify-end items-center align-right" v-if="!isLoading">
         <button class="btn2 btn-sm btn-primary" v-if="!isEditing" v-on:click="startEditing()">
             <i class="fa-solid fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
-        <a class="cursor-pointer mr-5" v-if="isEditing" v-on:click="resetTree()">
+        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="resetTree()">
             <i class="fa-solid fa-redo" aria-hidden="true"></i>
             {{ this.texts.actions.reset }}
         </a>
-        <a class="cursor-pointer mr-5" v-if="isEditing" v-on:click="clearTree()">
+        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="clearTree()">
             <i class="fa-solid fa-eraser" aria-hidden="true"></i>
             {{ this.texts.actions.clear }}
         </a>
-        <button class="btn btn-sm btn-primary" :disabled="!isDirty" v-if="isEditing" v-on:click="saveTree()">
+        <button class="btn2 btn-sm btn-primary" :disabled="!isDirty" v-if="isEditing" v-on:click="saveTree()">
             <i class="fa-solid fa-save" aria-hidden="true"></i>
             {{ this.texts.actions.save }}
         </button>
@@ -35,7 +35,7 @@
                 class="!cursor-move"
                 >
                 <div class="relative" v-bind:style="{width: dragWidth() + 'px', height: dragHeight() + 'px'}">
-                    <a class="btn btn-default rounded-2xl px-5 py-2 cursor-pointer" v-on:click="createNode()" v-if="showCreateNode()">
+                    <a class="btn2 btn-primary" v-on:click="createNode()" v-if="showCreateNode()">
                         <i class="fa-solid fa-plus" aria-hidden="true"></i>
                         {{ this.texts.actions.first }}
                     </a>
@@ -63,61 +63,72 @@
     <div class="modal fade" id="family-tree-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel" ref="modal" v-if="!isLoading">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" v-on:click="closeModal()">
+                <div class="modal-header flex gap-2">
+                    <h4 class="modal-title grow" v-if="isAddingChild">{{ this.texts.modals.entity.child.title }}</h4>
+                    <h4 class="modal-title grow" v-else-if="isAddingCharacter">{{ this.texts.modals.entity.add.title }}</h4>
+                    <h4 class="modal-title grow" v-else-if="isEditingEntity">{{ this.texts.modals.entity.edit.title }}</h4>
+                    <h4 class="modal-title grow" v-else-if="isAddingRelation">{{ this.texts.modals.relation.add.title }}</h4>
+                    <h4 class="modal-title grow" v-else-if="isEditingRelation">{{ this.texts.modals.relation.edit.title }}</h4>
+                    <button type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" v-on:click="closeModal()">
                         <i class="fa-solid fa-times" aria-hidden="true"></i>
                     </button>
-                    <h4 class="modal-title" v-if="isAddingChild">{{ this.texts.modals.entity.child.title }}</h4>
-                    <h4 class="modal-title" v-else-if="isAddingCharacter">{{ this.texts.modals.entity.add.title }}</h4>
-                    <h4 class="modal-title" v-else-if="isEditingEntity">{{ this.texts.modals.entity.edit.title }}</h4>
-                    <h4 class="modal-title" v-else-if="isAddingRelation">{{ this.texts.modals.relation.add.title }}</h4>
-                    <h4 class="modal-title" v-else-if="isEditingRelation">{{ this.texts.modals.relation.edit.title }}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter">
-                        <label>{{ this.texts.modals.fields.character }}</label>
-                        <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
+                    <div class="flex flex-col gap-5 mb-5">
+                        <div class="field-character" v-show="isAddingRelation || isAddingChild || isEditingEntity || isAddingCharacter">
+                            <label>{{ this.texts.modals.fields.character }}</label>
+                            <select class="form-control select2" style="width: 100%" v-bind:data-url="this.search_api" data-placeholder="Choose a character" data-language="en" data-allow-clear="true" name="character_id_ft" data-dropdown-parent="#family-tree-modal" tabindex="-1" aria-hidden="true"></select>
+                        </div>
+                        <div class="field-member" v-show="isAddingCharacter && this.showMembers()">
+                            <label>{{ this.texts.modals.fields.member }}</label>
+                            <ul>
+                                <li v-for="(suggestion) in this.suggestions"
+                                >
+                                    <a class="cursor-pointer" v-on:click="this.saveSuggestion(suggestion.id)"> {{ suggestion.name }} </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="form-group" v-show="isAddingCharacter && this.showMembers()">
-                        <label>{{ this.texts.modals.fields.member }}</label>
-                        <ul>
-                            <li v-for="(suggestion) in this.suggestions"
-                            >
-                                <a class="cursor-pointer" v-on:click="this.saveSuggestion(suggestion.id)"> {{ suggestion.name }} </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="form-group" v-show="isEditingRelation || isAddingRelation || isAddingChild || isEditingEntity">
-                        <div v-if="isEditingRelation || isAddingRelation" class="checkbox">
+                    <div class="flex flex-col gap-5" v-show="isEditingRelation || isAddingRelation || isAddingChild || isEditingEntity">
+                        <div v-if="isEditingRelation || isAddingRelation" class="field-unkown checkbox">
                             <label>
                                 <input type="checkbox" v-model="isUnknown" id="family_tree_unknown" name="isUnknown" value="isUnknown" />
-                                {{ this.texts.modals.fields.unknown }}                            
+                                {{ this.texts.modals.fields.unknown }}
                             </label>
+                            <p class="help-block">Check this option if the relation is unknown. A character can be added later.</p>
                         </div>
-            
-                        <label>{{ this.texts.modals.fields.relation }}</label>
-                        <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" @keyup.enter="saveModal()"/>
-                        <div>
-                            <label>{{ this.texts.modals.fields.colour }}</label>
-                            <div>
-                                <input v-model="colour" name="colour" type="text" maxlength="7" class="form-control spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
+
+                        <div class="field-relation">
+                            <label>{{ this.texts.modals.fields.relation }}</label>
+                            <input v-model="relation" type="text" maxlength="70" class="form-control" id="family_tree_relation" @keyup.enter="saveModal()"/>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-5">
+                            <div class="field-colour">
+                                <label>{{ this.texts.modals.fields.colour }}</label>
+                                <div>
+                                    <input v-model="colour" name="colour" type="text" maxlength="7" class="form-control spectrum" id="family_tree_colour" @keyup.enter="saveModal()"/>
+                                </div>
+                            </div>
+
+                            <div class="field-visibility">
+                                <label>{{ this.texts.modals.fields.visibility.title }}</label>
+                                <select v-model="visibility" name="visibility" id="family_tree_visibility" class="form-control">
+                                    <option value="1">{{ this.texts.modals.fields.visibility.all }}</option>
+                                    <option value="2">{{ this.texts.modals.fields.visibility.admins }}</option>
+                                    <option value="5">{{ this.texts.modals.fields.visibility.members }}</option>
+                                </select>
+                            </div>
+
+                            <div class="field-css">
+                                <label>{{ this.texts.modals.fields.css }}</label>
+                                <input v-model="cssClass" type="text" maxlength="70" class="form-control" id="family_tree_class" @keyup.enter="saveModal()"/>
                             </div>
                         </div>
-
-                        <label>{{ this.texts.modals.fields.visibility.title }}</label>
-                        <select v-model="visibility" name="visibility" id="family_tree_visibility" class="form-control">
-                            <option value="1">{{ this.texts.modals.fields.visibility.all }}</option>
-                            <option value="2">{{ this.texts.modals.fields.visibility.admins }}</option>
-                            <option value="5">{{ this.texts.modals.fields.visibility.members }}</option>
-                        </select>
-
-                        <label>{{ this.texts.modals.fields.css }}</label>
-                        <input v-model="cssClass" type="text" maxlength="70" class="form-control" id="family_tree_class" @keyup.enter="saveModal()"/>
                     </div>
                 </div>
                 <div class="modal-footer">
-
-                    <button class="btn btn-primary" @click="saveModal()">
+                    <button class="btn2 btn-primary" @click="saveModal()">
                         Save
                     </button>
                 </div>
