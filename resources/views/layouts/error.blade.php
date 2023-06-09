@@ -62,11 +62,6 @@
         @if ($error !== 503)
         <ul class="navbar-buttons ml-auto d-none d-lg-flex">
             @auth
-                <li>
-                    <a href="{{ route('home') }}" class="btn btn-default text-white">
-                        {{ __('front.menu.dashboard') }}
-                    </a>
-                </li>
             @else
                 <li>
                     <a href="{{ route('login') }}" class="btn btn-default text-white">
@@ -102,14 +97,22 @@
                         <p class="lead">{{ __('errors.' . $error . '.body') }}</p>
                     @endif
 
-
                     <p class="lead">{!! __('errors.footer', [
     'discord' => link_to(config('social.discord'), 'Discord'),
      'email' => link_to('mailto:' . config('app.email'), config('app.email'))]) !!}</p>
 
-                    <p class="lead">
-                        <a href="/{{ app()->getLocale() }}" class="btn btn-outline-primary px-4">{{ __('dashboard.setup.actions.back_to_dashboard') }}</a>
-                    </p>
+                    @if ($error !== 503 && auth()->check())
+                        <p class="lead mb-2">Go back to one of your campaigns</p>
+                        <div class="list-group">
+                        @foreach (auth()->user()->campaigns as $campaign)
+                            <a href="/{{ $campaign->getMiddlewareLink() }}" class="list-group-item list-group-item-action">
+                                {!! $campaign->name !!}
+                            </a>
+                        @endforeach
+                        </div>
+                    @else
+
+                    @endif
                 </div>
                 <div class="col-12 col-sm-6">
                     <img src="/images/svgs/{{ $error }}.svg" alt="Error {{ $error }} image" />
