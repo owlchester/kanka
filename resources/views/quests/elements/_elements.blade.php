@@ -1,10 +1,6 @@
 <?php /** @var \App\Models\QuestElement[] $elements */?>
 @php $count = 0; @endphp
 
-<x-grid css="mb-4">
-    @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-main-block'])
-</x-grid>
-
 <div class="" id="quest-elements">
     <x-grid>
     @foreach ($elements as $element)
