@@ -11,7 +11,7 @@
 
     <div class="max-w-4xl">
         <x-alert type="info">
-            <p>Easily build a theme for the campaign with this interface. Scroll down to see how the changes would impact various elements. When a colour is selected, a "contrasting" colour is automatically selected for colouring text.</p>
+            <p class="m-0">Easily build a theme for the campaign with this interface. Scroll down to see how the changes would impact various elements. When a colour is selected, a "contrasting" colour is automatically selected for colouring text.</p>
         </x-alert>
 
         {!! Form::open([
