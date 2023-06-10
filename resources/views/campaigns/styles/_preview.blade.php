@@ -104,7 +104,7 @@
         <pre><strong>Pre</strong> Vel ac commodo placerat enim lacus facilisis nisl tincidunt quisque accumsan portaest nunc aliquam tortor nunc gravida bibendum placerat tristique metus proin phasellus rutrum eget.
         </pre>
     </div>
-    <div class="col-span-4">
+    <div class="col-span-4 bg-box p-2 rounded">
         <blockquote class=""><strong>Blockquote</strong> Vel ac commodo placerat enim lacus facilisis nisl tincidunt quisque accumsan portaest nunc aliquam tortor nunc gravida bibendum placerat tristique metus proin phasellus rutrum eget.
         </blockquote>
     </div>
