@@ -433,7 +433,7 @@ class PluginVersion extends Model
         // We need this for some blade directives like foreach
         $data['__env'] = app(\Illuminate\View\Factory::class);
         $data['attributes'] = $allAttributes;
-        $data['abilities'] = $this->abilities($entity);
+        $data['_abilities'] = $this->abilities($entity);
 
         // Share some attributes to plugin developers
         $data['_locale'] = app()->getLocale();
