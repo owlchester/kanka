@@ -23,6 +23,7 @@ class CampaignStyleResource extends EntityChild
             'name' => $model->name,
             'content' => $model->content,
             'is_enabled' => $model->is_enabled,
+            'is_theme' => $model->isTheme(),
 
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,

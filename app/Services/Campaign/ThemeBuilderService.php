@@ -26,8 +26,8 @@ class ThemeBuilderService
         $style = new CampaignStyle([
             'name' => 'Campaign theme',
             'is_enabled' => true,
-            'is_theme' => true
         ]);
+        $style->is_theme = true;
         $style->campaign_id = $this->campaign->id;
         return $style;
     }

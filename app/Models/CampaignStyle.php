@@ -38,7 +38,6 @@ class CampaignStyle extends Model
         'content',
         'is_enabled',
         'order',
-        'is_theme',
     ];
 
     public $sortable = [
