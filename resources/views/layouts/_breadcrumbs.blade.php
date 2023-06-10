@@ -2,7 +2,7 @@
     @if (!isset($breadcrumbsDashboard) || $breadcrumbsDashboard === true)
         @if ($campaign)
             <li class="inline-block">
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('dashboard') }}" class="text-base-content">
                     <x-icon class="fa-solid fa-globe"></x-icon>
                     <span class="hidden-xs hidden-sm">
                         {!! $campaign->name !!}
@@ -11,7 +11,7 @@
             </li>
         @else
             <li class="inline-block">
-                <a href="{{ route('home') }}">
+                <a href="{{ route('home') }}" class="text-base-content">
                     <x-icon class="fa-solid fa-dashboard"></x-icon>
                     <span class="hidden-xs hidden-sm">
                         {{ __('dashboard.title') }}
@@ -24,7 +24,7 @@
         @foreach ($breadcrumbs as $breadcrumb)
             <li class="inline-block">
                 @if (!empty($breadcrumb['url']))
-                    <a href="{{ $breadcrumb['url'] }}" title="{{ $breadcrumb['label'] }}">
+                    <a href="{{ $breadcrumb['url'] }}" title="{{ $breadcrumb['label'] }}" class="text-base-content">
                         @if (strlen($breadcrumb['label']) > 22)
                             {!! \Illuminate\Support\Str::limit(e($breadcrumb['label']), 20) !!}
                         @else
@@ -33,9 +33,9 @@
                     </a>
                 @else
                     @if (strlen($breadcrumb) > 22)
-                        <span title="{{ $breadcrumb }}">{!! \Illuminate\Support\Str::limit(e($breadcrumb), 20) !!}</span>
+                        <span title="{{ $breadcrumb }}" class="text-base-content" style="--tw-text-opacity: .7">{!! \Illuminate\Support\Str::limit(e($breadcrumb), 20) !!}</span>
                     @else
-                        {!! e($breadcrumb) !!}
+                        <span class="text-base-content" style="--tw-text-opacity: .7">{!! e($breadcrumb) !!}</span>
                     @endif
                 @endif
             </li>
