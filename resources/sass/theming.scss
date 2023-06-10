@@ -128,6 +128,10 @@ input, textarea, .select2, select, .input-group .input-group-addon, .form-contro
     box-shadow: none;
     color: inherit;
 }
+input::placeholder, textarea::placeholder, select::placeholder, .form-control::placeholder {
+    --tw-text-opacity: .5;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
+}
 input[type="text"], input[type="date"], input[type="number"], input[type="file"], select {
     min-height: 2.2rem;
 }

@@ -61,7 +61,7 @@
     </div>
 
     <div class="col-span-2 field-default">
-        <input type="text" class="form-control" value="Default" />
+        <input type="text" class="form-control" value="Default" placeholder="Placeholder" />
     </div>
     <div class="col-span-2 field-select">
         <select class="select2">

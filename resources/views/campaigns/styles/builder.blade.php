@@ -42,14 +42,14 @@
                         <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-neutral" data-toggle="tooltip" title="Click me to change the colour" data-target="n"></div>
                         <div class="break-all">
                             <p class="m-0">Neutral </p>
-                            <p class="help-block m-0">(its contrast is used for the sidebar text)</p>
+                            <p class="help-block m-0">Used for tooltips, default tags, calendar weather</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-2 mb-5">
                         <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-base-100" data-toggle="tooltip" title="Click me to change the colour" data-target="b"></div>
                         <div class="break-all">
                             <p class="m-0">Content </p>
-                            <p class="help-block m-0">(used for menus, boxes, panels, forms. Its contrast is used as the main text colour)</p>
+                            <p class="help-block m-0">Used for menus, boxes, panels, forms. Its contrast is used as the main text colour</p>
                         </div>
                     </div>
                 </div>
