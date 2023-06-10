@@ -10,16 +10,19 @@ class DeleteConfirm extends Component
 {
     public string $target;
     public ?string $size;
+    public ?string $text;
     /**
      * Create a new component instance.
      */
     public function __construct(
         string $target,
         string $size = null,
+        string $text = null,
     )
     {
         $this->target = $target;
         $this->size = $size;
+        $this->text = $text;
     }
 
     /**

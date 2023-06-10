@@ -105,6 +105,10 @@ class StyleController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
+        if ($campaignStyle->isTheme()) {
+            return redirect()->route('campaign_styles.builder');
+        }
+
         $style = $campaignStyle;
         return view('campaigns.styles.edit', compact('campaign', 'style'));
     }

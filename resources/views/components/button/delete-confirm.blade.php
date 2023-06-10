@@ -4,5 +4,5 @@
    data-target="{{ $target }}"
 >
     <x-icon class="trash"></x-icon>
-    <span class="hidden md:!block">{{ __('crud.remove') }}</span>
+    <span class="hidden md:!block">{{ $text ?? __('crud.remove') }}</span>
 </a>

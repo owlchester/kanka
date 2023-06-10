@@ -29,6 +29,7 @@ You can get a list of all the campaign styles of a campaign by using the followi
             "name": "Campaign style",
             "content": "css content",
             "is_enabled": 1,
+            "is_theme": 0,
             "created_by": "1",
             "created_at": "2021-09-27T11:04:31.000000Z",
             "updated_at": "2021-09-27T11:04:31.000000Z"
@@ -55,6 +56,7 @@ To get the details of a single campaign Style, use the following endpoint.
         "name": "Campaign style",
         "content": "css content",
         "is_enabled": 1,
+        "is_theme": 0,
         "created_by": "1",
         "created_at": "2021-09-27T11:04:31.000000Z",
         "updated_at": "2021-09-27T11:04:31.000000Z"
@@ -79,8 +81,7 @@ To create a campaign Style, use the following endpoint.
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | The style name |
 | `content` | `string` (Required) | The css rules |
-| `is_enabled` | `boolean` | If the style is enabled or not |
-Style |
+| `is_enabled` | `boolean` | If the style is enabled or not  |
 
 ### Results
 

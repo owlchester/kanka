@@ -34,6 +34,14 @@
     --tw-text-opacity: 1;
     color: hsl(var(--pc)/var(--tw-text-opacity));
 }
+.badge-secondary {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--s)/var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--s)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--sc)/var(--tw-text-opacity));
+}
 
 
 .badge-xs {

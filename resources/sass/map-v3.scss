@@ -146,11 +146,9 @@ $mapSidebarWidth: 380px;
     }
 
     .marker-header.with-image {
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
         aspect-ratio: var(--map-hero-ratio);
-        background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
+        --tw-bg-opacity: 1;
+        background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--b3)/var(--tw-bg-opacity))) 100%);
 
         .marker-header-lower {
             .marker-name {
@@ -159,7 +157,8 @@ $mapSidebarWidth: 380px;
         }
 
         .marker-header-fade {
-            background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
+            --tw-bg-opacity: 1;
+            background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--b3)/var(--tw-bg-opacity))) 100%);
         }
     }
 

@@ -18,30 +18,39 @@
     <x-box>
         @include('partials.errors')
 
+        <x-alert type="info">
+            <p>{!! __('campaigns/builder.pitch') !!}</p>
+            <a href="{{ route('campaign_styles.builder') }}" class="btn2 btn-primary">
+                {{ __('campaigns/builder.pitch-go') }}
+            </a>
+        </x-alert>
+
         <x-alert type="error" id="max-content-error" :hidden="true">
             {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}
         </x-alert>
 
-        <div class="field-name required">
-            <label>{{ __('campaigns/styles.fields.name') }}</label>
-            {!! Form::text('name', null, ['class' => 'form-control']) !!}
-        </div>
-
-
-        <div class="field-content required">
-            <label>{{ __('campaigns/styles.fields.content') }}</label>
-            {!! Form::textarea('content', null, ['class' => 'form-control codemirror', 'id' => 'css', 'spellcheck' => 'false']) !!}
-            <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
-        </div>
-
-        <div class="field-enabled">
-            {!! Form::hidden('is_enabled', 0) !!}
-            <div class="checkbox">
-                <label>{!! Form::checkbox('is_enabled', 1, !isset($style) ? true : $style->is_enabled) !!}
-                    {{ __('campaigns/styles.fields.is_enabled') }}
-                </label>
+        <x-grid type="1/1">
+            <div class="field-name required">
+                <label>{{ __('campaigns/styles.fields.name') }}</label>
+                {!! Form::text('name', null, ['class' => 'form-control']) !!}
             </div>
-        </div>
+
+
+            <div class="field-content required">
+                <label>{{ __('campaigns/styles.fields.content') }}</label>
+                {!! Form::textarea('content', null, ['class' => 'form-control codemirror', 'id' => 'css', 'spellcheck' => 'false']) !!}
+                <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
+            </div>
+
+            <div class="field-enabled">
+                {!! Form::hidden('is_enabled', 0) !!}
+                <div class="checkbox">
+                    <label>{!! Form::checkbox('is_enabled', 1, !isset($style) ? true : $style->is_enabled) !!}
+                        {{ __('campaigns/styles.fields.is_enabled') }}
+                    </label>
+                </div>
+            </div>
+        </x-grid>
 
         <x-dialog.footer>
             <div class="submit-group">

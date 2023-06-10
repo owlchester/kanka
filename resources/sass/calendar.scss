@@ -1,14 +1,17 @@
 /**
  * Calendars
  */
-.bg-weather {
-    background-color: var(--calendar-weather, #ddd);
-}
 .bg-season {
-    background-color: var(--calendar-season, #ddd);
+    --tw-bg-opacity: .5;
+    background-color: hsl(var(--a)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--ac)/var(--tw-text-opacity));
 }
 .bg-week {
-    background-color: var(--calendar-week, #FFFDE2);
+    --tw-bg-opacity: .3;
+    background-color: hsl(var(--a)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--ac)/var(--tw-text-opacity));
 }
 
 .calendar tbody td {
@@ -26,11 +29,6 @@
         clear: both;
     }
 
-    .calendar-season {
-        color: var(--calendar-season-text, #444);
-        //background-color: var(--calendar-season);
-    }
-
     .calendar-event-block {
         .entity-image {
             height: 1.75rem;
@@ -39,7 +37,8 @@
     }
 
     .colour-pallet {
-        color: var(--calendar-event-text, white);
+        --tw-text-opacity: 1;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
     }
 
     .bg-gray {

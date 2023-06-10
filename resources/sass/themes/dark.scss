@@ -1,38 +1,17 @@
 :root {
-    --theme-main-text: #A4A4A4;
-    --theme-hard-text: #E1E1E1;
-    --theme-soft: #333;
-    --theme-background: #1F1F1F;
-    --theme-border: #2E2E2E;
-
-    --sidebar-background: var(--theme-background);
-
-    --calendar-week: var(--theme-soft);
-    --calendar-weather: var(--theme-border);
-    --calendar-season-text: var(--theme-main-text);
-    --calendar-event-default: var(-theme-background);
-
+    color-scheme: dark;
+    // Use the light kanka logo in the footer
     --footer-logo-blue: none;
     --footer-logo-white: inline;
 
-    --body-background: #121212;
-    --body-text: var(--theme-main-text);
-
-
+    // General background color
     --content-wrapper-background: hsl(var(--b3)/1);
 
-    --spectrum-border: var(--theme-border);
-    --spectrum-background: var(--theme-background);
-    --spectrum-text: var(--theme-main-text);
+    // Sidebar colour
+    --sidebar-background: hsl(var(--b1)/1);
 
-    --box-background: var(--theme-background);
-
-    --tinymce-background: var(--theme-background);
-    --tinymce-border: transparent;
+    // For the legacy editor, make it compatible with dark mode
     --tinymce-filter: invert(90%) !important;
-    --tinymce-input-background: var(--theme-background);
-    --tinymce-input-border: var(--theme-border);
-    --tinymce-input-text: var(--theme-main-text);
 
     --pf: 210 64% 64%;
     --sf: 316 70% 43%;
@@ -58,14 +37,4 @@
     --b2: 0 0% 6%;
     --b3: 0 0% 0%;
     --bc: 145 0% 80%;
-}
-
-.hover\:shadow-md:hover {
-    --tw-shadow-color: hsl(var(--p)/1);
-    --tw-shadow: var(--tw-shadow-colored);
-}
-
-#cy {
-    --relation-explorer-background: hsl(var(--b1)/1);
-    --relation-explorer-text: hsl(var(--bc)/1);
 }
