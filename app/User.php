@@ -21,7 +21,6 @@ use App\Models\UserSetting;
 use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;
