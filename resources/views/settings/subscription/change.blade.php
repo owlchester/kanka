@@ -71,7 +71,7 @@
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content bg-base-100">
+            <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
                 @if (! $limited)
                 <div role="tabpanel" class="tab-pane active" id="card">
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}

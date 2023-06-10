@@ -39,7 +39,8 @@
                 padding: 5px;
                 font-size: 12px;
                 background: transparent;
-                color: #97a0b3;
+                --tw-text-opacity: .8;
+                color: hsl(var(--bc)/var(--tw-text-opacity));
             }
 
             [data-toggle="tooltip"] {

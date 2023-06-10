@@ -8,7 +8,7 @@
 <div class="nav-tabs-custom">
     @include('campaigns.forms._tabs')
 
-    <div class="tab-content bg-base-100">
+    <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
         @include('campaigns.forms.panes.entry')
         @include('campaigns.forms.panes.dashboard')
         @include('campaigns.forms.panes.permission')

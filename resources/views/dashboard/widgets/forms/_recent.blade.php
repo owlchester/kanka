@@ -20,7 +20,7 @@ $boosted = $campaignService->campaign()->boosted()
         </li>
     </ul>
 
-    <div class="tab-content">
+    <div class="tab-content p-4">
         <div id="setup" class="tab-pane fade in active">
             <x-grid>
                 <div class="field-entity-type required">

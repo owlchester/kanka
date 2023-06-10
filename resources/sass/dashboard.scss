@@ -90,13 +90,9 @@
     .panel-body {
         padding: 5px;
     }
-    .row {
-        margin: 4px 0;
-        border-bottom: 1px solid #ccc;
-    }
-
     .elapsed {
-        color: #888;
+        --tw-text-opacity: .6;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
     }
 }
 
@@ -131,8 +127,8 @@
     .campaign-header-content {
         margin-top: 5px;
         padding: 20px;
-        background-color: rgba(0, 0, 0, 0.6);
-        color: #fff;
+        --tw-text-opacity: 1;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
         border-radius: 5px;
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);

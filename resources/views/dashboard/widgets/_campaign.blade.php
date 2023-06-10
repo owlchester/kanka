@@ -4,7 +4,7 @@
 @section('content-header')
 <div class="campaign-header cover-background mb-3 p-2 relative z-[10] @if(!empty($campaign->header_image))campaign-imaged-header px-10 py-14" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif">
 
-    <div class="campaign-header-content p-2">
+    <div class="campaign-header-content p-2  glass">
         <div class="campaign-content">
             <div class="campaign-head flex gap-2">
                 <a href="{{ route('campaign') }}" title="{!! $campaign->name !!}" class="grow campaign-title text-2xl m-0 p-0">

@@ -1,5 +1,3 @@
-// Variables
-@import "variables";
 
 // Import admin-lte css
 //@import "~admin-lte/dist/css/AdminLTE.css";
@@ -71,11 +69,13 @@
  * Select 2 changes
  */
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-  color: #333;
+    --tw-text-opacity: 1;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-  color: white;
-  mix-blend-mode: difference;
+    --tw-text-opacity: 1;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
+    mix-blend-mode: difference;
 }
 .select2-container--default .badge {
     display: inline-block;

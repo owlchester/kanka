@@ -217,9 +217,11 @@ hr {
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     color: hsl(var(--n)/1);
     --tw-bg-opacity: 1;
-    background-color: hsl(var(--pc)/var(--tw-bg-opacity));
+    background-color: hsl(var(--n)/var(--tw-bg-opacity));
     --tw-border-opacity: 1;
-    border-color: hsl(var(--pc)/var(--tw-border-opacity));
+    border-color: hsl(var(--n)/var(--tw-border-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--nc)/var(--tw-text-opacity));
 }
 .select2-container--default .select2-search--dropdown .select2-search__field {
     --tw-border-opacity: 1;

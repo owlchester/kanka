@@ -120,7 +120,7 @@ img.note-float-left {
     }
 }
 .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-select:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-select:hover {
-  color: #444;
+  color: hsl(var(--bc)/1);
 }
 .note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
   white-space: normal !important;

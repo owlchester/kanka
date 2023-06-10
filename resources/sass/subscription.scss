@@ -20,7 +20,8 @@ table.tiers {
             font-size: 1.2em;
 
             .price {
-                color: #777;
+                --tw-text-opacity: .5;
+                color: hsl(var(--bc)/var(--tw-text-opacity));
                 font-size: 0.8em;
                 display: block;
             }
@@ -47,13 +48,13 @@ table.tiers {
     padding: 15px;
 
     .card-element {
-        border: 1px solid #d2d6de;
+        border: 1px solid hsl(var(--bc)/1);
         background-color: white;
     }
 }
 
 .StripeElement {
-  border: 1px solid #d2d6de;
+  border: 1px solid hsl(var(--bc)/1);
   background-color: white;
   padding: 9px 12px;
   line-height: 1.6;
@@ -116,17 +117,12 @@ body {
   display: block;
   width: 105px;
   padding: 3px 0;
-  background-color: #00a65a;
   box-shadow: 0 2px 5px rgba(0,0,0,.1);
-  color: #fff;
 
   font: 700 8px/1 'Lato', sans-serif;
   text-shadow: 0 1px 1px rgba(0,0,0,.2);
   text-transform: uppercase;
   text-align: center;
-}
-.ribbon-red span {
-  background-color: #D81B60;
 }
 
 /* top left*/

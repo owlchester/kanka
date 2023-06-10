@@ -50,7 +50,7 @@ $sizeOptions = [
         </li>
     </ul>
 
-    <div class="tab-content bg-base-100 shadow-sm rounded mb-5">
+    <div class="tab-content bg-base-100 shadow-sm rounded mb-5 p-4 rounded-bl rounded-br">
         <div class="tab-pane @if($activeTab == 1) active @endif" id="marker-pin">
             <x-grid>
                 @include('maps.markers.fields.icon')

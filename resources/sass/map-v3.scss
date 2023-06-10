@@ -50,7 +50,7 @@ $mapSidebarWidth: 380px;
 }
 
 .btn-map-explore {
-    color: #fff !important;
+    color: hsl(var(--pc)/1) !important;
 }
 
 .marker.size-1 {
@@ -127,11 +127,9 @@ $mapSidebarWidth: 380px;
         z-index: 1050;
     }
 
-
-
     .main-sidebar {
-        //background-color: #dedede;
-        color: #efefef;
+        --tw-text-opacity: 1;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
         padding-top: 0;
         z-index: 1040;
     }
@@ -294,7 +292,8 @@ body.map-drawing-mode {
     background-image: url("/images/vendor/leaflet/ruler/icon-colored.png");
 }
 .leaflet-bar {
-    background-color: #ffffff;
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
 }
 
 .result-tooltip {
@@ -309,7 +308,7 @@ body.map-drawing-mode {
     background-clip: padding-box;
     opacity: 0.5;
     border: dotted;
-    border-color: var(--map-ruler-color);;
+    border-color: var(--map-ruler-color);
     font-size: smaller;
 }
 

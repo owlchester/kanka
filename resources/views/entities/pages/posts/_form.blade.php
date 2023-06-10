@@ -30,7 +30,7 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
         </div>
         @include('entities.pages.posts._save-options')
     </div>
-    <div class="tab-content bg-base-100">
+    <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
         <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
                 <div class="field-name col-span-2 required">

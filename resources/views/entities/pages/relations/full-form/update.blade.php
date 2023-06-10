@@ -22,7 +22,7 @@
             </div>
             @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
         </div>
-        <div class="tab-content bg-base-100">
+        <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
             <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
                 @include('entities.pages.relations.full-form._entry', ['source' => $source])
             </div>

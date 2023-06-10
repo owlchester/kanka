@@ -98,7 +98,8 @@
         li + li:before {
             content: ">\A0";
             padding: 0 5px;
-            color: #ccc;
+            --tw-text-opacity: .6;
+            color: hsl(var(--bc)/var(--tw-text-opacity));
         }
     }
 

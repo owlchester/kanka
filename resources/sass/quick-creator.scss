@@ -14,9 +14,11 @@
 
 .quick-creator-body {
     .qq-action-more {
-        color: #aaa;
+        --tw-text-opacity: 1;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
         &:focus, &:hover {
-            border-bottom: 1px dotted #aaa;
+            --tw-border-opacity: .8;
+            border-bottom: 1px dotted hsl(var(--bc)/var(--tw-border-opacity));
         }
     }
 

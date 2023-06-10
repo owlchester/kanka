@@ -41,8 +41,10 @@
 
 .charges{
     .charge {
-        border: 1px solid #666;
-
+        --tw-border-opacity: 1;
+        border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
+        --tw-bg-opacity: 1;
+        background-color: hsl(var(--b1)/var(--tw-bg-opacity));
     }
     .used {
         &:before {
@@ -52,7 +54,8 @@
             width: 10px;
             margin-top: 4px;
             margin-left: 4px;
-            background-color: #515251;
+            --tw-bg-opacity: 1;
+            background-color: hsl(var(--a)/var(--tw-bg-opacity));
         }
     }
 }

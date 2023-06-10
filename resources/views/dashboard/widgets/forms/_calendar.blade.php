@@ -14,7 +14,7 @@
         </li>
     </ul>
 
-    <div class="tab-content">
+    <div class="tab-content rounded-bl rounded-br p-4">
         <div id="setup" class="tab-pane fade in active">
 
             <x-grid>

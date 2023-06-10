@@ -159,7 +159,7 @@ if (isset($model) && $model->isChunked()) {
                     </a>
                 </li>
             </ul>
-            <div class="tab-content bg-base-100">
+            <div class="tab-content bg-base-100 p-4">
                 <div id="coordinates" class="tab-pane fade in active">
                     <p class="help-block">
                         {{ __('maps.helpers.center') }}

@@ -94,7 +94,7 @@
                             </div>
                         </div>
                         <div class="ribbon ribbon-top-right">
-                            <span>{{ __('tiers.ribbons.popular') }}</span>
+                            <span class="bg-green-500 text-white">{{ __('tiers.ribbons.popular') }}</span>
                         </div>
                     </div>
                 </th>
@@ -114,8 +114,8 @@
                                 <span class="">{{ __('tiers.periods.yearly') }}</span>
                             </div>
                         </div>
-                        <div class="ribbon ribbon-top-right ribbon-red">
-                            <span>{{ __('tiers.ribbons.best-value') }}</span>
+                        <div class="ribbon ribbon-top-right">
+                            <span class="bg-pink-500 text-white">{{ __('tiers.ribbons.best-value') }}</span>
                         </div>
                     </div>
                 </th>

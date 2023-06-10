@@ -6,24 +6,11 @@
   font-display: fallback;
 }
 
-// Variables
-@import "variables";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --banner-link: white;
-    --campaign-selector-link: white;
-    --campaign-selector-background: #ddd;
-    --input-required-text: red;
-    --table-filters-background: #eee;
-
-    --gallery-folder-text: unset;
-    --gallery-background: #f5f8fa;
-    --gallery-hover-text: #124964;
-
     --kanka-boost-accent: 338 78% 48%;
 }
 
@@ -63,7 +50,7 @@
 /** required form fields **/
 div.required label:after {
     content: " *";
-    color: var(--input-required-text);
+    color: var(--input-required-text, red);
 }
 
 table {
@@ -122,8 +109,10 @@ tr.tr-hover {
 // Attributes in entities and text area
 .attribute, .note-editing-area > .attribute {
     border-radius: 2px;
-    background-color: #ddd;
-    color: #333;
+    --tw-border-opacity: 1;
+    background-color: hsl(var(--bc)/var(--tw-border-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
     font-style: italic;
     padding: 2px 3px;
 }
@@ -176,7 +165,7 @@ button.dropdown-item {
 
 .banner-notification {
     a {
-        color: var(--banner-link);
+        color: hsl(var(--ac)/1);
     }
 }
 
@@ -345,6 +334,16 @@ ul.entity-menu {
     background-color: hsl(var(--b3)/var(--tw-bg-opacity));
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.glass, .glass.btn-active {
+    border: none;
+    -webkit-backdrop-filter: blur(var(--glass-blur,40px));
+    backdrop-filter: blur(var(--glass-blur,40px));
+    background-color: transparent;
+    background-image: linear-gradient(135deg,rgb(255 255 255/var(--glass-opacity,30%)) 0%,rgb(0 0 0/0%) 100%),linear-gradient(var(--glass-reflex-degree,100deg),rgb(255 255 255/var(--glass-reflex-opacity,10%)) 25%,rgb(0 0 0/0%) 25%);
+    box-shadow: 0 0 0 1px rgb(255 255 255/var(--glass-border-opacity,10%)) inset,0 0 0 2px #0000000d;
+    text-shadow: 0 1px rgb(0 0 0/var(--glass-text-shadow-opacity,5%));
 }
 
 @import "alerts";

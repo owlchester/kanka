@@ -18,8 +18,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        border-radius: var(--toggle-height);
-        background-color: #ccc;
+        border-radius: .5rem;
+        background-color: hsl(var(--n)/.1);
         transition: all 0.4s ease-in-out;
     }
 
@@ -31,7 +31,7 @@
         width: calc(var(--toggle-height));
         height: calc(var(--toggle-height));
         border-radius: calc(var(--toggle-height) / 2);
-        background-color: #fff;
+        background-color: hsl(var(--p)/1);
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         transition: all 0.4s ease-in-out;
     }
@@ -42,7 +42,8 @@
     }
 
     input:checked + .slider {
-        background-color: #2196F3;
+        --tw-bg-opacity: .7;
+        background-color: hsl(var(--p)/var(--tw-bg-opacity));
     }
 
     input:checked + .slider::before {
