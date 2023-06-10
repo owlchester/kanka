@@ -55,6 +55,10 @@
     --su: 158 64% 52%;
     --suc: 158 100% 10%;
 
+    // Sidebar
+    --si: 0 0% 20%;
+    --sic: 0 0% 90%;
+
     // Border radius for buttons
     --rounded-btn: .25rem;
     // Border radius for badges (tags)
@@ -144,7 +148,7 @@ input:focus, .textarea:focus, .form-control:focus {
 }
 
 *, ::before, ::after {
-    --tw-bg-opacity: 0.2;
+    --tw-border-opacity: 0.2;
     border-color: hsl(var(--bc)/var(--tw-bg-opacity));
 }
 .select2 {
@@ -207,13 +211,19 @@ hr {
     color: hsl(var(--pc))
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-    color: hsl(var(--n));
+    color: hsl(var(--n)/1);
     --tw-bg-opacity: 1;
     background-color: hsl(var(--pc)/var(--tw-bg-opacity));
     --tw-border-opacity: 1;
     border-color: hsl(var(--pc)/var(--tw-border-opacity));
 }
-
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--b2)/var(--tw-border-opacity)) !important;
+}
+.select2-container--default .select2-results__option[aria-disabled="true"] {
+    color: hsl(var(--n)/.8);
+}
 
 /** Dropdown menus **/
 

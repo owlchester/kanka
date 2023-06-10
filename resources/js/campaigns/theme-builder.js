@@ -17,7 +17,7 @@ const init = () => {
         //console.log('color', bgColor);
         $(this).spectrum({
             preferredFormat: "hsl",
-            showInput: false,
+            showInput: true,
             color: bgColor,
             change: function(colour) {
                 updateColour(colour, target);
@@ -62,12 +62,12 @@ const updateColour = (colour, target) => {
     let focus = darken(colour.toHslString()).toHsl();
     let content = contrast(colour.toHslString()).toHsl();
 
-    if (target === 'a' || target === 's' || target === 'p' || target === 'n') {
+    if (['a', 's', 'p', 'n'].indexOf(target) !== -1) {
         change(target, base);
         change(target + 'f', focus.h + ' ' + focus.s + '% ' + focus.l + '%');
         change(target + 'c', content.h + ' ' + content.s + '% ' + content.l + '%');
     }
-    else if (target === 'in' || target === 'su' || target === 'wa' || target === 'er') {
+    else if (['in', 'su', 'wa', 'er', 'si'].indexOf(target) !== -1) {
         change(target, base);
         change(target + 'c', content.h + ' ' + content.s + '% ' + content.l + '%');
     }

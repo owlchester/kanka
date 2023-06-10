@@ -16,9 +16,9 @@
 .main-sidebar {
     width: var(--sidebar-width);
     --tw-bg-opacity: 1;
-    background-color: var(--sidebar-background, hsl(var(--n)/var(--tw-bg-opacity)));
+    background-color: var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity)));
     --tw-text-opacity: 1;
-    color: var(--sidebar-text, hsl(var(--nc)/var(--tw-text-opacity)));
+    color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));
 
     background-size: var(--sidebar-width) 210px;
     background-repeat: no-repeat;
@@ -35,7 +35,7 @@
             a, span {
                 font-size: 0.8rem;
                 --tw-text-opacity: 1;
-                color: var(--sidebar-text, hsl(var(--nc)/var(--tw-text-opacity)));
+                color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));
                 letter-spacing: 1.5px;
                 text-transform: uppercase;
             }
@@ -64,7 +64,11 @@
 
 section.sidebar-campaign {
     --tw-bg-opacity: 1;
-    background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--b3)/var(--tw-bg-opacity))) 100%);
+    background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity))) 100%);
+}
+.bg-sidebar {
+    --tw-bg-opacity: 1;
+    background: var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity)));
 }
 
 .main-footer {
@@ -73,7 +77,7 @@ section.sidebar-campaign {
 
 
 .sidebar-toggle {
-    color: var(--theme-main-text, hsl(var(--nc)/1));
+    color: var(--theme-main-text, hsl(var(--bc)/1));
 }
 .sidebar-toggle [data-sidebar="collapse"] {
     display: none;

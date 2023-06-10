@@ -6,8 +6,6 @@
     // Background color
     --content-wrapper-background: hsl(var(--b3)/1);
 
-    // Sidebar colour
-    --sidebar-background: hsl(var(--b2)/1);
 
     // Make the legacy editor work with dark mode
     --tinymce-filter: invert(90%) !important;
@@ -37,5 +35,7 @@
     --su: 172 66% 50%;
     --wa: 41 88% 64%;
     --er: 351 95% 71%;
+
+    --si: var(--b2);
 }
 
