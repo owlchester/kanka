@@ -153,7 +153,7 @@ input:focus, .textarea:focus, .form-control:focus {
 
 *, ::before, ::after {
     --tw-border-opacity: 0.2;
-    border-color: hsl(var(--bc)/var(--tw-bg-opacity));
+    border-color: hsl(var(--bc)/var(--tw-border-opacity));
 }
 .select2 {
     border: none;
@@ -348,6 +348,10 @@ code, pre {
         border-color: hsl(var(--bc)/var(--tw-border-opacity));
         background-color: var(--popover-header-background);
     }
+}
+blockquote {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--b3)/var(--tw-border-opacity));
 }
 
 
