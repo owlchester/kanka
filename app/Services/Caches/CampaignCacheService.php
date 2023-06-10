@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
+use App\Models\CampaignStyle;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -267,9 +268,10 @@ class CampaignCacheService extends BaseCache
             return (string) $this->get($key);
         }
 
-        $css = "/**\n * Campaign Styles for #" . $this->campaign->id . "\n */\n\n";
+        $css = "/**\n * Campaign Styles for campaign #" . $this->campaign->id . "\n */\n\n";
         foreach ($this->campaign->styles()->enabled()->defaultOrder()->get() as $style) {
-            $css .= "/** Style " . $style->name . "#" . $style->id . " */\n" . $style->content . "\n";
+            /** @var CampaignStyle $style */
+            $css .= "/** Style " . $style->name . "#" . $style->id . " */\n" . $style->content() . "\n";
         }
 
         $this->forever($key, $css);

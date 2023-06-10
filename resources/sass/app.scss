@@ -232,7 +232,8 @@ button.dropdown-item {
 }
 
 .bg-box {
-    background-color: var(--box-background, #fff);
+    --tw-bg-opacity: 1;
+    background-color: var(--box-background, hsl(var(--b1)/var(--tw-bg-opacity)));
 }
 
 /** Cancel some of tw's resets **/

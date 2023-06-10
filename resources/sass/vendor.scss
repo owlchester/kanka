@@ -36,26 +36,34 @@
 
 /** Spectrum */
 .sp-replacer {
-    border-color: var(--spectrum-border, #f0c49B);
-    background-color: var(--spectrum-background, #ECECEC);
+    border-color: hsl(var(--b2)/var(--tw-border-opacity));
+    --tw-border-opacity: .2;
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
 
     &:active, &:hover {
-        border-color: var(--spectrum-border, #f0c49B);
+        border-color: hsl(var(--b2)/var(--tw-border-opacity));
+        --tw-border-opacity: .2;
     }
 }
 .sp-light {
-    background-color: var(--spectrum-background, #ECECEC);
-    border-color: var(--spectrum-border, #f0c49B);
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    --tw-border-opacity: .2;
+    border-color: hsl(var(--b2)/var(--tw-border-opacity));
 
     .sp-input {
-        color: var(--spectrum-text, #222);
+        --tw-text-opacity: 1;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
     }
 }
 .sp-palette-container {
-    border-right-color: var(--spectrum-border, #f0c49B);
+    --tw-border-opacity: .2;
+    border-right-color: hsl(var(--b2)/var(--tw-border-opacity));
 }
 .sp-picker-container {
-    border-left-color: var(--spectrum-border, #f0c49B);
+    --tw-border-opacity: .2;
+    border-left-color: hsl(var(--b2)/var(--tw-border-opacity));
 }
 
 

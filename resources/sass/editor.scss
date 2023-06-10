@@ -78,10 +78,10 @@ img.note-float-left {
 
 .note-editing-area {
     .mention, .attribute {
-        background-color: var(--mention-background, hsl(var(--p)/1));
+        background-color: var(--mention-background, hsl(var(--in)/1));
         padding: 3px 5px;
         border-radius: 0.25rem;
-        color: var(--mention-text, hsl(var(--pc)/1));
+        color: var(--mention-text, hsl(var(--inc)/1));
         text-decoration: none;
     }
 }
@@ -147,22 +147,29 @@ img.note-float-left {
   filter: var(--tinymce-filter, none) !important; // set to invert(90%) for dark mode
 }
 .mce-panel {
-  background-color: var(--tinymce-background, #FFF) !important;
-  border-color: var(--tinymce-border, #c5c5c5) !important;
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b1)/var(--tw-bg-opacity))) !important;
+
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--b2)/var(--tw-border-opacity)) !important;
+    border: 0 solid hsl(var(--b2)/var(--tw-border-opacity)) !important;
 }
 .mce-menubar {
-  border-color: var(--tinymce-border, #c5c5c5) !important;
+    border: none;
 }
 .mce-edit-area, .mce-content-body {
-  background: none !important;
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b1)/var(--tw-bg-opacity))) !important;
 }
 .mce-btn {
-  border-color: transparent !important;
-  //border-radius: 2px !important;
-  background: none !important;
-  .mce-txt {
-    color: var(--tinymce-input-text, #595959) !important;
-  }
+    border-color: transparent !important;
+    //border-radius: 2px !important;
+    background: none !important;
+
+    .mce-txt {
+        --tw-text-opacity: 1;
+        color: var(--tinymce-input-text, hsl(var(--bc)/var(--tw-text-opacity))) !important;
+    }
 }
 .mce-btn.mce-active, .mce-btn.mce-active:hover, .mce-btn.mce-active:focus, .mce-btn.mce-active:active {
   i {
@@ -175,32 +182,30 @@ img.note-float-left {
 .mce-tabs, .mce-tabs+.mce-container-body, .mce-tab {
   background: none !important;
 }
-.mce-widget, .mce-label, .mce-tab {
-  //text-shadow: 0 1px 1px rgba(0,0,0,0.75) !important;
-}
-.mce-menu-item.mce-disabled, .mce-menu-item.mce-disabled:hover {
-  //background: var(--theme-background) !important;
-}
 .mce-textbox {
-  background-color: var(--tinymce-input-background, #fff) !important;
-  color: var(--tinymce-input-text, #595959) !important;
-  border-color: var(--tinymce-input-border, #c5c5c5) !important;
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b1)/var(--tw-bg-opacity))) !important;
+    --tw-text-opacity: 1;
+    color: var(--tinymce-input-text, hsl(var(--bc)/var(--tw-text-opacity))) !important;
+    --tw-border-opacity: .2;
+    border-color: var(--tinymce-input-border, hsl(var(--bc)/var(--tw-border-opacity))) !important;
 }
 #mce-modal-block {
-  background-color: var(--tinymce-background, #FFF) !important;
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b2)/var(--tw-bg-opacity))) !important;
 }
 .mce-label {
-  text-shadow: none !important;
+    text-shadow: none !important;
 }
 
 // Tinymce mentions dropdown
 .rte-autocomplete {
-  z-index: 9920;
+    z-index: 9920;
 }
 
 /** Code mirror **/
 .CodeMirror {
-  resize: vertical;
+    resize: vertical;
 }
 
 .advanced-mention-name {
@@ -210,8 +215,8 @@ img.note-float-left {
         margin-left: 0.1rem;
         content: attr(data-name);
         font-size: 0.7rem;
-        background-color: var(--advanced-mention-background, #383898);
-        color: var(--advanced-mention-text, white);
+        background-color: var(--advanced-mention-background, hsl(var(--in)/1));
+        color: var(--mention-text, hsl(var(--inc)/1));
         padding: 0.15rem;
         border-radius: 0.25rem;
     }

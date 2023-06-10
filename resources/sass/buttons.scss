@@ -113,7 +113,7 @@
 }
 
 @media (hover: hover) {
-    .btn2.btn2:hover {
+    .btn2:hover {
         --tw-border-opacity: 1;
         border-color:hsl(var(--b3)/var(--tw-border-opacity));
         --tw-bg-opacity: 1;
@@ -172,7 +172,7 @@
         --tw-bg-opacity: 1;
         background-color:hsl(var(--er)/var(--tw-bg-opacity))
     }
-    .btn2.btn.glass:hover {
+    .btn2.btn-glass:hover {
         --glass-opacity: 25%;
         --glass-border-opacity: 15%
     }

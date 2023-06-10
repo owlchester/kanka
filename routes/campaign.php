@@ -336,6 +336,9 @@ Route::delete('/destroy', [\App\Http\Controllers\CampaignController::class, 'des
 
 Route::post('/campaign_styles/bulk', 'Campaign\StyleController@bulk')->name('campaign_styles.bulk');
 Route::post('/campaign_styles/reorder', 'Campaign\StyleController@reorder')->name('campaign_styles.reorder-save');
+Route::get('/theme-builder', [\App\Http\Controllers\Campaign\ThemeBuilderController::class, 'index'])->name('campaign_styles.builder');
+Route::post('/theme-builder', [\App\Http\Controllers\Campaign\ThemeBuilderController::class, 'save'])->name('campaign_styles.builder-save');
+Route::delete('/theme-builder', [\App\Http\Controllers\Campaign\ThemeBuilderController::class, 'reset'])->name('campaign_styles.builder-reset');
 
 Route::get('/campaigns/{campaign}/dashboard-header/{campaignDashboardWidget?}', 'Campaign\DashboardHeaderController@edit')->name('campaigns.dashboard-header.edit');
 Route::patch('/campaigns/{campaign}/dashboard-header', 'Campaign\DashboardHeaderController@update')->name('campaigns.dashboard-header.update');
@@ -460,7 +463,7 @@ Route::get('/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-
 Route::post('/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');
 Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaign.export');
 Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
-Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
+Route::get('/campaign.styles', [\App\Http\Controllers\CampaignController::class, 'css'])->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 Route::get('/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');

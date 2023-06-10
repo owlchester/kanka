@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 /**
  * Class CampaignStyle
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property Carbon $updated_at
  * @property Carbon $created_at
  * @property bool $is_enabled
+ * @property bool $is_theme
  * @property int $order
  *
  * @method static self|Builder enabled($enabled = true)
@@ -36,6 +38,7 @@ class CampaignStyle extends Model
         'content',
         'is_enabled',
         'order',
+        'is_theme',
     ];
 
     public $sortable = [
@@ -43,6 +46,7 @@ class CampaignStyle extends Model
         'updated_at',
         'is_enabled',
         'order',
+        'is_theme',
     ];
 
     public $defaultSort = ['order', 'id'];
@@ -60,9 +64,19 @@ class CampaignStyle extends Model
      * @param bool $enabled
      * @return Builder
      */
-    public function scopeEnabled(Builder $query, $enabled = true)
+    public function scopeEnabled(Builder $query, bool $enabled = true)
     {
         return $query->where('is_enabled', $enabled);
+    }
+
+    /**
+     * @param Builder $query
+     * @param bool $theme
+     * @return Builder
+     */
+    public function scopeTheme(Builder $query, bool $theme = true)
+    {
+        return $query->where('is_theme', $theme);
     }
 
     /**
@@ -80,5 +94,42 @@ class CampaignStyle extends Model
     public function url(string $sub): string
     {
         return 'campaign_styles.' . $sub;
+    }
+
+    public function isTheme(): bool
+    {
+        return $this->is_theme;
+    }
+
+
+    public function content(): string|null
+    {
+        if (!$this->isTheme()) {
+            return $this->content;
+        }
+
+        try {
+            $theme = [':root {'];
+            $config = json_decode($this->content);
+            foreach ($config as $k => $v) {
+                $theme[] = '  --' . $k . ': ' . $v . ';';
+            }
+            $theme[] = '}';
+            return implode("\n", $theme);
+        } catch (\Exception $e) {
+            return '/** Issue with the theme, please contact us */' . "\n\n";
+        }
+    }
+
+    public function jsonConfig(): string
+    {
+        if (empty($this->content)) {
+            return '';
+        }
+
+        $rootless = Str::remove([':root ', "\n"], $this->content);
+
+        $json = json_encode($rootless);
+        dd($json);
     }
 }

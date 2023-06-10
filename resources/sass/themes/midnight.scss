@@ -1,43 +1,16 @@
 :root {
-
-    --theme-main-text: #c7c7c7;
-    --theme-hard-text: #E1E1E1;
-    --theme-soft: #182c41;
-    --theme-detail: #061f2f;
-    --theme-background: #0a121b;
-    --theme-border: #333;
-    --theme-link: #9cd7f7;
+    color-scheme: dark;
 
     --box-background: hsl(var(--b1)/1);
 
-    --sidebar-background: var(--theme-background);
-
-    --calendar-week: var(--theme-soft);
-    --calendar-weather: var(--theme-border);
-    --calendar-season-text: var(--theme-main-text);
-    --calendar-event-default: var(-theme-background);
-
-    --footer-logo-blue: none;
-    --footer-logo-white: inline;
-
-    --body-background: var(--theme-detail);
-    --body-text: var(--theme-main-text);
-
+    // Background color
     --content-wrapper-background: hsl(var(--b3)/1);
 
-    --spectrum-border: var(--theme-border);
-    --spectrum-background: var(--theme-background);
-    --spectrum-text: var(--theme-main-text);
+    // Sidebar colour
+    --sidebar-background: hsl(var(--b2)/1);
 
-    --popover-header-background: var(--theme-background);
-    --popover-border: var(--theme-border);
-
-    --tinymce-background: var(--theme-background);
-    --tinymce-border: transparent;
+    // Make the legacy editor work with dark mode
     --tinymce-filter: invert(90%) !important;
-    --tinymce-input-background: var(--theme-background);
-    --tinymce-input-border: var(--theme-border);
-    --tinymce-input-text: var(--theme-main-text);
 
 
     --pf: 198 93% 53%;
@@ -66,16 +39,3 @@
     --er: 351 95% 71%;
 }
 
-.hover\:shadow-md:hover {
-    --tw-shadow-color: hsl(var(--p)/1);
-    --tw-shadow: var(--tw-shadow-colored);
-}
-
-.family-tree {
-    //--family-tree-founder: var(--theme-link-hover);
-}
-
-#cy {
-    --relation-explorer-background: hsl(var(--b1)/1);
-    --relation-explorer-text: hsl(var(--bc)/1);
-}
