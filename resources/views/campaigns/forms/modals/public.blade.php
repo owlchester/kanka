@@ -1,10 +1,9 @@
-{!! Form::model($campaign, ['route' => 'campaign-visibility.save', 'method' => 'POST']) !!}
+<x-dialog.header>
+    {!! __('campaigns/public.title') !!}
+</x-dialog.header>
+<article class="text-left max-w-2xl">
 
-<div class="modal-body">
-    <x-dialog.close />
-    <h4 class="modal-title  text-center mb-5">
-        {!! __('campaigns/public.title') !!}
-    </h4>
+{!! Form::model($campaign, ['route' => 'campaign-visibility.save', 'method' => 'POST']) !!}
 
     <x-alert type="info">
         <p>{!! __('campaigns/public.helpers.main', [
@@ -27,8 +26,8 @@
     <x-dialog.footer>
         <button class="btn2 btn-primary">{{ __('crud.actions.apply') }}</button>
     </x-dialog.footer>
-</div>
 @if (isset($from) && $from === 'overview')
     <input type="hidden" name="from" value="{{ $from }}" />
 @endif
 {!! Form::close() !!}
+</article>

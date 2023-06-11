@@ -2,7 +2,7 @@
 <div class="modal-body">
     @if (request()->ajax())
         <div class="text-center mb-5">
-            <x-dialog.close />
+            <x-dialog.close :modal="true"/>
             <h4 class="modal-title">{{ __('entities/attributes.template.title', ['name' => $entity->name]) }}</h4>
         </div>
     @endif
@@ -19,7 +19,7 @@
 'marketplace' => link_to(config('marketplace.url') . '/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
 ]) !!}
     </p>
-    <x-dialog.footer>
+    <x-dialog.footer :modal="true">
 
         @include('entities.pages.attribute-templates._actions')
     </x-dialog.footer>

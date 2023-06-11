@@ -1,1 +1,1 @@
-<x-dialog.close />
+<x-dialog.close :modal="true"/>

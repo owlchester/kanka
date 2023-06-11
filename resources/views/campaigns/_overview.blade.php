@@ -4,7 +4,7 @@ $boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-
 <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-5">
 
     @can ('update', $campaign)
-        <a href="#" role="button" class="{{ $boxClass }}" data-url="{{ route('campaign-visibility', ['from' => 'overview']) }}" data-target="#entity-modal" data-toggle="ajax-modal">
+        <a href="#" role="button" class="{{ $boxClass }}" data-url="{{ route('campaign-visibility', ['from' => 'overview']) }}" data-target="campaign-visibility" data-toggle="dialog-ajax">
     @else
         <div class="{{ $boxClass }}">
     @endcan
@@ -73,4 +73,5 @@ $boxClass = 'rounded p-3 text-center bg-box shadow-xs flex items-center justify-
             {{ __('campaigns.helpers.entity_count_v3', ['amount' => 6]) }}
         </p>
     </x-dialog>
+    <x-dialog id="campaign-visibility" :title="__('Loading')" :loading="true"></x-dialog>
 @endsection

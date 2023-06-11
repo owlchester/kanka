@@ -25,7 +25,7 @@
 
             @include('calendars.events._entity_form')
 
-            <x-dialog.footer>
+            <x-dialog.footer :modal="true">
                 <button class="btn2 btn-primary" id="calendar-event-submit">
                     <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
                     <span>{{ __('crud.save') }}</span>

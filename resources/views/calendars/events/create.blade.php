@@ -20,8 +20,7 @@
     </div>
     <div class="modal-footer" id="calendar-event-submit" style="display: none">
 
-        <x-dialog.footer>
-
+        <x-dialog.footer :modal="true">
             <button class="btn2 btn-primary">
                 <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
                 <span>{{ __('crud.save') }}</span>

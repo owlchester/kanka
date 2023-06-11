@@ -16,7 +16,7 @@
 
 @section('content')
     <div class="modal-header">
-        <x-dialog.close />
+        <x-dialog.close :modal="true" />
         <h4 class="modal-title" id="myModalLabel">
             {{ __('entities/image.replace.panel_title') }}
         </h4>
@@ -33,7 +33,7 @@
 
         @includeWhen($campaignService->campaign()->boosted(), 'cruds.fields.entity_image')
 
-        <x-dialog.footer>
+        <x-dialog.footer :modal="true">
             <buton type="submit" class="btn2 btn-primary">
                 {{ __('entities/image.actions.save-replace') }}
             </buton>
