@@ -85,22 +85,22 @@
                     </li>
                     <li class="small">
                         <span class="fa-li">
-                            <x-icon class="fa-solid fa-check"></x-icon>
+                            <x-icon class="fa-regular fa-check-circle"></x-icon>
                         </span> {{ __('front.pricing.benefits.big_maps', ['size' => '10 MB']) }}
                     </li>
                     <li class="small">
                         <span class="fa-li">
-                            <x-icon class="fa-solid fa-check"></x-icon>
+                            <x-icon class="fa-regular fa-check-circle"></x-icon>
                         </span> {{ __('front.features.patreon.monthly_vote') }}
                     </li>
                     <li class="small">
                         <span class="fa-li">
-                            <x-icon class="fa-solid fa-check"></x-icon>
+                            <x-icon class="fa-regular fa-check-circle"></x-icon>
                         </span> {!! __('front.features.patreon.discord', ['discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank'])]) !!}
                     </li>
                     <li class="small">
                         <span class="fa-li">
-                            <x-icon class="fa-solid fa-check"></x-icon>
+                            <x-icon class="fa-regular fa-check-circle"></x-icon>
                         </span> {{ __('front.features.patreon.no_ads') }}
                     </li>
 
