@@ -26,15 +26,13 @@
     @if (!$cancel)
         @if ($hasPromo)
             <label>{{ __('settings.subscription.coupon.label') }}</label>
-            <div class="input-group mb-5">
-                <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control" data-url="{{ route('subscription.check-coupon') }}" />
+            <div class="join mb-5">
+                <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control join-item" data-url="{{ route('subscription.check-coupon') }}" />
 
-                <span class="input-group-btn">
-                  <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline" title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
-                      <i class="fa-solid fa-check check"></i>
-                      <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
-                  </button>
-                </span>
+                <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline join-item" title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
+                    <i class="fa-solid fa-check check"></i>
+                    <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
+                </button>
             </div>
             <x-alert type="success" :hidden="true" id="coupon-success"></x-alert>
             <x-alert type="warning" :hidden="true" id="coupon-invalid">

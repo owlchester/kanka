@@ -31,7 +31,7 @@
             <section class="content-header mb-5">
                 <h1>
                     {{ $title ?? "Page Title" }}
-                    <small>{{ $description ?? null }}</small>
+                    <span class="text-sm text-green-500">{{ $description ?? null }}</span>
                     @if (!empty($headerExtra))
                         {!! $headerExtra !!}
                     @endif

@@ -119,7 +119,7 @@ h1, h2, h3, h4, h5, h6, h1 > small, .panel-title {
 }
 
 
-input, textarea, .select2, select, .input-group .input-group-addon, .form-control {
+input, textarea, .select2, select, .form-control {
     border-width: 1px;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
     --tw-border-opacity: 0.2;
@@ -269,15 +269,6 @@ hr {
 }
 
 
-code, pre {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--n)/var(--tw-bg-opacity));
-    --tw-text-opacity: 1;
-    color: hsl(var(--nc)/var(--tw-text-opacity));
-    border: none;
-    margin-bottom: .5rem;
-}
-
 /** Buttons **/
 .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus, .pagination > li > a {
     --tw-bg-opacity: 1;
@@ -389,22 +380,6 @@ blockquote {
 .table :is(thead, tbody, tfoot) tr.warning:hover :is(td, th) {
     background-color: hsl(var(--af)/1);
     color: hsl(var(--ac)/1);
-}
-
-
-.tooltip-inner, .tooltip-content {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--n)/var(--tw-bg-opacity));
-    --tw-text-opacity: 1;
-    color: hsl(var(--nc)/var(--tw-text-opacity));
-}
-.tooltip.top .tooltip-arrow {
-    --tw-bg-opacity: 1;
-    border-top-color: hsl(var(--n)/var(--tw-bg-opacity));
-}
-.tooltip.bottom .tooltip-arrow {
-    --tw-bg-opacity: 1;
-    border-bottom-color: hsl(var(--n)/var(--tw-bg-opacity));
 }
 
 /** background colours **/

@@ -310,7 +310,7 @@ ul.entity-menu {
         }
     }
 }
-.input-group {
+/*.input-group {
     display: flex;
     width: 100%;
     align-items: stretch;
@@ -334,7 +334,7 @@ ul.entity-menu {
     background-color: hsl(var(--b3)/var(--tw-bg-opacity));
     padding-left: 1rem;
     padding-right: 1rem;
-}
+}*/
 
 .glass, .glass.btn-active {
     border: none;
@@ -350,6 +350,7 @@ ul.entity-menu {
 @import "buttons";
 @import "badge";
 @import "calendar";
+@import "code";
 @import "tooltip";
 @import "timeline";
 @import "mobile";

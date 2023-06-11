@@ -42,13 +42,13 @@
                 @else
                     {!! $item->name !!}
                 @endif<br />
-                <small class="text-muted">
+                <span class="text-sm text-muted">
                     @if ($item->item && $item->copy_item_entry)
                         {!! $item->item->entry() !!}
                     @else
                     {{ $item->description }}
                     @endif
-                </small>
+                </span>
             </td>
             <td>
                 {{ number_format($item->amount) }}

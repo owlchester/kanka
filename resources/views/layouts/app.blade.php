@@ -93,7 +93,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                         @else
                             <h1 class="truncate m-0 text-lg">
                                 {!! $title ?? "Page Title" !!}
-                                <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
+                                <span class="text-sm text-green-500 hidden-xs hidden-sm">{{ $description ?? null }}</span>
                             </h1>
                         @endif
                     @endif
@@ -106,19 +106,19 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                 @if (isset($sidebar) && $sidebar === 'settings') <div class="max-w-4xl"> @endif
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
                     <div class=" alert p-4 rounded alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5 mb-5">
-                        <div class="m-0 p-0 text-lg">
-                            <i class="icon fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
-                            {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
+                        <div class="">
+                            <div class="m-0 p-0 text-lg">
+                                <i class="icon fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                                {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
+                            </div>
+                            <p class="text-justify">
+                                {{ __('campaigns.members.impersonating.message') }}
+                            </p>
                         </div>
-                        <div class="grow text-justify">
-                            {{ __('campaigns.members.impersonating.message') }}
-                        </div>
-                        <div>
-                            <a href="{{ route('identity.back') }}" class="btn2 btn-sm switch-back">
-                                <x-icon class="fa-solid fa-sign-out-alt"></x-icon>
-                                {{ __('campaigns.members.actions.switch-back') }}
-                            </a>
-                        </div>
+                        <a href="{{ route('identity.back') }}" class="btn2 btn-sm switch-back grow">
+                            <x-icon class="fa-solid fa-sign-out-alt"></x-icon>
+                            {{ __('campaigns.members.actions.switch-back') }}
+                        </a>
                     </div>
                 @endif
                 @include('partials.success')

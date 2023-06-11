@@ -76,7 +76,6 @@ $specificTheme = null;
                     @else
                         <h1>
                             {!! $title ?? "Page Title" !!}
-                            <small class="hidden-xs hidden-sm">{{ $description ?? null }}</small>
                         </h1>
                     @endif
                 @endif

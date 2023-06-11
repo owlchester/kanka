@@ -1,6 +1,6 @@
 <div class="flex gap-2 mb-5 items-center">
     <h3 class="m-0 inline-block grow">
-        {{ __('campaigns.show.tabs.roles') }} <small>({{ $roles->total() }} / @if ($limit = $campaign->roleLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</small>
+        {{ __('campaigns.show.tabs.roles') }} <span class="text-sm">({{ $roles->total() }} / @if ($limit = $campaign->roleLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
     </h3>
     <button class="btn2 btn-sm" data-toggle="dialog"
             data-target="roles-help">
