@@ -18,12 +18,14 @@
     <x-box>
         @include('partials.errors')
 
+        @if (!$theme)
         <x-alert type="info">
             <p>{!! __('campaigns/builder.pitch') !!}</p>
             <a href="{{ route('campaign_styles.builder') }}" class="btn2 btn-primary">
                 {{ __('campaigns/builder.pitch-go') }}
             </a>
         </x-alert>
+        @endif
 
         <x-alert type="error" id="max-content-error" :hidden="true">
             {{ __('campaigns/styles.errors.max_content', ['amount' => number_format(\App\Http\Requests\StoreCampaignStyle::MAX)]) }}

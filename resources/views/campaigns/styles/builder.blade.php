@@ -1,8 +1,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('campaigns/styles.builder.title') . ' - ' . $campaign->name,
+    'title' => __('campaigns/builder.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
         ['url' => route('campaign_styles.index'), 'label' => __('campaigns.show.tabs.styles')],
-        __('campaigns/styles.builder.title')
+        __('campaigns/builder.title')
     ],
     'mainTitle' => '',
 ])
@@ -11,7 +11,10 @@
 
     <div class="max-w-4xl">
         <x-alert type="info">
-            <p class="m-0">Easily build a theme for the campaign with this interface. Scroll down to see how the changes would impact various elements. When a colour is selected, a "contrasting" colour is automatically selected for colouring text.</p>
+            <p class="m-0">
+                {!! __('campaigns/builder.help', [
+                'docs' => link_to('https://docs.kanka.io/en/latest/features/campaigns/theme-builder.html', __('front.menu.documentation', ['target' => '_blank']))
+            ]) !!}
         </x-alert>
 
         {!! Form::open([

@@ -7,9 +7,6 @@ return [
         'enable'    => 'Enable',
         'new'       => 'New style',
     ],
-    'builder' => [
-        'title' => 'Theme builder',
-    ],
     'bulks'     => [
         'delete'    => '{1} Removed :count style.|[2,*] Removed :count styles.',
         'disable'   => '{1} Disabled :count style.|[2,*] Disabled :count styles.',

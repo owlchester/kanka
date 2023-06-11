@@ -1,6 +1,7 @@
 :root {
     color-scheme: light;
 
+    // Background colour behind the UI elements
     --content-wrapper-background: #f3f3f3;
     --boosted: 338 78% 48%;
 
@@ -63,9 +64,9 @@
     --rounded-btn: .25rem;
     // Border radius for badges (tags)
     --rounded-badge: .25rem;
-    // Animation durection when a button is focused
+    // Animation duration when a button is focused
     --animation-btn: 0;
-    // Scale effect on buttons when focuses
+    // Scale effect on buttons when focused
     --btn-focus-scale: 1;
 
     // Button border width
