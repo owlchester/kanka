@@ -27,7 +27,7 @@ use App\Facades\Datagrid ?>
                         <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}
                     </button>
-                    <a href="#" data-url="{{ route('campaign-theme') }}" data-target="#entity-modal" data-toggle="ajax-modal" class="btn2 btn-sm pull-right ml-1">
+                    <a href="#" data-url="{{ route('campaign-theme') }}" data-target="campaign-theme" data-toggle="dialog-ajax" class="btn2 btn-sm pull-right ml-1">
                         <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
                     </a>
 
@@ -66,6 +66,7 @@ use App\Facades\Datagrid ?>
 
     @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms()])
 
+    <x-dialog id="campaign-theme" title="{{ __('Loading') }}" :loading="true"></x-dialog>
 
     @include('partials.helper-modal', [
         'id' => 'theming-help',

@@ -46,11 +46,11 @@
                             </a>
                         </x-box>
                     @endif
-                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+                    <div class="grid grid-cols-1 gap-4 xl:grid-cols-2 md:gap-5">
 
                         @foreach ($campaign->defaultImages() as $image)
                             <div class="rounded overflow-hidden border flex gap-2 items-center bg-box">
-                                <div class="w-24 h-24 cover-background" style="background-image: url('{{ Img::crop(96, 96)->url($image['path']) }}')">
+                                <div class="flex-initial w-24 h-24 cover-background" style="background-image: url('{{ Img::crop(96, 96)->url($image['path']) }}')">
                                 </div>
                                 <div class="grow">
                                     {!! \App\Facades\Module::singular($image['type'], __('entities.' . $image['type'])) !!}

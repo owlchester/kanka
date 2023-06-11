@@ -32,8 +32,4 @@
         </x-box>
     @endforeach
 </div>
-@if ($submissions->hasPages())
-    <div class="text-right">
-        {!! $submissions->links() !!}
-    </div>
-@endif
+{!! $submissions->links() !!}

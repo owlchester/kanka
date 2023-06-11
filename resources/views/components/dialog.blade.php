@@ -9,6 +9,11 @@
         </button>
     </header>
     <article class="text-justify @if (!$full) max-w-2xl @endif">
+        @if ($loading)
+            <div class="p-5 text-center w-full">
+                <i class="fa-solid fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+            </div>
+        @endif
         {{ $slot }}
     </article>
 </dialog>
