@@ -31,8 +31,8 @@
     <div class="badge badge-secondary">Secondary</div>
     <div class="badge badge-accent">Accent</div>
 
-    <div class="col-span-2">
-        <div class="nav-tabs-custom mb-5">
+    <div class="col-span-2 flex flex-col gap-5">
+        <div class="nav-tabs-custom">
             <div class="flex gap-2 items-center ">
                 <div class="grow overflow-x-auto">
                     <ul class="nav-tabs flex inline-flex items-stretch w-full" role="tablist">
@@ -44,7 +44,33 @@
             </div>
         </div>
 
-        <a href="" data-toggle="tooltip-demo">Hover me tooltip</a>
+        <div class="dropdown">
+            <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown"
+                    aria-expanded="false">
+                <span class="caret"></span>
+                Dropdown menu
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="#" class="dropdown-item">
+                        Action 1
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-item">
+                        Action 2
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="dropdown-item">
+                        Action 3
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <span class="btn2 btn-link btn-sm" data-toggle="tooltip-demo">Hover me tooltip</span>
     </div>
 
     <div class="col-span-2 bg-box p-4 rounded">

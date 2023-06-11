@@ -247,13 +247,13 @@ hr {
 
     li > a:hover, li > a:focus {
         --dropdown-hover-text: inherit;
-        background-color: hsl(var(--bc)/0.1);
+        background-color: hsl(var(--b2)/1);
         color: var(--dropdown-hover-text);
     }
 
     li > a {
-        --dropdown-link: #777;
-        color: var(--dropdown-link);
+        --tw-text-opacity: 1;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
     }
 }
 
