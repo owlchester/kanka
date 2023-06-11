@@ -2,7 +2,7 @@
 $imageCount = 0;
 ?>
 <div class="modal-header">
-    <x-dialog.close />
+    <x-dialog.close :modal="true"  />
     <h4 class="modal-title" id="myModalLabel">{!! $image->name !!}</h4>
 </div>
 <div class="modal-body panel-image-edit">

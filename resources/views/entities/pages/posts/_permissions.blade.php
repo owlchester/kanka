@@ -60,7 +60,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content bg-base-100">
                 <div class="modal-header">
-                    <x-dialog.close />
+                    <x-dialog.close :modal="true" />
                     <h4 class="modal-title" id="myModalLabel">{{ __('entities/notes.show.advanced') }}</h4>
                 </div>
                 <div class="modal-body">
@@ -69,7 +69,7 @@
                         @include('components.form.user', ['options' => ['dropdownParent' => '#post-new-user']])
                     </div>
 
-                    <x-dialog.footer>
+                    <x-dialog.footer :modal="true" >
                         <button class="btn2 btn-primary post-perm-add" id="post-perm-user-add" data-type="user">
                             <x-icon class="plus"></x-icon> {{ __('entities/notes.actions.add_user') }}
                         </button>
@@ -82,7 +82,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content bg-base-100">
                 <div class="modal-header">
-                    <x-dialog.close />
+                    <x-dialog.close :modal="true"  />
                     <h4 class="modal-title" id="myModalLabel">{{ __('entities/notes.show.advanced') }}</h4>
                 </div>
                 <div class="modal-body">
@@ -93,7 +93,7 @@
                         ]])
                     </div>
 
-                    <x-dialog.footer>
+                    <x-dialog.footer :modal="true" >
                         <button class="btn2 btn-primary post-perm-add" id="post-perm-role-add" data-type="role">
                             <x-icon class="plus"></x-icon> {{ __('entities/notes.actions.add_role') }}
                         </button>
