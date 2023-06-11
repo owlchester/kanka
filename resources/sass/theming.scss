@@ -153,10 +153,10 @@ input:focus, .textarea:focus, .form-control:focus {
     --tw-text-opacity: .2;
 }
 
-*, ::before, ::after {
+/**, ::before, ::after {
     --tw-border-opacity: 0.2;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
-}
+}*/
 .select2 {
     border: none;
 }
@@ -329,19 +329,19 @@ code, pre {
     }
 
     .with-border {
-        --tw-border-opacity: 0.2;
+        --tw-border-opacity: 0.1;
         border-bottom-color: hsl(var(--bc)/var(--tw-border-opacity));
     }
 
     .box-footer {
         background: var(--box-footer-background);
-        --tw-border-opacity: 0.2;
+        --tw-border-opacity: 0.1;
         border-top-color: hsl(var(--bc)/var(--tw-border-opacity));
     }
 }
 
 .panel-default > .panel-heading {
-    --tw-border-opacity: 0.2;
+    --tw-border-opacity: 0.1;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
 }
 .popover {
