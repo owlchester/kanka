@@ -41,7 +41,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                     ></i>
                 @endif
 
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                <a class="text-error attribute_delete" title="{{ __('crud.remove') }}">
                     <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
@@ -77,7 +77,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                    data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                 ></i>
     @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                <a class="text-error attribute_delete pull-right" title="{{ __('crud.remove') }}">
                     <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
@@ -112,7 +112,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                    data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                 ></i>
     @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                <a class="text-error attribute_delete pull-right" title="{{ __('crud.remove') }}">
                     <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
@@ -146,7 +146,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 ></i>
     @endif
 
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                <a class="text-error attribute_delete" title="{{ __('crud.remove') }}">
                     <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
@@ -180,7 +180,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                    data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                 ></i>
     @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                <a class="text-error attribute_delete" title="{{ __('crud.remove') }}">
                     <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>
@@ -218,7 +218,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
                 @endif
-                <a class="text-danger attribute_delete pull-right" title="{{ __('crud.remove') }}">
+                <a class="text-error attribute_delete" title="{{ __('crud.remove') }}">
                     <x-icon class="trash" size="fa-2x" />
                     <span class="sr-only">{{ __('crud.remove') }}</span>
                 </a>

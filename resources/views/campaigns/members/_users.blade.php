@@ -53,22 +53,26 @@
                     <td class="!align-middle">
                         {!! $relation->user->rolesList($campaign->id) !!}
                         @can('update', $relation)
-                            <i role="button" tabindex="0" class="fa-solid fa-plus-circle cursor-pointer btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
-                            @foreach($roles as $role)
-                            <form method='post' action='{{ route('campaign_users.update-roles', [$relation, $role]) }}' class='user-role-update'>
-{!! str_replace('"', '\'', csrf_field()) !!}
+                            <i role="button" tabindex="0" class="fa-solid fa-plus-circle cursor-pointer" title="{{ __('campaigns.members.manage_roles') }}" data-toggle="dialog" data-target="member-roles-{{ $relation->id  }}"></i>
 
-                                <button class='btn2 btn-block btn-role-update mb-2'>
-                                @if($relation->user->hasCampaignRole($role->id))
-                                    <span class='text-danger'><i class='fa-solid fa-times' aria-hidden='true'></i> {{ $role->name }}</span>
-                                @else
-                                    <i class='fa-solid fa-plus' aria-hidden='true'></i> {{ $role->name }}
-                                @endif
-                                </button>
-                            </form>
-                            @endforeach
-</form>
-"></i>
+                            <x-dialog id="member-roles-{{ $relation->id }}" :title="__('campaigns.members.manage_roles') . ' - ' . $relation->user->name">
+                                <div class="w-full flex flex-col gap-2">
+                                @foreach($roles as $role)
+                                    {!! Form::open(['method' => 'post', 'route' => ['campaign_users.update-roles', [$relation, $role]], 'class' => 'w-full']) !!}
+                                        <button class='btn2 btn-block btn-feedback @if($relation->user->hasCampaignRole($role->id)) btn-error btn-outline @endif'>
+                                            @if($relation->user->hasCampaignRole($role->id))
+                                                <x-icon class="trash" />
+                                                {{ $role->name }}
+                                            @else
+                                                <x-icon class="plus" />
+                                                {{ $role->name }}
+                                            @endif
+                                        </button>
+                                    {!! Form::close() !!}
+                                @endforeach
+                                </div>
+
+                            </x-dialog>
                         @endcan
                     </td>
                     <td class="!align-middle hidden-xs hidden-md">
@@ -101,8 +105,8 @@
                                     @can('delete', $relation)
                                         <li>
                                             <a href="#" class="text-red delete-confirm" title="{{ __('crud.remove') }}"
-                                               data-toggle="modal" data-name="{{ $relation->user->name }}"
-                                               data-target="#removal-confirm" data-delete-target="campaign-user-{{ $relation->id }}"
+                                               data-toggle="dialog"
+                                               data-target="removal-confirm-{{ $relation->id }}"
                                             >
                                                 <x-icon class="trash"></x-icon>
                                                 {{ __('campaigns.members.actions.remove') }}
@@ -111,14 +115,31 @@
                                     @endcan
                                 </ul>
                             </div>
+
+
+
                             @can('delete', $relation)
                                 {!! Form::open([
                                     'method' => 'DELETE',
                                     'route' => ['campaign_users.destroy', $relation->id],
-                                    'style' => 'display:inline',
-                                    'id' => 'campaign-user-' . $relation->id]) !!}
+                                  ]) !!}
+                                <x-dialog id="removal-confirm-{{ $relation->id }}" :title="__('crud.delete_modal.title')">
+                                    <p class="mt-3">
+                                        {!! __('campaigns.members.removal', ['member' => '<strong>' . $relation->user->name. '</strong>']) !!}<br />
+                                        <span class="permanent">
+                                            {{ __('crud.delete_modal.permanent') }}
+                                        </span>
+                                    </p>
 
-                                {!! Form::close() !!}
+                                    <x-dialog.footer>
+                                        <button type="button" class="btn2 btn-error btn-outline delete-confirm-submit">
+                                            <span class="fa-solid fa-trash" aria-hidden="true"></span>
+                                            <span class="remove-button-label">{{ __('crud.remove') }}</span>
+                                        </button>
+                                    </x-dialog.footer>
+                                </x-dialog>
+                            {!! Form::close() !!}
+
                             @endcan
                         @endif
                     </td>
@@ -148,31 +169,5 @@
         'button' => '<code><i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i> ' . __('campaigns.members.actions.switch') . '</code>']) : null),
         ]
     ])
-
-    <div class="modal fade" id="removal-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100 rounded-2xl">
-                <div class="modal-body text-center">
-
-                    <x-dialog.close />
-
-                    <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
-                    <p class="mt-3">
-                        {!! __('campaigns.members.removal', ['member' => '<strong><span class="target-name"></span></strong>']) !!}<br />
-                        <span class="permanent" style="display: none">
-                            {{ __('crud.delete_modal.permanent') }}
-                        </span>
-                    </p>
-
-                    <x-dialog.footer>
-                        <button type="button" class="btn2 btn-error btn-outline delete-confirm-submit">
-                            <span class="fa-solid fa-trash" aria-hidden="true"></span>
-                            <span class="remove-button-label">{{ __('crud.remove') }}</span>
-                        </button>
-                    </x-dialog.footer>
-                </div>
-            </div>
-        </div>
-    </div>
 
 @endsection

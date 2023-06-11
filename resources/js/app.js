@@ -44,6 +44,7 @@ $(document).ready(function() {
     initImageRemoval();
     initDialogs();
     initSidebarHelper();
+    initFeedbackButtons();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -58,6 +59,7 @@ $(document).ready(function() {
         initDynamicDelete();
         initImageRemoval();
         deleteConfirm();
+        initFeedbackButtons();
     });
 });
 
@@ -331,6 +333,22 @@ function heighestValue(numbers) {
 function initSidebarHelper() {
     $('.campaign-head[data-toggle="popover"]').popover();
 }
+
+/**
+ * When clicking on these buttons, adds a "loading" spinner to indicate that something is happening
+ */
+const initFeedbackButtons = () => {
+    $.each($('.btn-feedback'), function () {
+        if ($(this).data('feedback') === 1) {
+            return;
+        }
+
+        $(this).data('feedback', 1);
+        $(this).on('click', function () {
+            $(this).addClass('loading');
+        });
+    });
+};
 
 // Splitting off the js files into logical blocks
 import './helpers';

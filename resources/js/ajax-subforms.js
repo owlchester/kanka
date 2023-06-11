@@ -66,7 +66,7 @@ function initSubforms() {
             //console.log('error', err);
             // Reset any error fields
             currentAjaxForm.find('.input-error').removeClass('input-error');
-            currentAjaxForm.find('.text-danger').remove();
+            currentAjaxForm.find('.text-error').remove();
 
             // /?\ how do the 503/403 error ids work ?
             // If we have a 503 error status, let's assume it's from cloudflare and help the user
@@ -94,7 +94,7 @@ function initSubforms() {
                 if (errorSelector.length > 0) {
                     currentAjaxForm.find('[name="' + i + '"]').addClass('input-error')
                         .parent()
-                        .append('<div class="text-danger">' + errors[i][0] + '</div>');
+                        .append('<div class="text-error">' + errors[i][0] + '</div>');
                 } else {
                     foundAllErrors = false;
                 }

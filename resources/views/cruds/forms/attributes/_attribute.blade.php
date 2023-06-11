@@ -80,7 +80,7 @@ if ($attribute->isSection()) {
         ></i>
         @endif
         @if (!isset($model) || auth()->user()->can('attribute', [$model, 'delete']))
-            <a class="text-danger attribute_delete" title="{{ __('crud.remove') }}">
+            <a class="text-error attribute_delete" title="{{ __('crud.remove') }}">
                 <x-icon class="trash" size="fa-2x" />
                 <span class="sr-only">{{ __('crud.remove') }}</span>
             </a>

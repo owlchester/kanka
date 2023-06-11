@@ -1,7 +1,7 @@
 
 window.formErrorHandler = function(err, form) {
     $('.input-error').removeClass('input-error');
-    $('.text-danger').remove();
+    $('.text-error').remove();
 
     // Re-enable the submit button
     $(form).find('.btn-success')
@@ -30,7 +30,7 @@ window.formErrorHandler = function(err, form) {
     errorKeys.forEach(function (i) {
         let errorSelector = $('[name="' + i + '"]');
         if (errorSelector.length > 0) {
-            errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+            errorSelector.addClass('input-error').parent().append('<div class="text-error">' + errors[i][0] + '</div>');
         } else {
             foundAllErrors = false;
             logs.push(errors[i][0]);

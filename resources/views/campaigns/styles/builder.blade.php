@@ -45,7 +45,7 @@
                         <div class="picker rounded flex-none h-6 w-6 cursor-pointer border bg-neutral" data-toggle="tooltip" title="Click me to change the colour" data-target="n"></div>
                         <div class="break-words">
                             <p class="m-0">Neutral </p>
-                            <p class="help-block m-0">Used for tooltips, default tags, calendar weather, code and pre blocks.</p>
+                            <p class="help-block m-0">Used for tooltips, default tags and calendar weather.</p>
                         </div>
                     </div>
                     <div class="flex gap-2 mb-5">

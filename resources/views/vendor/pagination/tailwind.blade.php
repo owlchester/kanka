@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
     <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
-        <div class="flex justify-between flex-1 sm:hidden my-2">
+        <div class="flex justify-between flex-1 sm:hidden">
             @if ($paginator->onFirstPage())
                 <span class="btn2 btn-sm btn-disabled">
                     {!! __('pagination.previous') !!}
@@ -23,21 +23,19 @@
         </div>
 
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between gap-2 my-2">
-            <div>
-                <p class="help-block italic">
-                    {!! __('pagination.showing') !!}
-                    @if ($paginator->firstItem())
-                        <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                        {!! __('pagination.to') !!}
-                        <span class="font-medium">{{ $paginator->lastItem() }}</span>
-                    @else
-                        {{ $paginator->count() }}
-                    @endif
-                    {!! __('pagination.of') !!}
-                    <span class="font-medium">{{ $paginator->total() }}</span>
-                    {!! __('pagination.results') !!}
-                </p>
-            </div>
+            <p class="help-block italic m-0 text-sm">
+                {!! __('pagination.showing') !!}
+                @if ($paginator->firstItem())
+                    <span class="font-medium">{{ $paginator->firstItem() }}</span>
+                    {!! __('pagination.to') !!}
+                    <span class="font-medium">{{ $paginator->lastItem() }}</span>
+                @else
+                    {{ $paginator->count() }}
+                @endif
+                {!! __('pagination.of') !!}
+                <span class="font-medium">{{ $paginator->total() }}</span>
+                {!! __('pagination.results') !!}
+            </p>
 
             <div>
                 <span class="relative z-0 inline-flex shadow-sm rounded-md join">

@@ -11,3 +11,8 @@
 .text-white {
     color:#fff !important
 }
+
+.text-error {
+    --tw-text-opacity: 1;
+    color:hsl(var(--er)/var(--tw-text-opacity))
+}
