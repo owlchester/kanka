@@ -1,15 +1,12 @@
 :root {
     color-scheme: dark;
-
     --box-background: hsl(var(--b1)/1);
 
     // Background color
     --content-wrapper-background: hsl(var(--b3)/1);
 
-
     // Make the legacy editor work with dark mode
     --tinymce-filter: invert(90%) !important;
-
 
     --pf: 198 93% 53%;
     --sf: 234 89% 67%;
@@ -37,5 +34,6 @@
     --er: 351 95% 71%;
 
     --si: var(--b2);
+    --sif: var(--pf);
 }
 

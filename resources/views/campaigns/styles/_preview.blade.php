@@ -32,7 +32,7 @@
     <div class="badge badge-accent">Accent</div>
 
     <div class="col-span-2">
-        <div class="nav-tabs-custom">
+        <div class="nav-tabs-custom mb-5">
             <div class="flex gap-2 items-center ">
                 <div class="grow overflow-x-auto">
                     <ul class="nav-tabs flex inline-flex items-stretch w-full" role="tablist">
@@ -43,6 +43,8 @@
                 </div>
             </div>
         </div>
+
+        <a href="" data-toggle="tooltip-demo">Hover me tooltip</a>
     </div>
 
     <div class="col-span-2 bg-box p-4 rounded">

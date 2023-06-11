@@ -31,6 +31,8 @@
     }
 
     .sidebar-menu {
+        --tw-text-opacity: 1;
+        color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));
         li {
             a, span {
                 font-size: 0.8rem;
@@ -43,18 +45,16 @@
             a {
                 &:hover {
                     --tw-bg-opacity: .7;
-                    background: hsl(var(--nf)/var(--tw-bg-opacity));
+                    background: hsl(var(--sif)/var(--tw-bg-opacity));
                     --tw-text-opacity: 1;
-                    color: hsl(var(--nc)/var(--tw-text-opacity));
+                    color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));
                 }
             }
         }
 
         li.active > a, li.active.sidebar-section {
             --tw-bg-opacity: .7;
-            background: hsl(var(--nf)/var(--tw-bg-opacity));
-            --tw-text-opacity: 1;
-            color: hsl(var(--nc)/var(--tw-text-opacity));
+            background: hsl(var(--sif)/var(--tw-bg-opacity));
         }
     }
 }
