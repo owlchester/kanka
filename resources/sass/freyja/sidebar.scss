@@ -30,6 +30,11 @@
         color: var(--sidebar-link, #fff);
     }
 
+    .campaign-updated {
+        --tw-text-opacity: 0.7;
+        color: hsl(var(--sic)/var(--tw-text-opacity));
+    }
+
     .sidebar-menu {
         --tw-text-opacity: 1;
         color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));

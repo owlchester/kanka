@@ -20,7 +20,7 @@ $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m
                         {!! $currentCampaign->name !!}
                     </div>
 
-                    <div class="campaign-updated text-xs truncate" style="--tw-text-opacity: .8">
+                    <div class="campaign-updated text-xs truncate">
                         {{ __('sidebar.campaign_switcher.updated') }} {{ $currentCampaign->updated_at->diffForHumans() }}
                     </div>
                 </div>
