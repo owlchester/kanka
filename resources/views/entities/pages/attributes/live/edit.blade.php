@@ -2,7 +2,7 @@
 
 {!! Form::open(['route' => ['entities.attributes.live.save', $entity, $attribute]]) !!}
 <div class="modal-header">
-    <x-dialog.close />
+    <x-dialog.close :modal="true" />
     <h4 class="modal-title" id="myModalLabel">{!! __('entities/attributes.live.title', ['attribute' => $attribute->name()]) !!}</h4>
 </div>
 <div class="modal-header">
@@ -27,12 +27,13 @@
         <input type="text" name="value" class="form-control" maxlength="191" value="{{ $attribute->value }}" />
     @endif
     </div>
-</div>
-<div class="modal-footer">
-    <button type="submit" class="btn2 btn-primary">
-        <x-icon class="fa-regular fa-save"></x-icon>
-        {{ __('crud.update') }}
-    </button>
+
+    <x-dialog.footer :modal="true">
+        <button type="submit" class="btn2 btn-primary">
+            <x-icon class="fa-regular fa-save"></x-icon>
+            {{ __('crud.update') }}
+        </button>
+    </x-dialog.footer>
 </div>
 {!! Form::hidden('uid', $uid) !!}
 {!! Form::close() !!}

@@ -85,6 +85,9 @@
     --tw-bg-opacity: 1;
     border-bottom-color: hsl(var(--n)/var(--tw-bg-opacity));
 }
+.tooltip-content {
+    text-align: left;
+}
 
 /** Change positioning of various elements so tooltips can extend beyond overflow:hidden containers **/
 
