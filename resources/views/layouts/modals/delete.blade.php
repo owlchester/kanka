@@ -4,7 +4,7 @@
         <div class="modal-content bg-base-100 rounded-2xl">
             <div class="modal-body text-center">
 
-                <x-dialog.close />
+                <x-dialog.close :modal="true"/>
 
                 <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
                 <p class="mt-3">

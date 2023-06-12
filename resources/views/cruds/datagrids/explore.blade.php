@@ -39,6 +39,6 @@
 
 @if($models->hasPages())
     <div class="text-right">
-        {{ $models->appends($filterService->pagination())->links() }}
+        {{ $models->appends($filterService->pagination())->onEachSide(0)->links() }}
     </div>
 @endif

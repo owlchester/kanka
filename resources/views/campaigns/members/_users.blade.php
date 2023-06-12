@@ -124,12 +124,10 @@
             </tbody>
         </table>
     </div>
-    @if ($users->hasPages())
-    <div class="text-right">
-        {{ $users->links() }}
-    </div>
-    @endif
 </x-box>
+<div class="mb-5">
+{!! $users->onEachSide(0)->links() !!}
+</div>
 
 
 @section('modals')

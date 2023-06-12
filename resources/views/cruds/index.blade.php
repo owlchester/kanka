@@ -60,7 +60,7 @@
 
         @if($models->hasPages())
         <div class="pull-right">
-            {{ $models->appends($filterService->pagination())->links() }}
+            {{ $models->appends($filterService->pagination())->onEachSide(0)->links() }}
         </div>
         @endif
         {!! Form::hidden('entity', $name) !!}

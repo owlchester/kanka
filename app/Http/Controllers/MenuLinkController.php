@@ -51,7 +51,7 @@ class MenuLinkController extends CrudController
         $this->addNavAction(
             '//docs.kanka.io/en/latest/advanced/quick-links.html',
             '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> <span class="hidden-xs">' . __('crud.actions.help') . '</span>',
-            'default',
+            '',
             true
         );
     }

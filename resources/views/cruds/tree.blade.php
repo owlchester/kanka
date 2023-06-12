@@ -59,7 +59,7 @@
         @endif
         @if($models->hasPages())
         <div class="pull-right">
-            {{ $models->appends('parent_id', request()->get('parent_id'))->appends('m', 'table')->links() }}
+            {{ $models->appends('parent_id', request()->get('parent_id'))->appends('m', 'table')->onEachSide(0)->links() }}
         </div>
         @endif
         {!! Form::hidden('entity', $name) !!}

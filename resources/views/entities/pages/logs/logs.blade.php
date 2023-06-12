@@ -107,14 +107,14 @@
                 </table>
 
                 @if (!$ajax)
-                    {{ $logs->links() }}
+                    {{ $logs->onEachSide(0)->links() }}
                 @endif
             </div>
         </div>
 
         @if ($ajax && $logs->hasPages())
             <div class="modal-footer pagination-ajax-links">
-                {{ $logs->links() }}
+                {{ $logs->onEachSide(0)->links() }}
             </div>
         @endif
     </div>

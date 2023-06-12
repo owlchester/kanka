@@ -17,7 +17,7 @@
     @include('partials.errors')
     @inject('permission', 'App\Services\PermissionService')
 
-    @if ($role->is_public)
+    @if ($role->isPublic())
         @include('campaigns.roles._public')
     @else
     <div class="flex gap-2 lg:gap-5 flex-col lg:flex-row max-w-7xl">

@@ -66,7 +66,7 @@
 
         @if ($versions->hasPages())
         <div class="mt-5">
-            {!! $versions->links() !!}
+            {!! $versions->onEachSide(0)->links() !!}
         </div>
         @endif
     </article>

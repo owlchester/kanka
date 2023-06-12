@@ -32,4 +32,4 @@
         </x-box>
     @endforeach
 </div>
-{!! $submissions->links() !!}
+{!! $submissions->onEachSide(0)->links() !!}

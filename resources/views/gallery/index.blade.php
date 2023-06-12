@@ -84,7 +84,7 @@ if ($folder) {
         </div>
     </div>
 
-    {{ $images->appends(!empty($folder) ? ['folder_id' => $folder->id] : [])->links() }}
+    {{ $images->appends(!empty($folder) ? ['folder_id' => $folder->id] : [])->onEachSide(0)->links() }}
 
     <div class="modal fade" id="modal-new-folder" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">

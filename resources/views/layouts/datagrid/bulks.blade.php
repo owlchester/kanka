@@ -3,7 +3,7 @@ use App\Facades\Datagrid;
 $hasOthers = false;
 ?>
 <div class="dropdown datagrid-bulk-actions">
-    <a class="dropdown-toggle btn2 btn-disabled" data-toggle="dropdown" aria-expanded="false" data-tree="escape">
+    <a class="dropdown-toggle btn2 btn-disabled break-keep" data-toggle="dropdown" aria-expanded="false" data-tree="escape">
         {{ __('crud.bulk.buttons.label') }}
         <x-icon class="fa-solid fa-caret-down"></x-icon>
     </a>

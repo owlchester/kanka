@@ -63,7 +63,7 @@
     </div>
     @if ($connections->hasPages())
     <div class="text-right">
-        {{ $connections->appends(['mode' => $mode, 'order' => request()->get('order')])->fragment('entity-connections')->links() }}
+        {{ $connections->appends(['mode' => $mode, 'order' => request()->get('order')])->fragment('entity-connections')->onEachSide(0)->links() }}
     </div>
     @endif
 </x-box>
