@@ -23,6 +23,7 @@ pre {
     word-break: break-all;
     word-wrap: break-word;
     padding: .5rem;
+    overflow: auto;
 }
 code, kbd {
     font-family: monospace;
