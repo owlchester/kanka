@@ -51,7 +51,7 @@ class DeleteEntityImage implements ShouldQueue
             $this->deleteImage('header_image');
         }
 
-        Log::info('Removed image or header from entity #' . $this->entityId . ' for copyrigh reasons');
+        Log::info('Removed image or header from entity #' . $this->entityId . ' for copyright reasons');
     }
 
     private function deleteImage(string $field)
