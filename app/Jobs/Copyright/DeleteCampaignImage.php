@@ -22,16 +22,6 @@ class DeleteCampaignImage implements ShouldQueue
     protected $campaignId;
 
     /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct(Request $request)
-    {
-        $this->campaignId = $request->post('campaign');
-    }
-
-    /**
      * Execute the job.
      *
      * @return void
