@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
+    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between grow">
         <div class="flex justify-between flex-1 sm:hidden">
             @if ($paginator->onFirstPage())
                 <span class="btn2 btn-sm btn-disabled">

@@ -203,6 +203,7 @@ Route::get('/members/switch/{campaign_user}/{entity}', 'Campaign\MemberControlle
 
 
 Route::post('/campaign_users/{campaign_user}/update-role/{campaign_role}', 'Campaign\MemberController@updateRoles')->name('campaign_users.update-roles');
+Route::get('/campaign_users/{campaign_user}/delete', [\App\Http\Controllers\Campaign\MemberController::class, 'delete'])->name('campaign_users.delete');
 
 // Recovery
 Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');

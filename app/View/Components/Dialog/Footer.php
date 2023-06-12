@@ -9,14 +9,17 @@ use Illuminate\View\Component;
 class Footer extends Component
 {
     public bool $modal;
+    public bool $dialog;
     /**
      * Create a new component instance.
      */
     public function __construct(
         bool $modal = false,
+        bool $dialog = false,
     )
     {
         $this->modal = $modal;
+        $this->dialog = $dialog;
     }
 
     /**

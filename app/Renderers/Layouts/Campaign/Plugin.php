@@ -43,8 +43,8 @@ class Plugin extends Layout
                     }
 
                     return '<a href="' . route('campaign_plugins.update-info', $model)
-                            . '" class="btn2 btn-xs btn-accent" data-toggle="ajax-modal" '
-                            . 'data-target="#entity-modal" data-url="'
+                            . '" class="btn2 btn-xs btn-accent" data-toggle="dialog-ajax" '
+                            . 'data-target="plugin-update" data-url="'
                             . route('campaign_plugins.update-info', $model) . '">'
                             . __('campaigns/plugins.actions.update_available')
                             . '</a> ' . $base
@@ -94,14 +94,16 @@ class Plugin extends Layout
                 'label' => 'campaigns/plugins.actions.update',
                 'icon' => 'fa-solid fa-download',
                 'can' => 'update',
-                'type' => 'ajax-modal',
+                'type' => 'dialog-ajax',
+                'target' => 'plugin-update',
                 'route' => 'campaign_plugins.update-info',
             ],
             'changelog' => [
                 'label' => 'campaigns/plugins.actions.changelog',
                 'icon' => 'fa-solid fa-list',
                 'can' => 'changelog',
-                'type' => 'ajax-modal',
+                'type' => 'dialog-ajax',
+                'target' => 'plugin-update',
                 'route' => 'campaign_plugins.update-info',
             ],
             'disable' => [
@@ -119,7 +121,8 @@ class Plugin extends Layout
             'import' => [
                 'can' => 'import',
                 'route' => 'campaign_plugins.confirm-import',
-                'type' => 'ajax-modal',
+                'type' => 'dialog-ajax',
+                'target' => 'plugin-update',
                 'label' => 'campaigns/plugins.actions.import',
                 'icon' => 'fa-solid fa-check-circle',
             ],

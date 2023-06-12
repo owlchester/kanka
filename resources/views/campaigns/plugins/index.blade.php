@@ -13,7 +13,7 @@
 @if($campaign->boosted())
     @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_plugins.bulk']) !!} @endif
     <div id="datagrid-parent">
-        @include('campaigns.plugins._table', ['empty' => __('campaigns/plugins.empty_list'), 'responsive' => true])
+        @include('layouts.datagrid._table', ['empty' => __('campaigns/plugins.empty_list'), 'responsive' => true])
     </div>
     @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
 @else
@@ -26,4 +26,6 @@
 @section('modals')
     @parent
     @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms()])
+
+    <x-dialog id="plugin-update" :loading="true"></x-dialog>
 @endsection

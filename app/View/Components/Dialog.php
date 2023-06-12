@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 class Dialog extends Component
 {
     public string $id;
-    public string $title;
+    public ?string $title;
     public bool $full;
     public bool $loading;
 
@@ -17,7 +17,7 @@ class Dialog extends Component
      * Create a new component instance.
      */
     public function __construct(
-        string $title,
+        string $title = null,
         string $id = null,
         bool $full = false,
         bool $loading = false,

@@ -27,7 +27,7 @@
                     @include('layouts.callouts.recoverable')
                 </div>
 
-                <x-dialog.footer>
+                <x-dialog.footer :modal="true">
                     <button type="button" class="btn2 btn-error btn-outline delete-confirm-submit px-8 ml-5 rounded-full">
                         <x-icon class="trash"></x-icon>
                         <span class="remove-button-label">{{ __('crud.remove') }}</span>

@@ -1,11 +1,8 @@
-{!! Form::model($campaign, ['route' => 'campaign-theme.save', 'method' => 'POST']) !!}
-
-<div class="modal-body">
-    <x-dialog.close />
-    <h4 class="modal-title  text-center mb-5">
-        {!! __('campaigns/styles.theme.title') !!}
-    </h4>
-
+<x-dialog.header>
+    {!! __('campaigns/styles.theme.title') !!}
+</x-dialog.header>
+<article>
+    {!! Form::model($campaign, ['route' => 'campaign-theme.save', 'method' => 'POST', 'class' => 'w-full max-w-lg text-left']) !!}
     <div class="field-theme">
         <label>
             {{ __('campaigns.fields.theme') }}
@@ -24,5 +21,5 @@
     <x-dialog.footer>
         <button class="btn2 btn-primary">{{ __('crud.actions.apply') }}</button>
     </x-dialog.footer>
-</div>
 {!! Form::close() !!}
+</article>

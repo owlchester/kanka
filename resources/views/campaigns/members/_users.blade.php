@@ -104,9 +104,10 @@
                                     @endcan
                                     @can('delete', $relation)
                                         <li>
-                                            <a href="#" class="text-red delete-confirm" title="{{ __('crud.remove') }}"
-                                               data-toggle="dialog"
-                                               data-target="removal-confirm-{{ $relation->id }}"
+                                            <a href="#" class="text-red" title="{{ __('crud.remove') }}"
+                                               data-toggle="dialog-ajax"
+                                               data-target="member-dialog"
+                                               data-url="{{ route('campaign_users.delete', $relation->id) }}"
                                             >
                                                 <x-icon class="trash"></x-icon>
                                                 {{ __('campaigns.members.actions.remove') }}
@@ -115,32 +116,6 @@
                                     @endcan
                                 </ul>
                             </div>
-
-
-
-                            @can('delete', $relation)
-                                {!! Form::open([
-                                    'method' => 'DELETE',
-                                    'route' => ['campaign_users.destroy', $relation->id],
-                                  ]) !!}
-                                <x-dialog id="removal-confirm-{{ $relation->id }}" :title="__('crud.delete_modal.title')">
-                                    <p class="mt-3">
-                                        {!! __('campaigns.members.removal', ['member' => '<strong>' . $relation->user->name. '</strong>']) !!}<br />
-                                        <span class="permanent">
-                                            {{ __('crud.delete_modal.permanent') }}
-                                        </span>
-                                    </p>
-
-                                    <x-dialog.footer>
-                                        <button type="button" class="btn2 btn-error btn-outline delete-confirm-submit">
-                                            <span class="fa-solid fa-trash" aria-hidden="true"></span>
-                                            <span class="remove-button-label">{{ __('crud.remove') }}</span>
-                                        </button>
-                                    </x-dialog.footer>
-                                </x-dialog>
-                            {!! Form::close() !!}
-
-                            @endcan
                         @endif
                     </td>
 
@@ -169,5 +144,7 @@
         'button' => '<code><i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i> ' . __('campaigns.members.actions.switch') . '</code>']) : null),
         ]
     ])
+
+    <x-dialog id="member-dialog" :loading="true"></x-dialog>
 
 @endsection

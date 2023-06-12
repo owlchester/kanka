@@ -13,7 +13,7 @@ use App\Services\Campaign\MemberService;
 class MemberController extends Controller
 {
     /** @var MemberService */
-    protected $service;
+    protected MemberService $service;
 
     /**
      * Create a new controller instance.
@@ -88,5 +88,13 @@ class MemberController extends Controller
                 'user' => $campaignUser->user->name,
                 'role' => $campaignRole->name
             ]));
+    }
+
+    public function delete(CampaignUser $campaignUser)
+    {
+        $this->authorize('delete', $campaignUser);
+
+        return view('campaigns.members.delete')
+            ->with('campaignUser', $campaignUser);
     }
 }
