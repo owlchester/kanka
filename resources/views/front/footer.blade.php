@@ -136,6 +136,7 @@
             <a href="{{ config('social.youtube') }}" class="mr-3" target="youtube" title="Youtube" rel="noreferrer">
                 <i class="fab fa-youtube fa-2x" aria-hidden="true"></i>
             </a>
+            @endif
             @if (config('social.reddit'))
             <a href="{{ config('social.reddit') }}" class="mr-3" target="reddit" title="Reddit" rel="noreferrer">
                 <i class="fab fa-reddit fa-2x" aria-hidden="true"></i>
