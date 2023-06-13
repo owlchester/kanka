@@ -19,3 +19,4 @@
     @include('cruds.fields.image')
 
 </x-grid>
+@include('cruds.forms._calendar', ['source' => $source])

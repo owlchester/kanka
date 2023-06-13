@@ -7,4 +7,5 @@
 <x-sidebar.profile>
     @include('entities.components.profile._location')
     @include('entities.components.profile._type')
+    @include('entities.components.profile._reminder')
 </x-sidebar.profile>
