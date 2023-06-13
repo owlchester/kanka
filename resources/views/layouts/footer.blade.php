@@ -178,26 +178,36 @@
                     <i class="fa-brands fa-discord" aria-hidden="true" aria-label="Discord"></i>
                     <span class="sr-only">Discord</span>
                 </a>
+                @if (config('social.facebook'))
                 <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer" class="mr-1">
                     <i class="fa-brands fa-facebook" aria-hidden="true" aria-label="Kanka Facebook"></i>
                     <span class="sr-only">Facebook</span>
                 </a>
+                @endif
+                @if (config('social.instagram'))
                 <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer" class="mr-1">
                     <i class="fa-brands fa-instagram" aria-hidden="true" aria-label="Kanka Instagram"></i>
                     <span class="sr-only">Instagram</span>
                 </a>
+                @endif
+                @if (config('social.youtube'))
                 <a href="{{ config('social.youtube') }}" target="youtube" title="Youtube" rel="noreferrer" class="mr-1">
                     <i class="fa-brands fa-youtube" aria-hidden="true" aria-label="Kanka Youtube"></i>
                     <span class="sr-only">Youtube</span>
                 </a>
+                @endif
+                @if (config('social.reddit'))
                 <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer" class="mr-1">
                     <i class="fa-brands fa-reddit" aria-hidden="true" aria-label="Kanka Subreddit"></i>
                     <span class="sr-only">Reddit</span>
                 </a>
+                @endif
+                @if (config('social.twitter'))
                 <a href="{{ config('social.twitter') }}" target="twitter" title="Twitter" rel="noreferrer">
                     <i class="fa-brands fa-twitter" aria-hidden="true" aria-label="Kanka Twitter"></i>
                     <span class="sr-only">Twitter</span>
                 </a>
+                @endif
             </div>
 
             <div id="language-switcher" class="language-switcher block text-lg py-2">

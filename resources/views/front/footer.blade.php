@@ -120,23 +120,33 @@
 
         <div class="my-4">
             <a href="{{ config('social.discord') }}" class="mr-3" target="discord" title="Discord" rel="noreferrer">
-                <i class="fab fa-discord fa-2x"></i>
+                <i class="fab fa-discord fa-2x" aria-hidden="true"></i>
             </a>
+            @if (config('social.facebook'))
             <a href="{{ config('social.facebook') }}" class="mr-3" target="facebook" title="Facebook" rel="noreferrer">
-                <i class="fab fa-facebook fa-2x"></i>
+                <i class="fab fa-facebook fa-2x" aria-hidden="true"></i>
             </a>
+            @endif
+            @if (config('social.instagram'))
             <a href="{{ config('social.instagram') }}" class="mr-3" target="instagram" title="Instagram" rel="noreferrer">
-                <i class="fab fa-instagram fa-2x"></i>
+                <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
             </a>
+            @endif
+            @if (config('social.youtube'))
             <a href="{{ config('social.youtube') }}" class="mr-3" target="youtube" title="Youtube" rel="noreferrer">
-                <i class="fab fa-youtube fa-2x"></i>
+                <i class="fab fa-youtube fa-2x" aria-hidden="true"></i>
             </a>
+            @endif
+            @if (config('social.reddit'))
             <a href="{{ config('social.reddit') }}" class="mr-3" target="reddit" title="Reddit" rel="noreferrer">
-                <i class="fab fa-reddit fa-2x"></i>
+                <i class="fab fa-reddit fa-2x" aria-hidden="true"></i>
             </a>
+            @endif
+            @if (config('social.twitter'))
             <a href="{{ config('social.twitter') }}" class="mr-3" target="twitter" title="Twitter" rel="noreferrer">
-                <i class="fab fa-twitter fa-2x"></i>
+                <i class="fab fa-twitter fa-2x" aria-hidden="true"></i>
             </a>
+            @endif
         </div>
         <div class="footer-copyright text-center">
             Kanka v{{ config('app.version') }} - {!! __('front.footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }}

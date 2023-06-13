@@ -66,7 +66,6 @@ class MacroServiceProvider extends ServiceProvider
             if (request()->has('_showads')) {
                 return true;
             }
-            return false;
             if (auth()->check()) {
                 // Subscribed users don't have ads
                 if (auth()->user()->isSubscriber()) {

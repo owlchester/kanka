@@ -238,7 +238,7 @@
                         {!! __('front/features.attributes.secondary', ['marketplace' => link_to('https://marketplace.kanka.io/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])]) !!}
                     </p>
 
-                    <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/attributes-holder-attributes-hd.jpg" target="_blank">
+                    <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/attribute-holder-attributes-hd.jpg" target="_blank">
                         <img src="https://th.kanka.io/ICXqAo6StGUQw0b5E9UQ7u9oy8Q=/540x350/smart/app/features/attribute-holder-attributes-hd.jpg" alt="entity attributes" class="img-fluid shadow mb-2" loading="lazy" />
                     </a>
 

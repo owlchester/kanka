@@ -26,6 +26,7 @@ use App\Models\Race;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
+use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,7 @@ use function PHPUnit\Framework\isEmpty;
 
 class EntityService
 {
+    use PurifiableTrait;
     use CampaignAware;
 
     /** @var array List of entity types */
@@ -745,8 +747,10 @@ class EntityService
         if (auth()->user()->isAdmin() && $campaign->entity_visibility) {
             $defaultPrivate = true;
         }
-        $model->name = $name;
-        $model->slug = Str::slug($name, '');
+        // Force tags to be readable and removable from strip_tags
+        $name = Str::replace(['&lt;', '&gt;'], ['<', '>'], $name);
+        $model->name = $this->purify(trim(strip_tags($name)));
+        $model->slug = Str::slug($model->name, '');
         $model->is_private = $defaultPrivate;
         $model->campaign_id = $campaign->id;
 
