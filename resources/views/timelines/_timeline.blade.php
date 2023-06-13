@@ -13,8 +13,8 @@ $loadedElements = [];
     @endphp
 
     <div class="box box-solid post entity-note box-widget" id="era{{ $era->id }}">
-        <div class="box-header with-border">
-            <h3 class="box-title cursor-pointer element-toggle {{ $era->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}">
+        <div class="box-header !flex gap-2">
+            <h3 class="box-title cursor-pointer grow element-toggle {{ $era->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}">
 
                 <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
                 <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
@@ -22,25 +22,27 @@ $loadedElements = [];
                 {!! $era->name !!} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif
 
                 <span class="text-sm">
-                {!! $era->ages()!!}
-            </span>
+                    {!! $era->ages()!!}
+                </span>
 
             </h3>
 
-            <div class="box-tools">
+            <div class="flex items-center gap-2">
                 @can('update', $timeline)
                     <a href="{{ route('timelines.timeline_eras.edit', [$timeline, $era, 'from' => 'view']) }}"
-                       class="btn btn-box-tool" role="button"
+                       class="" role="button"
                        title="{{ __('crud.edit') }}"
                     >
                         <x-icon class="edit"></x-icon>
+                        <span class="sr-only">{{ __('crud.edit') }}</span>
                     </a>
 
-                    <a href="#" class="btn btn-box-tool text-red delete-confirm"
+                    <a href="#" class="text-red delete-confirm"
                        data-toggle="modal" data-name="{{ $era->name }}" role="button"
                        data-target="#delete-confirm" data-delete-target="delete-form-timeline-era-{{ $era->id }}"
                        title="{{ __('crud.remove') }}">
                         <x-icon class="trash"></x-icon>
+                        <span class="sr-only">{{ __('crud.remove') }}</span>
                     </a>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $timeline, $era, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-era-' . $era->id]) !!}
                     {!! Form::close() !!}
