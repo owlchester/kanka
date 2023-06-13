@@ -27,7 +27,7 @@
                 @endif
             </a>
             @if ($model instanceof \App\Models\Map && $model->explorable())
-                <div class="flex items-center">
+                <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', $model->entity->id) }}">
                     <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow">
                         {!! $model->name !!}
                     </a>
@@ -37,7 +37,8 @@
                     </a>
                 </div>
             @else
-            <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 p-4">
+            <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 p-4" data-toggle="tooltip-ajax" data-id="{{ $model->entity->id }}"
+               data-url="{{ route('entities.tooltip', $model->entity->id) }}">
                 {!! $model->name !!}
             </a>
             @endif
@@ -59,8 +60,8 @@
             @endif
         </a>
         @if ($model instanceof \App\Models\Map && $model->explorable())
-            <div class="flex items-center">
-                <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow">
+            <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', $model->entity->id) }}">
+                <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow" >
                     {!! $model->name !!}
                 </a>
                 <a href="{{ $model->getLink('explore') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('maps.actions.explore') }}">

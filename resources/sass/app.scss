@@ -252,7 +252,7 @@ ol, ul {
     z-index: 1;
 }
 .stack > :nth-child(1) {
-    transform: translateY(0) translateX(0) scale(1);
+    transform: unset;
     z-index: 3;
 }
 .stack > :nth-child(2) {
