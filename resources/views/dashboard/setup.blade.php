@@ -7,7 +7,7 @@
 ])
 
 @php
-$widgetClass = 'widget relative mb-5 rounded text-xl text-center h-40 overflow-hidden shadow-xs hover:shadow-md cursor-pointer bg-box' ;
+$widgetClass = 'widget relative rounded text-xl text-center h-40 overflow-hidden shadow-xs hover:shadow-md cursor-pointer bg-box' ;
 $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-center h-full';
 $newWidgetListClass = 'btn2 btn-full';
 @endphp
@@ -129,7 +129,7 @@ $newWidgetListClass = 'btn2 btn-full';
     @include('partials.errors')
 
     <div class="campaign-dashboard-widgets">
-        <div class="grid grid-cols-12 gap-2" id="widgets" data-url="{{ route('dashboard.reorder') }}">
+        <div class="grid grid-cols-12 gap-2 md:gap-5" id="widgets" data-url="{{ route('dashboard.reorder') }}">
             @if (empty($dashboard))
             <div class="col-span-12">
                 <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto" @if($campaignService->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }})" @endif
