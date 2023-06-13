@@ -9,18 +9,19 @@
     {!! $element->htmlIcon() !!}
 
     <div class="timeline-item p-0 relative rounded-sm mt-0 ml-16 mr-4">
-        <div class="box">
-            <div class="box-header !flex gap-2">
-                <h3 class="box-title grow cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }} !visible" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
+        <x-box css="flex gap-2 flex-col p-2" :padding="0">
+            <div class="timeline-item-head flex gap-2 items-center">
+                <h3 class="m-0 grow cursor-pointer element-toggle {{ $element->collapsed() ? 'collapsed' : null }} !visible text-base" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}">
 
                     <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
                     <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
                     {!! $element->htmlName() !!}
+
                     @if (isset($element->date) || $element->use_event_date && isset($element->entity->event->date))
                         <span class="text-muted">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
                     @endif
                     @if($element->entity && $element->entity->is_private)
-                        <i class="fa-solid fa-lock" title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" ></i>
+                        <i class="fa-solid fa-lock" title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" aria-hidden="true"></i>
                     @endif
                 </h3>
                 <div class="flex items-center gap-2 ">
@@ -65,7 +66,7 @@
                     @endcan
                 </div>
             </div>
-            <div class="box-body entity-content collapse {{ $element->collapsed() ? 'out' : 'in' }} !visible" id="timeline-element-body-{{ $element->id }}">
+            <div class="timeline-item-body entity-content collapse {{ $element->collapsed() ? 'out' : 'in' }} !visible" id="timeline-element-body-{{ $element->id }}">
                 {!! \App\Facades\Mentions::mapAny($element) !!}
 
                 @if ($element->use_entity_entry && $element->entity && $element->entity->child->hasEntry())
@@ -74,7 +75,7 @@
                     </div>
                 @endif
             </div>
-        </div>
+        </x-box>
         {!! Form::hidden('element_ids[]', $element->id) !!}
     </div>
 </li>

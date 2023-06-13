@@ -12,32 +12,31 @@ $loadedElements = [];
     $position = 1;
     @endphp
 
-    <div class="box box-solid post entity-note box-widget" id="era{{ $era->id }}">
-        <div class="box-header !flex gap-2">
-            <h3 class="box-title cursor-pointer grow element-toggle {{ $era->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}">
+    <x-box css="flex gap-2 flex-col p-2 timeline-era entity-note" :padding="0" id="era{{ $era->id }}">
+        <div class="timeline-era-head flex gap-2 items-center">
+            <h3 class="cursor-pointer grow element-toggle m-0 text-base {{ $era->collapsed() ? 'collapsed' : null }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}">
 
                 <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
                 <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
 
                 {!! $era->name !!} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif
 
-                <span class="text-sm">
+                <span class="text-xs">
                     {!! $era->ages()!!}
                 </span>
-
             </h3>
 
             <div class="flex items-center gap-2">
                 @can('update', $timeline)
                     <a href="{{ route('timelines.timeline_eras.edit', [$timeline, $era, 'from' => 'view']) }}"
-                       class="" role="button"
+                       class="btn2 btn-ghost btn-xs " role="button"
                        title="{{ __('crud.edit') }}"
                     >
                         <x-icon class="edit"></x-icon>
                         <span class="sr-only">{{ __('crud.edit') }}</span>
                     </a>
 
-                    <a href="#" class="text-red delete-confirm"
+                    <a href="#" class="btn2 btn-ghost btn-xs text-red delete-confirm"
                        data-toggle="modal" data-name="{{ $era->name }}" role="button"
                        data-target="#delete-confirm" data-delete-target="delete-form-timeline-era-{{ $era->id }}"
                        title="{{ __('crud.remove') }}">
@@ -49,10 +48,10 @@ $loadedElements = [];
                 @endcan
             </div>
         </div>
-        <div class="box-body entity-content">
+        <div class="timeline-era-body entity-content">
             {!! \App\Facades\Mentions::mapAny($era)  !!}
         </div>
-    </div>
+    </x-box>
 
     <ul class="timeline relative m-0 p-0 list-none collapse {{ $era->is_collapsed ? 'out' : 'in' }} !visible" id="era-items-{{ $era->id }}">
     @foreach($era->orderedElements as $element)
