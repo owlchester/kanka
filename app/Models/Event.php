@@ -8,6 +8,7 @@ use App\Models\Concerns\Nested;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use App\Traits\CalendarDateTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,6 +30,7 @@ class Event extends MiscModel
     use Acl
     ;
     use CampaignTrait;
+    use CalendarDateTrait;
     use ExportableTrait;
     use Nested;
     use SoftDeletes;
@@ -108,7 +110,8 @@ class Event extends MiscModel
             },
             'children' => function ($sub) {
                 $sub->select('id', 'event_id');
-            }
+            },
+            'entity.calendarDateEvents',
         ]);
     }
 
@@ -209,7 +212,7 @@ class Event extends MiscModel
             return true;
         }
 
-        return (bool) ($this->location);
+        return (bool) ($this->location || !empty($this->calendarReminder()));
     }
 
     /**
