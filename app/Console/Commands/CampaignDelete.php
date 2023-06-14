@@ -41,9 +41,13 @@ class CampaignDelete extends Command
     public function handle()
     {
         $campaignId = $this->argument('campaign');
-        $campaign = Campaign::where('id', $this->argument('campaign'))->first();
-
-        CampaignDeleteJob::dispatch($campaign);
+        $campaign = Campaign::where('id', $campaignId)->first();
+        if ($campaign) {
+            CampaignDeleteJob::dispatch($campaign);
+            $this->info('Queued campaign #' . $campaignId . ' for deletion');
+        }  else {
+            $this->info('Invalid campaign ID');
+        }
 
         return 0;
     }
