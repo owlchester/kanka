@@ -45,7 +45,9 @@ class EntityAbilityApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $model = EntityAbility::create($request->all());
+        $data = $request->all();
+        $data['entity_id'] = $entity->id;
+        $model = EntityAbility::create($data);
         return new Resource($model);
     }
 

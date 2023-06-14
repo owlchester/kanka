@@ -46,7 +46,9 @@ class EntityInventoryApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $model = Inventory::create($request->all());
+        $data = $request->all();
+        $data['entity_id'] = $entity->id;
+        $model = Inventory::create($data);
         return new Resource($model);
     }
 

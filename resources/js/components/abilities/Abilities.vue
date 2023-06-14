@@ -4,7 +4,7 @@
             <i class="fa-solid fa-spin fa-spinner"></i>
         </div>
 
-        <div class="flex gap-5 flex-wrap my-5">
+        <div class="flex gap-5 flex-wrap mb-5">
             <parent v-for="parent in parents"
                 :key="parent.id"
                 :ability="parent">

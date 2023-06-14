@@ -45,7 +45,9 @@ class EntityEventApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $model = EntityEvent::create($request->all());
+        $data = $request->all();
+        $data['entity_id'] = $entity->id;
+        $model = EntityEvent::create($data);
         return new Resource($model);
     }
 
