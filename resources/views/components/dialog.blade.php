@@ -1,4 +1,4 @@
-<dialog class="dialog rounded-2xl text-center bg-base-100 min-w-fit shadow-md text-base-content" id="{{ $id }}" aria-modal="true" aria-labelledby="dialogLabel{{ $id }}">
+<dialog class="dialog rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="{{ $id }}" aria-modal="true" aria-labelledby="dialogLabel{{ $id }}">
     <header class="bg-base-200">
         <h4 id="dialogLabel{{ $id }}">
             @if ($loading)

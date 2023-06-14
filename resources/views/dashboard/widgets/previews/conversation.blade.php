@@ -38,7 +38,7 @@ $conversation = $entity->child;
                 @elseif (!empty($widget->conf('text')))
                     {{ $widget->conf('text') }}
                 @else
-                    {{ $entity->name }}
+                    {!! $entity->name !!}
                 @endif
 
             </a>

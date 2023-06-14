@@ -45,7 +45,7 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
                 @if (!empty($widget->conf('text')))
                     {{ $customName }}
                 @else
-                    {{ $widget->entity->name }}
+                    {!! $entity->name !!}
                 @endif
             </a>
 

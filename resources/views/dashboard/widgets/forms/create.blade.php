@@ -9,6 +9,7 @@
 ]) !!}
 
 <article>
+    @php $dropdownParent = '#new-widget'; @endphp
     @include('dashboard.widgets.forms._' . $widget)
 
     <x-dialog.footer>
