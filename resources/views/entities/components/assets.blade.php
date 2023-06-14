@@ -17,7 +17,9 @@
             {{ __('entities/assets.actions.alias') }}
         </strong>
         <span class="pull-right">
-            {!! $model->tooltipedLink($asset->name) !!}
+            <a href="#" data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|alias:{{ $asset->id }}]" data-toast="{{ __('entities/assets.copy_alias.success') }}">
+                {{ $asset->name }}
+            </a>
         </span>
         <br class="clear-both" />
     </li>

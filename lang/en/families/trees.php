@@ -47,7 +47,6 @@ return [
                 'success'   => 'Relation updated.',
                 'title'     => 'Update a relation',
             ],
-            'css' => 'Css class',
             'unknown'   => 'Unknown',
         ],
         'reset'     => [

@@ -60,6 +60,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Attribute[]|Collection $starredAttributes
  * @property Relation[]|Collection $pinnedRelations
  * @property EntityAsset[]|Collection $pinnedFiles
+ * @property EntityAsset[]|Collection $pinnedAssets
  * @property Relation[]|Collection $relations
  * @property EntityEvent[]|Collection $elapsedEvents
  * @property EntityEvent[]|Collection $calendarDateEvents

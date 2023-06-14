@@ -27,21 +27,22 @@ $imageCount = 0;
                     <a href="#" class="btn2 btn-sm" data-toggle="collapse" data-target=".gallery-toggle">{{ __('campaigns/gallery.actions.focus_point') }}</a>
                 </div>
                 <hr />
-                <p class="{{ $image->inEntitiesCount() === 0 ? 'text-muted' : '' }}">
-                    {{ trans_choice('campaigns/gallery.fields.image_used_in', $image->inEntitiesCount(), ['count' => $image->inEntitiesCount()]) }}
-                </p>
-                @if($image->inEntitiesCount() > 0)
-                    <div class="grid grid-cols-2 gap-2">
-                        @foreach($image->inEntities() as $entity)
-                            <a href="{{ $entity->url() }}">{{ $entity->name }}</a>
-                        @endforeach
-                    </div>
-                    <hr class="visible-sm visible-xs"/>
-                @endif
-                @if($image->mentions->count() > 0)
-                <p class="{{ $image->mentions->count() === 0 ? 'text-muted' : '' }}">
-                    {{ trans_choice('campaigns/gallery.fields.image_mentioned_in', $image->mentions->count(), ['count' => $image->mentions->count()]) }}
-                </p>
+
+                <div class="grid grid-cols-1 gap-5">
+                    <p class="{{ $image->inEntitiesCount() === 0 ? 'text-muted' : '' }} m-0">
+                        {{ trans_choice('campaigns/gallery.fields.image_used_in', $image->inEntitiesCount(), ['count' => $image->inEntitiesCount()]) }}
+                    </p>
+                    @if($image->inEntitiesCount() > 0)
+                        <div class="grid grid-cols-2 gap-2">
+                            @foreach($image->inEntities() as $entity)
+                                <a href="{{ $entity->url() }}">{{ $entity->name }}</a>
+                            @endforeach
+                        </div>
+                    @endif
+                    @if($image->mentions->count() > 0)
+                    <p class="{{ $image->mentions->count() === 0 ? 'text-muted' : '' }} m-0">
+                        {{ trans_choice('campaigns/gallery.fields.image_mentioned_in', $image->mentions->count(), ['count' => $image->mentions->count()]) }}
+                    </p>
                     <div class="grid grid-cols-2 gap-2">
                         @foreach($image->mentions as $mention)
                             @if($mention->isPost())
@@ -51,8 +52,8 @@ $imageCount = 0;
                             @endif
                         @endforeach
                     </div>
-                    <hr class="visible-sm visible-xs"/>
-                @endif
+                    @endif
+                </div>
             @endif
             </div>
             <div class="">

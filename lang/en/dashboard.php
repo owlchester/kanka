@@ -133,7 +133,7 @@ return [
             'width'             => 'Width',
         ],
         'helpers'                   => [
-            'class'     => 'Define a custom css class added to the widget.',
+            'class'     => 'Define a custom CSS class added to the widget.',
             'filters'   => 'Click to learn about the available filter options.',
         ],
         'orders'                    => [

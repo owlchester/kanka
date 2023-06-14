@@ -193,7 +193,7 @@ protected function cleanInvisible($node, $key): mixed
                 $relations[] = $rel;
                 continue;
             }
-            
+
             $children = [];
             foreach ($rel['children'] as $ck => $child) {
                 $child = $this->cleanInvisible($child, $ck);
@@ -225,7 +225,7 @@ protected function isVisible($relation): bool
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        if (!isset($relation['visibility']) || 
+        if (!isset($relation['visibility']) ||
             $relation['visibility'] == Visibility::VISIBILITY_ALL ||
             ($relation['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
             ($relation['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember() )
@@ -436,7 +436,7 @@ protected function cleanupMissingEntities(): void
                     'relation' => __('entities/relations.fields.relation'),
                     'character' => __('entities.character'),
                     'member' => __('families/trees.modals.entity.add.member'),
-                    'css'   => __('families/trees.modals.relations.css'),
+                    'css'   => __('dashboard.widgets.fields.class'),
                     'colour' => __('crud.fields.colour'),
                     'unknown' => __('families/trees.modals.relations.unknown'),
                     'visibility' => [
