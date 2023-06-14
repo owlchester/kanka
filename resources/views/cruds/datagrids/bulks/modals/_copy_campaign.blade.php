@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-    <x-dialog.close />
+    <x-dialog.close :modal="true" />
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.copy_to_campaign.bulk_title') }}</h4>
 </div>
 <div class="modal-body">
@@ -17,8 +17,7 @@
         @include($type . '.bulk.modals._copy_to_campaign')
     @endif
 
-
-    <x-dialog.footer>
+    <x-dialog.footer :modal="true">
         <button class="btn2 btn-primary" type="submit">
             <i class="fa-solid fa-clone" aria-hidden="true"></i>
             {{ __('crud.actions.copy_to_campaign') }}

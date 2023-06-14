@@ -7,7 +7,7 @@
         <div class="modal-content bg-base-100 rounded-2xl">
             <div class="modal-body text-center">
 
-                <x-dialog.close />
+                <x-dialog.close :modal="true" />
                 <h4 class="modal-title" id="clickModalLabel">{{ __('crud.delete_modal.title') }}</h4>
 
                 <p class="mt-5">
@@ -22,7 +22,7 @@
                 </div>
 
 
-                <x-dialog.footer>
+                <x-dialog.footer :modal="true">
                     <button type="submit" class="btn2 btn-error btn-outline" name="datagrid-action" value="delete">
                         <span class="fa-solid fa-trash" aria-hidden="true"></span>
                         <span class="remove-button-label">{{ __('crud.remove') }}</span>

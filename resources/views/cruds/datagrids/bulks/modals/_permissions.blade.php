@@ -7,7 +7,7 @@ $actions = [
 ];
 ?>
 <div class="modal-header">
-    <x-dialog.close />
+    <x-dialog.close :modal="true"/>
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.permissions.title') }}</h4>
 </div>
 <div class="modal-body">
@@ -106,7 +106,7 @@ $actions = [
         </tbody>
     </table>
 
-    <x-dialog.footer>
+    <x-dialog.footer :modal="true">
         <button class="btn2 btn-primary" type="submit">
             <x-icon class="cog"></x-icon>
             {{ __('crud.bulk.actions.permissions') }}

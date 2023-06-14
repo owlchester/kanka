@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-base-100">
             <div class="modal-header">
-                <x-dialog.close />
+                <x-dialog.close :modal="true" />
                 <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.edit.title') }}</h4>
             </div>
             <div class="modal-body">
@@ -26,7 +26,7 @@
                 </x-grid>
 
 
-                <x-dialog.footer>
+                <x-dialog.footer :modal="true">
                     <button class="btn2 btn-primary" type="submit">
                         <x-icon class="save"></x-icon>
                         {{ __('crud.actions.apply') }}
