@@ -20,7 +20,7 @@
         @if ($campaignService->campaign()->boosted())
             @if($campaignService->campaign()->superboosted() && empty($model->image) && !empty($entity->image_uuid))
                 <x-alert type="warning">
-                    {!! __('entities/image.focus.warning_v2', ['gallery' => link_to_route('campaign.gallery.index', __('sidebar.gallery'), ['target' => 'gallery'])]) !!}
+                    {!! __('entities/image.focus.warning_v2', ['gallery' => link_to_route('campaign.gallery.index', __('sidebar.gallery'))]) !!}
                 </x-alert>
                 <p>
                     <a href="{{ $model->getLink() }}">
