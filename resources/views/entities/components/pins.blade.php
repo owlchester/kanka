@@ -26,8 +26,8 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
                 <x-icon class="fa-solid fa-question-circle pull-right"></x-icon>
             </a>
         </div>
-        <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-pinned-elements">
-            <ul class="pins m-0 p-0 list-none">
+        <div class="sidebar-elements grid collapse !visible in overflow-hidden" id="sidebar-pinned-elements">
+            <ul class="pins m-0 my-1 p-0 list-none">
                 @includeWhen(!$model->entity->pinnedFiles->isEmpty() || !$model->entity->pinnedAliases->isEmpty(), 'entities.components.assets')
                 @include('entities.components.relations')
                 @includeWhen(method_exists($model, 'pinnedMembers') && !$model->pinnedMembers->isEmpty(), 'entities.components.members')

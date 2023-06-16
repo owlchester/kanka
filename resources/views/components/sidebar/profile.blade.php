@@ -5,7 +5,7 @@
         {{ __('crud.tabs.profile') }}
     </div>
 
-    <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-profile-elements">
+    <div class="sidebar-elements grid collapse !visible in overflow-hidden" id="sidebar-profile-elements">
         {!! $slot !!}
     </div>
 </div>

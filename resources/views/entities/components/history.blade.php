@@ -5,9 +5,9 @@
 
         {{ __('entities/profile.history') }}
     </div>
-    <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-history">
+    <div class="sidebar-elements grid collapse !visible in" id="sidebar-history">
         @if ($model->entity)
-            <p>
+            <p class="mt-1">
             {!! __('crud.history.created_clean', [
                 'name' => (!empty($model->entity->created_by) ? link_to_route('users.profile', e(\App\Facades\UserCache::name($model->entity->created_by)), $model->entity->created_by, ['target' => '_blank']) : __('crud.history.unknown')),
                 'date' => '<span data-toggle="tooltip" title="' . $model->created_at . ' UTC' . '">' . $model->created_at->diffForHumans() . '</span>',
@@ -25,7 +25,7 @@
                 </a>
             @endcan
         @else
-            <p>
+            <p class="mt-1">
             {!! __('crud.history.created_clean', [
                 'name' => (!empty($model->created_by) ? link_to_route('users.profile', e(\App\Facades\UserCache::name($model->created_by)), $model->created_by, ['target' => '_blank']) : __('crud.history.unknown')),
                 'date' => '<span data-toggle="tooltip" title="' . $model->created_at . ' UTC' . '">' . $model->created_at->diffForHumans() . '</span>',
@@ -37,6 +37,5 @@
         ]) !!}
             </p>
         @endif
-        </p>
     </div>
 </div>

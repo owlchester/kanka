@@ -7,8 +7,8 @@
 
         {{ __('entities/pins.links') }}
     </div>
-    <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-link-elements">
-        <ul class="list-none m-0 p-0 pt-2">
+    <div class="sidebar-elements grid collapse !visible in" id="sidebar-link-elements">
+        <ul class="list-none m-0 my-2 p-0">
             @foreach ($model->entity->assets->where('type_id', \App\Models\EntityAsset::TYPE_LINK) as $asset)
                 <li data-target="{{ $asset->id }}" data-visibility="{{ $asset->visibility_id }}" class="p-0 m-0 mb-2 ">
                     <a href="{{ route('entities.entity_assets.go', ['entity' => $model->entity->id, 'entity_asset' => $asset]) }}" title="{!! $asset->name !!}" target="_blank" rel="noreferrer nofollow"
