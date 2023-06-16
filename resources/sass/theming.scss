@@ -248,6 +248,8 @@ hr {
     li > a:hover, li > a:focus {
         --tw-background-opacity: 1;
         background-color: hsl(var(--b2)/var(--tw-background-opacity));
+        --tw-text-opacity: 1;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
     }
 
     li > a {
