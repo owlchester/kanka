@@ -10,7 +10,7 @@
                 </a>
                 <div class="flex gap-2 action-bar">
                     @can ('follow', $campaign)
-                        <button id="campaign-follow" class="btn2" data-id="{{ $campaign->id }}"
+                        <button id="campaign-follow" class="btn2 btn-sm" data-id="{{ $campaign->id }}"
                                 style="display: none"
                                 data-following="{{ $campaign->isFollowing() ? true : false }}"
                                 data-follow="{{ __('dashboard.actions.follow') }}"
@@ -23,7 +23,7 @@
                         </button>
                     @endcan
                     @can('apply', $campaign)
-                        <button id="campaign-apply" class="btn2" data-id="{{ $campaign->id }}"
+                        <button id="campaign-apply" class="btn2 btn-sm" data-id="{{ $campaign->id }}"
                                 data-url="{{ route('campaign.apply') }}"
                                 data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
                                 data-target="#large-modal"
@@ -36,7 +36,7 @@
                     @cannot('update', $campaign)
                         @if(!empty($dashboards))
                             <div class="dropdown ">
-                                <button type="button" class="btn2 dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid fa-th-large"></i>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -79,7 +79,7 @@
 
                     @can('update', $campaign)
                     <div class="dropdown">
-                        <button data-toggle="dropdown" class="btn2 dropdown-toggle" aria-expanded="false">
+                        <button data-toggle="dropdown" class="btn2 btn-sm dropdown-toggle" aria-expanded="false">
                             <i class="fa-solid fa-ellipsis-h"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">

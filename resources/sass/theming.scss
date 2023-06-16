@@ -246,9 +246,8 @@ hr {
     }
 
     li > a:hover, li > a:focus {
-        --dropdown-hover-text: inherit;
-        background-color: hsl(var(--b2)/1);
-        color: var(--dropdown-hover-text);
+        --tw-background-opacity: 1;
+        background-color: hsl(var(--b2)/var(--tw-background-opacity));
     }
 
     li > a {

@@ -104,8 +104,9 @@
                     @if ($error !== 503 && auth()->check())
                         <p class="lead mb-2">Go back to one of your campaigns</p>
                         <div class="list-group">
+                            <?php /** @var \App\Models\Campaign $campaign */?>
                         @foreach (auth()->user()->campaigns as $campaign)
-                            <a href="/{{ $campaign->getMiddlewareLink() }}" class="list-group-item list-group-item-action">
+                            <a href="/{{ app()->getLocale() }}/{{ $campaign->getMiddlewareLink() }}" class="list-group-item list-group-item-action">
                                 {!! $campaign->name !!}
                             </a>
                         @endforeach

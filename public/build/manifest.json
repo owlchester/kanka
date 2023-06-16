@@ -236,7 +236,7 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-1a170b53.css",
+    "file": "assets/app-65845d20.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
@@ -246,7 +246,7 @@
     "src": "resources/sass/auth.scss"
   },
   "resources/sass/dashboard.scss": {
-    "file": "assets/dashboard-82eda904.css",
+    "file": "assets/dashboard-76a59529.css",
     "isEntry": true,
     "src": "resources/sass/dashboard.scss"
   },

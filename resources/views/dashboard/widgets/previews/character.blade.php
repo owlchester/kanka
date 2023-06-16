@@ -27,10 +27,10 @@ $model = $entity->child;
     >
         <h3 class="panel-title">
             <a href="{{ $entity->child->getLink() }}">
-                @if ($entity->child->is_private)
+                @if ($entity->is_private)
                     <x-icon class="fa-solid fa-lock pull-right" :title="__('crud.is_private')"></x-icon>
                 @endif
-                @if ($entity->child->is_dead)
+                @if ($entity->child->isDead())
                     <x-icon class="ra ra-skull pull-right mr-2" :title="__('characters.fields.is_dead')"></x-icon>
                 @endif
 
