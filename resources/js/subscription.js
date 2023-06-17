@@ -70,12 +70,11 @@ function initConfirmListener()
         }
 
         e.preventDefault();
-        formSubmitBtn.addClass('disabled');
-        formSubmitBtn.find('span').hide();
-        formSubmitBtn.find('.spinner').show();
+        formSubmitBtn.addClass('disabled').addClass('loading');
+        formSubmitBtn.prop('disabled', 'disabled');
 
         let intentToken = $('input[name="subscription-intent-token"]');
-        let errorMessage = $('.alert-danger');
+        let errorMessage = $('.alert-error');
         errorMessage.hide();
 
         // If the form already has a payment id, we don't need stripe to add the new one
@@ -97,7 +96,8 @@ function initConfirmListener()
             }
         ).then(function (result) {
             if (result.error) {
-                formSubmitBtn.removeClass('disabled').text(formSubmitBtn.data('text'));
+                formSubmitBtn.removeClass('disabled').removeClass('loading');
+                formSubmitBtn.prop('disabled', '');
                 errorMessage.text(result.error.message).show();
                 return false;
             } else {

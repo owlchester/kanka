@@ -35,7 +35,6 @@
         @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended())
             @include('settings.subscription.currency._blocked')
         @else
-            <x-box>
             <div class="field-currency mb-5">
                 <label>{{ __('settings.subscription.fields.currency') }}</label>
                 {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], auth()->user()->currency(), ['class' => 'form-control']) !!}
@@ -47,7 +46,6 @@
                 {{ __('settings.subscription.actions.update_currency') }}</span>
                 </x-buttons.confirm>
             </div>
-            </x-box>
         @endif
     {!! Form::close() !!}
 
@@ -56,20 +54,17 @@
         {{ __('settings.billing.title') }}
     </h3>
     {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing-info']]) !!}
-    <x-box>
         <p class="help-block">
             {{ __('settings.billing.placeholder') }}
         </p>
         {!! Form::textarea('profile[billing]', null, ['class' => 'rounded border p-2 w-full mb-2', 'rows' => 5, 'maxlength' => 1024]) !!}
 
         <div class="text-right">
-            <x-buttons.confirm type="primary">
+            <x-buttons.confirm type="primary"  outline="true">
                 <x-icon class="save"></x-icon>
-                <span>
-            {{ __('settings.billing.save') }}</span>
+                <span>{{ __('settings.billing.save') }}</span>
             </x-buttons.confirm>
         </div>
-    </x-box>
     {!! Form::close() !!}
 @endsection
 

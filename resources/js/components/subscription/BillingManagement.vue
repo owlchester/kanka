@@ -53,6 +53,9 @@
                     <label>{{ translate('card') }}</label>
                     <div id="card-element">
                     </div>
+
+                    <p class="text-red-500 my-2" v-html="addPaymentStatusError" v-if="addPaymentStatusError">
+                    </p>
                 </div>
 
                 <p class="help-block mb-2">
@@ -161,6 +164,8 @@
                 this.savePaymentMethodStatus = 1;
                 this.isLoading = true;
 
+                console.log('wa');
+
                 this.stripe.confirmCardSetup(
                     this.intentToken.client_secret, {
                         payment_method: {
@@ -175,11 +180,13 @@
 
                     this.isLoading = false;
                     if (result.error) {
+                        console.log('error', result.error.message);
                         this.addPaymentStatus = 3;
                         this.addPaymentStatusError = result.error.message;
                     } else {
                         this.savePaymentMethod(result.setupIntent.payment_method);
                         this.addPaymentStatus = 2;
+                        this.addPaymentStatusError = '';
                         this.card.clear();
                         this.name = '';
                         this.closeModal('cardModal');
@@ -189,10 +196,12 @@
 
             /*  Saves the payment method for the user and re-loads the payment methods.*/
             savePaymentMethod(method) {
+                console.log('save?');
                 this.paymentMethodsLoadStatus = 0;
                 axios.post('/subscription-api/payments', {
                     payment_method: method
                 }).then(function () {
+                    console.log('what');
                     this.loadPaymentMethods();
                 }.bind(this));
             },

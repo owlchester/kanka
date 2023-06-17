@@ -13,7 +13,7 @@
         {{ __('settings.account.email') }}
     </h3>
     {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.email']]) !!}
-    <x-box>
+
         <div class="field-email mb-5 required">
             <label>{{ __('profiles.fields.email') }}</label>
             {!! Form::email('email', null, ['placeholder' => __('profiles.placeholders.email'), 'class' => 'form-control']) !!}
@@ -23,15 +23,16 @@
                 {{ __('settings.account.actions.update_email') }}
             </x-buttons.confirm>
         </div>
-    </x-box>
+
     {!! Form::close() !!}
+
+    <hr />
 
 
     @if (!$user->isSocialLogin())
         <h3 class="mb-3">
             {{ __('settings.account.password') }}
         </h3>
-        <x-box>
         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.password']]) !!}
             <x-grid type="1/1">
                 <div class="field-new-password">
@@ -49,14 +50,15 @@
                     {{ __('settings.account.actions.update_password') }}
                 </x-buttons.confirm>
             </div>
-        </x-box>
         {!! Form::close() !!}
+
+        <hr />
     @else
         <h2 class="mb-3">
             {{ __('settings.account.social.title') }}
         </h2>
         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['settings.account.social']]) !!}
-        <x-box>
+
             <p class="help">{{ __('settings.account.social.helper', ['provider' => ucfirst($user->provider)]) }}</p>
             <div class="field-new-password mb-5">
                 <label>{{ __('profiles.fields.new_password') }}</label>
@@ -67,8 +69,9 @@
                     {{ __('settings.account.actions.social') }}
                 </x-buttons.confirm>
             </div>
-        </x-box>
         {!! Form::close() !!}
+
+        <hr />
     @endif
 
     @includeWhen(config('google2fa.enabled'), 'settings._tfa')
@@ -76,7 +79,6 @@
     <h3 class="mb-3 text-red">
         {{ __('profiles.sections.dangerzone') }}
     </h3>
-    <x-box>
         <div class="flex gap-2">
             <div class="grow">
                 <strong>
@@ -102,7 +104,6 @@
             </div>
             @endif
         </div>
-    </x-box>
 @endsection
 
 @section('modals')

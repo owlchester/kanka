@@ -1,7 +1,6 @@
 <h3 class="mb-3">
     {{ __('settings.account.2fa.title') }}
 </h3>
-<x-box>
     @if ($user->passwordSecurity?->google2fa_enable)
         <p class="hep-block">{{ __('settings.account.2fa.enabled') }}</p>
 
@@ -53,7 +52,8 @@
             {!! Form::close() !!}
        @endif
   @endif
-</x-box>
+
+<hr />
 
 @section('modals')
     @parent

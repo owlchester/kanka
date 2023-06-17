@@ -48,16 +48,22 @@ table.tiers {
     padding: 15px;
 
     .card-element {
-        border: 1px solid hsl(var(--bc)/1);
+        --tw-border-opacity: .2;
+        border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
         background-color: white;
     }
 }
 
 .StripeElement {
-  border: 1px solid hsl(var(--bc)/1);
-  background-color: white;
-  padding: 9px 12px;
-  line-height: 1.6;
+    --tw-border-opacity: .2;
+    border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    padding: 9px 12px;
+    line-height: 1.5;
+    box-shadow: none;
+    color: inherit;
+    border-radius: var(--rounded-btn, .5rem);
 }
 
 body {
@@ -113,49 +119,49 @@ body {
   display: none;
 }
 .ribbon span {
-  position: absolute;
-  display: block;
-  width: 105px;
-  padding: 3px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+    position: absolute;
+    display: block;
+    width: 105px;
+    padding: 3px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
 
-  font: 700 8px/1 'Lato', sans-serif;
-  text-shadow: 0 1px 1px rgba(0,0,0,.2);
-  text-transform: uppercase;
-  text-align: center;
+    font: 700 8px/1 'Lato', sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    text-transform: uppercase;
+    text-align: center;
 }
 
 /* top left*/
 .ribbon-top-left {
-  top: -10px;
-  left: -10px;
+    top: -10px;
+    left: -10px;
 }
 .ribbon-top-left span {
-  right: -25px;
-  top: 30px;
-  transform: rotate(-45deg);
+    right: -25px;
+    top: 30px;
+    transform: rotate(-45deg);
 }
 
 /* top right*/
 .ribbon-top-right {
-  top: -9px;
-  right: -9px;
+    top: -9px;
+    right: -9px;
 }
 .ribbon-top-right span {
-  left: -10px;
-  bottom: 35px;
-  transform: rotate(45deg);
+    left: -10px;
+    bottom: 35px;
+    transform: rotate(45deg);
 }
 
 /* bottom left*/
 .ribbon-bottom-left {
-  bottom: -10px;
-  left: -10px;
+    bottom: -10px;
+    left: -10px;
 }
 .ribbon-bottom-left span {
-  right: -25px;
-  bottom: 30px;
-  transform: rotate(225deg);
+    right: -25px;
+    bottom: 30px;
+    transform: rotate(225deg);
 }
 
 /* bottom right*/
@@ -164,9 +170,9 @@ body {
   right: -10px;
 }
 .ribbon-bottom-right span {
-  left: -25px;
-  bottom: 25px;
-  transform: rotate(-225deg);
+    left: -25px;
+    bottom: 25px;
+    transform: rotate(-225deg);
 }
 
 /** Promo code **/

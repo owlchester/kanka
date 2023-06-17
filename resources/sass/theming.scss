@@ -82,6 +82,13 @@
     --tab-border: 0px;
 }
 
+*,
+::before,
+::after {
+    --tw-border-opacity: .2;
+    border-color: hsl(var(--bc)/var(--tw-border-opacity));
+}
+
 body {
     --tw-background-opacity: 1;
     background-color: var(--body-background, hsl(var(--b1)/var(--tw-background-opacity)));

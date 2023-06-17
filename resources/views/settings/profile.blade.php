@@ -13,7 +13,6 @@
     @include('partials.errors')
 
     {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.profile'], 'data-shortcut' => 1]) !!}
-    <x-box>
         <div class="flex flex-col md:flex-row gap-5">
             <div class="grow flex flex-col gap-5">
                 <div class="field-name">
@@ -83,21 +82,17 @@
                 {{ __('settings.profile.actions.update_profile') }}
             </x-buttons.confirm>
         </div>
-    </x-box>
     {!! Form::close() !!}
     @if (!app()->isProduction())
-        <h1 class="mb-3">
-            Reset Tutorials
-        </h1>
-        <x-box>
-            <div class="flex flex-col md:flex-row gap-5">
-            {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.reset-tutorials'], 'data-shortcut' => 1]) !!}
-                    <div class="text-right">
-                        <x-buttons.confirm type="danger" outline="true">
-                            Reset tutorials
-                        </x-buttons.confirm>
-                    </div>
-            {!! Form::close() !!}
-        </x-box>
+        {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.reset-tutorials']]) !!}
+        <div class="flex gap-2 my-5">
+            <h1 class="m-0 grow">
+                Reset Tutorials
+            </h1>
+            <x-buttons.confirm type="danger" outline="true">
+                Reset tutorials
+            </x-buttons.confirm>
+        </div>
+        {!! Form::close() !!}
     @endif
 @endsection

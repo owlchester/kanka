@@ -2,12 +2,12 @@
 </style>
 
 <template>
-    <div>
+    <div class="">
         <div>
-            <div class="card card-default">
-                <div class="card-header">
+            <div class="">
+                <div class="">
                     <div class="flex justify-between items-center">
-                        <span>
+                        <span class="text-lg">
                             Personal Access Tokens
                         </span>
 
@@ -17,7 +17,7 @@
                     </div>
                 </div>
 
-                <div class="card-body">
+                <div class="">
                     <!-- No Tokens Notice -->
                     <p class="mb-0" v-if="tokens.length === 0">
                         You have not created any personal access tokens.

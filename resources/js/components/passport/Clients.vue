@@ -6,7 +6,7 @@
         <div class="card card-default">
             <div class="card-header">
                 <div class="flex justify-between items-center">
-                    <span>
+                    <span class="text-lg">
                         OAuth Clients
                     </span>
 

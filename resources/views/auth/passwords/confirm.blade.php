@@ -27,7 +27,7 @@
         </div>
 
         <div class="mb-2">
-            <button type="submit" class="w-full rounded px-6 py-2 uppercase text-blue-500 border border-blue-500 bg-white hover:shadow-xs hover:text-white hover:bg-blue-500">
+            <button type="submit" class="w-full rounded px-6 py-2 uppercase text-blue-500 border border-blue-500 hover:shadow-xs hover:text-white hover:bg-blue-500 ">
                 {{ __('auth.confirm.confirm') }}
             </button>
         </div>
