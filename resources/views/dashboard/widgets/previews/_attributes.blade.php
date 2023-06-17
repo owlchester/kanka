@@ -11,8 +11,8 @@
 @inject('attributeService', 'App\Services\AttributeService')
 
 <div class="widget-advanced-attributes">
-    <dl class="dl-horizontal">
+    <ul class="m-0 p-0 list-none">
 
     @include('entities.components.attributes')
-    </dl>
+    </ul>
 </div>

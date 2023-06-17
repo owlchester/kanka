@@ -246,7 +246,7 @@
     "src": "resources/sass/auth.scss"
   },
   "resources/sass/dashboard.scss": {
-    "file": "assets/dashboard-76a59529.css",
+    "file": "assets/dashboard-3e35efb7.css",
     "isEntry": true,
     "src": "resources/sass/dashboard.scss"
   },
