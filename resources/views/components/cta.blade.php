@@ -19,26 +19,30 @@
             <div class="grow">
                 {!! $slot !!}
 
-                @if (!empty($cta))
-                    <p>{!! $cta !!}</p>
-                @elseif (!$minimal)
-                <p>{{ __('callouts.booster.limitations.' . ($superboost ? 'superboosted' : 'boosted')) }}</p>
+                @if (!$max)
+                    @if (!empty($cta))
+                        <p>{!! $cta !!}</p>
+                    @elseif (!$minimal)
+                    <p>{{ __('callouts.booster.limitations.' . ($superboost ? 'superboosted' : 'boosted')) }}</p>
+                    @endif
                 @endif
             </div>
-            @subscriber()
-                @if ($superboost)
-                    <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-boost text-white btn-lg btn-block">
-                        {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->name]) !!}
-                    </a>
+            @if (!$max)
+                @subscriber()
+                    @if ($superboost)
+                        <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn bg-boost text-white btn-lg btn-block">
+                            {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->name]) !!}
+                        </a>
+                    @else
+                        <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-boost text-white btn-lg btn-block">
+                            {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
+                        </a>
+                    @endif
                 @else
-                    <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}" class="btn bg-boost text-white btn-lg btn-block">
-                        {!! __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) !!}
+                    <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-lg btn-block">
+                        {!! __('callouts.booster.learn-more') !!}
                     </a>
                 @endif
-            @else
-                <a href="{{ route('front.boosters') }}" target="_blank" class="btn bg-boost text-white btn-lg btn-block">
-                    {!! __('callouts.booster.learn-more') !!}
-                </a>
             @endif
         @else
             @if (!$minimal)
@@ -48,13 +52,16 @@
             <div class="grow">
                 {!! $slot !!}
 
-                @if (!empty($cta))
-                    <p>{!! $cta !!}</p>
-                @elseif (!$minimal)
-                    <p>{{ __('callouts.premium.limitation') }}</p>
+                @if (!$max)
+                    @if (!empty($cta))
+                        <p>{!! $cta !!}</p>
+                    @elseif (!$minimal)
+                        <p>{{ __('callouts.premium.limitation') }}</p>
+                    @endif
                 @endif
             </div>
 
+            @if (!$max)
             @subscriber()
                 <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn bg-boost text-white btn-lg btn-block">
                     {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
@@ -63,6 +70,7 @@
                 <a href="{{ route('front.premium') }}" class="btn bg-boost text-white btn-lg btn-block">
                     {!! __('callouts.premium.learn-more') !!}
                 </a>
+            @endif
             @endif
         @endif
     </div>

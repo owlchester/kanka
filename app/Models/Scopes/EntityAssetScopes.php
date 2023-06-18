@@ -15,11 +15,12 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait EntityAssetScopes
 {
-    public function scopeType(Builder $query, int $type)
+    public function scopeType(Builder $query, int $type): Builder
     {
-        $query->where('type_id', $type);
+        return $query->where('type_id', $type);
     }
-    public function scopeFiltered(Builder $query, bool $boosted = false)
+
+    public function scopeFiltered(Builder $query, bool $boosted = false): Builder
     {
         $types = [
             EntityAsset::TYPE_FILE
@@ -28,19 +29,19 @@ trait EntityAssetScopes
             $types[] = EntityAsset::TYPE_LINK;
             $types[] = EntityAsset::TYPE_ALIAS;
         }
-        $query->whereIn('type_id', $types);
+        return $query->whereIn('type_id', $types);
     }
 
     public function scopeFile(Builder $query)
     {
-        $this->type(EntityAsset::TYPE_FILE);
+        return $query->type(EntityAsset::TYPE_FILE);
     }
-    public function scopeLink(Builder $query)
+    public function scopeLink(Builder $query): Builder
     {
-        $this->type(EntityAsset::TYPE_LINK);
+        return $query->type(EntityAsset::TYPE_LINK);
     }
     public function scopeAlias(Builder $query)
     {
-        $this->type(EntityAsset::TYPE_ALIAS);
+        return $query->type(EntityAsset::TYPE_ALIAS);
     }
 }
