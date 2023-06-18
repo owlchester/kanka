@@ -236,7 +236,7 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-a8c564e4.css",
+    "file": "assets/app-65e654a9.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
@@ -296,12 +296,12 @@
     "src": "resources/sass/subscription.scss"
   },
   "resources/sass/themes/dark.scss": {
-    "file": "assets/dark-6772580e.css",
+    "file": "assets/dark-fe21d8eb.css",
     "isEntry": true,
     "src": "resources/sass/themes/dark.scss"
   },
   "resources/sass/themes/midnight.scss": {
-    "file": "assets/midnight-b8d1842a.css",
+    "file": "assets/midnight-b6c1a512.css",
     "isEntry": true,
     "src": "resources/sass/themes/midnight.scss"
   },
