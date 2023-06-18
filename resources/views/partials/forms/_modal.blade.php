@@ -6,7 +6,7 @@
                 @if (isset($titleIcon) && !empty($titleIcon))
                     <span>{!! $titleIcon !!}</span>
                 @endif
-                {{ $title }}
+                {!! $title !!}
             </div>
         </div>
     </div>

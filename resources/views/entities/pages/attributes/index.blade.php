@@ -14,6 +14,10 @@
 @section('entity-header-actions')
     @can('attribute', [$entity->child, 'add'])
         <div class="header-buttons inline-block flex gap-2 items-center justify-end flex-wrap">
+
+            <a href="https://docs.kanka.io/en/latest/features/attributes.html" target="_blank" class="btn2 btn-ghost btn-sm">
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+            </a>
             <a class="btn2 btn-sm" href="{{ route('entities.attributes.template', $entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', $entity) }}">
                 <i class="fa-solid fa-copy" aria-hidden="true"></i>
                 {{ __('entities/attributes.actions.apply_template') }}

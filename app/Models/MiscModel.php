@@ -449,7 +449,7 @@ abstract class MiscModel extends Model
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
             'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
             $this->getLink() . '">' .
-            (!empty($displayName) ? $displayName : e($this->name)) .
+            (!empty($displayName) ? $displayName : $this->name) .
         '</a>';
     }
 

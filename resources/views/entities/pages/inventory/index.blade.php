@@ -15,6 +15,9 @@
 @section('entity-header-actions')
     @can('inventory', $entity->child)
         <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+            <a href="https://docs.kanka.io/en/latest/features/inventory.html" target="_blank" class="btn2 btn-ghost btn-sm">
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+            </a>
             <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn2 btn-accent btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"

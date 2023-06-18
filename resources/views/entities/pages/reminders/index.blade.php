@@ -15,6 +15,9 @@
 @section('entity-header-actions')
     @can('events', $entity->child)
         <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+            <a href="https://docs.kanka.io/en/latest/features/reminders.html" target="_blank" class="btn2 btn-ghost btn-sm">
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+            </a>
             <a href="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
                class="btn2 btn-sm btn-accent" data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}">

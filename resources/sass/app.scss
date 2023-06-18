@@ -53,13 +53,6 @@ div.required label:after {
     color: var(--input-required-text, red);
 }
 
-table {
-    tbody {
-        td {
-            //vertical-align: middle !important;
-        }
-    }
-}
 .tab-content, .box-body {
     table {
         max-width: 100% !important;
@@ -145,21 +138,6 @@ button.dropdown-item {
     &:hover {
         background-color: var(--dropdown-hover-background);
     }
-}
-
-.table-responsive {
-    overflow-x: unset;
-}
-.table-compact {
-    width: auto;
-}
-.table-right {
-    width: auto;
-    float: right;
-}
-.table-centered {
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .banner-notification {
@@ -369,6 +347,7 @@ ul.entity-menu {
 @import "ab-testing";
 @import "toggle";
 @import "tabs";
+@import "table";
 //@import "tw/tailwind";
 @import "dialog";
 @import "adminlte";

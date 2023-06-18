@@ -377,22 +377,6 @@ blockquote {
         }
     }
 }
-.table-bordered {
-    --tw-border-opacity: 1;
-    border-top: 1px solid hsl(var(--b2)/var(--tw-border-opacity));
-}
-.table :is(thead, tbody, tfoot) tr :is(td, th) {
-    --tw-border-opacity: 1;
-    border-color: hsl(var(--b2)/var(--tw-border-opacity));
-}
-.table :is(thead, tbody, tfoot) tr.warning :is(td, th) {
-    background-color: hsl(var(--a)/1);
-    color: hsl(var(--ac)/1);
-}
-.table :is(thead, tbody, tfoot) tr.warning:hover :is(td, th) {
-    background-color: hsl(var(--af)/1);
-    color: hsl(var(--ac)/1);
-}
 
 /** borders **/
 .border-base-100 {

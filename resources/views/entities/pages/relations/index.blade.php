@@ -14,7 +14,7 @@
 @section('entity-header-actions')
         <div class="header-buttons inline-block flex gap-2 items-center justify-end flex-wrap">
 
-            <button class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
+            <button class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-target="help-modal">
                 <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
             </button>
 
@@ -67,6 +67,18 @@
             @includeWhen($mode == 'table' || (empty($mode) && !$campaignService->campaign()->boosted()), 'entities.pages.relations._relations')
         </div>
     </div>
+@endsection
+
+
+@section('modals')
+    @parent
+    @include('partials.helper-modal', [
+        'id' => 'help-modal',
+        'title' => __('crud.actions.help'),
+        'textes' => [
+            __('entities/relations.helpers.popup')
+        ]
+    ])
 @endsection
 
 @section('scripts')

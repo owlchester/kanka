@@ -31,13 +31,6 @@
 
 @section('modals')
     @parent
-    @include('partials.helper-modal', [
-        'id' => 'help-modal',
-        'title' => __('crud.actions.help'),
-        'textes' => [
-            __('entities/relations.helpers.popup')
-        ]
-    ])
 
     @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms(), 'params' => []])
 @endsection
