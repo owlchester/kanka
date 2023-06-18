@@ -13,13 +13,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class JobLog extends Model
 {
+    public $connection = 'logs';
+
     public $fillable = [
         'name',
         'result',
         'config',
     ];
-
-    /*public $casts = [
-        'config' => 'array'
-    ];*/
 }
