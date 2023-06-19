@@ -11,7 +11,6 @@ class CampaignApiController extends ApiController
 {
     public function index(\Illuminate\Http\Request $request)
     {
-        ApiLog::log();
         $campaigns = $request
             ->user()
             ->campaigns()
@@ -22,7 +21,6 @@ class CampaignApiController extends ApiController
 
     public function show(Campaign $campaign)
     {
-        ApiLog::campaign($campaign)->log();
         $this->authorize('access', $campaign);
         $resource = new CampaignResource($campaign);
 
@@ -31,14 +29,12 @@ class CampaignApiController extends ApiController
 
     public function store(Request $request)
     {
-        ApiLog::log();
         $model = Campaign::create($request->all());
         return new CampaignResource($model);
     }
 
     public function update(Request $request, Campaign $campaign)
     {
-        ApiLog::campaign($campaign)->log();
         $this->authorize('access', $campaign);
         $campaign->update($request->all());
 
@@ -47,7 +43,6 @@ class CampaignApiController extends ApiController
 
     public function delete(Request $request, Campaign $campaign)
     {
-        ApiLog::log($request);
         $this->authorize('access', $campaign);
         $campaign->delete();
 

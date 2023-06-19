@@ -49,6 +49,7 @@ class Kernel extends HttpKernel
         'api' => [
             //Do this in the routes 'throttle:rate_limit,1',
             'bindings',
+            'api.log',
         ],
         // Used for locale-less routes like our sitemaps, go/, auth/callbacks, webhooks
         'minimum' => [
@@ -95,6 +96,7 @@ class Kernel extends HttpKernel
         'subscriptions' => \App\Http\Middleware\Subscriptions::class,
         'fullsetup' => FullSetup::class,
         '2fa' => \App\Http\Middleware\OTPMiddleware::class,
+        'api.log' => \App\Http\Middleware\ApiLogMiddleware::class,
 
     ];
 }
