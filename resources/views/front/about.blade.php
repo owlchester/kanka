@@ -25,35 +25,35 @@
                 <div class="row text-center">
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
                         <div class="bg-white rounded shadow-sm py-4 fullheight hover-focus">
-                            <img class="img-fluid rounded mb-3 shadow-sm" src="{{ Img::crop(200)->new()->url('app/team/jay2.jpeg') }}" alt="Jay" />
+                            <img class="img-fluid rounded mb-3 shadow-sm" src="https://th.kanka.io/3gGetooEqoGcA-NFOPvu2xYX980=/200x200/smart/src/app/team/jay2.jpeg" data-src="{{ Img::crop(200)->new()->url('app/team/jay2.jpeg') }}" alt="Jay" lazy  />
                             <h5 class="mb-0">Jay</h5>
                             <p class="small text-uppercase text-muted mb-0">{{ __('teams.people.jay.title') }}</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
                         <div class="bg-white rounded shadow-sm py-4 fullheight hover-focus">
-                            <img class="img-fluid rounded mb-3 shadow-sm" src="{{ Img::crop(200)->new()->url('app/team/jon.jpg') }}" alt="Jon" />
+                            <img class="img-fluid rounded mb-3 shadow-sm" src="https://th.kanka.io/qj6BEWMKrn4D-9f5GMP_REpzsyQ=/200x200/smart/src/app/team/jon.jpg" data-src="{{ Img::crop(200)->new()->url('app/team/jon.jpg') }}" alt="Jon" lazy />
                             <h5 class="mb-0">Jon</h5>
                             <p class="small text-uppercase text-muted mb-0">{{ __('teams.people.jon.title') }}</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
                         <div class="bg-white rounded shadow-sm py-4 fullheight hover-focus">
-                            <img class="img-fluid rounded mb-3 shadow-sm" src="{{ Img::crop(200)->new()->url('app/team/itzamna.png') }}" alt="Itzamna" />
+                            <img class="img-fluid rounded mb-3 shadow-sm" src="https://th.kanka.io/qlJ3ZQdiRCM51HLtiQYckGqMHDU=/200x200/smart/src/app/team/itzamna.png" data-src="{{ Img::crop(200)->new()->url('app/team/itzamna.png') }}" alt="Itzamna" lazy  />
                             <h5 class="mb-0">Itzamn&aacute;</h5>
                             <p class="small text-uppercase text-muted mb-0">{{ __('teams.people.itzamna.title') }}</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
                         <div class="bg-white rounded shadow-sm py-4 fullheight hover-focus">
-                            <img class="img-fluid rounded mb-3 shadow-sm" src="{{ Img::crop(200)->new()->url('app/team/laura.jpeg') }}" alt="Laura" />
+                            <img class="img-fluid rounded mb-3 shadow-sm" src="https://th.kanka.io/rPvAAWbnqad8U25cosP47m1Zcc0=/200x200/smart/src/app/team/laura.jpeg" data-src="{{ Img::crop(200)->new()->url('app/team/laura.jpeg') }}" alt="Laura" lazy  />
                             <h5 class="mb-0">Laura</h5>
                             <p class="small text-uppercase text-muted mb-0">{{ __('teams.people.laura.title') }}</p>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6 mb-4">
                         <div class="bg-white rounded shadow-sm py-4 fullheight hover-focus">
-                            <img class="img-fluid rounded mb-3 shadow-sm" src="{{ Img::crop(200)->new()->url('app/team/kaz.jpeg') }}" alt="Kaz" />
+                            <img class="img-fluid rounded mb-3 shadow-sm" src="https://th.kanka.io/CIfzUDCGbm9dxpwUZImdaEw8mx0=/200x200/smart/src/app/team/kaz.jpeg" data-src="{{ Img::crop(200)->new()->url('app/team/kaz.jpeg') }}" alt="Kaz" lazy />
                             <h5 class="mb-0">Kaz</h5>
                             <p class="small text-uppercase text-muted mb-0">{{ __('teams.people.kaz.title') }}</p>
                             <span title="Discord" class="pull-bottom">Woof 🐶</span>

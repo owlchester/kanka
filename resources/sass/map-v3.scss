@@ -128,10 +128,12 @@ $mapSidebarWidth: 380px;
     }
 
     .main-sidebar {
-        --tw-text-opacity: 1;
-        color: hsl(var(--bc)/var(--tw-text-opacity));
         padding-top: 0;
         z-index: 1040;
+    }
+    h1, h2, h3, h4, h5, h6, p {
+        --tw-text-opacity: 1;
+        color: hsl(var(--sic)/var(--tw-text-opacity));
     }
     header {
         z-index: 1050;
@@ -162,9 +164,6 @@ $mapSidebarWidth: 380px;
 
     .marker-actions {
         margin: 20px 0;
-        .dropdown-menu li > a {
-            color: var(--dropdown-link);
-        }
     }
 
     .marker-entry {
