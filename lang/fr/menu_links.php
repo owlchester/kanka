@@ -23,6 +23,7 @@ return [
         'random'            => 'Aléatoire',
         'random_type'       => 'Type d\'entité aléatoire',
         'selector'          => 'Configuration du lien',
+        'target'            => 'Cible',
         'type'              => 'Entité Type',
     ],
     'helpers'           => [

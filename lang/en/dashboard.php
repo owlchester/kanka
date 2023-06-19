@@ -141,19 +141,19 @@ return [
             'name_desc' => 'Name descending',
             'recent'    => 'Recently modified',
         ],
+        'preview'                   => [
+            'displays'  => [
+                'expand'    => 'Expandable entry',
+                'full'      => 'Full entry',
+            ],
+            'fields'    => [
+                'display'   => 'Display',
+            ],
+        ],
         'random'                    => [
             'helpers'   => [
                 'name'  => 'You can reference the random entity\'s name with {name}',
             ],
-        ],
-        'preview' => [
-            'fields' => [
-                'display' => 'Display',
-            ],
-            'displays' => [
-                'expand' => 'Expandable entry',
-                'full' => 'Full entry',
-            ]
         ],
         'recent'                    => [
             'advanced_filter'   => 'Advanced filter',

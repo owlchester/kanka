@@ -2,12 +2,12 @@
 
 return [
     'actions'       => [
-        'close'     => 'Close',
-        'file-link' => 'File link',
-        'image-link'=> 'Image link',
-        'save'      => 'Save',
+        'close'         => 'Close',
+        'file-link'     => 'File link',
         'focus_point'   => 'Set focus point',
-        'reset_focus'   => 'Reset focus point'
+        'image-link'    => 'Image link',
+        'reset_focus'   => 'Reset focus point',
+        'save'          => 'Save',
     ],
     'breadcrumb'    => 'Gallery',
     'cta'           => 'Manage and reuse images throughout the campaign.',
@@ -19,13 +19,17 @@ return [
         'permissions'   => 'Your campaign roles are missing the :permission permission to be allowed to upload images to the campaign gallery.',
     ],
     'fields'        => [
-        'created_by'    => 'Uploaded by',
-        'ext'           => 'Ext',
-        'folder'        => 'Folder',
-        'image_used_in' => '{0} This image isn\'t used in any of the campaign\'s entities.|{1} Used as the image of one entity.|[2,*] Used as the image of :count entities.',
-        'image_mentioned_in' => '{0} This image isn\'t mentioned in any of the campaign\'s entities.|{1} Mentioned in one entry/post.|[2,*] mentioned in :count entries/posts.',
-        'name'          => 'Name',
-        'size'          => 'Size',
+        'created_by'            => 'Uploaded by',
+        'ext'                   => 'Ext',
+        'folder'                => 'Folder',
+        'image_mentioned_in'    => '{0} This image isn\'t mentioned in any of the campaign\'s entities.|{1} Mentioned in one entry/post.|[2,*] mentioned in :count entries/posts.',
+        'image_used_in'         => '{0} This image isn\'t used in any of the campaign\'s entities.|{1} Used as the image of one entity.|[2,*] Used as the image of :count entities.',
+        'name'                  => 'Name',
+        'size'                  => 'Size',
+    ],
+    'focus'         => [
+        'removed'   => 'Image focus removed.',
+        'updated'   => 'Image focus updated.',
     ],
     'new_folder'    => [
         'title' => 'New folder',
@@ -39,10 +43,6 @@ return [
     'update'        => [
         'success'   => 'Image modified.',
         'title'     => 'Image details',
-    ],
-    'focus' => [
-        'updated' => 'Image focus updated',
-        'removed' => 'Image focus removed',
     ],
     'uploader'      => [
         'add'           => 'Add new',

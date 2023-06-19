@@ -101,12 +101,12 @@ return [
     'delete_modal'              => [
         'callout'           => 'Psst!',
         'close'             => 'Close',
+        'confirm'           => 'Confirm removal',
         'delete'            => 'Remove',
         'description_v2'    => 'You are removing ":tag".',
         'permanent'         => 'This action is permanent.',
         'recoverable'       => 'Entities can be recovered for up to :day days with a :boosted-campaign.',
         'title'             => 'Removal confirmation',
-        'confirm'           => 'Confirm removal',
     ],
     'destroy_many'              => [
         'success'   => 'Deleted :count entity.|Deleted :count entities.',

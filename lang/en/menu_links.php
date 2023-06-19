@@ -22,8 +22,8 @@ return [
         'random'            => 'Random',
         'random_type'       => 'Random Entity Type',
         'selector'          => 'Quick Link Configuration',
+        'target'            => 'Target',
         'type'              => 'Entity List',
-        'target'              => 'Target',
     ],
     'helpers'           => [
         'active'            => 'Inactive quick links won\'t appear in the sidebar.',

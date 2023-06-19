@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => 'Modèles d\'attributs de :name',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Créer un nouveau Modèle d\'attribut',
     ],
@@ -11,6 +9,7 @@ return [
     'edit'                  => [],
     'fields'                => [
         'attributes'    => 'Attributs',
+        'auto_apply'    => 'Auto-appliquer',
     ],
     'hints'                 => [
         'automatic'                 => 'Attributs automatiquement appliqués depuis le modèle :link.',

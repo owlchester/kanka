@@ -75,6 +75,12 @@ return [
         'success'   => 'Modèle d\'attribut :name appliqué pour :entity.',
         'title'     => 'Appliquer un modèle d\'attribut pour :name',
     ],
+    'toasts'        => [
+        'lock'      => 'Attribut verouillé',
+        'pin'       => 'Attribut épinglé',
+        'unlock'    => 'Attribut déverouillé',
+        'unpin'     => 'Attribut non-épinglé',
+    ],
     'types'         => [
         'attribute' => 'Attribut',
         'block'     => 'Bloc',

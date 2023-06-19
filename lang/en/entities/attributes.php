@@ -76,10 +76,10 @@ return [
         'title'     => 'Apply an attribute template for :name',
     ],
     'toasts'        => [
-        'pin' => 'Attribute pinned',
-        'unpin' => 'Attribute unpinned',
-        'lock' => 'Attribute locked',
-        'unlock' => 'Attribute unlocked',
+        'lock'      => 'Attribute locked',
+        'pin'       => 'Attribute pinned',
+        'unlock'    => 'Attribute unlocked',
+        'unpin'     => 'Attribute unpinned',
     ],
     'types'         => [
         'attribute' => 'Attribute',

@@ -29,9 +29,9 @@ return [
                 'title'     => 'Add a child',
             ],
             'edit'  => [
+                'helper'    => 'Check this option if the relation is unknown. A character can be added later.',
                 'success'   => 'Entity updated.',
                 'title'     => 'Update an entity',
-                'helper'    => 'Check this option if the relation is unknown. A character can be added later.',
             ],
             'remove'=> [
                 'confirm'   => 'Are you sure you want to remove this entity from the family tree?',
@@ -39,11 +39,11 @@ return [
             ],
         ],
         'relations' => [
-            'add'   => [
+            'add'       => [
                 'success'   => 'Relation added.',
                 'title'     => 'Add a relation',
             ],
-            'edit'  => [
+            'edit'      => [
                 'success'   => 'Relation updated.',
                 'title'     => 'Update a relation',
             ],

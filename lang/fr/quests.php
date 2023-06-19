@@ -30,10 +30,10 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Auteur',
         'copy_elements' => 'Copier les éléments de la quête',
         'date'          => 'Date',
         'element_role'  => 'Rôle',
+        'instigator'    => 'Instigateur',
         'is_completed'  => 'Completée',
         'role'          => 'Rôle',
     ],

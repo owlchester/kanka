@@ -148,6 +148,7 @@ return [
                 'financial'         => 'L\'abonnement est trop cher',
                 'missing_features'  => 'Fonctionnalités manquantes',
                 'not_for'           => 'L\'abonnement n\'est pas pour moi',
+                'not_playing'       => 'La campagne n\'est plus active ou en pause',
                 'not_using'         => 'Je n\'utilise pas Kanka actuellement',
                 'other'             => 'Autre',
             ],
