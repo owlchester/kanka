@@ -156,20 +156,14 @@ class ImgService
             // New server
             $thumborUrl = $this->crop . $filter . $img;
             $sign = $this->sign($thumborUrl);
-            return config('thumbor.url-new') . $sign . '/' . $this->crop . $filter
+            return config('thumbor.url') . $sign . '/' . $this->crop . $filter
                 . $img
-                ;
+            ;
         }
         // Old system
-        $thumborUrl = $this->crop . $filter . $img;
-        $sign = $this->sign($thumborUrl);
         return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
             . 'src/' . urlencode($img)
-            ;
-
-        /*return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
-            . 'src/' . urlencode($img)
-        ;*/
+        ;
     }
 
     /**
