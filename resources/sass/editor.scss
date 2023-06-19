@@ -245,3 +245,18 @@ img.note-float-left {
     border-color: hsl(var(--b2)/1);
     color: hsl(var(--bc)/1);
 }
+.btn.btn-primary {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--p)/var(--tw-bg-opacity));
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--p)/var(--tw-border-opacity));
+    color: hsl(var(--pc)/1);
+
+    &:hover {
+        --tw-border-opacity: 1;
+        border-color:hsl(var(--pf)/var(--tw-border-opacity));
+        --tw-bg-opacity: 1;
+        background-color:hsl(var(--pf)/var(--tw-bg-opacity));
+        color:hsl(var(--pc)/var(--tw-text-opacity));
+    }
+}
