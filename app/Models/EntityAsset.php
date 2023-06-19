@@ -9,6 +9,7 @@ use App\Models\Scopes\Pinned;
 use App\Traits\VisibilityIDTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 /**
@@ -109,6 +110,11 @@ class EntityAsset extends Model
             return 'fa-solid fa-map';
         }
         return (string) $this->metadata['icon'];
+    }
+
+    public function getIconAttribute(): mixed
+    {
+        return Arr::get($this->metadata, 'icon');
     }
 
     /**
