@@ -51,6 +51,7 @@ export default defineConfig({
             'resources/js/history.js',
             'resources/js/editors/summernote.js',
             'resources/js/family-tree-vue.js',
+            'resources/js/campaigns/theme-builder.js',
 
 
             'resources/sass/vendor.scss',

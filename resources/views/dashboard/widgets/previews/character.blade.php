@@ -27,10 +27,10 @@ $model = $entity->child;
     >
         <h3 class="panel-title">
             <a href="{{ $entity->child->getLink() }}">
-                @if ($entity->child->is_private)
+                @if ($entity->is_private)
                     <x-icon class="fa-solid fa-lock pull-right" :title="__('crud.is_private')"></x-icon>
                 @endif
-                @if ($entity->child->is_dead)
+                @if ($entity->child->isDead())
                     <x-icon class="ra ra-skull pull-right mr-2" :title="__('characters.fields.is_dead')"></x-icon>
                 @endif
 
@@ -39,13 +39,13 @@ $model = $entity->child;
                 @elseif (!empty($widget->conf('text')))
                     {{ $widget->conf('text') }}
                 @else
-                    {{ $entity->name }}
+                    {!! $entity->name !!}
                 @endif
 
             </a>
         </h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body @if ($widget->conf('full') === '2') !p-0 @endif">
         @if ($widget->conf('full') === '1')
             <div class="entity-content">
             {!! $model->entry() !!}
@@ -54,6 +54,8 @@ $model = $entity->child;
             @include('dashboard.widgets.previews._members')
             @include('dashboard.widgets.previews._relations')
             @include('dashboard.widgets.previews._attributes')
+        @elseif ($widget->conf('full') === '2')
+            <iframe src="{{ route('entities.attributes-dashboard', [$model->entity]) }}" class="entity-attributes w-full"></iframe>
         @else
             <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
                 <div class="entity-content">

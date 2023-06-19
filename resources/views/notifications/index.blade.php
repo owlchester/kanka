@@ -19,7 +19,7 @@
             @endif
         </div>
 
-        <div class="rounded shadow-xs bg-box">
+        <x-box :padding="0">
             @if ($notifications->count() === 0)
                 <p class="help-block p-4">{{ __('notifications.no_notifications') }}</p>
             @else
@@ -59,14 +59,11 @@
                     </tbody>
                 </table>
             </div>
-            @if ($notifications->hasPages())
-                <div class="text-right">
-                    {!! $notifications->links() !!}
-                </div>
-           @endif
-
         @endif
-        </div>
+        </x-box>
+        @if ($notifications->hasPages())
+            {!! $notifications->links() !!}
+        @endif
     </div>
     <input type="hidden" id="notification-clear" />
 @endsection

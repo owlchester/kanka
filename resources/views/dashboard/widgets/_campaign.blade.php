@@ -1,18 +1,16 @@
-<?php
-/** @var \App\Models\Campaign $campaign */
-?>
+<?php /** @var \App\Models\Campaign $campaign */ ?>
 @section('content-header')
 <div class="campaign-header cover-background mb-3 p-2 relative z-[10] @if(!empty($campaign->header_image))campaign-imaged-header px-10 py-14" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif">
 
-    <div class="campaign-header-content">
+    <div class="campaign-header-content p-2">
         <div class="campaign-content">
             <div class="campaign-head flex gap-2">
                 <a href="{{ route('campaign') }}" title="{!! $campaign->name !!}" class="grow campaign-title text-2xl m-0 p-0">
                     {!! $campaign->name !!}
                 </a>
-                <div class="flex-none action-bar">
+                <div class="flex gap-2 action-bar">
                     @can ('follow', $campaign)
-                        <button id="campaign-follow" class="btn btn-default btn-xl" data-id="{{ $campaign->id }}"
+                        <button id="campaign-follow" class="btn2 btn-sm" data-id="{{ $campaign->id }}"
                                 style="display: none"
                                 data-following="{{ $campaign->isFollowing() ? true : false }}"
                                 data-follow="{{ __('dashboard.actions.follow') }}"
@@ -25,7 +23,7 @@
                         </button>
                     @endcan
                     @can('apply', $campaign)
-                        <button id="campaign-apply" class="btn btn-default btn-xl mr-2" data-id="{{ $campaign->id }}"
+                        <button id="campaign-apply" class="btn2 btn-sm" data-id="{{ $campaign->id }}"
                                 data-url="{{ route('campaign.apply') }}"
                                 data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
                                 data-target="#large-modal"
@@ -37,11 +35,11 @@
 
                     @cannot('update', $campaign)
                         @if(!empty($dashboards))
-                            <div class="btn-group pull-right">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <div class="dropdown ">
+                                <button type="button" class="btn2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid fa-th-large"></i>
                                 </button>
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                     @if (!empty($dashboard))
                                         <li>
                                             <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
@@ -72,7 +70,7 @@
                             </div>
                         @else
                             @can('dashboard', $campaign)
-                            <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
+                            <a href="{{ route('dashboard.setup') }}" class="btn2" title="{{ __('dashboard.settings.title') }}">
                                 <i class="fa-solid fa-th-large"></i>
                             </a>
                             @endcan
@@ -80,8 +78,8 @@
                     @endcannot
 
                     @can('update', $campaign)
-                    <div class="btn-group">
-                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" aria-expanded="false">
+                    <div class="dropdown">
+                        <button data-toggle="dropdown" class="btn2 btn-sm dropdown-toggle" aria-expanded="false">
                             <i class="fa-solid fa-ellipsis-h"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">

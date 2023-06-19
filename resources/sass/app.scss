@@ -6,30 +6,11 @@
   font-display: fallback;
 }
 
-// Variables
-@import "variables";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --banner-link: white;
-    --campaign-selector-link: white;
-    --campaign-selector-background: #ddd;
-    --input-required-text: red;
-    --table-filters-background: #eee;
-    --quick-creator-button-text: #fff;
-    --quick-creator-button-background: #144c93;
-    --quick-creator-button-hover-background: rgb(45, 127, 237);
-    --quick-creator-button-hover-text: #fff;
-
-    --bg-default-link: unset;
-
-    --gallery-folder-text: unset;
-    --gallery-background: #f5f8fa;
-    --gallery-hover-text: #124964;
-
     --kanka-boost-accent: 338 78% 48%;
 }
 
@@ -69,16 +50,9 @@
 /** required form fields **/
 div.required label:after {
     content: " *";
-    color: var(--input-required-text);
+    color: var(--input-required-text, red);
 }
 
-table {
-    tbody {
-        td {
-            vertical-align: middle !important;
-        }
-    }
-}
 .tab-content, .box-body {
     table {
         max-width: 100% !important;
@@ -128,8 +102,10 @@ tr.tr-hover {
 // Attributes in entities and text area
 .attribute, .note-editing-area > .attribute {
     border-radius: 2px;
-    background-color: #ddd;
-    color: #333;
+    --tw-border-opacity: 1;
+    background-color: hsl(var(--bc)/var(--tw-border-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
     font-style: italic;
     padding: 2px 3px;
 }
@@ -138,23 +114,6 @@ tr.tr-hover {
 .btn {
     white-space: normal;
 }
-.btn-app > .ra, .btn-app > .fas, .btn-app > .far, .btn-app > .fab, .btn-app > .fa, .btn-app > .fa-solid, .btn-app > .fa-regular {
-    font-size: 20px;
-    display: block;
-    line-height: 20px !important;
-}
-
-// Visual info on quick link forms for which mode is enabled
-.menu-link-selector {
-    .btn-app > .badge {
-        display: none;
-    }
-
-    .btn-app.btn-active > .badge {
-        display: unset !important;
-    }
-}
-
 
 // Bootstrap3 sets summary to display:block which isn't correct
 summary { display: list-item; }
@@ -178,28 +137,12 @@ button.dropdown-item {
 
     &:hover {
         background-color: var(--dropdown-hover-background);
-        color: var(--dropdown-hover-text);
     }
-}
-
-.table-responsive {
-    overflow-x: unset;
-}
-.table-compact {
-    width: auto;
-}
-.table-right {
-    width: auto;
-    float: right;
-}
-.table-centered {
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .banner-notification {
     a {
-        color: var(--banner-link);
+        color: hsl(var(--ac)/1);
     }
 }
 
@@ -226,6 +169,9 @@ button.dropdown-item {
 }
 .bg-boost {
     background-color: hsl(var(--kanka-boost-accent)/1);
+    --b1: var(--kanka-boost-accent);
+    --b2: var(--kanka-boost-accent);
+    --bc: 0 0% 100%;
 }
 .text-boost {
     color: hsl(var(--kanka-boost-accent)/1);
@@ -234,6 +180,9 @@ button.dropdown-item {
 // Helper block in forms, closer to field
 .form-group > .help-block {
     margin-top: 0;
+}
+.grid > .form-group {
+    margin: 0;
 }
 
 .loading, .loading:hover {
@@ -249,7 +198,8 @@ button.dropdown-item {
 }
 
 .bg-box {
-    background-color: var(--box-background);
+    --tw-bg-opacity: 1;
+    background-color: var(--box-background, hsl(var(--b1)/var(--tw-bg-opacity)));
 }
 
 /** Cancel some of tw's resets **/
@@ -279,7 +229,7 @@ ol, ul {
     z-index: 1;
 }
 .stack > :nth-child(1) {
-    transform: translateY(0) translateX(0) scale(1);
+    transform: unset;
     z-index: 3;
 }
 .stack > :nth-child(2) {
@@ -291,7 +241,93 @@ ol, ul {
     display: flow-root;
 }
 
+.table-entities {
+    td {
+        vertical-align: middle !important;
+    }
+}
+
+ul.pagination {
+    margin: 0;
+    padding: 0;
+}
+
+ul.entity-menu {
+    /*display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    padding: .5rem;*/
+
+    li {
+        /*position: relative;
+        display: flex;
+        flex-shrink: 0;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: stretch;*/
+
+        a {
+            /*user-select: none;
+            gap: .5rem;
+            padding: .5rem 1rem;
+            transition: all 0.3s;
+            border-radius: 0.5rem;*/
+
+            &:hover {
+                cursor: pointer;
+                background-color: hsl(var(--bc)/.1);
+            }
+        }
+    }
+    li.active {
+        a {
+            background-color: hsl(var(--bc)/.1);
+        }
+    }
+}
+/*.input-group {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+.input-group>:first-child {
+    border-top-left-radius:var(--rounded-btn,.5rem);
+    border-top-right-radius:0;
+    border-bottom-left-radius:var(--rounded-btn,.5rem);
+    border-bottom-right-radius:0
+}
+.input-group>:last-child {
+    border-top-left-radius:0;
+    border-top-right-radius:var(--rounded-btn,.5rem);
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:var(--rounded-btn,.5rem)
+}
+.input-group :where(span) {
+    display: flex;
+    align-items: center;
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b3)/var(--tw-bg-opacity));
+    padding-left: 1rem;
+    padding-right: 1rem;
+}*/
+
+.glass, .glass.btn-active {
+    border: none;
+    -webkit-backdrop-filter: blur(var(--glass-blur,40px));
+    backdrop-filter: blur(var(--glass-blur,40px));
+    background-color: transparent;
+    background-image: linear-gradient(135deg,rgb(255 255 255/var(--glass-opacity,30%)) 0%,rgb(0 0 0/0%) 100%),linear-gradient(var(--glass-reflex-degree,100deg),rgb(255 255 255/var(--glass-reflex-opacity,10%)) 25%,rgb(0 0 0/0%) 25%);
+    box-shadow: 0 0 0 1px rgb(255 255 255/var(--glass-border-opacity,10%)) inset,0 0 0 2px #0000000d;
+    text-shadow: 0 1px rgb(0 0 0/var(--glass-text-shadow-opacity,5%));
+}
+
+@import "alerts";
+@import "buttons";
+@import "badge";
 @import "calendar";
+@import "code";
 @import "tooltip";
 @import "timeline";
 @import "mobile";
@@ -310,6 +346,8 @@ ol, ul {
 @import "attributes/attributes";
 @import "ab-testing";
 @import "toggle";
+@import "tabs";
+@import "table";
 //@import "tw/tailwind";
 @import "dialog";
 @import "adminlte";

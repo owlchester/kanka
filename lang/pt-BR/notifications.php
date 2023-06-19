@@ -25,6 +25,10 @@ return [
         'plugin'                => [
             'deleted'   => 'O plugin :plugin foi deletado do mercado e removido de sua campanha :campaign.',
         ],
+        'premium'               => [
+            'add'       => 'Os recursos premium foram desbloqueados para a campanha :campaign pelo :user.',
+            'remove'    => ':user não está mais desbloqueando recursos premium para a campanha :campaign.',
+        ],
         'removed-image'         => 'A imagem ou cabeçalho de :entity foi removido devido a uma reivindicação de direitos autorais.',
         'role'                  => [
             'add'       => 'Você ganhou o cargo de :role na campanha :campaign',

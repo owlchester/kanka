@@ -46,7 +46,11 @@ The list of returned events can be filtered. The available filters are available
             "updated_by": 1,
             "location_id": "4",
             "date": "44-3-16",
-            "type": "Battle"
+            "type": "Battle",
+            "calendar_id": 2,
+            "calendar_year": 2,
+            "calendar_month": 4,
+            "calendar_day": 3
         }
     ]
 }
@@ -81,7 +85,11 @@ To get the details of a single event, use the following endpoint.
         "updated_by": 1,
         "location_id": "4",
         "date": "44-3-16",
-        "type": "Battle"
+        "type": "Battle",
+        "calendar_id": 2,
+        "calendar_year": 2,
+        "calendar_month": 4,
+        "calendar_day": 3
     }
 
 }

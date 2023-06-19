@@ -1,7 +1,7 @@
 <?php
 $required = !isset($bulk);
 ?>
-<div class="form-group @if ($required) required @endif">
+<div class="field-name @if ($required) required @endif">
     <label>{{ __('crud.fields.name') }}</label>
     {!! Form::text(
         'name',

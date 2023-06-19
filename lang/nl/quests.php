@@ -7,7 +7,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character'     => 'Aanstichter',
         'copy_elements' => 'Kopieer elementen die aan de quest zijn gekoppeld',
         'date'          => 'Datum',
         'is_completed'  => 'Voltooid',

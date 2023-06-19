@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-pinned>
     <label for="is_star">{{ __('crud.fields.is_star') }}</label>
     <select name="is_star" class="form-control">
         <option value=""></option>

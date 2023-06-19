@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-active">
     <label for="is_active">{{ __('menu_links.fields.active') }}</label>
     <select name="is_active" id="is_active" class="form-control">
         <option value=""></option>

@@ -28,7 +28,6 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Ініціатор',
         'copy_elements' => 'Копіювати елементи, приєднані до квесту',
         'date'          => 'Дата',
         'element_role'  => 'Роль',

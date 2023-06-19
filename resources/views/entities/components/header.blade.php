@@ -18,9 +18,9 @@ if ($model->image) {
     $imagePathMobile = $model->thumbnail(100);
 } elseif ($campaignService->campaign()->superboosted() && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
-    $imagePath = Img::crop(170, 170)->url($entity->image->path);
-    $imagePathXL = Img::crop(400, 400)->url($entity->image->path);
-    $imagePathMobile = Img::crop(100, 100)->url($entity->image->path);
+    $imagePath = $entity->image->getUrl(170, 170);
+    $imagePathXL = $entity->image->getUrl(400, 400);
+    $imagePathMobile = $entity->image->getUrl(100, 100);
 }
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();
@@ -112,7 +112,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     @foreach ($breadcrumb as $bcdata)
                         <li class="inline-block">
                         @if (is_array($bcdata))
-                        <a href="{{ $bcdata['url'] }}" class="no-underline" title="{{ $bcdata['label'] }}">
+                        <a href="{{ $bcdata['url'] }}" class="no-underline text-neutral-content" title="{{ $bcdata['label'] }}">
                             {!! $bcdata['label'] !!}
                         </a>
                         @elseif(!empty($bcdata))
@@ -152,7 +152,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                             <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                         </span>
                 @endif
-                <div class="btn-group entity-actions">
+                <div class="dropdown entity-actions">
                     <span role="button" tabindex="0" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu">
                         <i class="fa-solid fa-cog entity-icons cursor-pointer text-2xl transition-all hover:rotate-45" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>

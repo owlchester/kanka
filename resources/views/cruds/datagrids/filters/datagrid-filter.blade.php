@@ -16,11 +16,13 @@ $hasAttributeFilters = false;
 
 
 <div class="grow flex gap-2">
-    <div class="inline-block cursor-pointer btn btn-default break-keep" data-toggle="dialog" data-target="datagrid-filters">
+    <div class="inline-block cursor-pointer btn2 btn-sm break-keep" data-toggle="dialog" data-target="datagrid-filters">
         <i class="fa-solid fa-filter" aria-hidden="true"></i>
         <span class="hidden-xs">{{ __('crud.filters.title') }}</span>
         @if ($activeFilters > 0)
-            <span class="label label-danger">{{ $activeFilters }}</span>
+            <x-badge type="primary">
+                {{ $activeFilters }}
+            </x-badge>
         @endif
     </div>
 
@@ -34,11 +36,11 @@ $hasAttributeFilters = false;
 @section('modals')
     @parent()
     <x-dialog id="datagrid-filters" title="{{ __('crud.filters.title') }}" full="true">
-        {!! Form::open(['url' => route($route, ['m' => $mode]), 'method' => 'GET', 'id' => 'crud-filters-form']) !!}
+        {!! Form::open(['url' => route($route, ['m' => $mode]), 'method' => 'GET', 'id' => 'crud-filters-form', 'class' => 'block']) !!}
             @if (auth()->guest())
                 <p class="help-block">{{ __('filters.helpers.guest') }}</p>
             @else
-                <div class="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-5 mb-5 max-w-3xl">
+                <x-grid css="max-w-3xl">
                     @foreach ($filters as $field)
                         @php $count++ @endphp
 
@@ -46,7 +48,7 @@ $hasAttributeFilters = false;
                             @php $hasAttributeFilters = true @endphp
                             @continue
                         @endif
-                        <div class="form-group m-0">
+                        <div class="field-">
                             @if (is_array($field))
                                 <label>{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
                                 <?php $model = null;
@@ -85,38 +87,41 @@ $hasAttributeFilters = false;
                             @endif
                         </div>
                     @endforeach
-                </div>
+                </x-grid>
                 @includeWhen($hasAttributeFilters, 'cruds.datagrids.filters._attributes')
             @endif
             <br class="clear-both" />
-            <hr />
-            <div class="flex items-center gap-2 md:gap-5">
-                @if (auth()->check())
-                    <a href="#" class="flex-none btn btn-default flex gap-2 items-center"
-                       @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false" @else disabled @endif data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
-                        <i class="fa-solid fa-clipboard" aria-hidden="true"></i>
-                        <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
-                        <span class="visible md:hidden">{{ __('crud.filters.mobile.copy') }}</span>
-                    </a>
-
-                    <a class="grow" href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
-                        <x-icon class="question"></x-icon>
-                        {{ __('helpers.filters.title') }}
-                    </a>
-
-                    @if ($activeFilters > 0)
-                        <a href="{{ route($route, ['reset-filter' => 'true', 'm' => $mode]) }}" class="text-center">
-                            <i class="fa-solid fa-eraser mr-1" aria-hidden="true"></i>
-                            {{ __('crud.filters.mobile.clear') }}
+            @if (auth()->check())
+                <hr />
+                <div class="flex items-center gap-2 md:gap-5">
+                    <div class="grow flex gap-2 items-center">
+                        <a href="#" class="flex-none btn2 btn-sm flex gap-2 items-center"
+                           @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false" @else disabled @endif data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
+                            <i class="fa-solid fa-clipboard" aria-hidden="true"></i>
+                            <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
+                            <span class="visible md:hidden">{{ __('crud.filters.mobile.copy') }}</span>
                         </a>
-                    @endif
 
-                    <button type="submit" class="btn btn-primary flex-none">
-                        <i class="fa-solid fa-filter" aria-hidden="true"></i>
+                        @if ($activeFilters > 0)
+                            <a href="{{ route($route, ['reset-filter' => 'true', 'm' => $mode]) }}" class="btn2 btn-sm btn-error btn-outline">
+                                <x-icon class="fa-solid fa-eraser"></x-icon>
+                                {{ __('crud.filters.mobile.clear') }}
+                            </a>
+                        @endif
+
+                        <a class="btn2 btn-sm btn-link" href="//docs.kanka.io/en/latest/advanced/filters.html" target="_blank" title="{{ __('helpers.filters.title') }}">
+                            {{ __('helpers.filters.title') }}
+                        </a>
+
+
+                    </div>
+
+                    <button type="submit" class="btn2 btn-primary btn-sm">
+                        <x-icon class="fa-solid fa-filter"></x-icon>
                         {{ __('crud.filter') }}
                     </button>
-                @endif
-            </div>
+                </div>
+         @endif
         <input type="hidden" name="m" value="{{ $mode }}" />
         {!! Form::close() !!}
     </x-dialog>

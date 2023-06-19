@@ -22,97 +22,90 @@ if (isset($model)) {
 }
 ?>
 @inject('sidebar', 'App\Services\SidebarService')
-<div class="row">
-    <div class="col-md-6">
-        @include('cruds.fields.name', ['trans' => 'menu_links'])
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label class="control-label">{{ __('entities/links.fields.icon') }}</label>
+<x-grid>
+    @include('cruds.fields.name', ['trans' => 'menu_links'])
 
-            @if($campaignService->campaign()->boosted())
-                {!! Form::text(
-                    'icon',
-                    null,
-                    [
-                        'placeholder' => 'fa-solid fa-users',
-                        'class' => 'form-control',
-                        'maxlength' => 45
-                    ]
-                ) !!}
+    <div class="field-icon">
+        <label class="control-label">{{ __('entities/links.fields.icon') }}</label>
+
+        @if($campaignService->campaign()->boosted())
+            {!! Form::text(
+                'icon',
+                null,
+                [
+                    'placeholder' => 'fa-solid fa-users',
+                    'class' => 'form-control',
+                    'maxlength' => 45
+                ]
+            ) !!}
+            <p class="help-block">
+                {!! __('entities/links.helpers.icon', [
+                    'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
+                    'rpgawesome' => link_to('https://nagoshiashumari.github.io/Rpg-Awesome/', 'RPGAwesome', ['target' => '_blank']),
+                    'docs' => link_to('https://docs.kanka.io/en/latest/features/campaigns/sidebar.html#what-fonts-are-available', __('front.menu.documentation', ['target' => '_blank']))
+                ]) !!}
+            </p>
+        @else
+            @subscriber()
+            <p class="help-block">
+                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+            </p>
+            @else
                 <p class="help-block">
-                    {!! __('entities/links.helpers.icon', [
-                        'fontawesome' => link_to(config('fontawesome.search'), 'FontAwesome', ['target' => '_blank']),
-                        'rpgawesome' => link_to('https://nagoshiashumari.github.io/Rpg-Awesome/', 'RPGAwesome', ['target' => '_blank']),
-                        'docs' => link_to('https://docs.kanka.io/en/latest/features/campaigns/sidebar.html#what-fonts-are-available', __('front.menu.documentation', ['target' => '_blank']))
-                    ]) !!}
+                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
                 </p>
-            @else
-                @subscriber()
+            @endsubscriber
+
+        @endif
+    </div>
+
+    <div class="field-position">
+        <label class="control-label">
+            {{ __('menu_links.fields.position') }}
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{!! __('entities/links.helpers.parent') !!}" data-toggle="tooltip"></i>
+        </label>
+        @if ($campaignService->campaign()->boosted())
+            {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'menu_links' : $model->parent), ['class' => 'form-control']) }}
+
+            <p class="help-block visible-xs visible-sm">
+                {!! __('entities/links.helpers.parent') !!}
+            </p>
+        @else
+            @subscriber()
                 <p class="help-block">
-                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
-                </p>
-                @else
-                    <p class="help-block">
-                        {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
-                    </p>
-                @endsubscriber
-
-            @endif
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label class="control-label">
-                {{ __('menu_links.fields.position') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" title="{!! __('entities/links.helpers.parent') !!}" data-toggle="tooltip"></i>
-            </label>
-            @if ($campaignService->campaign()->boosted())
-                {{ Form::select('parent', $sidebar->campaign($campaign)->availableParents(), (empty($model) || empty($model->parent) ? 'menu_links' : $model->parent), ['class' => 'form-control']) }}
-
-                <p class="help-block visible-xs visible-sm">
-                    {!! __('entities/links.helpers.parent') !!}
+                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
                 </p>
             @else
-                @subscriber()
-                    <p class="help-block">
-                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
-                    </p>
-                @else
-                    <p class="help-block">
-                        {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
-                    </p>
-                @endsubscriber
-            @endif
-        </div>
+                <p class="help-block">
+                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
+                </p>
+            @endsubscriber
+        @endif
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="config[class]">
-                {{ __('dashboard.widgets.fields.class') }}
-                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
-            </label>
-            @if ($campaignService->campaign()->boosted())
-                {!! Form::text('css', null, ['class' => 'form-control', 'id' => 'config[class]', 'maxlength' => 45]) !!}
-                <p class="help-block visible-xs visible-sm">
-                    {{ __('dashboard.widgets.helpers.class') }}
+    <div class="field-class">
+        <label for="config[class]">
+            {{ __('dashboard.widgets.fields.class') }}
+            <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.helpers.class') }}"></i>
+        </label>
+        @if ($campaignService->campaign()->boosted())
+            {!! Form::text('css', null, ['class' => 'form-control', 'id' => 'config[class]', 'maxlength' => 45]) !!}
+            <p class="help-block visible-xs visible-sm">
+                {{ __('dashboard.widgets.helpers.class') }}
+            </p>
+        @else
+            @subscriber()
+                <p class="help-block">
+                    {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
                 </p>
             @else
-                @subscriber()
-                    <p class="help-block">
-                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
-                    </p>
-                @else
-                    <p class="help-block">
-                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
-                    </p>
-                @endsubscriber
-            @endif
-        </div>
+                <p class="help-block">
+                    {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => link_to_route('front.premium', __('concept.premium-campaign'))]) !!}
+                </p>
+            @endsubscriber
+        @endif
     </div>
-    <div class="col-md-6">
+
+    <div class="field-active">
         {!! Form::hidden('is_active', 0) !!}
             <label>
                 {!! __('menu_links.fields.active') !!}
@@ -128,61 +121,47 @@ if (isset($model)) {
         <div class="help-block visible-xs visible-sm">
             {{ __('menu_links.helpers.active') }}
         </div>
-
     </div>
-</div>
+</x-grid>
 
 <hr />
 
 <h4>{{ __('menu_links.fields.selector') }}</h4>
 <p class="help-block">{{ __('menu_links.helpers.selector') }}</p>
 
-<div class="box box-solid">
-    <div class="box-body">
-        <div class="menu-link-selector" id="quick-link-selector">
-            <a class="btn btn-app @if($isEntity) btn-active @endif" data-type="entity">
-                <x-icon class="ra ra-tower"></x-icon>
-                {{ __('menu_links.fields.entity') }}
-                <span class="badge bg-blue">
-                    <i class="fa-solid fa-check"></i>
-                </span>
-            </a>
-            <a class="btn btn-app @if($isList) btn-active @endif" data-type="list">
-                <x-icon class="fa-solid fa-th-list"></x-icon>
-                {{ __('crud.fields.type') }}
-                <span class="badge bg-blue">
-                    <i class="fa-solid fa-check"></i>
-                </span>
-            </a>
-            <a class="btn btn-app @if($isRandom) btn-active @endif" data-type="random">
-                <x-icon class="fa-solid fa-question"></x-icon>
-                {{ __('menu_links.fields.random') }}
-                <span class="badge bg-blue">
-                    <i class="fa-solid fa-check"></i>
-                </span>
-            </a>
-            <a class="btn btn-app @if($isDashboard) btn-active @endif" data-type="dashboard">
-                <x-icon class="fa-solid fa-th-large"></x-icon>
-                {{ __('menu_links.fields.dashboard') }}
-                <span class="badge bg-blue">
-                    <i class="fa-solid fa-check"></i>
-                </span>
-            </a>
-        </div>
-        <div class="quick-link-subform" id="quick-link-entity" @if($isEntity) @else style="display: none" @endif>
-            @include('menu_links.form._entity')
-        </div>
-        <div class="quick-link-subform" id="quick-link-list" @if($isList) @else style="display: none" @endif>
-            @include('menu_links.form._type')
-        </div>
-        <div class="quick-link-subform" id="quick-link-random" @if($isRandom) @else style="display: none" @endif>
-            @include('menu_links.form._random')
-        </div>
-        <div class="quick-link-subform" id="quick-link-dashboard" @if($isDashboard) @else style="display: none" @endif>
-            @include('menu_links.form._dashboard')
-        </div>
+<div class="field-target">
+    <label>{{ __('menu_links.fields.target') }}</label>
+    <select name="type" class="form-control" id="quick-link-selector">
+        <option value="">Choose an option</option>
+        <option value="entity" @if($isEntity) selected="selected" @endif data-target="#quick-link-entity">
+            {{ __('menu_links.fields.entity') }}
+        </option>
+        <option value="type" @if($isList) selected="selected" @endif data-target="#quick-link-list">
+            {{ __('crud.fields.type') }}
+        </option>
+        <option value="random" @if($isRandom) selected="selected" @endif data-target="#quick-link-random">
+            {{ __('menu_links.fields.random') }}
+        </option>
+        <option value="dashboard" @if($isDashboard) selected="selected" @endif data-target="#quick-link-dashboard">
+            {{ __('menu_links.fields.dashboard') }}
+        </option>
+    </select>
+</div>
+<div>
+    <div class="quick-link-subform" id="quick-link-entity" @if($isEntity) @else style="display: none" @endif>
+        @include('menu_links.form._entity')
+    </div>
+    <div class="quick-link-subform" id="quick-link-list" @if($isList) @else style="display: none" @endif>
+        @include('menu_links.form._type')
+    </div>
+    <div class="quick-link-subform" id="quick-link-random" @if($isRandom) @else style="display: none" @endif>
+        @include('menu_links.form._random')
+    </div>
+    <div class="quick-link-subform" id="quick-link-dashboard" @if($isDashboard) @else style="display: none" @endif>
+        @include('menu_links.form._dashboard')
     </div>
 </div>
 
+<hr />
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout')
 

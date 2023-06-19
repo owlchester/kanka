@@ -9,14 +9,18 @@
 ])
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block pull-right ml-auto">
+    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
         @if (request()->has('parent_id'))
-            <a href="{{ route('journals.journals', [$model]) }}" class="btn btn-default btn-sm">
-                <i class="fa-solid fa-filter" aria-hidden="true"></i> {{ __('crud.filters.all') }} ({{ $model->allJournals()->count() }})
+            <a href="{{ route('journals.journals', [$model]) }}" class="btn2 btn-sm">
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                ({{ $model->allJournals()->count() }})
             </a>
         @else
-            <a href="{{ route('journals.journals', [$model, 'parent_id' => $model->id]) }}" class="btn btn-default btn-sm">
-                <i class="fa-solid fa-filter" aria-hidden="true"></i> {{ __('crud.filters.direct') }} ({{ $model->journals()->count() }})
+            <a href="{{ route('journals.journals', [$model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                ({{ $model->journals()->count() }})
             </a>
         @endif
     </div>

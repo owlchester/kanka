@@ -4,14 +4,28 @@ return [
     'about'         => [
         'title' => 'Su di noi',
     ],
+    'actions'       => [
+        'back-to-top'   => 'Ritorna su',
+    ],
     'campaigns'     => [
         'description_full'  => 'Molte campagne su Kanka sono pubbliche per essere guardate da tutti. Questa pagina contiene una lista di tutte le campagne pubbliche ed alcune campagne in primo piano dalla comunità.',
         'featured'          => [
             'description'   => 'La nostra comunità realizza cose fantastiche che noi amiamo mostrare come Campagne in Primo Piano. Cambiamo questa lista di frequente quindi cerca di tornare di quando in quando per altre campagne da osservare.',
             'title'         => 'Campagne in Primo Piano',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Apri stato',
+                'closed'    => 'Campagne concluse',
+                'featured'  => 'Vincitori dei Prompt',
+                'open'      => 'Campagne aperte',
+            ],
+        ],
         'public'            => [
             'description'   => 'Dai uno sguardo alle Campagne Pubbliche per un po\' di ispirazione.',
+            'filters'       => [
+                'all'   => 'Stato Premium',
+            ],
             'no-results'    => 'Non è stata trovata nessuna campagna con questi filtri. Per favore riprova.',
             'title'         => 'Campagne Pubbliche',
         ],

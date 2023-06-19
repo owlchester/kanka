@@ -709,7 +709,7 @@ class CrudController extends Controller
      * @param string $class
      * @return $this
      */
-    protected function addNavAction($route, string $label, string $class = 'default', bool $blank = false): self
+    protected function addNavAction($route, string $label, string $class = '', bool $blank = false): self
     {
         $this->navActions[] = [
             'route' => $route,

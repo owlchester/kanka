@@ -30,6 +30,8 @@ return [
     ],
     'campaign'  => [
         'boosted'       => 'Impulsionado por :user desde :time',
+        'premium'       => 'Premium graças a :user desde :time',
+        'standard'      => 'Padrão',
         'superboosted'  => 'Superimpulsionado por :user desde :time',
         'unboosted'     => 'Desimpulsionado',
     ],

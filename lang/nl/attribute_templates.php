@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => ':name attribuutsjablonen',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Nieuw attribuutsjabloon',
     ],

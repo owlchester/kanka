@@ -2,29 +2,29 @@
 </style>
 
 <template>
-    <div>
+    <div class="">
         <div>
-            <div class="card card-default">
-                <div class="card-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span>
+            <div class="">
+                <div class="">
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg">
                             Personal Access Tokens
                         </span>
 
-                        <a class="cursor-pointer" tabindex="-1" @click="showCreateTokenForm">
+                        <a class="btn2 btn-primary btn-outline btn-sm" tabindex="-1" @click="showCreateTokenForm">
                             Create New Token
                         </a>
                     </div>
                 </div>
 
-                <div class="card-body">
+                <div class="">
                     <!-- No Tokens Notice -->
                     <p class="mb-0" v-if="tokens.length === 0">
                         You have not created any personal access tokens.
                     </p>
 
                     <!-- Personal Access Tokens -->
-                    <table class="table table-borderless mb-0" v-if="tokens.length > 0">
+                    <table class="table table-borderless mb-0 w-full" v-if="tokens.length > 0">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -40,8 +40,8 @@
                                 </td>
 
                                 <!-- Delete Button -->
-                                <td style="vertical-align: middle;">
-                                    <a class="cursor-pointer text-danger" @click="revoke(token)">
+                                <td class="text-right" style="vertical-align: middle;">
+                                    <a class="btn2 btn-error btn-outline btn-xs" @click="revoke(token)">
                                         Delete
                                     </a>
                                 </td>
@@ -105,9 +105,9 @@
                 </form>
 
                 <div class="grid grid-cols-2 gap-2 w-full">
-                    <button type="button" class="w-full rounded px-6 py-2.5 uppercase font-extrabold hover:bg-gray-200 hover:shadow-sm" @click="closeModal('createModal')">Close</button>
+                    <button type="button" class="btn2 btn-ghost" @click="closeModal('createModal')">Close</button>
 
-                    <button type="button" class="w-full rounded px-6 py-2.5 uppercase border border-blue-500 bg-white text-blue-500 font-extrabold hover:bg-blue-500 hover:text-white hover:shadow-sm" @click="store">
+                    <button type="button" class="btn2 btn-primary" @click="store">
                         Create
                     </button>
                 </div>
@@ -132,7 +132,7 @@
                 </p>
                 <textarea class="form-control" rows="10">{{ accessToken }}</textarea>
 
-                <button type="button" class="w-full rounded px-6 py-2.5 hover:bg-gray-200 font-extrabold uppercase" @click="closeModal('accessModal')">Close</button>
+                <button type="button" class="btn2 btn-ghost" @click="closeModal('accessModal')">Close</button>
             </article>
         </dialog>
     </div>

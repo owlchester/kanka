@@ -101,6 +101,10 @@ class MenuLink extends MiscModel
         'dashboard_id',
     ];
 
+    protected array $apiWith = [
+        'target',
+    ];
+
     /**
      * Set to false if this entity type doesn't have relations
      * @var bool
@@ -235,6 +239,8 @@ class MenuLink extends MiscModel
                 return route('entities.entity_assets.index', $routeOptions);
             } elseif ($this->menu === 'reminders') {
                 return route('entities.entity_events.index', $routeOptions);
+            } elseif ($this->menu === 'attributes') {
+                return route('entities.attributes', $routeOptions);
             }
             if (Route::has($menuRoute)) {
                 $route = $menuRoute;

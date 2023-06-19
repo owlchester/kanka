@@ -14,8 +14,6 @@
 
         @include('entities.components.posts', ['withEntry' => true])
         @include('families.panels._members')
-
-        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

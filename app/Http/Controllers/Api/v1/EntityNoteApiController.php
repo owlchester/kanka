@@ -45,7 +45,9 @@ class EntityNoteApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $model = EntityNote::create($request->all());
+        $data = $request->all();
+        $data['entity_id'] = $entity->id;
+        $model = EntityNote::create($data);
         return new Resource($model);
     }
 

@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => 'Padróns de atributos de ":name"',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Novo padrón de atributos',
     ],

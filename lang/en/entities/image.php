@@ -16,7 +16,7 @@ return [
         'success'       => 'Image focus updated.',
         'title'         => 'Image Focus for :name',
         'unboosted'     => 'Setting an image focus point is reserverd to :boosted-campaigns.',
-        'warning'       => 'Setting the focus point is not available when the entity\'s image is set from the gallery.',
+        'warning_v2'    => 'Setting the focus point for gallery images can be done directly on the :gallery page.',
     ],
     'replace'           => [
         'breadcrumb'    => 'Image replacement',

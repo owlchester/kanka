@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => ':name modelos de atributos',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Novo Modelo de Atributo',
     ],

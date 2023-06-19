@@ -45,13 +45,13 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
                 @if (!empty($widget->conf('text')))
                     {{ $customName }}
                 @else
-                    {{ $widget->entity->name }}
+                    {!! $entity->name !!}
                 @endif
             </a>
 
         </h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body @if ($widget->conf('full') === '2') !p-0 @endif ">
         @if ($widget->conf('full') === '1')
             <div class="entity-content">
             {!! $model->entry() !!}
@@ -60,6 +60,8 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
             @include('dashboard.widgets.previews._members')
             @include('dashboard.widgets.previews._relations')
             @include('dashboard.widgets.previews._attributes')
+        @elseif ($widget->conf('full') === '2')
+            <iframe src="{{ route('entities.attributes-dashboard', [$model->entity]) }}" class="entity-attributes w-full"></iframe>
         @else
         <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
 
@@ -80,12 +82,14 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
 
     </div>
 
-    @if ($widget->entity->isLocation())
-        @if (!empty($widget->entity->child->map))
-            <div class="panel-footer text-right">
-                <a href="{{ $widget->entity->url('map') }}">
-                    <x-icon class="map"></x-icon> {{ __('locations.show.tabs.map') }}
+    @if ($entity->isLocation())
+        @if (!$widget->entity->child->maps->isEmpty())
+            <div class="p-4 flex gap-4 flex-wrap items-center justify-center">
+                @foreach ($entity->child->maps as $map)
+                <a href="{{ $map->getLink('explore') }}">
+                    <x-icon class="map"></x-icon> {!! $map->name !!}
                 </a>
+                @endforeach
             </div>
         @endif
     @endif

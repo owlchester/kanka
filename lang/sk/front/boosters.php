@@ -40,10 +40,11 @@ return [
         'title'         => 'Boosty pre kampane posunú tvoju Kanku na novú úroveň',
     ],
     'call-to-action'    => [
-        'description'   => 'Chceš boostnuť svoje kampane? Predplať si Kanku a odomkni kampaňové boosty!',
-        'go-to-pricing' => 'Prejdi na stránku s cenníkom',
-        'go-to-sub'     => 'Prejdi na stránku s predplatným',
-        'title'         => 'Ok, tu máš prachy',
+        'description'       => 'Chceš boostnuť svoje kampane? Predplať si Kanku a odomkni kampaňové boosty!',
+        'description_v2'    => 'Chceš zdvihnúť tvoje kampane na prémiovú úroveň? Predplať si Kanku a odomkni prémiové kampane!',
+        'go-to-pricing'     => 'Prejdi na stránku s cenníkom',
+        'go-to-sub'         => 'Prejdi na stránku s predplatným',
+        'title'             => 'Ok, tu máš prachy',
     ],
     'description'       => 'Odomkni lepšie funkcie pre tvoju kampaň v Kanke za malý mesačný poplatok. Uprav vizuál kampane, odstráň z nej reklamy, nahrávaj väčšie súbory spolu s ostatnými členmi kampane a oveľa viac.',
     'perks'             => [

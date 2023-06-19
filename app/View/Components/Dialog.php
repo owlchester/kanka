@@ -9,16 +9,24 @@ use Illuminate\View\Component;
 class Dialog extends Component
 {
     public string $id;
-    public string $title;
+    public ?string $title;
     public bool $full;
+    public bool $loading;
+
     /**
      * Create a new component instance.
      */
-    public function __construct(string $title, string $id = null, bool $full = false)
+    public function __construct(
+        string $title = null,
+        string $id = null,
+        bool $full = false,
+        bool $loading = false,
+    )
     {
         $this->id = $id ?? uniqid();
         $this->title = $title;
         $this->full = $full;
+        $this->loading = $loading;
     }
 
     /**

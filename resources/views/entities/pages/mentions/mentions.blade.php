@@ -12,8 +12,8 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
-        <div class="header-buttons inline-block pull-right ml-auto">
-            <button class="btn btn-sm btn-default" data-toggle="dialog"
+        <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+            <button class="btn2 btn-sm" data-toggle="dialog"
                     data-target="dialog-help">
                 <x-icon class="question"></x-icon>
                 {{ __('campaigns.members.actions.help') }}

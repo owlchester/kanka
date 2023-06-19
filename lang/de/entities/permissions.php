@@ -8,6 +8,7 @@ return [
     'quick'     => [
         'empty-permissions' => 'Keine Rolle oder Benutzer außerhalb der Kampagnenadministratoren haben Zugriff auf dieses Objekt.',
         'field'             => 'Schnelle Bearbeitung',
+        'manage'            => 'Berechtigungen verwalten',
         'options'           => [
             'private'   => 'Privat für alle außer Administratoren',
             'visible'   => 'Sichtbar für Folgende',

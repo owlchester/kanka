@@ -10,7 +10,7 @@
     <h1 class="mb-3">
         {{ __('settings.api.title') }}
     </h1>
-    <div id="api">
+    <div id="api" class="mb-5">
         <p class="text-lg">
             {{ __('settings.api.helper') }}
             <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" class="" target="_blank">
@@ -19,16 +19,16 @@
             </a>.
         </p>
 
-        <x-box>
-            <passport-authorized-clients></passport-authorized-clients>
+        <div class="flex flex-col gap-2 md:gap-5">
             <passport-personal-access-tokens></passport-personal-access-tokens>
-        </x-box>
+            <passport-authorized-clients></passport-authorized-clients>
 
         @if (request()->has('clients'))
-        <x-box>
+            <div class="col-span-2">
             <passport-clients></passport-clients>
-        </x-box>
+            </div>
         @endif
+        </div>
     </div>
 @endsection
 

@@ -154,11 +154,9 @@ return [
             ],
             'entity-header'     => 'Używaj nagłówka elementu jako obrazu widżetu',
             'filters'           => 'Filtry',
-            'full'              => 'Pełny',
             'help'              => 'Pokazuj tylko ostatni zmodyfikowany element, ale publikuj cały skrót',
             'helpers'           => [
                 'entity-header'     => 'Jeżeli element ma obraz w nagłówku (w doładowanej kampanii), widżet będzie wyświetlał nagłówek zamiast obrazu samego elementu.',
-                'full'              => 'Zamiast skrótu elementu domyślnie wyświetla jego cały opis.',
                 'show_attributes'   => 'Wyświetla cechy elementu pod jego opisem.',
                 'show_members'      => 'Jeżeli element jest rodziną albo organizacją, wyświetla jej członków pod opisem.',
                 'show_relations'    => 'Wyświetla przypięte relacje pod opisem elementu',

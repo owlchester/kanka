@@ -19,6 +19,11 @@ return [
     ],
     'index'         => [],
     'members'       => [
+        'create'    => [
+            'submit'    => 'Adicionar membros',
+            'success'   => '{0} Nenhum membro foi adicionado.|{1} 1 membro foi adicionado.|[2,*] :count membros foram adicionados.',
+            'title'     => 'Novos Membros',
+        ],
         'helpers'   => [
             'all_members'       => 'A lista a seguir são todos os personagens que estão nesta família e todas as famílias descendentes da família.',
             'direct_members'    => 'A maioria das famílias tem membros que a administram ou a tornaram famosa. A lista a seguir são personagens que estão diretamente nesta família.',

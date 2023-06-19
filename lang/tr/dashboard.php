@@ -109,11 +109,9 @@ return [
         ],
         'recent'        => [
             'entity-header' => 'Varlık başlığını görsel olarak kullan',
-            'full'          => 'Tümü',
             'help'          => 'Yalnızca en son güncellenen varlığı göster, ancak varlığın tam bir önizlemesini göster',
             'helpers'       => [
                 'entity-header' => 'Eğer varlığınızın bir varlık başlığı (desteklenmiş serüven özelliği) varsa, bu küçük eklentiyi varlığın görseli yerine o görseli kullanacak şekilde ayarlar.',
-                'full'          => 'Bir önizlemenin yerine varlığın girdisinin tamamını görüntüler.',
             ],
             'singular'      => 'Tekil',
             'tags'          => 'En son değişiklik yapılan varlıklar listesini belirlenen etiketlere göre filtrele',

@@ -2,24 +2,6 @@
  * Contains styling for an entity's submenu and various elements related.
  * For styling regarding the general layout of entities, check boosted.scss.
  */
-.entity-menu {
-    li {
-        a {
-            max-height: 53px;
-        }
-
-        a.icon {
-            padding: 10px 12px;
-            text-overflow: unset;
-        }
-    }
-
-    li.active {
-        a.icon {
-            border-left: none;
-        }
-    }
-}
 
 .entity-posts, .entity-notes {
     img {

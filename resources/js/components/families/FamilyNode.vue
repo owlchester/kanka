@@ -7,6 +7,7 @@
         :targetX="drawX"
         :column="column"
         :row="row"
+        :node ="node"
     ></ChildrenLine>
 
     <FamilyEntity

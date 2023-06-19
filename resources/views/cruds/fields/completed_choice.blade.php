@@ -1,5 +1,5 @@
 
-<div class="form-group">
+<div class="completed">
     <label for="is_completed">{{ trans('quests.fields.is_completed') }}</label>
     <select name="is_completed" class="form-control">
         <option value=""></option>

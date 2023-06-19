@@ -1,26 +1,13 @@
 /**
  * Everything related to the default footer
  */
-:root {
-    --footer-links-background: rgba(255, 255, 255, 0.3);
-    --footer-text: #636b6f;
-    --footer-background: #ecf0f5;
-    --footer-logo-white: none;
-    --footer-logo-blue: unset;
-}
-
-.main-footer {
-    background-color: var(--footer-background);
-    color: var(--footer-text);
-}
-
 footer {
     img.logo-white {
-        display: var(--footer-logo-white);
+        display: var(--footer-logo-white, none);
     }
 
     img.logo-blue {
-        display: var(--footer-logo-blue);
+        display: var(--footer-logo-blue, unset);
     }
 
     ul {

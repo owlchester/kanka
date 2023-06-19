@@ -155,6 +155,9 @@ return [
      */
     'force_https' => env('APP_FORCE_HTTPS', false),
 
+
+    'lazy' => env('APP_LAZY', false),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

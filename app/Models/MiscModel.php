@@ -136,7 +136,8 @@ abstract class MiscModel extends Model
      */
     public function thumbnail(int $width = 40, int $height = null, string $field = 'image')
     {
-        if (empty($this->$field)) {
+        $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
+        if (empty($this->$field) || $entity->$field) {
             return $this->getImageFallback($width);
         }
 
@@ -145,7 +146,6 @@ abstract class MiscModel extends Model
 
 
         if (!empty($width)) {
-            $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
             if (!empty($entity->focus_x) && !empty($entity->focus_y)) {
                 $img = $img->focus($entity->focus_x, $entity->focus_y);
             }
@@ -180,7 +180,7 @@ abstract class MiscModel extends Model
 
         $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
         if ($campaign->superboosted() && !empty($entity->image)) {
-            return Img::crop($size, $size)->url($entity->image->path);
+            return $entity->image->getUrl($size, $size);
         } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
             return Img::crop($size, $size)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
         } elseif (auth()->check() && auth()->user()->isGoblin()) {
@@ -449,7 +449,7 @@ abstract class MiscModel extends Model
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
             'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
             $this->getLink() . '">' .
-            (!empty($displayName) ? $displayName : e($this->name)) .
+            (!empty($displayName) ? $displayName : $this->name) .
         '</a>';
     }
 

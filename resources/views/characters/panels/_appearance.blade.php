@@ -6,22 +6,20 @@ $appearances = $model->characterTraits()->appearance()->orderBy('default_order')
     <div class="box box-solid character-appearances">
         <div class="box-header with-border">
             <h3 class="box-title cursor-pointer element-toggle" data-toggle="collapse" data-target="#character-appearance-body" data-short="character-appearance-toggle">
-                <i class="fa-solid fa-chevron-up icon-show"></i>
-                <i class="fa-solid fa-chevron-down icon-hide"></i>
+                <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
+                <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
                 {{ __('characters.sections.appearance') }}
             </h3>
         </div>
         <div class="box-body collapse !visible in" id="character-appearance-body">
-            <div class="row">
+            <x-grid>
         @foreach ($appearances as $trait)
-            <div class="col-sm-6">
-            <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}">
-                <b>{{ $trait->name }}</b><br />
-                {{ $trait->entry }}
-            </p>
-            </div>
+                <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}">
+                    <b>{{ $trait->name }}</b><br />
+                    {{ $trait->entry }}
+                </p>
         @endforeach
-            </div>
+            </x-grid>
         </div>
     </div>
 @endif

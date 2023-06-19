@@ -8,6 +8,7 @@ use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAbility;
+use App\Traits\EntityAware;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Collection;
 use App\Http\Requests\ReorderAbility;
@@ -15,8 +16,7 @@ use Exception;
 
 class AbilityService
 {
-    /** @var Entity */
-    protected $entity;
+    use EntityAware;
 
     /** @var Collection|bool */
     protected Collection|bool $attributes = false;
@@ -30,16 +30,6 @@ class AbilityService
 
     /** @var array A list of abilities that have already been loaded */
     protected array $abilityIds = [];
-
-    /**
-     * @param Entity $entity
-     * @return $this
-     */
-    public function entity(Entity $entity): self
-    {
-        $this->entity = $entity;
-        return $this;
-    }
 
     /**
      * @return array
@@ -145,6 +135,7 @@ class AbilityService
                 'entry' => $parent->entry(),
                 'parent' => true,
                 'abilities' => [],
+                'url' => $parent->getLink(),
             ];
         }
 

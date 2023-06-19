@@ -41,6 +41,7 @@ class SidebarService
             'plugins',
             'modules',
             'campaign_styles',
+            'theme-builder',
             'sidebar-setup',
         ],
         'characters' => [

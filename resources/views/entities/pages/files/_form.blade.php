@@ -1,7 +1,9 @@
 {{ csrf_field() }}
+
+<x-grid>
 @if(!isset($entityAsset))
 
-    <div class="form-group required">
+    <div class="field-file col-span-2 required">
         <label>{{ __('entities/files.fields.file') }}</label>
         {!! Form::file('file', array('class' => 'image form-control')) !!}
 
@@ -12,25 +14,21 @@
     </div>
 @endif
 
-<div class="form-group @if(isset($entityAsset)) required @endif">
-    <label>{{ __('entities/files.fields.name') }}</label>
-    {!! Form::text(
-        'name',
-        null,
-        [
-            'class' => 'form-control',
-            'maxlength' => 45
-        ]
-    ) !!}
-</div>
+    <div class="field-name col-span-2 @if(isset($entityAsset)) required @endif">
+        <label>{{ __('entities/files.fields.name') }}</label>
+        {!! Form::text(
+            'name',
+            null,
+            [
+                'class' => 'form-control',
+                'maxlength' => 45
+            ]
+        ) !!}
+    </div>
 
-<div class="row">
-    <div class="col-md-6">
-        @include('cruds.fields.is_pinned', ['model' => $entity ?? null, 'fieldName' => 'is_pinned'])
-    </div>
-    <div class="col-md-6">
-        @include('cruds.fields.visibility_id', ['model' => $entityAsset ?? null])
-    </div>
-</div>
+    @include('cruds.fields.is_pinned', ['model' => $entity ?? null, 'fieldName' => 'is_pinned'])
+
+    @include('cruds.fields.visibility_id', ['model' => $entityAsset ?? null])
+</x-grid>
 
 

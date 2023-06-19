@@ -21,23 +21,21 @@
     </header>
     <article>
         <div>
-            <div class="form-inline">
-                <div class="form-group">
-                    <label for="privacy">{{ __('entities/permissions.quick.field') }}</label>
-                    <select name="privacy" id="quick-privacy-select" class="form-control" data-url="{{ route('entities.quick-privacy.toggle', $entity) }}">
-                        <option value="0">{{ __('entities/permissions.quick.options.visible') }}</option>
-                        <option value="1" @if ($entity->is_private) selected="selected" @endif>{{ __('entities/permissions.quick.options.private') }}</option>
-                    </select>
-                </div>
+            <div class="field-visibility">
+                <label for="privacy">{{ __('entities/permissions.quick.field') }}</label>
+                <select name="privacy" id="quick-privacy-select" class="form-control" data-url="{{ route('entities.quick-privacy.toggle', $entity) }}">
+                    <option value="0">{{ __('entities/permissions.quick.options.visible') }}</option>
+                    <option value="1" @if ($entity->is_private) selected="selected" @endif>{{ __('entities/permissions.quick.options.private') }}</option>
+                </select>
             </div>
 
             <hr />
 
-            <div>
-                <strong>{{ __('entities/permissions.quick.viewable-by') }}</strong>
-            </div>
+            <p class="font-extrabold mb-2">
+                {{ __('entities/permissions.quick.viewable-by') }}
+            </p>
             @if (!empty($visibility['roles']) || !empty($visibility['users']))
-            <div class="mb-3 @if ($entity->is_private) line-through text-slate-400 @endif">
+            <div class="mb-5 @if ($entity->is_private) line-through text-slate-400 @endif">
                 @foreach ($visibility['roles'] as $element)<span class="mr-1"><i class="fa-solid fa-user-group" aria-hidden="true"></i> {!! $element !!}</span>@endforeach
                 @if (!empty($visibility['roles']))<br />@endif
                 @foreach ($visibility['users'] as $element)<span class="mr-1"><i class="fa-solid fa-user" aria-hidden="true"></i> {!! $element !!}</span>@endforeach
@@ -48,7 +46,7 @@
             </p>
             @endif
 
-            <button class="btn btn-default btn-manage-perm" data-target="#entity-permissions-link">
+            <button class="btn2 btn-outline btn-sm btn-block btn-manage-perm" data-target="#entity-permissions-link">
                 <i class="fa-solid fa-wrench" aria-hidden="true"></i> {{ __('entities/permissions.quick.manage') }}
             </button>
         </div>

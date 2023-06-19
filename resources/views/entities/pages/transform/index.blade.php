@@ -23,16 +23,17 @@
                     <i class="fa-solid fa-external-link" aria-hidden="true"></i>
                     {{ __('crud.helpers.learn_more', ['documentation' => __('front.menu.documentation')]) }}
                 </a>
-                <div class="form-group">
+                <div class="field-target">
                     <label>{{ __('entities/transform.fields.target') }}</label>
                     {!! Form::select('target', $entities, null, ['class' => 'form-control']) !!}
                 </div>
 
-                @includeWhen(!request()->ajax(), 'partials.footer_cancel')
-                <button class="btn btn-success pull-right">
-                    <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
-                    {{ __('entities/transform.actions.transform') }}
-                </button>
+                <x-dialog.footer>
+                    <button class="btn2 btn-primary">
+                        <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
+                        {{ __('entities/transform.actions.transform') }}
+                    </button>
+                </x-dialog.footer>
             </x-box>
         </div>
     </div>

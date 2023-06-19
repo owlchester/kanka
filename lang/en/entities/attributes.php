@@ -4,8 +4,8 @@ return [
     'actions'       => [
         'apply_template'    => 'Apply an attribute template',
         'manage'            => 'Manage',
-        'more'              => 'More options',
-        'remove_all'        => 'Delete All',
+        'more'              => 'Others',
+        'remove_all'        => 'Delete all',
         'save_and_edit'     => 'Apply and Edit',
         'save_and_story'    => 'Apply and View',
         'show_hidden'       => 'Show hidden attributes',
@@ -74,6 +74,12 @@ return [
     'template'      => [
         'success'   => 'Attribute template :name applied to :entity',
         'title'     => 'Apply an attribute template for :name',
+    ],
+    'toasts'        => [
+        'lock'      => 'Attribute locked',
+        'pin'       => 'Attribute pinned',
+        'unlock'    => 'Attribute unlocked',
+        'unpin'     => 'Attribute unpinned',
     ],
     'types'         => [
         'attribute' => 'Attribute',

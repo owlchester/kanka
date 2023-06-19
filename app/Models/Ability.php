@@ -13,6 +13,7 @@ use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
 
 /**
@@ -35,6 +36,7 @@ class Ability extends MiscModel
     use ExportableTrait;
     use Nested;
     use SoftDeletes;
+    use HasFactory;
     use SortableTrait
     ;
 
@@ -108,7 +110,7 @@ class Ability extends MiscModel
                 $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
-                $sub->select('campaign_id', 'id', 'ext');
+                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
             'ability' => function ($sub) {
                 $sub->select('id', 'name');

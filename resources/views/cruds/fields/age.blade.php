@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-age">
     <label>{{ __($trans . '.fields.age') }}</label>
     {!! Form::text(
         'age',

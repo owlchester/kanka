@@ -35,7 +35,9 @@ You can get a list of all the images of a campaign by using the following endpoi
             "size": 1147,
             "created_at": "2020-11-15T10:42:38.000000Z",
             "created_by": 1,
-            "updated_at": "2020-11-15T10:42:38.000000Z"
+            "updated_at": "2020-11-15T10:42:38.000000Z",
+            "focus_x": 473,
+            "focus_y": 17
         },
         {
             "id": "0acd32f5-3286-4ffe-b82a-4e1e61c455c4",
@@ -47,7 +49,9 @@ You can get a list of all the images of a campaign by using the following endpoi
             "size": 7201,
             "created_at": "2020-11-15T10:39:11.000000Z",
             "created_by": 1,
-            "updated_at": "2020-11-15T10:39:20.000000Z"
+            "updated_at": "2020-11-15T10:39:20.000000Z",
+            "focus_x": null,
+            "focus_y": null
         }
     ]
 }
@@ -77,7 +81,9 @@ To get the details of a single image, use the following endpoint.
         "size": 7201,
         "created_at": "2020-11-15T10:39:11.000000Z",
         "created_by": 1,
-        "updated_at": "2020-11-15T10:39:20.000000Z"
+        "updated_at": "2020-11-15T10:39:20.000000Z",
+        "focus_x": null,
+        "focus_y": null
     }
 
 }

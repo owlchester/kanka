@@ -45,6 +45,15 @@
                             {{ __($action['label']) }}
                         </a>
                         @continue
+                    @elseif (\Illuminate\Support\Arr::get($action, 'type') === 'dialog-ajax')
+                        <a href="{{ route($action['route'], $model) }}"
+                           data-toggle="dialog-ajax" data-target="{{ $action['target'] }}" data-url="{{ route($action['route'], $model) }}">
+                            @if (!empty($action['icon']))
+                                <i class="{{ $action['icon'] }}" aria-hidden="true"></i>
+                            @endif
+                            {{ __($action['label']) }}
+                        </a>
+                        @continue
                     @endif
                     <a href="{{ route($action['route'], (method_exists($model, 'routeParams') ? $model->routeParams($params) : $model)) }}" class="dropdown-item">
                         @if (!empty($action['icon']))

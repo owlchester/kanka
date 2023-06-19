@@ -30,6 +30,8 @@ return [
     ],
     'campaign'  => [
         'boosted'       => 'Boostnuté :user od :time',
+        'premium'       => 'Za Prémium ďakujeme :user od :time',
+        'standard'      => 'Štandard',
         'superboosted'  => 'Superboostnuté :user od :time',
         'unboosted'     => 'Neboostnuté',
     ],

@@ -2,10 +2,13 @@
 
 return [
     'actions'       => [
-        'close' => 'Fechar',
-        'save'  => 'Salvar',
+        'close'     => 'Fechar',
+        'file-link' => 'Link do arquivo',
+        'image-link'=> 'Link da imagem',
+        'save'      => 'Salvar',
     ],
     'breadcrumb'    => 'Galeria',
+    'cta'           => 'Gerencie e reutilize imagens em toda a campanha.',
     'destroy'       => [
         'success'   => 'Imagem :name removida.',
     ],

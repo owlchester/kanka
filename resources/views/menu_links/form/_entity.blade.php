@@ -8,6 +8,7 @@ $tabs = [
 ];
 $menus = [
         'abilities' => __('crud.tabs.abilities'),
+        'attributes' => __('crud.tabs.attributes'),
         'assets' => __('crud.tabs.assets'),
         'reminders' => __('crud.tabs.reminders'),
         'organisations' => __('entities.organisations')  . ' (' . __('entities.characters') . ', ' . __('entities.organisations') . ')',
@@ -53,26 +54,21 @@ $menus = array_merge(['' => __('crud.tabs.story')], $menus);
     'menu' => '<code>' . __('menu_links.fields.menu') . '</code>',
     ]) !!}</p>
 
-<div class="row">
-    <div class="col-md-6">
-        @include('cruds.fields.entity', [
-            'name' => 'entity_id',
-            'required' => true,
-            'preset' => !empty($model) && $model->target ? $model->target : null,
-            'label' => __('menu_links.fields.entity'),
-        ])
+<x-grid>
+    @include('cruds.fields.entity', [
+        'name' => 'entity_id',
+        'required' => true,
+        'preset' => !empty($model) && $model->target ? $model->target : null,
+        'label' => __('menu_links.fields.entity'),
+    ])
+
+    <div class="field-menu">
+        <label>{{ __('menu_links.fields.menu') }}</label>
+        {!! Form::select('menu', $menus, null, ['class' => 'form-control', 'id' => 'entity-selector']) !!}
     </div>
 
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>{{ __('menu_links.fields.menu') }}</label>
-            {!! Form::select('menu', $menus, null, ['class' => 'form-control', 'id' => 'entity-selector']) !!}
-        </div>
+    <div class="field-filter" id="filter-subform" style="display: none">
+        <label>{{ __('menu_links.fields.filters') }}</label>
+        {!! Form::text('options[subview_filter]', !isset($model->options['subview_filter']) ? '' : $model->options['subview_filter'], ['placeholder' => 'k=name&s=desc', 'class' => 'form-control', 'maxlength' => 191]) !!}
     </div>
-    <div class="col-md-6" id="filter-subform" style="display: none">
-        <div class="form-group">
-            <label>{{ __('menu_links.fields.filters') }}</label>
-            {!! Form::text('options[subview_filter]', !isset($model->options['subview_filter']) ? '' : $model->options['subview_filter'], ['placeholder' => 'k=name&s=desc', 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
-    </div>
-</div>
+</x-grid>

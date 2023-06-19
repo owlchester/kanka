@@ -2,16 +2,16 @@
 
 return [
     'actions'       => [
-        'add_epoch'         => 'Add an epoch',
+        'add_epoch'         => 'Epoch',
         'add_intercalary'   => 'Add intercalary days',
-        'add_month'         => 'Add a month',
-        'add_moon'          => 'Add a moon',
+        'add_month'         => 'Month',
+        'add_moon'          => 'Moon',
         'add_reminder'      => 'Add a reminder',
-        'add_season'        => 'Add a season',
+        'add_season'        => 'Season',
         'add_weather'       => 'Set weather effect',
-        'add_week'          => 'Add a named week',
-        'add_weekday'       => 'Add a week day',
-        'add_year'          => 'Add a named year',
+        'add_week'          => 'Named week',
+        'add_weekday'       => 'Week day',
+        'add_year'          => 'Named year',
         'set_today'         => 'Set as current day',
         'today'             => 'Today',
         'update_weather'    => 'Update weather',

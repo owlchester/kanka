@@ -1,26 +1,7 @@
 .quick-creator-header {
-    border-bottom: 1px solid var(--input-border-color);
+    --tw-border-opacity: .1;
+    border-bottom: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
     .qq-toggles {
-        .qq-mode-toggle {
-            background-color: var(--btn-default-background);
-            margin-left: 0.3rem;
-            width: 38px;
-            padding: 6px;
-            border: 1px solid #eee;
-            align-self: flex-end;
-
-            i {
-                font-size: 1.0rem;
-                color: var(--btn-default-text);
-            }
-
-            &:hover {
-                border-color: var(--link-text);
-                i {
-                    color: var(--link-text);
-                }
-            }
-        }
 
         .qq-mode-toggle.active {
             border-color: var(--link-text);
@@ -33,9 +14,11 @@
 
 .quick-creator-body {
     .qq-action-more {
-        color: #aaa;
+        --tw-text-opacity: 1;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
         &:focus, &:hover {
-            border-bottom: 1px dotted #aaa;
+            --tw-border-opacity: .8;
+            border-bottom: 1px dotted hsl(var(--bc)/var(--tw-border-opacity));
         }
     }
 
@@ -66,7 +49,8 @@
 
             .popular {
                 flex-basis: 33.333333%;
-                border-right: 1px solid var(--body-text);
+                --tw-border-opacity: 0.2;
+                border-right: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
             }
             .all {
                 flex-basis: 66.666666%;

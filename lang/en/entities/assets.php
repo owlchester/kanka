@@ -1,12 +1,15 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'alias' => 'Alias',
         'file'  => 'File',
         'link'  => 'Link',
     ],
-    'show'      => [
+    'copy_alias'    => [
+        'success'   => 'Alias mention copied to the clipboard.',
+    ],
+    'show'          => [
         'title' => ':name Assets',
     ],
 ];

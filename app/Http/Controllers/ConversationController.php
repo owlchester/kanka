@@ -37,7 +37,7 @@ class ConversationController extends CrudController
         $this->addNavAction(
             '//docs.kanka.io/en/latest/entities/conversations.html',
             '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> ' . __('crud.actions.help'),
-            'default',
+            '',
             true
         );
     }

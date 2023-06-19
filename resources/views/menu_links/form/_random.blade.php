@@ -1,29 +1,22 @@
 @inject('entityService', 'App\Services\EntityService')
 <?php
 $entityTypes = ['' => '', 'any' => __('menu_links.random_types.any')];
-foreach ($entityService->getEnabledEntities($campaignService->campaign()) as $entity) {
-    $entityTypes[$entity] = __('entities.' . \Illuminate\Support\Str::plural($entity));
-}
+$entities = $entityService->campaign($campaignService->campaign())->getEnabledEntitiesSorted(false);
+$entityTypes = array_merge($entityTypes, $entities);
 ?>
 <p class="help-block">{!! __('menu_links.helpers.random', [
 ]) !!}</p>
 
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>{{ __('menu_links.fields.random_type') }}</label>
-            {!! Form::select('random_entity_type', $entityTypes, FormCopy::field('random_entity_type')->string(), ['class' => 'form-control']) !!}
-        </div>
+<x-grid>
+    <div class="field-random-type">
+        <label>{{ __('menu_links.fields.random_type') }}</label>
+        {!! Form::select('random_entity_type', $entityTypes, FormCopy::field('random_entity_type')->string(), ['class' => 'form-control']) !!}
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <input type="hidden" name="save_tags" value="1" />
-            <x-forms.tags
-                :model="$model ?? null">
-            </x-forms.tags>
-        </div>
 
+    <div class="field-tags">
+        <input type="hidden" name="save_tags" value="1" />
+        <x-forms.tags
+            :model="$model ?? null">
+        </x-forms.tags>
     </div>
-</div>
-
+</x-grid>

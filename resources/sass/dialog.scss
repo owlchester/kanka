@@ -1,10 +1,3 @@
-dialog {
-  --dialog-header-background: var(--body-background);
-  --dialog-header-text: var(--main-navbar-text);
-  --dialog-background: var(--modal-background);
-  --dialog-text: var(--body-text);
-}
-
 .dialog {
 
     display: grid;
@@ -17,13 +10,9 @@ dialog {
     padding: 0;
     position: fixed;
     inset: 0;
-    z-index: 9999;
+    z-index: 1050;
     border: 0;
-    //box-shadow: $box-shadow;
     transition: opacity .5s ease-in-out;
-
-    background-color: var(--dialog-background);
-    color: var(--dialog-header-text);
 
     > header {
         display: flex;
@@ -32,8 +21,6 @@ dialog {
         align-items: flex-start;
         padding-block: 0.5rem;
         padding-inline: 1.0rem;
-        background-color: var(--dialog-header-background);
-        color: var(--dialog-header-text);
 
         h4 {
             text-align: center;
@@ -49,10 +36,7 @@ dialog {
             aspect-ratio: 1;
             flex-shrink: 0;
             place-items: center;
-            stroke: var(--dialog-header-text);
             border: 0;
-            background-color: var(--dialog-background);
-            color: var(--dialog-header-text);
         }
     }
 

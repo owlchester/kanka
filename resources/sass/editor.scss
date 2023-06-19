@@ -8,13 +8,6 @@
 div.mce-fullscreen {
   z-index: 1400;
 }
-.mce-btn-group:not(:first-child) {
-  border-left: none !important;
-}
-
-.mce-btn-group:not(:first-child) {
-  border-left: none !important;
-}
 
 .editor-panel {
   padding: 5px;
@@ -46,6 +39,13 @@ div.mce-fullscreen {
 .note-editable {
   //color: var(--summernote-editable-text);
 }
+.note-popover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+        padding: 1px;
+}
 
 img.note-float-right {
     float: right;
@@ -69,102 +69,107 @@ img.note-float-left {
     }
 }
 .note-hint-item {
-  .entity-hint {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 45px auto;
-
-    .entity-hint-name {
+    .entity-hint {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 45px auto;
     }
-    .entity-image {
-    }
-  }
 }
 
 .note-editing-area {
-  .mention, .attribute {
-    background-color: #eee;
-    padding: 3px 5px;
-    border-radius: 5px;
-    color: #333 !important;
-    text-decoration: none;
-  }
+    .mention, .attribute {
+        background-color: var(--mention-background, hsl(var(--in)/1));
+        padding: 3px 5px;
+        border-radius: 0.25rem;
+        color: var(--mention-text, hsl(var(--inc)/1));
+        text-decoration: none;
+    }
 }
 // Gallery
 .images-list {
-  .img-item {
-    overflow: hidden;
-    margin: 10px 0;
-    .img-thumbnail {
-      height: 120px;
-      overflow: hidden;
-      line-height: 120px;
-      background-color: var(--gallery-background);
-      color: var(--gallery-text);
-      border: none;
-      cursor: pointer;
+    .img-item {
+        overflow: hidden;
+        margin: 10px 0;
 
-      .text {
-        display: inline-block;
-        vertical-align: middle;
-        line-height: normal;
+        .img-thumbnail {
+            height: 120px;
+            overflow: hidden;
+            line-height: 120px;
+            background-color: hsl(var(--b1)/1);
+            color: hsl(var(--bc)/1);
+            border: none;
+            cursor: pointer;
 
-        i {
-          display: block;
+            .text {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: normal;
+
+                i {
+                    display: block;
+                }
+            }
+
+            &:focus,
+            &:hover {
+                box-shadow: 0 0 0 1px hsl(var(--bc)/1), 0 0 2px 1px rgba(30, 140, 190, 0.8);
+                color: hsl(var(--bc)/1);
+                outline: 1px solid transparent;
+            }
         }
-      }
-
-      &:focus,
-      &:hover {
-        box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
-        color: var(--gallery-hover-text);
-        outline: 1px solid transparent;
-      }
     }
-  }
 }
 .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-select:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-select:hover {
-  color: #444;
+  color: hsl(var(--bc)/1);
 }
 .note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
   white-space: normal !important;
+}
+.note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--p)/var(--tw-bg-opacity)) !important;
+    color: hsl(var(--pc)) !important
 }
 
 
 /**
  * Tinymce
  */
-:root {
-  --tinymce-background: #FFF;
-  --tinymce-border: #c5c5c5;
-  --tinymce-filter: none; // set to invert(90%) for dark mode
-
-  --tinymce-input-background: #fff;
-  --tinymce-input-text: #595959;
-  --tinymce-input-border: #c5c5c5;
+.mce-btn-group:not(:first-child) {
+    border-left: none !important;
 }
 
+.mce-btn-group:not(:first-child) {
+    border-left: none !important;
+}
 // Tinymce stuff for dark mode
 .mce-edit-area, .mce-content-body {
-  filter: var(--tinymce-filter) !important;
+  filter: var(--tinymce-filter, none) !important; // set to invert(90%) for dark mode
 }
 .mce-panel {
-  background-color: var(--tinymce-background) !important;
-  border-color: var(--tinymce-border) !important;
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b1)/var(--tw-bg-opacity))) !important;
+
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--b2)/var(--tw-border-opacity)) !important;
+    border: 0 solid hsl(var(--b2)/var(--tw-border-opacity)) !important;
 }
 .mce-menubar {
-  border-color: var(--tinymce-border) !important;
+    border: none;
 }
 .mce-edit-area, .mce-content-body {
-  background: none !important;
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b1)/var(--tw-bg-opacity))) !important;
 }
 .mce-btn {
-  border-color: transparent !important;
-  //border-radius: 2px !important;
-  background: none !important;
-  .mce-txt {
-    color: var(--tinymce-input-text) !important;
-  }
+    border-color: transparent !important;
+    //border-radius: 2px !important;
+    background: none !important;
+
+    .mce-txt {
+        --tw-text-opacity: 1;
+        color: var(--tinymce-input-text, hsl(var(--bc)/var(--tw-text-opacity))) !important;
+    }
 }
 .mce-btn.mce-active, .mce-btn.mce-active:hover, .mce-btn.mce-active:focus, .mce-btn.mce-active:active {
   i {
@@ -177,47 +182,81 @@ img.note-float-left {
 .mce-tabs, .mce-tabs+.mce-container-body, .mce-tab {
   background: none !important;
 }
-.mce-widget, .mce-label, .mce-tab {
-  //text-shadow: 0 1px 1px rgba(0,0,0,0.75) !important;
-}
-.mce-menu-item.mce-disabled, .mce-menu-item.mce-disabled:hover {
-  //background: var(--theme-background) !important;
-}
 .mce-textbox {
-  background-color: var(--tinymce-input-background) !important;
-  color: var(--tinymce-input-text) !important;
-  border-color: var(--tinymce-input-border) !important;
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b1)/var(--tw-bg-opacity))) !important;
+    --tw-text-opacity: 1;
+    color: var(--tinymce-input-text, hsl(var(--bc)/var(--tw-text-opacity))) !important;
+    --tw-border-opacity: .2;
+    border-color: var(--tinymce-input-border, hsl(var(--bc)/var(--tw-border-opacity))) !important;
 }
 #mce-modal-block {
-  background-color: var(--tinymce-background) !important;
+    --tw-bg-opacity: 1;
+    background-color: var(--tinymce-background, hsl(var(--b2)/var(--tw-bg-opacity))) !important;
 }
 .mce-label {
-  text-shadow: none !important;
+    text-shadow: none !important;
 }
 
 // Tinymce mentions dropdown
 .rte-autocomplete {
-  z-index: 9920;
+    z-index: 9920;
 }
 
 /** Code mirror **/
 .CodeMirror {
-  resize: vertical;
+    resize: vertical;
 }
 
-
 .advanced-mention-name {
-    --advanced-mention-background: #383898;
-    --advanced-mention-text: white;
     text-decoration: none;
 
     &:after {
         margin-left: 0.1rem;
         content: attr(data-name);
         font-size: 0.7rem;
-        background-color: var(--advanced-mention-background);
-        color: var(--advanced-mention-text);
+        background-color: var(--advanced-mention-background, hsl(var(--in)/1));
+        color: var(--mention-text, hsl(var(--inc)/1));
         padding: 0.15rem;
         border-radius: 0.25rem;
+    }
+}
+
+.btn-default {
+    border-width: 1px;
+    border-color: hsl(var(--bc)/var(--tw-border-opacity));
+    --tw-border-opacity: 0.2;
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    border-radius: var(--rounded-btn,.5rem);
+    line-height: 1.5rem;
+    box-shadow: none;
+    color: inherit;
+
+    &:hover, &:focus, &:active {
+        box-shadow: none;
+        border-color: transparent;
+        background-color: hsl(var(--b2)/1);
+        color: hsl(var(--bc)/1);
+    }
+}
+.btn-default:active:hover, .btn-default:active:focus, .btn-default:active.focus, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus, .open > .btn-default.dropdown-toggle:hover, .open > .btn-default.dropdown-toggle:focus, .open > .btn-default.dropdown-toggle.focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+    background-color: hsl(var(--b2)/1);
+    border-color: hsl(var(--b2)/1);
+    color: hsl(var(--bc)/1);
+}
+.btn.btn-primary {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--p)/var(--tw-bg-opacity));
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--p)/var(--tw-border-opacity));
+    color: hsl(var(--pc)/1);
+
+    &:hover {
+        --tw-border-opacity: 1;
+        border-color:hsl(var(--pf)/var(--tw-border-opacity));
+        --tw-bg-opacity: 1;
+        background-color:hsl(var(--pf)/var(--tw-bg-opacity));
+        color:hsl(var(--pc)/var(--tw-text-opacity));
     }
 }

@@ -27,7 +27,7 @@
                     {!! __('crud.helpers.pagination.text', ['settings' => __('crud.helpers.pagination.settings')]) !!}
                 </a>
 
-                <button type="button" class="btn btn-default btn-block banner-notification-dismiss" data-dismiss="tutorial" data-url="{{ route('settings.banner', ['code' => 'pagination', 'type' => 'tutorial']) }}">
+                <button type="button" class="btn2 btn-primary btn-sm btn-block banner-notification-dismiss" data-dismiss="tutorial" data-url="{{ route('settings.banner', ['code' => 'pagination', 'type' => 'tutorial']) }}">
                     {{ __('header.notifications.dismiss') }}
                 </button>
             </div>
@@ -39,6 +39,6 @@
 
 @if($models->hasPages())
     <div class="text-right">
-        {{ $models->appends($filterService->pagination())->links() }}
+        {{ $models->appends($filterService->pagination())->onEachSide(0)->links() }}
     </div>
 @endif

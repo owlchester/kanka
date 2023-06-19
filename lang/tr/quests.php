@@ -7,7 +7,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character'     => 'Azmettirici',
         'copy_elements' => 'Göreve iliştirilmiş elementleri kopyala',
         'date'          => 'Tarih',
         'is_completed'  => 'Tamamlandı',

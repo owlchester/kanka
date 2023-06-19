@@ -154,11 +154,9 @@ return [
             ],
             'entity-header'     => 'Use o cabeçalho da entidade como imagem',
             'filters'           => 'Filtros',
-            'full'              => 'Exibir introdução completa',
             'help'              => 'Mostre apenas a primeira entidade como uma visualização em vez de uma lista.',
             'helpers'           => [
                 'entity-header'     => 'Se sua entidade tiver um cabeçalho de entidade (recurso de campanha aprimorada), defina este widget para usar essa imagem ao invés da imagem da entidade.',
-                'full'              => 'Exibe a introdução completa da entidade por padrão ao invés de uma pré-visualização.',
                 'show_attributes'   => 'Mostra os atributos fixados da entidade abaixo da introdução.',
                 'show_members'      => 'Se a entidade for uma família ou organização, mostra seus membros abaixo da introdução.',
                 'show_relations'    => 'Mostrar as relações fixadas da entidade abaixo da introdução.',

@@ -2,7 +2,7 @@
 /** @var \App\Models\MiscModel $entityTypeListModel */
 $entityTypeListModel = new $base;
 ?>
-<div class="form-group">
+<div class="field-gender">
     <label>{{ __($trans . '.fields.sex') }}</label>
     {!! Form::text(
         'sex',

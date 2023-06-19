@@ -70,6 +70,11 @@ return [
         ],
         'title'     => 'Integracja z aplikacjami',
     ],
+    'billing'       => [
+        'placeholder'   => 'Jeżeli chcesz, by do rachunku dodano dodatkowe dane kontaktowe albo podatkowe (adres firmy, numer NIP i tak dalej), wpisz je poniżej. Pojawią się w rozliczeniu.',
+        'save'          => 'Zapisz dane płatności',
+        'title'         => 'Dane płatności',
+    ],
     'boost'         => [
         'exceptions'    => [
             'already_boosted'       => 'Kampania :name jest już doładowana.',
@@ -102,6 +107,7 @@ return [
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opcje płatności',
         'personal_settings'     => 'Ustawienia osobiste',
+        'premium'               => 'Kampanie premium',
         'profile'               => 'Profil',
         'settings'              => 'Ustawienia',
         'subscription'          => 'Subskrypcja',
@@ -184,10 +190,13 @@ return [
         ],
         'helpers'               => [
             'alternatives'          => 'Opłać subskrypcję używając :method. Ten sposób płatności nie odnawia się automatycznie na koniec cyklu. :method jest dostępna tylko w Euro.',
+            'alternatives-2'        => 'Opłać subskrypcję za pomocą :method. To płatność jednorazowa, która nie odnowi się automatycznie na koniec okresu rozliczeniowego.',
             'alternatives_warning'  => 'Jeżeli używasz tej metody, nie możesz zmienić poziomu subskrypcji. Zasubskrybuj ponownie, gdy ta subskrypcja wygaśnie.',
             'alternatives_yearly'   => 'Z powodu ograniczeń cyklu płatniczego, :method jest dostępna tylko dla subskrypcji rocznych.',
+            'currency_blocked'      => 'Nie można zmienić waluty aktywnej subskrypcji Kanki. Napisz do nas na :email, by uzyskać pomoc.',
             'paypal'                => 'Wolisz użyć PayPala? Skontaktuj się z nami pisząc na adres :email, a przygotujemy dla ciebie roczny plan subskrypcji przez PayPal.',
             'paypal_v2'             => 'Przyjmujemy opłaty za subskrypcję roczną wykonywane z pomocą PayPal. Napisz do nas na :email podając mail przypisany do twojego konta, poziom który chcesz wykupić i wybraną walutę (USD albo EUR), a wystawimy rachunek.',
+            'paypal_v3'             => 'Opłać bezpiecznie roczną subskrypcję przy pomocy PayPala.',
             'stripe'                => 'Informacje o płatnościach bezpiecznie przetwarza i przechowuje :stripe.',
         ],
         'manage_subscription'   => 'Zarządzaj subskrypcją',
@@ -247,6 +256,7 @@ return [
                     'bonuses'   => 'Wszystkie korzyści subskrypcji pozostaną aktywne do końca okresu rozliczeniowego.',
                     'boosts'    => 'To samo dotyczy doładowań kampanii. Po utracie doładowania, dodatkowe elementy kampanii nie zostają usunięte, jedynie ukryte.',
                     'kobold'    => 'By anulować subskrypcję, zmień jej poziom na Kobold.',
+                    'premium'   => 'To samo dotyczy kampanii premium. Po usunięciu rozwinięcia, opcje premium nie zostają usunięte, ale ukryte do czasu ponownej aktywacji.',
                 ],
                 'title'     => 'Gdy anulujesz subskrypcję',
             ],

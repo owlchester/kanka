@@ -19,6 +19,7 @@ return [
         'new_password_confirmation' => 'Conferma Nuova Password',
         'newsletter'                => 'Desidero ogni tanto essere contattato tramite e-mail.',
         'password'                  => 'Password corrente',
+        'profile-name'              => 'Nome del profilo',
         'settings'                  => 'Impostazioni',
         'theme'                     => 'Tema',
     ],
@@ -27,6 +28,7 @@ return [
             'monthly'   => 'Newsletter di Kanka',
         ],
         'title'     => 'Newsletters',
+        'updated'   => 'Preferenze della newsletter aggiornate.',
     ],
     'password'                      => [
         'success'   => 'Password aggiornata',
@@ -39,17 +41,21 @@ return [
         'password'                  => 'Fornisci la tua password corrente per qualsiasi cambiamento',
     ],
     'sections'                      => [
-        'delete'    => [
+        'dangerzone'    => 'Zona pericolosa',
+        'delete'        => [
+            'confirm'   => 'Cancella il mio account ora',
             'delete'    => 'Elimina il mio account',
+            'goodbye'   => 'Se è così, per favore scrivi :code nello spazio qui sotto.',
             'title'     => 'Elimina il tuo account',
             'warning'   => 'Eliminando il tuo account tutti i tuoi dati andranno persi. Sei sicuro?',
         ],
-        'password'  => [
+        'password'      => [
             'title' => 'Cambia la tua password',
         ],
     ],
     'settings'                      => [
         'helpers'   => [
+            'bio'       => 'La biografia è disponibile al tuo :link',
             'profile'   => 'profilo pubblico',
         ],
         'success'   => 'Impostazioni aggiornate.',

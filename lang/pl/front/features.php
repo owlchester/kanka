@@ -59,6 +59,10 @@ return [
         'description'   => 'Kanka składa się z ogółu 20 modułów, z których każdy opisuje jeden aspekt tworzonego świata albo kampanii RPG. To znaczy: pozwalają tworzyć postaci, miejsca, rodziny, organizacje, przedmioty, zadania, dzienniki, kalendarze, wydarzenia, zdolności i tak dalej. Nie potrzebujesz zdolności? Żaden problem, każdy moduł można w danej kampanii wyłączyć, upraszczając ją i pozwalając skupić się na tym, co ważne.',
     ],
     'other_features'=> 'Inne funkcje',
+    'premium'       => [
+        'description'   => 'Niektóre opcje dostępne są tylko w kampaniach premium. Wykupując subskrypcję zyskujesz pewną liczbę rozszerzeń premium. Możesz je przenosić między kampaniami, na przykład usunąć z już zakończonej, by odblokować opcje premium kolejne. Nie stracisz tej możliwości, póki opłacasz subskrybcję.',
+        'link'          => 'Wszystkie dodatkowe opcje wypisano na stronie z cennikiem.',
+    ],
     'quests'        => [
         'description'   => 'Zaplanuj zadania, które wykonać muszą gracze, i śledź ich postępy. Moduł pozwala notować, kto bierze udział w misji, gdzie dzieje się akcja oraz które organizacje w tajemnicy pociągają za sznurki. Po zakończeniu zadania oznacz je jako zamknięte i zacznij nowe!',
         'title'         => 'Zadania',
@@ -70,6 +74,7 @@ return [
     ],
     'sections'      => [
         'general'       => 'Ogólne',
+        'premium'       => 'Opcje kampanii premium',
         'rpg'           => 'Gry fabularne',
         'worldbuilding' => 'Tworzenie światów',
     ],

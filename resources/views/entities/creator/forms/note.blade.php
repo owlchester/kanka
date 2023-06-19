@@ -1,13 +1,11 @@
-<div class="row">
-    <div class="col-sm-6">
-        @include('cruds.fields.type', ['base' => \App\Models\Note::class, 'trans' => 'notes'])
-    </div>
-    <div class="col-sm-6">
-        @include('cruds.fields.note', ['isParent' => true])
-    </div>
-</div>
+<x-grid>
+    @include('cruds.fields.type', ['base' => \App\Models\Note::class, 'trans' => 'notes'])
+    @include('cruds.fields.note', ['isParent' => true])
 
-<div class="form-group">
-    <label>{{ __('crud.fields.entry') }}</label>
-    {!! Form::textarea('entry', FormCopy::field('entry')->string(), ['class' => 'form-control resize-y', 'rows' => 5]) !!}
-</div>
+    <div class="field-entry col-span-2">
+        <label>{{ __('crud.fields.entry') }}</label>
+        {!! Form::textarea('entry', FormCopy::field('entry')->string(), ['class' => 'form-control resize-y', 'rows' => 5]) !!}
+    </div>
+</x-grid>
+
+

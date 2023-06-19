@@ -24,6 +24,7 @@ return [
         'new_post'          => 'Nouvelle entrée',
         'next'              => 'Suivant',
         'print'             => 'Imprimer',
+        'reorder'           => 'Réordonner',
         'reset'             => 'Réinitialiser',
         'transform'         => 'Transformer',
     ],
@@ -100,6 +101,7 @@ return [
     'delete_modal'              => [
         'callout'           => 'Oyé!',
         'close'             => 'Fermer',
+        'confirm'           => 'Confirmer la suppression',
         'delete'            => 'Supprimer',
         'description_v2'    => 'Tu supprimes ":tag".',
         'permanent'         => 'Cette action est permanente.',

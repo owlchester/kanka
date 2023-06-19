@@ -18,7 +18,7 @@
 ?>
 <div class="modal" id="entity-edit-warning" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content bg-base-100">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">{{ __('entities/story.warning.editing.title') }}</h4>
             </div>
@@ -35,12 +35,14 @@
             <div class="modal-body modal-spinner-body text-center" style="display: none">
                 <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" id="entity-edit-warning-back" data-url="{{ url()->previous() }}">
-                    {{ __('entities/story.warning.editing.back') }}
-                </button>
+            <div class="flex gap-2 items-center p-4">
+                <div class="grow">
+                    <button type="button" class="btn2" id="entity-edit-warning-back" data-url="{{ url()->previous() }}">
+                        {{ __('entities/story.warning.editing.back') }}
+                    </button>
+                </div>
 
-                <button type="button" class="btn btn-warning" id="entity-edit-warning-ignore" data-url="{{ $url }}">
+                <button type="button" class="btn2 btn-warning" id="entity-edit-warning-ignore" data-url="{{ $url }}">
                     {{ __('entities/story.warning.editing.ignore') }}
                 </button>
             </div>

@@ -8,33 +8,30 @@
     && paymentMethods.length > 0">
             <div v-for="(method, key) in paymentMethods"
                  v-bind:key="'method-'+key"
-                 class="box box-solid"
+                 class="bg-box shadow-xs mb-5 p-4 rounded flex gap-2 md:gap-4"
             >
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-xs-2">
-                            {{ method.brand.charAt(0).toUpperCase() }}{{ method.brand.slice(1) }}
-                        </div>
-                        <div class="col-xs-7">
-                            {{ translate('ending') }}: {{ method.last_four }} Exp: {{ method.exp_month }} / {{ method.exp_year }}
-                        </div>
-                        <div class="col-xs-3 text-right">
-                            <span v-on:click.stop="removePaymentMethod( method.id )" title="Remove" class="text-red">
-                                <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                                <span class="sr-only">Remove card</span>
-                            </span>
-                        </div>
+                <div class="grow">
+                    <div class="font-extrabold">
+                        {{ method.brand.charAt(0).toUpperCase() }}{{ method.brand.slice(1) }} ending in {{ method.last_four }}
                     </div>
+                    <div class="">
+                        Expires {{ method.exp_month }} {{ method.exp_year }}
+                    </div>
+                </div>
+                <div class="">
+                    <button role="button" v-on:click.stop="removePaymentMethod( method.id )" title="Remove" class="btn2 btn-outline btn-error btn-sm">
+                        Remove card
+                    </button>
                 </div>
             </div>
         </div>
-        <div v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length == 0">
-            <p class="help-block">
+        <div v-show="paymentMethodsLoadStatus == 2 && paymentMethods.length == 0" class="flex gap-2 mb-5">
+            <p class="help-block grow">
                 {{ translate('add_one') }}
-                <a href="#" v-on:click.close="toggleShowNewPaymentMethod">
-                    <i class="far fa-credit-card" aria-hidden="true"></i> {{ translate('actions.add_new') }}
-                </a>
             </p>
+            <a href="#" v-on:click.close="toggleShowNewPaymentMethod" class="btn2 btn-secondary btn-sm">
+                <i class="far fa-credit-card" aria-hidden="true"></i> {{ translate('actions.add_new') }}
+            </a>
         </div>
         <dialog class="dialog rounded-2xl text-center" id="modal-card" ref="cardModal" aria-modal="true" aria-labelledby="modal-card-label">
             <header>
@@ -56,6 +53,9 @@
                     <label>{{ translate('card') }}</label>
                     <div id="card-element">
                     </div>
+
+                    <p class="text-red-500 my-2" v-html="addPaymentStatusError" v-if="addPaymentStatusError">
+                    </p>
                 </div>
 
                 <p class="help-block mb-2">
@@ -63,7 +63,7 @@
                 </p>
 
                 <div class="grid grid-cols-2 gap-2">
-                    <button type="button" class="w-full rounded px-6 py-2.5 uppercase font-extrabold hover:bg-gray-200 hover:shadow-sm" @click="closeModal('cardModal')">Close</button>
+                    <button type="button" class="btn2 btn-ghost" @click="closeModal('cardModal')">Close</button>
 
                     <button type="button" v-bind:class="saveBtnClass()" @click="submitPaymentMethod" ref="formBtn">
                         {{ translate('actions.save') }}
@@ -164,6 +164,8 @@
                 this.savePaymentMethodStatus = 1;
                 this.isLoading = true;
 
+                console.log('wa');
+
                 this.stripe.confirmCardSetup(
                     this.intentToken.client_secret, {
                         payment_method: {
@@ -178,24 +180,28 @@
 
                     this.isLoading = false;
                     if (result.error) {
+                        console.log('error', result.error.message);
                         this.addPaymentStatus = 3;
                         this.addPaymentStatusError = result.error.message;
                     } else {
                         this.savePaymentMethod(result.setupIntent.payment_method);
                         this.addPaymentStatus = 2;
+                        this.addPaymentStatusError = '';
                         this.card.clear();
                         this.name = '';
-                        this.toggleShowNewPaymentMethod();
+                        this.closeModal('cardModal');
                     }
                 }.bind(this));
             },
 
             /*  Saves the payment method for the user and re-loads the payment methods.*/
             savePaymentMethod(method) {
+                console.log('save?');
                 this.paymentMethodsLoadStatus = 0;
                 axios.post('/subscription-api/payments', {
                     payment_method: method
                 }).then(function () {
+                    console.log('what');
                     this.loadPaymentMethods();
                 }.bind(this));
             },
@@ -247,7 +253,7 @@
             },
 
             saveBtnClass() {
-                let cls = 'w-full rounded px-6 py-2.5 uppercase border border-blue-500 bg-white text-blue-500 font-extrabold hover:bg-blue-500 hover:text-white hover:shadow-sm';
+                let cls = 'btn2 btn-primary';
                 if (this.isLoading) {
                     cls += ' loading';
                 }

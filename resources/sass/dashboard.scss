@@ -1,25 +1,13 @@
-
-:root {
-    --dashboard-preview-gradient: white;
-    --dashboard-widget-admin-border: #ccc;
-}
-
+/**
+ * Dashboard
+ */
 .campaign-dashboard {
     .content-header {
         min-height: 28px;
     }
 }
-.dashboard-actions {
-    display: inline-block;
-    float: right;
-
-    .btn {
-        padding: 4px 10px;
-    }
-}
 
 .panel {
-
     h1 {
         font-size: 20pt;
     }
@@ -78,8 +66,7 @@
                 position: absolute;
                 left: 0;
                 bottom: 0;
-                background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient));
-
+                background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient, hsl(var(--b1)/1)));
             }
         }
 
@@ -92,24 +79,15 @@
             }
         }
     }
-
-    .list-group-item.list-group-item-repeat {
-        padding-top: 0;
-        border-top: unset;
-    }
 }
 
 .widget-recent, .widget-unmentioned {
     .panel-body {
         padding: 5px;
     }
-    .row {
-        margin: 4px 0;
-        border-bottom: 1px solid #ccc;
-    }
-
     .elapsed {
-        color: #888;
+        --tw-text-opacity: .6;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
     }
 }
 
@@ -144,12 +122,18 @@
     .campaign-header-content {
         margin-top: 5px;
         padding: 20px;
-        background-color: rgba(0, 0, 0, 0.6);
-        color: #fff;
+        --tw-text-opacity: 1;
+        color: hsl(var(--sic)/var(--tw-text-opacity));
+        --tw-bg-opacity: .6;
+        background: hsl(var(--si)/var(--tw-bg-opacity));
         border-radius: 5px;
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }
+}
+
+.entity-attributes {
+    min-height: 24rem;
 }
 
 /** mobile **/

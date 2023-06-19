@@ -29,49 +29,32 @@
 @section('content')
     @include('cruds.forms._errors')
 
-    <div class="nav-tabs-custom">
-        <div class="pull-right">
-            @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form', 'cost' => 6])
-        </div>
-        <ul class="nav nav-tabs border-none overflow-hidden" role="tablist">
-            <li role="presentation" class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                <a href="#form-entry" title="{{ __('crud.fields.entry') }}" role="tab" aria-controls="form-entry">
-                    {{ __('crud.fields.entry') }}
-                </a>
-            </li>
-            @includeIf($name . '.form._tabs', ['source' => null])
-            @if ($tabBoosted)
-                <li role="presentation" class="{{ (request()->get('tab') == 'premium' ? ' active' : '') }}">
-                    <a href="#form-premium" title="{{ __('crud.tabs.premium') }}" role="tab" aria-controls="form-premium">
-                        @if (auth()->check() && auth()->user()->hasBoosterNomenclature())
-                            <x-icon class="premium"></x-icon>
-                            <span class="hidden-xs hidden-sm">{{ __('crud.tabs.boost') }}</span>
-                        @else
-                            <x-icon class="premium"></x-icon>
-                            <span>{{ __('crud.tabs.premium') }}</span>
-                        @endif
-                    </a>
-                </li>
-            @endif
-            @if ($tabAttributes)
-                <li role="presentation"  class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
-                    <a href="#form-attributes" title="{{ __('crud.tabs.attributes') }}" role="tab" aria-controls="form-attributes">
-                        <i class="fa-solid fa-th-list" aria-hidden="true" title="{{ __('crud.tabs.attributes') }}"></i>
-                        <span class="hidden-xs hidden-sm">{{ __('crud.tabs.attributes') }}</span>
-                    </a>
-                </li>
-            @endif
-            @if ($tabPermissions)
-            <li role="presentation"  class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
-                <a href="#form-permissions" title="{{ __('crud.tabs.permissions') }}" role="tab" aria-controls="form-permissions">
-                    <i class="fa-solid fa-cog" aria-hidden="true" title="{{ __('crud.tabs.permissions') }}"></i>
-                    <span class="hidden-xs hidden-sm">{{ __('crud.tabs.permissions') }}</span>
-                </a>
-            </li>
-            @endif
-        </ul>
 
-        <div class="tab-content">
+    <div class="nav-tabs-custom ">
+        <div class="flex gap-2 items-center ">
+            <div class="grow overflow-x-auto">
+                <ul class="nav-tabs flex items-stretch w-full" role="tablist">
+                    <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
+
+                    @includeIf($name . '.form._tabs', ['source' => null])
+                    @if ($tabBoosted)
+                        <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
+                    @endif
+                    @if ($tabAttributes)
+                        <x-tab.tab target="attributes" icon="fa-solid fa-th-list" :title="__('crud.tabs.attributes')"></x-tab.tab>
+                    @endif
+                    @if ($tabPermissions)
+                        <x-tab.tab target="permissions" icon="fa-solid fa-cog" :title="__('crud.tabs.permissions')"></x-tab.tab>
+                    @endif
+                </ul>
+            </div>
+
+            <div class="">
+                @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+            </div>
+        </div>
+
+        <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
             <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
                 {{ csrf_field() }}
                 @include($name . '.form._entry', ['source' => null])

@@ -2,21 +2,28 @@
  * Rules for specific campaign interfaces
  */
 .public-permission {
-    border: 1px solid var(--box-border);
-    background-color: var(--box-background);
+    border: 1px solid var(--box-border, none);
+    background-color: var(--box-background, #fff);
     transition: all 0.3s ease-in-out;
 
     flex-flow: row wrap;
     flex-direction: column;
 
     &:hover {
-        background-color: var(--quick-creator-button-hover-background);
-        color: var(--quick-creator-button-hover-text);
+        --tw-border-opacity: 1;
+        border-color:hsl(var(--pf)/var(--tw-border-opacity));
+        --tw-bg-opacity: 1;
+        --tw-text-opacity: 1;
+        background-color:hsl(var(--pf)/var(--tw-bg-opacity));
+        color:hsl(var(--pc)/var(--tw-text-opacity));
     }
 }
 .public-permission.enabled {
-    background-color: var(--quick-creator-button-background);
-    color: var(--quick-creator-button-text);
+    --tw-border-opacity: 1;
+    border-color:hsl(var(--pf)/var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color:hsl(var(--pf)/var(--tw-bg-opacity));
+    color:hsl(var(--pc)/var(--tw-text-opacity));
 }
 
 #campaign-modules {

@@ -146,11 +146,9 @@ return [
             ],
             'entity-header'     => 'Usar la cabecera de la entidad como imagen',
             'filters'           => 'Filtros',
-            'full'              => 'Completa',
             'help'              => 'Solo muestra la previsualización de la última entidad actualizada.',
             'helpers'           => [
                 'entity-header'     => 'Si la entidad tiene una imagen de cabecera (funcionalidad de campañas mejoradas), puedes habilitar que este widget use dicha imagen en lugar de la imagen de la entidad.',
-                'full'              => 'Muestra toda la entidad por defecto en lugar de una previsualización.',
                 'show_attributes'   => 'Mostrar los atributos bajo la entrada',
                 'show_members'      => 'Si la entidad es una familia u organización, muestra sus miembros bajo la entrada.',
                 'show_relations'    => 'Muestra las relaciones fijadas bajo la entrada.',

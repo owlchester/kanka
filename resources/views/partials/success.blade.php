@@ -13,7 +13,7 @@
     </x-alert>
 @endif
 @if (session('error') or session('error_raw'))
-    <x-alert type="danger" class="alert-header" :dismissible="true">
+    <x-alert type="error" class="alert-header" :dismissible="true">
         @if (session('error_raw'))
             {!! session('error_raw') !!}
         @else

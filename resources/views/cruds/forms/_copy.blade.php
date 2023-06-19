@@ -1,37 +1,37 @@
 <p class="help-block">{{ __('crud.helpers.copy_options') }}</p>
-<div class="form-group">
+<div class="field-copy-posts">
     {!! Form::hidden('copy_source_notes', null) !!}
     <label>{!! Form::checkbox('copy_source_notes', 1, true) !!}
         {{ __('crud.fields.copy_posts') }}
     </label>
 </div>
-<div class="form-group">
+<div class="field-replace-mentions">
     {!! Form::hidden('replace_mentions', null) !!}
     <label>{!! Form::checkbox('replace_mentions', 1, true) !!}
         {{ __('crud.fields.replace_mentions') }}
     </label>
 </div>
-<div class="form-group">
+<div class="field-copy-abilities">
     {!! Form::hidden('copy_source_abilities', null) !!}
     <label>{!! Form::checkbox('copy_source_abilities', 1, request()->filled('template')) !!}
         {{ __('crud.fields.copy_abilities') }}
     </label>
 </div>
-<div class="form-group">
+<div class="field-copy-inventory">
     {!! Form::hidden('copy_source_inventory', null) !!}
     <label>{!! Form::checkbox('copy_source_inventory', 1, request()->filled('template')) !!}
         {{ __('crud.fields.copy_inventory') }}
     </label>
 </div>
 
-<div class="form-group">
+<div class="field-copy-permissions">
     {!! Form::hidden('copy_source_permissions', null) !!}
     <label>{!! Form::checkbox('copy_source_permissions', 1, request()->filled('template')) !!}
         {{ __('crud.fields.copy_permissions') }}
     </label>
 </div>
 @if ($campaignService->campaign()->boosted())
-    <div class="form-group">
+    <div class="field-copy-links">
         {!! Form::hidden('copy_source_links', null) !!}
         <label>{!! Form::checkbox('copy_source_links', 1, request()->filled('template')) !!}
             {{ __('crud.fields.copy_links') }}

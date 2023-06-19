@@ -1,6 +1,8 @@
 <template>
 
     <FamilyParentChildrenLine
+        v-for="(child, i) in children"
+        :node="child"
         :sourceX="getLineX(index)"
         :sourceY="drawY"
         :index="index"

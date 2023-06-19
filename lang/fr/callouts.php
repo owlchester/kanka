@@ -30,7 +30,6 @@ return [
         'unlock'        => 'Débloquer les fonctionnalités Premium pour :campaign',
     ],
     'subscribe' => [
-        'pitch-2fa'     => 'Abonnes-toi pour activer un login sécurisé avec une authentification à deux facteurs et :more.',
         'pitch-image'   => 'Abonnes-toi pour télécharger des fichiers jusqu\'à :max MB.',
         'share-booster' => 'Boostes :campaign pour augmenter la taille de fichier pour tous les membres de la campagne.',
         'share-premium' => 'Augmenter la taille de téléchargement des fichiers pour tous les membres de la campagne avec une campagne Premium.',

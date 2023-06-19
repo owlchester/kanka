@@ -16,7 +16,6 @@ return [
         'success'       => 'Foco da imaxe actualizado.',
         'title'         => 'Foco da imaxe da entidade :name',
         'unboosted'     => 'Establecer un punto de foco da imaxe está reservado para :boosted-campaigns.',
-        'warning'       => 'Establecer o punto de foco non é posible cando a imaxe da entidade está collida da galería.',
     ],
     'replace'           => [
         'breadcrumb'    => 'Reemplazamento de imaxe',

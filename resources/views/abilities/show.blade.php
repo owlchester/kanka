@@ -19,7 +19,6 @@
         @includeWhen($model->entity->entityAttributes->count() > 0, 'entities.pages.attributes._story', ['entity' => $model->entity])
 
         @includeWhen($model->abilities()->has('ability')->count() > 0, 'abilities.panels.abilities', ['onload' => true])
-        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

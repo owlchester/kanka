@@ -39,6 +39,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Você não tem acesso a esta campanha.',
+        'premium'       => 'Esse recurso está disponível somente para campanhas premium.',
         'unknown_id'    => 'Campanha Desconhecida.',
     ],
     'export'                            => [],
@@ -62,6 +63,7 @@ TEXT
         'open'                              => 'Aberta a inscrições',
         'past_featured'                     => 'Campanha em destaque anteriormente',
         'post_collapsed'                    => 'Novos posts nas entidades são recolhidas por padrão.',
+        'premium'                           => 'Premium desbloqueado por :name',
         'public'                            => 'Visibilidade da campanha',
         'public_campaign_filters'           => 'Filtros de Campanhas Públicas',
         'related_visibility'                => 'Visibilidade dos Elementos Relacionados',
@@ -87,6 +89,7 @@ TEXT
         'name'                              => 'Sua campanha/mundo pode ter qualquer nome, desde que contenha pelo menos 4 letras ou números.',
         'no_entry'                          => 'Parece que a campanha ainda não tem descrição! Vamos consertar isso.',
         'permissions_tab'                   => 'Controle as configurações padrão de privacidade e visibilidade de novos elementos com as seguintes opções.',
+        'premium'                           => 'Alguns recursos estão disponíveis porque os recursos premium desta campanha estão desbloqueados. Saiba mais na página :settings.',
         'public_campaign_filters'           => 'Ajude outras pessoas a encontrar a campanha entre outras campanhas públicas, fornecendo as seguintes informações.',
         'public_no_visibility'              => 'Atenção! Sua campanha é pública, mas a função pública da campanha não pode acessar nada. :fix.',
         'related_visibility'                => 'Visibilidade padrão ao criar um novo elemento com este campo (posts, relações, habilidades, etc)',

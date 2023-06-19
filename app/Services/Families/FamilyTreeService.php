@@ -6,6 +6,9 @@ use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\FamilyTree;
+use App\Facades\Permissions;
+use App\Facades\CampaignLocalization;
+use App\Models\Visibility;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -110,7 +113,7 @@ class FamilyTreeService
             if ($k !== 'entity_id') {
                 return;
             }
-            if ($v === 0 || in_array($v, $this->configEntityIds)) {
+            if (empty($v) || in_array($v, $this->configEntityIds)) {
                 return;
             }
             $this->configEntityIds[] = $v;
@@ -139,6 +142,7 @@ class FamilyTreeService
         if (!empty($this->entities)) {
             $this->missingIds = array_diff($this->entityIds, array_keys($this->entities));
             $this->cleanupMissingEntities();
+            $this->visibilityCheck();
         } else {
             $this->entities = [];
             $this->familyTree->config = [];
@@ -170,7 +174,68 @@ class FamilyTreeService
         ];
     }
 
-    protected function cleanupMissingEntities(): void
+protected function visibilityCheck(): void
+{
+    $config = [];
+    foreach ($this->config as $key => $node) {
+        $config[$key] = $this->cleanInvisible($node, $key);
+    }
+    $this->config = $config;
+
+}
+
+protected function cleanInvisible($node, $key): mixed
+{
+    if(isset($node['relations'])){
+        foreach ($node['relations'] as $k => $rel) {
+
+            if (!isset($rel['children'])) {
+                $relations[] = $rel;
+                continue;
+            }
+
+            $children = [];
+            foreach ($rel['children'] as $ck => $child) {
+                $child = $this->cleanInvisible($child, $ck);
+                if (!$child) {
+                    continue;
+                }
+                if ($this->isVisible($child)) {
+                    $children[] = $child;
+                }
+            }
+            unset($rel['children']);
+            if (!empty($children)) {
+                $rel['children'] = $children;
+            }
+            if ($this->isVisible($rel)) {
+                $relations[] = $rel;
+            }
+        }
+        unset($node['relations']);
+        if (!empty($relations)) {
+            $node['relations'] = $relations;
+        }
+    }
+
+    return $node;
+}
+
+protected function isVisible($relation): bool
+    {
+        $campaign = CampaignLocalization::getCampaign();
+
+        if (!isset($relation['visibility']) ||
+            $relation['visibility'] == Visibility::VISIBILITY_ALL ||
+            ($relation['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
+            ($relation['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember() )
+        ) {
+            return true;
+        }
+    return false;
+    }
+
+protected function cleanupMissingEntities(): void
     {
         if (empty($this->missingIds)) {
             $this->config = $this->familyTree->config;
@@ -189,7 +254,7 @@ class FamilyTreeService
 
     protected function cleanupNode($node, $key): mixed
     {
-        if (in_array($node['entity_id'], $this->missingIds)) {
+        if (in_array($node['entity_id'], $this->missingIds) && $node['entity_id'] != null) {
             return null;
         }
         if (!isset($node['relations'])) {
@@ -197,7 +262,7 @@ class FamilyTreeService
         }
         $relations = [];
         foreach ($node['relations'] as $k => $rel) {
-            if (in_array($rel['entity_id'], $this->missingIds)) {
+            if (in_array($rel['entity_id'], $this->missingIds) && $rel['entity_id'] != null) {
                 continue;
             }
             if (!isset($rel['children'])) {
@@ -299,7 +364,7 @@ class FamilyTreeService
         if (empty($nodes)) {
             return [];
         }
-
+        //dd($nodes);
         if (!isset($nodes[0]['relations'])) {
             return [];
         }
@@ -354,6 +419,7 @@ class FamilyTreeService
                     ],
                     'edit' => [
                         'title' => __('families/trees.modals.entity.edit.title'),
+                        'helper' => __('families/trees.modals.entity.edit.helper'),
                     ],
                     'child' => [
                         'title' => __('families/trees.modals.entity.child.title'),
@@ -369,7 +435,16 @@ class FamilyTreeService
                 'fields' => [
                     'relation' => __('entities/relations.fields.relation'),
                     'character' => __('entities.character'),
-                    'member' => __('families/trees.modals.entity.add.member')
+                    'member' => __('families/trees.modals.entity.add.member'),
+                    'css'   => __('dashboard.widgets.fields.class'),
+                    'colour' => __('crud.fields.colour'),
+                    'unknown' => __('families/trees.modals.relations.unknown'),
+                    'visibility' => [
+                        'title' => __('crud.fields.visibility'),
+                        'all' => __('crud.visibilities.all'),
+                        'admins' => __('crud.visibilities.admin'),
+                        'members' => __('crud.visibilities.members'),
+                    ],
                 ],
             ],
             'toasts' => [

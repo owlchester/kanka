@@ -18,7 +18,7 @@
     </h1>
 
     @if (app()->environment('local'))
-        <a href="{{ route('settings.switch-back') }}" class="btn btn-primary mb-5">
+        <a href="{{ route('settings.switch-back') }}" class="btn2 btn-primary mb-5">
             Switch to legacy
         </a>
     @endif
@@ -87,7 +87,7 @@
         {{ __('settings/premium.ready.title') }}
 
         @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
-            <div class="label bg-boost text-white ml-3" data-toggle="tooltip" title="{{ __('settings/premium.ready.available') }}">
+            <div class="badge bg-boost border-0 badge-lg flex gap-1 ml-3" data-toggle="tooltip" title="{{ __('settings/premium.ready.available') }}">
                 <x-icon class="premium"></x-icon>
                 {{ auth()->user()->availableBoosts() }}
             </div>
@@ -123,7 +123,7 @@
     @if ($focus)
         <div class="modal fade" id="focus-modal" tabindex="-1" role="dialog" >
             <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-2xl">
+                <div class="modal-content bg-base-100 rounded-2xl">
                     @include('settings.premium.create', [
                         'campaign' => $focus
                     ])

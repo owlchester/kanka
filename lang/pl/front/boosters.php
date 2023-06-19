@@ -40,10 +40,11 @@ return [
         'title'         => 'Doładowanie kampanii podnosi doświadczenie używania Kanki na nowy poziom.',
     ],
     'call-to-action'    => [
-        'description'   => 'Masz chęć i przekonanie, że pora doładować kampanię? Zasubskrybuj Kankę by otrzymać doładowania!',
-        'go-to-pricing' => 'Przejdź do cennika',
-        'go-to-sub'     => 'Przejdź do subskrybcji',
-        'title'         => 'OK, oto pieniądze',
+        'description'       => 'Masz chęć i przekonanie, że pora doładować kampanię? Zasubskrybuj Kankę by otrzymać doładowania!',
+        'description_v2'    => 'Masz chęć i gotowość uzyskać dostęp do opcji premium? Zasubskrybuj Kankę!',
+        'go-to-pricing'     => 'Przejdź do cennika',
+        'go-to-sub'         => 'Przejdź do subskrybcji',
+        'title'             => 'OK, oto pieniądze',
     ],
     'description'       => 'Niewielka miesięczna opłata daje dostęp do opcji dodatkowych: pozwala zmieniać wygląd kampanii, eliminuje reklamy, umożliwia dodawanie większych plików i nie tylko.',
     'perks'             => [

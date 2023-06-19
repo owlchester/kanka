@@ -10,15 +10,13 @@ foreach (\App\Facades\Dashboard::campaign($campaignService->campaign())->getDash
 </p>
 
 @if($campaignService->campaign()->boosted())
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
+    <x-grid>
+        <div class="field-dashboard">
             <label>{{ __('menu_links.fields.dashboard') }}</label>
             {!! Form::select('dashboard_id', $dashboards, FormCopy::field('dashboard_id')->string(), ['class' => 'form-control']) !!}
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
+
+        <div class="field-default checkbox">
             {!! Form::hidden('options[default_dashboard]', 0) !!}
             {{ __('menu_links.fields.default_dashboard') }}
             <label>
@@ -26,8 +24,7 @@ foreach (\App\Facades\Dashboard::campaign($campaignService->campaign())->getDash
                 {{ __('menu_links.helpers.default_dashboard') }}
             </label>
         </div>
-    </div>
-</div>
+    </x-grid>
 @else
     <x-cta :campaign="$campaign" minimal="1" image="0">
         <p>{{ __('dashboard.dashboards.pitch') }}</p>

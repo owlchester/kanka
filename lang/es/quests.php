@@ -25,7 +25,6 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Instigador',
         'copy_elements' => 'Copiar elementos vinculados a la misión',
         'date'          => 'Fecha',
         'is_completed'  => 'Completada',

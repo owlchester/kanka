@@ -39,6 +39,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Nie masz dostępu do tej kampanii.',
+        'premium'       => 'Ta opcja dostępna jest tylko w kampanii premium.',
         'unknown_id'    => 'Nieznana kampania.',
     ],
     'export'                            => [],
@@ -62,6 +63,7 @@ TEXT
         'open'                              => 'Otwarta na zgłoszenia',
         'past_featured'                     => 'Poprzednio wyróżniona kampania',
         'post_collapsed'                    => 'Nowe komentarze do elementów są domyślnie zwynięte.',
+        'premium'                           => 'Premium odblokowana przez :name',
         'public'                            => 'Widoczność kampanii',
         'public_campaign_filters'           => 'Filtry kampanii publicznych',
         'related_visibility'                => 'Widoczność powiązanych elementów',
@@ -87,6 +89,7 @@ TEXT
         'name'                              => 'Twoja kampania lub świat mogą się nazywać jakkolwiek, o ile nazwa ma przynamniej 4 litery lub cyfry.',
         'no_entry'                          => 'Ta kampania nie ma chyba żadnego opisu! Pora to naprawić.',
         'permissions_tab'                   => 'Poniższe opcje pozwalają kontrolować widoczność i dostępność nowych elementów.',
+        'premium'                           => 'Część opcji jest dostępna, ponieważ odblokowano funkcje premium. Więcej informacji na stronie :settings.',
         'public_campaign_filters'           => 'Pomóż innym graczom znaleźć twoją kampanię wśród innych dostępnych publicznie, podając następujące informacje.',
         'public_no_visibility'              => 'Uwaga! Ta kampania jest publiczna, ale nie rola "publiczność" na razie niczego nie widzi. :fix',
         'related_visibility'                => 'Domyślna widoczność nowych elementów powiązanych z innym elementem (notek, relacji, zdolności itd.)',

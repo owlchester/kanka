@@ -18,13 +18,13 @@
                 {{ __('entities/move.panel.description') }}
             </p>
 
-            <div class="form-group">
+            <div class="field-campaign mb-5">
                 <label>{{ __('entities/move.fields.campaign') }}</label>
                 {!! Form::select('campaign', $campaigns, null, ['class' => 'form-control']) !!}
             </div>
 
             @can('update', $entity->child)
-                <div class="form-group form-check">
+                <div class="field-copy form-check">
                     <label>{!! Form::checkbox('copy', 1, true) !!}
                         {{ __('entities/move.fields.copy') }}
                     </label>
@@ -38,15 +38,12 @@
 
             @includeIf($entity->pluralType() . '.bulk.modals._copy_to_campaign')
 
-            <div class="flex items-center">
-                <div class="grow">
-                    @includeWhen(!request()->ajax(), 'partials.footer_cancel')
-                </div>
-                <button class="btn btn-success">
+            <x-dialog.footer>
+                <button class="btn2 btn-primary">
                     <i class="fa-solid fa-copy" aria-hidden="true"></i>
                     @can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan
                 </button>
-            </div>
+            </x-dialog.footer>
         </x-box>
     </div>
 

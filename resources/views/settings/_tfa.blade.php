@@ -1,7 +1,6 @@
 <h3 class="mb-3">
     {{ __('settings.account.2fa.title') }}
 </h3>
-<x-box>
     @if ($user->passwordSecurity?->google2fa_enable)
         <p class="hep-block">{{ __('settings.account.2fa.enabled') }}</p>
 
@@ -12,20 +11,10 @@
                 {{ __('settings.account.2fa.actions.disable') }}
             </x-buttons.confirm>
         </div>
-    @elseif (!auth()->user()->isSubscriber())
-            <p>
-                {{ __('settings.account.2fa.helper') }} {!! link_to('https://docs.kanka.io/en/latest/account/security/two-factor-authentication.html', __('settings.account.2fa.learn_more')) !!}
-            </p>
-
-            <p>
-                {!! __('callouts.subscribe.pitch-2fa', [
-                    'more' => link_to_route('front.pricing', __('subscription.benefits.more'), '#paid-features', ['target' => '_blank'])
-                ]) !!}
-            </p>
-    @elseif (auth()->user()->isSubscriber())
+    @else
         @if(auth()->user()->isSocialLogin())
                 <p>{{ __('settings.account.2fa.social') }}</p>
-        @elseif(empty($user->passwordSecurity) && (auth()->user()->isSubscriber() || auth()->user()->subscription('kanka')->canceled()))
+        @elseif(empty($user->passwordSecurity))
                 <p>
                     {{ __('settings.account.2fa.helper') }} {!! link_to('https://docs.kanka.io/en/latest/account/security/two-factor-authentication.html', __('settings.account.2fa.learn_more')) !!}
                 </p>
@@ -37,37 +26,38 @@
             {!! Form::open(['route' => 'settings.security.generate-2fa', 'method' => 'POST']) !!}
                 <div class="text-right">
 
-                    <x-buttons.confirm type="primary" outline="true">
+                    <x-buttons.confirm type="primary">
                         {{ __('settings.account.2fa.generate_qr') }}
                     </x-buttons.confirm>
                 </div>
             {!! Form::close() !!}
-        @elseif(!$user->passwordSecurity->google2fa_enable && auth()->user()->isSubscriber() || auth()->user()->subscription('kanka')->canceled())
+        @elseif(!$user->passwordSecurity->google2fa_enable)
             {!! Form::open(['route' => 'settings.security.enable-2fa', 'method' => 'POST']) !!}
                 <p>{{ __('settings.account.2fa.activation_helper') }}</p>
 
-                <div class="form-group required">
+                <div class="field-qr-code mb-5 required">
                     <label>{{ __('settings.account.2fa.fields.qrcode') }}</label><br />
                     {!! $user->passwordSecurity->getGoogleQR() !!}
                 </div>
-                <div class="form-group required">
+                <div class="field-otp mb-5 required">
                     <label>{{ __('settings.account.2fa.fields.otp') }}</label>
                     {!! Form::password('otp', ['class' => 'form-control', 'maxlength' => 12]) !!}
                 </div>
 
                 <div class="text-right">
-                    <x-buttons.confirm type="primary" outline="true">
+                    <x-buttons.confirm type="primary">
                         {{ __('settings.account.2fa.actions.finish') }}
                     </x-buttons.confirm>
                 </div>
             {!! Form::close() !!}
        @endif
   @endif
-</x-box>
+
+<hr />
 
 @section('modals')
     @parent
-    @if($user->passwordSecurity?->google2fa_enable))
+    @if($user->passwordSecurity?->google2fa_enable)
     {!! Form::model($user, ['method' => 'POST', 'route' => ['settings.security.disable-2fa']]) !!}
     <x-dialog id="deactivate-2fa" :title="__('settings.account.2fa.disable.title')">
         <p class="mb-2">

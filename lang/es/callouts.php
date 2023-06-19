@@ -24,7 +24,6 @@ return [
         ],
     ],
     'subscribe' => [
-        'pitch-2fa'     => 'Suscríbete para desbloquear inicios de sesión seguros con autenticación de dos factores y mucho :more.',
         'pitch-image'   => 'Suscríbete para desbloquear la carga de archivos de tamaños de hasta :max MB.',
         'share-booster' => 'Mejora :campaign para aumentar el tamaño de maximo de carga de archivos para todos los miembros de la campaña.',
     ],

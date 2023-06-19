@@ -7,23 +7,18 @@
 @section('content')
 
     {!! Form::model($preset, ['route' => ['preset_types.presets.update', 'preset_type' => $presetType, 'preset' => $preset], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
-        <div class="panel">
+        <x-box>
             @include('presets.forms._' . $presetType->code)
-            <div class="panel-footer">
+            <x-box.footer>
                 @include('partials.footer_cancel')
 
-                <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
-                   title="{{ __('crud.delete_modal.title') }}"
-                   data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                       <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-form-preset-{{ $preset->id}}'>{{ __('crud.remove') }}</a>">
-                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-                </a>
+                <x-button.delete-confirm target="#delete-form-preset-{{ $preset->id }}" />
 
-                <button type="submit" class="btn btn-success pull-right">
+                <button type="submit" class="btn2 btn-primary pull-right">
                     {!! __('crud.save') !!}
                 </button>
-            </div>
-        </div>
+            </x-box.footer>
+        </x-box>
 
         <input type="hidden" name="from" value="{{ $from }}" />
 

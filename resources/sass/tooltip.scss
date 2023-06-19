@@ -16,14 +16,84 @@
     }
 }
 
+.tooltip {
+    position: absolute;
+    z-index: 1070;
+    display: block;
+    font-size: .7rem;
+    opacity: 0;
+
+    &.in {
+        opacity: .9;
+    }
+
+    &.top {
+        padding: .375rem 0;
+        margin-top: -.25rem;
+    }
+    &.right {
+        padding: 0 .375rem;
+        margin-left: .25rem;
+    }
+    &.bottom {
+        padding: .375rem 0;
+        margin-top: .25rem;
+    }
+    &.left {
+        padding: 0 .375rem;
+        margin-left: -.25rem;
+    }
+
+    &.top .tooltip-arrow {
+        bottom: 0;
+        left: 50%;
+        margin-left: -.375rem;
+        border-width: .375rem .375rem 0;
+    }
+    &.bottom .tooltip-arrow {
+        top: 0;
+        left: 50%;
+        margin-left: -.375rem;
+        border-width: 0 .375rem .375rem;
+    }
+}
+.tooltip-inner {
+    max-width:200px;
+    padding: .125rem .5rem;
+    text-align: center;
+    border-radius: .5rem;
+}
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+}
+
+.tooltip-inner, .tooltip-content {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--n)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--nc)/var(--tw-text-opacity));
+}
+.tooltip.top .tooltip-arrow {
+    --tw-bg-opacity: 1;
+    border-top-color: hsl(var(--n)/var(--tw-bg-opacity));
+}
+.tooltip.bottom .tooltip-arrow {
+    --tw-bg-opacity: 1;
+    border-bottom-color: hsl(var(--n)/var(--tw-bg-opacity));
+}
+.tooltip-content {
+    text-align: left;
+}
+
 /** Change positioning of various elements so tooltips can extend beyond overflow:hidden containers **/
 
 /* Entity sidebar */
 .entity-sidebar {
     position: relative;
-}
-.list-group-item {
-    position: unset;
 }
 
 /* Dashboard widgets */
@@ -34,7 +104,8 @@
 .keyboard-shortcut {
     padding: 0.1rem 0.4rem;
     font-size: 0.75rem;
-    border: 1px solid var(--input-border-color);
+    --tw-border-opacity: .2;
+    border: 1px solid hsl(var(--bc)/var(--tw-border-opacity));
     border-radius: 5px;
     margin-right: 5px;
     pointer-events: unset;

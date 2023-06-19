@@ -4,18 +4,15 @@
     </p>
 </x-tutorial>
 
-<div class="box box-solid" id="map-groups">
+<h3 class="">
+    {{ __('maps.panels.groups') }}
+</h3>
+<div id="map-groups" class="mb-5">
     @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['maps.groups.bulk', 'map' => $model]]) !!} @endif
-    <div class="box-header with-border">
-        <h3 class="box-title">
-            {{ __('maps.panels.groups') }}
-        </h3>
-    </div>
     <div id="datagrid-parent">
         @include('layouts.datagrid._table', ['responsive' => true])
     </div>
     @if(Datagrid::hasBulks()) {!! Form::close() !!} @endif
-
 </div>
 
 @section('modals')

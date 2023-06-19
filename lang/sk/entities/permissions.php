@@ -8,6 +8,7 @@ return [
     'quick'     => [
         'empty-permissions' => 'Žiadna rola alebo užívateľ mimo adminov kampane nemá prístup k tomuto objektu.',
         'field'             => 'Rýchla úprava',
+        'manage'            => 'Manažovať oprávnania',
         'options'           => [
             'private'   => 'Súkromné pre všetkých okrem adminov',
             'visible'   => 'Viditeľné pre nasledujúce',

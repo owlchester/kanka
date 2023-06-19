@@ -16,66 +16,29 @@
 @section('content')
     {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $entity->id, $entityEvent->id], 'data-shortcut' => '1', 'class' => 'ajax-validation', 'data-maintenance' => 1]) !!}
 
-    @if (request()->ajax())
-        <div class="modal-body">
-            @include('partials.errors')
+    <div class="modal-body">
+        @include('partials.errors')
 
-            @if (!empty($from))
-                <x-alert type="warning">
-                    {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
-                </x-alert>
-            @endif
+        @if (!empty($from))
+            <x-alert type="warning">
+                {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
+            </x-alert>
+        @endif
 
-            @include('calendars.events._form')
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-success">
-                <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-                <span>{{ __('crud.save') }}</span>
-            </button>
-            <div class="pull-left">
-                @include('partials.footer_cancel')
-                <a role="button" tabindex="0" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
-                   title="{{ __('crud.delete_modal.title') }}"
-                   data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                   <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-reminder-{{ $entityEvent->id}}'>{{ __('crud.remove') }}</a>">
-                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-                </a>
-            </div>
-        </div>
-    @else
-    <div class="panel panel-default">
-        <div class="panel-body">
-            @include('partials.errors')
-
-            @if (!empty($from))
-                <x-alert type="warning">
-                    {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
-                </x-alert>
-            @endif
-
-            @include('calendars.events._form')
-
-        </div>
-        <div class="panel-footer">
-            <div class="pull-right">
-                <button type="submit" class="btn btn-success">
-                    <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
-                    <span>{{ __('crud.save') }}</span>
-                </button>
-            </div>
-
-            <a role="button" tabindex="0" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
-               title="{{ __('crud.delete_modal.title') }}"
-               data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                   <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-reminder-{{ $entityEvent->id}}'>{{ __('crud.remove') }}</a>">
-                <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-            </a>
-        </div>
+        @include('calendars.events._form')
 
     </div>
-    @endif
+    <div class="modal-footer">
+        <button type="submit" class="btn2 btn-primary">
+            <i class="fa-solid fa-spinner fa-spin" style="display:none;"></i>
+            <span>{{ __('crud.save') }}</span>
+        </button>
+        <div class="pull-left">
+            @include('partials.footer_cancel')
 
+            <x-button.delete-confirm target="#delete-reminder-{{ $entityEvent->id}}" />
+        </div>
+    </div>
 
     @if (!empty($next))
         <input type="hidden" name="next" value="{{ $next }}" />

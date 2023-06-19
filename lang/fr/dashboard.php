@@ -142,6 +142,15 @@ return [
             'name_desc' => 'Nom descendant',
             'recent'    => 'Récemment modifié',
         ],
+        'preview'                   => [
+            'displays'  => [
+                'expand'    => 'Entrée extensible',
+                'full'      => 'Entrée complète',
+            ],
+            'fields'    => [
+                'display'   => 'Affichage',
+            ],
+        ],
         'random'                    => [
             'helpers'   => [
                 'name'  => 'Le nom de l\'entité au hasard peut être référencé avec {name}',
@@ -155,11 +164,9 @@ return [
             ],
             'entity-header'     => 'Utiliser l\'image d\'en-tête de l\'entité',
             'filters'           => 'Filtres',
-            'full'              => 'Entier',
             'help'              => 'Afficher seulement la dernière entité modifiée avec un aperçu de celle-ci.',
             'helpers'           => [
                 'entity-header'     => 'Si l\'entité à une image d\'en-tête (limité aux campagnes boostées), le widget utilisera cette image au lieu de l\'image principale de l\'entité.',
-                'full'              => 'Afficher le contenu entier de l\'entité au lieu d\'un aperçu.',
                 'show_attributes'   => 'Afficher les attributs épinglés de l\'entité.',
                 'show_members'      => 'Si l\'entité est une famille ou organisation, afficher les membres sous l\'entrée.',
                 'show_relations'    => 'Afficher les relations épinglées de l\'entité.',

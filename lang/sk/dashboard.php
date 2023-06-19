@@ -154,11 +154,9 @@ return [
             ],
             'entity-header'     => 'Použiť záhlavie objektu ako obrázok',
             'filters'           => 'Filtre',
-            'full'              => 'Plná',
             'help'              => 'Zobraziť iba posledný upravený objekt, no zobraziť celý náhľad na objekt',
             'helpers'           => [
                 'entity-header'     => 'Ak má daný objekt záhlavie (funkcia boostnutých kampaní), nastav tento widget, aby použil tento obrázok namiesto obrázku objektu.',
-                'full'              => 'Zobraziť celý zápis objektu namiesto jeho náhľadu.',
                 'show_attributes'   => 'Zobrazí pripnuté atribúty objektu pod záznamom.',
                 'show_members'      => 'Ak je objekt rod alebo organizácia, pod záznamom sa zobrazia členovia.',
                 'show_relations'    => 'Zobrazí pripnuté vzťahy objektu pod záznamom.',

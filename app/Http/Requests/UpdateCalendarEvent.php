@@ -24,6 +24,7 @@ class UpdateCalendarEvent extends FormRequest
     public function rules()
     {
         return [
+            'entity_id' => 'integer|exists:entities,id',
             'day' => 'required',
             'month' => 'required',
             'year' => 'required',

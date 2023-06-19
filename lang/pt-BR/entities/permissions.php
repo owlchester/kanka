@@ -8,6 +8,7 @@ return [
     'quick'     => [
         'empty-permissions' => 'Nenhum cargo ou usuário além dos administradores da campanha tem acesso a esta entidade.',
         'field'             => 'Edição rápida',
+        'manage'            => 'Gerenciar Permissões',
         'options'           => [
             'private'   => 'Privado para todos, exceto administradores',
             'visible'   => 'Visível para o seguinte',

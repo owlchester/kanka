@@ -1,7 +1,7 @@
 <template>
     <div v-click-outside="onClickOutside" class="flex grow mr-2">
         <div class="relative grow">
-            <input type="text" class="form-control" maxlength="25"
+            <input type="text" class="form-control leading-4" maxlength="25"
                 ref="searchField"
                 id="entity-lookup"
                 v-model="term"
@@ -15,7 +15,7 @@
             </span>
         </div>
 
-        <aside class="search-drawer absolute top-0 left-0 mt-12 h-sidebar w-sidebar bg-navbar shadow-r overflow-y-auto  " v-if="show_recent || show_loading || show_preview">
+        <aside class="search-drawer absolute top-0 left-0 mt-12 h-sidebar w-sidebar bg-navbar bg-base-100 shadow-r overflow-y-auto  " v-if="show_recent || show_loading || show_preview">
             <div class="text-center" v-if="show_loading">
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" aria-label="Loading"></i>
             </div>
@@ -53,7 +53,7 @@
                     <p class="italic text-xs text-center" v-html="texts.keyboard" />
                 </div>
             </div>
-            <div class="search-preview bg-lookup min-h-screen shadow-r" v-if="show_preview">
+            <div class="search-preview bg-lookup min-h-full shadow-r" v-if="show_preview">
                 <EntityPreview
                     :entity="preview_entity">
                 </EntityPreview>
@@ -141,6 +141,7 @@ export default {
                 //console.log('no recent');
                 return;
             }
+            this.show_preview = false;
             this.has_drawer = true;
             this.fetch();
         },

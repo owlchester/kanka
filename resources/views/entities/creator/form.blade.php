@@ -12,7 +12,7 @@
 
         @includeWhen(!empty($success), 'entities.creator._created')
 
-        <div class="form-group required">
+        <div class="field-name required mb-5">
             <label>{{ __('crud.fields.name') }}</label>
 
             @if ($mode === 'bulk')
@@ -43,7 +43,7 @@
             </x-alert>
         </div>
 
-        <a href="#" class="qq-action-more text-uppercase pointer text-sm" style="{{ $singularType === 'post' ? 'display: none' : null }}">
+        <a href="#" class="qq-action-more text-uppercase cursor-pointer text-sm" style="{{ $singularType === 'post' ? 'display: none' : null }}">
             <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
             {{ __('entities.creator.actions.more') }}
         </a>
@@ -66,14 +66,14 @@
 
         @if (empty($origin))
 
-            <div class="btn-group mr-4">
-                <button type="submit" class="btn btn-success quick-creator-submit px-5" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.create') }}">
+            <div class="join mr-4">
+                <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.create') }}">
                     <span>
                         {!! __('entities.creator.actions.create', ['type' => $singular ?? $entityType]) !!}
                     </span>
                     <i class="fa-solid fa-spinner fa-spin" style="display: none"></i>
                 </button>
-                <button type="submit" class="btn btn-success quick-creator-submit" data-entity-type="{{ $singularType }}" data-action="more" title="{{ __('entities.creator.tooltips.create_more') }}">
+                <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" data-action="more" title="{{ __('entities.creator.tooltips.create_more') }}">
                     <span>
                         <i class="fa-solid fa-plus-square" aria-hidden="true"></i>
                     </span>
@@ -82,7 +82,7 @@
             </div>
 
             @if ($mode !== 'bulk')
-                <button type="submit" class="btn btn-default quick-creator-submit mr-4 px-5" data-entity-type="{{ $singularType }}" data-action="edit" title="{{ __('entities.creator.tooltips.edit') }}">
+                <button type="submit" class="btn2 btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" data-action="edit" title="{{ __('entities.creator.tooltips.edit') }}">
                     <span>
                         {{ __('crud.edit') }}
                     </span>
@@ -90,18 +90,13 @@
                 </button>
             @endif
 
-            <!--<a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-target="#entity-modal" class="btn btn-default">
-                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                {{ __('entities.creator.back') }}
-            </a>-->
-
-            <a role="button" class="text-uppercase" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
+            <a role="button" class="btn2 btn-sm btn-ghost" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
                 {{ __('crud.cancel') }}
             </a>
 
         @else
             <div class="text-center">
-            <button class="btn btn-success px-5 quick-creator-submit" data-entity-type="{{ $singularType }}">
+            <button class="btn2 btn-primary quick-creator-submit" data-entity-type="{{ $singularType }}">
                 <span>
                     <x-icon class="plus"></x-icon> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
                 </span>

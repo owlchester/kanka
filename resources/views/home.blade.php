@@ -22,90 +22,6 @@
     <meta property="og:url" content="{{ route('campaigns.show', $campaign)  }}" />
 @endsection
 
-@section('header-extra')
-    <div class="dashboard-actions">
-        @if(!empty($dashboards))
-            <div class="btn-group pull-right">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <x-icon class="fa-solid fa-th-large"></x-icon>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    @if (!empty($dashboard))
-                        <li>
-                            <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
-                                <x-icon class="fa-solid fa-th-large"></x-icon>
-                                {{ __('dashboard.dashboards.default.title')}}
-                            </a>
-                        </li>
-                    @endif
-                    @foreach ($dashboards as $dash)
-                        @if (!empty($dashboard) && $dash->id == $dashboard->id)
-                            @continue
-                        @endif
-                        <li>
-                            <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
-                                <x-icon class="fa-solid fa-th-large"></x-icon>
-                                {!! $dash->name !!}
-                            </a>
-                        </li>
-                    @endforeach
-
-                    @can('dashboard', $campaign)
-                        <li>
-                            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
-                                <x-icon class="cog"></x-icon>
-                                {{ __('dashboard.settings.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('update', $campaign)
-                        <li class="divider"></li>
-                        <li>
-                            <a href="{{ route('campaigns.edit') }}">
-                                <x-icon class="pencil"></x-icon>
-                                {{ __('campaigns.show.actions.edit') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </div>
-        @else
-            @can('update', $campaign)
-            <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
-                <x-icon class="fa-solid fa-th-large"></x-icon>
-                <span class="sr-only">{{ __('dashboard.settings.title') }}</span>
-            </a>
-            @endcan
-        @endif
-        @can ('follow', $campaign)
-            <button id="campaign-follow" class="btn btn-default btn-xl" data-id="{{ $campaign->id }}"
-                    style="display: none"
-                    data-following="{{ $campaign->isFollowing() ? true : false }}"
-                    data-follow="{{ __('dashboard.actions.follow') }}"
-                    data-unfollow="{{ __('dashboard.actions.unfollow') }}"
-                    data-url="{{ route('campaign.follow') }}"
-                    data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
-                    data-placement="bottom"
-            >
-                <x-icon class="fa-regular fa-star"></x-icon>
-                <span id="campaign-follow-text"></span>
-            </button>
-        @endcan
-        @can('apply', $campaign)
-            <button id="campaign-apply" class="btn btn-default btn-xl mr-2" data-id="{{ $campaign->id }}"
-                    data-url="{{ route('campaign.apply') }}"
-                    data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
-                    data-target="#large-modal"
-                    data-placement="bottom"
-            >
-                <x-icon class="fa-solid fa-door-open"></x-icon>
-                {{ __('dashboard.actions.join') }}
-            </button>
-        @endcan
-    </div>
-@endsection
-
-
 @section('content')
     @if (empty($dashboard))
         @include('dashboard.widgets._campaign')
@@ -144,7 +60,7 @@
 
     @can('update', $campaign)
         <div class="text-center mt-6">
-            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
+            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn2 btn-lg btn-primary" title="{{ __('dashboard.settings.title') }}">
                 <x-icon class="cog"></x-icon>
                 {{ __('dashboard.settings.title') }}
             </a>
@@ -178,30 +94,4 @@
         'resources/sass/dashboard.scss',
         'resources/sass/map-v3.scss'
     ])
-@endsection
-
-@section('modals')
-    @tutorial('welcome')
-    <div class="modal fade tutorial-modal" id="tutorial-modal" role="dialog" aria-labelledby="tutorialModal" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="tutorialModalTitle">{{ __('tutorials/home.welcome.title', ['user' => auth()->user()->name]) }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p>{{ __('tutorials/home.welcome.first') }}</p>
-                    <p>{{ __('tutorials/home.welcome.second') }}</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-warning pull-left" data-tutorial="disable" data-url="{{ route('settings.tutorial.disable') }}">
-                        {{ __('tutorials/actions.disable') }}
-                    </button>
-                    <button class="btn btn-success" data-tutorial="next" data-url="{{ route('settings.tutorial.done', ['tutorial' => 'welcome', 'next' => 'dashboard_1']) }}">
-                        {{ __('tutorials/actions.next') }}
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endtutorial
 @endsection

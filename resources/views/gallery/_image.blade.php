@@ -24,9 +24,9 @@
                 <x-icon class="fa-regular fa-file text-4xl"></x-icon>
             </div>
         @else
-        <a class="block avatar grow relative cover-background"
-             style="background-image: url('{{ Img::crop(192, 144)->url($image->path) }}')">
-        </a>
+            <a class="block avatar grow relative cover-background"
+                style="background-image: url('{{ $image->getUrl(192, 144) }}')">
+            </a>
         @endif
         <div class="block px-2 py-4 h-12 truncate">
             {!! $image->visibilityIcon() !!}

@@ -20,21 +20,19 @@
         <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
     @endif
 
-    <x-alert type="danger" :hidden="true"></x-alert>
+    <x-alert type="error" :hidden="true"></x-alert>
 
 
     @if (!$cancel)
         @if ($hasPromo)
             <label>{{ __('settings.subscription.coupon.label') }}</label>
-            <div class="input-group mb-5">
-                <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control" data-url="{{ route('subscription.check-coupon') }}" />
+            <div class="join mb-5">
+                <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control join-item" data-url="{{ route('subscription.check-coupon') }}" />
 
-                <span class="input-group-btn">
-                  <button type="button" id="coupon-check-btn" class="btn btn-info btn-flat" title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
-                      <i class="fa-solid fa-check check"></i>
-                      <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
-                  </button>
-                </span>
+                <button type="button" id="coupon-check-btn" class="btn2 btn-primary btn-outline join-item" title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
+                    <i class="fa-solid fa-check check"></i>
+                    <i class="fa-solid fa-spinner fa-spin spinner" style="display: none"></i>
+                </button>
             </div>
             <x-alert type="success" :hidden="true" id="coupon-success"></x-alert>
             <x-alert type="warning" :hidden="true" id="coupon-invalid">
@@ -43,8 +41,7 @@
         @endif
         <div class="card" style="margin: 0">
 
-        <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
                 @if (! $limited)
                 <li role="presentation" class="active">
                     <a href="#card" aria-controls="home" role="tab" data-toggle="tab">
@@ -72,18 +69,18 @@
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
+            <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
                 @if (! $limited)
                 <div role="tabpanel" class="tab-pane active" id="card">
                     {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
 
                     @if (!$card)
-                        <div class="form-group">
+                        <div class="field-card-name mb-5">
                             <label>{{ __('settings.subscription.payment_method.card_name' )}}</label>
                             {!! Form::text('card-holder-name', null, ['class' => 'form-control']) !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="field-card-number">
                             <label>{{ __('settings.subscription.payment_method.card' )}}</label>
                             <div id="card-element" class="mb-5">
                         </div>
@@ -101,7 +98,7 @@
                                 {!! __('settings.subscription.upgrade_downgrade.downgrade.provide_reason')!!}
                             </p>
 
-                            <div class="form-group mb-5">
+                            <div class="ffield-reason mb-5">
                                 <label>{{ __('settings.subscription.fields.reason') }}</label>
                                 {!! Form::select('reason', [
                                     '' => __('crud.select'),
@@ -126,7 +123,7 @@
                         @endif
                     @endif
                     <div class="text-center">
-                        <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                        <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                             <span>{{ __('settings.subscription.actions.subscribe') }}</span>
                             <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                         </button>
@@ -144,7 +141,7 @@
                         {{ __('settings.subscription.helpers.alternatives', ['method' => 'SOFORT']) }}
                     </p>
                     @if ($hasPromo)
-                        <x-alert type="danger" class="alert-coupon">Sadly we cannot offer discounts for Sofort payments.</x-alert>
+                        <x-alert type="error" class="alert-coupon">Sadly we cannot offer discounts for Sofort payments.</x-alert>
                     @endif
 
                     @if ($period !== 'yearly')
@@ -172,7 +169,7 @@
                         </select>
 
                         <div class="text-center">
-                            <button class="btn btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
+                            <button class="btn2 btn-lg btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
                                 <span>{{ __('settings.subscription.actions.subscribe') }}</span>
                                 <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
                             </button>
@@ -192,7 +189,7 @@
                         {{ __('settings.subscription.helpers.alternatives', ['method' => 'Giropay']) }}
                     </p>
                     @if ($hasPromo)
-                        <x-alert type="danger alert-coupon">
+                        <x-alert type="error alert-coupon">
                             Sadly we cannot offer discounts for giropay payments.
                         </x-alert>
                     @endif
@@ -276,50 +273,7 @@
         @endif
             </p>
     @else
-        {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'cancellation-confirm', 'class' => 'subscription-form']) !!}
-        @php
-            $endDate = date($user->date_format, $user->upcomingInvoice()->period_end);
-        @endphp
-        <p class="help-block">
-            {!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}
-        </p>
-
-        <div class="form-group mb-5">
-            <label>{{ __('settings.subscription.fields.reason') }}</label>
-            {!! Form::select('reason', [
-    '' => __('crud.select'),
-    'financial' => __('settings.subscription.cancel.options.financial'),
-    'not_for' => __('settings.subscription.cancel.options.not_for'),
-    'not_using' => __('settings.subscription.cancel.options.not_using'),
-    'missing_features' => __('settings.subscription.cancel.options.missing_features'),
-    'competitor' => __('settings.subscription.cancel.options.competitor'),
-    'custom' => __('settings.subscription.cancel.options.custom')
-], null, ['class' => 'form-control mb-5']) !!}
-            {!! Form::textarea(
-                'reason_custom',
-                null,
-                [
-                    'placeholder' => __('settings.subscription.placeholders.reason'),
-                    'class' => 'form-control',
-                    'rows' => 4,
-                    'id' => 'cancel-reason-custom'
-                ]
-            ) !!}
-        </div>
-
-        <div class="text-center">
-            <button class="btn btn-lg btn-danger subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
-                <span>{{ __('settings.subscription.actions.cancel_sub') }}</span>
-                <i class="fa-solid fa-spin fa-spinner spinner" style="display: none"></i>
-            </button>
-        </div>
-
-        <input type="hidden" name="tier" value="{{ $tier }}" />
-        <input type="hidden" name="period" value="{{ $period }}" />
-        <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
-        <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
-        <input type="hidden" name="is_downgrade" value="true" />
-        {!! Form::close() !!}
+        @include('settings.subscription._cancel')
     @endif
     </div>
 </div>

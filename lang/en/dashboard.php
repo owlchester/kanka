@@ -70,7 +70,7 @@ return [
         'title' => 'Entity list :name',
     ],
     'settings'      => [
-        'title' => 'Dashboard Settings',
+        'title' => 'Dashboard Setup',
     ],
     'setup'         => [
         'actions'   => [
@@ -133,13 +133,22 @@ return [
             'width'             => 'Width',
         ],
         'helpers'                   => [
-            'class'     => 'Define a custom css class added to the widget.',
+            'class'     => 'Define a custom CSS class added to the widget.',
             'filters'   => 'Click to learn about the available filter options.',
         ],
         'orders'                    => [
             'name_asc'  => 'Name ascending',
             'name_desc' => 'Name descending',
             'recent'    => 'Recently modified',
+        ],
+        'preview'                   => [
+            'displays'  => [
+                'expand'    => 'Expandable entry',
+                'full'      => 'Full entry',
+            ],
+            'fields'    => [
+                'display'   => 'Display',
+            ],
         ],
         'random'                    => [
             'helpers'   => [
@@ -154,11 +163,9 @@ return [
             ],
             'entity-header'     => 'Use entity header as image',
             'filters'           => 'Filters',
-            'full'              => 'Display full entry',
             'help'              => 'Only show the first entity as a preview instead of a list.',
             'helpers'           => [
                 'entity-header'     => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
-                'full'              => 'Display the whole entity\'s entry by default instead of a preview.',
                 'show_attributes'   => 'Show the entity\'s pinned attributes below the entry.',
                 'show_members'      => 'If the entity is a family or organisation, show its members below the entry.',
                 'show_relations'    => 'Show the entity\'s pinned relations below the entry.',

@@ -16,7 +16,6 @@ return [
         'success'       => 'Encuadre de la imagen actualizado.',
         'title'         => 'Encuadre de la imagen de :name',
         'unboosted'     => 'Definir el encuadre de una imagen es una funcionalidad reservada para las :boosted-campaigns.',
-        'warning'       => 'No se puede definir el encuadre de una imagen de la galería.',
     ],
     'replace'           => [
         'breadcrumb'    => 'Reemplazar imagen',

@@ -15,39 +15,30 @@
 
 @inject('campaignService', 'App\Services\CampaignService')
 @section('content')
-    <div class="panel panel-default">
+    <x-box>
         @if ($ajax)
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-heading">
+                <x-dialog.close />
                 <h4>
                     {{ __('maps/markers.edit.title', ['name' => $model->name]) }}
                 </h4>
             </div>
         @endif
-        <div class="panel-body">
-            @if (!$map->explorable())
-                <x-alert type="warning">
-                    <p>{{ __('maps.helpers.missing_image') }}</p>
-                </x-alert>
-            @else
+        @if (!$map->explorable())
+            <x-alert type="warning">
+                <p>{{ __('maps.helpers.missing_image') }}</p>
+            </x-alert>
+        @else
             <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @include('partials.errors')
 
             {!! Form::model($model, ['route' => ['maps.map_markers.update', 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
             @include('maps.markers._form')
 
-            <div class="form-group">
+            <x-box.footer>
                 <div class="submit-group">
-                    <div class="pull-left">
-                        <div class="btn-group">
-                            <a role="button" tabindex="-1" class="btn btn-dynamic-delete btn-danger" data-toggle="popover"
-                                title="{{ __('crud.delete_modal.title') }}"
-                                data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                                 <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-marker-confirm-form-{{ $model->id}}'>{{ __('crud.remove') }}</a>">
-                                <x-icon class="trash"></x-icon> {{ __('maps/markers.actions.remove') }}
-                            </a>
-                        </div>
+                    <div class="inline-block">
+                        <x-button.delete-confirm target="#delete-marker-confirm-form-{{ $model->id}}" />
                     </div>
                     <input id="submit-mode" type="hidden" value="true"/>
                     <div class="pull-right">
@@ -58,13 +49,14 @@
                     </div>
                 </div>
                 <div class="submit-animation" style="display: none;">
-                    <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                    <button class="btn2 btn-success btn-sm" disabled>
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                    </button>
                 </div>
-            </div>
+            </x-box.footer>
             {!! Form::close() !!}
             @endif
-        </div>
-    </div>
+    </x-box>
 
     {!! Form::open([
         'method' => 'DELETE',

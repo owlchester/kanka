@@ -2,14 +2,18 @@
 
 return [
     'actions'       => [
-        'close' => 'Chiudi',
-        'save'  => 'Salva',
+        'close'     => 'Chiudi',
+        'file-link' => 'Link del FIle',
+        'image-link'=> 'Link dell\'Immagine',
+        'save'      => 'Salva',
     ],
     'breadcrumb'    => 'Galleria',
+    'cta'           => 'Gestisci e riutilizza le immagini nel corso della campagna.',
     'destroy'       => [
         'success'   => 'Immagine :name eliminata',
     ],
     'errors'        => [
+        'max'           => 'Seleziona solo fino a :count file alla volta.',
         'permissions'   => 'Il tuo ruolo non ha l\'autorizzazione :permission per caricare immagini nella galleria della campagna.',
     ],
     'fields'        => [

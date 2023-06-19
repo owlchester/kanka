@@ -15,7 +15,6 @@ return [
         'success'       => 'Kép fókuszát frissítettük.',
         'title'         => ':name entitás képfókusza',
         'unboosted'     => 'A kép fókuszpontjának beállítása a :boosted-campaigns számára van fenntartva.',
-        'warning'       => 'A fókuszpont beállítása nem elérhető, amikor az entitás képét a galériából állítottad be.',
     ],
     'replace'   => [
         'breadcrumb'    => 'Kép kicserélése',

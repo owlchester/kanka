@@ -1,9 +1,7 @@
 /**
- * Deprecated convo module layout
+ * Conversations
+ * Deprecated module
  */
-:root {
-  --conversation-comment-background: #f7f7f7;
-}
 
 /**
  * Conversations
@@ -14,9 +12,7 @@
         background-color: unset;
 
         .box-comment {
-            background-color: var(--conversation-comment-background);
             border-bottom: none;
-
 
             &:hover {
                 .message-options {

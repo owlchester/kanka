@@ -12,7 +12,7 @@ if ($widget->entity) {
 ?>
 
 
-<div class="col-md-{{ $widget->colSize() }}">
+<div class="col-span-{{ $widget->colSize() }}">
     <div class="{{ $widgetClass }} cursor-pointer {{ !empty($background) ? 'p-5' : null }} widget-{{ $widget->widget }} cover-background {{ $widget->widget ===  \App\Models\CampaignDashboardWidget::WIDGET_HEADER ? 'h-auto' : null }}"
          data-toggle="ajax-modal"
     @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)

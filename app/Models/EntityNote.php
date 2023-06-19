@@ -98,6 +98,15 @@ class EntityNote extends Model
     }
 
     /**
+     * List of images that mention this entity
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function imageMentions()
+    {
+        return $this->hasMany('App\Models\ImageMention', 'post_id', 'id');
+    }
+
+    /**
      * Copy an entity note to another target
      * @param Entity $target
      * @return Post|EntityNote

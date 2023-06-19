@@ -3,7 +3,7 @@
 @endif
 
 <input type="hidden" name="save_organisations" value="1">
-<div class="form-group">
+<div class="field-organisations">
     @include('components.form.organisations', ['options' => [
         'model' => $model ?? FormCopy::model(),
         'source' => $source ?? null,

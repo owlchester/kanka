@@ -2,10 +2,13 @@
 
 return [
     'actions'       => [
-        'close' => 'Zatvoriť',
-        'save'  => 'Uložiť',
+        'close'     => 'Zatvoriť',
+        'file-link' => 'Link k súboru',
+        'image-link'=> 'Link k obrázku',
+        'save'      => 'Uložiť',
     ],
     'breadcrumb'    => 'Galéria',
+    'cta'           => 'Manažuj a používaj obrázky v celej kampani.',
     'destroy'       => [
         'success'   => 'Obrázok :name zmazaný.',
     ],

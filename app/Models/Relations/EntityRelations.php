@@ -7,10 +7,12 @@ use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPermission;
 use App\Models\Conversation;
+use App\Models\Creature;
 use App\Models\EntityAbility;
 use App\Models\EntityAlias;
 use App\Models\EntityAsset;
 use App\Models\EntityEvent;
+use App\Models\EntityEventType;
 use App\Models\EntityLink;
 use App\Models\EntityMention;
 use App\Models\EntityNote;
@@ -23,6 +25,7 @@ use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Quest;
+use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Tag;
 use App\Models\Timeline;
@@ -57,9 +60,11 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Attribute[]|Collection $starredAttributes
  * @property Relation[]|Collection $pinnedRelations
  * @property EntityAsset[]|Collection $pinnedFiles
+ * @property EntityAsset[]|Collection $pinnedAssets
  * @property Relation[]|Collection $relations
  * @property EntityEvent[]|Collection $elapsedEvents
  * @property EntityEvent[]|Collection $calendarDateEvents
+ * @property EntityEvent|null $calendarDate
  * @property Image|null $image
  * @property Image|null $header
  * @property User[]|Collection $users
@@ -390,6 +395,14 @@ trait EntityRelations
         ;
     }
 
+    public function pinnedAliases()
+    {
+        return $this->assets()
+            ->where('is_pinned', 1)
+            ->where('type_id', 3)
+        ;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -404,7 +417,17 @@ trait EntityRelations
      */
     public function calendarDateEvents()
     {
-        return $this->events()->with('calendar')->calendarDate();
+        return $this->events()
+            ->with('calendar')
+            ->has('calendar')
+            ->calendarDate();
+    }
+
+    public function calendarDate() {
+        return $this->hasOne('App\Models\EntityEvent', 'entity_id', 'id')
+            ->with('calendar')
+            ->has('calendar')
+            ->where('type_id', EntityEventType::CALENDAR_DATE);
     }
 
     /**
@@ -438,6 +461,15 @@ trait EntityRelations
     public function mentions()
     {
         return $this->hasMany('App\Models\EntityMention', 'entity_id', 'id');
+    }
+
+    /**
+     * List of entities that mention this entity
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function imageMentions()
+    {
+        return $this->hasMany('App\Models\ImageMention', 'entity_id', 'id');
     }
 
     /**

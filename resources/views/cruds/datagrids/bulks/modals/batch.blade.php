@@ -2,17 +2,16 @@
 {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
 <div class="modal fade" id="bulk-edit" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-content bg-base-100">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <x-dialog.close :modal="true" />
                 <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.edit.title') }}</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <x-grid>
                 @foreach ($bulk->fields() as $field)
                     @php $trimmed = \Illuminate\Support\Str::beforeLast($field, '_id'); @endphp
-                    {!! $fieldCount % 2 === 0 ? '</div><div class="row">' : null !!}
-                        <div class="col-md-6">
+                    {!! $fieldCount % 2 === 0 ? '' : null !!}
                     @include('cruds.fields.' . $trimmed, [
                         'trans' => $name,
                         'base' => $model,
@@ -22,17 +21,17 @@
                         'dropdownParent' => '#bulk-edit',
                         'route' => null,
                     ])
-                    </div>
                     @php $fieldCount++; @endphp
                 @endforeach
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-                <button class="btn btn-success" type="submit">
-                    <x-icon class="save"></x-icon>
-                    {{ __('crud.actions.apply') }}
-                </button>
+                </x-grid>
+
+
+                <x-dialog.footer :modal="true">
+                    <button class="btn2 btn-primary" type="submit">
+                        <x-icon class="save"></x-icon>
+                        {{ __('crud.actions.apply') }}
+                    </button>
+                </x-dialog.footer>
             </div>
         </div>
     </div>

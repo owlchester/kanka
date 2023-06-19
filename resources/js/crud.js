@@ -36,7 +36,6 @@ $(document).ready(function () {
     registerFormMaintenance();
     registerEntityCalendarModal();
     registerModalLoad();
-    registerDatagridSorter();
     registerPermissionToggler();
     registerStoryActions();
     registerStoryLoadMore();
@@ -53,6 +52,10 @@ function registerModalLoad() {
         registerEntityCalendarModal();
         registerEntityFormActions();
         registerFormMaintenance();
+    });
+
+    $('#campaign-delete-confirm').on('shown.bs.modal', function () {
+        $('#campaign-delete-form').focus();
     });
 }
 
@@ -253,10 +256,12 @@ function registerEntityCalendarModal() {
 
 
 function registerEraForm() {
+    if ($('#era-form-add').length === 0) {
+        return;
+    }
     entityCalendarAdd = $('#era-form-add');
     let eraField = $('[name="era_id"]');
 
-    let positionField = $('select[name="position"]');
     oldEra = eraField.val();
     if (entityCalendarField.val()) {
         loadTimelineEra(eraField.val());
@@ -365,9 +370,12 @@ function loadTimelineEra(eraID) {
 function calendarHideSubform() {
     entityCalendarForm.hide();
     entityCalendarAdd.show();
+
     $('input[name="calendar_day"]').val(null);
     $('input[name="calendar_month"]').val(null);
     $('input[name="calendar_year"]').val(null);
+    $('input[name="calendar_id"]').val(null);
+    console.log('finished?');
 }
 
 /**
@@ -450,32 +458,6 @@ function registerFormMaintenance() {
     });
 }
 
-/**
- * Datagrid Sorter field
- */
-function registerDatagridSorter() {
-    $('#datagrid-simple-sorter').change(function () {
-        let options = '';
-        if (this.value) {
-            options = this.name + '=' + this.value;
-        }
-        let url = $(this).data('url');
-        // Remove target
-        let target = null;
-        if (url.includes('#')) {
-            target = '#' + url.split('#')[1];
-            url = url.split('#')[0];
-        }
-        if ($(this).data('url').includes('?')) {
-            url += '&' + options;
-        } else {
-            url += '?' + options;
-        }
-
-        url += target;
-        window.location = url;
-    });
-}
 
 function registerPermissionToggler() {
     $('.permission-toggle').change(function () {
@@ -615,7 +597,7 @@ function registerDynamicRows() {
         let template = $(this).data('template');
         //console.log('target', target, $('.' + target));
         //console.log('template', template, $('#' + template));
-        $('.' + target).append('<div class="form-group">' +
+        $('.' + target).append('<div class="">' +
             $('#' + template).html() +
             '</div>');
 
@@ -630,8 +612,10 @@ function registerDynamicRows() {
  */
 function registerDynamicRowDelete() {
     $.each($('.dynamic-row-delete'), function () {
-        // Todo: we can re-do this with adding an attribute on the element instead
-        $(this).unbind('click').unbind('keydown'); // remove previous bindings
+        if ($(this).data('init') === 1) {
+            return;
+        }
+        $(this).data('init', 1);
         $(this).on('click', function (e) {
             e.preventDefault();
             $(this).closest('.parent-delete-row').remove();
@@ -685,7 +669,3 @@ function rebuildCalendarDayList(max) {
         entityCalendarDayField.append('<option value="' + d + '" ' + selected + '>' + d + '</option>');
     }
 }
-
-$('#campaign-delete-confirm').on('shown.bs.modal', function () {
-    $('#campaign-delete-form').focus();
-})

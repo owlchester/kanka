@@ -22,7 +22,7 @@ $map = $entity->child;
                     @elseif (!empty($widget->conf('text')))
                         {{ $widget->conf('text') }}
                     @else
-                        {{ $entity->name }}
+                        {!! $entity->name !!}
                     @endif
                 </a>
             </h3>
@@ -37,7 +37,7 @@ $map = $entity->child;
 <div class="panel panel-default widget-preview widget-map" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-body p-0">
         <div class="map map-dashboard" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
-            <a href="{{ route('maps.explore', $map) }}" target="_blank" class="btn btn-primary btn-xs btn-map-explore z-[820] absolute bottom-3 right-3">
+            <a href="{{ route('maps.explore', $map) }}" target="_blank" class="btn2 btn-primary btn-xs btn-map-explore z-[820] absolute bottom-3 right-3">
                 <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
             </a>
         </div>

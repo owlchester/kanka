@@ -72,7 +72,9 @@ class StyleController extends Controller
             return redirect()->route('campaign_styles.index')
                 ->with('error', __('campaigns/styles.errors.max_reached', ['max' => self::MAX_THEMES]));
         }
-        return view('campaigns.styles.create', compact('campaign'));
+
+        $theme = CampaignStyle::theme()->first();
+        return view('campaigns.styles.create', compact('campaign', 'theme'));
     }
 
     public function store(StoreCampaignStyle $request)
@@ -104,6 +106,10 @@ class StyleController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
+
+        if ($campaignStyle->isTheme()) {
+            return redirect()->route('campaign_styles.builder');
+        }
 
         $style = $campaignStyle;
         return view('campaigns.styles.edit', compact('campaign', 'style'));

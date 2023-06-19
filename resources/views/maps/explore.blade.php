@@ -12,16 +12,16 @@
 
 @section('content')
     @can('update', $map)
-        <div class="map-actions absolute bottom-0 right-0 m-4">
-            <button class="btn btn-warning btn-mode-enable">
+        <div class="map-actions absolute bottom-0 right-0 m-2">
+            <button class="btn2 btn-warning btn-mode-enable">
                 <x-icon class="plus"></x-icon>
                 {{ __('maps/explore.actions.enter-edit-mode') }}
             </button>
-            <button class="btn btn-default btn-mode-disable">
+            <button class="btn2 btn-default btn-mode-disable">
                 <x-icon class="fa-solid fa-ban"></x-icon>
                 {{ __('maps/explore.actions.exit-edit-mode') }}
             </button>
-            <button class="btn btn-warning btn-mode-drawing">
+            <button class="btn2 btn-warning btn-mode-drawing">
                 <x-icon class="pencil"></x-icon>
                 {{ __('maps/explore.actions.finish-drawing') }}
             </button>
@@ -199,13 +199,12 @@
 @section('modals')
 <div class="modal fade" id="map-marker-modal" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-content bg-base-100">
             <div class="modal-header">
                 <span id="map-marker-modal-title"></span>
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <x-dialog.close />
             </div>
-            <div class="modal-body" id="map-marker-modal-content">
+            <div class="modal-body bg-base-100" id="map-marker-modal-content">
                 <i class="fa-solid fa-spinner fa-spin spinner"></i>
                 <div class="content p-0"></div>
             </div>
@@ -216,12 +215,10 @@
 @can('update', $map)
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-base-100">
                 {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="{{ __('crud.delete_modal.close') }}"><span
-                                aria-hidden="true">&times;</span></button>
+                        <x-dialog.close />
                         <h4 class="modal-title">
                             {{ __('maps/markers.create.title', ['name' => $map->name]) }}
                         </h4>
@@ -236,38 +233,40 @@
                         </div>
                         <div class="submit-group">
                             <input id="submit-mode" type="hidden" value="true"/>
-                            <div class="btn-group">
-                                <button class="btn btn-success form-submit-main" id="form-submit-main"
+                            <div class="join">
+                                <button class="btn2 btn-primary join-item form-submit-main" id="form-submit-main"
                                     data-target="{{ isset($target) ? $target : null }}">
                                     <span>{{ __('crud.save') }}</span>
                                 </button>
-                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#" class="dropdown-item form-submit-actions">
-                                            {{ __('crud.save') }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-item form-submit-actions"
-                                            data-action="submit-update">
-                                            {{ __('crud.save_and_update') }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-item form-submit-actions"
-                                            data-action="submit-explore">
-                                            {{ __('maps/markers.actions.save_and_explore') }}
-                                        </a>
-                                    </li>
-                                </ul>
+                                <div class="dropdown dropdown-menu-right">
+                                    <button type="button" class="btn2 join-item btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="#" class="dropdown-item form-submit-actions">
+                                                {{ __('crud.save') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="dropdown-item form-submit-actions"
+                                                data-action="submit-update">
+                                                {{ __('crud.save_and_update') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="dropdown-item form-submit-actions"
+                                                data-action="submit-explore">
+                                                {{ __('maps/markers.actions.save_and_explore') }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="submit-animation" style="display: none;">
-                            <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                            <button class="btn2 btn-success btn-sm" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                         </div>
                     </div>
                 </div>

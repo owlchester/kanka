@@ -10,19 +10,12 @@
 
 
 @section('content')
-
-    <div class="{{ $ajax ? '' : 'box' }}">
-        <div class="{{ $ajax ? 'modal' : 'box' }}-header">
-            <h5 class="{{ $ajax ? 'modal' : 'box' }}-title">
-                {!! $plugin->name !!} - {{ __('campaigns/plugins.info.updates') }}
-                @if ($ajax)
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                @endif
-            </h5>
-        </div>
-
-        <div class="{{ $ajax ? 'modal' : 'box' }}-body">
-            <div class="plugin-summary">
+    <x-dialog.header>
+        {!! $plugin->name !!} - {{ __('campaigns/plugins.info.updates') }}
+    </x-dialog.header>
+    <article class="text-left max-w-2xl">
+        <div class="flex gap-2 w-full">
+            <div class="plugin-summary grow">
                 @if (!empty($plugin->summary))
                     {!! $plugin->summary !!}
                 @else
@@ -31,46 +24,50 @@
             </div>
 
             @if($plugin->hasUpdate())
-                <div class="text-right">
-                    {!! Form::open(['route' => ['campaign_plugins.update', $plugin], 'method' => 'POST']) !!}
-                    <button type="submit" class="btn btn-primary btn-sm">
+                <div>
+                    {!! Form::open(['route' => ['campaign_plugins.update', $plugin], 'method' => 'POST', 'class' => 'inline-block']) !!}
+                    <button type="submit" class="btn2 btn-primary btn-sm">
                         <i class="fa-solid fa-download"></i>
                         {{ __('campaigns/plugins.actions.update') }}
                     </button>
                     {!! Form::close() !!}
                 </div>
             @endif
-
-                @foreach ($versions as $version)
-                    <div class="plugin-box">
-                        <hr class="my-5" />
-
-                        <div class="plugin-head">
-                            <i class="fa-solid fa-code-branch"></i>
-                            <strong>{{ $version->version }}</strong>
-                            <div class="pull-right">
-                                <small>{{ $version->updated_at->diffForHumans() }}</small>
-                                @if($version->id == $plugin->pivot->plugin_version_id)
-                                    <span class="label label-info">{{ __('campaigns/plugins.info.your_version') }}</span>
-                                @endif
-                                @if ($version->status_id == 1)
-                                    <span class="label label-warning">
-                                       DRAFT
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="plugin-body text-justify p-3">
-                            {!! $version->entry !!}
-                        </div>
-                    </div>
-                @endforeach
         </div>
+
+        @foreach ($versions as $version)
+            <div class="plugin-box  w-full border-t pt-5">
+
+                <div class="plugin-head flex items-center gap-2">
+                    <div class="grow">
+                        <x-icon class="fa-solid fa-code-branch"></x-icon>
+                        <strong>{{ $version->version }}</strong>
+                    </div>
+                    <div class="">
+                        <span class="text-xs">{{ $version->updated_at->diffForHumans() }}</span>
+                        @if($version->id == $plugin->pivot->plugin_version_id)
+                            <x-badge type="accent">
+                                {{ __('campaigns/plugins.info.your_version') }}
+                            </x-badge>
+                        @endif
+                        @if ($version->status_id == 1)
+                            <x-badge>
+                                DRAFT
+                            </x-badge>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="plugin-body text-justify p-2">
+                    {!! $version->entry !!}
+                </div>
+            </div>
+        @endforeach
+
         @if ($versions->hasPages())
-        <div class="{{ $ajax ? 'modal' : 'box' }}-footer">
-            {!! $versions->links() !!}
+        <div class="mt-5">
+            {!! $versions->onEachSide(0)->links() !!}
         </div>
         @endif
-    </div>
+    </article>
 @endsection

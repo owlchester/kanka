@@ -23,7 +23,6 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Küldetésadó',
         'copy_elements' => 'A küldetéshez tartozó elemek másolása',
         'date'          => 'Dátum',
         'is_completed'  => 'Teljesítve',

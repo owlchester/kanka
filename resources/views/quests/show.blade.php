@@ -12,8 +12,6 @@
     <div class="entity-story-block">
         @include('entities.components.posts', ['withEntry' => true])
         @includeWhen($model->quests()->has('quest')->count() > 0, 'quests.panels.quests')
-
-        @include('entities.pages.logs.history')
     </div>
 
     <div class="entity-sidebar">

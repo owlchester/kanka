@@ -168,8 +168,11 @@ trait EntityScopes
 
         return $query
             ->with($related ? [
-                'attributes', 'posts', 'posts.permissions', 'events',
-                'relationships', 'inventories', 'abilities',
+                'attributes', 'attributes.entity',
+                'posts', 'posts.permissions', 'posts.entity',
+                'events', 'events.entity',
+                'inventories', 'inventories.entity',
+                'relationships', 'abilities',
                 'tags', 'image', 'assets',
             ] : ['tags', 'image'])
         ;

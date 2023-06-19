@@ -1,24 +1,14 @@
-.bg-navbar {
-    background-color: var(--main-navbar-background);
-}
-.bg-lookup {
-    background-color: var(--main-navbar-background);
-}
-.border-lookup {
-    border-color: var(--main-navbar-background);
-}
 .bg-entity-focus {
-    background-color: var(--lookup-entity-background, rgb(222 222 222));
+    --tw-bg-opacity: 1;
+    background-color: var(--lookup-entity-background, hsl(var(--b3)/var(--tw-bg-opacity)));
 }
 
 .navigation-drawer {
     width: 82%;
-    background-color: var(--main-navbar-background);
-    z-index: 2;
+    z-index: 20;
 
     .header {
         .inactive {
-            background-color: var(--header-mode-inactive, #ececec);
             min-width: 72px;
 
             &:hover {
@@ -41,8 +31,8 @@
             background-image: url(https://th.kanka.io/TMUEmOVYU-ClCFa8I5B9pKvhsb4=/280x210/smart/app/backgrounds/mountain-background-medium.jpg);
 
             .name {
-                background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--main-navbar-background) 100%);
-                color: var(--campaign-switcher-text, #1b1b1b);
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, hsl(var(--b2)/1) 100%);
+                color: var(--campaign-switcher-text, hsl(var(--bc)/1));
             }
         }
 
@@ -61,20 +51,16 @@
                 display: block;
                 border-radius: 9999px;
                 --tw-bg-opacity: 1;
-                color: var(--boosted);
+                color: hsl(var(--boosted)/var(--tw-text-opacity));
                 top: 15px;
                 right: 15px;
             }
         }
     }
     .profile {
-        .background-accent {
-            background-color: var(--notification-accent);
-        }
         .marketplace {
             .icon {
                 color: var(--link-text);
-                background-color: var(--input-border-color);
             }
         }
     }
@@ -112,32 +98,17 @@
 }
 
 .indicator {
-    position: relative;
-    display: inline-flex;
-    width: max-content;
-
     .notification-badge {
         right: -0.2rem;
-        left: auto;
-        top: auto;
         bottom: -0.2rem;
         --tw-translate-x: 50%;
         transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 
-        --s: var(--notification-badge);
-        border: 1px solid var(--main-navbar-background);
         --tw-bg-opacity: 1;
-        background-color: var(--s);
+        background-color: hsl(var(--boosted)/var(--tw-bg-opacity));
         --tw-text-opacity: 1;
-        color: var(--s);
-        z-index: 1;
-        position: absolute;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        color: hsl(var(--boosted)/var(--tw-text-opacity));
         line-height: 0.5rem;
-        width: -moz-fit-content;
-        width: fit-content;
         padding: 0.3rem;
         border-radius: var(--rounded-badge,1.9rem);
     }
@@ -149,24 +120,8 @@
  */
 .search-recent, .search-preview {
     box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
-    color: var(--lookup-text, #333);
+    color: var(--lookup-text, hsl(var(--bc)/1));
 }
 .hover\:lookup-entity:hover {
     background-color: var(--lookup-entity-hover, rgba(0, 0, 0, 0.1));
-}
-
-/**
- * QQ button
- */
-.quick-creator-button {
-    background-color: var(--quick-creator-button-background);
-
-    i, span {
-        color: var(--quick-creator-button-text);
-    }
-
-    &:hover {
-        transition: all 0.3s ease-in-out;
-        background-color: var(--quick-creator-button-hover-background);
-    }
 }

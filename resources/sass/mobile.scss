@@ -1,22 +1,22 @@
 @media (max-width: 767px) {
-  .content-header {
-    padding-top: 5px;
-  }
+    .content-header {
+        padding-top: 5px;
+    }
 
-  .table-responsive {
-    overflow-x: auto;
-    overflow-y: auto;
-    border: none;
-  }
-  .keyboard-shortcut {
-    display: none;
-  }
+    .table-responsive {
+        overflow-x: auto;
+        overflow-y: auto;
+        border: none;
+    }
+    .keyboard-shortcut {
+        display: none;
+    }
 }
 
 @media (max-width: 991px) {
     // On smaller devices, place all tabs in forms on a single line and allow to scroll through them. This is
     // especially useful on the calendar form for mobile users.
-    .nav-tabs-custom {
+    /*.nav-tabs-custom {
         ul.nav-tabs {
             display: inline-flex;
             width: 100%;
@@ -26,5 +26,5 @@
                 display: none;
             }
         }
-    }
+    }*/
 }

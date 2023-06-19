@@ -20,34 +20,22 @@
     @include('partials.errors')
 
     {!! Form::model($model, ['route' => ['timelines.timeline_elements.update', 'timeline' => $timeline, 'timeline_element' => $model], 'method' => 'PATCH', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
-    <div class="panel panel-default">
-        @if (request()->ajax())
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
-                    {{ __('timelines/elements.edit.title', ['name' => $model->name]) }}
-                </h4>
-            </div>
-        @endif
-        <div class="panel-body">
-            @include('timelines.elements._form')
-        </div>
-        <div class="panel-footer">
-            <a href="{{ route('timelines.show', $timeline) }}" class="btn btn-default">
-                {{ __('crud.cancel') }}
-            </a>
+    <x-box>
+        @include('timelines.elements._form')
 
-            <div class="form-element pull-right">
+        <x-dialog.footer>
+            <div class="form-element">
                 <div class="submit-group">
-                    <button class="btn btn-success">{{ trans('crud.save') }}</button>
+                    <button class="btn2 btn-primary">{{ trans('crud.save') }}</button>
                 </div>
                 <div class="submit-animation" style="display: none;">
-                    <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                    <button class="btn2 btn-primary" disabled>
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                    </button>
                 </div>
             </div>
-        </div>
-    </div>
+        </x-dialog.footer>
+    </x-box>
     {!! Form::close() !!}
 
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())

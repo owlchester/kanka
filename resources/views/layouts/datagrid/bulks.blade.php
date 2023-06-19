@@ -3,12 +3,11 @@ use App\Facades\Datagrid;
 $hasOthers = false;
 ?>
 <div class="dropdown datagrid-bulk-actions">
-    <a class="dropdown-toggle btn btn-default disabled" data-toggle="dropdown" aria-expanded="false" data-tree="escape">
+    <a class="dropdown-toggle btn2 btn-disabled break-keep" data-toggle="dropdown" aria-expanded="false" data-tree="escape">
         {{ __('crud.bulk.buttons.label') }}
         <x-icon class="fa-solid fa-caret-down"></x-icon>
     </a>
     <ul class="dropdown-menu" role="menu">
-
         @foreach (\App\Facades\Datagrid::bulks() as $bulk)
             @if ($bulk === \App\Renderers\Layouts\Layout::ACTION_EDIT)
                 <li>
@@ -36,7 +35,7 @@ $hasOthers = false;
         @endforeach
     </ul>
 </div>
-<a href="#" class="btn btn-default btn-disabled datagrid-spinner" style="display:none">
+<a href="#" class="btn2 btn-disabled datagrid-spinner" style="display:none">
     <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
 </a>
 <input type="hidden" name="action" value="" />
@@ -45,12 +44,10 @@ $hasOthers = false;
     @parent
     <div class="modal fade" id="datagrid-bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-2xl">
+            <div class="modal-content bg-base-100 rounded-2xl">
                 <div class="modal-body text-center">
 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <x-dialog.close />
                     <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
 
                     <p class="mt-3">
@@ -58,13 +55,12 @@ $hasOthers = false;
                         {{ __('crud.delete_modal.permanent') }}
                     </p>
 
-                    <div class="py-5">
-                        <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                        <button type="button" class="btn btn-danger px-8 ml-5 rounded-full" id="datagrid-action-confirm">
+                    <x-dialog.footer :modal="true">
+                        <button type="button" class="btn2 btn-error btn-outline" id="datagrid-action-confirm">
                             <x-icon class="trash"></x-icon>
                             <span class="remove-button-label">{{ __('crud.remove') }}</span>
                         </button>
-                    </div>
+                    </x-dialog.footer>
                 </div>
             </div>
         </div>

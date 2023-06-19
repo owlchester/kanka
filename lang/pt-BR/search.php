@@ -9,6 +9,7 @@ return [
         'results'   => 'Resultados',
     ],
     'no_results'    => 'Sem resultados.',
+    'placeholder'   => 'BUSCAR',
     'preview'       => [
         'links'             => 'Vínculos',
         'no-connections'    => 'Nenhuma relação fixada para exibir',

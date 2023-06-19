@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-hidden">
     <label for="is_hidden">{{ __('tags.fields.is_hidden') }}</label>
     <select name="is_hidden" class="form-control">
         <option value=""></option>

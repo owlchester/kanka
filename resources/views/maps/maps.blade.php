@@ -12,14 +12,18 @@
 @inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block pull-right ml-auto">
+    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
         @if (request()->has('map_id'))
-            <a href="{{ route('maps.maps', [$model, '#map-maps']) }}" class="btn btn-default btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants->count() }})
+            <a href="{{ route('maps.maps', [$model, '#map-maps']) }}" class="btn2 btn-sm">
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                ({{ $model->descendants->count() }})
             </a>
         @else
-            <a href="{{ route('maps.maps', [$model, 'map_id' => $model->id, '#map-maps']) }}" class="btn btn-default btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->maps->count() }})
+            <a href="{{ route('maps.maps', [$model, 'map_id' => $model->id, '#map-maps']) }}" class="btn2 btn-sm">
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                ({{ $model->maps->count() }})
             </a>
         @endif
     </div>

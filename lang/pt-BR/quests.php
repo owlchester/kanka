@@ -30,7 +30,6 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Instigador',
         'copy_elements' => 'Copiar elementos anexados na missão',
         'date'          => 'Data',
         'element_role'  => 'Função',

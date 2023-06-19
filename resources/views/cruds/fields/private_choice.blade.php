@@ -1,5 +1,5 @@
 @if (auth()->user()->isAdmin())
-    <div class="form-group">
+    <div class="field-private">
         <label for="is_private">{{ __('crud.fields.is_private') }}</label>
         <select name="is_private" id="is_private" class="form-control">
             <option value=""></option>

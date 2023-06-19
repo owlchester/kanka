@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-size">
     <label>{{ __('dashboard.widgets.fields.size') }}</label>
     {!! Form::select('config[size]', [
         'h1' => 'H1',

@@ -94,7 +94,7 @@
                             </div>
                         </div>
                         <div class="ribbon ribbon-top-right">
-                            <span>{{ __('tiers.ribbons.popular') }}</span>
+                            <span class="bg-green-500 text-white">{{ __('tiers.ribbons.popular') }}</span>
                         </div>
                     </div>
                 </th>
@@ -114,8 +114,8 @@
                                 <span class="">{{ __('tiers.periods.yearly') }}</span>
                             </div>
                         </div>
-                        <div class="ribbon ribbon-top-right ribbon-red">
-                            <span>{{ __('tiers.ribbons.best-value') }}</span>
+                        <div class="ribbon ribbon-top-right">
+                            <span class="bg-pink-500 text-white">{{ __('tiers.ribbons.best-value') }}</span>
                         </div>
                     </div>
                 </th>
@@ -201,7 +201,7 @@
 
     <div class="modal fade" id="change-currency" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-base-100">
                 @if (auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended())
                     @include('partials.forms._modal', [
                         'title' => __('settings.subscription.currency.title'),
@@ -224,7 +224,7 @@
 
     <div class="modal fade" id="subscribe-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content"></div>
+            <div class="modal-content bg-base-100"></div>
         </div>
     </div>
 @endsection

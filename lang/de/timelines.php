@@ -27,6 +27,7 @@ return [
         'type'  => 'Grundschule, Weltchronik, Königreichserbe',
     ],
     'reorder'       => [
+        'empty'     => 'Füge dem Zeitstrahl Epochen und Elemente hinzu, um sie neu anordnen zu können.',
         'success'   => 'Zeitstrahl erfolgreich neu geordnet.',
         'title'     => 'Ordne den Zeitstrahl neu',
     ],

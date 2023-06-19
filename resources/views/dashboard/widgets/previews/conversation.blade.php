@@ -28,14 +28,17 @@ $conversation = $entity->child;
                 @endif
 
                 <span class="pull-right" data-toggle="tooltip" title="{{ __('conversations.tabs.participants') }}">
-                    <span class="label label-default"><i class="fa-solid fa-users"></i> {{ $conversation->participants()->count() }}</span>
+                    <x-badge>
+                        <x-icon class="fa-solid fa-users"></x-icon>
+                        {{ $conversation->participants()->count() }}
+                    </x-badge>
                 </span>
                 @if(!empty($customName))
                     {{ $customName }}
                 @elseif (!empty($widget->conf('text')))
                     {{ $widget->conf('text') }}
                 @else
-                    {{ $entity->name }}
+                    {!! $entity->name !!}
                 @endif
 
             </a>

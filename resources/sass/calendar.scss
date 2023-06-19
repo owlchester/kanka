@@ -1,73 +1,51 @@
-:root {
-    --calendar-season-text: #444;
-    --calendar-event-text: white;
-
-    --calendar-julian: none;
-    --calendar-monthday: inline;
-}
-
-.bg-weather {
-    background-color: var(--calendar-weather, #ddd);
-}
+/**
+ * Calendars
+ */
 .bg-season {
-    background-color: var(--calendar-season, #ddd);
-}
-.bg-today {
-    background-color: var(--calendar-today, #FFFDE2);
+    --tw-bg-opacity: .5;
+    background-color: hsl(var(--a)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--ac)/var(--tw-text-opacity));
 }
 .bg-week {
-    background-color: var(--calendar-week, #FFFDE2);
+    --tw-bg-opacity: .3;
+    background-color: hsl(var(--a)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--ac)/var(--tw-text-opacity));
 }
 
-.calendar {
-    table-layout: fixed;
-
-    tbody {
-        td {
-            vertical-align: top !important;
-            word-wrap: break-word;
-
-            h5 {
-                .julian-number {
-                    display: var(--calendar-julian);
-                }
-
-                .day-number {
-                    display: var(--calendar-monthday);
-                }
-            }
-
-            p {
-                clear: both;
-            }
-
-            .calendar-season {
-                color: var(--calendar-season-text);
-                //background-color: var(--calendar-season);
-            }
-
-            .calendar-event-block {
-                .entity-image {
-                    height: 30px;
-                    width: 30px;
-                }
-            }
-
-            .colour-pallet {
-                color: var(--calendar-event-text);
-            }
-
-            .bg-gray {
-                color: #333 !important;
-
-                .calendar-event-comment {
-                    color: #333 !important;
-                }
-            }
+.calendar tbody td {
+    h5 {
+        .julian-number {
+            display: var(--calendar-julian, none);
         }
 
-        td.today {
-            //background-color: var(--calendar-today);
+        .day-number {
+            display: var(--calendar-monthday, inline);
+        }
+    }
+
+    p {
+        clear: both;
+    }
+
+    .calendar-event-block {
+        .entity-image {
+            height: 1.75rem;
+            width: 1.75rem;
+        }
+    }
+
+    .colour-pallet {
+        --tw-text-opacity: 1;
+        color: hsl(var(--bc)/var(--tw-text-opacity));
+    }
+
+    .bg-gray {
+        color: #333 !important;
+
+        .calendar-event-comment {
+            color: #333 !important;
         }
     }
 }

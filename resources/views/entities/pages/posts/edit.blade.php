@@ -25,13 +25,8 @@
 
     @include('entities.pages.posts._form')
 
-    <div class="mt-5 text-right">
-        <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
-           title="{{ __('crud.delete_modal.title') }}"
-           data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                       <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-form-note-{{ $model->id}}'>{{ __('crud.remove') }}</a>">
-            <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-        </a>
+    <div class="mt-5">
+        <x-button.delete-confirm target="#delete-form-note-{{ $model->id}}" />
     </div>
 
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())

@@ -7,7 +7,6 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character'     => 'Istigatore',
         'date'          => 'Data',
         'is_completed'  => 'Completata',
         'role'          => 'Ruolo',

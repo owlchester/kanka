@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-xs-8">
+<div class="grid gap-2 md:gap-4 grid-cols-4">
+    <div class="col-span-3">
         <x-forms.tags
             label=""
             allowClear="true"
@@ -7,7 +7,7 @@
             dropdownParent="#datagrid-filters">
         </x-forms.tags>
     </div>
-    <div class="col-xs-4">
+    <div class="">
         {!! Form::select(
             $field['field'] . '_option',
             [

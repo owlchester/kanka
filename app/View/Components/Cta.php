@@ -16,6 +16,7 @@ class Cta extends Component
     public bool $limit;
     public bool $superboost;
     public bool $minimal;
+    public bool $max;
     /**
      * Create a new component instance.
      */
@@ -27,6 +28,7 @@ class Cta extends Component
         bool $limit = false,
         bool $superboost = false,
         bool $minimal = false,
+        bool $max = false,
     ) {
         $this->campaign = $campaign;
         $this->title = $title;
@@ -35,6 +37,7 @@ class Cta extends Component
         $this->limit = $limit;
         $this->superboost = $superboost;
         $this->minimal = $minimal;
+        $this->max = $max;
     }
 
     /**

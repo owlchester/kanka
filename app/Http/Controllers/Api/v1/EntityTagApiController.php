@@ -45,7 +45,9 @@ class EntityTagApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $model = EntityTag::create($request->all());
+        $data = $request->all();
+        $data['entity_id'] = $entity->id;
+        $model = EntityTag::create($data);
         return new Resource($model);
     }
 

@@ -17,32 +17,18 @@
 @section('content')
     @include('partials.errors')
     {!! Form::open(['route' => ['timelines.timeline_elements.store', $timeline], 'method' => 'POST', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
-    <div class="panel panel-default">
-        @if (request()->ajax())
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
-                    {{ __('timelines/elements.create.title', ['name' => $timeline->name]) }}
-                </h4>
-            </div>
-        @endif
-        <div class="panel-body">
-            @include('timelines.elements._form', ['model' => null])
-        </div>
-        <div class="panel-footer">
-            <a href="{{ route('timelines.show', $timeline) }}" class="btn btn-default">
-                {{ __('crud.cancel') }}
-            </a>
-            <div class="form-element pull-right">
+    <x-box>
+        @include('timelines.elements._form', ['model' => null])
+        <x-dialog.footer>
+            <div class="form-element">
                 <div class="submit-group">
-                    <button class="btn btn-success">{{ trans('crud.save') }}</button>
+                    <button class="btn2 btn-primary">{{ trans('crud.save') }}</button>
                 </div>
                 <div class="submit-animation" style="display: none;">
-                    <button class="btn btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                    <button class="btn2 btn-primary" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                 </div>
             </div>
-        </div>
-    </div>
+        </x-dialog.footer>
+    </x-box>
     {!! Form::close() !!}
 @endsection

@@ -4,11 +4,11 @@
     @include('entities.creator.header.header')
     <div class="quick-creator-body">
         @if ($templates->isEmpty())
-            <x-alert type="info">
+            <p class="">
                 <a href="//docs.kanka.io/en/latest/guides/templates.html" target="_blank">
                     <i class="fa-solid fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
                 </a>
-            </x-alert>
+            </p>
         @else
             <ul>
                 @foreach ($templates as $template)

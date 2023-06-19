@@ -7,7 +7,4 @@
             null
         ]
     ])
-    <div class="entity-main-block">
-        @include('entities.pages.logs.history')
-    </div>
 </div>

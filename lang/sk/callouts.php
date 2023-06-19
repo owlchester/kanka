@@ -23,9 +23,15 @@ return [
             'superboosted'  => 'Superboostnutá funkcia',
         ],
     ],
+    'premium'   => [
+        'learn-more'    => 'Čo sú prémiové kampane?',
+        'limitation'    => 'Na prístup k tejto funkcionalite musia byť aktivované prémiové funkcionality.',
+        'title'         => 'Funkcionalita prémiovej kampane',
+        'unlock'        => 'Odomkni prémiové funkcionality pre :campaign',
+    ],
     'subscribe' => [
-        'pitch-2fa'     => 'Zakúp si predplatné a odomkni bezpečné prihlasovanie dvojstupňovým overovaním identity a ďalšie :more.',
         'pitch-image'   => 'Kúp si predplatné, aby sa odomkla :max MB veľkosť nahrávaných súborov.',
         'share-booster' => 'Boostni :campaign, aby sa zvýšila veľkosť nahrávaných súborov pre všetkých členov kampane.',
+        'share-premium' => 'Zvýš hranicu veľkosti nahrávaných súborov pre všetkých členov kampane pomocou prémia.',
     ],
 ];

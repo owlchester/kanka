@@ -13,10 +13,10 @@
     {!! Form::model($relation, ['route' => ['entities.relations.update', $entity->id, $relation], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
 
     @include('partials.forms.form', [
-            'title' => __('entities/relations.update.title', ['name' => $entity->name]),
-            'content' => 'entities.pages.relations._form',
-            'deleteID' => '#delete-relation-' . $relation->id
-        ])
+        'title' => __('entities/relations.update.title', ['name' => $entity->name]),
+        'content' => 'entities.pages.relations._form',
+        'deleteID' => '#delete-relation-' . $relation->id
+    ])
 
     @if(!empty($from))
         <input type="hidden" name="from" value="{{ $from }}" />

@@ -15,7 +15,6 @@ return [
         'success'       => 'Zaměření pohledu aktualizováno',
         'title'         => 'Zaměření pohledu objektu :name',
         'unboosted'     => 'Nastavit zaměření pohledu je dostupné pouze pro :boosted-campaigns.',
-        'warning'       => 'Bod zaměření lze nastavit pouze pokud objekt používá obrázek z galerie.',
     ],
     'replace'   => [
         'breadcrumb'    => 'Výměna obrázku',

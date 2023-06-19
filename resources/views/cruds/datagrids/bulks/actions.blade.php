@@ -8,13 +8,13 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     if ($datagridActions->hasBulkEditing()) {
         $dropdownActions[] = '
         <a href="#" class="bulk-edit" data-toggle="modal" data-target="#bulk-edit.modal" data-bulk-action="batch">
-            <x-icon class="edit"></x-icon> ' . __('crud.bulk.actions.edit') . '
+            <i class="fa-solid fa-pencil" aria-hidden="true"></i> ' . __('crud.bulk.actions.edit') . '
         </a>';
     }
     if ($datagridActions->hasBulkPermissions()) {
         $dropdownActions[] = '
             <a href="#" class="bulk-permissions" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', ['view' => 'permissions']) . '" data-bulk-action="ajax">
-                <x-icon class="cog"></x-icon> ' .  __('crud.bulk.actions.permissions') . '
+                <i class="fa-solid fa-cog" aria-hidden="true"></i> ' .  __('crud.bulk.actions.permissions') . '
             </a>';
     }
     if ($datagridActions->hasBulkTemplate() && $campaign->enabled('entity_attributes')) {
@@ -57,11 +57,11 @@ if (auth()->check() && auth()->user()->can('delete', $model)) {
 
 @if (!empty($dropdownActions))
 <div class="datagrid-bulk-actions inline-block">
-    <div class="btn-group">
-        <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right">
+    <div class="dropdown">
+        <button class="dropdown-toggle btn2" data-toggle="dropdown" aria-expanded="false" data-placement="right">
             {{ __('crud.bulk.buttons.label') }}
             <span class="caret"></span>
-        </a>
+        </button>
         <ul class="dropdown-menu" role="menu">
             @foreach ($dropdownActions as $dropdownAction)
                 @if ($dropdownAction === 'divider')

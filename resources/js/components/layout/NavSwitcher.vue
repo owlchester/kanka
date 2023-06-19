@@ -5,8 +5,8 @@
             <span class="sr-only">Campaigns</span>
         </div>
         <div class="profile inline cursor-pointer text-center uppercase pt-1" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
-            <div class="indicator">
-                <span class="notification-badge" v-if="show_alerts"></span>
+            <div class="indicator relative inline-flex w-max">
+                <span class="notification-badge left-auto top-auto w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">
                     {{ initials }}
                 </div>
@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="navigation-drawer h-full overflow-y-auto safsdf fixed top-0 right-0 rounded-l-2xl shadow-lg" v-if="is_expanded" v-click-outside="onClickOutside">
+    <div class="navigation-drawer bg-base-100 h-full overflow-y-auto safsdf fixed top-0 right-0 rounded-l-2xl shadow-lg" v-if="is_expanded" v-click-outside="onClickOutside">
         <div class="temporary p-8 text-center" v-if="is_loading">
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
         </div>
@@ -102,21 +102,21 @@
 
                     <div class="grid grid-cols-3 gap-2">
                         <a v-bind:href="marketplace.themes.url" class="border py-2 text-center justify-center rounded-md hover:shadow-md" target="_blank">
-                            <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
+                            <div class="icon bg-base-200 rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                                 <i class="fa-solid fa-palette mt-3" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.themes.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.themes.number }}</div>
                         </a>
                         <a v-bind:href="marketplace.sheets.url" class="border py-2 text-center justify-center rounded-md hover:shadow-md" target="_blank">
-                            <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
+                            <div class="icon bg-base-200 rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                             <i class="fa-solid fa-columns mt-3" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.sheets.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.sheets.number }}</div>
                         </a>
                         <a v-bind:href="marketplace.content.url" class="border py-2 text-center justify-center rounded-md hover:shadow-md" target="_blank">
-                            <div class="icon rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
+                            <div class="icon bg-base-200 rounded-full w-14 h-14 mb-1 text-3xl inline-block aspect-square">
                                 <i class="fa-solid fa-dice-d20 mt-3" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.content.title }}</div>
@@ -340,7 +340,7 @@ export default {
             if (active) {
                 return 'block p-4 flex-grow items-center focus:box-shadow';
             }
-            return 'block p-4  items-center inactive cursor-pointer flex-none focus:box-shadow';
+            return 'block p-4  items-center bg-base-200 cursor-pointer flex-none focus:box-shadow';
         },
         logout: function() {
             //console.info('loging out');

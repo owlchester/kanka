@@ -9,6 +9,7 @@ return [
         'results'   => 'Výsledky',
     ],
     'no_results'    => 'Bez výsledkov.',
+    'placeholder'   => 'HĽADAJ',
     'preview'       => [
         'links'             => 'Linky',
         'no-connections'    => 'Žiadne pripnuté vzťahy na zobrazenie',

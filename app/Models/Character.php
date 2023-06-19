@@ -146,7 +146,7 @@ class Character extends MiscModel
                 $sub->select('id', 'name', 'entity_id', 'type_id', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
-                $sub->select('campaign_id', 'id', 'ext');
+                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
             'location' => function ($sub) {
                 $sub->select('id', 'name');
@@ -259,15 +259,6 @@ class Character extends MiscModel
         return $this->belongsToMany('App\Models\Organisation', 'organisation_member')
             ->orderBy('organisation_member.id')
             ->with('entity');
-    }
-
-    /**
-     * Query to get quests where the character is the "quest giver"
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function questGiver()
-    {
-        return $this->hasMany('App\Models\Quest', 'character_id', 'id');
     }
 
     /**

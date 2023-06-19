@@ -16,7 +16,6 @@ return [
         'success'       => 'Zmieniono punkt centralny.',
         'title'         => 'Punkt centralny obrazu elementu :name',
         'unboosted'     => 'Punkt centalny można ustawiać tylko w :boosted-campaigns',
-        'warning'       => 'Nie można ustawić punktu centralnego dla obrazów elementów dodawanych z galerii.',
     ],
     'replace'           => [
         'breadcrumb'    => 'Zmiana obrazu',

@@ -16,8 +16,8 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
         <div class="vm-placement" data-id="{{ config('tracking.venatus.profile') }}"></div>
     </div>
     @endads
-    <div class="sidebar-section-box entity-pins {{ $model->entity->hasPins() ? '' : 'entity-empty-pin' }}">
-        <div class="sidebar-section-title cursor-pointer text-lg user-select" data-toggle="collapse" data-target="#sidebar-pinned-elements">
+    <div class="sidebar-section-box entity-pins mb-5  overflow-hidden {{ $model->entity->hasPins() ? '' : 'entity-empty-pin' }}">
+        <div class="sidebar-section-title cursor-pointer text-lg user-select border-b" data-toggle="collapse" data-target="#sidebar-pinned-elements">
             <i class="fa-solid fa-chevron-right" aria-hidden="true" style="display: none"></i>
             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
 
@@ -26,9 +26,9 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
                 <x-icon class="fa-solid fa-question-circle pull-right"></x-icon>
             </a>
         </div>
-        <div class="sidebar-elements grid my-1 collapse !visible in" id="sidebar-pinned-elements">
-            <ul class="pins m-0 p-0 list-none">
-                @includeWhen(!$model->entity->pinnedFiles->isEmpty(), 'entities.components.assets')
+        <div class="sidebar-elements grid collapse !visible in overflow-hidden" id="sidebar-pinned-elements">
+            <ul class="pins m-0 my-1 p-0 list-none">
+                @includeWhen(!$model->entity->pinnedFiles->isEmpty() || !$model->entity->pinnedAliases->isEmpty(), 'entities.components.assets')
                 @include('entities.components.relations')
                 @includeWhen(method_exists($model, 'pinnedMembers') && !$model->pinnedMembers->isEmpty(), 'entities.components.members')
                 @includeWhen($model->entity->accessAttributes(), 'entities.components.attributes')
@@ -40,3 +40,5 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
 @includeIf('entities.components.profile.' . $name)
 
 @includeWhen(!isset($printing) && $campaignService->campaign()->boosted() && $model->entity->hasLinks(), 'entities.components.links')
+
+@include('entities.components.history')

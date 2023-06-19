@@ -256,6 +256,8 @@ class EntityService
             // relations and, since they won't make sense on the new campaign.
             $entity->relationships()->delete();
             $entity->targetRelationships()->delete();
+            $entity->events()->delete();
+            $entity->imageMentions()->delete();
 
             // Get the child of the entity (the actual Location, Character etc) and remove the permissions, since they
             // won't make sense on the new campaign either.
@@ -453,6 +455,11 @@ class EntityService
             }
         }
 
+        //Remove tags if converting to tag, since tags can't have tags.
+        if ($new->entityTypeId() === config('entities.ids.tag')) {
+            $entity->tags()->detach();
+        }
+
         $this->fixTree($new);
 
         // Finally, we can save. Should be all good.
@@ -592,6 +599,34 @@ class EntityService
                 $entityTypes[] = $this->singular($element);
             }
         }
+        return $entityTypes;
+    }
+
+    /**
+     * @param array $except
+     * @return array
+     */
+    public function getEnabledEntitiesSorted(bool $singular = true, $except = []): array
+    {
+        $entityTypes = [];
+        foreach ($this->entities() as $element => $class) {
+            if (in_array($element, $except)) {
+                continue;
+            }
+            if ($this->campaign->enabled($element)) {
+                /** @var MiscModel|mixed $misc */
+                $misc = new $class();
+                if ($singular) {
+                    $entityTypes[$this->singular($element)] = Module::singular($misc->entityTypeId(), __('entities.' . $this->singular($element)));
+                } else {
+                    $entityTypes[$this->singular($element)] = Module::plural($misc->entityTypeId(), __('entities.' . $element));
+                }
+            }
+        }
+
+        $collator = new \Collator(app()->getLocale());
+        $collator->asort($entityTypes);
+
         return $entityTypes;
     }
 

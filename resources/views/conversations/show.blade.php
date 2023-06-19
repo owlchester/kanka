@@ -12,27 +12,20 @@ $translations = json_encode([
 
 @section('entity-header-actions-override')
     @can('update', $model)
-        <div class="header-buttons inline-block pull-right ml-auto">
-            <a class="btn btn-default btn-sm" data-toggle="ajax-modal" data-target="#entity-modal"
+        <div class="header-buttons inline-block  flex gap-2 items-center justify-end">
+            <a class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#entity-modal"
                     data-url="{{ route('conversations.conversation_participants.index', $model) }}">
                 <x-icon class="fa-solid fa-users"></x-icon>
                 {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}
             </a>
-            <div class="btn-group">
-                <div class="btn btn-default btn-sm btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
-                    <i class="fa-solid fa-grip-lines" aria-hidden="true"></i>
-                </div>
-                <div class="btn btn-default btn-sm btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
-                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
-                </div>
-            </div>
+            @include('entities.headers.toggle')
             @can('update', $model)
-                <a href="{{ $model->getLink('edit') }}" class="btn btn-primary btn-sm ">
+                <a href="{{ $model->getLink('edit') }}" class="btn2 btn-primary btn-sm ">
                     <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
                 </a>
             @endcan
             @can('post', [$model, 'add'])
-                <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn btn-warning btn-sm btn-new-post"
+                <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn2 btn-accent btn-sm btn-new-post"
                    data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
                     <x-icon class="plus"></x-icon> {{ __('crud.actions.new_post') }}
                 </a>
@@ -57,8 +50,7 @@ $translations = json_encode([
 
 <div class="entity-story-block">
 
-<div class="box box-solid">
-    <div class="box-body">
+    <x-box>
         <div class="box-conversation" id="conversation">
             <conversation
                     id="{{ $model->id }}"
@@ -71,11 +63,9 @@ $translations = json_encode([
             >
             </conversation>
         </div>
-    </div>
-</div>
+    </x-box>
 
-@include('entities.components.posts')
-@include('entities.pages.logs.history')
+    @include('entities.components.posts')
 </div>
 
 <div class="entity-sidebar">

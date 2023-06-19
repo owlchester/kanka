@@ -16,32 +16,19 @@
 
     {!! Form::model($entity->child, ['route' => ['entities.entry.update', $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form', 'data-maintenance' => 1, 'data-unload' => 1,]) !!}
 
-    <div class="box box-solid">
-        @if (request()->ajax())
-            <div class="box-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
-                    {{ __('entities/entry.update.title', ['name' => $entity->name]) }}
-                </h4>
-            </div>
-        @endif
-        <div class="box-body">
-            @include('partials.errors')
+        @include('partials.errors')
 
 
-            <div class="form-group">
-                {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
-            </div>
+        <div class="field-entry">
+            {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
         </div>
-        <div class="box-footer">
-            <div class="pull-right">
-                <button class="btn btn-success" id="form-submit-main">{{ __('crud.update') }}</button>
+
+        <div class="flex gap-2 items-center">
+            <div class="grow">
+                @include('partials.footer_cancel')
             </div>
-            <a href="{{ url()->previous() }}" class="btn btn-default">
-                {{ __('crud.cancel') }}
-            </a>
+            <button class="btn2 btn-primary" id="form-submit-main">{{ __('crud.update') }}</button>
         </div>
-    </div>
 
     {!! Form::close() !!}
 

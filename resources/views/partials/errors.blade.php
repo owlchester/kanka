@@ -1,5 +1,5 @@
 @if (count($errors) > 0)
-    <x-alert type="danger">
+    <x-alert type="error">
         <strong>{{ __('partials.errors.title') }}</strong>
         {{ __('partials.errors.description') }}<br>
         <ul>

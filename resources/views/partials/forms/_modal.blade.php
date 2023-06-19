@@ -6,7 +6,7 @@
                 @if (isset($titleIcon) && !empty($titleIcon))
                     <span>{!! $titleIcon !!}</span>
                 @endif
-                {{ $title }}
+                {!! $title !!}
             </div>
         </div>
     </div>
@@ -17,21 +17,16 @@
     @if (isset($actions))
         @includeWhen(!empty($actions), $actions)
     @else
-    <button class="btn btn-success">
+    <button class="btn2 btn-primary">
         {{ $submit ?? __('crud.save') }}
     </button>
     @endif
     <div class="pull-left">
-        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
+        <button type="button" class="btn2 btn-ghost" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
             {{ __('crud.cancel') }}
         </button>
         @if (isset($deleteID) && !empty($deleteID))
-            <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
-               title="{{ __('crud.delete_modal.title') }}"
-               data-content="<p>{{ __('crud.delete_modal.permanent') }}</p>
-                           <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='{{ $deleteID }}'>{{ __('crud.remove') }}</a>">
-                <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-            </a>
+            <x-button.delete-confirm target="{{ $deleteID }}" />
         @endif
     </div>
 </div>

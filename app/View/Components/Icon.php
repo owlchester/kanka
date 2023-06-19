@@ -12,6 +12,7 @@ class Icon extends Component
     public ?string $title;
     public ?string $tooltip;
     public ?string $link;
+    public ?string $size;
 
     /**
      * Create a new component instance.
@@ -21,12 +22,14 @@ class Icon extends Component
         string $tooltip = null,
         string $title = null,
         string $link = null,
+        string $size = null,
     )
     {
         $this->class = $this->map($class);
         $this->tooltip = $tooltip;
         $this->title = $title;
         $this->link = $link;
+        $this->size = $size;
     }
 
     /**
@@ -54,6 +57,7 @@ class Icon extends Component
             'cog' => 'fa-solid fa-cog',
             'edit' => 'fa-solid fa-edit',
             'premium' => 'fa-solid fa-rocket',
+            'filter' => 'fa-solid fa-filter',
             default => $class,
         };
     }

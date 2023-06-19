@@ -8,17 +8,14 @@ function initQuickLinksForm() {
     if (selector.length === 0) {
         return false;
     }
+    selector.change(function (e) {
+        e.preventDefault();
+        let selected = $(this).find(":selected");
 
-    $('#quick-link-selector .btn-app').each(function (i) {
-        $(this).click(function () {
-            // Hide the others and activate this one
-            $('.quick-link-subform').hide();
-            $('#quick-link-selector .btn-app').removeClass('btn-active');
+        $('.quick-link-subform').hide();
 
-            let target = $(this).data('type');
-            $(this).addClass('btn-active');
-            $('#quick-link-' + target).show();
-        });
+        let target = selected.data('target');
+        $(target).show();
     });
 }
 

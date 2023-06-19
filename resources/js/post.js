@@ -48,7 +48,7 @@ function registerPermissionDeleteEvents() {
     $.each($('.post-delete-perm'), function () {
         $(this).unbind('click');
         $(this).on('click', function () {
-            $(this).parent().parent().parent().parent().remove();
+            $(this).closest('.grid').remove();
         });
     });
 }

@@ -30,7 +30,6 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Предлагающий',
         'copy_elements' => 'Копировать элементы квеста',
         'date'          => 'Дата',
         'element_role'  => 'Роль',

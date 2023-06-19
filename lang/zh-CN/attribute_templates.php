@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => ':name特质模板',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => '新建特质模板',
     ],

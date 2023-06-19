@@ -146,11 +146,9 @@ return [
             ],
             'entity-header'     => 'Utilitza la capçalera de l\'entitat com a imatge',
             'filters'           => 'Filtres',
-            'full'              => 'Completa',
             'help'              => 'Mostra només la previsualització de l\'última entitat actualitzada.',
             'helpers'           => [
                 'entity-header'     => 'Si l\'entitat té una capçalera (funcionalitat de campanyes millorades), podeu indicar que aquest widget la utilitzi en comptes de la imatge de l\'entitat.',
-                'full'              => 'Mostra tota l\'entitat per defecte en comptes d\'una previsualització.',
                 'show_attributes'   => 'Mostra els atributs de l\'entitat sota la descripció.',
                 'show_members'      => 'Si l\'entitat és una família o una organització, mostra els seus membres sota la descripció.',
                 'show_relations'    => 'Mostra les anotacions fixades sota l\'entrada de l\'entitat.',

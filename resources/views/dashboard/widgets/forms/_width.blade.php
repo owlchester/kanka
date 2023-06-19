@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="field-width">
     <label>{{ __('dashboard.widgets.fields.width') }}</label>
     {!! Form::select('width', [
         0 => __('dashboard.widgets.widths.0'),

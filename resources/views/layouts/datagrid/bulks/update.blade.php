@@ -1,22 +1,21 @@
 <form method="POST" action="{{ $route }}">
     @csrf
     <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal"
-                aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span>
-        </button>
+        <x-dialog.close />
         <h3 class="modal-title mb-5">
             {{ __('crud.bulk.edit.title') }}
         </h3>
 
-        @include('layouts.datagrid.bulks.' . $view)
+        <x-grid type="1/1">
+            @include('layouts.datagrid.bulks.' . $view)
+        </x-grid>
 
-    </div>
-    <div class="modal-footer">
-        <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-        <button class="btn btn-success" type="submit">
-            <x-icon class="save"></x-icon>
-            {{ __('crud.actions.apply') }}
-        </button>
+        <x-dialog.footer>
+            <button class="btn2 btn-primary" type="submit">
+                <x-icon class="save"></x-icon>
+                {{ __('crud.actions.apply') }}
+            </button>
+        </x-dialog.footer>
     </div>
 
 @foreach ($models as $model)

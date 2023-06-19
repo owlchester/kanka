@@ -10,34 +10,35 @@
 
 @section('content')
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+        <x-dialog.close />
         <h4>{{ __('conversations.participants.modal', ['name' => $model->name]) }}</h4>
     </div>
     <div class="modal-body">
-        <ul class="list-group list-group-unbordered mb-5">
+        <div class="mb-5">
             @foreach ($model->participants as $participant)
                 @if ($participant->isMember() || (auth()->check() && auth()->user()->can('view', $participant->entity())))
-                <li class="list-group-item">
                     @can('update', $model)
-                        {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $model, $participant], 'style'=>'display:inline']) !!}
+                        {!! Form::open(['method' => 'DELETE', 'route' => ['conversations.conversation_participants.destroy', $model, $participant], 'class'=>'flex gap-2 mb-2']) !!}
                     @endcan
 
+                    <div class="grow">
                     @if ($participant->isMember())
                         {{ $participant->entity()->name }}
                     @else
                         <a href="{{ route('characters.show', $participant->entity()) }}">{{ $participant->entity()->name }}</a>
                     @endif
+                    </div>
 
                     @can('update', $model)
-                        <button class="btn btn-xs btn-danger pull-right">
-                            <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
+                        <button class="btn2 btn-error btn-outline btn-sm">
+                            <x-icon class="trash"></x-icon>
+                            <span class="sr-only">{{ __('crud.remove') }}</span>
                         </button>
                         {!! Form::close() !!}
                     @endcan
-                </li>
                 @endif
             @endforeach
-        </ul>
+        </div>
 
         @can('update', $model)
             @include('partials.errors')
@@ -46,24 +47,22 @@
             {!! Form::open(['route' => ['conversations.conversation_participants.store', $model], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
             <div class="flex gap-2 items-center">
                 <div class="grow">
-                    <div class="form-group required">
-                        @if ($model->forCharacters())
-                            @include('cruds.fields.character')
-                        @else
-                            {!! Form::select(
-                                'user_id',
-                                $memberList,
-                                null,
-                                ['class' => 'form-control']
-                            ) !!}
-                        @endif
-                    </div>
+                    @if ($model->forCharacters())
+                        @include('cruds.fields.character', ['allowNew' => false])
+                    @else
+                        {!! Form::select(
+                            'user_id',
+                            $memberList,
+                            null,
+                            ['class' => 'form-control']
+                        ) !!}
+                    @endif
                 </div>
-                <div class="flex-none">
+                <div class="">
                     @if ($model->target ==  \App\Models\Conversation::TARGET_CHARACTERS)
                         <label></label>
                     @endif
-                    <button class="btn btn-primary btn-info btn-flat btn-block">
+                    <button class="btn2 btn-primary btn-block">
                         <x-icon class="plus"></x-icon> {{ __('crud.add') }}
                     </button>
                 </div>

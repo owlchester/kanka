@@ -29,6 +29,7 @@ return [
                 'title'     => 'Ajouter un enfant',
             ],
             'edit'  => [
+                'helper'    => 'Sélectionner des options si la relation est inconnue. Un personnage peut être ajouté plus tard.',
                 'success'   => 'Entité modifiée.',
                 'title'     => 'Modifier une entité',
             ],
@@ -38,14 +39,15 @@ return [
             ],
         ],
         'relations' => [
-            'add'   => [
+            'add'       => [
                 'success'   => 'Relation ajoutée.',
                 'title'     => 'Ajouter une relation',
             ],
-            'edit'  => [
+            'edit'      => [
                 'success'   => 'Relation modifiée.',
                 'title'     => 'Modifier une relation',
             ],
+            'unknown'   => 'Inconnu',
         ],
         'reset'     => [
             'confirm'   => 'Es-tu sûr de vouloir annuler toutes les modifications faites à l\'arbre de famille?',

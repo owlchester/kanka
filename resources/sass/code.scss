@@ -1,0 +1,33 @@
+code, pre, kbd {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--n)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--nc)/var(--tw-text-opacity));
+    border: none;
+    margin-bottom: .5rem;
+    border-radius: .5rem;
+}
+code {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b3)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--erc)/var(--tw-text-opacity));
+    font-size: 0.8rem;
+}
+pre {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--bc)/var(--tw-text-opacity));
+    display: block;
+    word-break: break-all;
+    word-wrap: break-word;
+    padding: .5rem;
+    overflow: auto;
+}
+code, kbd {
+    font-family: monospace;
+}
+kbd, code {
+    padding: .1rem .25rem;
+}

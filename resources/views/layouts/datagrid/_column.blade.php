@@ -1,3 +1,3 @@
-<td class="{{ $column->css() }}">
+<td class="!align-middle {{ $column->css() }}">
     {!! $column !!}
 </td>

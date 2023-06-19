@@ -12,14 +12,17 @@
 
 @section('entity-header-actions')
     @can('update', $entity->child)
-        <div class="header-buttons inline-block pull-right ml-auto">
-            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_ALIAS]) }}">
+        <div class="header-buttons inline-block flex gap-2 items-center justify-end flex-wrap">
+            <a href="https://docs.kanka.io/en/latest/features/assets.html" target="_blank" class="btn2 btn-ghost btn-sm">
+                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+            </a>
+            <a href="#" class="btn2 btn-accent btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_ALIAS]) }}">
                 <x-icon class="plus"></x-icon> {{ __('entities/assets.actions.alias') }}
             </a>
-            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_FILE]) }}">
+            <a href="#" class="btn2 btn-accent btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_FILE]) }}">
                 <x-icon class="plus"></x-icon> {{ __('entities/assets.actions.file') }}
             </a>
-            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_LINK]) }}">
+            <a href="#" class="btn2 btn-accent btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_LINK]) }}">
                 <x-icon class="plus"></x-icon> {{ __('entities/assets.actions.link') }}
             </a>
         </div>
@@ -55,13 +58,13 @@
                         @includeWhen($asset->isAlias(), 'entities.pages.assets._alias')
                     @empty
                         @can('update', $entity->child)
-                            <a href="#" class="btn btn-app py-5 flex flex-col gap-3" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_ALIAS]) }}">
+                            <a href="#" class="btn2 btn-accent btn-outline" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_ALIAS]) }}">
                                 <x-icon class="plus"></x-icon> {{ __('entities/assets.actions.alias') }}
                             </a>
-                            <a href="#" class="btn btn-app py-5 flex flex-col gap-3" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_FILE]) }}">
+                            <a href="#" class="btn2 btn-accent btn-outline" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_FILE]) }}">
                                 <x-icon class="plus"></x-icon> {{ __('entities/assets.actions.file') }}
                             </a>
-                            <a href="#" class="btn btn-app py-5 flex flex-col gap-3" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_LINK]) }}">
+                            <a href="#" class="btn2 btn-accent btn-outline" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_assets.create', [$entity, 'type' => \App\Models\EntityAsset::TYPE_LINK]) }}">
                                 <x-icon class="plus"></x-icon> {{ __('entities/assets.actions.link') }}
                             </a>
                         @endcan

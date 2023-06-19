@@ -4,7 +4,7 @@
         1 => __('pins.options.yes')
     ];
 @endphp
-<div class="form-group">
+<div class="field-pinned">
     <label>
         {{ __('crud.fields.is_star') }}
         <a href="https://docs.kanka.io/en/latest/features/profile-sidebar/how-to-pin-elements.html" target="_blank">

@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'actions'   => [
+        'subscribe' => [
+            'monthly'   => ':grado al mese',
+            'yearly'    => ':grado all\'anno',
+        ],
+    ],
     'current'   => 'Il tuo attuale abbonamento',
     'features'  => [
         'api_requests'      => ':amount richieste APi/minuto',
@@ -16,5 +22,16 @@ return [
         'pagination'        => ':amount risultati per pagina (massimo di entità mostrate per pagina)',
         'vote_influence'    => 'Influenza sul voto della Community',
     ],
+    'periods'   => [
+        'monthly'   => 'al mese',
+        'yearly'    => 'all\'anno',
+    ],
     'pricing'   => ':currency :amount / mese',
+    'ribbons'   => [
+        'best-value'    => 'Più conveniente',
+        'popular'       => 'Popolare',
+    ],
+    'toggle'    => [
+        'yearly'    => 'all\'anno (con un mese gratis!)',
+    ],
 ];

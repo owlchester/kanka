@@ -14,6 +14,8 @@ Route::get('/gallery/load', 'Campaign\GalleryController@load')->name('campaign.g
 Route::get('/gallery/search', 'Campaign\GalleryController@search')->name('campaign.gallery.search');
 Route::post('/gallery/ajax-upload', 'Campaign\GalleryController@ajaxUpload')->name('campaign.gallery.ajax-upload');
 Route::get('/gallery/ajax-gallery', 'Campaign\AjaxGalleryController@index')->name('campaign.gallery.summernote');
+Route::post('/gallery/{image}/save-focus', 'Campaign\GalleryController@saveFocus')->name('campaign.gallery.save-focus');
+//Route::get('/entities/{entity}/image-focus', [\App\Http\Controllers\Entity\ImageController::class, 'focus'])->name('entities.image.focus');
 
 // Abilities
 Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
@@ -133,6 +135,7 @@ Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('cal
 
 // Attribute multi-save
 Route::get('/entities/{entity}/attributes', [\App\Http\Controllers\Entity\AttributeController::class, 'index'])->name('entities.attributes');
+Route::get('/entities/{entity}/attributes-dashboard', [\App\Http\Controllers\Entity\AttributeController::class, 'dashboard'])->name('entities.attributes-dashboard');
 Route::get('/entities/{entity}/attributes/edit', [\App\Http\Controllers\Entity\AttributeController::class, 'edit'])->name('entities.attributes.edit');
 Route::post('/entities/{entity}/attributes/save', [\App\Http\Controllers\Entity\AttributeController::class, 'save'])->name('entities.attributes.save');
 Route::get('/entities/{entity}/attributes/live-edit/', [\App\Http\Controllers\Entity\AttributeController::class, 'liveEdit'])
@@ -200,6 +203,7 @@ Route::get('/members/switch/{campaign_user}/{entity}', 'Campaign\MemberControlle
 
 
 Route::post('/campaign_users/{campaign_user}/update-role/{campaign_role}', 'Campaign\MemberController@updateRoles')->name('campaign_users.update-roles');
+Route::get('/campaign_users/{campaign_user}/delete', [\App\Http\Controllers\Campaign\MemberController::class, 'delete'])->name('campaign_users.delete');
 
 // Recovery
 Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');
@@ -333,6 +337,9 @@ Route::delete('/destroy', [\App\Http\Controllers\CampaignController::class, 'des
 
 Route::post('/campaign_styles/bulk', 'Campaign\StyleController@bulk')->name('campaign_styles.bulk');
 Route::post('/campaign_styles/reorder', 'Campaign\StyleController@reorder')->name('campaign_styles.reorder-save');
+Route::get('/theme-builder', [\App\Http\Controllers\Campaign\ThemeBuilderController::class, 'index'])->name('campaign_styles.builder');
+Route::post('/theme-builder', [\App\Http\Controllers\Campaign\ThemeBuilderController::class, 'save'])->name('campaign_styles.builder-save');
+Route::delete('/theme-builder', [\App\Http\Controllers\Campaign\ThemeBuilderController::class, 'reset'])->name('campaign_styles.builder-reset');
 
 Route::get('/campaigns/{campaign}/dashboard-header/{campaignDashboardWidget?}', 'Campaign\DashboardHeaderController@edit')->name('campaigns.dashboard-header.edit');
 Route::patch('/campaigns/{campaign}/dashboard-header', 'Campaign\DashboardHeaderController@update')->name('campaigns.dashboard-header.update');
@@ -457,7 +464,7 @@ Route::get('/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-
 Route::post('/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');
 Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaign.export');
 Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
-Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
+Route::get('/campaign.styles', [\App\Http\Controllers\CampaignController::class, 'css'])->name('campaign.css');
 Route::get('/campaign_plugin.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
 Route::get('/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');

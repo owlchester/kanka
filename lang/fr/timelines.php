@@ -27,6 +27,7 @@ return [
         'type'  => 'Principale, chronique du monde, chronologie du royaume',
     ],
     'reorder'       => [
+        'empty'     => 'Il faut en premier ajouter des ères et éléments à la chronologie pour pouvoir la réordonner.',
         'success'   => 'Chronologie réordonnée.',
         'title'     => 'Réordonner la chronologie',
     ],

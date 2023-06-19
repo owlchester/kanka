@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Trait Starred
  * @package App\Models\Scopes
  *
+ * @property bool $is_star
  * @method static self|Builder stared(bool $star = true)
  */
 trait Starred

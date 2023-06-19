@@ -14,19 +14,17 @@
     <p class="text-lg">
         {{ __('profiles.newsletter.helpers.header') }}
     </p>
-    <x-box>
-        <div class="form-group checkbox">
-            <label>
-                {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
-                {!! __('profiles.newsletter.options.monthly') !!}
-            </label>
-            <p class="help-block">
-                {{ __('front/newsletter.groups.all') }}
-            </p>
-        </div>
+    <div class="field-mail-release checkbox">
+        <label>
+            {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
+            {!! __('profiles.newsletter.options.monthly') !!}
+        </label>
+        <p class="help-block">
+            {{ __('front/newsletter.groups.all') }}
+        </p>
+    </div>
 
-        <input type="hidden" id="newsletter-api" value="{{ route('settings.newsletter-api') }}" />
-    </x-box>
+    <input type="hidden" id="newsletter-api" value="{{ route('settings.newsletter-api') }}" />
 @endsection
 
 @section('scripts')

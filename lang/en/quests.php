@@ -28,10 +28,10 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Instigator',
         'copy_elements' => 'Copy elements attached to the quest',
         'date'          => 'Date',
         'element_role'  => 'Role',
+        'instigator'    => 'Instigator',
         'is_completed'  => 'Completed',
         'role'          => 'Role',
     ],

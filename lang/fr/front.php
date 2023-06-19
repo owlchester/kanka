@@ -145,7 +145,6 @@ return [
             'title'         => 'Journaux',
         ],
         'patreon'           => [
-            '2fa'               => 'Accès à l\'authentification à deux facteurs',
             'api_calls'         => 'Limite de requête API (90)',
             'boosts'            => 'Boosters de campagne',
             'bragi'             => 'Accès à Bragi, l\'IA worldbuilding de Kanka',

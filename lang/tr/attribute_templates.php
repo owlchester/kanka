@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => ':name özellik taslakları',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Yeni Özellik Taslağı',
     ],

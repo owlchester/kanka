@@ -10,16 +10,20 @@
 
 @section('entity-header-actions')
     <div class="header-buttons inline-block pull-right ml-auto">
-        <a href="#" class="btn btn-default btn-sm" data-toggle="dialog" data-target="help-modal">
+        <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </a>
         @if (request()->has('tag_id'))
-            <a href="{{ route('tags.tags', [$model, '#tag-tags']) }}" class="btn btn-default btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
+            <a href="{{ route('tags.tags', [$model, '#tag-tags']) }}" class="btn2 btn-sm">
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
+                ({{ $model->descendants()->count() }})
             </a>
         @else
-            <a href="{{ route('tags.tags', [$model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn btn-default btn-sm">
-                <i class="fa-solid fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->tags()->count() }})
+            <a href="{{ route('tags.tags', [$model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn2 btn-sm">
+                <x-icon class="filter" />
+                <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
+                ({{ $model->tags()->count() }})
             </a>
         @endif
     </div>

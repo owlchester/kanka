@@ -8,12 +8,13 @@ $usages = [
 @endphp
 
 {{ csrf_field() }}
-<div class="form-group required">
-    <label>{{ __('campaigns.invites.fields.usage') }}</label>
-    {!! Form::select('validity', $usages, null, ['class' => 'form-control']) !!}
-</div>
-<div class="form-group required">
-    <label>{{ __('campaigns.invites.fields.role') }}</label>
-    {!! Form::select('role_id', auth()->user()->campaign->roles()->where(['is_public' => false, 'is_admin' => false])->pluck('name', 'id'), null, ['class' => 'select form-control']) !!}
-</div>
-
+<x-grid type="1/1">
+    <div class="field-usage required">
+        <label>{{ __('campaigns.invites.fields.usage') }}</label>
+        {!! Form::select('validity', $usages, null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="field-role required">
+        <label>{{ __('campaigns.invites.fields.role') }}</label>
+        {!! Form::select('role_id', auth()->user()->campaign->roles()->where(['is_public' => false, 'is_admin' => false])->pluck('name', 'id'), null, ['class' => 'select form-control']) !!}
+    </div>
+</x-grid>

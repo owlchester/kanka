@@ -16,7 +16,6 @@ return [
         'success'       => 'Foco da imagem atualizado.',
         'title'         => 'Foco da imagem da entidade :name',
         'unboosted'     => 'Definir um ponto de foco da imagem é reservado a :boosted-campaigns.',
-        'warning'       => 'A definição do ponto de foco não está disponível quando a imagem da entidade é definida na galeria.',
     ],
     'replace'           => [
         'breadcrumb'    => 'Substituição da imagem',

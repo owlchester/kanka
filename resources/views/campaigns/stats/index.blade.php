@@ -24,7 +24,7 @@ use \Illuminate\Support\Arr;
                 </h3>
 
                 @if ($campaign->superboosted())
-                    <button class="btn btn-sm btn-default pull-right" data-toggle="dialog"
+                    <button class="btn2 btn-sm pull-right" data-toggle="dialog"
                                  data-target="stats-help">
                         <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}
@@ -38,8 +38,8 @@ use \Illuminate\Support\Arr;
             @else
 
             @foreach ($stats as $key => $stat)
-                <div class="info-box shadow-xs h-24 block w-full rounded mb-4 flex align-center items-stretch level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-gray @elseif ($stat['level'] == 5) bg-yellow @else bg-aqua @endif">
-                    <div class="flex items-center justify-center flex-none info-box-icon text-4xl w-20">
+                <div class="shadow-xs h-24 block w-full overflow-hidden rounded mb-4 flex align-center items-stretch level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-base-200 text-base-content @elseif ($stat['level'] == 5) bg-warning text-warning-content @else bg-primary text-primary-content @endif">
+                    <div class="flex items-center justify-center flex-none bg-slate-800/20 text-4xl w-20">
                         <i class="{{ $stat['icon'] }}"></i><br />
                     </div>
 
@@ -49,10 +49,10 @@ use \Illuminate\Support\Arr;
                         'target' => Arr::get($stat, 'target', 0),
                     ]) }}</span>
                         @if($stat['level'] < 5)
-                        <div class="progress my-1">
-                            <div class="progress-bar" style="width: {{ Arr::get($stat, 'progress', 0) }}%"></div>
+                        <div class="h-0.5 w-full bg-gray-400 my-1">
+                            <div class="h-full bg-white" style="width: {{ Arr::get($stat, 'progress', 0) }}%"></div>
                         </div>
-                        <span class="px-2 m-0 progress-description truncate block">
+                        <span class="px-2 m-0 truncate block">
                         {{ __('campaigns/stats.placeholder', [
 'amount' =>  Arr::get($stat, 'amount', 0),
 'target' =>  Arr::get($stat, 'target', 0),

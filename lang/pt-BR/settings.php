@@ -70,6 +70,10 @@ return [
         ],
         'title'     => 'Integração de App',
     ],
+    'billing'       => [
+        'save'  => 'Salvar informações de cobrança',
+        'title' => 'Informações de Cobrança',
+    ],
     'boost'         => [
         'exceptions'    => [
             'already_boosted'       => 'Campanha :name já está sendo impulsionada.',
@@ -102,6 +106,7 @@ return [
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opções de Pagamento',
         'personal_settings'     => 'Configurações Pessoais',
+        'premium'               => 'Campanhas premium',
         'profile'               => 'Perfil público',
         'settings'              => 'Configurações',
         'subscription'          => 'Assitatura',
