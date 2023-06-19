@@ -163,9 +163,9 @@ class ImgService
         // Old system
         $thumborUrl = $this->crop . $filter . $img;
         $sign = $this->sign($thumborUrl);
-        return config('thumbor.url') . $sign . '/' . $this->crop . $filter
-            . $img
-        ;
+        return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
+            . 'src/' . urlencode($img)
+            ;
 
         /*return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
             . 'src/' . urlencode($img)
