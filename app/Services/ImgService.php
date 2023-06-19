@@ -127,6 +127,7 @@ class ImgService
      */
     public function url(string $img): string
     {
+        // Self-hosted with no s3/minio instance or SVG files load directly from the storage
         if (!$this->enabled || Str::contains($img, '?') || Str::endsWith($img, '.svg')) {
             return Storage::url($img);
         }
@@ -151,7 +152,15 @@ class ImgService
         if ($this->local) {
             return config('thumbor.url') . 'unsafe/' . $this->crop . $filter
                 . app()->environment() . '/' . urlencode($img);
+        } elseif (Str::contains(config('thumbor.url'), 'th.kanka.io')) {
+            // New server
+            $thumborUrl = $this->crop . $filter . $img;
+            $sign = $this->sign($thumborUrl);
+            return config('thumbor.url-new') . $sign . '/' . $this->crop . $filter
+                . $img
+                ;
         }
+        // Old system
         $thumborUrl = $this->crop . $filter . $img;
         $sign = $this->sign($thumborUrl);
         return config('thumbor.url') . $sign . '/' . $this->crop . $filter
