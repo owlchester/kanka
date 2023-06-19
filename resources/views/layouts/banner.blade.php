@@ -10,6 +10,10 @@
     </div>
 @endif
 
+
+<div class="bg-orange banner-notification p-2">
+    <strong>We are having issues with thumbnails and are working on restauring them as fast as possible. No images are lost.</strong>
+</div>
 @if (false)
 <div class="bg-orange banner-notification p-2">
     <span>
