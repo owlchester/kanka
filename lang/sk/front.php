@@ -145,7 +145,6 @@ return [
             'title'         => 'Denníkové záznamy',
         ],
         'patreon'           => [
-            '2fa'               => 'Prístup na dvojstupňové overenie identity',
             'api_calls'         => 'Vyšší počet API volaní (90)',
             'boosts'            => 'Boosty pre kampane',
             'bragi'             => 'Prístup ku Bragi, UI na tvorbu svetov v Kanke',

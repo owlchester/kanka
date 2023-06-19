@@ -145,7 +145,6 @@ return [
             'title'         => 'Diarios',
         ],
         'patreon'           => [
-            '2fa'               => 'Acceso a la autenticación de dos factores',
             'api_calls'         => 'Llamadas a la API aumentadas (90)',
             'boosts'            => 'Mejoras de campaña',
             'bragi'             => 'Acceso a Bragi, la IA de construcción de mundos de Kanka',

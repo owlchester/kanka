@@ -155,11 +155,9 @@ return [
             ],
             'entity-header'     => 'Verwenden Sie den Objekt-Header als Bild',
             'filters'           => 'Filter',
-            'full'              => 'Voll',
             'help'              => 'Nur das zuletzt aktualisierte Objekt anzeigen, aber eine vollständige Vorschau des Objektes anzeigen',
             'helpers'           => [
                 'entity-header'     => 'Wenn Ihr Objekt über einen Objekt-Header verfügt (erweiterte Kampagnenfunktion), stellen Sie dieses Widget so ein, dass dieses Bild anstelle des Bilds des Objektes verwendet wird.',
-                'full'              => 'Zeigen Sie standardmäßig den Eintrag des gesamten Objektes anstelle einer Vorschau an.',
                 'show_attributes'   => 'Zeigen Sie die Attribute der Objekte unter dem Eintrag an.',
                 'show_members'      => 'Wenn es sich bei dem Objekt um eine Familie oder Organisation handelt, zeigen Sie ihre Mitglieder unter dem Eintrag an.',
                 'show_relations'    => 'Zeigen Sie die angehefteten Beziehungen des Objekts unter dem Eintrag an.',

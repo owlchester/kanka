@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => 'Шаблон атрибута :name',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Новий шаблон атрибута',
     ],

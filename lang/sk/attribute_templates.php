@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => ':name Šablóny atribútov',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Nová šablóna atribútov',
     ],

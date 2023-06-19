@@ -30,7 +30,6 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Donator',
         'copy_elements' => 'Kopiuj elementy związane z zadaniem',
         'date'          => 'Data',
         'element_role'  => 'Rola',

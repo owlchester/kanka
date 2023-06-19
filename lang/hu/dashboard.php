@@ -132,11 +132,9 @@ return [
         'recent'        => [
             'entity-header'     => 'Használd az entitás fejlécet, mint képet',
             'filters'           => 'Szűrők',
-            'full'              => 'Teljes',
             'help'              => 'Csak az utoljára frissített entitást mutasd, de teljes előnézettel',
             'helpers'           => [
                 'entity-header'     => 'Ha az entitásodnak van beállított entitás fejléce (boost-olt kampányok számára elérhető funkció), akkor beállíthatod ezt a widget-et, hogy használja azt a képet, az entitás képe helyett.',
-                'full'              => 'Az entitás teljes bejegyzését jelenítsd meg, az előnézet helyett.',
                 'show_attributes'   => 'Mutasd meg az entitás kitűzött tulajdonságait a bejegyzés alatt.',
                 'show_members'      => 'Ha az entitás egy család vagy szervezet, mutasd meg a tagjait a bejegyzés alatt.',
                 'show_relations'    => 'Mutasd meg az entitás kitűzött kapcsolatait az entitás alatt.',

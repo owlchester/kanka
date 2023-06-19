@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => ':name predlošci svojstva',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Novi predložak svojstva',
     ],

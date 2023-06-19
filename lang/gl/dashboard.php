@@ -152,11 +152,9 @@ return [
             ],
             'entity-header'     => 'Usar cabeceira da entidade como imaxe',
             'filters'           => 'Filtros',
-            'full'              => 'Completo',
             'help'              => 'Mostra só a última entidade actualizada, pero mostra unha previsualización completa da entidade.',
             'helpers'           => [
                 'entity-header'     => 'Se a entidade ten unha cabeceira (funcionalidade de campañas potenciadas), activa este complemento para usar esa imaxe no lugar da imaxe da entidade.',
-                'full'              => 'Mostra a entidade completa por defecto en vez dunha previsualización.',
                 'show_attributes'   => 'Mostra os atributos fixados da entidade baixo a entrada.',
                 'show_members'      => 'Se a entidade é unha familia ou unha organización, mostra as súas integrantes baixo a entrada.',
                 'show_relations'    => 'Mostra as relacións fixadas da entidade baixo a súa entrada.',

@@ -115,11 +115,9 @@ return [
         ],
         'recent'        => [
             'entity-header' => 'Gebruik de entiteit header als afbeelding',
-            'full'          => 'Volledig',
             'help'          => 'Toon alleen de laatst bijgewerkte entiteit, maar toon een hele preview van de entiteit',
             'helpers'       => [
                 'entity-header' => 'Als je entiteit een entiteit header heeft (functie voor boosted campagnes), stel je deze widget in om die afbeelding te gebruiken in plaats van de afbeelding van de entiteit.',
-                'full'          => 'Geef standaard de invoer van de hele entiteit weer in plaats van een voorbeeld.',
             ],
             'singular'      => 'Enkelvoud',
             'tags'          => 'Filter de lijst met onlangs gewijzigde entiteiten op gespecificeerde tags.',

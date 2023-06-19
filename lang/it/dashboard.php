@@ -154,11 +154,9 @@ return [
             ],
             'entity-header'     => 'Usa l\'intestazione dell\'entità come immagine',
             'filters'           => 'Filtri',
-            'full'              => 'Intero',
             'help'              => 'Visualizza solamente l\'ultima entità aggiornata, ma visualizza un\'antemprima completa per la stessa.',
             'helpers'           => [
                 'entity-header'     => 'Se l\'entità ha un\'intestazione dell\'entità (funzione della campagna potenziata), imposta questo widget in modo che utilizzi quell\'immagine invece dell\'immagine dell\'entità.',
-                'full'              => 'Visualizza l\'intera entità in maniera predefinita invece di un\'anteprima.',
                 'show_attributes'   => 'Mostra gli attributi appuntati dell\'entità sotto la voce.',
                 'show_members'      => 'Se l\'entità è una famiglia o un\'organizzazione, indica i suoi membri sotto la voce.',
                 'show_relations'    => 'Mostra le relazioni appuntate dell\'entità sotto la voce.',

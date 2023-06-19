@@ -136,7 +136,6 @@ return [
             'title'         => 'Cadernos',
         ],
         'patreon'           => [
-            '2fa'               => 'Acceso á autentificación en dous factores',
             'api_calls'         => 'Aumento de chamadas á API (90 por minuto)',
             'boosts'            => 'Potenciadores de campaña',
             'click-me'          => 'Saber máis desta funcionalidade.',

@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => 'Szablony cech :name',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Nowy szablon cech',
     ],

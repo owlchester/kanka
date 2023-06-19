@@ -15,7 +15,6 @@ return [
         'success'       => 'S\'ha actualitzat l\'enquadrament de la imatge.',
         'title'         => 'Enquadrament de la imatge de :name',
         'unboosted'     => 'La modificació de l\'enquadrament d\'una imatge està reservada per a :boosted-campaigns.',
-        'warning'       => 'La modificació de l\'enquadrament no està disponible si l\'imatge de l\'entitat s\'ha seleccionat des de la galeria.',
     ],
     'replace'   => [
         'breadcrumb'    => 'Substitució d\'imatge',

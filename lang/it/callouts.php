@@ -30,7 +30,6 @@ return [
         'unlock'        => 'Sblocca funzioni premium per :campaign',
     ],
     'subscribe' => [
-        'pitch-2fa'     => 'Abbonati per sbloccare logins sicuri con Autenticazione a Due Fattori e :more',
         'pitch-image'   => 'Abbonati per sbloccare fino a :max MB per i caricamenti di files.',
         'share-booster' => 'Potenzia :campaign per aumentare le dimensioni di caricamento file per tutti i membri della campagna.',
         'share-premium' => 'Aumenta le dimensioni di caricamento dei file per tutti i membri della campagna con una campagna premium.',

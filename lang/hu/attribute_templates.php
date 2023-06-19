@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => ':name tulajdonságsablon',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Új tulajdonságsablon',
     ],

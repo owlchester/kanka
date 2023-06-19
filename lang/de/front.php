@@ -144,7 +144,6 @@ return [
             'title'         => 'Logbücher',
         ],
         'patreon'           => [
-            '2fa'               => 'Zugang zur Zwei-Faktor-Authentifizierung',
             'api_calls'         => 'Erhöhte API-Aufrufe (90)',
             'boosts'            => 'Kampagnen Booster',
             'bragi'             => 'Zugang zu Bragi, Kankas weltbildender KI',

@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => 'Plantilles d\'atributs de :name',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Nova plantilla d\'atributs',
     ],

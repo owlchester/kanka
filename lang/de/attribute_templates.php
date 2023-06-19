@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'attribute_templates'   => [
-        'title' => ':name Attributsvorlagen',
-    ],
+    'attribute_templates'   => [],
     'create'                => [
         'title' => 'Erstelle eine neue Attributvorlage',
     ],

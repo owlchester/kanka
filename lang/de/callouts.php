@@ -27,7 +27,6 @@ return [
         'learn-more'    => 'Was sind Premium Kampangen?',
     ],
     'subscribe' => [
-        'pitch-2fa'     => 'Melde dich an, um sichere Anmeldungen mit Zwei-Faktor-Authentifizierung und vielen weiteren :more freizuschalten.',
         'pitch-image'   => 'Abonniere, um bis zu :max MB Datei-Upload-Größen freizuschalten.',
         'share-booster' => 'Boost :campaign, um die Größe des Datei-Uploads für alle Mitglieder der Kampagne zu erhöhen.',
     ],

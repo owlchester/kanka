@@ -145,7 +145,6 @@ return [
             'title'         => 'Dzienniki',
         ],
         'patreon'           => [
-            '2fa'               => 'Dostęp do autoryzacji dwuetapowej',
             'api_calls'         => 'Więcej wywołań API (90 na minutę)',
             'boosts'            => 'Doładowania kampanii',
             'bragi'             => 'Dostęp do Bragi, SI tworzącej historie.',

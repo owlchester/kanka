@@ -131,11 +131,9 @@ return [
         'recent'        => [
             'entity-header'     => 'Koristi zaglavlje entiteta kao sliku',
             'filters'           => 'Filteri',
-            'full'              => 'Puna',
             'help'              => 'Prikaži samo posljednji ažurirani entitet, ali prikaži cijeli pregled entiteta',
             'helpers'           => [
                 'entity-header'     => 'Ako entitet ima zaglavlje entiteta (značajka pojačane kampanje), postavite ovaj programčić da koristi tu sliku umjesto slike entiteta.',
-                'full'              => 'Prikaži unos cijelog entiteta umjesto skraćenog pregleda.',
                 'show_attributes'   => 'Prikaži prikvačene atribute entiteta ispod unosa.',
                 'show_members'      => 'Ako je entitet obitelj ili organizacija, pokaži njezine članove ispod unosa.',
                 'show_relations'    => 'Prikaži entitetove prikvačene veze ispod unosa.',

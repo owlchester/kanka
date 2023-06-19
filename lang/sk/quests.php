@@ -30,7 +30,6 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Zadávateľ/ka',
         'copy_elements' => 'Kopírovať objekty priradené úlohám',
         'date'          => 'Dátum',
         'element_role'  => 'Rola',

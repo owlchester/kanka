@@ -23,7 +23,6 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Inicijator',
         'copy_elements' => 'Kopirajte elemente pridružene zadatku',
         'date'          => 'Datum',
         'is_completed'  => 'Izvršen',

@@ -25,7 +25,6 @@ return [
         ],
     ],
     'fields'        => [
-        'character'     => 'Quen deu a misión',
         'copy_elements' => 'Copiar elementos ligados á misión',
         'date'          => 'Data',
         'element_role'  => 'Rol',
