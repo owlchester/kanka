@@ -2,10 +2,13 @@
 
 return [
     'actions'       => [
-        'close' => 'Zamknij',
-        'save'  => 'Zapisz',
+        'close'     => 'Zamknij',
+        'file-link' => 'Link do pliku',
+        'image-link'=> 'Link do obrazu',
+        'save'      => 'Zapisz',
     ],
     'breadcrumb'    => 'Galeria',
+    'cta'           => 'Zarządzaj obrazami w kampanii i używaj ich ponownie.',
     'destroy'       => [
         'success'   => 'Usunięto obraz :name',
     ],

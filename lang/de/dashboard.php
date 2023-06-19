@@ -128,7 +128,7 @@ return [
             'dashboard'         => 'Dashboard',
             'name'              => 'Benutzerdefinierter Widget-Name',
             'optional-entity'   => 'Link zum Objekt',
-            'order'             => 'Bestellung',
+            'order'             => 'Sortierung',
             'size'              => 'Größe',
             'text'              => 'Text',
             'width'             => 'Breite',

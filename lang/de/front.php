@@ -24,9 +24,12 @@ return [
         'public'            => [
             'description'   => 'Schau dir zur Inspiration die öffentliche Kampagne an.',
             'filters'       => [
-                'all'       => 'geboosteter Status',
-                'entities'  => 'Nach Objektanzahl sortieren',
-                'followers' => 'Nach Followern sortieren',
+                'all'           => 'geboosteter Status',
+                'entities'      => 'Nach Objektanzahl sortieren',
+                'followers'     => 'Nach Followern sortieren',
+                'is-premium'    => 'Dies ist eine Premium Kampagne',
+                'premium'       => 'Premium Kampagnen',
+                'standard'      => 'Standard Kampagne',
             ],
             'no-results'    => 'Es konnte keine öffentliche Kampagne mit diesen Filtern gefunden werden. Bitte versuche es erneut.',
             'title'         => 'Öffentliche Kampagnen',
@@ -85,6 +88,7 @@ return [
             'map_markers'           => 'Zugriff auf Tausende von Symbolen für Kartenmarkierungen und benutzerdefinierte Markierungsformen',
             'marketplace'           => 'Zugang zum :marketplace',
             'no_ads'                => 'Keine Anzeigen in der Kampagne',
+            'premium'               => 'Premium Kampagne',
             'recovery'              => 'Wiederherstellung des Objektes für bis zu 30 Tage',
             'relation-visualiser'   => 'Erforschen Sie die Beziehungen von Objekten visuell',
             'sidebar'               => 'Ordnen Sie die Seitenleiste einer Kampagne neu an und passen Sie sie an',
@@ -211,6 +215,9 @@ return [
             'app'       => 'App',
             'community' => 'Community',
         ],
+    ],
+    'goodbye'               => [
+        'title' => 'Auf Wiedersehen',
     ],
     'help'                  => [
         'description'   => 'Wir sind für dich da, falls du Hilfe brauchst. Kontaktier uns über einen der folgenden Wege und wir melden uns bei dir so schnell wie möglich zurück.',

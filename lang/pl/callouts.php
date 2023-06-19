@@ -23,9 +23,16 @@ return [
             'superboosted'  => 'Po turbodoładowaniu',
         ],
     ],
+    'premium'   => [
+        'learn-more'    => 'Czym jest kampania premium?',
+        'limitation'    => 'Opcja dostępna wyłącznie w kampaniach premium.',
+        'title'         => 'Opcja premium',
+        'unlock'        => 'Odblokuj opcje premium dla :campaign',
+    ],
     'subscribe' => [
         'pitch-2fa'     => 'Zasubskrybuj, by zyskać dostęp do bezpiecznej autoryzacji dwuetapowej i :more.',
         'pitch-image'   => 'Subskrybuj, by zwiększyć rozmiar dołączanych plików do :max MB.',
         'share-booster' => 'Doładowanie zwiększa maksymalny rozmiar dołączanych plików dla wszystkich uczestników kampanii.',
+        'share-premium' => 'Zwiększa wielkość plików zamieszczanych przez wszystkich członków kampanii premium',
     ],
 ];

@@ -40,10 +40,11 @@ return [
         'title'         => 'Impulsos de campanha levam sua experiência Kanka para o próximo nível',
     ],
     'call-to-action'    => [
-        'description'   => 'Convencido e pronto para impulsionar suas campanhas? Inscreva-se no Kanka para desbloquear impulsos de campanha!',
-        'go-to-pricing' => 'Leve-me para a página de preços',
-        'go-to-sub'     => 'Leve-me para a página de assinatura',
-        'title'         => 'Ok, pegue meu dinheiro',
+        'description'       => 'Convencido e pronto para impulsionar suas campanhas? Inscreva-se no Kanka para desbloquear impulsos de campanha!',
+        'description_v2'    => 'Convencido e pronto para ser premium em suas campanhas? Inscreva-se no Kanka para desbloquear campanhas premium!',
+        'go-to-pricing'     => 'Leve-me para a página de preços',
+        'go-to-sub'         => 'Leve-me para a página de assinatura',
+        'title'             => 'Ok, pegue meu dinheiro',
     ],
     'description'       => 'Desbloqueie recursos avançados para suas campanhas Kanka por uma pequena taxa mensal. Personalize a aparência de uma campanha, torne a campanha sem anúncios, desfrute de uploads de arquivos maiores para todos os membros da campanha e muito mais.',
     'perks'             => [

@@ -23,6 +23,9 @@ return [
             'superboosted'  => 'supergeboostete Funktion',
         ],
     ],
+    'premium'   => [
+        'learn-more'    => 'Was sind Premium Kampangen?',
+    ],
     'subscribe' => [
         'pitch-2fa'     => 'Melde dich an, um sichere Anmeldungen mit Zwei-Faktor-Authentifizierung und vielen weiteren :more freizuschalten.',
         'pitch-image'   => 'Abonniere, um bis zu :max MB Datei-Upload-Größen freizuschalten.',

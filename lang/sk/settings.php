@@ -70,6 +70,11 @@ return [
         ],
         'title'     => 'Integrácia aplikácie',
     ],
+    'billing'       => [
+        'placeholder'   => 'Ak by bolo potrebné doplniť na potvrdenia dodatočné info alebo daňové informácie (firemná adresa, IČ DPH a pod.), vlož ich nižšie a zobrazia sa na všetkých tvojich potvrdenkách.',
+        'save'          => 'Uložiť platobné informácie',
+        'title'         => 'Platobné informácie',
+    ],
     'boost'         => [
         'exceptions'    => [
             'already_boosted'       => 'Kampaň :name už je boostnutá.',
@@ -102,6 +107,7 @@ return [
         'patreon'               => 'Patreon',
         'payment_options'       => 'Možnosti platby',
         'personal_settings'     => 'Osobné nastavenia',
+        'premium'               => 'Prémiové kampane',
         'profile'               => 'Profil',
         'settings'              => 'Nastavenia',
         'subscription'          => 'Predplatné',
@@ -184,10 +190,13 @@ return [
         ],
         'helpers'               => [
             'alternatives'          => 'Zaplať za tvoje predplatné pomocou :method. Tento spôsob platby nebude automaticky obnovený na konci tvojho predplatného. :method je iba dostupný v eurách.',
+            'alternatives-2'        => 'Zaplať za tvoje predplatné pomocou :method. Toto je jednorázová platba a nebude automaticky obnovená po skončení tvojho predplatného.',
             'alternatives_warning'  => 'Aktualizácia predplatného týmto spôsobom nie je možná. Prosím, vytvor nové predplatné, keď tvoje súčasné skončí.',
             'alternatives_yearly'   => 'Kvôli obmedzeniam ohľadom opakovaných platieb, :method je dostupný len pre ročné zúčtovanie.',
+            'currency_blocked'      => 'Ak už máš platné predplatné Kanky, nie je možné zmeniť zvolenú menu. Prosím, kontaktuj nás na :email kvôli podpore.',
             'paypal'                => 'Chceš radšej použiť Paypal? Kontaktuj nás na :email, ak chceš platiť ročné predplatné cez Paypal.',
             'paypal_v2'             => 'Akceptujeme PayPal pri ročnom predplatnom. Pošli nám mail na :email z tvojho mailu v Kanke, vrstvu, na ktorú sa chceš prihlásiť a menu (USD alebo EUR), v ktorej chceš obdržať faktúru.',
+            'paypal_v3'             => 'Zaplať tvoje ročné predplatné bezpečne PayPalom.',
             'stripe'                => 'Tvoje platobné údaje sú spracované a uložené bezpečne prostredníctvom :stripe.',
         ],
         'manage_subscription'   => 'Spravovať predplatné',
@@ -247,6 +256,7 @@ return [
                     'bonuses'   => 'Tvoje bonusy ostanú aktívne do konca platobného obdobia.',
                     'boosts'    => 'To isté sa stane aj tvojim boostnutým kampaniam. Výhody boostnutia sa stanú neviditeľnými, ale nebudú odstránené, ak kampaň prestane byť boostnutá.',
                     'kobold'    => 'Ak chceš zrušiť tvoje predplatné, zmeň úroveň na Kobolda.',
+                    'premium'   => 'To isté sa stane aj tvojim prémiovým kampaniam. Výhody prémia sa stanú neviditeľnými, ale nebudú odstránené, ak kampaň prestane byť prémiová.',
                 ],
                 'title'     => 'Čo obnáša zrušenie predplatného',
             ],

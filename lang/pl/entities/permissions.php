@@ -8,6 +8,7 @@ return [
     'quick'     => [
         'empty-permissions' => 'Ten element mogą zobaczyć tylko administratorzy kampanii, i nikt inny.',
         'field'             => 'Szybka edycja',
+        'manage'            => 'Zarządzaj uprawnieniami',
         'options'           => [
             'private'   => 'Ukryty dla wszystkich oprócz administratorów',
             'visible'   => 'Widoczny dla następujących',

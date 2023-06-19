@@ -39,6 +39,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'K tejto kampani nemáš prístup.',
+        'premium'       => 'Táto funkcionalita je dostupná pre prémiové kampane.',
         'unknown_id'    => 'Neznáma kampaň.',
     ],
     'export'                            => [],
@@ -62,6 +63,7 @@ TEXT
         'open'                              => 'Otvorená pre prihlášky',
         'past_featured'                     => 'Posledne zvýraznená kampaň',
         'post_collapsed'                    => 'Nové príspevky k objektom sú štandardne minimalizované.',
+        'premium'                           => 'Prémium poskytnuté od :name',
         'public'                            => 'Viditeľnosť kampane',
         'public_campaign_filters'           => 'Filter verejných kampaní',
         'related_visibility'                => 'Viditeľnosť príbuzných prvkov',
@@ -87,6 +89,7 @@ TEXT
         'name'                              => 'Tvoja kampaň / svet môže mať ľubovoľné meno, pokiaľ sa skladá z min. 4 písmen alebo čísel.',
         'no_entry'                          => 'Vyzerá to tak, že kampaň ešte nemá žiaden popis! Zmeňme to.',
         'permissions_tab'                   => 'Kontroluj štandardné nastavenia súkromia a viditeľnosti nových objektov s nasledujúcimi možnosťami.',
+        'premium'                           => 'Niektoré funkcionality sú dostupné, lebo boli odomknuté prémiové funkcionality. Zisti viac na stránke :settings.',
         'public_campaign_filters'           => 'Pomôž iným nájsť tvoju kampaň medzi ostatnými verejnými doplnením týchto informácií.',
         'public_no_visibility'              => 'Hlavu hore! Tvoja kampaň je verejná, ale rola pre verejnosť nemá k ničomu prístup. :fix',
         'related_visibility'                => 'Štandardná hodnota viditeľnosti, keď vytváraš nový prvok s týmto poľom (poznámky objektov, vlastností, schopností, atď.)',

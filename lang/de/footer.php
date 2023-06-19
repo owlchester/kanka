@@ -9,6 +9,7 @@ return [
         'title' => 'Wähle deine Sprache',
     ],
     'platform'          => 'Plattform',
+    'premium'           => 'Premium Kampagnen',
     'press-kit'         => 'Pressemappe',
     'privacy'           => 'Privatsphäre',
     'resources'         => 'Ressourcen',

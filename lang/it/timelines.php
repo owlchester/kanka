@@ -27,6 +27,7 @@ return [
         'type'  => 'Principale, Cronache del mondo, Storia del Regno',
     ],
     'reorder'       => [
+        'empty'     => 'Aggiungi ere e altri elementi alla tua Linea Temporale per poterla riordinare.',
         'success'   => 'Linea temporale riordinata con successo.',
         'title'     => 'Riordina la linea temporale',
     ],

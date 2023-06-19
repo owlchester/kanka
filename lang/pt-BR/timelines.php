@@ -27,6 +27,7 @@ return [
         'type'  => 'Primária, Crônica Mundial, Legado do Reino',
     ],
     'reorder'       => [
+        'empty'     => 'Adicione eras e elementos à linha do tempo para poder reordená-la.',
         'success'   => 'Linha do tempo reordenada com sucesso.',
         'title'     => 'Reordenar a linha do tempo',
     ],

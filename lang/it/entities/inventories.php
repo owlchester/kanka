@@ -12,18 +12,27 @@ return [
         'success'   => 'L\'oggetto :item è stato rimosso da :entity.',
     ],
     'fields'        => [
-        'amount'        => 'Quantità',
-        'description'   => 'Descrizione',
-        'position'      => 'Posizione',
+        'amount'            => 'Quantità',
+        'copy_entity_entry' => 'Usa la dicitura dell\'oggetto',
+        'description'       => 'Descrizione',
+        'is_equipped'       => 'Equipaggiato',
+        'name'              => 'Nome',
+        'position'          => 'Posizione',
+        'qty'               => 'Quantità',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Visualizza la dicitura dell\'articolo invece della descrizione personalizzata.',
     ],
     'placeholders'  => [
         'amount'        => 'Qualsiasi quantità',
         'description'   => 'Utilizzato, Danneggiato, In Sintonia',
+        'name'          => 'Richiesto se nessun oggetto è stato selezionato',
         'position'      => 'Equipaggiato, Zaino, Magazzino, Banca',
     ],
     'show'          => [
         'helper'    => 'Le entità possono avere oggetti collegati ad esse per creare degli inventari.',
         'title'     => 'Inventario dell\'Entità :name',
+        'unsorted'  => 'Non classificato',
     ],
     'update'        => [
         'success'   => 'L\'oggetto :item è stato aggiornato per :entity.',

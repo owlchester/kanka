@@ -2,11 +2,15 @@
 
 return [
     'actions'           => [
-        'create'    => 'Creazione',
-        'delete'    => 'Cancellazione',
-        'restore'   => 'Recupero',
-        'update'    => 'Aggiornamento',
-        'view'      => 'Visualizza cambiamenti',
+        'create'        => 'Creazione',
+        'create_post'   => 'Creato post ":post"',
+        'delete'        => 'Cancellazione',
+        'delete_post'   => 'Post eliminato',
+        'reorder_post'  => 'Post riordinato',
+        'restore'       => 'Recupero',
+        'update'        => 'Aggiornamento',
+        'update_post'   => 'Post aggiornato ":post"',
+        'view'          => 'Visualizza cambiamenti',
     ],
     'call-to-action'    => 'I log completi delle modifiche fino a :amount giorni sono disponibili per le campagne superpotenziate.',
     'fields'            => [

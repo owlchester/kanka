@@ -25,6 +25,10 @@ return [
         'plugin'                => [
             'deleted'   => 'Wtyczka :plugin została usunięta z targowiska, więc usunięto ją również z kampanii :campaign.',
         ],
+        'premium'               => [
+            'add'       => 'Odblokowano opcje premium kampanii :campaign dzięki :user',
+            'remove'    => ':user nie odblokowuje już wersji premium kampanii :campaign',
+        ],
         'removed-image'         => 'Obraz lub nagłówek elementu :entity został usunięty ze względu na prawa autorskie.',
         'role'                  => [
             'add'       => 'Nadano ci rolę :role w kampanii :campaign.',

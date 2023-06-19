@@ -39,6 +39,16 @@ return [
     'index'         => [],
     'items'         => [],
     'journals'      => [],
+    'labels'        => [
+        'appearance'    => [
+            'entry' => 'Descrizione dell\'aspetto',
+            'name'  => 'Nome dell\'aspetto',
+        ],
+        'personality'   => [
+            'entry' => 'Descrizione dei tratti della personalità',
+            'name'  => 'Nome dei tratti della personalità',
+        ],
+    ],
     'maps'          => [],
     'organisations' => [
         'create'    => [
@@ -64,11 +74,11 @@ return [
         'personality_entry' => 'Dettagli',
         'personality_name'  => 'Obbiettivi, Vezzi, Paure, Vincoli',
         'physical'          => 'Caratteristiche Fisiche',
-        'pronouns'          => 'Lui, Lei',
-        'sex'               => 'Sesso',
+        'pronouns'          => 'Lui, Lei, Loro',
+        'sex'               => 'Genere',
         'title'             => 'Titolo',
         'traits'            => 'Tratti',
-        'type'              => 'NPC, Personaggio Giocante, Divinità',
+        'type'              => 'PNG, Personaggio Giocante, Divinità',
     ],
     'quests'        => [
         'helpers'   => [

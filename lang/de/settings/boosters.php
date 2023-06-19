@@ -30,6 +30,7 @@ return [
     ],
     'campaign'  => [
         'boosted'       => 'Geboostet von :user seid :time',
+        'standard'      => 'Standard',
         'superboosted'  => 'Supergeboostet von :user seid :time',
         'unboosted'     => 'boosten beenden',
     ],

@@ -12,11 +12,20 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [],
-    'fields'        => [],
+    'fields'        => [
+        'members'   => 'Membros',
+    ],
     'helpers'       => [
         'nested_without'    => 'Exibindo todas as raças que não tem uma raça primária. Clique em uma linha para ver as raças secundárias.',
     ],
     'index'         => [],
+    'members'       => [
+        'create'    => [
+            'submit'    => 'Adicionar membros',
+            'success'   => '{0} Nenhum membro foi adicionado.|{1} 1 membro foi adicionado.|[2,*] :count membros foram adicionados.',
+            'title'     => 'Novos Membros',
+        ],
+    ],
     'placeholders'  => [
         'type'  => 'Humano, Fada, Ciborgue',
     ],

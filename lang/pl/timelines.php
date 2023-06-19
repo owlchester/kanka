@@ -27,6 +27,7 @@ return [
         'type'  => 'Główna, kronika dziejów świata, historia królestwa',
     ],
     'reorder'       => [
+        'empty'     => 'Dodaj epoki i ich elementy, by móc zmienić ich kolejność.',
         'success'   => 'Zmieniono kolejność historii',
         'title'     => 'Zmień kolejność historii',
     ],

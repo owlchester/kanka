@@ -59,6 +59,10 @@ return [
         'description'   => 'Sústredili sme naše úsilie, aby sme v Kanke vytvorili ca. 20 rôznych modulov, ktoré sa všetky zameriavajú na určitý aspekt hrania stolových RPG alebo tvorby svetov vo všeobecnosti. V každej kampani máš možnosť vytvoriť postavy, miesta, rody, organizácie, predmety, úlohy, denníky, kalendáre, udalosti, schopnosti a ďalšie. Nepotrebuješ schopnosti? Bez problému, môžeš deaktivovať moduly podľa tvojej vôle v každej kampani, čím si uľahčíš nastavenia podľa toho, čo považuješ za dôležité.',
     ],
     'other_features'=> 'Ďalšie funkcionality',
+    'premium'       => [
+        'description'   => 'Niektoré funkcionality sú dostupné pre prémiové kampane. Ak užívateľ zaplatí v Kanke predplatné, vie takto nastaviť niekoľko kampaní. Toto prémiové nastavenie vie potom presunúť z jednej kampane na druhú, napr. keď jedna kampaň skončí. Pokiaľ trvá predplatné, ostávajú aj nastavenia pre prémiové kampane.',
+        'link'          => 'Všetky prémiové funkcie nájdeš na našej stránke s cenníkom.',
+    ],
     'quests'        => [
         'description'   => 'Priprav si a maj prehľad o úlohách v tvojej hre, kam zavedú hráčstvo, postavy do nich zapojené, alebo organizácie, ktoré ich tajne ovplyvňujú. Akonáhle je úloha splnená, označ ju týmto spôsobom a môžeš prejsť na ďalšiu.',
         'title'         => 'Úlohy',
@@ -70,6 +74,7 @@ return [
     ],
     'sections'      => [
         'general'       => 'Všeobecné',
+        'premium'       => 'Prémiové funkcionality kampane',
         'rpg'           => 'RPG hry',
         'worldbuilding' => 'Tvorba svetov',
     ],
