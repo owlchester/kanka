@@ -296,12 +296,12 @@
     "src": "resources/sass/subscription.scss"
   },
   "resources/sass/themes/dark.scss": {
-    "file": "assets/dark-fe21d8eb.css",
+    "file": "assets/dark-a891d2f1.css",
     "isEntry": true,
     "src": "resources/sass/themes/dark.scss"
   },
   "resources/sass/themes/midnight.scss": {
-    "file": "assets/midnight-b6c1a512.css",
+    "file": "assets/midnight-5091d0cd.css",
     "isEntry": true,
     "src": "resources/sass/themes/midnight.scss"
   },
