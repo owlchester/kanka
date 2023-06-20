@@ -99,7 +99,7 @@ class AbilityController extends CrudController
             ->with(['entity', 'entity.image', 'ability', 'ability.entity'])
             ->has('entity')
             ->filter($filters)
-            ->paginate(2);
+            ->paginate();
 
         // Ajax Datagrid
         if (request()->ajax()) {
