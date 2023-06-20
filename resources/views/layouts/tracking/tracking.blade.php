@@ -29,44 +29,9 @@
         })(window,document,'script','dataLayer', '{{ config('tracking.gtm') }}');</script>
     <!-- End Google Tag Manager -->
 @endif
-@if (!empty(config('tracking.optimize')))
-    <!-- Google Optimize -->
-    <script src="https://www.googleoptimize.com/optimize.js?id={{ config('tracking.optimize') }}"></script>
-@endif
-@if (!empty(config('tracking.fb')))
-    <!-- Facebook Pixel Code -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window,document,'script',
-                'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '{{ config('tracking.fb') }}');
-        fbq('track', 'PageView');
-    </script>
-    <noscript>
-        <img height="1" width="1" src="https://www.facebook.com/tr?id={{ config('tracking.fb') }}&ev=PageView&noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
-@endif
 @ads('inline')
     <script src="https://hb.vntsm.com/v3/live/ad-manager.min.js" type="text/javascript" data-site-id="{{ config('tracking.venatus.id') }}" data-mode="scan" async></script>
 @endads
-
-@if (!empty($tracking_new))
-    <!-- New account confirmation -->
-    <script>
-        @if (!empty(config('tracking.fb')))
-        fbq('track', 'CompleteRegistration', {
-            value: 1,
-            currency: 'USD',
-        });
-        @endif
-    </script>
-@endif
 
 @ads()
     @if(!isset($noads))
