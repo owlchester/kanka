@@ -60,6 +60,7 @@ $(document).ready(function() {
         initImageRemoval();
         deleteConfirm();
         initFeedbackButtons();
+        initDialogs();
     });
 });
 

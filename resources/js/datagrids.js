@@ -182,7 +182,6 @@ function initDatagrid2Ajax() {
     registerBulkDelete();
     registerBulkActions();
     initDatagrid2Bulk();
-
 }
 
 /**
@@ -211,7 +210,7 @@ function datagrid2Reorder(ele) {
     }
 
     let target = ele.data('target') ?? '#datagrid-parent';
-    console.log('url', url, ele);
+    //console.log('url', url, ele);
     $.ajax(
         url
     ).done(function (res) {
