@@ -3,25 +3,27 @@
  */
 .public-permission {
     border: 1px solid var(--box-border, none);
-    background-color: var(--box-background, #fff);
+    background-color: var(--box-background, hsl(var(--b3)/1));
+    --tw-text-opacity: 1;
+    color:hsl(var(--bc)/var(--tw-text-opacity));
     transition: all 0.3s ease-in-out;
 
     flex-flow: row wrap;
     flex-direction: column;
-
-    &:hover {
-        --tw-border-opacity: 1;
-        border-color:hsl(var(--pf)/var(--tw-border-opacity));
-        --tw-bg-opacity: 1;
-        --tw-text-opacity: 1;
-        background-color:hsl(var(--pf)/var(--tw-bg-opacity));
-        color:hsl(var(--pc)/var(--tw-text-opacity));
-    }
 }
 .public-permission.enabled {
     --tw-border-opacity: 1;
+    border-color:hsl(var(--p)/var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color:hsl(var(--p)/var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color:hsl(var(--pc)/var(--tw-text-opacity));
+}
+.public-permission:hover {
+    --tw-border-opacity: 1;
     border-color:hsl(var(--pf)/var(--tw-border-opacity));
     --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
     background-color:hsl(var(--pf)/var(--tw-bg-opacity));
     color:hsl(var(--pc)/var(--tw-text-opacity));
 }

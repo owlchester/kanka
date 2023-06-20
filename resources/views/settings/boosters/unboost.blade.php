@@ -6,7 +6,7 @@
 ?>
 
 <div class="modal-body text-center">
-    <x-dialog.close />
+    <x-dialog.close :modal="true" />
 
     <h4 class="mt-0">
         {{ __('settings/boosters.unboost.title') }}
@@ -17,13 +17,12 @@
     'campaign' => '<strong>' . $campaign->name . '</strong>'])!!}</p>
 
    {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_boosts.destroy', $boost->id]]) !!}
-    <div class="pb-5">
-        <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">
-            {{ __('crud.cancel') }}
-        </button>
-        <button type="submit" class="btn btn-danger px-8 ml-5 rounded-full">
-            <span class="">{{ __('settings/boosters.unboost.confirm') }}</span>
-        </button>
+        <x-dialog.footer :modal="true">
+
+            <button type="submit" class="btn2 btn-error">
+                <span class="">{{ __('settings/boosters.unboost.confirm') }}</span>
+            </button>
+        </x-dialog.footer>
     </div>
     {!! Form::close() !!}
 

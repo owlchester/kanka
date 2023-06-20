@@ -6,7 +6,7 @@
 ?>
 
 <div class="modal-body text-center">
-    <x-dialog.close />
+    <x-dialog.close :modal="true" />
 
     <h4 class="my-5">
         {!! __('settings/premium.actions.unlock') !!}
@@ -57,14 +57,11 @@
         <p class="my-5">{{ __('settings/premium.create.duration') }}</p>
 
        {!! Form::open(['route' => ['campaign_boosts.store']]) !!}
-        <div class="pb-5 flex gap-5 justify-center">
-            <button type="button" class="btn px-8 rounded-full " data-dismiss="modal">
-                {{ __('crud.cancel') }}
-            </button>
-            <button type="submit" class="btn bg-boost text-white px-8 rounded-full">
+        <x-dialog.footer :modal="true">
+            <button type="submit" class="btn2 btn-primary">
                 <span class="">{{ __('settings/premium.create.actions.confirm') }}</span>
             </button>
-        </div>
+        </x-dialog.footer>
         {!! Form::hidden('campaign_id', $campaign->id) !!}
         {!! Form::close() !!}
     @endif
