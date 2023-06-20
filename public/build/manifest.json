@@ -301,7 +301,7 @@
     "src": "resources/sass/themes/dark.scss"
   },
   "resources/sass/themes/midnight.scss": {
-    "file": "assets/midnight-5091d0cd.css",
+    "file": "assets/midnight-f5290cd4.css",
     "isEntry": true,
     "src": "resources/sass/themes/midnight.scss"
   },
