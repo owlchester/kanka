@@ -131,9 +131,11 @@ $mapSidebarWidth: 380px;
         padding-top: 0;
         z-index: 1040;
     }
-    h1, h2, h3, h4, h5, h6, p {
-        --tw-text-opacity: 1;
-        color: hsl(var(--sic)/var(--tw-text-opacity));
+    .sidebar-content {
+        h1, h2, h3, h4, h5, h6, p {
+            --tw-text-opacity: 1;
+            color: hsl(var(--sic)/var(--tw-text-opacity));
+        }
     }
     header {
         z-index: 1050;

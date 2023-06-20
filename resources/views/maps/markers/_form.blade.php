@@ -91,19 +91,19 @@ $sizeOptions = [
                     <div class="flex">
                         <div class="grow">
                             <label>{{ __('maps/markers.fields.custom_shape') }}</label>
-                    @if ($campaignService->campaign()->boosted())
-                        @if(isset($model))
-                            <p class="help-block mb-0">
-                                {{ __('maps/markers.helpers.polygon.edit') }}
-                            </p>
-                        </div>
+                            @if ($campaignService->campaign()->boosted())
+                                @if(isset($model))
+                                    <p class="help-block mb-0">
+                                        {{ __('maps/markers.helpers.polygon.edit') }}
+                                    </p>
+                                </div>
 
-                        <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline pull-right btn-sm mb-1" style="">
-                            <i class="fa-solid fa-eraser" aria-hidden="true"></i>
-                            {{ __('maps/markers.actions.reset-polygon') }}
-                        </a>
-                    </div>
-                        @else
+                                <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline pull-right btn-sm mb-1" style="">
+                                    <i class="fa-solid fa-eraser" aria-hidden="true"></i>
+                                    {{ __('maps/markers.actions.reset-polygon') }}
+                                </a>
+                            </div>
+                                @else
                         </div>
                     </div>
                     <div>
@@ -122,6 +122,8 @@ $sizeOptions = [
                         <x-cta :campaign="$campaignService->campaign()" image="0">
                             <p>{{ __('maps/markers.pitches.poly') }}</p>
                         </x-cta>
+                        </div>
+                    </div>
                     @endif
                 </div>
 
