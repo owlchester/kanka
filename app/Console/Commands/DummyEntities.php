@@ -121,13 +121,13 @@ class DummyEntities extends Command
         Ability::factory()->state(['name' => 'Loud shout', 'campaign_id' => $campaign->id])->has(EntityAbility::factory()->state(['entity_id' => $firstCharacter->entity->id]), 'ability')->create();
         Attribute::factory()->count(7)->state(
             new Sequence(
-                ['name' => 'Population', 'entity_id' => $firstLocation->entity->id, 'is_star' => 1],
-                ['name' => 'Population', 'entity_id' => $secondLocation->entity->id, 'is_star' => 1],
-                ['name' => 'Population', 'entity_id' => $thirdLocation->entity->id, 'is_star' => 1],
-                ['name' => 'HP', 'value' => rand(1,20), 'entity_id' => $firstCharacter->entity->id, 'is_star' => 1],
-                ['name' => 'Level', 'value' => rand(1,20), 'entity_id' => $firstCharacter->entity->id, 'is_star' => 1],
-                ['name' => 'HP', 'value' => rand(1,20), 'entity_id' => $secondCharacter->entity->id, 'is_star' => 1],
-                ['name' => 'Level', 'value' => rand(1,20), 'entity_id' => $secondCharacter->entity->id, 'is_star' => 1],
+                ['name' => 'Population', 'entity_id' => $firstLocation->entity->id, 'is_pinned' => 1],
+                ['name' => 'Population', 'entity_id' => $secondLocation->entity->id, 'is_pinned' => 1],
+                ['name' => 'Population', 'entity_id' => $thirdLocation->entity->id, 'is_pinned' => 1],
+                ['name' => 'HP', 'value' => rand(1,20), 'entity_id' => $firstCharacter->entity->id, 'is_pinned' => 1],
+                ['name' => 'Level', 'value' => rand(1,20), 'entity_id' => $firstCharacter->entity->id, 'is_pinned' => 1],
+                ['name' => 'HP', 'value' => rand(1,20), 'entity_id' => $secondCharacter->entity->id, 'is_pinned' => 1],
+                ['name' => 'Level', 'value' => rand(1,20), 'entity_id' => $secondCharacter->entity->id, 'is_pinned' => 1],
 
             )
         )

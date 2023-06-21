@@ -43,10 +43,10 @@
             }
         ],
         [
-            'field' => 'is_star',
+            'field' => 'is_pinned',
             'label' => '<i class="fa-solid fa-star" title="' . __('entities/relations.fields.is_star') . '"></i>',
             'render' => function ($model) {
-                return $model->is_star ? '<i class="fa-solid fa-star"></i>' : null;
+                return $model->is_pinned ? '<i class="fa-solid fa-star"></i>' : null;
             }
         ],
         [

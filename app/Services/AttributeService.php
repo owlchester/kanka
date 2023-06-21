@@ -84,7 +84,7 @@ class AttributeService
         $values = Arr::get($request, 'attr_value', []);
         $types = Arr::get($request, 'attr_type', []);
         $privates = Arr::get($request, 'attr_is_private', []);
-        $stars = Arr::get($request, 'attr_is_star', []);
+        $stars = Arr::get($request, 'attr_is_pinned', []);
         $templateId = Arr::get($request, 'template_id', null);
         $touch = false;
 
@@ -135,7 +135,7 @@ class AttributeService
                     'type_id' => $typeID,
                     'name' => $name,
                     'is_private' => $isPrivate,
-                    'is_star' => $isStar,
+                    'is_pinned' => $isStar,
                     'default_order' => $order,
                 ]);
                 $attribute->setValue($value);
@@ -317,7 +317,7 @@ class AttributeService
                 'default_order' => $order,
                 'is_private' => false,
                 'type_id' => $type,
-                'is_star' => false,
+                'is_pinned' => false,
                 'is_hidden' => Arr::get($attribute, 'is_hidden', false)
             ]);
         }
@@ -333,7 +333,7 @@ class AttributeService
                 'value' => $plugin->version->uuid,
                 'default_order' => $order,
                 'is_private' => false,
-                'is_star' => false,
+                'is_pinned' => false,
                 'type_id' => Attribute::TYPE_STANDARD_ID,
             ]);
         }

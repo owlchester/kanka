@@ -5,12 +5,12 @@ namespace App\Models\Scopes;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Trait Pinned
+ * Trait Pinnable
  * @package App\Models\Scopes
  *
- * @method static self|Builder pinned(bool $is_pinned = true)
+ * @method static self|Builder pinnable(bool $is_pinned = true)
  */
-trait Pinned
+trait Pinnable
 {
     /**
      * @param Builder $query

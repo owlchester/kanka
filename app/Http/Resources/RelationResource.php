@@ -28,9 +28,9 @@ class RelationResource extends JsonResource
             'colour' => $model->colour,
             //'is_private' => (bool) $this->is_private,
             'visibility_id' => $model->visibility_id,
-            'is_star' => (bool) $model->is_star,
+            'is_star' => (bool) $model->is_pinned,
+            'is_pinned' => (bool) $model->is_pinned,
             'mirror_id' => $model->mirror_id,
-
             'created_at' => $model->created_at,
             'created_by' => $model->created_by,
             'updated_at' => $model->updated_at,

@@ -9,7 +9,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\SortableTrait;
-use App\Models\Scopes\Starred;
+use App\Models\Scopes\Pinnable;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $owner_id
  * @property int $campaign_id
  * @property int $target_id
- * @property bool $is_star
+ * @property bool $is_pinned
  * @property string $colour
  * @property string $marketplace_uuid
  *
@@ -45,7 +45,7 @@ class Relation extends Model
     use Sortable;
     use SortableTrait
     ;
-    use Starred;
+    use Pinnable;
     use HasFactory;
     /**
      * Traits
@@ -61,7 +61,7 @@ class Relation extends Model
         'visibility_id',
         'mirror_id',
         'attitude',
-        'is_star',
+        'is_pinned',
         'colour',
     ];
 
@@ -81,7 +81,7 @@ class Relation extends Model
         'target_id',
         'relation',
         'attitude',
-        'is_star',
+        'is_pinned',
         'mirror_id',
         'visibility_id',
     ];
@@ -147,7 +147,7 @@ class Relation extends Model
             'attitude' => $this->attitude,
             'colour' => $this->colour,
             'visibility_id' => $this->visibility_id,
-            'is_star' => $this->is_star,
+            'is_pinned' => $this->is_pinned,
             'mirror_id' => $this->id,
         ]);
 
@@ -180,7 +180,7 @@ class Relation extends Model
     public function scopePreparedSelect(Builder $query): Builder
     {
         return $query
-            ->select(['id', 'target_id', 'owner_id', 'relation', 'mirror_id', 'is_star', 'attitude', 'visibility_id', 'colour'])
+            ->select(['id', 'target_id', 'owner_id', 'relation', 'mirror_id', 'is_pinned', 'attitude', 'visibility_id', 'colour'])
         ;
     }
 
@@ -265,7 +265,7 @@ class Relation extends Model
             'relation',
             'owner_id',
             'target_id',
-            'is_star',
+            'is_pinned',
             'is_mirrored',
         ];
     }

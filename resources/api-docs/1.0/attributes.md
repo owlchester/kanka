@@ -33,6 +33,7 @@ You can get a list of all the attributes of an entity by using the following end
             "id": 151,
             "is_private": false,
             "is_star": false,
+            "is_pinned": false,
             "name": "Force Strength",
             "type_id": 1,
             "updated_at": "2020-03-11T13:31:34.000000Z",
@@ -66,6 +67,7 @@ To get the details of a single attribute, use the following endpoint.
         "id": 151,
         "is_private": false,
         "is_star": false,
+        "is_pinned": false,
         "name": "Force Strength",
         "type_id": 1,
         "updated_at": "2020-03-11T13:31:34.000000Z",
@@ -97,6 +99,7 @@ To create an attribute, use the following endpoint.
 | `entity_id` | `int` (Required) | The attribute's parent entity |
 | `is_private` | `boolean` | If the attribute is only visible to `admin` members of the campaign |
 | `is_star` | `boolean` | If the attribute is "pinned" on the entity view |
+| `is_pinned` | `boolean` | If the attribute is "pinned" on the entity view |
 | `api_key` | `string` (max 20) | A custom field only shown in the API for you to link attributes to your system ids. |
 
 ### Results
