@@ -49,6 +49,7 @@ class Kernel extends HttpKernel
         'api' => [
             //Do this in the routes 'throttle:rate_limit,1',
             'bindings',
+            \App\Http\Middleware\ApiLogMiddleware::class,
         ],
         // Used for locale-less routes like our sitemaps, go/, auth/callbacks, webhooks
         'minimum' => [

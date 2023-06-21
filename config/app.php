@@ -236,6 +236,7 @@ return [
         App\Providers\EntitySetupServiceProvider::class,
         App\Providers\UserDateServiceProvider::class,
         App\Providers\ModuleServiceProvider::class,
+        App\Providers\Logs\ApiLogServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
 
     ],
@@ -313,6 +314,7 @@ return [
         'EntitySetup' => App\Facades\EntitySetup::class,
         'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
         'UserDate' => App\Facades\UserDate::class,
+        'ApiLog' => App\Facades\ApiLog::class,
     ],
 
 ];

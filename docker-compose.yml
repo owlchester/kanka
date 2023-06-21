@@ -42,6 +42,7 @@ services:
             #- './.sail/logs/slow-queries.log:/var/lib/mysql/mysql-slow.log:rw'
             - 'sail-mariadb:/var/lib/mysql'
             #- './.sail/mariadb/my.cnf:/etc/mysql/my.cnf:ro'
+            - './.mariadb/10-create-logs-database.sh:/docker-entrypoint-initdb.d/10-create-logs-database.sh'
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
             - sail
