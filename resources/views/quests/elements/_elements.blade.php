@@ -34,7 +34,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="flex p-4 flex-1 entity-content">
+                <div class="p-4 flex-1 entity-content">
                     {!! $element->entry() !!}
                 </div>
                 <div class="p-4 flex gap-2 items-center mt-auto">
