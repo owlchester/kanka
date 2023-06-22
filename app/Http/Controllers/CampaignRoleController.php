@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Facades\EntitySetup;
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
+use App\Services\PermissionService;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRole;
 use Illuminate\Http\Request;
@@ -17,15 +22,19 @@ class CampaignRoleController extends Controller
      */
     protected string $view = 'campaigns.roles';
 
+    /** @var PermissionService */
+    protected PermissionService $service;
+
     /**
      * Create a new controller instance.
-     *
+     * @param AttributeService $permissionService
      * @return void
      */
-    public function __construct()
+    public function __construct(PermissionService $permissionService)
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
+        $this->service = $permissionService;
     }
 
     /**
@@ -83,6 +92,25 @@ class CampaignRoleController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function duplicate(CampaignRole $campaignRole)
+    {
+        $this->authorize('create', CampaignRole::class);
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->canHaveMoreRoles()) {
+            return view('cruds.forms.limit')
+                ->with('key', 'roles')
+                ->with('campaign', $campaign)
+                ->with('name', 'campaign_roles');
+        }
+        $ajax = request()->ajax();
+
+        return view($this->view . '.create', ['model' => $campaign, 'ajax' => $ajax, 'roleId' => $campaignRole->id]);
+    }
+
+    /**
      * @param StoreCampaignRole $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -98,6 +126,9 @@ class CampaignRoleController extends Controller
         }
         $this->authorize('create', CampaignRole::class);
         $role = CampaignRole::create($request->all());
+        if ($request->has('duplicate') && $request->get('duplicate') != 0) {
+            $this->service->role($role)->duplicate($request->get('role_id'));
+        }
         return redirect()->route('campaign_roles.index')
             ->with('success_raw', __($this->view . '.create.success', ['name' => $role->name]));
     }

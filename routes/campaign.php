@@ -347,6 +347,8 @@ Route::patch('/campaigns/{campaign}/dashboard-header', 'Campaign\DashboardHeader
 // Helper links
 Route::get('/campaign-roles/admin', 'CampaignRoleController@admin')->name('campaigns.campaign_roles.admin');
 Route::get('/campaign-roles/public', 'CampaignRoleController@public')->name('campaigns.campaign_roles.public');
+Route::get('/campaign-roles/{campaign_role}/duplicate', 'CampaignRoleController@duplicate')->name('campaign_roles.duplicate');
+
 
 // Marketplace plugin route
 if(config('marketplace.enabled')) {

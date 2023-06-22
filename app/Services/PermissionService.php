@@ -615,4 +615,14 @@ class PermissionService
         }
         return $this->idsToCode[$entityType];
     }
+    public function duplicate(int $roleId)
+    {
+        $oldRole = CampaignRole::where('id', $roleId)->first();
+        foreach ($oldRole->permissions as $permission) {
+            /** @var CampaignPermission $newPermission */
+            $newPermission = $permission->replicate(['campaign_role_id']);
+            $newPermission->campaign_role_id = $this->role->id;
+            $newPermission->save();
+        }
+    }
 }
