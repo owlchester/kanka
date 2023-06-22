@@ -257,6 +257,54 @@ class EntityEvent extends MiscModel
         return '';
     }
 
+    public function getLabelTextColour(): string
+    {
+        if (!Str::startsWith($this->colour, '#')) {
+            return '';
+        }
+
+        return 'color: ' . $this->contrastColour();
+    }
+
+    private function contrastColour(): string
+    {
+        $hexColour = trim($this->colour, '#');
+        // hexColour RGB
+        $R1 = hexdec(substr($hexColour, 1, 2));
+        $G1 = hexdec(substr($hexColour, 3, 2));
+        $B1 = hexdec(substr($hexColour, 5, 2));
+
+        // Black RGB
+        $blackColour = "#000000";
+        $R2BlackColour = hexdec(substr($blackColour, 1, 2));
+        $G2BlackColour = hexdec(substr($blackColour, 3, 2));
+        $B2BlackColour = hexdec(substr($blackColour, 5, 2));
+
+        // Calc contrast ratio
+        $L1 = 0.2126 * pow($R1 / 255, 2.2) +
+            0.7152 * pow($G1 / 255, 2.2) +
+            0.0722 * pow($B1 / 255, 2.2);
+
+        $L2 = 0.2126 * pow($R2BlackColour / 255, 2.2) +
+            0.7152 * pow($G2BlackColour / 255, 2.2) +
+            0.0722 * pow($B2BlackColour / 255, 2.2);
+
+        $contrastRatio = 0;
+        if ($L1 > $L2) {
+            $contrastRatio = (int)(($L1 + 0.05) / ($L2 + 0.05));
+        } else {
+            $contrastRatio = (int)(($L2 + 0.05) / ($L1 + 0.05));
+        }
+
+        // If contrast is more than 5, return black colour
+        if ($contrastRatio > 5) {
+            return '#000000';
+        } else {
+            // if not, return white colour.
+            return '#FFFFFF';
+        }
+    }
+
     /**
      * Generate the Entity Event label for the calendar
      * @return string

@@ -76,7 +76,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                 @if (!empty($day['events']))
                     @foreach ($day['events'] as $event)
                         <?php /** @var \App\Models\EntityEvent $event */?>
-                        <div class="calendar-event-block block text-left my-1 p-1 rounded overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }};"
+                        <div class="calendar-event-block block text-left my-1 p-1 rounded overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; {{ $event->getLabelTextColour() }}"
                             @if ($canEdit)
 @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
                                 data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', array_merge(($event->calendar_id !== $model->id ? [$event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$event->entity->id, $event->id]), $routeOptions)) }}"
