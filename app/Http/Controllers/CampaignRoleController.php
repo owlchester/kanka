@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Facades\EntitySetup;
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Models\CampaignRole;
@@ -83,6 +87,25 @@ class CampaignRoleController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function duplicate(CampaignRole $campaignRole)
+    {
+        $this->authorize('create', CampaignRole::class);
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->canHaveMoreRoles()) {
+            return view('cruds.forms.limit')
+                ->with('key', 'roles')
+                ->with('campaign', $campaign)
+                ->with('name', 'campaign_roles');
+        }
+        $ajax = request()->ajax();
+
+        return view($this->view . '.create', ['model' => $campaign, 'ajax' => $ajax, 'roleId' => $campaignRole->id]);
+    }
+
+    /**
      * @param StoreCampaignRole $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
@@ -98,6 +121,15 @@ class CampaignRoleController extends Controller
         }
         $this->authorize('create', CampaignRole::class);
         $role = CampaignRole::create($request->all());
+        if ($request->has('duplicate') && $request->get('duplicate') != 0) {
+            $oldRole = CampaignRole::where('id', $request->get('role_id'))->first();
+            foreach ($oldRole->permissions as $permission) {
+                /** @var CampaignPermission $newPermission */
+                $newPermission = $permission->replicate(['user_id', 'campaign_id', 'key', 'action', 'table_name', 'entity_type_id', 'access', 'entity_id', 'misc_id']);
+                $newPermission->campaign_role_id = $role->id;
+                $newPermission->saveQuietly();
+            }
+        }
         return redirect()->route('campaign_roles.index')
             ->with('success_raw', __($this->view . '.create.success', ['name' => $role->name]));
     }
