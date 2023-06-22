@@ -25,7 +25,7 @@ window.initSummernote = function() {
             ['color', ['color']],
             ['kanka', ['aroba', (summernoteConfig.data('bragi') !== undefined ? 'bragi' : null)]],
             ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']],
-            ['table', ['table', 'spoiler', 'tableofcontent']],
+            ['table', ['table', 'tableofcontent']],
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
             ['view', ['fullscreen', 'codeview', 'prettify', 'help']],
