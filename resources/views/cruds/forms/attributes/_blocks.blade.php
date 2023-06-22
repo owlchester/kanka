@@ -29,7 +29,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live')]) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
+                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
@@ -66,7 +66,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 {!! Form::textarea('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 3, 'data-remote' => route('search.live')]) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
+                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
@@ -101,7 +101,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 {!! Form::number('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control']) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
+                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
@@ -134,7 +134,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 {!! Form::checkbox('attr_value[$TMP_ID$]', 1, false) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
+                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
@@ -169,7 +169,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 {!! Form::hidden('attr_value[$TMP_ID$]', null) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
+                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>
@@ -207,7 +207,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-2 mb-2';
                 {!! Form::text('attr_value[$TMP_ID$]', null, ['placeholder' => __('entities/attributes.placeholders.random.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             </div>
             <div class="{{ $actionBlock }}">
-                {!! Form::hidden('attr_is_star[$TMP_ID$]', false) !!}
+                {!! Form::hidden('attr_is_pinned[$TMP_ID$]', false) !!}
                 <i class="fa-regular fa-star fa-2x"  data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="{{ __('entities/attributes.visibility.tab') }}"
                    data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
                 ></i>

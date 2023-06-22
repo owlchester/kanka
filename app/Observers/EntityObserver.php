@@ -151,7 +151,7 @@ class EntityObserver
             'attr_name',
             'attr_value',
             'attr_is_private',
-            'attr_is_star',
+            'attr_is_pinned',
             'attr_type',
             'template_id',
             'is_attributes_private'

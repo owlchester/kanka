@@ -5,12 +5,12 @@ namespace App\Models\Scopes;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Trait Pinned
+ * Trait Pinnable
  * @package App\Models\Scopes
- *
- * @method static self|Builder pinned(bool $is_pinned = true)
+ * @property bool $is_pinned
+ * @method static self|Builder pinnable(bool $is_pinned = true)
  */
-trait Pinned
+trait Pinnable
 {
     /**
      * @param Builder $query
@@ -20,5 +20,10 @@ trait Pinned
     public function scopePinned(Builder $query, $pin = 1)
     {
         return $query->where(['is_pinned' => $pin]);
+    }
+
+    public function isPinned(): bool
+    {
+        return $this->is_pinned;
     }
 }

@@ -12,6 +12,6 @@
             <span class="sr-only">{{ __('pins.learn-more') }}</span>
         </a>
     </label>
-    {!! Form::select('is_star', $pinnedOptions, !empty($model) ? $model->is_star : 0, ['class' => 'form-control']) !!}
+    {!! Form::select('is_pinned', $pinnedOptions, !empty($model) ? $model->isPinned() : 0, ['class' => 'form-control']) !!}
     <p class="help-block visible-xs visible-sm">{{ __('crud.hints.is_star') }}</p>
 </div>

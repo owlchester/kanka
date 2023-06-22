@@ -18,6 +18,6 @@ class RelationBulk extends Bulk
 
     protected array $booleans = [
         'colour',
-        'is_star',
+        'is_pinned',
     ];
 }

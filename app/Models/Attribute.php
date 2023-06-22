@@ -6,7 +6,7 @@ use App\Facades\Attributes;
 use App\Facades\Mentions;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
-use App\Models\Scopes\Starred;
+use App\Models\Scopes\Pinnable;
 use App\Traits\OrderableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +26,7 @@ use Illuminate\Support\Str;
  * @property integer $default_order
  * @property boolean $is_private
  * @property boolean $is_hidden
- * @property boolean $is_star
+ * @property boolean $is_pinned
  * @property string $api_key
  * @property Entity|null $entity
  */
@@ -35,7 +35,7 @@ class Attribute extends Model
     use OrderableTrait;
     use Paginatable;
     use Privatable;
-    use Starred;
+    use Pinnable;
     use HasFactory;
 
     public const TYPE_CHECKBOX = 'checkbox';
@@ -63,7 +63,7 @@ class Attribute extends Model
         'type_id',
         'origin_attribute_id',
         'api_key',
-        'is_star',
+        'is_pinned',
         'is_hidden',
     ];
 

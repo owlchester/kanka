@@ -31,7 +31,7 @@ You can get a list of all the relations of an entity by using the following endp
             "relation": "Just Friends",
             "attitude": 22,
             "visibility_id": 1,
-            "is_star": false,
+            "is_pinned": false,
             "colour": null,
             "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": 1,
@@ -60,7 +60,7 @@ To get the details of a single relation, use the following endpoint.
         "relation": "Just Friends",
         "attitude": 22,
         "visibility_id": 1,
-        "is_star": true,
+        "is_pinned": false,
         "colour": "#22bbff",
         "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": 1,
@@ -89,7 +89,7 @@ To create a relation, use the following endpoint.
 | `attitude` | `int` | -100 to 100 |
 | `colour` | `string` | Hex colour of the attitude (with or without the `#`) |
 | `two_way` | `boolean` | If set, will duplicate the relation but in the other direction |
-| `is_star` | `boolean` | If the relation is visible on the entity's submenu |
+| `is_pinned` | `boolean` | If the relation is visible on the entity's submenu |
 | `visibility_id` | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 
 ### Results
