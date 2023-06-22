@@ -97,7 +97,7 @@ class CampaignRole extends Layout
             ],
             'duplicate' => [
                 'label' => 'campaigns.roles.actions.duplicate',
-                'icon' => 'fa-solid fa-edit',
+                'icon' => 'fa-solid fa-copy',
                 'can' => 'update',
                 'type' => 'ajax-modal',
                 'route' => 'campaign_roles.duplicate',

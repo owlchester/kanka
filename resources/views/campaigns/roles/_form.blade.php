@@ -3,7 +3,7 @@
     <label>{{ trans('campaigns.roles.fields.name') }}</label>
     {!! Form::text('name', null, ['placeholder' => trans('campaigns.roles.placeholders.name'), 'class' => 'form-control', 'maxlength' => 45, 'required']) !!}
     @if (isset($roleId))
-        <div class="field-skip-zero checkbox">
+        <div class="field-duplicate-role checkbox">
             {!! Form::hidden('role_id', $roleId) !!}
             {!! Form::hidden('duplicate', 0) !!}
             <label>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
+use App\Services\PermissionService;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRole;
 use Illuminate\Http\Request;
@@ -21,15 +22,19 @@ class CampaignRoleController extends Controller
      */
     protected string $view = 'campaigns.roles';
 
+    /** @var PermissionService */
+    protected PermissionService $service;
+
     /**
      * Create a new controller instance.
-     *
+     * @param AttributeService $permissionService
      * @return void
      */
-    public function __construct()
+    public function __construct(PermissionService $permissionService)
     {
         $this->middleware('auth');
         $this->middleware('campaign.member');
+        $this->service = $permissionService;
     }
 
     /**
@@ -122,13 +127,7 @@ class CampaignRoleController extends Controller
         $this->authorize('create', CampaignRole::class);
         $role = CampaignRole::create($request->all());
         if ($request->has('duplicate') && $request->get('duplicate') != 0) {
-            $oldRole = CampaignRole::where('id', $request->get('role_id'))->first();
-            foreach ($oldRole->permissions as $permission) {
-                /** @var CampaignPermission $newPermission */
-                $newPermission = $permission->replicate(['user_id', 'campaign_id', 'key', 'action', 'table_name', 'entity_type_id', 'access', 'entity_id', 'misc_id']);
-                $newPermission->campaign_role_id = $role->id;
-                $newPermission->saveQuietly();
-            }
+            $this->service->role($role)->duplicate($request->get('role_id'));
         }
         return redirect()->route('campaign_roles.index')
             ->with('success_raw', __($this->view . '.create.success', ['name' => $role->name]));
