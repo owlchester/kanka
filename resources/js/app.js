@@ -230,6 +230,7 @@ function initDialogs() {
 
         let target = $(this).data('target');
         target = document.getElementById(target);
+        target.removeAttribute('open');
         target.showModal();
 
         target.addEventListener('click', function (event) {
@@ -247,6 +248,7 @@ function initDialogs() {
         let target = $(this).data('target');
         let url = $(this).data('url');
         target = document.getElementById(target);
+        target.removeAttribute('open');
         target.showModal();
 
         target.addEventListener('click', function (event) {
@@ -262,6 +264,7 @@ function initDialogs() {
             url: url
         }).done(function (success) {
             $(target).html(success).show();
+            $(document).trigger('shown.bs.modal'); // Get tooltips to re-generate
 
             $('.btn-manage-perm').click(function (e) {
                 e.preventDefault();

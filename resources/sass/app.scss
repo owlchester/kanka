@@ -101,13 +101,13 @@ tr.tr-hover {
 
 // Attributes in entities and text area
 .attribute, .note-editing-area > .attribute {
-    border-radius: 2px;
+    border-radius: 0.25rem;
     --tw-border-opacity: 1;
-    background-color: hsl(var(--bc)/var(--tw-border-opacity));
+    background-color: hsl(var(--n)/var(--tw-border-opacity));
     --tw-text-opacity: 1;
-    color: hsl(var(--bc)/var(--tw-text-opacity));
+    color: hsl(var(--nc)/var(--tw-text-opacity));
     font-style: italic;
-    padding: 2px 3px;
+    padding: .1rem .25rem;
 }
 
 // Allow buttons to be multi-lined

@@ -74,7 +74,7 @@
     </div>
 
     <div class="col-span-2 bg-box p-4 rounded">
-        <p>Rutrum adipiscing enim pellentesque mi rutrum lacus eget amet nisl dolor maecenas adipiscing diam orci commodo suspendisse tincidunt tristique gravida leo arcu condimentum fusce nunc.</p>
+        <p>Rutrum adipiscing enim pellentesque mi <a href="#">link</a> eget amet nisl dolor maecenas adipiscing diam orci commodo suspendisse tincidunt tristique gravida leo arcu condimentum <span class="attribute inline-block">attribute mention</span> nunc.</p>
     </div>
 
     <div class="col-span-2 bg-box p-4 rounded">

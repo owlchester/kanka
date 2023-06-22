@@ -11,6 +11,7 @@
 ) !!}
 
 @include('partials.forms.form', [
+    'mode' => 'edit',
     'title' => __('dashboard.setup.widgets.' . $model->widget),
     'titleIcon' => $model->widgetIcon(),
     'content' => 'dashboard.widgets.forms._' . $widget,

@@ -3,19 +3,19 @@
 <div class="nav-tabs-custom">
     <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
         <li class="active">
-            <a data-toggle="tab" href="#setup">
+            <a data-toggle="tab" href="#setup-{{ $mode }}">
                 {{ __('dashboard.widgets.tabs.setup') }}
             </a>
         </li>
         <li>
-            <a class="" data-toggle="tab" href="#advanced">
+            <a class="" data-toggle="tab" href="#advanced-{{ $mode }}">
                 {{ __('dashboard.widgets.tabs.advanced') }}
             </a>
         </li>
     </ul>
 
     <div class="tab-content p-4">
-        <div id="setup" class="tab-pane fade in active">
+        <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
                 <div class="field-random-type required">
                     <label for="config-entity">
@@ -42,7 +42,7 @@
             </x-grid>
         </div>
 
-        <div id="advanced" class="tab-pane fade in">
+        <div id="advanced-{{ $mode }}" class="tab-pane fade in">
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
 
             <x-grid>
