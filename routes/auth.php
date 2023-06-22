@@ -4,8 +4,7 @@
 
 
 Route::post('/logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
-Route::get('/login-as-user/{user}', [\App\Http\Controllers\Auth\AuthController::class, 'loginAsUser'])->name('login-as-user');
-Route::get('/login-as-user/{user}', 'Auth\AuthController@loginAsUser')->name('login-as-user');
+Route::get('/login-as-user/{user}', [\App\Http\Controllers\Auth\LoginController::class, 'loginAsUser'])->name('login-as-user');
 
 // OAuth Routes
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
