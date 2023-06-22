@@ -68,8 +68,8 @@ if ($attribute->isSection()) {
         @endif
     </div>
     <div class="flex gap-3">
-        {!! Form::hidden('attr_is_pinned[' . $id . ']', $attribute->is_pinned) !!}
-        <i class="cursor-pointer fa-star @if($attribute->is_pinned) fa-solid @else fa-regular @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="@if($attribute->is_pinned) {{ __('entities/attributes.visibility.entry') }} @else  {{ __('entities/attributes.visibility.tab') }} @endif"
+        {!! Form::hidden('attr_is_pinned[' . $id . ']', $attribute->isPinned()) !!}
+        <i class="cursor-pointer fa-star @if($attribute->isPinned()) fa-solid @else fa-regular @endif fa-2x" data-toggle="star" data-tab="{{ __('entities/attributes.visibility.tab') }}" data-entry="{{ __('entities/attributes.visibility.entry') }}" title="@if($attribute->isPinned()) {{ __('entities/attributes.visibility.entry') }} @else  {{ __('entities/attributes.visibility.tab') }} @endif"
         data-pin="{{ __('entities/attributes.toasts.pin') }}" data-unpin="{{ __('entities/attributes.toasts.unpin') }}"
         ></i>
 

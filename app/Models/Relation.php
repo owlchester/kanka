@@ -147,7 +147,7 @@ class Relation extends Model
             'attitude' => $this->attitude,
             'colour' => $this->colour,
             'visibility_id' => $this->visibility_id,
-            'is_pinned' => $this->is_pinned,
+            'is_pinned' => $this->isPinned(),
             'mirror_id' => $this->id,
         ]);
 

@@ -19,7 +19,7 @@ class Relation extends Layout
                 'label' => 'entities/relations.fields.relation',
                 'render' => function ($relation) {
                     $icon = '';
-                    if ($relation->is_pinned) {
+                    if ($relation->isPinned()) {
                         $icon = '<i class="fa-solid fa-star" title="' . __('crud.fields.is_star') . '" data-toggle="tooltip"></i> ';
                     }
 

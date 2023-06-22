@@ -189,7 +189,7 @@ class AttributeTemplate extends MiscModel
                 'value' => $value,
                 'default_order' => $lastOrder + $order,
                 'is_private' => $attribute->is_private,
-                'is_pinned' => $attribute->is_pinned,
+                'is_pinned' => $attribute->isPinned(),
                 'type_id' => $type,
             ]);
             $order++;
@@ -211,7 +211,7 @@ class AttributeTemplate extends MiscModel
                     'value' => $value,
                     'default_order' => $order,
                     'is_private' => $attribute->is_private,
-                    'is_pinned' => $attribute->is_pinned,
+                    'is_pinned' => $attribute->isPinned(),
                     'type_id' => $type,
                 ]);
                 $order++;
