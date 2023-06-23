@@ -4,6 +4,7 @@ namespace App\Services\Users;
 
 use App\Jobs\Users\DeleteUser;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class PurgeService
 {
@@ -30,7 +31,10 @@ class PurgeService
                 $sub->whereNull('last_login_at')
                     ->orWhereDate('last_login_at', '<=', $this->date);
             })->whereDate('users.created_at', '<=', $this->date)
-            ->where('users.pledge', '')
+            ->where(function ($sub) {
+                $sub->where('users.pledge', '')
+                    ->orWhereNull('users.pledge');
+            })
             ->whereNull('cu.id')
             ->chunk(500, function ($users) {
                 /** @var User $user */
@@ -51,6 +55,8 @@ class PurgeService
         $this->reset();
 
         User::distinct()
+            ->select('users.*')
+            ->leftJoin('campaign_user as cu', 'cu.user_id', 'users.id')
             ->with([
                 'campaigns' => function ($sub) {
                     $sub->select('campaigns.id');
@@ -63,14 +69,18 @@ class PurgeService
                 $sub->whereNull('last_login_at')
                     ->orWhereDate('last_login_at', '<=', $this->date);
             })->whereDate('users.created_at', '<=', $this->date)
-            ->where('users.pledge', '')
-            ->has('campaigns')
+            ->where(function ($sub) {
+                $sub->where('users.pledge', '')
+                    ->orWhereNull('users.pledge');
+            })
+            ->where(DB::raw('(select count(cu2.id) from campaign_user as cu2 where cu2.user_id = users.id)'), '=', 1)
+            ->where(DB::raw('(select count(cu3.id) from campaign_user as cu3 where cu3.campaign_id = cu.campaign_id)'), '=', 1)
 
-            ->chunk(500, function ($users) {
+            ->chunk(1000, function ($users) {
                 /** @var User $user */
-                if ($this->count >= 500) {
+                /*if ($this->count >= 500) {
                     return;
-                }
+                }*/
                 foreach ($users as $user) {
                     if ($user->campaigns->count() > 1) {
                         // We'll want to notify this user, or handle them in another loop
