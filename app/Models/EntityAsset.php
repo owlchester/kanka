@@ -107,7 +107,7 @@ class EntityAsset extends Model
     public function icon(): string
     {
         if (empty($this->metadata['icon'])) {
-            return 'fa-solid fa-map';
+            return 'fa-solid fa-link';
         }
         return (string) $this->metadata['icon'];
     }
