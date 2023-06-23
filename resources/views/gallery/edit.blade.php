@@ -22,23 +22,28 @@ $imageCount = 0;
                         <img src="{{ $image->getUrl(192, 144) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
                     </div>
                 @endif
+                @if (!$image->isFont())
+                    <div class="mt-2">
+                        <a href="#" class="btn2 btn-sm" data-toggle="collapse" data-target=".gallery-toggle">{{ __('campaigns/gallery.actions.focus_point') }}</a>
+                    </div>
+                @endif
 
-                <div class="mt-2">
-                    <a href="#" class="btn2 btn-sm" data-toggle="collapse" data-target=".gallery-toggle">{{ __('campaigns/gallery.actions.focus_point') }}</a>
-                </div>
                 <hr />
 
                 <div class="grid grid-cols-1 gap-5">
-                    <p class="{{ $image->inEntitiesCount() === 0 ? 'text-muted' : '' }} m-0">
-                        {{ trans_choice('campaigns/gallery.fields.image_used_in', $image->inEntitiesCount(), ['count' => $image->inEntitiesCount()]) }}
-                    </p>
-                    @if($image->inEntitiesCount() > 0)
-                        <div class="grid grid-cols-2 gap-2">
-                            @foreach($image->inEntities() as $entity)
-                                <a href="{{ $entity->url() }}">{{ $entity->name }}</a>
-                            @endforeach
-                        </div>
+                    @if (!$image->isFont())
+                        <p class="{{ $image->inEntitiesCount() === 0 ? 'text-muted' : '' }} m-0">
+                            {{ trans_choice('campaigns/gallery.fields.image_used_in', $image->inEntitiesCount(), ['count' => $image->inEntitiesCount()]) }}
+                        </p>
+                        @if($image->inEntitiesCount() > 0)
+                            <div class="grid grid-cols-2 gap-2">
+                                @foreach($image->inEntities() as $entity)
+                                    <a href="{{ $entity->url() }}">{{ $entity->name }}</a>
+                                @endforeach
+                            </div>
+                        @endif
                     @endif
+
                     @if($image->mentions->count() > 0)
                     <p class="{{ $image->mentions->count() === 0 ? 'text-muted' : '' }} m-0">
                         {{ trans_choice('campaigns/gallery.fields.image_mentioned_in', $image->mentions->count(), ['count' => $image->mentions->count()]) }}
