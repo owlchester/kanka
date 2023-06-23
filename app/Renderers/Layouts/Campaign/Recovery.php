@@ -22,6 +22,7 @@ class Recovery extends Layout
                     if (empty($child)) {
                         return '';
                     }
+                    $child->withEntity($entity);
                     return '<div style="background-image: url(' . $child->thumbnail() . ');" class="entity-image"></div>';
                 },
             ],
