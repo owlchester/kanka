@@ -55,7 +55,7 @@ $weekNumber = 1;
             </a>
         </div>
     </div>
-    <div class="month-alias help-block">{!! $renderer->monthAlias() !!}</div>
+    <div class="month-alias help-block m-0">{!! $renderer->monthAlias() !!}</div>
 </div>
 
 <x-box :padding="false">
