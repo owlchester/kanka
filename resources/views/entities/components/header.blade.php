@@ -222,6 +222,15 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                                     </li>
                                 @endif
                                 <li class="divider"></li>
+                                    @can('update', $model)
+                                        <li>
+                                            <a href="{{ route('entities.relations.create', ['entity' => $model->entity, 'mode' => 'table']) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', ['entity' => $model->entity, 'mode' => 'table']) }}">
+                                                <x-icon class="fa-solid fa-people-arrows"></x-icon>
+                                                {{ __('entities/relations.fields.connection') }}
+                                            </a>
+                                        </li>
+                                    @endcan
+                                <li class="divider"></li>
                             @endif
                             <li>
                                 <a href="{{ route('entities.html-export', $entity) }}">
