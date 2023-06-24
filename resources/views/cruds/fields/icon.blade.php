@@ -6,7 +6,7 @@ $required = !isset($bulk);
     @if($campaignService->campaign()->boosted())
 
         {!! Form::text(
-            'icon',
+            $iconFieldName ?? 'icon',
             null,
             [
                 'placeholder' => $placeholder ?? 'fa-solid fa-users',

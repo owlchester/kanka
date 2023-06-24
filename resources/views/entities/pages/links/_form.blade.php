@@ -26,7 +26,7 @@
         ) !!}
     </div>
 
-    @include('cruds.fields.icon', ['placeholder' => 'fa-brands fa-d-and-d-beyond, ra ra-aura'])
+    @include('cruds.fields.icon', ['iconFieldName' => 'metadata[icon]', 'placeholder' => 'fa-brands fa-d-and-d-beyond, ra ra-aura'])
     @include('cruds.fields.visibility_id', ['model' => $entity ?? null])
 </x-grid>
 <input type="hidden" name="type_id" value="{{ \App\Models\EntityAsset::TYPE_LINK }}" />
