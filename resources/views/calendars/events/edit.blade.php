@@ -25,7 +25,7 @@
             </x-alert>
         @endif
 
-        @include('calendars.events._form')
+        @include('calendars.events._form', ['colourAppendTo' => '#entity-modal'])
 
     </div>
     <div class="modal-footer">
