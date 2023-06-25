@@ -36,8 +36,6 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use Illuminate\Support\Str;
 
-use function PHPUnit\Framework\isEmpty;
-
 class EntityService
 {
     use PurifiableTrait;
@@ -186,9 +184,9 @@ class EntityService
      *
      * @param Entity $entity
      * @param array $request
-     * @return Entity
+     * @return bool
      */
-    public function move(Entity $entity, array $request): Entity
+    public function move(Entity $entity, array $request): bool
     {
         return $this->moveCampaign(
             $entity,
@@ -215,10 +213,10 @@ class EntityService
      * @param Entity $entity
      * @param int $campaignId
      * @param bool $copy
-     * @return Entity
+     * @return bool
      * @throws TranslatableException
      */
-    protected function moveCampaign(Entity $entity, int $campaignId, bool $copy): Entity
+    protected function moveCampaign(Entity $entity, int $campaignId, bool $copy): bool
     {
         // First we make sure we have access to the new campaign.
         /** @var Campaign|null $campaign */
@@ -250,6 +248,7 @@ class EntityService
         // Save and keep the current campaign before updating the entity
         $currentCampaign = CampaignLocalization::getCampaign();
 
+        $success = false;
         DB::beginTransaction();
         try {
             // Made it so far, we can move the entity's campaign_id. We first need to remove all the
@@ -283,23 +282,23 @@ class EntityService
             $child->saveQuietly();
 
             DB::commit();
+            $success = true;
         } catch (\Exception $e) {
             DB::rollBack();
-            throw $e;
         }
 
         // Switch back to the original campaign
         CampaignLocalization::forceCampaign($currentCampaign);
 
-        return $entity;
+        return $success;
     }
 
     /**
      * @param Entity $entity
      * @param Campaign $newCampaign
-     * @return Entity
+     * @return bool
      */
-    protected function copyToCampaign(Entity $entity, Campaign $newCampaign)
+    protected function copyToCampaign(Entity $entity, Campaign $newCampaign): bool
     {
         // Save and keep the current campaign before updating the entity
         $originalCampaign = CampaignLocalization::getCampaign();
@@ -307,6 +306,7 @@ class EntityService
         // Update Entity first, as there are no hooks on the Entity model.
         CampaignLocalization::forceCampaign($newCampaign);
         $this->targetCampaign = $newCampaign;
+        $success = false;
 
         DB::beginTransaction();
         try {
@@ -377,14 +377,16 @@ class EntityService
             }
 
             DB::commit();
+            $success = true;
         } catch (\Exception $e) {
             DB::rollBack();
+            //dd($e->getMessage());
         }
 
         // Switch back to the original campaign
         CampaignLocalization::forceCampaign($originalCampaign);
 
-        return $entity;
+        return $success;
     }
 
     /**
@@ -822,6 +824,10 @@ class EntityService
         // When transforming to a nested model, we need to recalculate the tree bounds to
         // place it correctly in the overall campaign tree.
         if (!method_exists($model, 'recalculateTreeBounds')) {
+            // If it's not nested with a full tree, but still has a parent id, set that to null
+            if (method_exists($model, 'getParentIdName')) {
+                $model->{$model->getParentIdName()} = null;
+            }
             return;
         }
         $isLocationWithParent = in_array('parent_location_id', $model->getFillable()) && !empty($model->getParentId());
