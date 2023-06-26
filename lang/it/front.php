@@ -1,195 +1,232 @@
 <?php
 
 return [
-    'about'         => [
-        'title' => 'Su di noi',
-    ],
-    'actions'       => [
-        'back-to-top'   => 'Ritorna su',
-    ],
-    'campaigns'     => [
-        'description_full'  => 'Molte campagne su Kanka sono pubbliche per essere guardate da tutti. Questa pagina contiene una lista di tutte le campagne pubbliche ed alcune campagne in primo piano dalla comunità.',
-        'featured'          => [
-            'description'   => 'La nostra comunità realizza cose fantastiche che noi amiamo mostrare come Campagne in Primo Piano. Cambiamo questa lista di frequente quindi cerca di tornare di quando in quando per altre campagne da osservare.',
-            'title'         => 'Campagne in Primo Piano',
-        ],
-        'open'              => [
+    'about'                 => [],
+    'actions'               => [],
+    'campaigns'             => [
+        'public'    => [
             'filters'   => [
-                'all'       => 'Apri stato',
-                'closed'    => 'Campagne concluse',
-                'featured'  => 'Vincitori dei Prompt',
-                'open'      => 'Campagne aperte',
+                'entities'      => 'Ordina per numero di entità',
+                'followers'     => 'Ordina per follower',
+                'is-premium'    => 'Questa è una campagna premium!',
+                'premium'       => 'Campagne Premium',
+                'standard'      => 'Campagne Standard',
             ],
         ],
-        'public'            => [
-            'description'   => 'Dai uno sguardo alle Campagne Pubbliche per un po\' di ispirazione.',
-            'filters'       => [
-                'all'   => 'Stato Premium',
-            ],
-            'no-results'    => 'Non è stata trovata nessuna campagna con questi filtri. Per favore riprova.',
-            'title'         => 'Campagne Pubbliche',
+    ],
+    'community'             => [],
+    'contact'               => [
+        'title' => 'Siamo qui per te',
+    ],
+    'cookie'                => [],
+    'faq'                   => [],
+    'featured_campaigns'    => [
+        'description'   => 'Vuoi vedere Kanka in azione e come lo usano gli altri? Ecco alcune campagne della nostra comunità che riteniamo assolutamente incredibili.',
+        'more'          => 'Vuoi vedere altre campagne? Guarda le :public-campaigns',
+        'title'         => 'Ti serve ispirazione?',
+    ],
+    'features'              => [
+        'abilities'         => [
+            'description'   => 'Organizza l\'inventario dei tuoi personaggi o dei tuoi negozi collegando gli oggetti. Collega incantesimi e poteri ai personaggi attraverso le abilità.',
+            'title'         => 'Abilità e Oggetti',
         ],
-        'title'             => 'Campagne Pubbliche',
-    ],
-    'community'     => [],
-    'contact'       => [
-        'description'   => 'Hai bisogno di aiuto, hai un suggerimento, o vuoi semplicemente condividere il tuo amore per Kanka? Il nostro team ti risponderà in ogni caso!',
-        'email'         => 'Manda tutte le domande a',
-        'title'         => 'Noi :icon i nuovi amici!',
-    ],
-    'cookie'        => [
-        'dismiss'   => 'Capito!',
-        'link'      => 'Scopri di più',
-        'message'   => 'Questo sito utilizza dei cookies per assicurarsi di fornirti la miglior esperienza possibile.',
-    ],
-    'faq'           => [
-        'helpers'   => [
-            'more'  => 'Non hai trovato ciò che stavi cercando?',
+        'actions'           => [
+            'rpg'           => 'Per Campagne GDR',
+            'worldbuilder'  => 'Per Creatori di Mondi e Scrittori',
         ],
-    ],
-    'features'      => [
-        'api'               => [
-            'description'   => 'Vuoi realizzare un fantastico strumento che si integra con Kanka? Sequi questo link :link.',
-            'link'          => 'API docs',
-            'title'         => 'API',
+        'audio'             => [
+            'description'   => 'Non c\'è bisogno di scorrere 10 playlist, basta incorporare i link di Spotify e YouTube direttamente nelle entità.',
+            'title'         => 'Incorporare Audio e Video',
         ],
         'boosts'            => [
-            'beta'      => 'Accesso in beta ad alcune nuove funzionalità 30 giorni prima del loro rilascio generale.',
-            'css'       => 'CSS personalizzati per la campagna',
-            'images'    => 'Imposta immagini predefinite personalizzate per le entità',
-            'recovery'  => 'Recupero delle entità fino a 30 giorni',
-            'theme'     => 'Tema fisso della campagna',
-            'tooltip'   => 'Tooltips personalizzati per le entità: mostra immagine, cambia testo',
-            'upload'    => 'Dimensioni di caricamento aumentate per tutti i membri',
+            'dashboards'            => 'Impostare pannelli personalizzati per i ruoli della campagna',
+            'description'           => 'Alcuni livelli di abbonamento forniscono agli utenti dei potenziamenti che possono essere utilizzati per potenziare le campagne. Questi forniscono i seguenti vantaggi.',
+            'entity-aliases'        => 'Imposta alias sulle entità per migliori menzioni e ricerche',
+            'entity_files_v2'       => 'Massimo numero di file caricati per entità',
+            'entity_links'          => 'Imposta sulle entità i collegamenti a risorse e siti web esterni',
+            'header_image'          => 'Immagine di sfondo per l\'intestazione dell\'entità',
+            'map_markers'           => 'Accedi a migliaia di icone per i marcatori delle mappe e a indicatori personalizzati',
+            'marketplace'           => 'Accedi al :marketplace',
+            'modules'               => 'Rinomina i moduli in una campagna, ad esempio cambiando le famiglie in clan',
+            'no_ads'                => 'Nessuna pubblicità nella campagna per gli utenti registrati',
+            'premium'               => 'Campagne Premium',
+            'recovery'              => 'Recupero delle entità eliminate (fino a :amount giorni)',
+            'relation-visualiser'   => 'Esplora visivamente le relazioni tra le entità',
+            'sidebar'               => 'Riordina e personalizza la Barra Laterale della campagna',
+            'standard'              => 'Campagna Standard',
+            'timeline_elements'     => 'Personalizza l\'icona e il colore degli elementi di una Linea Temporale',
+            'tooltip'               => 'Strumenti personalizzati per le entità: mostra immagine, cambia testo',
+        ],
+        'boosts_v2'         => [
+            'description'       => 'I nostri livelli di abbonamento ti danno accesso ai potenziamenti, che puoi utilizzare per potenziare o superpotenziare le campagne. In questo modo sblocchi i seguenti vantaggi per una campagna.',
+            'description-count' => 'Per potenziare una campagna si usano :boost-count potenziamenti. Il superpotenziamento di una campagna utilizza :superboost-count potenziamenti.',
+            'moving'            => 'I potenziamenti possono essere spostati all\'interno delle campagne. Ad esempio, se una campagna è terminata, è possibile depotenziarla e potenziare o superpotenziare un\'altra campagna. La disattivazione dei potenziamenti di una campagna non cancella i dati relativi alle funzioni potenziate, ma li nasconde semplicemente finché la campagna non viene nuovamente potenziata.',
+            'title'             => 'Campagne Potenziate e Superpotenziate',
         ],
         'calendars'         => [
-            'description'   => 'Crea dei calendari personalizzati ed organizza la tua campagna attorno ad essi.',
-            'title'         => 'Calendari',
+            'description'   => 'Crea dei calendari completamente personalizzati con le settimane e i mesi che desideri. Aggiungi le stagioni, il tempo atmosferico e le lune per aggiungere particolarità al tuo mondo. Aggiungi entità al calendario come promemoria, controllando la durata e la frequenza degli eventi.',
         ],
-        'collaborative'     => [
-            'title' => 'Collaborativo',
+        'dashboards'        => [
+            'title' => 'Pagine Principali della Campagna',
         ],
-        'description'       => 'Qui ci sono alcune delle cose che noi pensiamo tu adorerai della nostra app!',
-        'description_full'  => 'Una vetrina di alcune delle nostre migliori e più amate caratteristiche.',
+        'description'       => 'Con le nostre @menzioni, i nostri tag e il nostro approfondito sistema di permessi, :kanka rende facile tenere traccia del tuo mondo o della tua campagna. Questo include i Personaggi e le loro relazioni, i Luoghi e la loro storia, le Missioni e i loro obiettivi, le Linee Temporali e le loro epoche e i Calendari con gli eventi e il tempo atmosferico. E soprattutto, gli utenti di :kanka hanno la possibilità di decidere quali nuove funzionalità sviluppare grazie alle regolari votazioni della comunità.',
+        'description_full'  => ':kanka viene costantemente aggiornato con nuove funzioni e miglioramenti, ma ecco alcuni dei più importanti che pensiamo vi piaceranno.',
+        'flora'             => [
+            'description'   => 'Tieni traccia delle creature viventi del tuo mondo usando il modulo Stirpi e costruisci un complesso ecosistema usando le nostre Note annidate.',
+            'title'         => 'Flora & Fauna',
+        ],
         'free'              => [
-            'bonuses'   => 'Bonus',
-            'title'     => 'Utilizzo Gratuito',
+            'bonuses'   => 'bonus per i nostri abbonati',
         ],
-        'landscape'         => 'Per favore passa alla modalità landscape per mostrare la lista delle funzionalità.',
         'layers'            => [
-            'description'   => 'Tieni traccia dei personaggi, delle loro famiglie, dei luoghi visitati e molto altro in qualsiasi momento.',
-            'title'         => 'Personaggi, Famiglie, Luoghi',
+            'description'   => 'Popola il tuo mondo con tanti personaggi. Definisci le loro relazioni utilizzando famiglie e organizzazioni. Costruisci pianeti, continenti, regni, taverne e fontane con i nostri luoghi annidate.',
         ],
-        'learn_more'        => 'Scopri di più sulle caratteristiche di Kanka.',
-        'maps'              => [
-            'description'   => 'Carica le mappe dei tuoi mondi, delle città e delle caverne aggiungendogli utili marcatori e collegamenti.',
-            'title'         => 'Mappe',
-        ],
+        'learn_more'        => 'Scopri di più sulle caratteristiche di :kanka.',
+        'learn_more_about'  => 'Impara di più su questa funzione',
         'modular'           => [
-            'description'   => 'Ogni modulo (personaggi, luoghi) può essere abilitato o disabilitato in qualsiasi momento, rendendo più facile per te personalizzarela tua campagna.',
-            'title'         => 'Modulare',
-        ],
-        'notebook'          => [
-            'description'   => 'Prepara la tua prossimo sessione o tieni traccia di quello che è successo con il nostro diario!',
-            'title'         => 'Pagine del Diario',
+            'description'   => 'Ogni modulo (personaggi, luoghi) può essere abilitato o disabilitato in qualsiasi momento, rendendo più facile per te personalizzare la tua campagna.',
         ],
         'patreon'           => [
-            'boosts'            => 'Potenziatori delle Campagne',
-            'curation'          => 'Aiuta a gestire gli elementi per il voto della community',
-            'default_image'     => 'Immagini predefinite personalizzate per le entità',
-            'description'       => 'Ricevere il vostro supporto tramite una piccola quota mensile ci permette di continuare a lavorare su Kanka e sblocca i seguenti benefici per un account.',
-            'discord'           => 'Canale Privato di Discord',
-            'free'              => 'Gratis',
-            'hall_of_fame'      => 'Nome nella :link',
-            'impact'            => 'Influenza le funzionalità future',
-            'monthly_vote'      => 'Partecipazione al voto della community per le funzionalità',
-            'pagination'        => 'Risultati per pagina aumentati',
-            'pagination_help'   => 'Questo è il numero massimo di risultati mostrati per pagina, non il limite numerico delle entità per una campagna.',
-            'title'             => 'Funzionalità a Pagamento',
-            'upload_limit'      => 'Dimensioni di caricamento',
-            'upload_limit_map'  => 'Dimensioni di caricamento per le mappe',
+            'api_calls'     => 'Aumento delle chiamate API (90 al minuto)',
+            'boosts'        => 'Potenziamenti della Campagna',
+            'bragi'         => 'Accedi a Bragi, l\'AI di worldbuilding di Kanka',
+            'click-me'      => 'Impara di più su questa funzione',
+            'description'   => 'Ricevere il vostro supporto tramite una piccola quota mensile ci permette di continuare a lavorare su :kanka e sblocca i seguenti benefici:',
+            'discord'       => 'Canale Privato di :discord',
+            'entities'      => 'Numero di entità che possono essere create in ogni campagna',
+            'impact'        => 'Influenza le funzionalità future (tramite Discord)',
+            'no_ads'        => 'Non sarà mostrato nessun annuncio o pubblicità!',
+            'users_roles'   => 'Numero di utenti, ruoli e controlli dei permessi',
         ],
-        'public'            => [
-            'description'   => 'I permessi possono essere impostati per moduli o per ogni singola entità. Le campagne possono anche essere impostate come pubbliche per <a href=":url">mondo intero</a>.',
-            'title'         => 'Permessi',
+        'quests'            => [
+            'description'   => 'Prepara la prossima sessione o registra gli eventi con la nostra funzione di diario avanzata. Prepara e tieni traccia dei progressi dei tuoi giocatori utilizzando il modulo delle missioni.',
+            'title'         => 'Missioni & Diari',
         ],
-        'relations'         => [
-            'description'   => 'Ogni entità può avere una complessa rete di relazioni con altre entità, incluse relazioni segrete invisibili ai tuoi giocatori.',
-            'title'         => 'Relazioni',
+        'rpg'               => [
+            'description'   => 'Da un approfondito sistema di permessi, alle Missioni, ai Diari, ai Personaggi, alle Abilità e agli audio e video incorporati, vi aiutiamo a gestire la tua campagna e i prossimi tpk.',
+            'title'         => 'Gestione delle campagne di gioco di ruolo',
         ],
-        'title'             => 'Caratteristiche Infinite, Divertimento Infinito',
-        'updates'           => [
-            'title' => 'Aggiornamenti Frequenti',
+        'secrets'           => [
+            'description'   => 'Ogni entità può avere diversi segreti collegati sotto forma di post. Questi possono avere diversi permessi per controllare chi li vede e sono visibili nella vista principale dell\'entità per accedervi rapidamente.',
+            'title'         => 'Gestisci Segreti',
+        ],
+        'superboosts'       => [
+            'family-tree'   => 'Crea Alberi Genealogici per tenere traccia della storia di una famiglia',
+            'gallery'       => 'Galleria delle campagne e integrazioni con l\'editor di testo predefinito',
+            'logs'          => 'Registri completi delle modifiche alle entità (fino a :amount giorni)',
+            'stats'         => 'Pagina dei Traguardi della campagna',
+        ],
+        'timelines'         => [
+            'description'   => 'Rappresenta visivamente le Linee Temporali dei tuoi mondi, imperi, famiglie nobili o anche di un singolo personaggio.',
+            'title'         => 'Linee Temporali',
+        ],
+        'unlimited'         => 'Illimitato',
+        'worldbuilding'     => [
+            'title' => 'Worldbuilding',
         ],
     ],
-    'first_block'   => [
-        'description'   => 'La nostra app è disponibile su qualsiasi dispositivo mobile e browser! Non c\'è bisogno di installare nulla, è tutto sul tuo browser. La cosa migliore è che è completamente gratuita.',
-        'title'         => 'Un nuovo modo per tener traccia delle tue campagne.',
+    'first_block'           => [
+        'description'   => ':kanka è disponibile su qualsiasi dispositivo sul browser e viene aggiornato regolarmente con nuove funzionalità e miglioramenti. Non perderai più i tuoi appunti sparsi: in :kanka tutto è in un unico posto, facile da trovare e accessibile in ogni momento.',
+        'title'         => 'Un nuovo modo per tener traccia delle tue campagne e del tuo worldbuilding',
     ],
-    'footer'        => [
+    'footer'                => [
+        'copyright' => 'Copyright :copy :year :company',
         'headings'  => [
-            'app'       => 'App',
-            'community' => 'Community',
+            'community' => 'Comunità',
         ],
     ],
-    'help'          => [
-        'description'   => 'Noi siamo qui per te nel caso qavessi bisogno di un piccolo aiuto. Contattaci utilizzando uno dei seguenti metodi è noi ti risponderemo il più velocemente possibile.',
-        'discord'       => 'Unisciti alla comunità su Discord',
-        'email'         => 'Inviaci una e-mail',
-        'facebook'      => 'Contattaci su Facebook',
-        'title'         => 'Aiuto',
-        'twitter'       => 'Facci un tweet su Twitter',
+    'goodbye'               => [
+        'description_1' => 'Siamo spiacenti di vederti andare via e comprendiamo che cancellare il proprio account sia una decisione importante. Apprezziamo il tempo trascorso con Kanka e speriamo che abbia soddisfatto le tue aspettative.',
+        'description_2' => 'Il nostro team si impegna a migliorare e aggiornare costantemente Kanka per offrirti la migliore esperienza possibile. Apprezziamo sempre i tuoi commenti e suggerimenti e ti invitiamo a contattarci all\'indirizzo :email in qualsiasi momento per qualsiasi commento.',
+        'description_3' => 'Vogliamo che tu sappia che se vuoi decidere di tornare, saremo più che felici di riaverti con noi. Siamo certi che, grazie ai nostri frequenti aggiornamenti, troverai Kanka ancora migliore e più facile da usare che mai.',
+        'description_4' => 'Grazie ancora per aver fatto parte della nostra comunità. Ti auguriamo tutto il meglio per le tue future imprese di worldbuilding.',
+        'title'         => 'Un caloroso saluto',
     ],
-    'master'        => [
-        'call_to_action'    => 'Registrati adesso, è gratuito!',
-        'description'       => 'Kanka è uno strumento facile e flessibile per costruire mondi e gestire le tue campagne RPG online. Creare ed organizzare persone, luoghi, organizzazioni, eventi and molto altro.',
-        'title'             => 'Kanka',
+    'help'                  => [
+        'description'   => 'Noi siamo qui per te nel caso avessi bisogno di un piccolo aiuto. Contattaci utilizzando uno dei seguenti metodi è noi ti risponderemo il più velocemente possibile.',
+        'documentation' => 'Dai un\'occhiata alla documentazione',
     ],
-    'menu'          => [
-        'about'     => 'Su di noi',
-        'campaigns' => 'Campagne Pubbliche',
-        'community' => 'Comunità',
-        'contact'   => 'Contatti',
-        'dashboard' => 'Dashboard',
-        'features'  => 'Caratteristiche',
-        'login'     => 'Entra',
-        'news'      => 'Novità',
-        'newsletter'=> 'Newsletter',
-        'pricing'   => 'Prezzi',
-        'privacy'   => 'Privacy Policy',
-        'register'  => 'Registrati',
-        'releases'  => 'Rilasci',
-        'roadmap'   => 'Roadmap',
-    ],
-    'meta'          => [
-        'description'   => 'Kanka è un flessibile costruttore di mondi digitali e gestore on-line di campagne RPG',
-        'title'         => 'Kanka - Gestore di campagne Online per RPG e strumento per la creazione di mondi',
-    ],
-    'privacy'       => [
-        'description'   => 'Data di entrata in vigore: :date',
-        'title'         => 'Privacy Policy',
-    ],
-    'release'       => [],
-    'roadmap'       => [
-        'backlog'       => [
-            'description'   => 'Questa bacheca di Trello contiene tutte le caratteristiche richieste dalla comunità come tutte le caratteristiche  ed i miglioramenti pianificati che un giorno rilascieremo per l\'app.',
-            'title'         => 'Backlog',
+    'home'                  => [
+        'seo'   => [
+            'meta-description'  => 'Sei un game master, un worldbuilder o uno scrittore? Offriamo un gestore di campagne da gioco di ruolo e uno strumento di worldbuilding che rende facile organizzare, pianificare e divertirsi con le campagne dei TTRPG. Siamo guidati dalla comunità e, soprattutto, le nostre funzioni principali sono gratuite!',
         ],
-        'description'   => 'I nostri fantastici Patrons votano una volta al mese per decidere quali caratteristiche verranno implementate, quindi non avendo una roadmap su più mesi è facile seguire cosa sia stato richiesto e cosa si trova in lavorazione al momento.',
-        'next'          => [
-            'description'   => 'Questa board di Trello contiene tutte le caratteristiche ed i miglioramenti su cui attualmente si sta lavorando.',
-            'title'         => 'Prossimo',
+    ],
+    'master'                => [
+        'description'           => ':kanka è uno strumento di worldbuilding e di gestione delle campagne di giochi di ruolo guidato dalla comunità, perfetto sia per i worldbuilder che per i game master. Ti aiutiamo a creare e organizzare le tue campagne e i tuoi mondi con il nostro sistema di @menzioni e un\'ampia gamma di funzioni come calendari, mappe interattive, linee temporali, organizzazioni, famiglie e tutti i personaggi che riuscite a immaginare!',
+        'description_q1_2023'   => ':kanka è uno strumento di worldbuilding collaborativo perfetto per dare sfogo alla tua creatività. Costruisci il tuo mondo con entità simili a wiki, calendari complessi e bellissime mappe. Qualunque cosa ti serva, :kanka è qui per aiutarti a creare e gestire la tua  campagna di gioco di ruolo.',
+        'heading'               => 'Worldbuilding, gestione di campagne di giochi di ruolo, narrazione, scrittura. Tutto in uno',
+    ],
+    'menu'                  => [
+        'dashboard'     => 'Pagina Principale',
+        'documentation' => 'Documentazione',
+        'features'      => 'Funzioni',
+        'kb'            => 'Conoscenza Base',
+        'login'         => 'Accedi',
+        'marketplace'   => 'Mercato di Plugin',
+        'merch'         => 'Merchandise',
+        'overview'      => 'Panoramica delle Funzioni',
+        'privacy'       => 'Informativa sulla privacy',
+        'register_free' => 'Registrati gratuitamente',
+        'roadmap'       => 'Tabella di marcia',
+    ],
+    'meta'                  => [
+        'description'   => ':kanka è un flessibile costruttore di mondi e gestore on-line di campagne GDR',
+        'title'         => ':kanka - Gestore di campagne Online per GDR e strumento per la creazione di mondi',
+    ],
+    'partners'              => [
+        'description'   => 'Abbiamo stretto una partnership con alcuni strumenti e comunità straordinarie che condividono i nostri obiettivi e valori.',
+        'title'         => 'Partners',
+    ],
+    'pricing'               => [
+        'actions'       => [
+            'subscribe' => 'Diventa un abbonato',
         ],
-        'title'         => 'Roadmap',
+        'benefits'      => [
+            'big_maps'      => 'Mappe grandi (:size)',
+            'bigger_maps'   => 'Mappe più grandi (:size)',
+            'boosters'      => 'Potenziamenti di Campagna',
+            'core'          => 'Accedi a tutte le funzioni principali',
+            'huge_maps'     => 'Mappe MOLTO grandi (:size)',
+            'huge_uploads'  => 'Dimensioni enormi per il caricamento dei file',
+            'unlimited'     => 'Numero di campagne e caricamenti illimitati',
+            'updates'       => 'Aggiornamenti e miglioramenti frequenti',
+        ],
+        'billed_yearly' => ':amount fatturati annualmente',
+        'lead'          => [
+            'obvious'   => 'scelta ovvia',
+            'text'      => 'La :obvious per la creazione di mondi collaborativi e la gestione di campagne di GDR, a un prezzo accessibile.',
+        ],
+        'refund'        => 'Con una politica di rimborso di 14 giorni per gli abbonamenti annuali.',
+        'tier'          => [
+            'free'  => 'Gratis',
+            'month' => 'mese',
+        ],
+        'title'         => 'Prezzo',
     ],
-    'second_block'  => [
-        'call_to_action'    => 'Allora Iniziamo!',
+    'privacy'               => [
+        'title' => 'Informativa sulla privacy',
     ],
-    'team'          => [
-        'coffee'    => 'Offrimi un caffè!',
+    'release'               => [],
+    'roadmap'               => [
+        'description'       => 'I voti della nostra comunità danno forma al nostro lavoro, quindi, pur non avendo una tabella di marcia plurimensile, è facile rimanere aggiornati su ciò che è stato richiesto e su ciò a cui si sta lavorando.',
+        'featured_requests' => [
+            'title' => 'Richieste di Funzioni',
+        ],
+        'next'              => [
+            'description'   => 'Questa bacheca di Trello contiene tutte le funzionalità, i miglioramenti e i bug su cui si sta lavorando in seguito all\'ultimo :community_vote.',
+        ],
+        'ongoing_progress'  => [
+            'title' => 'Progressi in Corso',
+        ],
     ],
-    'terms'         => [
-        'description'   => 'Data di entrata in vigore: :date',
-        'title'         => 'Termini e Condizioni',
+    'second_block'          => [
+        'call_to_action'    => 'Allora Iniziamo! Registrati subito gratuitamente!',
     ],
+    'seo'                   => [
+        'keywords'  => 'Worldbuilding, Giochi di Ruolo da Tavolo, Gestione di Campagne GDR',
+    ],
+    'team'                  => [
+        'coffee'    => 'Offrici un caffè!',
+    ],
+    'terms'                 => [],
 ];

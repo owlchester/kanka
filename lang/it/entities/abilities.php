@@ -2,39 +2,28 @@
 
 return [
     'actions'   => [
-        'add'                       => 'Aggiungi un\'abilità',
-        'import_from_race'          => 'Aggiungi abilitò di razza',
-        'import_from_race_mobile'   => 'Abilità della razza',
-        'reset'                     => 'Reimposta gli utilizzi dell\'abilità',
+        'add'                       => 'Aggiungi abilità',
+        'import_from_race'          => 'Aggiungi abilità di stirpe',
+        'import_from_race_mobile'   => 'Abilità di stirpe',
     ],
     'create'    => [
-        'success'           => 'Abilità :ability aggiunta a :entity.',
-        'success_multiple'  => 'Abilità :abilità aggiunte a :entità',
-        'title'             => 'Aggiungi un\'abilità a :name',
+        'success_multiple'  => 'Abilità :abilities aggiunte a :entity',
+        'title'             => 'Aggiungi abilità a :name',
     ],
-    'fields'    => [
-        'note'      => 'Nota',
-        'position'  => 'Posizione',
-    ],
+    'fields'    => [],
     'helpers'   => [
-        'note'  => 'Puoi citare un\'entità usando la menzione avanzata (ex :code) e le caratteristiche dell\'entità (ex :attr) in questo campo.',
+        'note'  => 'Puoi citare un\'entità usando la menzione avanzata (ex :code) e gli attributi dell\'entità (ex :attr) in questo campo.',
     ],
     'import'    => [
         'errors'    => [
-            'no_race'       => 'Il personaggio non ha una razza.',
-            'not_character' => 'L\'entità non è un personaggio.',
+            'no_race'   => 'Il personaggio non ha una stirpe.',
         ],
-        'success'   => '{1} :count abilità importata.|[2,*] :count abilità importate.',
     ],
     'reorder'   => [
-        'success'   => 'Abilità riordinate con successo',
+        'parentless'    => 'Nessun Genitore',
     ],
-    'show'      => [
-        'helper'    => 'Lega abilità a questa entità. Puoi sempre modificare la visibilità o rimuovere un\'abilità. Le abilità appartenenti alla medesima abilità genitore saranno mostrate come dei riquadri filtranti.',
-        'reorder'   => 'Riordina',
-        'title'     => 'Abilità dell\'entità :name',
-    ],
+    'show'      => [],
     'update'    => [
-        'title' => 'Abilità dell\'entità per :nome',
+        'title' => 'Abilità dell\'entità per :name',
     ],
 ];

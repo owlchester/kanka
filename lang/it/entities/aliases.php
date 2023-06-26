@@ -2,23 +2,25 @@
 
 return [
     'actions'       => [
-        'add'   => 'Aggiungi un alias',
+        'add'   => 'Aggiungi un pseudonimo',
     ],
     'create'        => [
-        'success'   => 'Alias :name aggiunto a :entity',
-        'title'     => 'Aggiungi alias a :name',
+        'success'   => 'Pseudonimo :name aggiunto a :entity',
+        'title'     => 'Aggiungi pseudonimo a :name',
     ],
     'destroy'       => [
-        'success'   => 'Alias :name rimosso.',
+        'success'   => 'Pseudonimo :name rimosso.',
     ],
-    'fields'        => [
-        'name'  => 'Nome',
+    'fields'        => [],
+    'helpers'       => [
+        'primary'   => 'Impostando uno o più pseudonimi sull\'entità, la si potrà trovare nella ricerca globale (barra superiore) e attraverso le menzioni.',
     ],
+    'pitch'         => 'Crea dei pseudonimi per questa entità per trovarla facilmente attraverso la ricerca e le menzioni.',
     'placeholders'  => [
-        'name'  => 'Nuovo allias',
+        'name'  => 'Nuovo Pseudonimo',
     ],
     'update'        => [
-        'success'   => 'Alias :name aggiornato per :entity.',
-        'title'     => 'Aggiorna alias per :name',
+        'success'   => 'Pseudonimo :name aggiornato per :entity.',
+        'title'     => 'Aggiorna pseudonimo per :name',
     ],
 ];

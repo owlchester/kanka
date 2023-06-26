@@ -1,31 +1,29 @@
 <?php
 
 return [
-    'actions'       => [
-        'add'   => 'Aggiungi un link',
+    'actions'           => [],
+    'call-to-action'    => 'Aggiungendo collegamenti a risorse esterne a questa entità, come ad esempio a DnDBeyond, questi verranno visualizzati direttamente nella panoramica dell\'entità.',
+    'create'            => [
+        'success'   => 'Link :name aggiunto a :entity.',
+        'title'     => 'Aggiunto un link a :name',
     ],
-    'fields'        => [
-        'icon'      => 'Icona',
-        'name'      => 'Nome',
-        'position'  => 'Posizione',
-        'url'       => 'URL',
+    'destroy'           => [
+        'success'   => 'Link :name rimosso.',
     ],
-    'go'            => [
-        'actions'   => [
-            'confirm'   => 'Sono sicuro',
-            'trust'     => 'Non chiedermelo di nuovo',
-        ],
-        'title'     => 'Stai lasciando Kanka',
+    'fields'            => [],
+    'go'                => [
+        'description'   => 'Questo link esterno ti porterà a :link. Sei sicuro di volerci andare?',
     ],
-    'placeholders'  => [
-        'name'  => 'DNDBeyond',
-        'url'   => 'https://dndbeyond.com/character-url',
+    'helpers'           => [
+        'icon'      => 'Puoi personalizzare l\'icona visualizzata per il collegamento. Puoi utilizzare una delle icone di :fontawesome, :rpgawesome o lasciare questo campo vuoto per il valore predefinito. Per saperne di più, consulta i nostri :docs.',
+        'parent'    => 'Visualizza questo collegamento rapido dopo un elemento della barra laterale, anziché nella sezione dei collegamenti rapidi della barra laterale.',
     ],
-    'show'          => [
-        'title' => 'Links per :nome',
+    'placeholders'      => [],
+    'show'              => [
+        'helper'    => 'Le campagne premium possono aggiungere link a siti esterni.',
+        'title'     => 'Links per :name',
     ],
-    'update'        => [
-        'success'   => 'Associa :name agiornato per :entity',
-        'title'     => 'Aggiorna link per :name',
+    'update'            => [
+        'success'   => 'Link :name aggiornato per :entity',
     ],
 ];
