@@ -8,6 +8,9 @@
   "_ajax-modal-1230002e.js": {
     "file": "assets/ajax-modal-1230002e.js"
   },
+  "_cookieconsent-88a15a0a.js": {
+    "file": "assets/cookieconsent-88a15a0a.js"
+  },
   "_delete-confirm-fec6aa52.js": {
     "file": "assets/delete-confirm-fec6aa52.js"
   },
@@ -80,7 +83,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-2c363037.js",
+    "file": "assets/app-341efdd7.js",
     "imports": [
       "_delete-confirm-fec6aa52.js",
       "_mention-5d95822d.js",
@@ -89,6 +92,7 @@
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
       "_v-click-outside.umd-d5c5f7b0.js",
+      "_cookieconsent-88a15a0a.js",
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
@@ -168,7 +172,10 @@
     "src": "resources/js/forms/character.js"
   },
   "resources/js/front.js": {
-    "file": "assets/front-99153365.js",
+    "file": "assets/front-dbced56c.js",
+    "imports": [
+      "_cookieconsent-88a15a0a.js"
+    ],
     "isEntry": true,
     "src": "resources/js/front.js"
   },
@@ -236,7 +243,7 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-e5c2ccf9.css",
+    "file": "assets/app-a34e9738.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
@@ -266,7 +273,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-c9c2ab8c.css",
+    "file": "assets/front-b172cbf4.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
