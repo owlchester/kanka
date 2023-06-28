@@ -7,6 +7,7 @@ use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Models\CampaignRole;
+use App\Models\Genre;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
 use App\Models\RpgSystem;
@@ -139,6 +140,7 @@ class CampaignObserver
             $this->entityMappingService->mapCampaign($campaign);
         }
 
+        $this->saveGenres($campaign);
         $this->saveRpgSystems($campaign);
 
         foreach ($campaign->members()->with('user')->get() as $member) {
@@ -225,4 +227,40 @@ class CampaignObserver
             $campaign->rpgSystems()->detach($existing);
         }
     }
+
+    /**
+     * Save the sections/categories
+     */
+    protected function saveGenres(Campaign $campaign)
+    {
+        if (!request()->has('genres')) {
+            return;
+        }
+        $ids = request()->post('genres', []);
+
+        $existing = [];
+        /** @var Genre $genre */
+        foreach ($campaign->genres()->get() as $genre) {
+            $existing[$genre->id] = $genre->slug;
+        }
+        $new = [];
+
+        foreach ($ids as $id) {
+            if (!empty($existing[$id])) {
+                unset($existing[$id]);
+            } else {
+                $genre = Genre::find($id);
+                if (!empty($genre)) {
+                    $new[] = $genre->id;
+                }
+            }
+        }
+        $campaign->genres()->attach($new);
+
+        // Detatch the remaining
+        if (!empty($existing)) {
+            $campaign->genres()->detach(array_keys($existing));
+        }
+    }
+
 }

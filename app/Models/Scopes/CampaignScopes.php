@@ -116,10 +116,23 @@ trait CampaignScopes
     public function scopeFilterPublic(Builder $query, array $options): Builder
     {
         $language = Arr::get($options, 'language');
+        $genre = Arr::get($options, 'genre');
         $system = Arr::get($options, 'system');
         if (!empty($language)) {
             $query->where('locale', $language);
         }
+
+
+
+        if (!empty($genre)) {
+            $query
+                ->select('campaigns.*')
+                ->leftJoin('campaign_genre as cg', function ($join) {
+                    $join->on('cg.campaign_id', '=', 'campaigns.id');
+                })->where('cg.genre_id', $genre);
+        }
+
+
         if (!empty($system)) {
             $valid =  \App\Facades\CampaignCache::systems();
             if ($system == 'other') {

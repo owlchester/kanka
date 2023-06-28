@@ -373,6 +373,7 @@ Route::get('/search/characters', 'Search\MiscController@characters')->name('char
 Route::get('/search/campaigns', 'Search\MiscController@campaigns')->name('campaigns.find');
 Route::get('/search/events', 'Search\MiscController@events')->name('events.find');
 Route::get('/search/families', 'Search\MiscController@families')->name('families.find');
+Route::get('/search/genres', 'Search\MiscController@genres')->name('genres.find');
 Route::get('/search/item', 'Search\MiscController@items')->name('items.find');
 Route::get('/search/locations', 'Search\MiscController@locations')->name('locations.find');
 Route::get('/search/notes', 'Search\MiscController@notes')->name('notes.find');

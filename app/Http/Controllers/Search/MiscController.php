@@ -329,24 +329,32 @@ class MiscController extends Controller
      */
     protected function buildSearchResults(string $term, string $class, array $excludes = [])
     {
+        $name = 'name';
+        $with = ['entity', 'entity.image'];
+
+        if ($class == 'App\Models\Genre') {
+            $with = [];
+            $name = 'slug';
+        }
+
         /** @var Builder|Tag $modelClass */
         $modelClass = new $class();
         if (empty($term)) {
             $models = $modelClass
-                ->with(['entity', 'entity.image'])
+                ->with($with)
                 ->whereNotIn('id', $excludes)
                 ->limit(10)
                 ->orderBy('updated_at', 'DESC')
                 ->get();
         } else {
             $models = $modelClass
-                ->with(['entity', 'entity.image'])
+                ->with($with)
                 ->whereNotIn('id', $excludes);
             // Exact match
             if (Str::startsWith($term, '=')) {
-                $models->where('name', ltrim($term, '='));
+                $models->where($name, ltrim($term, '='));
             } else {
-                $models->where('name', 'like', "%{$term}%");
+                $models->where($name, 'like', "%{$term}%");
             }
             $models = $models
                 ->limit(10)
@@ -358,10 +366,13 @@ class MiscController extends Controller
         foreach ($models as $model) {
             $format = [
                 'id' => $model->id,
-                'text' => $model->name,
+                'text' => $model->$name,
             ];
             if ($class === 'App\Models\Tag' && $model->hasColour()) {
                 $format['colour'] = $model->colourClass();
+            }
+            if ($class === 'App\Models\Genre') {
+                $format['text'] = __('genres.' . $model->slug);
             }
             if (method_exists($model, 'thumbnail')) {
                 $format['image'] = $model->thumbnail();
@@ -371,5 +382,16 @@ class MiscController extends Controller
         }
 
         return Response::json($formatted);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function genres(Request $request)
+    {
+        $term = trim($request->q);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Genre::class, $exclude);
     }
 }
