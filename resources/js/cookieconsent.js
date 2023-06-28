@@ -5,6 +5,7 @@ let setup, tracking, api;
 $(document).ready(function() {
     let field = $('#cookieconsent');
     if (field.length === 0) {
+        //console.log('none');
         return;
     }
 
@@ -16,6 +17,7 @@ $(document).ready(function() {
 });
 
 const initCookieConsent = () => {
+    //console.log('init cookie consent');
     window.cookieconsent.initialise({
         type: 'opt-in',
         layout: 'basic',
@@ -70,6 +72,9 @@ const initCookieConsent = () => {
         onRevokeChoice: function () {
             //console.log('<em>onRevokeChoice()</em> called');
         },
+        onNoCookieLaw: function () {
+            initTracking();
+        }
     });
 };
 
