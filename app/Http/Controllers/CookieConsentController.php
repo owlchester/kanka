@@ -6,7 +6,7 @@ class CookieConsentController extends Controller
 {
     public function index()
     {
-        $country = 'MX';
+        $country = 'CH';
         if (isset($_SERVER["HTTP_CF_IPCOUNTRY"])) {
             $country = mb_substr($_SERVER["HTTP_CF_IPCOUNTRY"], 0, 6);
         }
