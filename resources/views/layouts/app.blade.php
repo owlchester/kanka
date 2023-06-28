@@ -168,5 +168,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <script src="/js/vendor.js" defer></script>
     @vite('resources/js/app.js')
     @yield('scripts')
+
+@includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 </body>
 </html>

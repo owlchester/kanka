@@ -45,4 +45,6 @@ return [
         'rich' => env('TRACKING_VENATUS_RICH'),
 
     ],
+
+    'consent' => env('TRACKING_CONSENT') == 'True',
 ];

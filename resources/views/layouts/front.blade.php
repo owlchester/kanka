@@ -83,7 +83,6 @@
 
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></noscript>
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" media="print" onload="this.media='all'" />
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
@@ -267,26 +266,6 @@
 @if (config('fontawesome.kit'))
 <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
-<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" async></script>
-<script>
-    window.addEventListener("load", function(){
-        window.cookieconsent.initialise({
-            "palette": {
-                "popup": {
-                    "background": "#0E2231"
-                },
-                "button": {
-                    "background": "#2e8893"
-                }
-            },
-            "theme": "classic",
-            "content": {
-                "message": "{{ __('front.cookie.message') }}",
-                "dismiss": "{{ __('front.cookie.dismiss') }}",
-                "link": "{{ __('front.cookie.link') }}"
-            }
-        })});
-</script>
 <script>
     function init() {
         var vidDefer = document.getElementsByTagName('iframe');
@@ -296,6 +275,7 @@
             } } }
     window.onload = init;
 </script>
+@includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 @include('layouts.tracking.tracking', ['frontLayout' => true, 'noads' => true])
 @yield('scripts')
 </body>

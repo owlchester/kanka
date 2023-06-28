@@ -380,4 +380,5 @@ import './utility/formError';
 // VueJS elements
 //import './navigation');
 import './header';
+import './cookieconsent';
 //import './ads');
