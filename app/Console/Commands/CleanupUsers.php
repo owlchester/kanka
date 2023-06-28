@@ -34,10 +34,10 @@ class CleanupUsers extends Command
 
         $cutoff = Carbon::now()->subYears(2);
 
-        $count = $service->date($cutoff)->empty();
-        $this->info(Carbon::now() . ': Empty scheduled ' . $count . ' users for cleanup.');
+        /*$count = $service->date($cutoff)->empty();
+        $this->info(Carbon::now() . ': Empty scheduled ' . $count . ' users for cleanup.');*/
 
-        $count = $service->date($cutoff)->example();
-        $this->info(Carbon::now() . ': Example  scheduled ' . $count . ' users for cleanup.');
+        /*$count = $service->date($cutoff)->example();
+        $this->info(Carbon::now() . ': Example  scheduled ' . $count . ' users for cleanup.');*/
     }
 }

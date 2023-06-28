@@ -40,7 +40,7 @@ class PurgeService
                 /** @var User $user */
                 foreach ($users as $user) {
                     $this->count++;
-                    DeleteUser::dispatch($user);
+                    //DeleteUser::dispatch($user);
                 }
             });
         return $this->count;
@@ -101,7 +101,7 @@ class PurgeService
                         continue;
                     }
                     $this->count++;
-                    DeleteUser::dispatch($user);
+                    //DeleteUser::dispatch($user);
                 }
             });
 
