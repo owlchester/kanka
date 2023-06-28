@@ -13,7 +13,7 @@ class CleanupUsers extends Command
      *
      * @var string
      */
-    protected $signature = 'users:purge {dry=1}';
+    protected $signature = 'users:purge {dry=1} {limit=100}';
 
     /**
      * The console command description.
@@ -36,6 +36,8 @@ class CleanupUsers extends Command
         if ($dry === '0') {
             $service->real();
         }
+        $limit = (int) $this->argument('limit');
+        $service->limit($limit);
 
         $cutoff = Carbon::now()->subYears(1);
 

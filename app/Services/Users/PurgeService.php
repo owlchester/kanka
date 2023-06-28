@@ -11,7 +11,10 @@ class PurgeService
     protected int $count = 0;
 
     protected string $date;
+
     protected bool $dry = true;
+
+    protected int $limit;
 
     public function date(string $date): self
     {
@@ -22,6 +25,12 @@ class PurgeService
     public function real(): self
     {
         $this->dry = false;
+        return $this;
+    }
+
+    public function limit(int $limit): self
+    {
+        $this->limit = $limit;
         return $this;
     }
 
@@ -37,15 +46,22 @@ class PurgeService
             ->where(function ($sub) {
                 $sub->whereNull('last_login_at')
                     ->orWhereDate('last_login_at', '<=', $this->date);
-            })->whereDate('users.created_at', '<=', $this->date)
+            })
+            ->whereDate('users.created_at', '<=', $this->date)
             ->where(function ($sub) {
                 $sub->where('users.pledge', '')
                     ->orWhereNull('users.pledge');
             })
             ->whereNull('cu.id')
             ->chunk(500, function ($users) {
+                if ($this->count >= $this->limit) {
+                    return;
+                }
                 /** @var User $user */
                 foreach ($users as $user) {
+                    if ($this->count >= $this->limit) {
+                        continue;
+                    }
                     $this->count++;
                     if (!$this->dry) {
                         DeleteUser::dispatch($user);
@@ -62,6 +78,10 @@ class PurgeService
     public function example(): int
     {
         $this->reset();
+
+        if ($this->count > $this->limit) {
+            return 0;
+        }
 
         User::distinct()
             ->select('users.id')
@@ -87,11 +107,14 @@ class PurgeService
             ->where(DB::raw('(select count(e.id) from entities as e where e.created_by = users.id and e.deleted_at is null)'), '<', 7)
 
             ->chunk(1000, function ($users) {
-                /** @var User $user */
-                /*if ($this->count >= 500) {
+                if ($this->count >= $this->limit) {
                     return;
-                }*/
+                }
+                /** @var User $user */
                 foreach ($users as $user) {
+                    if ($this->count >= $this->limit) {
+                        return;
+                    }
                     /*if ($user->campaigns->count() > 1) {
                         // We'll want to notify this user, or handle them in another loop
                         continue;
