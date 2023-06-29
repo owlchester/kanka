@@ -44,9 +44,7 @@
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
 
             <x-grid>
-                <div>
-                    @include('dashboard.widgets.forms._header_select')
-                </div>
+                @include('dashboard.widgets.forms._header_select')
                 @include('dashboard.widgets.forms._related')
                 @include('dashboard.widgets.forms._class')
             </x-grid>
