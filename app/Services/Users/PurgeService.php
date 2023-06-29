@@ -79,7 +79,7 @@ class PurgeService
     {
         $this->reset();
 
-        if ($this->count > $this->limit) {
+        if ($this->count >= $this->limit) {
             return 0;
         }
 
