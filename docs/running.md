@@ -136,33 +136,28 @@ sail shell
 tail -f storage/logs/laravel.log
 ```
 
-## Updates
-
-We recommend always running from the `main` branch. You can check which branch you are on by going `git branch` in the kanka root folder on your machine (not in docker). If you want to test new features, you can use the `develop` branch, but it tends to come with bugs and errors, and potential loss of data.
-
-When a new version of kanka is released, from your host machine you want to do `git pull` to get the newest updates. Updates usually include changes to the database, so run the following to run the migrations:
-
-```bash
-sail artisan migrate
-```
-
 ## Sharing your local Kanka
 
-Do not make your Kanka instance accessible to the web! To share your Kanka instance with your friends, use the `sail share` command. Follow the [official documentation](https://laravel.com/docs/10.x/sail#sharing-your-site).
+Do not make your Kanka instance accessible to the web! To share your Kanka instance with your friends, use the `sail share` command. Follow the [official documentation](https://laravel.com/docs/10.x/sail#sharing-your-site), or set up a reverse proxy in front of it.
 
 ## Differences compared to kanka.io
 
 These developer docker instances are quite different from [kanka.io](https://kanka.io/en-US) that we've listed below.
 
 * No security, no backups
-* No support for boosted/superboosted campaigns and subscriber bonuses
+* No support for premium campaigns and subscriber bonuses
 * No advanced caching, meaning that as the data grows, the app will become much slower
 * No image server that creates thumbnails, meaning the images you uploaded are used by default
 * No third-party setup like discord, google/meta/twitter logins, stripe, or analytics
-* No support from the Kanka team to debug your local setup
 * No emails and no campaign exports are generated
+* No access to the third party tools Kanka pays for like FontAwesome PRO, meaning some icons in the app won't work
+* And lastly, **limited support from the Kanka team to debug your local setup**
 
 ## Updating
+
+We recommend always running from a release tag rather than the `main` branch. You can check which branch you are on by going `git branch` in the kanka root folder on your machine (not in docker).
+
+When a new version of kanka is released, from your host machine you want to do `git pull` to get the newest updates. Updates usually include changes to the database, so run the following to run the migrations:
 
 When updating your local installation, we recommend checkout out each tag chronologically in order to safely update your data.
 
