@@ -218,7 +218,7 @@
             <div class="modal-content bg-base-100">
                 {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
                     <div class="modal-header">
-                        <x-dialog.close />
+                        <x-dialog.close :modal="true" />
                         <h4 class="modal-title">
                             {{ __('maps/markers.create.title', ['name' => $map->name]) }}
                         </h4>
@@ -266,7 +266,7 @@
                             </div>
                         </div>
                         <div class="submit-animation" style="display: none;">
-                            <button class="btn2 btn-success btn-sm" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+                            <button class="btn2 btn-primary btn-sm" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
                         </div>
                     </div>
                 </div>

@@ -20,8 +20,7 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
-    /** @var ReferralService */
-    protected $referralService;
+    protected ReferralService $referralService;
 
     /**
      * Create a new controller instance.
@@ -134,18 +133,6 @@ class AuthController extends Controller
         // weird behaviour if the user registers a new account.
 
         $request->session()->flush();
-        return redirect()->route('login');
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function loginAsUser(User $user)
-    {
-        if (config('auth.user_list')) {
-            Auth::login($user, true);
-            return redirect()->route('home');
-        }
         return redirect()->route('login');
     }
 }

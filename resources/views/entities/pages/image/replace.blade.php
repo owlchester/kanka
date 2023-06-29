@@ -34,9 +34,9 @@
         @includeWhen($campaignService->campaign()->boosted(), 'cruds.fields.entity_image')
 
         <x-dialog.footer :modal="true">
-            <buton type="submit" class="btn2 btn-primary">
+            <button type="submit" class="btn2 btn-primary">
                 {{ __('entities/image.actions.save-replace') }}
-            </buton>
+            </button>
         </x-dialog.footer>
 
         {!! Form::close() !!}

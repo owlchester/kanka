@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'description'   => 'I Permessi su Kanka possono essere modificati per controllare cosa un utente può o non può fare. Puoi restringere o concedere più libertà, in base alle tue esigenze.',
-    'fifth'         => 'La maggior parte delle entità hanno un\'opzione di privacy che sostituisce tutti gli altri permessi. Se attivata, solo i membri della campagna con ruolo di amministratore potranno vedere l\'entità.',
-    'title'         => 'Permessi',
+    'first' => 'Le autorizzazioni di Kanka sono suddivise in diversi concetti: permessi di ruolo e permessi di entità. Per impostazione predefinita, ogni campagna è dotata di un ruolo Amministratore, uno Pubblico e uno Giocatore. I membri del ruolo amministratore possono vedere e fare tutto in una campagna. Il ruolo Pubblico viene utilizzato se la campagna è pubblica e un utente non ne fa parte; per impostazione predefinita, il ruolo pubblico non ha permessi. Infine, il ruolo giocatore è anch\'esso privo di permessi e viene utilizzato per chiunque faccia parte della campagna. Quando si invita un nuovo membro alla campagna, si definisce il ruolo con cui si unisce. È anche possibile creare più ruoli e spostare le persone tra di essi, nonché avere membri in più ruoli.',
+    'fourth'=> 'Per verificare i permessi di un utente, accedi alla pagina dei membri della campagna e fai clic sul pulsante "Visualizza come". Questo pulsante è disponibile solo per gli amministratori della campagna e può essere utilizzato solo da chi non è amministratore della campagna. Quando crei o modifichi un\'entità utilizzando questa funzione, le informazioni saranno salvate nei registri dell\'entità.',
+    'second'=> 'Un ruolo può essere impostato in modi diversi. Ad esempio, puoi consentire ai membri di un ruolo di visualizzare e creare personaggi, ma non di modificarli o eliminarli. Se un utente può creare un\'entità ma non può modificarla, otterrà automaticamente i permessi di modifica.',
+    'third' => 'Se non vuoi permettere ai membri di un ruolo di vedere tutti i personaggi, puoi impostare i permessi singolarmente su ogni personaggio, modificandoli o utilizzando il pulsante dei permessi a blocco, visibile agli amministratori della campagna nell\'elenco dei personaggi. Puoi fare la stessa cosa anche per tutti gli altri tipi di entità.',
 ];

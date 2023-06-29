@@ -17,7 +17,7 @@
         {{ csrf_field() }}
 
         <div class="mb-2">
-            <input id="password" type="password" class="rounded p-2 w-full border" name="password" required autofocus>
+            <input id="password" type="password" class="rounded p-2 w-full border dark:bg-slate-800" name="password" required autofocus>
 
             @if ($errors->has('password'))
                 <span class="text-red-500">
@@ -27,7 +27,7 @@
         </div>
 
         <div class="mb-2">
-            <button type="submit" class="w-full rounded px-6 py-2 uppercase text-blue-500 border border-blue-500 hover:shadow-xs hover:text-white hover:bg-blue-500 ">
+            <button type="submit" class="w-full rounded px-6 py-2 uppercase text-blue-500 border border-blue-500 hover:shadow-xs hover:text-white hover:bg-blue-500 dark:bg-slate-800">
                 {{ __('auth.confirm.confirm') }}
             </button>
         </div>

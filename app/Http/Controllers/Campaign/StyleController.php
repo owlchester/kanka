@@ -42,7 +42,7 @@ class StyleController extends Controller
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('campaigns.styles._table')->with('styles', $styles)->render();
+            $html = view('layouts.datagrid._table')->with('rows', $styles)->render();
             $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->render();
             return response()->json([
                 'success' => true,

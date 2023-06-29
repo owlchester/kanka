@@ -239,7 +239,7 @@ class EntityEvent extends MiscModel
      */
     public function getLabelColour(): string
     {
-        if (empty($this->colour) || in_array($this->colour, ['default', 'grey'])) {
+        if (empty($this->colour) || in_array($this->colour, ['default', 'grey', '#cccccc'])) {
             return 'colour-pallet bg-gray';
         }
         return 'colour-pallet ' . (Str::startsWith($this->colour, '#') ? '' : 'bg-' . $this->colour);

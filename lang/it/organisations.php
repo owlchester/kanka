@@ -1,46 +1,47 @@
 <?php
 
 return [
-    'create'        => [
-        'title' => 'Nuova Organizzazione',
-    ],
+    'create'        => [],
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'members'   => 'Membri',
+        'is_defunct'    => 'Dismessa',
     ],
     'helpers'       => [
-        'descendants'   => 'Questa lista contiene tutte le organizzazione che sono discendenti di questa organizzazione, non solo quelle direttamente sotto di essa.',
+        'nested_without'    => 'Visualizzazione di tutte le organizzazioni che non hanno un\'organizzazione genitore. Fai clic su una riga per visualizzare le organizzazioni figlio.',
+    ],
+    'hints'         => [
+        'is_defunct'    => 'Questa organizzazione è dismessa.',
     ],
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'   => 'Aggiungi un membro',
-        ],
-        'create'        => [
-            'success'   => 'Membro aggiunto all\'organizzazione',
-            'title'     => 'Nuovo Membro dell\'Organizzazione :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Membro rimosso dall\'organizzazione',
-        ],
-        'edit'          => [
-            'success'   => 'Mebro dell\'organizzazione aggiornato.',
-            'title'     => 'Aggiorna Membro per :name',
+            'submit'    => 'Aggoiungi membro',
         ],
         'fields'        => [
-            'role'  => 'Ruolo',
+            'parent'    => 'Superiore',
+            'pinned'    => 'Fissato',
+            'status'    => 'Stato di affiliazione',
         ],
         'helpers'       => [
-            'members'   => 'La lista seguente rappresenta tutti i personaggi che fanno parte di questa organizzazione e di tutte le organizzazioni che ne discendono.',
+            'all_members'   => 'Tutti i personaggi che sono membri di questa organizzazione e delle sue sotto-organizzazioni.',
+            'pinned'        => 'Scegli se questo membro deve essere mostrato nella sezione fissata della panoramica delle entità associate.',
+        ],
+        'pinned'        => [
+            'both'  => 'Fissata a entrambe',
+            'none'  => 'Fissata da nessuna parte',
         ],
         'placeholders'  => [
-            'role'  => 'Leader, Membro, Alto Septon, Maestro di Spinaggio',
+            'parent'    => 'Chi è il superiore di questo membro',
+            'role'      => 'Leader, Membro, Alto Septon, Maestro di Spionaggio',
+        ],
+        'status'        => [
+            'active'    => 'Membro Attivo',
+            'inactive'  => 'Membro Inattivo',
+            'unknown'   => 'Stato Sconosciuto',
         ],
     ],
     'organisations' => [],
-    'placeholders'  => [
-        'type'  => 'Culto, Banda, Ribellione, Fandom',
-    ],
+    'placeholders'  => [],
     'show'          => [],
 ];

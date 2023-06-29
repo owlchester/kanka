@@ -174,7 +174,7 @@ function initDatagrid2Ajax() {
             e.preventDefault();
             datagrid2Reorder($(this));
         });
-        $(this).closest('#datagrid-parent').find('.pagination > li > a').click(function (e) {
+        $(this).closest('#datagrid-parent').find('nav[role="navigation"] a').click(function (e) {
             e.preventDefault();
             datagrid2Reorder($(this));
         });
@@ -182,7 +182,6 @@ function initDatagrid2Ajax() {
     registerBulkDelete();
     registerBulkActions();
     initDatagrid2Bulk();
-
 }
 
 /**
@@ -211,7 +210,7 @@ function datagrid2Reorder(ele) {
     }
 
     let target = ele.data('target') ?? '#datagrid-parent';
-    console.log('url', url, ele);
+    //console.log('url', url, ele);
     $.ajax(
         url
     ).done(function (res) {

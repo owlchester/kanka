@@ -1,6 +1,20 @@
 <?php
 
 return [
-    'server_time'       => 'Ora del Server: :time',
-    'translator_call'   => 'Kanka è tradotto in altre lingue grazie alla nostra incredibile community. Se vuoi aiutare a tradurre Kanka nella tua lingua, contattaci su :discord!',
+    'blog'              => 'Blog',
+    'boosters'          => 'Potenziamenti',
+    'company'           => 'Società',
+    'language-switcher' => [
+        'other' => 'Altre Lingue',
+        'title' => 'Seleziona la tua lingua',
+    ],
+    'platform'          => 'Piattaforma',
+    'premium'           => 'Campagne Premium',
+    'press-kit'         => 'Cartella Stampa',
+    'privacy'           => 'Privacy',
+    'resources'         => 'Risorse',
+    'security'          => 'Sicurezza',
+    'status'            => 'Stato del servizio',
+    'terms'             => 'Termini',
+    'whats-new'         => 'Cosa c\'è di nuovo?',
 ];

@@ -237,6 +237,9 @@ function initPolygonDrawing() {
     });
 
     window.map.on('editable:editing', function (e) {
+        if (!isPolygon()) {
+            return;
+        }
         getPolygonStyle();
         e.layer.setStyle({
             weight: polygonStrokeWeight,
@@ -427,7 +430,7 @@ function handlePresetClick() {
 
                 let field = $('[name="' + key + '"]');
                 if (field.length === 0) {
-                    console.info('markerPreset', 'unknown field', key);
+                    //console.info('markerPreset', 'unknown field', key);
                     return;
                 }
                 if (key.endsWith('colour')) {

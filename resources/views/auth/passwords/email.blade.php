@@ -13,7 +13,7 @@
             {{ csrf_field() }}
 
             <div class="mb-3 {{ $errors->has('email') ? ' has-error' : '' }}">
-                <input id="email" type="email" class="rounded border p-2 w-full" name="email" value="{{ old('email') }}" required placeholder="{{ __('auth.reset.fields.email') }}">
+                <input id="email" type="email" class="rounded border p-2 w-full dark:bg-slate-800" name="email" value="{{ old('email') }}" required placeholder="{{ __('auth.reset.fields.email') }}">
 
                 @if ($errors->has('email'))
                     <span class="text-red-500 text-sm">
@@ -22,7 +22,7 @@
                 @endif
             </div>
 
-            <button type="submit" class="rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white">
+            <button type="submit" class="rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all bg-white hover:shadow-xs hover:bg-blue-500 hover:text-white dark:bg-slate-800">
                 {{ __('auth.reset.send') }}
             </button>
         </form>

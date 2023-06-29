@@ -42,6 +42,9 @@
     @vite('resources/js/app.js')
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
-@endif    @yield('scripts')
+@endif
+@yield('scripts')
+
+@includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 </body>
 </html>

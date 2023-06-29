@@ -6,4 +6,4 @@
 
 <x-sidebar.profile>
     @include('entities.components.profile._type')
-</x-sidebar.profile>>
+</x-sidebar.profile>

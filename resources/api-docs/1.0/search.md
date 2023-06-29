@@ -4,6 +4,7 @@
 
 A search API is available at the following endpoint.
 
+> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |

@@ -1,10 +1,10 @@
 <div class="join float-right">
     <input id="submit-mode" type="hidden" value="true"/>
-    <button class="btn2 btn-success join-item btn-xm" id="form-submit-main" data-target="{{ $target ?? null }}">
+    <button class="btn2 btn-primary join-item btn-xm" id="form-submit-main" data-target="{{ $target ?? null }}">
         {{ __('crud.save') }}
     </button>
     <div class="dropdown">
-        <button type="button" class="btn2 btn-success btn-sm join-item dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn2 btn-primary btn-sm join-item dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -33,6 +33,6 @@
         </ul>
     </div>
     <div class="submit-animation" style="display: none;">
-        <button class="btn2 btn-sm btn-success" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
+        <button class="btn2 btn-sm btn-primary" disabled><i class="fa-solid fa-spinner fa-spin"></i></button>
     </div>
 </div>

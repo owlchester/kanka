@@ -4,15 +4,22 @@
  */
 $allMembers = true;
 $addEntityUrl = route('tags.entity-add', $model);
-$datagridOptions = [
-    $model,
-    'init' => 1
-];
-if (request()->has('tag_id')) {
-    $datagridOptions['tag_id'] = (int) $model->id;
-    $allMembers = true;
+$datagridOptions = [];
+
+if (!empty($onload)) {
+    $routeOptions = [
+        $model,
+        'init' => 1,
+    ];
+    if (request()->has('tag_id')) {
+        $routeOptions['tag_id'] = (int) $model->id;
+        $allMembers = true;
+    }
+    $routeOptions = Datagrid::initOptions($routeOptions);
+    $datagridOptions =
+        ['datagridUrl' => route('tags.children', $routeOptions)]
+    ;
 }
-$datagridOptions = Datagrid::initOptions($datagridOptions);
 
 $existing = $model->allChildren()->count();
 ?>
@@ -49,8 +56,8 @@ $existing = $model->allChildren()->count();
         @endif
     </div>
 </div>
+@if ($existing === 0)
 <div class="" id="tag-children">
-    @if ($existing === 0)
         <x-box>
             <p class="help-block">
                 {{ __('tags.helpers.no_children') }}
@@ -62,12 +69,14 @@ $existing = $model->allChildren()->count();
                 </a>
             @endcan
         </x-box>
-    @else
-    <div id="datagrid-parent" class="table-responsive">
-        @include('layouts.datagrid._table', ['datagridUrl' => route('tags.children', $datagridOptions)])
-    </div>
-    @endif
 </div>
+@else
+<div class="" id="tag-children">
+    <div id="datagrid-parent" class="table-responsive">
+        @include('layouts.datagrid._table', $datagridOptions)
+    </div>
+</div>
+@endif
 
 
 @section('modals')

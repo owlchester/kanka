@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\CampaignUser;
 use App\User;
 
-class UserService
+class UserAuthenticatedService
 {
     /**
      * @param User $user

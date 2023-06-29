@@ -140,7 +140,7 @@ function registerFormSubmitAnimation() {
             window.entityFormHasUnsavedChanges = false;
 
             // Find the main button
-            var submit = $(this).find('.btn-success');
+            var submit = $(this).find('.btn-primary');
             if (submit.length > 0) {
                 $.each(submit, function () {
                     if ($(this).hasClass('dropdown-toggle')) {

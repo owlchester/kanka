@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(e) {
     var video_wrapper = $('.youtube-placeholder');
 //  Check to see if youtube wrapper exists
@@ -16,6 +18,7 @@ $(document).ready(function(e) {
             $(this).hide().after(html);
         });
     }
+
 
 
     /*$('[data-toggle="dropdown"]').on('click', function(e) {
@@ -40,6 +43,7 @@ $(document).ready(function(e) {
 
     initPricingToggle();
 });
+
 
 /**
  * Automatically open a kb answer if it's in the anchor
@@ -106,3 +110,4 @@ function pricingToMonthly() {
 
 
 import './community-votes';
+import './cookieconsent';

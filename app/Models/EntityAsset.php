@@ -9,6 +9,7 @@ use App\Models\Scopes\Pinnable;
 use App\Traits\VisibilityIDTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 /**
@@ -106,9 +107,14 @@ class EntityAsset extends Model
     public function icon(): string
     {
         if (empty($this->metadata['icon'])) {
-            return 'fa-solid fa-map';
+            return 'fa-solid fa-link';
         }
         return (string) $this->metadata['icon'];
+    }
+
+    public function getIconAttribute(): mixed
+    {
+        return Arr::get($this->metadata, 'icon');
     }
 
     /**

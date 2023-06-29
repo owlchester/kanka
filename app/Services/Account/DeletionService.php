@@ -2,6 +2,7 @@
 
 namespace App\Services\Account;
 
+use App\Jobs\Users\DeleteUser;
 use App\Traits\UserAware;
 
 class DeletionService
@@ -11,7 +12,15 @@ class DeletionService
     public function delete(): bool
     {
         $this->subscription();
-        $this->user->delete();
+        DeleteUser::dispatch($this->user);
+
+        auth()->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        // We also need to flush the session (campaign_id and other things) since this could cause
+        // weird behaviour if the user registers a new account.
+        request()->session()->flush();
         return true;
     }
 

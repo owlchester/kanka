@@ -1,194 +1,104 @@
 <?php
 
 return [
-    'actions'       => [
-        'follow'    => 'Segui',
-        'join'      => 'Unisciti',
-        'unfollow'  => 'Smetti di seguire',
-    ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => ':count Moduli',
-            'roles'     => ':count Ruoli',
-            'users'     => ':count Utenti',
-        ],
-    ],
+    'actions'       => [],
+    'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
-            'edit'      => 'Modifica nomi & permessi',
-            'new'       => 'Nuova Dashboard',
-            'switch'    => 'Cambia in Dashboard',
+            'new'       => 'Nuova Pagina Principale',
+            'switch'    => 'Vai alla Pagina Principale',
         ],
         'create'        => [
-            'success'   => 'Nuova Dashboard della campagna :name creato.',
-            'title'     => 'Nuova Dashboard della campagna',
+            'success'   => 'Nuova Pagina Principale della campagna :name creata.',
+            'title'     => 'Nuova Pagina Principale della Campagna',
         ],
         'custom'        => [
-            'text'  => 'Stai modificando il :name Dashboard della campagna.',
+            'text'  => 'Stai modificando la :name Pagina Principale della campagna.',
         ],
         'default'       => [
-            'text'  => 'Stai modificando la Dashboard predefinita della campagna.',
-            'title' => 'Dashboard Predefinita',
+            'text'  => 'Stai modificando la Pagina Principale predefinita della campagna.',
+            'title' => 'Pagina Principale Predefinita',
         ],
         'delete'        => [
-            'success'   => 'Dashboard :nome rimossa.',
+            'success'   => 'Pagina Principale :name rimossa.',
         ],
         'fields'        => [
-            'copy_widgets'  => 'Copia widgets',
-            'name'          => 'Nome Dashboard',
-            'visibility'    => 'Visibilità',
+            'name'  => 'Nome Pagina Principale',
         ],
         'helpers'       => [
-            'copy_widgets'  => 'Duplica i widgets dalla Dashboard :name a questa nuova.',
+            'copy_widgets'  => 'Duplica i widgets dalla Pagina Principale :name a questa nuova.',
         ],
-        'pitch'         => 'Crea multiple Dashboard con permessi personalizzati per ogni ruolo all\'interno della campagna.',
+        'pitch'         => 'Crea multiple Pagine Principali con permessi personalizzati per ogni ruolo all\'interno della campagna.',
         'placeholders'  => [
-            'name'  => 'Nome della Dashboard',
+            'name'  => 'Nome della Pagina Principale',
         ],
         'update'        => [
-            'success'   => 'Dashboard  della campagna :name aggiornata.',
-            'title'     => 'Aggiorna la Dashboard della campagna :name.',
-        ],
-        'visibility'    => [
-            'default'   => 'Predefinito',
-            'none'      => 'Nessuno',
-            'visible'   => 'Visibile',
+            'success'   => 'Pagina Principale della campagna :name aggiornata.',
+            'title'     => 'Aggiorna la Pagina Principale della campagna :name.',
         ],
     ],
     'helpers'       => [
-        'follow'    => 'Seguire una campagna farà si che questa appaia nel selettore delle campagne (in alto a destra) sotto alle tue campagna.',
-        'join'      => 'Questa campagna è aperta a nuovi membri. Clicca per unirti.',
-        'setup'     => 'Imposta la dashboard della tua campagna.',
+        'setup' => 'Imposta la Pagina Principale della tua campagna.',
     ],
     'notifications' => [
         'modal' => [
-            'confirm'   => 'Capito',
-            'title'     => 'Notifica iImportante',
+            'title' => 'Notifica Importante',
         ],
     ],
-    'recent'        => [
-        'title' => ':name con modifiche recenti',
-    ],
+    'recent'        => [],
     'settings'      => [
-        'title' => 'Impostazioni della Dashboard',
+        'title' => 'Impostazioni della Pagina Principale',
     ],
     'setup'         => [
         'actions'   => [
-            'add'               => 'Aggiungi un widget',
-            'back_to_dashboard' => 'Torna alla dashboard',
-            'edit'              => 'Modifica un widget',
-            'new'               => 'Nuovo :type widget',
+            'back_to_dashboard' => 'Torna alla Pagina Principale',
         ],
-        'reorder'   => [
-            'success'   => 'Widgets riordinati.',
-        ],
-        'title'     => 'Impostazioni della Dashboard della Campagna',
+        'title'     => 'Impostazioni della Pagina Principale della Campagna',
         'tutorial'  => [
-            'blog'  => 'nostra guida',
-            'text'  => 'Hai bisogno di aiuto per configurare il cruscotto della tua campagna? Leggi :blog per trovare un aiuto e dell\'ispirazione.',
+            'text'  => 'Hai bisogno di aiuto per configurare la Pagina Principale della tua campagna? Leggi :blog per trovare aiuto e ispirazione.',
         ],
         'widgets'   => [
-            'calendar'      => 'Calendario',
-            'campaign'      => 'Intestazione della campagna',
-            'header'        => 'Testo dell\'intestazione',
-            'preview'       => 'Anteprima Entità',
-            'random'        => 'Entità casuale',
-            'recent'        => 'Recente',
-            'unmentioned'   => 'Lista di entità non citate',
-            'welcome'       => 'Benvenuto',
+            'unmentioned'   => 'Lista di entità non menzionate',
         ],
     ],
-    'title'         => 'Dashboard',
+    'title'         => 'Pagina Principale',
     'widgets'       => [
-        'actions'                   => [
-            'advanced-options'  => 'Opzioni avanzate',
+        'campaign'      => [
+            'helper'    => 'Questo widget mostra l\'intestazione della campagna. Il widget è sempre visibile nella Pagina Principale predefinita.',
         ],
-        'advanced_options_boosted'  => 'Abilita più opzioni come mostra messaggi attaccati con una :boosted_campaign.',
-        'calendar'                  => [
-            'actions'           => [
-                'next'      => 'Cambia la data al giorno successivo',
-                'previous'  => 'Cambia la data al giorno precedente',
+        'create'        => [
+            'success'   => 'Widget aggiunto alla Pagina Principale.',
+        ],
+        'delete'        => [
+            'success'   => 'Widget rimosso dalla Pagina Principale.',
+        ],
+        'fields'        => [
+            'dashboard' => 'Pagina Principale',
+        ],
+        'preview'       => [
+            'displays'  => [
+                'expand'    => 'Voce espandibile',
+                'full'      => 'Voce completa',
             ],
-            'events_today'      => 'Oggi',
-            'previous_events'   => 'Precedente',
-            'upcoming_events'   => 'Successivo',
-        ],
-        'campaign'                  => [
-            'helper'    => 'Questo widget mostra l\'intestazione della campagna. Il widget è sempre visibile nella Dashboard predefinita.',
-        ],
-        'create'                    => [
-            'success'   => 'Widget aggiunto alla dashboard',
-        ],
-        'delete'                    => [
-            'success'   => 'Widget rimosso dalla dashboard',
-        ],
-        'fields'                    => [
-            'class'             => 'Classe CSS',
-            'dashboard'         => 'Dashboard',
-            'name'              => 'Personalizza il nome del widget',
-            'optional-entity'   => 'Link ad entità',
-            'order'             => 'Ordinare',
-            'size'              => 'Dimensione',
-            'text'              => 'Testo',
-            'width'             => 'Larghezza',
-        ],
-        'helpers'                   => [
-            'class'     => 'Definisci una classe css personalizzata da aggiungere al widget.',
-            'filters'   => 'Clicca per scoprire i filtri disponibili',
-        ],
-        'orders'                    => [
-            'name_asc'  => 'Nome crescente',
-            'name_desc' => 'Nome decrescente',
-            'recent'    => 'Modificato di recente',
-        ],
-        'random'                    => [
-            'helpers'   => [
-                'name'  => 'Puoi fare riferimento al nome dell\'entità casuale con {name}',
+            'fields'    => [
+                'display'   => 'Visualizza',
             ],
         ],
-        'recent'                    => [
-            'advanced_filter'   => 'Filtri avanzati',
+        'recent'        => [
             'advanced_filters'  => [
-                'mentionless'   => 'Senza citazioni (entità che non menziona altre entità)',
-                'unmentioned'   => 'Non citata (entità che non è menzionata da nessun altra)',
+                'mentionless'   => 'Senza menzioni (entità che non menziona altre entità)',
+                'unmentioned'   => 'Non menzionata (entità che non è menzionata da nessun altra)',
             ],
-            'entity-header'     => 'Usa l\'intestazione dell\'entità come immagine',
-            'filters'           => 'Filtri',
-            'help'              => 'Visualizza solamente l\'ultima entità aggiornata, ma visualizza un\'antemprima completa per la stessa.',
-            'helpers'           => [
-                'entity-header'     => 'Se l\'entità ha un\'intestazione dell\'entità (funzione della campagna potenziata), imposta questo widget in modo che utilizzi quell\'immagine invece dell\'immagine dell\'entità.',
-                'show_attributes'   => 'Mostra gli attributi appuntati dell\'entità sotto la voce.',
-                'show_members'      => 'Se l\'entità è una famiglia o un\'organizzazione, indica i suoi membri sotto la voce.',
-                'show_relations'    => 'Mostra le relazioni appuntate dell\'entità sotto la voce.',
-            ],
-            'show_attributes'   => 'Mostra gli attributi appuntati.',
-            'show_members'      => 'Mostra membri',
-            'show_relations'    => 'Mostra le relazioni appuntate',
-            'singular'          => 'Singola',
-            'tags'              => 'Filtra la lista dell\'entità con tags specifici',
-            'title'             => 'Modificati di recente',
+            'help'              => 'Visualizza solamente l\'ultima entità aggiornata, ma visualizza un\'anteprima completa per la stessa.',
         ],
-        'tabs'                      => [
-            'advanced'  => 'Avanzati',
-            'setup'     => 'Configurazione',
+        'unmentioned'   => [
+            'title' => 'Entità non menzionate',
         ],
-        'unmentioned'               => [
-            'title' => 'Entità non citate',
+        'welcome'       => [
+            'helper'    => 'Questo widget visualizza un messaggio di benvenuto sulla Pagina Principale che include link utili per i nuovi utenti di Kanka.',
         ],
-        'update'                    => [
-            'success'   => 'Widget modificato.',
-        ],
-        'welcome'                   => [
-            'helper'    => 'Questo widget visualizza un messaggio di benvenuto sulla Dashboard che include link utili per i nuovi utenti di Kanka.',
-        ],
-        'widths'                    => [
-            '0' => 'Automatica',
-            '12'=> 'Intera',
-            '3' => 'Minuscola (25%)',
-            '4' => 'Piccola (33%)',
-            '6' => 'Media (50%)',
-            '8' => 'Ampia (66%)',
-            '9' => 'Larga (75%)',
+        'widths'        => [
+            '12'    => 'Intera (100%)',
         ],
     ],
 ];

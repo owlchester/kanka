@@ -91,7 +91,7 @@ Route::post('campaigns/{campaign}/permissions/test', [\App\Http\Controllers\Api\
 
 Route::get('campaigns/{campaign}/calendars/{calendar}/reminders', [\App\Http\Controllers\Api\v1\CalendarEventApiController::class, 'index']);
 
-Route::get('entity-types', [\App\Http\Controllers\Api\v1\EntitytypeApiController::class, 'index']);
+Route::get('entity-types', [\App\Http\Controllers\Api\v1\EntityTypeApiController::class, 'index']);
 Route::get('visibilities', [\App\Http\Controllers\Api\v1\VisibilityController::class, 'index']);
 
 Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);

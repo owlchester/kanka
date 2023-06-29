@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $ext
  * @property int $size
  * @property int $created_by
+ * @property ?int $focus_x
+ * @property ?int $focus_y
  * @property string $folder_id
  * @property bool $is_default
  * @property bool $is_folder
@@ -264,14 +266,14 @@ class Image extends Model
         } elseif (!$sizeX && $sizeY) {
             $sizeX = $sizeY;
         }
-        if($sizeX && $sizeY) {
-            if (!$this->focus_x && !$this->focus_y){
+        if ($sizeX && $sizeY) {
+            if (!$this->focus_x && !$this->focus_y) {
                 return Img::crop($sizeX, $sizeY)->url($this->path);
             }
             return Img::focus($this->focus_x, $this->focus_y)->crop($sizeX, $sizeY)->url($this->path);
         }
 
-        if ($this->focus_x && $this->focus_y){
+        if ($this->focus_x && $this->focus_y) {
             return Img::focus($this->focus_x, $this->focus_y)->url($this->path);
         }
 

@@ -11,10 +11,12 @@
 ) !!}
 
 @include('partials.forms.form', [
+    'mode' => 'edit',
     'title' => __('dashboard.setup.widgets.' . $model->widget),
     'titleIcon' => $model->widgetIcon(),
     'content' => 'dashboard.widgets.forms._' . $widget,
-    'deleteID' => '#delete-form-widget-' . $model->id
+    'deleteID' => '#delete-form-widget-' . $model->id,
+    'dropdownParent' => '#edit-widget',
 ])
 <input type="hidden" name="widget" value="{{ $widget }}">
 @if(empty($dashboards) && !empty($dashboard))

@@ -6,7 +6,7 @@
 ?>
 
 <div class="modal-body text-center">
-    <x-dialog.close />
+    <x-dialog.close :modal="true" />
 
     <h4 class="mt-0">
         {!! __('settings/boosters.superboost.title', ['campaign' => $campaign->name]) !!}
@@ -59,15 +59,12 @@
         <p class="my-5">{{ __('settings/boosters.boost.duration') }}</p>
 
        {!! Form::model($boost, ['route' => ['campaign_boosts.update', $boost], 'method' => 'PATCH']) !!}
-        <div class="pb-5">
-            <button type="button" class="btn px-8 rounded-full mr-5" data-dismiss="modal">
-                {{ __('crud.cancel') }}
-            </button>
-            <button type="submit" class="btn bg-boost text-white px-8 ml-5 rounded-full">
-                <span class="fa-solid fa-rocket" aria-hidden="true"></span>
-                <span class="">{{ __('settings/boosters.superboost.actions.confirm') }}</span>
-            </button>
-        </div>
+            <x-dialog.footer :modal="true">
+                <button type="submit" class="btn2 btn-primary">
+                    <span class="fa-solid fa-rocket" aria-hidden="true"></span>
+                    <span class="">{{ __('settings/boosters.superboost.actions.confirm') }}</span>
+                </button>
+            </x-dialog.footer>
         {!! Form::hidden('action', 'superboost') !!}
         {!! Form::hidden('campaign_id', $campaign->id) !!}
         {!! Form::close() !!}

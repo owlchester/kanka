@@ -23,12 +23,6 @@ return [
     'ga_convo' => env('TRACKING_GA_CONVERSION'),
 
     /*
-     * Facebook tracking pixel on homepage for "join now"
-     * If empty, tracking will be disabled
-     */
-    'fb' => env('TRACKING_FB'),
-
-    /*
      * AdSense ID
      */
     'adsense' => env('TRACKING_ADSENSE'),
@@ -36,11 +30,6 @@ return [
     'adsense_dashboard' => env('TRACKING_ADSENSE_DASHBOARD'),
     'adsense_entity' => env('TRACKING_ADSENSE_ENTITY'),
     'adsense_footer' => env('TRACKING_ADSENSE_FOOTER'),
-
-    /*
-     * Google optimize
-     */
-    'optimize' => env('TRACKING_OPTIMIZE'),
 
     /*
      * Venatus ad-manager
@@ -56,4 +45,6 @@ return [
         'rich' => env('TRACKING_VENATUS_RICH'),
 
     ],
+
+    'consent' => env('TRACKING_CONSENT') == 'True',
 ];

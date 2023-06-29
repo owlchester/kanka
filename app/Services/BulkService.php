@@ -160,8 +160,9 @@ class BulkService
         foreach ($this->ids as $id) {
             $entity = $model->findOrFail($id);
             if (auth()->user()->can('update', $entity)) {
-                $this->entityService->move($entity->entity, $options);
-                $this->count++;
+                if ($this->entityService->move($entity->entity, $options)) {
+                    $this->count++;
+                }
             }
         }
 

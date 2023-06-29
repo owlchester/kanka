@@ -8,6 +8,9 @@
   "_ajax-modal-1230002e.js": {
     "file": "assets/ajax-modal-1230002e.js"
   },
+  "_cookieconsent-f6ba2972.js": {
+    "file": "assets/cookieconsent-f6ba2972.js"
+  },
   "_delete-confirm-fec6aa52.js": {
     "file": "assets/delete-confirm-fec6aa52.js"
   },
@@ -80,7 +83,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-7c037ca3.js",
+    "file": "assets/app-d1cdfb70.js",
     "imports": [
       "_delete-confirm-fec6aa52.js",
       "_mention-5d95822d.js",
@@ -89,6 +92,7 @@
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
       "_v-click-outside.umd-d5c5f7b0.js",
+      "_cookieconsent-f6ba2972.js",
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
@@ -168,7 +172,10 @@
     "src": "resources/js/forms/character.js"
   },
   "resources/js/front.js": {
-    "file": "assets/front-99153365.js",
+    "file": "assets/front-72f335b1.js",
+    "imports": [
+      "_cookieconsent-f6ba2972.js"
+    ],
     "isEntry": true,
     "src": "resources/js/front.js"
   },
@@ -187,7 +194,7 @@
     "src": "resources/js/history.js"
   },
   "resources/js/location/map-v3.js": {
-    "file": "assets/map-v3-0b62c1b8.js",
+    "file": "assets/map-v3-1af0ea9a.js",
     "imports": [
       "_delete-confirm-fec6aa52.js"
     ],
@@ -236,7 +243,7 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-eeb07efe.css",
+    "file": "assets/app-a34e9738.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
@@ -266,12 +273,12 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-c9c2ab8c.css",
+    "file": "assets/front-b172cbf4.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
   "resources/sass/map-v3.scss": {
-    "file": "assets/map-v3-1444440a.css",
+    "file": "assets/map-v3-a97cd757.css",
     "isEntry": true,
     "src": "resources/sass/map-v3.scss"
   },
@@ -296,12 +303,12 @@
     "src": "resources/sass/subscription.scss"
   },
   "resources/sass/themes/dark.scss": {
-    "file": "assets/dark-fe21d8eb.css",
+    "file": "assets/dark-c3ebe278.css",
     "isEntry": true,
     "src": "resources/sass/themes/dark.scss"
   },
   "resources/sass/themes/midnight.scss": {
-    "file": "assets/midnight-b6c1a512.css",
+    "file": "assets/midnight-f5290cd4.css",
     "isEntry": true,
     "src": "resources/sass/themes/midnight.scss"
   },

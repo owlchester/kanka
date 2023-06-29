@@ -2,6 +2,7 @@
     <x-forms.tags
         :model="$model ?? null"
         allowClear="true"
+        :dropdownParent="$dropdownParent ?? null"
     ></x-forms.tags>
     <p class="help-block visible-xs visible-sm">
         {{ __('dashboard.widgets.recent.tags') }}
