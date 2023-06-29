@@ -55,7 +55,7 @@ class PurgeService
             ->whereNull('cu.id')
             ->whereNull('users.stripe_id')
             ->chunk(500, function ($users) {
-                echo "New chunk";
+                echo "New chunk\n";
                 if ($this->count >= $this->limit) {
                     return false;
                 }
@@ -110,7 +110,7 @@ class PurgeService
             ->whereNull('users.stripe_id')
 
             ->chunk(2000, function ($users) {
-                echo "New chunk";
+                echo "New chunk\n";
                 if ($this->count >= $this->limit) {
                     return false;
                 }
