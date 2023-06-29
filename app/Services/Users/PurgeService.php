@@ -77,7 +77,7 @@ class PurgeService
      */
     public function example(): int
     {
-        $this->reset();
+        //$this->reset();
 
         if ($this->count >= $this->limit) {
             return 0;
