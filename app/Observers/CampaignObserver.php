@@ -233,6 +233,10 @@ class CampaignObserver
      */
     protected function saveGenres(Campaign $campaign)
     {
+        if (!request()->has('campaign_genre')) {
+            return;
+        }
+
         $ids = request()->post('genres', []);
 
         $existing = [];
