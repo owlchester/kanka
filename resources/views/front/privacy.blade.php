@@ -6,7 +6,7 @@
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}" />
+    <meta property="og:description" content="{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2023-08-04'))->toFormattedDateString()]) }}" />
     <meta property="og:url" content="{{ route('front.privacy') }}" />
 
 @endsection
@@ -17,7 +17,7 @@
             <div class="section-heading">
                 <div class="mb-5">
                     <h1 class="display-4">{{ __('front.privacy.title') }}</h1>
-                    <p class="lead">{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}</p>
+                    <p class="lead">{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2023-08-04'))->toFormattedDateString()]) }}</p>
                 </div>
 
                 <h2>INTRODUCTION</h2>
