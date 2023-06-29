@@ -233,14 +233,11 @@ class CampaignObserver
      */
     protected function saveGenres(Campaign $campaign)
     {
-        if (!request()->has('genres')) {
-            return;
-        }
         $ids = request()->post('genres', []);
 
         $existing = [];
         /** @var Genre $genre */
-        foreach ($campaign->genres()->get() as $genre) {
+        foreach ($campaign->genres as $genre) {
             $existing[$genre->id] = $genre->slug;
         }
         $new = [];

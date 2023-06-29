@@ -8,17 +8,26 @@ $(document).ready(function() {
             if ($(this).hasClass('select2-hidden-accessible')) {
                 return;
             }
+            if ($(this).hasClass('campaign-genres')) {
+
+                $(this).select2({
+                    tags: false,
+                    allowClear: true,
+                    dropdownParent: '',
+                    width: '100%',
+                    maximumSelectionLength: 3,
+                });
+                return;
+            }
 
             // Check it isn't the select2-icon
             let allowClear = $(this).data('allow-clear');
             let dropdownParent = $(this).data('dropdown-parent');
-
+            console.log($(this).data());
             $(this).select2({
                 tags: false,
                 placeholder: $(this).data('placeholder'),
                 allowClear: allowClear || true,
-                //tags: $(this).data('tags') || false,
-                language: $(this).data('language'),
                 minimumInputLength: 0,
                 dropdownParent: dropdownParent || '',
                 width: '100%',

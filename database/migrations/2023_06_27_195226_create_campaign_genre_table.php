@@ -27,8 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('campaign_genre', function (Blueprint $table) {
-            Schema::dropIfExists('campaign_genre');
-        });
+        Schema::dropIfExists('campaign_genre');
     }
 };

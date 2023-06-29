@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\Paginatable;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
@@ -16,8 +15,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class CampaignGenre extends Pivot
 {
-    use Paginatable;
-
     /**
      * @var string
      */

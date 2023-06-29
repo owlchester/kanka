@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('campaign_count')->default(0);
             $table->string('slug', 50);
             $table->timestamps();
-            $table->index(['slug']);
+            $table->unique('slug');
         });
     }
 
@@ -25,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('genres', function (Blueprint $table) {
-            Schema::dropIfExists('genres');
-        });
+        Schema::dropIfExists('genres');
     }
 };

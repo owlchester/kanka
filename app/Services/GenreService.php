@@ -9,11 +9,11 @@ class GenreService
     /**
      * @return array
      */
-    public function getGenres($emptyOption = false)
+    public function getGenres($emptyOption = false): array
     {
         $genres = [];
         if ($emptyOption) {
-            $genres = [null => ''];
+            $genres = ['' => __('campaigns.fields.genre')];
         }
         foreach (Genre::get() as $genre) {
             $genres[$genre->id] = trans('genres.' . $genre->slug);

@@ -122,8 +122,6 @@ trait CampaignScopes
             $query->where('locale', $language);
         }
 
-
-
         if (!empty($genre)) {
             $query
                 ->select('campaigns.*')
@@ -131,7 +129,6 @@ trait CampaignScopes
                     $join->on('cg.campaign_id', '=', 'campaigns.id');
                 })->where('cg.genre_id', $genre);
         }
-
 
         if (!empty($system)) {
             $valid =  \App\Facades\CampaignCache::systems();
