@@ -57,12 +57,12 @@ class PurgeService
             ->chunk(500, function ($users) {
                 echo "New chunk";
                 if ($this->count >= $this->limit) {
-                    return;
+                    return false;
                 }
                 /** @var User $user */
                 foreach ($users as $user) {
                     if ($this->count >= $this->limit) {
-                        continue;
+                        return false;
                     }
                     $this->count++;
                     if (!$this->dry) {
@@ -112,12 +112,12 @@ class PurgeService
             ->chunk(2000, function ($users) {
                 echo "New chunk";
                 if ($this->count >= $this->limit) {
-                    return;
+                    return false;
                 }
                 /** @var User $user */
                 foreach ($users as $user) {
                     if ($this->count >= $this->limit) {
-                        return;
+                        return false;
                     }
                     /*if ($user->campaigns->count() > 1) {
                         // We'll want to notify this user, or handle them in another loop
