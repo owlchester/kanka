@@ -56,7 +56,7 @@ class WelcomeEmailJob implements ShouldQueue
         if (empty($user)) {
             return;
         }
-        Log::info('WelcomeEmailJob for user #' . $this->userId);
+        Log::info('WelcomeEmailJob', ['user' => $this->userId]);
 
         try {
             Mail::to($user->email)

@@ -50,6 +50,9 @@ class UserLog extends Model
     public const TYPE_USER_REVERT = 51;
     public const TYPE_USER_SWITCH_LOGIN = 52;
 
+    public const PURGE_WARNING_FIRST = 60;
+    public const PURGE_WARNING_SECOND = 61;
+
     public const NOTIFY_YEARLY_SUB = 70;
 
     public const TYPE_FAILED_CHARGE_EMAIL = 80;
