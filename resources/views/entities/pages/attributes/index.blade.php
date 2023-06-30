@@ -13,7 +13,7 @@
 
 @section('entity-header-actions')
     @can('attribute', [$entity->child, 'add'])
-        <div class="header-buttons inline-block flex gap-2 items-center justify-end flex-wrap">
+        <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
 
             <a href="https://docs.kanka.io/en/latest/features/attributes.html" target="_blank" class="btn2 btn-ghost btn-sm">
                 <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}

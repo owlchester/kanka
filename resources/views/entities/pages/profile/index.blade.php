@@ -13,7 +13,7 @@
 
 @section('entity-header-actions')
     @can('update', $model)
-        <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+        <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
             <a href="{{ $model->getLink('edit') }}" class="btn2 btn-accent btn-sm">
                 {{ __('entities/profile.actions.edit_profile') }}
             </a>
