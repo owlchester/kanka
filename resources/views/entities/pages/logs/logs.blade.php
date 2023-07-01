@@ -11,7 +11,7 @@
 @section('content')
     @if ($ajax)
         <div class="modal-header">
-            <x-dialog.close />
+            <x-dialog.close :modal="true" />
             <h4 class="modal-title">
                 {{ $entity->name }}
             </h4>
