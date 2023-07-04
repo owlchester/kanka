@@ -53,14 +53,16 @@ class PurgeService
                     ->orWhereNull('users.pledge');
             })
             ->whereNull('cu.id')
+            ->whereNull('users.stripe_id')
             ->chunk(500, function ($users) {
+                echo "New chunk\n";
                 if ($this->count >= $this->limit) {
-                    return;
+                    return false;
                 }
                 /** @var User $user */
                 foreach ($users as $user) {
                     if ($this->count >= $this->limit) {
-                        continue;
+                        return false;
                     }
                     $this->count++;
                     if (!$this->dry) {
@@ -77,9 +79,9 @@ class PurgeService
      */
     public function example(): int
     {
-        $this->reset();
+        //$this->reset();
 
-        if ($this->count > $this->limit) {
+        if ($this->count >= $this->limit) {
             return 0;
         }
 
@@ -105,15 +107,17 @@ class PurgeService
             ->where(DB::raw('(select count(cu2.id) from campaign_user as cu2 where cu2.user_id = users.id)'), '=', 1)
             ->where(DB::raw('(select count(cu3.id) from campaign_user as cu3 where cu3.campaign_id = cu.campaign_id)'), '=', 1)
             ->where(DB::raw('(select count(e.id) from entities as e where e.created_by = users.id and e.deleted_at is null)'), '<', 7)
+            ->whereNull('users.stripe_id')
 
-            ->chunk(1000, function ($users) {
+            ->chunk(2000, function ($users) {
+                echo "New chunk\n";
                 if ($this->count >= $this->limit) {
-                    return;
+                    return false;
                 }
                 /** @var User $user */
                 foreach ($users as $user) {
                     if ($this->count >= $this->limit) {
-                        return;
+                        return false;
                     }
                     /*if ($user->campaigns->count() > 1) {
                         // We'll want to notify this user, or handle them in another loop

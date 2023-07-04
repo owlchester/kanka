@@ -64,6 +64,7 @@ class Map extends MiscModel
 
     /** @var string[]  */
     protected $fillable = [
+        'campaign_id',
         'name',
         'slug',
         'type',

@@ -263,6 +263,7 @@
         crossorigin="anonymous"></script>
 
 @vite('resources/js/front.js')
+@vite('resources/js/cookieconsent.js')
 @if (config('fontawesome.kit'))
 <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif

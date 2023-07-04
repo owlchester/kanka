@@ -240,6 +240,7 @@ class CampaignCacheService extends BaseCache
             ->where('is_active', true)
             ->with('version')
             ->has('plugin')
+            ->has('plugin.user')
             ->get();
         /** @var CampaignPlugin $plugin */
         foreach ($plugins as $plugin) {

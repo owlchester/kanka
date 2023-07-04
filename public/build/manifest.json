@@ -8,9 +8,6 @@
   "_ajax-modal-1230002e.js": {
     "file": "assets/ajax-modal-1230002e.js"
   },
-  "_cookieconsent-f6ba2972.js": {
-    "file": "assets/cookieconsent-f6ba2972.js"
-  },
   "_delete-confirm-fec6aa52.js": {
     "file": "assets/delete-confirm-fec6aa52.js"
   },
@@ -92,7 +89,6 @@
       "__plugin-vue_export-helper-c420bb3b.js",
       "_mitt-f7ef348c.js",
       "_v-click-outside.umd-d5c5f7b0.js",
-      "_cookieconsent-f6ba2972.js",
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
@@ -136,6 +132,11 @@
     "isEntry": true,
     "src": "resources/js/conversation.js"
   },
+  "resources/js/cookieconsent.js": {
+    "file": "assets/cookieconsent-f6ba2972.js",
+    "isEntry": true,
+    "src": "resources/js/cookieconsent.js"
+  },
   "resources/js/dashboard.js": {
     "file": "assets/dashboard-9bdcae2f.js",
     "imports": [
@@ -172,10 +173,7 @@
     "src": "resources/js/forms/character.js"
   },
   "resources/js/front.js": {
-    "file": "assets/front-72f335b1.js",
-    "imports": [
-      "_cookieconsent-f6ba2972.js"
-    ],
+    "file": "assets/front-99153365.js",
     "isEntry": true,
     "src": "resources/js/front.js"
   },
