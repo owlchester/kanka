@@ -333,14 +333,14 @@ class MiscController extends Controller
         $modelClass = new $class();
         if (empty($term)) {
             $models = $modelClass
-                ->with(['entity', 'entity.image'])
+                ->with(['', 'entity.image'])
                 ->whereNotIn('id', $excludes)
                 ->limit(10)
                 ->orderBy('updated_at', 'DESC')
                 ->get();
         } else {
             $models = $modelClass
-                ->with(['entity', 'entity.image'])
+                ->with(['', 'entity.image'])
                 ->whereNotIn('id', $excludes);
             // Exact match
             if (Str::startsWith($term, '=')) {

@@ -7,6 +7,8 @@
 ])
 
 @inject('languages', 'App\Services\LanguageService')
+@inject('genres', 'App\Services\GenreService')
+
 
 @section('og')
     <meta property="og:description" content="{{ __("front.campaigns.description_full", ['kanka' => config('app.name')]) }}" />
@@ -60,6 +62,9 @@
                     </div>
                     <div class="m-1">
                         {!! Form::select('featured_until', ['' => __('front.campaigns.open.filters.featured'), 0 => __('general.yes'), 1 => __('general.no')], request()->get('featured_until'), ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="m-1">
+                        {!! Form::select('genre', $genres->getGenres(true), request()->get('genre'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="m-1">
                         {!! Form::select('sort_field_name', ['0' => __('front.campaigns.public.filters.entities'), '1' => __('front.campaigns.public.filters.followers')], request()->get('sort_field_name'), ['class' => 'form-control']) !!}

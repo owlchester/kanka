@@ -182,7 +182,7 @@ class FrontController extends Controller
         $campaigns = Campaign::public()
             ->front($sort)
             ->featured(false)
-            ->filterPublic($request->only(['language', 'system', 'is_boosted', 'is_open', 'featured_until']))
+            ->filterPublic($request->only(['language', 'system', 'is_boosted', 'is_open', 'featured_until', 'genre']))
             ->paginate();
 
         return view('front.campaigns')
