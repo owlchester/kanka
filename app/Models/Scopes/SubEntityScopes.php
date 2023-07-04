@@ -101,7 +101,7 @@ trait SubEntityScopes
             $relations[] = 'entity.image';
         }
 
-        return $query->with($relations);
+        return $query->has('entity')->with($relations);
     }
 
     public function scopeJoinEntity(Builder $query): Builder

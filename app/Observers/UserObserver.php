@@ -12,6 +12,7 @@ use App\Models\CampaignFollower;
 use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserObserver
@@ -124,10 +125,11 @@ class UserObserver
     public function deleted(User $user)
     {
         // If the user has an avatar, delete it from the disk to free up some space.
-        if (!empty($user->avatar)) {
-            ImageService::cleanup($user, 'avatar');
+        if (!empty($user->avatar) && $user->avatar !== 'users/default.png') {
+            //ImageService::cleanup($user, 'avatar');
         }
 
+        //Log::info('Deleted user', ['user' => $user->id]);
         UserCache::user($user)
             ->clearName()
             ->clearCampaigns()
@@ -145,19 +147,6 @@ class UserObserver
      */
     public function deleting(User $user)
     {
-        // Campaign user
-        $members = CampaignUser::where('user_id', $user->id)->with('campaign')->get();
-        foreach ($members as $member) {
-            $member->delete();
 
-            // Delete a campaign if no one is left in it
-            if ($member->campaign->members()->count() == 0) {
-                $member->campaign->delete();
-            }
-        }
-        $followers = CampaignFollower::where('user_id', $user->id)->with('campaign')->get();
-        foreach ($followers as $follower) {
-            $follower->delete();
-        }
     }
 }

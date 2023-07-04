@@ -8,7 +8,7 @@ Kanka is built to run on an Nginx and MariaDB stack with the help of Docker. If 
 >
 > This docker setup is meant for developers working on Kanka. **Do not use** this docker setup to host Kanka on the web! It come with 0 security (no root password and all ports open). It is also slower than the normal Kanka as it doesn't include any performance improvements and advanced caching.
 >
-> This setup works as is for our team running with Docker on MacOS. We only provide limited support for helping people host Kanka locally on Discord from Monday to Friday 9am-4pm (GMT-5).
+> This setup works as is for our team running with Docker on Linux and MacOS. We only provide limited support for helping people host Kanka locally on Discord from Monday to Friday 9am-4pm (GMT-5).
 
 
 ## Docker
@@ -136,28 +136,58 @@ sail shell
 tail -f storage/logs/laravel.log
 ```
 
-## Updates
-
-We recommend always running from the `main` branch. You can check which branch you are on by going `git branch` in the kanka root folder on your machine (not in docker). If you want to test new features, you can use the `develop` branch, but it tends to come with bugs and errors, and potential loss of data.
-
-When a new version of kanka is released, from your host machine you want to do `git pull` to get the newest updates. Updates usually include changes to the database, so run the following to run the migrations:
-
-```bash
-sail artisan migrate
-```
-
 ## Sharing your local Kanka
 
-Do not make your Kanka instance accessible to the web! To share your Kanka instance with your friends, use the `sail share` command. Follow the [official documentation](https://laravel.com/docs/10.x/sail#sharing-your-site).
+Do not make your Kanka instance accessible to the web! To share your Kanka instance with your friends, use the `sail share` command. Follow the [official documentation](https://laravel.com/docs/10.x/sail#sharing-your-site), or set up a reverse proxy in front of it.
 
 ## Differences compared to kanka.io
 
 These developer docker instances are quite different from [kanka.io](https://kanka.io/en-US) that we've listed below.
 
 * No security, no backups
-* No support for boosted/superboosted campaigns and subscriber bonuses
+* No support for premium campaigns and subscriber bonuses
 * No advanced caching, meaning that as the data grows, the app will become much slower
 * No image server that creates thumbnails, meaning the images you uploaded are used by default
 * No third-party setup like discord, google/meta/twitter logins, stripe, or analytics
-* No support from the Kanka team to debug your local setup
 * No emails and no campaign exports are generated
+* No access to the third party tools Kanka pays for like FontAwesome PRO, meaning some icons in the app won't work
+* And lastly, **limited support from the Kanka team to debug your local setup**
+
+## Updating
+
+We recommend always running from a release tag rather than the `main` branch. You can check which branch you are on by going `git branch` in the kanka root folder on your machine (not in docker).
+
+When a new version of kanka is released, from your host machine you want to do `git pull` to get the newest updates. Updates usually include changes to the database, so run the following to run the migrations:
+
+When updating your local installation, we recommend checkout out each tag chronologically in order to safely update your data.
+
+> :warning: **Warning**
+> Never ever checkout the `@develop` branch as it is unstable and will break your installation.
+
+### Backup
+
+We **strongly** recommend backing up your database data before running any upgrade. You can create a backup of your data by running the following command. Note that this backup command is only available from version 1.44 and onward.
+
+```bash
+sail artisan backup:run
+```
+
+This will create a gzip file in `storage/app/{app_name}/{date}.zip`
+
+### Checkout out a specific tag
+
+In your project's root folder, run the following command to checkout a specific tag, in this example version 1.42.
+
+```bash
+git checkout tags/1.42 -b 1.42
+```
+
+Then run the update instructions of version 1.42. These updates are found in the project's "Releases" on GitHub.
+
+Once that's done, checkout version 1.43 by running:
+
+```bash
+git checkout tags/1.43 -b 1.43
+```
+
+And run the update instructions of version 1.43. Repeat until you are running the latest version.

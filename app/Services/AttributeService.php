@@ -236,7 +236,9 @@ class AttributeService
         $templates = [];
 
         // Campaign templates
-        $campaignTemplates = AttributeTemplate::orderBy('name', 'ASC')->pluck('name', 'id');
+        $campaignTemplates = AttributeTemplate::has('entity')
+            ->orderBy('name', 'ASC')
+            ->pluck('name', 'id');
         $key = __('attributes/templates.list.campaign');
         foreach ($campaignTemplates as $id => $name) {
             $templates[$key][$id] = $name;

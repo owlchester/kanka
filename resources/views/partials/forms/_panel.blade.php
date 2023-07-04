@@ -15,7 +15,7 @@
                 <x-button.delete-confirm target="{{ $deleteID }}" />
             @endif
         </div>
-        
+
         <button class="btn2 btn-primary">
             {{ $submit ?? __('crud.save') }}
         </button>

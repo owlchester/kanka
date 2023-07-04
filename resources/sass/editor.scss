@@ -40,11 +40,12 @@ div.mce-fullscreen {
   //color: var(--summernote-editable-text);
 }
 .note-popover {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: none;
-        padding: 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    padding: 1px;
+    z-index: 99;
 }
 
 img.note-float-right {

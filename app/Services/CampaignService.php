@@ -67,7 +67,7 @@ class CampaignService
         session()->put('campaign_id', $campaign->id);
         $user = auth()->user();
         $user->last_campaign_id = $campaign->id;
-        $user->save();
+        $user->saveQuietly();
     }
 
     /**

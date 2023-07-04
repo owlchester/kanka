@@ -35,18 +35,5 @@
             width: 1.75rem;
         }
     }
-
-    .colour-pallet {
-        --tw-text-opacity: 1;
-        color: hsl(var(--bc)/var(--tw-text-opacity));
-    }
-
-    .bg-gray {
-        color: #333 !important;
-
-        .calendar-event-comment {
-            color: #333 !important;
-        }
-    }
 }
 

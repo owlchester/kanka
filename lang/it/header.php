@@ -1,14 +1,19 @@
 <?php
 
 return [
-    'avatar'            => 'Immagine Profilo',
-    'logout'            => 'Disconnetti',
-    'member_since'      => 'Membro dal :date',
-    'notifications'     => [
-        'header'    => 'Notifiche',
-        'mark_read' => 'Contrassegna tutte come già lette',
-        'read_all'  => 'Leggi tutte',
+    'news'          => [
+        'title' => 'Novità di Kanka',
     ],
-    'profile'           => 'Profilo',
-    'toggle_navigation' => 'Attiva navigazione',
+    'notifications' => [
+        'dismiss'   => 'Chiudi',
+        'no-unread' => 'Nessuna notifica non letta',
+    ],
+    'user'          => [
+        'impersonating' => 'Impersonificazione di :user',
+        'settings'      => 'Impostazioni',
+        'sign-out'      => 'Disconnetti',
+        'signed-in'     => 'Accesso come :user',
+        'upgrade'       => 'Aggiorna',
+        'your-profile'  => 'Il tuo Profilo',
+    ],
 ];

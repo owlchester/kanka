@@ -35,6 +35,7 @@ class RecoveryController extends Controller
             ->permissions(false);
 
         $rows = Entity::onlyTrashed()
+            ->with('image')
             ->sort(request()->only(['o', 'k']), ['deleted_at' => 'DESC'])
             ->whereDate('deleted_at', '>=', Carbon::today()->subDays(config('entities.hard_delete')))
             ->paginate();

@@ -51,7 +51,7 @@ class UserEventSubscriber
             $userLogType = session()->get('kanka.userLog', UserLog::TYPE_BANNED_LOGIN);
         }
         $event->user->log($userLogType);
-        
+
         session()->remove('kanka.userLog');
         $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
 
@@ -67,7 +67,7 @@ class UserEventSubscriber
                 // Silence errors here
             }
         } elseif (session()->has('first_login')) {
-            // Todo: move this to the controller? Not sure why it should be an event's responsability
+            // Todo: move this to the controller? Not sure why it should be an event's responsibility
             // Let's create their first campaign for them
             $campaign = $this->starterService
                 ->user($event->user)
@@ -76,7 +76,6 @@ class UserEventSubscriber
             CampaignService::switchCampaign($campaign);
             return true;
         }
-
 
         // We want to register in the session a campaign_id
         CampaignService::switchToLast($event->user);

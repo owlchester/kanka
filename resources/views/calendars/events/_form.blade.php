@@ -13,7 +13,7 @@
     </x-grid>
 @else
     <div class="mb-5">
-        @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id'])
+        @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id', 'dropdownParent' => '#entity-modal', 'allowClear' => false])
     </div>
 @endif
 

@@ -57,7 +57,7 @@ class PluginController extends Controller
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('campaigns.plugins._table')->with('rows', $rows)->render();
+            $html = view('layouts.datagrid._table')->with('rows', $rows)->render();
             $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->render();
             return response()->json([
                 'success' => true,

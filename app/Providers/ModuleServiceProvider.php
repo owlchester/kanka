@@ -16,8 +16,11 @@ class ModuleServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(ModuleService::class, function ($app) {
-            $campaign = CampaignLocalization::getCampaign();
-            return (new ModuleService())->campaign($campaign);
+            $campaign = CampaignLocalization::getCampaign(false);
+            if ($campaign) {
+                return (new ModuleService())->campaign($campaign);
+            }
+            return new ModuleService();
         });
         $this->app->alias(ModuleService::class, 'module');
     }

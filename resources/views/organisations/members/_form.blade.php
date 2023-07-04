@@ -13,7 +13,7 @@ $statuses = [
 @endphp
 
 {{ csrf_field() }}
-<x-gird>
+<x-grid>
 
     <div class="col-span-2">
         @include('cruds.fields.character', [
@@ -54,7 +54,7 @@ $statuses = [
         </label>
         {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
     </div>
-</x-gird>
+</x-grid>
 
 
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])

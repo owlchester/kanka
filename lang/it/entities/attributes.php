@@ -2,49 +2,80 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Applica un Template per gli Attributi',
-        'manage'            => 'Gestisci',
-        'remove_all'        => 'Cancella tutti',
+        'apply_template'    => 'Applica un Modello per gli Attributi',
+        'more'              => 'Altro',
+        'save_and_edit'     => 'Applica e Modifica',
+        'save_and_story'    => 'Applica e Visualizza',
+        'show_hidden'       => 'Mostra attributi nascosti',
+    ],
+    'errors'        => [
+        'loop'      => 'Il calcolo di questo attributo è un ciclo infinito!',
+        'too_many'  => 'Ci sono troppi campi in questa entità, non è possibile aggiungere altri attributi. Eliminare alcuni attributi prima di poterne aggiungere altri.',
     ],
     'fields'        => [
-        'attribute'             => 'Attributo',
-        'community_templates'   => 'Templates della Community',
-        'is_private'            => 'Attributi Privati',
-        'is_star'               => 'Fissato',
-        'template'              => 'Template',
-        'value'                 => 'Valore',
+        'community_templates'   => 'Modelli della Comunità',
+        'template'              => 'Modello',
+    ],
+    'filters'       => [
+        'name'  => 'Nome dell\'attributo',
+        'value' => 'Valore dell\'attributo',
     ],
     'helpers'       => [
-        'delete_all'    => 'Sei sicuro di voler cancellare tutti gli attributi di questa entità?',
+        'setup' => 'Puoi rappresentare elementi come Punti Ferita o l\'intelligenza di un\'entità con degli attributi. È possibile aggiungere manualmente gli attributi facendo clic sul pulsante :manage, oppure applicare automaticamente quelli di un modello di attributo.',
     ],
-    'hints'         => [],
-    'index'         => [
-        'success'   => 'Attributo aggiornato per :entity.',
-        'title'     => 'Attributi per :name',
+    'hints'         => [
+        'is_private2'   => 'Se selezionato, solo i membri del ruolo :admin-role possono vedere gli attributi di questa entità.',
     ],
-    'placeholders'  => [
-        'attribute' => 'Numero di conquiste, Grado di Sfida, Iniziativa, Popolazione',
-        'block'     => 'Nome del blocco',
-        'checkbox'  => 'Nome del checkbox',
+    'index'         => [],
+    'labels'        => [
+        'checkbox'  => 'Nome del Checkbox',
+        'name'      => 'Nome dell\'attributo',
         'section'   => 'Nome della sezione',
-        'template'  => 'Seleziona un template',
         'value'     => 'Valore dell\'attributo',
     ],
+    'live'          => [
+        'success'   => 'Attributo :attribute aggiornato.',
+        'title'     => 'Aggiornando :attribute',
+    ],
+    'placeholders'  => [
+        'attribute' => 'Numero di Conquiste, Grado di Sfida, Iniziativa, Popolazione',
+        'checkbox'  => 'Nome del Checkbox',
+        'icon'      => [
+            'class' => 'Classe: fas fa-users di FontAwesome o RPG Awesome',
+            'name'  => 'Nome dell\'icona',
+        ],
+        'number'    => 'Valore numerico',
+        'random'    => [
+            'name'  => 'Nome dell\'attributo',
+            'value' => '1-100 o lista di valori separati da una virgola',
+        ],
+    ],
+    'ranges'        => [
+        'text'  => 'Opzioni disponibili :options',
+    ],
+    'show'          => [
+        'hidden'    => 'Attributi Nascosti',
+        'title'     => 'Attributi di :name',
+    ],
     'template'      => [
-        'success'   => 'Il Template di Attributi :name è stato applicato su :entity',
-        'title'     => 'Applica un Template degli Attributi per :name',
+        'success'   => 'Il Modello di Attributi :name è stato applicato a :entity',
+        'title'     => 'Applica un Modello degli Attributi per :name',
+    ],
+    'toasts'        => [
+        'lock'      => 'Attributo bloccato',
+        'pin'       => 'Attributo fissato',
+        'unlock'    => 'Attributo sbloccato',
+        'unpin'     => 'Attributo non fissato',
     ],
     'types'         => [
-        'attribute' => 'Attributo',
-        'block'     => 'Blocco',
-        'checkbox'  => 'Checkbox',
-        'section'   => 'Sezione',
-        'text'      => 'Testo multilinea',
+        'icon'      => 'Icona',
+        'number'    => 'Numero',
+        'random'    => 'Random',
+    ],
+    'update'        => [
+        'success'   => 'Attributi per :entity aggiornati',
     ],
     'visibility'    => [
-        'entry'     => 'Gli Attributi sono mostrati nella tab Principale.',
-        'private'   => 'Attributo visibile solamente ai membri del ruolo "Admin".',
-        'public'    => 'Attributo visibile a tutti i membri.',
-        'tab'       => 'Gli attributi sono visualizzati solamente nella tab degli Attributi.',
+        'entry' => 'Gli attributi sono visualizzati nel menu dell\'entità.',
     ],
 ];

@@ -100,11 +100,10 @@ $imageCount = 0;
             <div class="flex gap-2 sm:gap-5 items-center my-5">
                 <div class="grow flex gap-2 sm:gap-5 items-center">
                 @if(!$image->isFolder() || $image->hasNoFolders())
-
                     <x-button.delete-confirm target="#delete-confirm-form" size="sm" />
                 @endif
                     @if(!$image->isFolder())
-                        <a href="{{ $image->getUrl() }}" target="_blank">
+                        <a href="{{ Storage::url($image->path) }}" target="_blank">
                             <x-icon class="fa-regular fa-link"></x-icon>
                             {{ __('campaigns/gallery.actions.' . $image->isFont() ? 'file-link' : 'image-link') }}
                         </a>

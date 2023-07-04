@@ -34,7 +34,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="flex p-4 flex-1 entity-content">
+                <div class="p-4 flex-1 entity-content">
                     {!! $element->entry() !!}
                 </div>
                 <div class="p-4 flex gap-2 items-center mt-auto">
@@ -43,7 +43,7 @@
                     </div>
                     @can('update', $model)
                         <div class="flex gap-2 items-center">
-                            <x-button.delete-confirm target="delete-form-{{ $element->id }}" size="sm" />
+                            <x-button.delete-confirm target="#delete-form-{{ $element->id }}" size="sm" />
 
                             <a href="{{ route('quests.quest_elements.edit', [$model, $element]) }}" class="btn2 btn-sm btn-primary">
                                 <x-icon class="edit"></x-icon>

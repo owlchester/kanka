@@ -10,7 +10,7 @@
 
 <article>
     @php $dropdownParent = '#new-widget'; @endphp
-    @include('dashboard.widgets.forms._' . $widget)
+    @include('dashboard.widgets.forms._' . $widget, ['mode' => 'create'])
 
     <x-dialog.footer>
         <button type="submit" class="btn2 btn-primary">

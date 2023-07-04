@@ -3,6 +3,7 @@
 namespace App\Jobs\Users;
 
 use App\Observers\UserObserver;
+use App\Services\Users\CleanupService;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -42,14 +43,15 @@ class DeleteUser implements ShouldQueue
         $user = User::find($this->user);
         if (empty($user)) {
             // User wasn't found
-            Log::warning('User delete: unknown #' . $this->user . '.');
+            Log::warning('Jobs/Users/DeleteUser', ['unknown user', 'user' => $this->user]);
             return;
         }
+        Log::info('Jobs/Users/DeleteUser', ['start', 'user' => $user->id]);
 
-        User::observe(UserObserver::class);
+        /** @var CleanupService $service */
+        // We don't use the model's observer, because in laravel 10, it's adding the observer for each loop in local dev, slowing everything down
+        $service = app()->make(CleanupService::class);
+        $service->user($user)->delete();
         $user->delete();
-
-        Log::info('User #' . $this->user . ' deleted (job)');
-        unset($user);
     }
 }

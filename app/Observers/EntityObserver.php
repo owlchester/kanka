@@ -158,7 +158,7 @@ class EntityObserver
         );
         $this->attributeService->entity($entity)->save($data);
         $sourceId = request()->post('copy_source_id');
-        if (request()->has('replace_mentions') && request()->filled('replace_mentions')) {
+        if (request()->has('replace_mentions') && request()->filled('replace_mentions') && property_exists($entity->child, 'entry')) {
             $source = Entity::findOrFail($sourceId);
             $sourceAttributes = [];
             $entityAttributes = [];

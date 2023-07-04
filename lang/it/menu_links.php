@@ -1,31 +1,49 @@
 <?php
 
 return [
-    'create'        => [
-        'title' => 'Nuovo Elemento del Menù',
+    'actions'           => [
+        'customise' => 'Personalizza la barra laterale',
     ],
-    'destroy'       => [],
-    'edit'          => [
-        'title' => 'Elemento del menù \':name\'',
+    'create'            => [
+        'title' => 'Nuovo Collegamento Rapido',
     ],
-    'fields'        => [
-        'entity'    => 'Entità',
-        'filters'   => 'Filtri',
-        'menu'      => 'Menù',
-        'position'  => 'Posizione',
-        'type'      => 'Tipo di entità',
+    'destroy'           => [],
+    'edit'              => [
+        'title' => 'Collegamento Rapido :name',
     ],
-    'helpers'       => [
-        'entity'    => 'Configura questo collegamento nel menù per poter accedere direttamente ad una entità. Il campo :tab gestisce quale delle delle schede dell\'entità sarà aperta. Il campo :menu gestisce quale sotto-pagina dell\'entità sarà aperta.',
-        'position'  => 'Utilizza questo campo per controllare in che ordine crescente i link appariranno nel menù.',
-        'type'      => 'Configura questo collegamento nel menù per poter accedere direttamente ad una lista di entità. Per filtrare i risultati, copia parti dell\'URL sulla lista filtrata delle entità dopo il segno :? nel campo :filter.',
+    'fields'            => [
+        'active'            => 'Attivo',
+        'dashboard'         => 'Pagina Principale',
+        'default_dashboard' => 'Pagina Principale predefinita',
+        'is_nested'         => 'Annidato',
+        'random'            => 'Casuale',
+        'random_type'       => 'Tipo di Entità Casuale',
+        'selector'          => 'Configurazione del Collegamento Rapido',
+        'target'            => 'Elemento',
     ],
-    'index'         => [],
-    'placeholders'  => [
-        'filters'   => 'Esempio: location_id=15&type=city',
-        'menu'      => 'Sottopagina del menù (utilizza l\'ultimo pezzo di testo dell\'url)',
-        'name'      => 'Titolo dell\'elemento del menù',
-        'tab'       => 'entità, relazioni, note',
+    'helpers'           => [
+        'active'            => 'Collegamenti rapidi inattivi non appaiono nella barra laterale',
+        'dashboard'         => 'Indirizza il collegamento rapido a una delle Pagine Principale personalizzate della campagna.',
+        'default_dashboard' => 'Collegati invece alla Pagina Principale predefinita della campagna. È ancora necessario selezionare una Pagina Principale personalizzata.',
+        'entity'            => 'Configura questo collegamento nel menù per poter accedere direttamente ad una entità. Il campo :menu gestisce quale sotto-pagina dell\'entità sarà aperta.',
+        'position'          => 'Utilizza questo campo per controllare in che ordine crescente i collegamenti appariranno nel menù.',
+        'random'            => 'Utilizza questo campo per avere un collegamento rapido che punta a un\'entità a caso. È possibile filtrare il link per accedere solo a un tipo specifico di entità.',
+        'selector'          => 'Configura la destinazione di questo collegamento rapido quando un utente fa clic su di esso nella barra laterale.',
     ],
-    'show'          => [],
+    'index'             => [],
+    'placeholders'      => [
+        'name'  => 'Nome del Collegamento Rapido',
+    ],
+    'random_no_entity'  => 'Non è stata trovata alcuna entità casuale.',
+    'random_types'      => [
+        'any'   => 'Qualunque entità',
+    ],
+    'reorder'           => [
+        'success'   => 'Collegamenti Rapidi riordinati.',
+        'title'     => 'Riordina i Collegamenti Rapidi',
+    ],
+    'show'              => [],
+    'visibilities'      => [
+        'is_active' => 'Visualizza i Collegamenti Rapidi nella Barra Laterale',
+    ],
 ];

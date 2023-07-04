@@ -68,6 +68,7 @@ function initSaveKeyboardShortcut(form) {
         //console.log((e.ctrlKey || e.metaKey), e.key.toLowerCase(), e.key.toLowerCase() === 's', e.shiftKey);
         // Need to check on lowercase key, because shirt will uppercase it
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+            console.log('hey');
             window.entityFormHasUnsavedChanges = false;
 
             if (e.shiftKey) {
@@ -97,8 +98,10 @@ function setFormAction(action) {
     if (!entityFormDefaultAction) {
         return;
     }
+
     entityFormDefaultAction
         .attr('name', action);
+    $('#submit-mode').attr('name', action);
 }
 
 /**

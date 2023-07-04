@@ -14,19 +14,19 @@
 <div class="nav-tabs-custom">
     <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
         <li class="active">
-            <a data-toggle="tab" href="#setup">
+            <a data-toggle="tab" href="#setup-{{ $mode }}">
                 {{ __('dashboard.widgets.tabs.setup') }}
             </a>
         </li>
         <li>
-            <a class="" data-toggle="tab" href="#advanced">
+            <a class="" data-toggle="tab" href="#advanced-{{ $mode }}">
                 {{ __('dashboard.widgets.tabs.advanced') }}
             </a>
         </li>
     </ul>
 
     <div class="tab-content p-4">
-        <div id="setup" class="tab-pane fade in active">
+        <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
                 <div class="field-entity-type required">
                     <label for="config-entity">
@@ -70,17 +70,7 @@
 
                 <div class="col-span-2 collapse !visible {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
                     @if($campaignService->campaign()->boosted())
-                        {!! Form::hidden('config[entity-header]', 0) !!}
-                        <div class="field-header checkbox">
-                            <label>
-                                {!! Form::checkbox('config[entity-header]', 1, (!empty($model) ? $model->conf('entity-header') : null), ['id' => 'config-entity-header']) !!}
-                                {{ __('dashboard.widgets.recent.entity-header') }}
-
-                                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.entity-header') }}" aria-hidden="true"></i>
-                            </label>
-                        </div>
-                        <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.entity-header') }}</p>
-
+                        @include('dashboard.widgets.forms._header_select')
                         @include('dashboard.widgets.forms._related')
                     @else
                         <p class="help-block">{!! __('dashboard.widgets.advanced_options_boosted', [
@@ -102,7 +92,7 @@
                 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
             </x-grid>
         </div>
-        <div id="advanced" class="tab-pane fade in">
+        <div id="advanced-{{ $mode }}" class="tab-pane fade in">
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
 
             <x-grid>

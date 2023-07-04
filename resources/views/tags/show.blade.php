@@ -12,7 +12,7 @@
 
     <div class="entity-story-block">
         @include('entities.components.posts', ['withEntry' => true])
-        @include('tags.panels.children')
+        @include('tags.panels.children', ['onload' => true])
     </div>
 
     <div class="entity-sidebar">

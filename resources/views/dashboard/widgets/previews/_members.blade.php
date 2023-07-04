@@ -39,7 +39,7 @@ $members = $entity->isFamily()
                 <div class="font-extrabold">{{ $member->role }}</div>
                 <div>{!! $member->character->tooltipedLink() !!}</div>
         @endforeach
-    </dl>
+    </div>
 @endif
 
 </div>

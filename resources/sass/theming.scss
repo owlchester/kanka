@@ -102,7 +102,7 @@ body {
 
 a, .text-link {
     --tw-text-opacity: 1;
-    color: hsl(var(--link-text, var(--p))/var(--tw-text-opacity));
+    color: var(--link-text, hsl(var(--p)/var(--tw-text-opacity)));
 
     &:hover {
         --tw-text-opacity: 1;

@@ -4,7 +4,7 @@ window.formErrorHandler = function(err, form) {
     $('.text-error').remove();
 
     // Re-enable the submit button
-    $(form).find('.btn-success')
+    $(form).find('.btn-primary')
         .prop('disabled', false)
         .removeClass('loading');
 

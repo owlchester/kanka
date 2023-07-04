@@ -44,7 +44,7 @@
             @endif
         </div>
         @for ($s = 0; $s < $stacked; $s++)
-            <div class="entity block entity-stack bg-gray-400 w-full overflow-hidden rounded aspect-square flex flex-col shadow-sm" title="{{ __('datagrids.tooltips.nested') }}" data-stack="{{ $s }}">
+            <div class="entity block entity-stack bg-base-300 w-full overflow-hidden rounded aspect-square flex flex-col shadow-sm" title="{{ __('datagrids.tooltips.nested') }}" data-stack="{{ $s }}">
                 <div class="block grow"></div>
                 <div class="block h-12 p-4 bg-box"></div>
             </div>

@@ -39,8 +39,8 @@ $newWidgetListClass = 'btn2 btn-full';
         @if ($campaignService->campaign()->boosted())
             <div class="mt-5 flex items-center gap-2">
                 <a class="btn2 btn-primary btn-sm"
-                     data-toggle="ajax-modal"
-                     data-target="#edit-widget"
+                     data-toggle="dialog-ajax"
+                     data-target="edit-widget"
                      data-url="{{ route('campaign_dashboards.create') }}"
                    >
                     <x-icon class="plus"></x-icon>
@@ -90,8 +90,8 @@ $newWidgetListClass = 'btn2 btn-full';
                             <li>
                                 <a
                                     href="#"
-                                    data-toggle="ajax-modal"
-                                    data-target="#edit-widget"
+                                    data-toggle="dialog-ajax"
+                                    data-target="edit-widget"
                                     data-url="{{ route('campaign_dashboards.edit', $dashboard) }}"
                                 >
                                     <i class="fa-solid fa-pencil-alt" aria-hidden="true"></i>
@@ -101,8 +101,8 @@ $newWidgetListClass = 'btn2 btn-full';
                             <li>
                                 <a
                                         href="#"
-                                        data-toggle="ajax-modal"
-                                        data-target="#edit-widget"
+                                        data-toggle="dialog-ajax"
+                                        data-target="edit-widget"
                                         data-url="{{ route('campaign_dashboards.create', ['source' => $dashboard]) }}"
                                 >
                                     <i class="fa-solid fa-copy" aria-hidden="true"></i>
@@ -133,8 +133,8 @@ $newWidgetListClass = 'btn2 btn-full';
             @if (empty($dashboard))
             <div class="col-span-12">
                 <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto" @if($campaignService->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }})" @endif
-                    data-toggle="ajax-modal"
-                     data-target="#large-modal"
+                    data-toggle="dialog-ajax"
+                     data-target="edit-widget"
                      data-url="{{ route('campaigns.dashboard-header.edit', $campaignService->campaign()) }}"
                 >
                     <div class="{{ $overlayClass }}">
@@ -208,7 +208,9 @@ $newWidgetListClass = 'btn2 btn-full';
     </x-dialog>
 
     <!-- Modal edit widget -->
-    <div class="modal fade" id="edit-widget" role="dialog" aria-labelledby="deleteConfirmLabel">
+
+    <x-dialog id="edit-widget" :loading="true"></x-dialog>
+    <div class="modal fade" id="edit-widget-old" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content bg-base-100 rounded-2xl">
             </div>

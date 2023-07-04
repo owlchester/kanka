@@ -11,6 +11,7 @@ endif;
 $weekNumber = 1;
 ?>
 @inject('renderer', 'App\Renderers\CalendarRenderer')
+@inject('colours', 'App\Services\ColourService')
 <?php $canEdit = auth()->check() && auth()->user()->can('update', $model) ?>
 {{ $renderer->setCalendar($model) }}
 <div class="calendar-toolbar flex gap-2 items-center mb-5">
@@ -54,7 +55,7 @@ $weekNumber = 1;
             </a>
         </div>
     </div>
-    <div class="month-alias help-block">{!! $renderer->monthAlias() !!}</div>
+    <div class="month-alias help-block m-0">{!! $renderer->monthAlias() !!}</div>
 </div>
 
 <x-box :padding="false">

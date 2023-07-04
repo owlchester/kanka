@@ -10,7 +10,6 @@ use App\Models\Calendar;
 use App\Sanitizers\CalendarSanitizer;
 use App\Services\CalendarService;
 use App\Traits\TreeControllerTrait;
-use Illuminate\Http\Request;
 
 class CalendarController extends CrudController
 {
@@ -23,7 +22,7 @@ class CalendarController extends CrudController
     protected string $route = 'calendars';
     protected $module = 'calendars';
 
-    protected $calendarService;
+    protected CalendarService $calendarService;
 
     /** @var string */
     protected $model = \App\Models\Calendar::class;

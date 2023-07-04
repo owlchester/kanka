@@ -19,12 +19,13 @@ if ($widget->conf('entity')) {
 
 <div class="col-span-{{ $widget->colSize() }}">
     <div class="{{ $widgetClass }} cursor-pointer {{ !empty($background) ? 'p-5' : null }} widget-{{ $widget->widget }} cover-background {{ $widget->widget ===  \App\Models\CampaignDashboardWidget::WIDGET_HEADER ? 'h-auto' : null }}"
-         data-toggle="ajax-modal"
     @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
+         data-toggle="ajax-modal"
          data-target="#large-modal"
          data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaignService->campaign(), 'campaignDashboardWidget' => $widget]) }}"
     @else
-         data-target="#edit-widget"
+         data-toggle="dialog-ajax"
+         data-target="edit-widget"
          data-url="{{ route('campaign_dashboard_widgets.edit', $widget) }}"
     @endif
     @if (!empty($background))

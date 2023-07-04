@@ -30,7 +30,7 @@ $isAdmin = Auth::user()->isAdmin();
 @section('content')
     <x-box>
         <div id="entity-attributes-all">
-            <div class="entity-attributes">
+            <div class="entity-attributes sortable-elements"  data-handle=".sortable-handler">
                 @foreach ($r = $entity->attributes()->ordered()->get() as $attribute)
                     @if (!$attribute->is_hidden)
                         @include('cruds.forms.attributes._attribute')

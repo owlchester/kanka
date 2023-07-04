@@ -11,7 +11,7 @@ use App\Services\AttributeService;
 class AttributeTemplateController extends Controller
 {
     /** @var AttributeService */
-    protected $service;
+    protected AttributeService $service;
 
     /**
      * Create a new controller instance.

@@ -1,77 +1,30 @@
 <?php
 
 return [
-    'avatar'                        => [
-        'success'   => 'Avatar aggiornato.',
-    ],
+    'avatar'                        => [],
     'campaign_switcher_order_by'    => [],
-    'edit'                          => [
-        'success'   => 'Profilo aggiornato',
-    ],
-    'fields'                        => [
-        'avatar'                    => 'Avatar',
-        'bio'                       => 'Biografia',
-        'email'                     => 'E-Mail',
-        'hide_subscription'         => 'Nascondi il mio nome dalla :hall_of_fame.',
-        'last_login_share'          => 'Condividi con gli altri membri della campagna l\'ultima volta che mi sono loggato.',
-        'name'                      => 'Nome',
-        'new_password'              => 'Nuova Password (opzionale)',
-        'new_password_confirmation' => 'Conferma Nuova Password',
-        'newsletter'                => 'Desidero ogni tanto essere contattato tramite e-mail.',
-        'password'                  => 'Password corrente',
-        'profile-name'              => 'Nome del profilo',
-        'settings'                  => 'Impostazioni',
-        'theme'                     => 'Tema',
+    'edit'                          => [],
+    'fields'                        => [],
+    'helpers'                       => [
+        'profile-name'  => 'Cambia il modo in cui il tuo nome appare sul tuo :profile e sul :marketplace. Se lasciato vuoto, verrà utilizzato il nome del proprio account.',
     ],
     'newsletter'                    => [
-        'options'   => [
-            'monthly'   => 'Newsletter di Kanka',
+        'helpers'   => [
+            'header'    => 'Iscriviti alle seguenti newsletter per essere informato sulle novità di Kanka.',
         ],
-        'title'     => 'Newsletters',
-        'updated'   => 'Preferenze della newsletter aggiornate.',
     ],
-    'password'                      => [
-        'success'   => 'Password aggiornata',
-    ],
+    'password'                      => [],
     'placeholders'                  => [
-        'email'                     => 'Il tuo indirizzo e-mail',
-        'name'                      => 'Il tuo nome come viene visualizzato',
-        'new_password'              => 'La tua nuova password',
-        'new_password_confirmation' => 'Conferma la tua nuova password',
-        'password'                  => 'Fornisci la tua password corrente per qualsiasi cambiamento',
+        'bio'   => 'Una piccola biografia di te stesso visualizzata sul tuo profilo pubblico.',
     ],
     'sections'                      => [
-        'dangerzone'    => 'Zona pericolosa',
+        'dangerzone'    => 'Zona Pericolosa',
         'delete'        => [
-            'confirm'   => 'Cancella il mio account ora',
-            'delete'    => 'Elimina il mio account',
-            'goodbye'   => 'Se è così, per favore scrivi :code nello spazio qui sotto.',
-            'title'     => 'Elimina il tuo account',
-            'warning'   => 'Eliminando il tuo account tutti i tuoi dati andranno persi. Sei sicuro?',
-        ],
-        'password'      => [
-            'title' => 'Cambia la tua password',
+            'helper'        => 'L\'eliminazione dell\'account comporta anche l\'eliminazione di qualsiasi campagna di cui si è l\'unico membro. Questa azione è permanente e non può essere annullata.',
+            'subscribed'    => 'Cancella il tuo :subscription prima di poter cancellare il proprio account.',
         ],
     ],
-    'settings'                      => [
-        'helpers'   => [
-            'bio'       => 'La biografia è disponibile al tuo :link',
-            'profile'   => 'profilo pubblico',
-        ],
-        'success'   => 'Impostazioni aggiornate.',
-    ],
-    'theme'                         => [
-        'success'   => 'Tema aggiornato.',
-        'themes'    => [
-            'dark'      => 'Scuro',
-            'default'   => 'Default',
-            'future'    => 'Futuristico',
-            'midnight'  => 'Blu Notte',
-        ],
-    ],
-    'title'                         => 'Aggiorna il tuo profilo',
-    'workflows'                     => [
-        'created'   => 'Vai all\'entità creata',
-        'default'   => 'Lista di entità',
-    ],
+    'settings'                      => [],
+    'theme'                         => [],
+    'workflows'                     => [],
 ];
