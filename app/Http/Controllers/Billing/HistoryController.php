@@ -41,7 +41,7 @@ class HistoryController extends Controller
         /** @var User $user */
         $user = $request->user();
         $billing = '';
-        if ($user->profile) {
+        if ($user->profile && !empty($user->profile['billing'])) {
             $billing = $user->profile['billing'];
         }
         return $user->downloadInvoice($invoice, [

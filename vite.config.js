@@ -46,6 +46,7 @@ export default defineConfig({
             'resources/js/settings.js',
             'resources/js/timeline.js',
             'resources/js/profile.js',
+            'resources/js/cookieconsent.js',
             'resources/js/relations.js',
             'resources/js/gallery.js',
             'resources/js/history.js',

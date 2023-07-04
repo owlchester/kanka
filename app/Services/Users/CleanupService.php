@@ -35,8 +35,8 @@ class CleanupService
         foreach ($members as $member) {
             $member->delete();
 
-            // Delete a campaign if no one is left in it
-            if ($member->campaign->members->count() == 0) {
+            // Delete a campaign if no one is left in it. Since we did the "with", it's cached, hence checking on 1
+            if ($member->campaign->members->count() <= 1) {
                 ImageService::cleanup($member->campaign);
                 $member->campaign->delete();
             }

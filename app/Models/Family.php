@@ -27,8 +27,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Family extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use Nested;
@@ -38,6 +37,7 @@ class Family extends MiscModel
 
     /** @var string[]  */
     protected $fillable = [
+        'campaign_id',
         'name',
         'slug',
         'entry',

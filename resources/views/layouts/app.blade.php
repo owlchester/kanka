@@ -166,7 +166,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
     <script src="/js/vendor.js" defer></script>
-    @vite('resources/js/app.js')
+    @vite(['resources/js/app.js', 'resources/js/cookieconsent.js'])
     @yield('scripts')
 
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
