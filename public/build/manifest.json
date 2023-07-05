@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-a6c9094b.js",
+    "file": "assets/app-15c90f9a.js",
     "imports": [
       "_delete-confirm-fec6aa52.js",
       "_mention-5d95822d.js",
@@ -147,7 +147,7 @@
     "src": "resources/js/dashboard.js"
   },
   "resources/js/editors/summernote.js": {
-    "file": "assets/summernote-0d2ce461.js",
+    "file": "assets/summernote-2cc5407b.js",
     "isEntry": true,
     "src": "resources/js/editors/summernote.js"
   },
@@ -241,12 +241,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-a34e9738.css",
+    "file": "assets/app-7a436aea.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-aa8f2f6a.css",
+    "file": "assets/auth-9b544613.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -266,7 +266,7 @@
     "src": "resources/sass/family-tree.scss"
   },
   "resources/sass/freyja/freyja.scss": {
-    "file": "assets/freyja-5d5d4c91.css",
+    "file": "assets/freyja-5e9c6df1.css",
     "isEntry": true,
     "src": "resources/sass/freyja/freyja.scss"
   },

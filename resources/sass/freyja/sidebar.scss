@@ -7,7 +7,7 @@
 }
 
 .w-sidebar {
-    width: var(--sidebar-width);
+    width: min(var(--sidebar-width), 90vw);
 }
 .h-sidebar {
     height: calc(100vh - 3rem);
@@ -117,6 +117,9 @@ body.sidebar-open .sidebar-toggle [data-sidebar="expand"] {
     }
 }
 @media (min-width: 768px) {
+    .md\:w-sidebar {
+        width: min(var(--sidebar-width), 90vw);
+    }
     .sidebar-collapse .main-sidebar {
         transform: translate(0, 0);
         width: 0 !important;
