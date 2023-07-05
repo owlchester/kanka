@@ -3,7 +3,7 @@
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ __('front.terms.description', ['date' => (new \Carbon\Carbon('2023-08-04'))->toFormattedDateString()]) }}" />
+    <meta property="og:description" content="{{ __('front.terms.description', ['date' => (new \Carbon\Carbon('2023-07-12'))->toFormattedDateString()]) }}" />
     <meta property="og:url" content="{{ route('front.terms') }}" />
 @endsection
 
@@ -13,7 +13,7 @@
             <div class="section-heading">
                 <div class="mb-5">
                     <h1 class="display-4">{{ __('front.terms.title') }}</h1>
-                    <p class="lead">{{ __('front.terms.description', ['date' => (new \Carbon\Carbon('2023-08-04'))->toFormattedDateString()]) }}</p>
+                    <p class="lead">{{ __('front.terms.description', ['date' => (new \Carbon\Carbon('2023-07-12'))->toFormattedDateString()]) }}</p>
                 </div>
 
                 <h2 class="" id="agreement-to-terms"><a href="#agreement-to-terms">AGREEMENT TO TERMS</a></h2>
@@ -46,8 +46,8 @@
 
                 <p class="mb-3">As a user of the Site, you agree not to:</p>
 
-                <ol>
-                <li>make any unauthorized use of the Site, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses.</li>
+                <ol class="mb-2">
+                    <li>make any unauthorized use of the Site, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses.</li>
                     <li>interfere with, disrupt, or create an undue burden on the Site or the networks or services connected to the Site.</li>
                     <li>attempt to bypass any measures of the Site designed to prevent or restrict access to the Site, or any portion of the Site.</li>
                     <li>harass, annoy, intimidate, or threaten any of our employees or agents engaged in providing any portion of the Site to you.</li>
@@ -62,7 +62,7 @@
 
                 <p class="mb-3">Public Contributions (but not Private Contributions) are viewable by other users of the Site. As such, any Public Contributions you transmit may be treated as non-confidential and non-proprietary by other users of the Site. When you create or make available any Contributions, you thereby represent and warrant that:</p>
 
-                <ol>
+                <ol class="mb-2">
                     <li>you are the creator and owner of or have the necessary licenses, rights, consents, releases, and permissions to use and to authorize other users of the Site to use your Public Contributions in any manner contemplated by the Site and these Terms and Conditions.</li>
                     <li>you authorize other users of the Site to use your Public Contributions, through features or plugins created by or for the Site.</li>
                     <li>your Contributions are not obscene, lewd, lascivious, filthy, violent, harassing, libelous, slanderous, or otherwise objectionable (as determined by us).</li>
