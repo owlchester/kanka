@@ -72,7 +72,7 @@ class FamilyController extends CrudController
         // @phpstan-ignore-next-line
         $this->rows = $family
             ->descendants()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with(['location', 'location.entity', 'entity', 'entity.tags'])
             ->paginate();
@@ -106,7 +106,7 @@ class FamilyController extends CrudController
 
         $this->rows = $family
             ->{$relation}()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with([
                 'location', 'location.entity',

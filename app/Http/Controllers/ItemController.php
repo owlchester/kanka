@@ -89,7 +89,7 @@ class ItemController extends CrudController
 
         $this->rows = $item
             ->items()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with(['entity', 'entity.image'])
             ->paginate(15);
