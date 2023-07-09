@@ -72,7 +72,7 @@ class EventController extends CrudController
         // @phpstan-ignore-next-line
         $this->rows = $event
             ->descendants()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['entity', 'entity.image', 'event', 'event.entity'])
             ->has('entity')
             ->filter($filters)

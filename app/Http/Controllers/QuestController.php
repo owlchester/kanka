@@ -78,7 +78,7 @@ class QuestController extends CrudController
 
         $this->rows = $quest
             ->descendants()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['entity', 'entity.image', 'quest', 'quest.entity'])
             ->has('entity')
             ->filter($filters)

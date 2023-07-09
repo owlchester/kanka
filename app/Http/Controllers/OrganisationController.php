@@ -85,7 +85,7 @@ class OrganisationController extends CrudController
         // @phpstan-ignore-next-line
         $this->rows = $organisation
             ->descendants()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'entity', 'entity.image', 'entity.tags',
                 'organisation', 'organisation.entity'
@@ -127,7 +127,7 @@ class OrganisationController extends CrudController
                 'character.location', 'character.location.entity'])
             ->has('character')
             ->has('character.entity')
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->paginate(15);
 
         // Ajax Datagrid

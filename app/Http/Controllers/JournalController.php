@@ -91,7 +91,7 @@ class JournalController extends CrudController
         // @phpstan-ignore-next-line
         $this->rows = $journal
             ->allJournals()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with(['entity', 'character'])
             ->paginate();
