@@ -60,8 +60,6 @@ class QuestController extends CrudController
         return $this->crudDestroy($quest);
     }
 
-    /**
-     */
     public function quests(Quest $quest)
     {
         $this->authCheck($quest);
@@ -76,6 +74,7 @@ class QuestController extends CrudController
         Datagrid::layout(\App\Renderers\Layouts\Quest\Quest::class)
             ->route('quests.quests', $options);
 
+        // @phpstan-ignore-next-line
         $this->rows = $quest
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])

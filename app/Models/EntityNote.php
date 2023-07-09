@@ -34,6 +34,7 @@ use Illuminate\Support\Collection;
  * @property Location|null $location
  * @property EntityMention[]|Collection $mentions
  * @property EntityNotePermission[]|Collection $permissions
+ * @property ImageMention[]|Collection $imageMentions
  *
  * @method static Builder|self pinned()
  */

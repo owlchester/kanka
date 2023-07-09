@@ -23,8 +23,8 @@ class CalcStyleDefinition extends HTMLPurifier_AttrDef
 
     /**
      * @param string $string
-     * @param HTMLPurifier_Config $config
-     * @param HTMLPurifier_Context $context
+     * @param \HTMLPurifier_Config $config
+     * @param \HTMLPurifier_Context $context
      * @return bool|string
      */
     public function validate($string, $config, $context)
@@ -48,7 +48,7 @@ class CalcStyleDefinition extends HTMLPurifier_AttrDef
      * @param string $string In form of comma-delimited list of case-insensitive
      *      valid values. Example: "foo,bar,baz". Prepend "s:" to make
      *      case sensitive
-     * @return HTMLPurifier_AttrDef_Enum
+     * @return \HTMLPurifier_AttrDef_Enum
      */
     public function make($string)
     {
@@ -59,6 +59,6 @@ class CalcStyleDefinition extends HTMLPurifier_AttrDef
             $sensitive = false;
         }
         $values = explode(',', $string);
-        return new HTMLPurifier_AttrDef_Enum($values, $sensitive);
+        return new \HTMLPurifier_AttrDef_Enum($values, $sensitive);
     }
 }

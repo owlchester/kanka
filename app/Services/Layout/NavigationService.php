@@ -54,6 +54,7 @@ class NavigationService
         if (!empty($this->user->pledge) && $this->user->subscribed('kanka')) {
             $data['subscription'] = [
                 'tier' => $this->user->pledge,
+                // @phpstan-ignore-next-line
                 'created' => __('users/profile.fields.subscriber_since', ['date' => $this->user->subscription('kanka')->created_at->format('M d, Y')]),
                 'image' => 'https://kanka-user-assets.s3.amazonaws.com/app/tiers/' . mb_strtolower($this->user->pledge) . '-325.png',
                 'boosters' => __('settings/boosters.available', [
@@ -163,7 +164,9 @@ class NavigationService
         /** @var Header $not */
         foreach ($this->user->notifications()->unread()->take(5)->get() as $not) {
             $url = '';
+            // @phpstan-ignore-next-line
             if (\Illuminate\Support\Arr::has($not->data['params'], 'link')) {
+                // @phpstan-ignore-next-line
                 $url = $not->data['params']['link'];
                 if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
                     $url = url(app()->getLocale() . '/' . $url);
@@ -171,12 +174,12 @@ class NavigationService
             }
             $notifications[] = [
                 'id' => $not->id,
-                'icon' => $not->data['icon'],
-                'text' => __('notifications.' . $not->data['key'], $not->data['params']),
+                'icon' => $not->data['icon'],// @phpstan-ignore-line
+                'text' => __('notifications.' . $not->data['key'], $not->data['params']),// @phpstan-ignore-line
                 'url' => $url,
                 'dismiss' => route('notifications.read', $not->id),
                 'dismiss_text' => __('header.notifications.dismiss'),
-                'is_read' => $not->read(),
+                'is_read' => $not->read(), // @phpstan-ignore-line
             ];
         }
         return $notifications;

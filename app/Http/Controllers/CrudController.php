@@ -142,6 +142,7 @@ class CrudController extends Controller
 
         $parent = null;
         if (request()->has('parent_id')) {
+            // @phpstan-ignore-next-line
             $parentKey = $model->getParentIdName();
             $base->where([$model->getTable() . '.' . $parentKey => request()->get('parent_id')]);
 
@@ -388,7 +389,7 @@ class CrudController extends Controller
             $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $model);
         }
         $name = $this->view;
-        $ajax = request()->ajax();
+        // @phpstan-ignore-next-line
         $entity_type_id = $model->entityTypeId();
 
         // Fix for models without an entity

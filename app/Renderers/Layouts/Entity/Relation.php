@@ -51,6 +51,7 @@ class Relation extends Layout
                 'label' => 'entities/relations.fields.attitude',
                 'class' => 'hidden-xs hidden-sm',
                 'render' => function ($relation) {
+                    /** @var \App\Models\Relation $relation */
                     $icon = '';
                     if (empty($relation->colour)) {
                         return $relation->attitude;

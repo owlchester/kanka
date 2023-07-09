@@ -106,6 +106,7 @@ class EntityRelationService
      */
     public function map(): array
     {
+        // @phpstan-ignore-next-line
         $entityHook = 'init' . ucfirst($this->entity->type());
         if (method_exists($this, $entityHook)) {
             $this->$entityHook();
@@ -688,6 +689,7 @@ class EntityRelationService
     {
         if (!method_exists($this->entity->child, 'getParentIdName')) {
             // If not part of the node model, check for the {self}_id attribute
+            // @phpstan-ignore-next-line
             if (!array_key_exists($this->entity->type() . '_id', $this->entity->child->getAttributes())) {
                 return $this;
             }

@@ -68,6 +68,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignSubmission[] $submissions
  * @property Collection|CampaignStyle[] $styles
  * @property Collection|RpgSystem[] $rpgSystems
+ * @property Collection|Genre[] $genres
  */
 trait CampaignRelations
 {

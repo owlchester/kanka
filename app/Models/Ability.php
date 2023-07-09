@@ -20,7 +20,7 @@ use Illuminate\Support\Arr;
  * Class Ability
  * @package App\Models
  * @property int|null $ability_id
- * @property string|null $charges
+ * @property mixed|null $charges
  * @property Ability|null $ability
  * @property Collection|Ability[] $descendants
  * @property Collection|Ability[] $abilities

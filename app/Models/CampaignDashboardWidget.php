@@ -25,6 +25,7 @@ use Illuminate\Support\Str;
  * @property integer $position
  * @property Entity $entity
  * @property CampaignDashboard $dashboard
+ * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags
  *
  * @method static self|Builder positioned()
  * @method static self|Builder onDashboard(CampaignDashboard $dashboard = null)
@@ -108,9 +109,6 @@ class CampaignDashboardWidget extends Model
         )->using(CampaignDashboardWidgetTag::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
     public function dashboardWidgetTags()
     {
         return $this->hasMany(CampaignDashboardWidgetTag::class, 'widget_id', 'id');

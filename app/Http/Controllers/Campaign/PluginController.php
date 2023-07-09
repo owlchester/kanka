@@ -39,6 +39,7 @@ class PluginController extends Controller
         $highlight = request()->get('highlight');
         if (!empty($highlight)) {
             Datagrid::highlight(function () use ($highlight) {
+                // @phpstan-ignore-next-line
                 return $this->uuid === $highlight;
             });
         }

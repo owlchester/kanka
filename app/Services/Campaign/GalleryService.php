@@ -32,15 +32,9 @@ class GalleryService
         return $this;
     }
 
-    /**
-     * @param Request $request
-     * @param string $field
-     * @return array
-     */
     public function store(GalleryImageStore $request, string $field = 'file'): array
     {
         $images = [];
-        /** @var \Illuminate\Http\UploadedFile $source */
         $files = $request->file($field);
         if (!is_array($files)) {
             $files = [$files];
@@ -83,11 +77,11 @@ class GalleryService
      */
     public function saveFocusPoint(StoreImageFocus $request): bool
     {
-        $this->image->focus_x = $request->post('focus_x');
-        $this->image->focus_y = $request->post('focus_y');
+        $this->image->focus_x = (int) $request->post('focus_x');
+        $this->image->focus_y = (int) $request->post('focus_y');
         $this->image->save();
 
-        foreach($this->image->inEntities() as $entity) {
+        foreach ($this->image->inEntities() as $entity) {
             $entity->clearAvatarCache();
         }
 

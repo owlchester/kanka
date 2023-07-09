@@ -17,17 +17,13 @@ use Illuminate\Http\Request;
 
 class CampaignRoleController extends Controller
 {
-    /**
-     * @var string
-     */
     protected string $view = 'campaigns.roles';
 
-    /** @var PermissionService */
     protected PermissionService $service;
 
     /**
      * Create a new controller instance.
-     * @param AttributeService $permissionService
+     * @param PermissionService $permissionService
      * @return void
      */
     public function __construct(PermissionService $permissionService)

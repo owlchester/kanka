@@ -34,6 +34,8 @@ class RelationController extends CrudController
     /** @var string  */
     protected $filter = RelationFilter::class;
 
+    public string $titleKey;
+
     public function __construct()
     {
         parent::__construct();

@@ -158,7 +158,7 @@ class AbilityService
                 $classes[] = ' kanka-tag-' . $tag->tag_id;
             }
         }
-        implode(' ', $classes);
+        //implode(' ', $classes);
 
         $data = [
             'ability_id' => $entityAbility->ability_id,

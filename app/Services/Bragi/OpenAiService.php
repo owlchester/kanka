@@ -21,7 +21,6 @@ class OpenAiService
     /**
      * @param string $prompt
      * @param array $context
-     * @return string
      */
     public function input(string $prompt, array $context = []): self
     {

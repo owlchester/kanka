@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $location_id
  * @property Collection|Character[] $members
  * @property Family $family
- * @property FamilyTree $familyTree
+ * @property FamilyTree|null $familyTree
  * @property Collection|Family[] $families
  * @property Collection|Family[] $descendants
  */

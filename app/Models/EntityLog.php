@@ -22,9 +22,9 @@ use Illuminate\Support\Str;
  * @property integer $action
  * @property integer $post_id
  * @property string|array  $changes
- * @property Entity $entity
- * @property User $user
- * @property User $impersonator
+ * @property Entity|null $entity
+ * @property User|null $user
+ * @property User|null $impersonator
  * @property Campaign $campaign
  * @property Carbon $created_at
  */
@@ -212,7 +212,7 @@ class EntityLog extends Model
 
     public function day(): int
     {
-        return $this->created_at->format('Ymd');
+        return (int) $this->created_at->format('Ymd');
     }
 
     public function userLink(): string
@@ -242,6 +242,7 @@ class EntityLog extends Model
         } elseif ($action == self::ACTION_RESTORE) {
             return [self::ACTION_RESTORE];
         }
+        return [];
     }
 
     /**

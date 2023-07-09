@@ -29,7 +29,7 @@ class Mailerlite extends Command
      */
     public function handle()
     {
-        /** @var NewsletterService $service */
+        /** @var NewsletterService $newsletter */
         $newsletter = app()->make(NewsletterService::class);
 
         $user = User::findorFail(13);

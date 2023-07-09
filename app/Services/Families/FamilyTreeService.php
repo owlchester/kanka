@@ -317,7 +317,7 @@ protected function cleanupMissingEntities(): void
 
     /**
      * Save a new tree config to the database
-     * @param string|null $data
+     * @param array $data
      * @return $this
      */
     public function save(array $data = []): self

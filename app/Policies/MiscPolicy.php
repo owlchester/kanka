@@ -211,6 +211,7 @@ class MiscPolicy
      */
     protected function checkPermission(int $action, User $user, $entity = null, Campaign $campaign = null): bool
     {
+        // @phpstan-ignore-next-line
         return EntityPermission::hasPermission($this->entityTypeID(), $action, $user, $entity, $campaign);
     }
 

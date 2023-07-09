@@ -387,6 +387,7 @@ abstract class MiscModel extends Model
             $collator = new \Collator(app()->getLocale());
             $collator->asort($sortedItems);
 
+            $sortedMenuItems = [];
             foreach ($sortedItems as $key => $item) {
                 $sortedMenuItems[$key] = $items['third'][$key];
             }

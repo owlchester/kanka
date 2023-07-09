@@ -5,6 +5,7 @@ namespace App\Renderers;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\EntityEvent;
+use App\Sanitizers\CalendarSanitizer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
@@ -953,7 +954,7 @@ class CalendarRenderer
         // we need to do this dirty hack where we fake the previous month as being the last month of the previous year
         if (!isset($months[$monthKey])) {
             $monthKey = count($months) - 1;
-            $year;
+            //$year;
             $day = 999999; // Force it to the last day of the previous month so that it can be incremented by one
         }
         $currentMonth = $months[$monthKey];

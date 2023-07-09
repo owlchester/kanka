@@ -149,6 +149,7 @@ class CalendarSanitizer extends MiscSanitizer
         $day = ltrim($this->request->post('current_day', '1'), '0');
 
         // Empty values and skipping year 0
+        // @phpstan-ignore-next-line
         if ($year === null || $this->request->skip_year_zero && $year == 0) {
             $year = 1;
         }

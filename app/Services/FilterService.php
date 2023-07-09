@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Location;
 use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -32,8 +33,8 @@ class FilterService
     protected Request $request;
     protected bool $hasRequest = false;
 
-    /** @var Model|MiscModel The entity sub model */
-    protected Model|MiscModel $model;
+    /** @var Model|MiscModel|Location The entity sub model */
+    protected Model|MiscModel|Location $model;
 
     /**
      * @param Request $request
@@ -78,7 +79,7 @@ class FilterService
     {
         $this->crud = $crud;
 
-        $this->prepareFilters($this->model->getFilterableColumns())
+        $this->prepareFilters($this->model->getFilterableColumns()) // @phpstan-ignore-line
             ->prepareOrder($this->model->sortableColumns()) // @phpstan-ignore-line
             ->prepareSearch();
     }

@@ -71,12 +71,6 @@ class QuestElementController extends Controller
         ));
     }
 
-    /**
-     * @param StoreQuestElement $request
-     * @param Quest $quest
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function store(StoreQuestElement $request, Quest $quest)
     {
         $this->authorize('update', $quest);
@@ -113,29 +107,16 @@ class QuestElementController extends Controller
             ]));
     }
 
-    /**
-     * For crawlers/bots
-     * @param Quest $quest
-     * @param QuestElement $questElement
-     */
     public function show(Quest $quest, QuestElement $questElement)
     {
         abort(404);
     }
 
-
-    /**
-     * @param Quest $quest
-     * @param QuestElement $questElement
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function edit(Quest $quest, QuestElement $questElement)
     {
         $this->authorize('update', $quest);
         $model = $questElement;
 
-        /** @var MiscModel $model */
         $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
 
@@ -156,13 +137,6 @@ class QuestElementController extends Controller
         ));
     }
 
-    /**
-     * @param StoreQuestElement $request
-     * @param Quest $quest
-     * @param QuestElement $questElement
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function update(StoreQuestElement $request, Quest $quest, QuestElement $questElement)
     {
         $this->authorize('update', $quest);
@@ -203,12 +177,6 @@ class QuestElementController extends Controller
             ]));
     }
 
-    /**
-     * @param Quest $quest
-     * @param QuestElement $questElement
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function destroy(Quest $quest, QuestElement $questElement)
     {
         $this->authorize('update', $quest);

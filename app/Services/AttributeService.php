@@ -115,7 +115,7 @@ class AttributeService
                 $attribute->name = $name;
                 $attribute->setValue($value);
                 $attribute->is_private = $isPrivate;
-                $attribute->is_star = $isStar;
+                $attribute->is_pinned = $isStar;
                 $attribute->default_order = $order;
                 if ($attribute->isDirty()) {
                     $touch = true;

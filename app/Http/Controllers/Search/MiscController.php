@@ -10,7 +10,6 @@ use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Response;
 
 class MiscController extends Controller
 {
@@ -83,7 +82,7 @@ class MiscController extends Controller
             $formatted[] = $format;
         }
 
-        return Response::json($formatted);
+        return response()->json($formatted);
     }
 
     /**
@@ -266,7 +265,7 @@ class MiscController extends Controller
             $formatted[] = $format;
         }
 
-        return Response::json($formatted);
+        return response()->json($formatted);
     }
 
     /**
@@ -360,7 +359,9 @@ class MiscController extends Controller
                 'id' => $model->id,
                 'text' => $model->name,
             ];
+            // @phpstan-ignore-next-line
             if ($class === 'App\Models\Tag' && $model->hasColour()) {
+                // @phpstan-ignore-next-line
                 $format['colour'] = $model->colourClass();
             }
             if (method_exists($model, 'thumbnail')) {
@@ -370,6 +371,6 @@ class MiscController extends Controller
             $formatted[] = $format;
         }
 
-        return Response::json($formatted);
+        return response()->json($formatted);
     }
 }

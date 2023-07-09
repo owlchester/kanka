@@ -18,7 +18,6 @@ class LogService
     use EntityAware;
     use UserAware;
 
-    /** @var mixed MiscModel */
     protected MiscModel $model;
 
     /**

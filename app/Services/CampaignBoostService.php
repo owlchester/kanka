@@ -44,7 +44,6 @@ class CampaignBoostService
     }
 
     /**
-     * @param User|null $user
      * @throws AlreadyBoostedException
      * @throws ExhaustedBoostsException
      */

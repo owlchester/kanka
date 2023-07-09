@@ -49,9 +49,9 @@ class CharacterApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Character::class);
 
-        /** @var Character $model */
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
+        /** @var Character $model */
         $model = Character::create($data);
         $this->crudSave($model);
 

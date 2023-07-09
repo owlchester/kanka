@@ -50,7 +50,7 @@ class ImageMention extends Model
     {
         return $this->belongsTo('App\Models\Post', 'post_id', 'id');
     }
-    
+
     /**
      * Determine if the mention goes to a post
      * @return bool
@@ -72,11 +72,13 @@ class ImageMention extends Model
             return $sub
                 ->where(function ($subEnt) {
                     return $subEnt
+                        // @phpstan-ignore-next-line
                         ->entity()
                         ->has('entity');
                 })
                 ->orWhere(function ($subPost) {
                     return $subPost
+                        // @phpstan-ignore-next-line
                         ->post()
                         ->has('post.entity');
                 });

@@ -238,7 +238,7 @@ class Creature extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if ($this->locations) {
+        if ($this->locations->isNotEmpty()) {
             return true;
         }
 

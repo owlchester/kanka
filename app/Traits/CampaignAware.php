@@ -9,7 +9,7 @@ use App\Models\Campaign;
  */
 trait CampaignAware
 {
-    /** @var Campaign campaign model */
+    /** @var Campaign|null campaign model */
     public $campaign;
 
     /**

@@ -52,7 +52,6 @@ class GenerateTrees extends Command
                 continue;
             }
             $this->info("Fixing {$model}");
-            // @phpstan-ignore-next-line
             $class::fixTree();
         }
         $this->info('Finished ' . Carbon::now());

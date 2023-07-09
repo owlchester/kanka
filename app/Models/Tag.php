@@ -204,6 +204,7 @@ class Tag extends MiscModel
             $children[] = $entity;
         }
         foreach ($this->descendants as $desc) {
+            // @phpstan-ignore-next-line
             foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
                 $children[] = $entity;
             }

@@ -103,7 +103,7 @@ class MigrateCalendarDates extends Command
         // Old code, try and get the first reminder
         /** @var EntityEvent $reminder */
         $reminder = $model->entity->calendarDateEvents->first();
-        if (!$reminder) {
+        if (!$reminder && $reminder !== null) {
             // No reminder? Might be an entity copied over from one campaign to another, in which case we can reset it
             $this->clears[] = $model->id;
             return;

@@ -80,9 +80,9 @@ class PostController extends Controller
     {
         $this->authorize('post', [$entity->child, 'edit', $post]);
 
-        /** @var MiscModel $model */
         $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
+        /** @var MiscModel $model */
         $model = $post;
 
         if ($campaign->hasEditingWarning()) {

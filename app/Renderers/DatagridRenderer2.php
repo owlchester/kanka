@@ -81,7 +81,7 @@ class DatagridRenderer2
 
     /**
      * Set which element needs to be highlighted
-     * @param callable $highlight
+     * @param Closure $highlight
      * @return $this
      */
     public function highlight(Closure $highlight): self
