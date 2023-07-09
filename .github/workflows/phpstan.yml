@@ -1,4 +1,4 @@
-name: "PHPstan"
+name: "Tests"
 
 # Controls when the workflow will run
 on:
@@ -11,43 +11,48 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: read
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
   # This workflow contains a single job called "build"
   build:
-    strategy:
-      matrix:
-        php: ["8.1"]
-        laravel: ["^9.0"]
-        
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.2]
+        laravel: ["^10.0"]
+    
+    name: PHP ${{ matrix.php }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout code
+      - uses: actions/checkout@v3
 
-      - name: "Setup PHP"
+      - name: Setup PHP
         uses: "shivammathur/setup-php@v2"
         with:
           php-version: "${{ matrix.php }}"
-          extensions: "dom, curl, libxml, mbstring, zip, fileinfo"
-          tools: "composer:v2"
+          extensions: "dom, curl, libxml, mbstring, zip, fileinfo, sqlite, pdo_sqlite"
           coverage: "none"
 
-      - name: "Change Composer config minimum-stability"
-        run: "composer config minimum-stability stable"
-
-      - name: "Change Composer config prefer-stable"
-        run: "composer config prefer-stable false"
-
-      - name: "Require PHPStan dev version"
-        run: "composer require phpstan/phpstan:@dev --no-update --no-interaction --no-progress"
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
 
       - name: "Install highest dependencies from composer.json"
         run: "composer update --with='illuminate/contracts:${{ matrix.laravel }}' --no-interaction --no-progress"
 
       - name: "Execute static analysis"
         run: "composer run-script test:types"
+        
+      #- name: Generate app key
+      #  run: php artisan key:generate
+
+      #- name: Execute tests
+      #  run: vendor/bin/phpunit
