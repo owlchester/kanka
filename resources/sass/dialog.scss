@@ -52,11 +52,6 @@
         padding-inline: 1rem;
         padding-block: 0.5rem;
     }
-
-    > form {
-        overflow-y: auto;
-        overscroll-behavior-y: contain;
-    }
 }
 .dialog:not([open]) {
   pointer-events: none;
