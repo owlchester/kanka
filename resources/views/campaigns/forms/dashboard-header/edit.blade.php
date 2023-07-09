@@ -17,6 +17,7 @@
     ]) !!}
 
     @include('partials.forms.form', [
+        'dialog' => true,
         'title' => __('campaigns/dashboard-header.edit.title'),
         'content' => 'campaigns.forms.dashboard-header._form',
         'deleteID' => !empty($widget) ? '#delete-widget-' . $widget->id : null
