@@ -96,6 +96,10 @@
 
                 <p class="mb-3">In addition to terminating or suspending your account, we reserve the right to take appropriate legal action, including without limitation pursuing civil, criminal, and injunctive redress.</p>
 
+                <p class="mb-3">We may also periodically review and remove without prior warning accounts that have not been used for extended periods of time and have never created any contributions, or interacted with the website in any meaningful way.</p>
+
+                <p class="mb-3">We may also periodically review and remove accounts that have not been used for extended periods of time and have had minor interactions with the website. These accounts will receive email notifications prior to deletion asking them to log onto the website in order to reset the timer on the account deletion.</p>
+
                 <h2 class="mt-4" id="modifications-and-interruptions"><a href="#modifications-and-interruptions">MODIFICATIONS AND INTERRUPTIONS</a></h2>
 
                 <p class="mb-3">We cannot guarantee the Site will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related to the Site, resulting in interruptions, delays, or errors.</p>
