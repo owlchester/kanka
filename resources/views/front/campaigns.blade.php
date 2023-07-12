@@ -92,7 +92,7 @@
                     ->appends('is_boosted', request()->get('is_boosted'))
                     ->appends('sort_field_name', request()->get('sort_field_name'))
                     ->onEachSide(2)
-                    ->links() }}
+                    ->links('vendor.pagination.bootstrap-4') }}
                 @endif
             </div>
         </div>
