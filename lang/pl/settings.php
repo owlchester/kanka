@@ -148,6 +148,7 @@ return [
                 'financial'         => 'Moja sytuacja finansowa się zmieniła',
                 'missing_features'  => 'Nie ma opcji, których potrzebuję',
                 'not_for'           => 'Subskrybuję dla kogoś innego',
+                'not_playing'       => 'Już nie gram albo kampania została zawieszona',
                 'not_using'         => 'Nie używam ostatnio Kanki',
                 'other'             => 'Inne',
             ],

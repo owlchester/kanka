@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'cards' => [],
+    'cards' => [
+        'description'   => 'Puoi abbonarti utilizzando la maggior parte delle carte di credito e di debito come Visa e Mastercard, nonché Giropay, Sofort e PayPal per gli abbonamenti annuali.',
+    ],
     'faq'   => [
         'cancellation'  => [
             'answer'    => 'Quando annulli l\'abbonamento, i bonus rimangono attivi fino alla data del successivo periodo di fatturazione.',

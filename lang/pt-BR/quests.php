@@ -33,6 +33,7 @@ return [
         'copy_elements' => 'Copiar elementos anexados na missão',
         'date'          => 'Data',
         'element_role'  => 'Função',
+        'instigator'    => 'Instigador',
         'is_completed'  => 'Concluída',
         'role'          => 'Função',
     ],
