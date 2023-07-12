@@ -1,5 +1,4 @@
 <div class="modal-body">
-    @include('partials.modals.close')
     <div class="quick-creator-header mt-8 pb-4 mb-4">
         <div>
             <div class="text-2xl">

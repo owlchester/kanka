@@ -11,7 +11,9 @@ return [
     'destroy'       => [
         'success'   => 'Pseudonimo :name rimosso.',
     ],
-    'fields'        => [],
+    'fields'        => [
+        'name'  => 'Nome',
+    ],
     'helpers'       => [
         'primary'   => 'Impostando uno o più pseudonimi sull\'entità, la si potrà trovare nella ricerca globale (barra superiore) e attraverso le menzioni.',
     ],

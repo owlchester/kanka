@@ -19,8 +19,11 @@ return [
     'filters'           => [
         'title' => 'Come usare i filtri',
     ],
-    'link'              => [],
+    'link'              => [
+        'description'   => 'Puoi collegarti facilmente ad altre entità della propria campagna utilizzando le seguenti abbreviazioni.',
+    ],
     'map'               => [],
+    'public'            => 'Guarda un video tutorial su Youtube che spiega le campagne pubbliche.',
     'troubleshooting'   => [
         'description'       => 'Un membro del team di Kanka ti ha inviato a questa pagina. Seleziona una campagna dal menu a tendina per generare un token che ci permetta di entrare temporaneamente nella tua campagna come amministratore.',
         'errors'            => [

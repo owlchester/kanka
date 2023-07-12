@@ -3,7 +3,7 @@
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ __('front.terms.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}" />
+    <meta property="og:description" content="{{ __('front.terms.description', ['date' => (new \Carbon\Carbon('2023-07-12'))->toFormattedDateString()]) }}" />
     <meta property="og:url" content="{{ route('front.terms') }}" />
 @endsection
 
@@ -13,7 +13,7 @@
             <div class="section-heading">
                 <div class="mb-5">
                     <h1 class="display-4">{{ __('front.terms.title') }}</h1>
-                    <p class="lead">{{ __('front.terms.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}</p>
+                    <p class="lead">{{ __('front.terms.description', ['date' => (new \Carbon\Carbon('2023-07-12'))->toFormattedDateString()]) }}</p>
                 </div>
 
                 <h2 class="" id="agreement-to-terms"><a href="#agreement-to-terms">AGREEMENT TO TERMS</a></h2>
@@ -46,8 +46,8 @@
 
                 <p class="mb-3">As a user of the Site, you agree not to:</p>
 
-                <ol>
-                <li>make any unauthorized use of the Site, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses.</li>
+                <ol class="mb-2">
+                    <li>make any unauthorized use of the Site, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses.</li>
                     <li>interfere with, disrupt, or create an undue burden on the Site or the networks or services connected to the Site.</li>
                     <li>attempt to bypass any measures of the Site designed to prevent or restrict access to the Site, or any portion of the Site.</li>
                     <li>harass, annoy, intimidate, or threaten any of our employees or agents engaged in providing any portion of the Site to you.</li>
@@ -58,12 +58,13 @@
 
                 <h2 class="mt-4" id="user-generated-contributions"><a href="#user-generated-contributions">USER GENERATED CONTRIBUTIONS</a></h2>
 
-                <p class="mb-3">The Site may provide you with the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials to us or on the Site, including but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, "Contributions").</p>
+                <p class="mb-3">The Site may provide you with the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials on the Site, including but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, "Contributions"). These Contributions may be Public or Private, based on your settings.</p>
 
-                <p class="mb-3">Contributions may be viewable by other users of the Site. As such, any Contributions you transmit may be treated as non-confidential and non-proprietary. When you create or make available any Contributions, you thereby represent and warrant that:</p>
+                <p class="mb-3">Public Contributions (but not Private Contributions) are viewable by other users of the Site. As such, any Public Contributions you transmit may be treated as non-confidential and non-proprietary by other users of the Site. When you create or make available any Contributions, you thereby represent and warrant that:</p>
 
-                <ol>
-                    <li>you are the creator and owner of or have the necessary licenses, rights, consents, releases, and permissions to use and to authorize us, the Site, and other users of the Site to use your Contributions in any manner contemplated by the Site and these Terms and Conditions.</li>
+                <ol class="mb-2">
+                    <li>you are the creator and owner of or have the necessary licenses, rights, consents, releases, and permissions to use and to authorize other users of the Site to use your Public Contributions in any manner contemplated by the Site and these Terms and Conditions.</li>
+                    <li>you authorize other users of the Site to use your Public Contributions, through features or plugins created by or for the Site.</li>
                     <li>your Contributions are not obscene, lewd, lascivious, filthy, violent, harassing, libelous, slanderous, or otherwise objectionable (as determined by us).</li>
                     <li>your Contributions do not ridicule, mock, disparage, intimidate, or abuse anyone.</li>
                     <li>your Contributions do not include any offensive comments that are connected to race, national origin, gender, sexual preference, or physical handicap.</li>
@@ -94,6 +95,10 @@
                 <p class="mb-3">If we terminate or suspend your account for any reason, you are prohibited from registering and creating a new account under your name, a fake or borrowed name, or the name of any third party, even if you may be acting on behalf of the third party.</p>
 
                 <p class="mb-3">In addition to terminating or suspending your account, we reserve the right to take appropriate legal action, including without limitation pursuing civil, criminal, and injunctive redress.</p>
+
+                <p class="mb-3">We may also periodically review and remove without prior warning accounts that have not been used for extended periods of time and have never created any contributions, or interacted with the website in any meaningful way.</p>
+
+                <p class="mb-3">We may also periodically review and remove accounts that have not been used for extended periods of time and have had minor interactions with the website. These accounts will receive email notifications prior to deletion asking them to log onto the website in order to reset the timer on the account deletion.</p>
 
                 <h2 class="mt-4" id="modifications-and-interruptions"><a href="#modifications-and-interruptions">MODIFICATIONS AND INTERRUPTIONS</a></h2>
 

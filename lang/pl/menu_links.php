@@ -23,6 +23,7 @@ return [
         'random'            => 'Losowy',
         'random_type'       => 'Losowy typ elementu',
         'selector'          => 'Konfiguracja skrótu',
+        'target'            => 'Cel',
         'type'              => 'Typ elementu',
     ],
     'helpers'           => [

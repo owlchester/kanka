@@ -68,7 +68,7 @@ return [
         ],
         'api'               => [
             'description'   => 'Chcesz napisać super narzędzie zintegrowane z Kanką? Przejdź do :link',
-            'link'          => 'dokumentacji.',
+            'link'          => 'Dokumentacja API',
             'title'         => 'API',
         ],
         'audio'             => [

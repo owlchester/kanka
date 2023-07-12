@@ -90,7 +90,7 @@ trait TreeControllerTrait
                 }
             }
         } else {
-            $base->whereNull($parentKey);
+            $base->whereNull($model->getTable() . '.' . $parentKey);
         }
 
         // Do this to avoid an extra sql query when no filters are selected

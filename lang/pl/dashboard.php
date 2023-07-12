@@ -141,6 +141,15 @@ return [
             'name_desc' => 'Nazwa malejąco',
             'recent'    => 'Ostatnie zmiany',
         ],
+        'preview'                   => [
+            'displays'  => [
+                'expand'    => 'Wpis do rozwinięcia',
+                'full'      => 'Cały wpis',
+            ],
+            'fields'    => [
+                'display'   => 'Wyświetlanie',
+            ],
+        ],
         'random'                    => [
             'helpers'   => [
                 'name'  => 'Możesz wskazać nazwę losowego elementu przy pomocy {name}.',

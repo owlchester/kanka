@@ -75,6 +75,12 @@ return [
         'success'   => 'Modelo de Atributo :name aplicado em :entity',
         'title'     => 'Aplicar um modelo de atributo para :name',
     ],
+    'toasts'        => [
+        'lock'      => 'Atributo bloqueado',
+        'pin'       => 'Atributo fixado',
+        'unlock'    => 'Atributo desbloqueado',
+        'unpin'     => 'Atributo desafixado',
+    ],
     'types'         => [
         'attribute' => 'Atributo',
         'block'     => 'Bloco',

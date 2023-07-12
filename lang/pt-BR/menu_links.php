@@ -23,6 +23,7 @@ return [
         'random'            => 'Aleatório',
         'random_type'       => 'Tipo Aleatório de Entidade',
         'selector'          => 'Configuração do Link Rápido',
+        'target'            => 'Alvo',
         'type'              => 'Lista de Entidade',
     ],
     'helpers'           => [

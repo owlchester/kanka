@@ -75,6 +75,12 @@ return [
         'success'   => 'Zastosowano szablon cech :name dla :entity',
         'title'     => 'Zastosuj szablon cech dla :name',
     ],
+    'toasts'        => [
+        'lock'      => 'Zablokowano',
+        'pin'       => 'Przypięto',
+        'unlock'    => 'Odblokowano',
+        'unpin'     => 'Odpięto',
+    ],
     'types'         => [
         'attribute' => 'Cecha',
         'block'     => 'Blok',

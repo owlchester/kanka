@@ -101,6 +101,7 @@ return [
     'delete_modal'              => [
         'callout'           => 'Psst!',
         'close'             => 'Fechar',
+        'confirm'           => 'Confirmar remoção',
         'delete'            => 'Remover',
         'description_v2'    => 'Você está removendo ":tag".',
         'permanent'         => 'Essa ação é permanente.',
@@ -309,6 +310,7 @@ return [
         'entity'        => 'Entidade',
         'entry'         => 'Use @ seguido de três letras para citar outras entidades da campanha.',
         'event'         => 'Escolha um evento',
+        'fallback'      => 'Escolha :module',
         'family'        => 'Escolha uma família',
         'gallery_image' => 'Escolha uma imagem da galeria da campanha',
         'image_url'     => 'Você também pode carregar a imagem de uma URL',
@@ -319,6 +321,7 @@ return [
         'name'          => 'Nome da entidade',
         'note'          => 'Escolha uma nota',
         'organisation'  => 'Escolha uma organização',
+        'parent'        => 'Escolha um primário',
         'quest'         => 'Escolha uma missão',
         'race'          => 'Escolha uma raça',
         'tag'           => 'Escolha uma tag',

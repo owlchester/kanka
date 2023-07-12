@@ -29,6 +29,7 @@ return [
                 'title'     => 'Dodaj dziecko',
             ],
             'edit'  => [
+                'helper'    => 'Zaznacz, jeżeli relacja jest nieznana. Postać będzie można dodać później.',
                 'success'   => 'Zmieniono element.',
                 'title'     => 'Zmień element',
             ],
@@ -38,14 +39,15 @@ return [
             ],
         ],
         'relations' => [
-            'add'   => [
+            'add'       => [
                 'success'   => 'Dodano relację.',
                 'title'     => 'Dodaj relację',
             ],
-            'edit'  => [
+            'edit'      => [
                 'success'   => 'Zmieniono relację.',
                 'title'     => 'Zmień relację',
             ],
+            'unknown'   => 'Nieznana',
         ],
         'reset'     => [
             'confirm'   => 'Czy na pewno chcesz odrzucić wszystkie zmiany w rodowodzie?',

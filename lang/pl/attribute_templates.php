@@ -9,6 +9,7 @@ return [
     'edit'                  => [],
     'fields'                => [
         'attributes'    => 'Cechy',
+        'auto_apply'    => 'Stosuj automatycznie',
     ],
     'hints'                 => [
         'automatic'                 => 'Cechy przypisane automatycznie według szablonu :link.',

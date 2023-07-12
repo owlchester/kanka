@@ -1,18 +1,28 @@
 <?php
 
 return [
-    'actions'       => [],
+    'actions'       => [
+        'add'   => 'Aggiungi un nuovo livello',
+    ],
+    'base'          => 'Livello Base',
     'bulks'         => [
         'delete'    => '{1} Rimosso :count livello.|[2,*] Rimossi :count livelli.',
         'patch'     => '{1} Modificato :count livello.|[2,*] Modificati :count livelli.',
     ],
-    'create'        => [],
-    'delete'        => [],
+    'create'        => [
+        'success'   => 'Livello :name creato.',
+        'title'     => 'Nuovo Livello',
+    ],
+    'delete'        => [
+        'success'   => 'Livello :name eliminato.',
+    ],
     'edit'          => [
         'success'   => 'Livello :name modificato.',
+        'title'     => 'Modifica Livello :name',
     ],
     'fields'        => [
-        'type'  => 'Tipo di Livello',
+        'position'  => 'Posizione',
+        'type'      => 'Tipo di Livello',
     ],
     'helper'        => [
         'amount_v2' => 'Carica i livelli su una mappa per cambiare l\'immagine di sfondo visualizzata sotto gli indicatori o come sovrapposizione sopra la mappa ma sotto gli indicatori.',
@@ -26,6 +36,7 @@ return [
         'until' => 'Carica fino a :max livelli per ogni mappa.',
     ],
     'placeholders'  => [
+        'name'          => 'Sotterranei, Livello 2, Relitto',
         'position'      => 'Primo',
         'position_list' => 'Dopo :name',
     ],
