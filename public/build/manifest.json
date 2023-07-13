@@ -80,7 +80,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-e60076a6.js",
+    "file": "assets/app-c3c4949c.js",
     "imports": [
       "_delete-confirm-fec6aa52.js",
       "_mention-5d95822d.js",
@@ -147,7 +147,7 @@
     "src": "resources/js/dashboard.js"
   },
   "resources/js/editors/summernote.js": {
-    "file": "assets/summernote-2cc5407b.js",
+    "file": "assets/summernote-0d2ce461.js",
     "isEntry": true,
     "src": "resources/js/editors/summernote.js"
   },
@@ -241,12 +241,12 @@
     "src": "resources/sass/abilities.scss"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-794e95e5.css",
+    "file": "assets/app-e8b6c03a.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-9b544613.css",
+    "file": "assets/auth-e909fc68.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
