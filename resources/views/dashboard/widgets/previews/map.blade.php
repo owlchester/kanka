@@ -70,6 +70,9 @@ $map = $entity->child;
     <script type="text/javascript">
         /** Add markers outside of a group directly to the page **/
         @foreach ($map->markers as $marker)
+            @if (!$marker->visible())
+                @continue
+            @endif
             @if ($marker->visible() && empty($marker->group_id))
                 @if ($map->isClustered())
                     clusterMarkers{{ $map->id }}.addLayer(marker{{ $marker->id }});
