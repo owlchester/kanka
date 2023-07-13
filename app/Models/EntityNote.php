@@ -25,6 +25,7 @@ use Illuminate\Support\Collection;
  * @property int $visibility_id
  * @property integer $created_by
  * @property integer|null $location_id
+ * @property integer|null $layout_id
  * @property string|null $marketplace_uuid
  * @property boolean $is_private
  * @property boolean $is_pinned
@@ -32,6 +33,7 @@ use Illuminate\Support\Collection;
  * @property array $settings
  * @property Entity|null $entity
  * @property Location|null $location
+ * @property PostLayout|null $layout
  * @property EntityMention[]|Collection $mentions
  * @property EntityNotePermission[]|Collection $permissions
  * @property ImageMention[]|Collection $imageMentions
@@ -58,6 +60,7 @@ class EntityNote extends Model
         'visibility_id',
         'settings',
         'location_id',
+        'layout_id',
     ];
 
     /** @var array<string, string>  */
@@ -79,6 +82,14 @@ class EntityNote extends Model
     public function location()
     {
         return $this->belongsTo('App\Models\Location', 'location_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function layout()
+    {
+        return $this->belongsTo('App\Models\PostLayout', 'layout_id');
     }
 
     /**
