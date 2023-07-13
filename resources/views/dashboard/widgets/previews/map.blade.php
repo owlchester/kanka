@@ -68,7 +68,7 @@ $map = $entity->child;
     @include('maps._setup')
 
     <script type="text/javascript">
-        /** Add markers outside of a group directly to the page **/
+        /** Add markers outside a group directly to the page **/
         @foreach ($map->markers as $marker)
             @if (!$marker->visible())
                 @continue
