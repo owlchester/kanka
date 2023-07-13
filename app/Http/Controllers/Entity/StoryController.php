@@ -65,7 +65,7 @@ class StoryController extends Controller
         $this->authorize('view', $entity->child);
         $campaign = CampaignLocalization::getCampaign();
 
-        $posts = $entity->posts()->ordered()->paginate(5);
+        $posts = $entity->posts()->ordered()->paginate(15);
 
         return view('entities.components.posts')
             ->with('entity', $entity)

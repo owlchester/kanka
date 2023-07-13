@@ -11,7 +11,7 @@ if (empty($entity)) {
 $wrapper = false;
 $entryShown = false;
 if (!isset($pinnedPosts)) {
-    $pinnedPosts = $entity->posts()->with(['permissions', 'location'])->ordered()->paginate(5);
+    $pinnedPosts = $entity->posts()->with(['permissions', 'location'])->ordered()->paginate(15);
     $wrapper = true;
 }
 if (!isset($campaign)) {
