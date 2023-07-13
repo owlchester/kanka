@@ -34,6 +34,7 @@ return [
             'remove'    => 'Remove',
         ],
         'success_multiple'  => '{1} New entity :link created.|[2,*] New entities :link created.',
+        'success_multiple_posts'  => '{1} New post :link created.|[2,*] New posts :link created.',
         'title'             => 'New Entity',
         'titles'            => [
             'everything'    => 'Everything',

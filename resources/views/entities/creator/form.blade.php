@@ -27,14 +27,14 @@
             ]) !!}
             @else
                 {!! Form::text('name', null, [
-                    'placeholder' => __('crud.placeholders.name'),
+                    'placeholder' => $type === 'posts' ? __('posts.placeholders.name') : __('crud.placeholders.name'),
                     'autocomplete' => 'off',
                     'class' => 'form-control',
                     'maxlength' => 191,
                     'data-live' => route('search.live'),
                     'data-type' => $singularType,
                     'data-bulk' => true,
-                    'id' => 'qq-name-field'
+                    'id' => $type === 'posts' ? 'qq-post-name-field' : 'qq-name-field'
                 ]) !!}
             @endif
             <x-alert type="warning" class=" my-1 duplicate-entity-warning" :hidden="true">

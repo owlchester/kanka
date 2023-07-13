@@ -1,6 +1,6 @@
 <x-grid>
     <div class="col-span-2">
-        @include('cruds.fields.entity', ['required' => true]).
+        @include('cruds.fields.entity', ['required' => true])
     </div>
 
     <div class="field-entry col-span-2">

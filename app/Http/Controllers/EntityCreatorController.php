@@ -176,8 +176,9 @@ class EntityCreatorController extends Controller
             ]);
         }
 
+        $successKey = $type !== 'posts' ? 'entities.creator.success_multiple' : 'entities.creator.success_multiple_posts';
         $success = trans_choice(
-            'entities.creator.success_multiple',
+            $successKey,
             count($links),
             ['link' => implode(', ', $links)]
         );
