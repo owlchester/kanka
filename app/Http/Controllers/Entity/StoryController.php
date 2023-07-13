@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderStories;
 use App\Models\Entity;
@@ -62,12 +63,14 @@ class StoryController extends Controller
     public function more(Entity $entity)
     {
         $this->authorize('view', $entity->child);
+        $campaign = CampaignLocalization::getCampaign();
 
-        $posts = $entity->posts()->ordered()->paginate(15);
+        $posts = $entity->posts()->ordered()->paginate(5);
 
         return view('entities.components.posts')
             ->with('entity', $entity)
             ->with('model', $entity->child)
+            ->with('campaign', $campaign)
             ->with('pinnedPosts', $posts);
     }
 }
