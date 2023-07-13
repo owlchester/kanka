@@ -11,8 +11,11 @@ if (empty($entity)) {
 $wrapper = false;
 $entryShown = false;
 if (!isset($pinnedPosts)) {
-    $pinnedPosts = $entity->posts()->with(['permissions', 'location'])->ordered()->paginate(15);
+    $pinnedPosts = $entity->posts()->with(['permissions', 'location'])->ordered()->paginate(5);
     $wrapper = true;
+}
+if (!isset($campaign)) {
+    $campaign = \App\Facades\CampaignLocalization::getCampaign();
 }
 
 $first = $pinnedPosts->first();
