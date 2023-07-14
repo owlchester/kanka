@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $id
  * @property integer $entity_type_id
  * @property string $code
- * @property string $value
  * @property array $config
  * @property EntityType|null $entityType
  *

@@ -59,7 +59,12 @@ class PostController extends Controller
 
         $note = new Post();
         $note->entity_id = $entity->id;
-        $note = $note->create($request->all());
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign->superboosted()) {
+            $note = $note->create($request->all());
+        } else {
+            $note = $note->create($request->except(['layout_id']));
+        }
 
         if ($request->has('submit-new')) {
             $route = route('entities.posts.create', [$entity]);
