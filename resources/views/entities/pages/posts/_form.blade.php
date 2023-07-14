@@ -18,7 +18,7 @@ if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
 if (isset($model)) {
     $hideLayout = 1;
     if ($model->layout_id) {
-        $layoutHelper = __('post_layouts.helper', ['subpage' => __('post_layouts.' . $model->layout->code)]);
+        $layoutHelper = __('post_layouts.helper', ['subpage' => $model->layout->name()]);
     }
 }
 
@@ -27,10 +27,10 @@ $last = array_key_last($options);
 
 $bragiName = $entity->isCharacter() ? $entity->name : null;
 $layouts = PostLayout::get();
-$layoutDefault = ['' => __('post_layouts.entry')];
+$layoutDefault = ['' => __('crud.fields.entry')];
 
 foreach($layouts as $layout) {
-    $layoutOptions[$layout->id] = __('post_layouts.' . $layout->code);
+    $layoutOptions[$layout->id] = $layout->name();
 }
 
 $collator = new \Collator(app()->getLocale());
@@ -62,7 +62,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                         @includeWhen(!$currentCampaign->superboosted(), 'entities.pages.posts._boosted')
                     </div>
                 </div>
-                @if(isset($layoutHelper))
+                @if (isset($layoutHelper))
                     <div class="layout-helper col-span-2">
                         {{$layoutHelper}}
                     </div>

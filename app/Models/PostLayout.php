@@ -31,4 +31,17 @@ class PostLayout extends Model
     {
         return $this->belongsTo('App\Models\EntityType', 'entity_type_id', 'id');
     }
+
+    /**
+     * @return string
+     */
+    public function name()
+    {
+        if (in_array($this->code, ['abilities', 'attributes', 'assets', 'inventory'])) {
+            return __('crud.tabs.' . $this->code);
+        } elseif ($this->code === 'entry') {
+            return __('crud.fields.' . $this->code);
+        }
+        return __('post_layouts.' . $this->code);
+    }
 }

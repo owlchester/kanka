@@ -10,7 +10,7 @@ function initPostLayoutsForm() {
     selector.change(function (e) {
         e.preventDefault();
         let selected = $(this).find(":selected").val();
-        console.log(selected);
+
         if (selected == '') {
             $('#field-entry').show();
             $('#field-location').show();
@@ -24,9 +24,6 @@ function initPostLayoutsForm() {
 
             $('#post-layout-subform').show();
         }
-
-        //let target = selected.data('target');
-        //$(target).show();
     });
 }
 
