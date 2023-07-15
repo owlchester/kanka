@@ -17,10 +17,6 @@
     'bodyClass' => 'entity-story'
 ])
 
-
-
-
-
 @section('content')
 
     <button class="btn2 btn-lg btn-accent btn-print fixed top-5 right-5" onclick="javascript:window.print();">

@@ -14,6 +14,9 @@ if (!isset($pinnedPosts)) {
     $pinnedPosts = $entity->posts()->with(['permissions', 'location'])->ordered()->paginate(15);
     $wrapper = true;
 }
+if (!isset($campaign)) {
+    $campaign = \App\Facades\CampaignLocalization::getCampaign();
+}
 
 $first = $pinnedPosts->first();
 $postCount = 0;

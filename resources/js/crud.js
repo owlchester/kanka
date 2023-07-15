@@ -550,6 +550,7 @@ function registerStoryLoadMore() {
                 $('.entity-posts').append(result);
                 registerStoryLoadMore();
                 registerStoryActions();
+                window.ajaxTooltip();
             }
         }).fail(function () {
             //console.log('modal ajax error', result);

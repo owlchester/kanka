@@ -103,7 +103,7 @@ class AbilityController extends Controller
                     $abilities[] = $ability->name;
                 }
             }
-            $success = trans('entities/abilities.create.success_multiple', [
+            $success = __('entities/abilities.create.success_multiple', [
                 'abilities' => implode(', ', $abilities),
                 'entity' => $entity->name
             ]);
