@@ -367,6 +367,7 @@ import './quick-creator';
 //import './tutorial')
 import './datagrids';
 import './quick-links';
+import './post-layouts';
 import './members';
 import './campaign';
 import './clipboard';
