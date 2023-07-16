@@ -49,7 +49,7 @@
             {{ __('helpers.attributes.link') }}
         </a>
     </div>
-    <button class="btn2 btn-error btn-sm btn-outline" data-toggle="dialog" data-target="attributes-delete-all-confirm">
+    <button type="button" class="btn2 btn-error btn-sm btn-outline" data-toggle="dialog" data-target="attributes-delete-all-confirm">
         <x-icon class="trash"></x-icon>
         {{ __('entities/attributes.actions.remove_all') }}
     </button>

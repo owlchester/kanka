@@ -471,4 +471,17 @@ class CampaignDashboardWidget extends Model
     {
         return Arr::get($this->config, 'adv_filter') === 'mentionless';
     }
+
+    /**
+     * Determine if a widget is visible. This is a simple check on the linked entity, if there is one.
+     */
+    public function visible(): bool
+    {
+        // Not linked to an entity, easy
+        if (empty($this->entity_id)) {
+            return true;
+        }
+        // Linked but no entity or no child? Permission issue or deleted entity
+        return !empty($this->entity) && !empty($this->entity->child);
+    }
 }
