@@ -144,7 +144,7 @@ $newWidgetListClass = 'btn2 btn-full';
             </div>
             @endif
             @foreach ($widgets as $widget)
-                @includeWhen(empty($widget->entity) || !empty($widget->entity->child), '.dashboard._widget')
+                @includeWhen($widget->visible(), '.dashboard._widget')
             @endforeach
 
             <div class="col-span-4 {{ $widgetClass }} cursor-pointer shadow-xs hover:shadow-md" data-toggle="dialog" data-target="new-widget" id="btn-add-widget">
