@@ -1,4 +1,3 @@
-//import './vendor';
 import './tags.js';
 import './components/select2.js';
 
