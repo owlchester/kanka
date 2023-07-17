@@ -134,6 +134,8 @@ return [
 
     'version' => env('APP_VERSION', '@develop'),
 
+    'ignore_develop_warning' => env('APP_IGNORE_DEVELOP_WARNING', false),
+
     /*
      * Determine if cron job results need to be logged in the database
      */
