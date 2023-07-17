@@ -3,11 +3,11 @@ name: Pint Code Style
 
 on:
   push:
+    branches: [ "develop" ]
     paths:
       - '**.php'
   pull_request:
-    branches:
-      - main
+    branches: [ "develop" ]
     paths:
       - '**.php'
   workflow_dispatch:
