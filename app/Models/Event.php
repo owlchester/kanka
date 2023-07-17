@@ -29,13 +29,13 @@ class Event extends MiscModel
 {
     use Acl
     ;
-    use CampaignTrait;
     use CalendarDateTrait;
+    use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
     use SortableTrait;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

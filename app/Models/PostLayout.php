@@ -19,7 +19,7 @@ class PostLayout extends Model
 {
     /** @var string[]  */
     protected $fillable = [
-        'code', 
+        'code',
         'entity_type_id',
         'config',
     ];

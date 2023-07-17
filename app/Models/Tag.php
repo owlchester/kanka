@@ -37,11 +37,11 @@ class Tag extends MiscModel
     ;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
     use SortableTrait;
     use TagScopes;
-    use HasFactory;
 
     /**
      * Entity type
@@ -184,10 +184,10 @@ class Tag extends MiscModel
         /** @var Tag $child */
         foreach ($this->allChildren(true)->get() as $child) {
             $child->tags()->detach($this->id);
-//            if (!empty($child->child)) {
-//                $child->child->tag_id = null;
-//                $child->child->save();
-//            }
+            //            if (!empty($child->child)) {
+            //                $child->child->tag_id = null;
+            //                $child->child->save();
+            //            }
         }
         return parent::detach();
     }
@@ -326,7 +326,7 @@ class Tag extends MiscModel
      */
     public function html(): string
     {
-        return '<span class="badge ' . ($this->hasColour() ? $this->colourClass() . 'py-1 rounded-sm': 'color-tag rounded-sm px-2 py-1') . '">'
+        return '<span class="badge ' . ($this->hasColour() ? $this->colourClass() . 'py-1 rounded-sm' : 'color-tag rounded-sm px-2 py-1') . '">'
             . e($this->name) . '</span>';
     }
 
