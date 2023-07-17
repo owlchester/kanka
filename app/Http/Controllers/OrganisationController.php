@@ -120,6 +120,7 @@ class OrganisationController extends CrudController
 
         $this->rows = $organisation
             ->{$base}()
+            ->select('organisation_member.*')
             ->with([
                 'organisation', 'organisation.entity',
                 'parent', 'parent.character',
@@ -127,7 +128,8 @@ class OrganisationController extends CrudController
                 'character.location', 'character.location.entity'])
             ->has('character')
             ->has('character.entity')
-            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->leftJoin('characters as c', 'c.id', 'organisation_member.character_id')
+            ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
             ->paginate(15);
 
         // Ajax Datagrid
