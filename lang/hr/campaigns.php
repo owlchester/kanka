@@ -10,7 +10,7 @@ Prije nego što nastaviš dalje, moraš odabrati naziv kampanje. To je ime tvog 
 
 Hvala što si se pridružio/la Kanki i dobrodošao/la u našu uspješnu zajednicu!
 TEXT
-,
+            ,
         ],
         'success'               => 'Kampanja kreirana.',
         'success_first_time'    => 'Tvoja kampanja je kreirana! Budući da je tvoja prva kampanja, kreirali smo nekoliko stvari da ti pomognemo započeti i, po mogućnosti, pružimo malo inspiracije za što sve možeš napraviti.',

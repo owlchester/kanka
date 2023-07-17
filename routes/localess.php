@@ -16,7 +16,8 @@ Route::group(['prefix' => 'subscription-api'], function () {
 Route::post(
     'stripe/webhook',
     '\App\Http\Controllers\WebhookController@handleWebhook'
-)->name('cashier.webhook');;
+)->name('cashier.webhook');
+;
 
 Route::get('/{locale}/sitemap.xml', 'Front\SitemapController@language')->name('front.sitemap');
 

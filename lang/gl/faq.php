@@ -18,7 +18,7 @@ Poderías facer iso en cada un dos Lugares que crees, pero iso é moi tedioso e 
 
 Podes crear un Padrón de atributos con eses atributos (Populación, Clima, Nivel de criminalidade...) e despois aplicalo aos teus Lugares. Isto creará automáticamente eses atributos, permitíndote esquecerte de ter que crealos manualmente, e simplemente editar os seus valores na entidade!
 TEXT
-,
+        ,
         'question'  => 'Que son os Padróns de atributos?',
     ],
     'backup'                => [
@@ -67,7 +67,7 @@ Si! Cremos firmemente que a túa situación económica non debería afectar ao t
 
 Ademais de votar na dirección que toma Kanka, apoiarnos permitirache acceder a :boosters, aumentar o tamaño máximo dos arquivos subidos, engadir o teu nome ao salón da fama, ter mellores iconas, e moito máis!
 TEXT
-,
+        ,
         'question'  => 'Seguirá a aplicación sendo de balde?',
     ],
     'gods-and-religions'    => [
@@ -109,7 +109,7 @@ O plan a longo prazo para Kanka é crearmos unha ferramenta de creación de mund
 
 Usamos Kanka nós mesmas, así que non temos plans de deixar de desenvolvela e de mellorala. Por se acaso, o proxecto tamén é de código aberto e pode ser retomado pola comunidade se algo nos pasase nalgún momento.
 TEXT
-,
+        ,
         'question'  => 'Cales son os plans a longo prazo?',
     ],
     'public-campaigns'      => [

@@ -25,8 +25,8 @@ class CreateRpgSystemsTable extends Migration
         });
 
         Schema::create('campaign_rpg_system', function (Blueprint $table) {
-           $table->unsignedInteger('campaign_id');
-           $table->unsignedInteger('rpg_system_id');
+            $table->unsignedInteger('campaign_id');
+            $table->unsignedInteger('rpg_system_id');
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('rpg_system_id')->references('id')->on('rpg_systems')->onDelete('cascade');

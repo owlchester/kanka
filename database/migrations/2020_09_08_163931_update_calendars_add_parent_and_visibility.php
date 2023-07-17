@@ -13,13 +13,13 @@ class UpdateCalendarsAddParentAndVisibility extends Migration
      */
     public function up()
     {
-        Schema::table('calendars', function(Blueprint $table) {
+        Schema::table('calendars', function (Blueprint $table) {
             $table->unsignedInteger('calendar_id')->nullable();
 
             $table->foreign('calendar_id')->references('id')->on('calendars')->onDelete('set null');
         });
 
-        Schema::table('calendar_weather', function(Blueprint $table) {
+        Schema::table('calendar_weather', function (Blueprint $table) {
             $table->string('visibility', 10)->default('all');
         });
     }
@@ -32,11 +32,11 @@ class UpdateCalendarsAddParentAndVisibility extends Migration
     public function down()
     {
 
-        Schema::table('calendars', function(Blueprint $table) {
+        Schema::table('calendars', function (Blueprint $table) {
             $table->dropColumn('calendar_id');
         });
 
-        Schema::table('calendar_weather', function(Blueprint $table) {
+        Schema::table('calendar_weather', function (Blueprint $table) {
             $table->dropColumn('visibility');
         });
     }

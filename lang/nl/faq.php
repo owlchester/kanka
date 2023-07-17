@@ -13,7 +13,7 @@ Nu zou je dat gemakkelijk op elke locatie kunnen doen, maar het kan vervelend wo
 
 Je kunt een Attribuutsjabloon maken met die attributen (bevolking, klimaat, misdaadniveau, enz.), En die sjabloon later op je locaties toepassen. Hiermee worden de attributen van de sjabloon op de locaties gemaakt, dus het enige wat je hoeft te doen is de waarden te wijzigen en de attributen niet te onthouden!
 TEXT
-,
+        ,
         'question'  => 'Attribuutsjablonen, wat zijn dat?',
     ],
     'backup'                => [
@@ -57,7 +57,7 @@ Ja! We zijn ervan overtuigd dat je financiële situatie geen invloed mag hebben 
 
 Naast het stemmen over de richting die Kanka inslaat, kun je door ons te steunen toegang krijgen tot :boosters, uploadlimieten voor bestandsgrootte verhogen, je naam toevoegen aan de hall of fame, mooiere standaard pictogrammen en meer!
 TEXT
-,
+        ,
         'question'  => 'Blijft de app gratis?',
     ],
     'gods-and-religions'    => [
@@ -98,7 +98,7 @@ Het langetermijnplan voor Kanka is om een veelzijdige tool voor worldbuilding en
 
 We gebruiken Kanka zelf, dus we hebben geen plannen om ooit te stoppen met het ontwikkelen en verbeteren ervan. Voor de zekerheid is het project echter ook open source en kan het worden opgepikt door de community als er ooit iets met ons zou gebeuren.
 TEXT
-,
+        ,
         'question'  => 'Wat zijn de langetermijnplannen?',
     ],
     'public-campaigns'      => [

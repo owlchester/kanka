@@ -18,7 +18,7 @@ Ezt természetesen egyenként végrehajthatod minden érintett helyszínen, de e
 
 Létrehozhatsz egy tulajdonságsablont ezekkel a tulajdonságokkal (Népesség, Éghajlat, Bűnözési szint), elnevezed mondjuk “Város”-nak, és ezt hozzáadhatod minden városodhoz, amikor elkészíted a bejegyzésüket. Ez létrehozza bennük a megfelelő tulajdonságokat, így neked csak a feltöltésüket kell megcsinálnod, nem kell észben tartanod a létrehozásukat is.
 TEXT
-,
+        ,
         'question'  => 'Mik azok a tulajdonságsablonok?',
     ],
     'backup'                => [
@@ -38,7 +38,7 @@ TEXT
 A Kanka számos előre definiált entitás típussal rendelkezik, amelyek kapcsolatban vannak egymással. Egyedi entitások engedélyezéséhez újra kellene írni az appot az alapjairól. Az egyedi entitások szervezésének bonyolítása pedig éppen ellentétes lenne azzal a céllal, hogy egy egyszerű megoldást nyújtsunk a világépítéshez.
 Emellett a Kanka rendelkezik egy rugalmas Címke-rendszerrel is, amely képes lehet kielégíteni az egyedi entitástípus igényeket.
 TEXT
-,
+        ,
         'question'  => 'Hozhatok létre egyedi entitás típusokat?',
     ],
     'delete-campaign'       => [
@@ -70,7 +70,7 @@ Igen! Úgy hisszük, hogy az anyagi helyzeted nem kell, hogy hatással legyen ar
 
 A Patreonos támogatás előnyei: nagyobb fájlokat tölthetsz fel, a neved bekerül a Patreon dicsőségcsarnokunkba, szebb alapértelmezett ikonokat kapsz, szavazhatsz arra, hogy milyen fejlesztések kapjanak prioritást és még sok más.
 TEXT
-,
+        ,
         'question'  => 'Később is ingyenesek maradtok?',
     ],
     'gods-and-religions'    => [
@@ -87,7 +87,7 @@ Minden helyszín tartalmazhat egy térképet (amely png, jpg vagy svg kiterjeszt
 
 Kérlek vedd figyelembe, hogy a térképek a népszerű Azgaar vagy Mediveal Fantasy Town Generator készítőitől tömörítve vannak, így sajnos inkompatibilisek a Kankával. Megoldást jelenthet erre a problémára, ha Inkscape vagy Photoshopban megnyitod, és újra lemented az SVG fájlokat, mielőtt feltöltenéd őket a Kankára.
 TEXT
-,
+        ,
         'question'  => 'Tölthetek fel térképeket a Kankára?',
     ],
     'mobile'                => [
@@ -116,7 +116,7 @@ A hosszútávú terv, hogy egy létrejöjjön egy sokoldalú világépítő, és
 
 A második kérdésre reflektálva jellemző, hogy a legtöbb hobby projekt általában kiég, az alkotói magára hagyják őket. A Patreon pont azzal a céllal lett létrehozva, hogy csökkentse a céges munkaóráim számát, így több időt tudok szentelni a Kanka fejlesztésére anélkül, hogy kockára tenném a családom anyagi biztonságát, illetve, hogy fedezze a szerverek költségeit. A projekt emellett nyílt forráskódú, és a közösség tovább is fejlesztheti, ha történne velem valami. Emellett minden egyes kampány adata ki is exportálható naponta egyszer a kampány adminjai által, ha esetleg aggódnál ezek elvesztése miatt.
 TEXT
-,
+        ,
         'question'  => 'Mik a hosszútávú tervek? Mi lesz, ha Ilestis ráun dolgozni a Kankán?',
     ],
     'public-campaigns'      => [

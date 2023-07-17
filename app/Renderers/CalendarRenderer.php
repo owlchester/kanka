@@ -5,8 +5,6 @@ namespace App\Renderers;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\EntityEvent;
-use App\Sanitizers\CalendarSanitizer;
-use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 

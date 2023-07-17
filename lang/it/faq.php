@@ -9,7 +9,7 @@ Ora, puoi facilmente farlo su ogni Luogo ma può diventare tedioso e potresti di
 
 Puoi creare un Template di Attributi con questi attributi (Popolazione, Clima, Livello di Criminalità, etc.), e successivamente applicare questo template sui tuoi luoghi. Questo creerà gli attributi del template nel tuo luogo quindi tutto quello che dovrai fare sarà cambiarne i valori e non ricordarti degli attributi da creare!
 TEXT
-,
+        ,
         'question'  => 'Templates di Attributi, che cosa sono?',
     ],
     'backup'                => [
@@ -49,7 +49,7 @@ Sì! Noij crediamo nel fatto che il tuo stato finanziario non deve impattare la 
 
 Supportarci su Patreon però ti permette di incrementare il limite di dimensione dei file che puoi caricare, aggiunge il tuo nome al wall of fame dei Patreon, avere delle icone di default più curate, votare per prioritizzare cosa verrà sviluppato ed altro ancora!
 TEXT
-,
+        ,
         'question'  => 'L\'app resterà gratuita?',
     ],
     'gods-and-religions'    => [
@@ -66,7 +66,7 @@ Ogno luogo può contenere una mappa (png, jpg o svg) con all'interno dei "punti 
 
 Per favore considerate che le mappe prodotte da tool popolari come Azgaar e Medieval Fantasy Town Generator comprimono iol file generato rendendoli incompatibili con Kanka. Un fix è quello di aprire il file con Inkscape o Photoshop e salvarlo nuovamente prima di caricarlo su Kanka.
 TEXT
-,
+        ,
         'question'  => 'Posso caricare delle mappe su Kanka?',
     ],
     'mobile'                => [
@@ -87,7 +87,7 @@ I piani a lungo termine per Kanka sono di creare un versatile strumento di gesti
 
 Per quanto riguarda la seconda parte la maggior parte dei progetti obbistici finiscono per mancanza di fondi e con il creatore che li abbandona. Il Patreon è stato pensato per fare in modo che possa ridurre le mie ore lavorative per dedicare più tempo a Kanka senza sacrificare la sicurezza finanziaria della mia famiglia e per coprire i costi del server. Il progetto è anche open source e potrà essere gestito dalla comunità se quelcosa dovesse mai succedermi. I dati di ogni campagna possono essere esportati dall'amministratore della stessa una volta al giorno in caso fossi preoccupato per la possibilità di perdere tutti i tuoi contenuti.
 TEXT
-,
+        ,
         'question'  => 'Quali sono i piani a lungo termine? Cosa succederebbe se Ilestis si stufasse di lavorare su Kanka?',
     ],
     'public-campaigns'      => [
