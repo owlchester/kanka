@@ -28,5 +28,8 @@
         "simplified_if_return": true,
         "ternary_to_null_coalescing": true,
         "trim_array_spaces": true
-    }
+    },
+    "exclude": [
+        "lang/"
+    ]
 }
