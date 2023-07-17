@@ -26,8 +26,7 @@ class Element extends Component
         array $button = null,
         string $ajax = null,
         string $id = null,
-    )
-    {
+    ) {
         $this->route = $route;
         $this->active = $active;
         $this->badge = $badge;

@@ -4,7 +4,6 @@ namespace App\Services\Entity;
 
 use App\Http\Requests\ReorderStories;
 use App\Models\Entity;
-use App\Models\EntityNote;
 use App\Facades\Identity;
 use App\Models\EntityLog;
 use App\Models\Post;

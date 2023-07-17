@@ -2,14 +2,11 @@
 
 namespace App\Services\Families;
 
-use App\Models\Character;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\FamilyTree;
-use App\Facades\Permissions;
 use App\Facades\CampaignLocalization;
 use App\Models\Visibility;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class FamilyTreeService
@@ -174,68 +171,69 @@ class FamilyTreeService
         ];
     }
 
-protected function visibilityCheck(): void
-{
-    $config = [];
-    foreach ($this->config as $key => $node) {
-        $config[$key] = $this->cleanInvisible($node, $key);
+    protected function visibilityCheck(): void
+    {
+        $config = [];
+        foreach ($this->config as $key => $node) {
+            $config[$key] = $this->cleanInvisible($node, $key);
+        }
+        $this->config = $config;
+
     }
-    $this->config = $config;
 
-}
+    protected function cleanInvisible($node, $key): mixed
+    {
+        if(isset($node['relations'])) {
+            foreach ($node['relations'] as $k => $rel) {
 
-protected function cleanInvisible($node, $key): mixed
-{
-    if(isset($node['relations'])){
-        foreach ($node['relations'] as $k => $rel) {
-
-            if (!isset($rel['children'])) {
-                $relations[] = $rel;
-                continue;
-            }
-
-            $children = [];
-            foreach ($rel['children'] as $ck => $child) {
-                $child = $this->cleanInvisible($child, $ck);
-                if (!$child) {
+                if (!isset($rel['children'])) {
+                    $relations[] = $rel;
                     continue;
                 }
-                if ($this->isVisible($child)) {
-                    $children[] = $child;
+
+                $children = [];
+                foreach ($rel['children'] as $ck => $child) {
+                    $child = $this->cleanInvisible($child, $ck);
+                    if (!$child) {
+                        continue;
+                    }
+                    if ($this->isVisible($child)) {
+                        $children[] = $child;
+                    }
+                }
+                unset($rel['children']);
+                if (!empty($children)) {
+                    $rel['children'] = $children;
+                }
+                if ($this->isVisible($rel)) {
+                    $relations[] = $rel;
                 }
             }
-            unset($rel['children']);
-            if (!empty($children)) {
-                $rel['children'] = $children;
-            }
-            if ($this->isVisible($rel)) {
-                $relations[] = $rel;
+            unset($node['relations']);
+            if (!empty($relations)) {
+                $node['relations'] = $relations;
             }
         }
-        unset($node['relations']);
-        if (!empty($relations)) {
-            $node['relations'] = $relations;
-        }
+
+        return $node;
     }
 
-    return $node;
-}
-
-protected function isVisible($relation): bool
+    protected function isVisible($relation): bool
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        if (!isset($relation['visibility']) ||
+        return (bool) (
+            !isset($relation['visibility']) ||
             $relation['visibility'] == Visibility::VISIBILITY_ALL ||
             ($relation['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
-            ($relation['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember() )
-        ) {
-            return true;
-        }
-    return false;
+            ($relation['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember())
+        )
+
+
+        ;
     }
 
-protected function cleanupMissingEntities(): void
+    protected function cleanupMissingEntities(): void
     {
         if (empty($this->missingIds)) {
             $this->config = $this->familyTree->config;

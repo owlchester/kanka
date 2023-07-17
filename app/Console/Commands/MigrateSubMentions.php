@@ -48,12 +48,12 @@ class MigrateSubMentions extends Command
             ->has('questElement.quest')
             ->has('questElement.quest.entity')
             ->chunkById(500, function ($mentions) {
-            foreach ($mentions as $mention) {
-                $mention->entity_id = $mention->questElement->quest->entity->id;
-                $mention->saveQuietly();
-                $this->count++;
-            }
-        });
+                foreach ($mentions as $mention) {
+                    $mention->entity_id = $mention->questElement->quest->entity->id;
+                    $mention->saveQuietly();
+                    $this->count++;
+                }
+            });
         $this->info('Migrated ' . $this->count . ' quest element mentions.');
 
         $this->count = 0;

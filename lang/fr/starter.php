@@ -51,7 +51,7 @@ Autres:
 - Si tu as des questions, suggestions ou simplement envie de discuter, rejoins-nous sur :discord.
 - Tu adore l'app et veux soutenir son évolution? Kanka offre des :subscriptions.
 TEXT
-,
+        ,
         'name'          => 'Note de bienvenue',
         'subscriptions' => 'Abonnements',
     ],

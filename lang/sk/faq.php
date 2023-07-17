@@ -18,7 +18,7 @@ Môžeš tieto atribúty pre každé miesto nastaviť jednotlivo, to sa však č
 
 Vytvoríš jednu Šablónu atribútov s atribútmi "Počet obyvateľov", "Podnebie" a "Úroveň kriminality" a neskôr uplatníš túto pri tvojich miestach. Šablóna bude automaticky pridelená každému miestu a ty už len vyplníš dané hodnoty!
 TEXT
-,
+        ,
         'question'  => 'Čo sú šablóny atribútov?',
     ],
     'backup'                => [
@@ -66,7 +66,7 @@ TEXT
 
 Popri hlasovaní za smer, ktorým chceš, aby sa Kanka vyvíjala, podporou získaš prístup k :boosters, vyššiemu limitu pre nahrané súbory, tvoje meno bude pridané do siene slávy, krajšie ikonky a oveľa viac!
 TEXT
-,
+        ,
         'question'  => 'Ostane Kanka dostupná zadarmo?',
     ],
     'gods-and-religions'    => [
@@ -107,7 +107,7 @@ Dlhodobý plán je z Kanky vytvoriť všestranný nástroj pre tvorbu svetov a s
 
 Kanku používame aj my, takže nemáme v pláne prestať ju ďalej vyvíjať a zlepšovať. Projekt ale vedieme zároveň ako open source, takže ho komunita môže prevziať a pokračovať v ňom, ak by sa nám niečo prihodilo.
 TEXT
-,
+        ,
         'question'  => 'Aké dlhodobé plány máte?',
     ],
     'public-campaigns'      => [

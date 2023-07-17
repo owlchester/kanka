@@ -18,7 +18,7 @@ Agora, você poderia fazer isso facilmente em todos os locais, mas pode se torna
 
 Você pode criar um Modelo de Atributo com esses atributos (População, Clima, Nível de Crime, etc) e, posteriormente, aplicar esse modelo às suas localizações. Isso criará os atributos do modelo nos locais, então tudo que você precisa fazer é alterar os valores e não precisa se lembrar dos atributos!
 TEXT
-,
+        ,
         'question'  => 'Modelos de Atributo, o que são eles?',
     ],
     'backup'                => [
@@ -66,7 +66,7 @@ Sim! Acreditamos fortemente que sua situação financeira não deve afetar sua d
 
 Além de votar na direção que Kanka toma, nos apoiar permite que você ganhe acesso a :boosters, aumentar o limite do tamanho de  upload de arquivos, adicionar seu nome ao Hall da Fama, ter ícones padrão mais legais e muito mais!
 TEXT
-,
+        ,
         'question'  => 'O aplicativo vai continuar sendo gratuito?',
     ],
     'gods-and-religions'    => [
@@ -107,7 +107,7 @@ O plano de longo prazo para Kanka é construir uma ferramenta versátil de const
 
 Nós mesmos usamos o Kanka, então temos o plano de jamais parar de desenvolvê-lo e aprimorá-lo. No entanto, apenas por segurança, o projeto também é de código aberto e pode ser continuado pela comunidade se algo acontecer conosco.
 TEXT
-,
+        ,
         'question'  => 'Quais são os planos de longo prazo?',
     ],
     'public-campaigns'      => [

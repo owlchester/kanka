@@ -10,7 +10,7 @@ Mielőtt tovább lépnénk, ki kell választanod a kampányod nevét. Ez lesz a 
 
 Köszönjük, hogy a Kanka, és virágzó közösségünk tagjaként üdvözölhetünk!
 TEXT
-,
+            ,
         ],
         'success'               => 'A kampányt létrehoztuk.',
         'success_first_time'    => 'A kampányodat létrehoztuk! Milve ez az első kampányod, csináltunk néhány dolgot, ami segít a kezdésben, és remélhetőleg némi inspirációt biztosít számodra.',

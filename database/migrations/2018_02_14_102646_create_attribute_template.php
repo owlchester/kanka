@@ -46,7 +46,7 @@ class CreateAttributeTemplate extends Migration
      */
     public function down()
     {
-        //
+
         Schema::dropIfExists('attribute_templates');
     }
 }

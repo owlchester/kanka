@@ -447,7 +447,7 @@ class MentionsService
                             $data['text'] = $foreign;
                         }
                         if ($field == 'date' && $entity->child instanceof \App\Models\Calendar) {
-                                $data['text'] = $entity->child->niceDate();
+                            $data['text'] = $entity->child->niceDate();
                         }
                     } elseif (isset($entity->$field) && is_string($entity->$field)) {
                         $data['text'] = $entity->$field;

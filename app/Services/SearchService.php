@@ -231,14 +231,14 @@ class SearchService
                 $query->orderByRaw('FIELD(ea.name, ?) DESC', [$cleanTerm]);
             }
             // Name word-start match, so when looking for 'Morley', entities named 'Momorley' appear at the end
-            $query->orderByRaw('entities.name RLIKE ? DESC', ["[[:<:]]$escapedTerm"]);
+            $query->orderByRaw('entities.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
             if ($this->campaign->boosted()) {
-                $query->orderByRaw('ea.name RLIKE ? DESC', ["[[:<:]]$escapedTerm"]);
+                $query->orderByRaw('ea.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
             }
             // Partial name match
-            $query->orderByRaw('entities.name LIKE ? DESC', ["%$cleanTerm%"]);
+            $query->orderByRaw('entities.name LIKE ? DESC', ["%{$cleanTerm}%"]);
             if ($this->campaign->boosted()) {
-                $query->orderByRaw('ea.name LIKE ? DESC', ["%$cleanTerm%"]);
+                $query->orderByRaw('ea.name LIKE ? DESC', ["%{$cleanTerm}%"]);
             }
         }
 
@@ -374,7 +374,7 @@ class SearchService
         $term = str_replace('_', ' ', $this->term);
         foreach ($this->entityService->newEntityTypes() as $type => $class) {
             /** @var MiscModel $misc */
-            $misc = new $class;
+            $misc = new $class();
             $label = __('entities.new.' . $type);
             if (!empty($misc->entityTypeId())) {
                 $singular = Module::singular($misc->entityTypeId());
@@ -404,7 +404,7 @@ class SearchService
 
         $orderedIds = implode(',', $recentIds);
         $entities = Entity::whereIn('id', $recentIds)
-            ->orderByRaw("FIELD(id, $orderedIds)")
+            ->orderByRaw("FIELD(id, {$orderedIds})")
             ->get();
         $recent = [];
 

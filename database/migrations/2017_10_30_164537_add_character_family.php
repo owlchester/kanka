@@ -26,6 +26,6 @@ class AddCharacterFamily extends Migration
      */
     public function down()
     {
-        //
+
     }
 }

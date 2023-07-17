@@ -30,10 +30,10 @@ class Family extends MiscModel
     use Acl;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
     use SortableTrait;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

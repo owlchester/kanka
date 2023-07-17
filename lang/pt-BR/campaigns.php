@@ -11,7 +11,7 @@ Antes de prosseguir, você precisa escolher um nome de campanha. Este é o nome 
 
 Obrigado por se juntar a Kanka e bem-vindo à nossa crescente comunidade!
 TEXT
-,
+            ,
         ],
         'success'               => 'Campanha criada.',
         'success_first_time'    => 'Sua campanha foi criada! Como é a sua primeira campanha, nós criamos algumas coisas para te ajudar e talvez lhe dar um pouco de inspiração no que você pode fazer.',

@@ -52,7 +52,7 @@ No i na koniec:
 - Jeżeli masz pytania, albo chcesz pogadać, dołącz do nas na :discord.
 - Podoba ci się aplikacja i chcesz by się rozwijała? Rozważ :subscriptions.
 TEXT
-,
+        ,
         'name'          => 'Nota powitalna',
         'subscriptions' => 'subskrypcję',
     ],

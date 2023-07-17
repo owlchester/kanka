@@ -7,7 +7,6 @@ use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Str;
 
 trait TreeControllerTrait
 {
@@ -125,7 +124,7 @@ trait TreeControllerTrait
         } else {
             $titleKey = Module::plural($entityTypeId, __('entities.' . $langKey));
         }
-        $singular = Module::singular($entityTypeId, __('entities.' .  \Illuminate\Support\Str::singular($route)));
+        $singular = Module::singular($entityTypeId, __('entities.' . \Illuminate\Support\Str::singular($route)));
 
         return view('cruds.tree', compact(
             'models',

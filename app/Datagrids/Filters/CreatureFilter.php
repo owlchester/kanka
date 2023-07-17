@@ -3,7 +3,6 @@
 namespace App\Datagrids\Filters;
 
 use App\Models\Creature;
-use App\Models\Location;
 
 class CreatureFilter extends DatagridFilter
 {

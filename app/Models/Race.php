@@ -32,9 +32,9 @@ class Race extends MiscModel
     use Acl;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
-    use HasFactory;
     use SortableTrait;
 
     /** @var string[]  */

@@ -249,7 +249,7 @@ class PluginVersion extends Model
 
         foreach ($data as $key => $val) {
             if (!is_array($val) && !is_object($val)) {
-                $html .= '<dtk>$' . $key . '</dtk> <code>' . (empty($val) ? NULL : e($val)) . '</code><br />';
+                $html .= '<dtk>$' . $key . '</dtk> <code>' . (empty($val) ? null : e($val)) . '</code><br />';
             } elseif (is_array($val)) {
                 $html .= '<dtk class="">$' . $key . '</dtk>';
                 if (empty($val)) {
@@ -475,12 +475,24 @@ class PluginVersion extends Model
             $data[$name] = $val;
         }
 
-        if (!isset($data['openLI'])) $data['openLI'] = '<li>';
-        if (!isset($data['closeLI'])) $data['closeLI'] = '</li>';
-        if (!isset($data['openOL'])) $data['openOL'] = '<ol>';
-        if (!isset($data['closeOL'])) $data['closeOL'] = '</ol>';
-        if (!isset($data['openUL'])) $data['openUL'] = '<ul>';
-        if (!isset($data['closeUL'])) $data['closeUL'] = '</ul>';
+        if (!isset($data['openLI'])) {
+            $data['openLI'] = '<li>';
+        }
+        if (!isset($data['closeLI'])) {
+            $data['closeLI'] = '</li>';
+        }
+        if (!isset($data['openOL'])) {
+            $data['openOL'] = '<ol>';
+        }
+        if (!isset($data['closeOL'])) {
+            $data['closeOL'] = '</ol>';
+        }
+        if (!isset($data['openUL'])) {
+            $data['openUL'] = '<ul>';
+        }
+        if (!isset($data['closeUL'])) {
+            $data['closeUL'] = '</ul>';
+        }
 
         return [$data, $ids, $checkboxes];
     }

@@ -10,7 +10,7 @@ Voordat je verder gaat, moet je een campaign naam kiezen. Dit is de naam van jou
 
 Bedankt dat je lid bent geworden van Kanka en welkom bij onze bloeiende gemeenschap!
 TEXT
-,
+            ,
         ],
         'success'               => 'Campaign gemaakt.',
         'success_first_time'    => 'Je campaign is gemaakt! Aangezien het je eerste campaign is, hebben we een paar dingen bedacht om je op weg te helpen en hopelijk een beetje inspiratie te bieden voor wat je kunt doen.',

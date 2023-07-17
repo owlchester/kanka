@@ -11,7 +11,7 @@ Predtým, než budeš pokračovať, musíš zvoliť názov kampane. Je to meno t
 
 Vďaka za to, že používaš Kanku a vitaj v našej rozkvitajúcej komunite!
 TEXT
-,
+            ,
         ],
         'success'               => 'Kampaň vytvorená.',
         'success_first_time'    => 'Tvoja kampaň bola vytvorená! Keďže je to tvoja prvá kampaň, vytvorili sme v nej pár vecí, ktoré ti pomôžu začať a dúfame, že ti poskytnú inšpiráciu, čo všetko je možné.',

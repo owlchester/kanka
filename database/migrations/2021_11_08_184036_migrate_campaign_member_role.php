@@ -15,7 +15,7 @@ class MigrateCampaignMemberRole extends Migration
     {
         if (Schema::hasColumn('campaign_user', 'role')) {
             Schema::table('campaign_user', function (Blueprint $table) {
-                    $table->dropColumn('role');
+                $table->dropColumn('role');
             });
         }
     }

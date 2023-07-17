@@ -20,15 +20,15 @@ class ColourService
         }
 
         // hexColour RGB
-        $R1 = hexdec(substr($hexColour, 1, 2));
-        $G1 = hexdec(substr($hexColour, 3, 2));
-        $B1 = hexdec(substr($hexColour, 5, 2));
+        $R1 = hexdec(mb_substr($hexColour, 1, 2));
+        $G1 = hexdec(mb_substr($hexColour, 3, 2));
+        $B1 = hexdec(mb_substr($hexColour, 5, 2));
 
         // Black RGB
         $blackColour = "#000000";
-        $R2BlackColour = hexdec(substr($blackColour, 1, 2));
-        $G2BlackColour = hexdec(substr($blackColour, 3, 2));
-        $B2BlackColour = hexdec(substr($blackColour, 5, 2));
+        $R2BlackColour = hexdec(mb_substr($blackColour, 1, 2));
+        $G2BlackColour = hexdec(mb_substr($blackColour, 3, 2));
+        $B2BlackColour = hexdec(mb_substr($blackColour, 5, 2));
 
         // Calc contrast ratio
         $L1 = 0.2126 * pow($R1 / 255, 2.2) +

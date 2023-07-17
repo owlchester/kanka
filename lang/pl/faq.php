@@ -18,7 +18,7 @@ Możesz dodawać te pozycje ręcznie do każdego miejsca, ale o męczące i czas
 
 Możesz stworzyć szablon zawierający dowolne cechy (Populację, Klimat, Poziom przestępczości i tak dalej) i dodawać go potem do kolejnych miejsc. Dzięki temu zadane cechy pojawią się w odpowiedniej zakładce. A tobie zostanie tylko zmienić ich wartości, zamiast dodawać je ręcznie za każdym razem.
 TEXT
-,
+        ,
         'question'  => 'Co to są te "Szablony cech"?',
     ],
     'backup'                => [
@@ -66,7 +66,7 @@ Tak! Uważamy szczerze, że nasza sytuacja finansowa nie powinna wpływać na ra
 
 Oprócz głosowania nad kierunkiem, w którym rozwijać się będzie Kanka, wspierając nas otrzymujesz też :boosters, możesz zamieszczać zamieszczać więcej plików, twoje imię trafia do galerii sław, dostajesz ładniejsze domyślne ikony i nie tylko!
 TEXT
-,
+        ,
         'question'  => 'Czy aplikacja zawsze będzie darmowa?',
     ],
     'gods-and-religions'    => [
@@ -107,7 +107,7 @@ Naszym planem długoterminowym jest stworzyć wszechstronną aplikację do budow
 
 Sami używamy Kanki, więc nie zamierzamy jej porzucać ani zaprzestawać rozwoju. Ale, tak na wszelki wypadek, cały projekt ma charakter open source i może być rozwijany gdyby coś się z nami stało.
 TEXT
-,
+        ,
         'question'  => 'Jakie macie plany na dalszą przyszłość?',
     ],
     'public-campaigns'      => [

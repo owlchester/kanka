@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\Module;
 use App\Http\Requests\HistoryRequest;
 use App\User;
 use Carbon\Carbon;
@@ -234,7 +233,7 @@ class EntityLog extends Model
     public function actions($action): array
     {
         if ($action == self::ACTION_CREATE || $action == self::ACTION_CREATE_POST) {
-            return [ self::ACTION_CREATE, self::ACTION_CREATE_POST ];
+            return [self::ACTION_CREATE, self::ACTION_CREATE_POST];
         } elseif ($action == self::ACTION_UPDATE) {
             return [self::ACTION_UPDATE, self::ACTION_UPDATE_POST, self::ACTION_REORDER_POST];
         } elseif ($action == self::ACTION_DELETE) {

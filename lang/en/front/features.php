@@ -10,7 +10,7 @@ return [
 Probably the most confusing and complex feature of entities are their attributes. These can be little bits of information like tracking a character's HP, a location's population, a religion (organisation)'s number of shrines, etc. Attributes of an entity can reference each other to calculate values, for example a character's HP, where HP = Level * Constitution.
 
 TEXT
-,
+        ,
         'secondary'     => 'An entity\'s attributes can also be styled to look like a TTRPG character sheet by using our  :marketplace.',
         'title'         => 'Attributes',
     ],

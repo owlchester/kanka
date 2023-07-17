@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Preset;
 
 class PresetObserver

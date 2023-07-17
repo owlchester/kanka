@@ -10,7 +10,7 @@ Devam etmeden önce, serüveniniz için bir isim seçmelisiniz. Bu dünyanızın
 
 Kanka'ya katıldığınız için teşekkür ediyor, ve sürekli büyüyen topluğumuza içten dileklerimizle karşılıyoruz!
 TEXT
-,
+            ,
         ],
         'success'               => 'Serüven yaratıldı.',
         'success_first_time'    => 'Serüveniniz yaratıldı! Bu sizin ilk serüveniniz olduğu için, size başlangıçta yardımcı olacak ve umarız neler yapabileceğinize dair size ilham verecek birkaç şey yarattık.',

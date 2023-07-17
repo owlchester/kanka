@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Prunable;
 
 class ApiLog extends Model
 {
-    use Prunable; 
+    use Prunable;
 
     public $connection = 'logs';
 

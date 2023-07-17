@@ -38,15 +38,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Relation extends Model
 {
     use Blameable;
+    use HasFactory;
     use HasFilters;
     use Orderable;
     use Paginatable;
+    use Pinnable;
     use Searchable;
     use Sortable;
     use SortableTrait
     ;
-    use Pinnable;
-    use HasFactory;
     /**
      * Traits
      */

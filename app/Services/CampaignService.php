@@ -128,11 +128,11 @@ class CampaignService
         self::switchToNext();
     }
 
- /**
-  * Notify the campaign admins that the campaign was forcibly hidden/made visible
-  * @param Campaign $campaign
-  * @throws Exception
-  */
+    /**
+     * Notify the campaign admins that the campaign was forcibly hidden/made visible
+     * @param Campaign $campaign
+     * @throws Exception
+     */
     public function hidden(Campaign $campaign)
     {
         $colour = 'green';
@@ -158,10 +158,10 @@ class CampaignService
 
     /**
      * Notify the campaign admins that the image from an entity was forcibly deleted
-    * @param Campaign $campaign
-    * @param Campaign $campaign
-    * @throws Exception
-    */
+     * @param Campaign $campaign
+     * @param Campaign $campaign
+     * @throws Exception
+     */
     public function removedImage(Campaign $campaign, Entity $entity)
     {
         $colour = 'yellow';

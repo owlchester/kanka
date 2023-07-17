@@ -22,8 +22,7 @@ class Alert extends Component
         string $class = null,
         bool $dismissible = false,
         bool $hidden = false,
-    )
-    {
+    ) {
         $this->type = $type;
         $this->id = $id;
         $this->class = $class;

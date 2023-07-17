@@ -9,7 +9,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class DeleteCampaignImage implements ShouldQueue
@@ -34,7 +33,7 @@ class DeleteCampaignImage implements ShouldQueue
     }
 
     private function deleteImage()
-    {        
+    {
         $service = app()->make(\App\Services\CampaignService::class);
         $campaign = Campaign::find($this->campaignId);
 

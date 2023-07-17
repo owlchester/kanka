@@ -14,7 +14,6 @@ use App\Services\Entity\TagService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Stevebauman\Purify\Facades\Purify;
 
 class EntityCreatorController extends Controller
 {

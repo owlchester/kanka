@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class AddUiSettingsToLtmUserLocales extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -14,7 +13,7 @@ class AddUiSettingsToLtmUserLocales extends Migration
     public function up()
     {
         $prefix = \Config::get('laravel-translation-manager::config.table_prefix', '');
-        Schema::table($prefix . 'ltm_user_locales', function (Blueprint $table) use ($prefix) {
+        Schema::table($prefix . 'ltm_user_locales', function (Blueprint $table) {
             $table->dropIndex('ix_ltm_user_locales_user_id');
 
             $table->unique('user_id', 'ixk_user_id_users_id');
@@ -30,7 +29,7 @@ class AddUiSettingsToLtmUserLocales extends Migration
     public function down()
     {
         $prefix = \Config::get('laravel-translation-manager::config.table_prefix', '');
-        Schema::table($prefix . 'ltm_user_locales', function (Blueprint $table) use ($prefix) {
+        Schema::table($prefix . 'ltm_user_locales', function (Blueprint $table) {
             $table->dropColumn('ui_settings');
 
             $table->dropUnique('ixk_user_id_users_id');

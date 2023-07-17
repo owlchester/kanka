@@ -95,4 +95,4 @@ Route::get('entity-types', [\App\Http\Controllers\Api\v1\EntityTypeApiController
 Route::get('visibilities', [\App\Http\Controllers\Api\v1\VisibilityController::class, 'index']);
 
 Route::get('profile', [\App\Http\Controllers\Api\v1\ProfileApiController::class, 'index']);
-Route::get('version', function() { return config('app.version'); });
+Route::get('version', function () { return config('app.version'); });

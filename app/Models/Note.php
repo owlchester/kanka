@@ -24,9 +24,9 @@ class Note extends MiscModel
     use Acl;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

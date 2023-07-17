@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Models\UserLog;
 
 class CheckIfUserBanned
 {
@@ -26,7 +25,8 @@ class CheckIfUserBanned
         if (auth()->user()->banned_until < Carbon::now()->addDays(7)) {
             $days = auth()->user()->banned_until->diffInDays(Carbon::now());
             auth()->logout();
-            return redirect()->route('login')->with('error',
+            return redirect()->route('login')->with(
+                'error',
                 trans_choice('auth.banned.temporary', $days, ['days' => $days])
             );
         }

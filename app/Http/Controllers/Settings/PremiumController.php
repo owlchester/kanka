@@ -57,7 +57,7 @@ class PremiumController extends Controller
             ->with('campaigns', $userCampaigns)
             ->with('premiums', $premiums)
             ->with('focus', $campaign)
-            ;
+        ;
     }
 
     /**

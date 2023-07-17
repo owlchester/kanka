@@ -16,7 +16,8 @@ class CreateEntityNotesTable extends Migration
         Schema::dropIfExists('entity_notes');
 
         Schema::create('entity_notes', function (Blueprint $table) {
-            $table->increments('id');;
+            $table->increments('id');
+            ;
             $table->string('name')->notNull();
             $table->longText('entry')->nullable();
             $table->boolean('is_private')->default(0);

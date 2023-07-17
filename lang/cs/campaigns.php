@@ -10,7 +10,7 @@ Než budeme pokračovat, je třeba zvolit název kampaně. Je to zároveň záze
 
 Děkujeme, že jsi se rozhodl pro systém Kanka a vítáme tě do naší rostoucí komunity!
 TEXT
-,
+            ,
         ],
         'success'               => 'Kampaň vytvořena.',
         'success_first_time'    => 'Nové kampaň připravena. Protože jde o tvou první kampaň, přidali jsme do ní několik objektů, které ti pomohou v začátcích a poskytnou ti určitou inspiraci, jak systém používat.',
@@ -68,7 +68,7 @@ TEXT
 Obsah tohoto pole se zobrazí v záhlaví nástěnky. Můžeš sem tedy napsat pár vět o svém světu.
 Necháš-li toto pole prázdné, použije se prvních až 1000 znaků popisu tažení.
 TEXT
-,
+        ,
         'header_image'              => 'Obrázek na pozadí záhlaví nástěnky',
         'hide_history'              => 'Tato možnost skryje historii změn objektů před běžnými uživateli (bez administrátorských oprávnění).',
         'hide_members'              => 'Tato možnost skryje seznam členů kampaně před běžnými uživateli (bez administrátorských oprávnění).',

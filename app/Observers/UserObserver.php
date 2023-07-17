@@ -7,8 +7,6 @@ use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Jobs\Users\UpdateEmail;
-use App\Models\CampaignUser;
-use App\Models\CampaignFollower;
 use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Hash;

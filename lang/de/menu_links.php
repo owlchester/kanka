@@ -56,6 +56,6 @@ return [
 Zeige den Quicklink
 in der Seitenleiste an
 TEXT
-,
+        ,
     ],
 ];

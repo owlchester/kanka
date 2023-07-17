@@ -18,7 +18,7 @@ Podrías incluirlos manualmente en cada localización, pero puede ser un proceso
 
 Puedes crear una plantilla de atributos con aquellos atributos (población, clima, nivel de criminalidad, etc.) y aplicar después esa plantilla a tus localizaciones. De este modo, se aplicarán los atributos de la plantilla a las localizaciones, y todo lo que tendrás que hacer es cambiar los valores sin tener que acordarte de los atributos!
 TEXT
-,
+        ,
         'question'  => '¿Qué son las “Plantillas de atributos”?',
     ],
     'backup'                => [
@@ -66,7 +66,7 @@ TEXT
 
 Además de votar sobre la dirección que tomará Kanka, al apoyarnos obtendrás un aumento en el tamaño de los archivos que puedes subir, añadiremos tu nombre en el muro de la fama, recibirás bonitos iconos predefinidos, podrás votar qué funciones se priorizan y mucho más!
 TEXT
-,
+        ,
         'question'  => '¿La app seguirá siendo gratis?',
     ],
     'gods-and-religions'    => [
@@ -108,7 +108,7 @@ Los planes a largo plazo para Kanka incluyen construir del todo esta herramienta
 
 Por otro lado, muchos proyectos hobby acaban quemando y el creador los abandona. El Patreon está precisamente para ayudarme a reducir mis horas de trabajo y dedicar más tiempo a Kanka sin sacrificar la seguridad financiera de mi familia, además de cubrir los costes del servidor. Además, el proyecto es "open source" y la comunidad lo puede continuar en caso de que algo me ocurriera. Todos los datos de las campañas se pueden exportar una vez al día, en caso de que te preocupe perder todo tu contenido.
 TEXT
-,
+        ,
         'question'  => '¿Qué planes hay a largo plazo? ¿Qué pasa si Ilestis se aburre de trabajar en Kanka?',
     ],
     'public-campaigns'      => [

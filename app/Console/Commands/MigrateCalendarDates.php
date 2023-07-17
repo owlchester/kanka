@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Models\EntityEvent;
 use App\Models\EntityEventType;
 use App\Models\Journal;
-use App\Models\MiscModel;
 use App\Models\Quest;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

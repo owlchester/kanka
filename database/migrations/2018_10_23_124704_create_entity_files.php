@@ -44,7 +44,7 @@ class CreateEntityFiles extends Migration
     public function down()
     {
         Schema::table('entity_files', function (Blueprint $table) {
-            //
+
         });
     }
 }
