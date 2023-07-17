@@ -11,7 +11,6 @@ use App\Models\Campaign;
 use App\Models\Pledge;
 use App\Notifications\Header;
 use App\Traits\UserAware;
-use App\User;
 
 class NavigationService
 {

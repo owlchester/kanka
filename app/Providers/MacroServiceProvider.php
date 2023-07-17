@@ -6,7 +6,6 @@ use App\Facades\AdCache;
 use App\Facades\CampaignLocalization;
 use App\User;
 use Carbon\Carbon;
-use Collective\Html\FormFacade as Form;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 

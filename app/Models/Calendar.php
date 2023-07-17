@@ -39,8 +39,8 @@ class Calendar extends MiscModel
     ;
     use CampaignTrait;
     use ExportableTrait;
-    use SoftDeletes;
     use HasFactory;
+    use SoftDeletes;
 
     /** @var string[]  */
     protected $fillable = [

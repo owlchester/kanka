@@ -230,7 +230,7 @@ class Creature extends MiscModel
     public function locations()
     {
         return $this->belongsToMany('App\Models\Location', 'creature_location')
-        ->with('entity');
+            ->with('entity');
     }
 
     /**

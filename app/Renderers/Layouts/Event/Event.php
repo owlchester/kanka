@@ -40,7 +40,7 @@ class Event extends Layout
                     }
                     return $model->event->tooltipedLink();
                 },
-                'visible' => function() {
+                'visible' => function () {
                     return !request()->has('parent_id');
                 }
             ],

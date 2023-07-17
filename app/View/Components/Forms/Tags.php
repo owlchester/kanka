@@ -32,8 +32,7 @@ class Tags extends Component
         string $helper = null,
         string $dropdownParent = null,
         mixed $options = [],
-    )
-    {
+    ) {
         $this->id = $id ?? 'tags_' . uniqid();
         $this->allowNew = $allowNew;
         $this->allowClear = $allowClear;

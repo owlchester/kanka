@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 
 class TimelineController extends Controller
 {

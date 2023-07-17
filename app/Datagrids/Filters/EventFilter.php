@@ -2,7 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Facades\Module;
 use App\Models\Event;
 
 class EventFilter extends DatagridFilter

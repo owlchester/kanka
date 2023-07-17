@@ -23,8 +23,7 @@ class Icon extends Component
         string $title = null,
         string $link = null,
         string $size = null,
-    )
-    {
+    ) {
         $this->class = $this->map($class);
         $this->tooltip = $tooltip;
         $this->title = $title;

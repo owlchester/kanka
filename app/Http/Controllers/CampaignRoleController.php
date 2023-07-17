@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Facades\EntitySetup;
 use App\Models\Campaign;
-use App\Models\CampaignPermission;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Services\PermissionService;

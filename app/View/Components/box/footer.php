@@ -13,7 +13,7 @@ class footer extends Component
      */
     public function __construct()
     {
-        //
+
     }
 
     /**

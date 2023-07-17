@@ -2,7 +2,6 @@
 
 namespace App\Jobs\Users;
 
-use App\Observers\UserObserver;
 use App\Services\Users\CleanupService;
 use App\User;
 use Illuminate\Bus\Queueable;

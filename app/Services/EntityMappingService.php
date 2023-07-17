@@ -281,7 +281,7 @@ class EntityMappingService
         return $this;
     }
 
- /**
+    /**
      * @param MiscModel|EntityNote|TimelineElement|QuestElement|Campaign $model
      * @param int $target
      */

@@ -82,21 +82,22 @@ class DummyEntities extends Command
         //Generate Characters Abilities and Locations
         $firstLocation = Location::factory()
             ->state(['name' => 'Thaelia', 'campaign_id' => $campaign->id])
-            ->has(Character::factory()->state(['campaign_id' => $campaign->id])
-                ->has(Item::factory()->state(['name' => 'Sword of Cebolla', 'campaign_id' => $campaign->id, 'price' => rand(1,15) . 'g']))
+            ->has(
+                Character::factory()->state(['campaign_id' => $campaign->id])
+                    ->has(Item::factory()->state(['name' => 'Sword of Cebolla', 'campaign_id' => $campaign->id, 'price' => rand(1, 15) . 'g']))
             )
             ->has(Location::factory()
-                    ->state(['name' => 'March', 'campaign_id' => $campaign->id])
-                    ->has(Location::factory()
-                        ->state(['name' => 'Adestry', 'campaign_id' => $campaign->id])))
-                    ->has(Location::factory()
-                        ->state(['name' => 'Tilley', 'campaign_id' => $campaign->id])
-                        ->has(Location::factory()
-                            ->state(['name' => 'Carrothead', 'campaign_id' => $campaign->id])))
-                    ->has(Character::factory()->state(['campaign_id' => $campaign->id])->count(2))
-            ->has(Location::factory()->state(['name' => 'Orlene', 'campaign_id' => $campaign->id]))
+                ->state(['name' => 'March', 'campaign_id' => $campaign->id])
                 ->has(Location::factory()
-                    ->state(['name' => 'Owlchester', 'campaign_id' => $campaign->id]))
+                    ->state(['name' => 'Adestry', 'campaign_id' => $campaign->id])))
+            ->has(Location::factory()
+                ->state(['name' => 'Tilley', 'campaign_id' => $campaign->id])
+                ->has(Location::factory()
+                    ->state(['name' => 'Carrothead', 'campaign_id' => $campaign->id])))
+            ->has(Character::factory()->state(['campaign_id' => $campaign->id])->count(2))
+            ->has(Location::factory()->state(['name' => 'Orlene', 'campaign_id' => $campaign->id]))
+            ->has(Location::factory()
+                ->state(['name' => 'Owlchester', 'campaign_id' => $campaign->id]))
             ->create();
 
         $secondLocation = Location::factory()
@@ -107,10 +108,10 @@ class DummyEntities extends Command
             )))
             ->has(Character::factory()->state(['campaign_id' => $campaign->id]))
             ->has(Character::factory()->state(['campaign_id' => $campaign->id])
-                ->has(Item::factory()->state(['name' => 'Dagger of Longaniza', 'campaign_id' => $campaign->id, 'price' => rand(1,15) . 'g'])))
+                ->has(Item::factory()->state(['name' => 'Dagger of Longaniza', 'campaign_id' => $campaign->id, 'price' => rand(1, 15) . 'g'])))
             ->create();
         $thirdLocation = Location::factory()->state(['campaign_id' => $campaign->id, 'name' => 'Middle Earth'])->create();
-            
+
         //Generate Characters
         $firstCharacter = Character::factory()->state(['campaign_id' => $campaign->id, 'name' => 'Biblo Swaggins'])->create();
         $secondCharacter = Character::factory()->state(['campaign_id' => $campaign->id])->create();
@@ -124,14 +125,13 @@ class DummyEntities extends Command
                 ['name' => 'Population', 'entity_id' => $firstLocation->entity->id, 'is_pinned' => 1],
                 ['name' => 'Population', 'entity_id' => $secondLocation->entity->id, 'is_pinned' => 1],
                 ['name' => 'Population', 'entity_id' => $thirdLocation->entity->id, 'is_pinned' => 1],
-                ['name' => 'HP', 'value' => rand(1,20), 'entity_id' => $firstCharacter->entity->id, 'is_pinned' => 1],
-                ['name' => 'Level', 'value' => rand(1,20), 'entity_id' => $firstCharacter->entity->id, 'is_pinned' => 1],
-                ['name' => 'HP', 'value' => rand(1,20), 'entity_id' => $secondCharacter->entity->id, 'is_pinned' => 1],
-                ['name' => 'Level', 'value' => rand(1,20), 'entity_id' => $secondCharacter->entity->id, 'is_pinned' => 1],
-
+                ['name' => 'HP', 'value' => rand(1, 20), 'entity_id' => $firstCharacter->entity->id, 'is_pinned' => 1],
+                ['name' => 'Level', 'value' => rand(1, 20), 'entity_id' => $firstCharacter->entity->id, 'is_pinned' => 1],
+                ['name' => 'HP', 'value' => rand(1, 20), 'entity_id' => $secondCharacter->entity->id, 'is_pinned' => 1],
+                ['name' => 'Level', 'value' => rand(1, 20), 'entity_id' => $secondCharacter->entity->id, 'is_pinned' => 1],
             )
         )
-        ->create();
+            ->create();
 
         //Generate Families
         Family::factory()
@@ -156,7 +156,7 @@ class DummyEntities extends Command
                 ['name' => 'Royal Wedding', 'campaign_id' => $campaign->id],
             )
         )
-        ->create();
+            ->create();
 
         //Generate Items
         Item::factory()->count(5)->state(
@@ -168,7 +168,7 @@ class DummyEntities extends Command
                 ['name' => 'Potion', 'campaign_id' => $campaign->id],
             )
         )
-        ->create();
+            ->create();
 
         //Generate Notes
         Note::factory()->count(3)->state(
@@ -178,15 +178,15 @@ class DummyEntities extends Command
                 ['name' => 'Making Friends', 'campaign_id' => $campaign->id],
             )
         )
-        ->create();
+            ->create();
 
         //Generate Races
         Race::factory()
-            ->state([ 'name' => 'Elf', 'campaign_id' => $campaign->id])
+            ->state(['name' => 'Elf', 'campaign_id' => $campaign->id])
             ->has(Race::factory()
-                    ->state(['name' => 'Wood elf', 'campaign_id' => $campaign->id])
-                    ->has(Race::factory()
-                        ->state(['name' => 'Leaf elf', 'campaign_id' => $campaign->id])))
+                ->state(['name' => 'Wood elf', 'campaign_id' => $campaign->id])
+                ->has(Race::factory()
+                    ->state(['name' => 'Leaf elf', 'campaign_id' => $campaign->id])))
             ->has(Race::factory()->state(['name' => 'High elf', 'campaign_id' => $campaign->id]))
             ->create();
 
@@ -196,7 +196,7 @@ class DummyEntities extends Command
                 ['name' => 'Owlbear', 'campaign_id' => $campaign->id],
             )
         )
-        ->create();
+            ->create();
 
         //Generate Tags
         Tag::factory()->count(3)->state(
@@ -206,7 +206,7 @@ class DummyEntities extends Command
                 ['name' => 'NPC', 'colour' => 'grey', 'campaign_id' => $campaign->id],
             )
         )
-        ->create();
+            ->create();
 
         //Generate Quests
         $itemFirstQuest = Item::factory()->state(['campaign_id' => $campaign->id])->create();
@@ -225,11 +225,11 @@ class DummyEntities extends Command
                 ['name' => 'The tree rings', 'campaign_id' => $campaign->id],
             )
         )
-        ->create();
+            ->create();
 
         //Generate Calendars
         Calendar::factory()->state([
-            'name' => 'Gregorian', 'campaign_id' => $campaign->id, 
+            'name' => 'Gregorian', 'campaign_id' => $campaign->id,
             'months' => "[{\"name\":\"January\",\"length\":31,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"February\",\"length\":28,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"March\",\"length\":31,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"April\",\"length\":30,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"Mai\",\"length\":31,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"June\",\"length\":30,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"July\",\"length\":31,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"August\",\"length\":31,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"September\",\"length\":30,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"October\",\"length\":31,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"November\",\"length\":30,\"type\":\"standard\",\"alias\":\"\"},{\"name\":\"December\",\"length\":31,\"type\":\"standard\",\"alias\":\"\"}]",
             'weekdays' => "[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\",\"Saturday\",\"Sunday\"]",
             'seasons' => "[{\"name\":\"Spring\",\"month\":3,\"day\":21},{\"name\":\"Summer\",\"month\":6,\"day\":21},{\"name\":\"Autumn\",\"month\":9,\"day\":21},{\"name\":\"Winter\",\"month\":12,\"day\":21}]",
@@ -243,7 +243,7 @@ class DummyEntities extends Command
             'is_incrementing' => 1,
             'date' => Carbon::now()->toDateString()
         ])
-        ->create();
+            ->create();
 
         //Generate Relations
         $firstRelation = Relation::factory()->state(['relation' => 'Best Friend', 'campaign_id' => $campaign->id, 'owner_id' => $secondCharacter->entity->id, 'target_id' => $thirdCharacter->entity->id])->create();

@@ -41,11 +41,11 @@ class CommunityEventEntry extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-//    /**
-//     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-//     */
-//    public function entity()
-//    {
-//        return $this->belongsTo(Entity::class);
-//    }
+    //    /**
+    //     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    //     */
+    //    public function entity()
+    //    {
+    //        return $this->belongsTo(Entity::class);
+    //    }
 }

@@ -154,7 +154,7 @@ class DatagridRenderer
             $class = $column['type'];
             if ($type == 'avatar') {
                 $class = (!empty($column['parent']) ? 'hidden-xs hidden-sm' : $class) . ' w-14';
-            //$html = null;
+                //$html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
                 $label = Arr::get($column, 'label', Module::singular(config('entities.ids.location'), __('entities.location')));

@@ -79,7 +79,7 @@ class Foreign extends Component
     {
         $canNew = false;
         if ($this->allowNew && auth()->check() && !empty($this->className)) {
-            $canNew = auth()->user()->can('create', new $this->className);
+            $canNew = auth()->user()->can('create', new $this->className());
         }
 
         if (!empty($this->selected)) {
@@ -122,4 +122,3 @@ class Foreign extends Component
             ->with('canNew', $canNew);
     }
 }
-

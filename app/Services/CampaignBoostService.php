@@ -11,7 +11,6 @@ use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use App\User;
 use App\Models\UserLog;
-use Illuminate\Support\Facades\Auth;
 
 class CampaignBoostService
 {
@@ -51,8 +50,7 @@ class CampaignBoostService
     {
         if ($this->campaign->boosted() && !$this->upgrade) {
             throw new AlreadyBoostedException($this->campaign);
-        }
-        elseif ($this->user->availableBoosts() === 0) {
+        } elseif ($this->user->availableBoosts() === 0) {
             throw new TranslatableException('settings/premium.exceptions.out-of-stock');
         }
 

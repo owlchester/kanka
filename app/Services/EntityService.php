@@ -38,8 +38,8 @@ use Illuminate\Support\Str;
 
 class EntityService
 {
-    use PurifiableTrait;
     use CampaignAware;
+    use PurifiableTrait;
 
     /** @var array List of entity types */
     protected array $entities = [];

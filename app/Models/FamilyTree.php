@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FamilyTree extends Model
 {
-    use HasFactory;
     use Blameable;
+    use HasFactory;
 
     public $casts = [
         'config' => 'array'

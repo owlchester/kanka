@@ -13,8 +13,8 @@ use App\Traits\EntityAware;
 
 class PreviewService
 {
-    use EntityAware;
     use CampaignAware;
+    use EntityAware;
 
     protected array $profile = [];
 

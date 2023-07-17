@@ -159,7 +159,7 @@ class CrudController extends Controller
             // Don't use total as it won't use the distinct() filters (typically when doing
             // left join on the entities table)
             $filteredCount = $models->total();
-        //$filteredCount =  count($models); //->total()
+            //$filteredCount =  count($models); //->total()
         } else {
             /** @var Paginator $models */
             $models = $base->paginate();
@@ -193,7 +193,7 @@ class CrudController extends Controller
         }
         $actions = $this->navActions;
         $entityTypeId = $model->entityTypeId();
-        $singular = Module::singular($entityTypeId, __('entities.' .  \Illuminate\Support\Str::singular($route)));
+        $singular = Module::singular($entityTypeId, __('entities.' . \Illuminate\Support\Str::singular($route)));
 
         $data = compact(
             'models',
@@ -363,7 +363,7 @@ class CrudController extends Controller
                 return response()->redirectTo($route);
             }
 
-            $route = Breadcrumb::index($this->route );
+            $route = Breadcrumb::index($this->route);
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));

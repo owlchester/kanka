@@ -67,11 +67,11 @@ class User extends \Illuminate\Foundation\Auth\User
     use LastSync;
     use Notifiable;
     use Tutorial;
+    use UserBoosters;
     use UserRelations;
     use UserScope;
     use UserSetting;
     use UserTokens;
-    use UserBoosters;
 
 
     protected static $currentCampaign = false;

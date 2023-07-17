@@ -431,7 +431,7 @@ class SubscriptionService
             // Dispatch the job when the subscription actually ends
             SubscriptionEndJob::dispatch($this->user)
                 ->delay(
-                // @phpstan-ignore-next-line
+                    // @phpstan-ignore-next-line
                     $this->user->subscription('kanka')->ends_at
                 );
         }

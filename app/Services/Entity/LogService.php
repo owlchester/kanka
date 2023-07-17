@@ -8,7 +8,6 @@ use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Location;
 use App\Models\MiscModel;
-use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Str;

@@ -86,7 +86,7 @@ class NewsletterService
 
             $data = [
                 'email' => $email,
-                    'fields' => [
+                'fields' => [
                     'name' => $this->user?->name
                 ],
                 'groups' => $interests

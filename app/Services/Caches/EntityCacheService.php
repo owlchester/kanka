@@ -67,41 +67,41 @@ class EntityCacheService extends BaseCache
         return $this->entities[$key] = $child;
     }
 
-//    /**
-//     * @param int $id
-//     * @return null|Entity
-//     */
-//    public function entity(int $id)
-//    {
-//        $key = $this->entityKey($id);
-//        if ($this->user->isAdmin() && $this->has($key)) {
-//            return $this->get($key);
-//        }
-//
-//        $data = Entity::where(['id' => $id])->first();
-//        $this->forever($key, $data);
-//        return $data;
-//    }
-//
-//    /**
-//     * @param int $id
-//     * @return bool
-//     */
-//    public function clearEntity(int $id): bool
-//    {
-//        return $this->forget(
-//            $this->entityKey($id)
-//        );
-//    }
-//
-//    /**
-//     * @param int $id
-//     * @return string
-//     */
-//    protected function entityKey(int $id): string
-//    {
-//        return 'entity_' . $id;
-//    }
+    //    /**
+    //     * @param int $id
+    //     * @return null|Entity
+    //     */
+    //    public function entity(int $id)
+    //    {
+    //        $key = $this->entityKey($id);
+    //        if ($this->user->isAdmin() && $this->has($key)) {
+    //            return $this->get($key);
+    //        }
+    //
+    //        $data = Entity::where(['id' => $id])->first();
+    //        $this->forever($key, $data);
+    //        return $data;
+    //    }
+    //
+    //    /**
+    //     * @param int $id
+    //     * @return bool
+    //     */
+    //    public function clearEntity(int $id): bool
+    //    {
+    //        return $this->forget(
+    //            $this->entityKey($id)
+    //        );
+    //    }
+    //
+    //    /**
+    //     * @param int $id
+    //     * @return string
+    //     */
+    //    protected function entityKey(int $id): string
+    //    {
+    //        return 'entity_' . $id;
+    //    }
 
     /**
      * Type suggestion cache key

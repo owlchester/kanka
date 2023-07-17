@@ -46,7 +46,7 @@ class CampaignBoostController extends Controller
                 ->with('superboost', $superboost)
                 ->with('cost', $cost)
                 ->with('user', $user)
-                ;
+            ;
         }
 
         return view('settings.premium.create')
