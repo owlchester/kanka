@@ -15,7 +15,7 @@ month_length# Calendars
 
 You can get a list of all the calendars of a campaign by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+> {warning} All endpoints documented here are hosted on `api.kanka.io/{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |
@@ -110,8 +110,8 @@ The list of returned calendars can be filtered. The available filters are availa
         }
     ],
     "links": {
-        "first": "https://kanka.io/api/{{version}}/campaigns/1/calendars?page=1",
-        "last": "https://kanka.io/api/{{version}}/campaigns/1/calendars?page=1",
+        "first": "https://api.kanka.io/{{version}}/campaigns/1/calendars?page=1",
+        "last": "https://api.kanka.io/{{version}}/campaigns/1/calendars?page=1",
         "prev": null,
         "next": null
     },
@@ -119,7 +119,7 @@ The list of returned calendars can be filtered. The available filters are availa
         "current_page": 1,
         "from": 1,
         "last_page": 1,
-        "path": "https://kanka.io/api/{{version}}/campaigns/1/calendars",
+        "path": "https://api.kanka.io/{{version}}/campaigns/1/calendars",
         "per_page": 100,
         "to": 1,
         "total": 1

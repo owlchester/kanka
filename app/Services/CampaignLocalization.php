@@ -76,6 +76,11 @@ class CampaignLocalization
                 throw new ModelNotFoundException();
             }
         }
+        // Else, in the API, it's in the binding
+        $campaignBinding = request()->route('campaign');
+        if (empty($this->campaign) && !empty($campaignBinding)) {
+            $this->campaign = $campaignBinding;
+        }
 
         return $this->campaign;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\Api;
 use App\Facades\Attributes;
 use App\Models\Attribute;
 use App\Models\Character;
@@ -16,6 +17,7 @@ use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use TOC\MarkupFixer;
 
@@ -379,11 +381,23 @@ class MentionsService
 
                 $dataUrl = route('entities.tooltip', $entity);
 
+                // Determine if we are on the api subdomain which requires a bit of dirty work to get urls generating
+                // correctly.
+                $subdomainUrl = config('api.domain');
+                $onSubdomain = !empty($subdomainUrl) && Str::contains($dataUrl, $subdomainUrl);
+
+
                 // If this request is through the API, we need to inject the language in the url
-                if (request()->is('api/*')) {
+                if (Api::isSubdomain() || request()->is('api/*')) {
                     $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
                     $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
                     $dataUrl = Str::replaceFirst('campaign/', $lang . '/campaign/', $dataUrl);
+                }
+                // If the urls generated are for the api subdomain, we need to change it to the main url
+                if (Api::isSubdomain()) {
+                    $toRemove = $subdomainUrl;
+                    $dataUrl = Api::fixUrl($dataUrl);
+                    $url = Api::fixUrl($url);
                 }
 
                 // Add tags as a class

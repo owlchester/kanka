@@ -11,7 +11,7 @@ To upload or replace an image of an entity, use the following endpoints.
 
 To upload an entity's image to Kanka.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+> {warning} All endpoints documented here are hosted on `api.kanka.io/{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |
@@ -28,7 +28,7 @@ To upload an entity's image to Kanka.
 ### Example
 
 ```
-curl --location --request POST 'https://kanka.io/api/1.0/campaigns/{campaign.id}/entities/{entity.id}/image' \
+curl --location --request POST 'https://api.kanka.io/1.0/campaigns/{campaign.id}/entities/{entity.id}/image' \
 --header 'accept: application/json' \
 --header 'Authorization: Bearer {bearer-token}' \
 --form 'image=@"/path/to/image.png"'

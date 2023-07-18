@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\Api;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
@@ -53,6 +54,11 @@ class EntityResource extends JsonResource
         $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
         $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
         $apiViewUrl = 'campaigns.' . $entity->pluralType() . '.show';
+
+        // On the API subdomain? Fix urls
+        if (Api::isSubdomain()) {
+            $url = Api::fixUrl($url);
+        }
 
         $data = [
             'id' => $entity->id,
@@ -152,6 +158,11 @@ class EntityResource extends JsonResource
         $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
         $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
         $apiViewUrl = 'campaigns.' . $misc->entity->pluralType() . '.show';
+
+        // On the API subdomain? Fix urls
+        if (Api::isSubdomain()) {
+            $url = Api::fixUrl($url);
+        }
 
         $merged = [
             'id' => $misc->id,

@@ -13,7 +13,7 @@
 
 You can get a list of all the element effects of a timeline by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+> {warning} All endpoints documented here are hosted on `api.kanka.io/{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |
@@ -42,8 +42,8 @@ You can get a list of all the element effects of a timeline by using the followi
         }
     ],
     "links": {
-        "first": "https://kanka.io/api/{{version}}/campaigns/1/timelines/1/timeline_elements?page=1",
-        "last": "https://kanka.io/api/{{version}}/campaigns/1/timelines/1/timeline_elements?page=1",
+        "first": "https://api.kanka.io/{{version}}/campaigns/1/timelines/1/timeline_elements?page=1",
+        "last": "https://api.kanka.io/{{version}}/campaigns/1/timelines/1/timeline_elements?page=1",
         "prev": null,
         "next": null
     },
@@ -51,7 +51,7 @@ You can get a list of all the element effects of a timeline by using the followi
         "current_page": 1,
         "from": 1,
         "last_page": 1,
-        "path": "https://kanka.io/api/{{version}}/campaigns/1/timelines/1/timeline_elements",
+        "path": "https://api.kanka.io/{{version}}/campaigns/1/timelines/1/timeline_elements",
         "per_page": 15,
         "to": 1,
         "total": 1

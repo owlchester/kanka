@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\Api;
 use Illuminate\Support\Str;
 
 class Entity extends EntityChild
@@ -24,6 +25,11 @@ class Entity extends EntityChild
         $url = $model->url();
         $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
         $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
+
+        // On the API subdomain? Fix urls
+        if (Api::isSubdomain()) {
+            $url = Api::fixUrl($url);
+        }
 
         return [
             'id' => $model->child->id,

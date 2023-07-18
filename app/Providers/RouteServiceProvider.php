@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\Api;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Api\v1\HealthController;
 use App\Models\Plugin;
@@ -62,6 +63,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
+        if (Api::isSubdomain()) {
+            return;
+        }
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
@@ -74,14 +78,42 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::prefix('api')
-            ->namespace($this->namespace)
-            ->get('/health', [HealthController::class, 'index']);
+        // If a subdomain is setup for the api, use that
+        $apiDomain = config('api.domain');
+        if (!empty($apiDomain)) {
+            Route::domain($apiDomain)->group(function () {
+                Route::get('/health', [HealthController::class, 'index']);
 
-        Route::prefix('api')
-            ->middleware('api')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/api.php'));
+                Route::group([
+                    'middleware' => ['api'],
+                    'namespace'  => $this->namespace,
+                ], function () {
+                    require base_path('routes/api.php');
+                });
+            });
+
+            if (Api::isSubdomain()) {
+                Route::get('/', function () {
+                    if (request()->isJson()) {
+                        return response()->json(['docs' => 'Visit https://kanka.io/en/api-docs/1.0/overview for the kanka docs.']);
+                    } else {
+                        return redirect()->to('https://kanka.io/en/api-docs/1.0/overview');
+                    }
+                });
+            }
+        }
+
+        // Load the API routes on the main domain
+        if (empty($apiDomain) || request()->getHost() !== $apiDomain) {
+            Route::prefix('api')
+                ->namespace($this->namespace)
+                ->get('/health', [HealthController::class, 'index']);
+
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/api.php'));
+        }
     }
 
     /**
@@ -91,7 +123,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapFrontRoutes()
     {
-        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
+        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime', 'not-api'])
             ->prefix(LaravelLocalization::setLocale())
             ->namespace($this->namespace)
             ->group(base_path('routes/front.php'));
@@ -104,7 +136,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapCampaignRoutes()
     {
-        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime', 'campaign'])
+        // Todo: We need these also for the API to build urls to entity.show/character.show. But we can probably remove them too from MentionsService and refactor that part.
+        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime', 'campaign', 'not-api'])
             ->prefix(LaravelLocalization::setLocale() . '/' . CampaignLocalization::setCampaign())
             ->namespace($this->namespace)
             ->group(base_path('routes/campaign.php'));
@@ -115,6 +148,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapProfileRoutes()
     {
+        if (Api::isSubdomain()) {
+            return;
+        }
         Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
             ->prefix(LaravelLocalization::setLocale() . '/settings')
             ->namespace($this->namespace)
@@ -126,6 +162,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapPartnerRoutes()
     {
+        if (Api::isSubdomain()) {
+            return;
+        }
         Route::middleware(['web', 'auth', 'partner', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
             ->prefix('partner')
             ->namespace('App\Http\Controllers\Partner')
@@ -138,6 +177,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAuthRoutes()
     {
+        if (Api::isSubdomain()) {
+            return;
+        }
         Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
             ->prefix(LaravelLocalization::setLocale())
             ->namespace('App\Http\Controllers')
@@ -150,6 +192,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapLocalessRoutes()
     {
+        if (Api::isSubdomain()) {
+            return;
+        }
         Route::middleware(['minimum'])
             ->namespace('\App\Http\Controllers')
             ->group(base_path('routes/localess.php'))

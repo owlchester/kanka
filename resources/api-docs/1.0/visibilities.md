@@ -21,7 +21,7 @@ Most elements in Kanka that aren't [entities](/api-docs/{{version}}/entities) ha
 <a name="endpoint"></a>
 ### Endpoint
 
-> {warning} Please note that all endpoints documented here need to be prefixed with `api/{{version}}/`. For example, if an endpoint is listed as `visibilities`, you should use `https://kanka.io/api/{{version}}/visibilities`.
+> {warning} All endpoints documented here are hosted on `api.kanka.io/{{version}}/campaigns/{campaign.id}/`. For example, if an endpoint is listed as `visibilities`, you should use `https://api.kanka.io/{{version}}/visibilities`.
 
 To access the list of visibilities, make the following request.
 

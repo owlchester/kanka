@@ -14,7 +14,7 @@
 
 You can get a list of all the images of a campaign by using the following endpoint. This is a superboosted campaign feature! If the campaign isn't superboosted, this API endpoint will result in a 404.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+> {warning} All endpoints documented here are hosted on `api.kanka.io/{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |

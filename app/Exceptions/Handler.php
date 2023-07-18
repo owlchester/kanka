@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Facades\Api;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -68,7 +69,7 @@ class Handler extends ExceptionHandler
                 'message' => $exception->getMessage(),
                 //'retry' => $exception->retryAfter
             ], 200);
-        } elseif ($request->is('api/*')) {
+        } elseif ($request->is('api/*') || Api::isSubdomain()) {
             // API error handling
             return $this->handleApiErrors($exception);
         }

@@ -13,7 +13,7 @@
 
 You can get a list of all the entity-events of an entity by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+> {warning} All endpoints documented here are hosted on `api.kanka.io/{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |

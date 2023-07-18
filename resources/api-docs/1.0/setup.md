@@ -31,7 +31,7 @@ When calling the API, add the following headers:
 <a name="endpoints"></a>
 ### Endpoints
 
-> {warning} Please note that all endpoints documented here need to be prefixed with `api/{{version}}/`. For example, if an endpoint is listed as `campaigns`, you should use `https://kanka.io/api/{{version}}/campaigns`.
+> {warning} All endpoints documented here are hosted on `api.kanka.io/{{version}}/`. For example, if an endpoint is listed as `campaigns`, you should use `https://api.kanka.io/{{version}}/campaigns`.
 
 ### Throttling
 

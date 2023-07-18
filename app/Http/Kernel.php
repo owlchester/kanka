@@ -93,6 +93,7 @@ class Kernel extends HttpKernel
         'subscriptions' => \App\Http\Middleware\Subscriptions::class,
         'fullsetup' => FullSetup::class,
         '2fa' => \App\Http\Middleware\OTPMiddleware::class,
+        'not-api' => \App\Http\Middleware\NotApi::class,
 
     ];
 }
