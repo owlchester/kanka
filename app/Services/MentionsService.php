@@ -17,7 +17,6 @@ use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use TOC\MarkupFixer;
 
@@ -388,7 +387,7 @@ class MentionsService
 
 
                 // If this request is through the API, we need to inject the language in the url
-                if (Api::isSubdomain() || request()->is('api/*')) {
+                if (Api::isApi()) {
                     $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
                     $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
                     $dataUrl = Str::replaceFirst('campaign/', $lang . '/campaign/', $dataUrl);

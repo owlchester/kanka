@@ -77,7 +77,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Cashier;
 use Symfony\Component\Console\Exception\InvalidOptionException;
@@ -136,7 +135,7 @@ class AppServiceProvider extends ServiceProvider
                 if (method_exists(Process::class, 'fromShellCommandline')) {
                     $process = Process::fromShellCommandline($command, $path);
                 } else {
-                    $process = new Process($command, $path);
+                    $process = new Process([$command], $path);
                 }
 
                 $process->mustRun();

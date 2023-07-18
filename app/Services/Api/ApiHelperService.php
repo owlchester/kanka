@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 
 class ApiHelperService
 {
-    protected bool $cached = false;
     protected bool $isSubdomain;
 
     /**
@@ -15,12 +14,11 @@ class ApiHelperService
      */
     public function isSubdomain(): bool
     {
-        if ($this->cached) {
+        if (isset($this->isSubdomain)) {
             return $this->isSubdomain;
         }
 
         $subdomainUrl = config('api.domain');
-        $this->cached = true;
         return $this->isSubdomain = !empty($subdomainUrl) && Str::contains(request()->getHost(), $subdomainUrl);
     }
 
@@ -33,5 +31,15 @@ class ApiHelperService
     {
         $replaceWith = Str::after(config('app.url'), '//');
         return Str::replaceFirst(config('api.domain'), $replaceWith, $url);
+    }
+
+    /**
+     * Determine if the user is currently using the API, which can be the old api/* routes,
+     * or in the new api subdomain in prod
+     * @return bool
+     */
+    public function isApi(): bool
+    {
+        return request()->is('api/*') || $this->isSubdomain();
     }
 }

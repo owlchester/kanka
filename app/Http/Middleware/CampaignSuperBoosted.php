@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Facades\Api;
 use App\Facades\CampaignLocalization;
 use Closure;
 
@@ -23,7 +24,7 @@ class CampaignSuperBoosted
         }
 
         if (!$campaign->superboosted()) {
-            if ($request->is('api/*')) {
+            if (Api::isApi()) {
                 return response()->json([
                     'error' => 'This feature is reserved to premium campaign.'
                 ]);

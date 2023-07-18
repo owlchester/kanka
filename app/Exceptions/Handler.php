@@ -69,7 +69,7 @@ class Handler extends ExceptionHandler
                 'message' => $exception->getMessage(),
                 //'retry' => $exception->retryAfter
             ], 200);
-        } elseif ($request->is('api/*') || Api::isSubdomain()) {
+        } elseif (Api::isApi()) {
             // API error handling
             return $this->handleApiErrors($exception);
         }

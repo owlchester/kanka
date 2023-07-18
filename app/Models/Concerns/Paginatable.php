@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Facades\Api;
 use App\Services\PaginationService;
 
 trait Paginatable
@@ -30,7 +31,7 @@ trait Paginatable
             return 100;
         }
 
-        if (request()->is('api/*')) {
+        if (Api::isApi()) {
             $this->pageSizeMinimum = 45;
         }
 

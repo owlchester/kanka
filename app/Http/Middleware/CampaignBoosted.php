@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Facades\Api;
 use App\Facades\CampaignLocalization;
 use Closure;
 
@@ -24,7 +25,7 @@ class CampaignBoosted
         }
 
         if (!$campaign->boosted()) {
-            if ($request->is('api/*')) {
+            if (Api::isApi()) {
                 return response()->json([
                     'error' => 'This feature is reserved to boosted campaigns.'
                 ]);
