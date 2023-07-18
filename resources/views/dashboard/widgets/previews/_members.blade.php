@@ -38,8 +38,8 @@ $members = $entity->isFamily()
             @if (empty($member->character))
                 @continue
             @endif
-                <div class="font-extrabold">{{ $member->role }}</div>
-                <div>{!! $member->character->tooltipedLink() !!}</div>
+            <div class="font-extrabold" data-role="{{ Illuminate\Support\Str::slug($member->role) }}">{{ $member->role }}</div>
+            <div data-status="{{ $member->status_id }}">{!! $member->character->tooltipedLink() !!}</div>
         @endforeach
     </div>
 @endif
