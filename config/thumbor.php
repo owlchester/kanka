@@ -12,5 +12,5 @@ return [
         'user' => 'https://' . env('AWS_BUCKET') . '.s3.eu-central-1.amazonaws.com/',
         'app' => 'https://' . env('AWS_BUCKET_APP') . '.s3.eu-central-1.amazonaws.com/',
     ],
-    'url' => env('THUMBOR_URL', 'http://localhost:8888/'),
+    'url' => env('THUMBOR_URL', 'http://localhost:8889/'),
 ];
