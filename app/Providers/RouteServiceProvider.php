@@ -104,22 +104,10 @@ class RouteServiceProvider extends ServiceProvider
                     }
                 });
             }
-
-            // Add redirects from old routes. Actually this might be a bad idea, check with Steven
-            Route::prefix('api')
-                ->namespace($this->namespace)
-                ->any('{all}', function () {
-                    $old = request()->path();
-                    $old = Str::remove('api/', $old);
-                    $port = request()->getPort();
-                    $to = request()->getScheme() . '://' . config('api.domain') . ($port ? ':' . $port : null) . '/' . $old;
-                    return redirect($to, 301);
-                })
-            ->where('all', '.*');
         }
 
         // Load the API routes on the main domain
-        if (empty($apiDomain)) {
+        if (!Api::isSubdomain()) {
             Route::prefix('api')
                 ->namespace($this->namespace)
                 ->get('/health', [HealthController::class, 'index']);
