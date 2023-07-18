@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\v1\HealthController;
 use App\Models\Plugin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class RouteServiceProvider extends ServiceProvider
@@ -78,7 +79,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        // If a subdomain is setup for the api, use that
+        // If a subdomain is set up for the api, use that
         $apiDomain = config('api.domain');
         if (!empty($apiDomain)) {
             Route::domain($apiDomain)->group(function () {
@@ -95,16 +96,30 @@ class RouteServiceProvider extends ServiceProvider
             if (Api::isSubdomain()) {
                 Route::get('/', function () {
                     if (request()->isJson()) {
-                        return response()->json(['docs' => 'Visit https://kanka.io/en/api-docs/1.0/overview for the kanka docs.']);
+                        return response()->json([
+                            'docs' => 'Visit https://kanka.io/en/api-docs/1.0/overview for the kanka docs.'
+                        ]);
                     } else {
                         return redirect()->to('https://kanka.io/en/api-docs/1.0/overview');
                     }
                 });
             }
+
+            // Add redirects from old routes. Actually this might be a bad idea, check with Steven
+            Route::prefix('api')
+                ->namespace($this->namespace)
+                ->any('{all}', function () {
+                    $old = request()->path();
+                    $old = Str::remove('api/', $old);
+                    $port = request()->getPort();
+                    $to = request()->getScheme() . '://' . config('api.domain') . ($port ? ':' . $port : null) . '/' . $old;
+                    return redirect($to, 301);
+                })
+            ->where('all', '.*');
         }
 
         // Load the API routes on the main domain
-        if (empty($apiDomain) || request()->getHost() !== $apiDomain) {
+        if (empty($apiDomain)) {
             Route::prefix('api')
                 ->namespace($this->namespace)
                 ->get('/health', [HealthController::class, 'index']);
