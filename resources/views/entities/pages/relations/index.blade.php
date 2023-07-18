@@ -12,31 +12,21 @@
 
 
 @section('entity-header-actions')
-        <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
-
-            <button class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-target="help-modal">
-                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
-            </button>
-
-            @if ($mode == 'map' || (empty($mode) && $campaignService->campaign()->boosted()))
-                <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
-                    <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
-                </a>
-            @else
-                <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'map']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
-                    <x-icon class="map"></x-icon>
-                </a>
-            @endif
-
-            @can('relation', [$entity->child, 'add'])
-            <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn2 btn-sm btn-accent" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
-                <x-icon class="plus"></x-icon>
-                <span class="hidden-xs hidden-sm">
-                    {{ __('entities.relation') }}
-                </span>
+    <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
+        <button class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-target="help-modal">
+            <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+        </button>
+        @if ($mode == 'map' || (empty($mode) && $campaignService->campaign()->boosted()))
+            <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
+                <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
             </a>
-            @endcan
-        </div>
+        @else
+            <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'map']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
+                <x-icon class="map"></x-icon>
+            </a>
+        @endif
+        @include('entities.pages.relations._buttons')
+    </div>
 @endsection
 
 
