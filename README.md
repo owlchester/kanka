@@ -28,6 +28,8 @@ This repository hosts the core Kanka web application.
 Issues are inevitable. When you encounter one when using Kanka, our team and community is here to help.
 
 💬 Ask for help on [Discord](https://kanka.io/go/discord)
+
 🏛️ Find a solution in our [Documentation](https://docs.kanka.io)
-📧 Shoot us an email at [hello@kanka.io](mailto:hello@kanka.io).
+
+📧 Shoot us an email at [hello@kanka.io](mailto:hello@kanka.io)
 
