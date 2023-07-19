@@ -4,7 +4,7 @@ return [
     'title' => 'Your Kanka account will be deleted in :amount days',
     'intro_account' => 'We are reaching out to inform you that your account will be deleted in :amount days, as you haven\'t used it in the last :duration months.',
 
-    'intro_campaigns' => 'We are reaching out to inform you that your account and the below campaigns will be deleted in :amount days, as you haven’t used it in the last :duration months.',
+    'intro_campaigns' => 'We are reaching out to inform you that your account and the following campaigns will be deleted in :amount days, as you haven’t used it in the last :duration months.',
 
 
     'warning' => [
