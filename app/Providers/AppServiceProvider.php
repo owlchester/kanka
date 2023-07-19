@@ -136,7 +136,7 @@ class AppServiceProvider extends ServiceProvider
                 if (method_exists(Process::class, 'fromShellCommandline')) {
                     $process = Process::fromShellCommandline($command, $path);
                 } else {
-                    $process = new Process($command, $path);
+                    $process = new Process([$command], $path);
                 }
 
                 $process->mustRun();
