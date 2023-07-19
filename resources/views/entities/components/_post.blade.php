@@ -71,7 +71,7 @@
 
                 @if ($post->location)
                 <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
-                    <x-icon class="ra ra-tower"></x-icon>
+                <x-icon class="{{ \App\Facades\Module::icon(config('entities.ids.location'), 'ra ra-tower') }}"></x-icon>
                     {!! $post->location->tooltipedLink() !!}
                 </span>
                 @endif
