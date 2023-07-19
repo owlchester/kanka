@@ -13,7 +13,6 @@
 @ads('hybrid')
 <div class="ads-space overflow-hidden">
     <div class="vm-placement" id="vm-av" data-format="isvideo"></div>
-    <div class="vm-placement" data-id="{{ config('tracking.venatus.hybrid') }}" data-display-type="hybrid-banner"></div>
 </div>
 <p class="text-center text-muted">
 {!! __('misc.ads.remove_v3', [
