@@ -18,8 +18,10 @@ if (isset($model)) {
 }
 $members = $entity->isFamily()
     ? $child->members()->orderBy('name')->get()
-    : $child->members()->with(['character', 'character.entity'])->get()
-;
+    : $child->members()->with(['character', 'character.entity'])
+        ->leftJoin('characters', 'characters.id', '=', 'organisation_member.character_id')
+        ->orderBy('characters.name')
+        ->get();
 @endphp
 
 <div class="widget-advanced-members">
