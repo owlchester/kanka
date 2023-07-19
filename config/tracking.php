@@ -39,7 +39,7 @@ return [
         'id' => env('TRACKING_VENATUS'),
         'sidebar' => env('TRACKING_VENATUS_DYNAMIC_MOBILE'),
         'entity' => env('TRACKING_VENATUS_STATIC_BANNER'),
-        'footer' => env('TRACKING_VENATUS_DYNAMIC_BANNER'),
+        'hybrid' => env('TRACKING_VENATUS_DYNAMIC_BANNER'),
         'profile' => env('TRACKING_VENATUS_DYNAMIC_MOBILE'),
         'inline' => env('TRACKING_VENATUS_DYNAMIC_MOBILE'),
         'rich' => env('TRACKING_VENATUS_RICH'),
