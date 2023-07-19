@@ -32,16 +32,16 @@ $members = $entity->isFamily()
         @endforeach
     </div>
 @else
-    <div class="grid grid-cols-2 gap-2 members">
-        <?php /** @var \App\Models\OrganisationMember $member */?>
-        @foreach ($members as $member)
-            @if (empty($member->character))
-                @continue
-            @endif
-            <div class="font-extrabold" data-role="{{ Illuminate\Support\Str::slug($member->role) }}">{{ $member->role }}</div>
-            <div data-status="{{ $member->status_id }}">{!! $member->character->tooltipedLink() !!}</div>
-        @endforeach
-    </div>
+    <?php /** @var \App\Models\OrganisationMember $member */?>
+    @foreach ($members as $member)
+        @if (empty($member->character))
+            @continue
+        @endif
+        <div class="grid grid-cols-2 gap-2 members" data-role="{{ Illuminate\Support\Str::slug($member->role) }} data-status="  data-status="{{ $member->status_id }}">
+            <div class="font-extrabold">{{ $member->role }}</div>
+            <div>{!! $member->character->tooltipedLink() !!}</div>
+        </div>
+    @endforeach
 @endif
 
 </div>
