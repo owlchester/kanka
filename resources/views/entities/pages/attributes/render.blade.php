@@ -21,3 +21,17 @@ if ($layout) {
         'attributes' => $entity->attributes()->with('entity')->ordered()->get()
     ])
 @endif
+
+@section('scripts')
+    @parent
+    @vite('resources/js/attributes.js')
+@endsection
+
+@section('modals')
+    @parent
+    <div class="modal fade" id="live-attribute-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-base-100"></div>
+        </div>
+    </div>
+@endsection

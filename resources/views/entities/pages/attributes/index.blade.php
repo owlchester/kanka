@@ -14,19 +14,10 @@
 @section('entity-header-actions')
     @can('attribute', [$entity->child, 'add'])
         <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
-
             <a href="https://docs.kanka.io/en/latest/features/attributes.html" target="_blank" class="btn2 btn-ghost btn-sm">
                 <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
             </a>
-            <a class="btn2 btn-sm" href="{{ route('entities.attributes.template', $entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.attributes.template', $entity) }}">
-                <i class="fa-solid fa-copy" aria-hidden="true"></i>
-                {{ __('entities/attributes.actions.apply_template') }}
-            </a>
-
-            <a href="{{ route('entities.attributes.edit', ['entity' => $entity]) }}" class="btn2 btn-sm btn-accent">
-                <i class="fa-solid fa-list" aria-hidden="true"></i>
-                {{ __('entities/attributes.actions.manage') }}
-            </a>
+            @include('entities.pages.attributes._buttons')
         </div>
     @endcan
 @endsection
@@ -58,20 +49,5 @@
         </div>
 
         <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', $entity) }}" />
-    </div>
-@endsection
-
-
-@section('scripts')
-    @parent
-    @vite('resources/js/attributes.js')
-@endsection
-
-@section('modals')
-    @parent
-    <div class="modal fade" id="live-attribute-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100"></div>
-        </div>
     </div>
 @endsection
