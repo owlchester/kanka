@@ -51,18 +51,3 @@
         <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', $entity) }}" />
     </div>
 @endsection
-
-
-@section('scripts')
-    @parent
-    @vite('resources/js/attributes.js')
-@endsection
-
-@section('modals')
-    @parent
-    <div class="modal fade" id="live-attribute-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100"></div>
-        </div>
-    </div>
-@endsection

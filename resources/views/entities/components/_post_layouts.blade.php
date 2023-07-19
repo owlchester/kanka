@@ -138,25 +138,3 @@
         </div>
     </div>
 </div>
-
-@section('styles')
-    @parent
-    @vite('resources/sass/abilities.scss')
-    @vite('resources/sass/relations.scss')
-@endsection
-
-@section('scripts')
-    @parent
-    @vite('resources/js/attributes.js')
-    @vite('resources/js/abilities.js')
-    @vite('resources/js/relations.js')
-@endsection
-
-@section('modals')
-    @parent
-    <div class="modal fade" id="live-attribute-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100"></div>
-        </div>
-    </div>
-@endsection

@@ -47,14 +47,3 @@
     </div>
 
 @endsection
-
-
-@section('styles')
-    @parent
-    @vite('resources/sass/abilities.scss')
-@endsection
-
-@section('scripts')
-    @parent
-    @vite('resources/js/abilities.js')
-@endsection

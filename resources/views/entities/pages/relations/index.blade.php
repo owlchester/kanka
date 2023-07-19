@@ -70,11 +70,3 @@
         ]
     ])
 @endsection
-
-@section('scripts')
-    @vite('resources/js/relations.js')
-@endsection
-
-@section('styles')
-    @vite('resources/sass/relations.scss')
-@endsection
