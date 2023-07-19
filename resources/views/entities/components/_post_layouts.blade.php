@@ -6,20 +6,19 @@
 * @var \Illuminate\Database\Eloquent\Collection $pinnedNotes
 */
 ?>
-<div class="post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
-    <div class="box box-solid post entity-note" id="post-{{ $post->id }}" style="background-color:transparent">
-        <div class="box-header">
-            <h3 class="box-title" >
-                {{ $post->name  }}
-                @if (app()->environment('local'))
-                    <sup>({{ $post->position }})</sup>
-                @endif
-            </h3>
-            <div class="box-tools">
-                @if (auth()->check())
-                    {!! $post->visibilityIcon('btn-box-tool') !!}
-
-                    <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+<div class="post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
+    <div class="flex gap-2 mb-2 items-center">
+        <h3 class="grow m-0" >
+            {{ $post->name  }}
+            @if (app()->environment('local'))
+                <sup>({{ $post->position }})</sup>
+            @endif
+        </h3>
+        <div class="post-buttons flex items-center gap-2">
+            @if (auth()->check())
+                {!! $post->visibilityIcon('') !!}
+                <div class="dropdown">
+                    <a class="dropdown-toggle btn2 btn-ghost btn-sm" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
                         <x-icon class="fa-solid fa-ellipsis-v"></x-icon>
                         <span class="sr-only">{{__('crud.actions.actions') }}'</span>
                     </a>
@@ -61,32 +60,10 @@
                             </a>
                         </li>
                     </ul>
-                @endif
-                @if($post->layout?->code == 'inventory')
-                    @php 
-                        $inventory = $entity
-                            ->inventories()
-                            ->with(['entity', 'item', 'item.entity'])
-                            ->get()
-                            ->sortBy(function ($model, $key) {
-                                return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
-                            });
-                    @endphp
-                    @include('entities.pages.inventory._buttons', ['inventory' => $inventory, 'isPost' => true, 'entity' => $entity, 'ajax' => null])
-                @elseif ($post->layout?->code == 'attributes')
-                    @include('entities.pages.attributes._buttons', ['isPost' => true])
-                @elseif ($post->layout?->code == 'abilities')
-                    @include('entities.pages.abilities._buttons', ['isPost' => true])
-                @elseif ($post->layout?->code == 'assets')
-                    @include('entities.pages.assets._buttons', ['assets' => $entity->assets, 'isPost' => true])
-                @elseif ($post->layout?->code == 'connection_map')
-                    @include('entities.pages.relations._buttons', ['option' => null, 'isPost' => true, 'mode' => 'map'])
-                @endif
-            </div>
-        </div>
-        <div class="entity-content box-body collapse !visible in" id="post-body-{{ $post->id }}">
+                </div>
+            @endif
             @if($post->layout?->code == 'inventory')
-                @php 
+                @php
                     $inventory = $entity
                         ->inventories()
                         ->with(['entity', 'item', 'item.entity'])
@@ -95,46 +72,52 @@
                             return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
                         });
                 @endphp
-                @include('entities.pages.inventory._table', ['inventory' => $inventory, 'isPost' => true, 'entity' => $entity, 'ajax' => null])
+                @include('entities.pages.inventory._buttons', ['inventory' => $inventory, 'isPost' => true, 'entity' => $entity, 'ajax' => null])
             @elseif ($post->layout?->code == 'attributes')
-                <x-box css="box-entity-attributes">
-                    @include('entities.pages.attributes.render', ['isPost' => true])
-                </x-box>
-                <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', $entity) }}" />
+                @include('entities.pages.attributes._buttons', ['isPost' => true])
             @elseif ($post->layout?->code == 'abilities')
-                @php
-                $translations = [
-                    'all' => __('crud.visibilities.all'),
-                    'members' => __('crud.visibilities.members'),
-                    'admin-self' => __('crud.visibilities.admin-self'),
-                    'admin' => __('crud.visibilities.admin'),
-                    'self' => __('crud.visibilities.self'),
-                    'update' => __('crud.update'),
-                    'remove' => __('crud.remove'),
-                ];
-                $translations = json_encode($translations);
-                @endphp
-                @include('entities.pages.abilities._abilities', ['isPost' => true])
+                @include('entities.pages.abilities._buttons', ['isPost' => true])
             @elseif ($post->layout?->code == 'assets')
-                @include('entities.pages.assets._asset', ['assets' => $entity->assets, 'isPost' => true])
+                @include('entities.pages.assets._buttons', ['assets' => $entity->assets, 'isPost' => true])
             @elseif ($post->layout?->code == 'connection_map')
-                @include('entities.pages.relations._map', ['option' => null, 'isPost' => true, 'mode' => 'map'])
+                @include('entities.pages.relations._buttons', ['option' => null, 'isPost' => true, 'mode' => 'map'])
             @endif
-
-            <div class="post-footer entity-note-footer text-right text-muted text-xs ">
-                <span class="post-footer-element post-created entity-note-footer-element entity-note-created" title="{{ __('entities/notes.footer.created', [
-    'user' => $post->created_by ? e(\App\Facades\UserCache::name($post->created_by)) : __('crud.users.unknown'),
-    'date' => $post->created_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
-                    {{ $post->created_at->isoFormat('MMMM Do, Y') }}
-                </span>
-                    @if ($post->updated_at->greaterThan($post->created_at))
-                        <span class="post-footer-element post-updated entity-note-footer-element entity-note-updated" title="{{ __('entities/notes.footer.updated', [
-    'user' => $post->updated_by ? e(\App\Facades\UserCache::name($post->updated_by)) : __('crud.users.unknown'),
-    'date' => $post->updated_at->isoFormat('MMMM Do Y, hh:mm a')]) }}" data-toggle="tooltip">
-                    {{ $post->updated_at->isoFormat('MMMM Do, Y') }}
-                </span>
-                @endif
-            </div>
         </div>
     </div>
+
+    @if($post->layout?->code == 'inventory')
+        @php
+            $inventory = $entity
+                ->inventories()
+                ->with(['entity', 'item', 'item.entity'])
+                ->get()
+                ->sortBy(function ($model, $key) {
+                    return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
+                });
+        @endphp
+        @include('entities.pages.inventory._table', ['inventory' => $inventory, 'isPost' => true, 'entity' => $entity, 'ajax' => null])
+    @elseif ($post->layout?->code == 'attributes')
+        <x-box css="box-entity-attributes">
+            @include('entities.pages.attributes.render', ['isPost' => true])
+        </x-box>
+        <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', $entity) }}" />
+    @elseif ($post->layout?->code == 'abilities')
+        @php
+        $translations = [
+            'all' => __('crud.visibilities.all'),
+            'members' => __('crud.visibilities.members'),
+            'admin-self' => __('crud.visibilities.admin-self'),
+            'admin' => __('crud.visibilities.admin'),
+            'self' => __('crud.visibilities.self'),
+            'update' => __('crud.update'),
+            'remove' => __('crud.remove'),
+        ];
+        $translations = json_encode($translations);
+        @endphp
+        @include('entities.pages.abilities._abilities', ['isPost' => true])
+    @elseif ($post->layout?->code == 'assets')
+        @include('entities.pages.assets._asset', ['assets' => $entity->assets, 'isPost' => true])
+    @elseif ($post->layout?->code == 'connection_map')
+        @include('entities.pages.relations._map', ['option' => null, 'isPost' => true, 'mode' => 'map'])
+    @endif
 </div>

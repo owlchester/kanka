@@ -42,8 +42,9 @@
             'active' => 'inventory',
             'model' => $entity->child,
         ])
-
+        <div class="entity-main-block">
         @include('entities.pages.inventory._table')
+        </div>
     </div>
 
 @endsection
