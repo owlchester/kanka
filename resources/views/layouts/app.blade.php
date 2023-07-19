@@ -102,7 +102,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
 
             @yield('content-header')
 
-            <section class="content" role="main">
+            <section class="content" role="main" id="content-container">
                 @if (isset($sidebar) && $sidebar === 'settings') <div class="max-w-4xl"> @endif
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
                     <div class=" alert p-4 rounded alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5 mb-5">
@@ -166,7 +166,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
     <script src="/js/vendor.js" defer></script>
-    @vite('resources/js/app.js')
+    @vite(['resources/js/app.js', 'resources/js/cookieconsent.js'])
     @yield('scripts')
 
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')

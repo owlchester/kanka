@@ -18,7 +18,7 @@ Možeš to lako postići na svakoj lokaciji, ali može postati zamorno i ponekad
 
 Možeš  stvoriti Predložak atributa s tim atributima (stanovništvo, klima, razina kriminala), a kasnije taj predložak primijeniti na svoje lokacije. Ovo će stvoriti atribute iz predloška na lokacijama, tako da sve što moraš učiniti je promijeniti vrijednosti, a ne moraš se prisjećati atributa!
 TEXT
-,
+        ,
         'question'  => 'Predlošci atributa, što su oni?',
     ],
     'backup'                => [
@@ -67,7 +67,7 @@ Da! Čvrsto vjerujemo da tvoja financijska situacija ne bi trebala utjecati na t
 
 Osim glasanja o pravcu kojim će Kanka napredovati, podržavanje nas omogućava tebi pristup :boosters, povećanju ograničenja za prijenos veličine datoteke, dodavanju tvog imena u kuću slavnih, ljepše zadate ikone i još mnogo toga!
 TEXT
-,
+        ,
         'question'  => 'Hoće li aplikacija ostati besplatna?',
     ],
     'gods-and-religions'    => [
@@ -109,7 +109,7 @@ Dugoročni planovi za Kanku su izgraditi svestrani alat za upravljanje izgradnje
 
 Što se tiče drugog dijela, većina hobi projekata završava izgaranjem, a autor ih napušta. :patreon je postavljen s ciljem da budemo u mogućnosti raditi puno radno vrijeme na Kanki bez žrtvovanja financijske sigurnosti naših obitelji, kao i pokrivanja troškova poslužitelja. Projekt je također otvorenog koda i zajednica ga može nastaviti ako se nama ikada nešto dogodi.
 TEXT
-,
+        ,
         'question'  => 'Koji su dugoročni planovi?',
     ],
     'public-campaigns'      => [

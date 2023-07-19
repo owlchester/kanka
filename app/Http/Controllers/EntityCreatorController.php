@@ -14,7 +14,6 @@ use App\Services\Entity\TagService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Stevebauman\Purify\Facades\Purify;
 
 class EntityCreatorController extends Controller
 {
@@ -165,7 +164,7 @@ class EntityCreatorController extends Controller
         }
 
         // Redirect the user to the edit form
-        if ($request->get('action') === 'edit') {
+        if ($request->get('action') === 'edit' && isset($new)) {
             if ($new instanceof Post) {
                 $editUrl = route('entities.posts.edit', [$new->entity_id, $new->id]);
             } else {
@@ -176,8 +175,9 @@ class EntityCreatorController extends Controller
             ]);
         }
 
+        $successKey = $type !== 'posts' ? 'entities.creator.success_multiple' : 'entities.creator.success_multiple_posts';
         $success = trans_choice(
-            'entities.creator.success_multiple',
+            $successKey,
             count($links),
             ['link' => implode(', ', $links)]
         );
@@ -207,7 +207,6 @@ class EntityCreatorController extends Controller
     protected function creatableEntities(): array
     {
         $entities = [];
-        /** @var Campaign $campaign */
         $this->campaign = CampaignLocalization::getCampaign();
 
         // Loop through the entities, check those enabled in the campaign, and where the user has create access.
@@ -259,6 +258,7 @@ class EntityCreatorController extends Controller
     {
         // Make sure the user is allowed to create this kind of entity
         $this->campaign = CampaignLocalization::getCampaign();
+        $model = null;
         if ($type == 'posts') {
             $this->authorize('recover', $this->campaign);
         } else {

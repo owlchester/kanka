@@ -14,7 +14,7 @@ class AccountEmail implements Rule
      */
     public function __construct()
     {
-        //
+
     }
 
     /**

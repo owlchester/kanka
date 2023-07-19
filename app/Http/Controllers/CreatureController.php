@@ -80,7 +80,7 @@ class CreatureController extends CrudController
         // @phpstan-ignore-next-line
         $this->rows = $creature
             ->descendants()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with(['entity'])
             ->paginate(15);

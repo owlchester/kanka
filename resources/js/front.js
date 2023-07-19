@@ -110,4 +110,3 @@ function pricingToMonthly() {
 
 
 import './community-votes';
-import './cookieconsent';

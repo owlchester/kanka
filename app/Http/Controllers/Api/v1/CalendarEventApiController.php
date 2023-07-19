@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\EntityEvent;
 use App\Models\Campaign;
 use App\Models\Calendar;
 use App\Http\Resources\EntityEventResource as Resource;

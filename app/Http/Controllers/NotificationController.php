@@ -46,29 +46,16 @@ class NotificationController extends Controller
         return response()->json(['success' => true]);
     }
 
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function refresh()
     {
         /** @var User $user */
         $user = auth()->user();
-
-        // User is requesting to mark all notifications as read
-        /*if (request()->has('read-all')) {
-            // @phpstan-ignore-next-line
-            $user->unreadNotifications->markAsRead();
-            $unreadNotifications = 0;
-        }*/
 
         return response()->json(
             $this->navigationService->user($user)->pull()
         );
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function clearAll()
     {
         auth()->user()->notifications()->delete();

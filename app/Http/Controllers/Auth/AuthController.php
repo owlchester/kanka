@@ -64,6 +64,7 @@ class AuthController extends Controller
             if ($provider == 'twitter') {
                 $user = Socialite::driver($provider)->user();
             } else {
+                // @phpstan-ignore-next-line
                 $user = Socialite::driver($provider)->stateless()->user();
             }
 

@@ -25,6 +25,7 @@ class ExportService
      */
     public function json()
     {
+        // @phpstan-ignore-next-line
         $child = Str::studly($this->entity->type());
         $className = 'App\Http\Resources\\' . $child . 'Resource';
 

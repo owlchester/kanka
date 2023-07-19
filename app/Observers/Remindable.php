@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Calendar;
 use App\Models\EntityEvent;
 use App\Models\EntityEventType;
+use App\Models\Quest;
 use Illuminate\Database\Eloquent\Model;
 use Exception;
 
@@ -36,6 +37,7 @@ class Remindable
         $calendarID = request()->post('calendar_id');
 
         // We already had this event linked
+        /** @var Quest $model */
         $reminder = $model->calendarReminder();
         if ($reminder !== null) {
             // We no longer have a calendar attached to this model

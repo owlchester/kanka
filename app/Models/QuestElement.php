@@ -26,12 +26,12 @@ use Illuminate\Database\Eloquent\Model;
 class QuestElement extends Model
 {
     use Blameable;
+    use HasFactory;
     /**
      * Traits
      */
     use SimpleSortableTrait;
     use VisibilityIDTrait;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

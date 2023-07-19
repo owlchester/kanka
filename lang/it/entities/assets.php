@@ -1,9 +1,15 @@
 <?php
 
 return [
-    'actions'       => [],
+    'actions'       => [
+        'alias' => 'Pseudonimo',
+        'file'  => 'File',
+        'link'  => 'Link',
+    ],
     'copy_alias'    => [
         'success'   => 'Menzione dello pseudonimo copiato negli appunti.',
     ],
-    'show'          => [],
+    'show'          => [
+        'title' => 'Assets :name',
+    ],
 ];

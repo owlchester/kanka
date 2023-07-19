@@ -25,6 +25,7 @@ use Illuminate\Support\Str;
  * @property integer $position
  * @property Entity $entity
  * @property CampaignDashboard $dashboard
+ * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags
  *
  * @method static self|Builder positioned()
  * @method static self|Builder onDashboard(CampaignDashboard $dashboard = null)
@@ -108,9 +109,6 @@ class CampaignDashboardWidget extends Model
         )->using(CampaignDashboardWidgetTag::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
     public function dashboardWidgetTags()
     {
         return $this->hasMany(CampaignDashboardWidgetTag::class, 'widget_id', 'id');
@@ -472,5 +470,18 @@ class CampaignDashboardWidget extends Model
     protected function filterMentionless(): bool
     {
         return Arr::get($this->config, 'adv_filter') === 'mentionless';
+    }
+
+    /**
+     * Determine if a widget is visible. This is a simple check on the linked entity, if there is one.
+     */
+    public function visible(): bool
+    {
+        // Not linked to an entity, easy
+        if (empty($this->entity_id)) {
+            return true;
+        }
+        // Linked but no entity or no child? Permission issue or deleted entity
+        return !empty($this->entity) && !empty($this->entity->child);
     }
 }

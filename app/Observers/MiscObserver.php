@@ -163,6 +163,7 @@ abstract class MiscObserver
         }
 
         // If soft deleting, don't really delete the image
+        // @phpstan-ignore-next-line
         if ($model->trashed()) {
             return;
         }

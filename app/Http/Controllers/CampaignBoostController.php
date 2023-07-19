@@ -46,7 +46,7 @@ class CampaignBoostController extends Controller
                 ->with('superboost', $superboost)
                 ->with('cost', $cost)
                 ->with('user', $user)
-                ;
+            ;
         }
 
         return view('settings.premium.create')
@@ -135,11 +135,6 @@ class CampaignBoostController extends Controller
         return redirect()->route('settings.boost');
     }
 
-    /**
-     * @param CampaignBoost $campaignBoost
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function edit(CampaignBoost $campaignBoost)
     {
         $this->authorize('destroy', $campaignBoost);

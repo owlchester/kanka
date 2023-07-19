@@ -11,7 +11,7 @@ Avant d'aller plus loin, tu dois choisir un nom de campagne. C'est le nom de ton
 
 Merci d'avoir rejoint Kanka et bienvenue dans notre communauté florissante!
 TEXT
-,
+            ,
         ],
         'success'               => 'Campagne créée.',
         'success_first_time'    => 'La première campagne a été créée! Quelques éléments ont été créés pour aider à bien démarrer.',

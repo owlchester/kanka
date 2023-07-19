@@ -19,7 +19,7 @@ Samozřejmě můžeš tyto atributy přidávat zvlášť ke každému místu, al
 
 Můžeš vytvořit šablonu s těmito atributy ("Počet obyvatel", "Podnebí" a "Úroveň kriminality" apod.) a pak ji využít při tvorbě míst. Díky tomu budou všechny místa, vytvořená s pomocí této šablony obsahovat připravené atributy a nemusíš si je už pamatovat!
 TEXT
-,
+        ,
         'question'  => 'K čemu jsou dobré Šablony atributů?',
     ],
     'backup'                => [
@@ -39,7 +39,7 @@ TEXT
 Systém Kanka nabízí předdefinované typy objektů, které jsou spolu navzájem propojeny. Možnost používat vlastní typy objektů by vyžadovala zcela jiný přístup ke zpracování dat v systému a narušila by tak funkci systému, zaměřenou na co nejsnazší budování vlastního světa, namísto na způsob organizace dat. 
 Určitý kompromis nabízí možnost využívání štítků, které poskytují velmi flexibilní způsob označování objektů.
 TEXT
-,
+        ,
         'question'  => 'Mohu vytvořit vlastní typy objektů?',
     ],
     'delete-campaign'       => [
@@ -72,7 +72,7 @@ Pokud bys ale chtěl hrát o něco aktivnější roli, můžeš nás podpořit p
 
 Kromě možnosti ovlivňovat směr vývoje systému Kanka, také získáš přístup ke zvýhodněním :boosters, budeš moci nahrávat větší soubory, tvé jméno se zapíše do síně slávy a mimo jiné, získáš i hezčí systémové ikonky!
 TEXT
-,
+        ,
         'question'  => 'Zůstane Kanka použitelná zdarma?',
     ],
     'gods-and-religions'    => [
@@ -113,7 +113,7 @@ V dlouhodobém výhledu bychom chtěli systém Kanka dovést do stavu, kdy bude 
 
 Protože systém Kanka sami používáme, nepředpokládáme, že bychom jej někdy přestali vyvíjet a zlepšovat. Nicméně projekt je typu "open-source" a jeho zdrojové kódy může převzít komunita, pokud bychom se jej přece jen rozhodli někdy opustit.
 TEXT
-,
+        ,
         'question'  => 'Jaké máte dlouhodobé plány?',
     ],
     'public-campaigns'      => [

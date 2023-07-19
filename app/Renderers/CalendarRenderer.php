@@ -953,7 +953,7 @@ class CalendarRenderer
         // we need to do this dirty hack where we fake the previous month as being the last month of the previous year
         if (!isset($months[$monthKey])) {
             $monthKey = count($months) - 1;
-            $year;
+            //$year;
             $day = 999999; // Force it to the last day of the previous month so that it can be incremented by one
         }
         $currentMonth = $months[$monthKey];
@@ -1178,20 +1178,20 @@ class CalendarRenderer
                 // Nothing
             } else {
                 // Calc the number of years that were leap years
-//            dump("the current year (" . $this->getYear() . ") is >= to when the calendar leap year starts
-//               (" . $this->calendar->leap_year_start . ")");
+                //            dump("the current year (" . $this->getYear() . ") is >= to when the calendar leap year starts
+                //               (" . $this->calendar->leap_year_start . ")");
                 $yearDiffWithLeapStart = $this->getYear() - $this->calendar->leap_year_start;
                 $amountOfYears = ceil($yearDiffWithLeapStart / $this->calendar->leap_year_offset);
-//            dump ("the amount of leap years that has elapsed since the beginning is the following: $amountOfYears");
-//            dump ("the value is ceil((" . $this->getYear() . "-" . $this->calendar->leap_year_start . ")
-//               / " . $this->calendar->leap_year_offset . ")");
+                //            dump ("the amount of leap years that has elapsed since the beginning is the following: $amountOfYears");
+                //            dump ("the value is ceil((" . $this->getYear() . "-" . $this->calendar->leap_year_start . ")
+                //               / " . $this->calendar->leap_year_offset . ")");
                 if ($amountOfYears < 0) {
                     $amountOfYears = 0;
                 }
 
                 $leapDays = $amountOfYears * $this->calendar->leap_year_amount;
 
-//            dump ("total leap days elapsed: $leapDays");
+                //            dump ("total leap days elapsed: $leapDays");
 
                 // But if we are a leap year, we need to do the math
                 if (($this->getYear() - $this->calendar->leap_year_start) % $this->calendar->leap_year_offset == 0) {
@@ -1264,26 +1264,26 @@ class CalendarRenderer
                 return 'black';
             case 'brown':
                 return 'orange-900';
-            /*case 'green':
-                return 'green-500';*/
+                /*case 'green':
+                    return 'green-500';*/
             case 'light-blue':
                 return 'blue-300';
             case 'maroon':
                 return 'pink-800';
             case 'navy':
                 return 'blue-900';
-            /*case 'orange':
-                return 'orange-500';
-            case 'pink':
-                return 'pink-500';
-            case 'purple':
-                return 'purple-500';
-            case 'red':
-                return 'red-500';
-            case 'teal':
-                return 'teal-500';
-            case 'yellow':
-                return 'yellow-500';*/
+                /*case 'orange':
+                    return 'orange-500';
+                case 'pink':
+                    return 'pink-500';
+                case 'purple':
+                    return 'purple-500';
+                case 'red':
+                    return 'red-500';
+                case 'teal':
+                    return 'teal-500';
+                case 'yellow':
+                    return 'yellow-500';*/
             case 'grey':
                 return 'gray-500';
         }

@@ -136,6 +136,7 @@ class SubscriptionController extends Controller
                     'reason' => $request->reason,
                     'custom' => $request->reason_custom,
                     'tier'  => $request->user()->pledge,
+                    // @phpstan-ignore-next-line
                     'duration' => $request->user()->subscription('kanka')->created_at->diffInDays(Carbon::now()),
                 ]);
             }

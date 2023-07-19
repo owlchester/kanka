@@ -4,10 +4,13 @@ namespace App\Services;
 
 use App\Facades\Attributes;
 use App\Models\Attribute;
+use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
+use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Models\Post;
+use App\Models\Quest;
 use App\Services\TOC\TocSlugify;
 use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -110,10 +113,10 @@ class MentionsService
 
     /**
      * Map the mentions in a post
-     * @param Post $post
+     * @param Post|EntityNote $post
      * @return string|string[]|null
      */
-    public function mapPost(Post $post)
+    public function mapPost(Post|EntityNote $post)
     {
         $this->text = (string) $post->entry;
         return $this->extractAndReplace();
@@ -395,14 +398,18 @@ class MentionsService
                     if ($field == 'gender') {
                         $field = 'sex';
                     }
-                    if ($field == 'family' && !$entity->child->families->isEmpty()) {
-                        $data['text'] = $entity->child->families()->reorder('name')->first()->name;
+
+                    /** @var Character $child */
+                    $child = $entity->child;
+                    if ($field == 'family' && !$child->families->isEmpty()) {
+                        $data['text'] = $child->families()->reorder('name')->first()->name;
                     }
-                    if ($field == 'race' && !$entity->child->races->isEmpty()) {
-                        $data['text'] = $entity->child->races()->reorder('name')->first()->name;
+                    if ($field == 'race' && !$child->races->isEmpty()) {
+                        $data['text'] = $child->races()->reorder('name')->first()->name;
                     }
-                    if ($field == 'calendar_date' && $entity->child->calendar_id) {
-                        $data['text'] = $entity->child->calendarReminder()->readableDate();
+                    /** @var Quest $child */
+                    if ($field == 'calendar_date' && $child->calendar_id) {
+                        $data['text'] = $child->calendarReminder()->readableDate();
                     }
                     if ($field === 'entry') {
                         if ($this->enableEntryField) {
@@ -440,7 +447,7 @@ class MentionsService
                             $data['text'] = $foreign;
                         }
                         if ($field == 'date' && $entity->child instanceof \App\Models\Calendar) {
-                                $data['text'] = $entity->child->niceDate();
+                            $data['text'] = $entity->child->niceDate();
                         }
                     } elseif (isset($entity->$field) && is_string($entity->$field)) {
                         $data['text'] = $entity->$field;
@@ -597,7 +604,7 @@ class MentionsService
 
     /**
      * @param int $id
-     * @return Entity|null
+     * @return EntityAsset|null
      */
     protected function alias(int $id): EntityAsset|null
     {

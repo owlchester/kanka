@@ -28,7 +28,7 @@ class UpdateCampaignsAddFollower extends Migration
     {
         Schema::table('campaigns', function (Blueprint $table) {
             $table->dropIndex(['follower']);
-            $table->dropColumn('follower');        
+            $table->dropColumn('follower');
         });
     }
 }

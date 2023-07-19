@@ -29,6 +29,7 @@ return [
                 'title'     => 'Adicionar um filho',
             ],
             'edit'  => [
+                'helper'    => 'Marque esta opção se a relação for desconhecida. Um personagem pode ser adicionado mais tarde.',
                 'success'   => 'Entidade atualizada.',
                 'title'     => 'Atualizar uma entidade',
             ],
@@ -38,14 +39,15 @@ return [
             ],
         ],
         'relations' => [
-            'add'   => [
+            'add'       => [
                 'success'   => 'Relação adicionada.',
                 'title'     => 'Adicionar uma relação',
             ],
-            'edit'  => [
+            'edit'      => [
                 'success'   => 'Relação atualizada.',
                 'title'     => 'Atualizar uma relação',
             ],
+            'unknown'   => 'Desconhecida',
         ],
         'reset'     => [
             'confirm'   => 'Tem certeza que deseja descartar quaisquer mudanças feitas na árvore genealógica?',

@@ -49,7 +49,7 @@ Posljednje, ali ne najmanje bitno:
 - Ako imaš pitanja, prijedloge ili samo želiš razgovarati, pridruži nam se na :discord.
 - Voliš aplikaciju i želiš podržati njen rast? Razmisli o podršci Kanku putem :subscriptions.
 TEXT
-,
+        ,
         'name'          => 'Bilješka dobrodošlice',
         'subscriptions' => 'Pretplate',
     ],

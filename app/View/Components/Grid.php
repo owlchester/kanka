@@ -21,8 +21,7 @@ class Grid extends Component
         string $type = null,
         string $css = null,
         bool $hidden = false,
-    )
-    {
+    ) {
         $this->id = $id;
         $this->type = $type;
         $this->css = $css;

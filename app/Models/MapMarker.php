@@ -328,22 +328,30 @@ class MapMarker extends Model
             })';
         }
 
+        $editButton = $copyButton = $deleteButton = '';
+        if (auth()->check()) {
+            if (auth()->user()->can('update', $this)) {
+                $editButton = '<a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.edit') . '</a>';
+                $copyButton = '<a href="' . route('maps.map_markers.create', [$this->map_id, 'source' => $this->id]) . '" class="btn2 btn-xs btn-primary">' . __('crud.actions.copy') . '</a>';
+            }
+            if (auth()->user()->can('delete', $this)) {
+                $deleteButton = '<a href="#" class="btn2 btn-xs btn-error delete-confirm" data-toggle="modal" data-name="' .
+                    str_replace('`', '\'', $this->markerTitle(false)) . '"
+                        data-target="#delete-confirm" data-delete-target="delete-form-marker-' . $this->id . '"
+                        title="' . __('crud.remove') . '">
+                    ' . __('crud.remove') . '
+                </a>';
+            }
+        }
+
         return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
                 ' . (!empty($this->entry) ? '<p class="marker-text">' . Mentions::mapAny($this) . '</p>' : null) . '
             </div>
             ' . $body . '
-            <div class="marker-popup-actions">
-                <a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]) . '" class="btn btn-xs btn-primary">' . __('crud.edit') . '</a>
-                <a href="' . route('maps.map_markers.create', [$this->map_id, 'source' => $this->id]) . '" class="btn btn-xs btn-primary">' . __('crud.actions.copy') . '</a>
-
-                <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="' .
-                    str_replace('`', '\'', $this->markerTitle(false)) . '"
-                        data-target="#delete-confirm" data-delete-target="delete-form-marker-' . $this->id . '"
-                        title="' . __('crud.remove') . '">
-                    ' . __('crud.remove') . '
-                </a>
+            <div class="marker-popup-actions flex gap-2">
+                ' . $editButton . $copyButton . $deleteButton . '
             </div>`
         )';
     }

@@ -47,7 +47,6 @@ class RegenerateDiscordToken extends Command
     {
         //$userID = $this->argument('user');
 
-        /** @var User $user */
         $tokens = UserApp::select(['id', 'user_id', 'access_token', 'refresh_token', 'expires_at', 'updated_at'])
             ->with('user')
             ->where('app', '=', 'discord')

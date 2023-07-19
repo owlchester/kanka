@@ -89,7 +89,7 @@ class EntityMappingService
     }
 
     /**
-     * @param MiscModel|Entity|EntityNote|Campaign $model
+     * @param MiscModel|Entity|EntityNote|Campaign|mixed $model
      * @return int
      * @throws Exception
      */
@@ -222,13 +222,14 @@ class EntityMappingService
         if ($model instanceof Entity) {
             $images = $this->extractImages($model->child->entry);
         } else {
+            /** @var Post $model */
             $images = $this->extractImages($model->entry);
         }
         $existingTargets = [];
         if ($model instanceof Entity) {
             foreach ($model->imageMentions()->where('post_id', null)->get() as $map) {
                 $existingTargets[$map->image_id] = $map;
-            } 
+            }
         } else {
             foreach ($model->imageMentions as $map) {
                 $existingTargets[$map->image_id] = $map;
@@ -280,11 +281,11 @@ class EntityMappingService
         return $this;
     }
 
- /**
+    /**
      * @param MiscModel|EntityNote|TimelineElement|QuestElement|Campaign $model
      * @param int $target
      */
-    protected function createNewImageMention($model, string $target)
+    protected function createNewImageMention($model, int $target)
     {
         $mention = new ImageMention();
 

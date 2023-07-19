@@ -32,17 +32,17 @@ class ConversationResource extends JsonResource
         foreach ($messages as $message) {
             $message->grouppedWith($previous);
             $data[] = new ConversationMessageResource($message);
-//            [
-//                'id' => $message->id,
-//                'user' => $message->user ? $message->user->name : null,
-//                'character' => $message->character ? $message->character->name : null,
-//                'message' => $message->message,
-//                'created_at' => $message->created_at->diffForHumans(),
-//                'can_delete' => Auth::user()->can('delete', $message),
-//                'can_edit' => Auth::user()->can('edit', $message),
-//                'delete_url' => route('conversations.conversation_messages.destroy', [$this, $message]),
-//                'is_updated' => $message->updated_at !== $message->created_at
-//            ];
+            //            [
+            //                'id' => $message->id,
+            //                'user' => $message->user ? $message->user->name : null,
+            //                'character' => $message->character ? $message->character->name : null,
+            //                'message' => $message->message,
+            //                'created_at' => $message->created_at->diffForHumans(),
+            //                'can_delete' => Auth::user()->can('delete', $message),
+            //                'can_edit' => Auth::user()->can('edit', $message),
+            //                'delete_url' => route('conversations.conversation_messages.destroy', [$this, $message]),
+            //                'is_updated' => $message->updated_at !== $message->created_at
+            //            ];
             $previous = $message;
         }
 

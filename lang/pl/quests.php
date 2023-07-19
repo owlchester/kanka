@@ -33,6 +33,7 @@ return [
         'copy_elements' => 'Kopiuj elementy związane z zadaniem',
         'date'          => 'Data',
         'element_role'  => 'Rola',
+        'instigator'    => 'Zleceniodawna',
         'is_completed'  => 'Ukończona',
         'role'          => 'Rola',
     ],

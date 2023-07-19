@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Settings\ProfileController@index')
@@ -152,7 +153,7 @@ Route::post('/security/disable2fa', [
 ]);
 
 // Verify 2FA if User has it enabled
-Route::post('/security/verify2fa', function() {
+Route::post('/security/verify2fa', function () {
     return redirect()->route('home');
 })->name('auth.verify-2fa')->middleware('2fa');
 

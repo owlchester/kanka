@@ -13,7 +13,7 @@ return [
 
 Bu özellikleri (Nüfus, İklim, Suç Oranı) içeren bir Özellik Şeması yaratabilir, ve daha sonra bu şemaları o konumlara uygulayabilirsiniz. Bu, şemadaki özellikleri konumlarda yaratacak, böylece tek yapmanız gereken değerleri değiştirmek, özellikleri hatırlamak zorunda kalmak değil!
 TEXT
-,
+        ,
         'question'  => 'Özellik Şemaları, nedir bunlar?',
     ],
     'backup'                => [
@@ -57,7 +57,7 @@ Evet! Finansal durumunuzun RYO'lardan ya da dünya yaratmadan aldığınız zevk
 
 Kanka'nın alacağı yol hakkında oy vermek dışınca, bizi desteklemek sizlere :boosters erişimiz sağlar, dosya yükleme sınırınızı arttırır, adınızı onur listesine ekler, daha güzel varsayılan ikonları açar, ve daha fazlasını yapar!
 TEXT
-,
+        ,
         'question'  => 'Uygulama bedava kalacak mı?',
     ],
     'gods-and-religions'    => [
@@ -98,7 +98,7 @@ Kanka için uzun dönem planımız içeriği topluluk tarafından "Topluluk Şem
 
 Kanka'yı biz kendimiz de kullanıyoruz, bu yüzden onu geliştirmeyi ve ilerletmeyi durdurmak gibi bir planımız hiç olmadı. Ancak, sırf güvende olmak için, proje aynı zamanda açık kaynak ve eğer başımıza bir şey gelirse topluluk tarafından üstünde çalışılabilir.
 TEXT
-,
+        ,
         'question'  => 'Uzun dönem planlarınız nedir?',
     ],
     'public-campaigns'      => [

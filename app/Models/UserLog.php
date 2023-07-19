@@ -67,6 +67,8 @@ class UserLog extends Model
     public const TYPE_CAMPAIGN_UNBOOST_AUTO = 94;
     public const TYPE_CAMPAIGN_PREMIUM = 95;
 
+    public $connection = 'logs';
+
     /**
      * @var string
      */

@@ -16,7 +16,7 @@ class MultiEditingService
 {
     use UserAware;
 
-    /** @var Model */
+    /** @var Model|Post|Entity */
     protected $model;
 
     /**
@@ -35,6 +35,7 @@ class MultiEditingService
     public function users(): array
     {
         $data = [];
+        // @phpstan-ignore-next-line
         $users = $this->model
             ->editingUsers()
             ->where('type_id', EntityUser::TYPE_KEEPALIVE)
@@ -56,6 +57,7 @@ class MultiEditingService
      */
     public function isEditing(): bool
     {
+        // @phpstan-ignore-next-line
         return $this->model->editingUsers()
             ->where('type_id', EntityUser::TYPE_KEEPALIVE)
             ->where('user_id', $this->user->id)
@@ -92,6 +94,7 @@ class MultiEditingService
      */
     public function finish(): self
     {
+        $id = null;
         if ($this->model instanceof Post) {
             $id = 'post_id';
         } elseif ($this->model instanceof Campaign) {
@@ -106,6 +109,7 @@ class MultiEditingService
 
         $models = EntityUser::userID($this->user->id)
             ->keepAlive()
+            // @phpstan-ignore-next-line
             ->where($id, $this->model->id)
             ->get();
         foreach ($models as $model) {
@@ -121,6 +125,7 @@ class MultiEditingService
      */
     public function keepAlive(): self
     {
+        // @phpstan-ignore-next-line
         $pulse = $this->model->editingUsers()
             ->where('type_id', EntityUser::TYPE_KEEPALIVE)
             ->where('user_id', $this->user->id)

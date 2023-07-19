@@ -7,6 +7,7 @@ use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Models\CampaignRole;
+use App\Models\Genre;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
 use App\Models\RpgSystem;
@@ -58,7 +59,7 @@ class CampaignObserver
             $isPublic = request()->get('is_public', null);
             if (!empty($isPublic) && $previousVisibility == Campaign::VISIBILITY_PRIVATE) {
                 $campaign->visibility_id = Campaign::VISIBILITY_PUBLIC;
-            // Default to public for now. Later will have REVIEW mode.
+                // Default to public for now. Later will have REVIEW mode.
             } elseif (empty($isPublic) && $previousVisibility != Campaign::VISIBILITY_PRIVATE) {
                 $campaign->visibility_id = Campaign::VISIBILITY_PRIVATE;
             }
@@ -139,6 +140,7 @@ class CampaignObserver
             $this->entityMappingService->mapCampaign($campaign);
         }
 
+        $this->saveGenres($campaign);
         $this->saveRpgSystems($campaign);
 
         foreach ($campaign->members()->with('user')->get() as $member) {
@@ -225,4 +227,41 @@ class CampaignObserver
             $campaign->rpgSystems()->detach($existing);
         }
     }
+
+    /**
+     * Save the sections/categories
+     */
+    protected function saveGenres(Campaign $campaign)
+    {
+        if (!request()->has('campaign_genre')) {
+            return;
+        }
+
+        $ids = request()->post('genres', []);
+
+        $existing = [];
+        /** @var Genre $genre */
+        foreach ($campaign->genres as $genre) {
+            $existing[$genre->id] = $genre->slug;
+        }
+        $new = [];
+
+        foreach ($ids as $id) {
+            if (!empty($existing[$id])) {
+                unset($existing[$id]);
+            } else {
+                $genre = Genre::find($id);
+                if (!empty($genre)) {
+                    $new[] = $genre->id;
+                }
+            }
+        }
+        $campaign->genres()->attach($new);
+
+        // Detatch the remaining
+        if (!empty($existing)) {
+            $campaign->genres()->detach(array_keys($existing));
+        }
+    }
+
 }

@@ -15,12 +15,22 @@ return [
         'copy_with_name'    => 'Copia la menzione avanzata con il nome del post',
         'success'           => 'La menzione avanzata al post è stata copiata negli appunti.',
     ],
-    'create'        => [],
-    'destroy'       => [],
-    'edit'          => [],
+    'create'        => [
+        'success'   => 'Post \':name\' aggiunto a :entity',
+        'title'     => 'Nuovo post per :name',
+    ],
+    'destroy'       => [
+        'success'   => 'Post :name per :entity rimosso.',
+    ],
+    'edit'          => [
+        'success'   => 'Post :name per :entity modificato.',
+        'title'     => 'Modifica post per :name',
+    ],
     'fields'        => [
+        'creator'   => 'Creatore',
         'display'   => 'Visualizza',
         'entry'     => 'Voce',
+        'name'      => 'Nome',
         'position'  => 'Posizione',
     ],
     'footer'        => [

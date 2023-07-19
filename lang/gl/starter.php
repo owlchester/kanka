@@ -51,7 +51,7 @@ Por último, pero non menos importante:
 - Se tes preguntas, suxestións ou tan só queres falar, únete ao noso :discod.
 - Gústache a aplicación e queres apoiala? Considera apoiarnos mediante :subscriptions.
 TEXT
-,
+        ,
         'name'          => 'Nota de benvida',
         'subscriptions' => 'Subscripcións',
     ],

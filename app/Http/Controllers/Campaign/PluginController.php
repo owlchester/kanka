@@ -39,13 +39,14 @@ class PluginController extends Controller
         $highlight = request()->get('highlight');
         if (!empty($highlight)) {
             Datagrid::highlight(function () use ($highlight) {
+                // @phpstan-ignore-next-line
                 return $this->uuid === $highlight;
             });
         }
 
         $plugins = $campaign->plugins()
             ->preparedSelect()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->highlighted($highlight)
             ->has('user')
             ->with('versions');

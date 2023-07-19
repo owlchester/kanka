@@ -10,14 +10,8 @@ use App\Services\AttributeService;
 
 class AttributeTemplateController extends Controller
 {
-    /** @var AttributeService */
     protected AttributeService $service;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct(AttributeService $service)
     {
         $this->middleware('auth');
@@ -26,10 +20,6 @@ class AttributeTemplateController extends Controller
         $this->service = $service;
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function apply(Entity $entity)
     {
         $campaign = CampaignLocalization::getCampaign();
@@ -37,7 +27,6 @@ class AttributeTemplateController extends Controller
             return redirect()->route('dashboard')->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    // @phpstan-ignore-next-line
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
                 ])
             );
@@ -55,12 +44,6 @@ class AttributeTemplateController extends Controller
         ));
     }
 
-    /**
-     * @param ApplyAttributeTemplate $request
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);

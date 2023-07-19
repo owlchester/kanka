@@ -3,7 +3,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
 ?>
 <header id="header" class="fixed top-0 h-12 w-full bg-navbar bg-base-100 z-[900]">
     <nav class="flex gap-2 justify-center items-center h-full">
-        <div class="ml-1 flex-none flex w-sidebar justify-items items-center">
+        <div class="ml-1 flex-none flex md:w-sidebar justify-items items-center toggle-and-search">
         @if (isset($toggle) && $toggle)
             <nav-toggler
                 text="{{ __('header.toggle_navigation') }}"
@@ -37,13 +37,13 @@ $currentCampaign = CampaignLocalization::getCampaign();
 
         <div class="flex-1 navbar-actions">
 
-            <div class="flex justify-end mr-3">
-                    @guest
-                        <a href="{{ route('login') }}" class="hidden-xs btn mt-1">
-                            {{ __('front.menu.login') }}
-                        </a>
+            <div class="flex justify-end mr-3 items-center gap-2">
+                @guest
+                    <a href="{{ route('login') }}" class="">
+                        {{ __('front.menu.login') }}
+                    </a>
                     @if(config('auth.register_enabled'))
-                        <a href="{{ route('register') }}" class="hidden-xs btn btn-primary mt-1">
+                        <a href="{{ route('register') }}" class="btn2 btn-primary btn-xs">
                             {{ __('front.menu.register') }}
                         </a>
                     @endif

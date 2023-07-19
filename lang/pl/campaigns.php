@@ -11,7 +11,7 @@ Zanim przejdziesz dalej, musisz nadać swojej kampanii tytuł albo nazwać jako�
 
 Dziękujemy za wybór Kanki i witamy w naszej kwitnącej społeczności!
 TEXT
-,
+            ,
         ],
         'success'               => 'Kampania utworzona.',
         'success_first_time'    => 'Twoja kampania została utworzona! Ponieważ to twój pierwszy raz, dodaliśmy od razu kilka elementów, które pomogą ci zacząć i być może podsuną pomysły, co robić dalej.',

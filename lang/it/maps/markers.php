@@ -7,6 +7,7 @@ return [
         'reset-polygon'     => 'Ripristina posizioni',
         'save_and_explore'  => 'Salva e Esplora',
         'start-drawing'     => 'Inizia a disegnare',
+        'update'            => 'Modifica Indicatori',
     ],
     'bulks'         => [
         'delete'    => '{1} Rimosso :count indicatore.|[2,*] Rimossi :count indicatori.',
@@ -35,10 +36,15 @@ return [
         'bg_colour'     => 'Colore di sfondo',
         'circle_radius' => 'Raggio del cerchio',
         'copy_elements' => 'Copia elementi',
+        'custom_icon'   => 'Icona personalizzata',
         'custom_shape'  => 'Forma Personalizzata a Poligono',
         'font_colour'   => 'Colore dell\'icona',
         'group'         => 'Gruppo di indicatori',
         'icon'          => 'Icona',
+        'is_draggable'  => 'Trascinabile',
+        'latitude'      => 'Latitudine',
+        'longitude'     => 'Longitudine',
+        'opacity'       => 'Opacità',
         'pin_size'      => 'Dimensioni dell\'Indicatore',
         'polygon_style' => [
             'stroke'            => 'Colore del tratto',
@@ -60,9 +66,11 @@ return [
         ],
     ],
     'icons'         => [
-        'custom'    => 'Icona personalizzata',
-        'entity'    => 'Immagine dell\'entità',
-        'marker'    => 'Icona dell\'Indicatore',
+        'custom'        => 'Icona personalizzata',
+        'entity'        => 'Immagine dell\'entità',
+        'exclamation'   => 'Icona con Punto di Esclamazione',
+        'marker'        => 'Icona dell\'Indicatore',
+        'question'      => 'Icona con Punto Interrogativo',
     ],
     'index'         => [
         'title' => 'Indicatore di :name',
@@ -72,15 +80,30 @@ return [
     ],
     'placeholders'  => [
         'custom_icon'   => 'Prova :example1 o :example2',
+        'custom_shape'  => '100,100 200,240 340,110',
         'name'          => 'Richiesto se non è stata selezionata alcuna entità',
     ],
     'presets'       => [
         'helper'    => 'Fai clic su una preimpostazione per caricarla o crearne una nuova.',
     ],
-    'shapes'        => [],
-    'sizes'         => [],
+    'shapes'        => [
+        '0' => 'Cerchio',
+        '1' => 'Quadrato',
+        '2' => 'Triangolo',
+        '3' => 'Personalizzato',
+    ],
+    'sizes'         => [
+        '0' => 'Minuscolo',
+        '1' => 'Normale',
+        '2' => 'Piccolo',
+        '3' => 'Grande',
+        '4' => 'Enorme',
+    ],
     'tabs'          => [
+        'circle'    => 'Cerchio',
+        'label'     => 'Etichetta',
         'marker'    => 'Indicatore',
+        'polygon'   => 'Poligono',
         'preset'    => 'Preimpostazione',
     ],
 ];

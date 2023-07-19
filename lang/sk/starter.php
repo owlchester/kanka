@@ -52,7 +52,7 @@ No a nakoniec:
 - Ak máš nejaké otázky, nápady alebo si chceš len pokecať, pridaj sa k nám na :discord.
 - Pozdáva sa ti Kanka a chceš podporiť jej fungovanie? Zavítaj na náš :subscriptions.
 TEXT
-,
+        ,
         'name'          => 'Uvítacia správa',
         'subscriptions' => 'Predplatné',
     ],

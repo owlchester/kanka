@@ -34,6 +34,8 @@ class RelationController extends CrudController
     /** @var string  */
     protected $filter = RelationFilter::class;
 
+    public string $titleKey;
+
     public function __construct()
     {
         parent::__construct();
@@ -184,7 +186,7 @@ class RelationController extends CrudController
             return response()->json(['success' => true]);
         }
 
-        $data = $request->only(['owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility_id']);
+        $data = $request->only(['owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id']);
         $relation->update($data);
         $relation->refresh();
 

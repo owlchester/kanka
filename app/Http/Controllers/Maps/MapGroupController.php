@@ -222,8 +222,6 @@ class MapGroupController extends Controller
 
     /**
      * Controls drag and drop reordering of map groups
-     * @param Request $request
-     * @param Map $map
      */
     public function reorder(ReorderGroups $request, Map $map)
     {

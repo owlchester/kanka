@@ -81,7 +81,7 @@ class DatagridRenderer2
 
     /**
      * Set which element needs to be highlighted
-     * @param callable $highlight
+     * @param Closure $highlight
      * @return $this
      */
     public function highlight(Closure $highlight): self
@@ -181,7 +181,7 @@ class DatagridRenderer2
                     }
                     continue;
                 }
-            // More specific use cases?
+                // More specific use cases?
             } elseif ($bulk === Layout::ACTION_DELETE) {
                 if (auth()->check() && auth()->user()->isAdmin()) {
                     $this->bulks[] = $bulk;

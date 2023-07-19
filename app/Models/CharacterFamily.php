@@ -16,10 +16,10 @@ class CharacterFamily extends Model
 {
     /** @var string[]  */
     protected $fillable = [
-            'character_id',
-            'family_id',
+        'character_id',
+        'family_id',
     ];
-    
+
     public $table = 'character_family';
 
     public function character()

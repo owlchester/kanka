@@ -6,7 +6,7 @@
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}" />
+    <meta property="og:description" content="{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2023-07-12'))->toFormattedDateString()]) }}" />
     <meta property="og:url" content="{{ route('front.privacy') }}" />
 
 @endsection
@@ -17,91 +17,127 @@
             <div class="section-heading">
                 <div class="mb-5">
                     <h1 class="display-4">{{ __('front.privacy.title') }}</h1>
-                    <p class="lead">{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}</p>
+                    <p class="lead">{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2023-07-12'))->toFormattedDateString()]) }}</p>
                 </div>
-
-                <h2>INTRODUCTION</h2>
-
-                <p class="mb-2">Kanka (“we” or “us” or “our”) respects the privacy of our users (“user” or “you”). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website www.kanka.io, including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the “Site”). Please read this privacy policy carefully.  If you do not agree with the terms of this privacy policy, please do not access the site.</p>
-
-                <p class="mb-2">We reserve the right to make changes to this Privacy Policy at any time and for any reason.  Any changes or modifications will be effective immediately upon posting the updated Privacy Policy on the Site.</p>
-
-                <p class="mb-5">You are encouraged to periodically review this Privacy Policy to stay informed of updates. You will be deemed to have been made aware of, will be subject to, and will be deemed to have accepted the changes in any revised Privacy Policy by your continued use of the Site after the date such revised Privacy Policy is posted.</p>
-
-                <h2 class="mb-2">COLLECTION OF YOUR INFORMATION</h2>
-
-                <p class="mb-5">We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p>
-
-                <h3 class="mb-2">Personal Data</h3>
-                <p class="mb-2">Personally identifiable information, such as your name, email address, that you voluntarily give to us when you register with the Site or when you choose to participate in various activities related to the Site, such as online chat and message boards. You are under no obligation to provide us with personal information of any kind.</p>
-
-                <h3 class="mb-2">Derivative Data</h3>
-                <p class="mb-2">Information our servers automatically collect when you access the Site, such as your IP address, your browser type, your operating system, your access times, and the pages you have viewed directly before and after accessing the Site.</p>
-
-                <h3 class="mb-2">Financial Data</h3>
-                <p class="mb-2">We store only very limited, if any, financial information that we collect. Otherwise, all financial information is stored by our payment processor, Stripe, and you are encouraged to review their privacy policy and contact them directly for responses to your questions.</p>
-
-                <h3 class="mb-2">Third-Party Data</h3>
-                <p class="mb-5">Information from third parties, such as personal information or network friends, if you connect your account to the third party and grant the Site permission to access this information.</p>
-
-                <h2 class="mb-2">USE OF YOUR INFORMATION</h2>
-
-                <p class="mb-2">Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience.  Specifically, we may use information collected about you via the Site to:
+                <h2>Topics</h2>
 
                 <ul class="mb-5">
-                    <li>Compile anonymous statistical data and analysis for use internally</li>
-                    <li>Create and manage your account.</li>
-                    <li>Email you regarding your account.</li>
-                    <li>Fulfill and manage purchases, payments, and other transactions related to the Site.</li>
-                    <li>Request feedback and contact you about your use of the Site.</li>
-                    <li>Resolve disputes and troubleshoot problems.</li>
-                    <li>Send you a newsletter.</li>
+                    <li>
+                        <a href="#what-data-do-we-collect">What data do we collect and for how long?</a>
+                    </li>
+                    <li>
+                        <a href="#how-do-we-collect">How do we collect your data?</a>
+                    </li>
+                    <li>
+                        <a href="#how-will-we-use">How will we use your data?</a>
+                    </li>
+                    <li>
+                        <a href="#how-do-we-store">How do we store your data?</a>
+                    </li>
+                    <li>
+                        <a href="#cookies">Cookies</a>
+                    </li>
+                    <li>
+                        <a href="#what-kind-of-cookies">What kind of cookies do we use?</a>
+                    </li>
+                    <li>
+                        <a href="#why-cookies">What do we use these cookies for?</a>
+                    </li>
+                    <li>
+                        <a href="#how-to-manage">How to manage your cookies</a>
+                    </li>
+                    <li>
+                        <a href="#privacy-policies-of-others">Privacy policies of other websites</a>
+                    </li>
+                    <li>
+                        <a href="#changes-to-our-policy">Changes to our privacy policy</a>
+                    </li>
+                    <li>
+                        <a href="#how-to-contact-us">How to contact us</a>
+                    </li>
                 </ul>
 
-                <h2 class="mb-2">DISCLOSURE OF YOUR INFORMATION</h2>
 
-                <p class="mb-2">We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
+                <h2 id="what-data-do-we-collect">What data do we collect and for how long?</h2>
 
-                <h3 class="mb-2">By Law or to Protect Rights</h3>
-                <p class="mb-2">If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.  This includes exchanging information with other entities for fraud protection and credit risk reduction.</p>
+                <p class="mb-2">Kanka collects the following data:</p>
 
-                <h3 class="mb-2">Interactions with Other Users</h3>
-                <p class="mb-2">If you interact with other users of the Site, those users may see your name, profile photo, and descriptions of your activity.</p>
-
-                <h3 class="mb-2">Online Postings</h3>
-                <p class="mb-5">When you post comments, contributions or other content to the Site, your posts may be viewed by all users and may be publicly distributed outside the Site in perpetuity.</p>
-
-                <h2 class="mb-2">TRACKING TECHNOLOGIES</h2>
-
-                <h3 class="mb-2">Cookies and Web Beacons</h3>
-                <p class="mb-2">We may use cookies, and other tracking technologies on the Site to help customize the Site and improve your experience. When you access the Site, your personal information is not collected through the use of tracking technology.</p>
-
-                <h3 class="mb-2">Internet-Based Advertising</h3>
-                <p class="mb-2">We do not partner with or have special relationships with any ad server companies.</p>
-
-                <h3 class="mb-2">Website Analytics</h3>
-                <p class="mb-5">We may also partner with selected third-party vendors, such as Google Analytics, to allow tracking technologies and remarketing services on the Site through the use of first party cookies and third-party cookies, to, among other things, analyze and track users’ use of the Site, determine the popularity of certain content and better understand online activity.</p>
-
-                <h2 class="mb-2">SECURITY OF YOUR INFORMATION</h2>
-
-                <p class="mb-5">We use administrative, technical, and physical security measures to help protect your personal information.  While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.  Any information disclosed online is vulnerable to interception and misuse by unauthorized parties. Therefore, we cannot guarantee complete security if you provide personal information.</p>
-
-                <h2 class="mb-2">OPTIONS REGARDING YOUR INFORMATION</h2>
-
-                <h3 class="mb-2">Account Information</h3>
-                <p class="mb-2">You may at any time review or change the information in your account or terminate your account by:</p>
                 <ul class="mb-2">
-                    <li>Logging into your account settings and updating your account</li>
-                    <li>Contacting us using the contact information provided below</li>
+                    <li>Information about your connection, such as your IP address and browser type</li>
+                    <li>Personal identification information (login, email address, etc.)</li>
                 </ul>
-                <p class="mb-5">Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases.</p>
 
-                <h3 class="mb-2">Emails and Communications</h3>
-                <p class="mb-2">If you no longer wish to receive correspondence, emails, or other communications from us, you may opt-out by:</p>
-                <ul class="mb-2">
-                    <li>Noting your preferences at the time you register your account with the Site</li>
-                    <li>Logging into your account settings and updating your preferences.</li>
+                <p class="mb-2">We keep your profile information and content for the duration of your account.</p>
+                <p class="mb-2">We keep your IP address for a maximum of 30 days.</p>
+                <p class="mb-5">We keep other personally identifiable data we collect for a maximum of 3 months.</p>
+
+                <h2 id="how-do-we-collect">How do we collect your data?</h2>
+
+                <p class="mb-2">You directly provide Kanka with most of the data we collect. We collect data and process data when you:</p>
+
+                <ul class="mb-5">
+                    <li>Use or view our website.</li>
+                    <li>Register online or make a purchase.</li>
+                    <li>Voluntarily complete a customer survey or provide feedback on any platform that we use or via email.</li>
                 </ul>
+
+                <h2 id="how-will-we-use">How will we use your data?</h2>
+
+                <p class="mb-2">Kanka collects your data so that we can:</p>
+
+                <ul class="mb-5">
+                    <li>Manage your account and process your purchases.</li>
+                    <li>Measure and analyse the effectiveness of our products and services and to better understand how you use them in order to improve.
+                        Communicate with you about our products and services, including about updates and changes to our policies and terms.</li>
+                    <li>Use information you share with us, or that we collect to conduct surveys, testing, and troubleshooting to help us operate and improve Kanka.
+                    <li>When we process a purchase, we may send your data to, and also use the resulting information from, credit reference agencies to prevent fraudulent purchases.</li>
+                </ul>
+
+                <h2 id="how-do-we-store">How do we store your data?</h2>
+
+                <p class="mb-5">We securely store your data on our servers which are with Hetzner in Germany and Amazon cloud Europe.</p>
+
+                <h2 id="cookies">Cookies</h2>
+
+                <p class="mb-5">Cookies are text files placed on your computer to collect standard Internet log information and visitor behaviour information. When you visit our websites, we may collect information from you automatically through cookies or similar technology.</p>
+
+                <h2 id="what-kind-of-cookies">What kind of cookies do you use?</h2>
+
+                <p class="mb-2">We use cookies in a range of ways to improve your experience on our website, including:</p>
+
+                <ul class="mb-5">
+                    <li>Authentication, security, and user preferences.</li>
+                    <li>Analytics and research.</li>
+                    <li>Advertising and marketing.</li>
+                </ul>
+
+                <h2 id="why-cookies">What do you use these cookies for?</h2>
+
+                <p class="mb-2">Cookies help us in different ways:</p>
+                <ul class="mb-5">
+                    <li>Functionality – We use these cookies so that we recognise you on our website and remember your previously selected preferences. This includes automatic login, or which campaign you were invited to if registering through an invite link.</li>
+                    <li>Advertising – This allows us to personalise ads and measure performance, like showing you ads and evaluating their effectiveness based on your visits to our ad partners' websites. This helps advertisers provide you with high-quality ads and content that may be more interesting to you.</li>
+                    <li>Analytics – These help us understand and improve how people use our services, including buttons and widgets. This helps us optimise your experience by understanding how you interact with our services.</li>
+                </ul>
+
+                <h2 id="how-to-manage">How to manage your cookies</h2>
+
+                <p class="mb-5">You can set your browser not to accept cookies. However, some of our website features may not function as a result.</p>
+
+                <h2 id="privacy-policies-of-others">Privacy policies of other websites</h2>
+
+                <p class="mb-5">The Kanka website contains links to other websites. Our privacy policy applies only to our website, so if you click on a link to another website, you should read their privacy policy.</p>
+
+                <h2 id="changes-to-our-policy">Changes to our privacy policy</h2>
+
+                <p class="mb-5">We keep our privacy policy under regular review and publish all updates on this web page. This privacy policy was last updated on 12th of July 2023.</p>
+
+                <h2 id="how-to-contact-us">How to contact us</h2>
+
+                <p class="mb-2">If you have any questions about Kanka’s privacy policy, the data we hold on you, or you would like to exercise one of your data protection rights, please do not hesitate to contact us.</p>
+
+                <p class="mb-2">Email us at: <a href="mailto:{{ config('app.email') }}">{{ config('app.email') }}</a></p>
+
             </div>
         </div>
     </section>

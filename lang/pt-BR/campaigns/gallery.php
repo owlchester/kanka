@@ -2,10 +2,12 @@
 
 return [
     'actions'       => [
-        'close'     => 'Fechar',
-        'file-link' => 'Link do arquivo',
-        'image-link'=> 'Link da imagem',
-        'save'      => 'Salvar',
+        'close'         => 'Fechar',
+        'file-link'     => 'Link do arquivo',
+        'focus_point'   => 'Configurar ponto de foco',
+        'image-link'    => 'Link da imagem',
+        'reset_focus'   => 'Redefinir ponto de foco',
+        'save'          => 'Salvar',
     ],
     'breadcrumb'    => 'Galeria',
     'cta'           => 'Gerencie e reutilize imagens em toda a campanha.',
@@ -17,12 +19,17 @@ return [
         'permissions'   => 'Seu cargo de campanha não possui a permissão :permission para carregar imagens para a galeria da campanha.',
     ],
     'fields'        => [
-        'created_by'    => 'Carregada por',
-        'ext'           => 'Sair',
-        'folder'        => 'Pasta',
-        'image_used_in' => '{1} usada como imagem de uma entidade.|[2,*] usada como imagem de :count entidades.',
-        'name'          => 'Nome',
-        'size'          => 'Tamanho',
+        'created_by'            => 'Carregada por',
+        'ext'                   => 'Sair',
+        'folder'                => 'Pasta',
+        'image_mentioned_in'    => '{0} Esta imagem não é mencionada em nenhuma das entidades da campanha.|{1} Mencionada em uma introdução/post.|[2,*] mencionada em :count introduções/posts.',
+        'image_used_in'         => '{0} Esta imagem não é usada em nenhuma das entidades da campanha.|{1} Usada como a imagem de uma entidade.|[2,*] Usada como a imagem de :count entidades.',
+        'name'                  => 'Nome',
+        'size'                  => 'Tamanho',
+    ],
+    'focus'         => [
+        'removed'   => 'Foco da imagem removido.',
+        'updated'   => 'Foco da imagem atualizado.',
     ],
     'new_folder'    => [
         'title' => 'Nova pasta',

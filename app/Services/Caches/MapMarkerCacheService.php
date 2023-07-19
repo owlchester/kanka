@@ -44,7 +44,7 @@ class MapMarkerCacheService extends BaseCache
             ->pluck('custom_icon')
             ->all();
 
-        foreach ($default as $key => $value) {
+        foreach ($default as $k => $value) {
             if (!in_array($value, $data)) {
                 $data[] = $value;
             }

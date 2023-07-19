@@ -96,7 +96,7 @@ export default {
             return this.entity.title;
         },
         tagClass(tag) {
-            let cls = 'inline-block rounded-xl px-3 py-1 mr-2 bg-neutral-400 text-black text-xs mb-1';
+            let cls = 'inline-block rounded-xl px-3 py-1 mr-2 bg-base-100 text-black text-xs mb-1';
             if (tag.colour) {
                 cls += ' bg-' + tag.colour;
                 if (tag.colour === 'black') {

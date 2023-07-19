@@ -1,12 +1,15 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'alias' => 'Alias',
         'file'  => 'Plik',
         'link'  => 'Odnośnik',
     ],
-    'show'      => [
+    'copy_alias'    => [
+        'success'   => 'Wzmiankowanie aliasu skopiowane do schowka.',
+    ],
+    'show'          => [
         'title' => 'Zasoby elementu :name',
     ],
 ];

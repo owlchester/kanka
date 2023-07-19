@@ -1,7 +1,7 @@
 <template>
     <div v-click-outside="onClickOutside" class="flex grow mr-2">
         <div class="relative grow">
-            <input type="text" class="form-control leading-4" maxlength="25"
+            <input type="text" class="form-control leading-4 w-20 md:w-full" maxlength="25"
                 ref="searchField"
                 id="entity-lookup"
                 v-model="term"

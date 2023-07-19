@@ -3,7 +3,6 @@
 namespace App\Console\Commands\Subscriptions;
 
 use App\Jobs\SubscriptionEndJob;
-use App\Notifications\Header;
 use App\User;
 use Illuminate\Console\Command;
 

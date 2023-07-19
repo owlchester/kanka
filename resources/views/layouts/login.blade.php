@@ -37,11 +37,11 @@
     <div class="login-box mx-auto">
 
         <!-- Content Header (Page header) -->
-        <div class="bg-white dark:bg-slate-800 md:rounded-xl p-5 md:mt-28 dark:text-slate-400">
+        <div class="bg-white dark:bg-slate-800 md:rounded-xl p-5 md:mt-28 dark:text-slate-400 m-5 rounded-xl">
             <div class="text-center w-full login-logo mb-5">
                 <a href="{{ route('home') }}" tabindex="-1">
-                    <img src="https://th.kanka.io/HuIIn1gIw3VLch1JNwosVd7j0YU=/80x72/smart/app/logos/kanka-logo-large.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}" class="w-20 inline dark:hidden" />
-                    <img src="https://th.kanka.io/h6Pj0-5cdT8PyJj2mBF1m6fB1Uk=/80x72/smart/app/logos/logo-small-white.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}" class="w-20 inline hidden dark:inline" />
+                    <img src="https://th.kanka.io/DRTLkY7Tkqz9WqPC_PzgfW0IfUY=/80x72/smart/src/app/logos/kanka-logo-large.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}" class="w-20 inline dark:hidden" />
+                    <img src="https://th.kanka.io/ibvg9Hwlnd3yYMUgyYJAcHlwjxU=/80x72/smart/src/app/logos/logo-small-white.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}" class="w-20 inline hidden dark:inline" />
                 </a>
             </div>
             @yield('content')

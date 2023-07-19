@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemesTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(VisibilitiesTableSeeder::class);
+        $this->call(GenreTableSeeder::class);
+        $this->call(PostLayoutTableSeeder::class);
     }
 }

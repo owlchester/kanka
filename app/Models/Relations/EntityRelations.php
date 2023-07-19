@@ -423,7 +423,8 @@ trait EntityRelations
             ->calendarDate();
     }
 
-    public function calendarDate() {
+    public function calendarDate()
+    {
         return $this->hasOne('App\Models\EntityEvent', 'entity_id', 'id')
             ->with('calendar')
             ->has('calendar')
@@ -540,7 +541,7 @@ trait EntityRelations
      */
     public function starredAttributes()
     {
-        return $this->entityAttributes->where('is_star', 1);
+        return $this->entityAttributes->where('is_pinned', 1);
     }
 
     /**
@@ -549,7 +550,7 @@ trait EntityRelations
     public function pinnedRelations()
     {
         return $this->relationships()
-            ->stared()
+            ->pinned()
             ->ordered()
             ->with('target')
             ->has('target');

@@ -18,10 +18,6 @@ class MapLayerController extends Controller
 {
     use BulkControllerTrait;
 
-    /**
-     * @param Map $map
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function index(Map $map)
     {
         $this->authorize('update', $map);
@@ -246,8 +242,6 @@ class MapLayerController extends Controller
 
     /**
      * Controls drag and drop reordering of map layers
-     * @param Request $request
-     * @param Map $map
      */
     public function reorder(ReorderLayers $request, Map $map)
     {

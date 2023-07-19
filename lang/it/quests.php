@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'create'        => [],
+    'create'        => [
+        'title' => 'Nuova Missione',
+    ],
     'destroy'       => [],
     'edit'          => [],
     'elements'      => [
@@ -29,8 +31,11 @@ return [
     ],
     'fields'        => [
         'copy_elements' => 'Copia gli elementi collegati alla missione',
+        'date'          => 'Data',
         'element_role'  => 'Ruolo',
         'instigator'    => 'Iniziatore',
+        'is_completed'  => 'Completato',
+        'role'          => 'Ruolo',
     ],
     'helpers'       => [
         'is_completed'      => 'Seleziona se la missione è considerata completata.',
@@ -41,7 +46,9 @@ return [
     ],
     'index'         => [],
     'placeholders'  => [
+        'date'      => 'Data del mondo reale per la missione',
         'entity'    => 'Nome di un elemento dalla missione',
+        'role'      => 'Il ruolo di questa entità nella missione',
         'type'      => 'Arco Narrativo, Missione Secondaria, Missione Principale',
     ],
     'show'          => [

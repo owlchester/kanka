@@ -125,6 +125,7 @@ class Entity extends Model
         } elseif ($this->isDiceRoll()) {
             return $this->diceRoll();
         }
+        // @phpstan-ignore-next-line
         return $this->{$this->type()}();
     }
 
@@ -147,7 +148,7 @@ class Entity extends Model
         } elseif ($this->isDiceRoll()) {
             return $this->load('diceRoll');
         }
-
+        // @phpstan-ignore-next-line
         return $this->load($this->type());
     }
 
@@ -221,12 +222,13 @@ class Entity extends Model
         if ($this->cachedPluralName !== false) {
             return $this->cachedPluralName;
         }
+        // @phpstan-ignore-next-line
         return $this->cachedPluralName = Str::plural($this->type());
     }
 
     /**
      * Get the entity's type id
-     * @return \Illuminate\Config\Repository|mixed
+     * @return mixed
      */
     public function typeId()
     {
@@ -235,6 +237,7 @@ class Entity extends Model
 
     public function entityType(): string
     {
+        // @phpstan-ignore-next-line
         return __('entities.' . $this->type());
     }
 

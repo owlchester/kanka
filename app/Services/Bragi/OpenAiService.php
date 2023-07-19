@@ -21,7 +21,6 @@ class OpenAiService
     /**
      * @param string $prompt
      * @param array $context
-     * @return string
      */
     public function input(string $prompt, array $context = []): self
     {
@@ -58,7 +57,7 @@ class OpenAiService
             'max_tokens' => $maxTokens,
             'frequency_penalty' => 0,
             'presence_penalty' => 0.6,
-         ]);
+        ]);
 
         $this->output = json_decode($complete, true);
 

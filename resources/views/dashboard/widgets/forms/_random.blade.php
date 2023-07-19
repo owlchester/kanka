@@ -1,4 +1,11 @@
-@php $boosted = $campaignService->campaign()->boosted() @endphp
+@inject('entityService', 'App\Services\EntityService')
+
+@php 
+    $boosted = $campaignService->campaign()->boosted();
+    $entityTypes = [];
+    $entities = $entityService->campaign($campaignService->campaign())->getEnabledEntitiesSorted(false);
+    $entityTypes = array_merge($entityTypes, $entities);
+@endphp
 
 <div class="nav-tabs-custom">
     <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
@@ -21,7 +28,7 @@
                     <label for="config-entity">
                         {{ __('menu_links.fields.random_type') }}
                     </label>
-                    {!! Form::select('config[entity]', $entities, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
+                    {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
                 </div>
 
                 <div class="field-recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
@@ -46,6 +53,7 @@
             @includeWhen(!$boosted, 'dashboard.widgets.forms._boosted')
 
             <x-grid>
+                @include('dashboard.widgets.forms._header_select')
                 @include('dashboard.widgets.forms._related')
                 @include('dashboard.widgets.forms._class')
             </x-grid>

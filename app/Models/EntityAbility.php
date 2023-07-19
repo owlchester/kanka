@@ -32,8 +32,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class EntityAbility extends Model
 {
     use Blameable;
-    use VisibilityIDTrait;
     use HasFactory;
+    use VisibilityIDTrait;
 
     /**
      * Fillable fields

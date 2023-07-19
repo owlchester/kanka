@@ -21,8 +21,7 @@ class Dialog extends Component
         string $id = null,
         bool $full = false,
         bool $loading = false,
-    )
-    {
+    ) {
         $this->id = $id ?? uniqid();
         $this->title = $title;
         $this->full = $full;

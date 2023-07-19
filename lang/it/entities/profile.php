@@ -1,7 +1,12 @@
 <?php
 
 return [
-    'actions'   => [],
+    'actions'   => [
+        'edit_profile'  => 'Modifica profilo',
+    ],
     'history'   => 'Cronologia delle Modifiche',
-    'show'      => [],
+    'show'      => [
+        'tab_name'  => 'Profilo',
+        'title'     => 'Profilo :name',
+    ],
 ];

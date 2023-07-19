@@ -30,6 +30,6 @@ class AddCharacterRaceTable extends Migration
      */
     public function down()
     {
-        //
+
     }
 }

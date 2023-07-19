@@ -101,6 +101,7 @@ return [
     'delete_modal'              => [
         'callout'           => 'Psst!',
         'close'             => 'Zamknij',
+        'confirm'           => 'Potwierdź usunięcie',
         'delete'            => 'Usuń',
         'description_v2'    => 'Usuwasz ":tag".',
         'permanent'         => 'Tego działania nie można cofnąć.',

@@ -1,13 +1,17 @@
 <?php
 
 return [
-    'create'        => [],
+    'create'        => [
+        'title' => 'Nuova Organizzazione',
+    ],
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
         'is_defunct'    => 'Dismessa',
+        'members'       => 'Membri',
     ],
     'helpers'       => [
+        'descendants'       => 'Questo elenco contiene tutte le organizzazioni che discendono da questa organizzazione, e non solo quelle direttamente sotto di essa.',
         'nested_without'    => 'Visualizzazione di tutte le organizzazioni che non hanno un\'organizzazione genitore. Fai clic su una riga per visualizzare le organizzazioni figlio.',
     ],
     'hints'         => [
@@ -16,15 +20,29 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'submit'    => 'Aggoiungi membro',
+            'add'       => 'Aggiungi un membro',
+            'submit'    => 'Aggiungi membro',
+        ],
+        'create'        => [
+            'success'   => 'Membro aggiunto a :name.',
+            'title'     => 'Nuovo Membro',
+        ],
+        'destroy'       => [
+            'success'   => 'Membro rimosso da :name.',
+        ],
+        'edit'          => [
+            'success'   => 'Membro aggiornato.',
+            'title'     => 'Membro Aggiornato per :name',
         ],
         'fields'        => [
             'parent'    => 'Superiore',
             'pinned'    => 'Fissato',
+            'role'      => 'Ruolo',
             'status'    => 'Stato di affiliazione',
         ],
         'helpers'       => [
             'all_members'   => 'Tutti i personaggi che sono membri di questa organizzazione e delle sue sotto-organizzazioni.',
+            'members'       => 'Tutti i personaggi che fanno parte di questa organizzazione.',
             'pinned'        => 'Scegli se questo membro deve essere mostrato nella sezione fissata della panoramica delle entità associate.',
         ],
         'pinned'        => [
@@ -42,6 +60,8 @@ return [
         ],
     ],
     'organisations' => [],
-    'placeholders'  => [],
+    'placeholders'  => [
+        'type'  => 'Culto, Gang, Ribellione, Fandom',
+    ],
     'show'          => [],
 ];

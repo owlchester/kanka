@@ -13,7 +13,7 @@ class Profile extends Component
      */
     public function __construct()
     {
-        //
+
     }
 
     /**

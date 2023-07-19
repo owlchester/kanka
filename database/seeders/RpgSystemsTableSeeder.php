@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use \App\Models\RpgSystem;
+use App\Models\RpgSystem;
 
 class RpgSystemsTableSeeder extends Seeder
 {

@@ -47,9 +47,9 @@ class MenuLinkApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', MenuLink::class);
 
-        /** @var MenuLink $model */
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
+        /** @var MenuLink $model */
         $model = MenuLink::create($data);
         $this->crudSave($model);
         return new Resource($model);

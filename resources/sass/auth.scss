@@ -11,7 +11,10 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
+    background-image: url(https://th.kanka.io/smu57gaTzoPAMo9OQYfsHFTi-fA=/560x600/smart/src/app/backgrounds/mountain-background-desktop.jpg);
 }
+
 
 /* Hover Effects on Card */
 
@@ -21,12 +24,7 @@
   }
 
   .login-page, .register-page, header.masthead-img {
-    background-image: url(https://th.kanka.io/_RG4GzF0SgmgeXlnddua2xul95M=/smart/app/backgrounds/mountain-background-desktop.jpg);
+    background-image: url(https://th.kanka.io/9764KQH7QXGYsnWsRGVKTCzQWgA=/1050x600/smart/src/app/backgrounds/mountain-background-desktop.jpg);
   }
 }
 
-@media (max-width:991px) {
-    .login-page, .register-page, header.masthead-img {
-    background-image: url(https://th.kanka.io/Lq3IzpLo-EKeRmDPBJJCRJqyc2g=/smart/app/backgrounds/mountain-background-mobile.jpg) !important;
-  }
-}

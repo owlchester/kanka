@@ -15,7 +15,7 @@ class UpdateCampaignsAddIsHidden extends Migration
     {
         Schema::table('campaigns', function (Blueprint $table) {
             $table->boolean('is_hidden')->default(0);
-            $table->index('is_hidden');  
+            $table->index('is_hidden');
         });
     }
 

@@ -84,6 +84,7 @@ class CampaignCacheService extends BaseCache
             return $this->get($key);
         }
 
+        // @phpstan-ignore-next-line
         $data = $this->campaign->entities()->withInvisible()->count();
 
         $this->put($key, $data, 6 * 3600);

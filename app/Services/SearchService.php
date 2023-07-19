@@ -226,19 +226,19 @@ class SearchService
 
             // Exact name match comes first
             $escapedTerm = preg_replace('/&/', '\\&', preg_quote($cleanTerm));
-            $query->orderByRaw('FIELD(entities.name, ?) DESC', $cleanTerm);
+            $query->orderByRaw('FIELD(entities.name, ?) DESC', [$cleanTerm]);
             if ($this->campaign->boosted()) {
-                $query->orderByRaw('FIELD(ea.name, ?) DESC', $cleanTerm);
+                $query->orderByRaw('FIELD(ea.name, ?) DESC', [$cleanTerm]);
             }
             // Name word-start match, so when looking for 'Morley', entities named 'Momorley' appear at the end
-            $query->orderByRaw('entities.name RLIKE ? DESC', "[[:<:]]$escapedTerm");
+            $query->orderByRaw('entities.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
             if ($this->campaign->boosted()) {
-                $query->orderByRaw('ea.name RLIKE ? DESC', "[[:<:]]$escapedTerm");
+                $query->orderByRaw('ea.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
             }
             // Partial name match
-            $query->orderByRaw('entities.name LIKE ? DESC', "%$cleanTerm%");
+            $query->orderByRaw('entities.name LIKE ? DESC', ["%{$cleanTerm}%"]);
             if ($this->campaign->boosted()) {
-                $query->orderByRaw('ea.name LIKE ? DESC', "%$cleanTerm%");
+                $query->orderByRaw('ea.name LIKE ? DESC', ["%{$cleanTerm}%"]);
             }
         }
 
@@ -272,7 +272,7 @@ class SearchService
             $parsedName = str_replace(['&#039;', '&amp;'], ['\'', '&'], $model->name);
             $parsedNameAlias = $parsedName;
 
-
+            // @phpstan-ignore-next-line
             if ($model->alias_name) {
                 $parsedNameAlias = $parsedName . ' - ' . str_replace(['&#039;', '&amp;'], ['\'', '&'], e($model->alias_name));
             }
@@ -291,7 +291,7 @@ class SearchService
                 'image' => $img,
                 'name' => $parsedName,
                 'type' => Module::singular($model->type_id, $model->entityType()),
-                'model_type' => $model->type(),
+                'model_type' => $model->type(), // @phpstan-ignore-line
                 'url' => $model->url(),
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
@@ -300,6 +300,7 @@ class SearchService
             $foundEntityIds[] = $model->id;
 
             //If the result is a map, also add its explore page as a result.
+            // @phpstan-ignore-next-line
             if (!request()->new && $model->isMap() && $model->child->explorable()) {
                 $searchResults[] = [
                     'id' => $model->id,
@@ -307,6 +308,7 @@ class SearchService
                     'image' => $img,
                     'name' => $parsedName,
                     'type' => __('maps.actions.explore'),
+                    // @phpstan-ignore-next-line
                     'model_type' => $model->type(),
                     'url' => $model->url('explore'),
                     'alias_id' => $model->alias_id, // @phpstan-ignore-line
@@ -372,7 +374,7 @@ class SearchService
         $term = str_replace('_', ' ', $this->term);
         foreach ($this->entityService->newEntityTypes() as $type => $class) {
             /** @var MiscModel $misc */
-            $misc = new $class;
+            $misc = new $class();
             $label = __('entities.new.' . $type);
             if (!empty($misc->entityTypeId())) {
                 $singular = Module::singular($misc->entityTypeId());
@@ -402,7 +404,7 @@ class SearchService
 
         $orderedIds = implode(',', $recentIds);
         $entities = Entity::whereIn('id', $recentIds)
-            ->orderByRaw("FIELD(id, $orderedIds)")
+            ->orderByRaw("FIELD(id, {$orderedIds})")
             ->get();
         $recent = [];
 
@@ -427,6 +429,7 @@ class SearchService
             'is_private' => $entity->is_private,
             'image' => $entity->avatarSize(64)->avatarV2(),
             'link' => $entity->url(),
+            // @phpstan-ignore-next-line
             'type' => Module::singular($entity->typeId(), __('entities.' . $entity->type())),
             'preview' => route('entities.preview', $entity)
         ];

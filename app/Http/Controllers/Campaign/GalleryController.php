@@ -128,7 +128,7 @@ class GalleryController extends Controller
 
     /**
      * @param StoreImageFocus $request
-     * @param Entity $entity
+     * @param Image $image
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

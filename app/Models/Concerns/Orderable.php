@@ -4,7 +4,6 @@ namespace App\Models\Concerns;
 
 use App\Models\EntityEventType;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -69,15 +68,15 @@ trait Orderable
                 // While this would be possible, this would mean injecting the acl/permission system
                 // just for an order by, which seems quite overkill.
                 // A better solution might present itself during a future rewrite of the acl engine.
-//                if (substr($field, 0, 6) == 'count(') {
-//                    $relationName = preg_replace('/count\((.*)\)/si', '$1', $field);
-//                    $relation = $this->{$relationName}();
-//                    $foreignName = $relation->getQuery()->getQuery()->from;
-//
-//                    return $query
-//                        ->orderByRaw('(select count(*) from ' . $foreignName . ' where ' .
+                //                if (substr($field, 0, 6) == 'count(') {
+                //                    $relationName = preg_replace('/count\((.*)\)/si', '$1', $field);
+                //                    $relation = $this->{$relationName}();
+                //                    $foreignName = $relation->getQuery()->getQuery()->from;
+                //
+                //                    return $query
+                //                        ->orderByRaw('(select count(*) from ' . $foreignName . ' where ' .
                 // $relation->getForeignKeyName() . ' = ' . $this->getTable() . '.' . $this->primaryKey . ') ' . $direction);
-//                }
+                //                }
 
                 // If the field has a casting
                 if (property_exists($this, 'orderCasting') && !empty($this->orderCasting[$field])) {

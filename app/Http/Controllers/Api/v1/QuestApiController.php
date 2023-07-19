@@ -48,9 +48,9 @@ class QuestApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Quest::class);
 
-        /** @var Quest $model */
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
+        /** @var Quest $model */
         $model = Quest::create($data);
         $this->crudSave($model);
         return new Resource($model);

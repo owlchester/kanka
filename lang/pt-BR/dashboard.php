@@ -141,6 +141,15 @@ return [
             'name_desc' => 'Nome descendente',
             'recent'    => 'Recentemente modificado',
         ],
+        'preview'                   => [
+            'displays'  => [
+                'expand'    => 'Introdução expansível',
+                'full'      => 'Introdução completa',
+            ],
+            'fields'    => [
+                'display'   => 'Exibir',
+            ],
+        ],
         'random'                    => [
             'helpers'   => [
                 'name'  => 'Você pode fazer referência ao nome da entidade aleatória com {name}',

@@ -15,7 +15,6 @@ class Kernel extends HttpKernel
      *
      * These middleware are run during every request to your application.
      *
-     * @var array
      */
     protected $middleware = [
         \App\Http\Middleware\TrustProxies::class,
@@ -29,7 +28,6 @@ class Kernel extends HttpKernel
     /**
      * The application's route middleware groups.
      *
-     * @var array
      */
     protected $middlewareGroups = [
         'web' => [
@@ -49,6 +47,7 @@ class Kernel extends HttpKernel
         'api' => [
             //Do this in the routes 'throttle:rate_limit,1',
             'bindings',
+            \App\Http\Middleware\ApiLogMiddleware::class,
         ],
         // Used for locale-less routes like our sitemaps, go/, auth/callbacks, webhooks
         'minimum' => [
@@ -67,7 +66,6 @@ class Kernel extends HttpKernel
      *
      * These middleware may be assigned to groups or used individually.
      *
-     * @var array
      */
     protected $middlewareAliases = [
         'localize' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,

@@ -71,9 +71,9 @@ class ModuleService
         $settings = $this->campaign->settings;
 
         $key = $entityType->id;
-        unset($settings['modules'][$key]['s']);
-        unset($settings['modules'][$key]['p']);
-        unset($settings['modules'][$key]['i']);
+        unset($settings['modules'][$key]['s'], $settings['modules'][$key]['p'], $settings['modules'][$key]['i']);
+
+
 
         $singular = $plural = $icon = null;
         if ($request->filled('singular')) {

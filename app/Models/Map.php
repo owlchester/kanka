@@ -752,11 +752,9 @@ class Map extends MiscModel
         //return false;
         return !empty($this->config['distance_measure']);
     }
+
     /**
      * Available datagrid actions
-     * @param Campaign $campaign
-     * @return string[]
-     * @throws Exception
      */
     public function datagridActions(Campaign $campaign): array
     {

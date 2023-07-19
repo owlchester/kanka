@@ -3,13 +3,11 @@
 namespace Database\Factories;
 
 //use Faker\Generator as Faker;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Tag;
 
 class TagFactory extends Factory
 {
-
     /**
      * The name of the factory's corresponding model.
      *

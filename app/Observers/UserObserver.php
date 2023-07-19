@@ -7,8 +7,6 @@ use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Jobs\Users\UpdateEmail;
-use App\Models\CampaignUser;
-use App\Models\CampaignFollower;
 use App\Services\ImageService;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -33,8 +31,8 @@ class UserObserver
         // Purify the bio
         if (!empty($user->profile['bio'])) {
             $profile = $user->profile;
-            $profile['bio'] = mb_substr(strip_tags($profile['bio']), 0, 301);
             try {
+                $profile['bio'] = mb_substr(strip_tags($profile['bio']), 0, 301);
                 $user->profile = $profile;
             } catch (\Exception $e) {
                 // An invalid profile, like emojis in text
@@ -46,8 +44,8 @@ class UserObserver
         //Purify Billing info
         if (!empty($user->profile['billing'])) {
             $profile = $user->profile;
-            $profile['billing'] = mb_substr(strip_tags($profile['billing']), 0, 1024);
             try {
+                $profile['billing'] = mb_substr(strip_tags($profile['billing']), 0, 1024);
                 $user->profile = $profile;
             } catch (\Exception $e) {
                 //invalid billing info, like emojis in text

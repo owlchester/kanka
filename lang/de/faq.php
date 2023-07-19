@@ -18,7 +18,7 @@ Nun kannst du diese Attribute in jedem Ort einzeln hinzufügen, das wird aber sc
 
 Du kannst eine Attributvorlage mit deinen Attributen "Bewohnerzahl", "Klima" und "Kriminalitätsrate" füllen und später diese Vorlage bei deinen Orten benutzen. Die Attributvorlage wird automatisch in jedem Ort hinterlegt und du musst nur noch die Werte der Attribute füllen!
 TEXT
-,
+        ,
         'question'  => 'Was sind Attributvorlagen?',
     ],
     'backup'                => [
@@ -67,7 +67,7 @@ Ja! Wir glauben, dass unsere finanzielle Situation keinen Einfluss auf euer Verg
 
 Uns auf Patreon zu unterstützen ermöglicht es euch allerdings das Upload Limit von Dateien zu erhöhen, euer Name kommt auf die Patreon Wall of Fame, ihr bekommt schönere Standard Icons, könnt abstimmen was bei der Weiterentwicklung prioritisiert werden soll und mehr!
 TEXT
-,
+        ,
         'question'  => 'Wird die App kostenfrei bleiben?',
     ],
     'gods-and-religions'    => [
@@ -84,7 +84,7 @@ Jeder Ort kann eine Karte (PNG, JPG oder SVG) enthalten, die selbst "Kartenpunkt
 
 SVG-Dateien von Azgaars :azgaar und watabous :watabou sind kompatibel mit Kanka. Einige andere Programme komprimieren die generierten SVG-Dateien, was sie inkompatibel zu Kanka macht. Um diese Karten trotzdem mit Kanka benutzen zu können, öffne die Dateien in Inkscape oder Photoshop speicher sie als SVG-Dateien, bevor du sie auf Kanka hochlädtst.
 TEXT
-,
+        ,
         'question'  => 'Kann ich Karten in Kanka hochladen?',
     ],
     'mobile'                => [
@@ -114,7 +114,7 @@ Langfristig ist geplant, dass Kanka sich in ein vielseitiges Tool für Worldbuil
 
 Was den zweiten Teil betrifft, so enden die meisten Hobbyprojekte im Burnout und der Schöpfer gibt sie auf. The :patreon wurde mit dem Ziel eingerichtet, dass wir Vollzeit an Kanka arbeiten können, ohne die finanzielle Sicherheit unserer Familien zu beeinträchtigen und die Serverkosten zu decken. Das Projekt ist auch Open Source und kann von der Community aufgegriffen werden, falls uns jemals etwas passieren sollte.
 TEXT
-,
+        ,
         'question'  => 'Was sind die langfristigen Pläne?',
     ],
     'public-campaigns'      => [

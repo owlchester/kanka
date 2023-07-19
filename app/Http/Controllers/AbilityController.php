@@ -95,7 +95,7 @@ class AbilityController extends CrudController
         // @phpstan-ignore-next-line
         $this->rows = $ability
             ->descendants()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['entity', 'entity.image', 'ability', 'ability.entity'])
             ->has('entity')
             ->filter($filters)
@@ -121,7 +121,7 @@ class AbilityController extends CrudController
 
         $this->rows = $ability
             ->entities()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->paginate();
 
         // Ajax Datagrid

@@ -17,8 +17,7 @@ class Header extends Component
     public function __construct(
         string $id = null,
         string $title = null,
-    )
-    {
+    ) {
         $this->id = $id;
         $this->title = $title;
     }

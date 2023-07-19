@@ -88,7 +88,7 @@ class TimelineController extends CrudController
         // @phpstan-ignore-next-line
         $this->rows = $timeline
             ->descendants()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['entity', 'timeline', 'timeline.entity'])
             ->filter($filters)
             ->paginate();

@@ -1,3 +1,4 @@
+
 <div class="field-tag">
     @if (!empty($label))
         <label>{{ \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')) }}
@@ -17,6 +18,7 @@
             data-new-tag="{{ __('tags.create.title') }}"
             @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
     >
+        <?php /** @var \App\Models\Tag $tag */?>
         @foreach ($tags as $key => $tag)
             <option value="{{ $key }}" data-colour="{{ $tag->colourClass() }}" selected="selected">{{ $tag->name }}</option>
         @endforeach

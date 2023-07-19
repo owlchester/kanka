@@ -3,7 +3,6 @@
 namespace App\Datagrids\Filters;
 
 use App\Models\Family;
-use App\Models\Character;
 
 class FamilyFilter extends DatagridFilter
 {

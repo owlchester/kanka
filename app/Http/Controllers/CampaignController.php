@@ -52,10 +52,6 @@ class CampaignController extends Controller
         return view($this->view . '.show', compact('campaign'));
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function create()
     {
         $campaign = CampaignLocalization::getCampaign();
@@ -64,11 +60,6 @@ class CampaignController extends Controller
         return view($this->view . '.create', ['start' => false]);
     }
 
-    /**
-     * @param StoreCampaign $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function store(StoreCampaign $request)
     {
         $campaign = new Campaign();
@@ -117,27 +108,17 @@ class CampaignController extends Controller
             ->with('success', __($this->view . '.create.success'));
     }
 
-    /**
-     * @param Campaign $campaign
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function show()
     {
         $campaign = CampaignLocalization::getCampaign();
         return view($this->view . '.show', compact('campaign'));
     }
 
-    /**
-     * @param Campaign $campaign
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function edit()
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
-        /** @var MiscModel $model */
         $editingUsers = null;
 
         if ($campaign->hasEditingWarning()) {
@@ -152,12 +133,6 @@ class CampaignController extends Controller
         return view($this->view . '.edit', ['model' => $campaign, 'start' => false, 'editingUsers' => $editingUsers]);
     }
 
-    /**
-     * @param StoreCampaign $request
-     * @param Campaign $campaign
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function update(StoreCampaign $request)
     {
         $campaign = CampaignLocalization::getCampaign();
@@ -204,10 +179,7 @@ class CampaignController extends Controller
     }
 
     /**
-     * @param Campaign $campaign
      * @param DeleteCampaign $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(DeleteCampaign $request)
     {
@@ -221,8 +193,6 @@ class CampaignController extends Controller
 
     /**
      * Leave a campaign
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function leave()
     {

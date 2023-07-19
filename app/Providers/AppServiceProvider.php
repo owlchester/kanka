@@ -78,7 +78,10 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Str;
 use Laravel\Cashier\Cashier;
+use Symfony\Component\Console\Exception\InvalidOptionException;
+use Symfony\Component\Process\Process;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -91,6 +94,8 @@ class AppServiceProvider extends ServiceProvider
     {
         // Fix setups for utf8_mb4 mysql strings (emoji support)
         Schema::defaultStringLength(191);
+
+        $this->registerDevelopWarning();
 
         $this->registerWebObservers();
         Cashier::useCustomerModel(User::class);
@@ -111,6 +116,43 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+    }
+
+    protected function registerDevelopWarning()
+    {
+        if (!app()->runningInConsole()) {
+            return;
+        }
+        if (config('app.ignore_develop_warning')) {
+            return;
+        }
+
+        $path = base_path();
+        $ouput = null;
+        $command = 'git symbolic-ref -q --short HEAD || git describe --tags --exact-match';
+        $fail = false;
+        if (class_exists('\Symfony\Component\Process\Process')) {
+            try {
+                if (method_exists(Process::class, 'fromShellCommandline')) {
+                    $process = Process::fromShellCommandline($command, $path);
+                } else {
+                    $process = new Process([$command], $path);
+                }
+
+                $process->mustRun();
+                $output = $process->getOutput();
+            } catch (\Exception $e) {
+                // Silence errors
+            }
+        }
+
+        if (!empty($output) && Str::startsWith($output, 'develop')) {
+            throw new InvalidOptionException(
+                "CONFIGURATION WARNING\n" .
+                "You are currently running Kanka on the unstable @develop branch. This is unstable and WILL RESULT IN DATA LOSS.\n" .
+                "If this isn't a mistake, add `APP_IGNORE_DEVELOP_WARNING=true` to your .env file."
+            );
+        }
     }
 
     /**

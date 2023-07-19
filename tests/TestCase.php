@@ -3,7 +3,6 @@
 namespace Tests;
 
 use App\User;
-use Illuminate\Foundation\Providers\ArtisanServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -14,11 +13,11 @@ use Mcamara\LaravelLocalization\LaravelLocalization;
 
 abstract class TestCase extends BaseTestCase
 {
-    use RefreshDatabase {
-        refreshTestDatabase as parentRefreshTestDatabase;
-    }
     use CreatesApplication {
         createApplication as parentCreateApplication;
+    }
+    use RefreshDatabase {
+        refreshTestDatabase as parentRefreshTestDatabase;
     }
 
     /**

@@ -101,8 +101,8 @@
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="{{ (auth()->check() ? route('front.home') : route('home')) }}">
-            <img class="d-none d-lg-block" src="https://th.kanka.io/m5Z0YRoLSTnEuKnRpbVPCMVpKgw=/95x32/smart/app/logos/text-white.png" title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
-            <img class="d-xl-none d-lg-none" src="https://th.kanka.io/5D95vS6FAeZl-I_uCxe61eVWyf0=/95x32/smart/app/logos/text-blue.png" title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
+            <img class="d-none d-lg-block" src="https://th.kanka.io/9A5OXYFaNh3wm-l2A3YNeevJa-M=/95x32/smart/src/app/logos/text-white.png" title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
+            <img class="d-xl-none d-lg-none" src="https://th.kanka.io/3LB2TZQKyA9dDlXx5PsHaxvqzhk=/95x32/smart/src/app/logos/text-blue.png" title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
         </a>
 
         <ul class="navbar-buttons ml-auto d-none d-sm-flex d-lg-none">
@@ -263,6 +263,7 @@
         crossorigin="anonymous"></script>
 
 @vite('resources/js/front.js')
+@vite('resources/js/cookieconsent.js')
 @if (config('fontawesome.kit'))
 <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif

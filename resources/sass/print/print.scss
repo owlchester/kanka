@@ -17,6 +17,10 @@
 }
 
 @media print {
+
+    .print-none, .entity-empty-pin {
+        display: none;
+    }
     body {
         -webkit-print-color-adjust: exact;
     }
@@ -25,7 +29,7 @@
     }
 
     // Hide all buttons
-    .btn {
+    .btn, .btn2 {
         display: none !important;
     }
 
@@ -126,7 +130,7 @@ body, #app.wrapper, .wrapper, .content-wrapper, .box {
         }
     }
 
-    .btn {
+    .btn, .btn2 {
         display: none;
     }
 

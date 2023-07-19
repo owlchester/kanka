@@ -21,8 +21,7 @@ class Tab extends Component
         string $title,
         string $icon = null,
         bool $default = false,
-    )
-    {
+    ) {
         $this->target = $target;
         $this->title = $title;
         $this->icon = $icon;

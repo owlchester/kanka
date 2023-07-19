@@ -2,7 +2,6 @@
 
 namespace App\View\Components;
 
-use App\View\Components\Buttons\Colours;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -19,8 +18,7 @@ class Badge extends Component
         string $type = 'default',
         string $css = null,
         string $title = null,
-    )
-    {
+    ) {
         $this->type = $type;
         $this->css = $css;
         $this->title = $title;

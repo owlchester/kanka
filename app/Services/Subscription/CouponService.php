@@ -51,8 +51,10 @@ class CouponService
             }
 
             // Check restrictions
+            // @phpstan-ignore-next-line
             if ($promo->restrictions) {
                 // Some promos are only for first time subscribers
+                // @phpstan-ignore-next-line
                 if ($promo->restrictions->first_time_transaction) {
                     if ($this->user->subscriptions->count()) {
                         return $this->error(__('subscriptions/promos.errors.only-new'));

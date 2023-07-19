@@ -22,7 +22,7 @@ class NestedTimelinesAndEvents extends Migration
             $table->foreign('timeline_id')->references('id')->on('timelines')->onDelete('set null');
         });
 
-        Schema::table('events', function(Blueprint $table) {
+        Schema::table('events', function (Blueprint $table) {
             $table->unsignedInteger('event_id')->nullable();
             $table->unsignedInteger('_lft')->default(0);
             $table->unsignedInteger('_rgt')->default(0);
@@ -41,9 +41,9 @@ class NestedTimelinesAndEvents extends Migration
         Schema::table('timelines', function (Blueprint $table) {
             $table->dropForeign('timelines_timeline_id_foreign');
             $table->dropColumn('timeline_id');
-            //
+
         });
-        Schema::table('events', function(Blueprint $table) {
+        Schema::table('events', function (Blueprint $table) {
             $table->dropForeign('events_event_id_foreign');
             $table->dropColumn('event_id');
         });

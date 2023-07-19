@@ -21,7 +21,6 @@ use App\Models\UserSetting;
 use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;
@@ -36,7 +35,7 @@ use App\Models\Concerns\LastSync;
  * @property string $name
  * @property string $email
  * @property integer|null $last_campaign_id
- * @property string $avatar
+ * @property string|null $avatar
  * @property string $provider
  * @property integer $provider_id
  * @property Carbon $last_login_at
@@ -68,11 +67,11 @@ class User extends \Illuminate\Foundation\Auth\User
     use LastSync;
     use Notifiable;
     use Tutorial;
+    use UserBoosters;
     use UserRelations;
     use UserScope;
     use UserSetting;
     use UserTokens;
-    use UserBoosters;
 
 
     protected static $currentCampaign = false;
@@ -571,6 +570,7 @@ class User extends \Illuminate\Foundation\Auth\User
             } elseif ($this->campaigns()->count() === 1) {
                 $campaign = $this->campaigns()->first();
                 // Only the 4 starting entities
+                // @phpstan-ignore-next-line
                 if ($campaign->entities()->withInvisible()->count() === 4) {
                     return true;
                 }

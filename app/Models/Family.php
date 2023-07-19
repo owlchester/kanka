@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $location_id
  * @property Collection|Character[] $members
  * @property Family $family
- * @property FamilyTree $familyTree
+ * @property FamilyTree|null $familyTree
  * @property Collection|Family[] $families
  * @property Collection|Family[] $descendants
  */
@@ -30,10 +30,10 @@ class Family extends MiscModel
     use Acl;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
     use SortableTrait;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

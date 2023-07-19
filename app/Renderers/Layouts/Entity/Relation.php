@@ -19,7 +19,7 @@ class Relation extends Layout
                 'label' => 'entities/relations.fields.relation',
                 'render' => function ($relation) {
                     $icon = '';
-                    if ($relation->is_star) {
+                    if ($relation->isPinned()) {
                         $icon = '<i class="fa-solid fa-star" title="' . __('crud.fields.is_star') . '" data-toggle="tooltip"></i> ';
                     }
 
@@ -51,6 +51,7 @@ class Relation extends Layout
                 'label' => 'entities/relations.fields.attitude',
                 'class' => 'hidden-xs hidden-sm',
                 'render' => function ($relation) {
+                    /** @var \App\Models\Relation $relation */
                     $icon = '';
                     if (empty($relation->colour)) {
                         return $relation->attitude;

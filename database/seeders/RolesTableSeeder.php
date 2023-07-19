@@ -16,50 +16,50 @@ class RolesTableSeeder extends Seeder
         $role = Role::firstOrNew(['name' => 'admin']);
         if (!$role->exists) {
             $role->fill([
-                    'display_name' => 'Administrator',
-                ])->save();
+                'display_name' => 'Administrator',
+            ])->save();
         }
 
         $role = Role::firstOrNew(['name' => 'user']);
         if (!$role->exists) {
             $role->fill([
-                    'display_name' => 'Normal User',
-                ])->save();
+                'display_name' => 'Normal User',
+            ])->save();
         }
 
         $role = Role::firstOrNew(['name' => 'translator']);
         if (!$role->exists) {
             $role->fill([
-                    'display_name' => 'Translator',
-                ])->save();
+                'display_name' => 'Translator',
+            ])->save();
         }
 
         $role = Role::firstOrNew(['name' => 'api']);
         if (!$role->exists) {
             $role->fill([
-                    'display_name' => 'Api',
-                ])->save();
+                'display_name' => 'Api',
+            ])->save();
         }
 
         $role = Role::firstOrNew(['name' => Pledge::ROLE]);
         if (!$role->exists) {
             $role->fill([
-                    'display_name' => 'Patreon',
-                ])->save();
+                'display_name' => 'Patreon',
+            ])->save();
         }
 
         $role = Role::firstOrNew(['name' => 'partner']);
         if (!$role->exists) {
             $role->fill([
-                    'display_name' => 'Partner',
-                ])->save();
+                'display_name' => 'Partner',
+            ])->save();
         }
 
         $role = Role::firstOrNew(['name' => 'wordsmith']);
         if (!$role->exists) {
             $role->fill([
-                    'display_name' => 'Wordsmith',
-                ])->save();
+                'display_name' => 'Wordsmith',
+            ])->save();
         }
     }
 }

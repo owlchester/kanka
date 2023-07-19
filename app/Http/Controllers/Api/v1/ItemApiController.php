@@ -49,9 +49,9 @@ class ItemApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Item::class);
 
-        /** @var Item $model */
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
+        /** @var Item $model */
         $model = Item::create($data);
         $this->crudSave($model);
         return new Resource($model);

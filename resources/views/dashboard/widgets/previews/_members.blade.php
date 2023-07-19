@@ -26,12 +26,14 @@ $members = $entity->isFamily()
 
 @if($entity->isFamily())
     <div class="grid grid-cols-1 gap-2 members">
+            <?php /** @var \App\Models\CharacterFamily $member */?>
         @foreach ($members as $member)
             <div class="">{!! $member->tooltipedLink() !!}</div>
         @endforeach
     </div>
 @else
     <div class="grid grid-cols-2 gap-2 members">
+        <?php /** @var \App\Models\OrganisationMember $member */?>
         @foreach ($members as $member)
             @if (empty($member->character))
                 @continue
