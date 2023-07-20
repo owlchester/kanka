@@ -46,6 +46,9 @@ class EntityNoteApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
         $data = $request->all();
+        if (!$campaign->superboosted()) {
+            $data = $request->except(['layout_id']);
+        }
         $data['entity_id'] = $entity->id;
         $model = EntityNote::create($data);
         return new Resource($model);
@@ -62,7 +65,7 @@ class EntityNoteApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $entityNote->update($request->all());
+        $entityNote->update($request->except(['layout_id']));
 
         return new Resource($entityNote);
     }

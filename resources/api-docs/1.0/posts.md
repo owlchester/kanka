@@ -37,7 +37,8 @@ You can get a list of all the posts of an entity by using the following endpoint
             "settings": [],
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": null,
-            "permissions": []
+            "permissions": [],
+            "layout_id": 3,
         }
     ]
 }
@@ -69,7 +70,8 @@ To get the details of a single post, use the following endpoint.
         "settings": [],
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": null,
-        "permissions": []
+        "permissions": [],
+        "layout_id": 3,
     }
 }
 ```
@@ -94,6 +96,7 @@ To create a post, use the following endpoint.
 | `visibility_id` | `integer` | The visibility: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 | `position` | `int|null` (optional) | Position for ordering pinned posts |
 | `settings` | `object` (optional) | `collapsed:1` if the pinned post should be collapsed on page load |
+| `layout_id` | `integer` (optional) | The type of [Post Layout](/api-docs/{{version}}/post-layout) the post will render (Only for Premium campaigns) |
 
 ### Results
 
