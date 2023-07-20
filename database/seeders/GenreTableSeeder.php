@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Genre;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,9 +15,15 @@ class GenreTableSeeder extends Seeder
     {
         $genres = ['alternate_history', 'cyberpunk', 'fantasy', 'historical', 'many_worlds', 'modern', 'occult', 'post_apocalyptic', 'pulp', 'science_fiction', 'science_fantasy', 'space_opera', 'steampunk', 'superhero', 'urban_fantasy', 'western'];
         foreach ($genres as $genre) {
-            DB::table('genres')->insert([
+            $genre = Genre::firstOrNew([
                 'slug' => $genre,
             ]);
+            if ($genre->exists) {
+                continue;
+            }
+            $genre->fill([
+                'slug' => $genre,
+            ])->save();
         }
     }
 }

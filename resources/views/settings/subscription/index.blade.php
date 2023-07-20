@@ -67,7 +67,7 @@
             <thead>
             <tr class="">
                 <th class="align-middle">
-                    <div class="flex gap-2 items-center">
+                    <div class="tier flex gap-2 items-center">
                         <img class="rounded-full" src="https://th.kanka.io/Xy0Dm1dMld_NUYYA2gJdTkKnqjE=/60x60/smart/src/app/tiers/kobold-750.png" alt="Kobold"/>
                         <div class="text grow">
                             KOBOLD
