@@ -1,9 +1,9 @@
 @if ($status == \App\Services\SubscriptionService::STATUS_GRACE)
-    <td colspan="4" class="text-center">
+    <div class="col-span-4">
         <p class="help-block">
             {{ __('settings.subscription.cancelled', ['date' => auth()->user()->subscription('kanka')->ends_at->isoFormat('lll')]) }}
         </p>
-    </td>
+    </div>
     <?php return; ?>
 @endif
 
@@ -16,7 +16,7 @@ if (isset($toggle) && $toggle) {
 }
 @endphp
 
-<th class="align-middle">
+<div class="">
     @if($currentPlan === \App\Models\Pledge::KOBOLD)
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('tiers.current') }}
@@ -27,8 +27,8 @@ if (isset($toggle) && $toggle) {
             ({{ __('settings.subscription.subscription.actions.rollback') }})
         </a>
     @endif
-</th>
-<th class="align-middle">
+</div>
+<div class="">
     @if ($user->subscribedToPrice($service->elementalPlans(), 'kanka'))
         <a class="btn2 btn-block btn-sm disabled">
             {{ __('settings.subscription.subscription.actions.downgrading') }}
@@ -54,8 +54,8 @@ if (isset($toggle) && $toggle) {
             </a>
         @endif
     @endif
-</th>
-<th class="align-middle">
+</div>
+<div class="">
     @if($user->subscribedToPrice([config('subscription.wyvern.eur.monthly'), config('subscription.wyvern.usd.monthly')], 'kanka'))
         <a class="btn2 btn-block btn-sm disabled mb-2">
             {{ __('tiers.current') }}
@@ -80,8 +80,8 @@ if (isset($toggle) && $toggle) {
             {{ __($yearlyKey, ['tier' => 'Wyvern']) }}
         </a>
     @endif
-</th>
-<th class="align-middle">
+</div>
+<div class="">
     @if($user->subscribedToPrice([config('subscription.elemental.eur.monthly'), config('subscription.elemental.usd.monthly')], 'kanka'))
         <a class="btn2 btn-block btn-sm disabled mb-2">
             {{ __('tiers.current') }}
@@ -105,4 +105,4 @@ if (isset($toggle) && $toggle) {
             {{ __($yearlyKey, ['tier' => 'Elemental']) }}
         </a>
     @endif
-</th>
+</div>

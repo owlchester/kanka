@@ -60,102 +60,83 @@
         <span>{{ __('tiers.toggle.yearly') }}</span>
     </div>
 
-    <div class="rounded bg-box period-month" id="pricing-overview">
-
-
-        <table class="table table-bordered tiers">
-            <thead>
-            <tr class="">
-                <th class="align-middle">
-                    <div class="tier flex gap-2 items-center">
-                        <img class="rounded-full" src="https://th.kanka.io/Xy0Dm1dMld_NUYYA2gJdTkKnqjE=/60x60/smart/src/app/tiers/kobold-750.png" alt="Kobold"/>
-                        <div class="text grow">
-                            KOBOLD
-                            <span class="price">
-                                {{ __('front.features.patreon.free') }}
-                            </span>
-                        </div>
+    <div class="rounded bg-box period-month overflow-x-auto" id="pricing-overview">
+        <div class="grid grid-cols-4 tiers gap-2 items-center pl-2 pr-2 min-w-fit">
+            <div class="pt-5 tier flex gap-2 items-center">
+                <img class="rounded-full" src="https://th.kanka.io/Xy0Dm1dMld_NUYYA2gJdTkKnqjE=/60x60/smart/src/app/tiers/kobold-750.png" alt="Kobold"/>
+                <div class="text grow">
+                    KOBOLD
+                    <span class="price">
+                        {{ __('front.features.patreon.free') }}
+                    </span>
+                </div>
+            </div>
+            <div class="pt-5 tier flex gap-2 items-center">
+                <img class="rounded-full" src="https://th.kanka.io/s17BtlhzUJp4h07gxtzmljKO3fU=/60x60/smart/src/app/tiers/owlbear-750.png" alt="Owlbear"/>
+                <div class="text grow">
+                    OWLBEAR
+                    <div class="price price-monthly">
+                        {{ $user->currencySymbol() }} 5<sup class="">00</sup>
+                        <span class="">{{ __('tiers.periods.monthly') }}</span>
                     </div>
-                </th>
-                <th class="align-middle">
-                    <div class="tier flex gap-2 items-center">
-                        <img class="rounded-full" src="https://th.kanka.io/s17BtlhzUJp4h07gxtzmljKO3fU=/60x60/smart/src/app/tiers/owlbear-750.png" alt="Owlbear"/>
-                        <div class="text grow">
-                            OWLBEAR
-                            <div class="price price-monthly">
-                                {{ $user->currencySymbol() }} 5<sup class="">00</sup>
-                                <span class="">{{ __('tiers.periods.monthly') }}</span>
-                            </div>
-                            <div class="price price-yearly">
-                                {{ $user->currencySymbol() }} 55<sup>00</sup>
-                                <span class="">{{ __('tiers.periods.yearly') }}</span>
-                            </div>
-                        </div>
-                        <div class="ribbon ribbon-top-right">
-                            <span class="bg-green-500 text-white">{{ __('tiers.ribbons.popular') }}</span>
-                        </div>
+                    <div class="price price-yearly">
+                        {{ $user->currencySymbol() }} 55<sup>00</sup>
+                        <span class="">{{ __('tiers.periods.yearly') }}</span>
                     </div>
-                </th>
-                <th class="align-middle">
-                    <div class="tier flex gap-2 items-center">
-                        <img class="rounded-full" src="https://th.kanka.io/rJBeW_Poe2uvjdo44f2yzDnofzo=/60x60/smart/src/app/tiers/wyvern-750.png" alt="Wyvern"/>
-                        <div class="text grow">
-                            WYVERN
-                            <div class="price price-monthly">
-                                {{ $user->currencySymbol() }} 10<sup>00</sup>
-                                <span class="">{{ __('tiers.periods.monthly') }}</span>
-                            </div>
-                            <div class="price price-yearly">
-                                {{ $user->currencySymbol() }} 110<sup>00</sup>
-                                <span class="">{{ __('tiers.periods.yearly') }}</span>
-                            </div>
-                        </div>
-                        <div class="ribbon ribbon-top-right">
-                            <span class="bg-pink-500 text-white">{{ __('tiers.ribbons.best-value') }}</span>
-                        </div>
+                </div>
+                <div class="ribbon ribbon-top-right">
+                    <span class="bg-green-500 text-white">{{ __('tiers.ribbons.popular') }}</span>
+                </div>
+            </div>
+            <div class="pt-5 tier flex gap-2 items-center">
+                <img class="rounded-full" src="https://th.kanka.io/rJBeW_Poe2uvjdo44f2yzDnofzo=/60x60/smart/src/app/tiers/wyvern-750.png" alt="Wyvern"/>
+                <div class="text grow">
+                    WYVERN
+                    <div class="price price-monthly">
+                        {{ $user->currencySymbol() }} 10<sup>00</sup>
+                        <span class="">{{ __('tiers.periods.monthly') }}</span>
                     </div>
-                </th>
-                <th class="align-middle">
-                    <div class="tier flex gap-2 align-center">
-                        <img class="img-circle" src="https://th.kanka.io/Wira7yc1p1cAa_GUwC0SGDOuSwg=/60x60/smart/src/app/tiers/elemental-750.png" alt="Elemental"/>
-                        <div class="grow text">
-                            ELEMENTAL
-                            <div class="price price-monthly">
-                                {{ $user->currencySymbol() }} 25<sup>00</sup>
-                                <span class="">{{ __('tiers.periods.monthly') }}</span>
-                            </div>
-                            <div class="price price-yearly">
-                                {{ $user->currencySymbol() }} 275<sup>00</sup>
-                                <span class="">{{ __('tiers.periods.yearly') }}</span>
-                            </div>
-                        </div>
+                    <div class="price price-yearly">
+                        {{ $user->currencySymbol() }} 110<sup>00</sup>
+                        <span class="">{{ __('tiers.periods.yearly') }}</span>
                     </div>
-                </th>
-            </tr>
+                </div>
+                <div class="ribbon ribbon-top-right">
+                    <span class="bg-pink-500 text-white">{{ __('tiers.ribbons.best-value') }}</span>
+                </div>
+            </div>
+            <div class="pt-5 tier flex gap-2 align-center">
+                <img class="img-circle" src="https://th.kanka.io/Wira7yc1p1cAa_GUwC0SGDOuSwg=/60x60/smart/src/app/tiers/elemental-750.png" alt="Elemental"/>
+                <div class="grow text">
+                    ELEMENTAL
+                    <div class="price price-monthly">
+                        {{ $user->currencySymbol() }} 25<sup>00</sup>
+                        <span class="">{{ __('tiers.periods.monthly') }}</span>
+                    </div>
+                    <div class="price price-yearly">
+                        {{ $user->currencySymbol() }} 275<sup>00</sup>
+                        <span class="">{{ __('tiers.periods.yearly') }}</span>
+                    </div>
+                </div>
+            </div>
             @if ($user->isLegacyPatron())
-                <tr>
-                    <td class="text-center" colspan="4">
-                        <x-alert type="warning">
-                            {!! __('settings.subscription.warnings.patreon', ['patreon' => link_to_route('settings.patreon', __('settings.menu.patreon'))]) !!}
-                        </x-alert>
-                    </td>
-                </tr>
+                <div class="col-span-4 text-center">
+                    <x-alert type="warning">
+                        {!! __('settings.subscription.warnings.patreon', ['patreon' => link_to_route('settings.patreon', __('settings.menu.patreon'))]) !!}
+                    </x-alert>
+                </div>
             @elseif($user->hasIncompletePayment('kanka'))
-                <tr>
-                    <td class="text-center" colspan="4">
-                        <x-alert type="warning">
-                            {!! __('settings.subscription.warnings.incomplete') !!}
-                        </x-alert>
-                    </td>
-                </tr>
+                <div class="col-span-4 text-center">
+                    <x-alert type="warning">
+                        {!! __('settings.subscription.warnings.incomplete') !!}
+                    </x-alert>
+                </div>
             @else
-            <tr class="">
                 @include('settings.subscription._buttons', ['toggle' => true])
-            </tr>
+
             @endif
-            </thead>
             @include('settings.subscription._benefits')
-        </table>
+        </div>
     </div>
 
     <div class="">

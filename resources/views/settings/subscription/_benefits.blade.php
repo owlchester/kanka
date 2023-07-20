@@ -1,111 +1,110 @@
-<tbody>
-<tr>
-    <td>{{ __('tiers.features.file_size', ['size' => '1 MB']) }}</td>
-    <td>{{ __('tiers.features.file_size', ['size' => '8 MB']) }}</td>
-    <td>{{ __('tiers.features.file_size', ['size' => '15 MB']) }}</td>
-    <td>{{ __('tiers.features.file_size', ['size' => '25 MB']) }}</td>
-</tr>
-<tr>
-    <td>{{ __('tiers.features.map_size', ['size' => '3 MB']) }}</td>
-    <td>{{ __('tiers.features.map_size', ['size' => '10 MB']) }}</td>
-    <td>{{ __('tiers.features.map_size', ['size' => '20 MB']) }}</td>
-    <td>{{ __('tiers.features.map_size', ['size' => '50 MB']) }}</td>
-</tr>
-<tr>
-    <td>{{ __('tiers.features.pagination', ['amount' => 45]) }}</td>
-    <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
-    <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
-    <td>{{ __('tiers.features.pagination', ['amount' => 100]) }}</td>
-</tr>
+
+
+    <div class="">{{ __('tiers.features.file_size', ['size' => '1 MB']) }}</div>
+    <div class="">{{ __('tiers.features.file_size', ['size' => '8 MB']) }}</div>
+    <div class="">{{ __('tiers.features.file_size', ['size' => '15 MB']) }}</div>
+    <div class="">{{ __('tiers.features.file_size', ['size' => '25 MB']) }}</div>
+
+
+    <div class="">{{ __('tiers.features.map_size', ['size' => '3 MB']) }}</div>
+    <div class="">{{ __('tiers.features.map_size', ['size' => '10 MB']) }}</div>
+    <div class="">{{ __('tiers.features.map_size', ['size' => '20 MB']) }}</div>
+    <div class="">{{ __('tiers.features.map_size', ['size' => '50 MB']) }}</div>
+
+
+    <div class="">{{ __('tiers.features.pagination', ['amount' => 45]) }}</div>
+    <div class="">{{ __('tiers.features.pagination', ['amount' => 100]) }}</div>
+    <div class="">{{ __('tiers.features.pagination', ['amount' => 100]) }}</div>
+    <div class="">{{ __('tiers.features.pagination', ['amount' => 100]) }}</div>
+
 @if (auth()->user()->hasBoosterNomenclature())
-<tr>
-    <td></td>
-    <td><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
+
+    <div class=""></div>
+    <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
         {!! link_to_route('front.boosters', 3 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
-    </td>
-    <td><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
+    </div>
+    <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
         {!! link_to_route('front.boosters', 6 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
-    </td>
-    <td><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
+    </div>
+    <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
         {!! link_to_route('front.boosters', 10 . ' ' . __('tiers.features.boosters'), '', ['target' => '_blank']) !!}
-    </td>
-</tr>
+    </div>
+
 @else
-<tr>
-    <td></td>
-    <td><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
+
+    <div class=""></div>
+    <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
         {!! link_to_route('front.premium', 1 . ' ' . __('concept.premium-campaign'), '', ['target' => '_blank']) !!}
-    </td>
-    <td><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
+    </div>
+    <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
         {!! link_to_route('front.premium', 3 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
-    </td>
-    <td><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
+    </div>
+    <div class=""><i class="fa-solid fa-rocket text-boost" aria-hidden="true"></i>
         {!! link_to_route('front.premium', 7 . ' ' . __('concept.premium-campaigns'), '', ['target' => '_blank']) !!}
-    </td>
-</tr>
+    </div>
+
 @endif
-<tr>
-    <td></td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
-</tr>
-<tr>
-    <td></td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</td>
-</tr>
-<tr>
-    <td></td>
-    <td><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
-    <td><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
-    <td><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
-</tr>
-<tr>
-    <td></td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</td>
-</tr>
-<tr>
-    <td></td>
-    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</td>
-    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</td>
-    <td><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.vote_influence') }}</td>
-</tr>
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><i class="fa-solid fa-check"></i> {{ __('tiers.features.feature_influence') }}</td>
-</tr>
-<tr>
-    <td>
+
+    <div class=""></div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.no_ads') }}</div>
+
+
+    <div class=""></div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.discord') }}</div>
+
+
+    <div class=""></div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</div>
+
+
+    <div class=""></div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.nice_image') }}</div>
+
+
+    <div class=""></div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
+    <div class=""><i class="fa-solid fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), null, ['target' => '_blank']) !!}</div>
+
+
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.vote_influence') }}</div>
+
+
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""><i class="fa-solid fa-check"></i> {{ __('tiers.features.feature_influence') }}</div>
+
+
+    <div class="">
         <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 30]) }}
         </a>
-    </td>
-    <td>
+    </div>
+    <div class="">
         <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 90]) }}
         </a>
-    </td>
-    <td>
+    </div>
+    <div class="">
         <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 90]) }}
         </a>
-    </td>
-    <td>
+    </div>
+    <div class="">
         <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 90]) }}
         </a>
-    </td>
-</tr>
-</tbody>
+    </div>
+
