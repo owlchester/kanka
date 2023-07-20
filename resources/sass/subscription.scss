@@ -7,15 +7,6 @@ table.tiers {
         align-items: center;
         position: relative;
 
-        .img {
-            justify-content: flex-start;
-            margin-right: 10px;
-
-            .img-circle {
-                height: 60px;
-            }
-        }
-
         .text {
             font-size: 1.2em;
 
@@ -24,6 +15,10 @@ table.tiers {
                 color: hsl(var(--bc)/var(--tw-text-opacity));
                 font-size: 0.8em;
                 display: block;
+
+                sup {
+                    top: .5em;
+                }
             }
         }
     }

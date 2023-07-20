@@ -51,25 +51,25 @@
             <span>{{ __('settings.subscription.upgrade_downgrade.button') }}</span>
         </x-buttons.confirm>
     </div>
+    <div class="text-center py-5 text-vertical">
+        <span>{{ __('tiers.periods.monthly') }}</span>
+        <label class="toggle mx-1">
+            <input type="checkbox" name="period">
+            <span class="slider subscription-period-slider"></span>
+        </label>
+        <span>{{ __('tiers.toggle.yearly') }}</span>
+    </div>
+
     <div class="rounded bg-box period-month" id="pricing-overview">
-        <div class="text-center py-5 text-vertical">
-            <span>{{ __('tiers.periods.monthly') }}</span>
-            <label class="toggle mx-1">
-                <input type="checkbox" name="period">
-                <span class="slider subscription-period-slider"></span>
-            </label>
-            <span>{{ __('tiers.toggle.yearly') }}</span>
-        </div>
+
 
         <table class="table table-bordered tiers">
             <thead>
             <tr class="">
                 <th class="align-middle">
-                    <div class="tier">
-                        <div class="img">
-                            <img class="img-circle" src="{{ Img::crop(60)->new()->url('app/tiers/kobold-750.png') }}" alt="Kobold"/>
-                        </div>
-                        <div class="text">
+                    <div class="flex gap-2 items-center">
+                        <img class="rounded-full" src="https://th.kanka.io/Xy0Dm1dMld_NUYYA2gJdTkKnqjE=/60x60/smart/src/app/tiers/kobold-750.png" alt="Kobold"/>
+                        <div class="text grow">
                             KOBOLD
                             <span class="price">
                                 {{ __('front.features.patreon.free') }}
@@ -78,14 +78,12 @@
                     </div>
                 </th>
                 <th class="align-middle">
-                    <div class="tier">
-                        <div class="img">
-                            <img class="img-circle" src="{{ Img::crop(60)->new()->url('app/tiers/owlbear-750.png') }}" alt="Owlbear"/>
-                        </div>
-                        <div class="text">
+                    <div class="flex gap-2 items-center">
+                        <img class="rounded-full" src="https://th.kanka.io/s17BtlhzUJp4h07gxtzmljKO3fU=/60x60/smart/src/app/tiers/owlbear-750.png" alt="Owlbear"/>
+                        <div class="text grow">
                             OWLBEAR
                             <div class="price price-monthly">
-                                {{ $user->currencySymbol() }} 5<sup>00</sup>
+                                {{ $user->currencySymbol() }} 5<sup class="">00</sup>
                                 <span class="">{{ __('tiers.periods.monthly') }}</span>
                             </div>
                             <div class="price price-yearly">
@@ -99,11 +97,9 @@
                     </div>
                 </th>
                 <th class="align-middle">
-                    <div class="tier">
-                        <div class="img">
-                            <img class="img-circle" src="{{ Img::crop(60)->new()->url('app/tiers/wyvern-750.png') }}" alt="Wyvern"/>
-                        </div>
-                        <div class="text">
+                    <div class="tier flex gap-2 items-center">
+                        <img class="rounded-full" src="https://th.kanka.io/rJBeW_Poe2uvjdo44f2yzDnofzo=/60x60/smart/src/app/tiers/wyvern-750.png" alt="Wyvern"/>
+                        <div class="text grow">
                             WYVERN
                             <div class="price price-monthly">
                                 {{ $user->currencySymbol() }} 10<sup>00</sup>
@@ -120,11 +116,9 @@
                     </div>
                 </th>
                 <th class="align-middle">
-                    <div class="tier">
-                        <div class="img">
-                            <img class="img-circle" src="{{ Img::crop(60)->new()->url('app/tiers/elemental-750.png') }}" alt="Elemental"/>
-                        </div>
-                        <div class="text">
+                    <div class="tier flex gap-2 align-center">
+                        <img class="img-circle" src="https://th.kanka.io/Wira7yc1p1cAa_GUwC0SGDOuSwg=/60x60/smart/src/app/tiers/elemental-750.png" alt="Elemental"/>
+                        <div class="grow">
                             ELEMENTAL
                             <div class="price price-monthly">
                                 {{ $user->currencySymbol() }} 25<sup>00</sup>
