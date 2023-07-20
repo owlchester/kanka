@@ -241,8 +241,8 @@ class MentionsService
 
             // If the name isn't the target name, transform it into an advanced mention
             $originalName = Arr::get($attributes, 'data-name');
-            if (!empty($originalName) && $originalName != $mentionName) {
-                return str_replace(']', '|' . $mentionName . ']', $advancedMention);
+            if (!empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
+                return Str::replace(']', '|' . $mentionName . ']', $advancedMention);
             }
             return $advancedMention;
         }, $text);
@@ -272,7 +272,7 @@ class MentionsService
      */
     public function advancedMentionHelper(string $name): string
     {
-        $cleanEntityName = Str::replace(['"', '&amp;'], ['"', '&'], $name);
+        $cleanEntityName = Str::replace(['"', '&amp;'], ['\'', '&'], $name);
         return '<ins class="' . self::ADVANCED_MENTION_CLASS . '" data-name="'
             . $cleanEntityName . '"></ins>';
     }
@@ -546,10 +546,12 @@ class MentionsService
             // No entity found, the user might not be allowed to see it
             if (empty($entity) || empty($entity->child)) {
                 $name = __('crud.history.unknown');
+                $dataName = $name;
             } else {
                 $name = $entity->name;
+                $dataName = Str::replace('"', '&quot;', $entity->name);
             }
-            return '<a href="#" class="mention" data-name="' . $name . '" data-mention="' . $matches[0]
+            return '<a href="#" class="mention" data-name="' . $dataName . '" data-mention="' . $matches[0]
                 . '">' . $name . '</a>';
         }, $this->text);
 
