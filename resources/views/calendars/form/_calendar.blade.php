@@ -84,7 +84,7 @@
         } elseif (isset($source)) {
             $years = $source->years();
         } ?>
-        <div class="calendar-years sortable-elements">
+        <div class="calendar-years sortable-elements" data-handle=".sortable-handler">
             @foreach ($years as $year => $name)
                 <div class="parent-delete-row mb-2">
                     <x-grid>
