@@ -112,6 +112,7 @@ class SubscriptionApiController extends Controller
      */
     public function removePaymentMethod(Request $request)
     {
+        /** @var User $user */
         $user = $request->user();
         $paymentMethodID = $request->get('id');
 
@@ -124,6 +125,9 @@ class SubscriptionApiController extends Controller
                 break;
             }
         }
+
+        $user->card_expires_at = null;
+        $user->saveQuietly();
 
         return response()->json(null, 204);
     }

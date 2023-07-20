@@ -57,6 +57,9 @@ class UserLog extends Model
     public const TYPE_SUB_CANCEL_MANUAL = 82;
     public const TYPE_SUB_CANCEL_AUTO = 83;
 
+    public const TYPE_PAYMENT_EDIT = 86;
+    public const TYPE_PAYMENT_AUTO = 87;
+
     public const TYPE_CAMPAIGN_BOOST = 90;
     public const TYPE_CAMPAIGN_UPGRADE_BOOST = 91;
     public const TYPE_CAMPAIGN_SUPERBOOST = 92;
