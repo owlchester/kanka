@@ -78,7 +78,7 @@
                     </div>
                 </th>
                 <th class="align-middle">
-                    <div class="flex gap-2 items-center">
+                    <div class="tier flex gap-2 items-center">
                         <img class="rounded-full" src="https://th.kanka.io/s17BtlhzUJp4h07gxtzmljKO3fU=/60x60/smart/src/app/tiers/owlbear-750.png" alt="Owlbear"/>
                         <div class="text grow">
                             OWLBEAR
@@ -118,7 +118,7 @@
                 <th class="align-middle">
                     <div class="tier flex gap-2 align-center">
                         <img class="img-circle" src="https://th.kanka.io/Wira7yc1p1cAa_GUwC0SGDOuSwg=/60x60/smart/src/app/tiers/elemental-750.png" alt="Elemental"/>
-                        <div class="grow">
+                        <div class="grow text">
                             ELEMENTAL
                             <div class="price price-monthly">
                                 {{ $user->currencySymbol() }} 25<sup>00</sup>
