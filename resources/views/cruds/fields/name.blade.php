@@ -17,7 +17,7 @@ $required = !isset($bulk);
         ]
     ) !!}
 
-    <p class="text-yellow duplicate-entity-warning collapse out">
+    <p class="text-yellow duplicate-entity-warning collapse out !visible">
         {{ __('entities.creator.duplicate') }}<br /><span id="duplicate-entities"></span>
     </p>
 </div>

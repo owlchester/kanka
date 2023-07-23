@@ -225,20 +225,23 @@ class SearchService
             }
 
             // Exact name match comes first
-            $escapedTerm = preg_replace('/&/', '\\&', preg_quote($cleanTerm));
-            $query->orderByRaw('FIELD(entities.name, ?) DESC', $cleanTerm);
-            if ($this->campaign->boosted()) {
-                $query->orderByRaw('FIELD(ea.name, ?) DESC', $cleanTerm);
-            }
-            // Name word-start match, so when looking for 'Morley', entities named 'Momorley' appear at the end
-            $query->orderByRaw('entities.name RLIKE ? DESC', "[[:<:]]$escapedTerm");
-            if ($this->campaign->boosted()) {
-                $query->orderByRaw('ea.name RLIKE ? DESC', "[[:<:]]$escapedTerm");
-            }
-            // Partial name match
-            $query->orderByRaw('entities.name LIKE ? DESC', "%$cleanTerm%");
-            if ($this->campaign->boosted()) {
-                $query->orderByRaw('ea.name LIKE ? DESC', "%$cleanTerm%");
+            // Only do this when the input string is utf8
+            if (mb_strlen($cleanTerm, 'UTF-8') === strlen($cleanTerm)) {
+                $escapedTerm = preg_replace('/&/', '\\&', preg_quote($cleanTerm));
+                $query->orderByRaw('FIELD(entities.name, ?) DESC', [$cleanTerm]);
+                if ($this->campaign->boosted()) {
+                    $query->orderByRaw('FIELD(ea.name, ?) DESC', [$cleanTerm]);
+                }
+                // Name word-start match, so when looking for 'Morley', entities named 'Momorley' appear at the end
+                $query->orderByRaw('entities.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
+                if ($this->campaign->boosted()) {
+                    $query->orderByRaw('ea.name RLIKE ? DESC', ["[[:<:]]{$escapedTerm}"]);
+                }
+                // Partial name match
+                $query->orderByRaw('entities.name LIKE ? DESC', ["%{$cleanTerm}%"]);
+                if ($this->campaign->boosted()) {
+                    $query->orderByRaw('ea.name LIKE ? DESC', ["%{$cleanTerm}%"]);
+                }
             }
         }
 
@@ -291,7 +294,7 @@ class SearchService
                 'image' => $img,
                 'name' => $parsedName,
                 'type' => Module::singular($model->type_id, $model->entityType()),
-                'model_type' => $model->type(),
+                'model_type' => $model->type(), // @phpstan-ignore-line
                 'url' => $model->url(),
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
