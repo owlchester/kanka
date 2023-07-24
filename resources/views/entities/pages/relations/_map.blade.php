@@ -34,3 +34,13 @@ $options = [
     </div>
     <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$entity, 'option' => $option]) }}"></div>
 </x-box>
+
+@section('scripts')
+    @parent
+    @vite('resources/js/relations.js')
+@endsection
+
+@section('styles')
+    @parent
+    @vite('resources/sass/relations.scss')
+@endsection

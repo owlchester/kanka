@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\SubscriptionSource;
+use App\Models\UserLog;
+use App\Services\Subscription\PaymentMethodService;
 use App\Services\SubscriptionService;
 use App\User;
 use Illuminate\Support\Arr;
@@ -102,8 +104,8 @@ class WebhookController extends CashierController
      */
     public function handleChargeFailed(array $payload)
     {
+        /** @var User $user */
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
-            /** @var User $user */
             /** @var SubscriptionService $subscription */
             $subscription = app()->make(SubscriptionService::class);
             $subscription
@@ -126,5 +128,37 @@ class WebhookController extends CashierController
         $previousCancel = Arr::get($data, 'previous_attributes.canceled_at', null);
 
         return !empty($cancel) && empty($previousCancel);
+    }
+
+    /**
+     * Handle payment method automatically updated by vendor.
+     */
+    protected function handlePaymentMethodAutomaticallyUpdated(array $payload)
+    {
+        if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            $user->updateDefaultPaymentMethodFromStripe();
+
+            /** @var PaymentMethodService $paymentService */
+            $paymentService = app()->make(PaymentMethodService::class);
+            $paymentService->updateExpiry($user, UserLog::TYPE_PAYMENT_AUTO);
+        }
+
+        return $this->successMethod();
+    }
+
+    /**
+     * Handle payment method updated by vendor.
+     */
+    protected function handlePaymentMethodUpdated(array $payload)
+    {
+        if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            $user->updateDefaultPaymentMethodFromStripe();
+
+            /** @var PaymentMethodService $paymentService */
+            $paymentService = app()->make(PaymentMethodService::class);
+            $paymentService->updateExpiry($user, UserLog::TYPE_PAYMENT_EDIT);
+        }
+
+        return $this->successMethod();
     }
 }

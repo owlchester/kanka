@@ -63,8 +63,8 @@ $layoutOptions = $layoutDefault + $layoutOptions
                     </div>
                 </div>
                 @if (isset($layoutHelper))
-                    <div class="layout-helper col-span-2">
-                        {{$layoutHelper}}
+                    <div class="field-layout-helper">
+                        <p class="help-block">{{ $layoutHelper }}</p>
                     </div>
                 @endif
                 <div class="field-entry col-span-2" id="field-entry" @if(isset($layoutHelper)) style="display: none" @endif>
