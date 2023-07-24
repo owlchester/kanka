@@ -1,5 +1,5 @@
 
-table.tiers {
+.tiers {
     table-layout: fixed;
 
     .tier {
@@ -139,8 +139,8 @@ body {
 
 /* top right*/
 .ribbon-top-right {
-    top: -9px;
-    right: -9px;
+    top: 0;
+    right: 0;
 }
 .ribbon-top-right span {
     left: -10px;
@@ -150,8 +150,8 @@ body {
 
 /* bottom left*/
 .ribbon-bottom-left {
-    bottom: -10px;
-    left: -10px;
+    bottom: 0;
+    left: 0;
 }
 .ribbon-bottom-left span {
     right: -25px;
