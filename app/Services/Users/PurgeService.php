@@ -189,6 +189,7 @@ class PurgeService
             })
             ->whereNull('f.id')
             ->whereNull('users.stripe_id')
+            ->limit($this->limit)
             ->chunk(1000, function ($users) {
                 if ($this->count >= $this->limit) {
                     return false;
@@ -245,6 +246,7 @@ class PurgeService
             ->where('f.created_at', '<=', $cutoff)
             ->whereNull('f2.id')
             ->whereNull('users.stripe_id')
+            ->limit($this->limit)
             ->chunk(1000, function ($users) {
                 if ($this->count >= $this->limit) {
                     return false;
@@ -296,6 +298,7 @@ class PurgeService
             })
             ->where('f.created_at', '<=', $cutoff)
             ->whereNull('users.stripe_id')
+            ->limit($this->limit)
             ->chunk(1000, function ($users) {
                 if ($this->count >= $this->limit) {
                     return false;

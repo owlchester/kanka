@@ -53,10 +53,10 @@ class CleanupUsers extends Command
         $count = $service->firstWarning();
         $this->info(Carbon::now() . ': ' . $count . ' inactive users notified (first warning)');
 
-        /*$count = $service->secondWarning();
-        $this->info(Carbon::now() . ': ' . $count . ' inactive users notified (second warning)');*/
+        $count = $service->secondWarning();
+        $this->info(Carbon::now() . ': ' . $count . ' inactive users notified (second warning)');
 
-        /*$count = $service->purge();
-        $this->info(Carbon::now() . ': ' . $count . ' inactive users purged');*/
+        $count = $service->purge();
+        $this->info(Carbon::now() . ': ' . $count . ' inactive users purged');
     }
 }
