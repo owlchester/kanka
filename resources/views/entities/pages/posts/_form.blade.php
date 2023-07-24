@@ -26,7 +26,7 @@ $options = $entity->postPositionOptions(!empty($model->position) ? $model->posit
 $last = array_key_last($options);
 
 $bragiName = $entity->isCharacter() ? $entity->name : null;
-$layouts = PostLayout::get();
+$layouts = PostLayout::where('entity_type_id', null)->orWhere('entity_type_id', $entity->type_id)->get();
 $layoutDefault = ['' => __('crud.fields.entry')];
 
 foreach($layouts as $layout) {

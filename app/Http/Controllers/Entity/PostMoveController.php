@@ -6,6 +6,7 @@ use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MovePostRequest;
 use App\Models\Entity;
+use App\Models\PostLayout;
 use App\Facades\CampaignLocalization;
 use App\Models\Post;
 use App\Services\Entity\PostService;
@@ -46,6 +47,12 @@ class PostMoveController extends Controller
         $newEntity = Entity::where(['id' => $request['entity']])->first();
         $this->authorize('update', $newEntity->child);
         try {
+            if ($post->layout_id) {
+                $layouts = PostLayout::where('entity_type_id', null)->orWhere('entity_type_id', $newEntity->type_id)->pluck('id')->toArray();
+                if (!in_array($post->layout_id, $layouts)) {
+                    throw new TranslatableException('Invalid post layout');
+                }
+            }
             $newPost = $this->service
                 ->post($post)
                 ->handle($request);

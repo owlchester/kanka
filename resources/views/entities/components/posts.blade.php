@@ -33,17 +33,19 @@ $postCount = 0;
 <div class="entity-posts entity-notes">
 @endif
     @foreach ($pinnedPosts as $post)
-        @if (isset($withEntry) && !$entryShown && $post->position >= 0)
-            @include('entities.components.entry')
-            @php $entryShown = true @endphp
+        @if(!$post->layout_id)
+            @if (isset($withEntry) && !$entryShown && $post->position >= 0)
+                @include('entities.components.entry')
+                @php $entryShown = true @endphp
+            @endif
+            @if ($post->layout && !$campaign->superboosted())
+                @continue
+            @endif
+            @includeWhen($post->layout && $campaign->superboosted(), 'entities.components._post_layouts')
+            @includeWhen(!$post->layout, 'entities.components._post')
+            @includeWhen($postCount > 0 && $postCount % 3 === 0, 'partials.ads.inline')
+            @php $postCount++; @endphp
         @endif
-        @if ($post->layout && !$campaign->superboosted())
-            @continue
-        @endif
-        @includeWhen($post->layout && $campaign->superboosted(), 'entities.components._post_layouts')
-        @includeWhen(!$post->layout, 'entities.components._post')
-        @includeWhen($postCount > 0 && $postCount % 3 === 0, 'partials.ads.inline')
-        @php $postCount++; @endphp
     @endforeach
 
 

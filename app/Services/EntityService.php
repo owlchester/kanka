@@ -463,6 +463,12 @@ class EntityService
             $entity->tags()->detach();
         }
 
+        //Delete non compatible posts.
+        EntityNote::where('entity_id', $entity->id)
+            ->leftJoin('post_layouts', 'entity_notes.layout_id', '=', 'post_layouts.id')
+            ->whereNot('post_layouts.entity_type_id', '=', null)
+            ->delete();
+
         $this->fixTree($new);
 
         // Finally, we can save. Should be all good.

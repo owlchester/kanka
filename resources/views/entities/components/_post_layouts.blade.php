@@ -81,7 +81,11 @@
                 @include('entities.pages.assets._buttons', ['assets' => $entity->assets, 'isPost' => true])
             @elseif ($post->layout?->code == 'connection_map')
                 @include('entities.pages.relations._buttons', ['option' => null, 'isPost' => true, 'mode' => 'map'])
-            @endif
+            @elseif ($post->layout?->code == 'character_orgs')
+                @include('characters.panels._buttons')
+            @elseif ($post->layout?->code == 'quest_elements')
+                @include('quests.elements._buttons')
+            @endif        
         </div>
     </div>
 
@@ -119,5 +123,31 @@
         @include('entities.pages.assets._asset', ['assets' => $entity->assets, 'isPost' => true])
     @elseif ($post->layout?->code == 'connection_map')
         @include('entities.pages.relations._map', ['option' => null, 'isPost' => true, 'mode' => 'map'])
+    @elseif ($post->layout?->code == 'character_orgs')
+        @include('characters.panels.organisations', ['character' => $post->entity->child])
+    @elseif ($post->layout?->code == 'quest_elements')
+        @php
+            $elements = $entity->child
+                ->elements()
+                ->with('entity')
+                ->paginate();
+        @endphp
+        @include('quests.elements._elements', ['elements' => $elements])
+    @elseif ($post->layout?->code == 'location_characters')
+        @php
+            $options = ['location' => $entity->child];
+
+            Datagrid::layout(\App\Renderers\Layouts\Location\Character::class)
+                ->route('locations.characters', $options);
+
+            $rows = $entity->child
+                ->allCharacters()
+                ->select(['id', 'image', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
+                ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+                ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
+                ->has('entity')
+                ->paginate();
+        @endphp
+        @include('locations.panels.characters')
     @endif
 </div>
