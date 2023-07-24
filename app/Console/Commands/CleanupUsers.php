@@ -13,7 +13,7 @@ class CleanupUsers extends Command
      *
      * @var string
      */
-    protected $signature = 'users:purge {dry=1} {limit=1}';
+    protected $signature = 'users:purge {dry=1} {limit=1000}';
 
     /**
      * The console command description.
