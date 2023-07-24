@@ -2,9 +2,7 @@
 
 namespace App\Jobs\Emails\Purge;
 
-use App\Mail\Purge\FirstWarning;
 use App\Mail\Purge\SecondWarning;
-use App\Models\CampaignRole;
 use App\Models\UserLog;
 use App\User;
 use Illuminate\Bus\Queueable;
@@ -17,7 +15,10 @@ use Illuminate\Support\Facades\Mail;
 
 class SecondWarningJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public $tries = 1;
 
