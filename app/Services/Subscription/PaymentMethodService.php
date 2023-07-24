@@ -2,7 +2,6 @@
 
 namespace App\Services\Subscription;
 
-use App\Models\UserLog;
 use App\User;
 use Carbon\Carbon;
 use Laravel\Cashier\PaymentMethod;
