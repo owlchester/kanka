@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -14,12 +15,11 @@ class SecondWarning extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * @var User
-     */
     public User $user;
 
     public mixed $campaigns;
+
+    public $mailer = 'ses';
 
     /**
      * Create a new message instance.

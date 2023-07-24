@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@kanka.io'),
+        'address' => env('MAIL_FROM_ADDRESS', 'me@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Kanka.io'),
     ],
 

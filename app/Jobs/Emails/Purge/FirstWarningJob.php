@@ -18,6 +18,8 @@ class FirstWarningJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $tries = 1;
+
     protected int $userId;
     /**
      * Create a new job instance.
@@ -41,8 +43,10 @@ class FirstWarningJob implements ShouldQueue
         $campaigns = $user->onlyAdminCampaigns();
         $user->log(UserLog::PURGE_WARNING_FIRST);
 
+        $target = app()->isProduction() ? $user->email : config('mail.from.address');
         try {
-            Mail::to($user->email)
+            Mail::mailer('ses')
+                ->to($target)
                 ->locale($user->locale ?? 'en-US')
                 ->send(
                     new FirstWarning($user, $campaigns)
