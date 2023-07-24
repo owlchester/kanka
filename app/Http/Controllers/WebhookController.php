@@ -23,7 +23,6 @@ class WebhookController extends CashierController
         // Call parent handler method
         $response = parent::handleCustomerSubscriptionUpdated($payload);
 
-        // User setup
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
             /** @var User $user */
             /** @var SubscriptionService $service */
@@ -104,8 +103,8 @@ class WebhookController extends CashierController
      */
     public function handleChargeFailed(array $payload)
     {
-        /** @var User $user */
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             /** @var SubscriptionService $subscription */
             $subscription = app()->make(SubscriptionService::class);
             $subscription
@@ -136,6 +135,7 @@ class WebhookController extends CashierController
     protected function handlePaymentMethodAutomaticallyUpdated(array $payload)
     {
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             $user->updateDefaultPaymentMethodFromStripe();
 
             /** @var PaymentMethodService $paymentService */
@@ -152,6 +152,7 @@ class WebhookController extends CashierController
     protected function handlePaymentMethodUpdated(array $payload)
     {
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var User $user */
             $user->updateDefaultPaymentMethodFromStripe();
 
             /** @var PaymentMethodService $paymentService */
