@@ -1,11 +1,7 @@
 <footer id="footer" class="main-footer pt-10 pb-8">
-    @ads('footer')
-    <div class="mb-5 hidden-xs hidden-sm">
-        <div class="vm-placement" data-id="{{ config('tracking.venatus.footer') }}"></div>
-    </div>
-    <div class="mb-5 visible-xs visible-sm">
-        <div class="vm-placement" data-id="{{ config('tracking.venatus.inline') }}"></div>
-    </div>
+    @ads('rich')
+    <div class="vm-placement" data-id="{{ config('tracking.venatus.inline') }}"></div>
+    <div class="vm-placement" data-id="{{ config('tracking.venatus.rich') }}" style="display:none"></div>
     @endads
 
     <div class="footer-links">
