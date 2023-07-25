@@ -128,9 +128,9 @@
     @elseif ($post->layout?->code == 'quest_elements')
         @php
             $elements = $entity->child
-                ->elements()
-                ->with('entity')
-                ->paginate();
+                    ->elements()
+                    ->with('entity')
+                    ->paginate();        
         @endphp
         @include('quests.elements._elements', ['elements' => $elements])
     @elseif ($post->layout?->code == 'location_characters')
@@ -142,11 +142,9 @@
 
             $rows = $entity->child
                 ->allCharacters()
-                ->select(['id', 'image', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
-                ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-                ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
-                ->has('entity')
-                ->paginate();
+                ->filteredCharacters()
+                ->paginate();;
+
         @endphp
         @include('locations.panels.characters')
     @endif

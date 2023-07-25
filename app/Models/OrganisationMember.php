@@ -7,7 +7,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class OrganisationMember
@@ -185,5 +185,20 @@ class OrganisationMember extends Model
     public function routeParams(array $options = []): array
     {
         return array_merge([$this->character_id, $this->id], $options);
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeRows(Builder $query): Builder
+    {
+        return $query
+            ->select('organisation_member.*')
+            ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
+            ->with(['character', 'character.entity', 'organisation', 'organisation.entity', 'organisation.location', 'organisation.location.entity'])
+            ->has('organisation')
+            ->has('organisation.entity')
+            ->leftJoin('organisations as c', 'c.id', 'organisation_member.organisation_id');
     }
 }

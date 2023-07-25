@@ -14,19 +14,24 @@ class PostLayoutTableSeeder extends Seeder
     public function run(): void
     {
         $layouts = ['abilities', 'assets', 'attributes', 'connection_map', 'inventory', 'character_orgs', 'quest_elements', 'location_characters'];
-        foreach ($layouts as $layout) {
+        foreach ($layouts as $code) {
             $entity_type = null;
-            if ($layout == 'character_orgs') {
+            if ($code == 'character_orgs') {
                 $entity_type = config('entities.ids.character');
-            } elseif ($layout == 'quest_elements') {
+            } elseif ($code == 'quest_elements') {
                 $entity_type = config('entities.ids.quest');
-            } elseif ($layout == 'location_characters') {
+            } elseif ($code == 'location_characters') {
                 $entity_type = config('entities.ids.location');
             }
-            DB::table('post_layouts')->insert([
-                'code' => $layout,
-                'entity_type_id' => $entity_type,
+            $layout = \App\Models\PostLayout::firstOrNew([
+                'code' => $code,
             ]);
+            if (!$layout->exists) {
+                $layout->fill([
+                    'code' => $code,
+                    'entity_type_id' => $entity_type,
+                ])->save();
+            }
         }
     }
 }

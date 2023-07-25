@@ -490,4 +490,17 @@ class Character extends MiscModel
     {
         return (bool) $this->is_dead;
     }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeFilteredCharacters(Builder $query): Builder
+    {
+        return $query
+            ->select(['id', 'image', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
+            ->has('entity');
+    }
 }

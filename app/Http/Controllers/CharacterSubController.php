@@ -18,12 +18,7 @@ class CharacterSubController extends CharacterController
 
         $this->rows = $character
             ->organisationMemberships()
-            ->select('organisation_member.*')
-            ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
-            ->with(['character', 'character.entity', 'organisation', 'organisation.entity', 'organisation.location', 'organisation.location.entity'])
-            ->has('organisation')
-            ->has('organisation.entity')
-            ->leftJoin('organisations as c', 'c.id', 'organisation_member.organisation_id')
+            ->rows()
             ->paginate();
 
         // Ajax Datagrid

@@ -466,7 +466,7 @@ class EntityService
         //Delete non compatible posts.
         EntityNote::where('entity_id', $entity->id)
             ->leftJoin('post_layouts', 'entity_notes.layout_id', '=', 'post_layouts.id')
-            ->whereNot('post_layouts.entity_type_id', '=', null)
+            ->whereNotNull('post_layouts.entity_type_id')
             ->delete();
 
         $this->fixTree($new);
