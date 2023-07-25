@@ -6,6 +6,17 @@
  */
 
 ?>
+@php
+    $country = 'CH';
+    if (isset($_SERVER["HTTP_CF_IPCOUNTRY"])) {
+        $country = mb_substr($_SERVER["HTTP_CF_IPCOUNTRY"], 0, 6);
+    }
+    $currency = 'currency-usd';
+    $euroCountries = ['AT', 'BE', 'HR', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PT', 'SK', 'SI', 'ES', 'EZ'];
+    if (in_array($country, $euroCountries)) {
+        $currency = 'currency-eur';
+    }
+@endphp
 @extends('layouts.app', [
     'title' => __('settings.subscription.manage_subscription'),
     'breadcrumbs' => false,
@@ -58,9 +69,15 @@
             <span class="slider subscription-period-slider"></span>
         </label>
         <span>{{ __('tiers.toggle.yearly') }}</span>
+
+        <select class="custom-select custom-select-lg mb-3" id="currency-selector">
+            <option selected>Currency</option>
+            <option value="eur">EUR</option>
+            <option value="usd">USD</option>
+        </select>
     </div>
 
-    <div class="rounded bg-box period-month overflow-x-auto" id="pricing-overview">
+    <div class="rounded bg-box period-month {{$currency}} overflow-x-auto" id="pricing-overview">
         <div class="grid grid-cols-4 tiers gap-2 items-center pl-2 pr-2 min-w-fit">
             <div class="pt-5 tier flex gap-2 items-center">
                 <img class="rounded-full" src="https://th.kanka.io/Xy0Dm1dMld_NUYYA2gJdTkKnqjE=/60x60/smart/src/app/tiers/kobold-750.png" alt="Kobold"/>
@@ -76,11 +93,15 @@
                 <div class="text grow">
                     OWLBEAR
                     <div class="price price-monthly">
-                        {{ $user->currencySymbol() }} 5<sup class="">00</sup>
+                        <span class="price-eur"> € </span> 
+                        <span class="price-usd"> US$ </span> 
+                        5<sup class="">00</sup>
                         <span class="">{{ __('tiers.periods.monthly') }}</span>
                     </div>
                     <div class="price price-yearly">
-                        {{ $user->currencySymbol() }} 55<sup>00</sup>
+                        <span class="price-eur"> € </span> 
+                        <span class="price-usd"> US$ </span>  
+                        55<sup>00</sup>
                         <span class="">{{ __('tiers.periods.yearly') }}</span>
                     </div>
                 </div>
@@ -93,11 +114,15 @@
                 <div class="text grow">
                     WYVERN
                     <div class="price price-monthly">
-                        {{ $user->currencySymbol() }} 10<sup>00</sup>
+                        <span class="price-eur"> € </span> 
+                        <span class="price-usd"> US$ </span> 
+                        10<sup>00</sup>
                         <span class="">{{ __('tiers.periods.monthly') }}</span>
                     </div>
                     <div class="price price-yearly">
-                        {{ $user->currencySymbol() }} 110<sup>00</sup>
+                        <span class="price-eur"> € </span> 
+                        <span class="price-usd"> US$ </span>
+                         110<sup>00</sup>
                         <span class="">{{ __('tiers.periods.yearly') }}</span>
                     </div>
                 </div>
@@ -110,11 +135,15 @@
                 <div class="grow text">
                     ELEMENTAL
                     <div class="price price-monthly">
-                        {{ $user->currencySymbol() }} 25<sup>00</sup>
+                        <span class="price-eur"> € </span> 
+                        <span class="price-usd"> US$ </span> 
+                        25<sup>00</sup>
                         <span class="">{{ __('tiers.periods.monthly') }}</span>
                     </div>
                     <div class="price price-yearly">
-                        {{ $user->currencySymbol() }} 275<sup>00</sup>
+                        <span class="price-eur"> € </span> 
+                        <span class="price-usd"> US$ </span> 
+                        275<sup>00</sup>
                         <span class="">{{ __('tiers.periods.yearly') }}</span>
                     </div>
                 </div>

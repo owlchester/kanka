@@ -198,4 +198,20 @@ function initPeriodToggle() {
             box.removeClass('period-year').addClass('period-month');
         }
     });
+    let selector = $('#currency-selector');
+
+    if (selector.length === 0) {
+        return false;
+    }
+    selector.change(function (e) {
+        e.preventDefault();
+        let selected = $(this).find(":selected").val();
+        let box = $('#pricing-overview');
+
+        if (selected == 'eur') {
+            box.removeClass('currency-usd').addClass('currency-eur');
+        } else if (selected == 'usd') {
+            box.removeClass('currency-eur').addClass('currency-usd');
+        }
+    });
 }

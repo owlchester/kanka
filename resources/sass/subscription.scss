@@ -82,6 +82,26 @@ body {
         }
     }
 
+    #pricing-overview.currency-usd {
+        .price-eur {
+            display: none;
+        }
+
+        .price-usd {
+            display: inline-flex;
+        }
+    }
+
+    #pricing-overview.currency-eur {
+        .price-eur {
+            display: inline-flex;
+        }
+
+        .price-usd {
+            display: none;
+        }
+    }
+
     .btn-block.price-yearly {
         margin-top: 0;
     }
