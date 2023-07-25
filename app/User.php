@@ -590,9 +590,10 @@ class User extends \Illuminate\Foundation\Auth\User
     public function onlyAdminCampaigns(): array
     {
         $campaigns = [];
+        // @phpstan-ignore-next-line
         $userCampaigns = $this->campaigns()->with(['roles', 'roles.users'])->get();
         foreach ($userCampaigns as $campaign) {
-            /** @var CampaignRole $adminRole */
+            /** @var CampaignRole|null $adminRole */
             $adminRole = $campaign->roles->where('is_admin', true)->first();
             if (!$adminRole) {
                 continue;
