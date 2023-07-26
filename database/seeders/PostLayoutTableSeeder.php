@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+
 //use App\Models\PostLayout;
-use Illuminate\Support\Facades\DB;
 
 class PostLayoutTableSeeder extends Seeder
 {

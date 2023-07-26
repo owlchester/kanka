@@ -6,7 +6,6 @@ use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MovePostRequest;
 use App\Models\Entity;
-use App\Models\PostLayout;
 use App\Facades\CampaignLocalization;
 use App\Models\Post;
 use App\Services\Entity\PostService;
