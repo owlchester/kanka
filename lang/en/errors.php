@@ -28,4 +28,5 @@ return [
         'title' => 'Maintenance',
     ],
     'footer'    => 'If you need further assistance, please contact us at :email or on the :discord',
+    'post_layout' => 'Invalid post layout',
 ];

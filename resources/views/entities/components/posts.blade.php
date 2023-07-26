@@ -33,6 +33,9 @@ $postCount = 0;
 <div class="entity-posts entity-notes">
 @endif
     @foreach ($pinnedPosts as $post)
+        @if ($post->layout_id && isset($printing) && $printing === true)
+            @continue
+        @endif
         @if (isset($withEntry) && !$entryShown && $post->position >= 0)
             @include('entities.components.entry')
             @php $entryShown = true @endphp
