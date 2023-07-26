@@ -2,14 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CountryService;
+
 class CookieConsentController extends Controller
 {
+    protected CountryService $service;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(CountryService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
-        $country = 'CH';
-        if (isset($_SERVER["HTTP_CF_IPCOUNTRY"])) {
-            $country = mb_substr($_SERVER["HTTP_CF_IPCOUNTRY"], 0, 6);
-        }
+        $country = $this->service->getCountry();
+
         return response()->json([
             'country' => $country
         ]);

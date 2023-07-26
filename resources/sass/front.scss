@@ -936,6 +936,26 @@ ul.pagination {
     }
 }
 
+.pricing.pricing-usd {
+  .price-eur {
+    display: none;
+  }
+
+.price-usd {
+    display: inline-flex;
+  }
+}
+
+.pricing.pricing-eur {
+  .price-usd {
+    display: none;
+  }
+
+  .price-eur {
+    display: inline-flex;
+  }
+}
+
 .table-sticky-td {
     thead tr th {
         position: sticky;
