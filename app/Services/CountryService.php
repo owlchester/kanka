@@ -25,7 +25,7 @@ class CountryService
         $country = $this->getCountry();
         $currency = 'usd';
         $euroCountries = ['AT', 'BE', 'HR', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PT', 'SK', 'SI', 'ES', 'EZ'];
-        
+
         if (in_array($country, $euroCountries)) {
             $currency = 'eur';
         }

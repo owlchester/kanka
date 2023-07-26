@@ -226,7 +226,7 @@ class SearchService
 
             // Exact name match comes first
             // Only do this when the input string is utf8
-            if (mb_strlen($cleanTerm, 'UTF-8') === strlen($cleanTerm)) {
+            if (mb_strlen($cleanTerm, 'UTF-8') === mb_strlen($cleanTerm)) {
                 $escapedTerm = preg_replace('/&/', '\\&', preg_quote($cleanTerm));
                 $query->orderByRaw('FIELD(entities.name, ?) DESC', [$cleanTerm]);
                 if ($this->campaign->boosted()) {
