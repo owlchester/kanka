@@ -6,15 +6,15 @@
 * @var \Illuminate\Database\Eloquent\Collection $pinnedNotes
 */
 ?>
-<div class="post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
+<div class="post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif mb-5" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
     <div class="flex gap-2 mb-2 items-center">
         <h3 class="grow m-0" >
             {{ $post->name  }}
             @if (app()->environment('local'))
-                <sup>({{ $post->position }})</sup>
+                <sup class="text-xs">({{ $post->position }})</sup>
             @endif
         </h3>
-        <div class="post-buttons flex items-center gap-2">
+        <div class="post-buttons flex items-center gap-2 flex-wrap justify-end">
             @if (auth()->check())
                 {!! $post->visibilityIcon('') !!}
                 <div class="dropdown">
@@ -62,30 +62,21 @@
                     </ul>
                 </div>
             @endif
-            @if($post->layout?->code == 'inventory')
-                @php
-                    $inventory = $entity
-                        ->inventories()
-                        ->with(['entity', 'item', 'item.entity'])
-                        ->get()
-                        ->sortBy(function ($model, $key) {
-                            return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
-                        });
-                @endphp
-                @include('entities.pages.inventory._buttons', ['inventory' => $inventory, 'isPost' => true, 'entity' => $entity, 'ajax' => null])
-            @elseif ($post->layout?->code == 'attributes')
-                @include('entities.pages.attributes._buttons', ['isPost' => true])
-            @elseif ($post->layout?->code == 'abilities')
-                @include('entities.pages.abilities._buttons', ['isPost' => true])
-            @elseif ($post->layout?->code == 'assets')
-                @include('entities.pages.assets._buttons', ['assets' => $entity->assets, 'isPost' => true])
-            @elseif ($post->layout?->code == 'connection_map')
-                @include('entities.pages.relations._buttons', ['option' => null, 'isPost' => true, 'mode' => 'map'])
-            @elseif ($post->layout?->code == 'character_orgs')
-                @include('characters.panels._buttons')
-            @elseif ($post->layout?->code == 'quest_elements')
-                @include('quests.elements._buttons')
-            @endif        
+{{--            @if($post->layout?->code == 'inventory')--}}
+{{--                @include('entities.pages.inventory._buttons', ['isPost' => true, 'entity' => $entity, 'ajax' => null])--}}
+{{--            @elseif ($post->layout?->code == 'attributes')--}}
+{{--                @include('entities.pages.attributes._buttons', ['isPost' => true])--}}
+{{--            @elseif ($post->layout?->code == 'abilities')--}}
+{{--                @include('entities.pages.abilities._buttons', ['isPost' => true])--}}
+{{--            @elseif ($post->layout?->code == 'assets')--}}
+{{--                @include('entities.pages.assets._buttons', ['assets' => $entity->assets, 'isPost' => true])--}}
+{{--            @elseif ($post->layout?->code == 'connection_map')--}}
+{{--                @include('entities.pages.relations._buttons', ['option' => null, 'isPost' => true, 'mode' => 'map'])--}}
+{{--            @elseif ($post->layout?->code == 'character_orgs')--}}
+{{--                @include('characters.panels._buttons')--}}
+{{--            @elseif ($post->layout?->code == 'quest_elements')--}}
+{{--                @include('quests.elements._buttons')--}}
+{{--            @endif--}}
         </div>
     </div>
 
@@ -130,7 +121,7 @@
             $elements = $entity->child
                     ->elements()
                     ->with('entity')
-                    ->paginate();        
+                    ->paginate();
         @endphp
         @include('quests.elements._elements', ['elements' => $elements])
     @elseif ($post->layout?->code == 'location_characters')
