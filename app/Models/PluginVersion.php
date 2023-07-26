@@ -529,6 +529,7 @@ class PluginVersion extends Model
             $ability = [
                 'name' => $abi->ability->name,
                 'slug' => $abi->ability->slug,
+                'type' => $abi->ability->type,
                 'entry' => $abi->ability->entry(),
                 'charges' => $abi->ability->charges,
                 'used_charges' => $abi->charges,
