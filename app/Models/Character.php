@@ -497,6 +497,7 @@ class Character extends MiscModel
      */
     public function scopeFilteredCharacters(Builder $query): Builder
     {
+        // @phpstan-ignore-next-line
         return $query
             ->select(['id', 'image', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])

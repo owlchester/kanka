@@ -6,7 +6,7 @@
         $rows = $character
             ->organisationMemberships()
             ->rows()
-            ->paginate();;
+            ->paginate();
     @endphp
 @endif
 <div class="box box-solid" id="character-organisations">
