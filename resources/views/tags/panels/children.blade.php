@@ -32,6 +32,11 @@ $existing = $model->allChildren()->count();
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </a>
 
+        <a href="{{ route('tags.transfer', $model->id) }}" class="btn2 btn-sm">
+            <x-icon class="fa-solid fa-arrow-right"/>
+            <span class="hidden-sm hidden-xs">{{ __('tags.transfer.transfer') }}</span>
+        </a>
+
         @if (request()->has('tag_id'))
             <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
