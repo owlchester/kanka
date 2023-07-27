@@ -7,7 +7,7 @@ use App\Models\Tag;
 class TagService
 {
     /**
-     * @return array
+     * @return void
      */
     public function transfer(Tag $tag, Tag $newTag): void
     {
