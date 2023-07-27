@@ -83,13 +83,12 @@ class CampaignImageApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Image $image
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Image $image)
+    public function destroy(Campaign $campaign, Image $image)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);

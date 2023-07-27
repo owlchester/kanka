@@ -74,13 +74,12 @@ class LocationApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Location $location
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Location $location)
+    public function destroy(Campaign $campaign, Location $location)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $location);

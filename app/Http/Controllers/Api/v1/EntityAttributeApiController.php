@@ -68,14 +68,13 @@ class EntityAttributeApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Entity $entity
      * @param Attribute $attribute
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Entity $entity, Attribute $attribute)
+    public function destroy(Campaign $campaign, Entity $entity, Attribute $attribute)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);

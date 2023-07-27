@@ -73,13 +73,12 @@ class CreatureApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Creature $creature
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Creature $creature)
+    public function destroy(Campaign $campaign, Creature $creature)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $creature);

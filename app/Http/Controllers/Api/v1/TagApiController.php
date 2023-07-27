@@ -72,13 +72,12 @@ class TagApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Tag $tag
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Tag $tag)
+    public function destroy(Campaign $campaign, Tag $tag)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $tag);

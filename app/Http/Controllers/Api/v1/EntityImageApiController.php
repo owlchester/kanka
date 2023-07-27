@@ -34,13 +34,12 @@ class EntityImageApiController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Entity $entity
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Campaign $campaign, Entity $entity)
+    public function destroy(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);

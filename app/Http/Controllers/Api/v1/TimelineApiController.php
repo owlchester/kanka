@@ -72,13 +72,12 @@ class TimelineApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Timeline $timeline
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Timeline $timeline)
+    public function destroy(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $timeline);

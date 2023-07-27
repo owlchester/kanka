@@ -73,13 +73,12 @@ class QuestApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Quest $quest
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Quest $quest)
+    public function destroy(Campaign $campaign, Quest $quest)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $quest);

@@ -74,13 +74,12 @@ class CampaignStyleApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param CampaignStyle $campaignStyle
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, CampaignStyle $campaignStyle)
+    public function destroy(Campaign $campaign, CampaignStyle $campaignStyle)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);

@@ -72,13 +72,12 @@ class MapApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Map $map
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Map $map)
+    public function destroy(Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $map);

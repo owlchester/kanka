@@ -83,13 +83,12 @@ class CalendarApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Calendar $calendar
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Campaign $campaign, Calendar $calendar)
+    public function destroy(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $calendar);

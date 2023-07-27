@@ -72,13 +72,12 @@ class AbilityApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Ability $ability
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Ability $ability)
+    public function destroy(Campaign $campaign, Ability $ability)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $ability);
