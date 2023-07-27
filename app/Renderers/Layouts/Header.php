@@ -4,6 +4,7 @@ namespace App\Renderers\Layouts;
 
 use App\Facades\Datagrid;
 use App\Renderers\Layouts\Columns\Standard;
+use Exception;
 use Illuminate\Support\Arr;
 
 class Header
@@ -45,7 +46,7 @@ class Header
             return view('layouts.datagrid._head')
                 ->with('head', $this)
                 ->render();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
             //return $e->getMessage();
         }
@@ -117,7 +118,7 @@ class Header
 
         try {
             return route($route, $options);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
             //return 'invalid';
         }

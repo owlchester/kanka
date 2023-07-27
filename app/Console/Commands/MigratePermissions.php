@@ -6,6 +6,7 @@ use App\Models\CampaignPermission;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class MigratePermissions extends Command
 {
@@ -86,7 +87,7 @@ class MigratePermissions extends Command
 
     /**
      * Migrate all permissions belonging to campaign roles
-     * @throws \Exception
+     * @throws Exception
      */
     protected function migrateRolePermissions(): void
     {
@@ -118,7 +119,7 @@ class MigratePermissions extends Command
                         $this->update($model->id, $campaignID, $action, $miscID, $entityType);
 
                         $this->count++;
-                    } catch (\Exception $e) {
+                    } catch (Exception $e) {
                         dump($model->id);
                         //throw $e;
                         $this->error('Error on #' . $model->id . '. Action(): ' . $model->action() . '. Key: ' . $model->key);
@@ -164,7 +165,7 @@ class MigratePermissions extends Command
                         $this->update($model->id, $campaignID, $action, $miscID, $entityType);
 
                         $this->count++;
-                    } catch (\Exception $e) {
+                    } catch (Exception $e) {
                         $this->error('Error on #' . $model->id . '. Action(): ' . $model->action() . '. Key: ' . $model->key);
                     }
                 }
@@ -223,13 +224,13 @@ class MigratePermissions extends Command
     /**
      * @param string $table
      * @return int
-     * @throws \Exception
+     * @throws Exception
      */
     protected function entityType(string $table): int
     {
         if (isset($this->types[$table])) {
             return $this->types[$table];
         }
-        throw new \Exception('Unknown type ' . $table);
+        throw new Exception('Unknown type ' . $table);
     }
 }

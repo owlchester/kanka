@@ -11,6 +11,7 @@ use App\Models\SubscriptionCancellation;
 use Carbon\Carbon;
 use App\Services\SubscriptionService;
 use App\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Laravel\Cashier\Exceptions\IncompletePayment;
@@ -153,7 +154,7 @@ class SubscriptionController extends Controller
                 // @phpstan-ignore-next-line
                 [$exception->payment->id, 'redirect' => route('settings.subscription.callback')]
             );
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Error? json
             return response()->json([
                 'error' => true,

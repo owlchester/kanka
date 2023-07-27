@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Services\RecoveryService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 
 class RecoveryController extends Controller
@@ -72,7 +73,7 @@ class RecoveryController extends Controller
             return redirect()
                 ->route('recovery')
                 ->with('success', trans_choice('campaigns/recovery.success', $count, ['count' => $count]));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()
                 ->route('recovery')
                 ->with('error', __('campaigns/recovery.error'));

@@ -9,6 +9,7 @@ use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Services\Entity\AbilityService;
 use App\Traits\GuestAuthTrait;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -259,7 +260,7 @@ class AbilityController extends Controller
 
             return redirect()->route('entities.entity_abilities.index', $entity)
                 ->with('success', trans_choice('entities/abilities.import.success', $count, ['count' => $count]));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('entities.entity_abilities.index', $entity)
                 ->with('error', __('entities/abilities.import.errors.' . $e->getMessage()));
         }

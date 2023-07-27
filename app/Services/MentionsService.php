@@ -13,6 +13,7 @@ use App\Models\Post;
 use App\Models\Quest;
 use App\Services\TOC\TocSlugify;
 use App\Traits\MentionTrait;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
@@ -849,7 +850,7 @@ class MentionsService
                 }
                 $attributes[$attribute] = $link->getAttribute($attribute);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::warning('The following html link triggered an issue', ['link' => $html]);
         }
 

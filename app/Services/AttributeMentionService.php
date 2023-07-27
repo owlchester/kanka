@@ -65,7 +65,7 @@ class AttributeMentionService
         try {
             $calculated = $this->entityAttributes()->get($attribute->name);
             return (string) $calculated['final'];
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             //throw $e;
             return (string) $attribute->$field;
         }
@@ -119,7 +119,7 @@ class AttributeMentionService
             try {
                 // @phpstan-ignore-next-line
                 $this->calculatedAttributes[$name] = $this->calculateAttribute($attribute);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $attribute['loop'] = true;
                 $attribute['final'] = $attribute['value'];
                 $this->calculatedAttributes[$name] = $attribute;

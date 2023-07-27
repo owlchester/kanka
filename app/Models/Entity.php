@@ -19,6 +19,7 @@ use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\TooltipTrait;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -208,7 +209,7 @@ class Entity extends Model
             }
             $routeOptions = array_merge([$this->entity_id], $options);
             return route($this->pluralType() . '.' . $action, $routeOptions);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return route('dashboard');
         }
     }

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\CampaignUser;
 use App\Models\UserLog;
 use App\User;
+use Exception;
 use Illuminate\Foundation\Application;
 use App\Facades\CampaignLocalization;
 
@@ -40,7 +41,7 @@ class IdentityManager
             auth()->user()->log(UserLog::TYPE_USER_SWITCH);
             session()->put('kanka.userLog', UserLog::TYPE_USER_SWITCH_LOGIN);
             $this->app['auth']->loginUsingId($campaignUser->user->id);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 
@@ -67,7 +68,7 @@ class IdentityManager
 
             $this->app['auth']->loginUsingId($impersonator->id);
             $this->clear();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 

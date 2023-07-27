@@ -9,6 +9,7 @@ use App\Jobs\Users\UnsubscribeUser;
 use App\Jobs\Users\UpdateEmail;
 use App\Services\ImageService;
 use App\User;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -34,7 +35,7 @@ class UserObserver
             try {
                 $profile['bio'] = mb_substr(strip_tags($profile['bio']), 0, 301);
                 $user->profile = $profile;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // An invalid profile, like emojis in text
                 $profile['bio'] = '';
                 $user->profile = $profile;
@@ -47,7 +48,7 @@ class UserObserver
             try {
                 $profile['billing'] = mb_substr(strip_tags($profile['billing']), 0, 1024);
                 $user->profile = $profile;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 //invalid billing info, like emojis in text
                 $profile['billing'] = '';
                 $user->profile = $profile;

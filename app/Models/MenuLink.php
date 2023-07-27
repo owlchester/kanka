@@ -7,6 +7,7 @@ use App\Facades\Dashboard;
 use App\Models\Concerns\Privatable;
 use App\Models\Concerns\Taggable;
 use App\Traits\CampaignTrait;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
@@ -265,7 +266,7 @@ class MenuLink extends MiscModel
         }
         try {
             return route($routeName, $filters);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return '/invalid';
         }
     }

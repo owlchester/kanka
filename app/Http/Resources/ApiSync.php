@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Services\Api\ApiService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 
@@ -32,7 +33,7 @@ trait ApiSync
                 $path = Str::replaceFirst('http://', 'https://', $path);
                 $resource->setPath($path);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Do nothing, this can happen for sub resources
             // being called (ex character::characterOrgsCollection)
             //throw $e;

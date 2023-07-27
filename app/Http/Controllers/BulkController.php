@@ -9,6 +9,7 @@ use App\Services\AttributeService;
 use App\Services\BulkService;
 use App\Services\EntityService;
 use App\Traits\BulkControllerTrait;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -80,7 +81,7 @@ class BulkController extends Controller
             return redirect()
                 ->back()
                 ->with('error', __('crud.bulk.errors.general', ['hint' => $e->getTranslatedMessage()]));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()
                 ->back()
                 ->with('error', __('crud.bulk.errors.general', ['hint' => $e->getMessage()]));

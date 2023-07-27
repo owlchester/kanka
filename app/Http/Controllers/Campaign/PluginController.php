@@ -10,6 +10,7 @@ use App\Models\CampaignPlugin;
 use App\Models\Plugin;
 use App\Services\Campaign\CampaignPluginService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 
 class PluginController extends Controller
@@ -128,7 +129,7 @@ class PluginController extends Controller
                     'success',
                     __('campaigns/plugins.destroy.success', ['plugin' => $plugin->name])
                 );
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('campaign_plugins.index')
                 ->with(
                     'error',
@@ -236,7 +237,7 @@ class PluginController extends Controller
                 ->with('plugin_entities_updated', $this->service->updated())
                 ->with('plugin_only_new', $request->get('only_new'))
             ;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('campaign_plugins.index')
                 ->withError(__('campaigns/plugins.import.errors.' . $e->getMessage(), ['plugin' => $plugin->name]));
         }

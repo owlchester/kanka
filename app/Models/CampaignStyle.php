@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CampaignTrait;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
@@ -115,7 +116,7 @@ class CampaignStyle extends Model
             }
             $theme[] = '}';
             return implode("\n", $theme);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return '/** Issue with the theme, please contact us */' . "\n\n";
         }
     }

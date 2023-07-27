@@ -8,6 +8,7 @@ use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
 use App\Models\Location;
 use App\Traits\UserAware;
+use Exception;
 
 class StarterService
 {
@@ -34,7 +35,7 @@ class StarterService
 
         try {
             $this->generateBoilerplate($campaign);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Don't block the user if the boilerplate crashes
         }
 

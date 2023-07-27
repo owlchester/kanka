@@ -233,7 +233,7 @@ class AbilityService
         }
         try {
             return $this->mapAttributes($ability->charges);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return null;
         }
     }
@@ -247,7 +247,7 @@ class AbilityService
         $entry = $ability->entry();
         try {
             return $this->mapAttributes($entry, false);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $entry;
         }
     }

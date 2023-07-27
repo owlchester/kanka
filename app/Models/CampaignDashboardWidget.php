@@ -6,6 +6,7 @@ use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Taggable;
 use App\Services\FilterService;
 use App\Traits\CampaignTrait;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
@@ -385,7 +386,7 @@ class CampaignDashboardWidget extends Model
             }
 
             return $filters;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             //Log::error('Widget error:' . $e->getMessage());
             return [];
         }

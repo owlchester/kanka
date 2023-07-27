@@ -72,6 +72,7 @@ use App\Observers\UserObserver;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\User;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -141,7 +142,7 @@ class AppServiceProvider extends ServiceProvider
 
                 $process->mustRun();
                 $output = $process->getOutput();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // Silence errors
             }
         }

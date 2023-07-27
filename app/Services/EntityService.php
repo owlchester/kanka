@@ -28,6 +28,7 @@ use App\Models\Timeline;
 use App\Models\TimelineEra;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -283,7 +284,7 @@ class EntityService
 
             DB::commit();
             $success = true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
         }
 
@@ -378,7 +379,7 @@ class EntityService
 
             DB::commit();
             $success = true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             //dd($e->getMessage());
         }

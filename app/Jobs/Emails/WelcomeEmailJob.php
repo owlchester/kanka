@@ -4,6 +4,7 @@ namespace App\Jobs\Emails;
 
 use App\Mail\WelcomeEmail;
 use App\User;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -66,7 +67,7 @@ class WelcomeEmailJob implements ShouldQueue
                 );
         } catch (\GuzzleHttp\Exception\ServerException $e) {
             // Silence
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Something went wrong with mailgun, or the email is invalid. Silence these errors
             // to avoid spamming sentry.
             throw $e;

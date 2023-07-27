@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Carbon\Carbon;
+use Exception;
 
 class UserDateService
 {
@@ -26,7 +27,7 @@ class UserDateService
         try {
             $original = new Carbon($date);
             return $original->isoFormat($this->format);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return (string) $date;
         }
     }

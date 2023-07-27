@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -408,7 +409,7 @@ class Calendar extends MiscModel
                 ($years[$year] ?? $year) . ' ' .
                 $this->suffix;
             return $return;
-        } catch (\Exception $e) { // @phpstan-ignore-line
+        } catch (Exception $e) { // @phpstan-ignore-line
             return $this->date;
         }
     }

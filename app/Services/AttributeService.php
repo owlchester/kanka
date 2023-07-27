@@ -9,6 +9,7 @@ use App\Models\CampaignPlugin;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Kanka\Dnd5eMonster\Template;
@@ -455,7 +456,7 @@ class AttributeService
 
                 return [$type, mt_rand($min, $max)];
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Something went wrong, let's assume the random value is badly formatted
             return [$type, $value];
         }

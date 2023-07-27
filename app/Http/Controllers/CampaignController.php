@@ -12,6 +12,7 @@ use App\Services\CampaignService;
 use App\Services\EntityService;
 use App\Services\StarterService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
@@ -85,7 +86,7 @@ class CampaignController extends Controller
             }*/
 
             DB::commit();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             throw $e;
         }
@@ -202,7 +203,7 @@ class CampaignController extends Controller
         try {
             $this->campaignService->leave($campaign);
             return redirect()->route('home');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('campaign')->withErrors($e->getMessage());
         }
     }

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Services\EntityService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Console\Command;
 
 class GenerateTrees extends Command
@@ -69,7 +70,7 @@ class GenerateTrees extends Command
                 $parentTreeField = $new->getParentIdName();
                 $this->info("Fixing {$model}");
                 $class::fixTree();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->warn('Skipping ' . $model);
             }
         }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use PragmaRX\Google2FALaravel\Support\Authenticator;
 
 class Google2FAAuthentication extends Authenticator
@@ -20,7 +21,7 @@ class Google2FAAuthentication extends Authenticator
         // Get User secret column
         try {
             $secret = $this->getUser()->passwordSecurity->{$this->config('otp_secret_column')};
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // If User has not set up Google2FA
             $secret = $this->getUser()->passwordSecurity;
         }

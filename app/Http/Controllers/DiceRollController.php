@@ -7,6 +7,7 @@ use App\Datagrids\Filters\DiceRollFilter;
 use App\Http\Requests\StoreDiceRoll;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 
 class DiceRollController extends CrudController
@@ -119,7 +120,7 @@ class DiceRollController extends CrudController
             ]);
             return redirect()->route('dice_rolls.show', $diceRoll)
                 ->with('success', trans('dice_rolls.results.success'));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('dice_rolls.show', $diceRoll)
                 ->with('error', trans('dice_rolls.results.error'));
         }
