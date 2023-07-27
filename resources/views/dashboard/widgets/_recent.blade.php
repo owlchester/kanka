@@ -12,12 +12,7 @@ if (!isset($offset)) {
 }
 $entityType = $widget->conf('entity');
 $entities = $widget->entities($offset);
-if (($widget->conf('singular'))) {
-    $entityString = !empty($entityType) ? (!$widget->conf('singular') ? $entityType : $moduleService->singular($entityType, 'entities.' . Str::plural($entityType))) : null;
-
-} else {
-    $entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType : $moduleService->plural($entityType, 'entities.' . Str::plural($entityType))) : null;
-}
+$entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType : $moduleService->plural($entityType, 'entities.' . Str::plural($entityType))) : null;
 ?>
 <div class="panel panel-default {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading">
