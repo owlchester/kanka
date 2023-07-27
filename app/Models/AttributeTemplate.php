@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
+use App\Services\Attributes\RandomService;
+use App\Services\Attributes\TemplateService;
 use App\Services\AttributeService;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -170,8 +172,8 @@ class AttributeTemplate extends MiscModel
             }
         }
 
-        /** @var AttributeService $attributeService */
-        $attributeService = app()->make(AttributeService::class);
+        /** @var RandomService $randomService */
+        $randomService = app()->make(RandomService::class);
 
         /** @var Attribute $attribute */
         foreach ($this->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
@@ -181,7 +183,7 @@ class AttributeTemplate extends MiscModel
             }
 
 
-            list($type, $value) = $attributeService->randomAttribute($attribute->type_id, $attribute->value);
+            list($type, $value) = $randomService->randomAttribute($attribute->type_id, $attribute->value);
 
             Attribute::create([
                 'entity_id' => $entity->id,

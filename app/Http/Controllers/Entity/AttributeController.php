@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateEntityAttribute;
 use App\Models\Attribute;
 use App\Models\Entity;
+use App\Services\Attributes\TemplateService;
 use App\Services\AttributeService;
 use App\Traits\GuestAuthTrait;
 use Stevebauman\Purify\Facades\Purify;
@@ -19,10 +20,12 @@ class AttributeController extends Controller
     use GuestAuthTrait;
 
     protected AttributeService $service;
+    protected TemplateService $templateService;
 
-    public function __construct(AttributeService $attributeService)
+    public function __construct(AttributeService $attributeService, TemplateService $templateService)
     {
         $this->service = $attributeService;
+        $this->templateService = $templateService;
     }
 
     public function index(Entity $entity)
@@ -59,7 +62,7 @@ class AttributeController extends Controller
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if ($layout) {
             $template = $this->service->communityTemplate($layout->value);
-            $marketplaceTemplate = $this->service->marketplaceTemplate($layout->value, $campaign);
+            $marketplaceTemplate = $this->templateService->marketplaceTemplate($layout->value, $campaign);
         }
 
 
@@ -105,7 +108,7 @@ class AttributeController extends Controller
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if ($layout) {
             $template = $this->service->communityTemplate($layout->value);
-            $marketplaceTemplate = $this->service->marketplaceTemplate($layout->value, $campaign);
+            $marketplaceTemplate = $this->templateService->marketplaceTemplate($layout->value, $campaign);
         }
 
         return view('entities.pages.attributes.dashboard', compact(

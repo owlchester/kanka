@@ -38,7 +38,7 @@ class OpenAiService
     public function generate(): array
     {
         $token = config('openai.secret');
-        $open_ai = new OpenAi($token);
+        $openAi = new OpenAi($token);
 
         //Creating prompt
         $prompt = $this->preparePrompt();
@@ -50,7 +50,7 @@ class OpenAiService
         //1 token is almost 0.75 word
         $maxTokens = config('openai.tokens');
 
-        $complete = $open_ai->chat([
+        $complete = $openAi->chat([
             'model' => $engine,
             'messages' => $prompt,
             'temperature' => 0.9,

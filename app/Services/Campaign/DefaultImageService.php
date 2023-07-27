@@ -13,8 +13,7 @@ class DefaultImageService
 {
     use CampaignAware;
 
-    /** @var string */
-    protected $type;
+    protected string $type;
 
     /**
      * @param string $type
@@ -57,7 +56,7 @@ class DefaultImageService
         $image->is_default = true;
         $image->save();
 
-        $path = $source
+        $source
             ->storePubliclyAs(
                 $image->folder,
                 $image->file

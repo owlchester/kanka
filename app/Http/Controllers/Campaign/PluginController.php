@@ -9,21 +9,23 @@ use App\Http\Controllers\Controller;
 use App\Models\CampaignPlugin;
 use App\Models\Plugin;
 use App\Services\Campaign\CampaignPluginService;
+use App\Services\Plugins\ImporterService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
 class PluginController extends Controller
 {
-    /** @var CampaignPluginService */
-    protected $service;
+    protected CampaignPluginService $service;
+    protected ImporterService $importerService;
 
-    public function __construct(CampaignPluginService $service)
+    public function __construct(CampaignPluginService $service, ImporterService $importerService)
     {
         $this->middleware('auth', ['except' => ['css', 'index']]);
         $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
+        $this->importerService = $importerService;
     }
 
     /**
@@ -222,7 +224,7 @@ class PluginController extends Controller
         $this->authorize('recover', $campaign);
 
         try {
-            $count = $this->service
+            $count = $this->importerService
                 ->plugin($plugin)
                 ->campaign($campaign)
                 ->options($request->only(['force_private', 'only_new']))

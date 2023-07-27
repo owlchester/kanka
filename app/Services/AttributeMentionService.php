@@ -151,7 +151,8 @@ class AttributeMentionService
         $final = preg_replace_callback('`\{(.*?)\}`i', function ($matches) use ($data, $from) {
             $text = $matches[1];
             //dump('checking for a reference called ' . $text);
-            if ($ref = $this->calculatedAttributes->get($text)) {
+            $ref = $this->calculatedAttributes->get($text);
+            if ($ref) {
                 //dump('has an attribute called it!');
                 if (!empty($ref['final'])) {
                     //dump('has a final version too');
@@ -221,7 +222,8 @@ class AttributeMentionService
         if ($this->calculatedAttributes === null || $this->calculatedAttributes->isEmpty()) {
             return false;
         }
-        if ($ref = $this->calculatedAttributes->get($name)) {
+        $ref = $this->calculatedAttributes->get($name);
+        if ($ref) {
             return $ref['loop'];
         }
         return false;

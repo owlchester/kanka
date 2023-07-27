@@ -126,24 +126,6 @@ class PurgeService
                     if ($this->count >= $this->limit) {
                         return false;
                     }
-                    /*if ($user->campaigns->count() > 1) {
-                        // We'll want to notify this user, or handle them in another loop
-                        continue;
-                    }*/
-                    $members = 0;
-                    $entities = 0;
-                    /*foreach ($user->campaigns as $campaign) {
-                        $members = $campaign->users->count();
-                        //$entities = $campaign->entities()->count();
-                    }
-                    if ($members > 1) {
-                        // More than one member in their only campaign? Take care of them in other loop
-                        continue;
-                    }*/
-                    /*if ($entities > 6) {
-                        // A few entities, let's warn them
-                        continue;
-                    }*/
                     $this->count++;
                     if (!$this->dry) {
                         DeleteUser::dispatch($user);
