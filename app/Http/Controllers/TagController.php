@@ -199,20 +199,7 @@ class TagController extends CrudController
     {
         $this->authorize('update', $tag);
 
-        $models = Tag::where('campaign_id', $tag->campaign_id)->get();
-
-        $tags[''] = __('tags.transfer.placeholder');
-
-        foreach ($models as $model) {
-            if ($tag->id != $model->id) {
-                $tags[$model->id] = $model->name;
-            }
-        }
-
-        return view('tags.transfer', compact(
-            'tag',
-            'tags'
-        ));
+        return view('tags.transfer', compact('tag'));
     }
 
     /**
