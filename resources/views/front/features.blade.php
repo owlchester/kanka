@@ -190,8 +190,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/adam-morley-hd.jpg" target="_blank">
-                        <img src="https://th.kanka.io/Q0iYLjHHPHmWYpLijpIYmMkRfIw=/540x337/smart/app/features/adam-morley-hd.jpg
-" alt="entity overview" class="img-fluid shadow mb-2 rounded" loading="lazy" />
+                        <img src="{{ Img::crop(540, 337)->new()->url('app/features/adam-morley-hd.jpg') }}" alt="entity overview" class="img-fluid shadow mb-2 rounded" loading="lazy" />
                     </a>
                 </div>
             </div>
@@ -200,7 +199,7 @@
                 <div class="col-12 col-md-6">
                     <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/sarah-inventory-hd.jpg" target="_blank">
 
-                        <img src="https://th.kanka.io/bUCzdGe7auCu_T681p9AR3tKXeU=/540x225/smart/app/features/sarah-inventory-hd.jpg" alt="entity inventory" class="img-fluid shadow mb-2" loading="lazy" />
+                        <img src="{{ Img::crop(540, 225)->new()->url('app/features/sarah-inventory-hd.jpg') }}" alt="entity inventory" class="img-fluid shadow mb-2" loading="lazy" />
                     </a>
                 </div>
                 <div class="col-12 col-md-6">user
@@ -224,7 +223,7 @@
                     </p>
 
                     <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/ludwig-abilities-hd.jpg" target="_blank">
-                        <img src="https://th.kanka.io/Mi6vXfFXQWmF3fjncJNoFJZj-3w=/540x304/smart/app/features/ludwig-abilities-hd.jpg"
+                        <img src="{{ Img::crop(540, 304)->new()->url('app/features/ludwig-abilities-hd.jpg') }}"
                              alt="entity abilities" class="img-fluid shadow mb-2 rounded" loading="lazy" />
                     </a>
                 </div>
@@ -239,7 +238,7 @@
                     </p>
 
                     <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/attribute-holder-attributes-hd.jpg" target="_blank">
-                        <img src="https://th.kanka.io/ICXqAo6StGUQw0b5E9UQ7u9oy8Q=/540x350/smart/app/features/attribute-holder-attributes-hd.jpg" alt="entity attributes" class="img-fluid shadow mb-2" loading="lazy" />
+                        <img src="{{ Img::crop(540, 350)->new()->url('app/features/attribute-holder-attributes-hd.jpg') }}" alt="entity attributes" class="img-fluid shadow mb-2" loading="lazy" />
                     </a>
 
                 </div>
@@ -296,10 +295,10 @@
                 </div>
                 <div class="col-12 col-lg-8 col-md-6">
                     <div class="mb-2">
-                            <img src="https://th.kanka.io/MKZ5skDidv4OYiSIWAwjo17ZOZo=/540x360/smart/app/features/entity-relations-table.jpg" alt="entity relations table" class="img-fluid shadow rounded" loading="lazy" />
+                            <img src="{{ Img::crop(540, 360)->new()->url('app/features/entity-relations-table.jpg') }}" alt="entity relations table" class="img-fluid shadow rounded" loading="lazy" />
                         </div>
                         <div class="mb-2">
-                            <img src="https://th.kanka.io/Onde8nPMi5CaZm9zwuWssExfTMU=/540x350/smart/app/features/entity-relations-explorer.jpg" alt="entity relations explorer" class="img-fluid shadow rounded" loading="lazy" />
+                            <img src="{{ Img::crop(540, 350)->new()->url('app/features/entity-relations-explorer.jpg') }}" alt="entity relations explorer" class="img-fluid shadow rounded" loading="lazy" />
                         </div>
                     </div>
             </div>
@@ -353,8 +352,7 @@
                     </a>
 
                     <a href="https://kanka-user-assets.s3.amazonaws.com/app/features/map-hd.jpg" target="_blank">
-                    <img src="https://th.kanka.io/GgqCM0AhJ1Sb3tkuGRufDTpLatk=/540x225/smart/app/features/map-hd.jpg
-" alt="kanka map" class="img-fluid shadow mb-2 mt-2 rounded" loading="lazy" />
+                    <img src="{{ Img::crop(540, 225)->new()->url('app/features/map-hd.jpg') }}" alt="kanka map" class="img-fluid shadow mb-2 mt-2 rounded" loading="lazy" />
                     </a>
 
                 </div>
@@ -376,7 +374,7 @@
                     </p>
                 </div>
                 <div class="col-12 col-lg-6 mb-2">
-                    <img src="https://th.kanka.io/sKpUZISVttyRbdiGbQ27Yd3OFTE=/540x423/smart/app/features/editor.jpg" alt="editor" class="img-fluid shadow rounded" loading="lazy" />
+                    <img src="{{ Img::crop(540, 423)->new()->url('app/features/editor.jpg') }}" alt="editor" class="img-fluid shadow rounded" loading="lazy" />
                 </div>
             </div>
         </div>

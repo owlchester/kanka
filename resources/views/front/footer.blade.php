@@ -3,9 +3,9 @@
         <div class="row footer-links h-100 text-left">
             <div class="col-12 col-sm text-truncate text-center mb-2">
                 <a href="{{ route('home') }}" class="">
-                    <img class="logo-blue" src="https://th.kanka.io/wj726mGfu-qAwU_QpAbMYIctM7w=/48x48/smart/app/logos/logo.png" alt="Kanka logo blue" title="Kanka" width="48" height="48" />
+                    <img class="logo-blue" src="https://th.kanka.io/gR8y1nxfEhBC1nVYdQpr2pUW3lY=/48x48/smart/src/app/logos/logo.png" alt="Kanka logo blue" title="Kanka" width="48" height="48" />
 
-                    <img class="logo-white d-none" src="https://th.kanka.io/tjrF04vnk_lUb2Dzu4QgOPAcku8=/48x48/smart/app/logos/logo-small-white.png" title="Kanka logo" alt="Kanka logo" width="48" height="48">
+                    <img class="logo-white d-none" src="https://th.kanka.io/547r5DZYF2fmdWy9sZztqAnYJN0=/48x48/smart/src/app/logos/logo-small-white.png" title="Kanka logo" alt="Kanka logo" width="48" height="48">
                 </a>
             </div>
 

@@ -73,7 +73,7 @@
 
     <div class="header" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/emails/email-banner.jpg); background-position: top center; background-size: cover; width: 100%; height: 220px; text-align: center;">
         <a href="{{ route('home', ['utm_source' => ($utmSource ?? 'notification'), 'utm_medium' => 'email', 'utm_campaign' => ($utmCampaign ?? 'notification')]) }}">
-            <img src="https://th.kanka.io/m3utcW5cKf_UGTB5dcos-H1Hfig=/226x205/smart/app/logos/kanka-logo-large.png" alt="Kanka logo" title="Kanka logo" style="margin: 50px;" width="120px" height="120px">
+            <img src="https://th.kanka.io/cHKXasGfCKw8sQTzvc2ujNmni_A=/120x120/smart/src/app/logos/kanka-logo-large.png" alt="Kanka logo" title="Kanka logo" style="margin: 50px;" width="120px" height="120px">
         </a>
     </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -33,9 +34,19 @@ class PostLayout extends Model
     }
 
     /**
+     * @param Builder $query
+     * @param int $type
+     * @return Builder
+     */
+    public function scopeEntity(Builder $query, int $type)
+    {
+        return $query->whereNull('entity_type_id')->orWhere('entity_type_id', $type);
+    }
+
+    /**
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         if (in_array($this->code, ['abilities', 'attributes', 'assets', 'inventory'])) {
             return __('crud.tabs.' . $this->code);

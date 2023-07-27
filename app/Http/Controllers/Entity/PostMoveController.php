@@ -46,6 +46,12 @@ class PostMoveController extends Controller
         $newEntity = Entity::where(['id' => $request['entity']])->first();
         $this->authorize('update', $newEntity->child);
         try {
+            //Check if the post has a layout and if said layout is compatible with the new entity
+            if ($post->layout_id) {
+                if ($post->layout->entity_type_id !== null && $post->layout->entity_type_id  != $newEntity->type_id) {
+                    throw new TranslatableException(__('errors.post_layout'));
+                }
+            }
             $newPost = $this->service
                 ->post($post)
                 ->handle($request);

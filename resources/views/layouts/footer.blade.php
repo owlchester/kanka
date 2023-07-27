@@ -7,9 +7,9 @@
     <div class="footer-links">
         <div class="grid gap-2 grid-cols-2 md:grid-cols-5 mx-auto max-w-5xl">
             <div class="col-span-2 md:col-auto text-center">
-                <a href="{{ route('home') }}" class="logo mb-5">
-                    <img class="visible dark:hidden" src="https://th.kanka.io/wj726mGfu-qAwU_QpAbMYIctM7w=/48x48/smart/app/logos/logo.png" alt="Kanka logo blue" title="Kanka" width="48" height="48" />
-                    <img class="hidden dark:visible" src="https://th.kanka.io/tjrF04vnk_lUb2Dzu4QgOPAcku8=/48x48/smart/app/logos/logo-small-white.png" alt="Kanka logo white" title="Kanka" width="48" height="48" />
+                <a href="{{ route('home') }}" class="logo">
+                    <img class="logo-blue" src="https://th.kanka.io/gR8y1nxfEhBC1nVYdQpr2pUW3lY=/48x48/smart/src/app/logos/logo.png" alt="Kanka logo blue" title="Kanka" width="48" height="48" />
+                    <img class="logo-white" src="https://th.kanka.io/547r5DZYF2fmdWy9sZztqAnYJN0=/48x48/smart/src/app/logos/logo-small-white.png" alt="Kanka logo white" title="Kanka" width="48" height="48" />
                 </a>
             </div>
             <div class="cell text-center truncate mb-1">

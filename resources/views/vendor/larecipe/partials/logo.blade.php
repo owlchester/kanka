@@ -1,1 +1,1 @@
-<img src="https://th.kanka.io/8UnWmV2CPAQfP4P4fdjtcDkCikk=/40x40/smart/app/logos/icon.png" />
+<img src="https://th.kanka.io/cIWvFrRM7i3FXtFfa3vq_0d-pjI=/40x40/smart/src/app/logos/icon.png" />

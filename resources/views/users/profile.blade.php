@@ -58,33 +58,33 @@
                     <div class="col-md-3 mt-md-5 text-center profile-pledge">
                     @if ($user->isElemental())
                         <a href="{{ route('front.hall-of-fame') }}">
-                            <img src="https://th.kanka.io/kfgMHLY-ERcikwpS7SophmZXcf8=/150x150/smart/app/tiers/elemental-750.png"
+                            <img src="https://th.kanka.io/auu1F0KxCXOalmPB9I_FY4E3Ag8=/150x150/smart/src/app/tiers/elemental.png"
                                  class="profile-subscriber" title="Elemental" />
                         </a>
                         <div class="text-uppercase">Elemental</div>
                     @elseif ($user->isWyvern())
                         <a href="{{ route('front.hall-of-fame') }}">
-                            <img src="https://th.kanka.io/_c01U5jGJIvux12I537pghQe6Ho=/150x150/smart/app/tiers/wyvern-750.png"
+                            <img src="https://th.kanka.io/ua5Q1aTly0Z0vx7GCN_qPQ5i650=/150x150/smart/src/app/tiers/wyvern.png"
                                 class="profile-subscriber mb-2" title="Wyvern" />
                         </a>
                         <div class="text-uppercase">Wyvern</div>
 
                     @elseif ($user->isOwlbear())
                         <a href="{{ route('front.hall-of-fame') }}">
-                        <img src="https://th.kanka.io/4yF2itbe8ULk4Rv4Kkj2gDkWoVo=/150x150/smart/app/tiers/owlbear-750.png"
+                        <img src="https://th.kanka.io/gC3TXbW4neasqwZzH9lcTixg7Lo=/150x150/smart/src/app/tiers/owlbear.png"
                                  class="profile-subscriber mb-2" title="Owlbear" />
                         </a>
                         <div class="text-uppercase">Owlbear</div>
                     @elseif ($user->hasRole('admin'))
                         <a href="{{ route('front.about') }}">
-                            <img src="https://th.kanka.io/dlU8nZhj1Hlu1KbxlsqsTWu4o3E=/150x150/smart/app/logos/icon.png"
+                            <img src="https://th.kanka.io/BJcn1N6rdxAoCPVtYyGHB7s5VO0=/150x150/smart/src/app/logos/icon.png"
                                  class="profile-subscriber no-transform mb-2" title="Kanka Team" />
                         </a>
                         <div class="text-uppercase lead">
                             Kanka Team
                         </div>
                     @else
-                        <img src="https://th.kanka.io/hD1oKiv8v_BoFLBj_GDPsd6ENaw=/150x150/smart/app/tiers/kobold-750.png"
+                        <img src="https://th.kanka.io/m4UFnMHPEFuUvSOdk1uJ65MkSTs=/150x150/smart/src/app/tiers/kobold.png"
                                  class="profile-subscriber" title="Kobold" />
                         <div class="text-uppercase">Kobold</div>
                     @endif
