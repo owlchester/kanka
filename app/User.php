@@ -582,4 +582,39 @@ class User extends \Illuminate\Foundation\Auth\User
             ->whereDate('created_at', '>=', Carbon::now()->subHour()->toDateString())
             ->count() >= 2;
     }
+
+    /**
+     * List of campaigns the user is the only admin of. This is used for the automatic purge warning emails
+     * @return array
+     */
+    public function onlyAdminCampaigns(): array
+    {
+        $campaigns = [];
+        // @phpstan-ignore-next-line
+        $userCampaigns = $this->campaigns()->with(['roles', 'roles.users'])->get();
+        foreach ($userCampaigns as $campaign) {
+            /** @var CampaignRole|null $adminRole */
+            $adminRole = $campaign->roles->where('is_admin', true)->first();
+            if (!$adminRole) {
+                continue;
+            }
+
+            // If the user isn't in the admin
+            $isAdmin = false;
+            foreach ($adminRole->users as $member) {
+                if ($member->user_id === $this->id) {
+                    $isAdmin = true;
+                }
+            }
+
+            if (!$isAdmin || $adminRole->users->count() > 1) {
+                continue;
+            }
+
+            // The user is the only admin
+            $campaigns[] = $campaign;
+        }
+
+        return $campaigns;
+    }
 }

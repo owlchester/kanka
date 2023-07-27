@@ -2,8 +2,12 @@
 
 namespace App\Services\Users;
 
+use App\Jobs\Emails\Purge\FirstWarningJob;
+use App\Jobs\Emails\Purge\SecondWarningJob;
 use App\Jobs\Users\DeleteUser;
+use App\Models\UserFlag;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class PurgeService
@@ -153,5 +157,165 @@ class PurgeService
     protected function reset(): void
     {
         $this->count = 0;
+    }
+
+    /**
+     * Inactive users for > 18 months, warn them of their upcoming deletion
+     * @return int
+     */
+    public function firstWarning(): int
+    {
+        if ($this->count >= $this->limit) {
+            return 0;
+        }
+
+        $cutoff = config('purge.users.first.inactivity');
+        $this->date = Carbon::now()->subMonths($cutoff);
+        User::distinct()
+            ->select('users.id')
+            ->leftJoin('user_flags as f', function ($sub) {
+                return $sub
+                    ->on('f.user_id', 'users.id')
+                    ->where('f.flag', UserFlag::FLAG_INACTIVE_1);
+            })
+            ->where(function ($sub) {
+                $sub->whereNull('last_login_at')
+                    ->orWhereDate('last_login_at', '<=', $this->date);
+            })
+            ->whereDate('users.created_at', '<=', $this->date)
+            ->where(function ($sub) {
+                $sub->where('users.pledge', '')
+                    ->orWhereNull('users.pledge');
+            })
+            ->whereNull('f.id')
+            ->whereNull('users.stripe_id')
+            ->limit($this->limit)
+            ->chunk(1000, function ($users) {
+                if ($this->count >= $this->limit) {
+                    return false;
+                }
+                foreach ($users as $user) {
+                    if ($this->count >= $this->limit) {
+                        return false;
+                    }
+
+                    // Add a flag for this user
+                    if (!$this->dry) {
+                        $flag = new UserFlag();
+                        $flag->user_id = $user->id;
+                        $flag->flag = UserFlag::FLAG_INACTIVE_1;
+                        $flag->save();
+
+                        FirstWarningJob::dispatch($user->id);
+                    }
+
+                    $this->count ++;
+                }
+            });
+        return $this->count;
+    }
+
+
+    public function secondWarning(): int
+    {
+        $this->reset();
+        if ($this->count >= $this->limit) {
+            return 0;
+        }
+
+        // First warning send 23 days ago
+        $cutoff = Carbon::now()
+            ->subDays(config('purge.users.first.limit'))
+            ->addDays(config('purge.users.second.limit'));
+        User::distinct()
+            ->select('users.id')
+            ->leftJoin('user_flags as f', function ($sub) {
+                return $sub
+                    ->on('f.user_id', 'users.id')
+                    ->where('f.flag', UserFlag::FLAG_INACTIVE_1);
+            })
+            ->leftJoin('user_flags as f2', function ($sub) {
+                return $sub
+                    ->on('f2.user_id', 'users.id')
+                    ->where('f2.flag', UserFlag::FLAG_INACTIVE_2);
+            })
+            ->where(function ($sub) {
+                $sub->where('users.pledge', '')
+                    ->orWhereNull('users.pledge');
+            })
+            ->where('f.created_at', '<=', $cutoff)
+            ->whereNull('f2.id')
+            ->whereNull('users.stripe_id')
+            ->limit($this->limit)
+            ->chunk(1000, function ($users) {
+                if ($this->count >= $this->limit) {
+                    return false;
+                }
+                foreach ($users as $user) {
+                    if ($this->count >= $this->limit) {
+                        return false;
+                    }
+
+                    // Add a flag for this user
+                    if (!$this->dry) {
+                        $flag = new UserFlag();
+                        $flag->user_id = $user->id;
+                        $flag->flag = UserFlag::FLAG_INACTIVE_2;
+                        $flag->save();
+
+                        SecondWarningJob::dispatch($user->id);
+                    }
+
+                    $this->count ++;
+                }
+            });
+        return $this->count;
+    }
+
+    /**
+     * Permanently delete users who haven't logged in and contributed in a long time
+     */
+    public function purge(): int
+    {
+        $this->reset();
+        if ($this->count >= $this->limit) {
+            return 0;
+        }
+
+        // Warning 2 sent 7 days ago
+        $cutoff = Carbon::now()
+            ->subDays(config('purge.users.second.limit'));
+        User::distinct()
+            ->select('users.id')
+            ->leftJoin('user_flags as f', function ($sub) {
+                return $sub
+                    ->on('f.user_id', 'users.id')
+                    ->where('f.flag', UserFlag::FLAG_INACTIVE_2);
+            })
+            ->where(function ($sub) {
+                $sub->where('users.pledge', '')
+                    ->orWhereNull('users.pledge');
+            })
+            ->where('f.created_at', '<=', $cutoff)
+            ->whereNull('users.stripe_id')
+            ->limit($this->limit)
+            ->chunk(1000, function ($users) {
+                if ($this->count >= $this->limit) {
+                    return false;
+                }
+                foreach ($users as $user) {
+                    if ($this->count >= $this->limit) {
+                        return false;
+                    }
+
+                    // Add a flag for this user
+                    if (!$this->dry) {
+                        DeleteUser::dispatch($user);
+                    }
+
+                    $this->count ++;
+                }
+            });
+        return $this->count;
     }
 }

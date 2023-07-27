@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Jobs\Emails;
+namespace App\Jobs\Emails\Purge;
 
-use App\Mail\WelcomeEmail;
+use App\Mail\Purge\SecondWarning;
+use App\Models\UserLog;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,57 +13,45 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
-class WelcomeEmailJob implements ShouldQueue
+class SecondWarningJob implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var int
-     */
-    public $userId;
+    public $tries = 1;
 
+    protected int $userId;
     /**
-     * @var string
+     * Create a new job instance.
      */
-    public $language;
-
-    /**
-     *
-     */
-    public $tries = 3;
-
-    /**
-     * WelcomeEmailJob constructor.
-     * @param User $user
-     * @param string $language
-     */
-    public function __construct(User $user, string $language = 'en')
+    public function __construct(int $userId)
     {
-        $this->userId = $user->id;
-        $this->language = $language;
+        $this->userId = $userId;
     }
 
     /**
-     * Handle the job
+     * Execute the job.
      */
-    public function handle()
+    public function handle(): void
     {
         $user = User::find($this->userId);
-        // In a dev environment, it's possible that the queue wasn't running and
-        // the user was deleted before we even get to send the welcome email.
         if (empty($user)) {
             return;
         }
-        Log::info('WelcomeEmailJob', ['user' => $this->userId]);
 
+        Log::info('PurgeFirstWarning', ['user' => $this->userId]);
+        $campaigns = $user->onlyAdminCampaigns();
+        $user->log(UserLog::PURGE_WARNING_SECOND);
+
+        $target = app()->isProduction() ? $user->email : config('mail.from.address');
         try {
-            Mail::to($user->email)
-                ->locale($this->language)
+            Mail::mailer('ses')
+                ->to($target)
+                ->locale($user->locale ?? 'en-US')
                 ->send(
-                    new WelcomeEmail($user)
+                    new SecondWarning($user, $campaigns)
                 );
         } catch (\GuzzleHttp\Exception\ServerException $e) {
             // Silence

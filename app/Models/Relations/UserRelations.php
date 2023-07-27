@@ -15,6 +15,7 @@ use App\Models\Plugin;
 use App\Models\Referral;
 use App\Models\Role;
 use App\Models\UserApp;
+use App\Models\UserFlag;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
@@ -34,6 +35,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property Collection|Role[] $roles
  * @property Collection|CampaignPermission[] $permissions
  * @property PasswordSecurity|null $passwordSecurity
+ * @property Collection|UserFlag[] $flags
  */
 trait UserRelations
 {
@@ -174,5 +176,14 @@ trait UserRelations
     public function cancellations()
     {
         return $this->hasMany('App\Models\SubscriptionCancellation', 'user_id', 'id');
+    }
+
+    /**
+     * List of the user's flags
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function flags()
+    {
+        return $this->hasMany(UserFlag::class, 'user_id', 'id');
     }
 }
