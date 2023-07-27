@@ -34,14 +34,14 @@
         "url": "{{ config('app.url') }}",
         "applicationCategory": "Game, Note taking",
         "operatingSystem": "all",
-        "image": ["https://th.kanka.io/iI1Yjb2dNHa8Adi6ux9V_tUxliw=/1920x1024/smart/app/front/preview-background.png"],
-        "screenshot": "https://th.kanka.io/TU3eoj2PFq2YiedcXQRHLwII0Hk=/600x320/smart/app/front/preview-background.png",
+        "image": ["https://th.kanka.io/o-ZrT3jpQVW_Nd_1g5eBAGg7wpU=/1920x1024/smart/src/app/front/preview-background.png"],
+        "screenshot": "https://th.kanka.io/T35QId2XP7bbGxy0c237Qr9woSs=/600x320/smart/src/app/front/preview-background.png",
         "creator": {
           "@type": "Organization",
           "@id": "#organization",
           "url": "{{ config('app.url') }}",
           "name": "{{ config('app.name') }}",
-          "logo": { "@type": "ImageObject", "url": "https://th.kanka.io/m3utcW5cKf_UGTB5dcos-H1Hfig=/226x205/smart/app/logos/kanka-logo-large.png", "width": "226", "height": "205" }
+          "logo": { "@type": "ImageObject", "url": "https://th.kanka.io/z4Y8iu74nWLlIPFWld-QY5jHQWM=/226x205/smart/src/app/logos/kanka-logo-large.png", "width": "226", "height": "205" }
         }
       }
     </script>@endif

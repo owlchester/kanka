@@ -226,7 +226,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                                         <li>
                                             <a href="{{ route('entities.relations.create', ['entity' => $model->entity, 'mode' => 'table']) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', ['entity' => $model->entity, 'mode' => 'table']) }}">
                                                 <x-icon class="fa-solid fa-people-arrows"></x-icon>
-                                                {{ __('entities/relations.fields.connection') }}
+                                                {{ __('entities/relations.create.new_title') }}
                                             </a>
                                         </li>
                                     @endcan

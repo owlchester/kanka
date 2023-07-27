@@ -64,7 +64,7 @@ class NavigationService
         } else {
             $data['subscription'] = [
                 'tier' => Pledge::KOBOLD,
-                'image' => 'https://th.kanka.io/_3G-Pkg0Q9V3RaAyEWqmjDbjPlA=/64x64/smart/app/tiers/kobold-750.png',
+                'image' => 'https://th.kanka.io/A6VJUbyTGHLiGhEat30RzpLGBsY=/64x64/smart/src/app/tiers/kobold.png',
                 //'call_to_action' => __('Subscriptions start at USD 5.00 per month')
                 'call_to_action' => __('settings/boosters.available', [
                     'amount' => $this->user->availableBoosts(),
