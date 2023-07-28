@@ -44,7 +44,7 @@ class StoreCalendar extends FormRequest
             'epoch_name' => 'nullable|array',
             'season_name' => 'nullable|array',
             'template_id' => 'nullable',
-            'format'      => ['nullable', new CalendarFormat, 'string'],
+            'format'      => ['nullable', new CalendarFormat(), 'string'],
             'moon_offset' => [
                 '*' => new CalendarMoonOffset()
             ]
