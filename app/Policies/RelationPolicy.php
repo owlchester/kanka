@@ -16,11 +16,9 @@ class RelationPolicy
     /**
      * Determine whether the user can view the relation.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\Relation  $relation
      * @return bool
      */
-    public function view(User $user, Relation $relation)
+    public function view()
     {
         return true;
     }
@@ -28,7 +26,7 @@ class RelationPolicy
     /**
      * Determine whether the user can create items.
      *
-     * @param  \App\User  $user
+     * @param  User  $user
      * @return bool
      */
     public function create(User $user)
@@ -40,8 +38,8 @@ class RelationPolicy
     /**
      * Determine whether the user can update the relation.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\Relation  $relation
+     * @param  User  $user
+     * @param  Relation  $relation
      * @return bool
      */
     public function update(User $user, Relation $relation)
@@ -55,8 +53,8 @@ class RelationPolicy
     /**
      * Determine whether the user can delete the relation.
      *
-     * @param  \App\User  $user
-     * @param  \App\Models\Relation|null  $relation
+     * @param  User  $user
+     * @param  Relation|null  $relation
      * @return bool
      */
     public function delete(User $user, Relation|null $relation)

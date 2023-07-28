@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Facades\UserCache;
 use App\Traits\AdminPolicyTrait;
 use App\User;
 use App\Models\CampaignRole;
@@ -9,72 +10,36 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignRolePolicy
 {
-    use AdminPolicyTrait;
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view the campaignRole.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\CampaignRole  $campaignRole
-     * @return mixed
-     */
-    public function view(User $user, CampaignRole $campaignRole)
+    public function view(User $user): bool
     {
-        return $this->isAdmin($user);
+        return UserCache::user($user)->admin();
     }
 
-    /**
-     * Determine whether the user can create campaignRoles.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
     public function create(User $user)
     {
-        return $this->isAdmin($user);
+        return UserCache::user($user)->admin();
     }
 
-    /**
-     * Determine whether the user can update the campaignRole.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\CampaignRole  $campaignRole
-     * @return mixed
-     */
     public function update(User $user, CampaignRole $campaignRole)
     {
-        return $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
+        return $user->campaign->id == $campaignRole->campaign->id && UserCache::user($user)->admin();
     }
 
-    /**
-     * Determine whether the user can delete the campaignRole.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\CampaignRole  $campaignRole
-     * @return mixed
-     */
     public function delete(User $user, CampaignRole $campaignRole)
     {
         return !$campaignRole->is_admin && !$campaignRole->is_public
-            && $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
+            && $user->campaign->id == $campaignRole->campaign->id && UserCache::user($user)->admin();
     }
 
-    /**
-     * @param User $user
-     * @param CampaignRole $campaignRole
-     * @return bool
-     */
     public function user(User $user, CampaignRole $campaignRole)
     {
-        return $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
+        return $user->campaign->id == $campaignRole->campaign->id && UserCache::user($user)->admin();
     }
 
     /**
      * Only allow removing users from the admin role is there is more than one user in it
-     * @param User $user
-     * @param CampaignRole $campaignRole
-     * @return bool
      */
     public function removeUser(User $user, CampaignRole $campaignRole)
     {
@@ -86,14 +51,9 @@ class CampaignRolePolicy
         return (bool) (!$campaignRole->isAdmin());
     }
 
-
-    /**
-     * @param User $user
-     * @param CampaignRole $campaignRole
-     * @return bool
-     */
     public function permission(User $user, CampaignRole $campaignRole)
     {
-        return !$campaignRole->is_admin && $user->campaign->id == $campaignRole->campaign->id && $this->isAdmin($user);
+        return !$campaignRole->isAdmin() && $user->campaign->id == $campaignRole->campaign->id
+            && UserCache::user($user)->admin();
     }
 }

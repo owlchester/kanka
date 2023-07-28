@@ -13,32 +13,34 @@ class PluginPolicy
     use AdminPolicyTrait;
     use HandlesAuthorization;
 
-    public function delete(User $user, Plugin $plugin)
+    public function delete(User $user): bool
     {
         return UserCache::user($user)->admin();
     }
 
-    public function update(User $user, Plugin $plugin)
+    public function update(User $user, Plugin $plugin): bool
     {
         return UserCache::user($user)->admin() && $plugin->hasUpdate();
     }
-    public function changelog(User $user, Plugin $plugin)
+
+    public function changelog(User $user, Plugin $plugin): bool
     {
         return UserCache::user($user)->admin() && !$plugin->hasUpdate();
     }
 
-    public function enable(User $user, Plugin $plugin)
+    public function enable(User $user, Plugin $plugin): bool
     {
         // @phpstan-ignore-next-line
         return UserCache::user($user)->admin() && $plugin->isTheme() && !$plugin->pivot->is_active;
     }
-    public function disable(User $user, Plugin $plugin)
+
+    public function disable(User $user, Plugin $plugin): bool
     {
         // @phpstan-ignore-next-line
         return UserCache::user($user)->admin() && $plugin->isTheme() && $plugin->pivot->is_active;
     }
 
-    public function import(User $user, Plugin $plugin)
+    public function import(User $user, Plugin $plugin): bool
     {
         return UserCache::user($user)->admin() && $plugin->isContentPack();
     }
