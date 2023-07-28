@@ -2,6 +2,7 @@
 
 namespace App\Services\Plugins;
 
+use App\Models\CampaignPlugin;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
@@ -586,5 +587,15 @@ class ImporterService
             $post->visibility = Arr::get($data, 'visibility');
             $post->save();
         }
+    }
+
+    /**
+     * @return CampaignPlugin|null
+     */
+    protected function campaignPlugin()
+    {
+        return CampaignPlugin::where('campaign_id', $this->campaign->id)
+            ->where('plugin_id', $this->plugin->id)
+            ->first();
     }
 }

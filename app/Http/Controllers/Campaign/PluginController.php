@@ -235,8 +235,8 @@ class PluginController extends Controller
                     'success',
                     trans_choice('campaigns/plugins.import.success', $count, ['plugin' => $plugin->name, 'count' => $count])
                 )
-                ->with('plugin_entities_created', $this->service->created())
-                ->with('plugin_entities_updated', $this->service->updated())
+                ->with('plugin_entities_created', $this->importerService->created())
+                ->with('plugin_entities_updated', $this->importerService->updated())
                 ->with('plugin_only_new', $request->get('only_new'))
             ;
         } catch (Exception $e) {

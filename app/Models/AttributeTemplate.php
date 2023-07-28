@@ -205,7 +205,7 @@ class AttributeTemplate extends MiscModel
                 if (in_array($attribute->name, $existing)) {
                     continue;
                 }
-                list($type, $value) = $attributeService->randomAttribute($attribute->type_id, $attribute->value);
+                list($type, $value) = $randomService->randomAttribute($attribute->type_id, $attribute->value);
 
                 Attribute::create([
                     'entity_id' => $entity->id,

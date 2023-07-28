@@ -15,8 +15,15 @@ class TemplateService
 {
     use EntityAware;
 
+    protected RandomService $randomService;
+
     protected array $loadedTemplates = [];
     protected array $loadedPlugins = [];
+
+    public function __construct(RandomService $randomService)
+    {
+        $this->randomService = $randomService;
+    }
 
     public function apply(mixed $templateId)
     {
@@ -166,5 +173,32 @@ class TemplateService
             //->leftJoin('plugins as p', 'p.id', 'plugin_id')
             ->where('p.uuid', $pluginUuid)
             ->first();
+    }
+
+    /**
+     * Map an attribute type from its string representation to an ID (as saved in the DB)
+     * @param string|null $type the string type of attribute to be converted to an int
+     * @return int
+     */
+    protected function mapAttributeTypeToID(string $type = null): int
+    {
+        if (empty($type) || $type === 'attribute') {
+            return Attribute::TYPE_STANDARD_ID;
+        }
+
+        $mapping = [
+            Attribute::TYPE_TEXT => Attribute::TYPE_TEXT_ID,
+            Attribute::TYPE_CHECKBOX => Attribute::TYPE_CHECKBOX_ID,
+            Attribute::TYPE_SECTION => Attribute::TYPE_SECTION_ID,
+            'block' => Attribute::TYPE_SECTION_ID,
+            Attribute::TYPE_RANDOM => Attribute::TYPE_RANDOM_ID,
+            Attribute::TYPE_NUMBER => Attribute::TYPE_NUMBER_ID,
+            Attribute::TYPE_LIST => Attribute::TYPE_LIST_ID
+        ];
+
+        if (isset($mapping[$type])) {
+            return $mapping[$type];
+        }
+        dd('missing mapping for ' . $type);
     }
 }
