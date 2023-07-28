@@ -283,9 +283,9 @@ class EntityMappingService
 
     /**
      * @param MiscModel|EntityNote|TimelineElement|QuestElement|Campaign $model
-     * @param int $target
+     * @param string $target
      */
-    protected function createNewImageMention($model, int $target)
+    protected function createNewImageMention($model, string $target)
     {
         $mention = new ImageMention();
 

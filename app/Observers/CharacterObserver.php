@@ -13,12 +13,8 @@ use Illuminate\Support\Collection;
 
 class CharacterObserver extends MiscObserver
 {
-    public function crudSaved(MiscModel|Character $model)
+    public function crudSaved(Character $character)
     {
-        parent::crudSaved($model);
-
-        /** @var Character $model */
-        $character = $model;
         $this->saveTraits($character, 'personality')
             ->saveTraits($character, 'appearance')
             ->saveOrganisations($character)
@@ -45,7 +41,7 @@ class CharacterObserver extends MiscObserver
             $existing[$pers->id] = $pers;
         }
 
-        $traitCount = $traitOrder = 0;
+        $traitOrder = 0;
         $traitNames = request()->post($trait . '_name', []);
         $traitEntry = request()->post($trait . '_entry', []);
 
@@ -66,7 +62,6 @@ class CharacterObserver extends MiscObserver
             $model->entry = $traitEntry[$id];
             $model->default_order = $traitOrder;
             $model->save();
-            $traitCount++;
             $traitOrder++;
         }
 
@@ -174,12 +169,9 @@ class CharacterObserver extends MiscObserver
             return $this;
         }
 
-        $existing = [];
-        $unique = [];
-        $recreate = [];
-        /** @var Race $race */
+        $existing = $unique = $recreate = [];
         foreach ($character->races as $race) {
-            // If it already exists, we have an issue
+            // Duplicate in the database, remove and re-create later only once
             if (!empty($existing[$race->id])) {
                 $recreate[$race->id] = $race->id;
                 $character->races()->detach($race->id);

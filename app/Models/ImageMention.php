@@ -10,7 +10,7 @@ use App\Models\Concerns\SortableTrait;
  * Class ImageMention
  * @package App\Models
  *
- * @property integer $image_id
+ * @property string $image_id
  * @property integer $post_id
  * @property integer $entity_id
  * @property Entity $entity

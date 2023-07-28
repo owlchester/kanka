@@ -101,13 +101,13 @@ class CampaignObserver
             'is_admin' => true,
         ]);
 
-        $publicRole = CampaignRole::create([
+        CampaignRole::create([
             'campaign_id' => $campaign->id,
             'name' => __('campaigns.members.roles.public'),
             'is_public' => true,
         ]);
 
-        $playerRole = CampaignRole::create([
+        CampaignRole::create([
             'campaign_id' => $campaign->id,
             'name' => __('campaigns.members.roles.player'),
         ]);

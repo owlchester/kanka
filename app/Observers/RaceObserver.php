@@ -5,74 +5,21 @@ namespace App\Observers;
 use App\Models\MiscModel;
 use App\Models\Race;
 use App\Models\Location;
+use App\Observers\Concerns\HasLocations;
 
 class RaceObserver extends MiscObserver
 {
-    /**
-     * @param MiscModel|Race $model
-     */
-    public function crudSaved(MiscModel $model)
-    {
-        parent::crudSaved($model);
-        /** @var Race $race */
-        $race = $model;
-        $this->saveLocations($race);
-    }
+    use HasLocations;
 
     /**
-     * @param Race $race
+     * @param MiscModel $model
      */
-    protected function saveLocations(Race $race): self
+    public function crudSaved(Race $race)
     {
         if (!request()->has('save_locations') && !request()->has('locations')) {
             return $this;
         }
-
-        $existing = [];
-        $unique = [];
-        $recreate = [];
-        foreach ($race->locations as $location) {
-            // If it already exists, we have an issue
-            if (!empty($existing[$location->id])) {
-                $recreate[$location->id] = $location->id;
-                $race->locations()->detach($location->id);
-                continue;
-            }
-            $existing[$location->id] = $location->id;
-            $unique[$location->id] = $location->id;
-        }
-
-        if (!empty($recreate)) {
-            $race->locations()->attach($recreate);
-        }
-
-        $locations = request()->get('locations', []);
-        $newLocations = [];
-        foreach ($locations as $id) {
-            // Existing race, do nothing
-            if (!empty($existing[$id])) {
-                unset($existing[$id]);
-                continue;
-            }
-            // If already managed, again, ignore
-            if (!empty($unique[$id])) {
-                continue;
-            }
-
-            $location = Location::find($id);
-            if (empty($location)) {
-                continue;
-            }
-            $newLocations[] = $location->id;
-        }
-        $race->locations()->attach($newLocations);
-
-        // Detach the remaining
-        if (!empty($existing)) {
-            $race->locations()->detach($existing);
-        }
-
-        return $this;
+        $this->saveLocations($race);
     }
 
     /**
