@@ -200,14 +200,14 @@ class EntityEvent extends MiscModel
                 if ($this->calendar->format) {
                     $customFormat = '';
 
-                    foreach (str_split($this->calendar->format) as $char) {
+                    foreach (mb_str_split($this->calendar->format) as $char) {
                         if ($char == 'd') {
                             $customFormat .= $this->day;
                         } elseif ($char == 'm') {
                             $customFormat .= $this->month;
                         } elseif ($char == 'M') {
                             $customFormat .= (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month);
-                        } elseif ($char == 'y') { 
+                        } elseif ($char == 'y') {
                             $customFormat .= ($years[$this->year] ?? $this->year);
                         } elseif ($char == 's') {
                             $customFormat .= $this->calendar->suffix;
