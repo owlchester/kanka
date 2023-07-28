@@ -4,10 +4,12 @@ namespace App\Services\Caches;
 
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
-use App\Models\CampaignRole;
-use App\Models\CampaignSetting;
-use App\Models\CampaignStyle;
-use Illuminate\Support\Collection;
+use App\Services\Caches\Traits\Campaign\DashboardCache;
+use App\Services\Caches\Traits\Campaign\MemberCache;
+use App\Services\Caches\Traits\Campaign\RoleCache;
+use App\Services\Caches\Traits\Campaign\SettingCache;
+use App\Services\Caches\Traits\Campaign\StyleCache;
+use App\Services\Caches\Traits\Campaign\ThemeCache;
 use Illuminate\Support\Str;
 
 /**
@@ -16,62 +18,12 @@ use Illuminate\Support\Str;
  */
 class CampaignCacheService extends BaseCache
 {
-    /**
-     * Members of a campaign
-     * @return Collection|null
-     */
-    public function members(): Collection|null
-    {
-        $key = $this->membersKey();
-        if ($this->has($key)) {
-            return $this->get($key);
-        }
-
-        $data = $this->campaign->members;
-
-        $this->forever($key, $data);
-        return $data;
-    }
-
-    /**
-     * Clear the members cache
-     * @return $this
-     */
-    public function clearMembers(): self
-    {
-        $this->forget(
-            $this->membersKey()
-        );
-        return $this;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function roles(): Collection
-    {
-        $key = $this->rolesKey();
-        if ($this->has($key)) {
-            return $this->get($key);
-        }
-
-        $data = $this->campaign->roles;
-
-        $this->forever($key, $data);
-        return $data;
-    }
-
-    /**
-     * Clear the campaign roles cache
-     * @return $this
-     */
-    public function clearRoles(): self
-    {
-        $this->forget(
-            $this->rolesKey()
-        );
-        return $this;
-    }
+    use DashboardCache;
+    use MemberCache;
+    use RoleCache;
+    use SettingCache;
+    use StyleCache;
+    use ThemeCache;
 
     /**
      * Count the number of entities in a campaign, skipping the permission engine.
@@ -125,32 +77,7 @@ class CampaignCacheService extends BaseCache
         return 'campaign_' . $this->campaign->id . '_admins';
     }
 
-    /**
-     * Count the number of followers of a campaign. Cache if for 1 hours
-     * @return CampaignSetting
-     */
-    public function settings(): CampaignSetting
-    {
-        $key = $this->settingsKey();
-        if ($this->has($key)) {
-            return $this->get($key);
-        }
 
-        $data = $this->campaign->setting;
-        $this->forever($key, $data);
-        return $data;
-    }
-
-    /**
-     * @return $this
-     */
-    public function clearSettings(): self
-    {
-        $this->forget(
-            $this->settingsKey()
-        );
-        return $this;
-    }
 
     /**
      * Default Entity Images for a campaign
@@ -207,16 +134,6 @@ class CampaignCacheService extends BaseCache
         return $data;
     }
 
-    /**
-     * @return $this
-     */
-    public function clearTheme(): self
-    {
-        $this->forget(
-            $this->themeKey()
-        );
-        return $this;
-    }
 
     /**
      * List of theme plugins the campaign has activated
@@ -260,104 +177,6 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
-     * Build campaign styles
-     * @return string
-     */
-    public function styles(): string
-    {
-        $key = $this->stylesKey();
-        if ($this->has($key)) {
-            return (string) $this->get($key);
-        }
-
-        $css = "/**\n * Campaign Styles for campaign #" . $this->campaign->id . "\n */\n\n";
-        foreach ($this->campaign->styles()->enabled()->defaultOrder()->get() as $style) {
-            /** @var CampaignStyle $style */
-            $css .= "/** Style " . $style->name . "#" . $style->id . " */\n" . $style->content() . "\n";
-        }
-
-        $this->forever($key, $css);
-        return (string) $css;
-    }
-
-    /**
-     * @return int
-     */
-    public function stylesTimestamp(): int
-    {
-        $key = $this->stylesTsKey();
-        if ($this->has($key)) {
-            return (int) $this->get($key);
-        }
-
-        $ts = time();
-        $this->forever($key, $ts);
-        return (int) $ts;
-    }
-
-    /**
-     * @return $this
-     */
-    public function clearStyles(): self
-    {
-        $this->forget(
-            $this->stylesKey()
-        );
-        $this->forget(
-            $this->stylesTsKey()
-        );
-        return $this;
-    }
-
-    /**
-     * Build a list of dashboards setup for the campaign
-     * @return array[]
-     */
-    public function dashboards(): array
-    {
-        $cacheKey = $this->dashboardsKey();
-        if ($this->has($cacheKey)) {
-            return (array) $this->get($cacheKey);
-        }
-
-        $available = [
-            'admin' => [],
-            'public' => [],
-        ];
-
-        /** @var CampaignRole[] $roles */
-        $roles = $this->campaign->roles()->with(['dashboardRoles', 'dashboardRoles.dashboard'])->get();
-        foreach ($roles as $role) {
-            $dashboards = $role->dashboardRoles;
-            if ($dashboards->isEmpty()) {
-                continue;
-            }
-
-            $key = 'role_' . $role->id;
-            if ($role->is_admin) {
-                $key = 'admin';
-            } elseif ($role->is_public) {
-                $key = 'public';
-            }
-            $available[$key] = $dashboards;
-        }
-
-        $this->forever($cacheKey, $available);
-        return (array) $available;
-    }
-
-    /**
-     * @return $this
-     */
-    public function clearDashboards(): self
-    {
-        $this->forget(
-            $this->dashboardsKey()
-        );
-        return $this;
-    }
-
-    /**
      * Build a list of dashboards setup for the campaign
      * @return array[]
      */
@@ -390,33 +209,6 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
-     * Campaign members cache key
-     * @return string
-     */
-    protected function membersKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_members';
-    }
-
-    /**
-     * Campaign roles cache key
-     * @return string
-     */
-    protected function rolesKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_roles';
-    }
-
-    /**
-     * Campaign settings cache key
-     * @return string
-     */
-    protected function settingsKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_settings';
-    }
-
-    /**
      * Campaign default images cache key
      * @return string
      */
@@ -426,43 +218,6 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
-     * Campaign plugin theme cache key
-     * @return string
-     */
-    protected function themeKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_theme';
-    }
-
-    /**
-     * Campaign styles cache key
-     * @return string
-     */
-    protected function stylesKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_styles';
-    }
-
-    /**
-     * Campaign styles timestamp cache key
-     * @return string
-     */
-    protected function stylesTsKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_styles_ts';
-    }
-
-    /**
-     * Campaign dashboards cache key
-     * @return string
-     */
-    protected function dashboardsKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_dashboards';
-    }
-
-    /**
-     * Campaign dashboards cache key
      * @return string
      */
     protected function adminRoleKey(): string

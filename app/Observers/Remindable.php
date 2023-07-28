@@ -26,9 +26,8 @@ class Remindable
         }
 
         $entity = $model->entity;
-        $previousCalendarId = $model->getOriginal('calendar_id');
 
-        // Previously, this lookup was only triggered when the calendar_id or date was dirty. However this excludes just
+        // Previously, this lookup was only triggered when the calendar_id or date was dirty. However, this excludes just
         // changing the colour or periodicity. To support the API not overriding the values, we still check to make
         // sure that the calendar_id property is set.
         if (!request()->has('calendar_id')) {

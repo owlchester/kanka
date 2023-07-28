@@ -10,9 +10,9 @@ trait AdminPolicyTrait
 {
     /**
      * Cached value of the check
-     * @var bool|null
+     * @var bool
      */
-    protected bool|null $cachedAdminPolicy = null;
+    protected bool $cachedAdminPolicy;
 
     /**
      * Determine if a user is admin of a campaign
@@ -21,15 +21,16 @@ trait AdminPolicyTrait
      */
     public function isAdmin(User $user)
     {
-        if ($this->cachedAdminPolicy === null) {
-            $this->cachedAdminPolicy = false;
-            $campaign = CampaignLocalization::getCampaign(false);
-            /** @var CampaignRole[] $roles */
-            $roles = $user->campaignRoles->where('campaign_id', $campaign->id);
-            foreach ($roles as $role) {
-                if ($role->is_admin) {
-                    $this->cachedAdminPolicy = true;
-                }
+        if (isset($this->cachedAdminPolicy)) {
+            return $this->cachedAdminPolicy;
+        }
+        $this->cachedAdminPolicy = false;
+        $campaign = CampaignLocalization::getCampaign(false);
+        /** @var CampaignRole[] $roles */
+        $roles = $user->campaignRoles->where('campaign_id', $campaign->id);
+        foreach ($roles as $role) {
+            if ($role->is_admin) {
+                $this->cachedAdminPolicy = true;
             }
         }
 

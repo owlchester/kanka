@@ -14,7 +14,7 @@ class UserDateServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(UserDateService::class, function ($app) {
+        $this->app->singleton(UserDateService::class, function () {
             return new UserDateService();
         });
 

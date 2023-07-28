@@ -14,7 +14,7 @@ class EntitySetupServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(SetupService::class, function ($app) {
+        $this->app->singleton(SetupService::class, function () {
             return new SetupService();
         });
         $this->app->alias(SetupService::class, 'entitysetup');

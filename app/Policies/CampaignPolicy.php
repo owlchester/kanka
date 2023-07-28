@@ -41,16 +41,14 @@ class CampaignPolicy
         if ($campaign->isPublic()) {
             return true;
         }
-        return $campaign->userIsMember();
+        return $campaign->userIsMember($user);
     }
 
     /**
-     * Determine whether the user can create campaigns.
-     *
-     * @param  User  $user
+     * Can't create a campaign while impersonating another user. Should be handled in the controller?
      * @return bool
      */
-    public function create(User $user): bool
+    public function create(): bool
     {
         return !Identity::isImpersonating();
     }
@@ -251,10 +249,9 @@ class CampaignPolicy
     /**
      * Permission to view the campaign submissions
      * @param User $user
-     * @param Campaign $campaign
      * @return bool
      */
-    public function submissions(?User $user, Campaign $campaign)
+    public function submissions(?User $user)
     {
         return $user && UserCache::user($user)->admin();
     }
@@ -273,10 +270,9 @@ class CampaignPolicy
 
     /**
      * @param User|null $user
-     * @param Campaign $campaign
      * @return bool
      */
-    public function relations(?User $user, Campaign $campaign): bool
+    public function relations(?User $user): bool
     {
         return $user && UserCache::user($user)->admin();
     }
@@ -284,10 +280,9 @@ class CampaignPolicy
 
     /**
      * @param User|null $user
-     * @param Campaign $campaign
      * @return bool
      */
-    public function mapPresets(?User $user, Campaign $campaign): bool
+    public function mapPresets(?User $user): bool
     {
         return $user && UserCache::user($user)->admin();
     }

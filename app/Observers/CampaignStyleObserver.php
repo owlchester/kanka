@@ -32,10 +32,7 @@ class CampaignStyleObserver
         $campaignStyle->order = (int) $last + 1;
     }
 
-    /**
-     * @param CampaignStyle $campaignStyle
-     */
-    public function saved(CampaignStyle $campaignStyle)
+    public function saved()
     {
         CampaignCache::clearTheme();
     }

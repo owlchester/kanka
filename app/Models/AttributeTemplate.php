@@ -5,8 +5,6 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Nested;
 use App\Services\Attributes\RandomService;
-use App\Services\Attributes\TemplateService;
-use App\Services\AttributeService;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;

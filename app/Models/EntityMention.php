@@ -278,7 +278,7 @@ class EntityMention extends Model
         if ($this->isQuestElement()) {
             if ($this->questElement && $this->entity) {
                 return $this->entity->tooltipedLink() .
-                    ' - ' . $this->questElement->visibilityIcon(null, true) .
+                    ' - ' . $this->questElement->skipAllIcon()->visibilityIcon() .
                     ' <a class="name" href="' .
                     $this->getLink() . '">' .
                     $this->questElement->name() .
@@ -288,7 +288,7 @@ class EntityMention extends Model
         } elseif ($this->isTimelineElement()) {
             if ($this->timelineElement && $this->entity) {
                 return $this->entity->tooltipedLink() .
-                    ' - ' . $this->timelineElement->visibilityIcon(null, true) .
+                    ' - ' . $this->timelineElement->skipAllIcon()->visibilityIcon() .
                     ' <a class="name" href="' .
                     $this->getLink() . '">' .
                     $this->timelineElement->elementName() .
@@ -297,7 +297,7 @@ class EntityMention extends Model
         } elseif ($this->isPost()) {
             if ($this->post && $this->entity) {
                 return $this->entity->tooltipedLink() .
-                    ' - ' . $this->post->visibilityIcon(null, true) .
+                    ' - ' . $this->post->skipAllIcon()->visibilityIcon() .
                     ' <a class="name" href="' .
                     $this->getLink() . '">' .
                     $this->post->name .

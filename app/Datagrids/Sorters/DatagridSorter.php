@@ -9,10 +9,7 @@ use ReflectionClass;
 
 abstract class DatagridSorter
 {
-    /**
-     * @var array
-     */
-    public $options;
+    public array $options;
 
     /**
      * The default field for sorting

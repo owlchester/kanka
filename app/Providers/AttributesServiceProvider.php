@@ -14,7 +14,7 @@ class AttributesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(AttributeMentionService::class, function ($app) {
+        $this->app->singleton(AttributeMentionService::class, function () {
             return new AttributeMentionService();
         });
 

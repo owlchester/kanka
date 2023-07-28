@@ -11,7 +11,7 @@
         <h3 class="m-0 inline-block grow">
             {{ __('campaigns.members.invite.title') }}
         </h3>
-        <button class="btn2 btn-sm" data-toggle="dialog"
+        <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                 data-target="invite-help">
             <x-icon class="question"></x-icon>
             <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>

@@ -9,7 +9,7 @@
     <h3 class="m-0 inline-block grow">
         {{ __('campaigns.show.tabs.members') }} <span class="text-sm">({{ $users->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
     </h3>
-    <button class="btn2 btn-sm" data-toggle="dialog"
+    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
             data-target="members-help">
         <x-icon class="question"></x-icon>
         {{ __('campaigns.members.actions.help') }}

@@ -2,66 +2,36 @@
 
 namespace App\Policies;
 
-use App\Models\MenuLink;
-use App\Traits\AdminPolicyTrait;
+use App\Facades\UserCache;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MenuLinkPolicy
 {
-    use AdminPolicyTrait;
     use HandlesAuthorization;
 
     public function browse(User $user)
     {
-        return $this->isAdmin($user);
+        return UserCache::user($user)->admin();
     }
 
-    /**
-     * Determine whether the user can view the campaign.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\MenuLink  $menuLink
-     * @return mixed
-     */
-    public function view(User $user, MenuLink $menuLink)
+    public function view(User $user): bool
     {
-        return $this->isAdmin($user);
+        return UserCache::user($user)->admin();
     }
 
-    /**
-     * Determine whether the user can create campaigns.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
+    public function create(User $user): bool
     {
-        return $this->isAdmin($user);
+        return UserCache::user($user)->admin();
     }
 
-    /**
-     * Determine whether the user can update the campaign.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\MenuLink  $menuLink
-     * @return mixed
-     */
-    public function update(User $user, MenuLink $menuLink)
+    public function update(User $user): bool
     {
-        return
-            $this->isAdmin($user);
+        return UserCache::user($user)->admin();
     }
 
-    /**
-     * Determine whether the user can delete the campaign.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\MenuLink  $menuLink
-     * @return mixed
-     */
-    public function delete(User $user, MenuLink $menuLink)
+    public function delete(User $user): bool
     {
-        return $this->isAdmin($user);
+        return UserCache::user($user)->admin();
     }
 }
