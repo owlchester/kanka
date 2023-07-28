@@ -203,7 +203,7 @@ class EntityEvent extends MiscModel
                         ['d', 's', 'y', 'm', 'M'],
                         [$this->day, $this->calendar->suffix, $years[$this->year] ?? $this->year, $this->month, isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month],
                         $this->calendar->format
-                      );
+                    );
                 } else {
                     $this->readableDate = $this->day . ' ' .
                         (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
