@@ -13,6 +13,7 @@ trait HasLocations
      */
     public function saveLocations(MiscModel|Creature $model)
     {
+        /** @var Creature $model */
         $existing = $unique = $recreate = [];
         foreach ($model->locations as $location) {
             // If it already exists, we have an issue

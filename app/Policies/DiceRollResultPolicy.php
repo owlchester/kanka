@@ -12,22 +12,22 @@ class DiceRollResultPolicy extends MiscPolicy
         return config('entities.ids.dice_roll');
     }
 
-    public function update(User $user, $entity)
+    public function update(User $user, $entity): bool
     {
         return false;
     }
 
-    public function delete(User $user, $entity)
+    public function delete(User $user, $entity): bool
     {
         return false;
     }
 
-    public function view(User $user, $entity)
+    public function view(User $user, $entity): bool
     {
         return true;
     }
 
-    public function create(User $user, $entity = null, Campaign $campaign = null)
+    public function create(User $user, $entity = null, Campaign $campaign = null): bool
     {
         return false;
     }

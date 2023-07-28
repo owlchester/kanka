@@ -217,6 +217,10 @@ class EntityMappingService
         $mention->save();
     }
 
+    /**
+     * @param Model|EntityNote|Entity $model
+     * @return $this
+     */
     protected function images(Model $model): self
     {
         if ($model instanceof Entity) {
@@ -227,7 +231,8 @@ class EntityMappingService
         }
         $existingTargets = [];
         if ($model instanceof Entity) {
-            foreach ($model->imageMentions()->where('post_id', null)->get() as $map) {
+            /** @var ImageMention $map */
+            foreach ($model->imageMentions()->whereNull('post_id')->get() as $map) {
                 $existingTargets[$map->image_id] = $map;
             }
         } else {
@@ -244,12 +249,13 @@ class EntityMappingService
 
             // Determine the real campaign id from the model.
             // Todo: why can't we use CampaignLocalization? Because this was used by the migration script?
-            $campaignId = $model->campaign_id;
             if ($model instanceof EntityNote) {
                 $campaignId = $model->entity->campaign_id;
+            } else {
+                $campaignId = $model->campaign_id;
             }
 
-            /** @var Entity|null $target */
+            /** @var Image|null $target */
             $target = Image::where([
                 'id' => $id, 'campaign_id' => $campaignId
             ])->first();

@@ -249,7 +249,6 @@ class CampaignPolicy
     /**
      * Permission to view the campaign submissions
      * @param User $user
-     * @param Campaign $campaign
      * @return bool
      */
     public function submissions(?User $user)
@@ -271,7 +270,6 @@ class CampaignPolicy
 
     /**
      * @param User|null $user
-     * @param Campaign $campaign
      * @return bool
      */
     public function relations(?User $user): bool

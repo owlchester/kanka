@@ -57,7 +57,7 @@ trait OrderableTrait
         return $query;
     }
 
-    protected function noToken(Builder $query, string $defaultField): Builder
+    protected function handleNoToken(Builder $query, string $defaultField): Builder
     {
         if ($defaultField == 'name' && isset($this->orderDefaultField)) {
             $defaultField = $this->orderDefaultField;
