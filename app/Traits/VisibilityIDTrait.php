@@ -17,6 +17,7 @@ use App\Models\Visibility;
  */
 trait VisibilityIDTrait
 {
+    protected bool $skipAllIcon = false;
     /**
      * Add the Visible scope as a default scope to this model
      */
@@ -25,17 +26,22 @@ trait VisibilityIDTrait
         static::addGlobalScope(new VisibilityIDScope());
     }
 
+    public function skipAllIcon(): self
+    {
+        $this->skipAllIcon = true;
+        return $this;
+    }
+
     /**
      * Generate the html icon for visibility
      * @param string|null $extra
-     * @param bool $skipAll
      * @return string
      */
-    public function visibilityIcon(string $extra = null, bool $skipAll = false): string
+    public function visibilityIcon(string $extra = null): string
     {
         $class = $title = '';
         if ($this->visibility_id == Visibility::VISIBILITY_ALL) {
-            if ($skipAll) {
+            if ($this->skipAllIcon) {
                 return '';
             }
             $class = 'fa-solid fa-eye';

@@ -122,14 +122,6 @@ trait CalendarDateTrait
     }
 
     /**
-     * @return bool
-     */
-    public function getCalendarIsRecurringAttribute(): bool
-    {
-        return $this->hasCalendarDate() ? $this->entity->calendarDate->is_recurring : false;
-    }
-
-    /**
      * recurring_periodicity
      * @return string|null
      */

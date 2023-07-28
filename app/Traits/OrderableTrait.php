@@ -20,18 +20,7 @@ trait OrderableTrait
     {
         // No token? Next.
         if (!str_contains($data, $this->orderTrigger)) {
-            if ($defaultField == 'name' && isset($this->orderDefaultField)) {
-                $defaultField = $this->orderDefaultField;
-            }
-            $defaultDir = $this->orderDefaultDir ?? 'asc';
-
-            if ($defaultField == 'events/date') {
-                return $query
-                    ->orderBy('year', $defaultDir)
-                    ->orderBy('month', $defaultDir)
-                    ->orderBy('day', $defaultDir);
-            }
-            return $query->orderBy($defaultField, $defaultDir);
+            return $this->handleNoToken($query, $defaultField);
         }
 
         $field = str_replace($this->orderTrigger, '', $data);
@@ -41,7 +30,6 @@ trait OrderableTrait
             $segments = explode('.', $field);
             if (count($segments) > 1) {
                 $relationName = $segments[0];
-
 
                 // Make sure the relationship exists
                 if (method_exists($this, $relationName)) {
@@ -67,5 +55,21 @@ trait OrderableTrait
 
 
         return $query;
+    }
+
+    protected function noToken(Builder $query, string $defaultField): Builder
+    {
+        if ($defaultField == 'name' && isset($this->orderDefaultField)) {
+            $defaultField = $this->orderDefaultField;
+        }
+        $defaultDir = $this->orderDefaultDir ?? 'asc';
+
+        if ($defaultField == 'events/date') {
+            return $query
+                ->orderBy('year', $defaultDir)
+                ->orderBy('month', $defaultDir)
+                ->orderBy('day', $defaultDir);
+        }
+        return $query->orderBy($defaultField, $defaultDir);
     }
 }
