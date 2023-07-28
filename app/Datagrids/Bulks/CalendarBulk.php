@@ -10,6 +10,5 @@ class CalendarBulk extends Bulk
         'calendar_id',
         'tags',
         'private_choice',
-        'format',
     ];
 }

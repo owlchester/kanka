@@ -26,7 +26,6 @@ use Illuminate\Support\Str;
  * @property string $seasons
  * @property string $moons
  * @property string $reset
- * @property string $format
  * @property int $calendar_id
  * @property array $parameters
  *
@@ -66,7 +65,6 @@ class Calendar extends MiscModel
         'week_names',
         'reset',
         'is_incrementing',
-        'format',
 
         // Leap year
         'has_leap_year',
