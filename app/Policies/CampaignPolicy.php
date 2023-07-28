@@ -282,10 +282,9 @@ class CampaignPolicy
 
     /**
      * @param User|null $user
-     * @param Campaign $campaign
      * @return bool
      */
-    public function mapPresets(?User $user, Campaign $campaign): bool
+    public function mapPresets(?User $user): bool
     {
         return $user && UserCache::user($user)->admin();
     }
