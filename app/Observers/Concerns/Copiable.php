@@ -3,7 +3,6 @@
 namespace App\Observers\Concerns;
 
 use App\Models\Entity;
-use App\Models\MiscModel;
 
 trait Copiable
 {

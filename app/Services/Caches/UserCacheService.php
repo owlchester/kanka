@@ -5,13 +5,12 @@ namespace App\Services\Caches;
 use App\Services\Caches\Traits\User\CampaignCache;
 use App\Services\Caches\Traits\User\RoleCache;
 use App\User;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class UserCacheService extends BaseCache
 {
-    use RoleCache;
     use CampaignCache;
+    use RoleCache;
 
 
     /**

@@ -13,7 +13,7 @@ trait RoleCache
     public function admin(): bool
     {
         return $this->adminRole()
-                ->count() === 1;
+            ->count() === 1;
     }
 
     /**

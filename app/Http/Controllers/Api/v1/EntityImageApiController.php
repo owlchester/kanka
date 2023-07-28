@@ -8,7 +8,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\ImageService;
-use Illuminate\Http\Request;
 
 class EntityImageApiController extends Controller
 {

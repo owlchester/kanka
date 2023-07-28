@@ -6,7 +6,6 @@ use App\Facades\CampaignCache;
 use App\Models\CampaignPlugin;
 use App\Models\Plugin;
 use App\Traits\CampaignAware;
-use Illuminate\Support\Collection;
 use Exception;
 
 class CampaignPluginService

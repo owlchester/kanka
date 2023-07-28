@@ -17,8 +17,8 @@ use Illuminate\Support\Str;
 
 abstract class MiscObserver
 {
-    use PurifiableTrait;
     use Copiable;
+    use PurifiableTrait;
 
     /** @var EntityMappingService Service to build the mention "map" of the entity */
     protected EntityMappingService $entityMappingService;

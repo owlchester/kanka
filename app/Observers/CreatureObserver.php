@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Models\MiscModel;
 use App\Models\Creature;
-use App\Models\Location;
 use App\Observers\Concerns\HasLocations;
 
 class CreatureObserver extends MiscObserver
