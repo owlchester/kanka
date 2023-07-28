@@ -78,7 +78,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Cashier;
 use Symfony\Component\Console\Exception\InvalidOptionException;
@@ -129,9 +128,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         $path = base_path();
-        $ouput = null;
         $command = 'git symbolic-ref -q --short HEAD || git describe --tags --exact-match';
-        $fail = false;
         if (class_exists('\Symfony\Component\Process\Process')) {
             try {
                 if (method_exists(Process::class, 'fromShellCommandline')) {

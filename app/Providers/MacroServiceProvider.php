@@ -32,6 +32,15 @@ class MacroServiceProvider extends ServiceProvider
      */
     protected function addCustomBladeDirectives()
     {
+        $this
+            ->addTutorials()
+            ->addAds()
+            ->addNativeAds()
+            ->addSubscribers();
+    }
+
+    protected function addTutorials(): self
+    {
         // Tutorial modal handler
         Blade::if('tutorial', function (string $tutorial) {
             // Not logged in? Don't bother
@@ -49,7 +58,11 @@ class MacroServiceProvider extends ServiceProvider
 
             return !$user->readTutorial($tutorial);
         });
+        return $this;
+    }
 
+    protected function addAds(): self
+    {
         /** @ads() to show ads */
         Blade::if('ads', function (string $section = null) {
             if (!config('tracking.venatus.enabled')) {
@@ -80,7 +93,11 @@ class MacroServiceProvider extends ServiceProvider
             $campaign = CampaignLocalization::getCampaign(false);
             return !empty($campaign) && !$campaign->boosted();
         });
+        return $this;
+    }
 
+    protected function addNativeAds(): self
+    {
         Blade::if('nativeAd', function (int $section) {
             // If we provided an ad test, override that
             if (!config('app.admin')) {
@@ -112,9 +129,14 @@ class MacroServiceProvider extends ServiceProvider
             return !empty($campaign) && !$campaign->boosted();
         });
 
-        /**
-         * Condition to show actions or elements to users who is a subscriber
-         */
+        return $this;
+    }
+
+    /**
+     * Condition to show actions or elements to users who is a subscriber
+     */
+    protected function addSubscribers(): self
+    {
         Blade::if('subscriber', function () {
             if (auth()->guest()) {
                 return true;
@@ -126,5 +148,6 @@ class MacroServiceProvider extends ServiceProvider
 
             return auth()->user()->hasBoosters();
         });
+        return $this;
     }
 }

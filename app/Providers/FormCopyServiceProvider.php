@@ -18,7 +18,7 @@ class FormCopyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(FormCopyService::class, function ($app) {
+        $this->app->singleton(FormCopyService::class, function () {
             return new FormCopyService();
         });
 

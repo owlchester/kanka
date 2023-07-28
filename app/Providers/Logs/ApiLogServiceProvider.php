@@ -14,7 +14,7 @@ class ApiLogServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(\App\Services\Logs\ApiLogService::class, function ($app) {
+        $this->app->singleton(\App\Services\Logs\ApiLogService::class, function () {
             return new ApiLogService();
         });
 
