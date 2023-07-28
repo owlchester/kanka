@@ -199,24 +199,11 @@ class EntityEvent extends MiscModel
 
             try {
                 if ($this->calendar->format) {
-                    $customFormat = '';
-
-                    foreach (str_split($this->calendar->format) as $char) {
-                        if ($char == 'd') {
-                            $customFormat .= $this->day;
-                        } elseif ($char == 'm') {
-                            $customFormat .= $this->month;
-                        } elseif ($char == 'M') {
-                            $customFormat .= (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month);
-                        } elseif ($char == 'y') { 
-                            $customFormat .= ($years[$this->year] ?? $this->year);
-                        } elseif ($char == 's') {
-                            $customFormat .= $this->calendar->suffix;
-                        } elseif ($char == ' ' || $char == '-' || $char == ',') {
-                            $customFormat .= $char;
-                        }
-                    }
-                    $this->readableDate = $customFormat;
+                    $this->readableDate = Str::replace(
+                        ['d', 's', 'y', 'm', 'M'],
+                        [$this->day, $this->calendar->suffix, $years[$this->year] ?? $this->year, $this->month, isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month],
+                        $this->calendar->format
+                      );
                 } else {
                     $this->readableDate = $this->day . ' ' .
                         (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
