@@ -17,7 +17,6 @@ return [
         'children'          => 'Children',
         'is_auto_applied'   => 'Automatically apply to new entities',
         'is_hidden'         => 'Hidden from header and tooltip',
-        'tag'               => 'Tag',
     ],
     'helpers'       => [
         'nested_without'    => 'Displaying all tags that don\'t have a parent tag. Click on a row to see the children tags.',
@@ -43,6 +42,5 @@ return [
         'transfer'      => 'Transfer',
         'success'       => 'Succesfully transfered entities from :tag to :newTag',
         'fail'          => 'Failed to transfer entities from :tag to :newTag',
-        'placeholder'   => 'Select a tag',
     ],
 ];
