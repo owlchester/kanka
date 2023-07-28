@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\box;
+namespace App\View\Components\Box;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class footer extends Component
+class Footer extends Component
 {
     /**
      * Create a new component instance.

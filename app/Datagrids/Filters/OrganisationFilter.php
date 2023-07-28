@@ -13,10 +13,6 @@ class OrganisationFilter extends DatagridFilter
     public function __construct()
     {
         $name = Module::singular(config('entities.ids.timeline'));
-        $placeholder = __('crud.placeholders.timeline');
-        if (!empty($name)) {
-            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
-        }
         $this
             ->add('name')
             ->add('type')

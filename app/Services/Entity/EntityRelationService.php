@@ -55,7 +55,7 @@ class EntityRelationService
     /** @var bool Enable loading entities on relations */
     protected bool $withEntity = false;
 
-    /** @var string|null  */
+    /** @var string|null */
     protected string|null $option = null;
 
     /**
@@ -142,7 +142,6 @@ class EntityRelationService
         foreach ($this->relations as $relation) {
             if (
                 isset($this->entities[$relation['source']], $this->entities[$relation['target']])
-
             ) {
                 $relations[] = $relation;
             }
@@ -159,7 +158,7 @@ class EntityRelationService
     protected function addEntity(Entity $entity, string $image = null): self
     {
         //dump('add entity ' . $entity->name);
-        if (Arr::has($this->entities, (string) $entity->id)) {
+        if (Arr::has($this->entities, (string)$entity->id)) {
             return $this;
         }
         if (empty($entity->child)) {
@@ -192,7 +191,7 @@ class EntityRelationService
     protected function addRelations(Entity $entity): self
     {
         //dump('add relations for ' . $entity->name);
-        if (Arr::has($this->entityIds, (string) $entity->id)) {
+        if (Arr::has($this->entityIds, (string)$entity->id)) {
             return $this;
         }
         $this->entityIds[$entity->id] = true;
@@ -357,8 +356,7 @@ class EntityRelationService
                 ->addLocation()
                 ->addQuests()
                 ->addMapMarkers()
-                ->addAuthorJournals()
-            ;
+                ->addAuthorJournals();
         }
         return $this;
     }
@@ -460,8 +458,7 @@ class EntityRelationService
                 ->addMaps()
                 ->addAuthorJournals()
                 ->addRaces()
-                ->addLocationCreatures()
-            ;
+                ->addLocationCreatures();
         }
 
 
@@ -486,8 +483,7 @@ class EntityRelationService
                 ->addLocation()
                 ->addQuests()
                 ->addMapMarkers()
-                ->addAuthorJournals()
-            ;
+                ->addAuthorJournals();
         }
 
         return $this;
@@ -508,8 +504,7 @@ class EntityRelationService
                 ->addQuests()
                 ->addMapMarkers()
                 ->addMaps()
-                ->addAuthorJournals()
-            ;
+                ->addAuthorJournals();
         }
 
         return $this;

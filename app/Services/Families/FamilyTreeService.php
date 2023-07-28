@@ -166,7 +166,7 @@ class FamilyTreeService
             'name' => $entity->name,
             'url' => $entity->url(),
             'thumb' => $entity->avatarSize(40)->avatarV2(),
-            'is_dead' => (bool) $entity->character->is_dead,
+            'is_dead' => (bool)$entity->character->is_dead,
             'tags' => $tags,
         ];
     }
@@ -178,14 +178,12 @@ class FamilyTreeService
             $config[$key] = $this->cleanInvisible($node, $key);
         }
         $this->config = $config;
-
     }
 
     protected function cleanInvisible($node, $key): mixed
     {
-        if(isset($node['relations'])) {
+        if (isset($node['relations'])) {
             foreach ($node['relations'] as $k => $rel) {
-
                 if (!isset($rel['children'])) {
                     $relations[] = $rel;
                     continue;
@@ -222,15 +220,12 @@ class FamilyTreeService
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        return (bool) (
+        return (bool)(
             !isset($relation['visibility']) ||
             $relation['visibility'] == Visibility::VISIBILITY_ALL ||
             ($relation['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
             ($relation['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember())
-        )
-
-
-        ;
+        );
     }
 
     protected function cleanupMissingEntities(): void
@@ -345,7 +340,7 @@ class FamilyTreeService
     {
         $assingUuid = function (&$value, $key) {
             if ($key == 'uuid' && (!is_string($value) || !Str::isUuid($value))) {
-                $value = (string) Str::uuid();
+                $value = (string)Str::uuid();
             }
             //echo "The key $key has the value $value <br>";
         };
@@ -381,8 +376,8 @@ class FamilyTreeService
             return $relation;
         }
 
-        $count = $max = 0;
-        foreach($relation['children'] as $i => $child) {
+        $count = 0;
+        foreach ($relation['children'] as $i => $child) {
             $count++;
         }
         $relation['width'] = $count;
@@ -434,7 +429,7 @@ class FamilyTreeService
                     'relation' => __('entities/relations.fields.relation'),
                     'character' => __('entities.character'),
                     'member' => __('families/trees.modals.entity.add.member'),
-                    'css'   => __('dashboard.widgets.fields.class'),
+                    'css' => __('dashboard.widgets.fields.class'),
                     'colour' => __('crud.fields.colour'),
                     'unknown' => __('families/trees.modals.relations.unknown'),
                     'visibility' => [

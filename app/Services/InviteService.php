@@ -18,10 +18,7 @@ class InviteService
 {
     use UserAware;
 
-    /**
-     * @var CampaignFollowService
-     */
-    public $campaignFollowService;
+    public CampaignFollowService $campaignFollowService;
 
 
     /**
@@ -42,7 +39,7 @@ class InviteService
     public function useToken(string $token = null)
     {
         if (empty($token)) {
-            throw new \Exception(__('campaigns.invites.error.invalid_token'));
+            throw new Exception(__('campaigns.invites.error.invalid_token'));
         }
 
         $invite = CampaignInvite::where('token', $token)->first();

@@ -44,7 +44,7 @@ class TimelineElementCacheService extends BaseCache
             ->pluck('icon')
             ->all();
 
-        foreach ($default as $k => $value) {
+        foreach ($default as $value) {
             if (!in_array($value, $data)) {
                 $data[] = $value;
             }
