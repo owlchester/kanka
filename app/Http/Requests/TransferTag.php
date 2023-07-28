@@ -24,7 +24,7 @@ class TransferTag extends FormRequest
     public function rules()
     {
         return [
-            'tag' => 'required|exists:tags,id',
+            'tag_id' => 'required|exists:tags,id',
         ];
     }
 }

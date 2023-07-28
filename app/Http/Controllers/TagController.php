@@ -210,7 +210,7 @@ class TagController extends CrudController
      */
     public function transfer(TransferTag $request, Tag $tag)
     {
-        $newTag = Tag::where('id', $request->tag)->first();
+        $newTag = Tag::where('id', $request->tag_id)->first();
         $this->authorize('update', $tag);
         try {
             $this->service->transfer($tag, $newTag);

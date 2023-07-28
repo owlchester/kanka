@@ -6,6 +6,7 @@
         __('tags.transfer.transfer'),
     ]
 ])
+@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     @include('partials.errors')
@@ -17,17 +18,9 @@
             <p class="help-block mb-5">
                 {{ __('tags.transfer.description') }}
             </p>
-            <div class="field-campaign mb-5">
-                <label>{{ __('tags.fields.tag') }}</label>
-                <select  name="tag"
-                    class="form-control form-tags"
-                    style="width: 100%"
-                    data-url="{{ route('tags.find', ['exclude' => $tag->id])}}"
-                    data-allow-new="false"
-                    data-placeholder="{{ __('tags.transfer.placeholder') }}"
-                >
-                </select>
-            </div>
+
+            @include('cruds.fields.tag', ['model' => $tag, 'allowNew' => false])
+
             <x-dialog.footer>
                 <button class="btn2 btn-primary">
                     <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
