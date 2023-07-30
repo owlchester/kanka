@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'alternate_history'     => 'Alternate History',
+    'alternate_history'     => 'Alternate history',
     'cyberpunk'             => 'Cyberpunk',
     'fantasy'               => 'Fantasy',
     'historical'            => 'Historical',
@@ -15,6 +15,6 @@ return [
     'space_opera'           => 'Space opera',
     'steampunk'             => 'Steampunk',
     'superhero'             => 'Superhero',
-    'urban_fantasy'         => 'Urban Fantasy',
+    'urban_fantasy'         => 'Urban fantasy',
     'western'               => 'Western',
 ];
