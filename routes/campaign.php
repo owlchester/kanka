@@ -109,6 +109,8 @@ Route::get('/timelines/{timeline}/timelines', 'Timelines\TimelineController@time
 Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
 Route::get('/tags/{tag}/tags', 'TagController@tags')->name('tags.tags');
 Route::get('/tags/{tag}/children', 'TagController@children')->name('tags.children');
+Route::get('/tags/{tag}/transfer', 'TagController@transferTag')->name('tags.transfer');
+Route::post('/tags/{tag}/transfer', 'TagController@transfer')->name('tags.transfer');
 
 // Tags Quick Add
 Route::get('/tags/{tag}/entity-add', 'TagController@entityAdd')->name('tags.entity-add');
