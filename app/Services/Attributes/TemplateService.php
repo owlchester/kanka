@@ -10,6 +10,7 @@ use App\Models\Entity;
 use App\Traits\EntityAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Kanka\Dnd5eMonster\Template;
 
 class TemplateService
 {
@@ -200,5 +201,22 @@ class TemplateService
             return $mapping[$type];
         }
         dd('missing mapping for ' . $type);
+    }
+
+
+    /**
+     * Deprecated as of 1.30
+     * Get a community template base on its name to render properly
+     * @param string $template
+     * @return bool|Template
+     */
+    public function communityTemplate(string $template)
+    {
+        $templates = config('attribute-templates.templates');
+        if (Arr::exists($templates, $template)) {
+            /** @var Template $template */
+            return new $templates[$template]();
+        }
+        return false;
     }
 }

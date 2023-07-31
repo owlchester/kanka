@@ -12,7 +12,6 @@ use App\Services\Attributes\TemplateService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Support\Arr;
-use Kanka\Dnd5eMonster\Template;
 use Stevebauman\Purify\Facades\Purify;
 
 class AttributeService
@@ -50,22 +49,6 @@ class AttributeService
     public function apply(Entity $entity, mixed $templateId)
     {
         return $this->templateService->entity($entity)->apply($templateId);
-    }
-
-    /**
-     * Deprecated as of 1.30
-     * Get a community template base on its name to render properly
-     * @param string $template
-     * @return bool|Template
-     */
-    public function communityTemplate(string $template)
-    {
-        $templates = config('attribute-templates.templates');
-        if (Arr::exists($templates, $template)) {
-            /** @var Template $template */
-            return new $templates[$template]();
-        }
-        return false;
     }
 
     /**

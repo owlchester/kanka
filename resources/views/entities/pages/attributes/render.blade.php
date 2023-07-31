@@ -1,14 +1,16 @@
 @inject('attributeService', 'App\Services\AttributeService')
+@inject('templateService', 'App\Services\Attributes\TemplateService')
 <?php
 /**
  * @var \App\Services\AttributeService $attributeService
+ * @var \App\Services\Attributes\TemplateService $templateService
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\Entity $entity
  */
 $layout = $entity->entityAttributes->where('name', '_layout')->first();
 if ($layout) {
-    $template = $template ?? $attributeService->communityTemplate($layout->value);
-    $marketplaceTemplate = $marketplaceTemplate ?? $attributeService->marketplaceTemplate($layout->value, $campaignService->campaign());
+    $template = $template ?? $templateService->communityTemplate($layout->value);
+    $marketplaceTemplate = $marketplaceTemplate ?? $templateService->marketplaceTemplate($layout->value, $campaign);
 }
 ?>
 

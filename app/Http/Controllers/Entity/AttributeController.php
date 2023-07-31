@@ -61,7 +61,7 @@ class AttributeController extends Controller
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if ($layout) {
-            $template = $this->service->communityTemplate($layout->value);
+            $template = $this->templateService->communityTemplate($layout->value);
             $marketplaceTemplate = $this->templateService->marketplaceTemplate($layout->value, $campaign);
         }
 
@@ -107,7 +107,7 @@ class AttributeController extends Controller
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if ($layout) {
-            $template = $this->service->communityTemplate($layout->value);
+            $template = $this->templateService->communityTemplate($layout->value);
             $marketplaceTemplate = $this->templateService->marketplaceTemplate($layout->value, $campaign);
         }
 

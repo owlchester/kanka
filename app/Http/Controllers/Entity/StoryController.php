@@ -11,28 +11,15 @@ use App\Traits\GuestAuthTrait;
 
 class StoryController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
-    /** @var StoryService */
-    protected $service;
+    protected StoryService $service;
 
-    /**
-     * AbilityController constructor.
-     * @param StoryService $service
-     */
     public function __construct(StoryService $service)
     {
         $this->service = $service;
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function edit(Entity $entity)
     {
         $this->authorize('update', $entity->child);
@@ -42,8 +29,6 @@ class StoryController extends Controller
         ));
     }
 
-    /**
-     */
     public function save(ReorderStories $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
