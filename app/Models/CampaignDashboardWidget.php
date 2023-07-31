@@ -274,6 +274,8 @@ class CampaignDashboardWidget extends Model
         $order = Arr::get($this->config, 'order', null);
         if (empty($order)) {
             $base = $base->recentlyModified();
+        } elseif ($order == 'oldest') {
+            $base = $base->oldestModified();
         } else {
             list($field, $order) = explode('_', $order);
             $base = $base->orderBy($field, $order);

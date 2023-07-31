@@ -140,6 +140,7 @@ return [
             'name_asc'  => 'Name ascending',
             'name_desc' => 'Name descending',
             'recent'    => 'Recently modified',
+            'oldest'    => 'Oldest modified',
         ],
         'preview'                   => [
             'displays'  => [
