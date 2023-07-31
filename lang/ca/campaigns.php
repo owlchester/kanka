@@ -10,7 +10,7 @@ Abans de continuar, cal un nom per a la campanya, pel món. Si no teniu un bon n
 
 Gràcies per unir-vos a Kanka, i sigueu benvingut a la nostra comunitat!
 TEXT
-            ,
+,
         ],
         'success'               => 'S\'ha creat la campanya.',
         'success_first_time'    => 'S\'ha creat la campanya! Com que és la vostra primera campanya, hem omplert algunes coses per a que us hi familiaritzeu i, amb sort, inspirar-vos perquè veieu tot el que es pot aconseguir.',

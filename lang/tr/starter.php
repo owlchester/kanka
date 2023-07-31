@@ -49,7 +49,7 @@ Son olarak ama önemli:
 - Sorularınız, önerileriniz varsa ya da sadece laflamak istiyorsanız, bize :discord üzerinden katılın!
 - Uygulama hoşunuza gitti ve onu desteklemek mi istiyorsunuz? Kanka'yı :subscriptions ile desteklemeyi düşünün.
 TEXT
-        ,
+,
         'name'          => 'Hoşgeldiniz Notu',
         'subscriptions' => 'Abonelikler',
     ],

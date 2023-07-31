@@ -52,7 +52,7 @@ Por último, pero no menos importante:
 - Si tienes preguntas, sugerencias o solo quieres charlar, únete a nosotros en :discord.
 - ¿Te encanta la app y quieres apoyarla para que crezca? Puedes hacerlo mediante las :subscriptions.
 TEXT
-        ,
+,
         'name'          => 'Nota de bienvenida',
         'subscriptions' => 'Suscripciones',
     ],

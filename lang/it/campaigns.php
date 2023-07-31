@@ -11,7 +11,7 @@ Prima di proseguire, devi scegliere un nome per la tua campagna. Questo è il no
 
 Grazie per esserti unito a Kanka, e benvenuto nella nostra florida community!
 TEXT
-            ,
+,
         ],
         'success'               => 'Campagna creata.',
         'success_first_time'    => 'La tua campagna è stata creata! Siccome si tratta della tua prima campagna abbiamo provveduto a creare alcune cose per aiutarti ad iniziare e speriamo che ti possa dare un po\' di ispirazione per quello che potrai fare.',

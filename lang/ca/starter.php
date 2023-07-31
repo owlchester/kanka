@@ -52,7 +52,7 @@ Finalment, però no menys important:
 - Per a fer preguntes, suggeriments o simplement xerrar, uniu-vos a nosaltres al :discord.
 - Si us encanta l'app i voleu fer-li suport perquè creixi, podeu fer-ho mitjançant les :subscriptions.
 TEXT
-        ,
+,
         'name'          => 'Nota de benvinguda',
         'subscriptions' => 'Subscripcions',
     ],

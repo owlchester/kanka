@@ -49,7 +49,7 @@ Tenslotte:
 - Als je vragen, suggesties hebt of gewoon wilt chatten, doe dan mee op :discord.
 - Houd je van de app en wil je de groei ervan ondersteunen? Overweeg om Kanka te steunen via :subscriptions.
 TEXT
-        ,
+,
         'name'          => 'Welkom Notitie',
         'subscriptions' => 'Abbonementen',
     ],

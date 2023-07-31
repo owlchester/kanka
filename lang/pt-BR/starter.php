@@ -52,7 +52,7 @@ Por último, porém não menos importante:
 - Se você tiver perguntas, sugestões ou apenas quiser conversar, una-se a nós, em nosso servidor do :discord
 - Ama o app e quer apoiar seu crescimento? Considere apoiar o Kanka via :subscriptions.
 TEXT
-        ,
+,
         'name'          => 'Nota de boas-vindas',
         'subscriptions' => 'Assinaturas',
     ],

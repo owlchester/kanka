@@ -49,7 +49,7 @@ Végül, de nem utolsó sorban:
 - Ha kérdésed, vagy javaslatod lenne, esetleg csak beszélgetnél, látogass meg minket :discord-on!
 - Tetszik az app, és szeretnéd segíteni, hogy tovább növekedhessen? Látogass el a :subscriptions, és támogasd a Kankát!
 TEXT
-        ,
+,
         'name'          => 'Üdvözlő üzenet',
         'subscriptions' => 'Előfizetések',
     ],

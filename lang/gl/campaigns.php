@@ -11,7 +11,7 @@ Antes de continuar, escolle un nome para a campaña. Este é o nome do teu mundo
 
 Grazas por unirte a Kanka, dámosche a benvida á nosa próspera comunidade!
 TEXT
-            ,
+,
         ],
         'success'               => 'Campaña creada',
         'success_first_time'    => 'A túa campaña foi creada! Como é a túa primeira campaña, creamos unhas cantas cousas para axudarte a comezar e, con sorte, darche algunha idea do que podes facer.',
