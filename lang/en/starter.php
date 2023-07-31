@@ -51,7 +51,7 @@ Last but not least:
 - If you have questions, suggestions or just want to chat, join us on :discord.
 - Loving the app and want to support its growth? Consider supporting Kanka through :subscriptions.
 TEXT
-        ,
+,
         'name'          => 'Welcome Note',
         'subscriptions' => 'Subscriptions',
     ],

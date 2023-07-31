@@ -40,4 +40,11 @@ return [
         ],
     ],
     'tags'          => [],
+    'transfer'      => [
+        'description'   => 'Transférer les entités de cette étiquette vers une autre étiquette.',
+        'fail'          => 'Les entités de :tag n\'ont pas pu être transférées vers :newTag',
+        'success'       => 'Les entités de :tag ont été transférées vers :newTag',
+        'title'         => 'Transférer :name',
+        'transfer'      => 'Transférer',
+    ],
 ];

@@ -10,7 +10,7 @@ Before going any further, you need to pick a campaign name. This is the name of 
 
 Thanks for joining Kanka, and welcome to our thriving community!
 TEXT
-            ,
+,
         ],
         'success'               => 'Campaign created.',
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
@@ -52,6 +52,7 @@ TEXT
         'excerpt'                           => 'Campaign dashboard text',
         'featured'                          => 'Featured campaign',
         'followers'                         => 'Followers',
+        'genre'                             => 'Genre(s)',
         'header_image'                      => 'Campaign dashboard background image',
         'image'                             => 'Sidebar image',
         'locale'                            => 'Locale',
@@ -69,7 +70,6 @@ TEXT
         'system'                            => 'System',
         'theme'                             => 'Theme',
         'visibility'                        => 'Visibility',
-        'genre'                             => 'Genre',
     ],
     'following'                         => 'Following',
     'helpers'                           => [
@@ -236,9 +236,9 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Create role',
+            'duplicate'     => 'Duplicate role',
             'permissions'   => 'Manage permissions',
             'rename'        => 'Rename role',
-            'duplicate'     => 'Duplicate role',
             'save'          => 'Save role',
         ],
         'admin_role'    => 'admin role',
@@ -258,18 +258,18 @@ TEXT
             'title'     => 'Edit role :name',
         ],
         'fields'        => [
+            'copy_permissions'  => 'Copy permissions',
             'name'              => 'Name',
             'permissions'       => 'Permissions',
             'type'              => 'Type',
             'users'             => 'Users',
-            'copy_permissions'  => 'Copy permissions',
         ],
         'helper'        => [
-            '1' => 'A campaign is split up into several roles. The :admin role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
-            '2' => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
-            '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entity to be visible individually.',
-            '4' => 'Premium campaigns can have an unlimited amount of roles.',
-            'permissions_helper' => 'Duplicate all of the role\'s permissions, on both modules and entities.',
+            '1'                     => 'A campaign is split up into several roles. The :admin role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
+            '2'                     => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
+            '3'                     => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entity to be visible individually.',
+            '4'                     => 'Premium campaigns can have an unlimited amount of roles.',
+            'permissions_helper'    => 'Duplicate all of the role\'s permissions, on both modules and entities.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',

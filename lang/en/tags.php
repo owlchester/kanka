@@ -36,11 +36,11 @@ return [
             'children'  => 'Children',
         ],
     ],
-    'transfer' => [
-        'title'         => 'Transfer :name',
+    'transfer'      => [
         'description'   => 'Move this tag\'s entities to another tag.',
-        'transfer'      => 'Transfer',
-        'success'       => 'Succesfully transfered entities from :tag to :newTag',
         'fail'          => 'Failed to transfer entities from :tag to :newTag',
+        'success'       => 'Succesfully transfered entities from :tag to :newTag',
+        'title'         => 'Transfer :name',
+        'transfer'      => 'Transfer',
     ],
 ];

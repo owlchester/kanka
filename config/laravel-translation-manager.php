@@ -159,13 +159,13 @@ return [
         'validation-inline',
         'pagination',
         'passwords',
-        'randomisers.characters',
         'backup::notifications',
         'faq',
         'tutorials.actions',
         'tutorials.home',
         'tutorials.characters',
         'openai',
+        'front.testimonials'
     ],
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.
