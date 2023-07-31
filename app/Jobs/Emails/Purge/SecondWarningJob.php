@@ -48,8 +48,7 @@ class SecondWarningJob implements ShouldQueue
 
         $target = app()->isProduction() ? $user->email : config('mail.from.address');
         try {
-            Mail::mailer('ses')
-                ->to($target)
+            Mail::to($target)
                 ->locale($user->locale ?? 'en-US')
                 ->send(
                     new SecondWarning($user, $campaigns)
