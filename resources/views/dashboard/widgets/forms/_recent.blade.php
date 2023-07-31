@@ -85,6 +85,7 @@
                     <label>{{ __('dashboard.widgets.fields.order') }}</label>
                     {!! Form::select('config[order]', [
                 '' => __('dashboard.widgets.orders.recent'),
+                'oldest' => __('dashboard.widgets.orders.oldest'),
                 'name_asc' => __('dashboard.widgets.orders.name_asc'),
                 'name_desc' => __('dashboard.widgets.orders.name_desc'),
             ], null, ['class' => 'form-control']) !!}
