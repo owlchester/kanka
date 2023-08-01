@@ -203,7 +203,10 @@ class Campaign extends MiscModel
      */
     public function userIsMember(User $user = null): bool
     {
-        return CampaignCache::members()->where('user_id', $user ?? auth()->user()->id)->count() == 1;
+        if (empty($user)) {
+            $user = auth()->user();
+        }
+        return CampaignCache::members()->where('user_id', $user->id)->count() == 1;
     }
 
     /**
