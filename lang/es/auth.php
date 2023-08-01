@@ -17,6 +17,7 @@ return [
     ],
     'login'     => [
         'fields'                => [
+            '2fa'       => 'Contraseña de un solo uso',
             'email'     => 'Email',
             'password'  => 'Contraseña',
         ],
@@ -31,6 +32,7 @@ return [
         'title'                 => 'Acceder',
     ],
     'register'  => [
+        'already'                   => 'Contraseña de un solo uso',
         'already_account'           => '¿Ya tienes una cuenta?',
         'errors'                    => [
             'email_already_taken'   => 'Ya existe una cuenta asociada a este correo electrónico.',
@@ -42,11 +44,13 @@ return [
             'password'  => 'Contraseña',
             'tos_clean' => 'Acepto los :privacy',
         ],
+        'log-in'                    => 'Iniciar sesión',
         'register_with_facebook'    => 'Registrarse con Facebook',
         'register_with_google'      => 'Registrarse con Google',
         'register_with_twitter'     => 'Registrarse con Twitter',
         'submit'                    => 'Registrarse',
         'title'                     => 'Registrarse',
+        'tos'                       => 'Al registrar una cuenta, usted acepta nuestros :terms y :privacy.',
     ],
     'reset'     => [
         'fields'    => [
@@ -57,6 +61,10 @@ return [
         'send'      => 'Enviar enlace para restablecer la contraseña',
         'submit'    => 'Restablecer contraseña',
         'title'     => 'Restablecer contraseña',
+    ],
+    'tfa'       => [
+        'helper'    => 'La autenticación de dos factores está activada. Introduzca la contraseña de un solo uso (OTP) proporcionada por su aplicación de autenticación.',
+        'title'     => 'Autenticación de dos factores',
     ],
     'throttle'  => 'Demasiados intentos de acceso. Por favor inténtelo en :seconds segundos.',
 ];

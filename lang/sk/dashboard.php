@@ -141,6 +141,15 @@ return [
             'name_desc' => 'Názov zostupne',
             'recent'    => 'Posledne upravené',
         ],
+        'preview'                   => [
+            'displays'  => [
+                'expand'    => 'Rozšíriteľný záznam',
+                'full'      => 'Celý záznam',
+            ],
+            'fields'    => [
+                'display'   => 'Zobraziť',
+            ],
+        ],
         'random'                    => [
             'helpers'   => [
                 'name'  => 'Referencie na náhodný objekt môžeš vložiť pomocou {name}',

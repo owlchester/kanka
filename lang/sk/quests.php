@@ -33,6 +33,7 @@ return [
         'copy_elements' => 'Kopírovať objekty priradené úlohám',
         'date'          => 'Dátum',
         'element_role'  => 'Rola',
+        'instigator'    => 'Podnet od',
         'is_completed'  => 'Splnená',
         'role'          => 'Rola',
     ],

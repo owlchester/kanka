@@ -2,20 +2,21 @@
 
 return [
     'actions'           => [
-        'change_focus'  => 'Zmeniť bod stredu záujmu',
+        'change_focus'  => 'Zmeniť stredobod záujmu',
         'replace_image' => 'Vymeniť obrázok',
         'save-replace'  => 'Vymeniť obrázok',
-        'save_focus'    => 'Uložiť stred záujmu',
+        'save_focus'    => 'Uložiť stredobod záujmu',
         'view'          => 'Zobraziť obrázok',
     ],
-    'call-to-action'    => 'Kliknutím na obrázok objektu nastavíš jeho stred záujmu namiesto automatického odhadu.',
+    'call-to-action'    => 'Kliknutím na obrázok objektu nastavíš jeho stredobod záujmu namiesto automatického odhadu.',
     'focus'             => [
-        'breadcrumb'    => 'Stred záujmu na obrázku',
-        'helper'        => 'Klikni na obrázok pre umiestnenie stredu záujmu. Už umiestnený bod odstrániš kliknutím naň.',
-        'panel_title'   => 'Stred záujmu na obrázku',
-        'success'       => 'Stred záujmu aktualizovaný.',
-        'title'         => 'Stred záujmu objektu :name',
-        'unboosted'     => 'Nastavenie stredu záujmu na obrázku je rezervované pre :boosted_campaigns.',
+        'breadcrumb'    => 'Stredobod záujmu na obrázku',
+        'helper'        => 'Klikni na obrázok pre umiestnenie stredobodu záujmu. Už umiestnený bod odstrániš kliknutím naň.',
+        'panel_title'   => 'Stredobod záujmu na obrázku',
+        'success'       => 'Stredobod záujmu aktualizovaný.',
+        'title'         => 'Stredobod záujmu objektu :name',
+        'unboosted'     => 'Nastavenie stredobodu záujmu na obrázku je rezervované pre :boosted_campaigns.',
+        'warning_v2'    => 'Nastavenie stredobodu záujmu pre obrázky galérie je možné uskutočniť priamo na stránke :gallery.',
     ],
     'replace'           => [
         'breadcrumb'    => 'Výmena obrázku',

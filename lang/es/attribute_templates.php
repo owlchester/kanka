@@ -9,6 +9,7 @@ return [
     'edit'                  => [],
     'fields'                => [
         'attributes'    => 'Atributos',
+        'auto_apply'    => 'Aplicar automáticamente',
     ],
     'hints'                 => [
         'automatic'                 => 'Atributos aplicados automáticamente desde la plantilla de atributos :link.',

@@ -30,6 +30,8 @@ return [
     ],
     'campaign'  => [
         'boosted'       => 'Підсилена :user від :time',
+        'premium'       => 'Преміум завдяки :user від :time',
+        'standard'      => 'Стандарт',
         'superboosted'  => 'Суперпідсилена :user від :time',
         'unboosted'     => 'Непідсилена',
     ],

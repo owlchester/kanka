@@ -29,6 +29,7 @@ return [
                 'title'     => 'Pridať dieťa',
             ],
             'edit'  => [
+                'helper'    => 'Zaškrtni túto možnosť, ak je vzťah neznámy. Postavu môžeš pridať neskôr.',
                 'success'   => 'Objekt aktualizovaný.',
                 'title'     => 'Aktualizovať objekt',
             ],
@@ -38,14 +39,15 @@ return [
             ],
         ],
         'relations' => [
-            'add'   => [
+            'add'       => [
                 'success'   => 'Vzťah pridaný.',
                 'title'     => 'Pridať vzťah',
             ],
-            'edit'  => [
+            'edit'      => [
                 'success'   => 'Vzťah aktualizovaný.',
                 'title'     => 'Aktualizovať vzťah',
             ],
+            'unknown'   => 'Neznámy',
         ],
         'reset'     => [
             'confirm'   => 'Naozaj chceš zahodiť všetky zmeny urobené v tomto rodokmeni?',

@@ -148,6 +148,7 @@ return [
                 'financial'         => 'Moja finančná situácia sa zmenila',
                 'missing_features'  => 'Chýbajú mi funkcionality',
                 'not_for'           => 'Predplatné nie je pre mňa',
+                'not_playing'       => 'Už sa nehrá alebo je kampaň pozastavená.',
                 'not_using'         => 'Aktuálne Kanku nevyužívam',
                 'other'             => 'Iné',
             ],

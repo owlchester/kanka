@@ -59,6 +59,10 @@ return [
         'description'   => 'Concentramos nossos esforços na construção de cerca de 20 módulos diferentes em Kanka, cada um focado em um aspecto de se jogar um TTRPG ou construção de mundo em geral. Em cada campanha, você pode criar personagens, locais, famílias, organizações, itens, missões, jornais, calendários, eventos, habilidades e muito mais. Não precisa de habilidades? Não tem problema, você pode desabilitar módulos de sua escolha em cada campanha, simplificando sua configuração para focar no que é importante para você.',
     ],
     'other_features'=> 'Outras características',
+    'premium'       => [
+        'description'   => 'Alguns recursos estão disponíveis apenas para campanhas premium. Quando um usuário se inscreve no Kanka, ele pode atualizar um determinado número de campanhas. Essas campanhas premium podem ser movidas de uma campanha para outra, como quando uma campanha termina. Enquanto um usuário permanecer assinante, suas campanhas premium permanecerão assim.',
+        'link'          => 'Veja todos os recursos premium em nossa página de preços.',
+    ],
     'quests'        => [
         'description'   => 'Prepare e acompanhe as missões do seu jogo, para onde eles levarão os jogadores, quem está envolvido e quais organizações estão secretamente puxando as cordas. Quando uma missão estiver completa, marque-a como tal e passe para a próxima.',
         'title'         => 'Missões',
@@ -70,6 +74,7 @@ return [
     ],
     'sections'      => [
         'general'       => 'Geral',
+        'premium'       => 'Recursos de campanha premium',
         'rpg'           => 'RPGs',
         'worldbuilding' => 'Construção de Mundo',
     ],

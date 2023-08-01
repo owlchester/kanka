@@ -101,6 +101,7 @@ return [
     'delete_modal'              => [
         'callout'           => 'Psst!',
         'close'             => 'Zatvoriť',
+        'confirm'           => 'Potvrdiť odstránenie',
         'delete'            => 'Odstrániť',
         'description_v2'    => 'Odstraňuješ ":tag".',
         'permanent'         => 'Táto akcia je natrvalo.',
