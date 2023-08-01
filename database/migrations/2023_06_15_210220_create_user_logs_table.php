@@ -18,6 +18,7 @@ return new class () extends Migration {
             $table->string('ip', 255)->nullable();
             $table->char('country', 6)->nullable();
             $table->timestamps();
+            $table->index(['created_at']);
         });
     }
 
