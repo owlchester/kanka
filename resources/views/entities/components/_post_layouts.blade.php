@@ -31,6 +31,7 @@
                             </a>
                         </li>
                         @endcan
+                        @if (!isset($more))
                         <li>
                             <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toggle="tooltip"
                                data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $post->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
@@ -45,6 +46,7 @@
                                 {{ __('entities/notes.copy_mention.copy_with_name') }}
                             </a>
                         </li>
+                        @endif
                         @if(auth()->user()->isAdmin())
                         <li>
                             <a href="{{ route('posts.move', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
