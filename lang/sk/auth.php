@@ -44,7 +44,6 @@ return [
     ],
     'register'  => [
         'already'                   => 'Máš už konto? :login',
-        'already_account'           => 'Máš už vlastné konto?',
         'errors'                    => [
             'email_already_taken'   => 'Konto s touto e-mailovou adresou už existuje.',
             'general_error'         => 'Nastala chyba pri registrácii tvojho konta. Prosím, skús to znovu.',

@@ -33,7 +33,6 @@ return [
     ],
     'register'  => [
         'already'                   => 'Contraseña de un solo uso',
-        'already_account'           => '¿Ya tienes una cuenta?',
         'errors'                    => [
             'email_already_taken'   => 'Ya existe una cuenta asociada a este correo electrónico.',
             'general_error'         => 'Ha ocurrido un error mientras se registraba la cuenta. Inténtalo de nuevo.',

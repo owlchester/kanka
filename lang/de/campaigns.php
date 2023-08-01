@@ -30,9 +30,6 @@ TEXT
         'success'   => 'Kampagne aktualisiert',
         'title'     => 'Kampagne :campaign bearbeiten',
     ],
-    'create'                            => [],
-    'destroy'                           => [],
-    'edit'                              => [],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Die Persönlichkeit neuer Charaktere ist im Standard auf privat eingestellt.',
@@ -44,9 +41,6 @@ TEXT
         'access'        => 'Du hast keinen Zugang zu dieser Kampagne.',
         'unknown_id'    => 'Unbekannte Kampagne.',
     ],
-    'entity_personality_visibilities'   => [],
-    'entity_visibilities'               => [],
-    'errors'                            => [],
     'export'                            => [],
     'fields'                            => [
         'boosted'                           => 'geboosted durch',
@@ -214,18 +208,9 @@ TEXT
     'modules'                           => [
         'permission-disabled'   => 'Dieses Modul ist deaktiviert.',
     ],
-    'fields'                            => [],
-    'helpers'                           => [],
-    'index'                             => [],
-    'invites'                           => [],
-    'leave'                             => [],
-    'members'                           => [],
-    'modules'                           => [],
     'open_campaign'                     => [],
     'options'                           => [],
     'overview'                          => [
-        'entity-count'      => '{0} Keine Objekte|{1} :Betrag Objekt|[2,*] :Betrag Objekte',
-        'follower-count'    => '{0} Keine Follower|{1} :Anzahl Follower|[2,*] :Anzahl Follower',
         'entity-count'      => '{0} Keine Objekte|{1} :amount Objekt|[2,*] :amount Objekte',
         'follower-count'    => '{0} Keine Follower|{1} :amount Follower|[2,*] :amount Follower',
     ],
@@ -434,14 +419,6 @@ TEXT
         ],
         'title'     => 'Kampagne :name',
     ],
-    'panels'                            => [],
-    'placeholders'                      => [],
-    'privacy'                           => [],
-    'public'                            => [],
-    'roles'                             => [],
-    'settings'                          => [],
-    'sharing'                           => [],
-    'show'                              => [],
     'superboosted'                      => [],
     'themes'                            => [
         'none'  => 'Keine (standardmäßig Benutzereinstellungen)',
@@ -499,9 +476,5 @@ TEXT
             'description'   => 'Anscheinend bearbeitet gerade jemand anderes diese Kampagne! Möchtest du zurückgehen oder diese Warnung ignorieren, auf die Gefahr hin, dass Daten verloren gehen? Mitglieder, die diese Kampagne derzeit bearbeiten:',
         ],
     ],
-    'themes'                            => [],
-    'ui'                                => [],
-    'visibilities'                      => [],
-    'warning'                           => [],
 ];
 

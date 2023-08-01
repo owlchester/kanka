@@ -43,7 +43,6 @@ return [
         'title'                 => 'Iniciar sesión',
     ],
     'register'  => [
-        'already_account'           => 'Xa tes unha conta?',
         'errors'                    => [
             'email_already_taken'   => 'Xa existe unha conta con este enderezo de correo electrónico.',
             'general_error'         => 'Produciuse un erro ao rexistrar a túa conta. Por favor, inténtao de novo.',

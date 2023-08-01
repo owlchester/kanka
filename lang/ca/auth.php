@@ -21,7 +21,6 @@ return [
         'title'                 => 'Inici de sessió',
     ],
     'register'  => [
-        'already_account'           => 'Ja teniu un compte?',
         'errors'                    => [
             'email_already_taken'   => 'Ja existeix un compte associat a aquest correu electrònic.',
             'general_error'         => 'Hi ha hagut un error mentre es registrava el compte. Intenteu-ho un altre cop.',

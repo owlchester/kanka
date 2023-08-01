@@ -32,7 +32,6 @@ return [
         'title'                 => 'Bejelentkezés',
     ],
     'register'  => [
-        'already_account'           => 'Már van felhasználói fiókod?',
         'errors'                    => [
             'email_already_taken'   => 'Ehhez az email-hez már regisztráltak felhasználói fiókot.',
             'general_error'         => 'Hiba lépett fel a regisztráció folyamán. Kérlek, próbáld meg újra!',

@@ -32,7 +32,6 @@ return [
         'title'                 => 'Prijava',
     ],
     'register'  => [
-        'already_account'           => 'Već imaš račun?',
         'errors'                    => [
             'email_already_taken'   => 'Račun s ovom email adresom je već registriran.',
             'general_error'         => 'Dogodila se pogreška prilikom registracije. Molimo, pokušaj ponovno.',
