@@ -58,7 +58,7 @@ function registerModalLoad() {
         $('#campaign-delete-form').focus();
     });
 }
-
+//this one
 function registerEntityNameCheck() {
     if (entityName.data('live-disabled')) {
         return;
@@ -243,7 +243,7 @@ function registerEntityCalendarModal() {
             return;
         }
         // Load month list
-        loadCalendarDates(entityCalendarField.val());
+        loadCalendarDates(entityCalendarField.val());    
     });
 
     //var defaultCalendarId = entityCalendarAdd.data('default-calendar');
@@ -252,6 +252,28 @@ function registerEntityCalendarModal() {
         entityCalendarSubForm.fadeIn();
         loadCalendarDates(entityCalendarField.val());
     }
+
+    $('.entity-calendar-subform input[name="length"]').focusout(function () {
+        let url = $(this).data('url').replace('/0/', '/' + entityCalendarField.val() + '/')
+      
+        let params = {
+            day: entityCalendarDayField.val(),
+            month: entityCalendarMonthField.val(),
+            year: entityCalendarYearField.val(),
+            length: $('.entity-calendar-subform input[name="length"]').val(),
+        }
+      
+        $.ajax(url, {data: params}).done(function (data) {
+            data = JSON.parse(data);
+            if (data.overflow == true) {
+                console.log('hi');
+                $('.length-warning').show();
+            } else {
+                $('.length-warning').hide();
+            }
+        });
+  
+    });
 }
 
 
