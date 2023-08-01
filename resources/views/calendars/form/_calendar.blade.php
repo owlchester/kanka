@@ -61,6 +61,9 @@
                 {{ __('calendars.helpers.default_layout') }}
             </p>
         </div>
+
+        <hr class="m-0" />
+        @include('cruds.fields.format')
     </div>
     <div class="flex gap-5 flex-col">
         <div class="field-years">
