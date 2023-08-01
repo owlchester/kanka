@@ -1,6 +1,6 @@
 <?php /**
  * @var \App\Models\Campaign $campaign
- * @var \App\Models\AppRelease $release
+ * @var \App\Models\CampaignDashboardWidget $widget
  */ ?>
 @php
     $position = 0;
@@ -39,6 +39,8 @@
             <?php if (!in_array($widget->widget, \App\Models\CampaignDashboardWidget::WIDGET_VISIBLE) && empty($widget->entity)):
                 continue;
             elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_PREVIEW && !$widget->entity):
+                continue;
+            elseif (!$widget->visible()):
                 continue;
             endif; ?>
             @if ($position + $widget->colSize() > 12)
