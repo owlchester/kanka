@@ -4,35 +4,59 @@ namespace App\Sanitizers;
 
 class CalendarSanitizer extends MiscSanitizer
 {
+    protected int $monthCount = 0;
+
     public function sanitize(): array
     {
         parent::sanitize();
 
         // Handle months
+        $months = $this->cleanMonths();
+
+        $this
+            ->cleanWeekdays()
+            ->cleanYearNames()
+            ->cleanWeekNames()
+            ->cleanMoons()
+            ->cleanSeasons()
+            ->cleanDate();
+
+        // Leap year
+        $this->cleanLeap($months);
+
+        return $this->data;
+    }
+
+    protected function cleanMonths(): array
+    {
         $months = [];
-        $monthCount = 0;
         $monthNames = $this->request->post('month_name', []);
         $monthLengths = $this->request->post('month_length', []);
         $monthAliases = $this->request->post('month_alias', []);
         $monthTypes = $this->request->post('month_type', []);
+
         foreach ($monthNames as $name) {
             if (empty($name)) {
                 continue;
             }
 
             // We want a month length of at least 1 day
-            $length = (int) $monthLengths[$monthCount];
+            $length = (int) $monthLengths[$this->monthCount];
             $months[] = [
                 'name' => $this->purify($name),
-                'length' => $length < 1 ? 1 : $length,
-                'type' => $monthTypes[$monthCount] ?? 'standard',
-                'alias' => $this->purify($monthAliases[$monthCount] ?? ''),
+                'length' => max($length, 1),
+                'type' => $monthTypes[$this->monthCount] ?? 'standard',
+                'alias' => $this->purify($monthAliases[$this->monthCount] ?? ''),
             ];
-            $monthCount++;
+            $this->monthCount++;
         }
         $this->data['months'] = json_encode($months);
 
-        // Handle weekdays
+        return $months;
+    }
+
+    protected function cleanWeekdays(): self
+    {
         $weekdays = [];
         $weekdayNames = $this->request->post('weekday', []);
         foreach ($weekdayNames as $name) {
@@ -43,8 +67,11 @@ class CalendarSanitizer extends MiscSanitizer
             $weekdays[] = $this->purify($name);
         }
         $this->data['weekdays'] = json_encode($weekdays);
+        return $this;
+    }
 
-        // Handle year names
+    protected function cleanYearNames(): self
+    {
         $years = [];
         $yearCount = 0;
         $yearValues = $this->request->post('year_number', []);
@@ -60,8 +87,11 @@ class CalendarSanitizer extends MiscSanitizer
             }
         }
         $this->data['years'] = json_encode($years);
+        return $this;
+    }
 
-        // Handle week names
+    protected function cleanWeekNames(): self
+    {
         $weeks = [];
         $weekCount = 0;
         $weekValues = $this->request->post('week_number', []);
@@ -77,8 +107,11 @@ class CalendarSanitizer extends MiscSanitizer
             }
         }
         $this->data['week_names'] = json_encode($weeks);
+        return $this;
+    }
 
-        // Handle moons
+    protected function cleanMoons(): self
+    {
         $moons = [];
         $moonCount = 0;
         $moonValues = $this->request->post('moon_fullmoon', []);
@@ -119,8 +152,11 @@ class CalendarSanitizer extends MiscSanitizer
             }
         }
         $this->data['moons'] = json_encode($moons);
+        return $this;
+    }
 
-        // Handle seasons
+    protected function cleanSeasons(): self
+    {
         $seasons = [];
         $seasonCount = 0;
         $seasonNames = $this->request->post('season_name', []);
@@ -142,13 +178,19 @@ class CalendarSanitizer extends MiscSanitizer
             $seasonCount++;
         }
         $this->data['seasons'] = json_encode($seasons);
+        return $this;
+    }
 
+    protected function cleanDate(): self
+    {
         // Calculate date
         $year = $this->request->post('current_year', '1');
         $month = ltrim($this->request->post('current_month', '1'), '0');
         $day = ltrim($this->request->post('current_day', '1'), '0');
+        $monthLengths = $this->request->post('month_length', []);
 
         // Empty values and skipping year 0
+        // @phpstan-ignore-next-line
         if ($year === null || $this->request->skip_year_zero && $year == 0) {
             $year = 1;
         }
@@ -158,10 +200,8 @@ class CalendarSanitizer extends MiscSanitizer
         if (empty($day)) {
             $day = 1;
         }
-
-        // Fix date?
-        if ($month > ($monthCount)) {
-            $month = $monthCount;
+        if ($month > ($this->monthCount)) {
+            $month = $this->monthCount;
         }
         if (isset($monthLengths[$month - 1])) {
             if ($day > $monthLengths[$month - 1]) {
@@ -171,15 +211,20 @@ class CalendarSanitizer extends MiscSanitizer
 
         $this->data['date'] = "{$year}-{$month}-{$day}";
 
-        // Leap year
-        if ($this->request->has_leap_year) {
-            if ($this->request->leap_year_month < 1) {
-                $this->data['leap_year_month'] = 1;
-            } elseif ($this->request->leap_year_month > count($months)) {
-                $this->data['leap_year_month'] = count($months);
-            }
+        return $this;
+    }
+
+    protected function cleanLeap(array $months): self
+    {
+        if (!$this->request->filled('has_leap_year')) {
+            return $this;
         }
 
-        return $this->data;
+        if ($this->request->leap_year_month < 1) {
+            $this->data['leap_year_month'] = 1;
+        } elseif ($this->request->leap_year_month > count($months)) {
+            $this->data['leap_year_month'] = count($months);
+        }
+        return $this;
     }
 }

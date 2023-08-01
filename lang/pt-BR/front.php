@@ -216,6 +216,13 @@ return [
             'community' => 'Comunidade',
         ],
     ],
+    'goodbye'               => [
+        'description_1' => 'Lamentamos sua partida e entendemos que excluir sua conta é uma grande decisão. Agradecemos o tempo que você passou com Kanka e esperamos que tenha correspondido às suas expectativas.',
+        'description_2' => 'Saiba que nossa equipe está empenhada em melhorar e atualizar constantemente o Kanka para fornecer a melhor experiência possível. Valorizamos seus comentários e sugestões e encorajamos você a entrar em contato conosco pelo :email a qualquer momento com quaisquer comentários que possa ter.',
+        'description_3' => 'Também queremos que você saiba que, caso decida voltar, ficaremos mais do que felizes em tê-lo de volta. Estamos confiantes de que, com nossas atualizações frequentes, você achará o Kanka ainda melhor e mais fácil de usar do que nunca.',
+        'description_4' => 'Obrigado novamente por fazer parte da nossa comunidade. Desejamos a você tudo de bom em seus futuros empreendimentos de construção de mundo.',
+        'title'         => 'Adeus',
+    ],
     'help'                  => [
         'description'   => 'Nós estamos aqui caso necessite um pouco de ajuda. Nos contate utilizando um dos seguintes métodos e nós retornaremos o mais rápido possível.',
         'discord'       => 'Inscreva-se em nosso Discord',

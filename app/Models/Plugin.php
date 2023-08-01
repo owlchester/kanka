@@ -166,7 +166,8 @@ class Plugin extends Model
         }
 
         return $query->orderByRaw(
-            $this->getTable() . ".uuid = ? DESC", $uuid
+            $this->getTable() . ".uuid = ? DESC",
+            [$uuid]
         );
     }
     /**

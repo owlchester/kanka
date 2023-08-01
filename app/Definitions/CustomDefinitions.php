@@ -31,9 +31,9 @@ class CustomDefinitions implements Definition
             'Block',
             'Flow',
             'Common',
-            array(
+            [
                 'open' => new \HTMLPurifier_AttrDef_HTML_Bool(true)
-            )
+            ]
         );
         $def->addElement(
             'section',

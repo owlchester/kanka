@@ -6,7 +6,6 @@ use App\Models\Campaign;
 use App\Jobs\CampaignDeleteJob;
 use Illuminate\Console\Command;
 
-
 class CampaignDelete extends Command
 {
     /**
@@ -45,7 +44,7 @@ class CampaignDelete extends Command
         if ($campaign) {
             CampaignDeleteJob::dispatch($campaign);
             $this->info('Queued campaign #' . $campaignId . ' for deletion');
-        }  else {
+        } else {
             $this->info('Invalid campaign ID');
         }
 

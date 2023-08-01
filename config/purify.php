@@ -1,6 +1,5 @@
 <?php
 
-use Stevebauman\Purify\Definitions\Html5Definition;
 
 return [
 

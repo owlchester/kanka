@@ -80,7 +80,7 @@ class PostObserver
     public function saved(Post $post)
     {
         $this->savePermissions($post);
-        if (request() && request()->filled('position')) {
+        if (request()->filled('position')) {
             $this->reorder($post);
         }
         // When adding or changing an entity note to an entity, we want to update the

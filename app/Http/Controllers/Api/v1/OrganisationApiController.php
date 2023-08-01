@@ -72,13 +72,12 @@ class OrganisationApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Organisation $organisation
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Organisation $organisation)
+    public function destroy(Campaign $campaign, Organisation $organisation)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $organisation);

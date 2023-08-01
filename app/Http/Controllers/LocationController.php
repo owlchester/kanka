@@ -88,11 +88,7 @@ class LocationController extends CrudController
 
         $this->rows = $location
             ->allCharacters()
-            ->select(['id', 'image', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
-            ->sort(request()->only(['o', 'k']))
-            ->filter($filters)
-            ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
-            ->has('entity')
+            ->filteredCharacters()
             ->paginate();
 
         // Ajax Datagrid
@@ -124,7 +120,7 @@ class LocationController extends CrudController
         $this->rows = $location
             ->descendants()
             ->select(['id', 'image', 'name', 'type', 'parent_location_id', 'is_private'])
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with(['location', 'location.entity', 'entity', 'entity.tags', 'entity.image'])
             ->has('entity')

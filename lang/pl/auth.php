@@ -44,7 +44,6 @@ return [
     ],
     'register'  => [
         'already'                   => 'Masz już konto? :login',
-        'already_account'           => 'Masz już konto?',
         'errors'                    => [
             'email_already_taken'   => 'Istnieje już konto związane z tym adresem email.',
             'general_error'         => 'Podczas rejestracji wystąpił błąd. Spróbuj jeszcze raz.',

@@ -16,8 +16,7 @@ class Footer extends Component
     public function __construct(
         bool $modal = false,
         bool $dialog = false,
-    )
-    {
+    ) {
         $this->modal = $modal;
         $this->dialog = $dialog;
     }

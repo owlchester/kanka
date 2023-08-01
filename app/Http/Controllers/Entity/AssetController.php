@@ -10,6 +10,7 @@ use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Services\EntityFileService;
 use App\Traits\GuestAuthTrait;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
@@ -124,7 +125,7 @@ class AssetController extends Controller
             return redirect()
                 ->route('entities.entity_assets.index', $entity)
                 ->with('error', __('crud.files.errors.' . $e->getMessage(), ['max' => $campaign->maxEntityFiles()]));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()
                 ->route('entities.entity_assets.index', $entity)
                 ->with('error', $e->getMessage());

@@ -3,6 +3,7 @@
 namespace App\View\Components\Forms;
 
 use App\Facades\Module;
+use App\Models\Entity;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,7 @@ class Foreign extends Component
     public string $id;
     public ?string $key;
     public mixed $route;
+    /** @var mixed|Entity|null */
     public mixed $selected;
     public bool $parent;
     public bool $allowNew;
@@ -77,13 +79,14 @@ class Foreign extends Component
     {
         $canNew = false;
         if ($this->allowNew && auth()->check() && !empty($this->className)) {
-            $canNew = auth()->user()->can('create', new $this->className);
+            $canNew = auth()->user()->can('create', new $this->className());
         }
 
         if (!empty($this->selected)) {
             if (is_array($this->selected)) {
                 $this->options = $this->selected;
             } elseif ($this->selected instanceof Model) {
+                // @phpstan-ignore-next-line
                 $this->options[$this->selected->id] = $this->selected->name;
             }
         }
@@ -119,4 +122,3 @@ class Foreign extends Component
             ->with('canNew', $canNew);
     }
 }
-

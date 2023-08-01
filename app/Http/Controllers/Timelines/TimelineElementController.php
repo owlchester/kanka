@@ -107,7 +107,6 @@ class TimelineElementController extends Controller
     {
         $this->authorize('update', $timeline);
 
-        /** @var MiscModel $model */
         $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
         $model = $timelineElement;

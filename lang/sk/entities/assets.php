@@ -1,12 +1,15 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'alias' => 'Alias',
         'file'  => 'Súbor',
         'link'  => 'Link',
     ],
-    'show'      => [
+    'copy_alias'    => [
+        'success'   => 'Referencia na prezývku skopírovaná do schránky.',
+    ],
+    'show'          => [
         'title' => 'Materiály pre :name',
     ],
 ];

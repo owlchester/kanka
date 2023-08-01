@@ -109,6 +109,8 @@ Route::get('/timelines/{timeline}/timelines', 'Timelines\TimelineController@time
 Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
 Route::get('/tags/{tag}/tags', 'TagController@tags')->name('tags.tags');
 Route::get('/tags/{tag}/children', 'TagController@children')->name('tags.children');
+Route::get('/tags/{tag}/transfer', 'TagController@transferTag')->name('tags.transfer');
+Route::post('/tags/{tag}/transfer', 'TagController@transfer')->name('tags.transfer');
 
 // Tags Quick Add
 Route::get('/tags/{tag}/entity-add', 'TagController@entityAdd')->name('tags.entity-add');
@@ -347,6 +349,8 @@ Route::patch('/campaigns/{campaign}/dashboard-header', 'Campaign\DashboardHeader
 // Helper links
 Route::get('/campaign-roles/admin', 'CampaignRoleController@admin')->name('campaigns.campaign_roles.admin');
 Route::get('/campaign-roles/public', 'CampaignRoleController@public')->name('campaigns.campaign_roles.public');
+Route::get('/campaign-roles/{campaign_role}/duplicate', 'CampaignRoleController@duplicate')->name('campaign_roles.duplicate');
+
 
 // Marketplace plugin route
 if(config('marketplace.enabled')) {

@@ -1,4 +1,6 @@
+@inject('moduleService', 'App\Services\Campaign\ModuleService')
 <?php /** @var \App\Models\CampaignDashboardWidget $widget */
+use Illuminate\Support\Str;
 
 $background = null;
 
@@ -8,6 +10,9 @@ if ($widget->entity) {
     } elseif (!empty($widget->entity->image)) {
         $background = Img::crop(600, 600)->url($widget->entity->image->path);
     }
+}
+if ($widget->conf('entity')) {
+    $entityString = $moduleService->plural($widget->conf('entity'), 'entities.' . Str::plural($widget->conf('entity')));
 }
 ?>
 
@@ -65,7 +70,7 @@ if ($widget->entity) {
 
             @if ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_RECENT)
                 @if (!empty($widget->conf('entity')))
-                    <h5>{{ __('entities.' . $widget->conf('entity')) }}</h5>
+                    <h5>{{ __($entityString) }}</h5>
                 @elseif (!empty($widget->conf('singular')))
                     <h5>{{ __('dashboard.widgets.recent.singular') }}</h5>
                 @endif

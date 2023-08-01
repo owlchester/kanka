@@ -63,7 +63,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
             @if (!isset($printing))
             <a class="entity-image cover-background visible-xs" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePathMobile }}');"></a>
             @endif
-            <div class="cursor-pointer dropdown-toggle hidden-xs" data-toggle="dropdown" aria-expanded="false">
+            <div class="cursor-pointer dropdown-toggle hidden-xs print-none" data-toggle="dropdown" aria-expanded="false">
                 <picture>
                     <source media="(min-width:766px)" srcset="{{ $imagePathXL }}">
                     <img src="{{ $imagePath }}" alt="{{ $model->name }}" style="width:auto;">
@@ -221,6 +221,15 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                                         </a>
                                     </li>
                                 @endif
+                                <li class="divider"></li>
+                                    @can('update', $model)
+                                        <li>
+                                            <a href="{{ route('entities.relations.create', ['entity' => $model->entity, 'mode' => 'table']) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', ['entity' => $model->entity, 'mode' => 'table']) }}">
+                                                <x-icon class="fa-solid fa-people-arrows"></x-icon>
+                                                {{ __('entities/relations.create.new_title') }}
+                                            </a>
+                                        </li>
+                                    @endcan
                                 <li class="divider"></li>
                             @endif
                             <li>

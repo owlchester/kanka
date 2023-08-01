@@ -49,9 +49,9 @@ class CharacterApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Character::class);
 
-        /** @var Character $model */
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
+        /** @var Character $model */
         $model = Character::create($data);
         $this->crudSave($model);
 
@@ -76,13 +76,12 @@ class CharacterApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Character $character
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Character $character)
+    public function destroy(Campaign $campaign, Character $character)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $character);

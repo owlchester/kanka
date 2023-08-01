@@ -25,23 +25,12 @@ class MiscPolicy
      */
     protected bool $boosted = false;
 
-    /**
-     * @param User $user
-     * @return bool
-     */
-    public function browse(User $user)
+    public function browse(): bool
     {
         return true;
     }
 
-    /**
-     * Determine whether the user can view the entity.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\MiscModel $entity
-     * @return bool
-     */
-    public function view(User $user, $entity)
+    public function view(User $user, MiscModel $entity): bool
     {
         if ($this->boosted) {
             $campaign = CampaignLocalization::getCampaign();
@@ -60,14 +49,7 @@ class MiscPolicy
             $this->checkPermission(CampaignPermission::ACTION_READ, $user, $entity);
     }
 
-    /**
-     * Determine whether the user can create entities.
-     * @param User $user
-     * @param MiscModel|null $entity
-     * @param Campaign|null $campaign
-     * @return bool
-     */
-    public function create(User $user, $entity = null, Campaign $campaign = null)
+    public function create(User $user, $entity = null, Campaign $campaign = null): bool
     {
         if ($this->boosted) {
             $campaign = CampaignLocalization::getCampaign();
@@ -79,50 +61,24 @@ class MiscPolicy
         return auth()->check() && $this->checkPermission(CampaignPermission::ACTION_ADD, $user, null, $campaign);
     }
 
-    /**
-     * Determine whether the user can update the entity.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\MiscModel $entity
-     * @return bool
-     */
-    public function update(User $user, $entity)
+    public function update(User $user, MiscModel $entity): bool
     {
         return Auth::check() && (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
             && $this->checkPermission(CampaignPermission::ACTION_EDIT, $user, $entity);
     }
 
-    /**
-     * Determine whether the user can delete the entity.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\MiscModel $entity
-     * @return bool
-     */
-    public function delete(User $user, $entity)
+    public function delete(User $user, MiscModel $entity): bool
     {
         return Auth::check() &&  (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
             && $this->checkPermission(CampaignPermission::ACTION_DELETE, $user, $entity);
     }
 
-    /**
-     * @param User|null $user
-     * @param MiscModel $entity
-     * @param string $subAction
-     * @return bool
-     */
-    public function attribute(?User $user, $entity, string $subAction = 'browse')
+    public function attribute(?User $user, $entity, string $subAction = 'browse'): bool
     {
         return $this->relatedElement($user, $entity, $subAction);
     }
 
-    /**
-     * @param User $user
-     * @param MiscModel $entity
-     * @param string $subAction
-     * @return bool
-     */
-    public function relatedElement(?User $user, $entity, string $subAction = 'browse')
+    public function relatedElement(?User $user, $entity, string $subAction = 'browse'): bool
     {
         if ($subAction == 'browse') {
             return $user && $this->view($user, $entity);
@@ -131,25 +87,12 @@ class MiscPolicy
         }
     }
 
-    /**
-     * @param User $user
-     * @param MiscModel $entity
-     * @param string $subAction
-     * @return bool
-     */
-    public function relation(User $user, $entity, string $subAction = 'browse')
+    public function relation(User $user, $entity, string $subAction = 'browse'): bool
     {
         return $this->relatedElement($user, $entity, $subAction);
     }
 
-    /**
-     * @param User $user
-     * @param MiscModel $entity
-     * @param string|null $action
-     * @param Post|null $post
-     * @return bool
-     */
-    public function post(User $user, $entity, string $action = null, Post $post = null)
+    public function post(User $user, $entity, string $action = null, Post $post = null): bool
     {
         return Auth::check() && (
             $this->update($user, $entity) ||
@@ -160,12 +103,8 @@ class MiscPolicy
 
     /**
      * Determine whether the user can manage the permissions of the entity
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\MiscModel $entity
-     * @return bool
      */
-    public function permission(User $user, $entity)
+    public function permission(User $user, MiscModel $entity): bool
     {
         if ($entity->exists === false) {
             return $this->checkPermission(CampaignPermission::ACTION_PERMS, $user, null);
@@ -179,7 +118,7 @@ class MiscPolicy
      * @param User $user
      * @return bool
      */
-    public function move(User $user, $entity)
+    public function move(User $user, $entity): bool
     {
         return $this->update($user, $entity);
     }
@@ -188,7 +127,7 @@ class MiscPolicy
      * @param User $user
      * @return bool
      */
-    public function events(User $user, $entity)
+    public function events(User $user, $entity): bool
     {
         return $this->update($user, $entity);
     }
@@ -197,7 +136,7 @@ class MiscPolicy
      * @param User $user
      * @return bool
      */
-    public function inventory(User $user, $entity)
+    public function inventory(User $user, $entity): bool
     {
         return $this->update($user, $entity);
     }
@@ -211,6 +150,7 @@ class MiscPolicy
      */
     protected function checkPermission(int $action, User $user, $entity = null, Campaign $campaign = null): bool
     {
+        // @phpstan-ignore-next-line
         return EntityPermission::hasPermission($this->entityTypeID(), $action, $user, $entity, $campaign);
     }
 

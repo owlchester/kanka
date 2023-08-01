@@ -8,9 +8,9 @@ use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Location;
 use App\Models\MiscModel;
-use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
+use Exception;
 use Illuminate\Support\Str;
 
 class LogService
@@ -18,7 +18,6 @@ class LogService
     use EntityAware;
     use UserAware;
 
-    /** @var mixed MiscModel */
     protected MiscModel $model;
 
     /**
@@ -131,7 +130,7 @@ class LogService
             /** @var MiscModel $result */
             $result = $relationModel->where('id', $original)->firstOrFail();
             return $result->name;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return '';
         }
     }

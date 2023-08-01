@@ -89,7 +89,7 @@ class CampaignInviteController extends Controller
      */
     public function destroy(CampaignInvite $campaignInvite)
     {
-        $this->authorize('delete', $campaignInvite);
+        $this->authorize('invite', $campaignInvite->campaign);
 
         $campaignInvite->delete();
         return redirect()->route('campaign_users.index')

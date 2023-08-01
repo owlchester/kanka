@@ -83,14 +83,13 @@ class EntityPermissionApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Entity $entity
      * @param CampaignPermission $permission
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Entity $entity, CampaignPermission $permission)
+    public function destroy(Campaign $campaign, Entity $entity, CampaignPermission $permission)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);

@@ -8,7 +8,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\ImageService;
-use Illuminate\Http\Request;
 
 class EntityImageApiController extends Controller
 {
@@ -34,13 +33,12 @@ class EntityImageApiController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Entity $entity
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Campaign $campaign, Entity $entity)
+    public function destroy(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);

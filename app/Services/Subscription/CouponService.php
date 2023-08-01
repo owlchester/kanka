@@ -3,6 +3,7 @@
 namespace App\Services\Subscription;
 
 use App\Traits\UserAware;
+use Exception;
 use Stripe\PromotionCode;
 use Stripe\Stripe;
 
@@ -51,8 +52,10 @@ class CouponService
             }
 
             // Check restrictions
+            // @phpstan-ignore-next-line
             if ($promo->restrictions) {
                 // Some promos are only for first time subscribers
+                // @phpstan-ignore-next-line
                 if ($promo->restrictions->first_time_transaction) {
                     if ($this->user->subscriptions->count()) {
                         return $this->error(__('subscriptions/promos.errors.only-new'));
@@ -68,7 +71,7 @@ class CouponService
                 'coupon' => $promo->coupon->id,
                 'discount' => __('settings.subscription.coupon.percent_off', ['percent' => $promo->coupon->percent_off]),
             ];
-        } catch(\Exception $e) {
+        } catch(Exception $e) {
             return $this->error($e->getMessage());
         }
     }

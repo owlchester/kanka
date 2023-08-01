@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Models\EntityEvent;
 use App\Models\EntityEventType;
 use App\Models\Journal;
-use App\Models\MiscModel;
 use App\Models\Quest;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -103,7 +102,7 @@ class MigrateCalendarDates extends Command
         // Old code, try and get the first reminder
         /** @var EntityEvent $reminder */
         $reminder = $model->entity->calendarDateEvents->first();
-        if (!$reminder) {
+        if (!$reminder && $reminder !== null) {
             // No reminder? Might be an entity copied over from one campaign to another, in which case we can reset it
             $this->clears[] = $model->id;
             return;

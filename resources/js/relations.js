@@ -14,13 +14,6 @@ const DEFAULT_COLOUR = '#777777';
 
 function initCytoscape() {
 
-    $(document).on('shown.bs.modal', function() {
-        initRelationFormModal();
-    });
-    if ($('input[name="two_way"]').length === 1) {
-        initRelationFormModal();
-    }
-
     if($('#cy').length === 0) {
         return;
     }
@@ -241,11 +234,5 @@ async function displayOnLoad() {
     }
     $("#spinner").hide();
     cySelector.show();
-}
-
-function initRelationFormModal() {
-    $('input[name="two_way"]').on('click', function() {
-        $('#two-way-relation').toggle();
-    });
 }
 

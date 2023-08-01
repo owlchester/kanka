@@ -20,7 +20,7 @@ use Illuminate\Support\Arr;
  * Class Ability
  * @package App\Models
  * @property int|null $ability_id
- * @property string|null $charges
+ * @property mixed|null $charges
  * @property Ability|null $ability
  * @property Collection|Ability[] $descendants
  * @property Collection|Ability[] $abilities
@@ -34,9 +34,9 @@ class Ability extends MiscModel
     use Acl;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
-    use HasFactory;
     use SortableTrait
     ;
 

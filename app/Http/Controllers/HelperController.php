@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MiscModel;
+use Exception;
 use Illuminate\Support\Str;
 
 class HelperController
@@ -34,7 +35,7 @@ class HelperController
                 'filters',
                 'type'
             ));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             abort(404);
         }
     }

@@ -26,9 +26,8 @@ class PayPalService
         if ($this->user->billedInEur()) {
             $currency = "EUR";
         }
-        if ($pledge === 'Owlbear') {
-            $price = "55.00";
-        } elseif ($pledge === 'Wyvern') {
+        $price = "55.00";
+        if ($pledge === 'Wyvern') {
             $price = "110.00";
         } elseif ($pledge === 'Elemental') {
             $price = "275.00";
@@ -71,13 +70,13 @@ class PayPalService
         $this->user->save();
 
         $sub = new Subscription();
-        $sub->user_id = $this->user->id;
-        $sub->name = 'kanka';
-        $sub->stripe_id = 'manual_sub';
-        $sub->stripe_status = 'canceled';
-        $sub->stripe_price = 'paypal_' . $this->user->pledge;
-        $sub->quantity = 1;
-        $sub->ends_at = Carbon::now()->addYear();
+        $sub->user_id = $this->user->id; // @phpstan-ignore-line
+        $sub->name = 'kanka'; // @phpstan-ignore-line
+        $sub->stripe_id = 'manual_sub'; // @phpstan-ignore-line
+        $sub->stripe_status = 'canceled'; // @phpstan-ignore-line
+        $sub->stripe_price = 'paypal_' . $this->user->pledge; // @phpstan-ignore-line
+        $sub->quantity = 1; // @phpstan-ignore-line
+        $sub->ends_at = Carbon::now()->addYear(); // @phpstan-ignore-line
         $sub->save();
 
         $this->user->log(UserLog::TYPE_SUB_PAYPAL);

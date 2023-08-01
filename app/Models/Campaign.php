@@ -201,9 +201,9 @@ class Campaign extends MiscModel
      * Determine if the user is in the campaign
      * @return bool
      */
-    public function userIsMember(): bool
+    public function userIsMember(User $user = null): bool
     {
-        return CampaignCache::members()->where('user_id', auth()->user()->id)->count() == 1;
+        return CampaignCache::members()->where('user_id', $user ?? auth()->user()->id)->count() == 1;
     }
 
     /**

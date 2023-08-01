@@ -45,7 +45,7 @@ class CreateCharacters extends Migration
             // Index
             $table->index(['name', 'slug']);
         });
-            }
+    }
 
     /**
      * Reverse the migrations.

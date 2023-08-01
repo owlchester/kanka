@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateEntityFile;
 use App\Models\EntityFile;
 use App\Services\EntityFileService;
 use App\Models\Entity;
+use Exception;
 
 class EntityFileController extends Controller
 {
@@ -96,7 +97,7 @@ class EntityFileController extends Controller
             return redirect()
                 ->route('entities.entity_assets.index', $entity)
                 ->with('error', __('crud.files.errors.' . $e->getMessage(), ['max' => $campaign->maxEntityFiles()]));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()
                 ->route('entities.entity_assets.index', $entity)
                 ->with('error', $e->getMessage());

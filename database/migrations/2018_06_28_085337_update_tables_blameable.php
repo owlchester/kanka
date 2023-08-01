@@ -44,6 +44,6 @@ class UpdateTablesBlameable extends Migration
      */
     public function down()
     {
-        //
+
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Calendar;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignFollower;
+use App\Models\Genre;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
@@ -67,6 +68,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignSubmission[] $submissions
  * @property Collection|CampaignStyle[] $styles
  * @property Collection|RpgSystem[] $rpgSystems
+ * @property Collection|Genre[] $genres
  */
 trait CampaignRelations
 {
@@ -365,5 +367,13 @@ trait CampaignRelations
         return $this->belongsToMany(User::class, 'entity_user')
             ->using(EntityUser::class)
             ->withPivot('type_id');
+    }
+
+    /**
+     *
+     */
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
     }
 }

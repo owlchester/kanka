@@ -11,37 +11,20 @@ class EntityPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view the entity's attributes.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\Entity  $entity
-     * @return mixed
-     */
-    public function attributes(?User $user, Entity $entity)
+    public function attributes(?User $user, Entity $entity): bool
     {
         if ($entity->exists === false) {
             return true;
         }
-        return $entity->is_attributes_private ? ($user && $user->isAdmin()) : true;
+        return !$entity->is_attributes_private || $user && $user->isAdmin();
     }
 
-    /**
-     * @param User $user
-     * @param Entity $entity
-     * @return bool
-     */
-    public function privacy(User $user, Entity $entity)
+    public function privacy(User $user): bool
     {
         return $user->isAdmin();
     }
 
-    /**
-     * @param User|null $user
-     * @param Entity $entity
-     * @return bool
-     */
-    public function history(?User $user, Entity $entity, Campaign $campaign)
+    public function history(?User $user, Entity $entity, Campaign $campaign): bool
     {
         return ($user && $user->isAdmin()) || !($campaign->boosted() && $campaign->hide_history);
     }

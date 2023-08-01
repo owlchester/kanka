@@ -15,7 +15,7 @@ class MentionsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(MentionsService::class, function ($app) {
+        $this->app->singleton(MentionsService::class, function () {
             return new MentionsService(new EntityService());
         });
 

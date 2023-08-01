@@ -81,7 +81,7 @@ class RaceController extends CrudController
 
         $this->rows = $race
             ->{$relation}()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with([
                 'location', 'location.entity',
@@ -120,7 +120,7 @@ class RaceController extends CrudController
         // @phpstan-ignore-next-line
         $this->rows = $race
             ->descendants()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['entity', 'characters'])
             ->filter($filters)
             ->paginate(15);

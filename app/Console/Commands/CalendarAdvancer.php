@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Calendar;
 use App\Models\JobLog;
+use Exception;
 use Illuminate\Console\Command;
 
 class CalendarAdvancer extends Command
@@ -51,7 +52,7 @@ class CalendarAdvancer extends Command
                 try {
                     $calendar->addDay();
                     $this->count++;
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     $this->errors[$calendar->id] = $e->getMessage();
                 }
             }

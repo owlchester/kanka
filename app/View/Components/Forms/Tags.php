@@ -32,8 +32,7 @@ class Tags extends Component
         string $helper = null,
         string $dropdownParent = null,
         mixed $options = [],
-    )
-    {
+    ) {
         $this->id = $id ?? 'tags_' . uniqid();
         $this->allowNew = $allowNew;
         $this->allowClear = $allowClear;
@@ -80,7 +79,7 @@ class Tags extends Component
         } elseif (empty($this->model) && $this->enableAuto) {
             $tags = \App\Models\Tag::autoApplied()->with('entity')->get();
             foreach ($tags as $tag) {
-                if ($tag && $tag->entity) {
+                if ($tag && $tag->entity) {// @phpstan-ignore-line
                     $this->tags[$tag->id] = $tag;
                 }
             }

@@ -19,8 +19,7 @@ class Element extends Component
         string $icon,
         string $text,
         string $url = null,
-    )
-    {
+    ) {
         $this->text = $text;
         $this->icon = $icon;
         $this->url = $url;

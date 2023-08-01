@@ -21,7 +21,6 @@ class OpenAiService
     /**
      * @param string $prompt
      * @param array $context
-     * @return string
      */
     public function input(string $prompt, array $context = []): self
     {
@@ -39,7 +38,7 @@ class OpenAiService
     public function generate(): array
     {
         $token = config('openai.secret');
-        $open_ai = new OpenAi($token);
+        $openAi = new OpenAi($token);
 
         //Creating prompt
         $prompt = $this->preparePrompt();
@@ -51,14 +50,14 @@ class OpenAiService
         //1 token is almost 0.75 word
         $maxTokens = config('openai.tokens');
 
-        $complete = $open_ai->chat([
+        $complete = $openAi->chat([
             'model' => $engine,
             'messages' => $prompt,
             'temperature' => 0.9,
             'max_tokens' => $maxTokens,
             'frequency_penalty' => 0,
             'presence_penalty' => 0.6,
-         ]);
+        ]);
 
         $this->output = json_decode($complete, true);
 

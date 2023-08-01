@@ -19,6 +19,7 @@ use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\TooltipTrait;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -125,6 +126,7 @@ class Entity extends Model
         } elseif ($this->isDiceRoll()) {
             return $this->diceRoll();
         }
+        // @phpstan-ignore-next-line
         return $this->{$this->type()}();
     }
 
@@ -147,7 +149,7 @@ class Entity extends Model
         } elseif ($this->isDiceRoll()) {
             return $this->load('diceRoll');
         }
-
+        // @phpstan-ignore-next-line
         return $this->load($this->type());
     }
 
@@ -207,7 +209,7 @@ class Entity extends Model
             }
             $routeOptions = array_merge([$this->entity_id], $options);
             return route($this->pluralType() . '.' . $action, $routeOptions);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return route('dashboard');
         }
     }
@@ -221,12 +223,13 @@ class Entity extends Model
         if ($this->cachedPluralName !== false) {
             return $this->cachedPluralName;
         }
+        // @phpstan-ignore-next-line
         return $this->cachedPluralName = Str::plural($this->type());
     }
 
     /**
      * Get the entity's type id
-     * @return \Illuminate\Config\Repository|mixed
+     * @return mixed
      */
     public function typeId()
     {
@@ -235,6 +238,7 @@ class Entity extends Model
 
     public function entityType(): string
     {
+        // @phpstan-ignore-next-line
         return __('entities.' . $this->type());
     }
 

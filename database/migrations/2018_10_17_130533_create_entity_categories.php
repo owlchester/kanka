@@ -17,17 +17,17 @@ class CreateEntityCategories extends Migration
 
         Schema::create('entity_tags', function (Blueprint $table) {
             $table->increments('id');
-//            $table->unsignedInteger('campaign_id');
+            //            $table->unsignedInteger('campaign_id');
             $table->unsignedInteger('entity_id');
             $table->unsignedInteger('tag_id');
             $table->timestamps();
 
-//            $table->unsignedInteger('created_by')->nullable();
-//            $table->unsignedInteger('updated_by')->nullable();
+            //            $table->unsignedInteger('created_by')->nullable();
+            //            $table->unsignedInteger('updated_by')->nullable();
 
-//            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
-//            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
-//            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
+            //            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+            //            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            //            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });

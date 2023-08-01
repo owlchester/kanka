@@ -57,6 +57,7 @@ class EntityResource extends JsonResource
         $data = [
             'id' => $entity->id,
             'name' => $entity->name,
+            // @phpstan-ignore-next-line
             'type' => $entity->type(),
             'type_id' => $entity->type_id,
             'child_id' => $entity->entity_id,
@@ -115,6 +116,7 @@ class EntityResource extends JsonResource
 
         // Get the actual model
         if ($this->withMisc) {
+            // @phpstan-ignore-next-line
             $className = 'App\Http\Resources\\' . ucfirst($entity->type()) . 'Resource';
             if (class_exists($className)) {
                 $obj = new $className($entity->child);
@@ -131,11 +133,11 @@ class EntityResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param  array $prepared
-     * @return array
+     * @return array|string
      */
     public function entity(array $prepared = [])
     {
-        /** @var MiscModel|Item $misc */
+        /** @var mixed|MiscModel|Item $misc */
         $misc = $this->resource;
         if (!$misc->entity) {
             return 'permission issue';
@@ -162,6 +164,7 @@ class EntityResource extends JsonResource
             'focus_y' => $misc->entity->focus_y,
 
             // Image
+            // @phpstan-ignore-next-line
             'image_full' => !empty($misc->image) ? $misc->thumbnail(0) : $misc->entity->image?->getImagePath(0),
             'image_thumb' => $misc->thumbnail(),
             'has_custom_image' => !empty($misc->image) || !empty($galleryImage),
@@ -194,10 +197,10 @@ class EntityResource extends JsonResource
         // Foreign elements
         $attributes = $misc->getAttributes();
         if (array_key_exists('location_id', $attributes)) {
-            $merged['location_id'] = $misc->location_id; // @phpstan-ignore-line
+            $merged['location_id'] = $misc->location_id;
         }
         if (array_key_exists('character_id', $attributes)) {
-            $merged['character_id'] = $misc->character_id; // @phpstan-ignore-line
+            $merged['character_id'] = $misc->character_id;
         }
 
         if (request()->get('related', false) || $this->withRelated) {

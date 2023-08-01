@@ -72,13 +72,12 @@ class DiceRollApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param DiceRoll $diceRoll
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, DiceRoll $diceRoll)
+    public function destroy(Campaign $campaign, DiceRoll $diceRoll)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $diceRoll);

@@ -13,8 +13,8 @@ use App\Traits\EntityAware;
 
 class PreviewService
 {
-    use EntityAware;
     use CampaignAware;
+    use EntityAware;
 
     protected array $profile = [];
 
@@ -25,7 +25,8 @@ class PreviewService
         $this->data = [
             'id' => $this->entity->id,
             'name' => $this->entity->name,
-            'title' => $this->entity->isCharacter() ? $this->entity->child->title : null,
+            // @phpstan-ignore-next-line
+            'title' => $this->entity->isCharacter() ? $this->entity->child?->title : null,
             'link' => $this->entity->url(),
             'image' => $this->image()
         ];
@@ -53,7 +54,7 @@ class PreviewService
      */
     protected function profile(): array
     {
-        /** @var MiscModel $child */
+        /** @var MiscModel|Character $child */
         $child = $this->entity->child;
         if (!empty($child->type)) {
             $this->addProfile('crud.fields.type', 'type', $child->type);
@@ -61,6 +62,7 @@ class PreviewService
 
         // Entity-specific content?
         if ($this->entity->isCharacter()) {
+            /** @var Character $child */
             $this->characterProfile($child);
         }
 

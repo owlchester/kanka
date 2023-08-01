@@ -47,9 +47,9 @@ class MenuLinkApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', MenuLink::class);
 
-        /** @var MenuLink $model */
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
+        /** @var MenuLink $model */
         $model = MenuLink::create($data);
         $this->crudSave($model);
         return new Resource($model);
@@ -72,13 +72,12 @@ class MenuLinkApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param MenuLink $menuLink
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, MenuLink $menuLink)
+    public function destroy(Campaign $campaign, MenuLink $menuLink)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $menuLink);

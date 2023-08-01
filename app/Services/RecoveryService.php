@@ -6,6 +6,7 @@ use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class RecoveryService
@@ -54,7 +55,7 @@ class RecoveryService
                     DB::commit();
 
                     dump('Trashed ' . count($entities) . ' entities.');
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     DB::rollBack();
                 }
             });

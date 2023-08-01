@@ -64,7 +64,7 @@ class MapMarkerObserver
             $cleanSvg = $sanitizer->sanitize($mapMarker->custom_icon);
             if ($cleanSvg !== false) {
                 return $cleanSvg;
-            } else { // @phpstan-ignore-line
+            } else {
                 return null;
             }
         } elseif (Str::startsWith($mapMarker->custom_icon, ['<i ', 'fa-', 'ra '])) {

@@ -7,6 +7,7 @@ use App\Http\Requests\Front\StoreCommunityEventEntry;
 use App\Models\CommunityEvent;
 use App\Models\CommunityEventEntry;
 use App\Services\EntityService;
+use Exception;
 
 class CommunityEventEntryController extends Controller
 {
@@ -31,7 +32,7 @@ class CommunityEventEntryController extends Controller
             return redirect()
                 ->route('community-events.show', [$communityEvent, '#event-form'])
                 ->with('success', __('front/community-events.participate.success.submit'));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Tried sending a second submission?
             return redirect()
                 ->route('community-events.show', [$communityEvent, '#event-form']);
@@ -51,7 +52,7 @@ class CommunityEventEntryController extends Controller
             return redirect()
                 ->route('community-events.show', [$communityEvent, '#event-form'])
                 ->with('success', __('front/community-events.participate.success.modified'));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Tried sending a second submission?
             return redirect()
                 ->route('community-events.show', [$communityEvent, '#event-form']);

@@ -6,6 +6,7 @@ use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Taggable;
 use App\Services\FilterService;
 use App\Traits\CampaignTrait;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
@@ -25,6 +26,7 @@ use Illuminate\Support\Str;
  * @property integer $position
  * @property Entity $entity
  * @property CampaignDashboard $dashboard
+ * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags
  *
  * @method static self|Builder positioned()
  * @method static self|Builder onDashboard(CampaignDashboard $dashboard = null)
@@ -108,9 +110,6 @@ class CampaignDashboardWidget extends Model
         )->using(CampaignDashboardWidgetTag::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
     public function dashboardWidgetTags()
     {
         return $this->hasMany(CampaignDashboardWidgetTag::class, 'widget_id', 'id');
@@ -275,6 +274,8 @@ class CampaignDashboardWidget extends Model
         $order = Arr::get($this->config, 'order', null);
         if (empty($order)) {
             $base = $base->recentlyModified();
+        } elseif ($order == 'oldest') {
+            $base = $base->oldestModified();
         } else {
             list($field, $order) = explode('_', $order);
             $base = $base->orderBy($field, $order);
@@ -387,7 +388,7 @@ class CampaignDashboardWidget extends Model
             }
 
             return $filters;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             //Log::error('Widget error:' . $e->getMessage());
             return [];
         }

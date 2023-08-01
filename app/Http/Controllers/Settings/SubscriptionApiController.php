@@ -132,10 +132,6 @@ class SubscriptionApiController extends Controller
         return response()->json(null, 204);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function checkCoupon(ValidateCoupon $request)
     {
         /** @var User $user */

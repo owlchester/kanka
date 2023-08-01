@@ -231,7 +231,7 @@ class DiscordService
                 $url = 'guilds/' . config('discord.channel_id') . '/members/' . $me->id . '/roles/' . $id;
                 $this->call('delete', $url, $body, $headers);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::warning('Couldn\'t delete role for user');
         }
 

@@ -7,10 +7,9 @@ use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Jobs\Users\UpdateEmail;
-use App\Models\CampaignUser;
-use App\Models\CampaignFollower;
 use App\Services\ImageService;
 use App\User;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -33,10 +32,10 @@ class UserObserver
         // Purify the bio
         if (!empty($user->profile['bio'])) {
             $profile = $user->profile;
-            $profile['bio'] = mb_substr(strip_tags($profile['bio']), 0, 301);
             try {
+                $profile['bio'] = mb_substr(strip_tags($profile['bio']), 0, 301);
                 $user->profile = $profile;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // An invalid profile, like emojis in text
                 $profile['bio'] = '';
                 $user->profile = $profile;
@@ -46,10 +45,10 @@ class UserObserver
         //Purify Billing info
         if (!empty($user->profile['billing'])) {
             $profile = $user->profile;
-            $profile['billing'] = mb_substr(strip_tags($profile['billing']), 0, 1024);
             try {
+                $profile['billing'] = mb_substr(strip_tags($profile['billing']), 0, 1024);
                 $user->profile = $profile;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 //invalid billing info, like emojis in text
                 $profile['billing'] = '';
                 $user->profile = $profile;
@@ -120,13 +119,14 @@ class UserObserver
     }
 
     /**
-     * @param User $user
+     * When a user is deleted, we need to clean up their avatar (only on production to avoid Jay doing silly things),
+     * their newsletter status, cache, and later we also need to delete their stripe data after 3 months.
      */
     public function deleted(User $user)
     {
         // If the user has an avatar, delete it from the disk to free up some space.
-        if (!empty($user->avatar) && $user->avatar !== 'users/default.png') {
-            //ImageService::cleanup($user, 'avatar');
+        if (!empty($user->avatar) && $user->avatar !== 'users/default.png' && app()->isProduction()) {
+            ImageService::cleanup($user, 'avatar');
         }
 
         //Log::info('Deleted user', ['user' => $user->id]);
@@ -140,13 +140,5 @@ class UserObserver
         if (app()->isProduction() && !empty($user->hasNewsletter())) {
             UnsubscribeUser::dispatch($user->email);
         }
-    }
-
-    /**
-     * @param User $user
-     */
-    public function deleting(User $user)
-    {
-
     }
 }

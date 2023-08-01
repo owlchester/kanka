@@ -65,7 +65,7 @@ class AttributeMentionService
         try {
             $calculated = $this->entityAttributes()->get($attribute->name);
             return (string) $calculated['final'];
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             //throw $e;
             return (string) $attribute->$field;
         }
@@ -119,7 +119,7 @@ class AttributeMentionService
             try {
                 // @phpstan-ignore-next-line
                 $this->calculatedAttributes[$name] = $this->calculateAttribute($attribute);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $attribute['loop'] = true;
                 $attribute['final'] = $attribute['value'];
                 $this->calculatedAttributes[$name] = $attribute;
@@ -151,7 +151,8 @@ class AttributeMentionService
         $final = preg_replace_callback('`\{(.*?)\}`i', function ($matches) use ($data, $from) {
             $text = $matches[1];
             //dump('checking for a reference called ' . $text);
-            if ($ref = $this->calculatedAttributes->get($text)) {
+            $ref = $this->calculatedAttributes->get($text);
+            if ($ref) {
                 //dump('has an attribute called it!');
                 if (!empty($ref['final'])) {
                     //dump('has a final version too');
@@ -221,7 +222,8 @@ class AttributeMentionService
         if ($this->calculatedAttributes === null || $this->calculatedAttributes->isEmpty()) {
             return false;
         }
-        if ($ref = $this->calculatedAttributes->get($name)) {
+        $ref = $this->calculatedAttributes->get($name);
+        if ($ref) {
             return $ref['loop'];
         }
         return false;

@@ -12,17 +12,17 @@ use Illuminate\Support\Arr;
  * @package App\Models
  *
  * @property integer $entity_id
- * @property integer $entity_note_id
- * @property integer $quest_element_id
- * @property integer $timeline_element_id
- * @property integer $campaign_id
+ * @property integer|null $entity_note_id
+ * @property integer|null $quest_element_id
+ * @property integer|null $timeline_element_id
+ * @property integer|null $campaign_id
  * @property integer $target_id
  * @property Entity $entity
- * @property Post $post
- * @property QuestElement $questElement
- * @property TimelineElement $timelineElement
- * @property Entity $target
- * @property Campaign $campaign
+ * @property Post|null $post
+ * @property QuestElement|null $questElement
+ * @property TimelineElement|null $timelineElement
+ * @property Entity|null $target
+ * @property Campaign|null $campaign
  *
  * @method static self|Builder prepareCount()
  */
@@ -146,6 +146,7 @@ class EntityMention extends Model
     public function scopePrepareCount(Builder $query): Builder
     {
         return $query->where(function ($sub) {
+            // @phpstan-ignore-next-line
             return $sub
                 ->where(function ($subEnt) {
                     return $subEnt
@@ -277,7 +278,7 @@ class EntityMention extends Model
         if ($this->isQuestElement()) {
             if ($this->questElement && $this->entity) {
                 return $this->entity->tooltipedLink() .
-                    ' - ' . $this->questElement->visibilityIcon(null, true) .
+                    ' - ' . $this->questElement->skipAllIcon()->visibilityIcon() .
                     ' <a class="name" href="' .
                     $this->getLink() . '">' .
                     $this->questElement->name() .
@@ -287,7 +288,7 @@ class EntityMention extends Model
         } elseif ($this->isTimelineElement()) {
             if ($this->timelineElement && $this->entity) {
                 return $this->entity->tooltipedLink() .
-                    ' - ' . $this->timelineElement->visibilityIcon(null, true) .
+                    ' - ' . $this->timelineElement->skipAllIcon()->visibilityIcon() .
                     ' <a class="name" href="' .
                     $this->getLink() . '">' .
                     $this->timelineElement->elementName() .
@@ -296,7 +297,7 @@ class EntityMention extends Model
         } elseif ($this->isPost()) {
             if ($this->post && $this->entity) {
                 return $this->entity->tooltipedLink() .
-                    ' - ' . $this->post->visibilityIcon(null, true) .
+                    ' - ' . $this->post->skipAllIcon()->visibilityIcon() .
                     ' <a class="name" href="' .
                     $this->getLink() . '">' .
                     $this->post->name .

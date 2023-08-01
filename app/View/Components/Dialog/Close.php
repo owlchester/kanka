@@ -17,8 +17,7 @@ class Close extends Component
     public function __construct(
         string $dismiss = 'modal',
         bool $modal = false,
-    )
-    {
+    ) {
         $this->dismiss = $dismiss;
         $this->modal = $modal;
     }

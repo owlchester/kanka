@@ -55,6 +55,7 @@ TEXT
         'excerpt'                           => 'Description de la campagne sur le tableau de bord',
         'featured'                          => 'Campagne vedette',
         'followers'                         => 'Followers',
+        'genre'                             => 'Genre(s)',
         'header_image'                      => 'Image de fond pour le tableau de bord',
         'image'                             => 'Image',
         'locale'                            => 'Langue',
@@ -240,6 +241,7 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'           => 'Ajouter un rôle',
+            'duplicate'     => 'Copier le rôle',
             'permissions'   => 'Gérer les permissions',
             'rename'        => 'Renommer le rôle',
             'save'          => 'Enregistrer le rôle',
@@ -261,16 +263,18 @@ TEXT
             'title'     => 'Modifier le rôle :name',
         ],
         'fields'        => [
-            'name'          => 'Nom',
-            'permissions'   => 'Permissions',
-            'type'          => 'Type',
-            'users'         => 'Utilisateurs',
+            'copy_permissions'  => 'Copier les permissions',
+            'name'              => 'Nom',
+            'permissions'       => 'Permissions',
+            'type'              => 'Type',
+            'users'             => 'Utilisateurs',
         ],
         'helper'        => [
-            '1' => 'Une campagne peut avoir autant de rôles que désiré. Le rôle "Admin" a automatiquement accès à tout dans une campagne, et chaque autre rôle peut être configuré pour avoir des accès spécifiques à divers entités (personnages, lieux, etc).',
-            '2' => 'Les entités individuelles peuvent avoir leurs propres permissions sous l\'onglet "Permissions" de celles-ci. Cet onglet apparait dès le moment qu\'une campagne a plusieurs membres ou rôles.',
-            '3' => 'Il y a deux options possibles. Soit le mode "opt-out", ou les rôles ont le droit de lire toutes les entités, couplé à l\'option "Privé" sur les entités pour les cacher. Sinon, il est possible de ne pas donner de droits généraux aux rôles, et à la place donner des rôles individuellement sur les entités pour les rendre visibles.',
-            '4' => 'Les campagne boostées ont un nombre illimité de rôles.',
+            '1'                     => 'Une campagne peut avoir autant de rôles que désiré. Le rôle "Admin" a automatiquement accès à tout dans une campagne, et chaque autre rôle peut être configuré pour avoir des accès spécifiques à divers entités (personnages, lieux, etc).',
+            '2'                     => 'Les entités individuelles peuvent avoir leurs propres permissions sous l\'onglet "Permissions" de celles-ci. Cet onglet apparait dès le moment qu\'une campagne a plusieurs membres ou rôles.',
+            '3'                     => 'Il y a deux options possibles. Soit le mode "opt-out", ou les rôles ont le droit de lire toutes les entités, couplé à l\'option "Privé" sur les entités pour les cacher. Sinon, il est possible de ne pas donner de droits généraux aux rôles, et à la place donner des rôles individuellement sur les entités pour les rendre visibles.',
+            '4'                     => 'Les campagne boostées ont un nombre illimité de rôles.',
+            'permissions_helper'    => 'Créer une copie du rôle et de ses permissions, sur les modules et sur les entités.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Le rôle Public a des permissions mais la campagne est privée. La campagne peut être rendue publique sous l\'onglet Partager en modifiant la campagne.',

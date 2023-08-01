@@ -95,6 +95,13 @@ class CampaignRole extends Layout
                 'icon' => 'fa-solid fa-edit',
                 'route' => 'campaign_roles.show',
             ],
+            'duplicate' => [
+                'label' => 'campaigns.roles.actions.duplicate',
+                'icon' => 'fa-solid fa-copy',
+                'can' => 'update',
+                'type' => 'ajax-modal',
+                'route' => 'campaign_roles.duplicate',
+            ],
             Layout::ACTION_DELETE,
         ];
     }

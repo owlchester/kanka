@@ -8,17 +8,6 @@ use App\Models\CampaignPlugin;
 class CampaignPluginObserver
 {
     /**
-     * Handle the models campaign plugin "created" event.
-     *
-     * @param  \App\Models\CampaignPlugin  $campaignPlugin
-     * @return void
-     */
-    public function created(CampaignPlugin $campaignPlugin)
-    {
-
-    }
-
-    /**
      * Handle the models campaign plugin "updated" event.
      *
      * @param  \App\Models\CampaignPlugin  $campaignPlugin
@@ -46,27 +35,5 @@ class CampaignPluginObserver
         if ($campaignPlugin->plugin->type() == 'theme') {
             CampaignCache::clearTheme();
         }
-    }
-
-    /**
-     * Handle the models campaign plugin "restored" event.
-     *
-     * @param  \App\Models\CampaignPlugin  $campaignPlugin
-     * @return void
-     */
-    public function restored(CampaignPlugin $campaignPlugin)
-    {
-
-    }
-
-    /**
-     * Handle the models campaign plugin "force deleted" event.
-     *
-     * @param  \App\Models\CampaignPlugin  $campaignPlugin
-     * @return void
-     */
-    public function forceDeleted(CampaignPlugin $campaignPlugin)
-    {
-
     }
 }

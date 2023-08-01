@@ -7,6 +7,7 @@ use App\Services\CampaignService;
 use App\Services\InviteService;
 use App\Facades\CampaignLocalization;
 use App\User;
+use Exception;
 
 class InvitationController extends Controller
 {
@@ -48,7 +49,7 @@ class InvitationController extends Controller
             return redirect()->to('/');
         } catch (RequireLoginException $e) {
             return redirect()->route('login')->with('info', $e->getMessage());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             if (auth()->guest()) {
                 return redirect()->route('login')->withErrors($e->getMessage());
             }

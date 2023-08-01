@@ -6,6 +6,7 @@ use App\Models\Entity;
 use App\Models\JobLog;
 use App\Services\RecoveryService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -68,7 +69,7 @@ class CleanupTrashed extends Command
                     }
                 });
             DB::commit();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->error($e->getMessage());
             $log .= '<br />' . $e->getMessage();
             DB::rollBack();

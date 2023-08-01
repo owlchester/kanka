@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\ReferralService;
 use App\User;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +45,7 @@ class AuthController extends Controller
         }
         try {
             return Socialite::driver($provider)->redirect();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('login')->withErrors('Error contacting ' . ucfirst($provider) . '.');
         }
     }
@@ -64,13 +65,14 @@ class AuthController extends Controller
             if ($provider == 'twitter') {
                 $user = Socialite::driver($provider)->user();
             } else {
+                // @phpstan-ignore-next-line
                 $user = Socialite::driver($provider)->stateless()->user();
             }
 
             $authUser = $this->findOrCreateUser($user, $provider);
             Auth::login($authUser, true);
             return redirect()->route('home');
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             if ($ex->getCode() == '1') {
                 return redirect()->route('login')->withErrors(__('auth.register.errors.email_already_taken'));
             } else {

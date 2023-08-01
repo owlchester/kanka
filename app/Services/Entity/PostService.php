@@ -28,10 +28,6 @@ class PostService
 
     /**
      * Move or copy an entity note to another entity
-     *
-     * @param Post $post
-     * @param MovePostRequest $request
-     * @return Post
      */
     public function handle(MovePostRequest $request): Post
     {
@@ -44,12 +40,11 @@ class PostService
 
     /**
      * Copy the post with its permissions to another entity
-     * @return Post
-     * @throws \Exception
      */
     protected function copy(): Post
     {
         $entity = Entity::findOrFail($this->entityId);
+        /** @var Post $newPost */
         $newPost = $this->post->copyTo($entity);
 
         // Update the "mentioned in" mapping for the entity

@@ -330,6 +330,7 @@ return [
     ],
     'relations'                 => [],
     'remove'                    => 'Rimuovi',
+    'rename'                    => 'Rinomina',
     'save'                      => 'Salva',
     'save_and_close'            => 'Salva e Chiudi',
     'save_and_copy'             => 'Salva e Copia',

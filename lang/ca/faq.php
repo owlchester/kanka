@@ -18,7 +18,7 @@ Es podrien incloure manualment a cada indret, però pot ser un procés tediós i
 
 Es pot crear una plantilla d'atributs amb aquells atributs (població, clima, nivell de criminalitat, etc.) i aplicar després aquesta plantilla als indrets. D'aquesta manera, s'aplicaran els atributs de la plantilla als indrets, i tot el que haureu de fer és canviar els valors sense haver de recordar-vos dels atributs!
 TEXT
-,
+        ,
         'question'  => 'Què són les plantilles d\'atributs?',
     ],
     'backup'                => [
@@ -66,7 +66,7 @@ TEXT
 
 A més d'inlfuir sobre la direcció que prendrà Kanka, en donar-nos suport obtindreu un augment a la grandària dels arxius que podeu pujar, afegirem el vostre nom al mur de la fama, rebreu icones predefinides que fan goig, podreu votar quines funcions es prioritzen i molt més!
 TEXT
-,
+        ,
         'question'  => 'L\'app continuarà sent gratis?',
     ],
     'gods-and-religions'    => [
@@ -107,7 +107,7 @@ Els plans a llarg termini per a Kanka inclouen construir del tot aquesta eina ve
 
 Nosaltres mateixos utilitzem Kanka, així que no pensem deixar de desenvolupar-la i millorar-la. Malgrat això, per si de cas, el projecte és de codi obert i la comunitat podrà seguir treballant-hi si ens succeís algun imprevist.
 TEXT
-,
+        ,
         'question'  => 'Quins són els plans a llarg termini?',
     ],
     'public-campaigns'      => [

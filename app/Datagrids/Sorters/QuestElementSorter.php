@@ -13,7 +13,7 @@ class QuestElementSorter extends DatagridSorter
     /**
      * @var array
      */
-    public $options = [
+    public array $options = [
         'entity.name' => 'crud.fields.name',
         'role' => 'quests.fields.role',
     ];

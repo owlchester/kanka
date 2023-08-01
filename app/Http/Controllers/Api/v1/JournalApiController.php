@@ -72,13 +72,12 @@ class JournalApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Journal $journal
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Journal $journal)
+    public function destroy(Campaign $campaign, Journal $journal)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $journal);

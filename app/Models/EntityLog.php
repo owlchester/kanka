@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\Module;
 use App\Http\Requests\HistoryRequest;
 use App\User;
 use Carbon\Carbon;
@@ -22,9 +21,9 @@ use Illuminate\Support\Str;
  * @property integer $action
  * @property integer $post_id
  * @property string|array  $changes
- * @property Entity $entity
- * @property User $user
- * @property User $impersonator
+ * @property Entity|null $entity
+ * @property User|null $user
+ * @property User|null $impersonator
  * @property Campaign $campaign
  * @property Carbon $created_at
  */
@@ -212,7 +211,7 @@ class EntityLog extends Model
 
     public function day(): int
     {
-        return $this->created_at->format('Ymd');
+        return (int) $this->created_at->format('Ymd');
     }
 
     public function userLink(): string
@@ -234,7 +233,7 @@ class EntityLog extends Model
     public function actions($action): array
     {
         if ($action == self::ACTION_CREATE || $action == self::ACTION_CREATE_POST) {
-            return [ self::ACTION_CREATE, self::ACTION_CREATE_POST ];
+            return [self::ACTION_CREATE, self::ACTION_CREATE_POST];
         } elseif ($action == self::ACTION_UPDATE) {
             return [self::ACTION_UPDATE, self::ACTION_UPDATE_POST, self::ACTION_REORDER_POST];
         } elseif ($action == self::ACTION_DELETE) {
@@ -242,6 +241,7 @@ class EntityLog extends Model
         } elseif ($action == self::ACTION_RESTORE) {
             return [self::ACTION_RESTORE];
         }
+        return [];
     }
 
     /**

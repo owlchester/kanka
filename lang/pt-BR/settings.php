@@ -71,8 +71,9 @@ return [
         'title'     => 'Integração de App',
     ],
     'billing'       => [
-        'save'  => 'Salvar informações de cobrança',
-        'title' => 'Informações de Cobrança',
+        'placeholder'   => 'Se você precisar de contatos adicionais ou informações fiscais aos seus recibos (endereço comercial, número de IVA, etc.), insira-as abaixo e elas aparecerão em todos os seus recibos.',
+        'save'          => 'Salvar informações de cobrança',
+        'title'         => 'Informações de Cobrança',
     ],
     'boost'         => [
         'exceptions'    => [
@@ -147,6 +148,7 @@ return [
                 'financial'         => 'A assinatura é muito cara',
                 'missing_features'  => 'Falta de recursos',
                 'not_for'           => 'Assinatura não é para mim',
+                'not_playing'       => 'Não está mais jogando ou fazendo campanha em hiato',
                 'not_using'         => 'Não estou usando o Kanka no momento',
                 'other'             => 'Outro',
             ],
@@ -189,10 +191,13 @@ return [
         ],
         'helpers'               => [
             'alternatives'          => 'Pague sua assinatura usando :method. Este método de pagamento não será renovado automaticamente no final da sua assinatura. :method disponível apenas em Euros.',
+            'alternatives-2'        => 'Pague sua assinatura usando :method. Este é um pagamento único que não é renovado automaticamente no final da assinatura.',
             'alternatives_warning'  => 'Não é possível atualizar sua assinatura ao usar este método. Faça uma nova assinatura quando a atual terminar.',
             'alternatives_yearly'   => 'Devido às restrições em torno dos pagamentos recorrentes, :method está disponível apenas para assinaturas anuais',
+            'currency_blocked'      => 'Não é possível alterar a moeda depois de ter uma assinatura Kanka ativa. Entre em contato conosco em :email para obter assistência.',
             'paypal'                => 'Quer usar o Paypal em vez disso? Contate-nos em :email se pretender assinar um plano anual através do Paypal.',
             'paypal_v2'             => 'Aceitamos PayPal para assinaturas anuais. Entre em contato conosco em :email com o e-mail da sua conta Kanka, o nível que deseja assinar e a moeda (USD ou EUR) na qual deseja ser cobrado.',
+            'paypal_v3'             => 'Pague com segurança pela sua assinatura anual usando o PayPal.',
             'stripe'                => 'Suas informações de cobrança são processadas e armazenadas com segurança por meio de :stripe.',
         ],
         'manage_subscription'   => 'Gerenciar assinatura',
@@ -252,6 +257,7 @@ return [
                     'bonuses'   => 'Seus bônus permanecem ativados até o final do período de pagamento.',
                     'boosts'    => 'O mesmo acontece com suas campanhas impulsionadas. Os recursos impulsionados se tornam invisíveis, mas não são excluídos quando uma campanha não é mais impulsionada.',
                     'kobold'    => 'Para cancelar sua assinatura, mude para o nível Kobold',
+                    'premium'   => 'O mesmo acontece com suas campanhas premium. Os recursos premium ficam invisíveis, mas não são excluídos quando uma campanha não é mais premium.',
                 ],
                 'title'     => 'Ao cancelar sua assinatura',
             ],

@@ -72,13 +72,12 @@ class FamilyApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Family $family
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Family $family)
+    public function destroy(Campaign $campaign, Family $family)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $family);

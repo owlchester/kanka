@@ -25,34 +25,34 @@ class CacheServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(EntityCacheService::class, function ($app) {
+        $this->app->singleton(EntityCacheService::class, function () {
             return new EntityCacheService();
         });
-        $this->app->singleton(CampaignCacheService::class, function ($app) {
+        $this->app->singleton(CampaignCacheService::class, function () {
             return new CampaignCacheService();
         });
-        $this->app->singleton(UserCacheService::class, function ($app) {
+        $this->app->singleton(UserCacheService::class, function () {
             return new UserCacheService();
         });
-        $this->app->singleton(SingleUserCacheService::class, function ($app) {
+        $this->app->singleton(SingleUserCacheService::class, function () {
             return new SingleUserCacheService();
         });
-        $this->app->singleton(PostCacheService::class, function ($app) {
+        $this->app->singleton(PostCacheService::class, function () {
             return new PostCacheService();
         });
-        $this->app->singleton(CharacterCacheService::class, function ($app) {
+        $this->app->singleton(CharacterCacheService::class, function () {
             return new CharacterCacheService();
         });
-        $this->app->singleton(QuestCacheService::class, function ($app) {
+        $this->app->singleton(QuestCacheService::class, function () {
             return new QuestCacheService();
         });
-        $this->app->singleton(MapMarkerCacheService::class, function ($app) {
+        $this->app->singleton(MapMarkerCacheService::class, function () {
             return new MapMarkerCacheService();
         });
-        $this->app->singleton(TimelineElementCacheService::class, function ($app) {
+        $this->app->singleton(TimelineElementCacheService::class, function () {
             return new TimelineElementCacheService();
         });
-        $this->app->singleton(MarketplaceCacheService::class, function ($app) {
+        $this->app->singleton(MarketplaceCacheService::class, function () {
             return new MarketplaceCacheService();
         });
 

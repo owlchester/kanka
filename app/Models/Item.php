@@ -33,9 +33,9 @@ class Item extends MiscModel
     ;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use SoftDeletes;
     use SortableTrait;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [

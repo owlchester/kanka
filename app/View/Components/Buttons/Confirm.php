@@ -51,7 +51,7 @@ class Confirm extends Component
             ->with('colours', $this->colour())
             ->with('sizes', $this->size())
             ->with('element', $this->dismiss == 'dialog' ? 'a' : 'button')
-            ;
+        ;
     }
 
     protected function size(): string

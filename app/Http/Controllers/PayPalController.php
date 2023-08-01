@@ -11,19 +11,14 @@ class PayPalController extends Controller
 {
     protected PaypalService $service;
 
-    /**
-     * AbilityController constructor.
-     * @param PayPalService $service
-     */
     public function __construct(PayPalService $service)
     {
         $this->middleware(['auth', 'identity']);
         $this->service = $service;
     }
+
     /**
      * process transaction.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function processTransaction(ValidatePledge $request)
     {
@@ -50,8 +45,6 @@ class PayPalController extends Controller
     /**
      * Process a successful transaction
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Throwable
      */
     public function successTransaction(Request $request)
     {
@@ -78,9 +71,7 @@ class PayPalController extends Controller
     }
 
     /**
-     * cancel transaction.
-     *
-     * @return \Illuminate\Http\Response
+     * cancel transaction
      */
     public function cancelTransaction(Request $request)
     {

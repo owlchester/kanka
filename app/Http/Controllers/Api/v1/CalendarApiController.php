@@ -56,10 +56,10 @@ class CalendarApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Calendar::class);
 
-        /** @var Calendar $model */
         $request->merge($this->sanitizer->request($request)->sanitize());
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
+        /** @var Calendar $model */
         $model = Calendar::create($data);
         $this->crudSave($model);
         return new Resource($model);
@@ -83,13 +83,12 @@ class CalendarApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Calendar $calendar
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Campaign $campaign, Calendar $calendar)
+    public function destroy(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $calendar);

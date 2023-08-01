@@ -33,6 +33,7 @@ class Entity extends EntityChild
             'image_thumb' => $model->child->thumbnail(),
             'has_custom_image' => !empty($model->child->image),
 
+            // @phpstan-ignore-next-line
             'type' => $model->type(),
             'type_id' => $model->type_id,
             'tooltip' => $model->tooltip,

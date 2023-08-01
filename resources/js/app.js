@@ -1,4 +1,3 @@
-//import './vendor';
 import './tags.js';
 import './components/select2.js';
 
@@ -367,6 +366,7 @@ import './quick-creator';
 //import './tutorial')
 import './datagrids';
 import './quick-links';
+import './post-layouts';
 import './members';
 import './campaign';
 import './clipboard';

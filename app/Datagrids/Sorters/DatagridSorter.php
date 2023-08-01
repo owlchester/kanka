@@ -5,13 +5,11 @@ namespace App\Datagrids\Sorters;
 use App\Models\Campaign;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use ReflectionClass;
 
 abstract class DatagridSorter
 {
-    /**
-     * @var array
-     */
-    public $options;
+    public array $options;
 
     /**
      * The default field for sorting
@@ -78,6 +76,7 @@ abstract class DatagridSorter
 
     /**
      * @param string $key
+     * @param bool $asc
      * @return bool
      */
     public function isSelected(string $key, bool $asc = true): bool
@@ -151,7 +150,7 @@ abstract class DatagridSorter
     {
         // ReflectionClass is cheap but let's still avoid extra calls
         if ($this->sessionKey === false) {
-            $this->sessionKey = 'dg-sorter-' . Str::kebab((new \ReflectionClass($this))->getShortName());
+            $this->sessionKey = 'dg-sorter-' . Str::kebab((new ReflectionClass($this))->getShortName());
         }
         return (string) $this->sessionKey;
     }

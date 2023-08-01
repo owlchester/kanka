@@ -9,7 +9,7 @@ use App\User;
  */
 trait UserAware
 {
-    /** @var User user model */
+    /** @var null|User user model */
     public $user;
 
     /**

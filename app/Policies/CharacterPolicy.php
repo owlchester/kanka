@@ -25,10 +25,9 @@ class CharacterPolicy extends MiscPolicy
     /**
      * @param User $user
      * @param Character $entity
-     * @param string $subAction
      * @return bool|mixed
      */
-    public function organisation(User $user, Character $entity, string $subAction = 'browse')
+    public function organisation(User $user, Character $entity)
     {
         return  $this->update($user, $entity);
     }

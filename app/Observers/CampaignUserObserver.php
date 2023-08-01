@@ -8,23 +8,6 @@ use App\Models\CampaignUser;
 
 class CampaignUserObserver
 {
-    /**
-     * @param CampaignUser $campaignUser
-     */
-    public function saving(CampaignUser $campaignUser)
-    {
-    }
-
-    /**
-     * @param CampaignUser $campaignUser
-     */
-    public function saved(CampaignUser $campaignUser)
-    {
-    }
-
-    /**
-     * @param CampaignUser $campaignUser
-     */
     public function created(CampaignUser $campaignUser)
     {
         // When joining a campaign, stop following said campaign
@@ -39,16 +22,6 @@ class CampaignUserObserver
         CampaignCache::campaign($campaignUser->campaign)->clearMembers();
     }
 
-    /**
-     * @param CampaignUser $campaignUser
-     */
-    public function creating(CampaignUser $campaignUser)
-    {
-    }
-
-    /**
-     * @param CampaignUser $campaignUser
-     */
     public function deleted(CampaignUser $campaignUser)
     {
         // Update the campaign members cache when a user was deleted

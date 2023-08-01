@@ -108,7 +108,7 @@ class MapController extends CrudController
 
         $this->rows = $map
             ->{$base}()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['entity', 'map', 'map.entity'])
             ->paginate();
 

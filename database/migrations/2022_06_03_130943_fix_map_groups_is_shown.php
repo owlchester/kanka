@@ -29,7 +29,7 @@ class FixMapGroupsIsShown extends Migration
     public function down()
     {
         Schema::table('map_groups', function (Blueprint $table) {
-            //
+
         });
     }
 }

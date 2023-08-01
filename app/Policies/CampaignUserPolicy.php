@@ -15,35 +15,7 @@ class CampaignUserPolicy
     use AdminPolicyTrait;
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view the campaignUser.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\CampaignUser  $campaignUser
-     * @return mixed
-     */
-    public function view(User $user, CampaignUser $campaignUser)
-    {
-    }
-
-    /**
-     * Determine whether the user can create campaignUsers.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-    }
-
-    /**
-     * Determine whether the user can update the campaignUser.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\CampaignUser  $campaignUser
-     * @return mixed
-     */
-    public function update(User $user, CampaignUser $campaignUser)
+    public function update(User $user, CampaignUser $campaignUser): bool
     {
         // Don't allow updating if we are currently impersonating
         if (Identity::isImpersonating()) {
@@ -72,26 +44,12 @@ class CampaignUserPolicy
         return $role->created_at->diffInMinutes() <= 15;
     }
 
-    /**
-     * Determine whether the user can delete the campaignUser.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\CampaignUser  $campaignUser
-     * @return mixed
-     */
-    public function delete(User $user, CampaignUser $campaignUser)
+    public function delete(User $user, CampaignUser $campaignUser): bool
     {
         return $this->update($user, $campaignUser);
     }
 
-    /**
-     * Determine whether the current user can switch to the user.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\CampaignUser  $campaignUser
-     * @return mixed
-     */
-    public function switch(User $user, CampaignUser $campaignUser)
+    public function switch(User $user, CampaignUser $campaignUser): bool
     {
         if (Identity::isImpersonating()) {
             return false;

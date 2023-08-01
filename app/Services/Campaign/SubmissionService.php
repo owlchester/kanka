@@ -93,13 +93,13 @@ class SubmissionService
     protected function approve(int $roleID, string $message = ''): self
     {
         // Add the user to the campaign
-        $user = CampaignUser::create([
+        CampaignUser::create([
             'user_id' => $this->submission->user_id,
             'campaign_id' => $this->campaign->id,
         ]);
 
         // Add the user to the role
-        $role = CampaignRoleUser::create([
+        CampaignRoleUser::create([
             'user_id' => $this->submission->user_id,
             'campaign_role_id' => $roleID
         ]);

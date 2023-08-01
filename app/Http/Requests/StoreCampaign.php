@@ -34,7 +34,9 @@ class StoreCampaign extends FormRequest
             'entity_personality_visibility' => 'nullable',
             'is_public' => 'nullable',
             'css' =>  'nullable|string',
-            'theme_id' => 'nullable|exists:themes,id'
+            'theme_id' => 'nullable|exists:themes,id',
+            'genres' => 'array',
+            'genres.*' => 'distinct|exists:genres,id'
         ];
 
         if (request()->is('api/*') && !request()->isMethod('POST')) {

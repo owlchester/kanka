@@ -5,9 +5,10 @@ namespace App\Models;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
 use App\Models\Scopes\EntityAssetScopes;
-use App\Models\Scopes\Pinned;
+use App\Models\Scopes\Pinnable;
 use App\Traits\VisibilityIDTrait;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -28,7 +29,7 @@ class EntityAsset extends Model
 {
     use Blameable;
     use EntityAssetScopes;
-    use Pinned;
+    use Pinnable;
     use VisibilityIDTrait;
     public const TYPE_FILE = 1;
     public const TYPE_LINK = 2;
@@ -148,7 +149,7 @@ class EntityAsset extends Model
         try {
             $params = parse_url($url);
             return $params['host'];
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return '';
         }
     }

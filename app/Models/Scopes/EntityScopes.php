@@ -32,6 +32,16 @@ trait EntityScopes
     }
 
     /**
+     * @param Builder$query
+     * @return Builder
+     */
+    public function scopeOldestModified(Builder $query): Builder
+    {
+        return $query
+            ->orderBy($this->getTable() . '.updated_at', 'asc');
+    }
+
+    /**
      * @param Builder $query
      * @param int|null $type
      * @return Builder

@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Services\DiscordService;
 use App\User;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -56,7 +57,7 @@ class DiscordRoleJob implements ShouldQueue
             } else {
                 $this->discord->user($this->user)->removeRoles();
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error("DiscordRoleJob:: " . $e->getMessage());
             // Silence errors and ignore
         }

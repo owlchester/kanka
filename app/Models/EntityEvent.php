@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\OrderableTrait;
@@ -201,7 +202,7 @@ class EntityEvent extends MiscModel
                     ($years[$this->year] ?? $this->year) . ' ' .
                     $this->calendar->suffix;
                 // @phpstan-ignore-next-line
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->readableDate = $this->date();
             }
         }

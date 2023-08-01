@@ -6,7 +6,10 @@ use App\Datagrids\Filters\TagFilter;
 use App\Facades\Datagrid;
 use App\Http\Requests\StoreTagEntity;
 use App\Http\Requests\StoreTag;
+use App\Http\Requests\TransferTag;
 use App\Models\Tag;
+use App\Services\TagService;
+use App\Exceptions\TranslatableException;
 use App\Traits\TreeControllerTrait;
 
 class TagController extends CrudController
@@ -26,13 +29,18 @@ class TagController extends CrudController
     /** @var string Filter */
     protected $filter = TagFilter::class;
 
+    protected TagService $service;
+
     /**
      * Constructor
+     * @param TagService $service
      */
-    public function __construct()
+    public function __construct(TagService $service)
     {
         parent::__construct();
         $this->hasLimitCheck(false);
+        $this->service = $service;
+
     }
 
     /**
@@ -96,7 +104,7 @@ class TagController extends CrudController
         // @phpstan-ignore-next-line
         $this->rows = $tag
             ->descendants()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with(['entity', 'entity.tags', 'entity.image', 'tag', 'tag.entity'])
             ->paginate();
@@ -129,7 +137,7 @@ class TagController extends CrudController
 
         $this->rows = $tag
             ->{$base}()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['image', 'tags'])
             ->paginate(15);
 
@@ -180,5 +188,39 @@ class TagController extends CrudController
         $tag->attachEntity($request->only('entity_id'));
         return redirect()->route('tags.show', $redirectUrlOptions)
             ->with('success', trans('tags.children.create.success', ['name' => $tag->name]));
+    }
+
+    /**
+     * @param Tag $tag
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function transferTag(Tag $tag)
+    {
+        $this->authorize('update', $tag);
+
+        return view('tags.transfer', compact('tag'));
+    }
+
+    /**
+     * @param TransferTag $request
+     * @param Tag $tag
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function transfer(TransferTag $request, Tag $tag)
+    {
+        $newTag = Tag::where('id', $request->tag_id)->first();
+        $this->authorize('update', $tag);
+        try {
+            $this->service->transfer($tag, $newTag);
+            return redirect()
+                ->route('tags.show', $tag)
+                ->with('success_raw', __('tags.transfer.success', ['tag' => $tag->name, 'newTag' => $newTag->name]));
+        } catch (TranslatableException $ex) {
+            return redirect()
+                ->route('tags.show', $tag)
+                ->with('error', __('tags.transfer.fail', ['tag' => $tag->name, 'newTag' => $newTag->name]));
+        }
     }
 }

@@ -86,6 +86,6 @@ class CreateNewAcl extends Migration
      */
     public function down()
     {
-        //
+
     }
 }

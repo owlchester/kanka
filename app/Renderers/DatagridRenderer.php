@@ -25,7 +25,7 @@ class DatagridRenderer
     protected LengthAwarePaginator|Collection|array $data = [];
 
     protected array $options = [];
-    protected Collection|LengthAwarePaginator $models;
+    protected Collection|LengthAwarePaginator|array $models;
     protected User|null $user;
 
     protected FilterService|null $filterService = null;
@@ -76,7 +76,6 @@ class DatagridRenderer
      * @param array $columns
      * @param array $data
      * @param array $options
-     * @return string
      */
     public function render(
         FilterService $filterService,
@@ -155,7 +154,7 @@ class DatagridRenderer
             $class = $column['type'];
             if ($type == 'avatar') {
                 $class = (!empty($column['parent']) ? 'hidden-xs hidden-sm' : $class) . ' w-14';
-            //$html = null;
+                //$html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
                 $label = Arr::get($column, 'label', Module::singular(config('entities.ids.location'), __('entities.location')));
@@ -299,6 +298,7 @@ class DatagridRenderer
 
         $html = '<tr data-id="' . $model->id . '" '
             . (!empty($model->type) ? 'data-type="' . Str::slug($model->type) . '" ' : null)
+            // @phpstan-ignore-next-line
             . ($useEntity ? 'data-entity-id="' . $model->entity->id . '" data-entity-type="' . $model->entity->type() . '"' : null);
         if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
             foreach ($this->options['row']['data'] as $name => $data) {

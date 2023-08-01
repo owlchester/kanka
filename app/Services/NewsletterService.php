@@ -43,7 +43,7 @@ class NewsletterService
             $email = $this->user ? $this->user->email : $this->email;
             $this->userID = $this->fetch($email);
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -86,7 +86,7 @@ class NewsletterService
 
             $data = [
                 'email' => $email,
-                    'fields' => [
+                'fields' => [
                     'name' => $this->user?->name
                 ],
                 'groups' => $interests

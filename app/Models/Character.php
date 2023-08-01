@@ -42,9 +42,9 @@ class Character extends MiscModel
     ;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use SoftDeletes;
     use SortableTrait;
-    use HasFactory;
 
     /** @var string[]  */
     protected $fillable = [
@@ -489,5 +489,19 @@ class Character extends MiscModel
     public function isDead(): bool
     {
         return (bool) $this->is_dead;
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeFilteredCharacters(Builder $query): Builder
+    {
+        // @phpstan-ignore-next-line
+        return $query
+            ->select(['id', 'image', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->with(['location', 'location.entity', 'families', 'families.entity', 'races', 'races.entity', 'entity', 'entity.tags', 'entity.image'])
+            ->has('entity');
     }
 }

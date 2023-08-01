@@ -23,6 +23,7 @@ return [
         'random'            => 'Náhodný',
         'random_type'       => 'Náhodný typ objektu',
         'selector'          => 'Konfigurácia Menu linkov',
+        'target'            => 'Cieľ',
         'type'              => 'Typ objektu',
     ],
     'helpers'           => [

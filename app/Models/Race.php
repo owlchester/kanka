@@ -32,9 +32,9 @@ class Race extends MiscModel
     use Acl;
     use CampaignTrait;
     use ExportableTrait;
+    use HasFactory;
     use Nested;
     use SoftDeletes;
-    use HasFactory;
     use SortableTrait;
 
     /** @var string[]  */
@@ -137,9 +137,9 @@ class Race extends MiscModel
     public function scopeLocation(Builder $query, int|null $race, FilterOption $filter): Builder
     {
         if ($filter === FilterOption::NONE) {
-            if (!empty($location)) {
+            /*if (!empty($location)) {
                 return $query;
-            }
+            }*/
             return $query
                 ->whereRaw('(select count(*) from race_location as cl where cl.race_id = ' .
                     $this->getTable() . '.id and cl.location_id = ' . ((int) $race) . ') = 0');
@@ -268,7 +268,7 @@ class Race extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if ($this->locations) {
+        if ($this->locations->isNotEmpty()) {
             return true;
         }
 

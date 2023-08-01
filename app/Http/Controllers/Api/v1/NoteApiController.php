@@ -72,13 +72,12 @@ class NoteApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Note $note
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Note $note)
+    public function destroy(Campaign $campaign, Note $note)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $note);

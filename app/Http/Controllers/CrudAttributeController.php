@@ -20,15 +20,10 @@ class CrudAttributeController extends Controller
     protected string $route = '';
 
     protected $type = '';
-    /**
-     * @var string
-     */
+
     protected $model = \App\Models\Attribute::class;
 
-    /**
-     * @var AttributeService
-     */
-    protected $attributeService;
+    protected AttributeService $attributeService;
 
     /**
      * Create a new controller instance.
@@ -52,6 +47,7 @@ class CrudAttributeController extends Controller
 
         $attributes = $entity->attributes()->paginate();
         $name = $this->view;
+        // @phpstan-ignore-next-line
         $route = $entity->type() . $this->route;
         $parentRoute = $entity->pluralType();
 
@@ -162,7 +158,7 @@ class CrudAttributeController extends Controller
             'attr_name',
             'attr_value',
             'attr_is_private',
-            'attr_is_star',
+            'attr_is_pinned',
             'attr_type',
             'template_id'
         );

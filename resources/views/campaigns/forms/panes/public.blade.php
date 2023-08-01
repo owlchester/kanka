@@ -67,5 +67,13 @@
                 @endforeach
             </datalist>
         </div>
+
+        <div class="genres">
+            <input type="hidden" name="campaign_genre" value="1">
+            @include('components.form.genres', ['options' => [
+                'model' => isset($model) ? $model : null,
+                'quickCreator' => false
+            ]])
+        </div>
     </x-grid>
 </div>

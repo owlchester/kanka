@@ -18,7 +18,6 @@ class AbilityService
 {
     use EntityAware;
 
-    /** @var Collection|bool */
     protected Collection|bool $attributes = false;
 
     /** @var array All the abilities of this entity, nicely prepared */
@@ -48,7 +47,7 @@ class AbilityService
             ->defaultOrder()
             ->get();
         /** @var EntityAbility $ability */
-        foreach ($abilities as $key => $ability) {
+        foreach ($abilities as $ability) {
             // Can't read the ability? skip
             if (empty($ability->ability) || empty($ability->ability->entity)) {
                 continue;
@@ -158,7 +157,7 @@ class AbilityService
                 $classes[] = ' kanka-tag-' . $tag->tag_id;
             }
         }
-        implode(' ', $classes);
+        //implode(' ', $classes);
 
         $data = [
             'ability_id' => $entityAbility->ability_id,
@@ -233,7 +232,7 @@ class AbilityService
         }
         try {
             return $this->mapAttributes($ability->charges);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return null;
         }
     }
@@ -247,7 +246,7 @@ class AbilityService
         $entry = $ability->entry();
         try {
             return $this->mapAttributes($entry, false);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $entry;
         }
     }

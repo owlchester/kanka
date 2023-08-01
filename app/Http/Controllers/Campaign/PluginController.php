@@ -9,20 +9,23 @@ use App\Http\Controllers\Controller;
 use App\Models\CampaignPlugin;
 use App\Models\Plugin;
 use App\Services\Campaign\CampaignPluginService;
+use App\Services\Plugins\ImporterService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 
 class PluginController extends Controller
 {
-    /** @var CampaignPluginService */
-    protected $service;
+    protected CampaignPluginService $service;
+    protected ImporterService $importerService;
 
-    public function __construct(CampaignPluginService $service)
+    public function __construct(CampaignPluginService $service, ImporterService $importerService)
     {
         $this->middleware('auth', ['except' => ['css', 'index']]);
         $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
+        $this->importerService = $importerService;
     }
 
     /**
@@ -39,13 +42,14 @@ class PluginController extends Controller
         $highlight = request()->get('highlight');
         if (!empty($highlight)) {
             Datagrid::highlight(function () use ($highlight) {
+                // @phpstan-ignore-next-line
                 return $this->uuid === $highlight;
             });
         }
 
         $plugins = $campaign->plugins()
             ->preparedSelect()
-            ->sort(request()->only(['o', 'k']))
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->highlighted($highlight)
             ->has('user')
             ->with('versions');
@@ -127,7 +131,7 @@ class PluginController extends Controller
                     'success',
                     __('campaigns/plugins.destroy.success', ['plugin' => $plugin->name])
                 );
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('campaign_plugins.index')
                 ->with(
                     'error',
@@ -220,7 +224,7 @@ class PluginController extends Controller
         $this->authorize('recover', $campaign);
 
         try {
-            $count = $this->service
+            $count = $this->importerService
                 ->plugin($plugin)
                 ->campaign($campaign)
                 ->options($request->only(['force_private', 'only_new']))
@@ -231,11 +235,11 @@ class PluginController extends Controller
                     'success',
                     trans_choice('campaigns/plugins.import.success', $count, ['plugin' => $plugin->name, 'count' => $count])
                 )
-                ->with('plugin_entities_created', $this->service->created())
-                ->with('plugin_entities_updated', $this->service->updated())
+                ->with('plugin_entities_created', $this->importerService->created())
+                ->with('plugin_entities_updated', $this->importerService->updated())
                 ->with('plugin_only_new', $request->get('only_new'))
             ;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('campaign_plugins.index')
                 ->withError(__('campaigns/plugins.import.errors.' . $e->getMessage(), ['plugin' => $plugin->name]));
         }

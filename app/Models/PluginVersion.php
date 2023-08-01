@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -214,7 +215,7 @@ class PluginVersion extends Model
             eval('?' . '>' . $html);
             $blade = ob_get_clean();
             return $blade;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             while (ob_get_level() > $obLevel) {
                 ob_end_clean();
             }
@@ -249,7 +250,7 @@ class PluginVersion extends Model
 
         foreach ($data as $key => $val) {
             if (!is_array($val) && !is_object($val)) {
-                $html .= '<dtk>$' . $key . '</dtk> <code>' . (empty($val) ? NULL : e($val)) . '</code><br />';
+                $html .= '<dtk>$' . $key . '</dtk> <code>' . (empty($val) ? null : e($val)) . '</code><br />';
             } elseif (is_array($val)) {
                 $html .= '<dtk class="">$' . $key . '</dtk>';
                 if (empty($val)) {
@@ -443,6 +444,7 @@ class PluginVersion extends Model
         $data['_locale'] = app()->getLocale();
         $data['_entity_name'] = $entity->name;
         $data['_entity_type'] = $entity->child->type;
+        // @phpstan-ignore-next-line
         $data['_entity_entity_type'] = $entity->type();
 
         if ($entity->isCharacter()) {
@@ -474,12 +476,24 @@ class PluginVersion extends Model
             $data[$name] = $val;
         }
 
-        if (!isset($data['openLI'])) $data['openLI'] = '<li>';
-        if (!isset($data['closeLI'])) $data['closeLI'] = '</li>';
-        if (!isset($data['openOL'])) $data['openOL'] = '<ol>';
-        if (!isset($data['closeOL'])) $data['closeOL'] = '</ol>';
-        if (!isset($data['openUL'])) $data['openUL'] = '<ul>';
-        if (!isset($data['closeUL'])) $data['closeUL'] = '</ul>';
+        if (!isset($data['openLI'])) {
+            $data['openLI'] = '<li>';
+        }
+        if (!isset($data['closeLI'])) {
+            $data['closeLI'] = '</li>';
+        }
+        if (!isset($data['openOL'])) {
+            $data['openOL'] = '<ol>';
+        }
+        if (!isset($data['closeOL'])) {
+            $data['closeOL'] = '</ol>';
+        }
+        if (!isset($data['openUL'])) {
+            $data['openUL'] = '<ul>';
+        }
+        if (!isset($data['closeUL'])) {
+            $data['closeUL'] = '</ul>';
+        }
 
         return [$data, $ids, $checkboxes];
     }
@@ -516,6 +530,7 @@ class PluginVersion extends Model
             $ability = [
                 'name' => $abi->ability->name,
                 'slug' => $abi->ability->slug,
+                'type' => $abi->ability->type,
                 'entry' => $abi->ability->entry(),
                 'charges' => $abi->ability->charges,
                 'used_charges' => $abi->charges,

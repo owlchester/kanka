@@ -1,11 +1,16 @@
+@inject('entityService', 'App\Services\EntityService')
 @php
-$advancedFilters = [
-    '' => '',
-    'unmentioned' => __('dashboard.widgets.recent.advanced_filters.unmentioned'),
-    'mentionless' => __('dashboard.widgets.recent.advanced_filters.mentionless'),
-];
-$boosted = $campaignService->campaign()->boosted()
+    $advancedFilters = [
+        '' => '',
+        'unmentioned' => __('dashboard.widgets.recent.advanced_filters.unmentioned'),
+        'mentionless' => __('dashboard.widgets.recent.advanced_filters.mentionless'),
+    ];
+    $boosted = $campaignService->campaign()->boosted();
+    $entityTypes = ['' => 'All'];
+    $entities = $entityService->campaign($campaignService->campaign())->getEnabledEntitiesSorted(false);
+    $entityTypes = array_merge($entityTypes, $entities);
 @endphp
+
 <div class="nav-tabs-custom">
     <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
         <li class="active">
@@ -27,7 +32,7 @@ $boosted = $campaignService->campaign()->boosted()
                     <label for="config-entity">
                         {{ __('crud.fields.entity_type') }}
                     </label>
-                    {!! Form::select('config[entity]', $entities, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
+                    {!! Form::select('config[entity]', $entityTypes, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control recent-entity-type']) !!}
                 </div>
 
                 <div class="field-recent-filters" style="@if (empty($model) || empty($model->conf('entity'))) display: none @else @endif">
@@ -65,17 +70,7 @@ $boosted = $campaignService->campaign()->boosted()
 
                 <div class="col-span-2 collapse !visible {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
                     @if($campaignService->campaign()->boosted())
-                        {!! Form::hidden('config[entity-header]', 0) !!}
-                        <div class="field-header checkbox">
-                            <label>
-                                {!! Form::checkbox('config[entity-header]', 1, (!empty($model) ? $model->conf('entity-header') : null), ['id' => 'config-entity-header']) !!}
-                                {{ __('dashboard.widgets.recent.entity-header') }}
-
-                                <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.entity-header') }}" aria-hidden="true"></i>
-                            </label>
-                        </div>
-                        <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.entity-header') }}</p>
-
+                        @include('dashboard.widgets.forms._header_select')
                         @include('dashboard.widgets.forms._related')
                     @else
                         <p class="help-block">{!! __('dashboard.widgets.advanced_options_boosted', [
@@ -90,6 +85,7 @@ $boosted = $campaignService->campaign()->boosted()
                     <label>{{ __('dashboard.widgets.fields.order') }}</label>
                     {!! Form::select('config[order]', [
                 '' => __('dashboard.widgets.orders.recent'),
+                'oldest' => __('dashboard.widgets.orders.oldest'),
                 'name_asc' => __('dashboard.widgets.orders.name_asc'),
                 'name_desc' => __('dashboard.widgets.orders.name_desc'),
             ], null, ['class' => 'form-control']) !!}

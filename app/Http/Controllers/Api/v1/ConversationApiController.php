@@ -48,9 +48,9 @@ class ConversationApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('create', Conversation::class);
 
-        /** @var Conversation $model */
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
+        /** @var Conversation $model */
         $model = Conversation::create($data);
         $this->crudSave($model);
         return new Resource($model);
@@ -73,13 +73,12 @@ class ConversationApiController extends ApiController
     }
 
     /**
-     * @param Request $request
      * @param Campaign $campaign
      * @param Conversation $conversation
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(\Illuminate\Http\Request $request, Campaign $campaign, Conversation $conversation)
+    public function destroy(Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $conversation);

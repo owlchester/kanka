@@ -9,7 +9,6 @@ use App\Models\Character;
 
 class CharacterFactory extends Factory
 {
-
     /**
      * The name of the factory's corresponding model.
      *

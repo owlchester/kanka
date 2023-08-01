@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /**
      * Specify the locale that is used for creating the initial translation strings. This locale is considered
@@ -15,8 +15,7 @@ return array(
      * @type array of strings
      */
     'locales' => [
-        'ca',
-        'cs',
+        //'ca',
         'en',
         'en-US',
         'de',
@@ -133,13 +132,13 @@ return array(
      *
      * @type string | array
      */
-    'export_format' => array(
+    'export_format' => [
         'PRESERVE_EMPTY_ARRAYS',
         //'USE_QUOTES',
         'USE_HEREDOC',
         'USE_SHORT_ARRAY',
         'SORT_KEYS',
-    ),
+    ],
     /**
      * Enable mismatch dashboard
      *
@@ -152,34 +151,34 @@ return array(
      *
      * @type array
      */
-    'exclude_groups' => array(
+    'exclude_groups' => [
         'banners',
         'reminders',
         'validation',
         'validation-inline',
         'pagination',
         'passwords',
-        'randomisers.characters',
         'backup::notifications',
         'faq',
         'tutorials.actions',
         'tutorials.home',
         'tutorials.characters',
         'openai',
-    ),
+        'front.testimonials'
+    ],
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.
      * This is useful for groups that are used exclusively for non-display strings like page titles and emails
      *
      * @type array
      */
-    'exclude_page_edit_groups' => array(
+    'exclude_page_edit_groups' => [
         //'page-titles',
         'reminders',
         'validation',
         'pagination',
         'passwords',
-    ),
+    ],
     /**
      * determines whether missing keys are logged
      *
@@ -244,14 +243,14 @@ return array(
      *                      useful for publishing to files while leaving all flags in the database as
      *                      they would be after publishing only to cache.
      */
-    'db_connections' => array(
+    'db_connections' => [
         //'local' => array(
         //    'mysql_prd' => array(
         //        'description' => 'production',
         //        'indatabase_publish' => 2,
         //    ),
         //),
-    ),
+    ],
 
     /**
      * used to provide an alternate default connection name for translation
@@ -368,7 +367,7 @@ return array(
      *
      * Please read above before changing.
      */
-    'language_dirs' => array(
+    'language_dirs' => [
         'lang' => '/lang/{locale}/{group}',
         'packages' => '/lang/vendor/{package}/{locale}/{group}',
         'workbench' => [
@@ -410,7 +409,7 @@ return array(
                 '{group}' => 'carbon',
             ],
         ],
-    ),
+    ],
     /**
      *
      * Provide the prefix for the root of the zip file
@@ -424,4 +423,4 @@ return array(
     'disable-react-ui' => true,
     'disable-react-ui-link' => true,
 
-);
+];

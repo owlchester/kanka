@@ -44,6 +44,7 @@ class MigrateQuestGiver extends Command
 
     protected function migrate(Quest $quest): void
     {
+        // @phpstan-ignore-next-line
         $quest->instigator_id = $quest->character->entity->id;
         $quest->saveQuietly();
         $this->count++;

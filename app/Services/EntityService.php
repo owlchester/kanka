@@ -28,6 +28,7 @@ use App\Models\Timeline;
 use App\Models\TimelineEra;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,8 +39,8 @@ use Illuminate\Support\Str;
 
 class EntityService
 {
-    use PurifiableTrait;
     use CampaignAware;
+    use PurifiableTrait;
 
     /** @var array List of entity types */
     protected array $entities = [];
@@ -283,7 +284,7 @@ class EntityService
 
             DB::commit();
             $success = true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
         }
 
@@ -378,7 +379,7 @@ class EntityService
 
             DB::commit();
             $success = true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             //dd($e->getMessage());
         }
@@ -441,6 +442,7 @@ class EntityService
 
         if (in_array($old->entityTypeId(), [$raceID, $creatureID]) && !in_array($new->entityTypeId(), [$raceID, $creatureID]) && !empty($old->locations()->first())) {
             if (in_array('location_id', $fillable)) {
+                /** @var Character $new */
                 $new->location_id = $old->locations()->first()->id;
             } elseif (in_array('parent_location_id', $fillable)) {
                 // Todo: fix crash when location is empty
@@ -461,6 +463,12 @@ class EntityService
         if ($new->entityTypeId() === config('entities.ids.tag')) {
             $entity->tags()->detach();
         }
+
+        //Delete non compatible posts.
+        EntityNote::where('entity_id', $entity->id)
+            ->leftJoin('post_layouts', 'entity_notes.layout_id', '=', 'post_layouts.id')
+            ->whereNotNull('post_layouts.entity_type_id')
+            ->delete();
 
         $this->fixTree($new);
 
@@ -758,6 +766,7 @@ class EntityService
 
         // If the modal is a tree, it needs to be placed in its own bounds
         if (method_exists($model, 'makeRoot')) {
+            // @phpstan-ignore-next-line
             $model->recalculateTreeBounds();
         }
 
@@ -774,7 +783,7 @@ class EntityService
      * For entities with multiple locations, they can sometimes be moved around
      * @param MiscModel $old
      * @param MiscModel $new
-     * @return void
+     * @return void|bool
      */
     protected function moveLocations(MiscModel $old, MiscModel $new)
     {
@@ -821,6 +830,7 @@ class EntityService
      */
     protected function fixTree(MiscModel $model): void
     {
+        /** @var Location $model */
         // When transforming to a nested model, we need to recalculate the tree bounds to
         // place it correctly in the overall campaign tree.
         if (!method_exists($model, 'recalculateTreeBounds')) {
@@ -833,6 +843,7 @@ class EntityService
         $isLocationWithParent = in_array('parent_location_id', $model->getFillable()) && !empty($model->getParentId());
         // If it's not a location or the parent location is empty, force the parent to be properly empty
         if (!$isLocationWithParent) {
+            /** @var Location $model */
             $model->setParentId(null);
         }
         $model->{$model->getRgtName()} = 0;

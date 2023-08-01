@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +24,6 @@ Route::group([
     'middleware' => ['auth:api', 'throttle:rate_limit,1'],
     'namespace'  => 'Api\v1',
     'prefix'     => '1.0',
-], function() {
+], function () {
     require base_path('routes/api.v1.php');
 });

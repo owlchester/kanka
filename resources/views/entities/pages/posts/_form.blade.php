@@ -2,6 +2,9 @@
 /**
  * @var \App\Models\EntityNotePermission $perm
  */
+
+use App\Models\PostLayout;
+
 $permissions = [
     0 => __('crud.view'),
     1 => __('crud.edit'),
@@ -12,11 +15,28 @@ $defaultCollapsed = null;
 if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
     $defaultCollapsed = 1;
 }
+if (isset($model)) {
+    $hideLayout = 1;
+    if ($model->layout_id) {
+        $layoutHelper = __('post_layouts.helper', ['subpage' => $model->layout->name()]);
+    }
+}
 
 $options = $entity->postPositionOptions(!empty($model->position) ? $model->position : null);
 $last = array_key_last($options);
 
 $bragiName = $entity->isCharacter() ? $entity->name : null;
+$layouts = PostLayout::entity($entity->type_id)->get();
+$layoutDefault = ['' => __('crud.fields.entry')];
+
+foreach($layouts as $layout) {
+    $layoutOptions[$layout->id] = $layout->name();
+}
+
+$collator = new \Collator(app()->getLocale());
+$collator->asort($layoutOptions);
+
+$layoutOptions = $layoutDefault + $layoutOptions
 ?>
 <div class="nav-tabs-custom">
     <div class="flex gap-2 items-center ">
@@ -33,14 +53,24 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
     <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
         <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
-                <div class="field-name col-span-2 required">
+                <div class="field-name required">
                     {!! Form::text('name', null, ['placeholder' => __('entities/notes.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'data-live-disabled' => '1', 'required', 'data-bragi-name' => $bragiName]) !!}
                 </div>
-                <div class="field-entry col-span-2">
+                <div class="field-layout" @if(isset($hideLayout)) style="display: none" @endif>
+                    {!! Form::select('layout_id', $layoutOptions, isset($model) ? $model->layout_id : '',['class' => 'form-control', 'id' => 'post-layout-selector']) !!}
+                    <div id="post-layout-subform" style="display: none">
+                        @includeWhen(!$currentCampaign->superboosted(), 'entities.pages.posts._boosted')
+                    </div>
+                </div>
+                @if (isset($layoutHelper))
+                    <div class="field-layout-helper">
+                        <p class="help-block">{{ $layoutHelper }}</p>
+                    </div>
+                @endif
+                <div class="field-entry col-span-2" id="field-entry" @if(isset($layoutHelper)) style="display: none" @endif>
                     {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
                 </div>
-
-                <div class="field-location">
+                <div class="field-location" id="field-location" @if(isset($layoutHelper)) style="display: none" @endif>
                     <input type="hidden" name="location_id" value="" />
                     @include('cruds.fields.location', ['from' => null])
                 </div>
@@ -57,7 +87,7 @@ $bragiName = $entity->isCharacter() ? $entity->name : null;
                         1 => __('entities/notes.collapsed.closed')
                     ];
                 @endphp
-                <div class="field-display">
+                <div class="field-display" id="field-display" @if(isset($layoutHelper)) style="display: none" @endif>
                     <label>
                         {{ __('entities/notes.fields.display') }}
                     </label>

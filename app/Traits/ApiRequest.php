@@ -28,6 +28,10 @@ trait ApiRequest
             );
         }
 
+        if ($except) {
+            // Do something with this?
+        }
+
         return $rules;
     }
 }

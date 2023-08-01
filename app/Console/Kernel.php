@@ -2,9 +2,11 @@
 
 namespace App\Console;
 
+use App\Console\Commands\AnonymiseUserLogs;
 use App\Console\Commands\CalendarAdvancer;
 use App\Console\Commands\CampaignVisibileEntityCount;
 use App\Console\Commands\CleanupEntityLogs;
+use App\Console\Commands\CleanupUsers;
 use App\Console\Commands\RegenerateDiscordToken;
 use App\Console\Commands\CleanupTrashed;
 use App\Console\Commands\Subscriptions\EndSubscriptions;
@@ -44,7 +46,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('model:prune')->daily();
         $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
+        $schedule->command(AnonymiseUserLogs::class)->dailyAt('03:50');
         $schedule->command(CleanupTrashed::class)->dailyAt('02:15');
+        //$schedule->command(CleanupUsers::class)->dailyAt('01:50');
     }
 
     /**

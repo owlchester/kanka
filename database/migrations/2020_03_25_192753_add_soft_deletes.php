@@ -47,6 +47,6 @@ class AddSoftDeletes extends Migration
      */
     public function down()
     {
-        //
+
     }
 }

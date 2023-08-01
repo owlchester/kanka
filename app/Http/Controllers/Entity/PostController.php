@@ -59,7 +59,12 @@ class PostController extends Controller
 
         $note = new Post();
         $note->entity_id = $entity->id;
-        $note = $note->create($request->all());
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign->superboosted()) {
+            $note = $note->create($request->all());
+        } else {
+            $note = $note->create($request->except(['layout_id']));
+        }
 
         if ($request->has('submit-new')) {
             $route = route('entities.posts.create', [$entity]);
@@ -80,9 +85,9 @@ class PostController extends Controller
     {
         $this->authorize('post', [$entity->child, 'edit', $post]);
 
-        /** @var MiscModel $model */
         $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
+        /** @var MiscModel $model */
         $model = $post;
 
         if ($campaign->hasEditingWarning()) {

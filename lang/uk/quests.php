@@ -31,6 +31,7 @@ return [
         'copy_elements' => 'Копіювати елементи, приєднані до квесту',
         'date'          => 'Дата',
         'element_role'  => 'Роль',
+        'instigator'    => 'Підбурювач',
         'is_completed'  => 'Завершено',
         'role'          => 'Роль',
     ],

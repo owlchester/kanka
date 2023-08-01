@@ -47,10 +47,6 @@ class ProfileController extends Controller
             ->with('success', trans('settings.profile.success'));
     }
 
-    /**
-     * @param StoreBillingSettings $request
-     * @return \Illuminate\Http\StoreBillingSettings
-     */
     public function saveBillingInfo(StoreBillingSettings $request)
     {
         /** @var User $user */

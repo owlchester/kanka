@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\UserFlag;
 use App\Models\UserLog;
 use App\Services\CampaignService;
 use App\Services\InviteService;
@@ -54,6 +55,11 @@ class UserEventSubscriber
 
         session()->remove('kanka.userLog');
         $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
+
+        // Delete any flags to auto-delete the account based on inactivity
+        UserFlag::where('user_id', $event->user->id)
+            ->whereIn('flag', [UserFlag::FLAG_INACTIVE_1, UserFlag::FLAG_INACTIVE_2])
+            ->delete();
 
         // Does the user have a join campaign token?
         if (session()->has('invite_token')) {

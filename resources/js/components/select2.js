@@ -8,11 +8,21 @@ $(document).ready(function() {
             if ($(this).hasClass('select2-hidden-accessible')) {
                 return;
             }
+            if ($(this).hasClass('campaign-genres')) {
+
+                $(this).select2({
+                    tags: false,
+                    allowClear: true,
+                    dropdownParent: '',
+                    width: '100%',
+                    maximumSelectionLength: 3,
+                });
+                return;
+            }
 
             // Check it isn't the select2-icon
             let allowClear = $(this).data('allow-clear');
             let dropdownParent = $(this).data('dropdown-parent');
-
             $(this).select2({
                 tags: false,
                 placeholder: $(this).data('placeholder'),

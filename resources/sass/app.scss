@@ -232,6 +232,11 @@ ol, ul {
     transform: unset;
     z-index: 3;
 }
+/** As of July 2023, firefox doesn't yet support the :has selector, but chrome does **/
+/** We need this to avoid the tooltip being behind the next in row stacked block **/
+.stack > :nth-child(1):has(.tooltip) {
+    z-index:4
+}
 .stack > :nth-child(2) {
     transform: translateY(05%) translateX(05%) scale(0.95);
     z-index: 2;

@@ -18,8 +18,7 @@ class DeleteConfirm extends Component
         string $target,
         string $size = null,
         string $text = null,
-    )
-    {
+    ) {
         $this->target = $target;
         $this->size = $size;
         $this->text = $text;

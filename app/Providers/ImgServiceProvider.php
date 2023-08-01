@@ -14,7 +14,7 @@ class ImgServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(ImgService::class, function ($app) {
+        $this->app->singleton(ImgService::class, function () {
             return new ImgService();
         });
 

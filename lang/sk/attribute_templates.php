@@ -9,6 +9,7 @@ return [
     'edit'                  => [],
     'fields'                => [
         'attributes'    => 'Atribúty',
+        'auto_apply'    => 'Autom. prevziať',
     ],
     'hints'                 => [
         'automatic'                 => 'Atribúty boli automaticky aplikované zo šablóny atribútov :link.',

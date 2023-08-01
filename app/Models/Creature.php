@@ -230,7 +230,7 @@ class Creature extends MiscModel
     public function locations()
     {
         return $this->belongsToMany('App\Models\Location', 'creature_location')
-        ->with('entity');
+            ->with('entity');
     }
 
     /**
@@ -238,7 +238,7 @@ class Creature extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if ($this->locations) {
+        if ($this->locations->isNotEmpty()) {
             return true;
         }
 

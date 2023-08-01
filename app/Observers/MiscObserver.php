@@ -8,6 +8,7 @@ use App\Facades\Mentions;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Observers\Concerns\Copiable;
 use App\Services\Entity\LogService;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
@@ -16,6 +17,7 @@ use Illuminate\Support\Str;
 
 abstract class MiscObserver
 {
+    use Copiable;
     use PurifiableTrait;
 
     /** @var EntityMappingService Service to build the mention "map" of the entity */
@@ -69,20 +71,11 @@ abstract class MiscObserver
     }
 
     /**
-     * Event fired when the model is created from the crud controller
-     * @param MiscModel $model
-     */
-    public function crudSaved(MiscModel $model)
-    {
-        // Characters use this for personality traits
-    }
-
-    /**
      * @param MiscModel $model
      */
     public function saved(MiscModel $model)
     {
-        // Whenever an misc model is saved, we need to make sure it has an associated entity with it.
+        // Whenever a misc model is saved, we need to make sure it has an associated entity with it.
         // If none exists, we need to create one. Otherwise, we need to update it.
         $entity = $model->entity;
         if (empty($entity)) {
@@ -114,42 +107,7 @@ abstract class MiscObserver
         // Created a new sub entity? Create the parent entity.
         $entity = $model->createEntity();
 
-        // Copying options
-        $sourceId = request()->post('copy_source_id');
-
-        // Copy entity notes from source?
-        // Todo: move ALL of this to a service holy smokes
-        if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {
-            /** @var Entity $source */
-            $source = Entity::findOrFail($sourceId);
-            foreach ($source->posts as $post) {
-                $post->copyTo($model->entity);
-            }
-        }
-        if (request()->has('copy_source_links') && request()->filled('copy_source_links')) {
-            $source = $source ?? Entity::findOrFail($sourceId);
-            foreach ($source->assets()->link()->get() as $link) {
-                $link->copyTo($model->entity);
-            }
-        }
-        if (request()->has('copy_source_abilities') && request()->filled('copy_source_abilities')) {
-            $source = $source ?? Entity::findOrFail($sourceId);
-            foreach ($source->abilities as $ability) {
-                $ability->copyTo($model->entity);
-            }
-        }
-        if (request()->has('copy_source_inventory') && request()->filled('copy_source_inventory')) {
-            $source = $source ?? Entity::findOrFail($sourceId);
-            foreach ($source->inventories as $inventory) {
-                $inventory->copyTo($model->entity);
-            }
-        }
-        if (request()->has('copy_source_permissions') && request()->filled('copy_source_permissions')) {
-            $source = $source ?? Entity::findOrFail($sourceId);
-            foreach ($source->permissions as $perm) {
-                $perm->copyTo($model->entity, $source->entity_id, $model->id);
-            }
-        }
+        $this->copy($entity);
     }
 
     /**
@@ -163,6 +121,7 @@ abstract class MiscObserver
         }
 
         // If soft deleting, don't really delete the image
+        // @phpstan-ignore-next-line
         if ($model->trashed()) {
             return;
         }

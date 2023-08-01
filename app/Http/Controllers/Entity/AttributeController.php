@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateEntityAttribute;
 use App\Models\Attribute;
 use App\Models\Entity;
+use App\Services\Attributes\TemplateService;
 use App\Services\AttributeService;
 use App\Traits\GuestAuthTrait;
 use Stevebauman\Purify\Facades\Purify;
@@ -18,23 +19,15 @@ class AttributeController extends Controller
 {
     use GuestAuthTrait;
 
-    /** @var AttributeService */
     protected AttributeService $service;
+    protected TemplateService $templateService;
 
-    /**
-     * AttributeController constructor.
-     * @param AttributeService $attributeService
-     */
-    public function __construct(AttributeService $attributeService)
+    public function __construct(AttributeService $attributeService, TemplateService $templateService)
     {
         $this->service = $attributeService;
+        $this->templateService = $templateService;
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Entity $entity)
     {
         $campaign = CampaignLocalization::getCampaign();
@@ -42,7 +35,6 @@ class AttributeController extends Controller
             return redirect()->route('dashboard')->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    // @phpstan-ignore-next-line
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
                 ])
             );
@@ -69,8 +61,8 @@ class AttributeController extends Controller
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if ($layout) {
-            $template = $this->service->communityTemplate($layout->value);
-            $marketplaceTemplate = $this->service->marketplaceTemplate($layout->value, $campaign);
+            $template = $this->templateService->communityTemplate($layout->value);
+            $marketplaceTemplate = $this->templateService->marketplaceTemplate($layout->value, $campaign);
         }
 
 
@@ -89,7 +81,6 @@ class AttributeController extends Controller
             return redirect()->route('dashboard')->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    // @phpstan-ignore-next-line
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
                 ])
             );
@@ -116,8 +107,8 @@ class AttributeController extends Controller
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if ($layout) {
-            $template = $this->service->communityTemplate($layout->value);
-            $marketplaceTemplate = $this->service->marketplaceTemplate($layout->value, $campaign);
+            $template = $this->templateService->communityTemplate($layout->value);
+            $marketplaceTemplate = $this->templateService->marketplaceTemplate($layout->value, $campaign);
         }
 
         return view('entities.pages.attributes.dashboard', compact(
@@ -128,11 +119,6 @@ class AttributeController extends Controller
         ));
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function edit(Entity $entity)
     {
         $campaign = CampaignLocalization::getCampaign();
@@ -140,7 +126,6 @@ class AttributeController extends Controller
             return redirect()->route('dashboard')->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    // @phpstan-ignore-next-line
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
                 ])
             );
@@ -159,11 +144,6 @@ class AttributeController extends Controller
         ));
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function save(Entity $entity)
     {
         if (empty($entity->child)) {
@@ -176,7 +156,7 @@ class AttributeController extends Controller
             'attr_name',
             'attr_value',
             'attr_is_private',
-            'attr_is_star',
+            'attr_is_pinned',
             'attr_type',
             'template_id'
         ];
@@ -191,8 +171,6 @@ class AttributeController extends Controller
             ->with('success', __('entities/attributes.update.success', ['entity' => $entity->name]));
     }
 
-    /**
-     */
     public function liveEdit(Entity $entity)
     {
         $this->authorize('update', $entity->child);
@@ -211,13 +189,6 @@ class AttributeController extends Controller
         return response()->view('entities.pages.attributes.live.edit', compact('attribute', 'entity', 'uid'));
     }
 
-    /**
-     * @param UpdateEntityAttribute $request
-     * @param Entity $entity
-     * @param Attribute $attribute
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function liveSave(UpdateEntityAttribute $request, Entity $entity, Attribute $attribute)
     {
         $this->authorize('update', $entity->child);

@@ -9,23 +9,11 @@ use App\Facades\TimelineElementCache;
 
 class TimelineElementObserver
 {
-    /**
-     * Purify trait
-     */
     use PurifiableTrait;
     use ReorderTrait;
 
-    /**
-     * Service used to build the map of the entity
-     * @var EntityMappingService
-     */
-    protected $entityMappingService;
+    protected EntityMappingService $entityMappingService;
 
-
-    /**
-     * CharacterObserver constructor.
-     * @param EntityMappingService $entityMappingService
-     */
     public function __construct(EntityMappingService $entityMappingService)
     {
         $this->entityMappingService = $entityMappingService;
@@ -62,10 +50,7 @@ class TimelineElementObserver
         }
     }
 
-    /**
-     * @param TimelineElement $timelineElement
-     */
-    public function deleted(TimelineElement $timelineElement)
+    public function deleted()
     {
         TimelineElementCache::clearSuggestion();
     }

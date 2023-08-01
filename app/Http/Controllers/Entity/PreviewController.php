@@ -12,27 +12,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PreviewController extends Controller
 {
-    /**
-     * Guest Auth Trait
-     */
     use GuestAuthTrait;
 
     protected PreviewService $service;
 
-    /**
-     * AbilityController constructor.
-     * @param PreviewService $service
-     */
     public function __construct(PreviewService $service)
     {
         $this->service = $service;
     }
 
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Entity $entity)
     {
         // Policies will always fail if they can't resolve the user.

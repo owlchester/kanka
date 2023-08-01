@@ -432,7 +432,7 @@ class Map extends MiscModel
                 'latitude' => $marker->latitude,
                 'name' => $marker->markerTitle($link),
                 'lower_name' => mb_strtolower($marker->markerTitle(false)),
-                'visibility' => $marker->visibility_id !== 1 ? $marker->visibilityIcon() : null,
+                'visibility' => $marker->skipAllIcon()->visibilityIcon(),
             ]);
         }
 
@@ -752,11 +752,9 @@ class Map extends MiscModel
         //return false;
         return !empty($this->config['distance_measure']);
     }
+
     /**
      * Available datagrid actions
-     * @param Campaign $campaign
-     * @return string[]
-     * @throws Exception
      */
     public function datagridActions(Campaign $campaign): array
     {

@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Map;
 use App\Services\Map\ChunkingService;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -59,12 +60,12 @@ class ChunkMapJob implements ShouldQueue
 
             $elapsed = Carbon::now()->diffInMinutes($now);
             Log::info('Chunked map #' . $this->mapID . ' in ' . $elapsed . ' minutes.');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
-    public function failed(\Exception $exception)
+    public function failed(Exception $exception)
     {
         /** @var Map|null $map */
         $map = Map::find($this->mapID);

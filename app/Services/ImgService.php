@@ -109,9 +109,9 @@ class ImgService
      */
     public function base(string|null $base = 'user'): self
     {
-//        if (!empty($this->s3)) {
-//            return $this;w
-//        }
+        //        if (!empty($this->s3)) {
+        //            return $this;w
+        //        }
         $this->base = $base;
         if ($base === 'app') {
             $this->s3 = config('thumbor.bases.app');
