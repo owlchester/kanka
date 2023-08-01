@@ -20,6 +20,7 @@ return new class () extends Migration {
             $table->unsignedInteger('campaign_id')->nullable();
             $table->text('uri')->nullable();
             $table->json('params')->nullable();
+            $table->index(['created_at']);
         });
     }
 
