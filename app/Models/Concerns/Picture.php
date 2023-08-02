@@ -165,10 +165,10 @@ trait Picture
         if (empty($avatar)) {
             // Superboosted and with image?
             if ($campaign->superboosted() && $this->image) {
-                return Img::url($this->image->path);
+                return Img::crop($this->avatarWidth, $this->avatarHeight)->url($this->image->path);
             } elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
                 // Fallback, boosted default image?
-                return Img::url(CampaignCache::defaultImages()[$this->type()]['path']);
+                return Img::crop($this->avatarWidth, $this->avatarHeight)->url(CampaignCache::defaultImages()[$this->type()]['path']);
             }
 
             if (auth()->check() && auth()->user()->isGoblin()) {
