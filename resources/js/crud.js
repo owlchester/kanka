@@ -253,27 +253,28 @@ function registerEntityCalendarModal() {
         loadCalendarDates(entityCalendarField.val());
     }
 
-    $('.entity-calendar-subform input[name="length"]').focusout(function () {
-        let url = $(this).data('url').replace('/0/', '/' + entityCalendarField.val() + '/')
-      
-        let params = {
-            day: entityCalendarDayField.val(),
-            month: entityCalendarMonthField.val(),
-            year: entityCalendarYearField.val(),
-            length: $('.entity-calendar-subform input[name="length"]').val(),
-        }
-      
-        $.ajax(url, {data: params}).done(function (data) {
-            data = JSON.parse(data);
-            if (data.overflow == true) {
-                console.log('hi');
-                $('.length-warning').show();
-            } else {
-                $('.length-warning').hide();
+    if ($('.entity-calendar-subform input[name="length"]').val()) {
+
+        $('.entity-calendar-subform input[name="length"]').focusout(function () {
+            let url = $(this).data('url').replace('/0/', '/' + entityCalendarField.val() + '/')
+        
+            let params = {
+                day: entityCalendarDayField.val(),
+                month: entityCalendarMonthField.val(),
+                year: entityCalendarYearField.val(),
+                length: $('.entity-calendar-subform input[name="length"]').val(),
             }
+        
+            $.ajax(url, {data: params}).done(function (data) {
+                if (data.overflow == true) {
+                    $('.length-warning').show();
+                } else {
+                    $('.length-warning').hide();
+                }
+            });
+    
         });
-  
-    });
+    }
 }
 
 

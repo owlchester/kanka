@@ -10,7 +10,7 @@ use App\Models\Calendar;
 use App\Sanitizers\CalendarSanitizer;
 use App\Services\CalendarService;
 use App\Traits\TreeControllerTrait;
-use App\Http\Requests\ValidateLength;
+use App\Http\Requests\ValidateReminderLength;
 use App\Services\LengthValidatorService;
 
 class CalendarController extends CrudController
@@ -211,14 +211,13 @@ class CalendarController extends CrudController
     }
 
     /**
-     * @param Campaign $campaign
      * @param Calendar $calendar
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function eventLength(Calendar $calendar, ValidateLength $request)
+    public function eventLength(Calendar $calendar, ValidateReminderLength $request)
     {
         $this->authorize('view', $calendar);
-        return $this->lengthValidatorService->validateLength($calendar, $request);
+        return response()->json($this->lengthValidatorService->validateLength($calendar, $request));
     }
 }
