@@ -40,6 +40,7 @@ class FirstWarning extends Mailable
         return new Envelope(
             from: new Address('hello@kanka.io', 'Kanka'),
             subject: __('emails/purge/first.title', ['amount' => config('purge.users.first.limit')]),
+            tags: ['purge', 'first']
         );
     }
 
