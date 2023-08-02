@@ -5,18 +5,18 @@ $(document).ready(function () {
 function initPostLayoutsForm() {
     let selector = $('#post-layout-selector');
     if (selector.length === 0) {
-        return false;
+        return;
     }
     selector.change(function (e) {
         e.preventDefault();
         let selected = $(this).find(":selected").val();
 
-        if (selected == '') {
+        if (selected === '') {
             $('#field-entry').show();
             $('#field-location').show();
             $('#field-display').show();
-            $('#post-layout-subform').hide();
 
+            $('#post-layout-subform').hide();
         } else {
             $('#field-entry').hide();
             $('#field-location').hide();
