@@ -105,9 +105,9 @@
                                     @can('delete', $relation)
                                         <li>
                                             <a href="#" class="text-red" title="{{ __('crud.remove') }}"
-                                               data-toggle="dialog-ajax"
-                                               data-target="member-dialog"
-                                               data-url="{{ route('campaign_users.delete', $relation->id) }}"
+                                                data-toggle="dialog-ajax"
+                                                data-target="member-dialog"
+                                                data-url="{{ route('campaign_users.delete', $relation->id) }}"
                                             >
                                                 <x-icon class="trash"></x-icon>
                                                 {{ __('campaigns.members.actions.remove') }}
