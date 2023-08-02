@@ -60,13 +60,16 @@
                                 {{ $relation->created_at->diffForHumans() }}
                             </span>
                             </td>
-
                             <td class="text-right">
-                                {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
-                                <button class="btn2 btn-sm btn-error btn-outline">
-                                    <x-icon class="trash"></x-icon> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
-                                </button>
-                                {!! Form::close() !!}
+                            <div class="mt-5">
+                                <x-button.delete-confirm target="#delete-invite-{{ $relation->id}}" />
+                            </div>
+                            {!! Form::open(['method' => 'DELETE',
+                                'route' => ['campaign_invites.destroy', $relation->id],
+                                'style'=>'display:inline', 
+                                'id' => 'delete-invite-' . $relation->id]) 
+                            !!}
+                            {!! Form::close() !!}
                             </td>
                         </tr>
                     @endforeach
