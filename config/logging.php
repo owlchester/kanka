@@ -88,4 +88,6 @@ return [
             'level' => 'debug',
         ],
     ],
+
+    'api' => env('DB_LOGS_DATABASE'),
 ];

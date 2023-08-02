@@ -11,7 +11,7 @@ class ApiLogService
 
     public function log()
     {
-        if (!env('DB_LOGS_DATABASE', false)) {
+        if (!config('logging.api')) {
             return;
         }
 
