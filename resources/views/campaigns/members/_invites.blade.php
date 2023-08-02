@@ -61,11 +61,15 @@
                             </span>
                             </td>
                             <td class="text-right">
-                                <button class="btn2 btn-sm btn-error btn-outline">
-                                    <a href="#" class="text-red datagrid-submit" data-action="delete">
-                                        <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
-                                    </a>
-                                </button>
+                            <div class="mt-5">
+                                <x-button.delete-confirm target="#delete-invite-{{ $relation->id}}" />
+                            </div>
+                            {!! Form::open(['method' => 'DELETE',
+                                'route' => ['campaign_invites.destroy', $relation->id],
+                                'style'=>'display:inline', 
+                                'id' => 'delete-invite-' . $relation->id]) 
+                            !!}
+                            {!! Form::close() !!}
                             </td>
                         </tr>
                     @endforeach
@@ -106,31 +110,6 @@
     <div class="modal fade" id="small-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content rounded-2xl bg-base-100" id="small-modal-content"></div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="datagrid-bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content bg-base-100 rounded-2xl">
-                <div class="modal-body text-center">
-
-                    <x-dialog.close />
-                    <h4 class="modal-title">{{ __('crud.delete_modal.title') }}</h4>
-
-                    <p class="mt-3">
-                        {{ __('campaigns.members.removal', ['member' => $relation->role ? $relation->role->name : null]) }}</br>
-                        {{ __('crud.delete_modal.permanent') }}
-                    </p>
-
-                    <x-dialog.footer :modal="true">
-                        {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
-                            <button class="btn2 btn-sm btn-error btn-outline">
-                                <x-icon class="trash"></x-icon> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
-                            </button>
-                        {!! Form::close() !!}
-                    </x-dialog.footer>
-                </div>
-            </div>
         </div>
     </div>
 @endsection
