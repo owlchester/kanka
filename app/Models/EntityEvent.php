@@ -210,7 +210,6 @@ class EntityEvent extends MiscModel
                         ($years[$this->year] ?? $this->year) . ' ' .
                         $this->calendar->suffix;
                 }
-                // @phpstan-ignore-next-line
             } catch (Exception $e) {
                 $this->readableDate = $this->date();
             }

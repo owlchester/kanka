@@ -28,6 +28,7 @@ use Illuminate\Support\Str;
  * @property string $moons
  * @property string $reset
  * @property string $format
+ * @property string $suffix
  * @property int $calendar_id
  * @property array $parameters
  *
