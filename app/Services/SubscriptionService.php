@@ -508,7 +508,7 @@ class SubscriptionService
                 'user_id' => $this->user->id,
                 'name' => 'kanka',
                 'stripe_id' => $source->method . '_' . $source->id,
-                'stripe_status' => 'active',
+                'stripe_status' => 'canceled', // giropay/sofort don't allow recurring
                 'stripe_price' => $source->plan(),
                 'quantity' => 1,
                 'ends_at' => $end
@@ -523,7 +523,7 @@ class SubscriptionService
                     'green'
                 )
             );
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->user->notify(
                 new Header(
                     'subscriptions.charge_fail',
