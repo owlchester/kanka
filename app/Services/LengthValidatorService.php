@@ -26,7 +26,7 @@ class LengthValidatorService
             }
         }
         $totalLength = $monthLength - $day + $daysInYear;
-        if ($length >= $totalLength){
+        if ($length >= $totalLength) {
             return [
                 'overflow' => true,
                 'message' => __('calendars.warnings.event_length', ['documentation' => link_to('https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front.menu.documentation'), ['target' => '_blank'], null, false)]),
