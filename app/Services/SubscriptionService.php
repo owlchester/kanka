@@ -508,7 +508,7 @@ class SubscriptionService
                 'user_id' => $this->user->id,
                 'name' => 'kanka',
                 'stripe_id' => $source->method . '_' . $source->id,
-                'stripe_status' => 'canceled', // giropay/sofort don't allow recurring
+                'stripe_status' => 'active',
                 'stripe_price' => $source->plan(),
                 'quantity' => 1,
                 'ends_at' => $end
