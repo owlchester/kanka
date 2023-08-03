@@ -56,8 +56,8 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "nunomaduro/larastan": "^2.2",
-        "pestphp/pest": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.0",
+        "pestphp/pest": "^2.9",
+        "pestphp/pest-plugin-laravel": "^2.1",
         "phpmd/phpmd": "^2.13",
         "phpstan/phpstan": "^1.10",
         "spatie/laravel-ignition": "^2.0",
@@ -93,7 +93,8 @@
             "@php artisan package:discover"
         ],
         "test:types": "phpstan analyse --ansi --memory-limit 1G",
-        "test:types-clear": "phpstan clear-result-cache"
+        "test:types-clear": "phpstan clear-result-cache",
+        "test:pest": "vendor/bin/pest"
     },
     "config": {
         "preferred-install": "dist",

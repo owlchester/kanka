@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\EntityType;
 use App\Http\Resources\EntityTypeResource as Resource;
 
-class EntitytypeApiController extends ApiController
+class EntityTypeApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
