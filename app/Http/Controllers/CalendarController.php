@@ -212,7 +212,7 @@ class CalendarController extends CrudController
 
     /**
      * @param Calendar $calendar
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function eventLength(Calendar $calendar, ValidateReminderLength $request)
