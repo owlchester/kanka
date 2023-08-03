@@ -25,9 +25,12 @@
             {{ __('calendars.fields.length') }}
             <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.event_length') }}"></i>
         </label>
-        {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'class' => 'form-control', 'maxlength' => 1]) !!}
+        {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'class' => 'form-control', 'maxlength' => 1, 'data-url' => route('calendars.event-length', ['calendar' => 0])]) !!}
 
         <p class="help-block hidden-md hidden-lg">{{ __('calendars.hints.event_length') }}</p>
+        <p class="length-warning hidden text-red">
+            {!!  __('calendars.warnings.event_length', ['documentation' => link_to('https://docs.kanka.io/en/latest/entities/calendars.html#long-lasting-reminders', '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front.menu.documentation'), ['target' => '_blank'], null, false)])!!}
+        </p>
 
     </div>
 

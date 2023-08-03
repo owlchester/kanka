@@ -131,6 +131,7 @@ Route::post('/calendars/{calendar}/event', 'CalendarController@eventStore')->nam
 Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');
 Route::get('/calendars/{calendar}/events', 'CalendarController@events')->name('calendars.events');
 Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('calendars.today');
+Route::get('/calendars/{calendar}/validate-length', [\App\Http\Controllers\CalendarController::class, 'eventLength'])->name('calendars.event-length');
 
 //        Route::get('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
 //        Route::post('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');

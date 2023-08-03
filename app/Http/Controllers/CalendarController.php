@@ -10,6 +10,8 @@ use App\Models\Calendar;
 use App\Sanitizers\CalendarSanitizer;
 use App\Services\CalendarService;
 use App\Traits\TreeControllerTrait;
+use App\Http\Requests\ValidateReminderLength;
+use App\Services\LengthValidatorService;
 
 class CalendarController extends CrudController
 {
@@ -23,6 +25,7 @@ class CalendarController extends CrudController
     protected $module = 'calendars';
 
     protected CalendarService $calendarService;
+    protected LengthValidatorService $lengthValidatorService;
 
     /** @var string */
     protected $model = \App\Models\Calendar::class;
@@ -36,10 +39,11 @@ class CalendarController extends CrudController
      * CalendarController constructor.
      * @param CalendarService $calendarService
      */
-    public function __construct(CalendarService $calendarService)
+    public function __construct(CalendarService $calendarService, LengthValidatorService $lengthValidatorService)
     {
         parent::__construct();
         $this->calendarService = $calendarService;
+        $this->lengthValidatorService = $lengthValidatorService;
     }
 
     /**
@@ -204,5 +208,16 @@ class CalendarController extends CrudController
 
         return redirect()->back()
             ->with('success', __('calendars.edit.today'));
+    }
+
+    /**
+     * @param Calendar $calendar
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function eventLength(Calendar $calendar, ValidateReminderLength $request)
+    {
+        $this->authorize('view', $calendar);
+        return response()->json($this->lengthValidatorService->validateLength($calendar, $request));
     }
 }

@@ -225,4 +225,7 @@ return [
         'moon_offset'   => 'The moon first fullmoon offset can\'t be bigger than the length of the calendar\'s first month.',
         'format'        => 'The Calendar date format is invalid.',
     ],
+    'warnings'  => [
+            'event_length' => 'Reminders that span multiple years are only visible on the first two years. Learn more in our :documentation .',
+    ],
 ];
