@@ -485,7 +485,28 @@ class MentionsService
         // Clean up weird ` chars that break the js
         $this->text = str_replace('`', '\'', $this->text);
 
+        $this->fixGalleryUrls();
+
         return $this->text;
+    }
+
+    /**
+     * The gallery injects images as a thumbnail, instead of the final URL.
+     * Meaning that when we switched from images.kanka.io to th.kanka.io,
+     * all the gallery images in text were broken.
+     * @return $this
+     */
+    protected function fixGalleryUrls(): self
+    {
+        if (empty(config('thumbor.key'))) {
+            return $this;
+        }
+        $this->text = Str::replace(
+            'https://images.kanka.io/user/',
+            config('thumbor.url'),
+            $this->text
+        );
+        return $this;
     }
 
     /**
