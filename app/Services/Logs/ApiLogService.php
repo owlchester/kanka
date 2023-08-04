@@ -11,7 +11,7 @@ class ApiLogService
 
     public function log()
     {
-        if (!config('logging.api')) {
+        if (!config('logging.enabled')) {
             return;
         }
 

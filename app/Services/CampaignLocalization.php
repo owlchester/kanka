@@ -77,6 +77,17 @@ class CampaignLocalization
             }
         }
 
+        // Dirty workaround for API testing
+        elseif (app()->environment('testing') && request()->is('api/1.0/campaigns/*')) {
+            /** @var Campaign|null $campaign */
+            $campaign = Campaign::find((int) request()->segment(4));
+            $this->campaign = $campaign;
+            if (empty($this->campaign) && $canAbort) {
+                throw new ModelNotFoundException();
+            }
+        }
+
+
         return $this->campaign;
     }
 

@@ -23,6 +23,7 @@ class UserResource extends JsonResource
             'id' => $user->id,
             'name' => $user->name,
             'avatar' => $user->getAvatarUrl(),
+            'password' => 'hihi',
         ];
 
         $campaign = CampaignLocalization::getCampaign();

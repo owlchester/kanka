@@ -76,6 +76,10 @@ class CampaignObserver
     public function creating(Campaign $campaign)
     {
         $campaign->created_by = auth()->user()->id;
+        $campaign->is_featured = false;
+        $campaign->entity_visibility = false;
+        $campaign->entity_personality_visibility = false;
+        $campaign->follower = 0;
     }
 
     /**

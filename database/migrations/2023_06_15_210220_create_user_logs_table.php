@@ -10,6 +10,9 @@ return new class () extends Migration {
      */
     public function up(): void
     {
+        if (!config('logging.enabled')) {
+            return;
+        }
         Schema::connection('logs')->create('user_logs', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();

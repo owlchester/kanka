@@ -106,7 +106,9 @@ class UserObserver
      */
     public function created(User $user)
     {
-        WelcomeEmailJob::dispatch($user, app()->getLocale());
+        if (!app()->environment('testing')) {
+            WelcomeEmailJob::dispatch($user, app()->getLocale());
+        }
         session()->put('user_registered', true);
 
         if (request()->filled('newsletter')) {
