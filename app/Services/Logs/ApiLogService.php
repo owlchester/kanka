@@ -15,6 +15,11 @@ class ApiLogService
             return;
         }
 
+        // Front-facing APIs? Don't log
+        if (auth()->guest()) {
+            return;
+        }
+
         ApiLog::create([
             'campaign_id' => $this->campaign?->id,
             'user_id' => auth()->user()->id,

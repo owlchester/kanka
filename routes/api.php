@@ -27,3 +27,10 @@ Route::group([
 ], function () {
     require base_path('routes/api.v1.php');
 });
+
+Route::group([
+    'namespace' => 'Api\Public',
+    'prefix' => 'public',
+], function () {
+    require base_path('routes/api-public.php');
+});
