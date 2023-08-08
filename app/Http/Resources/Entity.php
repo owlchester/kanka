@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 class Entity extends EntityChild
@@ -24,6 +25,7 @@ class Entity extends EntityChild
         $url = $model->url();
         $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
         $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
+        $apiViewUrl = 'campaigns.' . $model->pluralType() . '.show';
 
         return [
             'id' => $model->child->id,
@@ -49,7 +51,7 @@ class Entity extends EntityChild
 
             'urls' => [
                 'view' => $url,
-                'api' => route('campaigns.' . $model->pluralType() . '.show', [$model->campaign_id, $model->entity_id]),
+                'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$model->campaign_id, $model->entity_id]) : null,
             ]
         ];
     }
