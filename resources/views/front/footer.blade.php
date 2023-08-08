@@ -49,7 +49,7 @@
                         <a href="//docs.kanka.io/en/latest/index.html" target="_blank">{{ __('front.menu.documentation') }}</a>
                     </li>
                     <li>
-                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">{{ __('front.features.api.link') }}</a>
+                        <a href="{{ route('larecipe.index') }}" target="_blank">{{ __('front.features.api.link') }}</a>
                     </li>
 
                     <li>
@@ -149,7 +149,7 @@
             @endif
         </div>
         <div class="footer-copyright text-center">
-            Kanka v{{ config('app.version') }} - {!! __('front.footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }}
+            Kanka {!! __('front.footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
         </div>
     </div>
 </footer>

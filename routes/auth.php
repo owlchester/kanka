@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Route;
+
 \Illuminate\Support\Facades\Auth::routes(['register' => config('auth.register_enabled')]);
 
 
-Route::post('/logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
-Route::get('/login-as-user/{user}', [\App\Http\Controllers\Auth\LoginController::class, 'loginAsUser'])->name('login-as-user');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/login-as-user/{user}', [LoginController::class, 'loginAsUser'])->name('login-as-user');
 
 // OAuth Routes
-Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
+Route::get('auth/{provider}', [AuthController::class, 'redirectToProvider'])->name('auth.provider');
 
 /*
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

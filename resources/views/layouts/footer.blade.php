@@ -59,7 +59,7 @@
                     </li>
                     @if(config('app.admin'))
                     <li class="px-0 py-1 text-sm">
-                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview">
+                        <a href="{{ route('larecipe.index') }}">
                             {{ __('front.features.api.link') }}
                         </a>
                     </li>@endif

@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/go/{social}', [\App\Http\Controllers\Front\GoController::class, 'index'])->name('go.social');
+use Illuminate\Support\Facades\Route;
 
 Route::get('/auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback')->name('auth.provider.callback');
 

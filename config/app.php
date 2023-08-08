@@ -239,6 +239,7 @@ return [
         App\Providers\UserDateServiceProvider::class,
         App\Providers\ModuleServiceProvider::class,
         App\Providers\Logs\ApiLogServiceProvider::class,
+        App\Providers\DomainServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
 
     ],
@@ -317,6 +318,7 @@ return [
         'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
         'UserDate' => App\Facades\UserDate::class,
         'ApiLog' => App\Facades\ApiLog::class,
+        'Domain' => App\Facades\Domain::class,
     ],
 
 ];

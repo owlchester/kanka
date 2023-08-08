@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Domain;
 use App\Facades\FrontCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
@@ -26,6 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->guest()) {
+            if (Domain::isApp()) {
+                return redirect()->route('login');
+            }
             return $this->front();
         }
         return $this->back();

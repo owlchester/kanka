@@ -1,65 +1,36 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-use Vsch\TranslationManager\Translator;
+use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\Layout\NavigationController;
+use App\Http\Controllers\StartController;
+use App\Http\Controllers\TroubleshootingController;
+use App\Http\Controllers\NotificationController;
+use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime']
 ], function () {
 
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    Route::get('/start', 'StartController@index')->name('start');
-    //Route::post('/start', 'StartController@store')->name('start.save');
-    Route::post('/create-campaign', 'CampaignController@store')->name('create-campaign');
+    Route::get('/start', [StartController::class, 'index'])->name('start');
+    Route::post('/create-campaign', [CampaignController::class, 'store'])->name('create-campaign');
 
     // Invitation's campaign comes from the token.
-    Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
+    Route::get('/invitation/join/{token}', [InvitationController::class, 'join'])->name('campaigns.join');
 
-    Route::get('/troubleshooting/invite', 'TroubleshootingController@invite')->name('troubleshooting');
-    Route::post('/troubleshooting/invite', 'TroubleshootingController@saveInvite')->name('troubleshooting.generate');
+    Route::get('/troubleshooting/invite', [TroubleshootingController::class, 'invite'])->name('troubleshooting');
+    Route::post('/troubleshooting/invite', [TroubleshootingController::class, 'saveInvite'])->name('troubleshooting.generate');
 
-
-    Route::get('users/{user}', 'User\ProfileController@show')->name('users.profile');
 
     // Notification
-    Route::get('/notifications', 'NotificationController@index')->name('notifications');
-    Route::get('/notifications/refresh', 'NotificationController@refresh')->name('notifications.refresh');
-    Route::post('/notifications/read/{id}', 'NotificationController@read')->name('notifications.read');
-    Route::post('/notifications/clear-all', 'NotificationController@clearAll')->name('notifications.clear-all');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
+    Route::get('/notifications/refresh', [NotificationController::class, 'refresh'])->name('notifications.refresh');
+    Route::post('/notifications/read/{id}', [NotificationController::class, 'read'])->name('notifications.read');
+    Route::post('/notifications/clear-all', [NotificationController::class, 'clearAll'])->name('notifications.clear-all');
 
-    // 3rd party
-    Route::group(['middleware' => ['auth', 'translator'], 'prefix' => 'translations'], function () {
-        Translator::routes();
-        Route::get('/faq', 'Translations\FaqController@index')->name('translations.faq.index');
-        Route::post('/faq-save', 'Translations\FaqController@save')->name('translations.faq.save');
-    });
-
-    // API docs
-    Route::group([
-        'prefix'     => config('larecipe.docs.route'),
-        'domain'     => config('larecipe.domain', null),
-        'as'         => 'larecipe.',
-        'middleware' => 'web'
-    ], function () {
-        Route::get('/', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@index')->name('index');
-        Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
-    });
-
-
-    Route::get('/layout/navigation', 'Layout\NavigationController@index')->name('layout.navigation');
+    Route::get('/layout/navigation', [NavigationController::class, 'index'])->name('layout.navigation');
 });
-
-if (app()->environment('local')) {
-    Route::get('email-test', 'Tests\EmailTestController@index');
-}
