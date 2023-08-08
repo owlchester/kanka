@@ -116,7 +116,8 @@ class AttributeController extends Controller
             'entity',
             'model',
             'marketplaceTemplate',
-            'template'
+            'template',
+            'campaign'
         ));
     }
 
