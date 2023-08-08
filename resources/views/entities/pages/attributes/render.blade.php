@@ -8,7 +8,8 @@
  * @var \App\Models\Entity $entity
  */
 $layout = $entity->entityAttributes->where('name', '_layout')->first();
-if ($layout) {
+
+if ($layout && !empty($campaign)) {
     $template = $template ?? $templateService->communityTemplate($layout->value);
     $marketplaceTemplate = $marketplaceTemplate ?? $templateService->marketplaceTemplate($layout->value, $campaign);
 }
