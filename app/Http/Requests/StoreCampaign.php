@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Domain;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCampaign extends FormRequest
@@ -39,7 +40,7 @@ class StoreCampaign extends FormRequest
             'genres.*' => 'distinct|exists:genres,id'
         ];
 
-        if (request()->is('api/*') && !request()->isMethod('POST')) {
+        if ((request()->is('api/*') || Domain::isApi()) && !request()->isMethod('POST')) {
             $rules['name'] = 'string|min:4';
         }
 

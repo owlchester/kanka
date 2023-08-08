@@ -80,12 +80,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function api(): self
     {
-        $domain = Domain::isApp() ? Domain::api() : '';
-        Route::domain($domain)->prefix('api')
+        $domain = Domain::isApi() ? Domain::api() : '';
+        $prefix = Domain::isApi() ? null : 'api';
+        Route::domain($domain)
+            ->prefix($prefix)
             ->namespace($this->namespace)
             ->get('/health', [HealthController::class, 'index']);
 
-        Route::domain($domain)->prefix('api')
+        Route::domain($domain)
+            ->prefix($prefix)
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
@@ -120,7 +123,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function campaign(): self
     {
-        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime', 'campaign'])
+        $domain = Domain::isApi() ? Domain::app() : null;
+        Route::domain($domain)
+            ->middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime', 'campaign'])
             ->prefix(LaravelLocalization::setLocale() . '/' . CampaignLocalization::setCampaign())
             ->namespace($this->namespace)
             ->group(base_path('routes/campaign.php'));

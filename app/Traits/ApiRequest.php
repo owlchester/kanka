@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use App\Facades\Domain;
+
 trait ApiRequest
 {
     /**
@@ -12,7 +14,8 @@ trait ApiRequest
      */
     public function clean(array $rules, array $except = []): array
     {
-        if (!request()->is('api/*') || !request()->isMethod('put')) {
+        $isApi = request()->is('api/*') || Domain::isApi();
+        if (!$isApi || !request()->isMethod('put')) {
             return $rules;
         }
 
