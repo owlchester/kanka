@@ -18,6 +18,7 @@ use App\Http\Controllers\Settings\AppsController;
 use App\Http\Controllers\Settings\Apps\DiscordController;
 use App\Http\Controllers\PasswordSecurityController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\Layout\NavigationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
@@ -157,3 +158,15 @@ Route::get('paypal/success-transaction', [PayPalController::class, 'successTrans
     ->name('paypal.transaction-success');
 Route::get('paypal/cancel-transaction', [PayPalController::class, 'cancelTransaction'])
     ->name('paypal.cancel-transaction');
+
+/*
+--------------------------------------------------------------------------
+Notifications
+--------------------------------------------------------------------------
+ */
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
+Route::get('/notifications/refresh', [NotificationController::class, 'refresh'])->name('notifications.refresh');
+Route::post('/notifications/read/{id}', [NotificationController::class, 'read'])->name('notifications.read');
+Route::post('/notifications/clear-all', [NotificationController::class, 'clearAll'])->name('notifications.clear-all');
+
+Route::get('/layout/navigation', [NavigationController::class, 'index'])->name('layout.navigation');

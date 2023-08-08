@@ -49,7 +49,6 @@ class RouteServiceProvider extends ServiceProvider
             ->campaign()
             ->settings()
             ->auth()
-            ->localess()
             ->vendor();
     }
 
@@ -62,9 +61,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function web(): self
     {
-        Route::middleware('web')
+        Route::middleware(['web'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
+
+        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
+            ->prefix(LaravelLocalization::setLocale())
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web-i18n.php'));
+
         return $this;
     }
 
@@ -143,18 +148,6 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix(LaravelLocalization::setLocale())
             ->namespace('App\Http\Controllers')
             ->group(base_path('routes/auth.php'))
-        ;
-        return $this;
-    }
-
-    /**
-     * Define routes that don't have a local associated with them
-     */
-    protected function localess(): self
-    {
-        Route::middleware(['minimum'])
-            ->namespace('\App\Http\Controllers')
-            ->group(base_path('routes/localess.php'))
         ;
         return $this;
     }
