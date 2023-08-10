@@ -11,6 +11,7 @@ use App\Http\Controllers\Settings\ReleaseController;
 use App\Http\Controllers\Settings\AccountController;
 use App\Http\Controllers\Settings\AppearanceController;
 use App\Http\Controllers\Settings\NotificationController;
+use App\Http\Controllers\NotificationController as OldNotificationController;
 use App\Http\Controllers\Settings\PatreonController;
 use App\Http\Controllers\Settings\ApiController;
 use App\Http\Controllers\Settings\SubscriptionController;
@@ -165,8 +166,8 @@ Notifications
 --------------------------------------------------------------------------
  */
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
-Route::get('/notifications/refresh', [NotificationController::class, 'refresh'])->name('notifications.refresh');
-Route::post('/notifications/read/{id}', [NotificationController::class, 'read'])->name('notifications.read');
-Route::post('/notifications/clear-all', [NotificationController::class, 'clearAll'])->name('notifications.clear-all');
+Route::get('/notifications/refresh', [OldNotificationController::class, 'refresh'])->name('notifications.refresh');
+Route::post('/notifications/read/{id}', [OldNotificationController::class, 'read'])->name('notifications.read');
+Route::post('/notifications/clear-all', [OldNotificationController::class, 'clearAll'])->name('notifications.clear-all');
 
 Route::get('/layout/navigation', [NavigationController::class, 'index'])->name('layout.navigation');
