@@ -38,7 +38,7 @@ class MenuLinkController extends CrudController
             'name',
         ];
 
-        $this->addNavAction(
+        /*$this->addNavAction(
             route('quick-links.reorder'),
             '<i class="fa-solid fa-arrows-alt-v" aria-hidden="true"></i> <span class="hidden-xs">' .
                 __('menu_links.reorder.title') . '</span>'
@@ -47,7 +47,7 @@ class MenuLinkController extends CrudController
             route('campaign-sidebar'),
             '<i class="fa-solid fa-cog" aria-hidden="true"></i> <span class="hidden-xs">' .
                 __('menu_links.actions.customise') . '</span>'
-        );
+        );*/
         $this->addNavAction(
             '//docs.kanka.io/en/latest/advanced/quick-links.html',
             '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> <span class="hidden-xs">' . __('crud.actions.help') . '</span>',

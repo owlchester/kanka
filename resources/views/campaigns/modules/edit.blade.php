@@ -2,7 +2,7 @@
     {{ __('campaigns/modules.rename.title', ['module' => __('entities.' . $entityType->code)]) }}
 </x-dialog.header>
 <article>
-    {!! Form::open(['method' => 'PATCH', 'route' => ['modules.update', $entityType->id], 'class' => 'w-full max-w-lg']) !!}
+    {!! Form::open(['method' => 'PATCH', 'route' => ['modules.update', [$campaign, $entityType->id]], 'class' => 'w-full max-w-lg']) !!}
 
     <p class="text-justify">{{ __('campaigns/modules.rename.helper') }}</p>
 

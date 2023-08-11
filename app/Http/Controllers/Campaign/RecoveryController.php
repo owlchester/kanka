@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\RecoveryService;
 use Carbon\Carbon;
@@ -27,9 +28,8 @@ class RecoveryController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
         Datagrid::layout(\App\Renderers\Layouts\Campaign\Recovery::class)
@@ -59,23 +59,22 @@ class RecoveryController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function recover(Request $request)
+    public function recover(Request $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->boosted()) {
             return redirect()
-                ->route('recovery')
+                ->route('recovery', $campaign)
                 ->with('boosted-pitch', true)
             ;
         }
         try {
             $count = $this->service->recover($request->get('model', []));
             return redirect()
-                ->route('recovery')
+                ->route('recovery', $campaign)
                 ->with('success', trans_choice('campaigns/recovery.success', $count, ['count' => $count]));
         } catch (Exception $e) {
             return redirect()
-                ->route('recovery')
+                ->route('recovery', $campaign)
                 ->with('error', __('campaigns/recovery.error'));
         }
     }

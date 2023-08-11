@@ -8,9 +8,9 @@
         {{ __('campaigns.members.actions.help') }}
     </button>
     @if (auth()->user()->can('update', $campaign))
-        <a href="{{ route('campaign_roles.create') }}" class="btn2 btn-primary btn-sm"
+        <a href="{{ route('campaign_roles.create', $campaign) }}" class="btn2 btn-primary btn-sm"
            data-toggle="ajax-modal" data-target="#entity-modal"
-           data-url="{{ route('campaign_roles.create') }}"
+           data-url="{{ route('campaign_roles.create', $campaign) }}"
         >
             <x-icon class="plus"></x-icon>
             {{ __('campaigns.roles.actions.add') }}
@@ -21,7 +21,7 @@
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\CampaignRole $plugin
  */?>
-    @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_roles.bulk']) !!} @endif
+    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_roles.bulk', $campaign]]) !!} @endif
     <div id="datagrid-parent">
         @include('layouts.datagrid._table', ['responsive' => true])
     </div>
@@ -42,7 +42,7 @@
                 'admin' => link_to_route(
                     'campaigns.campaign_roles.admin',
                     \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
-                    null,
+                    $campaign,
                     ['target' => '_blank']
                 )
             ]),

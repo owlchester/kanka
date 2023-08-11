@@ -29,10 +29,10 @@ class DiceRollResultController extends CrudController
     {
         parent::__construct();
 
-        $this->addNavAction(
+        /*$this->addNavAction(
             route('dice_rolls.index'),
             '<i class="fa-solid fa-square"></i> ' . __('dice_rolls.index.actions.dice')
-        );
+        );*/
     }
     /**
      * Display a listing of the resource.

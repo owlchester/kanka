@@ -6,8 +6,8 @@
 @extends('layouts.app', [
     'title' => __('campaigns/roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
-        ['url' => route('campaign_roles.index'), 'label' => __('campaigns.show.tabs.roles')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
+        ['url' => route('campaign_roles.index', $campaign), 'label' => __('campaigns.show.tabs.roles')],
         $role->name,
     ],
     'mainTitle' => false,
@@ -40,7 +40,7 @@
                     <p class="help-block">{!! __('campaigns.roles.hints.role_admin', ['name' => '<code>' . $role->name . '</code>']) !!} </p>
                 @endif
                 @can('permission', $role)
-                {{ Form::open(['route' => ['campaign_roles.savePermissions', 'campaign_role' => $role], 'data-shortcut' => '1']) }}
+                {{ Form::open(['route' => ['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role], 'data-shortcut' => '1']) }}
                         <div class="w-full overflow-y-auto">
                     @include('campaigns.roles._pretty')
                         </div>

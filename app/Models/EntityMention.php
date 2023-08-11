@@ -307,7 +307,7 @@ class EntityMention extends Model
             return $this->entity->tooltipedLink();
         } elseif ($this->isCampaign()) {
             return '<a class="name" href="' .
-                route('campaign') . '">' .
+                route('overview', $campaign) . '">' .
                 $this->campaign->name .
                 '</a>';
         }

@@ -33,7 +33,7 @@
 @if($entities->hasMorePages())
 <div class="text-center">
     <a href="#" class="text-center widget-recent-more px-5"
-       data-url="{{ route('dashboard.recent', ['id' => $widget->id, 'page' => $entities->currentPage() + 1]) }}">
+       data-url="{{ route('dashboard.recent', [$campaign, 'id' => $widget->id, 'page' => $entities->currentPage() + 1]) }}">
         <span>{{ __('crud.actions.next') }}</span>
         <i class="fa-solid fa-spinner fa-spin spinner" style="display: none;"></i>
     </a>

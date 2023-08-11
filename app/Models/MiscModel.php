@@ -229,7 +229,8 @@ abstract class MiscModel extends Model
             return '#';
         }
         try {
-            return route($this->entity->pluralType() . '.' . $route, $this->id);
+            $campaign = CampaignLocalization::getCampaign();
+            return route($this->entity->pluralType() . '.' . $route, [$campaign, $this->id]);
         } catch (Exception $e) {
             return '#';
         }
@@ -447,8 +448,9 @@ abstract class MiscModel extends Model
             return e($this->name);
         }
 
+        $campaign = CampaignLocalization::getCampaign();
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
-            'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
+            'data-url="' . route('entities.tooltip', [$campaign, $this->entity->id]) . '" href="' .
             $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : $this->name) .
         '</a>';

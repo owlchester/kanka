@@ -106,7 +106,7 @@ class NavigationService
                 'name' => $campaign->name,
                 'is_boosted' => $campaign->boosted(),
                 'image' => $campaign->thumbnail(100, 100),
-                'url' => url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()),
+                'url' => route('dashboard', $campaign),
             ];
             $member++;
         }

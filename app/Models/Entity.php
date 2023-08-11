@@ -204,10 +204,11 @@ class Entity extends Model
     public function url(string $action = 'show', array $options = [])
     {
         try {
+            $campaign = CampaignLocalization::getCampaign();
             if ($action == 'index') {
-                return route($this->pluralType() . '.index');
+                return route($this->pluralType() . '.index', $campaign);
             }
-            $routeOptions = array_merge([$this->entity_id], $options);
+            $routeOptions = array_merge([$campaign, $this->entity_id], $options);
             return route($this->pluralType() . '.' . $action, $routeOptions);
         } catch (Exception $e) {
             return route('dashboard');

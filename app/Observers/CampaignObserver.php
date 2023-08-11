@@ -51,7 +51,7 @@ class CampaignObserver
         $campaign->entry = $this->purify(Mentions::codify($campaign->entry));
         $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
 
-        $campaign->slug = Str::slug($campaign->name, '');
+        //$campaign->slug = Str::slug($campaign->name, '');
         $campaign->updated_by = auth()->user()->id;
 
         if (request()->has('is_public')) {
@@ -124,6 +124,9 @@ class CampaignObserver
             'conversations' => 0,
         ]);
         $setting->save();
+
+        $campaign->slug = $campaign->id;
+        $campaign->saveQuietly();
 
         UserCache::clearCampaigns();
 

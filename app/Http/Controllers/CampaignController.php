@@ -47,9 +47,8 @@ class CampaignController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index(Request $request)
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         return view($this->view . '.show', compact('campaign'));
     }
 
@@ -109,15 +108,13 @@ class CampaignController extends Controller
             ->with('success', __($this->view . '.create.success'));
     }
 
-    public function show()
+    public function show(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         return view($this->view . '.show', compact('campaign'));
     }
 
-    public function edit()
+    public function edit(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $editingUsers = null;
@@ -131,12 +128,11 @@ class CampaignController extends Controller
                 $editingService->edit();
             }
         }
-        return view($this->view . '.edit', ['model' => $campaign, 'start' => false, 'editingUsers' => $editingUsers]);
+        return view($this->view . '.edit', ['campaign' => $campaign, 'model' => $campaign, 'start' => false, 'editingUsers' => $editingUsers]);
     }
 
-    public function update(StoreCampaign $request)
+    public function update(StoreCampaign $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $data = $request->all();
@@ -175,16 +171,15 @@ class CampaignController extends Controller
                 ->with('success', __($this->view . '.edit.success'));
         }
 
-        return redirect()->route('campaign')
+        return redirect()->route('overview', $campaign)
             ->with('success', __($this->view . '.edit.success'));
     }
 
     /**
      * @param DeleteCampaign $request
      */
-    public function destroy(DeleteCampaign $request)
+    public function destroy(DeleteCampaign $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('delete', $campaign);
 
         $this->campaignService->delete($campaign);
@@ -195,16 +190,15 @@ class CampaignController extends Controller
     /**
      * Leave a campaign
      */
-    public function leave()
+    public function leave(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('leave', $campaign);
 
         try {
             $this->campaignService->leave($campaign);
             return redirect()->route('home');
         } catch (Exception $e) {
-            return redirect()->route('campaign')->withErrors($e->getMessage());
+            return redirect()->route('overview', $campaign)->withErrors($e->getMessage());
         }
     }
 
@@ -212,9 +206,8 @@ class CampaignController extends Controller
      * Get the campaign css
      * @return Response
      */
-    public function css()
+    public function css(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $css = null;
         if ($campaign->boosted()) {
             $css = CampaignCache::styles();

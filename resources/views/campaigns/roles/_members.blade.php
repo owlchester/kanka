@@ -17,10 +17,10 @@
     @endif
 
     @can('user', $role)
-        <a href="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}"
+        <a href="{{ route('campaign_roles.campaign_role_users.create', [$campaign, 'campaign_role' => $role]) }}"
            class="btn2 btn-primary btn-block"
            data-toggle="ajax-modal" data-target="#entity-modal"
-           data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
+           data-url="{{ route('campaign_roles.campaign_role_users.create', [$campaign, 'campaign_role' => $role]) }}">
             <x-icon class="plus"></x-icon>
             {{ __('campaigns.roles.users.actions.add') }}
         </a>
@@ -57,7 +57,7 @@
     @foreach ($members as $relation)
         @can('delete', [$relation, $role])
         {!! Form::open([
-                'method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign_role' => $role, 'campaign_role_user' => $relation->id],
+                'method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign' => $campaign, 'campaign_role' => $role, 'campaign_role_user' => $relation->id],
                 'style' => 'display:inline',
                 'id' => 'campaign-role-member-' . $relation->id
             ]) !!}

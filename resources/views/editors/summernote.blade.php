@@ -31,9 +31,9 @@
 
     <div
         id="summernote-config"
-        data-mention="{{ route('search.live') }}"
+        data-mention="{{ route('search.live', $campaign) }}"
         data-advanced-mention="{{ auth()->user()->alwaysAdvancedMentions() }}"
-        data-months="{{ route('search.calendar-months') }}"
+        data-months="{{ route('search.calendar-months', $campaign) }}"
         data-gallery-title="Superboosted Gallery"
         data-gallery-close="{{ __('crud.click_modal.close') }}"
         data-gallery-add="{{ __('crud.add') }}"
@@ -45,11 +45,11 @@
         data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
 @if (isset($name) && $name == 'characters')        data-bragi="{{ route('bragi') }}"@endif
 @if(isset($campaignService) && $campaignService->campaign() !== null)
-        data-gallery="{{ $campaignService->campaign()->superboosted() ? route('campaign.gallery.summernote') : null }}"
-    @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
+        data-gallery="{{ $campaignService->campaign()->superboosted() ? route('campaign.gallery.summernote', $campaign) : null }}"
+    @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload', $campaign) }}" @endif
 @endif
-@if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', $model->entity) }}"
-@elseif (!empty($entity))        data-attributes="{{ route('search.attributes', $entity) }}"
+@if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', [$campaign, $model->entity]) }}"
+@elseif (!empty($entity))        data-attributes="{{ route('search.attributes', [$campaign, $entity]) }}"
 
 @endif
         data-locale="{{ app()->getLocale() }}"></div>
@@ -62,7 +62,7 @@
                     <div id="campaign-imageupload-boosted">
                         <x-dialog.close />
 
-                        <x-cta :campaign="$campaignService->campaign()" image="0" superboost="1">
+                        <x-cta :campaign="$campaign" image="0" superboost="1">
                             <p>{{ __('campaigns/gallery.pitch') }}</p>
                         </x-cta>
                     </div>

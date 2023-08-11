@@ -5,8 +5,8 @@
     <p>
         {!! __('dashboards/widgets/welcome.intros.1', [
 'user' => auth()->check() ? '<strong>' . auth()->user()->name . '</strong>' : __('crud.users.unknown'),
-'characters' => link_to_route('characters.index', __('entities.characters')),
-'locations' => link_to_route('locations.index', __('entities.locations')),
+'characters' => link_to_route('characters.index', __('entities.characters'), [$campaign]),
+'locations' => link_to_route('locations.index', __('entities.locations'), [$campaign]),
 ]) !!}
     </p>
 

@@ -47,6 +47,6 @@
     </x-grid>
 </div>
 
-@if(!$ajax)
+@if(!request()->ajax())
 @include('editors.editor')
 @endif

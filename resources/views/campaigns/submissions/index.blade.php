@@ -4,7 +4,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.applications') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.applications')
     ],
     'mainTitle' => false,
@@ -29,7 +29,7 @@
                     {{ __('campaigns.members.actions.help') }}
                 </button>
 
-                <a href="#" data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-sm">
+                <a href="#" data-url="{{ route('campaign-applications', $campaign) }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-sm">
                     <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
                     {{ __('campaigns/submissions.actions.applications', ['status' => ($campaign->isOpen() ? __('campaigns/submissions.statuses.open') : __('campaigns/submissions.statuses.closed'))]) }}
                 </a>
@@ -40,7 +40,7 @@
                     <x-alert type="warning">
                         <p>{!! __('campaigns/submissions.helpers.not_open') !!}</p>
                         <p>
-                            <button data-url="{{ route('campaign-applications') }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-outline">
+                            <button data-url="{{ route('campaign-applications', $campaign) }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-outline">
                                 <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
                                 {{ __('campaigns/submissions.actions.change') }}
                             </button>
@@ -51,7 +51,7 @@
                         <x-alert type="warning">
                             <p>{{ __('campaigns/submissions.helpers.open_not_public') }}</p>
                             @if (auth()->user()->can('update', $campaign))
-                            <a href="{{ route('campaigns.edit', ['#tab_form-public']) }}" class="btn2 btn-warning">
+                            <a href="{{ route('campaigns.edit', [$campaign, '#tab_form-public']) }}" class="btn2 btn-warning">
                                 {{ __('crud.fix-this-issue') }}
                             </a>
                             @endif

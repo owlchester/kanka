@@ -1,14 +1,14 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('campaigns/styles.create.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign_styles.index'), 'label' => __('campaigns.show.tabs.styles')]
+        ['url' => route('campaign_styles.index', $campaign), 'label' => __('campaigns.show.tabs.styles')]
     ]
 ])
 
 @section('content')
 
     {!! Form::open([
-        'route' => ['campaign_styles.store'],
+        'route' => ['campaign_styles.store', $campaign],
         'method' => 'POST',
         'data-shortcut' => 1,
         'id' => 'campaign-style',
@@ -21,7 +21,7 @@
         @if (!$theme)
         <x-alert type="info">
             <p>{!! __('campaigns/builder.pitch') !!}</p>
-            <a href="{{ route('campaign_styles.builder') }}" class="btn2 btn-primary">
+            <a href="{{ route('campaign_styles.builder', $campaign) }}" class="btn2 btn-primary">
                 {{ __('campaigns/builder.pitch-go') }}
             </a>
         </x-alert>

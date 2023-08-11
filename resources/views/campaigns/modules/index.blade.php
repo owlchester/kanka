@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.settings') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.settings')
     ],
     'canonical' => true,
@@ -134,6 +134,7 @@
                 'method' => 'DELETE',
                 'route' => [
                     'modules.reset',
+                    $campaign
                 ]
             ]) !!}
             <x-buttons.confirm type="danger" full="true" outline="true">

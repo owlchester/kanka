@@ -58,7 +58,7 @@
                             <x-dialog id="member-roles-{{ $relation->id }}" :title="__('campaigns.members.manage_roles') . ' - ' . $relation->user->name">
                                 <div class="w-full flex flex-col gap-2">
                                 @foreach($roles as $role)
-                                    {!! Form::open(['method' => 'post', 'route' => ['campaign_users.update-roles', [$relation, $role]], 'class' => 'w-full']) !!}
+                                    {!! Form::open(['method' => 'post', 'route' => ['campaign_users.update-roles', [$campaign, $relation, $role]], 'class' => 'w-full']) !!}
                                         <button class='btn2 btn-block btn-feedback @if($relation->user->hasCampaignRole($role->id)) btn-error btn-outline @endif'>
                                             @if($relation->user->hasCampaignRole($role->id))
                                                 <x-icon class="trash" />
@@ -95,7 +95,7 @@
                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                     @can('switch', $relation)
                                         <li>
-                                            <a href="{{ route('identity.switch', $relation) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
+                                            <a href="{{ route('identity.switch', [$campaign, $relation]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip" class="switch-user">
                                                 <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
                                                 {{ __('campaigns.members.actions.switch') }}
                                             </a>
@@ -107,7 +107,7 @@
                                             <a href="#" class="text-red" title="{{ __('crud.remove') }}"
                                                data-toggle="dialog-ajax"
                                                data-target="member-dialog"
-                                               data-url="{{ route('campaign_users.delete', $relation->id) }}"
+                                               data-url="{{ route('campaign_users.delete', [$campaign, $relation->id]) }}"
                                             >
                                                 <x-icon class="trash"></x-icon>
                                                 {{ __('campaigns.members.actions.remove') }}

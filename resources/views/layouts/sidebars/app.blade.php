@@ -1,27 +1,25 @@
 <?php
 /**
- * @var \App\Models\Campaign $currentCampaign
  * @var \App\Models\Campaign $campaign
  * @var \App\Services\SidebarService $sidebar
  */
-$currentCampaign = CampaignLocalization::getCampaign();
-$defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
-$defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m' => 'table'] : null;
+$defaultIndex = ($campaign && $campaign->defaultToNested()) || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
+$defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? [$campaign, 'm' => 'table'] : [$campaign];
 ?>
-@if (!empty($currentCampaign))
-    @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
+@if (!empty($campaign))
+    @php \App\Facades\Dashboard::campaign($campaign); @endphp
     @inject('sidebar', 'App\Services\SidebarService')
-    @php $sidebar->campaign($currentCampaign)->prepareQuickLinks()@endphp
-    <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute @if(auth()->check() && $currentCampaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($currentCampaign->image) style="--sidebar-placeholder: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
+    @php $sidebar->campaign($campaign)->prepareQuickLinks()@endphp
+    <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(280, 210)->url($campaign->image) }})" @endif>
         <section class="sidebar-campaign h-40 overflow-hidden">
             <div class="campaign-block h-32 px-4 pt-24">
                 <div class="campaign-head">
                     <div class="campaign-name truncate text-xl">
-                        {!! $currentCampaign->name !!}
+                        {!! $campaign->name !!}
                     </div>
 
                     <div class="campaign-updated text-xs truncate">
-                        {{ __('sidebar.campaign_switcher.updated') }} {{ $currentCampaign->updated_at->diffForHumans() }}
+                        {{ __('sidebar.campaign_switcher.updated') }} {{ $campaign->updated_at->diffForHumans() }}
                     </div>
                 </div>
             </div>
@@ -29,9 +27,9 @@ $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m
 
         <section class="sidebar pb-14" style="height: auto">
             <ul class="sidebar-menu overflow-hidden whitespace-no-wrap m-0 p-0 list-none">
-                @foreach ($sidebar->campaign($currentCampaign)->layout() as $name => $element)
+                @foreach ($sidebar->campaign($campaign)->layout() as $name => $element)
                     @if ($name === 'menu_links')
-                        @includeWhen($currentCampaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])
+                        @includeWhen($campaign->enabled('menu_links'), 'layouts.sidebars.quick-links', ['links' => $sidebar->quickLinks('menu_links')])
                         @continue
                     @endif
                     <li class="px-2 {{ (!isset($element['route']) || $element['route'] !== false ? $sidebar->active($name) : null) }} section-{{ $name }}">
@@ -43,7 +41,7 @@ $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m
                             }
                             @endphp
                             <x-sidebar.element
-                                :url="route($route, (\Illuminate\Support\Arr::get($element, 'mode') === true ? $defaultOptions : []))"
+                                :url="route($route, (\Illuminate\Support\Arr::get($element, 'mode') === true ? $defaultOptions : [$campaign]))"
                                 :icon="$element['custom_icon'] ?? $element['icon']"
                                 :text="$element['custom_label'] ?? __($element['label_key'])"
                             ></x-sidebar.element>
@@ -65,7 +63,7 @@ $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? ['m
                                     }
                                 @endphp
                                 <x-sidebar.element
-                                    :url="route($route, \Illuminate\Support\Arr::get($child, 'mode') === true ? $defaultOptions : [])"
+                                    :url="route($route, \Illuminate\Support\Arr::get($child, 'mode') === true ? $defaultOptions : $campaign)"
                                     :icon="$child['custom_icon'] ?? $child['icon']"
                                     :text="$child['custom_label'] ?? __($child['label_key'])"
                                 ></x-sidebar.element>

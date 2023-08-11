@@ -6,13 +6,13 @@ use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\PatchCampaignApplication;
 use App\Http\Requests\Campaigns\StoreCampaignApplicationStatus;
+use App\Models\Campaign;
 use App\Models\CampaignSubmission;
 use App\Services\Campaign\SubmissionService;
 
 class SubmissionController extends Controller
 {
-    /** @var SubmissionService */
-    protected $service;
+    protected SubmissionService $service;
 
     public function __construct(SubmissionService $service)
     {
@@ -25,9 +25,8 @@ class SubmissionController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('submissions', $campaign);
 
         $submissions = $campaign->submissions()->with('user')->paginate();
@@ -37,9 +36,8 @@ class SubmissionController extends Controller
             ->with('campaign', $campaign);
     }
 
-    public function edit(CampaignSubmission $campaignSubmission)
+    public function edit(Campaign $campaign, CampaignSubmission $campaignSubmission)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('submissions', $campaign);
 
         if (!$campaign->canHaveMoreMembers()) {
@@ -51,20 +49,18 @@ class SubmissionController extends Controller
 
         $action = request()->get('action');
         if (!in_array($action, ['approve', 'reject'])) {
-            return redirect()->route('campaign_submissions.index');
+            return redirect()->route('campaign_submissions.index', $campaign);
         }
 
         return view('campaigns.submissions.edit')
             ->with('submission', $campaignSubmission)
             ->with('campaign', $campaign)
             ->with('action', $action)
-            ->with('ajax', request()->ajax())
         ;
     }
 
-    public function update(PatchCampaignApplication $request, CampaignSubmission $campaignSubmission)
+    public function update(PatchCampaignApplication $request, Campaign $campaign, CampaignSubmission $campaignSubmission)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('submissions', $campaign);
 
         if (!$campaign->canHaveMoreMembers()) {
@@ -77,21 +73,19 @@ class SubmissionController extends Controller
             ->submission($campaignSubmission)
             ->process($request->only('role_id', 'rejection', 'action', 'message'));
 
-        return redirect()->route('campaign_submissions.index')
+        return redirect()->route('campaign_submissions.index', $campaign)
             ->with('success', __('campaigns/submissions.update.' . $note));
     }
 
-    public function toggle()
+    public function toggle(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('submissions', $campaign);
 
         return view('campaigns.submissions._toggle', compact('campaign'));
     }
 
-    public function toggleSave(StoreCampaignApplicationStatus $request)
+    public function toggleSave(StoreCampaignApplicationStatus $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('submissions', $campaign);
 
         $campaign->update([
@@ -99,7 +93,7 @@ class SubmissionController extends Controller
         ]);
 
         return redirect()
-            ->route('campaign_submissions.index')
+            ->route('campaign_submissions.index', $campaign)
             ->with('success', __('campaigns/submissions.toggle.success'))
         ;
     }

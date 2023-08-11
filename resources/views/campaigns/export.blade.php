@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns/export.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.export')
     ],
     'canonical' => true,
@@ -28,7 +28,7 @@
 
             @if ($campaign->exportable())
             <div class="text-center my-5">
-                <button class="btn2 btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process') }}">
+                <button class="btn2 btn-primary btn-large campaign-export-btn" data-url="{{ route('campaign.export-process', $campaign) }}">
                     <i class="fa-solid fa-download" aria-hidden="true"></i>
                     {{ __('campaigns/export.actions.export') }}
                 </button>

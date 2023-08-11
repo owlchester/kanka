@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Facades\CampaignLocalization;
 use App\Facades\Domain;
 use App\Http\Controllers\Api\v1\HealthController;
+use App\Models\Campaign;
 use App\Models\Plugin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -33,6 +34,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
 
+        Route::model('campaign', Campaign::class);
         Route::model('plugin', Plugin::class);
     }
 
@@ -125,8 +127,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         $domain = Domain::isApi() ? Domain::app() : null;
         Route::domain($domain)
-            ->middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime', 'campaign'])
-            ->prefix(LaravelLocalization::setLocale() . '/' . CampaignLocalization::setCampaign())
+            ->middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
+            ->prefix(LaravelLocalization::setLocale())
             ->namespace($this->namespace)
             ->group(base_path('routes/campaign.php'));
         return $this;

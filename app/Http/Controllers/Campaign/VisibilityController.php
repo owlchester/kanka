@@ -44,7 +44,7 @@ class VisibilityController extends Controller
 
         if ($request->get('from') === 'overview') {
             return redirect()
-                ->route('campaign')
+                ->route('overview', $campaign)
                 ->with('success_raw', $success)
             ;
         }

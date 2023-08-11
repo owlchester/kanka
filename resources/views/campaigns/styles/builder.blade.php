@@ -18,7 +18,7 @@
         </x-alert>
 
         {!! Form::open([
-            'route' => ['campaign_styles.builder-save'],
+            'route' => ['campaign_styles.builder-save', $campaign],
             'method' => 'POST',
             'data-shortcut' => 1,
             'id' => 'theme-builder',
@@ -115,7 +115,7 @@
         @if(!empty($config))
             {!! Form::open([
             'method' => 'DELETE',
-            'route' => ['campaign_styles.builder-reset'],
+            'route' => ['campaign_styles.builder-reset', $campaign],
             'id' => 'delete-reset']) !!}
             {!! Form::close() !!}
         @endif

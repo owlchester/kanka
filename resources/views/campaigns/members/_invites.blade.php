@@ -17,8 +17,8 @@
             <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>
         </button>
 
-        <a href="{{ route('campaign_invites.create') }}" class="btn2 btn-primary btn-sm"
-           data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create') }}">
+        <a href="{{ route('campaign_invites.create', $campaign) }}" class="btn2 btn-primary btn-sm"
+           data-toggle="ajax-modal" data-target="#small-modal" data-url="{{ route('campaign_invites.create', $campaign) }}">
             <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
             <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
         </a>
@@ -43,10 +43,10 @@
                     @foreach ($invitations as $relation)
                         <tr>
                             <td>
-                                <a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">
+                                <a href="{{ route('campaigns.join', [$campaign, 'token' => $relation->token]) }}">
                                     {{ substr($relation->token, 0, 6) . '...' }}
                                 </a>
-                                <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
+                                <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', [$campaign, 'token' => $relation->token]) }}" data-toggle="tooltip" data-toast="{{ __('crud.alerts.copy_invite') }}">
                                     <i class="fa-solid fa-copy" aria-hidden="true"></i>
                                     <span class="sr-only">{{ __('Copy') }}</span>
                                 </a>
@@ -62,7 +62,7 @@
                             </td>
 
                             <td class="text-right">
-                                {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}
+                                {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', [$campaign, $relation->id]],'style'=>'display:inline']) !!}
                                 <button class="btn2 btn-sm btn-error btn-outline">
                                     <x-icon class="trash"></x-icon> <span  class="hidden-xs hidden-md">{{ __('crud.remove') }}</span>
                                 </button>
@@ -98,7 +98,7 @@
             __('campaigns.members.invite.description'),
             __('campaigns.members.invite.more', [
                         'link' =>
-                            '<a href="' . route('campaign_roles.index') . '">'
+                            '<a href="' . route('campaign_roles.index', $campaign) . '">'
                             . __('campaigns.members.invite.roles_page') . '</a>'
                     ])
         ]

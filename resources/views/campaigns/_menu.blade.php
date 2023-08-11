@@ -20,7 +20,7 @@ if (auth()->check()) {
         }
     }
     if (auth()->user()->can('update', $campaign)) {
-        $buttons[] = '<a href="'. route('campaigns.edit') .'" class="btn2 btn-primary btn-block">
+        $buttons[] = '<a href="'. route('campaigns.edit', $campaign) .'" class="btn2 btn-primary btn-block">
             <i class="fa-solid fa-edit" aria-hidden=true"></i> '. __('campaigns.show.actions.edit') .'</a>';
     }
     if ($campaign->userIsMember()) {
@@ -45,13 +45,13 @@ if (auth()->check()) {
         <x-box css="" :padding="0">
             <x-menu>
                 <x-menu.element
-                    :route="route('campaign')"
+                    :route="route('overview', $campaign)"
                     :active="empty($active) || $active === 'campaign'">
                     {{ __('crud.tabs.overview') }}
                 </x-menu.element>
                 @can('update', $campaign)
                 <x-menu.element
-                    :route="route('campaign.export')"
+                    :route="route('campaign.export', $campaign)"
                     :active="empty($active) || $active === 'export'">
                     {{ __('campaigns.show.tabs.export') }}
                 </x-menu.element>
@@ -59,14 +59,14 @@ if (auth()->check()) {
                 @can('update', $campaign)
                 <x-menu.element
                     :active="!empty($active) && $active === 'recovery'"
-                    :route="route('recovery')">
+                    :route="route('recovery', $campaign)">
                         {{ __('campaigns.show.tabs.recovery') }}
                 </x-menu.element>
                 @endcan
                 @can('stats', $campaign)
                     <x-menu.element
                         :active="!empty($active) && $active === 'stats'"
-                        :route="route('stats')">
+                        :route="route('stats', $campaign)">
                         {{ __('campaigns.show.tabs.achievements') }}
                     </x-menu.element>
                 @endcan
@@ -79,14 +79,14 @@ if (auth()->check()) {
                     @can('members', $campaign)
                         <x-menu.element
                             :active="!empty($active) && $active === 'users'"
-                            :route="route('campaign_users.index')">
+                            :route="route('campaign_users.index', $campaign)">
                             {{ __('campaigns.show.tabs.members') }}
                         </x-menu.element>
                     @endcan
                     @can('submissions', $campaign)
                             <x-menu.element
                                 :active="!empty($active) && $active === 'submissions'"
-                                :route="route('campaign_submissions.index')"
+                                :route="route('campaign_submissions.index', $campaign)"
                                 :badge="$campaign->submissions()->count()"
                             >
                                 {{ __('campaigns.show.tabs.applications') }}
@@ -95,7 +95,7 @@ if (auth()->check()) {
                     @can('roles', $campaign)
                         <x-menu.element
                             :active="!empty($active) && $active === 'roles'"
-                            :route="route('campaign_roles.index')">
+                            :route="route('campaign_roles.index', $campaign)">
                             {{ __('campaigns.show.tabs.roles') }}
                         </x-menu.element>
                     @endcan
@@ -108,31 +108,31 @@ if (auth()->check()) {
                 @can('update', $campaign)
                     <x-menu.element
                         :active="!empty($active) && $active === 'settings'"
-                        :route="route('campaign.modules')">
+                        :route="route('campaign.modules', $campaign)">
                         {{ __('campaigns.show.tabs.settings') }}
                     </x-menu.element>
                 @endcan
                 @if(config('marketplace.enabled'))
                 <x-menu.element
                     :active="!empty($active) && $active === 'plugins'"
-                    :route="route('campaign_plugins.index')">
+                    :route="route('campaign_plugins.index', $campaign)">
                     {{ __('campaigns.show.tabs.plugins') }}
                 </x-menu.element>
                 @endif
                 @can('update', $campaign)
                 <x-menu.element
                     :active="!empty($active) && $active === 'default-images'"
-                    :route="route('campaign.default-images')">
+                    :route="route('campaign.default-images', $campaign)">
                     {{ __('campaigns.show.tabs.default-images') }}
                 </x-menu.element>
                 <x-menu.element
                     :active="!empty($active) && $active === 'styles'"
-                    :route="route('campaign_styles.index')">
+                    :route="route('campaign_styles.index', $campaign)">
                     {{ __('campaigns.show.tabs.styles') }}
                 </x-menu.element>
                 <x-menu.element
                     :active="!empty($active) && $active === 'sidebar'"
-                    :route="route('campaign-sidebar')">
+                    :route="route('campaign-sidebar', $campaign)">
                     {{ __('campaigns.show.tabs.sidebar') }}
                 </x-menu.element>
                 @endcan
@@ -144,60 +144,60 @@ if (auth()->check()) {
     $menuOptions = [];
     $menuOptions['campaign'] = [
         'label' => __('crud.tabs.overview'),
-        'route' => route('campaign')
+        'route' => route('overview', $campaign)
     ];
     if (auth()->check()) {
         if (auth()->user()->can('update', $campaign)) {
             $menuOptions['export'] = [
                     'label' => __('campaigns.show.tabs.export'),
-                    'route' => route('campaign.export')
+                    'route' => route('campaign.export', $campaign)
             ];
             $menuOptions['recovery'] = [
                     'label' => __('campaigns.show.tabs.recovery'),
-                    'route' => route('recovery')
+                    'route' => route('recovery', $campaign)
             ];
         }
         if (auth()->user()->can('stats', $campaign)) {
             $menuOptions['stats'] = [
                     'label' => __('campaigns.show.tabs.achievements'),
-                    'route' => route('stats')
+                    'route' => route('stats', $campaign)
             ];
         }
         if (auth()->user()->can('members', $campaign)) {
             $menuOptions['users'] = [
                     'label' => __('campaigns.show.tabs.members'),
-                    'route' => route('campaign_users.index')
+                    'route' => route('campaign_users.index', $campaign)
             ];
         }
         if (auth()->user()->can('submissions', $campaign)) {
             $menuOptions['submissions'] = [
                     'label' => __('campaigns.show.tabs.applications'),
-                    'route' => route('campaign_submissions.index')
+                    'route' => route('campaign_submissions.index', $campaign)
             ];
         }
         if (auth()->user()->can('roles', $campaign)) {
             $menuOptions['roles'] = [
                     'label' => __('campaigns.show.tabs.roles'),
-                    'route' => route('campaign_roles.index')
+                    'route' => route('campaign_roles.index', $campaign)
             ];
         }
 
         if (auth()->user()->can('update', $campaign)) {
             $menuOptions['settings'] = [
                 'label' => __('campaigns.show.tabs.settings'),
-                'route' => route('campaign.modules')
+                'route' => route('campaign.modules', $campaign)
             ];
             $menuOptions['default-images'] = [
                 'label' => __('campaigns.show.tabs.default-images'),
-                'route' => route('campaign.default-images')
+                'route' => route('campaign.default-images', $campaign)
             ];
             $menuOptions['styles'] = [
                 'label' => __('campaigns.show.tabs.styles'),
-                'route' => route('campaign_styles.index')
+                'route' => route('campaign_styles.index', $campaign)
             ];
             $menuOptions['sidebar'] = [
                 'label' => __('campaigns.show.tabs.sidebar'),
-                'route' => route('campaign-sidebar')
+                'route' => route('campaign-sidebar', $campaign)
             ];
         }
     }
@@ -205,7 +205,7 @@ if (auth()->check()) {
     if (config('marketplace.enabled')) {
         $menuOptions['plugins'] = [
             'label' => __('campaigns.show.tabs.plugins'),
-            'route' => route('campaign_plugins.index')
+            'route' => route('campaign_plugins.index', $campaign)
         ];
     }
     @endphp
@@ -235,7 +235,7 @@ if (auth()->check()) {
                     <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
                         {{ __('crud.cancel') }}
                     </x-buttons.confirm>
-                    {!! Form::open(['method' => 'GET', 'route' => ['campaigns.leave', $campaign->id], 'class' => 'w-full']) !!}
+                    {!! Form::open(['method' => 'GET', 'route' => ['campaigns.leave', [$campaign, $campaign->id]], 'class' => 'w-full']) !!}
                     <x-buttons.confirm type="danger" outline="true" full="true">
                         <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
                         {{ __('campaigns.leave.confirm-button') }}
@@ -244,7 +244,7 @@ if (auth()->check()) {
                 </div>
             @else
                 <p class="mt-5">{{ __('campaigns.leave.no-admin-left') }}</p>
-                <a href="{{ route('campaign_users.index') }}" class="btn2">
+                <a href="{{ route('campaign_users.index', $campaign) }}" class="btn2">
                     {{ __('campaigns.leave.fix') }}
                 </a>
             @endif
@@ -255,7 +255,7 @@ if (auth()->check()) {
     @if (auth()->check() && auth()->user()->can('roles', $campaign))
         <x-dialog id="campaign-delete-confirm" :title="__('campaigns.destroy.title')">
             @if (auth()->user()->can('delete', $campaign))
-                {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy']]) !!}
+                {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign]]) !!}
                 <p class="mt-5">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
                 <p class="help-block"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
 
@@ -267,7 +267,7 @@ if (auth()->check()) {
                     <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
                         {{ __('crud.cancel') }}
                     </x-buttons.confirm>
-                    {!! Form::open(['method' => 'GET', 'route' => ['campaigns.leave', $campaign->id], 'class' => 'w-full']) !!}
+                    {!! Form::open(['method' => 'GET', 'route' => ['campaigns.leave', $campaign], 'class' => 'w-full']) !!}
                     <x-buttons.confirm type="danger" outline="true" full="true">
                         <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
                         {{ __('campaigns.destroy.confirm-button') }}
@@ -277,7 +277,7 @@ if (auth()->check()) {
             @else
                 <div class="max-w-lg text-justify">
                     <p class="mt-5">{{ __('campaigns.destroy.helper-v2') }}</p>
-                    <a href="{{ route('campaign_users.index') }}" class="py-2">
+                    <a href="{{ route('campaign_users.index', $campaign) }}" class="py-2">
                         {{ __('campaigns.leave.fix') }}
                     </a>
                 </div>

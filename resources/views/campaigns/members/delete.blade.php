@@ -10,7 +10,7 @@
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['campaign_users.destroy', $campaignUser->id],
+        'route' => ['campaign_users.destroy', [$campaign, $campaignUser->id]],
          'class' => 'w-full'
      ]) !!}
 

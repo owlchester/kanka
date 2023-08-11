@@ -4,7 +4,7 @@
     <x-alert type="info">
         <p>{!! __('campaigns/public.helpers.main', [
     'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'), null, ['target' => '_blank']),
-    'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), null, ['target' => '_blank'])
+    'public-role' => link_to_route('campaigns.campaign_roles.public', __('campaigns.members.roles.public'), $campaign, ['target' => '_blank'])
 ]) !!}</p>
         <p>
             <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
@@ -22,13 +22,13 @@
     </x-grid>
     @if (isset($model) && $model->isPublic())
         <p class="help-block mb-0">
-            {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard') . '" target="_blank">' . route('dashboard') . '</a>']) !!}
+            {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '" target="_blank">' . route('dashboard', $campaign) . '</a>']) !!}
         </p>
 
         @if ($model->publicHasNoVisibility())
             <x-alert type="warning">
                 {!! __('campaigns.helpers.public_no_visibility', [
-'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'))
+'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'), $campaign)
 ]) !!}
             </x-alert>
         @endif

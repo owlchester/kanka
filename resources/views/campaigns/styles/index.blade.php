@@ -3,7 +3,7 @@ use App\Facades\Datagrid ?>
 @extends('layouts.app', [
     'title' => __('campaigns/styles.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.styles')
     ],
     'mainTitle' => false,
@@ -27,11 +27,11 @@ use App\Facades\Datagrid ?>
                         <x-icon class="question"></x-icon>
                         {{ __('campaigns.members.actions.help') }}
                     </button>
-                    <a href="#" data-url="{{ route('campaign-theme') }}" data-target="campaign-theme" data-toggle="dialog-ajax" class="btn2 btn-sm pull-right ml-1">
+                    <a href="#" data-url="{{ route('campaign-theme', $campaign) }}" data-target="campaign-theme" data-toggle="dialog-ajax" class="btn2 btn-sm pull-right ml-1">
                         <i class="fa-solid fa-brush"></i> {{ __('campaigns/styles.actions.current', ['theme' => !empty($theme) ? $theme->__toString() : __('crud.filters.options.none')]) }}
                     </a>
 
-                    <a href="{{ route('campaign_styles.create') }}" class="btn2 btn-primary btn-sm pull-right ml-1">
+                    <a href="{{ route('campaign_styles.create', $campaign) }}" class="btn2 btn-primary btn-sm pull-right ml-1">
                         <x-icon class="plus"></x-icon> {{ __('campaigns/styles.actions.new') }}
                     </a>
                 @endif
@@ -48,7 +48,7 @@ use App\Facades\Datagrid ?>
                         </p>
                     </x-box>
                 @else
-                    @if(Datagrid::hasBulks()) {!! Form::open(['route' => 'campaign_styles.bulk']) !!} @endif
+                    @if(Datagrid::hasBulks()) {!! Form::open(['route' => ['campaign_styles.bulk', $campaign]]) !!} @endif
                     <div id="datagrid-parent" class="mb-5">
                         @include('layouts.datagrid._table', ['rows' => $styles])
                     </div>

@@ -37,7 +37,7 @@ $enabled = $campaign->enabled($module);
                 <a href="#"
                     class="text-white hover:shadow-sm text-xl transition-all hover:rotate-45"
                     data-toggle="dialog-ajax"
-                    data-url="{{ route('modules.edit', [$id]) }}"
+                    data-url="{{ route('modules.edit', [$campaign, $id]) }}"
                     data-target="rename-dialog"
                     title="{{ __('campaigns/modules.actions.customise') }}">
                         <x-icon class="cog"></x-icon>
@@ -65,7 +65,7 @@ $enabled = $campaign->enabled($module);
 
             <div class="footer text-center my-4">
                 <label class="toggle">
-                    <input type="checkbox" name="enabled" data-url="{{ route('campaign.modules.toggle', ['module' => $module]) }}" @if ($enabled) checked="checked" @endif>
+                    <input type="checkbox" name="enabled" data-url="{{ route('campaign.modules.toggle', [$campaign, 'module' => $module]) }}" @if ($enabled) checked="checked" @endif>
                     <span class="slider module-enabled"></span>
                     <span class="sr-only">Check to enable the {{ $module }} module</span>
                 </label>

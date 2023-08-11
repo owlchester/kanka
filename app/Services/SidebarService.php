@@ -186,7 +186,7 @@ class SidebarService
                 'icon' => 'fa-solid fa-globe',
                 'label' => 'sidebar.world',
                 'module' => false,
-                'route' => 'campaign',
+                'route' => 'overview',
                 'fixed' => true,
             ],
             'characters' => [
@@ -254,7 +254,7 @@ class SidebarService
             'campaign' => [
                 'icon' => 'fa-solid fa-globe',
                 'label' => 'sidebar.campaign',
-                'route' => 'campaign',
+                'route' => 'overview',
                 'fixed' => true,
             ],
             'quests' => [

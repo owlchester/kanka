@@ -3,7 +3,7 @@
     {{ __('campaigns/styles.reorder.title') }}
 </h3>
 {!! Form::open([
-    'route' => ['campaign_styles.reorder-save'],
+    'route' => ['campaign_styles.reorder-save', $campaign],
     'method' => 'POST',
 ]) !!}
 <div class="box-entity-story-reorder">

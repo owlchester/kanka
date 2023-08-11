@@ -28,13 +28,13 @@ $weather = $calendar->calendarWeather()
 ?>
 <div class="current-date text-center text-2xl flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
-        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', $widget) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" role="button">
+        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.previous') }}" role="button">
             <i class="fa-solid fa-chevron-circle-left" aria-hidden="true"></i>
             <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.previous') }}</span>
         </a>
         <span>{{ $calendar->niceDate() }}</span>
 
-        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.add', $widget) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.next') }}" role="button">
+        <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.add', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" title="{{ __('dashboard.widgets.calendar.actions.next') }}" role="button">
             <i class="fa-solid fa-chevron-circle-right" aria-hidden="true"></i>
             <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.next') }}</span>
         </a>

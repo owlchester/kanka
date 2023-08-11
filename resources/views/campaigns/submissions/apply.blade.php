@@ -1,4 +1,4 @@
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => trans('campaigns/submissions.apply.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
         __('dashboard.actions.join')
@@ -7,7 +7,7 @@
 
 
 @section('content')
-    {!! Form::open(['route' => ['campaign.apply.save'], 'method'=>'POST']) !!}
+    {!! Form::open(['route' => ['campaign.apply.save', $campaign], 'method'=>'POST']) !!}
         <div class="modal-header">
             <x-dialog.close />
             <h4>{!! __('campaigns/submissions.apply.title', ['name' => $campaign->name]) !!}</h4>
@@ -38,7 +38,7 @@
     </div>
 
     @if($submission)
-        {!! Form::open(['method' => 'DELETE','route' => ['campaign.apply.remove'], 'style '=> 'display:inline', 'id' => 'delete-submission']) !!}
+        {!! Form::open(['method' => 'DELETE','route' => ['campaign.apply.remove', $campaign], 'style '=> 'display:inline', 'id' => 'delete-submission']) !!}
         {!! Form::close() !!}
     @endif
 @endsection

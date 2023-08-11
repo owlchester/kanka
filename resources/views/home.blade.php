@@ -62,7 +62,7 @@
 
     @can('update', $campaign)
         <div class="text-center mt-6">
-            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn2 btn-lg btn-primary" title="{{ __('dashboard.settings.title') }}">
+            <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-lg btn-primary" title="{{ __('dashboard.settings.title') }}">
                 <x-icon class="cog"></x-icon>
                 {{ __('dashboard.settings.title') }}
             </a>

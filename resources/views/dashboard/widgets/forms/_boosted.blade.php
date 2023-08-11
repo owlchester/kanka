@@ -6,8 +6,8 @@
         <p class="">{{ __('callouts.premium.limitation') }}</p>
 
         @subscriber()
-        <a href="{{ route('settings.premium', ['campaign' => $campaignService->campaign()]) }}" class="btn2 bg-boost text-white btn-sm" target="_blank">
-            {!! __('settings/premium.actions.unlock', ['campaign' => $campaignService->campaign()->name]) !!}
+        <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-sm" target="_blank">
+            {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
         </a>
         @else
             <a href="{{ route('front.premium') }}" target="_blank" class="btn2 bg-boost text-white btn-sm">

@@ -22,15 +22,15 @@ if ($widget->conf('entity')) {
     @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
          data-toggle="ajax-modal"
          data-target="#large-modal"
-         data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaignService->campaign(), 'campaignDashboardWidget' => $widget]) }}"
+         data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaign, 'campaignDashboardWidget' => $widget]) }}"
     @else
          data-toggle="dialog-ajax"
          data-target="edit-widget"
-         data-url="{{ route('campaign_dashboard_widgets.edit', $widget) }}"
+         data-url="{{ route('campaign_dashboard_widgets.edit', [$campaign, $widget]) }}"
     @endif
     @if (!empty($background))
          style="background-image: url('{{ $background }}')"
-    @elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN && $campaignService->campaign()->header_image)
+    @elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN && $campaign->header_image)
          style="background-image: url('{{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }}')"
     @endif
     >

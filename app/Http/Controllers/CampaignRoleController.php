@@ -33,9 +33,8 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         Datagrid::layout(\App\Renderers\Layouts\Campaign\CampaignRole::class);
 
         $this->authorize('roles', $campaign);
@@ -52,8 +51,8 @@ class CampaignRoleController extends Controller
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')->with('rows', $rows)->render();
-            $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->render();
+            $html = view('layouts.datagrid._table')->with('rows', $rows)->with('campaign', $campaign)->render();
+            $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->with('campaign', $campaign)->render();
             return response()->json([
                 'success' => true,
                 'html' => $html,
@@ -68,10 +67,9 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create()
+    public function create(Campaign $campaign)
     {
         $this->authorize('create', CampaignRole::class);
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
@@ -80,17 +78,16 @@ class CampaignRoleController extends Controller
         }
         $ajax = request()->ajax();
 
-        return view($this->view . '.create', ['model' => $campaign, 'ajax' => $ajax]);
+        return view($this->view . '.create', ['campaign' => $campaign, 'model' => $campaign, 'ajax' => $ajax]);
     }
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function duplicate(CampaignRole $campaignRole)
+    public function duplicate(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('create', CampaignRole::class);
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
@@ -99,7 +96,7 @@ class CampaignRoleController extends Controller
         }
         $ajax = request()->ajax();
 
-        return view($this->view . '.create', ['model' => $campaign, 'ajax' => $ajax, 'roleId' => $campaignRole->id]);
+        return view($this->view . '.create', ['campaign' => $campaign, 'model' => $campaign, 'ajax' => $ajax, 'roleId' => $campaignRole->id]);
     }
 
     /**
@@ -107,9 +104,8 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StoreCampaignRole $request)
+    public function store(StoreCampaignRole $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
@@ -121,7 +117,7 @@ class CampaignRoleController extends Controller
         if ($request->has('duplicate') && $request->get('duplicate') != 0) {
             $this->service->role($role)->duplicate($request->get('role_id'));
         }
-        return redirect()->route('campaign_roles.index')
+        return redirect()->route('campaign_roles.index', $campaign)
             ->with('success_raw', __($this->view . '.create.success', ['name' => $role->name]));
     }
 
@@ -130,11 +126,10 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(CampaignRole $campaignRole)
+    public function show(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('view', $campaignRole);
 
-        $campaign = CampaignLocalization::getCampaign();
         // @phpstan-ignore-next-line
         $members = $campaignRole
             ->users()
@@ -154,16 +149,14 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(CampaignRole $campaignRole)
+    public function edit(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('update', $campaignRole);
-        $campaign = CampaignLocalization::getCampaign();
-        $ajax = request()->ajax();
 
         return view($this->view . '.edit', [
+            'campaign' => $campaign,
             'model' => $campaign,
             'role' => $campaignRole,
-            'ajax' => $ajax
         ]);
     }
 
@@ -173,13 +166,12 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreCampaignRole $request, CampaignRole $campaignRole)
+    public function update(StoreCampaignRole $request, Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('update', $campaignRole);
-        $campaign = CampaignLocalization::getCampaign();
 
         $campaignRole->update($request->all());
-        return redirect()->route('campaign_roles.index')
+        return redirect()->route('campaign_roles.index', $campaign)
             ->with('success_raw', __($this->view . '.edit.success', ['name' => $campaignRole->name]));
     }
 
@@ -188,12 +180,12 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(CampaignRole $campaignRole)
+    public function destroy(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('delete', $campaignRole);
         $campaignRole->delete();
 
-        return redirect()->route('campaign_roles.index')
+        return redirect()->route('campaign_roles.index', $campaign)
             ->with('success_raw', __($this->view . '.destroy.success', ['name' => $campaignRole->name]));
     }
 
@@ -203,13 +195,13 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function savePermissions(Request $request, CampaignRole $campaignRole)
+    public function savePermissions(Request $request, Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('update', $campaignRole);
 
         $campaignRole->savePermissions($request->post('permissions', []));
 
-        return redirect()->route('campaign_roles.show', ['campaign_role' => $campaignRole])
+        return redirect()->route('campaign_roles.show', [$campaign, 'campaign_role' => $campaignRole])
             ->with('success', trans('crud.permissions.success'));
     }
 
@@ -218,14 +210,13 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function admin()
+    public function admin(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('roles', $campaign);
 
         $adminRole = $campaign->roles()->where('is_admin', true)->firstOrFail();
 
-        return $this->show($adminRole);
+        return $this->show($campaign, $adminRole);
     }
 
     /**
@@ -233,14 +224,13 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function public()
+    public function public(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('roles', $campaign);
 
         $adminRole = $campaign->roles()->public()->firstOrFail();
 
-        return $this->show($adminRole);
+        return $this->show($campaign, $adminRole);
     }
 
     /**
@@ -248,9 +238,8 @@ class CampaignRoleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function search(Request $request)
+    public function search(Request $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('members', $campaign);
 
         $term = $request->get('q', null);
@@ -278,7 +267,7 @@ class CampaignRoleController extends Controller
      * @param int $action
      * @return \Illuminate\Http\JsonResponse
      */
-    public function toggle(CampaignRole $campaignRole, int $entityType, int $action)
+    public function toggle(Campaign $campaign, CampaignRole $campaignRole, int $entityType, int $action)
     {
         $this->authorize('update', $campaignRole);
 
@@ -299,20 +288,16 @@ class CampaignRoleController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    public function bulk()
+    public function bulk(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('roles', $campaign);
 
         $action = request()->get('action');
         $models = request()->get('model');
         if (!in_array($action, ['edit', 'delete']) || empty($models)) {
             return redirect()
-                ->route('campaign_roles.index');
+                ->route('campaign_roles.index', $campaign);
         }
         $count = 0;
         foreach ($models as $id) {
@@ -329,7 +314,7 @@ class CampaignRoleController extends Controller
         }
 
         return redirect()
-            ->route('campaign_roles.index')
+            ->route('campaign_roles.index', $campaign)
             ->with('success', trans_choice('campaigns.roles.bulks.' . $action, $count, ['count' => $count]));
     }
 }

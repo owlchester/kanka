@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Facades\DataLayer;
+use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,11 +13,10 @@ class DashboardController extends Controller
 {
     /**
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
         // If the user isn't viewing specific campaign and has no campaigns, get them to create their first campaign
-        $campaign = CampaignLocalization::getCampaign();
-        if (empty($campaign) && (Auth::check() && !Auth::user()->hasCampaigns())) {
+        if (empty($campaign) && (auth()->check() && !auth()->user()->hasCampaigns())) {
             return redirect()->route('start');
         }
 
@@ -40,6 +40,7 @@ class DashboardController extends Controller
             DataLayer::newAccount();
             $welcome = true;
         }
+
 
         return view('home', compact(
             'campaign',

@@ -106,6 +106,11 @@ class Campaign extends MiscModel
         'export_date' => 'date',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * Helper function to know if a campaign has permissions. This is true as soon as the campaign has several roles
      * @return bool

@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Columns;
 
+use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Layout;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -56,10 +57,12 @@ class Action extends Column
 
     public function __toString(): string
     {
+        $campaign = CampaignLocalization::getCampaign();
         $html = view('layouts.datagrid.actions')
             ->with('actions', $this->actions)
             ->with('model', $this->model)
             ->with('params', $this->params)
+            ->with('campaign', $campaign)
             ->render()
         ;
         return $html;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateModuleName;
+use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Campaign\ModuleService;
 use App\Services\SidebarService;
@@ -22,9 +23,8 @@ class ModuleController extends Controller
         $this->moduleService = $moduleService;
     }
 
-    public function edit(EntityType $entityType)
+    public function edit(Campaign $campaign, EntityType $entityType)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
         if (!$campaign->boosted()) {
@@ -45,9 +45,8 @@ class ModuleController extends Controller
         ;
     }
 
-    public function update(UpdateModuleName $request, EntityType $entityType)
+    public function update(UpdateModuleName $request, Campaign $campaign, EntityType $entityType)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
         if (!$campaign->boosted()) {
@@ -59,13 +58,12 @@ class ModuleController extends Controller
             ->campaign($campaign)
             ->update($request, $entityType);
 
-        return redirect()->route('campaign.modules')
+        return redirect()->route('campaign.modules', $campaign)
             ->with('success', __('campaigns/modules.rename.success'));
     }
 
-    public function reset()
+    public function reset(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
         $settings = $campaign->settings;
@@ -84,7 +82,7 @@ class ModuleController extends Controller
             ->clearCache();
 
         return redirect()
-            ->route('campaign.modules')
+            ->route('campaign.modules', $campaign)
             ->with('success', __('campaigns/modules.reset.success'));
     }
 }

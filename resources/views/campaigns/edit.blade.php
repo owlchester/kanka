@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.edit.title', ['campaign' => $model->name]),
+    'title' => __('campaigns.edit.title', ['campaign' => $model->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
-        trans('crud.edit')
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
+        __('crud.edit')
     ],
     'canonical' => true,
 ])
@@ -13,7 +13,7 @@
     {!! Form::model($model, [
         'method' => 'PATCH',
         'enctype' => 'multipart/form-data',
-        'route' => ['campaigns.update'],
+        'route' => ['campaigns.update', $campaign],
         'data-shortcut' => '1',
         'class' => 'entity-form',
         'data-unload' => 1,
@@ -25,7 +25,7 @@
     @include('campaigns.forms.standard')
 
     @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('campaigns.keep-alive', $model->id) }}" />
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('campaigns.keep-alive', $campaign) }}" />
     @endif
 @endsection
 

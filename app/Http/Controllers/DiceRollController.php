@@ -37,10 +37,10 @@ class DiceRollController extends CrudController
     {
         parent::__construct();
 
-        $this->addNavAction(
-            route('dice_roll_results.index'),
+        /*$this->addNavAction(
+            route('campaigns.dice_roll_results.index'),
             '<i class="fa-solid fa-list"></i> ' . __('dice_rolls.index.actions.results')
-        );
+        );*/
         $this->addNavAction(
             '//docs.kanka.io/en/latest/entities/dice-rolls.html',
             '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> ' . __('crud.actions.help'),

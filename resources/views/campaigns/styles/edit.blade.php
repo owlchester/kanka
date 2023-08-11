@@ -1,13 +1,13 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('campaigns/styles.update.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign_styles.index'), 'label' => __('campaigns.show.tabs.styles')]
+        ['url' => route('campaign_styles.index', $campaign), 'label' => __('campaigns.show.tabs.styles')]
     ]
 ])
 
 @section('content')
     {!! Form::model($style, [
-        'route' => ['campaign_styles.update', $style],
+        'route' => ['campaign_styles.update', $campaign, $style],
         'method' => 'PATCH',
         'data-shortcut' => 1,
         'id' => 'campaign-style',

@@ -2,7 +2,7 @@
 @extends('layouts.app', [
     'title' => __('campaigns.show.tabs.default-images') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => __('entities.campaign')],
+        ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('campaigns.show.tabs.default-images')
     ],
     'mainTitle' => false,
@@ -27,9 +27,9 @@
                         {{ __('campaigns.members.actions.help') }}
                     </button>
 
-                    <a href="{{ route('campaign.default-images.create') }}" class="btn2 btn-primary btn-sm"
+                    <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
                        data-toggle="ajax-modal" data-target="#entity-modal"
-                       data-url="{{ route('campaign.default-images.create') }}">
+                       data-url="{{ route('campaign.default-images.create', $campaign) }}">
                         <x-icon class="plus"></x-icon>
                         {{ __('campaigns/default-images.actions.add') }}
                     </a>
@@ -38,9 +38,9 @@
             @if ($campaign->boosted())
                     @if (empty($campaign->defaultImages()))
                         <x-box>
-                            <a href="{{ route('campaign.default-images.create') }}" class="btn2 btn-primary"
+                            <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary"
                                data-toggle="ajax-modal" data-target="#entity-modal"
-                               data-url="{{ route('campaign.default-images.create') }}">
+                               data-url="{{ route('campaign.default-images.create', $campaign) }}">
                                 <x-icon class="plus"></x-icon>
                                 {{ __('campaigns/default-images.actions.add') }}
                             </a>
@@ -62,6 +62,7 @@
                                             'method' => 'DELETE',
                                             'route' => [
                                                 'campaign.default-images.delete',
+                                                $campaign
                                             ],
                                             'class' => 'hidden',
                                             'id' => 'delete-thumb-' . $image['uuid']
