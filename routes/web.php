@@ -24,4 +24,5 @@ Route::get('/{locale}/sitemap.xml', 'Front\SitemapController@language')->name('f
 Route::get('/_ccapi/country', [\App\Http\Controllers\CookieConsentController::class, 'index'])
     ->name('cookieconsent.country');
 
+Route::get('/frontend-prepare', [\App\Http\Controllers\FrontendPrepareController::class, 'index']);
 Route::feeds();
