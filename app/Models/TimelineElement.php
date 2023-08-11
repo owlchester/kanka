@@ -201,4 +201,12 @@ class TimelineElement extends Model
     {
         return $this->hasMany('App\Models\EntityMention', 'timeline_element_id', 'id');
     }
+
+    public function visible(): bool
+    {
+        if (empty($this->entity_id)) {
+            return true;
+        }
+        return !empty($this->entity->child);
+    }
 }

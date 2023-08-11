@@ -181,6 +181,9 @@ class TimelineEra extends Model
         $elements = $this->orderedElements;
         $hasFirst = false;
         foreach ($elements as $element) {
+            if (!$element->visible()) {
+                continue;
+            }
             if (!$hasFirst) {
                 $hasFirst = true;
                 $options[1] = __('posts.position.first');

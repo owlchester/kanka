@@ -67,7 +67,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                         <p class="help-block">{{ $layoutHelper }}</p>
                     </div>
                 @endif
-                <div class="field-entry col-span-2" id="field-entry" @if(isset($layoutHelper)) style="display: none" @endif>
+                <div class="field-entry md:col-span-2" id="field-entry" @if(isset($layoutHelper)) style="display: none" @endif>
                     {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
                 </div>
                 <div class="field-location" id="field-location" @if(isset($layoutHelper)) style="display: none" @endif>
