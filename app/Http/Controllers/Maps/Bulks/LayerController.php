@@ -35,6 +35,6 @@ class LayerController extends Controller
         return redirect()
             ->route('maps.map_layers.index', [$campaign, $map])
             ->with('success', trans_choice('maps/layers.bulks.' . $action, $count, ['count' => $count]))
-            ;
+        ;
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapMarker;
-use Illuminate\Http\Request;
 
 class DetailController extends Controller
 {
