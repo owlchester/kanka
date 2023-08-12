@@ -32,11 +32,11 @@ class TransferController extends Controller
         try {
             $this->service->transfer($tag, $newTag);
             return redirect()
-                ->route('tags.show', [$campaign, $tag])
+                ->route('entities.show', [$campaign, $tag->entity])
                 ->with('success_raw', __('tags.transfer.success', ['tag' => $tag->name, 'newTag' => $newTag->name]));
         } catch (TranslatableException $ex) {
             return redirect()
-                ->route('tags.show', [$campaign, $tag])
+                ->route('entities.show', [$campaign, $tag->entity])
                 ->with('error', __('tags.transfer.fail', ['tag' => $tag->name, 'newTag' => $newTag->name]));
         }
     }

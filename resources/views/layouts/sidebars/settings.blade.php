@@ -35,7 +35,7 @@
             </li>
             <li class="px-2 {{ $sidebar->settings('notification') }}">
                 <x-sidebar.element
-                    :url="route('settings.notifications')"
+                    :url="route('settings.newsletter')"
                     icon="fa-solid fa-bell"
                     :text="__('settings.menu.notifications')"
                 ></x-sidebar.element>

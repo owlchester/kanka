@@ -34,6 +34,7 @@ use App\Models\Concerns\LastSync;
  * @property int $id
  * @property string $name
  * @property string $email
+ * @property string $locale
  * @property integer|null $last_campaign_id
  * @property string|null $avatar
  * @property string $provider

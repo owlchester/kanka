@@ -53,7 +53,7 @@ class AttributeTemplateController extends Controller
         }
         if ($request->has('submit-story')) {
             return redirect()
-                ->route($entity->pluralType() . '.show', [$campaign, $entity->child])
+                ->to($entity->url())
                 ->with('success', __('entities/attributes.template.success', [
                     'name' => $templateName, 'entity' => $entity->child->name
                 ]));

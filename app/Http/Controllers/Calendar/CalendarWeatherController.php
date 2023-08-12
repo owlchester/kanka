@@ -30,7 +30,7 @@ class CalendarWeatherController extends Controller
 
     public function index(Campaign $campaign, Calendar $calendar)
     {
-        return redirect()->route('calendars.show', [$campaign, $calendar]);
+        return redirect()->to($calendar->getLink());
     }
 
     /**
@@ -72,11 +72,11 @@ class CalendarWeatherController extends Controller
         $this->authorize('update', $calendar);
         $weather = $this->calendarService->saveWeather($calendar, $request);
 
-        $routeOptions = [$campaign, $calendar->id, 'year' => $weather->year, 'month' => $weather->month];
+        $routeOptions = [$campaign, $calendar->entity, 'year' => $weather->year, 'month' => $weather->month];
         if ($request->has('layout')) {
             $routeOptions['layout'] = $request->get('layout');
         }
-        return redirect()->route('calendars.show', $routeOptions)
+        return redirect()->route('entities.show', $routeOptions)
             ->with('success', __('calendars/weather.create.success'));
     }
 
@@ -85,12 +85,12 @@ class CalendarWeatherController extends Controller
         $this->authorize('update', $calendar);
 
         $weather = $this->calendarService->saveWeather($calendar, $request);
-        $routeOptions = [$campaign, $calendar->id, 'year' => $weather->year, 'month' => $weather->month];
+        $routeOptions = [$campaign, $calendar->entity, 'year' => $weather->year, 'month' => $weather->month];
         if ($request->has('layout')) {
             $routeOptions['layout'] = $request->get('layout');
         }
 
-        return redirect()->route('calendars.show', $routeOptions)
+        return redirect()->route('entities.show', $routeOptions)
             ->with('success', __('calendars/weather.edit.success'));
     }
 
@@ -105,12 +105,12 @@ class CalendarWeatherController extends Controller
         $this->authorize('update', $calendar);
         $calendarWeather->delete();
 
-        $routeOptions = [$campaign, $calendar];
+        $routeOptions = [$campaign, $calendar->entity];
         if (request()->has('layout')) {
             $routeOptions['layout'] = request()->get('layout');
         }
 
-        return redirect()->route('calendars.show', $routeOptions)
+        return redirect()->route('entities.show', $routeOptions)
             ->with('success', __('calendars/weather.destroy.success'));
     }
 }

@@ -177,12 +177,12 @@ class MenuLink extends MiscModel
     /**
      * @return array
      */
-    public function getRouteParams()
+    public function getRouteParams(bool $entity): array
     {
         $campaign = CampaignLocalization::getCampaign();
         $parameters = [
             $campaign,
-            $this->target->entity_id,
+            $entity ? $this->target : $this->target->entity_id,
             'quick-link' => $this->id
         ];
 
@@ -228,9 +228,11 @@ class MenuLink extends MiscModel
         if (empty($plural)) {
             return '';
         }
-        $route = $plural . '.show';
+        $route = 'entities.show';
+        $entity = true;
         if (!empty($this->menu)) {
             $menuRoute = $this->target->pluralType() . '.' . $this->menu;
+            $entity = false;
 
             // Inventories use a different url buildup
             $routeOptions = [$campaign, $this->target->id, 'quick-link' => $this->id];
@@ -252,7 +254,7 @@ class MenuLink extends MiscModel
             }
         }
 
-        return route($route, $this->getRouteParams());
+        return route($route, $this->getRouteParams($entity));
     }
 
     /**

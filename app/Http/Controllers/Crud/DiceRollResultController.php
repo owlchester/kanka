@@ -87,6 +87,6 @@ class DiceRollResultController extends CrudController
      */
     public function show(Campaign $campaign, DiceRollResult $diceRollResult)
     {
-        return redirect()->route('dice_rolls.show', [$campaign, $diceRollResult->diceRoll]);
+        return redirect()->to($diceRollResult->diceRoll->getLink());
     }
 }

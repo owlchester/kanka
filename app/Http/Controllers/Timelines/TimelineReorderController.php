@@ -60,7 +60,7 @@ class TimelineReorderController extends Controller
             ->timeline($timeline)
             ->reorder($request);
         return redirect()
-            ->route('timelines.show', [$campaign, $timeline])
+            ->route('entities.show', [$campaign, $timeline->entity])
             ->withSuccess(__('timelines.reorder.success', ['name' => $timeline->name]));
     }
 }

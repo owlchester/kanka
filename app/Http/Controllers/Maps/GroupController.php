@@ -46,7 +46,7 @@ class GroupController extends Controller
 
     public function show(Campaign $campaign, Map $map)
     {
-        return redirect()->route('maps.show', [$campaign, $map]);
+        return redirect()->route('entities.show', [$campaign, $map->entity]);
     }
 
     /**

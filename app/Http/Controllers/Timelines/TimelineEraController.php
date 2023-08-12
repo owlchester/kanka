@@ -95,7 +95,7 @@ class TimelineEraController extends Controller
 
         if (request()->post('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$campaign, $timeline, '#era' . $new->id])
+                ->route('entities.show', [$campaign, $timeline->entity, '#era' . $new->id])
                 ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
         }
         return redirect()
@@ -141,7 +141,7 @@ class TimelineEraController extends Controller
 
         if (request()->post('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$campaign, $timeline, '#era' . $timelineEra->id])
+                ->route('entities.show', [$campaign, $timeline->entity, '#era' . $timelineEra->id])
                 ->withSuccess(__('timelines/eras.edit.success', ['name' => $timelineEra->name]));
         }
 
@@ -159,7 +159,7 @@ class TimelineEraController extends Controller
 
         if (request()->get('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$campaign, $timeline])
+                ->route('entities.show', [$campaign, $timeline->entity])
                 ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
         }
 

@@ -97,7 +97,7 @@ class EventController extends Controller
         // We need to handle negative year dates (start with -)
         $link = $this->service->addEvent($calendar, $request->all());
 
-        $routeOptions = [$campaign, $calendar->id, 'year' => request()->post('year')];
+        $routeOptions = [$campaign, $calendar->entity, 'year' => request()->post('year')];
         if ($request->has('layout')) {
             $routeOptions['layout'] = $request->get('layout');
         } else {
@@ -105,11 +105,11 @@ class EventController extends Controller
         }
 
         if ($link !== false) {
-            return redirect()->route('calendars.show', $routeOptions)
+            return redirect()->route('entities.show', $routeOptions)
                 ->with('success', __('calendars.event.success', ['event' => $link->entity->name]));
         }
 
-        return redirect()->route('calendars.show', $routeOptions)
+        return redirect()->route('entities.show', $routeOptions)
             ->with('success', __('calendars.event.create.success'));
     }
 }

@@ -26,7 +26,7 @@ class ConversationParticipantController extends Controller
         $participant = $participant->create($request->all());
 
         return redirect()
-            ->route('conversations.show', [$campaign, $conversation])
+            ->to($conversation->getLink())
             ->with('success', trans('conversations.participants.create.success', [
                 'name' => $conversation->name,
                 'entity' => $participant->name()
@@ -55,7 +55,8 @@ class ConversationParticipantController extends Controller
 
         $conversationParticipant->update($request->all());
 
-        return redirect()->route('conversations.show', [$campaign, $conversation->id])
+        return redirect()
+            ->to($conversation->getLink())
             ->with('success', trans('crud.notes.edit.success', [
                 'name' => $conversationParticipant->name, 'entity' => $conversation->name
             ]));
@@ -72,7 +73,7 @@ class ConversationParticipantController extends Controller
         }
 
         return redirect()
-            ->route('conversations.show', [$campaign, $conversation])
+            ->to($conversation->getLink())
             ->with('success', trans('conversations.participants.destroy.success', [
                 'name' => $conversation->name,
                 'entity' => $conversationParticipant->entity()->name

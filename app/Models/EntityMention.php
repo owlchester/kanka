@@ -253,9 +253,9 @@ class EntityMention extends Model
         if ($this->isQuestElement()) {
             return route('quests.quest_elements.index', [$campaign, $this->entity->entity_id, '#quest-element-' . $this->quest_element_id]);
         } elseif ($this->isTimelineElement()) {
-            return route('timelines.show', [$campaign, $this->entity->entity_id, '#timeline-element-' . $this->timeline_element_id]);
+            return route('entities.show', [$campaign, $this->entity, '#timeline-element-' . $this->timeline_element_id]);
         } elseif ($this->isPost()) {
-            return route($this->post->entity->pluralType() . '.show', [$campaign, $this->entity->entity_id, '#post-' . $this->entity_note_id]);
+            return route('entities.show', [$campaign, $this->entity, '#post-' . $this->entity_note_id]);
         }
         return '#';
     }

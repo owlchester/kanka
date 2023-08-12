@@ -218,18 +218,21 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @param string $route = 'show'
+     * @param string $action = 'show'
      * @return string
      * @throws Exception
      */
-    public function getLink(string $route = 'show'): string
+    public function getLink(string $action = 'show'): string
     {
         if (empty($this->entity)) {
             return '#';
         }
         try {
             $campaign = CampaignLocalization::getCampaign();
-            return route($this->entity->pluralType() . '.' . $route, [$campaign, $this->id]);
+            if ($action === 'show') {
+                return route('entities.show', [$campaign, $this->entity]);
+            }
+            return route($this->entity->pluralType() . '.' . $action, [$campaign, $this->id]);
         } catch (Exception $e) {
             return '#';
         }
@@ -273,7 +276,8 @@ abstract class MiscModel extends Model
 
         $items['first']['story'] = [
             'name' => 'crud.tabs.story',
-            'route' => $this->entity->pluralType() . '.show',
+            'route' => 'entities.show',
+            'entity' => true,
             'button' => auth()->check() && auth()->user()->can('update', $this) ? [
                 'url' => route('entities.story.reorder', [$campaign, $this->entity->id]),
                 'icon' => 'fa-solid fa-cog',

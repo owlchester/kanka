@@ -43,11 +43,11 @@ class TimelineElementController extends Controller
 
     public function show(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
-        return redirect()->route('timelines.show', [$campaign, $timeline]);
+        return redirect()->route('entities.show', [$campaign, $timeline->entity]);
     }
     public function index(Campaign $campaign, Timeline $timeline)
     {
-        return redirect()->route('timelines.show', [$campaign, $timeline]);
+        return redirect()->route('entities.show', [$campaign, $timeline->entity]);
     }
 
     /**
@@ -91,7 +91,7 @@ class TimelineElementController extends Controller
         $this->service->reorderElements($new);
 
         return redirect()
-            ->route('timelines.show', [$campaign, $timeline->id, '#timeline-element-' . $new->id])
+            ->route('entities.show', [$campaign, $timeline->entity, '#timeline-element-' . $new->id])
             ->withSuccess(__('timelines/elements.create.success', ['name' => $new->name]));
     }
 
@@ -161,7 +161,7 @@ class TimelineElementController extends Controller
         }
 
         return redirect()
-            ->route('timelines.show', [$campaign, $timeline->id, '#timeline-element-' . $timelineElement->id])
+            ->route('entities.show', [$campaign, $timeline->entity, '#timeline-element-' . $timelineElement->id])
             ->withSuccess(__('timelines/elements.edit.success', ['name' => $timelineElement->name]));
     }
 
@@ -179,7 +179,7 @@ class TimelineElementController extends Controller
         $this->service->reorderElements($timelineElement, true);
 
         return redirect()
-            ->route('timelines.show', [$campaign, $timeline])
+            ->route('entities.show', [$campaign, $timeline->entity])
             ->withSuccess(__('timelines/elements.delete.success', ['name' => $timelineElement->name]));
     }
 }

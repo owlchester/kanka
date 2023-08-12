@@ -69,7 +69,7 @@ class MoveController extends Controller
                 ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => $this->service->targetCampaign()->name]));
         } catch (TranslatableException $ex) {
             return redirect()
-                ->route($entity->pluralType() . '.show', [$campaign, $entity->entity_id])
+                ->to($entity->url())
                 ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
         }
     }

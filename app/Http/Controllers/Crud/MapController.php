@@ -52,8 +52,8 @@ class MapController extends CrudController
     {
         // Can't edit a map being chunked
         if ($map->isChunked() && $map->chunkingRunning()) {
-            return response()
-                ->redirectToRoute('maps.show', [$campaign, $map->id])
+            return redirect()
+                ->to($map->getLink())
                 ->with('error', __('maps.errors.chunking.running.edit') . ' ' . __('maps.errors.chunking.running.time'));
         }
         return $this->campaign($campaign)->crudEdit($map);

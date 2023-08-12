@@ -69,7 +69,7 @@ class TransformController extends Controller
                 ->with('success', __('entities/transform.success', ['name' => $entity->name]));
         } catch (TranslatableException $ex) {
             return redirect()
-                ->route($entity->pluralType() . '.show', [$campaign, $entity->entity_id])
+                ->route('entities.show', [$campaign, $entity])
                 ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
         }
     }

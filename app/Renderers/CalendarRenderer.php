@@ -120,8 +120,8 @@ class CalendarRenderer
                 return (string) $year;
             } else {
                 return route(
-                    'calendars.show',
-                    [$this->campaign, 'calendar' => $this->calendar, 'layout' => 'year', 'year' => $year]
+                    'entities.show',
+                    [$this->campaign, 'entity' => $this->calendar->entity, 'layout' => 'year', 'year' => $year]
                 );
             }
         }
@@ -138,13 +138,13 @@ class CalendarRenderer
             return $months[$month - 1]['name'] . " {$year}";
         }
 
-        $routeOptions = [$this->campaign, 'calendar' => $this->calendar, 'month' => $month, 'year' => $year];
+        $routeOptions = [$this->campaign, 'entity' => $this->calendar->entity, 'month' => $month, 'year' => $year];
         if ($this->calendar->defaultLayout() === 'year') {
             // @phpstan-ignore-next-line
             $routeOptions['layout'] = $this->isYearlyLayout() ? 'year' : 'month';
         }
         return route(
-            'calendars.show',
+            'entities.show',
             $routeOptions
         );
     }
@@ -168,7 +168,7 @@ class CalendarRenderer
 
         $options = [
             'campaign' => $this->campaign,
-            'calendar' => $this->calendar,
+            'entity' => $this->calendar->entity,
             'month' => $month,
             'year' => $year,
         ];
@@ -182,7 +182,7 @@ class CalendarRenderer
         }
 
         return route(
-            'calendars.show',
+            'entities.show',
             $options
         );
     }
@@ -276,8 +276,8 @@ class CalendarRenderer
                 return (string) $year;
             } else {
                 return route(
-                    'calendars.show',
-                    [$this->campaign, 'calendar' => $this->calendar, 'layout' => 'year', 'year' => $year]
+                    'entities.show',
+                    [$this->campaign, 'entity' => $this->calendar->entity, 'layout' => 'year', 'year' => $year]
                 );
             }
         }
@@ -294,13 +294,13 @@ class CalendarRenderer
             return $months[$month - 1]['name'] . " {$year}";
         }
 
-        $routeOptions = [$this->campaign, 'calendar' => $this->calendar, 'month' => $month, 'year' => $year];
+        $routeOptions = [$this->campaign, 'entity' => $this->calendar->entity, 'month' => $month, 'year' => $year];
         if ($this->calendar->yearlyLayout()) {
             // @phpstan-ignore-next-line
             $routeOptions['layout'] = $this->isYearlyLayout() ? 'year' : 'month';
         }
         return route(
-            'calendars.show',
+            'entities.show',
             $routeOptions
         );
     }
@@ -697,9 +697,9 @@ class CalendarRenderer
         }
 
         return link_to_route(
-            'calendars.show',
+            'entities.show',
             trans('calendars.actions.today'),
-            [$this->campaign, $this->calendar, 'month' => $calendarMonth, 'year' => $calendarYear],
+            [$this->campaign, 'entity' => $this->calendar->entity, 'month' => $calendarMonth, 'year' => $calendarYear],
             $options
         );
     }

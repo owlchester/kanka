@@ -78,9 +78,9 @@ class ConversationParticipant extends MiscModel
             return $this->user->name;
         } elseif (!empty($this->character_id)) {
             return link_to_route(
-                'characters.show',
+                'entities.show',
                 $this->character->name,
-                [$this->character]
+                [$this->character->entity]
             );
         } else {
             return trans('conversations.messages.author_unknown');

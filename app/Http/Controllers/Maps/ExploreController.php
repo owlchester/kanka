@@ -25,17 +25,17 @@ class ExploreController extends Controller
 
         if (empty($map->image) && !$map->isReal()) {
             return redirect()
-                ->route('maps.show', [$campaign, $map])
+                ->route('entities.show', [$campaign, $map->entity])
                 ->withError(__('maps.errors.explore.missing'));
         }
         if ($map->isChunked()) {
             if ($map->chunkingError()) {
                 return redirect()
-                    ->route('maps.show', [$campaign, $map])
+                    ->route('entities.show', [$campaign, $map->entity])
                 ;
             } elseif (!$map->chunkingReady()) {
                 return redirect()
-                    ->route('maps.show', [$campaign, $map])
+                    ->route('entities.show', [$campaign, $map->entity])
                 ;
             }
         }

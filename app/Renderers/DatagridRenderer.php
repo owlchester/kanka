@@ -367,7 +367,7 @@ class DatagridRenderer
                             ? $column['parent_route']
                             : $column['parent_route']($model))
                         : $this->getOption('baseRoute');
-                    $route = route($whoRoute . '.show', [$this->campaign, $who]);
+                    $route = $who->getLink();
                     $content = '<a class="entity-image cover-background" style="background-image: url(\'' . $who->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
@@ -412,9 +412,9 @@ class DatagridRenderer
                 if ($model->entity->calendarDate) {
                     $reminder = $model->entity->calendarDate;
                     $content = link_to_route(
-                        'calendars.show',
+                        'entities.show',
                         $reminder->readableDate(),
-                        [$reminder->calendar_id, 'month' => $reminder->month, 'year' => $reminder->year]
+                        [$reminder->calendar->entity, 'month' => $reminder->month, 'year' => $reminder->year]
                     );
                 }
             } else {

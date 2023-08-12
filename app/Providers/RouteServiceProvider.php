@@ -65,8 +65,7 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
 
-        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
-            ->prefix(LaravelLocalization::setLocale())
+        Route::middleware(['web'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web-i18n.php'));
 
@@ -125,20 +124,17 @@ class RouteServiceProvider extends ServiceProvider
     {
         $domain = Domain::isApi() ? Domain::app() : null;
         Route::domain($domain)
-            ->middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
-            ->prefix(LaravelLocalization::setLocale())
+            ->middleware(['web'])
             ->namespace($this->namespace)
             ->group(base_path('routes/campaigns/campaign.php'));
 
         Route::domain($domain)
-            ->middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
-            ->prefix(LaravelLocalization::setLocale())
+            ->middleware(['web'])
             ->namespace($this->namespace)
             ->group(base_path('routes/campaigns/entities.php'));
 
         Route::domain($domain)
-            ->middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
-            ->prefix(LaravelLocalization::setLocale())
+            ->middleware(['web'])
             ->namespace($this->namespace)
             ->group(base_path('routes/campaigns/search.php'));
         return $this;
@@ -149,8 +145,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function settings(): self
     {
-        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
-            ->prefix(LaravelLocalization::setLocale() . '/settings')
+        Route::middleware(['web'])
+            ->prefix('settings')
             ->namespace($this->namespace)
             ->group(base_path('routes/settings.php'));
         return $this;
@@ -161,8 +157,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function auth(): self
     {
-        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
-            ->prefix(LaravelLocalization::setLocale())
+        Route::middleware(['web'])
             ->namespace('App\Http\Controllers')
             ->group(base_path('routes/auth.php'))
         ;

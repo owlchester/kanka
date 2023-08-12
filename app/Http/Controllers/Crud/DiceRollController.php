@@ -116,10 +116,10 @@ class DiceRollController extends CrudController
                 'dice_roll_id' => $diceRoll->id,
                 'created_by' => Auth::user()->id,
             ]);
-            return redirect()->route('dice_rolls.show', [$campaign, $diceRoll])
+            return redirect()->to($diceRoll->getLink())
                 ->with('success', trans('dice_rolls.results.success'));
         } catch (Exception $e) {
-            return redirect()->route('dice_rolls.show', [$campaign, $diceRoll])
+            return redirect()->to($diceRoll->getLink())
                 ->with('error', trans('dice_rolls.results.error'));
         }
     }
@@ -135,7 +135,7 @@ class DiceRollController extends CrudController
 
         $diceRollResult->delete();
 
-        return redirect()->route('dice_rolls.show', [$campaign, $diceRoll])
+        return redirect()->to($diceRoll->getLink())
             ->with('success', trans('dice_rolls.destroy.dice_roll'));
     }
 }

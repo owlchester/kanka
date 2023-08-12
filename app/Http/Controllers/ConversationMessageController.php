@@ -81,7 +81,7 @@ class ConversationMessageController extends Controller
         }
 
         return redirect()
-            ->route('conversations.show', [$campaign, $conversation])
+            ->route('entities.show', [$campaign, $conversation->entity])
             ->with('success', trans('conversations.messages.destroy.success', [
                 'name' => $conversationMessage->author(),
                 'conversation' => $conversation->name

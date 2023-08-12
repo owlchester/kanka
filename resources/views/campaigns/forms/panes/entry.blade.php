@@ -36,11 +36,7 @@
     ]) !!}</p>
 
                 <input type="text" maxlength="45" name="" class="form-control" readonly="readonly" />
-                <p class="help-block">{!! __('campaigns.helpers.premium', ['settings' => link_to_route('front.premium', __('concept.premium-campaigns'))]) !!}</p>
             @endif
-
-
-
         </div>
 
         <div class="field-entry">

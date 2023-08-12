@@ -73,7 +73,7 @@ class MemberController extends Controller
 
         $newMembers = $family->members()->syncWithoutDetaching($request->members);
 
-        return redirect()->route('families.show', [$campaign, $family->id])
+        return redirect()->route('entities.show', [$campaign, $family->entity])
             ->with('success', trans_choice('families.members.create.success', count($newMembers['attached']), ['count' => count($newMembers['attached'])]));
     }
 }

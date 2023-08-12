@@ -66,7 +66,7 @@ class PostController extends Controller
         }
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$campaign, $entity->child->id])
+            ->to($entity->url())
             ->with('success', __('entities/notes.create.success', [
                 'name' => $note->name, 'entity' => $entity->child->name
             ]));
@@ -133,7 +133,7 @@ class PostController extends Controller
             return response()->redirectTo($route);
         }
 
-        return redirect()->route($entity->pluralType() . '.show', [$campaign, $entity->child->id, '#post-' . $post->id])
+        return redirect()->route('entities.show', [$campaign, $entity, '#post-' . $post->id])
             ->with('success', __('entities/notes.edit.success', [
                 'name' => $post->name, 'entity' => $entity->name
             ]));
@@ -146,7 +146,7 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$campaign, $entity->child->id])
+            ->route('entities.show', [$campaign, $entity])
             ->with('success', __('entities/notes.destroy.success', [
                 'name' => $post->name, 'entity' => $entity->name
             ]));

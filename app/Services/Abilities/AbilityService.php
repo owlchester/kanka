@@ -144,7 +144,7 @@ class AbilityService extends BaseAbilityService
                 'edit' => route('entities.entity_abilities.edit', [$this->campaign, $this->entity, $entityAbility]),
                 'update' => route('entities.entity_abilities.update', [$this->campaign, $this->entity, $entityAbility]),
                 'delete' => route('entities.entity_abilities.destroy', [$this->campaign, $this->entity, $entityAbility]),
-                'view' => route('abilities.show', [$this->campaign, $entityAbility->ability_id]),
+                'view' => route('entities.show', [$this->campaign, $entityAbility->ability->entity]),
             ],
             'entity' => [
                 'id' => $entityAbility->ability->entity->id,

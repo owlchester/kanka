@@ -223,40 +223,34 @@
     <div class="grid grid-cols-2 gap-4">
         <ul class="list-unstyled">
             <li class="py-2">
-                @php $url = LaravelLocalization::getLocalizedURL('en-US', null, [], true); @endphp
-                <a rel="alternate" hreflang="en-US" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                <a rel="alternate" hreflang="en-US" href="{{ url()->full() . '?lang=en-US' }}">
                     US English
                 </a>
             </li>
             <li class="py-2">
-                @php $url = LaravelLocalization::getLocalizedURL('en', null, [], true); @endphp
-                <a rel="alternate" hreflang="en" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                <a rel="alternate" hreflang="en" href="{{ url()->full() . '?lang=en' }}">
                     UK English
                 </a>
             </li>
             <li class="py-2">
-                @php $url = LaravelLocalization::getLocalizedURL('pt-BR', null, [], true); @endphp
-                <a rel="alternate" hreflang="pt-BR" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                <a rel="alternate" hreflang="pt-BR" href="{{ url()->full() . '?lang=pt-BR' }}">
                     Português do Brasil
                 </a>
             </li>
         </ul>
         <ul class="list-unstyled">
             <li class="py-2">
-                @php $url = LaravelLocalization::getLocalizedURL('de', null, [], true); @endphp
-                <a rel="alternate" hreflang="de" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                <a rel="alternate" hreflang="de" href="{{ url()->full() . '?lang=de' }}">
                     Deutsch
                 </a>
             </li>
             <li class="py-2">
-                @php $url = LaravelLocalization::getLocalizedURL('fr', null, [], true); @endphp
-                <a rel="alternate" hreflang="fr" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                <a rel="alternate" hreflang="fr" href="{{ url()->full() . '?lang=fr' }}">
                     Français
                 </a>
             </li>
             <li class="py-2">
-                @php $url = LaravelLocalization::getLocalizedURL('es', null, [], true); @endphp
-                <a rel="alternate" hreflang="es" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                <a rel="alternate" hreflang="es" href="{{ url()->full() . '?lang=es' }}">
                     Español
                 </a>
             </li>
@@ -269,34 +263,29 @@
         <div class="grid grid-cols-2 gap-4">
             <ul class="list-unstyled">
                 <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('it', null, [], true); @endphp
-                    <a rel="alternate" hreflang="it" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    <a rel="alternate" hreflang="it" href="{{ url()->full() . '?lang=it' }}">
                         Italiano
                     </a>
                 </li>
                 <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('pl', null, [], true); @endphp
-                    <a rel="alternate" hreflang="pl" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    <a rel="alternate" hreflang="pl" href="{{ url()->full() . '?lang=pl' }}">
                         Polska
                     </a>
                 </li>
                 <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('ru', null, [], true); @endphp
-                    <a rel="alternate" hreflang="ru" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    <a rel="alternate" hreflang="ru" href="{{ url()->full() . '?lang=ru' }}">
                         Pусский
                     </a>
                 </li>
             </ul>
             <ul class="list-unstyled">
                 <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('nl', null, [], true); @endphp
-                    <a rel="alternate" hreflang="nl" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    <a rel="alternate" hreflang="nl" href="{{ url()->full() . '?lang=nl' }}">
                         Nederlands
                     </a>
                 </li>
                 <li class="py-2">
-                    @php $url = LaravelLocalization::getLocalizedURL('sk', null, [], true); @endphp
-                    <a rel="alternate" hreflang="sk" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                    <a rel="alternate" hreflang="sk" href="{{ url()->full() . '?lang=sk' }}">
                         Slovenský
                     </a>
                 </li>

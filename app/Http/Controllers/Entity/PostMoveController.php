@@ -55,13 +55,13 @@ class PostMoveController extends Controller
                 $success = 'copy_success';
             }
             return redirect()
-                ->route($newEntity->pluralType() . '.show', [$campaign, $newEntity->child->id, '#post-' . $newPost->id])
+                ->route('entities.show', [$campaign, $newEntity, '#post-' . $newPost->id])
                 ->with('success', __('entities/notes.move.' . $success, ['name' => $newPost->name,
                     'entity' => $newEntity->name
                 ]));
         } catch (TranslatableException $ex) {
             return redirect()
-                ->route($entity->pluralType() . '.show', [$campaign, $entity->child->id, '#post-' . $post->id])
+                ->route('entities.show', [$campaign, $entity, '#post-' . $post->id])
                 ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
         }
     }

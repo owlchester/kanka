@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/start', [StartController::class, 'index'])->name('start');
-Route::post('/create-campaign', [CampaignController::class, 'store'])->name('create-campaign');
+Route::get('/new-campaign', [StartController::class, 'index'])->name('start');
+Route::post('/new-campaign', [CampaignController::class, 'store'])->name('create-campaign');
 
 // Invitation's campaign comes from the token.
 Route::get('/invitation/join/{token}', [InvitationController::class, 'join'])->name('campaigns.join');
 
-Route::get('/troubleshooting/invite', [TroubleshootingController::class, 'invite'])->name('troubleshooting');
-Route::post('/troubleshooting/invite', [TroubleshootingController::class, 'saveInvite'])->name('troubleshooting.generate');
+Route::get('/assistance', [TroubleshootingController::class, 'invite'])->name('troubleshooting');
+Route::post('/assistance', [TroubleshootingController::class, 'saveInvite'])->name('troubleshooting.generate');

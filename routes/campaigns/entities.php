@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/w/{campaign}/entities/{entity}', [\App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show');
+Route::get('/w/{campaign}/entities/{entity}-{slug}', [\App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show-slug');
+
 // Abilities
 Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');
 Route::get('/w/{campaign}/abilities/{ability}/entities', 'Abilities\EntityController@index')->name('abilities.entities');

@@ -230,7 +230,8 @@ class ReminderController extends Controller
         // Redirect to the calendar if that's where we came from
         $previous = url()->previous();
         if (str_contains($previous, '/calendars/')) {
-            return redirect()->route('calendars.show', [$campaign, $entityEvent->calendar_id])
+            return redirect()
+                ->to($entityEvent->calendar->getLink())
                 ->with('success', $success);
         }
 

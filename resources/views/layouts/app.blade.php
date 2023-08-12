@@ -19,10 +19,10 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <meta property="og:title" content="{!! $seoTitle !!} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 @if (isset($canonical))
-    <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, $campaign->locale) }}" />
+    <link rel="canonical" href="{{ request()->fullUrl() }}" />
 @endif
 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-    <link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $localeCode) }}" hreflang="{{ $localeCode }}">
+    <link rel="alternate" href="{{ request()->fullUrl() . '?lang=' . $localeCode }}" hreflang="{{ $localeCode }}">
 @endforeach
 
     @yield('og')

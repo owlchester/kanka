@@ -71,7 +71,7 @@ class MemberController extends Controller
 
         $newMembers = $race->characters()->syncWithoutDetaching($request->members);
 
-        return redirect()->route('races.show', [$campaign, $race->id])
+        return redirect()->route('entities.show', [$campaign, $race->entity])
             ->with('success', trans_choice('races.members.create.success', count($newMembers['attached']), ['count' => count($newMembers['attached'])]));
     }
 }

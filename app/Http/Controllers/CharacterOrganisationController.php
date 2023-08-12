@@ -32,7 +32,7 @@ class CharacterOrganisationController extends Controller
      */
     public function index(Campaign $campaign, Character $character)
     {
-        return redirect()->route('characters.show', [$campaign, $character]);
+        return redirect()->to($character->getLink());
     }
 
     /**
@@ -112,7 +112,7 @@ class CharacterOrganisationController extends Controller
         $characterOrganisation->update($request->all());
 
         if ($request->has('from') && $request->get('from') == 'org') {
-            return redirect()->route('organisations.show', [$campaign, $characterOrganisation->organisation_id])
+            return redirect()->route('entities.show', [$campaign, $characterOrganisation->organisation->entity])
                 ->with('success', __($this->view . '.edit.success'));
         }
         return redirect()->route('characters.organisations', [$campaign, $character->id])
@@ -134,7 +134,7 @@ class CharacterOrganisationController extends Controller
         $characterOrganisation->delete();
 
         if (request()->has('from') && request()->get('from') === 'org') {
-            return redirect()->route('organisations.show', [$campaign, $characterOrganisation->organisation_id])
+            return redirect()->route('entities.show', [$campaign, $characterOrganisation->organisation->entity])
                 ->with('success', __($this->view . '.destroy.success'));
         }
 

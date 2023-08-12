@@ -337,7 +337,11 @@ class CrudController extends Controller
             }
 
             $success = __('general.success.created', [
-                'name' => link_to_route(
+                'name' => $new->entity ? link_to_route(
+                    'entities.show',
+                    $new->name,
+                    [$this->campaign, $new->entity]
+                ) : link_to_route(/** Menu link **/
                     $this->view . '.show',
                     $new->name,
                     [$this->campaign, $new->id]
@@ -353,7 +357,7 @@ class CrudController extends Controller
                 $route = route($this->route . '.edit', [$this->campaign, $new]);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view')) {
-                $route = route($this->route . '.show', [$this->campaign, $new]);
+                $route = route('entities.show', [$this->campaign, $new->entity]);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
                 $route = route($this->route . '.create', [$this->campaign, 'copy' => $new->id]);
@@ -367,7 +371,7 @@ class CrudController extends Controller
             }
 
             if ($redirectToCreated) {
-                $route = route($this->route . '.show', [$this->campaign, $new]);
+                $route = route('entities.show', [$this->campaign, $new->entity]);
                 return response()->redirectTo($route);
             }
 
@@ -498,8 +502,12 @@ class CrudController extends Controller
             }
 
             $success = __('general.success.updated', [
-                'name' => link_to_route(
-                    $this->route . '.show',
+                'name' => $model->entity ? link_to_route(
+                    'entities.show',
+                    $model->name,
+                    [$this->campaign, $model->entity]
+                ) : link_to_route(/** Menu link **/
+                    $this->view . '.show',
                     $model->name,
                     [$this->campaign, $model]
                 )
@@ -523,7 +531,11 @@ class CrudController extends Controller
                     $options[$vals[0]] = $vals[1];
                 }
             }
-            $route = route($this->route . '.show', $options);
+            if ($model->entity) {
+                $route = route('entities.show', $options + [$model->entity]);
+            } else {
+                $route = route($this->view . '.show', $options + [$model]);
+            }
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create', $this->campaign);
             } elseif ($request->has('submit-update')) {
