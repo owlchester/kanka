@@ -2,8 +2,6 @@
 
 namespace App\Services\Caches;
 
-use App\Facades\CampaignLocalization;
-use App\Models\Campaign;
 use App\Traits\CampaignAware;
 use App\User;
 use Illuminate\Support\Facades\Auth;

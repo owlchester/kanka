@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Timelines;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Datagrid2\BulkControllerTrait;

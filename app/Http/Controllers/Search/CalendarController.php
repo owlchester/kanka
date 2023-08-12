@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Search;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
-use Response;
 
 class CalendarController extends Controller
 {

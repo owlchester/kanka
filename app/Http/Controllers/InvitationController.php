@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\RequireLoginException;
 use App\Services\CampaignService;
 use App\Services\InviteService;
-use App\Facades\CampaignLocalization;
 use App\User;
 use Exception;
 

@@ -2,8 +2,6 @@
 
 namespace App\Facades;
 
-use App\Providers\LimitServiceProvider;
-use App\Services\DomainService;
 use App\Services\LimitService;
 use Illuminate\Support\Facades\Facade;
 

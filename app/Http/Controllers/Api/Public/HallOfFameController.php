@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Public;
 
 use App\Http\Controllers\Controller;
-use App\Services\Api\KbService;
 use App\Services\Subscribers\HallOfFameService;
 use Carbon\Carbon;
 

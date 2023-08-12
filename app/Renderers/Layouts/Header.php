@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Traits\CampaignAware;

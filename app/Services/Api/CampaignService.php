@@ -7,7 +7,6 @@ use App\Http\Resources\Public\CampaignResource;
 use App\Models\Campaign;
 use App\Services\GenreService;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\PaginatedResourceResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class CampaignService

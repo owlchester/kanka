@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Facades\Identity;
 use App\Facades\UserCache;
 use App\Models\CampaignUser;
 use App\Models\UserLog;

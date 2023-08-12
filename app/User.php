@@ -269,10 +269,10 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isElemental(): bool
     {
-        if (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL) {
-            return true;
-        }
-        return false;
+        return (bool) (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL)
+
+
+        ;
     }
 
     /**

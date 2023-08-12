@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Maps;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Datagrid2\BulkControllerTrait;
@@ -18,8 +17,8 @@ use Illuminate\Support\Arr;
 
 class MapLayerController extends Controller
 {
-    use CampaignAware;
     use BulkControllerTrait;
+    use CampaignAware;
     use HasDatagrid;
 
     public function index(Campaign $campaign, Map $map)

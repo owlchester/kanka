@@ -2,13 +2,11 @@
 
 namespace App\Http\Resources\Public;
 
-use App\Facades\Img;
 use App\Models\Campaign;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CampaignResource extends JsonResource
 {
-
     public function toArray($request)
     {
         /** @var Campaign $campaign */

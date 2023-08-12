@@ -51,7 +51,7 @@ class HallOfFameService
             if (Arr::get($user, 'settings.hide_subscription', false)) {
                 continue;
             }
-            $subscribers[strtolower($user->pledge)][] = $user->name;
+            $subscribers[mb_strtolower($user->pledge)][] = $user->name;
         }
 
         // Cache for a day

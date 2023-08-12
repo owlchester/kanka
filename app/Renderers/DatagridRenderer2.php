@@ -2,7 +2,6 @@
 
 namespace App\Renderers;
 
-use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Columns\Action;
 use App\Renderers\Layouts\Columns\Column;
 use App\Renderers\Layouts\Columns\Checkbox;

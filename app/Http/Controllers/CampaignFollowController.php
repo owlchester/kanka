@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Services\CampaignFollowService;
-use Illuminate\Support\Facades\Auth;
 
 class CampaignFollowController extends Controller
 {

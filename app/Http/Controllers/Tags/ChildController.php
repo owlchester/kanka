@@ -14,8 +14,8 @@ use App\Traits\Controllers\HasSubview;
 
 class ChildController extends Controller
 {
-    use HasDatagrid;
     use CampaignAware;
+    use HasDatagrid;
     use HasSubview;
 
     public function index(Campaign $campaign, Tag $tag)

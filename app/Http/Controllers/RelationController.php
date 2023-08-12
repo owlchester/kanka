@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\RelationDatagridActions;
 use App\Datagrids\Filters\RelationFilter;
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreRelation;
 use App\Models\Campaign;
 use App\Models\Relation;

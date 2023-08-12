@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
 use App\Facades\Module;
 use App\Models\Concerns\Acl;

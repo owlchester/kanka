@@ -2,9 +2,6 @@
 
 namespace App\Facades;
 
-use App\Models\Campaign;
-use App\Models\CampaignDashboard;
-use App\Models\Entity;
 use App\Services\DashboardService;
 use Illuminate\Support\Facades\Facade;
 

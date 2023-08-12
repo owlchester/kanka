@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Module;
 use App\Http\Requests\StoreCharacter;
 use App\Models\Campaign;

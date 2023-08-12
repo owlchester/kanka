@@ -8,7 +8,6 @@ use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Services\Campaign\NotificationService;
 use App\Services\CampaignBoostService;
-use App\Services\CampaignService;
 
 class CampaignBoostController extends Controller
 {

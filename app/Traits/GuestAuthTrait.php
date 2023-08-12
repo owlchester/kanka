@@ -25,12 +25,12 @@ trait GuestAuthTrait
             $mainModel = new $this->model();
             $modelType = $mainModel->entityTypeId();
         }
-//        dump($modelType);
-//        dump($action);
-//        dump($model);
-//        dump($campaign);
+        //        dump($modelType);
+        //        dump($action);
+        //        dump($model);
+        //        dump($campaign);
         $permission = EntityPermission::hasPermission($modelType, $action, null, $model, $campaign);
-//        dd($permission);
+        //        dd($permission);
 
         if ($campaign->id != $model->campaign_id || !$permission) {
             // Raise an error

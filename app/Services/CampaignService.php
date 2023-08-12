@@ -2,11 +2,9 @@
 
 namespace App\Services;
 
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Models\Entity;
-use App\Notifications\Header;
 use App\Services\Campaign\NotificationService;
 use App\User;
 use Exception;

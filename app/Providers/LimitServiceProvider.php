@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Facades\CampaignLocalization;
-use App\Renderers\DatagridRenderer2;
 use App\Services\LimitService;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

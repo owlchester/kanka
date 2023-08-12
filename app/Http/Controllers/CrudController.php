@@ -24,7 +24,6 @@ use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use LogicException;
@@ -32,8 +31,8 @@ use LogicException;
 class CrudController extends Controller
 {
     use BulkControllerTrait;
-    use GuestAuthTrait;
     use CampaignAware;
+    use GuestAuthTrait;
     use HasDatagrid;
     use HasSubview;
 

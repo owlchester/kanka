@@ -16,9 +16,9 @@ use App\Traits\GuestAuthTrait;
 class MemberController extends Controller
 {
     use CampaignAware;
+    use GuestAuthTrait;
     use HasDatagrid;
     use HasSubview;
-    use GuestAuthTrait;
 
     /**
      * @var string

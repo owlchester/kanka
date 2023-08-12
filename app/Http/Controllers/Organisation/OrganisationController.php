@@ -14,8 +14,8 @@ use App\Traits\GuestAuthTrait;
 class OrganisationController extends Controller
 {
     use CampaignAware;
-    use HasDatagrid;
     use GuestAuthTrait;
+    use HasDatagrid;
 
     public function organisations(Campaign $campaign, Organisation $organisation)
     {

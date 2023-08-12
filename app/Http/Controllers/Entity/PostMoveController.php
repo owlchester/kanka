@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MovePostRequest;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Facades\CampaignLocalization;
 use App\Models\Post;
 use App\Services\Entity\PostService;
 

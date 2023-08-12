@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\HistoryRequest;
 use App\Models\Campaign;
 use App\Models\EntityLog;

@@ -34,6 +34,6 @@ class CampaignController extends Controller
                     ->setup()
             )
             ->header('Expires', Carbon::now()->addDays(1)->toDateTimeString())
-            ;
+        ;
     }
 }

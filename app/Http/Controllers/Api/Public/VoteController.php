@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\VoteResource;
 use App\Models\CommunityVote;
 use App\Services\Api\VoteService;
-use Carbon\Carbon;
 
 class VoteController extends Controller
 {

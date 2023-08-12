@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Actions\MenuLinkDatagridActions;
-use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreMenuLink;
 use App\Models\Campaign;
 use App\Models\MenuLink;

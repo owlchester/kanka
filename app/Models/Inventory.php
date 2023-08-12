@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Traits\VisibilityIDTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

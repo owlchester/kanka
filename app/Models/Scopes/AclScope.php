@@ -258,6 +258,6 @@ class AclScope implements Scope
                     //->orWhereNotNull('cm.user_id')
                 ;
             })
-            ;
+        ;
     }
 }

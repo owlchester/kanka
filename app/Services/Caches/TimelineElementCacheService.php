@@ -4,7 +4,6 @@ namespace App\Services\Caches;
 
 use App\Models\TimelineElement;
 use Illuminate\Support\Facades\Cache;
-use App\Facades\CampaignLocalization;
 use Illuminate\Support\Facades\DB;
 
 class TimelineElementCacheService extends BaseCache

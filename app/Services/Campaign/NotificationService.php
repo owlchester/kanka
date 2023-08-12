@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Models\Campaign;
 use App\Notifications\Header;
 use App\Traits\CampaignAware;
 

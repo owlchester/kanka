@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Exceptions\TranslatableException;
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TransformEntityRequest;
 use App\Models\Campaign;

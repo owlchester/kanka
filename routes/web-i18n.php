@@ -17,5 +17,3 @@ Route::get('/invitation/join/{token}', [InvitationController::class, 'join'])->n
 
 Route::get('/troubleshooting/invite', [TroubleshootingController::class, 'invite'])->name('troubleshooting');
 Route::post('/troubleshooting/invite', [TroubleshootingController::class, 'saveInvite'])->name('troubleshooting.generate');
-
-
