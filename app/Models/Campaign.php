@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\CampaignCache;
-use App\Facades\Domain;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;

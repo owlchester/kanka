@@ -2,7 +2,6 @@
 
 namespace App\Models\Scopes;
 
-use App\Facades\Domain;
 use App\Facades\Identity;
 use App\Models\Campaign;
 use Carbon\Carbon;

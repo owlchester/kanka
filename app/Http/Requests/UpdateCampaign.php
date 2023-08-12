@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\CampaignLocalization;
-use App\Facades\Domain;
 use App\Facades\Limit;
 use App\Rules\Vanity;
 use Illuminate\Foundation\Http\FormRequest;
