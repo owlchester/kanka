@@ -32,11 +32,11 @@ class ExploreController extends Controller
             if ($map->chunkingError()) {
                 return redirect()
                     ->route('maps.show', [$campaign, $map])
-                    ;
+                ;
             } elseif (!$map->chunkingReady()) {
                 return redirect()
                     ->route('maps.show', [$campaign, $map])
-                    ;
+                ;
             }
         }
         return view('maps.explore')

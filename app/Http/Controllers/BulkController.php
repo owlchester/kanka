@@ -17,8 +17,8 @@ use Illuminate\Support\Str;
 
 class BulkController extends Controller
 {
-    use CampaignAware;
     use BulkControllerTrait;
+    use CampaignAware;
 
     protected BulkService $bulkService;
 

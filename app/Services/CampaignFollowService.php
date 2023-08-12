@@ -10,8 +10,8 @@ use App\User;
 
 class CampaignFollowService
 {
-    use UserAware;
     use CampaignAware;
+    use UserAware;
 
     /**
      * Update a user's following of a campaign.

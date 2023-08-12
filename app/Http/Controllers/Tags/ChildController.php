@@ -6,7 +6,6 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTagEntity;
 use App\Models\Campaign;
-use App\Models\CampaignPermission;
 use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;

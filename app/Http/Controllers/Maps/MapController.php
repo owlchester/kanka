@@ -2,22 +2,14 @@
 
 namespace App\Http\Controllers\Maps;
 
-use App\Datagrids\Filters\MapFilter;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\CrudController;
-use App\Http\Requests\StoreMap;
 use App\Models\Campaign;
 use App\Models\Map;
-use App\Models\MapMarker;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
-use App\Traits\TreeControllerTrait;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class MapController extends Controller
 {

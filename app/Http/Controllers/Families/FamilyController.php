@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Families;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Models\CampaignPermission;
 use App\Models\Family;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;

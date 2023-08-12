@@ -4,7 +4,6 @@ namespace App\Services\Caches;
 
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\LocationFilter;
-use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreLocation;
 use App\Models\Campaign;
