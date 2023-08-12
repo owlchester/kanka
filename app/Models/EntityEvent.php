@@ -191,17 +191,25 @@ class EntityEvent extends MiscModel
      */
     public function readableDate(): string
     {
+
         if ($this->readableDate === null) {
             // Replace month with real month, and year maybe
             $months = $this->calendar->months();
             $years = $this->calendar->years();
 
             try {
-                $this->readableDate = $this->day . ' ' .
-                    (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
-                    ($years[$this->year] ?? $this->year) . ' ' .
-                    $this->calendar->suffix;
-                // @phpstan-ignore-next-line
+                if ($this->calendar->format) {
+                    $this->readableDate = Str::replace(
+                        ['d', 's', 'y', 'm', 'M'],
+                        [$this->day, $this->calendar->suffix, $years[$this->year] ?? $this->year, $this->month, isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month],
+                        $this->calendar->format
+                    );
+                } else {
+                    $this->readableDate = $this->day . ' ' .
+                        (isset($months[$this->month - 1]) ? $months[$this->month - 1]['name'] : $this->month) . ', ' .
+                        ($years[$this->year] ?? $this->year) . ' ' .
+                        $this->calendar->suffix;
+                }
             } catch (Exception $e) {
                 $this->readableDate = $this->date();
             }

@@ -68,6 +68,7 @@ return [
         'date'                  => 'Current Date',
         'day'                   => 'Day',
         'default_layout'        => 'Default layout',
+        'format'                => 'Format',
         'has_leap_year'         => 'Has leap years',
         'intercalary'           => 'Intercalary Days',
         'is_incrementing'       => 'Advancing date',
@@ -99,6 +100,8 @@ return [
         'moon_offset'       => 'By default, the first fullmoon appears on the first day of year 0. Changing the offset will alter when the first full moon is displayed. This value can negative (up to the length of the first month) or positive (up to the length of the first month).',
         'nested_without'    => 'Displaying all calendars that don\'t have a parent calendar. Click on a row to see the children calendars.',
         'start_offset'      => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
+        'format'            => 'Add :format for calendar entities.',
+        'custom_format'     => 'custom date formatting',
     ],
     'hints'         => [
         'event_length'      => 'How long an event is set to last. An event can\'t span over more than two months.',
@@ -220,5 +223,9 @@ return [
     ],
     'validators'    => [
         'moon_offset'   => 'The moon first fullmoon offset can\'t be bigger than the length of the calendar\'s first month.',
+        'format'        => 'The Calendar date format is invalid.',
+    ],
+    'warnings'  => [
+            'event_length' => 'Reminders that span multiple years are only visible on the first two years. Learn more in our :documentation .',
     ],
 ];

@@ -100,9 +100,6 @@ class RaceController extends CrudController
         }
 
         return redirect()->route('races.show', $race);
-
-        return $this
-            ->menuView($race, 'characters');
     }
 
     /**

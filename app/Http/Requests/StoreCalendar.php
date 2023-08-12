@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Rules\CalendarMoonOffset;
+use App\Rules\CalendarFormat;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -44,6 +45,7 @@ class StoreCalendar extends FormRequest
             'epoch_name' => 'nullable|array',
             'season_name' => 'nullable|array',
             'template_id' => 'nullable',
+            'format'      => ['nullable', new CalendarFormat(), 'string', 'max:20'],
             'moon_offset' => [
                 '*' => new CalendarMoonOffset()
             ]

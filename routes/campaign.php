@@ -133,6 +133,7 @@ Route::post('/w/{campaign}/calendars/{calendar}/event', 'Crud\CalendarController
 Route::get('/w/{campaign}/calendars/{calendar}/month-list', 'Crud\CalendarController@monthList')->name('calendars.month-list');
 Route::get('/w/{campaign}/calendars/{calendar}/events', 'Crud\CalendarController@events')->name('calendars.events');
 Route::get('/w/{campaign}/calendars/{calendar}/today', 'Crud\CalendarController@today')->name('calendars.today');
+Route::get('/w/{campaign}/calendars/{calendar}/validate-length', [\App\Http\Controllers\CalendarController::class, 'eventLength'])->name('calendars.event-length');
 
 //        Route::get('/w/{campaign}/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
 //        Route::post('/w/{campaign}/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
@@ -267,7 +268,6 @@ Route::resources([
     '/w/{campaign}/abilities' => 'Crud\AbilityController',
     '/w/{campaign}/calendars' => 'Crud\CalendarController',
     '/w/{campaign}/calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
-    //'campaigns' => 'CampaignController',
     '/w/{campaign}/campaign_users' => 'CampaignUserController',
     '/w/{campaign}/campaign_submissions' => 'Campaign\SubmissionController',
     '/w/{campaign}/characters' => 'Crud\CharacterController',
@@ -279,7 +279,6 @@ Route::resources([
     '/w/{campaign}/dice_roll_results' => 'Crud\DiceRollResultController',
     '/w/{campaign}/events' => 'Crud\EventController',
     '/w/{campaign}/locations' => 'Crud\LocationController',
-    //'locations.map_points' => 'LocationMapPointController',
     '/w/{campaign}/families' => 'Crud\FamilyController',
     '/w/{campaign}/items' => 'Crud\ItemController',
     '/w/{campaign}/journals' => 'Crud\JournalController',

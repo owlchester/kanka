@@ -101,6 +101,7 @@ The list of returned calendars can be filtered. The available filters are availa
               }
             ],
             "suffix": "BC",
+            "format": "d M, y s",
             "has_leap_year": true,
             "leap_year_amount": 4,
             "leap_year_month": 2,
@@ -210,6 +211,7 @@ To get the details of a single calendar, use the following endpoint.
           }
         ],
         "suffix": "BC",
+        "format": "d M, y s",
         "has_leap_year": true,
         "leap_year_amount": 4,
         "leap_year_month": 2,
@@ -254,6 +256,7 @@ To create a calendar, use the following endpoint.
 | `season_name` | `array` | Array of season names |
 | `season_month` | `array` | Array of seasons month start |
 | `season_day` | `array` | Array of seasons day start |
+| `format` | `string` | The rendering format for the calendar dates |
 | `has_leap_year` | `boolean` | Whether the calendar has leap years |
 | `leap_year_amount` | `integer` | The amount of leap days |
 | `leap_year_offset` | `integer` | Every how many years the leap days occur |
