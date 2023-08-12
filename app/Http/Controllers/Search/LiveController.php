@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Search;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Ability;
+use App\Models\Campaign;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\Tag;
@@ -27,7 +27,7 @@ class LiveController extends Controller
     /**
      * Live Search
      */
-    public function index(Request $request)
+    public function index(Request $request, Campaign $campaign)
     {
         $term = trim($request->get('q'));
         $type = $request->get('type', null);
@@ -42,7 +42,6 @@ class LiveController extends Controller
         if ($exclude === 'undefined') {
             $exclude = null;
         }
-        $campaign = CampaignLocalization::getCampaign();
         $new = request()->has('new');
 
         if ($request->get('v2') === "true") {
@@ -65,11 +64,10 @@ class LiveController extends Controller
     /**
      * Get a user's recent searches
      */
-    public function recent()
+    public function recent(Campaign $campaign)
     {
         $recent = [];
         if (auth()->check()) {
-            $campaign = CampaignLocalization::getCampaign();
 
             $recent = $this->search
                 ->campaign($campaign)
@@ -97,10 +95,9 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function reminderEntities(Request $request)
+    public function reminderEntities(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
         return response()->json(
             $this->search
@@ -121,10 +118,9 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function relationEntities(Request $request)
+    public function relationEntities(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
         $exclude = [];
 
         if ($request->has('exclude')) {
@@ -147,10 +143,9 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function tagChildren(Request $request)
+    public function tagChildren(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
         $exclude = [];
         if ($request->has('exclude')) {
@@ -174,10 +169,9 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function abilityEntities(Request $request)
+    public function abilityEntities(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
         $exclude = [];
         if ($request->has('exclude')) {
@@ -201,10 +195,9 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function calendars(Request $request)
+    public function calendars(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
         return response()->json(
             $this->search
@@ -220,10 +213,9 @@ class LiveController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function organisationMembers(Request $request)
+    public function organisationMembers(Request $request, Campaign $campaign)
     {
         $term = trim($request->q);
-        $campaign = CampaignLocalization::getCampaign();
 
         $exclude = [];
         $data = [];

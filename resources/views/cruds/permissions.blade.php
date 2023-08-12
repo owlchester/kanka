@@ -6,16 +6,15 @@
  * @var \App\Models\CampaignUser $member
  */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('crud.permissions.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __('entities.' . $entity->pluralType())],
-        ['url' => route($entity->pluralType() . '.show', $entity->child->id), 'label' => $entity->name],
+        ['url' => route($entity->pluralType() . '.show', [$campaign, $entity->child->id]), 'label' => $entity->name],
         __('crud.edit'),
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     @inject('permissionService', 'App\Services\PermissionService')
@@ -23,7 +22,7 @@
 /** @var \App\Services\PermissionService $permissionService */
 $permissions = $permissionService->type($entity->type_id)->entityPermissions($entity);
 @endphp
-    {!! Form::open(['route' => ['entities.permissions', $entity->id], 'method'=>'POST', 'data-shortcut' => '1']) !!}
+    {!! Form::open(['route' => ['entities.permissions', $campaign, $entity->id], 'method'=>'POST', 'data-shortcut' => '1']) !!}
 
     @include('partials.forms.form', [
         'title' => __('crud.permissions.title', ['name' => $entity->name]),

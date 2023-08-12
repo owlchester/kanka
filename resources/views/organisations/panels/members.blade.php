@@ -4,6 +4,7 @@
  */
 $allMembers = false;
 $datagridOptions = [
+    $campaign,
     $model,
     'init' => 1
 ];
@@ -26,7 +27,7 @@ $all = $model->allMembers()->has('character')->count();
     </h3>
     <div>
         @if (!$allMembers)
-            <a href="{{ route('organisations.show', [$model, 'all' => true, '#organisation-members']) }}" class="btn2 btn-sm">
+            <a href="{{ route('organisations.show', [$campaign, $model, 'all' => true, '#organisation-members']) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i>
                 <span class="hidden-xs hidden-sm">
                     {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
@@ -36,7 +37,7 @@ $all = $model->allMembers()->has('character')->count();
                 </span>
             </a>
         @else
-            <a href="{{ route('organisations.show', [$model, '#organisation-members']) }}" class="btn2 btn-sm">
+            <a href="{{ route('organisations.show', [$campaign, $model, '#organisation-members']) }}" class="btn2 btn-sm">
                 <i class="fa-solid fa-filter"></i>
 
                 <span class="hidden-xs hidden-sm">
@@ -49,8 +50,8 @@ $all = $model->allMembers()->has('character')->count();
         @endif
 
         @can('member', $model)
-            <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
+            <a href="{{ route('organisations.organisation_members.create', [$campaign, 'organisation' => $model->id]) }}" class="btn2 btn-primary btn-sm"
+               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', [$campaign, $model->id]) }}">
                 <x-icon class="plus"></x-icon> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
             </a>
         @endcan

@@ -21,7 +21,7 @@ class ApiLogService
         }
 
         ApiLog::create([
-            'campaign_id' => $this->campaign?->id,
+            'campaign_id' => isset($this->campaign) ? $this->campaign->id : null,
             'user_id' => auth()->user()->id,
             'uri' => request()->path(),
             'params' => request()->all()

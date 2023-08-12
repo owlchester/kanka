@@ -56,6 +56,7 @@ trait BulkControllerTrait
     public function bulkBatch(string $route, string $view, array $models, mixed $model = null)
     {
         return view('layouts.datagrid.bulks.update')
+            ->with('campaign', $this->campaign)
             ->with('route', $route)
             ->with('view', $view)
             ->with('models', $models)

@@ -179,8 +179,6 @@ class Ability extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $items['second']['abilities'] = [
             'name' => Module::plural($this->entityTypeId(), 'entities.abilities'),
             'route' => 'abilities.abilities',

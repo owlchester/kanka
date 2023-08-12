@@ -88,22 +88,22 @@
 
 
     <div class="">
-        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+        <a href="{{ route('larecipe.index') }}" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 30]) }}
         </a>
     </div>
     <div class="">
-        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+        <a href="{{ route('larecipe.index') }}" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 90]) }}
         </a>
     </div>
     <div class="">
-        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+        <a href="{{ route('larecipe.index') }}" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 90]) }}
         </a>
     </div>
     <div class="">
-        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" target="_blank">
+        <a href="{{ route('larecipe.index') }}" target="_blank">
             {{ __('tiers.features.api_requests', ['amount' => 90]) }}
         </a>
     </div>

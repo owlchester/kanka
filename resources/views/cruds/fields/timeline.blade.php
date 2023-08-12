@@ -1,4 +1,4 @@
-@if (!$campaignService->enabled('timelines'))
+@if (!$campaign->enabled('timelines'))
     <?php return ?>
 @endif
 @php
@@ -10,13 +10,14 @@
     }
 @endphp
 <x-forms.foreign
+    :campaign="$campaign"
     name="timeline_id"
     key="timeline"
     entityType="timelines"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('timelines.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route('timelines.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Timeline::class"
     :selected="$preset"
     :helper="$helper ?? null"

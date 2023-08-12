@@ -1,6 +1,4 @@
-<?php /** @var \App\Datagrids\Actions\DatagridActions $datagridActions */
-    $campaign = CampaignLocalization::getCampaign();
-?>
+<?php /** @var \App\Datagrids\Actions\DatagridActions $datagridActions */?>
 
 @php
 $dropdownActions = [];
@@ -13,26 +11,26 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     }
     if ($datagridActions->hasBulkPermissions()) {
         $dropdownActions[] = '
-            <a href="#" class="bulk-permissions" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', ['view' => 'permissions']) . '" data-bulk-action="ajax">
+            <a href="#" class="bulk-permissions" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', [$campaign, 'view' => 'permissions']) . '" data-bulk-action="ajax">
                 <i class="fa-solid fa-cog" aria-hidden="true"></i> ' .  __('crud.bulk.actions.permissions') . '
             </a>';
     }
     if ($datagridActions->hasBulkTemplate() && $campaign->enabled('entity_attributes')) {
     //if (isset($bulk) && (!isset($bulkTemplates) || $bulkTemplates)) {
         $dropdownActions[] = '
-            <a href="#" class="bulk-templates" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', ['view' => 'templates']) . '" data-bulk-action="ajax">
+            <a href="#" class="bulk-templates" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' . route('bulk.modal', [$campaign, 'view' => 'templates']) . '" data-bulk-action="ajax">
                 <x-icon class="fa-solid fa-th-list"></x-icon> ' . __('crud.bulk.actions.templates') . '
             </a>';
     }
     if ($datagridActions->hasBulkTransform()) {
         $dropdownActions[] = '
-            <a href="#" class="bulk-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' .  route('bulk.modal', ['view' => 'transform', 'type' => $name]) . '" data-bulk-action="ajax">
+            <a href="#" class="bulk-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' .  route('bulk.modal', [$campaign, 'view' => 'transform', 'type' => $name]) . '" data-bulk-action="ajax">
                 <x-icon class="fa-solid fa-exchange-alt"></x-icon> ' .  __('crud.actions.transform') . '
             </a>';
     }
     if ($datagridActions->hasBulkCopy()) {
         $dropdownActions[] = '
-            <a href="#" class="bulk-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' .  route('bulk.modal', ['view' => 'copy_campaign', 'type' => $name]) . '" data-bulk-action="ajax">
+            <a href="#" class="bulk-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-ajax" data-url="' .  route('bulk.modal', [$campaign, 'view' => 'copy_campaign', 'type' => $name]) . '" data-bulk-action="ajax">
                 <x-icon class="fa-regular fa-clone"></x-icon> ' .  __('crud.actions.copy_to_campaign') . '
             </a>';
     }

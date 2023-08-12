@@ -14,8 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class DiceRoll extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use SoftDeletes;
 

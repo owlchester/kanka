@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -31,7 +32,7 @@ class StoreQuest extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'quest_id' => 'nullable|integer|exists:quests,id',
             'character_id' => 'nullable|integer|exists:characters,id',

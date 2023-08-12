@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\LocationFilter;
 use App\Facades\Datagrid;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreLocation;
+use App\Models\Campaign;
 use App\Models\Location;
 use App\Traits\TreeControllerTrait;
 
@@ -33,51 +35,51 @@ class LocationController extends CrudController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLocation $request)
+    public function store(StoreLocation $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Location $location)
+    public function show(Campaign $campaign, Location $location)
     {
-        return $this->crudShow($location);
+        return $this->campaign($campaign)->crudShow($location);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Location $location)
+    public function edit(Campaign $campaign, Location $location)
     {
-        return $this->crudEdit($location);
+        return $this->campaign($campaign)->crudEdit($location);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreLocation $request, Location $location)
+    public function update(StoreLocation $request, Campaign $campaign, Location $location)
     {
-        return $this->crudUpdate($request, $location);
+        return $this->campaign($campaign)->crudUpdate($request, $location);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Location $location)
+    public function destroy(Campaign $campaign, Location $location)
     {
-        return $this->crudDestroy($location);
+        return $this->campaign($campaign)->crudDestroy($location);
     }
 
     /**
      * @param Location $location
      */
-    public function characters(Location $location)
+    public function characters(Campaign $campaign, Location $location)
     {
         $this->authCheck($location);
 
-        $options = ['location' => $location];
+        $options = ['campaign' => $campaign, 'location' => $location];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $location->id;
@@ -93,7 +95,7 @@ class LocationController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return $this
@@ -103,11 +105,11 @@ class LocationController extends CrudController
     /**
      * @param Location $location
      */
-    public function locations(Location $location)
+    public function locations(Campaign $campaign, Location $location)
     {
         $this->authCheck($location);
 
-        $options = ['location' => $location];
+        $options = ['campaign' => $campaign, 'location' => $location];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $location->id;
@@ -128,7 +130,7 @@ class LocationController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return $this

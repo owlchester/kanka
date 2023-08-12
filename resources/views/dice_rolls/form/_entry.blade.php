@@ -1,7 +1,7 @@
 
 <x-grid>
     @include('cruds.fields.name', ['trans' => 'dice_rolls'])
-    @include('cruds.fields.character')
+    @include('cruds.fields.character', ['name' => 'character_id'])
     @include('cruds.fields.tags')
 
     <div class="field-parameters required">

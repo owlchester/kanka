@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePost;
-use App\Facades\CampaignLocalization;
 use App\Services\MultiEditingService;
 use App\Models\EntityNote;
 use App\Traits\GuestAuthTrait;
@@ -20,7 +19,7 @@ class EntityNoteController extends Controller
         return redirect()->to($entity->url());
     }
 
-    public function create(Entity $entity, EntityNote $entityNote)
+    public function create(Campaign $campaign, Entity $entity, EntityNote $entityNote)
     {
         $this->authorize('entity-note', [$entity->child, 'add']);
 
@@ -33,7 +32,7 @@ class EntityNoteController extends Controller
         ));
     }
 
-    public function show(Entity $entity, EntityNote $entityNote)
+    public function show(Campaign $campaign, Entity $entity, EntityNote $entityNote)
     {
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
@@ -47,7 +46,7 @@ class EntityNoteController extends Controller
         return redirect()->to($entity->url());
     }
 
-    public function store(StorePost $request, Entity $entity)
+    public function store(StorePost $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('entity-note', [$entity->child, 'add']);
 
@@ -61,25 +60,24 @@ class EntityNoteController extends Controller
         $note = $note->create($request->all());
 
         if ($request->has('submit-new')) {
-            $route = route('entities.entity_notes.create', [$entity]);
+            $route = route('entities.entity_notes.create', [$campaign, $entity]);
             return response()->redirectTo($route);
         } elseif ($request->has('submit-update')) {
-            $route = route('entities.entity_notes.edit', [$entity, $note]);
+            $route = route('entities.entity_notes.edit', [$campaign, $entity, $note]);
             return response()->redirectTo($route);
         }
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id])
+            ->route($entity->pluralType() . '.show', [$campaign, $entity->child->id])
             ->with('success', __('entities/notes.create.success', [
                 'name' => $note->name, 'entity' => $entity->child->name
             ]));
     }
 
-    public function edit(Entity $entity, EntityNote $entityNote)
+    public function edit(Campaign $campaign, Entity $entity, EntityNote $entityNote)
     {
         $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
 
-        $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
         /** @var mixed|EntityNote $model */
         $model = $entityNote;
@@ -106,7 +104,7 @@ class EntityNoteController extends Controller
         ));
     }
 
-    public function update(StorePost $request, Entity $entity, EntityNote $entityNote)
+    public function update(StorePost $request, Campaign $campaign, Entity $entity, EntityNote $entityNote)
     {
         $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
 
@@ -125,27 +123,27 @@ class EntityNoteController extends Controller
 
 
         if ($request->has('submit-new')) {
-            $route = route('entities.entity_notes.create', [$entity]);
+            $route = route('entities.entity_notes.create', [$campaign, $entity]);
             return response()->redirectTo($route);
         } elseif ($request->has('submit-update')) {
-            $route = route('entities.entity_notes.edit', [$entity, $entityNote]);
+            $route = route('entities.entity_notes.edit', [$campaign, $entity, $entityNote]);
             return response()->redirectTo($route);
         }
 
-        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, '#post-' . $entityNote->id])
+        return redirect()->route($entity->pluralType() . '.show', [$campaign, $entity->child->id, '#post-' . $entityNote->id])
             ->with('success', __('entities/notes.edit.success', [
                 'name' => $entityNote->name, 'entity' => $entity->name
             ]));
     }
 
-    public function destroy(Entity $entity, EntityNote $entityNote)
+    public function destroy(Campaign $campaign, Entity $entity, EntityNote $entityNote)
     {
         $this->authorize('entity-note', [$entity->child, 'delete']);
 
         $entityNote->delete();
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id])
+            ->route($entity->pluralType() . '.show', [$campaign, $entity->child->id])
             ->with('success', __('entities/notes.destroy.success', [
                 'name' => $entityNote->name, 'entity' => $entity->name
             ]));

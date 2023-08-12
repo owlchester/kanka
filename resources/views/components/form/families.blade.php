@@ -31,14 +31,14 @@ if ($quickCreator) {
 
 @if ($quickCreator)<div class="join w-full">@endif
 
-<select multiple="multiple" name="families[]" class="form-control select2 join-item" data-tags="true" style="width: 100%" data-url="{{ route('families.find') }}" data-allow-clear="true" data-allow-new="false" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
+<select multiple="multiple" name="families[]" class="form-control select2 join-item" data-tags="true" style="width: 100%" data-url="{{ route('families.find', $campaign) }}" data-allow-clear="true" data-allow-new="false" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>
     @endforeach
 </select>
 
 @if ($quickCreator)
-        <a class="quick-creator-subform btn2 join-item btn-primary btn-outline" data-url="{{ route('entity-creator.form', ['type' => 'families', 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}">
+        <a class="quick-creator-subform btn2 join-item btn-primary btn-outline" data-url="{{ route('entity-creator.form', [$campaign, 'type' => 'families', 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}">
             <span class="fa-solid fa-plus"></span>
         </a>
     </div>

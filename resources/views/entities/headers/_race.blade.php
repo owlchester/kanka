@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Race $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->race)

@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\RaceFilter;
 use App\Facades\Datagrid;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreRace;
+use App\Models\Campaign;
 use App\Models\Race;
 use App\Traits\TreeControllerTrait;
 
@@ -29,46 +31,46 @@ class RaceController extends CrudController
      * @param StoreRace $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRace $request)
+    public function store(StoreRace $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      */
-    public function show(Race $race)
+    public function show(Campaign $campaign, Race $race)
     {
-        return $this->crudShow($race);
+        return $this->campaign($campaign)->crudShow($race);
     }
 
     /**
      */
-    public function edit(Race $race)
+    public function edit(Campaign $campaign, Race $race)
     {
-        return $this->crudEdit($race);
+        return $this->campaign($campaign)->crudEdit($race);
     }
 
     /**
      */
-    public function update(StoreRace $request, Race $race)
+    public function update(StoreRace $request, Campaign $campaign, Race $race)
     {
-        return $this->crudUpdate($request, $race);
+        return $this->campaign($campaign)->crudUpdate($request, $race);
     }
 
     /**
      */
-    public function destroy(Race $race)
+    public function destroy(Campaign $campaign, Race $race)
     {
-        return $this->crudDestroy($race);
+        return $this->campaign($campaign)->crudDestroy($race);
     }
 
     /**
      */
-    public function characters(Race $race)
+    public function characters(Campaign $campaign, Race $race)
     {
         $this->authCheck($race);
 
-        $options = ['race' => $race];
+        $options = ['campaign' => $campaign, 'race' => $race];
         $filters = [];
         $relation = 'allCharacters';
         if (request()->has('race_id')) {
@@ -94,7 +96,7 @@ class RaceController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return redirect()->route('races.show', $race);
@@ -105,11 +107,11 @@ class RaceController extends CrudController
 
     /**
      */
-    public function races(Race $race)
+    public function races(Campaign $campaign, Race $race)
     {
         $this->authCheck($race);
 
-        $options = ['race' => $race];
+        $options = ['campaign' => $campaign, 'race' => $race];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $race->id;
@@ -129,7 +131,7 @@ class RaceController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return $this

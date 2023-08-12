@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRelation;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Relation;
 use App\Services\Entity\ConnectionService;
@@ -39,7 +40,7 @@ class RelationController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         if (empty($entity->child)) {
             abort(404);
@@ -50,8 +51,6 @@ class RelationController extends Controller
         } else {
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
-
-        $campaign = CampaignLocalization::getCampaign();
 
         $mode = request()->get('mode', null);
         if (!in_array($mode, ['map', 'table'])) {
@@ -64,8 +63,6 @@ class RelationController extends Controller
         }
 
         $order = request()->get('order', null);
-
-        $ajax = request()->ajax();
 
         $rows = $connections = $connectionService = [];
         // @phpstan-ignore-next-line
@@ -80,7 +77,7 @@ class RelationController extends Controller
                 ->allRelationships()
                 ->sort(request()->only(['o', 'k']))
                 ->paginate()
-                ->withPath(route('entities.relations_table', [$entity, 'mode' => 'table']));
+                ->withPath(route('entities.relations_table', [$campaign, $entity, 'mode' => 'table']));
 
             $connections = $this->connectionService
                 ->entity($entity)
@@ -100,10 +97,9 @@ class RelationController extends Controller
                 $option = 'mentions';
             }
         }
-        $campaign = CampaignLocalization::getCampaign();
 
         return view('entities.pages.relations.index', compact(
-            'ajax',
+            'campaign',
             'entity',
             'rows',
             'mode',
@@ -119,16 +115,15 @@ class RelationController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create(Entity $entity)
+    public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
-        $ajax = request()->ajax();
         $mode = $this->getModeOption();
 
         return view('entities.pages.relations.create', compact(
+            'campaign',
             'entity',
-            'ajax',
             'mode'
         ));
     }
@@ -138,7 +133,7 @@ class RelationController extends Controller
      * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRelation $request, Entity $entity)
+    public function store(StoreRelation $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -147,7 +142,6 @@ class RelationController extends Controller
         ]);
         $data['campaign_id'] = $entity->campaign_id;
 
-        /** @var Relation $relation */
         $relation = new Relation();
         $relation = $relation->create($data);
 
@@ -156,7 +150,7 @@ class RelationController extends Controller
         }
 
         $mode = $this->getModeOption(true);
-        $redirect = [$entity];
+        $redirect = [$campaign, $entity];
         if (!empty($mode)) {
             $redirect['mode'] = $mode;
         }
@@ -170,25 +164,24 @@ class RelationController extends Controller
     }
 
     // This page doesn't exist, but crawlers will try
-    public function show(Entity $entity, Relation $relation)
+    public function show(Campaign $campaign, Entity $entity, Relation $relation)
     {
         abort(404);
     }
 
     /**
      */
-    public function edit(Entity $entity, Relation $relation)
+    public function edit(Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('update', $entity->child);
 
-        $ajax = request()->ajax();
         $from = (int) request()->get('from', 0);
         $mode = $this->getModeOption();
 
         return view('entities.pages.relations.update', compact(
+            'campaign',
             'entity',
             'relation',
-            'ajax',
             'from',
             'mode'
         ));
@@ -196,7 +189,7 @@ class RelationController extends Controller
 
     /**
      */
-    public function update(StoreRelation $request, Entity $entity, Relation $relation)
+    public function update(StoreRelation $request, Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('update', $entity->child);
         $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id']);
@@ -213,7 +206,7 @@ class RelationController extends Controller
         if (request()->has('from')) {
             $from = (int) request()->post('from');
             if (!empty($from)) {
-                $redirect = [$from];
+                $redirect = [$campaign, $from];
                 if (!empty($mode)) {
                     $redirect['mode'] = $mode;
                 }
@@ -231,7 +224,7 @@ class RelationController extends Controller
         }
 
 
-        $redirect = [$entity];
+        $redirect = [$campaign, $entity];
         if (!empty($mode)) {
             $redirect['mode'] = $mode;
         }
@@ -248,7 +241,7 @@ class RelationController extends Controller
 
     /**
      */
-    public function destroy(Entity $entity, Relation $relation)
+    public function destroy(Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('update', $entity->child);
 
@@ -276,7 +269,7 @@ class RelationController extends Controller
         }
 
         $relation->delete();
-        $redirect = [$entity];
+        $redirect = [$campaign, $entity];
         if (!empty($mode)) {
             $redirect['mode'] = $mode;
         }
@@ -296,7 +289,7 @@ class RelationController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function map(Entity $entity)
+    public function map(Campaign $campaign, Entity $entity)
     {
         if (empty($entity->child)) {
             abort(404);
@@ -309,7 +302,9 @@ class RelationController extends Controller
             $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $entity->child);
         }
 
-        $map = $this->service->entity($entity)
+        $map = $this->service
+            ->campaign($campaign)
+            ->entity($entity)
             ->option(request()->get('option', null))
             ->map();
         return response()->json(
@@ -337,7 +332,7 @@ class RelationController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function table(Entity $entity)
+    public function table(Campaign $campaign, Entity $entity)
     {
         if (empty($entity->child)) {
             abort(404);
@@ -351,7 +346,7 @@ class RelationController extends Controller
         }
 
         Datagrid::layout(\App\Renderers\Layouts\Entity\Relation::class)
-            ->route('entities.relations_table', [$entity, 'mode' => 'table']);
+            ->route('entities.relations_table', [$campaign, $entity, 'mode' => 'table']);
 
         $rows = $entity
             ->allRelationships()
@@ -360,6 +355,7 @@ class RelationController extends Controller
 
         $html = view('layouts.datagrid._table')
             ->with('rows', $rows)
+            ->with('campaign', $campaign)
             ->render();
         $data = [
             'success' => true,

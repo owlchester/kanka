@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateEntityAttribute;
 use App\Models\Attribute;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Attributes\TemplateService;
 use App\Services\AttributeService;
@@ -28,11 +29,10 @@ class AttributeController extends Controller
         $this->templateService = $templateService;
     }
 
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->enabled('entity_attributes')) {
-            return redirect()->route('dashboard')->with(
+            return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
@@ -54,7 +54,6 @@ class AttributeController extends Controller
             abort(403);
         }
 
-        $campaign = CampaignLocalization::getCampaign();
         $template = null;
         $marketplaceTemplate = null;
         $model = $entity->child;
@@ -75,11 +74,10 @@ class AttributeController extends Controller
         ));
     }
 
-    public function dashboard(Entity $entity)
+    public function dashboard(Campaign $campaign, Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->enabled('entity_attributes')) {
-            return redirect()->route('dashboard')->with(
+            return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
@@ -101,7 +99,6 @@ class AttributeController extends Controller
             abort(403);
         }
 
-        $campaign = CampaignLocalization::getCampaign();
         $template = null;
         $marketplaceTemplate = null;
         $model = $entity->child;
@@ -121,11 +118,10 @@ class AttributeController extends Controller
         ));
     }
 
-    public function edit(Entity $entity)
+    public function edit(Campaign $campaign, Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->enabled('entity_attributes')) {
-            return redirect()->route('dashboard')->with(
+            return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
@@ -141,12 +137,13 @@ class AttributeController extends Controller
         $parentRoute = $entity->pluralType();
 
         return view('entities.pages.attributes.edit', compact(
+            'campaign',
             'entity',
             'parentRoute'
         ));
     }
 
-    public function save(Entity $entity)
+    public function save(Campaign $campaign, Entity $entity)
     {
         if (empty($entity->child)) {
             abort(404);
@@ -169,11 +166,11 @@ class AttributeController extends Controller
             ->updateVisibility(request()->get('is_attributes_private') === '1')
             ->save($data);
 
-        return redirect()->route('entities.attributes', $entity->id)
+        return redirect()->route('entities.attributes', [$campaign, $entity->id])
             ->with('success', __('entities/attributes.update.success', ['entity' => $entity->name]));
     }
 
-    public function liveEdit(Entity $entity)
+    public function liveEdit(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 
@@ -188,10 +185,10 @@ class AttributeController extends Controller
             return abort(421);
         }
 
-        return response()->view('entities.pages.attributes.live.edit', compact('attribute', 'entity', 'uid'));
+        return response()->view('entities.pages.attributes.live.edit', compact('campaign', 'attribute', 'entity', 'uid'));
     }
 
-    public function liveSave(UpdateEntityAttribute $request, Entity $entity, Attribute $attribute)
+    public function liveSave(UpdateEntityAttribute $request, Campaign $campaign, Entity $entity, Attribute $attribute)
     {
         $this->authorize('update', $entity->child);
 

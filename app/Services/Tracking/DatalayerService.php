@@ -8,16 +8,16 @@ class DatalayerService
     protected $group = false;
 
     /** @var array Extra parameters to pass */
-    protected $additional = [];
+    protected array $additional = [];
 
     /** @var bool If the user is newly created */
-    protected $newAccount = false;
+    protected bool $newAccount = false;
 
     /** @var bool If the user is newly registered */
-    protected $newSubcriber = false;
+    protected bool $newSubcriber = false;
 
     /** @var bool If the user is newly cancelled */
-    protected $newCancelledSubcriber = false;
+    protected bool $newCancelledSubcriber = false;
 
     /**
      * @return string

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\Race;
 use App\Http\Requests\StoreCharacterRace;
 
@@ -26,12 +27,13 @@ class CharacterRaceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Race $race)
+    public function create(Campaign $campaign, Race $race)
     {
         $this->authorize('update', $race);
         $ajax = request()->ajax();
 
         return view($this->view . '.create', [
+            'campaign' => $campaign,
             'model' => $race,
             'ajax' => $ajax
         ]);
@@ -40,13 +42,13 @@ class CharacterRaceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCharacterRace $request, Race $race)
+    public function store(StoreCharacterRace $request, Campaign $campaign, Race $race)
     {
         $this->authorize('update', $race);
 
         $newMembers = $race->characters()->syncWithoutDetaching($request->members);
 
-        return redirect()->route('races.show', $race->id)
+        return redirect()->route('races.show', [$campaign, $race->id])
             ->with('success', trans_choice($this->view . '.create.success', count($newMembers['attached']), ['count' => count($newMembers['attached'])]));
     }
 }

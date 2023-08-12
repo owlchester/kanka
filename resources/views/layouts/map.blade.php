@@ -1,7 +1,6 @@
 <?php /**
  * @var \App\Models\Map $map
  */
-$campaign = CampaignLocalization::getCampaign();
 $themeOverride = request()->get('_theme');
 $specificTheme = null;
 ?><!DOCTYPE html>
@@ -87,7 +86,7 @@ $specificTheme = null;
                         <div class="marker-actions text-center">
                             @can('update', $map)
                                 <div class="join">
-                                    <a href="{{ route('maps.edit', [$map]) }}" class="btn2 btn-primary btn-sm join-item">
+                                    <a href="{{ route('maps.edit', [$campaign, $map]) }}" class="btn2 btn-primary btn-sm join-item">
                                         <x-icon class="map"></x-icon> {{ __('maps.actions.edit') }}
                                     </a>
                                     <div class="dropdown">
@@ -96,17 +95,17 @@ $specificTheme = null;
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                             <li>
-                                                <a href="{{ route('maps.map_layers.index', [$map]) }}" class="dropdown-item">
+                                                <a href="{{ route('maps.map_layers.index', [$campaign, $map]) }}" class="dropdown-item">
                                                     <x-icon class="fa-solid fa-layer-group"></x-icon> {{ __('maps.panels.layers') }}
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('maps.map_groups.index', [$map]) }}" class="dropdown-item">
+                                                <a href="{{ route('maps.map_groups.index', [$campaign, $map]) }}" class="dropdown-item">
                                                     <x-icon class="fa-solid fa-map-signs"></x-icon> {{ __('maps.panels.groups') }}
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('maps.map_markers.index', [$map]) }}" class="dropdown-item">
+                                                <a href="{{ route('maps.map_markers.index', [$campaign, $map]) }}" class="dropdown-item">
                                                     <x-icon class="fa-solid fa-map-pin"></x-icon> {{ __('maps.panels.markers') }}
                                                 </a>
                                             </li>

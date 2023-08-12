@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +14,7 @@ class AjaxGalleryController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Campaign $campaign)
     {
         $start = request()->get('page', 0);
         $perPage = 20;
@@ -49,7 +50,7 @@ class AjaxGalleryController extends Controller
                 'title' => $image->name,
                 'folder' => $image->is_folder,
                 'id' => $image->id,
-                'url' => $image->is_folder ? route('campaign.gallery.summernote', ['folder_id' => $image->id]) : null,
+                'url' => $image->is_folder ? route('campaign.gallery.summernote', [$campaign, 'folder_id' => $image->id]) : null,
             ];
         }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Domain;
+use App\Facades\Limit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCampaign extends FormRequest
@@ -27,8 +28,8 @@ class StoreCampaign extends FormRequest
         $rules = [
             'name' => 'required|string|min:4',
             'entry' => 'nullable|string',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
-            'header_image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
+            'header_image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'locale' => 'nullable|string',
             'system' => 'nullable|string',
             'entity_visibility' => 'nullable',

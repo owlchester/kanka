@@ -10,7 +10,6 @@
     'mainTitle' => false,
     'miscModel' => $entity->child,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     <div class="max-w-4xl m-5">

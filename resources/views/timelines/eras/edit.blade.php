@@ -13,11 +13,10 @@
         __('timelines/eras.edit.title', ['name' => $model->name])
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
     @include('partials.errors')
     {!! Form::model($model, [
-        'route' => ['timelines.timeline_eras.update', 'timeline' => $timeline, 'timeline_era' => $model],
+        'route' => ['timelines.timeline_eras.update', $campaign, 'timeline' => $timeline, 'timeline_era' => $model],
         'method' => 'PATCH',
         'id' => 'timeline-era-form',
         'class' => 'ajax-subform',

@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Inventory $item */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/inventories.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => false,
@@ -8,7 +8,6 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-inventory'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 

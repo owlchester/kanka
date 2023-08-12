@@ -9,7 +9,6 @@
     ],
     'bodyClass' => 'entity-image-focus'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')
@@ -17,10 +16,10 @@
     @include('partials.errors')
     <div class="max-w-4xl">
         <x-box>
-        @if ($campaignService->campaign()->boosted())
-            @if($campaignService->campaign()->superboosted() && empty($model->image) && !empty($entity->image_uuid))
+        @if ($campaign->boosted())
+            @if($campaign->superboosted() && empty($model->image) && !empty($entity->image_uuid))
                 <x-alert type="warning">
-                    {!! __('entities/image.focus.warning_v2', ['gallery' => link_to_route('campaign.gallery.index', __('sidebar.gallery'))]) !!}
+                    {!! __('entities/image.focus.warning_v2', ['gallery' => link_to_route('campaign.gallery.index', __('sidebar.gallery'), $campaign)]) !!}
                 </x-alert>
                 <p>
                     <a href="{{ $model->getLink() }}">
@@ -41,7 +40,7 @@
         </div>
 
         {!! Form::open([
-'route' => ['entities.image.focus', $entity],
+'route' => ['entities.image.focus', $campaign, $entity],
 'method' => 'POST'
 ]) !!}
         {!! Form::hidden('focus_x', null) !!}

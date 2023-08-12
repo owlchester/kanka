@@ -1,7 +1,7 @@
 <?php
 $dashboards = ['' => ''];
 //$dashboards['default'] = __('menu_links.fields.default_dashboard');
-foreach (\App\Facades\Dashboard::campaign($campaignService->campaign())->getDashboards() as $dash) {
+foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) {
     $dashboards[$dash->id] = $dash->name;
 }
 ?>
@@ -9,7 +9,7 @@ foreach (\App\Facades\Dashboard::campaign($campaignService->campaign())->getDash
     {!! __('menu_links.helpers.dashboard') !!}
 </p>
 
-@if($campaignService->campaign()->boosted())
+@if($campaign->boosted())
     <x-grid>
         <div class="field-dashboard">
             <label>{{ __('menu_links.fields.dashboard') }}</label>

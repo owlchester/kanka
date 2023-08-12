@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Search;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Services\Search\CampaignSearchService;
 
 class CampaignSearchController extends Controller
 {
-    /**
-     * @var CampaignSearchService
-     */
-    protected $search;
+    protected CampaignSearchService $search;
 
     /**
      * CampaignSearchController constructor.
@@ -20,21 +17,17 @@ class CampaignSearchController extends Controller
     public function __construct(CampaignSearchService $searchService)
     {
         $this->search = $searchService;
-        $campaign = CampaignLocalization::getCampaign();
-        if ($campaign) {
-            $this->search->campaign($campaign);
-        }
     }
 
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function members()
+    public function members(Campaign $campaign)
     {
-        $this->authorize('search', CampaignLocalization::getCampaign());
+        $this->authorize('search', $campaign);
 
         return response()->json(
-            $this->search->members(
+            $this->search->campaign($campaign)->members(
                 request()->get('q')
             )
         );
@@ -43,12 +36,12 @@ class CampaignSearchController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function roles()
+    public function roles(Campaign $campaign)
     {
-        $this->authorize('search', CampaignLocalization::getCampaign());
+        $this->authorize('search', $campaign);
 
         return response()->json(
-            $this->search->roles(
+            $this->search->campaign($campaign)->roles(
                 request()->get('q')
             )
         );

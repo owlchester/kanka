@@ -15,6 +15,7 @@
                 @if ($field['type'] == 'tag')
                     <span class="text-red">Is this being called?</span>
                     <x-forms.tags
+                        :campaign="$campaign"
                         :id="$field['field']"
                         label=""></x-forms.tags>
                 @elseif ($field['type'] == 'select')

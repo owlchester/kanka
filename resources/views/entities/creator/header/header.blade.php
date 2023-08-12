@@ -23,7 +23,7 @@
 
                         <li class="divider"></li>
                         <li>
-                            <a href="#" class="" data-toggle="entity-creator" data-url="{{ route('entity-creator.selection') }}" data-entity-type="return">
+                            <a href="#" class="" data-toggle="entity-creator" data-url="{{ route('entity-creator.selection', $campaign) }}" data-entity-type="return">
                                 <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
                                 {{ __('entities.creator.back') }}
                             </a>
@@ -40,14 +40,14 @@
         </div>
         @if (empty($target))
             <div class="qq-toggles flex text-right items-center content-center justify-end gap-2">
-                <div class="qq-mode-toggle btn2 btn-sm self-end @if (empty($mode)) btn-outline  @endif" data-mode="single" data-url="{{ route('entity-creator.form', ['type' => $type]) }}" aria-label="{{ __('entities.creator.modes.default') }}" title="{{ __('entities.creator.modes.default') }}" data-toggle="tooltip">
+                <div class="qq-mode-toggle btn2 btn-sm self-end @if (empty($mode)) btn-outline  @endif" data-mode="single" data-url="{{ route('entity-creator.form', [$campaign, 'type' => $type]) }}" aria-label="{{ __('entities.creator.modes.default') }}" title="{{ __('entities.creator.modes.default') }}" data-toggle="tooltip">
                     <x-icon class="fa-regular fa-user"></x-icon>
                 </div>
                 @if ($type !== 'posts')
-                    <div class="qq-mode-toggle btn2 btn-sm self-end @if ($mode == 'bulk') btn-outline  @endif" data-mode="bulk" data-url="{{ route('entity-creator.form', ['type' => $type, 'mode' => 'bulk']) }}" aria-label="{{ __('entities.creator.modes.bulk') }}" title="{{ __('entities.creator.modes.bulk') }}" data-toggle="tooltip">
+                    <div class="qq-mode-toggle btn2 btn-sm self-end @if ($mode == 'bulk') btn-outline  @endif" data-mode="bulk" data-url="{{ route('entity-creator.form', [$campaign, 'type' => $type, 'mode' => 'bulk']) }}" aria-label="{{ __('entities.creator.modes.bulk') }}" title="{{ __('entities.creator.modes.bulk') }}" data-toggle="tooltip">
                         <x-icon class="fa-solid fa-users"></x-icon>
                     </div>
-                    <div class="qq-mode-toggle btn2 btn-sm self-end @if ($mode == 'templates') btn-outline  @endif" data-mode="templates" data-url="{{ route('entity-creator.form', ['type' => $type, 'mode' => 'templates']) }}" aria-label="{{ __('entities.creator.modes.templates') }}" title="{{ __('entities.creator.modes.templates') }}" data-toggle="tooltip">
+                    <div class="qq-mode-toggle btn2 btn-sm self-end @if ($mode == 'templates') btn-outline  @endif" data-mode="templates" data-url="{{ route('entity-creator.form', [$campaign, 'type' => $type, 'mode' => 'templates']) }}" aria-label="{{ __('entities.creator.modes.templates') }}" title="{{ __('entities.creator.modes.templates') }}" data-toggle="tooltip">
                         <x-icon class="fa-solid fa-address-book"></x-icon>
                     </div>
                 @endif

@@ -48,7 +48,7 @@
         <p>{{ __('campaigns/export.helpers.intro') }}</p>
         <p>{{ __('campaigns/export.helpers.json') }}</p>
         <p>{!! __('campaigns/export.helpers.import', [
-                'api' => link_to('/' . app()->getLocale() . config('larecipe.docs.route') . '/1.0/overview', __('front.features.api.link'), null, ['target' => '_blank'])
+                'api' => link_to_route('larecipe.index', __('front.features.api.link'), null, ['target' => '_blank'])
         ]) !!}</p>
     </x-dialog>
 

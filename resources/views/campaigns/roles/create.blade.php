@@ -17,6 +17,5 @@
             'save' => __('campaigns.roles.actions.add')
         ])
 
-    {!! Form::hidden('campaign_id', CampaignLocalization::getCampaign()->id) !!}
     {!! Form::close() !!}
 @endsection

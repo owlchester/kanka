@@ -5,9 +5,9 @@
         'unmentioned' => __('dashboard.widgets.recent.advanced_filters.unmentioned'),
         'mentionless' => __('dashboard.widgets.recent.advanced_filters.mentionless'),
     ];
-    $boosted = $campaignService->campaign()->boosted();
+    $boosted = $campaign->boosted();
     $entityTypes = ['' => 'All'];
-    $entities = $entityService->campaign($campaignService->campaign())->getEnabledEntitiesSorted(false);
+    $entities = $entityService->campaign($campaign)->getEnabledEntitiesSorted(false);
     $entityTypes = array_merge($entityTypes, $entities);
 @endphp
 
@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="col-span-2 collapse !visible {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
-                    @if($campaignService->campaign()->boosted())
+                    @if($campaign->boosted())
                         @include('dashboard.widgets.forms._header_select')
                         @include('dashboard.widgets.forms._related')
                     @else

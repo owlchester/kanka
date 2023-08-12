@@ -1,9 +1,9 @@
 @inject('entityService', 'App\Services\EntityService')
 
-@php 
-    $boosted = $campaignService->campaign()->boosted();
+@php
+    $boosted = $campaign->boosted();
     $entityTypes = [];
-    $entities = $entityService->campaign($campaignService->campaign())->getEnabledEntitiesSorted(false);
+    $entities = $entityService->campaign($campaign)->getEnabledEntitiesSorted(false);
     $entityTypes = array_merge($entityTypes, $entities);
 @endphp
 

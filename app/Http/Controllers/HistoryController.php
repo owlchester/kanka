@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\HistoryRequest;
+use App\Models\Campaign;
 use App\Models\EntityLog;
 
 class HistoryController extends Controller
@@ -13,9 +14,8 @@ class HistoryController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(HistoryRequest $request)
+    public function index(HistoryRequest $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
         $pagnation = $campaign->superboosted() ? 25 : 10;

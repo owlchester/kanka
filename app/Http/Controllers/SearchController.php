@@ -2,28 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\MiscModel;
-use App\Services\CampaignService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 use App\Services\FilterService;
 
 class SearchController extends Controller
 {
-    /**
-     * @var CampaignService
-     */
-    protected CampaignService $campaign;
-
-    /**
-     * @var EntityService
-     */
     protected EntityService $entity;
 
-    /**
-     * @var FilterService
-     */
     protected FilterService $filterService;
 
     /**
@@ -31,14 +20,12 @@ class SearchController extends Controller
      *
      * @return void
      */
-    public function __construct(CampaignService $campaignService, EntityService $entityService)
+    public function __construct(EntityService $entityService)
     {
         //$this->middleware('auth');
         $this->middleware('campaign.member');
 
         $this->entity = $entityService;
-        $this->campaign = $campaignService;
-
         $this->filterService = new FilterService();
     }
 
@@ -47,7 +34,7 @@ class SearchController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function search(Request $request)
+    public function search(Request $request, Campaign $campaign)
     {
         $term = $request->get('q');
         if (empty($term) || !is_string($term)) {
@@ -63,19 +50,20 @@ class SearchController extends Controller
         $found = null;
 
         foreach ($this->entity->entities(['menu_links']) as $element => $class) {
-            if ($this->campaign->enabled($element)) {
-                /** @var MiscModel|Character $model */
-                $model = new $class();
-                $results[$element] = $model->search($term)->limit(5)->get();
-                $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
-                $resultCount += count($results[$element]);
+            if (!$campaign->enabled($element)) {
+                continue;
+            }
+            /** @var MiscModel|Character $model */
+            $model = new $class();
+            $results[$element] = $model->search($term)->limit(5)->get();
+            $active = count($results[$element]) > 0 && empty($active) ? $element : $active;
+            $resultCount += count($results[$element]);
 
-                if (count($results[$element]) == 1) {
-                    if ($found === null) {
-                        $found = $results[$element][0];
-                    } else {
-                        $found = false;
-                    }
+            if (count($results[$element]) == 1) {
+                if ($found === null) {
+                    $found = $results[$element][0];
+                } else {
+                    $found = false;
                 }
             }
         }
@@ -86,6 +74,7 @@ class SearchController extends Controller
         }
 
         return view('search.index', compact(
+            'campaign',
             'filters',
             'term',
             'results',

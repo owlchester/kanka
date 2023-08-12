@@ -12,7 +12,7 @@ class CharacterFilter extends DatagridFilter
     /**
      * Filters available for characters
      */
-    public function __construct()
+    public function build()
     {
         $orgName = Module::singular(config('entities.ids.organisation'));
         $orgPlaceholder = __('crud.placeholders.organisation');
@@ -37,7 +37,7 @@ class CharacterFilter extends DatagridFilter
                 'field' => 'family_id',
                 'label' => \App\Facades\Module::singular(config('entities.ids.family'), __('entities.family')),
                 'type' => 'select2',
-                'route' => route('families.find'),
+                'route' => route('families.find', $this->campaign),
                 'placeholder' =>  $famPlaceholder,
                 'model' => Family::class,
                 'withChildren' => true,
@@ -47,7 +47,7 @@ class CharacterFilter extends DatagridFilter
                 'field' => 'race_id',
                 'label' => \App\Facades\Module::singular(config('entities.ids.race'), __('entities.race')),
                 'type' => 'select2',
-                'route' => route('races.find'),
+                'route' => route('races.find', $this->campaign),
                 'placeholder' =>  $racePlaceholder,
                 'model' => Race::class,
                 'withChildren' => true,
@@ -56,7 +56,7 @@ class CharacterFilter extends DatagridFilter
                 'field' => 'member_id',
                 'label' => \App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation')),
                 'type' => 'select2',
-                'route' => route('organisations.find'),
+                'route' => route('organisations.find', $this->campaign),
                 'placeholder' => $orgPlaceholder,
                 'model' => Organisation::class,
                 'withChildren' => true,

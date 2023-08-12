@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Campaign\ExportService;
@@ -29,9 +28,8 @@ class ExportController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         return view('campaigns.export', compact('campaign'));
     }
 
@@ -41,9 +39,8 @@ class ExportController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function export(Request $request)
+    public function export(Request $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
         if (!$campaign->exportable()) {

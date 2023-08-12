@@ -7,11 +7,12 @@ $onlyOneCalendar = count($calendars) == 1;
 <div id="entity-calendar-modal-form">
     <div class="field-calendar entity-calendar-selector">
         <x-forms.foreign
+            :campaign="$campaign"
             name="calendar_id"
             key="calendar"
             :allowNew="false"
             :allowClear="true"
-            :route="route('calendars.find', isset($model) ? ['exclude' => $model->id] : null)"
+            :route="route('calendars.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
             :selected="$onlyOneCalendar ? $calendars->first() : null"
             :dropdownParent="request()->ajax() ? '#entity-modal' : null"
             :entityTypeID="config('entities.ids.calendar')">
@@ -30,4 +31,4 @@ $onlyOneCalendar = count($calendars) == 1;
     </p>
 </div>
 
-<input type="hidden" name="calendar-data-url" data-url="{{ route('calendars.month-list', ['calendar' => 0]) }}">
+<input type="hidden" name="calendar-data-url" data-url="{{ route('calendars.month-list', [$campaign, 'calendar' => 0]) }}">

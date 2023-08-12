@@ -184,7 +184,7 @@ class OrganisationMember extends Model
      */
     public function routeParams(array $options = []): array
     {
-        return array_merge([$this->character_id, $this->id], $options);
+        return $options + ['character' => $this->character, 'character_organisation' => $this];
     }
 
     /**

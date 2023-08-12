@@ -10,19 +10,19 @@
         @foreach ($actions as $action)
             <li>
                 @if ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT)
-                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : [$campaign, $model]) }}">
+                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params + ['campaign' => $campaign]) : [$campaign, $model]) }}">
                         <x-icon class="pencil"></x-icon>
                         {{ __('crud.edit') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_COPY)
-                    <a href="{{ route($model->url('create'), method_exists($model, 'routeCopyParams') ? $model->routeCopyParams($params) : [$campaign, $model]) }}">
+                    <a href="{{ route($model->url('create'), method_exists($model, 'routeCopyParams') ? $model->routeCopyParams($params + ['campaign' => $campaign]) : [$campaign, $model]) }}">
                         <x-icon class="fa-solid fa-copy"></x-icon>
                         {{ __('crud.actions.copy') }}
                     </a>
                 @elseif ($action === \App\Renderers\Layouts\Layout::ACTION_EDIT_AJAX)
-                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : [$campaign, $model]) }}"
+                    <a href="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params + ['campaign' => $campaign]) : ['campaign' => $campaign, $model]) }}"
                        data-toggle="ajax-modal" data-target="#entity-modal"
-                       data-url="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params) : [$campaign, $model]) }}"
+                       data-url="{{ route($model->url('edit'), method_exists($model, 'routeParams') ? $model->routeParams($params + [$campaign]) : [$campaign, $model]) }}"
                     >
                         <x-icon class="pencil"></x-icon>
                         {{ __('crud.edit') }}

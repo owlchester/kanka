@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Item $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->item)

@@ -3,11 +3,12 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Services\SidebarService $sidebar
  */
-$defaultIndex = ($campaign && $campaign->defaultToNested()) || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
-$defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? [$campaign, 'm' => 'table'] : [$campaign];
 ?>
 @if (!empty($campaign))
-    @php \App\Facades\Dashboard::campaign($campaign); @endphp
+    @php
+    $defaultIndex = $campaign->defaultToNested() || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
+    $defaultOptions = auth()->check() && auth()->user()->entityExplore === '1' ? [$campaign, 'm' => 'table'] : [$campaign];
+ @endphp
     @inject('sidebar', 'App\Services\SidebarService')
     @php $sidebar->campaign($campaign)->prepareQuickLinks()@endphp
     <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(280, 210)->url($campaign->image) }})" @endif>

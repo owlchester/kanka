@@ -1,7 +1,7 @@
 @if(isset($character))
     @php
         Datagrid::layout(\App\Renderers\Layouts\Character\Organisation::class)
-                    ->route('characters.organisations', [$character]);
+                    ->route('characters.organisations', [$campaign, $character]);
 
         $rows = $character
             ->organisationMemberships()

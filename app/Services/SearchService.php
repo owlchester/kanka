@@ -434,7 +434,7 @@ class SearchService
             'link' => $entity->url(),
             // @phpstan-ignore-next-line
             'type' => Module::singular($entity->typeId(), __('entities.' . $entity->type())),
-            'preview' => route('entities.preview', $entity)
+            'preview' => route('entities.preview', [$this->campaign, $entity])
         ];
     }
 

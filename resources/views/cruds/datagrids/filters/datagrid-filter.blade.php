@@ -27,7 +27,7 @@ $hasAttributeFilters = false;
     </div>
 
     @if ($activeFilters > 0)
-        <a href="{{ route($route, ['m' => $mode, 'reset-filter' => 'true']) }}" class="p-1.5">
+        <a href="{{ route($route, [$campaign, 'm' => $mode, 'reset-filter' => 'true']) }}" class="p-1.5">
             <i class="fa-solid fa-eraser" aria-hidden="true"></i> {{ __('crud.filters.clear') }}
         </a>
     @endif
@@ -36,7 +36,7 @@ $hasAttributeFilters = false;
 @section('modals')
     @parent()
     <x-dialog id="datagrid-filters" title="{{ __('crud.filters.title') }}" full="true">
-        {!! Form::open(['url' => route($route, ['m' => $mode]), 'method' => 'GET', 'id' => 'crud-filters-form', 'class' => 'block']) !!}
+        {!! Form::open(['url' => route($route, [$campaign, 'm' => $mode]), 'method' => 'GET', 'id' => 'crud-filters-form', 'class' => 'block']) !!}
             @if (auth()->guest())
                 <p class="help-block">{{ __('filters.helpers.guest') }}</p>
             @else
@@ -103,7 +103,7 @@ $hasAttributeFilters = false;
                         </a>
 
                         @if ($activeFilters > 0)
-                            <a href="{{ route($route, ['reset-filter' => 'true', 'm' => $mode]) }}" class="btn2 btn-sm btn-error btn-outline">
+                            <a href="{{ route($route, [$campaign, 'reset-filter' => 'true', 'm' => $mode]) }}" class="btn2 btn-sm btn-error btn-outline">
                                 <x-icon class="fa-solid fa-eraser"></x-icon>
                                 {{ __('crud.filters.mobile.clear') }}
                             </a>

@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->models($models)
     ->columns([
@@ -22,11 +23,11 @@
         ],
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => '<i class="fa-solid fa-users" title="' . trans('families.fields.members') . '"></i>',
-            'visible' => $campaignService->enabled('characters'),
+            'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->members->count();
             },
@@ -40,6 +41,5 @@
         'route' => 'families.index',
         'baseRoute' => 'families',
         'trans' => 'families.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

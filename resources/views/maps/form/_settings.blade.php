@@ -208,7 +208,7 @@ if (isset($model) && $model->isChunked()) {
                         :label="__('maps.fields.center_marker')"
                         :placeholder="__('maps.placeholders.center_marker')"
                         :allowClear="true"
-                        :route="route('markers.find', ['include' => $model->id])"
+                        :route="route('markers.find', [$campaign, 'include' => $model->id])"
                         :selected="$preset">
                     </x-forms.foreign>
                     @else

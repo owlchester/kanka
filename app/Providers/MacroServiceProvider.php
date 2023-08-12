@@ -61,7 +61,7 @@ class MacroServiceProvider extends ServiceProvider
         return $this;
     }
 
-    protected function addAds(): self
+    protected function addAds(bool $requestedSkip = false): self
     {
         /** @ads() to show ads */
         Blade::if('ads', function (string $section = null) {
@@ -90,8 +90,7 @@ class MacroServiceProvider extends ServiceProvider
             }
 
             // Boosted campaigns don't either have ads displayed to their members
-            $campaign = CampaignLocalization::getCampaign(false);
-            return !empty($campaign) && !$campaign->boosted();
+            return CampaignLocalization::hasCampaign() && !CampaignLocalization::getCampaign()->boosted();
         });
         return $this;
     }
@@ -125,8 +124,7 @@ class MacroServiceProvider extends ServiceProvider
             }
 
             // Boosted campaigns don't either have ads displayed to their members
-            $campaign = CampaignLocalization::getCampaign(false);
-            return !empty($campaign) && !$campaign->boosted();
+            return CampaignLocalization::hasCampaign() && !CampaignLocalization::getCampaign()->boosted();
         });
 
         return $this;

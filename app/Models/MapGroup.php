@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\VisibilityIDTrait;
@@ -98,7 +99,7 @@ class MapGroup extends Model
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->map_id, $this->id];
+        return $options + ['map' => $this->map_id, 'map_group' => $this->id];
     }
 
     /**
@@ -117,7 +118,8 @@ class MapGroup extends Model
      */
     public function getLink(): string
     {
-        return route('maps.map_groups.edit', ['map' => $this->map_id, $this->id]);
+        $campaign = CampaignLocalization::getCampaign();
+        return route('maps.map_groups.edit', [$campaign, 'map' => $this->map_id, $this->id]);
     }
 
     /**

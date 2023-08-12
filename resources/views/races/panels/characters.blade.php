@@ -6,6 +6,7 @@
 
 $allMembers = true;
 $datagridOptions = [
+    $campaign,
     $model,
     'init' => 1
 ];
@@ -26,21 +27,21 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         </a>
 
         @if (request()->has('race_id'))
-            <a href="{{ route('races.show', $model) }}" class="btn2 btn-sm">
+            <a href="{{ route('races.show', [$campaign, $model]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
                 ({{ $model->allCharacters()->count() }})
             </a>
         @else
-            <a href="{{ route('races.show', [$model, 'race_id' => $model->id]) }}" class="btn2 btn-sm">
+            <a href="{{ route('races.show', [$campaign, $model, 'race_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->characters()->count() }})
             </a>
         @endif
         @can('update', $model)
-            <a href="{{ route('races.members.create', ['race' => $model->id]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('races.members.create', $model->id) }}">
+            <a href="{{ route('races.members.create', [$campaign, $model]) }}" class="btn2 btn-primary btn-sm"
+               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('races.members.create', [$campaign, $model]) }}">
                 <x-icon class="plus"></x-icon>
                 <span class="hidden-sm hidden-xs">{{ __('crud.add') }}</span>
             </a>

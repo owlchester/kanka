@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApplyAttributeTemplate;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\AttributeService;
 
@@ -20,11 +20,10 @@ class AttributeTemplateController extends Controller
         $this->service = $service;
     }
 
-    public function apply(Entity $entity)
+    public function apply(Campaign $campaign, Entity $entity)
     {
-        $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->enabled('entity_attributes')) {
-            return redirect()->route('dashboard')->with(
+            return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
                     'fix' => link_to_route('campaign.modules', __('crud.fix-this-issue'), ['#entity_attributes']),
@@ -34,17 +33,17 @@ class AttributeTemplateController extends Controller
         $this->authorize('update', $entity->child);
         $this->authorize('attributes', $entity);
 
-        $campaign = CampaignLocalization::getCampaign();
         $templates = $this->service->campaign($campaign)->templateList();
 
 
         return view('entities.pages.attribute-templates.apply', compact(
+            'campaign',
             'entity',
             'templates'
         ));
     }
 
-    public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
+    public function applyTemplate(ApplyAttributeTemplate $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
         $templateName = $this->service->apply($entity, $request->get('template_id'));
@@ -54,19 +53,19 @@ class AttributeTemplateController extends Controller
         }
         if ($request->has('submit-story')) {
             return redirect()
-                ->route($entity->pluralType() . '.show', $entity->child)
+                ->route($entity->pluralType() . '.show', [$campaign, $entity->child])
                 ->with('success', __('entities/attributes.template.success', [
                     'name' => $templateName, 'entity' => $entity->child->name
                 ]));
         } elseif ($request->has('submit-update')) {
             return redirect()
-                ->route('entities.attributes.edit', $entity)
+                ->route('entities.attributes.edit', [$campaign, $entity])
                 ->with('success', __('entities/attributes.template.success', [
                     'name' => $templateName, 'entity' => $entity->child->name
                 ]));
         }
         return redirect()
-            ->route('entities.attributes', $entity)
+            ->route('entities.attributes', [$campaign, $entity])
             ->with('success', __('entities/attributes.template.success', [
                 'name' => $templateName, 'entity' => $entity->child->name
             ]));

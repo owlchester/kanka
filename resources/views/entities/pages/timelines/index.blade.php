@@ -3,7 +3,7 @@
  * @var \App\Models\Entity $entity
  * @var \App\Models\TimelineElement $element
  */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/timelines.show.title', ['name' => $entity->name]),
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
@@ -15,7 +15,6 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-timelines'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     @include('partials.errors')

@@ -118,7 +118,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                                 {{ __('campaigns.members.impersonating.message') }}
                             </p>
                         </div>
-                        <a href="{{ route('identity.back') }}" class="btn2 btn-sm switch-back">
+                        <a href="{{ route('identity.back', $campaign) }}" class="btn2 btn-sm switch-back">
                             <x-icon class="fa-solid fa-sign-out-alt"></x-icon>
                             {{ __('campaigns.members.actions.switch-back') }}
                         </a>

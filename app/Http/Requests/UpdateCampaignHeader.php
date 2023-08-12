@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCampaignHeader extends FormRequest
@@ -25,7 +26,7 @@ class UpdateCampaignHeader extends FormRequest
     {
         return [
             'excerpt' => 'nullable',
-            'header_image' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'header_image' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
         ];
     }
 }

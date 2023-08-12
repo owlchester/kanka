@@ -10,13 +10,12 @@
     ],
     'mainTitle' => false,
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('fullpage-form')
 {!! Form::model($model, [
     'method' => 'PATCH',
     'enctype' => 'multipart/form-data',
-    'route' => [$name . '.update', $model->id],
+    'route' => [$name . '.update', [$campaign, $model->id]],
     'data-shortcut' => '1',
     'data-max-fields' => ini_get('max_input_vars'),
     'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null),
@@ -79,8 +78,8 @@
     </div>
 
 
-    @if(!empty($model->entity) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', $model->entity->id) }}" />
+    @if(!empty($model->entity) && $campaign->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', [$campaign, $model->entity->id]) }}" />
     @endif
 @endsection
 

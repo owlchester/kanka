@@ -266,8 +266,6 @@ class Map extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $items['second']['maps'] = [
             'name' => Module::plural($this->entityTypeId(), 'entities.maps'),
             'route' => 'maps.maps',

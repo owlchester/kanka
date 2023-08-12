@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePost;
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Services\MultiEditingService;
 use App\Models\Post;
@@ -16,25 +17,26 @@ class PostController extends Controller
 {
     use GuestAuthTrait;
 
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('browse', [$entity->child]);
         return redirect()->to($entity->url());
     }
 
-    public function create(Entity $entity, Post $post)
+    public function create(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'add']);
         $parentRoute = $entity->pluralType();
 
         return view('entities.pages.posts.create', compact(
+            'campaign',
             'post',
             'entity',
             'parentRoute',
         ));
     }
 
-    public function show(Entity $entity, Post $post)
+    public function show(Campaign $campaign, Entity $entity, Post $post)
     {
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
@@ -48,7 +50,7 @@ class PostController extends Controller
         return redirect()->to($entity->url());
     }
 
-    public function store(StorePost $request, Entity $entity)
+    public function store(StorePost $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('post', [$entity->child, 'add']);
 
@@ -59,7 +61,6 @@ class PostController extends Controller
 
         $note = new Post();
         $note->entity_id = $entity->id;
-        $campaign = CampaignLocalization::getCampaign();
         if ($campaign->superboosted()) {
             $note = $note->create($request->all());
         } else {
@@ -67,26 +68,25 @@ class PostController extends Controller
         }
 
         if ($request->has('submit-new')) {
-            $route = route('entities.posts.create', [$entity]);
+            $route = route('entities.posts.create', [$campaign, $entity]);
             return response()->redirectTo($route);
         } elseif ($request->has('submit-update')) {
-            $route = route('entities.posts.edit', [$entity, $note]);
+            $route = route('entities.posts.edit', [$campaign, $entity, $note]);
             return response()->redirectTo($route);
         }
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id])
+            ->route($entity->pluralType() . '.show', [$campaign, $entity->child->id])
             ->with('success', __('entities/notes.create.success', [
                 'name' => $note->name, 'entity' => $entity->child->name
             ]));
     }
 
-    public function edit(Entity $entity, Post $post)
+    public function edit(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'edit', $post]);
-
-        $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
+
         /** @var MiscModel $model */
         $model = $post;
 
@@ -104,6 +104,7 @@ class PostController extends Controller
         $from = request()->get('from');
 
         return view('entities.pages.posts.edit', compact(
+            'campaign',
             'entity',
             'model',
             'parentRoute',
@@ -112,7 +113,7 @@ class PostController extends Controller
         ));
     }
 
-    public function update(StorePost $request, Entity $entity, Post $post)
+    public function update(StorePost $request, Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'edit', $post]);
 
@@ -135,27 +136,27 @@ class PostController extends Controller
 
 
         if ($request->has('submit-new')) {
-            $route = route('entities.posts.create', [$entity]);
+            $route = route('entities.posts.create', [$campaign, $entity]);
             return response()->redirectTo($route);
         } elseif ($request->has('submit-update')) {
-            $route = route('entities.posts.edit', [$entity, $post]);
+            $route = route('entities.posts.edit', [$campaign, $entity, $post]);
             return response()->redirectTo($route);
         }
 
-        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, '#post-' . $post->id])
+        return redirect()->route($entity->pluralType() . '.show', [$campaign, $entity->child->id, '#post-' . $post->id])
             ->with('success', __('entities/notes.edit.success', [
                 'name' => $post->name, 'entity' => $entity->name
             ]));
     }
 
-    public function destroy(Entity $entity, Post $post)
+    public function destroy(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity->child, 'delete']);
 
         $post->delete();
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id])
+            ->route($entity->pluralType() . '.show', [$campaign, $entity->child->id])
             ->with('success', __('entities/notes.destroy.success', [
                 'name' => $post->name, 'entity' => $entity->name
             ]));

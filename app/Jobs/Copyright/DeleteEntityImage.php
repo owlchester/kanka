@@ -3,6 +3,7 @@
 namespace App\Jobs\Copyright;
 
 use App\Models\Campaign;
+use App\Services\CampaignService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -62,6 +63,7 @@ class DeleteEntityImage implements ShouldQueue
             // Entity was deleted
             return;
         }
+        /** @var CampaignService $service */
         $service = app()->make(\App\Services\CampaignService::class);
         $campaign = Campaign::find($entity->campaign_id);
 

@@ -34,7 +34,7 @@ if (!empty($source) && $source->is_private) {
 <x-alert type="warning" id="entity-is-private" :hidden="!$hidden">
     <strong>{{ __('entities/permissions.privacy.warning') }}</strong>
     <p>{!! __('entities/permissions.privacy.text', [
-    'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), null)
+    'admin' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign)
 ]) !!}</p>
 </x-alert>
 

@@ -1,5 +1,5 @@
 <div class="join">
-    <a href="{{ route($route . '.create') }}" class="btn2 btn-primary join-item btn-new-entity" data-entity-type="{{ $name }}">
+    <a href="{{ route($route . '.create', $campaign) }}" class="btn2 btn-primary join-item btn-new-entity" data-entity-type="{{ $name }}">
         <x-icon class="plus"></x-icon>
         <span class="hidden-xs hidden-sm">{!! $singular !!}</span>
     </a>
@@ -12,7 +12,7 @@
                 @if ($templates->isNotEmpty())
                     @foreach ($templates as $entityTemplate)
                         <li>
-                            <a href="{{ route($route . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $name }}">
+                            <a href="{{ route($route . '.create', [$campaign, 'copy' => $entityTemplate->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $name }}">
                                 <i class="fa-solid fa-star" aria-hidden="true"></i> {{ $entityTemplate->name  }}</span>
                             </a>
                         </li>

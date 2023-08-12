@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\EntityMention $mention */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/mentions.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => false,
@@ -9,7 +9,6 @@
     'bodyClass' => 'entity-mentions'
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
         <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">

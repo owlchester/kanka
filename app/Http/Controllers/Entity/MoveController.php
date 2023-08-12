@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Entity;
 use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MoveEntityRequest;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\EntityService;
 use App\Traits\GuestAuthTrait;
@@ -33,7 +34,7 @@ class MoveController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('view', $entity->child);
 
@@ -41,6 +42,7 @@ class MoveController extends Controller
         $campaigns[0] = __('entities/move.fields.select_one');
 
         return view('entities.pages.move.index', compact(
+            'campaign',
             'entity',
             'campaigns'
         ));
@@ -52,7 +54,7 @@ class MoveController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function move(MoveEntityRequest $request, Entity $entity)
+    public function move(MoveEntityRequest $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('view', $entity->child);
 
@@ -63,11 +65,11 @@ class MoveController extends Controller
             $copied = $this->service->copied();
 
             return redirect()
-                ->route($entity->pluralType() . '.index')
+                ->route($entity->pluralType() . '.index', $campaign)
                 ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => $this->service->targetCampaign()->name]));
         } catch (TranslatableException $ex) {
             return redirect()
-                ->route($entity->pluralType() . '.show', $entity->entity_id)
+                ->route($entity->pluralType() . '.show', [$campaign, $entity->entity_id])
                 ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
         }
     }

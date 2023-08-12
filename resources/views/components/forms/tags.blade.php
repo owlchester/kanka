@@ -11,7 +11,7 @@
     <select multiple="multiple" name="tags[]" id="{{ $id }}"
             class="form-control form-tags"
             style="width: 100%"
-            data-url="{{ route('tags.find') }}"
+            data-url="{{ route('tags.find', $campaign) }}"
             data-allow-new="{{ $allowNew ? 'true' : 'false' }}"
             data-placeholder=""
             @if ($allowClear) data-allow-clear="true" @endif

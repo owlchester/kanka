@@ -21,7 +21,7 @@
             <?php /** @var \App\Models\Campaign $campaign */?>
             @foreach ($campaigns as $campaign)
                 <li>
-                    <a href="https://kanka.io/{{ $user->locale }}/{{ $campaign->getMiddlewareLink() }}">
+                    <a href="{{ route('dashboard', $campaign) }}">
                         {{ $campaign->name }}
                     </a>
                 </li>

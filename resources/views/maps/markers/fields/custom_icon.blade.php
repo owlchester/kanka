@@ -8,17 +8,17 @@
         'list' => 'map-marker-icon-list',
         'autocomplete' => 'off',
         'data-paste' => 'fontawesome',
-        ($campaignService->campaign()->boosted() ? null : 'disabled')])
+        ($campaign->boosted() ? null : 'disabled')])
     !!}
     <p class="help-block">{!! __('maps/markers.helpers.custom_icon_v2', [
         'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>',
         'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>',
         'docs' => link_to('https://docs.kanka.io/en/latest/entities/maps/markers.html#custom-icon', __('front.menu.documentation'), ['target' => '_blank'])
         ]) !!}</p>
-    @if (!$campaignService->campaign()->boosted())
+    @if (!$campaign->boosted())
         @subscriber()
         <p class="help-block">
-            <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaignService->campaign()])]) !!}
+            <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaign'), ['campaign' => $campaign])]) !!}
         </p>
     @else
         <p class="help-block">

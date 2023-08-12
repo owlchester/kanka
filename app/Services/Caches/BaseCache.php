@@ -4,6 +4,7 @@ namespace App\Services\Caches;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
+use App\Traits\CampaignAware;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -15,8 +16,7 @@ use Illuminate\Support\Facades\Log;
  */
 abstract class BaseCache
 {
-    /** @var Campaign|null */
-    protected $campaign;
+    use CampaignAware;
 
     /** @var User|null */
     protected User|null $user;
@@ -26,19 +26,7 @@ abstract class BaseCache
      */
     public function __construct()
     {
-        $this->campaign = CampaignLocalization::getCampaign();
         $this->user = Auth::check() ? Auth::user() : null;
-    }
-
-    /**
-     * Set the campaign
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
     }
 
     /**

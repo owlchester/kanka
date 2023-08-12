@@ -9,7 +9,7 @@ class AbilityFilter extends DatagridFilter
     /**
      * Filters available for abilities
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -18,7 +18,7 @@ class AbilityFilter extends DatagridFilter
                 'field' => 'ability_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('abilities.find'),
+                'route' => route('abilities.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Ability::class,
             ])

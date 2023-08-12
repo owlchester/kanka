@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Services\AttributeService;
+use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
 use App\Models\Entity;
 use App\Models\Attribute;
 
 class CrudAttributeController extends Controller
 {
+    use CampaignAware;
+
     /**
      * @var string
      */
@@ -50,10 +53,12 @@ class CrudAttributeController extends Controller
         // @phpstan-ignore-next-line
         $route = $entity->type() . $this->route;
         $parentRoute = $entity->pluralType();
+        $campaign = $this->campaign;
 
         $existing = count($entity->attributes);
 
         return view('cruds.attributes.index', compact(
+            'campaign',
             'attributes',
             'name',
             'route',
@@ -72,7 +77,9 @@ class CrudAttributeController extends Controller
         $name = $entity->pluralType() . '.attributes' . $this->view;
         $route = 'entities.attributes';
         $parentRoute = $entity->pluralType();
+        $campaign = $this->campaign;
         return view('cruds.attributes.create', compact(
+            'campaign',
             'attribute',
             'name',
             'route',
@@ -83,7 +90,7 @@ class CrudAttributeController extends Controller
 
     /**
      */
-    public function crudStore(Request $request, Entity $entity)
+    public function crudStore(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('attribute', [$entity->child, 'add']);
 
@@ -92,7 +99,7 @@ class CrudAttributeController extends Controller
         $attribute = $attribute->create($request->all());
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id, '#attribute'])
+            ->route($entity->pluralType() . '.show', [$this->campaign, $entity->child->id, '#attribute'])
             ->with('success', trans('crud.attributes.create.success', [
                 'name' => $attribute->name, 'entity' => $entity->child->name
             ]));
@@ -101,15 +108,17 @@ class CrudAttributeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function crudEdit(Entity $entity, Attribute $model)
+    public function crudedit(Campaign $campaign, Entity $entity, Attribute $model)
     {
         $this->authorize('attribute', [$entity->child, 'edit']);
 
         $name = $entity->pluralType() . '.attributes' . $this->view;
         $route = 'entities.attributes';
         $parentRoute = $entity->pluralType();
+        $campaign = $this->campaign;
 
         return view('cruds.attributes.edit', compact(
+            'campaign',
             'entity',
             'model',
             'name',
@@ -120,13 +129,13 @@ class CrudAttributeController extends Controller
 
     /**
      */
-    public function crudUpdate(Request $request, Entity $entity, Attribute $attribute)
+    public function crudUpdate(Request $request, Campaign $campaign, Entity $entity, Attribute $attribute)
     {
         $this->authorize('attribute', [$entity->child, 'edit']);
 
         $attribute->update($request->all());
 
-        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, '#attribute'])
+        return redirect()->route($entity->pluralType() . '.show', [$this->campaign, $entity->child->id, '#attribute'])
             ->with('success', trans('crud.attributes.edit.success', [
                 'name' => $attribute->name, 'entity' => $entity->name
             ]));
@@ -141,7 +150,7 @@ class CrudAttributeController extends Controller
         $attribute->delete();
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id, '#attribute'])
+            ->route($entity->pluralType() . '.show', [$this->campaign, $entity->child->id, '#attribute'])
             ->with('success', trans('crud.attributes.destroy.success', [
                 'name' => $attribute->name, 'entity' => $entity->name
             ]));
@@ -164,7 +173,7 @@ class CrudAttributeController extends Controller
         );
         $this->attributeService->entity($entity)->save($data);
 
-        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, '#attribute'])
+        return redirect()->route($entity->pluralType() . '.show', [$this->campaign, $entity->child->id, '#attribute'])
             ->with('success', trans('crud.attributes.index.success', ['entity' => $entity->name]));
     }
 }

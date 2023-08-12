@@ -1,7 +1,6 @@
 <?php $enableNew = true; ?>
-@inject('campaignService', 'App\Services\CampaignService')
 
-<form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', ['type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }}">
+<form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', [$campaign, 'type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }}">
     @csrf
 
 <div class="modal-body entity-creator-body-{{ $type }}">
@@ -21,7 +20,7 @@
                 'autocomplete' => 'off',
                 'class' => 'form-control',
                 'rows' => 4,
-                'data-live' => route('search.live'),
+                'data-live' => route('search.live', $campaign),
                 'data-type' => $singularType,
                 'id' => 'qq-name-field'
             ]) !!}
@@ -31,7 +30,7 @@
                     'autocomplete' => 'off',
                     'class' => 'form-control',
                     'maxlength' => 191,
-                    'data-live' => route('search.live'),
+                    'data-live' => route('search.live', $campaign),
                     'data-type' => $singularType,
                     'data-bulk' => true,
                     'id' => $type === 'posts' ? 'qq-post-name-field' : 'qq-name-field'

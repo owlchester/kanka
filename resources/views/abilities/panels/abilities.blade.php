@@ -3,6 +3,7 @@
 $datagridOptions = [];
 if (!empty($onload)) {
     $routeOptions = [
+        $campaign,
         $model,
         'init' => 1,
     ];

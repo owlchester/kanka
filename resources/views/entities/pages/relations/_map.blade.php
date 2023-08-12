@@ -10,15 +10,15 @@ $options = [
 ];
 
 ?>
-@if(!$campaignService->campaign()->boosted())
-    <x-cta :campaign="$campaignService->campaign()">
+@if(!$campaign->boosted())
+    <x-cta :campaign="$campaign">
         <p>{{ __('entities/relations.call-to-action') }}</p>
     </x-cta>
     <?php return ?>
 @endif
 
 {!! Form::open([
-    'route' => ['entities.relations.index', $entity],
+    'route' => ['entities.relations.index', $campaign, $entity],
     'method' => 'GET',
 ]) !!}
     <div class="join mb-5 w-full">
@@ -32,7 +32,7 @@ $options = [
     <div class="loading text-center" id="spinner">
         <i class="fa-solid fa-spinner fa-spin fa-4x" aria-hidden="true"></i>
     </div>
-    <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$entity, 'option' => $option]) }}"></div>
+    <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$campaign, $entity, 'option' => $option]) }}"></div>
 </x-box>
 
 @section('scripts')

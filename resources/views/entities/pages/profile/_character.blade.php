@@ -19,7 +19,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                 </p>
             @endif
 
-            @if ($campaignService->enabled('races') && !$model->races->isEmpty())
+            @if ($campaign->enabled('races') && !$model->races->isEmpty())
                 @php $existingRaces = []; @endphp
                 @foreach ($model->races as $race)
                     @if(!empty($existingRaces[$race->id]))
@@ -32,7 +32,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                 </p>
                 @endforeach
             @endif
-            @if ($campaignService->enabled('families') && !$model->families->isEmpty())
+            @if ($campaign->enabled('families') && !$model->families->isEmpty())
                 @php $existingFamilies = []; @endphp
                 @foreach ($model->families as $family)
                     @if(!empty($existingFamilies[$family->id]))

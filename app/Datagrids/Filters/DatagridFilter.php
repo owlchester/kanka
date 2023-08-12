@@ -7,6 +7,7 @@ use App\Models\Character;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Tag;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Auth;
  */
 abstract class DatagridFilter
 {
+    use CampaignAware;
+
     /** @var array Filters to be rendered */
     protected array $filters = [];
 
@@ -54,7 +57,7 @@ abstract class DatagridFilter
             'field' => 'location_id',
             'label' => \App\Facades\Module::singular(config('entities.ids.location'), __('entities.location')),
             'type' => 'select2',
-            'route' => route('locations.find'),
+            'route' => route('locations.find', $this->campaign),
             'placeholder' =>  $placeholder,
             'model' => Location::class,
             'withChildren' => true,
@@ -77,7 +80,7 @@ abstract class DatagridFilter
             'field' => $field,
             'label' => \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')),
             'type' => 'select2',
-            'route' => route('characters.find'),
+            'route' => route('characters.find', $this->campaign),
             'placeholder' =>  $placeholder,
             'model' => Character::class,
         ];
@@ -99,7 +102,7 @@ abstract class DatagridFilter
             'field' => 'journal_id',
             'label' => \App\Facades\Module::singular(config('entities.ids.journal'), __('entities.journal')),
             'type' => 'select2',
-            'route' => route('journals.find'),
+            'route' => route('journals.find', $this->campaign),
             'placeholder' =>  $placeholder,
             'model' => Journal::class,
         ];
@@ -121,7 +124,7 @@ abstract class DatagridFilter
             'field' => 'tags',
             'label' => \App\Facades\Module::singular(config('entities.ids.tag'), __('entities.tag')),
             'type' => 'tag',
-            'route' => route('tags.find'),
+            'route' => route('tags.find', $this->campaign),
             'placeholder' =>  $placeholder,
             'model' => Tag::class,
         ];

@@ -42,13 +42,14 @@ class InviteService
             throw new Exception(__('campaigns.invites.error.invalid_token'));
         }
 
+        /** @var CampaignInvite|null $invite */
         $invite = CampaignInvite::where('token', $token)->first();
         if (empty($invite)) {
             throw new Exception(__('campaigns.invites.error.invalid_token'));
         }
 
-        // Inactive or removed campaign
-        if ($invite->is_active == false || empty($invite->campaign)) {
+        // Inactive (removed campaigns won't have their token still in the db)
+        if ($invite->is_active == false) {
             throw new Exception(__('campaigns.invites.error.inactive_token'));
         }
 
@@ -134,7 +135,7 @@ class InviteService
                 [
                     'user' => $this->user->name,
                     'campaign' => $campaign->name,
-                    'link' => $campaign->getMiddlewareLink()
+                    'link' => route('dashboard', $campaign),
                 ]
             )
         );

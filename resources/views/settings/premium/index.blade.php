@@ -106,8 +106,8 @@
         @foreach ($premiums as $premium)
             @include('settings.boosters._campaign', ['campaign' => $premium->campaign])
         @endforeach
-        @foreach ($campaigns as $campaign)
-            @include('settings.boosters._campaign')
+        @foreach ($campaigns as $userCampaign)
+            @include('settings.boosters._campaign', ['campaign' => $userCampaign])
         @endforeach
     </div>
 

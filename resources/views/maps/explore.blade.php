@@ -3,7 +3,6 @@
 * @var \App\Models\Map $map
 */
 ?>
-@inject('campaignService', 'App\Services\CampaignService')
 
 @extends('layouts.map', [
     'title' => $map->name,
@@ -120,7 +119,7 @@
 
         // Map ticker to update markers every 20 seconds
         var tickerTimeout = 20000;
-        var tickerUrl = '{{ route('maps.ticker', $map) }}';
+        var tickerUrl = '{{ route('maps.ticker', [$campaign, $map]) }}';
         var tickerTs = '{{ \Carbon\Carbon::now() }}';
         $(document).ready(function() {
             setTimeout(mapTicker, tickerTimeout);
@@ -216,7 +215,7 @@
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content bg-base-100">
-                {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
+                {!! Form::open(['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
                     <div class="modal-header">
                         <x-dialog.close :modal="true" />
                         <h4 class="modal-title">

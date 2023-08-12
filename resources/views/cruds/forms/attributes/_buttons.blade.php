@@ -75,7 +75,7 @@
             {{ __('entities/attributes.fields.is_private') }}
         </label>
         <p class="help-block">{!! __('entities/attributes.hints.is_private2', [
-    'admin-role' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), null, ['target' => '_blank'])
+    'admin-role' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), $campaign, ['target' => '_blank'])
     ]) !!}</p>
     </div>
 @endif

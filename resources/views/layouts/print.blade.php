@@ -3,7 +3,6 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\MiscModel $miscModel
  */
-$campaign = CampaignLocalization::getCampaign();
 $themeOverride = request()->get('_theme', 'base');
 $specificTheme = null;
 ?><!DOCTYPE html>
@@ -87,14 +86,7 @@ $specificTheme = null;
             <section class="content">
                 @include('partials.success')
 
-@if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
-                <p class="text-center text-muted">
-                    {!! __('misc.ads.remove_v2', [
-    'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
-    'boosting' => link_to_route('front.pricing', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
-    ]) !!}
-                </p>
-@endif
+                @include('partials.ads.top')
 
                 @yield('entity-actions')
                 @yield('entity-header')

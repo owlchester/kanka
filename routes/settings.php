@@ -10,8 +10,8 @@ use App\Http\Controllers\Settings\PremiumController;
 use App\Http\Controllers\Settings\ReleaseController;
 use App\Http\Controllers\Settings\AccountController;
 use App\Http\Controllers\Settings\AppearanceController;
-use App\Http\Controllers\Settings\NotificationController;
-use App\Http\Controllers\NotificationController as OldNotificationController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Settings\NewsletterController;
 use App\Http\Controllers\Settings\PatreonController;
 use App\Http\Controllers\Settings\ApiController;
 use App\Http\Controllers\Settings\SubscriptionController;
@@ -58,8 +58,8 @@ Route::get('/api', [ApiController::class, 'index'])->name('settings.api');
 Route::get('/appearance', [AppearanceController::class, 'index'])->name('settings.appearance');
 Route::patch('/appearance', [AppearanceController::class, 'update'])->name('settings.appearance.update');
 
-Route::get('/notification', [NotificationController::class, 'index'])->name('settings.notifications');
-Route::patch('/notification', [NotificationController::class, 'update'])->name('settings.notifications.save');
+Route::get('/newsletter', [NewsletterController::class, 'index'])->name('settings.newsletter');
+Route::patch('/newsletter', [NewsletterController::class, 'update'])->name('settings.newsletter.save');
 
 Route::get('/subscription', [SubscriptionController::class, 'index'])->name('settings.subscription');
 Route::get('/subscription/change', [SubscriptionController::class, 'change'])->name('settings.subscription.change');
@@ -166,8 +166,8 @@ Notifications
 --------------------------------------------------------------------------
  */
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
-Route::get('/notifications/refresh', [OldNotificationController::class, 'refresh'])->name('notifications.refresh');
-Route::post('/notifications/read/{id}', [OldNotificationController::class, 'read'])->name('notifications.read');
-Route::post('/notifications/clear-all', [OldNotificationController::class, 'clearAll'])->name('notifications.clear-all');
+Route::get('/notifications/refresh', [NotificationController::class, 'refresh'])->name('notifications.refresh');
+Route::post('/notifications/read/{id}', [NotificationController::class, 'read'])->name('notifications.read');
+Route::post('/notifications/clear-all', [NotificationController::class, 'clearAll'])->name('notifications.clear-all');
 
 Route::get('/layout/navigation', [NavigationController::class, 'index'])->name('layout.navigation');

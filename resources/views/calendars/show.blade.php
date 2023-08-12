@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Calendar $model */
-$options = ['calendar' => $model->id];
+$options = [$campaign, $model];
 $redirect = [];
 if (request()->get('layout') === 'year') {
     $redirect[] = 'layout=year';
@@ -15,7 +15,7 @@ if (!empty($redirect)) {
 }
 ?>
 @section('entity-header-actions-override')
-    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+    <div class="header-buttons flex gap-2 items-center justify-end">
         @include('entities.headers.toggle')
         @can('update', $model)
             <a href="{{ route('calendars.edit', $options) }}" class="btn2 btn-primary btn-sm ">
@@ -23,7 +23,7 @@ if (!empty($redirect)) {
             </a>
         @endcan
         @can('post', [$model, 'add'])
-            <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn2 btn-accent btn-sm btn-new-post"
+            <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn2 btn-accent btn-sm btn-new-post"
                data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
                 <x-icon class="plus"></x-icon> {{ __('crud.actions.new_post') }}
             </a>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderStyles;
@@ -114,7 +113,6 @@ class StyleController extends Controller
 
     public function update(StoreCampaignStyle $request, Campaign $campaign, CampaignStyle $campaignStyle)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $campaignStyle->update($request->only('name', 'content', 'is_enabled'));

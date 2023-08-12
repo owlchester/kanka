@@ -35,7 +35,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                 <li>
-                                    <a href="{{ route('timelines.timeline_elements.edit', [$timeline, $element, 'from' => 'view']) }}" title="{{ __('crud.edit') }}"
+                                    <a href="{{ route('timelines.timeline_elements.edit', [$campaign, $timeline, $element, 'from' => 'view']) }}" title="{{ __('crud.edit') }}"
                                     >
                                         <x-icon class="edit"></x-icon> {{ __('crud.edit') }}
                                     </a>

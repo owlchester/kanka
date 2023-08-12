@@ -61,8 +61,8 @@
             </td>
             <td class="text-right">
                 @can('events', $relation->calendar)
-                    <a href="{{ route('entities.entity_events.edit', [$relation->entity, $relation->id, 'next' => 'entity.events']) }}"
-                    data-toggle="ajax-modal" data-url="{{ route('entities.entity_events.edit', [$relation->entity, $relation->id, 'next' => 'entity.events']) }}" data-target="#entity-modal">
+                    <a href="{{ route('entities.entity_events.edit', [$campaign, $relation->entity, $relation->id, 'next' => 'entity.events']) }}"
+                    data-toggle="ajax-modal" data-url="{{ route('entities.entity_events.edit', [$campaign, $relation->entity, $relation->id, 'next' => 'entity.events']) }}" data-target="#entity-modal">
                         <x-icon class="edit"></x-icon>
                     </a>
                 @endcan

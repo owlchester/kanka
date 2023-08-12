@@ -8,7 +8,6 @@ $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('e
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
     @include('characters.panels._buttons')

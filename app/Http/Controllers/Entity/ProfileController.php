@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ class ProfileController extends Controller
 {
     use GuestAuthTrait;
 
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
@@ -24,6 +25,7 @@ class ProfileController extends Controller
         }
 
         return view('entities.pages.profile.index')
+            ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('model', $entity->child);
     }

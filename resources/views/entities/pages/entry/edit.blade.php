@@ -10,11 +10,10 @@
     'mainTitle' => false,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
 
-    {!! Form::model($entity->child, ['route' => ['entities.entry.update', $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form', 'data-maintenance' => 1, 'data-unload' => 1,]) !!}
+    {!! Form::model($entity->child, ['route' => ['entities.entry.update', $campaign, $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form', 'data-maintenance' => 1, 'data-unload' => 1,]) !!}
 
         @include('partials.errors')
 

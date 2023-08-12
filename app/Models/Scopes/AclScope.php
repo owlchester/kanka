@@ -3,7 +3,10 @@
 namespace App\Models\Scopes;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Identity;
 use App\Facades\Permissions;
+use App\Facades\UserCache;
+use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\EntityNote;
@@ -65,6 +68,10 @@ class AclScope implements Scope
         // to build a system to limit exposing private stuff on a campaign export.
         if (app()->runningInConsole()) {
             return $query;
+        }
+
+        if ($model instanceof Campaign) {
+            return $this->applyCampaign($query, $model);
         }
 
         // For posts, we need a different hook because they can be private even for an admin
@@ -219,5 +226,38 @@ class AclScope implements Scope
                     ->orWhereIn($table . '.id', Permissions::allowedPosts());
             })
             ->whereNotIn($table . '.id', Permissions::deniedPosts());
+    }
+
+    protected function applyCampaign(Builder $query, Campaign $campaign): Builder
+    {
+        // Guests only see public campaigns
+        if (auth()->guest()) {
+            return $query->public();
+        }
+
+        // If we are impersonating, that gives us only a single choice
+        if (Identity::isImpersonating()) {
+            return $query->where('campaigns.id', Identity::getCampaignId());
+        }
+
+        // Limit to the campaigns the user is in
+        $campaigns = UserCache::user(auth()->user())->campaigns();
+
+        return $query
+            /*->select('campaigns.*')
+            ->leftJoin('campaign_user as cm', function ($on) {
+                $on
+                    ->on('cm.campaign_id', '=', 'campaigns.id')
+                    ->where('cm.user_id', '=', auth()->user()->id)
+                ;
+            })*/
+            ->where(function (Builder|Campaign $sub) use ($campaigns) {
+                $sub
+                    ->public()
+                    ->orWhereIn('campaigns.id', $campaigns->pluck('id'))
+                    //->orWhereNotNull('cm.user_id')
+                ;
+            })
+            ;
     }
 }

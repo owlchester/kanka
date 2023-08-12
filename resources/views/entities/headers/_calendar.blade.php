@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Calendar $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->date)

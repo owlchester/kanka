@@ -6,12 +6,11 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
     @can('update', $model)
         <div class="header-buttons inline-block flex gap-2 items-center justify-end">
-            <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn2 btn-accent btn-sm"
+            <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model]) }}" class="btn2 btn-accent btn-sm"
             >
                 <x-icon class="plus"></x-icon>
                 {{ __('timelines/eras.actions.add') }}

@@ -11,7 +11,6 @@
     'miscModel' => $model,
     'bodyClass' => 'entity-image-replace'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')
@@ -24,14 +23,14 @@
     <div class="modal-header">
 
         {!! Form::open([
-            'route' => ['entities.image.replace', $entity],
+            'route' => ['entities.image.replace', $campaign, $entity],
             'method' => 'POST',
             'enctype' => 'multipart/form-data',
         ]) !!}
 
         @include('cruds.fields.image', ['imageRequired' => false, 'model' => $model])
 
-        @includeWhen($campaignService->campaign()->boosted(), 'cruds.fields.entity_image')
+        @includeWhen($campaign->boosted(), 'cruds.fields.entity_image')
 
         <x-dialog.footer :modal="true">
             <button type="submit" class="btn2 btn-primary">

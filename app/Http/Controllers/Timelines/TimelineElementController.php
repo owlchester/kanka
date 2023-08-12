@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Timelines;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTimelineElement;
-use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\TimelineEra;
 use App\Services\MultiEditingService;
 use App\Models\Timeline;
@@ -14,8 +14,7 @@ use Illuminate\Http\Request;
 
 class TimelineElementController extends Controller
 {
-    /** @var TimelineService  */
-    protected $service;
+    protected TimelineService $service;
 
     /** @var string[] Form fields passed on to the model */
     protected $fields = [
@@ -42,13 +41,13 @@ class TimelineElementController extends Controller
         $this->service = $timelineService;
     }
 
-    public function show(Timeline $timeline, TimelineElement $timelineElement)
+    public function show(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
-        return redirect()->route('timelines.show', $timeline);
+        return redirect()->route('timelines.show', [$campaign, $timeline]);
     }
-    public function index(Timeline $timeline)
+    public function index(Campaign $campaign, Timeline $timeline)
     {
-        return redirect()->route('timelines.show', $timeline);
+        return redirect()->route('timelines.show', [$campaign, $timeline]);
     }
 
     /**
@@ -56,7 +55,7 @@ class TimelineElementController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create(Request $request, Timeline $timeline)
+    public function create(Request $request, Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('update', $timeline);
 
@@ -67,7 +66,7 @@ class TimelineElementController extends Controller
 
         return view(
             'timelines.elements.create',
-            compact('timeline', 'ajax', 'eraId', 'position', 'era')
+            compact('campaign', 'timeline', 'ajax', 'eraId', 'position', 'era')
         );
     }
 
@@ -77,7 +76,7 @@ class TimelineElementController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Timeline $timeline, StoreTimelineElement $request)
+    public function store(Campaign $campaign, Timeline $timeline, StoreTimelineElement $request)
     {
         $this->authorize('update', $timeline);
 
@@ -93,7 +92,7 @@ class TimelineElementController extends Controller
         $this->service->reorderElements($new);
 
         return redirect()
-            ->route('timelines.show', [$timeline->id, '#timeline-element-' . $new->id])
+            ->route('timelines.show', [$campaign, $timeline->id, '#timeline-element-' . $new->id])
             ->withSuccess(__('timelines/elements.create.success', ['name' => $new->name]));
     }
 
@@ -103,11 +102,10 @@ class TimelineElementController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Timeline $timeline, TimelineElement $timelineElement)
+    public function edit(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
         $this->authorize('update', $timeline);
 
-        $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
         $model = $timelineElement;
 
@@ -125,7 +123,7 @@ class TimelineElementController extends Controller
 
         return view(
             'timelines.elements.edit',
-            compact('timeline', 'ajax', 'model', 'editingUsers')
+            compact('timeline', 'campaign', 'ajax', 'model', 'editingUsers')
         );
     }
 
@@ -136,7 +134,7 @@ class TimelineElementController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreTimelineElement $request, Timeline $timeline, TimelineElement $timelineElement)
+    public function update(StoreTimelineElement $request, Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
         $this->authorize('update', $timeline);
 
@@ -166,7 +164,7 @@ class TimelineElementController extends Controller
         }
 
         return redirect()
-            ->route('timelines.show', [$timeline->id, '#timeline-element-' . $timelineElement->id])
+            ->route('timelines.show', [$campaign, $timeline->id, '#timeline-element-' . $timelineElement->id])
             ->withSuccess(__('timelines/elements.edit.success', ['name' => $timelineElement->name]));
     }
 
@@ -176,7 +174,7 @@ class TimelineElementController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Timeline $timeline, TimelineElement $timelineElement)
+    public function destroy(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
         $this->authorize('update', $timeline);
 
@@ -184,7 +182,7 @@ class TimelineElementController extends Controller
         $this->service->reorderElements($timelineElement, true);
 
         return redirect()
-            ->route('timelines.show', [$timeline])
+            ->route('timelines.show', [$campaign, $timeline])
             ->withSuccess(__('timelines/elements.delete.success', ['name' => $timelineElement->name]));
     }
 }

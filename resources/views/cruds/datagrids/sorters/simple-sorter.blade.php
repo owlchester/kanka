@@ -9,7 +9,7 @@
             <span class="sr-only">Order by</span>
         </a>
         <ul class="dropdown-menu min-w-0" role="menu">
-            @foreach ($datagridSorter->options(\App\Facades\CampaignLocalization::getCampaign()) as $key => $val)
+            @foreach ($datagridSorter->options($campaign) as $key => $val)
                 @if ($key === 'today')
                     <li class="dropdown-item" @if ($datagridSorter->isSelected($key)) active @endif>
                         <a href="{{ $baseRoute . $datagridSorter->fieldname() . '=' . $key . $datagridSorter->direction() }}">

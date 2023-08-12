@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Facades\DataLayer;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -55,11 +53,10 @@ class DashboardController extends Controller
     /**
      * @param int $id
      */
-    public function recent($id)
+    public function recent(Campaign $campaign, $id)
     {
         /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
-        $campaign = CampaignLocalization::getCampaign();
         if ($widget->widget != CampaignDashboardWidget::WIDGET_RECENT) {
             return response()->json([
                 'success' => true
@@ -69,6 +66,7 @@ class DashboardController extends Controller
         $entities = $widget->entities();
 
         return view('dashboard.widgets._recent_list')
+            ->with('campaign', $campaign)
             ->with('entities', $entities)
             ->with('widget', $widget)
             ->with('campaign', $campaign)
@@ -78,11 +76,10 @@ class DashboardController extends Controller
     /**
      * @param int $id
      */
-    public function unmentioned($id)
+    public function unmentioned(Campaign $campaign, $id)
     {
         /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
-        $campaign = CampaignLocalization::getCampaign();
         if ($widget->widget != CampaignDashboardWidget::WIDGET_UNMENTIONED) {
             return response()->json([
                 'success' => true
@@ -96,6 +93,7 @@ class DashboardController extends Controller
             ->paginate(10);
 
         return view('dashboard.widgets._recent_list')
+            ->with('campaign', $campaign)
             ->with('entities', $entities)
             ->with('widget', $widget)
             ->with('campaign', $campaign)

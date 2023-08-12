@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\Limit;
 use App\Models\Entity;
 use App\Models\Map;
 use App\Models\MiscModel;
@@ -66,7 +67,7 @@ class ImageService
 
                 // Check if file is too big
                 $copiedFileSize = ceil(filesize($tempImage) / 1000);
-                if ($copiedFileSize > auth()->user()->maxUploadSize()) {
+                if ($copiedFileSize > Limit::upload()) {
                     unlink($tempImage);
                     throw new \Exception('image_url target too big');
                 }
@@ -127,7 +128,7 @@ class ImageService
         } catch (Exception $e) {
             //throw $e;
             // There was an error getting the image. Could be the url, could be the request.
-            session()->flash('warning', trans('crud.image.error', ['size' => auth()->user()->maxUploadSize(true)]));
+            session()->flash('warning', trans('crud.image.error', ['size' => Limit::readable()->upload()]));
         }
     }
 
@@ -156,7 +157,7 @@ class ImageService
 
                     // Check if file is too big
                     $copiedFileSize = ceil(filesize($tempImage) / 1000);
-                    if ($copiedFileSize > auth()->user()->maxUploadSize()) {
+                    if ($copiedFileSize > Limit::upload()) {
                         unlink($tempImage);
                         throw new \Exception('image_url target too big');
                     }
@@ -195,7 +196,7 @@ class ImageService
                 }
             } catch (Exception $e) {
                 // There was an error getting the image. Could be the url, could be the request.
-                session()->flash('warning', trans('crud.image.error', ['size' => auth()->user()->maxUploadSize(true)]));
+                session()->flash('warning', trans('crud.image.error', ['size' => Limit::readable()->upload()]));
             }
         } elseif (request()->post('remove-' . $field) == '1') {
             // Remove old

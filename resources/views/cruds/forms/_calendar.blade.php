@@ -37,11 +37,12 @@ if (!empty($oldCalendarID)) {
             <div class="grid gap-2 md:gap-4 md:grid-cols-3 mb-4">
                 <div class="field-calendar entity-calendar-selector">
                     <x-forms.foreign
+                        :campaign="$campaign"
                         name="calendar_id"
                         key="calendar"
                         entityType="calendars"
                         :allowClear="true"
-                        :route="route('calendars.find')"
+                        :route="route('calendars.find', $campaign)"
                         :selected="isset($model) && $model->calendarReminder() && $model->calendarReminder()->calendar ? $model->calendarReminder()->calendar : FormCopy::field('calendar')->select()"
                         :dropdownParent="$dropdownParent ?? null"
                         :entityTypeID="config('entities.ids.calendar')">
@@ -105,4 +106,4 @@ if (!empty($oldCalendarID)) {
     </a>
 </div>
 
-<input type="hidden" name="calendar-data-url" data-url="{{ route('calendars.month-list', ['calendar' => 0]) }}">
+<input type="hidden" name="calendar-data-url" data-url="{{ route('calendars.month-list', [$campaign, 'calendar' => 0]) }}">

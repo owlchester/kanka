@@ -16,7 +16,7 @@
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['timelines.timeline_elements.store', $timeline], 'method' => 'POST', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+    {!! Form::open(['route' => ['timelines.timeline_elements.store', $campaign, $timeline], 'method' => 'POST', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
     <x-box>
         @include('timelines.elements._form', ['model' => null])
         <x-dialog.footer>

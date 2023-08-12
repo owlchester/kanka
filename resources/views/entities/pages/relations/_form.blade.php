@@ -43,7 +43,7 @@
         <x-alert type="info">
             <h4>{{ __('entities/relations.hints.mirrored.title') }}</h4>
             <p>{!! __('entities/relations.hints.mirrored.text', [
-            'link' => '<a href="' . $relation->target->url() . '" data-toggle="tooltip-ajax" data-id="' . $relation->target_id . '" data-url="' . route('entities.tooltip', $relation->target->id) . "\">" . $relation->target->name . '</a>'
+            'link' => '<a href="' . $relation->target->url() . '" data-toggle="tooltip-ajax" data-id="' . $relation->target_id . '" data-url="' . route('entities.tooltip', [$campaign, $relation->target->id]) . "\">" . $relation->target->name . '</a>'
             ]) !!}</p>
             <div class="field-unmirror">
                 {!! Form::hidden('unmirror', 0) !!}

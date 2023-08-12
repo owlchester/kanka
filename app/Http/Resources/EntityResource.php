@@ -75,7 +75,6 @@ class EntityResource extends JsonResource
             'updated_at' => $entity->updated_at,
             'updated_by' => $entity->updated_by,
 
-
             'urls' => [
                 'view' => $url,
                 'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$entity->campaign_id, $entity->entity_id]) : null,

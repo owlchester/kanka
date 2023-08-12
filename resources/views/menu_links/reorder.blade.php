@@ -10,7 +10,6 @@
     'mainTitle' => false,
     'bodyClass' => 'quick-links-reorder'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')

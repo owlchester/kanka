@@ -40,9 +40,12 @@ class NavigationService
         if (Identity::isImpersonating()) {
             $data['is_impersonating'] = true;
 
-            \App\Facades\CampaignLocalization::setCampaign(Identity::getCampaignId());
-            $returnUrl = route('identity.back');
-            $campaignUrl = 'campaign/' . Identity::getCampaignId();
+            // Get the campaign linked to the impersonation
+            $campaign = Campaign::findOrFail(Identity::getCampaignId());
+
+            //\App\Facades\CampaignLocalization::setCampaign(Identity::getCampaignId());
+            $returnUrl = route('identity.back', $campaign);
+            $campaignUrl = 'campaign/' . $campaign->id;
             $returnUrl = str_replace('campaign/navigation', $campaignUrl, $returnUrl);
             $data['return'] = [
                 'url' => $returnUrl,
@@ -116,7 +119,7 @@ class NavigationService
                 'name' => $campaign->name,
                 'is_boosted' => $campaign->boosted(),
                 'image' => $campaign->thumbnail(100, 100),
-                'url' => url(app()->getLocale() . '/' . $campaign->getMiddlewareLink()),
+                'url' => route('dashboard', $campaign),
             ];
         }
 

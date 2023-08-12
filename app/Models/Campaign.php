@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Facades\CampaignCache;
+use App\Facades\Domain;
 use App\Facades\Img;
 use App\Facades\Mentions;
+use App\Models\Concerns\Acl;
 use App\Models\Concerns\Boosted;
 use App\Models\Concerns\CampaignLimit;
 use App\Models\Concerns\LastSync;
@@ -60,6 +62,7 @@ use Illuminate\Support\Collection;
  */
 class Campaign extends MiscModel
 {
+    use Acl;
     use Boosted;
     use CampaignLimit;
     use CampaignRelations;
@@ -108,7 +111,7 @@ class Campaign extends MiscModel
 
     public function getRouteKeyName()
     {
-        return 'slug';
+        return Domain::isApi() ? 'id' : 'slug';
     }
 
     /**
@@ -245,6 +248,7 @@ class Campaign extends MiscModel
     }
 
     /**
+     * "Fake" campaign link for notifications, instead of tracking the campaign id in the notification.
      * @return string
      */
     public function getMiddlewareLink(): string

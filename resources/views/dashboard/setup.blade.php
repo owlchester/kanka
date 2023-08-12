@@ -12,7 +12,6 @@ $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-cente
 $newWidgetListClass = 'btn2 btn-full';
 @endphp
 
-@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
 <div class="max-w-5xl">
     <div class="flex gap-2 mb-2 items-center">
@@ -36,7 +35,7 @@ $newWidgetListClass = 'btn2 btn-full';
             {{ __('dashboard.dashboards.default.text') }}
         @endif
 
-        @if ($campaignService->campaign()->boosted())
+        @if ($campaign->boosted())
             <div class="mt-5 flex items-center gap-2">
                 <a class="btn2 btn-primary btn-sm"
                      data-toggle="dialog-ajax"
@@ -129,10 +128,10 @@ $newWidgetListClass = 'btn2 btn-full';
     @include('partials.errors')
 
     <div class="campaign-dashboard-widgets">
-        <div class="grid grid-cols-12 gap-2 md:gap-5" id="widgets" data-url="{{ route('dashboard.reorder') }}">
+        <div class="grid grid-cols-12 gap-2 md:gap-5" id="widgets" data-url="{{ route('dashboard.reorder', $campaign) }}">
             @if (empty($dashboard))
             <div class="col-span-12">
-                <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto" @if($campaign->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaignService->campaign()->header_image) }})" @endif
+                <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto" @if($campaign->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }})" @endif
                     data-toggle="dialog-ajax"
                      data-target="edit-widget"
                      data-url="{{ route('campaigns.dashboard-header.edit', $campaign) }}"
@@ -180,7 +179,7 @@ $newWidgetListClass = 'btn2 btn-full';
             </a>
 
             <a href="#" class="{{ $newWidgetListClass }}" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
-                <x-icon class="fa-solid faheading-"></x-icon>
+                <x-icon class="fa-solid fa-heading"></x-icon>
                 {{ __('dashboard.setup.widgets.header') }}
             </a>
             <a  href="#" class="{{ $newWidgetListClass }}" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'random', 'dashboard' => $dashboard]) }}">

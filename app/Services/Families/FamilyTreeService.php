@@ -5,12 +5,14 @@ namespace App\Services\Families;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Models\FamilyTree;
-use App\Facades\CampaignLocalization;
 use App\Models\Visibility;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Str;
 
 class FamilyTreeService
 {
+    use CampaignAware;
+
     protected Family $family;
 
     protected FamilyTree $familyTree;
@@ -218,13 +220,11 @@ class FamilyTreeService
 
     protected function isVisible($relation): bool
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         return (bool)(
             !isset($relation['visibility']) ||
             $relation['visibility'] == Visibility::VISIBILITY_ALL ||
             ($relation['visibility'] == Visibility::VISIBILITY_ADMIN && auth()->user()->isAdmin()) ||
-            ($relation['visibility'] == Visibility::VISIBILITY_MEMBERS && $campaign->userIsMember())
+            ($relation['visibility'] == Visibility::VISIBILITY_MEMBERS && $this->campaign->userIsMember())
         );
     }
 

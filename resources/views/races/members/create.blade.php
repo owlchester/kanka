@@ -1,4 +1,4 @@
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('races.members.create.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -8,7 +8,7 @@
 ])
 
 @section('content')
-    {!! Form::open(array('route' => ['races.members.store', $model->id], 'method'=>'POST')) !!}
+    {!! Form::open(array('route' => ['races.members.store', $campaign, $model->id], 'method'=>'POST')) !!}
 
     @include('partials.forms.form', [
         'title' => __('races.members.create.title', ['name' => $model->name]),

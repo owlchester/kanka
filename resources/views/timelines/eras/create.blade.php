@@ -13,12 +13,11 @@
         __('timelines/eras.create.title')
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
     @include('partials.errors')
 
     {!! Form::open([
-        'route' => ['timelines.timeline_eras.store', $timeline],
+        'route' => ['timelines.timeline_eras.store', $campaign, $timeline],
         'method' => 'POST',
         'id' => 'timeline-era-form',
         'class' => 'ajax-subform',

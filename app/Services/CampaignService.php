@@ -5,11 +5,10 @@ namespace App\Services;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
-use App\Models\UserLog;
 use App\Models\Entity;
 use App\Notifications\Header;
+use App\Services\Campaign\NotificationService;
 use App\User;
-use Illuminate\Session\Store;
 use Exception;
 
 class CampaignService
@@ -25,24 +24,11 @@ class CampaignService
      */
     protected $campaign = false;
 
-    /**
-     * The Campaign model (DI)
-     * @var Campaign
-     */
-    protected $campaignModel;
+    protected NotificationService $notificationService;
 
-    /**
-     * @var Store
-     */
-    protected $session;
-
-    /**
-     * CampaignService constructor.
-     */
-    public function __construct(Store $session, Campaign $campaignModel)
+    public function __construct(Campaign $campaignModel, NotificationService $notificationService)
     {
-        $this->session = $session;
-        $this->campaignModel = $campaignModel;
+        $this->notificationService = $notificationService;
     }
 
     public function campaign()
@@ -71,64 +57,6 @@ class CampaignService
     }
 
     /**
-     * Leave a campaign
-     * @param Campaign $campaign
-     * @throws Exception
-     */
-    public function leave(Campaign $campaign)
-    {
-        /** @var CampaignUser|null $member */
-        $member = CampaignUser::where('campaign_id', $campaign->id)
-            ->where('user_id', auth()->user()->id)
-            ->first();
-        if (empty($member)) {
-            // Shouldn't be able to leave a campaign they aren't a part of...?
-            // Switch to the next available campaign?
-            /** @var CampaignUser|null $member */
-            $member = CampaignUser::where('user_id', auth()->user()->id)->first();
-            if ($member) {
-                // Just switch to the first one available.
-                self::switchCampaign($member->campaign);
-            } else {
-                // Need to create a new campaign
-                session()->forget('campaign_id');
-            }
-
-            throw new Exception(__('campaigns.leave.error'));
-        }
-        // Delete user from roles
-        foreach ($campaign->roles as $role) {
-            foreach ($role->users as $user) {
-                if ($user->user_id == auth()->user()->id) {
-                    $user->delete();
-                }
-            }
-        }
-
-        // Delete the member
-        $member->delete();
-
-        // Notify admins
-        $this->notify(
-            $campaign,
-            'leave',
-            'user',
-            'yellow',
-            [
-                'user' => auth()->user()->name,
-                'campaign' => $campaign->name,
-                'link' => $campaign->getMiddlewareLink()
-            ]
-        );
-
-        // Clear cache
-        UserCache::clearCampaigns();
-        auth()->user()->log(UserLog::TYPE_CAMPAIGN_LEAVE);
-
-        self::switchToNext();
-    }
-
-    /**
      * Notify the campaign admins that the campaign was forcibly hidden/made visible
      * @param Campaign $campaign
      * @throws Exception
@@ -144,16 +72,17 @@ class CampaignService
             $key = 'hidden';
         }
 
-        $this->notify(
-            $campaign,
-            $key,
-            $icon,
-            $colour,
-            [
-                'campaign' => $campaign->name,
-                'link' => $campaign->getMiddlewareLink()
-            ]
-        );
+        $this->notificationService
+            ->campaign($campaign)
+            ->notify(
+                $key,
+                $icon,
+                $colour,
+                [
+                    'campaign' => $campaign->name,
+                    'link' => $campaign->getMiddlewareLink()
+                ]
+            );
     }
 
     /**
@@ -170,16 +99,17 @@ class CampaignService
 
         $link = str_replace('campaign/0', 'en/campaign/' . $campaign->id, $entity->url());
 
-        $this->notify(
-            $campaign,
-            $key,
-            $icon,
-            $colour,
-            [
-                'entity' => $entity->name,
-                'link' => $link,
-            ]
-        );
+        $this->notificationService
+            ->campaign($campaign)
+            ->notify(
+                $key,
+                $icon,
+                $colour,
+                [
+                    'entity' => $entity->name,
+                    'link' => $link,
+                ]
+            );
     }
 
     /**
@@ -223,6 +153,7 @@ class CampaignService
      */
     public function enabled(string $entity = '')
     {
+        dd('when is this called');
         return $this->campaign()->enabled($entity);
     }
 
@@ -249,31 +180,5 @@ class CampaignService
     public function users()
     {
         return $this->campaign()->users;
-    }
-
-    /**
-     * @param Campaign $campaign
-     * @param string $key
-     * @param string $icon
-     * @param string $colour
-     * @param array $params
-     */
-    public function notify(Campaign $campaign, string $key, string $icon, string $colour, array $params = []): void
-    {
-        // Notify all admins
-        $campaign->notifyAdmins(
-            new Header('campaign.' . $key, $icon, $colour, $params)
-        );
-    }
-
-    /**
-     * @param Campaign $campaign
-     * @throws Exception
-     */
-    public function delete(Campaign $campaign)
-    {
-        auth()->user()->log(UserLog::TYPE_CAMPAIGN_DELETE);
-        $campaign->delete();
-        CampaignService::switchToNext();
     }
 }

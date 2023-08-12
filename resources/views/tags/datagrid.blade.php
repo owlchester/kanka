@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->models($models)
     ->columns([
@@ -27,7 +28,7 @@
             'field' => 'tag.name',
             'render' => function($model) {
                 if ($model->tag) {
-                    return '<a href="' . route('tags.show', $model->tag->id) . '">' . e($model->tag->name) . '</a>';
+                    return '<a href="' . route('tags.show', [$campaign, $model->tag->id]) . '">' . e($model->tag->name) . '</a>';
                 }
             }
         ],

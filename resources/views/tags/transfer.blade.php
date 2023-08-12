@@ -2,15 +2,14 @@
     'title' => __('tags.transfer.title', ['name' => $tag->name]),
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($tag->entity->pluralType()), 'label' => \App\Facades\Module::plural($tag->entity->typeId(), __('entities.' . $tag->entity->pluralType()))],
-        ['url' => route($tag->entity->pluralType() . '.show', [$tag->entity->entity_id]), 'label' => $tag->name],
+        ['url' => route($tag->entity->pluralType() . '.show', [$campaign, $tag->entity->entity_id]), 'label' => $tag->name],
         __('tags.transfer.transfer'),
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['tags.transfer', $tag->id], 'method' => 'POST']) !!}
+    {!! Form::open(['route' => ['tags.transfer', [$campaign, $tag->id]], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
     <div class="max-w-3xl">

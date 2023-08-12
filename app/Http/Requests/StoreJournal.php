@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -31,7 +32,7 @@ class StoreJournal extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'date' => 'nullable|date',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'character_id' => 'nullable|exists:characters,id',
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',

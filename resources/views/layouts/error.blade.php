@@ -106,7 +106,7 @@
                         <div class="list-group">
                             <?php /** @var \App\Models\Campaign $campaign */?>
                         @foreach (auth()->user()->campaigns as $campaign)
-                            <a href="/{{ app()->getLocale() }}/{{ $campaign->getMiddlewareLink() }}" class="list-group-item list-group-item-action">
+                            <a href="{{ route('dashboard', $campaign) }}" class="list-group-item list-group-item-action">
                                 {!! $campaign->name !!}
                             </a>
                         @endforeach

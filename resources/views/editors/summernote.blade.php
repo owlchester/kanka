@@ -31,22 +31,22 @@
 
     <div
         id="summernote-config"
-        data-mention="{{ route('search.live', $campaign) }}"
+        data-mention="{{ isset($campaign) ? route('search.live', $campaign) : null }}"
         data-advanced-mention="{{ auth()->user()->alwaysAdvancedMentions() }}"
-        data-months="{{ route('search.calendar-months', $campaign) }}"
+        data-months="{{ isset($campaign) ? route('search.calendar-months', $campaign) : null }}"
         data-gallery-title="Superboosted Gallery"
         data-gallery-close="{{ __('crud.click_modal.close') }}"
         data-gallery-add="{{ __('crud.add') }}"
         data-gallery-select-all="{{ __('general.select_all') }}"
         data-gallery-deselect-all="{{ __('general.deselect_all') }}"
         data-gallery-error="generic.gallery.error"
-        data-filesize="{{ auth()->user()->maxUploadSize() }}"
+        data-filesize="{{ Limit::upload() }}"
         data-placeholder="{{ __('crud.placeholders.entry') }}"
         data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
-@if (isset($name) && $name == 'characters')        data-bragi="{{ route('bragi') }}"@endif
-@if(isset($campaignService) && $campaignService->campaign() !== null)
-        data-gallery="{{ $campaignService->campaign()->superboosted() ? route('campaign.gallery.summernote', $campaign) : null }}"
-    @if($campaignService->campaign()->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload', $campaign) }}" @endif
+@if (isset($name) && $name == 'characters')        data-bragi="{{ route('bragi', $campaign) }}"@endif
+@if(isset($campaign) && $campaign !== null)
+        data-gallery="{{ $campaign->superboosted() ? route('campaign.gallery.summernote', $campaign) : null }}"
+    @if($campaign->superboosted()) data-gallery-upload="{{ route('campaign.gallery.ajax-upload', $campaign) }}" @endif
 @endif
 @if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', [$campaign, $model->entity]) }}"
 @elseif (!empty($entity))        data-attributes="{{ route('search.attributes', [$campaign, $entity]) }}"
@@ -54,7 +54,7 @@
 @endif
         data-locale="{{ app()->getLocale() }}"></div>
 
-@if(isset($campaignService) && $campaignService instanceof \App\Services\CampaignService && $campaignService->campaign() !== null)
+@if(isset($campaign) && $campaign !== null)
     <div class="modal fade" id="campaign-imageupload-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content bg-base-100 rounded-2xl">

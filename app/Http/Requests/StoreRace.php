@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Facades\Limit;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -31,7 +32,7 @@ class StoreRace extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'race_id' => 'nullable|integer|exists:races,id',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
         ];

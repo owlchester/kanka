@@ -4,13 +4,13 @@
  * @var \App\Models\Image $folder
  */
 
-$breadcrumbs[] = ['url' => route('campaign.gallery.index'), 'label' => __('campaigns/gallery.breadcrumb')];
+$breadcrumbs[] = ['url' => route('campaign.gallery.index', $campaign), 'label' => __('campaigns/gallery.breadcrumb')];
 if ($folder) {
     if (!empty($folder->folder_id)) {
         if (!empty($folder->imageFolder->folder_id)) {
             $breadcrumbs[] = '...';
         }
-        $breadcrumbs[] = ['url' => route('campaign.gallery.index', ['folder_id' => $folder->folder_id]), 'label' => e($folder->imageFolder->name)];
+        $breadcrumbs[] = ['url' => route('campaign.gallery.index', [$campaign, 'folder_id' => $folder->folder_id]), 'label' => e($folder->imageFolder->name)];
     }
     $breadcrumbs[] = e($folder->name);
 }
@@ -33,18 +33,18 @@ if ($folder) {
         </button>
 
         @if(!empty($folder))
-            <button class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', $folder) }}">
+            <button class="btn2 btn-sm" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', [$campaign, $folder]) }}">
                 <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
             </button>
         @endif
     </div>
 
     <div class="search">
-        <input type="text" class="form-control" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('campaign.gallery.search') }}" />
+        <input type="text" class="form-control" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('campaign.gallery.search', $campaign) }}" />
     </div>
 </div>
 
-    <form id="gallery-form" method="post" action="{{ route('images.store') }}" enctype="multipart/form-data" class="file-upload-form mb-5">
+    <form id="gallery-form" method="post" action="{{ route('images.store', $campaign) }}" enctype="multipart/form-data" class="file-upload-form mb-5">
         {{ csrf_field() }}
         <div class="uploader collapse !visible out well text-center border-dotted border-2 p-4 " id="uploader">
 
@@ -58,7 +58,7 @@ if ($folder) {
                 <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer opacity-0" multiple />
             </span>
 
-            <p class="my-2">{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => auth()->user()->maxUploadSize(true)]) }}</p>
+            <p class="my-2">{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => Limit::readable()->upload()]) }}</p>
 
 
             <p class="text-red gallery-error" style="display:none"></p>
@@ -89,7 +89,7 @@ if ($folder) {
     <div class="modal fade" id="modal-new-folder" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content bg-base-100">
-                {!! Form::open(['route' => 'campaign.gallery.folder', 'method' => 'POST']) !!}
+                {!! Form::open(['route' => ['campaign.gallery.folder', $campaign], 'method' => 'POST']) !!}
                 <div class="modal-header">
                     <x-dialog.close />
                     <h4 class="modal-title" id="myModalLabel">{{ __('campaigns/gallery.new_folder.title') }}</h4>

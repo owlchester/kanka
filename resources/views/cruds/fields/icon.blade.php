@@ -3,7 +3,7 @@ $required = !isset($bulk);
 ?>
 <div class="field-icon">
     <label>{{ __('entities/links.fields.icon') }}</label>
-    @if($campaignService->campaign()->boosted())
+    @if($campaign->boosted())
 
         {!! Form::text(
             $iconFieldName ?? 'icon',
@@ -24,7 +24,7 @@ $required = !isset($bulk);
     @else
         @subscriber()
         <p class="help-block">
-            {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaignService->campaign()])]) !!}
+            {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaign])]) !!}
         </p>
     @else
         <p class="help-block">

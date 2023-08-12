@@ -1,6 +1,5 @@
 @if (
-    (isset($campaign) && $campaign instanceof \App\Models\Campaign && !$campaign->enabled('organisations')) ||
-    (isset($campaignService) && !$campaignService->enabled('organisations')))
+    (isset($campaign) && $campaign instanceof \App\Models\Campaign && !$campaign->enabled('organisations')))
     <?php return ?>
 @endif
 
@@ -13,6 +12,7 @@
     }
 @endphp
 <x-forms.foreign
+    :campaign="$campaign"
     name="organisation_id"
     key="organisation"
     entityType="organisations"
@@ -20,7 +20,7 @@
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('organisations.find', isset($model) ? ['exclude' => $model->id] : null)"
+    :route="route('organisations.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Organisation::class"
     :selected="$preset"
     :helper="$helper ?? null"

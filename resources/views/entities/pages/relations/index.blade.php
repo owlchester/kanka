@@ -8,20 +8,19 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-relations'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block flex flex-wrap gap-2 items-center justify-end">
+    <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
         <button class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-target="help-modal">
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </button>
-        @if ($mode == 'map' || (empty($mode) && $campaignService->campaign()->boosted()))
-            <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
+        @if ($mode == 'map' || (empty($mode) && $campaign->boosted()))
+            <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'table']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
                 <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
             </a>
         @else
-            <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'map']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
+            <a href="{{ route('entities.relations.index', [$campaign, $entity, 'mode' => 'map']) }}" class="btn2 btn-sm" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-map') }}">
                 <x-icon class="map"></x-icon>
             </a>
         @endif
@@ -53,8 +52,8 @@
 
         <div class="entity-main-block">
 
-            @includeWhen($mode == 'map' || (empty($mode) && $campaignService->campaign()->boosted()), 'entities.pages.relations._map')
-            @includeWhen($mode == 'table' || (empty($mode) && !$campaignService->campaign()->boosted()), 'entities.pages.relations._relations')
+            @includeWhen($mode == 'map' || (empty($mode) && $campaign->boosted()), 'entities.pages.relations._map')
+            @includeWhen($mode == 'table' || (empty($mode) && !$campaign->boosted()), 'entities.pages.relations._relations')
         </div>
     </div>
 @endsection

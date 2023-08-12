@@ -10,7 +10,7 @@ class TimelineController extends Controller
 {
     use GuestAuthTrait;
 
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         if (empty($entity->child)) {
             abort(404);

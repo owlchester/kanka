@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Journal $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->journal || $model->date)

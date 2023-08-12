@@ -72,7 +72,7 @@ trait CampaignCache
         }
 
         /** @var \Illuminate\Database\Query\Builder $query */
-        $query = $data = $this->user->following()->public();
+        $query = $this->user->following()->public();
         $data = [];
 
         // order the campaigns array based on the user settings

@@ -38,6 +38,8 @@
         if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
             $url = url(app()->getLocale() . '/' . $url);
         }
+        // Fix to new links?
+        //$url = \Illuminate\Support\Str::replace(['/campaign/'], ['/w/'], $url);
         @endphp
                                         <a href="{{ $url }}">
                                             {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}

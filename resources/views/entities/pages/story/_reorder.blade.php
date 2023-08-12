@@ -16,7 +16,7 @@ if ($firstPost && $firstPost->position >= 0) {
 }
 ?>
 {!! Form::open([
-    'route' => ['entities.story.reorder-save', $entity],
+    'route' => ['entities.story.reorder-save', $campaign, $entity],
     'method' => 'POST',
 ]) !!}
 <div class="box-entity-story-reorder max-w-4xl">

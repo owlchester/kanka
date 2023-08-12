@@ -3,7 +3,7 @@
  * @var \App\Models\Entity $entity
  * @var \App\Models\TimelineElement $element
  */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/map-points.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -16,7 +16,6 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-map-markers'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])

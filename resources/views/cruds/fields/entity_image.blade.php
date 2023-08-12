@@ -1,7 +1,7 @@
 <label>
     {{ __('fields.gallery-image.title') }}
 </label>
-@if ($campaignService->campaign()->superboosted())
+@if ($campaign->superboosted())
     @php
     $preset = null;
     if (isset($model) && $model->entity && $model->entity->image_uuid) {
@@ -17,9 +17,10 @@
     <x-grid type="3/4">
         <div class="col-span-3">
             <x-forms.foreign
+                :campaign="$campaign"
                 name="entity_image_uuid"
                 :allowClear="true"
-                :route="route('images.find')"
+                :route="route('images.find', $campaign)"
                 :label="__('crud.fields.image')"
                 :placeholder="__('fields.gallery.placeholder')"
                 :selected="$preset">

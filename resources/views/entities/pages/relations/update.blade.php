@@ -5,12 +5,12 @@
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        ['url' => route('entities.relations.index', $entity->id), 'label' => __('crud.tabs.relations')],
+        ['url' => route('entities.relations.index', [$campaign, $entity->id]), 'label' => __('crud.tabs.relations')],
     ]
 ])
 
 @section('content')
-    {!! Form::model($relation, ['route' => ['entities.relations.update', $entity->id, $relation], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+    {!! Form::model($relation, ['route' => ['entities.relations.update', $campaign, $entity->id, $relation], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
 
     @include('partials.forms.form', [
         'title' => __('entities/relations.update.title', ['name' => $entity->name]),
@@ -29,7 +29,7 @@
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['entities.relations.destroy', 'entity' => $entity->id, 'relation' => $relation->id, 'mode' => request()->mode, 'option' => request()->option],
+        'route' => ['entities.relations.destroy', 'campaign' => $campaign, 'entity' => $entity->id, 'relation' => $relation->id, 'mode' => request()->mode, 'option' => request()->option],
         'id' => 'delete-relation-' . $relation->id])
         !!}
     @if ($relation->isMirrored())<input type="hidden" name="remove_mirrored" value="1" />@endif

@@ -1,8 +1,7 @@
 @include('partials.errors')
-@inject('campaignService', 'App\Services\CampaignService')
 
 {!! Form::open([
-    'route' => ['campaign_dashboard_widgets.store'],
+    'route' => ['campaign_dashboard_widgets.store', $campaign],
     'method'=>'POST',
     'data-shortcut' => '1',
 ]) !!}

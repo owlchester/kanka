@@ -10,7 +10,7 @@
     'canonical' => true,
 ])
 @section('content')
-    {!! Form::model($weather, ['method' => 'PATCH', 'route' => ['calendars.calendar_weather.update', $weather->calendar->id, $weather->id], 'data-shortcut' => '1']) !!}
+    {!! Form::model($weather, ['method' => 'PATCH', 'route' => ['calendars.calendar_weather.update', $campaign, $weather->calendar->id, $weather->id], 'data-shortcut' => '1']) !!}
 
     @include('partials.forms.form', [
         'title' => __('calendars/weather.edit.title'),
@@ -30,7 +30,7 @@
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['calendars.calendar_weather.destroy', $weather->calendar->id, $weather->id],
+        'route' => ['calendars.calendar_weather.destroy', $campaign, $weather->calendar->id, $weather->id],
         'id' => 'delete-weather-' . $weather->id]) !!}
     @if (request()->has('layout'))
         {!! Form::hidden('layout', request()->get('layout')) !!}

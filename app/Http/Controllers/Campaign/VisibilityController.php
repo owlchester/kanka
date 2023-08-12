@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\StoreCampaignVisibility;
 use App\Http\Requests\ReorderStyles;
+use App\Models\Campaign;
 use App\Models\CampaignStyle;
 
 class VisibilityController extends Controller
@@ -21,17 +21,15 @@ class VisibilityController extends Controller
         $this->middleware('auth');
     }
 
-    public function edit()
+    public function edit(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
         $from = request()->get('from');
         return view('campaigns.forms.modals.public', compact('campaign', 'from'));
     }
 
-    public function save(StoreCampaignVisibility $request)
+    public function save(StoreCampaignVisibility $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
         $campaign->update([

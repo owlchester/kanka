@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\CalendarFilter;
 use App\Facades\Datagrid;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
+use App\Models\Campaign;
 use App\Sanitizers\CalendarSanitizer;
 use App\Services\CalendarService;
 use App\Traits\TreeControllerTrait;
@@ -45,44 +47,44 @@ class CalendarController extends CrudController
     /**
      * Store the new calendar in the db
      */
-    public function store(StoreCalendar $request)
+    public function store(StoreCalendar $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Calendar $calendar)
+    public function show(Campaign $campaign, Calendar $calendar)
     {
-        return $this->crudShow($calendar);
+        return $this->campaign($campaign)->crudShow($calendar);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Calendar $calendar)
+    public function edit(Campaign $campaign, Calendar $calendar)
     {
-        return $this->crudEdit($calendar);
+        return $this->campaign($campaign)->crudEdit($calendar);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCalendar $request, Calendar $calendar)
+    public function update(StoreCalendar $request, Campaign $campaign, Calendar $calendar)
     {
-        return $this->crudUpdate($request, $calendar);
+        return $this->campaign($campaign)->crudUpdate($request, $calendar);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Calendar $calendar)
+    public function destroy(Campaign $campaign, Calendar $calendar)
     {
-        return $this->crudDestroy($calendar);
+        return $this->campaign($campaign)->crudDestroy($calendar);
     }
 
-    public function event(Calendar $calendar)
+    public function event(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('update', $calendar);
 
@@ -94,8 +96,8 @@ class CalendarController extends CrudController
             $year = "-{$year}";
         }
 
-
         return view('calendars.events.create', compact(
+            'campaign',
             'calendar',
             'day',
             'month',
@@ -106,7 +108,7 @@ class CalendarController extends CrudController
 
     /**
      */
-    public function eventStore(AddCalendarEvent $request, Calendar $calendar)
+    public function eventStore(AddCalendarEvent $request, Campaign $campaign, Calendar $calendar)
     {
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -116,7 +118,7 @@ class CalendarController extends CrudController
         // We need to handle negative year dates (start with -)
         $link = $this->calendarService->addEvent($calendar, $request->all());
 
-        $routeOptions = [$calendar->id, 'year' => request()->post('year')];
+        $routeOptions = [$campaign, $calendar->id, 'year' => request()->post('year')];
         if ($request->has('layout')) {
             $routeOptions['layout'] = $request->get('layout');
         } else {
@@ -134,7 +136,7 @@ class CalendarController extends CrudController
 
     /**
      */
-    public function monthList(Calendar $calendar)
+    public function monthList(Campaign $campaign, Calendar $calendar)
     {
         return response()->json([
             'months' => $calendar->months(),
@@ -149,7 +151,7 @@ class CalendarController extends CrudController
 
     /**
      */
-    public function events(Calendar $calendar)
+    public function events(Campaign $campaign, Calendar $calendar)
     {
         $this->authCheck($calendar);
 
@@ -181,17 +183,18 @@ class CalendarController extends CrudController
             ->paginate();
 
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return $this
+            ->campaign($campaign)
             ->menuView($calendar, 'events');
     }
 
     /**
      * Set the day as today
      */
-    public function today(Calendar $calendar)
+    public function today(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('update', $calendar);
 

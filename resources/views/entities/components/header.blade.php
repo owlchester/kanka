@@ -1,6 +1,5 @@
 <?php
 /**
- * @var \App\Services\CampaignService $campaign
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  * @var \App\Models\Tag $tag
@@ -16,7 +15,7 @@ if ($model->image) {
     $imagePath = $model->thumbnail(170);
     $imagePathXL = $model->thumbnail(400);
     $imagePathMobile = $model->thumbnail(100);
-} elseif ($campaignService->campaign()->superboosted() && !empty($entity) && $entity->image) {
+} elseif ($campaign->superboosted() && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
     $imagePath = $entity->image->getUrl(170, 170);
     $imagePathXL = $entity->image->getUrl(400, 400);
@@ -36,10 +35,10 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     $buttonsClass ++;
 }
 
-$superboosted = $campaignService->campaign()->superboosted();
+$superboosted = $campaign->superboosted();
 
 $hasBanner = false;
-if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
+if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
     $hasBanner = true;
     $headerImageUrl = $entity->getHeaderUrl($superboosted);
 }
@@ -79,13 +78,13 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="{{ route('entities.image.replace', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.image.replace', $model->entity) }}">
+                    <a href="{{ route('entities.image.replace', [$campaign, $model->entity]) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.image.replace', [$campaign, $model->entity]) }}">
                         {{ __('entities/image.actions.replace_image') }}
                     </a>
                 </li>
                 <li>
-                    @if ($campaignService->campaign()->boosted())
-                    <a href="{{ route('entities.image.focus', $model->entity) }}">
+                    @if ($campaign->boosted())
+                    <a href="{{ route('entities.image.focus', [$campaign, $model->entity]) }}">
                         {{ __('entities/image.actions.change_focus') }}
                     </a>
                     @else
@@ -146,7 +145,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                 @endif
 
                 @if (auth()->check() && auth()->user()->isAdmin())
-                    <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', $model->entity) }}" data-target="quick-privacy" aria-haspopup="dialog">
+                    <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog-ajax" data-url="{{ route('entities.quick-privacy', [$campaign, $model->entity]) }}" data-target="quick-privacy" aria-haspopup="dialog">
                             <i class="fa-solid fa-lock entity-icons text-2xl" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                             <i class="fa-solid fa-lock-open entity-icons text-2xl" title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                             <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
@@ -160,7 +159,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                     <ul class="dropdown-menu dropdown-menu-right" role="menu" id="entity-submenu">
                         @can('update', $model)
                             <li>
-                                <a href="{{ route($entity->pluralType() . '.edit', $model->id) }}" data-keyboard="edit">
+                                <a href="{{ route($entity->pluralType() . '.edit', [$campaign, $model->id]) }}" data-keyboard="edit">
                                     <x-icon class="pencil"></x-icon>
                                     {{ __('crud.edit') }}
 
@@ -170,21 +169,21 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                         @endcan
                         @can('create', $model)
                             <li>
-                                <a href="{{ route($entity->pluralType() . '.create') }}">
+                                <a href="{{ route($entity->pluralType() . '.create', $campaign) }}">
                                     <x-icon class="fa-regular fa-plus"></x-icon>
                                     {{ __('crud.actions.new') }}
                                 </a>
                             </li>
                             @if (\Illuminate\Support\Facades\Route::has($entity->pluralType() . '.tree'))
                                 <li>
-                                    <a href="{{ route($entity->pluralType() . '.create', ['parent_id' => $model->id]) }}">
+                                    <a href="{{ route($entity->pluralType() . '.create', [$campaign, $model->entity, 'parent_id' => $model->id]) }}">
                                         <x-icon class="fa-regular fa-plus"></x-icon>
                                         {{ __('crud.actions.new_child') }}
                                     </a>
                                 </li>
                             @endif
                             <li>
-                                <a href="{{ route($entity->pluralType() . '.create', ['copy' => $model->id]) }}">
+                                <a href="{{ route($entity->pluralType() . '.create', [$campaign, $model->entity, 'copy' => $model->id]) }}">
                                     <x-icon class="fa-regular fa-copy"></x-icon>
                                     {{ __('crud.actions.copy') }}
                                 </a>
@@ -195,7 +194,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                             @if(auth()->check())
                                 @can('update', $model)
                                     <li>
-                                        <a href="{{ route('entities.story.reorder', $model->entity->id) }}">
+                                        <a href="{{ route('entities.story.reorder', [$campaign, $model->entity->id]) }}">
                                             <x-icon class="fa-solid fa-list-ol"></x-icon>
                                             {{ __('entities/story.reorder.icon_tooltip') }}
                                         </a>
@@ -210,7 +209,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                                 </li>
                                 @if (auth()->user()->isAdmin())
                                     <li>
-                                        <a href="{{ route('entities.template', $entity) }}">
+                                        <a href="{{ route('entities.template', [$campaign, $entity]) }}">
                                             @if($entity->is_template)
                                                 <x-icon class="fa-regular fa-star"></x-icon>
                                                 {{ __('entities/actions.templates.unset') }}
@@ -224,7 +223,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                                 <li class="divider"></li>
                                     @can('update', $model)
                                         <li>
-                                            <a href="{{ route('entities.relations.create', ['entity' => $model->entity, 'mode' => 'table']) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', ['entity' => $model->entity, 'mode' => 'table']) }}">
+                                            <a href="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}">
                                                 <x-icon class="fa-solid fa-people-arrows"></x-icon>
                                                 {{ __('entities/relations.create.new_title') }}
                                             </a>
@@ -233,13 +232,13 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                                 <li class="divider"></li>
                             @endif
                             <li>
-                                <a href="{{ route('entities.html-export', $entity) }}">
+                                <a href="{{ route('entities.html-export', [$campaign, $entity]) }}">
                                     <x-icon class="fa-solid fa-print"></x-icon>
                                     {{ __('crud.actions.print') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('entities.json-export', $entity) }}">
+                                <a href="{{ route('entities.json-export', [$campaign, $entity]) }}">
                                     <x-icon class="fa-solid fa-download"></x-icon>
                                     {{ __('crud.actions.json-export') }}
                                 </a>
@@ -248,7 +247,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                         @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
                             <li class="divider"></li>
                             <li>
-                                <a href="{{ route('entities.move', $entity->id) }}">
+                                <a href="{{ route('entities.move', [$campaign, $entity->id]) }}">
                                     <x-icon class="fa-regular fa-clone"></x-icon>
                                     {{ __('crud.actions.move') }}
                                 </a>
@@ -257,7 +256,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
 
                         @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
                             <li>
-                                <a href="{{ route('entities.transform', $entity->id) }}">
+                                <a href="{{ route('entities.transform', [$campaign, $entity->id]) }}">
                                     <x-icon class="fa-solid fa-exchange-alt"></x-icon>
                                     {{ __('crud.actions.transform') }}
                                 </a>
@@ -271,7 +270,7 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
                                     <x-icon class="trash"></x-icon>
                                     {{ __('crud.remove') }}
                                 </a>
-                                {!! Form::open(['method' => 'DELETE','route' => [$entity->pluralType() . '.destroy', $model->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
+                                {!! Form::open(['method' => 'DELETE', 'route' => [$entity->pluralType() . '.destroy', [$campaign, $model->id]], 'style' => 'display:inline', 'id' => 'delete-confirm-form']) !!}
                                 {!! Form::close() !!}
                             </li>
                         @endcan
@@ -297,8 +296,8 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
         <div class="entity-tags entity-header-line text-xs flex  flex-wrap gap-2 mb-1 mt-2">
             @foreach ($entityTags as $tag)
                 @if (!$tag->entity) @continue @endif
-                <a href="{{ route('tags.show', $tag) }}" data-toggle="tooltip-ajax"
-                   data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', $tag->entity->id) }}"
+                <a href="{{ route('tags.show', [$campaign, $tag]) }}" data-toggle="tooltip-ajax"
+                   data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
                    data-tag-slug="{{ $tag->slug }}"
                 >
                     {!! $tag->html() !!}
@@ -318,12 +317,12 @@ if($campaignService->campaign()->boosted() && $entity->hasHeaderImage($superboos
     @parent
 
 
-    @if (!$campaignService->campaign()->boosted())
+    @if (!$campaign->boosted())
         <x-dialog id="booster-cta" :title="__('callouts.booster.titles.boosted')">
             <p class="mb-2">{{ __('entities/image.call-to-action') }}</p>
             @subscriber()
-            <a href="{{ route('settings.premium', ['campaign' => $campaignService->campaign()]) }}" class="btn bg-boost text-white btn-block mb-2">
-                {!! __('callouts.premium.unlock', ['campaign' => $campaignService->campaign()->name]) !!}
+            <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn bg-boost text-white btn-block mb-2">
+                {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
             </a>
             @else
                 <p class="mb-2">{{ __('callouts.booster.limitation') }}</p>

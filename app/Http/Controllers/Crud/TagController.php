@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\TagFilter;
 use App\Facades\Datagrid;
-use App\Http\Requests\StoreTagEntity;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTag;
-use App\Http\Requests\TransferTag;
+use App\Http\Requests\StoreTagEntity;
+use App\Models\Campaign;
 use App\Models\Tag;
-use App\Services\TagService;
-use App\Exceptions\TranslatableException;
 use App\Traits\TreeControllerTrait;
 
 class TagController extends CrudController
@@ -29,58 +28,53 @@ class TagController extends CrudController
     /** @var string Filter */
     protected $filter = TagFilter::class;
 
-    protected TagService $service;
-
     /**
      * Constructor
-     * @param TagService $service
      */
-    public function __construct(TagService $service)
+    public function __construct()
     {
         parent::__construct();
         $this->hasLimitCheck(false);
-        $this->service = $service;
-
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTag $request)
+    public function store(StoreTag $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Tag $tag)
+    public function show(Campaign $campaign, Tag $tag)
     {
-        return $this->crudShow($tag);
+        return $this->campaign($campaign)->crudShow($tag);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tag $tag)
+    public function edit(Campaign $campaign, Tag $tag)
     {
-        return $this->crudEdit($tag);
+        return $this->campaign($campaign)->crudEdit($tag);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreTag $request, Tag $tag)
+    public function update(StoreTag $request, Campaign $campaign, Tag $tag)
     {
-        return $this->crudUpdate($request, $tag);
+        return $this->campaign($campaign)->crudUpdate($request, $tag);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tag $tag)
+    public function destroy(Campaign $campaign, Tag $tag)
     {
-        return $this->crudDestroy($tag);
+        return $this->campaign($campaign)->crudDestroy($tag);
     }
 
     /**
@@ -88,11 +82,11 @@ class TagController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function tags(Tag $tag)
+    public function tags(Campaign $campaign, Tag $tag)
     {
         $this->authCheck($tag);
 
-        $options = ['tag' => $tag];
+        $options = ['campaign' => $campaign, 'tag' => $tag];
         $filters = [];
         if (request()->has('tag_id')) {
             $options['tag_id'] = $tag->id;
@@ -111,9 +105,10 @@ class TagController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
         return $this
+            ->campaign($campaign)
             ->menuView($tag, 'tags');
     }
 
@@ -122,11 +117,11 @@ class TagController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function children(Tag $tag)
+    public function children(Campaign $campaign, Tag $tag)
     {
         $this->authCheck($tag);
 
-        $options = ['tag' => $tag];
+        $options = ['campaign' => $campaign, 'tag' => $tag];
         $base = 'allChildren';
         if (request()->has('tag_id')) {
             $options['tag_id'] = $tag->id;
@@ -143,7 +138,7 @@ class TagController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return $this
@@ -155,18 +150,17 @@ class TagController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function entityAdd(Tag $tag)
+    public function entityAdd(Campaign $campaign, Tag $tag)
     {
         $this->authorize('update', $tag);
-        $ajax = request()->ajax();
         $formOptions = ['tags.entity-add.save', 'tag' => $tag];
         if (request()->has('from-children')) {
             $formOptions['from-children'] = true;
         }
 
         return view('tags.entities.create', [
+            'campaign' => $campaign,
             'model' => $tag,
-            'ajax' => $ajax,
             'formOptions' => $formOptions
         ]);
     }
@@ -177,10 +171,10 @@ class TagController extends CrudController
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function entityStore(StoreTagEntity $request, Tag $tag)
+    public function entityStore(StoreTagEntity $request, Campaign $campaign, Tag $tag)
     {
         $this->authorize('update', $tag);
-        $redirectUrlOptions = ['tag' => $tag->id];
+        $redirectUrlOptions = ['campaign' => $campaign, 'tag' => $tag];
         if (request()->has('from-children')) {
             $redirectUrlOptions['tag_id'] = $tag->id;
         }
@@ -188,39 +182,5 @@ class TagController extends CrudController
         $tag->attachEntity($request->only('entity_id'));
         return redirect()->route('tags.show', $redirectUrlOptions)
             ->with('success', trans('tags.children.create.success', ['name' => $tag->name]));
-    }
-
-    /**
-     * @param Tag $tag
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function transferTag(Tag $tag)
-    {
-        $this->authorize('update', $tag);
-
-        return view('tags.transfer', compact('tag'));
-    }
-
-    /**
-     * @param TransferTag $request
-     * @param Tag $tag
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function transfer(TransferTag $request, Tag $tag)
-    {
-        $newTag = Tag::where('id', $request->tag_id)->first();
-        $this->authorize('update', $tag);
-        try {
-            $this->service->transfer($tag, $newTag);
-            return redirect()
-                ->route('tags.show', $tag)
-                ->with('success_raw', __('tags.transfer.success', ['tag' => $tag->name, 'newTag' => $newTag->name]));
-        } catch (TranslatableException $ex) {
-            return redirect()
-                ->route('tags.show', $tag)
-                ->with('error', __('tags.transfer.fail', ['tag' => $tag->name, 'newTag' => $newTag->name]));
-        }
     }
 }

@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\EntityLog $log */?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/logs.show.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -9,7 +9,7 @@
     ]
 ])
 @section('content')
-    @if ($ajax)
+    @if (request()->ajax())
         <div class="modal-header">
             <x-dialog.close :modal="true" />
             <h4 class="modal-title">
@@ -106,13 +106,13 @@
                     </tbody>
                 </table>
 
-                @if (!$ajax)
+                @if (!request()->ajax())
                     {{ $logs->onEachSide(0)->links() }}
                 @endif
             </div>
         </div>
 
-        @if ($ajax && $logs->hasPages())
+        @if (request()->ajax() && $logs->hasPages())
             <div class="modal-footer pagination-ajax-links">
                 {{ $logs->onEachSide(0)->links() }}
             </div>

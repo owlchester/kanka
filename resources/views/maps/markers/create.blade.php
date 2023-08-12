@@ -5,7 +5,7 @@
 * @var \App\Models\MapMarker $source
 */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('maps/markers.create.title', ['name' => $map->name]),
     'description' => '',
     'breadcrumbs' => [
@@ -14,12 +14,11 @@
         __('maps/markers.create.title')
     ]
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
-    {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
+    {!! Form::open(['route' => ['maps.map_markers.store', $campaign, $map], 'method' => 'POST', 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
     <div class="modal-content bg-base-100">
-        @if ($ajax)
+        @if (request()->ajax())
             <div class="modal-header">
                 <x-dialog.close />
                 <h4 class="modal-title">
@@ -30,7 +29,7 @@
         <div class="modal-body">
             @include('partials.errors')
 
-            @if (!$ajax)
+            @if (!request()->ajax())
                 <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @endif
 
@@ -56,7 +55,7 @@
         'resources/js/location/map-v3.js',
         'resources/js/ajax-subforms.js'
     ])
-    @if (!$ajax && !empty($source))
+    @if (!request()->ajax() && !empty($source))
         @include('maps._setup', ['single' => true, 'model' => $source])
         <script type="text/javascript">
             var labelShapeIcon = new L.Icon({

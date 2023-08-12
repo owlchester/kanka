@@ -10,7 +10,7 @@ $actions = [
     'deny' => __('crud.permissions.actions.bulk_entity.deny'),
     'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
 ];
-$permissionService->campaign($campaignService->campaign());
+$permissionService->campaign($campaign);
 ?>
 
 <p class="help-block">
@@ -44,7 +44,7 @@ $permissionService->campaign($campaignService->campaign());
             <i class="fa-solid fa-question-circle flex justify-center bg-base-200 p-2" data-toggle="tooltip" data-placement="bottom" title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
         </div>
     </div>
-    @foreach ($campaignService->campaign()->roles()->withoutAdmin()->get() as $role)
+    @foreach ($campaign->roles()->withoutAdmin()->get() as $role)
         <div class="row mb-5">
             <div class="col-sm-4">{{ $role->name }}</div>
             <div class="text-center col-sm-2">
@@ -152,7 +152,7 @@ $permissionService->campaign($campaignService->campaign());
                     @if (isset($entity))
                         @can('switch', $member)
                             <div class="flex-none">
-                                <a class="btn2 btn-outline btn-accent btn-xs btn-view-as" href="{{ route('identity.switch-entity', [$member, $entity]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
+                                <a class="btn2 btn-outline btn-accent btn-xs btn-view-as" href="{{ route('identity.switch-entity', [$campaign, $member, $entity]) }}" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
                                     <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
                                     {{ __('campaigns.members.actions.switch-entity') }}
                                 </a>

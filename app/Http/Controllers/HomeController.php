@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Facades\Domain;
 use App\Facades\FrontCache;
 use App\Models\Campaign;
-use App\Facades\CampaignLocalization;
 use App\Services\ReferralService;
 
 class HomeController extends Controller
@@ -53,26 +52,18 @@ class HomeController extends Controller
             return redirect()->route('start');
         }
 
-        // Redirect to real dashboard
-        $campaign = CampaignLocalization::getCampaign();
-        if ($campaign) {
-            return redirect()->route('home');
-        }
-
         // Otherwise, redirect to the last campaign the user has
         $last = auth()->user()->last_campaign_id;
         if (!empty($last)) {
             $campaign = Campaign::find($last);
             if ($campaign) {
-                CampaignLocalization::setCampaign($campaign->id);
-                return redirect()->to(CampaignLocalization::getUrl($campaign->id));
+                return redirect()->route('dashboard', $campaign);
             }
         }
         // No valid last campaign? Let's redirect to the last campaign the user had
         $campaigns = auth()->user()->campaigns;
         foreach ($campaigns as $campaign) {
-            CampaignLocalization::setCampaign($campaign->id);
-            return redirect()->to(CampaignLocalization::getUrl($campaign->id));
+            return redirect()->route('dashboard', $campaign);
         }
 
         // No campaign? Ok, go to start.

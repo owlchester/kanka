@@ -1,11 +1,10 @@
 @include('partials.errors')
-@inject('campaignService', 'App\Services\CampaignService')
 
 {!! Form::model(
     $model,
     [
         'method' => 'PATCH',
-        'route' => ['campaign_dashboard_widgets.update', $model],
+        'route' => ['campaign_dashboard_widgets.update', $campaign, $model],
         'data-shortcut' => '1'
     ]
 ) !!}
@@ -27,7 +26,7 @@
 
 {!! Form::open([
     'method' => 'DELETE',
-    'route' => ['campaign_dashboard_widgets.destroy', $model],
+    'route' => ['campaign_dashboard_widgets.destroy', $campaign, $model],
     'id' => 'delete-form-widget-' . $model->id
 ]) !!}
 {!! Form::close() !!}

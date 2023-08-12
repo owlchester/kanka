@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Tag $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->tag)

@@ -13,6 +13,7 @@ use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Quest;
 use App\Services\TOC\TocSlugify;
+use App\Traits\CampaignAware;
 use App\Traits\MentionTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +24,7 @@ use TOC\MarkupFixer;
 
 class MentionsService
 {
+    use CampaignAware;
     use MentionTrait;
 
     /** @var string The text that is being parsed, usualy an entry field */
@@ -362,9 +364,9 @@ class MentionsService
                         } elseif ($page === 'assets') {
                             $page = 'entity_assets.index';
                         }
-                        $url = route('entities.' . $page, array_merge([$entity->id], $routeOptions));
+                        $url = route('entities.' . $page, [$this->campaign, $entity->id] + $routeOptions);
                     } else {
-                        $url = $entity->url($data['page'], $routeOptions);
+                        $url = $entity->url($data['page'], [$this->campaign] + $routeOptions);
                     }
                 }
                 // An alias was used for this mention, so let's try and find it. ACL is handled directly
@@ -379,7 +381,7 @@ class MentionsService
                     $url .= '#' . $data['anchor'];
                 }
 
-                $dataUrl = route('entities.tooltip', $entity);
+                $dataUrl = route('entities.tooltip', [$this->campaign, $entity]);
 
                 // If this request is through the API, we need to inject the language in the url
                 if (request()->is('api/*') || Domain::isApi()) {

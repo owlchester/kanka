@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Forms;
 
+use App\Models\Campaign;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -23,6 +24,7 @@ class Tags extends Component
      * Create a new component instance.
      */
     public function __construct(
+        Campaign $campaign,
         string $id = null,
         bool $allowNew = false,
         bool $allowClear = false,
@@ -33,6 +35,7 @@ class Tags extends Component
         string $dropdownParent = null,
         mixed $options = [],
     ) {
+        $this->campaign = $campaign;
         $this->id = $id ?? 'tags_' . uniqid();
         $this->allowNew = $allowNew;
         $this->allowClear = $allowClear;
@@ -51,6 +54,7 @@ class Tags extends Component
     {
         $this->prepareOptions();
         return view('components.forms.tags')
+            ->with('campaign', $this->campaign)
             ->with('tags', $this->tags);
     }
 

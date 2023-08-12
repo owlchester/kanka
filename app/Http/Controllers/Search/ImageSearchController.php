@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Image;
-use Response;
 
 class ImageSearchController extends Controller
 {
@@ -18,7 +18,7 @@ class ImageSearchController extends Controller
     /**
      *
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
         /** @var Image[] $images */
         $images = Image::where('is_default', false)
@@ -39,6 +39,6 @@ class ImageSearchController extends Controller
             $formatted[] = $format;
         }
 
-        return Response::json($formatted);
+        return response()->json($formatted);
     }
 }

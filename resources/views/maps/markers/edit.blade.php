@@ -4,7 +4,7 @@
 * @var \App\Models\MapMarker $model
 */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('maps/markers.edit.title', ['name' => $model->name]),
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('maps'), 'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'))],
@@ -13,10 +13,9 @@
     ]
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
     <x-box>
-        @if ($ajax)
+        @if (request()->ajax())
             <div class="modal-heading">
                 <x-dialog.close />
                 <h4>
@@ -32,7 +31,7 @@
             <div class="map mb-4" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @include('partials.errors')
 
-            {!! Form::model($model, ['route' => ['maps.map_markers.update', 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+            {!! Form::model($model, ['route' => ['maps.map_markers.update', $campaign, 'map' => $map, 'map_marker' => $model], 'method' => 'PATCH', 'id' => 'map-marker-form', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
             @include('maps.markers._form')
 
             <x-box.footer>
@@ -60,7 +59,7 @@
 
     {!! Form::open([
         'method' => 'DELETE',
-        'route' => ['maps.map_markers.destroy', $model->map_id, $model->id],
+        'route' => ['maps.map_markers.destroy', $campaign, $model->map_id, $model->id],
         'style' => 'display:inline',
         'id' => 'delete-marker-confirm-form-' . $model->id]) !!}
     {!! Form::close() !!}

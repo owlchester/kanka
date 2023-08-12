@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\TranslatableException;
-use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Http\Requests\StoreCampaignRoleUser;

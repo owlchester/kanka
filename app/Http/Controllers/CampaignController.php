@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignCache;
-use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\DeleteCampaign;
+use App\Services\Campaign\DeletionService;
+use App\Services\Campaign\LeaveService;
 use App\Services\MultiEditingService;
 use App\Services\CampaignService;
 use App\Services\EntityService;
@@ -28,19 +29,22 @@ class CampaignController extends Controller
     protected CampaignService $campaignService;
     protected EntityService $entityService;
     protected StarterService $starterService;
+    protected DeletionService $deletionService;
+    protected LeaveService $leaveService;
 
     /**
      * Create a new controller instance.
      *
      * CampaignController constructor.
-     * @param CampaignService $campaignService
      */
-    public function __construct(CampaignService $campaignService, EntityService $entityService, StarterService $starterService)
+    public function __construct(CampaignService $campaignService, EntityService $entityService, StarterService $starterService, DeletionService $deletionService, LeaveService $leaveService)
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'css']]);
         $this->campaignService = $campaignService;
         $this->entityService = $entityService;
         $this->starterService = $starterService;
+        $this->deletionService = $deletionService;
+        $this->leaveService = $leaveService;
     }
 
     /**
@@ -52,9 +56,8 @@ class CampaignController extends Controller
         return view($this->view . '.show', compact('campaign'));
     }
 
-    public function create()
+    public function create(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('create', $campaign);
 
         return view($this->view . '.create', ['start' => false]);
@@ -64,7 +67,6 @@ class CampaignController extends Controller
     {
         $campaign = new Campaign();
         $this->authorize('create', $campaign);
-
 
         $first = !auth()->user()->hasCampaigns();
         $data = $request->all();
@@ -77,12 +79,6 @@ class CampaignController extends Controller
             /** @var Campaign $campaign */
             $campaign = Campaign::create($data);
             auth()->user()->setCurrentCampaign($campaign);
-
-            // If it's the first campaign for the user, generate some boilerplate content
-            /*if ($first) {
-                CampaignLocalization::forceCampaign($campaign);
-                $this->starterService->generateBoilerplate($campaign);
-            }*/
 
             DB::commit();
         } catch (Exception $e) {
@@ -101,10 +97,10 @@ class CampaignController extends Controller
         } elseif ($first) {
             $user = auth()->user();
             $user->save();
-            return redirect()->to(app()->getLocale() . '/' . $campaign->getMiddlewareLink());
+            return redirect()->route('dashboard', $campaign);
         }
 
-        return redirect()->to(app()->getLocale() . '/' . $campaign->getMiddlewareLink())
+        return redirect()->route('dashboard', $campaign)
             ->with('success', __($this->view . '.create.success'));
     }
 
@@ -182,7 +178,10 @@ class CampaignController extends Controller
     {
         $this->authorize('delete', $campaign);
 
-        $this->campaignService->delete($campaign);
+        $this->deletionService
+            ->campaign($campaign)
+            ->user(auth()->user())
+            ->delete();
 
         return redirect()->route('home');
     }
@@ -195,7 +194,10 @@ class CampaignController extends Controller
         $this->authorize('leave', $campaign);
 
         try {
-            $this->campaignService->leave($campaign);
+            $this->leaveService
+                ->campaign($campaign)
+                ->user(auth()->user())
+                ->leave();
             return redirect()->route('home');
         } catch (Exception $e) {
             return redirect()->route('overview', $campaign)->withErrors($e->getMessage());

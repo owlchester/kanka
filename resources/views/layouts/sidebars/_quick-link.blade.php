@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\MenuLink $menuLink */ ?>
-@if ($menuLink->dashboard && $currentCampaign->boosted() && $menuLink->isValidDashboard())
-    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($currentCampaign) }}">
+@if ($menuLink->dashboard && $campaign->boosted() && $menuLink->isValidDashboard())
+    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($campaign) }}">
         <x-sidebar.element
             :url="$menuLink->getRoute()"
             :icon="$menuLink->icon()"
@@ -8,7 +8,7 @@
         ></x-sidebar.element>
     </li>
 @elseif ($menuLink->target)
-    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($currentCampaign) }}">
+    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($campaign) }}">
         <x-sidebar.element
             :url="$menuLink->getRoute()"
             :icon="$menuLink->icon()"
@@ -16,7 +16,7 @@
         ></x-sidebar.element>
     </li>
 @elseif ($menuLink->type)
-    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($currentCampaign) }}">
+    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($campaign) }}">
         <x-sidebar.element
             :url="$menuLink->getRoute()"
             :icon="$menuLink->icon()"
@@ -24,7 +24,7 @@
         ></x-sidebar.element>
     </li>
 @elseif ($menuLink->isRandom())
-    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($currentCampaign) }}">
+    <li class="p-0 m-0 subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }} {{ $menuLink->customClass($campaign) }}">
         <x-sidebar.element
             :url="$menuLink->getRoute()"
             :icon="$menuLink->icon()"

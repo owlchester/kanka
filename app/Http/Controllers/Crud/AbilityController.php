@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\AbilityFilter;
 use App\Facades\Datagrid;
-use App\Http\Requests\StoreAbilityEntity;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreAbility;
+use App\Http\Requests\StoreAbilityEntity;
 use App\Models\Ability;
+use App\Models\Campaign;
 use App\Traits\TreeControllerTrait;
 
 class AbilityController extends CrudController
@@ -28,57 +30,46 @@ class AbilityController extends CrudController
     /** @var string Filter */
     protected $filter = AbilityFilter::class;
 
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAbility $request)
+    public function store(Campaign $campaign, StoreAbility $request)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      */
-    public function show(Ability $ability)
+    public function show(Campaign $campaign, Ability $ability)
     {
-        return $this->crudShow($ability);
+        return $this->campaign($campaign)->crudShow($ability);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ability $ability)
+    public function edit(Campaign $campaign, Ability $ability)
     {
-        return $this->crudEdit($ability);
+        return $this->campaign($campaign)->crudEdit($ability);
     }
 
     /**
      */
-    public function update(StoreAbility $request, Ability $ability)
+    public function update(StoreAbility $request, Campaign $campaign, Ability $ability)
     {
-        return $this->crudUpdate($request, $ability);
+        return $this->campaign($campaign)->crudUpdate($request, $ability);
     }
 
     /**
      */
-    public function destroy(Ability $ability)
+    public function destroy(Campaign $campaign, Ability $ability)
     {
-        return $this->crudDestroy($ability);
+        return $this->campaign($campaign)->crudDestroy($ability);
     }
 
     /**
      */
-    public function abilities(Ability $ability)
+    public function abilities(Campaign $campaign, Ability $ability)
     {
         $this->authCheck($ability);
 
@@ -103,16 +94,19 @@ class AbilityController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this
+                ->campaign($campaign)
+                ->datagridAjax();
         }
 
         return $this
+            ->campaign($campaign)
             ->menuView($ability, 'abilities');
     }
 
     /**
      */
-    public function entities(Ability $ability)
+    public function entities(Campaign $campaign, Ability $ability)
     {
         $this->authCheck($ability);
 
@@ -126,35 +120,37 @@ class AbilityController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this
+                ->campaign($campaign)
+                ->datagridAjax();
         }
 
         return view('abilities.entities')
+            ->with('campaign', $campaign)
             ->with('model', $ability)
             ->with('rows', $this->rows);
     }
 
     /**
      */
-    public function entityAdd(Ability $ability)
+    public function entityAdd(Campaign $campaign, Ability $ability)
     {
         $this->authorize('update', $ability);
-        $ajax = request()->ajax();
-        $formOptions = ['abilities.entity-add.save', 'ability' => $ability];
+        $formOptions = ['abilities.entity-add.save', $campaign, 'ability' => $ability];
         if (request()->has('from-children')) {
             $formOptions['from-children'] = true;
         }
 
         return view('abilities.entities.create', [
+            'campaign' => $campaign,
             'model' => $ability,
-            'ajax' => $ajax,
             'formOptions' => $formOptions
         ]);
     }
 
     /**
      */
-    public function entityStore(StoreAbilityEntity $request, Ability $ability)
+    public function entityStore(StoreAbilityEntity $request, Campaign $campaign, Ability $ability)
     {
         $this->authorize('update', $ability);
         $redirectUrlOptions = ['ability' => $ability->id];
@@ -163,7 +159,7 @@ class AbilityController extends CrudController
         }
 
         $ability->attachEntity($request->only('entity_id', 'visibility_id'));
-        return redirect()->route('abilities.entities', ['ability' => $ability->id])
+        return redirect()->route('abilities.entities', [$campaign, 'ability' => $ability->id])
             ->with('success', trans('abilities.children.create.success', ['name' => $ability->name]));
     }
 }

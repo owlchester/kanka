@@ -19,12 +19,12 @@ Route::post('/w/{campaign}/gallery/{image}/save-focus', 'Campaign\GalleryControl
 //Route::get('/w/{campaign}/entities/{entity}/image-focus', [\App\Http\Controllers\Entity\ImageController::class, 'focus'])->name('entities.image.focus');
 
 // Abilities
-Route::get('/w/{campaign}/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
-Route::get('/w/{campaign}/abilities/{ability}/entities', 'AbilityController@entities')->name('abilities.entities');
-Route::get('/w/{campaign}/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
+Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Crud\AbilityController@abilities')->name('abilities.abilities');
+Route::get('/w/{campaign}/abilities/{ability}/entities', 'Crud\AbilityController@entities')->name('abilities.entities');
+Route::get('/w/{campaign}/abilities/tree', 'Crud\AbilityController@tree')->name('abilities.tree');
 
-Route::get('/w/{campaign}/abilities/{ability}/entity-add', 'AbilityController@entityAdd')->name('abilities.entity-add');
-Route::post('/w/{campaign}/abilities/{ability}/entity-add', 'AbilityController@entityStore')->name('abilities.entity-add.save');
+Route::get('/w/{campaign}/abilities/{ability}/entity-add', 'Crud\AbilityController@entityAdd')->name('abilities.entity-add');
+Route::post('/w/{campaign}/abilities/{ability}/entity-add', 'Crud\AbilityController@entityStore')->name('abilities.entity-add.save');
 
 //Ability reorder
 Route::get('/w/{campaign}/entity/{entity}/abilities/reorder', [\App\Http\Controllers\Entity\AbilityReorderController::class, 'index'])
@@ -53,85 +53,86 @@ Route::post('/w/{campaign}/maps/{map}/markers/bulk', 'Maps\MapMarkerController@b
 Route::get('/w/{campaign}/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
 //Route::get('/w/{campaign}/characters/{character}/map-points', 'CharacterSubController@mapPoints')->name('characters.map-points');
 
-Route::get('/w/{campaign}/dice_rolls/{dice_roll}/roll', 'DiceRollController@roll')->name('dice_rolls.roll');
-Route::delete('/w/{campaign}/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
+Route::get('/w/{campaign}/dice_rolls/{dice_roll}/roll', 'Crud\DiceRollController@roll')->name('dice_rolls.roll');
+Route::delete('/w/{campaign}/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'Crud\DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
 
 // Locations
-Route::get('/w/{campaign}/locations/tree', 'LocationController@tree')->name('locations.tree');
-Route::get('/w/{campaign}/locations/{location}/characters', 'LocationController@characters')->name('locations.characters');
-Route::get('/w/{campaign}/locations/{location}/locations', 'LocationController@locations')->name('locations.locations');
+Route::get('/w/{campaign}/locations/tree', 'Crud\LocationController@tree')->name('locations.tree');
+Route::get('/w/{campaign}/locations/{location}/characters', 'Crud\LocationController@characters')->name('locations.characters');
+Route::get('/w/{campaign}/locations/{location}/locations', 'Crud\LocationController@locations')->name('locations.locations');
 
 // Organisation menu
-Route::get('/w/{campaign}/organisations/{organisation}/members', 'OrganisationController@members')->name('organisations.members');
-Route::get('/w/{campaign}/organisations/{organisation}/organisations', 'OrganisationController@organisations')->name('organisations.organisations');
-Route::get('/w/{campaign}/organisations/tree', 'OrganisationController@tree')->name('organisations.tree');
+Route::get('/w/{campaign}/organisations/{organisation}/members', 'Organisation\MemberController@index')->name('organisations.members');
+Route::get('/w/{campaign}/organisations/{organisation}/organisations', 'Organisation\OrganisationController@organisations')->name('organisations.organisations');
+Route::get('/w/{campaign}/organisations/tree', 'Crud\OrganisationController@tree')->name('organisations.tree');
 
 // Families menu
-Route::get('/w/{campaign}/families/{family}/members', 'FamilyController@members')->name('families.members');
-Route::get('/w/{campaign}/families/{family}/families', 'FamilyController@families')->name('families.families');
-Route::get('/w/{campaign}/families/tree', 'FamilyController@tree')->name('families.tree');
+Route::get('/w/{campaign}/families/{family}/members', 'Families\MemberController@index')->name('families.members');
+Route::get('/w/{campaign}/families/{family}/families', 'Families\FamilyController@index')->name('families.families');
+Route::get('/w/{campaign}/families/tree', 'Crud\FamilyController@tree')->name('families.tree');
 Route::get('/w/{campaign}/families/{family}/tree', [\App\Http\Controllers\Families\FamilyTreeController::class, 'index'])->name('families.family-tree');
 Route::get('/w/{campaign}/families/{family}/tree/api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'api'])->name('families.family-tree.api');
 Route::get('/w/{campaign}/families/{entity}/tree/entity-api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'entity'])->name('families.family-tree.entity-api');
 Route::post('/w/{campaign}/families/{family}/tree/api', [\App\Http\Controllers\Families\FamilyTreeController::class, 'save'])->name('families.family-tree.api-save');
-Route::post('/w/{campaign}/families/{family}/store-member', 'CharacterFamilyController@store')->name('families.members.store');
-Route::get('/w/{campaign}/families/{family}/add-member', 'CharacterFamilyController@create')->name('families.members.create');
+
+Route::post('/w/{campaign}/families/{family}/store-member', 'Families\MemberController@store')->name('families.members.store');
+Route::get('/w/{campaign}/families/{family}/add-member', 'Families\MemberController@create')->name('families.members.create');
 
 // Items menu
-Route::get('/w/{campaign}/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
-Route::get('/w/{campaign}/items/tree', 'ItemController@tree')->name('items.tree');
-Route::get('/w/{campaign}/items/{item}/items', 'ItemController@items')->name('items.items');
+Route::get('/w/{campaign}/items/{item}/inventories', 'Crud\ItemController@inventories')->name('items.inventories');
+Route::get('/w/{campaign}/items/tree', 'Crud\ItemController@tree')->name('items.tree');
+Route::get('/w/{campaign}/items/{item}/items', 'Crud\ItemController@items')->name('items.items');
 
 // Quest menus
-Route::get('/w/{campaign}/quests/tree', 'QuestController@tree')->name('quests.tree');
-Route::get('/w/{campaign}/quests/{quest}/quests', 'QuestController@quests')->name('quests.quests');
+Route::get('/w/{campaign}/quests/tree', 'Crud\QuestController@tree')->name('quests.tree');
+Route::get('/w/{campaign}/quests/{quest}/quests', 'Crud\QuestController@quests')->name('quests.quests');
 
 // Races
-Route::get('/w/{campaign}/races/{race}/characters', 'RaceController@characters')->name('races.characters');
-Route::get('/w/{campaign}/races/{race}/races', 'RaceController@races')->name('races.races');
-Route::get('/w/{campaign}/races/tree', 'RaceController@tree')->name('races.tree');
+Route::get('/w/{campaign}/races/{race}/characters', 'Crud\RaceController@characters')->name('races.characters');
+Route::get('/w/{campaign}/races/{race}/races', 'Crud\RaceController@races')->name('races.races');
+Route::get('/w/{campaign}/races/tree', 'Crud\RaceController@tree')->name('races.tree');
 Route::post('/w/{campaign}/races/{race}/store-member', 'CharacterRaceController@store')->name('races.members.store');
 Route::get('/w/{campaign}/races/{race}/add-member', 'CharacterRaceController@create')->name('races.members.create');
 
 // Creatures
-Route::get('/w/{campaign}/creatures/{creature}/creatures', 'CreatureController@creatures')->name('creatures.creatures');
-Route::get('/w/{campaign}/creatures/tree', 'CreatureController@tree')->name('creatures.tree');
+Route::get('/w/{campaign}/creatures/{creature}/creatures', 'Crud\CreatureController@creatures')->name('creatures.creatures');
+Route::get('/w/{campaign}/creatures/tree', 'Crud\CreatureController@tree')->name('creatures.tree');
 
 // Journal
-Route::get('/w/{campaign}/journals/{journal}/journals', 'JournalController@journals')->name('journals.journals');
+Route::get('/w/{campaign}/journals/{journal}/journals', 'Crud\JournalController@journals')->name('journals.journals');
 
-Route::get('/w/{campaign}/events/tree', 'EventController@tree')->name('events.tree');
-Route::get('/w/{campaign}/events/{event}/events', 'EventController@events')->name('events.events');
+Route::get('/w/{campaign}/events/tree', 'Crud\EventController@tree')->name('events.tree');
+Route::get('/w/{campaign}/events/{event}/events', 'Crud\EventController@events')->name('events.events');
 
 Route::get('/w/{campaign}/timelines/tree', 'Timelines\TimelineController@tree')->name('timelines.tree');
 Route::get('/w/{campaign}/timelines/{timeline}/timelines', 'Timelines\TimelineController@timelines')->name('timelines.timelines');
 
 // Tag menus
-Route::get('/w/{campaign}/tags/tree', 'TagController@tree')->name('tags.tree');
-Route::get('/w/{campaign}/tags/{tag}/tags', 'TagController@tags')->name('tags.tags');
-Route::get('/w/{campaign}/tags/{tag}/children', 'TagController@children')->name('tags.children');
-Route::get('/w/{campaign}/tags/{tag}/transfer', 'TagController@transferTag')->name('tags.transfer');
-Route::post('/w/{campaign}/tags/{tag}/transfer', 'TagController@transfer')->name('tags.transfer');
+Route::get('/w/{campaign}/tags/tree', 'Crud\TagController@tree')->name('tags.tree');
+Route::get('/w/{campaign}/tags/{tag}/tags', 'Crud\TagController@tags')->name('tags.tags');
+Route::get('/w/{campaign}/tags/{tag}/transfer', 'Tags\TransferController@index')->name('tags.transfer');
+Route::post('/w/{campaign}/tags/{tag}/transfer', 'Tags\TransferController@process')->name('tags.transfer');
 
 // Tags Quick Add
-Route::get('/w/{campaign}/tags/{tag}/entity-add', 'TagController@entityAdd')->name('tags.entity-add');
-Route::post('/w/{campaign}/tags/{tag}/entity-add', 'TagController@entityStore')->name('tags.entity-add.save');
+Route::get('/w/{campaign}/tags/{tag}/children', 'Tags\ChildController@index')->name('tags.children');
+Route::get('/w/{campaign}/tags/{tag}/entity-add', 'Tags\ChildController@create')->name('tags.entity-add');
+Route::post('/w/{campaign}/tags/{tag}/entity-add', 'Tags\ChildController@store')->name('tags.entity-add.save');
 
 // Multi-delete for cruds
 Route::post('/w/{campaign}/bulk/process', 'BulkController@process')->name('bulk.process');
 Route::get('/w/{campaign}/bulk/modal', 'BulkController@modal')->name('bulk.modal');
 
-Route::get('/w/{campaign}/notes/tree', 'NoteController@tree')->name('notes.tree');
-Route::get('/w/{campaign}/journals/tree', 'JournalController@tree')->name('journals.tree');
+Route::get('/w/{campaign}/notes/tree', 'Crud\NoteController@tree')->name('notes.tree');
+Route::get('/w/{campaign}/journals/tree', 'Crud\JournalController@tree')->name('journals.tree');
 
 
 // Calendar
-Route::get('/w/{campaign}/calendars/tree', 'CalendarController@tree')->name('calendars.tree');
-Route::get('/w/{campaign}/calendars/{calendar}/event', 'CalendarController@event')->name('calendars.event.create');
-Route::post('/w/{campaign}/calendars/{calendar}/event', 'CalendarController@eventStore')->name('calendars.event.store');
-Route::get('/w/{campaign}/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');
-Route::get('/w/{campaign}/calendars/{calendar}/events', 'CalendarController@events')->name('calendars.events');
-Route::get('/w/{campaign}/calendars/{calendar}/today', 'CalendarController@today')->name('calendars.today');
+Route::get('/w/{campaign}/calendars/tree', 'Crud\CalendarController@tree')->name('calendars.tree');
+Route::get('/w/{campaign}/calendars/{calendar}/event', 'Crud\CalendarController@event')->name('calendars.event.create');
+Route::post('/w/{campaign}/calendars/{calendar}/event', 'Crud\CalendarController@eventStore')->name('calendars.event.store');
+Route::get('/w/{campaign}/calendars/{calendar}/month-list', 'Crud\CalendarController@monthList')->name('calendars.month-list');
+Route::get('/w/{campaign}/calendars/{calendar}/events', 'Crud\CalendarController@events')->name('calendars.events');
+Route::get('/w/{campaign}/calendars/{calendar}/today', 'Crud\CalendarController@today')->name('calendars.today');
 
 //        Route::get('/w/{campaign}/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
 //        Route::post('/w/{campaign}/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
@@ -263,42 +264,42 @@ Route::get('/w/{campaign}/entities/{entity}/profile', 'Entity\ProfileController@
 
 //Route::get('/w/{campaign}/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([
-    '/w/{campaign}/abilities' => 'AbilityController',
-    '/w/{campaign}/calendars' => 'CalendarController',
+    '/w/{campaign}/abilities' => 'Crud\AbilityController',
+    '/w/{campaign}/calendars' => 'Crud\CalendarController',
     '/w/{campaign}/calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
     //'campaigns' => 'CampaignController',
     '/w/{campaign}/campaign_users' => 'CampaignUserController',
     '/w/{campaign}/campaign_submissions' => 'Campaign\SubmissionController',
-    '/w/{campaign}/characters' => 'CharacterController',
+    '/w/{campaign}/characters' => 'Crud\CharacterController',
     '/w/{campaign}/characters.character_organisations' => 'CharacterOrganisationController',
-    '/w/{campaign}/conversations' => 'ConversationController',
+    '/w/{campaign}/conversations' => 'Crud\ConversationController',
     '/w/{campaign}/conversations.conversation_participants' => 'ConversationParticipantController',
     '/w/{campaign}/conversations.conversation_messages' => 'ConversationMessageController',
-    '/w/{campaign}/dice_rolls' => 'DiceRollController',
-    '/w/{campaign}/dice_roll_results' => 'DiceRollResultController',
-    '/w/{campaign}/events' => 'EventController',
-    '/w/{campaign}/locations' => 'LocationController',
+    '/w/{campaign}/dice_rolls' => 'Crud\DiceRollController',
+    '/w/{campaign}/dice_roll_results' => 'Crud\DiceRollResultController',
+    '/w/{campaign}/events' => 'Crud\EventController',
+    '/w/{campaign}/locations' => 'Crud\LocationController',
     //'locations.map_points' => 'LocationMapPointController',
-    '/w/{campaign}/families' => 'FamilyController',
-    '/w/{campaign}/items' => 'ItemController',
-    '/w/{campaign}/journals' => 'JournalController',
+    '/w/{campaign}/families' => 'Crud\FamilyController',
+    '/w/{campaign}/items' => 'Crud\ItemController',
+    '/w/{campaign}/journals' => 'Crud\JournalController',
     '/w/{campaign}/maps' => 'Maps\MapController',
     '/w/{campaign}/maps.map_layers' => 'Maps\MapLayerController',
     '/w/{campaign}/maps.map_groups' => 'Maps\MapGroupController',
     '/w/{campaign}/maps.map_markers' => 'Maps\MapMarkerController',
     '/w/{campaign}/menu_links' => 'MenuLinkController',
-    '/w/{campaign}/organisations' => 'OrganisationController',
-    '/w/{campaign}/organisations.organisation_members' => 'OrganisationMemberController',
-    '/w/{campaign}/notes' => 'NoteController',
-    '/w/{campaign}/quests' => 'QuestController',
+    '/w/{campaign}/organisations' => 'Crud\OrganisationController',
+    '/w/{campaign}/organisations.organisation_members' => 'Organisation\MemberController',
+    '/w/{campaign}/notes' => 'Crud\NoteController',
+    '/w/{campaign}/quests' => 'Crud\QuestController',
     '/w/{campaign}/quests.quest_elements' => 'QuestElementController',
-    '/w/{campaign}/tags' => 'TagController',
+    '/w/{campaign}/tags' => 'Crud\TagController',
     '/w/{campaign}/timelines' => 'Timelines\TimelineController',
     '/w/{campaign}/timelines.timeline_eras' => 'Timelines\TimelineEraController',
     '/w/{campaign}/timelines.timeline_elements' => 'Timelines\TimelineElementController',
     '/w/{campaign}/campaign_invites' => 'CampaignInviteController',
-    '/w/{campaign}/races' => 'RaceController',
-    '/w/{campaign}/creatures' => 'CreatureController',
+    '/w/{campaign}/races' => 'Crud\RaceController',
+    '/w/{campaign}/creatures' => 'Crud\CreatureController',
     '/w/{campaign}/relations' => 'RelationController',
 
     // Entities
@@ -306,10 +307,7 @@ Route::resources([
     '/w/{campaign}/entities.entity_abilities' => 'Entity\AbilityController',
     '/w/{campaign}/entities.entity_notes' => 'EntityNoteController',
     '/w/{campaign}/entities.posts' => 'Entity\PostController',
-    '/w/{campaign}/entities.entity_events' => 'EntityEventController',
-    //'entities.entity_files' => 'EntityFileController',
-    //'entities.entity_links' => 'Entity\LinkController',
-    //'entities.entity_aliases' => 'Entity\AliasController',
+    '/w/{campaign}/entities.entity_events' => 'Entity\ReminderController',
     '/w/{campaign}/entities.entity_assets' => 'Entity\AssetController',
     '/w/{campaign}/entities.inventories' => 'Entity\InventoryController',
     '/w/{campaign}/entities.relations' => 'Entity\RelationController',
@@ -434,7 +432,7 @@ Route::post('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\PostMov
 Route::get('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');
 Route::post('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformController@transform')->name('entities.transform');
 
-Route::get('/w/{campaign}/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
+Route::get('/w/{campaign}/entities/{entity}/tooltip', 'Entity\TooltipController@show')->name('entities.tooltip');
 
 Route::get('/w/{campaign}/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
 

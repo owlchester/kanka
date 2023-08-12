@@ -16,14 +16,8 @@ use Stevebauman\Purify\Facades\Purify;
 
 class BulkService
 {
-    /**
-     * @var EntityService
-     */
     protected EntityService $entityService;
 
-    /**
-     * @var PermissionService
-     */
     protected PermissionService $permissionService;
 
     /** @var string Entity name */

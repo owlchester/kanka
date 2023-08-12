@@ -237,54 +237,6 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Get max file size of user
-     * @param bool $readable
-     * @return string|int
-     */
-    public function maxUploadSize(bool $readable = false): string|int
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
-            $min = config('limits.filesize.image');
-            return $readable ? $min . 'MB' : ($min * 1024);
-        } elseif ($this->isElemental()) {
-            // Anders gets higher upload sizes until we handle this in the db.
-            if ($this->id === 34122) {
-                return $readable ? '100MB' : 102400;
-            }
-            return $readable ? '25MB' : 25600;
-        } elseif ($this->isWyvern()) {
-            return $readable ? '15MB' : 15360;
-        }
-        // Allow kobolds and goblins to have the Owlbear sizes
-        return $readable ? '8MB' : 8192;
-    }
-
-    /**
-     * Determine the max upload size for a map
-     * @param bool $readable
-     * @return string|int
-     */
-    public function mapUploadSize(bool $readable = false): string|int
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        // Not a subscriber and not in a boosted campaign get the default
-        if (!$this->isSubscriber() && (empty($campaign) || !$campaign->boosted())) {
-            return $readable ? '3MB' : 3072;
-        } elseif ($this->isElemental()) {
-            // Anders gets higher upload sizes until we handle this in the db.
-            if ($this->id === 34122) {
-                return $readable ? '100MB' : 102400;
-            }
-            return $readable ? '50MB' : 51200;
-        } elseif ($this->isWyvern()) {
-            return $readable ? '20mb' : 20480;
-        }
-        // We allow Kobolds and Goblins to have 10MB
-        return $readable ? '10MB' : 10240;
-    }
-
-    /**
      * Determine if a user is a subscriber
      * @return bool
      */
@@ -320,9 +272,7 @@ class User extends \Illuminate\Foundation\Auth\User
         if (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL) {
             return true;
         }
-        // We check the campaign and roles for 61105 because of a special Elemental subscriber.
-        $campaign = CampaignLocalization::getCampaign(false);
-        return (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
+        return false;
     }
 
     /**
@@ -369,22 +319,6 @@ class User extends \Illuminate\Foundation\Auth\User
     public function billedInEur(): bool
     {
         return $this->currency() === 'eur';
-    }
-
-    /**
-     * Determine if ads should be shown for the user or campaign
-     * @return bool
-     */
-    public function showAds(): bool
-    {
-        // Patrons and subs don't have ads
-        if ($this->isSubscriber()) {
-            return false;
-        }
-
-        // Campaigns that are boosted don't either
-        $campaign = CampaignLocalization::getCampaign(false);
-        return !empty($campaign) && !$campaign->boosted();
     }
 
     /**

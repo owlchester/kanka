@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Actions\MenuLinkDatagridActions;
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreMenuLink;
+use App\Models\Campaign;
 use App\Models\MenuLink;
 use Illuminate\Http\Request;
 
@@ -37,77 +38,82 @@ class MenuLinkController extends CrudController
         $this->filters = [
             'name',
         ];
+    }
 
-        /*$this->addNavAction(
-            route('quick-links.reorder'),
+    protected function getNavActions(): CrudController
+    {
+        $this->addNavAction(
+            route('quick-links.reorder', $this->campaign),
             '<i class="fa-solid fa-arrows-alt-v" aria-hidden="true"></i> <span class="hidden-xs">' .
                 __('menu_links.reorder.title') . '</span>'
         );
         $this->addNavAction(
-            route('campaign-sidebar'),
+            route('campaign-sidebar', $this->campaign),
             '<i class="fa-solid fa-cog" aria-hidden="true"></i> <span class="hidden-xs">' .
                 __('menu_links.actions.customise') . '</span>'
-        );*/
+        );
+
         $this->addNavAction(
             '//docs.kanka.io/en/latest/advanced/quick-links.html',
             '<i class="fa-solid fa-question-circle" aria-hidden="true"></i> <span class="hidden-xs">' . __('crud.actions.help') . '</span>',
             '',
             true
         );
+        return parent::getNavActions();
     }
 
     /**
      */
-    public function index(Request $request)
+    public function index(Request $request, Campaign $campaign)
     {
         // Check that the user has permission to actually be here
         if (auth()->guest() || !auth()->user()->can('browse', new MenuLink())) {
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard', $campaign);
         }
-        return $this->crudIndex($request);
+        return $this->campaign($campaign)->crudIndex($request);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMenuLink $request)
+    public function store(StoreMenuLink $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Redirect to the edit screen
      */
-    public function show(MenuLink $menuLink)
+    public function show(Campaign $campaign, MenuLink $menuLink)
     {
         if (!auth()->check()) {
             abort(403);
         }
-        return redirect()->route('menu_links.edit', $menuLink);
+        return redirect()->route('menu_links.edit', [$campaign, $menuLink]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MenuLink $menuLink)
+    public function edit(Campaign $campaign, MenuLink $menuLink)
     {
-        return $this->crudEdit($menuLink);
+        return $this->campaign($campaign)->crudEdit($menuLink);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreMenuLink $request, MenuLink $menuLink)
+    public function update(StoreMenuLink $request, Campaign $campaign, MenuLink $menuLink)
     {
-        return $this->crudUpdate($request, $menuLink);
+        return $this->campaign($campaign)->crudUpdate($request, $menuLink);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MenuLink $menuLink)
+    public function destroy(Campaign $campaign, MenuLink $menuLink)
     {
-        return $this->crudDestroy($menuLink);
+        return $this->campaign($campaign)->crudDestroy($menuLink);
     }
 
     /**
@@ -115,7 +121,7 @@ class MenuLinkController extends CrudController
      * @param MenuLink $menuLink
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function random(MenuLink $menuLink)
+    public function random(Campaign $campaign, MenuLink $menuLink)
     {
         $route = $menuLink->randomEntity();
 
@@ -135,7 +141,6 @@ class MenuLinkController extends CrudController
      */
     protected function limitCheckReached(): bool
     {
-        $campaign = CampaignLocalization::getCampaign();
-        return !$campaign->canHaveMoreQuickLinks();
+        return !$this->campaign->canHaveMoreQuickLinks();
     }
 }

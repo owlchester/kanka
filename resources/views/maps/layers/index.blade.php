@@ -7,7 +7,6 @@
     'miscModel' => $model,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
     @can('update', $model)
@@ -17,13 +16,13 @@
                 {{ __('crud.actions.help') }}
             </a>
             @if ($model->explorable())
-                <a href="{{ route('maps.explore', ['map' => $model]) }}" class="btn2 btn-primary btn-sm">
+                <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="btn2 btn-primary btn-sm">
                     <x-icon class="map"></x-icon>
                     {{ __('maps.actions.explore') }}
                 </a>
             @endif
-            <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn2 btn-accent btn-sm"
-                data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
+            <a href="{{ route('maps.map_layers.create', [$campaign, $model]) }}" class="btn2 btn-accent btn-sm"
+                data-url="{{ route('maps.map_layers.create', [$campaign, $model]) }}"
             >
             <x-icon class="plus"></x-icon>
                 {{ __('maps/layers.actions.add') }}

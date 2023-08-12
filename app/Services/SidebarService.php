@@ -124,6 +124,9 @@ class SidebarService
         'history' => [
             'history',
         ],
+        'gallery' => [
+            'gallery',
+        ],
     ];
 
     protected array $elements;

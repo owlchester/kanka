@@ -105,10 +105,9 @@ class SitemapService
             'roadmap',
             'public-campaigns',
             'hall-of-fame',
-            'boosters',
+            'premium',
             'press-kit',
             'security',
-
         ];
 
         foreach ($base as $link) {

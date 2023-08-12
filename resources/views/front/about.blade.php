@@ -127,7 +127,7 @@
 
                     <div class="h5 mb-3">{{ __('front/about.stats.api') }}</div>
                     <div class="h5 mb-3 mt-5">
-                        <a href="/{{ app()->getLocale() }}{{ config('larecipe.docs.route') }}/1.0/overview" class="text-uppercase">
+                        <a href="{{ route('larecipe.index') }}" class="text-uppercase">
                             {{ __('front/about.links.api') }}
                         </a>
                     </div>

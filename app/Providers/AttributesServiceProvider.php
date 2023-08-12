@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\CampaignLocalization;
 use App\Services\AttributeMentionService;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +16,11 @@ class AttributesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(AttributeMentionService::class, function () {
-            return new AttributeMentionService();
+            $service = new AttributeMentionService();
+            if (CampaignLocalization::hasCampaign()) {
+                $service->campaign(CampaignLocalization::getCampaign());
+            }
+            return $service;
         });
 
         $this->app->alias(AttributeMentionService::class, 'attributes');

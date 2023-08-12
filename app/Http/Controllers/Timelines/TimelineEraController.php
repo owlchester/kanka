@@ -7,13 +7,18 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Http\Requests\StoreTimelineEra;
+use App\Models\Campaign;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
+use App\Traits\CampaignAware;
+use App\Traits\Controllers\HasDatagrid;
 use Illuminate\Http\Request;
 
 class TimelineEraController extends Controller
 {
     use BulkControllerTrait;
+    use CampaignAware;
+    use HasDatagrid;
 
     /** @var string[] Form fields passed on to the model */
     protected $fields = [
@@ -25,11 +30,10 @@ class TimelineEraController extends Controller
         'is_collapsed',
     ];
 
-    public function index(Timeline $timeline)
+    public function index(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('update', $timeline);
 
-        $campaign = CampaignLocalization::getCampaign();
         $options = ['timeline' => $timeline->id];
         $model = $timeline;
 
@@ -41,12 +45,12 @@ class TimelineEraController extends Controller
             ->with(['timeline'])
             ->paginate(15);
         if (request()->ajax()) {
-            return $this->datagridAjax($rows);
+            return $this->campaign($campaign)->datagridAjax($rows);
         }
 
         return view('timelines.eras.index', compact('campaign', 'rows', 'model'));
     }
-    public function show(Timeline $timeline, TimelineEra $timelineEra)
+    public function show(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         return redirect()->route('timelines.show', $timeline);
     }
@@ -56,7 +60,7 @@ class TimelineEraController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create(Timeline $timeline)
+    public function create(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('update', $timeline);
         $ajax = request()->ajax();
@@ -64,7 +68,7 @@ class TimelineEraController extends Controller
 
         return view(
             'timelines.eras.create',
-            compact('timeline', 'ajax', 'from')
+            compact('campaign', 'timeline', 'ajax', 'from')
         );
     }
 
@@ -74,7 +78,7 @@ class TimelineEraController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Timeline $timeline, StoreTimelineEra $request)
+    public function store(Campaign $campaign, Timeline $timeline, StoreTimelineEra $request)
     {
         $this->authorize('update', $timeline);
 
@@ -90,11 +94,11 @@ class TimelineEraController extends Controller
 
         if (request()->post('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$timeline, '#era' . $new->id])
+                ->route('timelines.show', [$campaign, $timeline, '#era' . $new->id])
                 ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
         }
         return redirect()
-            ->route('timelines.timeline_eras.index', [$timeline])
+            ->route('timelines.timeline_eras.index', [$campaign, $timeline])
             ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
     }
 
@@ -104,7 +108,7 @@ class TimelineEraController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Timeline $timeline, TimelineEra $timelineEra)
+    public function edit(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('update', $timeline);
 
@@ -114,7 +118,7 @@ class TimelineEraController extends Controller
 
         return view(
             'timelines.eras.edit',
-            compact('timeline', 'ajax', 'model', 'from')
+            compact('campaign', 'timeline', 'ajax', 'model', 'from')
         );
     }
 
@@ -125,7 +129,7 @@ class TimelineEraController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(StoreTimelineEra $request, Timeline $timeline, TimelineEra $timelineEra)
+    public function update(StoreTimelineEra $request, Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('update', $timeline);
 
@@ -138,12 +142,12 @@ class TimelineEraController extends Controller
 
         if (request()->post('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$timeline, '#era' . $timelineEra->id])
+                ->route('timelines.show', [$campaign, $timeline, '#era' . $timelineEra->id])
                 ->withSuccess(__('timelines/eras.edit.success', ['name' => $timelineEra->name]));
         }
 
         return redirect()
-            ->route('timelines.timeline_eras.index', [$timeline])
+            ->route('timelines.timeline_eras.index', [$campaign, $timeline])
             ->withSuccess(__('timelines/eras.edit.success', ['name' => $timelineEra->name]));
     }
 
@@ -153,7 +157,7 @@ class TimelineEraController extends Controller
      * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Timeline $timeline, TimelineEra $timelineEra)
+    public function destroy(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('update', $timeline);
 
@@ -162,12 +166,12 @@ class TimelineEraController extends Controller
 
         if (request()->get('from') == 'view') {
             return redirect()
-                ->route('timelines.show', [$timeline])
+                ->route('timelines.show', [$campaign, $timeline])
                 ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
         }
 
         return redirect()
-            ->route('timelines.timeline_eras.index', [$timeline])
+            ->route('timelines.timeline_eras.index', [$campaign, $timeline])
             ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
     }
 
@@ -178,7 +182,7 @@ class TimelineEraController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function bulk(Request $request, Timeline $timeline)
+    public function bulk(Request $request, Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('update', $timeline);
         $action = $request->get('action');
@@ -194,35 +198,14 @@ class TimelineEraController extends Controller
         $count = $this->bulkProcess($request, TimelineEra::class);
 
         return redirect()
-            ->route('timelines.timeline_eras.index', ['timeline' => $timeline])
+            ->route('timelines.timeline_eras.index', [$campaign, 'timeline' => $timeline])
             ->with('success', trans_choice('timelines/eras.bulks.' . $action, $count, ['count' => $count]))
         ;
     }
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function datagridAjax($rows)
-    {
-        $html = view('layouts.datagrid._table')
-            ->with('rows', $rows)
-            ->render();
-        $deletes = view('layouts.datagrid.delete-forms')
-            ->with('models', Datagrid::deleteForms())
-            ->with('params', Datagrid::getActionParams())
-            ->render();
-
-        $data = [
-            'success' => true,
-            'html' => $html,
-            'deletes' => $deletes,
-        ];
-
-        return response()->json($data);
-    }
 
     /**
      */
-    public function positionList(Timeline $timeline, TimelineEra $timelineEra)
+    public function positionList(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('view', $timeline);
 

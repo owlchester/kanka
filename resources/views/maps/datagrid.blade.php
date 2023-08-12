@@ -1,6 +1,7 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid
+    ->campaign($campaign)
     ->service($filterService)
     ->models($models)
     ->columns([
@@ -20,7 +21,7 @@
         ],
         [
             'type' => 'location',
-            'visible' => $campaignService->enabled('locations'),
+            'visible' => $campaign->enabled('locations'),
         ],
         [
             'label' => __('crud.fields.parent'),
@@ -46,6 +47,5 @@
         'route' => 'maps.index',
         'baseRoute' => 'maps',
         'trans' => 'maps.fields.',
-        'campaignService' => $campaignService
     ]
 ) !!}

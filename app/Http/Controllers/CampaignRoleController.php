@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Facades\EntitySetup;
 use App\Models\Campaign;
-use App\Facades\CampaignLocalization;
 use App\Facades\Datagrid;
 use App\Services\PermissionService;
 use App\Models\CampaignRole;

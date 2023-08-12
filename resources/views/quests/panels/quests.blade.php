@@ -1,5 +1,6 @@
 <?php
 $datagridOptions = [
+    $campaign,
     $model,
     'init' => 1
 ];
@@ -17,13 +18,13 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
             <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
         </a>
         @if (request()->has('parent_id'))
-            <a href="{{ route('quests.show', [$model]) }}" class="btn2 btn-sm">
+            <a href="{{ route('quests.show', [$campaign, $model]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden-sm hidden-xs">{{ __('crud.filters.all') }}</span>
                 ({{ $model->descendants()->count() }})
             </a>
         @else
-            <a href="{{ route('quests.show', [$model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
+            <a href="{{ route('quests.show', [$campaign, $model, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden-sm hidden-xs">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->quests()->count() }})

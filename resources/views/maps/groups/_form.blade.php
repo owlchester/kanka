@@ -4,7 +4,7 @@
         {!! Form::text('name', null, ['placeholder' => __('maps/groups.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required' => true]) !!}
     </div>
 
-    <div class="field-shown">
+    <div class="field-shown col-span-2">
         {!! Form::hidden('is_shown', 0) !!}
         <label>{!! Form::checkbox('is_shown', 1, isset($model) ? $model->is_shown : 1) !!}
             {{ __('maps/groups.fields.is_shown') }}

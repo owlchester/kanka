@@ -28,7 +28,7 @@
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                         @can('post', [$model, 'edit', $post])
                         <li>
-                            <a href="{{ route('entities.posts.edit', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
+                            <a href="{{ route('entities.posts.edit', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
                                 <x-icon class="edit"></x-icon>
                                 {{ __('crud.edit') }}
                             </a>
@@ -52,14 +52,14 @@
                         @endif
                         @if(auth()->user()->isAdmin())
                         <li>
-                            <a href="{{ route('posts.move', ['entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
+                            <a href="{{ route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
                                 <x-icon class="fa-solid fa-arrows-left-right"></x-icon> {{ __('entities/notes.move.move') }}
                             </a>
                         </li>
                         @endif
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ route('entities.story.reorder', ['entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
+                            <a href="{{ route('entities.story.reorder', [$campaign, 'entity' => $entity]) }}" title="{{ __('entities/story.reorder.icon_tooltip') }}">
                                 <x-icon class="fa-solid fa-arrows-v"></x-icon>
                                 {{ __('entities/story.reorder.icon_tooltip') }}
                             </a>

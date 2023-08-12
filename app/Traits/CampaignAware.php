@@ -9,13 +9,8 @@ use App\Models\Campaign;
  */
 trait CampaignAware
 {
-    /** @var Campaign|null campaign model */
-    public $campaign;
+    public Campaign $campaign;
 
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
     public function campaign(Campaign $campaign): self
     {
         $this->campaign = $campaign;

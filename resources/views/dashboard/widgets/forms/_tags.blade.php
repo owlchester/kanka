@@ -1,5 +1,6 @@
 <div class="field-tags">
     <x-forms.tags
+        :campaign="$campaign"
         :model="$model ?? null"
         allowClear="true"
         :dropdownParent="$dropdownParent ?? null"

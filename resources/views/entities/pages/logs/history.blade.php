@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\MiscModel|\App\Models\Entity $model */?>
-@can('history', [$model->entity, $campaignService->campaign()])
+@can('history', [$model->entity, $campaign])
 <div class="entity-modification-history">
     <p class="help-block text-right italic text-xs">
     @if ($model->entity)
@@ -11,7 +11,7 @@
             'date' => '<span data-toggle="tooltip" title="' . $model->updated_at . ' UTC' . '">' . $model->updated_at->diffForHumans() . '</span>',
         ]) !!}
         @can('update', $model)
-            <br /><a href="{{ route('entities.logs', $model->entity) }}" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('entities.logs', $model->entity) }}" title="{{ __('crud.history.view') }}" class="">
+            <br /><a href="{{ route('entities.logs', [$campaign, $model->entity]) }}" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('entities.logs', [$campaign, $model->entity]) }}" title="{{ __('crud.history.view') }}" class="">
                 <x-icon class="fa-solid fa-history"></x-icon>
                 <span class="hidden-xs hidden-sm">{{ __('crud.history.view') }}</span>
             </a>

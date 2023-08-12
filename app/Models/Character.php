@@ -38,8 +38,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Character extends MiscModel
 {
-    use Acl
-    ;
+    use Acl;
     use CampaignTrait;
     use ExportableTrait;
     use HasFactory;
@@ -352,8 +351,8 @@ class Character extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $campaign = CampaignLocalization::getCampaign();
         $canEdit = auth()->check() && auth()->user()->can('update', $this);
+        $campaign = CampaignLocalization::getCampaign();
 
         $items['second']['profile'] = [
             'name' => 'entities/profile.show.tab_name',

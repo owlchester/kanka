@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attribute;
 use App\Http\Requests\StoreAttribute;
+use App\Models\Campaign;
 use App\Models\Entity;
 
 class AttributeController extends CrudAttributeController
@@ -39,20 +40,20 @@ class AttributeController extends CrudAttributeController
      * @param Entity $entity
      * @return \Illuminate\Http\Response
      */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         dump('yo');
         $this->authorize('attributes', $entity);
-        return $this->crudIndex($entity);
+        return $this->campaign($campaign)->crudIndex($entity);
     }
 
     /**
      * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(Entity $entity)
+    public function show(Campaign $campaign, Entity $entity)
     {
-        return response()->redirectToRoute('entities.attributes.index', $entity);
+        return response()->redirectToRoute('entities.attributes.index', [$campaign, $entity]);
     }
 
     /**
@@ -60,9 +61,9 @@ class AttributeController extends CrudAttributeController
      * @param Attribute $attribute
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create(Entity $entity, Attribute $attribute)
+    public function create(Campaign $campaign, Entity $entity, Attribute $attribute)
     {
-        return $this->crudCreate($entity, $attribute);
+        return $this->campaign($campaign)->crudCreate($entity, $attribute);
     }
 
     /**
@@ -70,9 +71,9 @@ class AttributeController extends CrudAttributeController
      * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreAttribute $request, Entity $entity)
+    public function store(StoreAttribute $request, Campaign $campaign, Entity $entity)
     {
-        return $this->crudStore($request, $entity);
+        return $this->campaign($campaign)->crudStore($request, $entity);
     }
 
 
@@ -81,9 +82,9 @@ class AttributeController extends CrudAttributeController
      * @param Attribute $attribute
      * @return \Illuminate\Http\Response
      */
-    public function edit(Entity $entity, Attribute $attribute)
+    public function edit(Campaign $campaign, Entity $entity, Attribute $attribute)
     {
-        return $this->crudEdit($entity, $attribute);
+        return $this->campaign($campaign)->crudEdit($entity, $attribute);
     }
 
     /**
@@ -92,9 +93,9 @@ class AttributeController extends CrudAttributeController
      * @param Attribute $attribute
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(StoreAttribute $request, Entity $entity, Attribute $attribute)
+    public function update(StoreAttribute $request, Campaign $campaign, Entity $entity, Attribute $attribute)
     {
-        return $this->crudUpdate($request, $entity, $attribute);
+        return $this->campaign($campaign)->crudUpdate($request, $entity, $attribute);
     }
 
     /**
@@ -102,8 +103,8 @@ class AttributeController extends CrudAttributeController
      * @param Attribute $attribute
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Entity $entity, Attribute $attribute)
+    public function destroy(Campaign $campaign, Entity $entity, Attribute $attribute)
     {
-        return $this->crudDestroy($entity, $attribute);
+        return $this->campaign($campaign)->crudDestroy($entity, $attribute);
     }
 }

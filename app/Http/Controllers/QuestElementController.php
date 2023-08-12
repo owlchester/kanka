@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Sorters\QuestElementSorter;
+use App\Models\Campaign;
 use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Http\Requests\StoreQuestElement;
@@ -26,7 +27,7 @@ class QuestElementController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Quest $quest)
+    public function index(Campaign $campaign, Quest $quest)
     {
         if (empty($quest->entity)) {
             abort(404);
@@ -41,7 +42,6 @@ class QuestElementController extends Controller
         $datagridSorter = new QuestElementSorter();
         $datagridSorter->request(request()->all());
 
-        $ajax = request()->ajax();
         $model = $quest;
         $elements = $quest
             ->elements()
@@ -50,7 +50,7 @@ class QuestElementController extends Controller
             ->paginate();
 
         return view('quests.elements.index', compact(
-            'ajax',
+            'campaign',
             'model',
             'elements',
             'datagridSorter'
@@ -62,16 +62,17 @@ class QuestElementController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create(Quest $quest)
+    public function create(Campaign $campaign, Quest $quest)
     {
         $this->authorize('update', $quest);
 
         return view('quests.elements.create', compact(
+            'campaign',
             'quest'
         ));
     }
 
-    public function store(StoreQuestElement $request, Quest $quest)
+    public function store(StoreQuestElement $request, Campaign $campaign, Quest $quest)
     {
         $this->authorize('update', $quest);
 
@@ -89,35 +90,34 @@ class QuestElementController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->route('quests.quest_elements.edit', ['quest_element' => $element, 'quest' => $quest])
+                ->route('quests.quest_elements.edit', [$campaign, 'quest_element' => $element, 'quest' => $quest])
                 ->with('success', __('quests.elements.create.success', [
                     'entity' => $element->name()
                 ]));
         } elseif ($request->has('submit-new')) {
             return redirect()
-                ->route('quests.quest_elements.create', [$quest])
+                ->route('quests.quest_elements.create', [$campaign, $quest])
                 ->with('success', __('quests.elements.create.success', [
                     'entity' => $element->name()
                 ]));
         }
         return redirect()
-            ->route('quests.quest_elements.index', $quest)
+            ->route('quests.quest_elements.index', [$campaign, $quest])
             ->with('success', __('quests.elements.create.success', [
                 'entity' => $element->name()
             ]));
     }
 
-    public function show(Quest $quest, QuestElement $questElement)
+    public function show(Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
         abort(404);
     }
 
-    public function edit(Quest $quest, QuestElement $questElement)
+    public function edit(Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
         $this->authorize('update', $quest);
         $model = $questElement;
 
-        $campaign = CampaignLocalization::getCampaign();
         $editingUsers = null;
 
         if ($campaign->hasEditingWarning()) {
@@ -131,13 +131,14 @@ class QuestElementController extends Controller
         }
 
         return view('quests.elements.update', compact(
+            'campaign',
             'quest',
             'model',
             'editingUsers'
         ));
     }
 
-    public function update(StoreQuestElement $request, Quest $quest, QuestElement $questElement)
+    public function update(StoreQuestElement $request, Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
         $this->authorize('update', $quest);
 
@@ -159,32 +160,32 @@ class QuestElementController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->route('quests.quest_elements.edit', ['quest_element' => $questElement, 'quest' => $quest])
+                ->route('quests.quest_elements.edit', [$campaign, 'quest_element' => $questElement, 'quest' => $quest])
                 ->with('success', __('quests.elements.edit.success', [
                     'entity' => $questElement->name()
                 ]));
         } elseif ($request->has('submit-new')) {
             return redirect()
-                ->route('quests.quest_elements.create', [$quest])
+                ->route('quests.quest_elements.create', [$campaign, $quest])
                 ->with('success', __('quests.elements.create.success', [
                     'entity' => $questElement->name()
                 ]));
         }
         return redirect()
-            ->route('quests.quest_elements.index', $quest)
+            ->route('quests.quest_elements.index', [$campaign, $quest])
             ->with('success', __('quests.elements.edit.success', [
                 'entity' => $questElement->name()
             ]));
     }
 
-    public function destroy(Quest $quest, QuestElement $questElement)
+    public function destroy(Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
         $this->authorize('update', $quest);
 
         $questElement->delete();
 
         return redirect()
-            ->route('quests.quest_elements.index', $quest)
+            ->route('quests.quest_elements.index', [$campaign, $quest])
             ->with('success', __('quests.elements.destroy.success', [
                 'entity' => $questElement->name()
             ]));

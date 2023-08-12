@@ -42,7 +42,7 @@ $sizeOptions = [
             </a>
         </li>
         <li role="presentation">
-            <a href="#presets" data-nohash="true" class="text-center" data-presets="{{ route('preset_types.presets.index', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}">
+            <a href="#presets" data-nohash="true" class="text-center" data-presets="{{ route('preset_types.presets.index', [$campaign, 'preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}">
                 <x-icon class="fa-solid fa-2x fa-wand-magic-sparkles"></x-icon>
                 <br />
                 {{ __('maps/markers.tabs.preset') }}
@@ -91,7 +91,7 @@ $sizeOptions = [
                     <div class="flex">
                         <div class="grow">
                             <label>{{ __('maps/markers.fields.custom_shape') }}</label>
-                            @if ($campaignService->campaign()->boosted())
+                            @if ($campaign->boosted())
                                 @if(isset($model))
                                     <p class="help-block mb-0">
                                         {{ __('maps/markers.helpers.polygon.edit') }}
@@ -119,7 +119,7 @@ $sizeOptions = [
                     @endif
                         {!! Form::textarea('custom_shape', \App\Facades\FormCopy::field('custom_shape')->string(), ['class' => 'form-control', 'rows' => 2, 'placeholder' => __('maps/markers.placeholders.custom_shape')]) !!}
                     @else
-                        <x-cta :campaign="$campaignService->campaign()" image="0">
+                        <x-cta :campaign="$campaign" image="0">
                             <p>{{ __('maps/markers.pitches.poly') }}</p>
                         </x-cta>
                         </div>
@@ -162,8 +162,8 @@ $sizeOptions = [
                 </div>
             </div>
 
-            @can('mapPresets', $campaignService->campaign())
-                <a href="{{ route('preset_types.presets.create', ['preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}" class="btn2 btn-primary btn-sm">
+            @can('mapPresets', $campaign)
+                <a href="{{ route('preset_types.presets.create', [$campaign, 'preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}" class="btn2 btn-primary btn-sm">
                     {{ __('presets.actions.create') }}
                 </a>
             @endcan

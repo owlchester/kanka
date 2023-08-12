@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\EventFilter;
 use App\Facades\Datagrid;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreEvent;
+use App\Models\Campaign;
 use App\Models\Event;
 use App\Traits\TreeControllerTrait;
 
@@ -25,29 +27,29 @@ class EventController extends CrudController
     /** @var string Filter */
     protected $filter = EventFilter::class;
 
-    public function store(StoreEvent $request)
+    public function store(StoreEvent $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
-    public function show(Event $event)
+    public function show(Campaign $campaign, Event $event)
     {
-        return $this->crudShow($event);
+        return $this->campaign($campaign)->crudShow($event);
     }
 
-    public function edit(Event $event)
+    public function edit(Campaign $campaign, Event $event)
     {
-        return $this->crudEdit($event);
+        return $this->campaign($campaign)->crudEdit($event);
     }
 
-    public function update(StoreEvent $request, Event $event)
+    public function update(StoreEvent $request, Campaign $campaign, Event $event)
     {
-        return $this->crudUpdate($request, $event);
+        return $this->campaign($campaign)->crudUpdate($request, $event);
     }
 
-    public function destroy(Event $event)
+    public function destroy(Campaign $campaign, Event $event)
     {
-        return $this->crudDestroy($event);
+        return $this->campaign($campaign)->crudDestroy($event);
     }
 
     /**
@@ -55,11 +57,11 @@ class EventController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function events(Event $event)
+    public function events(Campaign $campaign, Event $event)
     {
         $this->authCheck($event);
 
-        $options = ['event' => $event];
+        $options = ['campaign' => $campaign, 'event' => $event];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $event->id;
@@ -79,10 +81,11 @@ class EventController extends CrudController
             ->paginate();
 
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return $this
+            ->campaign($campaign)
             ->menuView($event, 'events');
     }
 }

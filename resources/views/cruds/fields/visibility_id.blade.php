@@ -28,7 +28,7 @@ if (isset($model) && $model->visibility_id === Visibility::VISIBILITY_ADMIN_SELF
 
 // The visibility is set to admin but we're not an admin, don't allow changing
 // as it's a custom permission for the user to be able to edit this model.
-if (isset($model) && ((in_array($model->visibility_id, [Visibility::VISIBILITY_ADMIN, Visibility::VISIBILITY_ADMIN_SELF]) && !auth()->user()->isAdmin()) && 
+if (isset($model) && ((in_array($model->visibility_id, [Visibility::VISIBILITY_ADMIN, Visibility::VISIBILITY_ADMIN_SELF]) && !auth()->user()->isAdmin()) &&
     (in_array($model->visibility_id, [Visibility::VISIBILITY_SELF, Visibility::VISIBILITY_ADMIN_SELF]) && !($model->created_by == auth()->user()->id))
 )) {
     ?><input type="hidden" name="visibility_id" value="{{ $model->visibility_id }}" /><?php
@@ -43,5 +43,5 @@ $visibilityUniqueID = uniqid('visibility_');
             <i class="fa-solid fa-question-circle" data-toggle="tooltip" title="{{ __('visibilities.tooltip') }}"></i>
         </a>
     </label>
-    {{ Form::select('visibility_id', $options, empty($model) ? (isset($bulk) ? null : CampaignLocalization::getCampaign()->defaultVisibilityID()) : $model->visibility_id, ['class' => 'form-control', 'id' => $visibilityUniqueID]) }}
+    {{ Form::select('visibility_id', $options, empty($model) ? (isset($bulk) ? null : $campaign->defaultVisibilityID()) : $model->visibility_id, ['class' => 'form-control', 'id' => $visibilityUniqueID]) }}
 </div>

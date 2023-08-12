@@ -7,7 +7,6 @@
     'miscModel' => $timeline,
     'bodyClass' => 'timeline-eras-reorder'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('content')

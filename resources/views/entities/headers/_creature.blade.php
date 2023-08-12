@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Creature $model
- * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if ($model->creature)

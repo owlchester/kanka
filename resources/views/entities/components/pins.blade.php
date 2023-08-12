@@ -39,6 +39,6 @@ if (auth()->check() && auth()->user()->can('update', $model)) {
 
 @includeIf('entities.components.profile.' . $name)
 
-@includeWhen(!isset($printing) && $campaignService->campaign()->boosted() && $model->entity->hasLinks(), 'entities.components.links')
+@includeWhen(!isset($printing) && $campaign->boosted() && $model->entity->hasLinks(), 'entities.components.links')
 
 @include('entities.components.history')

@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Attribute $attribute */?>
 
-{!! Form::open(['route' => ['entities.attributes.live.save', $entity, $attribute]]) !!}
+{!! Form::open(['route' => ['entities.attributes.live.save', $campaign, $entity, $attribute]]) !!}
 <div class="modal-header">
     <x-dialog.close :modal="true" />
     <h4 class="modal-title" id="myModalLabel">{!! __('entities/attributes.live.title', ['attribute' => $attribute->name()]) !!}</h4>

@@ -385,7 +385,7 @@ class EntityEvent extends MiscModel
     }
     public function routeParams(array $options = []): array
     {
-        return [$this->entity_id, $this->id];
+        return $options + [$this->entity_id, $this->id];
     }
 
     public function getNameAttribute(): string

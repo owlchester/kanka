@@ -6,6 +6,7 @@ use App\Datagrids\Filters\MapFilter;
 use App\Facades\Datagrid;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMap;
+use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapMarker;
 use App\Traits\TreeControllerTrait;
@@ -34,68 +35,58 @@ class MapController extends CrudController
 
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMap $request)
+    public function store(StoreMap $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Map $map)
+    public function show(Campaign $campaign, Map $map)
     {
-        return $this->crudShow($map);
+        return $this->campaign($campaign)->crudShow($map);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Map $map)
+    public function edit(Campaign $campaign, Map $map)
     {
         // Can't edit a map being chunked
         if ($map->isChunked() && $map->chunkingRunning()) {
             return response()
-                ->redirectToRoute('maps.show', $map->id)
+                ->redirectToRoute('maps.show', [$campaign, $map->id])
                 ->with('error', __('maps.errors.chunking.running.edit') . ' ' . __('maps.errors.chunking.running.time'));
         }
-        return $this->crudEdit($map);
+        return $this->campaign($campaign)->crudEdit($map);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreMap $request, Map $map)
+    public function update(StoreMap $request, Campaign $campaign, Map $map)
     {
-        return $this->crudUpdate($request, $map);
+        return $this->campaign($campaign)->crudUpdate($request, $map);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Map $map)
+    public function destroy(Campaign $campaign, Map $map)
     {
-        return $this->crudDestroy($map);
+        return $this->campaign($campaign)->crudDestroy($map);
     }
 
     /**
      */
-    public function maps(Map $map)
+    public function maps(Campaign $campaign, Map $map)
     {
         $this->authCheck($map);
 
-        $options = ['map' => $map];
+        $options = [$campaign, 'map' => $map];
         $base = 'descendants';
         if (request()->has('map_id')) {
             $options['map_id'] = $map->id;
@@ -113,17 +104,18 @@ class MapController extends CrudController
             ->paginate();
 
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return $this
+            ->campaign($campaign)
             ->menuView($map, 'maps');
     }
 
     /**
      * Exploration view for a map
      */
-    public function explore(Map $map)
+    public function explore(Campaign $campaign, Map $map)
     {
         // Policies will always fail if they can't resolve the user.
         if (auth()->check()) {
@@ -137,21 +129,21 @@ class MapController extends CrudController
         if ($map->isChunked()) {
             if ($map->chunkingError()) {
                 return redirect()
-                    ->route('maps.show', $map->id)
+                    ->route('maps.show', [$campaign, $map->id])
                 ;
             } elseif (!$map->chunkingReady()) {
                 return redirect()
-                    ->route('maps.show', $map->id)
+                    ->route('maps.show', [$campaign, $map->id])
                 ;
             }
         }
-        return view('maps.explore', compact('map'));
+        return view('maps.explore', compact('map', 'campaign'));
     }
 
     /**
      * Map ticker for updates to pointers
      */
-    public function ticker(Map $map)
+    public function ticker(Campaign $campaign, Map $map)
     {
         // Policies will always fail if they can't resolve the user.
         if (Auth::check()) {
@@ -181,7 +173,7 @@ class MapController extends CrudController
     /**
      * Load only a chunk of the map and cache it for the user
      */
-    public function chunks(Map $map)
+    public function chunks(Campaign $campaign, Map $map)
     {
         $headers = ['Expires', Carbon::now()->addDays(1)->toDateTimeString()];
         if (!request()->has(['z', 'x', 'y'])) {

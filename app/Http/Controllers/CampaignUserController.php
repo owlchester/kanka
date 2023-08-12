@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\CampaignUser;
 use Illuminate\Http\Request;
 
@@ -22,9 +22,8 @@ class CampaignUserController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('members', $campaign);
 
         $users = $campaign
@@ -51,12 +50,12 @@ class CampaignUserController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(CampaignUser $campaignUser)
+    public function destroy(Campaign $campaign, CampaignUser $campaignUser)
     {
-        $this->authorize('invite', $campaignUser->campaign);
+        $this->authorize('invite', $campaign);
 
         $campaignUser->delete();
-        return redirect()->route('campaign_users.index');
+        return redirect()->route('campaign_users.index', $campaign);
     }
 
     /**
@@ -64,9 +63,8 @@ class CampaignUserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function search(Request $request)
+    public function search(Request $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('members', $campaign);
 
         $term = $request->get('q', null);

@@ -1,3 +1,4 @@
+<x-grid type="1/1">
 @php
 $options = [
 '' => __('organisations.members.pinned.none'),
@@ -62,5 +63,6 @@ $fromOrg = request()->get('from') === 'org';
 </div>
 
 @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])
+</x-grid>
 
 

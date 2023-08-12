@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\QuestFilter;
 use App\Facades\Datagrid;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreQuest;
+use App\Models\Campaign;
 use App\Models\Quest;
 use App\Traits\TreeControllerTrait;
 
@@ -27,44 +29,44 @@ class QuestController extends CrudController
 
     /**
      */
-    public function store(StoreQuest $request)
+    public function store(StoreQuest $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      */
-    public function show(Quest $quest)
+    public function show(Campaign $campaign, Quest $quest)
     {
-        return $this->crudShow($quest);
+        return $this->campaign($campaign)->crudShow($quest);
     }
 
     /**
      */
-    public function edit(Quest $quest)
+    public function edit(Campaign $campaign, Quest $quest)
     {
-        return $this->crudEdit($quest);
+        return $this->campaign($campaign)->crudEdit($quest);
     }
 
     /**
      */
-    public function update(StoreQuest $request, Quest $quest)
+    public function update(StoreQuest $request, Campaign $campaign, Quest $quest)
     {
-        return $this->crudUpdate($request, $quest);
+        return $this->campaign($campaign)->crudUpdate($request, $quest);
     }
 
     /**
      */
-    public function destroy(Quest $quest)
+    public function destroy(Campaign $campaign, Quest $quest)
     {
-        return $this->crudDestroy($quest);
+        return $this->campaign($campaign)->crudDestroy($quest);
     }
 
-    public function quests(Quest $quest)
+    public function quests(Campaign $campaign, Quest $quest)
     {
         $this->authCheck($quest);
 
-        $options = ['quest' => $quest];
+        $options = ['campaign' => $campaign, 'quest' => $quest];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $quest->id;
@@ -83,11 +85,11 @@ class QuestController extends CrudController
             ->filter($filters)
             ->paginate(15);
 
-        //return $this->datagridAjax();
+        //return $this->campaign($campaign)->datagridAjax();
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
         return redirect()->to($quest->getLink());
     }

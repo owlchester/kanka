@@ -59,10 +59,10 @@
                 </td>
                 @can('inventory', $entity->child)
                     <td class="text-right">
-                        <a href="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
+                        <a href="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
                            class="btn2 btn-outline btn-xs"
                            data-toggle="ajax-modal" data-target="#entity-modal"
-                           data-url="{{ route('entities.inventories.edit', ['entity' => $entity, 'inventory' => $item->id]) }}"
+                           data-url="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
                            title="{{ __('crud.edit') }}">
                             <x-icon class="edit"></x-icon> {{ __('crud.edit') }}
                         </a>

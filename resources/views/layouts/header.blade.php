@@ -18,7 +18,7 @@
         @endif
         </div>
 
-        @if (auth()->check() && !empty($currentCampaign) && $currentCampaign->userIsMember() && (!isset($qq) || $qq))
+        @if (auth()->check() && !empty($campaign) && $campaign->userIsMember() && (!isset($qq) || $qq))
         <div class="flex-none">
             <span id="qq-sidebar-btn" class="absolute right-auto" data-content="{{ __('dashboards/widgets/welcome.focus.text') }}" data-placement="bottom"></span>
             <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="ajax-modal" data-target="#entity-modal" class="quick-creator-button btn2 btn-primary btn-sm"
@@ -53,7 +53,7 @@
                         fetch="{{ route('notifications.refresh') }}"
                         initials="{{ auth()->user()->initials() }}"
                         avatar="{{ auth()->user()->getAvatarUrl(36) }}"
-                        campaign_id="{{ !empty($currentCampaign) ? $currentCampaign->id : null }}"
+                        campaign_id="{{ !empty($campaign) ? $campaign->id : null }}"
                         :has_alerts="{{ auth()->user()->hasUnread() ? 'true' : 'false'}}"
                         :pro="{{ config('fontawesome.kit') !== false ? 'true' : 'false' }}"
                     ></nav-switcher>

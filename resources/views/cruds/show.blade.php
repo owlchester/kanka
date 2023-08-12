@@ -1,6 +1,5 @@
 <?php /** @var \App\Models\MiscModel $model */?>
 
-@inject('campaignService', 'App\Services\CampaignService')
 @php
 $headerImage = true;
 @endphp
@@ -31,7 +30,7 @@ $headerImage = true;
             </a>
         @endcan
         @can('post', [$model, 'add'])
-        <a href="{{ route('entities.posts.create', $model->entity) }}" class="btn2 btn-accent btn-sm btn-new-post"
+        <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn2 btn-accent btn-sm btn-new-post"
            data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
             <x-icon class="plus"></x-icon> {{ __('crud.actions.new_post') }}
         </a>

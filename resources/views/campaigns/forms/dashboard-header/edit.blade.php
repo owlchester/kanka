@@ -5,7 +5,6 @@
     'mainTitle' => false,
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 @section('content')
 
     {!! Form::model($model, [

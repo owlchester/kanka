@@ -8,7 +8,6 @@
     'miscModel' => $model,
     'bodyClass' => 'entity-profile'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 
 @section('entity-header-actions')

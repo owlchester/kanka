@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 
@@ -23,9 +24,8 @@ class DashboardSetupController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
         // Validate dashboard
@@ -44,7 +44,7 @@ class DashboardSetupController extends Controller
     /**
      * Reorder the dashboard widgets
      */
-    public function reorder()
+    public function reorder(Campaign $campaign)
     {
         $position = 0;
         $widgets = (array) request()->post('widgets', []);

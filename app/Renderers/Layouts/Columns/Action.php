@@ -2,13 +2,15 @@
 
 namespace App\Renderers\Layouts\Columns;
 
-use App\Facades\CampaignLocalization;
 use App\Renderers\Layouts\Layout;
+use App\Traits\CampaignAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 class Action extends Column
 {
+    use CampaignAware;
+
     /** @var array Available actions to render */
     protected $actions = [];
 
@@ -57,12 +59,11 @@ class Action extends Column
 
     public function __toString(): string
     {
-        $campaign = CampaignLocalization::getCampaign();
         $html = view('layouts.datagrid.actions')
             ->with('actions', $this->actions)
             ->with('model', $this->model)
             ->with('params', $this->params)
-            ->with('campaign', $campaign)
+            ->with('campaign', $this->campaign)
             ->render()
         ;
         return $html;

@@ -11,24 +11,15 @@ use Exception;
 
 class InvitationController extends Controller
 {
-    /**
-     * @var CampaignService
-     */
-    public $campaignService;
-
-    /**
-     * @var InviteService
-     */
-    public $inviteService;
+    public InviteService $inviteService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CampaignService $campaignService, InviteService $inviteService)
+    public function __construct(InviteService $inviteService)
     {
-        $this->campaignService = $campaignService;
         $this->inviteService = $inviteService;
     }
 
@@ -58,9 +49,8 @@ class InvitationController extends Controller
             if (!$campaign) {
                 return redirect()->route('start')->withError($e->getMessage());
             }
-            CampaignLocalization::setCampaign($campaign->id);
             return redirect()
-                ->to(CampaignLocalization::getUrl($campaign->id))
+                ->route('dashboard', $campaign)
                 ->withError($e->getMessage());
         }
     }

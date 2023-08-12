@@ -10,7 +10,6 @@ if (!empty($era)) {
 }
 ?>
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 <x-grid>
 
@@ -66,7 +65,7 @@ if (!empty($era)) {
             null,
             ['class' => 'form-control',
                 'placeholder' => 'fa-solid fa-gem, ra ra-sword',
-                ($campaignService->campaign()->boosted() ? null : 'disabled'),
+                ($campaign->boosted() ? null : 'disabled'),
                 'list' => 'timeline-element-icon-list',
                 'autocomplete' => 'off',
                 'data-paste' => 'fontawesome',
@@ -84,10 +83,10 @@ if (!empty($era)) {
         'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>'
         ]) !!}</p>
 
-        @if (!$campaignService->campaign()->boosted())
+        @if (!$campaign->boosted())
             @subscriber()
                 <p class="help-block">
-                    <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaignService->campaign()])]) !!}
+                    <x-icon class="premium"></x-icon> {!! __('crud.errors.boosted_campaigns', ['boosted' => link_to_route('settings.premium', __('concept.premium-campaigns'), ['campaign' => $campaign])]) !!}
                 </p>
             @else
                 <p class="help-block">
@@ -109,7 +108,7 @@ if (!empty($era)) {
     </div>
 </x-grid>
 
-<input type="hidden" name="era-data-url" data-url="{{ route('timelines.era-list', ['timeline' => $timeline->id, 'timeline_era' => 0, 'new' => !empty($model)]) }}">
+<input type="hidden" name="era-data-url" data-url="{{ route('timelines.era-list', [$campaign, 'timeline' => $timeline->id, 'timeline_era' => 0, 'new' => !empty($model)]) }}">
 <input type="hidden" name="oldPosition" data-url="{{ $oldPosition }}">
 
 

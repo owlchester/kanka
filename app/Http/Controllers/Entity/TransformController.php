@@ -6,6 +6,7 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TransformEntityRequest;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\EntityService;
 use App\Traits\GuestAuthTrait;
@@ -30,13 +31,10 @@ class TransformController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Entity $entity)
+    public function index(Campaign $campaign, Entity $entity)
     {
         // Policies will always fail if they can't resolve the user.
         $this->authorize('move', $entity->child);
-
-        // Check that the campaign isn't full
-        $campaign = CampaignLocalization::getCampaign();
 
         $entities = $this->service
             ->campaign($campaign)
@@ -46,6 +44,7 @@ class TransformController extends Controller
 
 
         return view('entities.pages.transform.index', compact(
+            'campaign',
             'entity',
             'entities',
             'campaign',
@@ -58,7 +57,7 @@ class TransformController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function transform(TransformEntityRequest $request, Entity $entity)
+    public function transform(TransformEntityRequest $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('move', $entity->child);
 
@@ -71,7 +70,7 @@ class TransformController extends Controller
                 ->with('success', __('entities/transform.success', ['name' => $entity->name]));
         } catch (TranslatableException $ex) {
             return redirect()
-                ->route($entity->pluralType() . '.show', $entity->entity_id)
+                ->route($entity->pluralType() . '.show', [$campaign, $entity->entity_id])
                 ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
         }
     }

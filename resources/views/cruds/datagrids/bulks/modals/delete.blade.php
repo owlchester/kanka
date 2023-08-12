@@ -1,7 +1,6 @@
 <?php /** @var \App\Datagrids\Datagrid $datagrid */?>
-@inject('campaignService', 'App\Services\CampaignService')
 
-{!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
+{!! Form::open(['url' => route('bulk.process', $campaign), 'method' => 'POST']) !!}
 <div class="modal fade" id="bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-base-100 rounded-2xl">

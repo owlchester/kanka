@@ -2,15 +2,14 @@
 
 namespace App\Renderers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Module;
-use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Models\Relation;
 use App\Services\FilterService;
+use App\Traits\CampaignAware;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -20,6 +19,8 @@ use Illuminate\Support\Str;
 
 class DatagridRenderer
 {
+    use CampaignAware;
+
     protected array $columns = [];
 
     protected LengthAwarePaginator|Collection|array $data = [];
@@ -29,9 +30,6 @@ class DatagridRenderer
     protected User|null $user;
 
     protected FilterService|null $filterService = null;
-
-    /** @var Campaign|bool */
-    protected $campaign;
 
     /**
      * @var null|string
@@ -233,6 +231,7 @@ class DatagridRenderer
         }
 
         $routeOptions = [
+            'campaign' => $this->campaign,
             'm' => 'table',
             'order' => $field ,
             'page' => request()->get('page')
@@ -368,7 +367,7 @@ class DatagridRenderer
                             ? $column['parent_route']
                             : $column['parent_route']($model))
                         : $this->getOption('baseRoute');
-                    $route = route($whoRoute . '.show', [$who]);
+                    $route = route($whoRoute . '.show', [$this->campaign, $who]);
                     $content = '<a class="entity-image cover-background" style="background-image: url(\'' . $who->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
@@ -475,7 +474,7 @@ class DatagridRenderer
     private function renderEntityActionRow(MiscModel $model): string
     {
         $content = '';
-        $actions = $model->datagridActions($this->getCampaign());
+        $actions = $model->datagridActions($this->campaign);
         if (!empty($actions)) {
             $content = '
         <div class="dropdown">
@@ -498,7 +497,7 @@ class DatagridRenderer
         $actions = '';
         if ($this->user && $this->user->can('update', $model)) {
             $actions .= ' <a href="'
-                . route($this->getOption('baseRoute') . '.edit', [$model])
+                . route($this->getOption('baseRoute') . '.edit', [$this->campaign, $model])
                 . '" title="' . __('crud.edit') . '">
                 <i class="fa-solid fa-edit" aria-hidden="true"></i>
             </a>';
@@ -536,24 +535,4 @@ class DatagridRenderer
         return $this;
     }
 
-    /**
-     * @param Campaign $campaign
-     * @return $this
-     */
-    public function campaign(Campaign $campaign): self
-    {
-        $this->campaign = $campaign;
-        return $this;
-    }
-
-    /**
-     * @return Campaign
-     */
-    protected function getCampaign(): Campaign
-    {
-        if ($this->campaign === null) {
-            $this->campaign = CampaignLocalization::getCampaign();
-        }
-        return $this->campaign;
-    }
 }

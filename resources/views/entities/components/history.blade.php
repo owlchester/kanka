@@ -19,7 +19,7 @@
         ]) !!}
             </p>
             @can('update', $model)
-                <a href="{{ route('entities.logs', $model->entity) }}" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('entities.logs', $model->entity) }}" title="{{ __('crud.history.view') }}" class="print-none">
+                <a href="{{ route('entities.logs', [$campaign, $model->entity]) }}" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('entities.logs', [$campaign, $model->entity]) }}" title="{{ __('crud.history.view') }}" class="print-none">
                     <x-icon class="fa-solid fa-history"></x-icon>
                     <span class="hidden-xs hidden-sm">{{ __('crud.history.view') }}</span>
                 </a>

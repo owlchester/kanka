@@ -8,7 +8,6 @@
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-assets'
 ])
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('entity-header-actions')
     @can('update', $entity->child)

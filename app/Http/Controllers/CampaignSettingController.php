@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 
 class CampaignSettingController extends Controller
 {
@@ -19,10 +19,9 @@ class CampaignSettingController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
         $canReset = true;
-        $campaign = CampaignLocalization::getCampaign();
         return view('campaigns.modules.index', compact('campaign'))
             ->with('canReset', $canReset);
     }
@@ -34,9 +33,8 @@ class CampaignSettingController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function toggle(string $module)
+    public function toggle(Campaign $campaign, string $module)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('setting', $campaign);
 
         // Validate module

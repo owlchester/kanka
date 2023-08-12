@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Services\Campaign\StatService;
 
 /**
@@ -12,8 +12,7 @@ use App\Services\Campaign\StatService;
  */
 class StatController extends Controller
 {
-    /** @var StatService */
-    protected $service;
+    protected StatService $service;
 
     public function __construct(StatService $service)
     {
@@ -22,9 +21,8 @@ class StatController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('stats', $campaign);
 
         $stats = $this->service->campaign($campaign)->stats();

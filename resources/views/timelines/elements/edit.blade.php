@@ -14,12 +14,11 @@
     ]
 ])
 
-@inject('campaignService', 'App\Services\CampaignService')
 
 @section('content')
     @include('partials.errors')
 
-    {!! Form::model($model, ['route' => ['timelines.timeline_elements.update', 'timeline' => $timeline, 'timeline_element' => $model], 'method' => 'PATCH', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
+    {!! Form::model($model, ['route' => ['timelines.timeline_elements.update', $campaign, 'timeline' => $timeline, 'timeline_element' => $model], 'method' => 'PATCH', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1, 'data-maintenance' => 1]) !!}
     <x-box>
         @include('timelines.elements._form')
 
@@ -38,8 +37,8 @@
     </x-box>
     {!! Form::close() !!}
 
-    @if(!empty($model) && $campaignService->campaign()->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('timeline-elements.keep-alive', $model->id) }}" />
+    @if(!empty($model) && $campaign->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('timeline-elements.keep-alive', [$campaign, $model->id]) }}" />
     @endif
 @endsection
 

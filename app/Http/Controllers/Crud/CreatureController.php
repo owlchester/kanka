@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\CreatureFilter;
 use App\Facades\Datagrid;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreCreature;
+use App\Models\Campaign;
 use App\Models\Creature;
 use App\Traits\TreeControllerTrait;
 
@@ -29,42 +31,42 @@ class CreatureController extends CrudController
      * @param StoreCreature $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreCreature $request)
+    public function store(Campaign $campaign, StoreCreature $request)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      */
-    public function show(Creature $creature)
+    public function show(Campaign $campaign, Creature $creature)
     {
-        return $this->crudShow($creature);
+        return $this->campaign($campaign)->crudShow($creature);
     }
 
     /**
      */
-    public function edit(Creature $creature)
+    public function edit(Campaign $campaign, Creature $creature)
     {
-        return $this->crudEdit($creature);
+        return $this->campaign($campaign)->crudEdit($creature);
     }
 
     /**
      */
-    public function update(StoreCreature $request, Creature $creature)
+    public function update(Campaign $campaign, StoreCreature $request, Creature $creature)
     {
-        return $this->crudUpdate($request, $creature);
+        return $this->campaign($campaign)->crudUpdate($request, $creature);
     }
 
     /**
      */
-    public function destroy(Creature $creature)
+    public function destroy(Campaign $campaign, Creature $creature)
     {
-        return $this->crudDestroy($creature);
+        return $this->campaign($campaign)->crudDestroy($creature);
     }
 
     /**
      */
-    public function creatures(Creature $creature)
+    public function creatures(Campaign $campaign, Creature $creature)
     {
         $this->authCheck($creature);
 
@@ -87,10 +89,11 @@ class CreatureController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return $this
+            ->campaign($campaign)
             ->menuView($creature, 'creatures');
     }
 }

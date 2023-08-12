@@ -16,4 +16,4 @@
 
 
 
-{!! Form::hidden('is_personality_visible', CampaignLocalization::getCampaign()->entity_personality_visibility ? 0 : 1) !!}
+{!! Form::hidden('is_personality_visible', $campaign->entity_personality_visibility ? 0 : 1) !!}

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Families;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Family;
 use App\Services\Families\FamilyTreeService;
@@ -23,16 +23,15 @@ class FamilyTreeController extends Controller
         $this->service = $service;
     }
 
-    public function index(Family $family)
+    public function index(Campaign $campaign, Family $family)
     {
         if (auth()->check()) {
             $this->authorize('view', $family);
         } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $family);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $family, $family->entity->type_id);
         }
 
         $mode = request()->has('pixi') ? 'pixi' : 'vue';
-        $campaign = CampaignLocalization::getCampaign();
 
         return view('families.trees.index')
             ->with('family', $family)
@@ -44,17 +43,18 @@ class FamilyTreeController extends Controller
     /**
      * Provide the family tree info as a json
      */
-    public function api(Family $family): JsonResponse
+    public function api(Campaign $campaign, Family $family): JsonResponse
     {
         if (auth()->check()) {
             $this->authorize('view', $family);
         } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $family);
+            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $family, $family->entity->type_id);
         }
 
         return response()->json(
             $this
                 ->service
+                ->campaign($campaign)
                 ->family($family)
                 ->api()
         );
@@ -63,7 +63,7 @@ class FamilyTreeController extends Controller
     /**
      * Provide the entity info as a json
      */
-    public function entity(Entity $entity): JsonResponse
+    public function entity(Campaign $campaign, Entity $entity): JsonResponse
     {
         if (empty($entity->child)) {
             abort(404);
@@ -80,7 +80,7 @@ class FamilyTreeController extends Controller
     /**
      * Save the new config
      */
-    public function save(Request $request, Family $family): JsonResponse
+    public function save(Request $request, Campaign $campaign, Family $family): JsonResponse
     {
         //dd($request->get('data'));
         return response()->json(

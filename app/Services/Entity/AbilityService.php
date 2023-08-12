@@ -8,6 +8,7 @@ use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAbility;
+use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Collection;
@@ -16,6 +17,7 @@ use Exception;
 
 class AbilityService
 {
+    use CampaignAware;
     use EntityAware;
 
     protected Collection|bool $attributes = false;
@@ -63,7 +65,7 @@ class AbilityService
 
         // Meta
         $this->abilities['meta'] = [
-            'add_url' => route('entities.entity_abilities.create', $this->entity),
+            'add_url' => route('entities.entity_abilities.create', [$this->campaign, $this->entity]),
             'user_id' => auth()->check() ? auth()->user()->id : 0,
             'is_admin' => auth()->check() && auth()->user()->isAdmin(),
         ];
@@ -180,19 +182,19 @@ class AbilityService
                 'url' => !empty($entityAbility->ability->image) ? $entityAbility->ability->getOriginalImageUrl() : null,
             ],
             'actions' => [
-                'edit' => route('entities.entity_abilities.edit', [$this->entity, $entityAbility]),
-                'update' => route('entities.entity_abilities.update', [$this->entity, $entityAbility]),
-                'delete' => route('entities.entity_abilities.destroy', [$this->entity, $entityAbility]),
-                'view' => route('abilities.show', $entityAbility->ability_id),
+                'edit' => route('entities.entity_abilities.edit', [$this->campaign, $this->entity, $entityAbility]),
+                'update' => route('entities.entity_abilities.update', [$this->campaign, $this->entity, $entityAbility]),
+                'delete' => route('entities.entity_abilities.destroy', [$this->campaign, $this->entity, $entityAbility]),
+                'view' => route('abilities.show', [$this->campaign, $entityAbility->ability_id]),
             ],
             'entity' => [
                 'id' => $entityAbility->ability->entity->id,
-                'tooltip' => route('entities.tooltip', $entityAbility->ability->entity->id)
+                'tooltip' => route('entities.tooltip', [$this->campaign, $entityAbility->ability->entity->id])
             ]
         ];
 
         if (!empty($entityAbility->ability->charges)) {
-            $data['actions']['use'] = route('entities.entity_abilities.use', [$this->entity, $entityAbility]);
+            $data['actions']['use'] = route('entities.entity_abilities.use', [$this->campaign, $this->entity, $entityAbility]);
         }
 
         return $data;

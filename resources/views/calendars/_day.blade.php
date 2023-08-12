@@ -19,7 +19,9 @@
                     </a>
 @php
     $routeOptions = [
-    $model, 'date' => $day['date']
+        $campaign,
+        $model,
+        'date' => $day['date']
 ];
 if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
     $routeOptions['layout'] = 'year';
@@ -81,7 +83,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                         <div class="calendar-event-block block text-left my-1 p-1 rounded overflow-hidden cursor-pointer text-sm {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
                             @if ($canEdit)
 @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
-                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', array_merge(($event->calendar_id !== $model->id ? [$event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$event->entity->id, $event->id]), $routeOptions)) }}"
+                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->entity->id, $event->id]) + $routeOptions) }}"
                             @else
                                 data-url="{{ $event->entity->url() }}"
                             @endif
@@ -89,7 +91,7 @@ if ($renderer->isYearlyLayout() && !$model->yearlyLayout()) {
                             @if (!empty($event->entity->child->image))
                             <a href="{{ $event->entity->url() }}" class="hidden-xs hidden-sm entity-image pull-left mr-1 cover-background inline-block" style="background-image: url('{{ $event->entity->avatarSize(40)->avatarV2() }}');"></a>
                             @endif
-                            <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', $event->entity->id) }}" class="block">
+                            <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->entity]) }}" class="block">
                                 {{ $event->entity->name }}
                                 @if ($renderer->isEventStartDate($event, $day['date']))
                                     <span class="text-xs">{{ __('calendars.events.start')}}</span>

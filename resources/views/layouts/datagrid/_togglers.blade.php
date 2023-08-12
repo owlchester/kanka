@@ -7,7 +7,7 @@
         <ul class="dropdown-menu min-w-0" role="menu">
             @foreach ($model->datagridSortableColumns() as $field => $translation)
                 @php
-                    $options = ['m' => $mode, 'order' => $field];
+                    $options = [$campaign, 'm' => $mode, 'order' => $field];
                     $icon = null;
                     if (request()->get('order') === $field) {
                         if (request()->get('desc') === '1') {
@@ -31,12 +31,12 @@
 
 @if (empty($forceMode))
     @if (!isset($mode) || $mode === 'grid')
-        <a class="btn2 " href="{{ route($name . '.' . $route, ['m' => 'table']) }}" title="{{ __('datagrids.modes.table') }}">
+        <a class="btn2 " href="{{ route($name . '.' . $route, [$campaign, 'm' => 'table']) }}" title="{{ __('datagrids.modes.table') }}">
             <x-icon class="fa-solid fa-list-ul"></x-icon>
             <span class="sr-only">Table</span>
         </a>
     @else
-        <a class="btn2" href="{{ route($name . '.' . $route, ['m' => 'grid']) }}" title="{{ __('datagrids.modes.grid') }}">
+        <a class="btn2" href="{{ route($name . '.' . $route, [$campaign, 'm' => 'grid']) }}" title="{{ __('datagrids.modes.grid') }}">
             <i class="fa-solid fa-grid !mr-0" aria-hidden="true"></i>
             <span class="sr-only">Grid</span>
         </a>

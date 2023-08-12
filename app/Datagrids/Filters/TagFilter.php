@@ -10,7 +10,7 @@ class TagFilter extends DatagridFilter
     /**
      * Filters available for tags
      */
-    public function __construct()
+    public function build()
     {
         $name = Module::singular(config('entities.ids.tag'));
         $placeholder = __('crud.placeholders.tag');
@@ -24,7 +24,7 @@ class TagFilter extends DatagridFilter
                 'field' => 'tag_id',
                 'label' => Module::singular(config('entities.ids.tag'), __('entities.tag')),
                 'type' => 'select2',
-                'route' => route('tags.find'),
+                'route' => route('tags.find', $this->campaign),
                 'placeholder' =>  $placeholder,
                 'model' => Tag::class,
             ])

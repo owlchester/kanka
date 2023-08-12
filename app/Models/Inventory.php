@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Traits\VisibilityIDTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -70,17 +71,15 @@ class Inventory extends Model
      * List of recently used positions for the form suggestions
      * @return mixed
      */
-    public static function positionList()
+    public function scopePositionList(Builder $builder, Campaign $campaign): Builder
     {
-        $campaign = CampaignLocalization::getCampaign();
-        return self::groupBy('position')
+        return $builder->groupBy('position')
             ->whereNotNull('position')
             ->leftJoin('entities as e', 'e.id', 'inventories.entity_id')
             ->where('e.campaign_id', $campaign->id)
             ->orderBy('position', 'ASC')
             ->limit(20)
-            ->pluck('position')
-            ->all();
+        ;
     }
 
     /**

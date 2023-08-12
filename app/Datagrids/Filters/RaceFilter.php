@@ -9,7 +9,7 @@ class RaceFilter extends DatagridFilter
     /**
      * Filters available for races
      */
-    public function __construct()
+    public function build()
     {
         $this
             ->add('name')
@@ -18,7 +18,7 @@ class RaceFilter extends DatagridFilter
                 'field' => 'race_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('races.find'),
+                'route' => route('races.find', $this->campaign),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Race::class,
             ])

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\StoreCampaignApplication;
+use App\Models\Campaign;
 use App\Models\CampaignSubmission;
 use App\Services\Campaign\SubmissionService;
 
@@ -23,9 +23,8 @@ class ApplyController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('apply', $campaign);
 
         $submission = auth()->user()->submissions()->first();
@@ -33,7 +32,6 @@ class ApplyController extends Controller
         return view('campaigns.submissions.apply')
             ->with('submission', $submission)
             ->with('campaign', $campaign)
-            ->with('ajax', request()->ajax())
         ;
     }
 
@@ -42,9 +40,8 @@ class ApplyController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function save(StoreCampaignApplication $request)
+    public function save(StoreCampaignApplication $request, Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('apply', $campaign);
 
         /** @var CampaignSubmission|null $submission */
@@ -63,12 +60,11 @@ class ApplyController extends Controller
             $this->service->campaign($campaign)->notifyAdmins();
         }
 
-        return redirect()->route('dashboard')->with('success', $success);
+        return redirect()->route('dashboard', $campaign)->with('success', $success);
     }
 
-    public function remove()
+    public function remove(Campaign $campaign)
     {
-        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('apply', $campaign);
 
         /** @var CampaignSubmission|null $submission */
@@ -76,6 +72,6 @@ class ApplyController extends Controller
         if (!empty($submission)) {
             $submission->delete();
         }
-        return redirect()->route('dashboard')->with('success', __('campaigns/submissions.apply.success.remove'));
+        return redirect()->route('dashboard', $campaign)->with('success', __('campaigns/submissions.apply.success.remove'));
     }
 }

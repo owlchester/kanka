@@ -14,9 +14,6 @@ if (!isset($pinnedPosts)) {
     $pinnedPosts = $entity->posts()->with(['permissions', 'location'])->ordered()->paginate(15);
     $wrapper = true;
 }
-if (!isset($campaign)) {
-    $campaign = \App\Facades\CampaignLocalization::getCampaign();
-}
 
 $first = $pinnedPosts->first();
 $postCount = 0;
@@ -59,7 +56,7 @@ $postCount = 0;
     @if ($pinnedPosts->currentPage() < $pinnedPosts->lastPage())
         <div class="text-center mb-5">
             @if (auth()->check())
-            <a href="#" class="btn2  btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$entity, 'page' => $pinnedPosts->currentPage() + 1]) }}">
+            <a href="#" class="btn2  btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$campaign, $entity, 'page' => $pinnedPosts->currentPage() + 1]) }}">
                 <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 
@@ -80,7 +77,7 @@ $postCount = 0;
 @if (!request()->ajax() && $entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
 @can('post', [$model, 'add'])
     <div class="mb-5 text-center row-add-note-button">
-        <a href="{{ route('entities.posts.create', $entity) }}" class="btn2 btn-accent btn-sm btn-new-post"
+        <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-accent btn-sm btn-new-post"
            data-entity-type="post" data-toggle="tooltip" title="{{ __('crud.tooltips.new_post') }}">
             <x-icon class="plus"></x-icon>
             {{ __('crud.actions.new_post') }}

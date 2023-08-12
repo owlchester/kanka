@@ -4,6 +4,7 @@ namespace App\Jobs\Campaigns;
 
 use App\Observers\CampaignObserver;
 use App\Models\Campaign;
+use App\Services\CampaignService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -38,6 +39,7 @@ class HideCampaign implements ShouldQueue
      */
     public function handle()
     {
+        /** @var CampaignService $service */
         $service = app()->make(\App\Services\CampaignService::class);
         $campaign = Campaign::find($this->campaign);
         if (!$campaign) {

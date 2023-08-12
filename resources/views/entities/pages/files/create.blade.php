@@ -4,12 +4,12 @@
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => __('entities.' . $entity->pluralType())],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        ['url' => route('entities.entity_assets.index', $entity->id), 'label' => __('crud.tabs.assets')],
+        ['url' => route('entities.entity_assets.index', [$campaign, $entity->id]), 'label' => __('crud.tabs.assets')],
     ]
 ])
 
 @section('content')
-    {!! Form::open(['route' => ['entities.entity_assets.store', $entity], 'method'=>'POST', 'data-shortcut' => 1, 'enctype' => 'multipart/form-data']) !!}
+    {!! Form::open(['route' => ['entities.entity_assets.store', $campaign, $entity], 'method'=>'POST', 'data-shortcut' => 1, 'enctype' => 'multipart/form-data']) !!}
 
     @include('partials.forms.form', [
             'title' => __('entities/files.create.title', ['entity' => $entity->name]),

@@ -2,14 +2,14 @@
     'title' => __('entities/move.title', ['name' => $entity->name]),
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($entity->pluralType()), 'label' => \App\Facades\Module::plural($entity->typeId(), __('entities.' . $entity->pluralType()))],
-        ['url' => route($entity->pluralType() . '.show', [$entity->entity_id]), 'label' => $entity->name],
+        ['url' => route($entity->pluralType() . '.show', [$campaign, $entity->entity_id]), 'label' => $entity->name],
         __('crud.actions.move'),
     ]
 ])
 
 @section('content')
     @include('partials.errors')
-    {!! Form::open(['route' => ['entities.move', $entity->id], 'method' => 'POST']) !!}
+    {!! Form::open(['route' => ['entities.move', $campaign, $entity->id], 'method' => 'POST']) !!}
 
     {{ csrf_field() }}
     <div class="max-w-3xl">

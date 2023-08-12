@@ -25,6 +25,9 @@ class CampaignUserObserver
     public function deleted(CampaignUser $campaignUser)
     {
         // Update the campaign members cache when a user was deleted
+        if ($campaignUser->campaign === null) {
+            return;
+        }
         CampaignCache::campaign($campaignUser->campaign)->clearMembers();
     }
 }

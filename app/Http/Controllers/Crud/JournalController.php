@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\JournalFilter;
 use App\Facades\Datagrid;
-use App\Models\Journal;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreJournal;
+use App\Models\Campaign;
+use App\Models\Journal;
 use App\Traits\TreeControllerTrait;
 
 class JournalController extends CrudController
@@ -14,6 +16,7 @@ class JournalController extends CrudController
      * Tree / Nested Mode
      */
     use TreeControllerTrait;
+
     protected $treeControllerParentKey = 'journal_id';
 
     /**
@@ -32,41 +35,41 @@ class JournalController extends CrudController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJournal $request)
+    public function store(StoreJournal $request, Campaign $campaign)
     {
-        return $this->crudStore($request);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Journal $journal)
+    public function show(Campaign $campaign, Journal $journal)
     {
-        return $this->crudShow($journal);
+        return $this->campaign($campaign)->crudShow($journal);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Journal $journal)
+    public function edit(Campaign $campaign, Journal $journal)
     {
-        return $this->crudEdit($journal);
+        return $this->campaign($campaign)->crudEdit($journal);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreJournal $request, Journal $journal)
+    public function update(StoreJournal $request, Campaign $campaign, Journal $journal)
     {
-        return $this->crudUpdate($request, $journal);
+        return $this->campaign($campaign)->crudUpdate($request, $journal);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Journal $journal)
+    public function destroy(Campaign $campaign, Journal $journal)
     {
-        return $this->crudDestroy($journal);
+        return $this->campaign($campaign)->crudDestroy($journal);
     }
 
     /**
@@ -74,11 +77,11 @@ class JournalController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function journals(Journal $journal)
+    public function journals(Campaign $campaign, Journal $journal)
     {
         $this->authCheck($journal);
 
-        $options = ['journal' => $journal];
+        $options = ['campaign' => $campaign, 'journal' => $journal];
         $filters = [];
         if (request()->has('parent_id')) {
             $options['parent_id'] = $journal->id;
@@ -97,10 +100,11 @@ class JournalController extends CrudController
 
         // Ajax Datagrid
         if (request()->ajax()) {
-            return $this->datagridAjax();
+            return $this->campaign($campaign)->datagridAjax();
         }
 
         return $this
+            ->campaign($campaign)
             ->menuView($journal, 'journals');
     }
 }
