@@ -99,7 +99,7 @@ class RaceController extends CrudController
             return $this->campaign($campaign)->datagridAjax();
         }
 
-        return redirect()->route('races.show', $race);
+        return redirect()->route('races.show', [$campaign, $race]);
     }
 
     /**

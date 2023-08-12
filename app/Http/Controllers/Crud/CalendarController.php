@@ -218,7 +218,7 @@ class CalendarController extends CrudController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function eventLength(Calendar $calendar, ValidateReminderLength $request)
+    public function eventLength(Campaign $campaign, Calendar $calendar, ValidateReminderLength $request)
     {
         $this->authorize('view', $calendar);
         return response()->json($this->lengthValidatorService->validateLength($calendar, $request));

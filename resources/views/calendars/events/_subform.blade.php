@@ -25,7 +25,7 @@
             {{ __('calendars.fields.length') }}
             <i class="fa-solid fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.event_length') }}"></i>
         </label>
-        {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'class' => 'form-control', 'maxlength' => 1, 'data-url' => route('calendars.event-length', ['calendar' => 0])]) !!}
+        {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'class' => 'form-control', 'maxlength' => 1, 'data-url' => route('calendars.event-length', [$campaign, 'calendar' => 0])]) !!}
 
         <p class="help-block hidden-md hidden-lg">{{ __('calendars.hints.event_length') }}</p>
         <p class="length-warning hidden text-red">
