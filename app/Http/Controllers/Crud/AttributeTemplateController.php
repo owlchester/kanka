@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Filters\AttributeTemplateFilter;
-use App\Models\AttributeTemplate;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreAttributeTemplate;
+use App\Models\AttributeTemplate;
 use App\Models\Campaign;
 
 class AttributeTemplateController extends CrudController

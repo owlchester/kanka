@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crud;
 
 use App\Datagrids\Actions\MenuLinkDatagridActions;
+use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMenuLink;
 use App\Models\Campaign;
 use App\Models\MenuLink;
@@ -113,26 +114,6 @@ class MenuLinkController extends CrudController
     public function destroy(Campaign $campaign, MenuLink $menuLink)
     {
         return $this->campaign($campaign)->crudDestroy($menuLink);
-    }
-
-    /**
-     * Random entity
-     * @param MenuLink $menuLink
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function random(Campaign $campaign, MenuLink $menuLink)
-    {
-        $route = $menuLink->randomEntity();
-
-        if (empty($route)) {
-            return redirect()
-                ->route('dashboard')
-                ->with(
-                    'error',
-                    __('menu_links.random_no_entity')
-                );
-        }
-        return redirect()->to($route);
     }
 
     /**

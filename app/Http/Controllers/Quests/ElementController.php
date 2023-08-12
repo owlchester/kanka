@@ -1,42 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Quests;
 
 use App\Datagrids\Sorters\QuestElementSorter;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreQuestElement;
 use App\Models\Campaign;
 use App\Models\Quest;
 use App\Models\QuestElement;
-use App\Http\Requests\StoreQuestElement;
 use App\Services\MultiEditingService;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Facades\Auth;
 
-class QuestElementController extends Controller
+class ElementController extends Controller
 {
-    /** For unlogged user permissions */
+    use CampaignAware;
     use GuestAuthTrait;
 
-    /**
-     * @var string
-     */
-    protected $model = \App\Models\QuestElement::class;
-
-    /**
-     * @param Quest $quest
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign, Quest $quest)
     {
         if (empty($quest->entity)) {
             abort(404);
         }
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $quest);
-        } else {
-            $this->authorizeEntityForGuest(\App\Models\CampaignPermission::ACTION_READ, $quest);
-        }
+        $this->campaign($campaign)->authView($quest);
 
         $datagridSorter = new QuestElementSorter();
         $datagridSorter->request(request()->all());
@@ -56,11 +43,6 @@ class QuestElementController extends Controller
         ));
     }
 
-    /**
-     * @param Quest $quest
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function create(Campaign $campaign, Quest $quest)
     {
         $this->authorize('update', $quest);

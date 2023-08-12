@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Entity;
 
+use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\EntityService;
 
-class EntityController extends Controller
+class TemplateController extends Controller
 {
     protected EntityService $entityService;
 
@@ -24,21 +25,9 @@ class EntityController extends Controller
 
     /**
      * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function files(Campaign $campaign, Entity $entity)
-    {
-        $this->authorize('view', $entity->child);
-
-        return view('entities.components._files', compact('campaign', 'entity'));
-    }
-
-    /**
-     * @param Entity $entity
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function template(Campaign $campaign, Entity $entity)
+    public function update(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
 

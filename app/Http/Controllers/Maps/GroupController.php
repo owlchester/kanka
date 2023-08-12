@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Maps;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Http\Requests\StoreMapGroup;
 use App\Facades\Datagrid;
-use App\Http\Requests\ReorderGroups;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapGroup;
+use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
-use Illuminate\Http\Request;
+use App\Traits\Controllers\HasSubview;
 use Illuminate\Support\Arr;
 
-class MapGroupController extends Controller
+class GroupController extends Controller
 {
-    use BulkControllerTrait;
+    use CampaignAware;
     use HasDatagrid;
+    use HasSubview;
 
     /**
      * Index
@@ -39,11 +39,9 @@ class MapGroupController extends Controller
             return $this->campaign($campaign)->datagridAjax();
         }
 
-        return view('maps.groups.index')
-            ->with('rows', $this->rows)
-            ->with('campaign', $campaign)
-            ->with('model', $map)
-        ;
+        return $this
+            ->campaign($campaign)
+            ->subview('maps.groups.index', $map);
     }
 
     public function show(Campaign $campaign, Map $map)
@@ -170,56 +168,5 @@ class MapGroupController extends Controller
         return redirect()
             ->route('maps.map_groups.index', [$campaign, $map])
             ->withSuccess(__('maps/groups.delete.success', ['name' => $mapGroup->name]));
-    }
-
-    /**
-     * @param Request $request
-     * @param Map $map
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function bulk(Request $request, Campaign $campaign, Map $map)
-    {
-        $this->authorize('update', $map);
-        $action = $request->get('action');
-        $models = $request->get('model');
-        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
-            return redirect()->back();
-        }
-
-        if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.groups.bulk', [$campaign, 'map' => $map]), '_map-group', $models);
-        }
-
-        $count = $this->bulkProcess($request, MapGroup::class);
-
-        return redirect()
-            ->route('maps.map_groups.index', [$campaign, 'map' => $map])
-            ->with('success', trans_choice('maps/groups.bulks.' . $action, $count, ['count' => $count]))
-        ;
-    }
-
-    /**
-     * Controls drag and drop reordering of map groups
-     */
-    public function reorder(ReorderGroups $request, Campaign $campaign, Map $map)
-    {
-        $this->authorize('update', $map);
-
-        $order = 1;
-        $ids = $request->get('group');
-        foreach ($ids as $id) {
-            $group = MapGroup::where('id', $id)->where('map_id', $map->id)->first();
-            if (empty($group)) {
-                continue;
-            }
-            $group->position = $order;
-            $group->updateQuietly();
-            $order++;
-        }
-        $order--;
-        return redirect()
-            ->route('maps.map_groups.index', [$campaign, 'map' => $map])
-            ->with('success', trans_choice('maps/groups.reorder.success', $order, ['count' => $order]));
     }
 }

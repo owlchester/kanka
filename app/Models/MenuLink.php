@@ -368,7 +368,7 @@ class MenuLink extends MiscModel
             return null;
         }
 
-        return $entity->url('show');
+        return $entity->url();
     }
 
     /**

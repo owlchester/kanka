@@ -21,16 +21,16 @@ Route::get('/w/{campaign}/maps/{map}/maps', 'Maps\MapController@index')->name('m
 Route::get('/w/{campaign}/maps/{map}/explore', 'Maps\ExploreController@index')->name('maps.explore');
 Route::get('/w/{campaign}/maps/{map}/chunks/', 'Maps\ExploreController@chunks')->name('maps.chunks');
 Route::get('/w/{campaign}/maps/{map}/ticker', 'Maps\ExploreController@ticker')->name('maps.ticker');
-Route::get('/w/{campaign}/maps/{map}/{map_marker}/details', 'Maps\MapMarkerController@details')->name('maps.markers.details');
-Route::post('/w/{campaign}/maps/{map}/{map_marker}/move', 'Maps\MapMarkerController@move')->name('maps.markers.move');
+Route::get('/w/{campaign}/maps/{map}/{map_marker}/details', 'Maps\Markers\DetailController@index')->name('maps.markers.details');
+Route::post('/w/{campaign}/maps/{map}/{map_marker}/move', 'Maps\Markers\MoveController@index')->name('maps.markers.move');
 Route::get('/w/{campaign}/maps/tree', 'Crud\MapController@tree')->name('maps.tree');
-Route::post('/w/{campaign}/maps/{map}/groups/bulk', 'Maps\MapGroupController@bulk')->name('maps.groups.bulk');
-Route::post('/w/{campaign}/maps/{map}/groups/reorder', 'Maps\MapGroupController@reorder')->name('maps.groups.reorder-save');
+Route::post('/w/{campaign}/maps/{map}/groups/bulk', 'Maps\Bulks\GroupController@index')->name('maps.groups.bulk');
+Route::post('/w/{campaign}/maps/{map}/groups/reorder', 'Maps\Reorders\GroupController@index')->name('maps.groups.reorder-save');
 
-Route::post('/w/{campaign}/maps/{map}/layers/bulk', 'Maps\MapLayerController@bulk')->name('maps.layers.bulk');
-Route::post('/w/{campaign}/maps/{map}/layers/reorder', 'Maps\MapLayerController@reorder')->name('maps.layers.reorder-save');
+Route::post('/w/{campaign}/maps/{map}/layers/bulk', 'Maps\Bulks\LayerController@index')->name('maps.layers.bulk');
+Route::post('/w/{campaign}/maps/{map}/layers/reorder', 'Maps\Reorders\LayerController@index')->name('maps.layers.reorder-save');
 
-Route::post('/w/{campaign}/maps/{map}/markers/bulk', 'Maps\MapMarkerController@bulk')->name('maps.markers.bulk');
+Route::post('/w/{campaign}/maps/{map}/markers/bulk', 'Maps\Bulks\MarkerController@index')->name('maps.markers.bulk');
 
 // Character
 Route::get('/w/{campaign}/characters/{character}/organisations', 'Characters\OrganisationController@index')->name('characters.organisations');
@@ -175,7 +175,7 @@ Route::post('/w/{campaign}/editing/timeline-elements/{timeline_element}/keep-ali
 Route::get('/w/{campaign}/timeline/{timeline}/era/{timeline_era}/list', 'Timelines\TimelineEraController@positionList')->name('timelines.era-list');
 
 
-Route::get('/w/{campaign}/menu_links/{menu_link}/random', 'MenuLinkController@random')
+Route::get('/w/{campaign}/menu_links/{menu_link}/random', 'QuickLink\RandomController@index')
     ->name('menu_links.random');
 
 Route::get('/w/{campaign}/timelines/{timeline}/reorder', [\App\Http\Controllers\Timelines\TimelineReorderController::class, 'index'])
@@ -220,15 +220,15 @@ Route::resources([
     '/w/{campaign}/items' => 'Crud\ItemController',
     '/w/{campaign}/journals' => 'Crud\JournalController',
     '/w/{campaign}/maps' => 'Crud\MapController',
-    '/w/{campaign}/maps.map_layers' => 'Maps\MapLayerController',
-    '/w/{campaign}/maps.map_groups' => 'Maps\MapGroupController',
-    '/w/{campaign}/maps.map_markers' => 'Maps\MapMarkerController',
-    '/w/{campaign}/menu_links' => 'MenuLinkController',
+    '/w/{campaign}/maps.map_layers' => 'Maps\LayerController',
+    '/w/{campaign}/maps.map_groups' => 'Maps\GroupController',
+    '/w/{campaign}/maps.map_markers' => 'Maps\MarkerController',
+    '/w/{campaign}/menu_links' => 'Crud\MenuLinkController',
     '/w/{campaign}/organisations' => 'Crud\OrganisationController',
     '/w/{campaign}/organisations.organisation_members' => 'Organisation\MemberController',
     '/w/{campaign}/notes' => 'Crud\NoteController',
     '/w/{campaign}/quests' => 'Crud\QuestController',
-    '/w/{campaign}/quests.quest_elements' => 'QuestElementController',
+    '/w/{campaign}/quests.quest_elements' => 'Quest\ElementController',
     '/w/{campaign}/tags' => 'Crud\TagController',
     '/w/{campaign}/timelines' => 'Crud\TimelineController',
     '/w/{campaign}/timelines.timeline_eras' => 'Timelines\TimelineEraController',
@@ -240,14 +240,13 @@ Route::resources([
     // Entities
     //'entities.attributes' => 'AttributeController',
     '/w/{campaign}/entities.entity_abilities' => 'Entity\AbilityController',
-    '/w/{campaign}/entities.entity_notes' => 'EntityNoteController',
     '/w/{campaign}/entities.posts' => 'Entity\PostController',
     '/w/{campaign}/entities.entity_events' => 'Entity\ReminderController',
     '/w/{campaign}/entities.entity_assets' => 'Entity\AssetController',
     '/w/{campaign}/entities.inventories' => 'Entity\InventoryController',
     '/w/{campaign}/entities.relations' => 'Entity\RelationController',
 
-    '/w/{campaign}/attribute_templates' => 'AttributeTemplateController',
+    '/w/{campaign}/attribute_templates' => 'Crud\AttributeTemplateController',
     //'presets' => 'PresetController',
 ]);
 
@@ -278,7 +277,7 @@ Route::get('/w/{campaign}/entities/{entity}/inventory', 'Entity\InventoryControl
 Route::get('/w/{campaign}/entities/export/{entity}', 'EntityController@export')->name('entities.export');
 Route::get('/w/{campaign}/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');
 
-Route::get('/w/{campaign}/entities/{entity}/template', 'EntityController@template')->name('entities.template');
+Route::get('/w/{campaign}/entities/{entity}/template', 'Entity\TemplateController@update')->name('entities.template');
 
 // Attribute template
 Route::get('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@apply')->name('entities.attributes.template');

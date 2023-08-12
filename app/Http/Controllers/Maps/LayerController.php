@@ -4,22 +4,20 @@ namespace App\Http\Controllers\Maps;
 
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Datagrid2\BulkControllerTrait;
-use App\Http\Requests\ReorderLayers;
 use App\Http\Requests\StoreMapLayer;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapLayer;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
-use Illuminate\Http\Request;
+use App\Traits\Controllers\HasSubview;
 use Illuminate\Support\Arr;
 
-class MapLayerController extends Controller
+class LayerController extends Controller
 {
-    use BulkControllerTrait;
     use CampaignAware;
     use HasDatagrid;
+    use HasSubview;
 
     public function index(Campaign $campaign, Map $map)
     {
@@ -35,14 +33,14 @@ class MapLayerController extends Controller
             ->with(['map'])
             ->paginate(15);
         if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
+            return $this
+                ->campaign($campaign)
+                ->datagridAjax();
         }
 
-        return view('maps.layers.index')
-            ->with('campaign', $campaign)
-            ->with('model', $map)
-            ->with('rows', $this->rows)
-        ;
+        return $this
+            ->campaign($campaign)
+            ->subview('maps.layers.index', $map);
     }
 
     public function show(Campaign $campaign, Map $map)
@@ -191,57 +189,5 @@ class MapLayerController extends Controller
         return redirect()
             ->route('maps.map_layers.index', [$campaign, $map])
             ->withSuccess(__('maps/layers.delete.success', ['name' => $mapLayer->name]));
-    }
-
-    /**
-     * @param Request $request
-     * @param Map $map
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function bulk(Request $request, Campaign $campaign, Map $map)
-    {
-        $this->authorize('update', $map);
-        $this->campaign = $campaign;
-        $action = $request->get('action');
-        $models = $request->get('model');
-        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
-            return redirect()->back();
-        }
-
-        if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.layers.bulk', [$campaign, 'map' => $map]), '_map-layer', $models);
-        }
-
-        $count = $this->bulkProcess($request, MapLayer::class);
-
-        return redirect()
-            ->route('maps.map_layers.index', [$campaign, $map])
-            ->with('success', trans_choice('maps/layers.bulks.' . $action, $count, ['count' => $count]))
-        ;
-    }
-
-    /**
-     * Controls drag and drop reordering of map layers
-     */
-    public function reorder(ReorderLayers $request, Campaign $campaign, Map $map)
-    {
-        $this->authorize('update', $map);
-
-        $order = 1;
-        $ids = $request->get('layer');
-        foreach ($ids as $id) {
-            $layer = MapLayer::where('id', $id)->where('map_id', $map->id)->first();
-            if (empty($layer)) {
-                continue;
-            }
-            $layer->position = $order;
-            $layer->updateQuietly();
-            $order++;
-        }
-        $order--;
-        return redirect()
-            ->route('maps.map_layers.index', [$campaign, $map])
-            ->with('success', trans_choice('maps/layers.reorder.success', $order, ['count' => $order]));
     }
 }

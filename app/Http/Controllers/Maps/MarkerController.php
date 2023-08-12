@@ -5,22 +5,21 @@ namespace App\Http\Controllers\Maps;
 use App\Facades\FormCopy;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Http\Requests\StoreMapMarker;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapMarker;
+use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
+use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Http\Request;
 
-class MapMarkerController extends Controller
+class MarkerController extends Controller
 {
-    use BulkControllerTrait;
+    use CampaignAware;
     use GuestAuthTrait;
     use HasDatagrid;
-
-    protected $model = Map::class;
+    use HasSubview;
 
     /**
      * @var array fields from the input sent to the model
@@ -53,11 +52,9 @@ class MapMarkerController extends Controller
             return $this->campaign($campaign)->datagridAjax();
         }
 
-        return view('maps.markers.index')
-            ->with('campaign', $campaign)
-            ->with('rows', $this->rows)
-            ->with('model', $map)
-        ;
+        return $this
+            ->campaign($campaign)
+            ->subview('maps.markers.index', $map);
     }
 
     public function show(Campaign $campaign, Map $map)
@@ -215,96 +212,5 @@ class MapMarkerController extends Controller
         return redirect()
             ->route('maps.map_markers.index', [$campaign, $map])
             ->withSuccess(__('maps/markers.delete.success', ['name' => $mapMarker->name]));
-    }
-
-    /**
-     * @param Map $map
-     * @param MapMarker $mapMarker
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Throwable
-     */
-    public function details(Campaign $campaign, Map $map, MapMarker $mapMarker)
-    {
-        if (auth()->check()) {
-            $this->authorize('view', $map);
-            if ($mapMarker->entity_id) {
-                // No access to the child? 404
-                if (empty($mapMarker->entity->child)) {
-                    abort(404);
-                }
-                $this->authorize('view', $mapMarker->entity->child);
-            }
-        } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $map);
-            if ($mapMarker->entity_id) {
-                $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $mapMarker->entity->child, $mapMarker->entity->typeId());
-            }
-        }
-
-        $name = $mapMarker->name;
-        if ($mapMarker->entity) {
-            $name = '<a href="' . $mapMarker->entity->url() . '" target="_blank">';
-            if (!empty($mapMarker->name)) {
-                $name .= $mapMarker->name;
-            } else {
-                $name .= $mapMarker->entity->name;
-            }
-            $name .= '</a>';
-        }
-
-        return response()->json([
-            'body' => view('maps.markers.details', [
-                'marker' => $mapMarker,
-                'campaign' => $campaign,
-            ])->render(),
-            'name' => $name
-        ]);
-    }
-
-    /**
-     * @param Request $request
-     * @param Map $map
-     * @param MapMarker $mapMarker
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function move(Request $request, Campaign $campaign, Map $map, MapMarker $mapMarker)
-    {
-        $this->authorize('update', $map);
-
-        $mapMarker->update($request->only('latitude', 'longitude'));
-
-        return response()->json([
-            'success' => true,
-            'marker_id' => $mapMarker->id
-        ]);
-    }
-
-    /**
-     * @param Request $request
-     * @param Map $map
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function bulk(Request $request, Campaign $campaign, Map $map)
-    {
-        $this->authorize('update', $map);
-        $action = $request->get('action');
-        $models = $request->get('model');
-        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
-            return redirect()->back();
-        }
-
-        if ($action === 'edit') {
-            return $this->bulkBatch(route('maps.markers.bulk', ['campaign' => $campaign, 'map' => $map]), '_map-marker', $models, $map);
-        }
-
-        $count = $this->bulkProcess($request, MapMarker::class);
-
-        return redirect()
-            ->route('maps.map_markers.index', [$campaign, 'map' => $map])
-            ->with('success', trans_choice('maps/markers.bulks.' . $action, $count, ['count' => $count]))
-        ;
     }
 }
