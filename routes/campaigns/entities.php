@@ -87,7 +87,7 @@ Route::get('/w/{campaign}/events/tree', 'Crud\EventController@tree')->name('even
 Route::get('/w/{campaign}/events/{event}/events', 'Events\EventController@index')->name('events.events');
 
 Route::get('/w/{campaign}/timelines/tree', 'Crud\TimelineController@tree')->name('timelines.tree');
-Route::get('/w/{campaign}/timelines/{timeline}/timelines', 'Timelines\TimelineController@timelines')->name('timelines.timelines');
+Route::get('/w/{campaign}/timelines/{timeline}/timelines', 'Timelines\TimelineController@index')->name('timelines.timelines');
 
 // Tag menus
 Route::get('/w/{campaign}/tags/tree', 'Crud\TagController@tree')->name('tags.tree');

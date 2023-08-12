@@ -10,7 +10,7 @@
 
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block flex gap-2 items-center justify-end">
+    <div class="header-buttons flex gap-2 items-center justify-end">
         @if (request()->has('parent_id'))
             <a href="{{ route('timelines.timelines', [$campaign, $model]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
@@ -34,7 +34,7 @@
         @include('entities.components.header', [
             'model' => $model,
             'breadcrumb' => [
-                ['url' => Breadcrumb::index($name), 'label' => $plural],
+                ['url' => Breadcrumb::index('timelines'), 'label' => $plural],
                 $plural
             ]
         ])

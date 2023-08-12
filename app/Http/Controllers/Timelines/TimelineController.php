@@ -2,79 +2,25 @@
 
 namespace App\Http\Controllers\Timelines;
 
-use App\Datagrids\Filters\TimelineFilter;
 use App\Facades\Datagrid;
-use App\Http\Controllers\CrudController;
-use App\Http\Requests\StoreTimeline;
+use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Timeline;
-use App\Traits\TreeControllerTrait;
+use App\Traits\CampaignAware;
+use App\Traits\Controllers\HasDatagrid;
+use App\Traits\Controllers\HasSubview;
+use App\Traits\GuestAuthTrait;
 
-class TimelineController extends CrudController
+class TimelineController extends Controller
 {
-    use TreeControllerTrait;
+    use CampaignAware;
+    use GuestAuthTrait;
+    use HasDatagrid;
+    use HasSubview;
 
-    /**
-     * @var string
-     */
-    protected string $view = 'timelines';
-    protected string $route = 'timelines';
-
-    /** @var string */
-    protected $model = \App\Models\Timeline::class;
-
-    /** @var string */
-    protected string $filter = TimelineFilter::class;
-
-    protected $module = 'timelines';
-
-    /**
-     */
-    public function store(StoreTimeline $request, Campaign $campaign)
+    public function index(Campaign $campaign, Timeline $timeline)
     {
-        return $this->campaign($campaign)->crudStore($request);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Campaign $campaign, Timeline $timeline)
-    {
-        return $this->campaign($campaign)->crudShow($timeline);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Campaign $campaign, Timeline $timeline)
-    {
-        return $this->campaign($campaign)->crudEdit($timeline);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(StoreTimeline $request, Campaign $campaign, Timeline $timeline)
-    {
-        return $this->campaign($campaign)->crudUpdate($request, $timeline);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Campaign $campaign, Timeline $timeline)
-    {
-        return $this->campaign($campaign)->crudDestroy($timeline);
-    }
-
-    /**
-     * @param Timeline $timeline
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function timelines(Campaign $campaign, Timeline $timeline)
-    {
-        $this->authCheck($timeline);
+        $this->campaign($campaign)->authView($timeline);
 
         $options = ['campaign' => $campaign, 'timeline' => $timeline];
         $filters = [];
@@ -96,12 +42,10 @@ class TimelineController extends CrudController
 
         if (request()->ajax()) {
             return $this
-                ->campaign($campaign)
                 ->datagridAjax();
         }
 
         return $this
-            ->campaign($campaign)
-            ->menuView($timeline, 'timelines');
+            ->subview('timelines.timelines', $timeline);
     }
 }

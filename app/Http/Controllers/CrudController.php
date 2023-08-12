@@ -569,41 +569,6 @@ class CrudController extends Controller
     }
 
     /**
-     * @param MiscModel $model
-     * @param string $view
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    protected function menuView($model, $view, $directView = false)
-    {
-        // Policies will always fail if they can't resolve the user.
-        $this->authCheck($model);
-
-        $name = $this->view;
-        $fullview = $this->view . '.' . $view;
-        if ($directView) {
-            $fullview = 'cruds.subpage.' . $view;
-        }
-
-        $data = $markers = [];
-        $datagridSorter = $this->datagridSorter;
-
-        $rows = $this->rows;
-        $campaign = $this->campaign;
-
-        return view('cruds.subview', compact(
-            'fullview',
-            'model',
-            'name',
-            'datagridSorter',
-            'campaign',
-            'data',
-            'view',
-            'rows'
-        ));
-    }
-
-    /**
      * @param Request $request
      * @param MiscModel $model
      * @return array
